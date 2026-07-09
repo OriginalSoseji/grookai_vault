@@ -19,6 +19,8 @@ const FIXTURE = {
   privateWantUserId: '00000000-0000-4000-8000-00000000e918',
   completionEventId: '00000000-0000-4000-8000-00000000e931',
   scannerEventId: '00000000-0000-4000-8000-00000000e932',
+  duplicateTradeAddEventIdA: '00000000-0000-4000-8000-00000000e933',
+  duplicateTradeAddEventIdB: '00000000-0000-4000-8000-00000000e934',
 };
 
 const USERS = [
@@ -256,7 +258,9 @@ async function seedFixture(client) {
       )
       values
         ($1, 'set_completion_crossed', $3, $4, $4, '{"threshold":75,"subject_label":"E5 Journey Set"}'::jsonb, 'private', 'e5-journey-completion', '2026-07-08 12:00:00+00'),
-        ($2, 'scanner_v5_vault_add_enriched', $3, $5, null, '{"gvvi_id":"GVVI-E5-TRADE","session_id":"e5-scanner"}'::jsonb, 'private', 'e5-journey-scanner-enriched', '2026-07-08 12:05:00+00')
+        ($2, 'scanner_v5_vault_add_enriched', $3, $5, null, '{"gvvi_id":"GVVI-E5-TRADE","session_id":"e5-scanner"}'::jsonb, 'private', 'e5-journey-scanner-enriched', '2026-07-08 12:05:00+00'),
+        ($6, 'vault_added', $3, $5, $5, '{"gvvi_id":"GVVI-E5-TRADE-DUP-A"}'::jsonb, 'public', 'e5-journey-duplicate-add-a', '2026-07-08 12:10:00+00'),
+        ($7, 'vault_added', $3, $5, $5, '{"gvvi_id":"GVVI-E5-TRADE-DUP-B"}'::jsonb, 'public', 'e5-journey-duplicate-add-b', '2026-07-08 12:15:00+00')
       on conflict (dedupe_key) where dedupe_key is not null do nothing
     `,
     [
@@ -265,6 +269,8 @@ async function seedFixture(client) {
       FIXTURE.cardId,
       FIXTURE.viewerUserId,
       FIXTURE.tradeOwnerUserId,
+      FIXTURE.duplicateTradeAddEventIdA,
+      FIXTURE.duplicateTradeAddEventIdB,
     ],
   );
 }
@@ -359,6 +365,12 @@ async function main() {
     const momentRows = [...momentsPageOne.rows, ...momentsPageTwo.rows];
     summary.moment_types = momentRows.map((row) => row.event_type);
     summary.moment_event_ids = momentRows.map((row) => row.event_id);
+    summary.moment_lines = momentRows.map((row) => row.moment_line);
+    summary.duplicate_adds_collapsed = momentRows.filter((row) =>
+      row.event_type === 'vault_added' &&
+      row.actor_slug === 'e5-trade' &&
+      /added \d+ copies of E5 Journey Pikachu/.test(row.moment_line),
+    ).length === 1;
     summary.moment_payload_column_present = momentsPageOne.fields.some((field) => field.name === 'payload');
     summary.moment_pages_overlap = momentsPageOne.rows.filter((row) =>
       momentsPageTwo.rows.some((other) => other.event_id === row.event_id),
@@ -457,6 +469,9 @@ async function main() {
     }
     if (summary.moment_pages_overlap !== 0) {
       throw new Error('moment keyset pages overlapped');
+    }
+    if (!summary.duplicate_adds_collapsed) {
+      throw new Error('duplicate vault_added moments were not collapsed into a counted moment');
     }
     if (summary.geography_payload_has_people) {
       throw new Error('geography RPC exposed people/copy identifiers');

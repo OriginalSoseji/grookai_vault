@@ -1281,19 +1281,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       );
                       void openRelatedVersion() {
                         Navigator.of(context).pop();
-                        Navigator.of(this.context).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => CardDetailScreen(
-                              cardPrintId: _cleanText(row['id']),
-                              gvId: _cleanText(row['gv_id']),
-                              name: _cleanText(row['name']),
-                              setName: setName,
-                              setCode: setCode,
-                              number: number,
-                              rarity: rarity,
-                              imageUrl: imageUrl,
-                            ),
-                          ),
+                        Future<void>.delayed(
+                          const Duration(milliseconds: 180),
+                          () {
+                            if (!mounted) {
+                              return;
+                            }
+                            Navigator.of(this.context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => CardDetailScreen(
+                                  cardPrintId: _cleanText(row['id']),
+                                  gvId: _cleanText(row['gv_id']),
+                                  name: _cleanText(row['name']),
+                                  setName: setName,
+                                  setCode: setCode,
+                                  number: number,
+                                  rarity: rarity,
+                                  imageUrl: imageUrl,
+                                ),
+                              ),
+                            );
+                          },
                         );
                       }
 
@@ -1432,7 +1440,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final sections = <Widget>[
       _buildHeroPanel(theme, colorScheme),
       _buildPricingSection(theme, colorScheme),
@@ -1448,11 +1455,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ];
 
     return Scaffold(
-      extendBody: true,
       body: SafeArea(
-        bottom: false,
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(24, 10, 24, 124 + bottomInset),
+          padding: const EdgeInsets.fromLTRB(24, 10, 24, 28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -2040,48 +2045,51 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   ) {
     final snapshot = overview.snapshot;
     final snapshotLine = _buildJourneySnapshotLine(snapshot);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => _openJourneyCollectorsSheet(snapshot),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          children: [
-            _buildJourneyAvatarStack(
-              overview.collectorPreview,
-              theme,
-              colorScheme,
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: snapshotLine.ownerSegment,
-                      style: const TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    for (final segment in snapshotLine.trailingSegments)
-                      TextSpan(text: ' · $segment'),
-                  ],
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.84),
-                  fontSize: 13.5,
-                  fontWeight: FontWeight.w500,
-                  height: 1.24,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openJourneyCollectorsSheet(snapshot),
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            children: [
+              _buildJourneyAvatarStack(
+                overview.collectorPreview,
+                theme,
+                colorScheme,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: snapshotLine.ownerSegment,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      for (final segment in snapshotLine.trailingSegments)
+                        TextSpan(text: ' · $segment'),
+                    ],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.84),
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w500,
+                    height: 1.24,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 7),
-            Icon(
-              Icons.chevron_right_rounded,
-              size: 20,
-              color: colorScheme.onSurface.withValues(alpha: 0.42),
-            ),
-          ],
+              const SizedBox(width: 7),
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 20,
+                color: colorScheme.onSurface.withValues(alpha: 0.42),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -2866,7 +2874,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {
     return FilledButton.styleFrom(
-      minimumSize: const Size.fromHeight(44),
+      minimumSize: const Size(44, 44),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w700,
@@ -2912,8 +2920,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       minimum: const EdgeInsets.fromLTRB(24, 0, 24, 16),
       child: Align(
         alignment: Alignment.bottomCenter,
+        widthFactor: 1,
+        heightFactor: 1,
         child: GvSurface(
-          variant: GvSurfaceVariant.glass,
+          // Backdrop-filtered glass inside bottomNavigationBar can render as a
+          // full black SurfaceView on Android. Keep the same pill layout with a
+          // non-filtered floating surface.
+          variant: GvSurfaceVariant.floating,
           borderRadius: 34,
           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
           child: Row(

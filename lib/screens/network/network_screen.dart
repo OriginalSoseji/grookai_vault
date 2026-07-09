@@ -10,6 +10,7 @@ import '../../models/provisional_card.dart';
 import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/diagnostics/app_boot_timing.dart';
+import '../../services/identity/canon_image_url_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
 import '../../services/provisional/provisional_service.dart';
@@ -1038,7 +1039,7 @@ class _PulseItemRow extends StatelessWidget {
                             ? Icons.trending_up_rounded
                             : Icons.style_outlined,
                         primary: true,
-                        onPressed: () => _openPrimary(context),
+                        onPressed: () => unawaited(_openPrimary(context)),
                       ),
                       if (item.isWantMatch &&
                           item.contactVaultItemId.isNotEmpty)
@@ -1108,19 +1109,44 @@ class _PulseItemRow extends StatelessWidget {
     return parts.isEmpty ? 'Collection activity' : parts.join(' · ');
   }
 
-  void _openPrimary(BuildContext context) {
+  Future<void> _openPrimary(BuildContext context) async {
     if (item.gvId.isNotEmpty || item.cardPrintId.isNotEmpty) {
-      Navigator.of(context).push(
+      final navigator = Navigator.of(context, rootNavigator: true);
+      final resolved = await _resolveCardDetailRow();
+      final row = resolved ?? const <String, dynamic>{};
+      final setData = row['sets'];
+      final setName = setData is Map ? _pulseText(setData['name']) : '';
+      final imageUrl =
+          CanonImageUrlService.displayImageUrlFromRow(row) ??
+          _pulseHttpImageUrl(row['image_url']) ??
+          _pulseHttpImageUrl(row['image_alt_url']) ??
+          _pulseHttpImageUrl(row['representative_image_url']) ??
+          item.displayImageUrl;
+      final displayNumber = _pulseText(row['number']).isNotEmpty
+          ? _pulseText(row['number'])
+          : _pulseText(row['number_plain']);
+      await navigator.push(
         MaterialPageRoute<void>(
           builder: (_) => CardDetailScreen(
-            cardPrintId: item.cardPrintId,
+            cardPrintId: _pulseText(row['id']).isNotEmpty
+                ? _pulseText(row['id'])
+                : item.cardPrintId,
             entrySurface: 'pulse',
-            gvId: item.gvId,
-            name: item.displayCardName,
-            setName: item.setName,
-            setCode: item.setCode,
-            number: item.cardNumber,
-            imageUrl: item.displayImageUrl,
+            gvId: _pulseText(row['gv_id']).isNotEmpty
+                ? _pulseText(row['gv_id'])
+                : item.gvId,
+            name: _pulseText(row['name']).isNotEmpty
+                ? _pulseText(row['name'])
+                : item.displayCardName,
+            setName: setName.isNotEmpty ? setName : item.setName,
+            setCode: _pulseText(row['set_code']).isNotEmpty
+                ? _pulseText(row['set_code'])
+                : item.setCode,
+            number: displayNumber.isNotEmpty ? displayNumber : item.cardNumber,
+            rarity: _pulseText(row['rarity']).isNotEmpty
+                ? _pulseText(row['rarity'])
+                : null,
+            imageUrl: imageUrl,
             contactOwnerDisplayName: item.displayActorName,
             contactOwnerUserId: item.actorUserId,
             contactIntent: item.intent,
@@ -1141,6 +1167,39 @@ class _PulseItemRow extends StatelessWidget {
         ),
       );
     }
+  }
+
+  Future<Map<String, dynamic>?> _resolveCardDetailRow() async {
+    try {
+      final client = Supabase.instance.client;
+      final query = client
+          .from('card_prints')
+          .select(
+            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)',
+          );
+      final raw = item.cardPrintId.isNotEmpty
+          ? await query.eq('id', item.cardPrintId).maybeSingle()
+          : await query.eq('gv_id', item.gvId).maybeSingle();
+      if (raw == null) {
+        return null;
+      }
+      final enriched = await CanonImageUrlService.enrichRows([
+        Map<String, dynamic>.from(raw),
+      ]);
+      return enriched.first;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  String _pulseText(dynamic value) => value?.toString().trim() ?? '';
+
+  String? _pulseHttpImageUrl(dynamic value) {
+    final normalized = _pulseText(value);
+    if (normalized.isEmpty || !normalized.startsWith('http')) {
+      return null;
+    }
+    return normalized;
   }
 }
 

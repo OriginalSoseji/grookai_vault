@@ -186,6 +186,7 @@ Rules:
 - no private actor/event leakage
 - no pulled moments in v1
 - consume the base public `vault_added` event only
+- repeated `vault_added` events by the same actor for the same exact card collapse into one counted moment, e.g. `added 3 copies of <card>`
 - scanner's private enriched twin must never produce a second moment
 - dedupe fixture test must prove base `vault_added` plus scanner-enriched twin sharing a `gvvi_id` yields one moment
 
@@ -289,6 +290,7 @@ Gate:
 - block/mute fixture suppresses rows everywhere
 - moments return newest first, max 5 by default, and keyset pagination works
 - scanner base/enriched `gvvi_id` fixture yields one public moment
+- duplicate same-actor `vault_added` events for the same exact card yield one counted moment, not repeated lines
 - moments return no raw payload jsonb
 - geography returns aggregate area rows only and only when at least 2 distinct areas exist
 - PR 1 names and proves the area label source matches the feed proximity bucket source

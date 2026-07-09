@@ -3410,9 +3410,13 @@ class HomePageState extends State<HomePage> {
             );
           }
 
-          void handleViewCard() {
+          Future<void> handleViewCard() async {
             Navigator.of(sheetContext).pop();
-            _openCardDetail(card);
+            await Future<void>.delayed(_kDrawerCloseDuration);
+            if (!mounted) {
+              return;
+            }
+            await _openCardDetail(card, navigator: parentNavigator);
           }
 
           // EXPLORE_SET_LINK_V1
@@ -3859,8 +3863,11 @@ class HomePageState extends State<HomePage> {
   // REMOVE_FROM_VAULT_AUDIT
   // removal target logic: resolve the same latest active exact copy when possible, otherwise remove one instance from the active vault anchor.
 
-  Future<void> _openCardDetail(CardPrint card) async {
-    await Navigator.of(context).push(
+  Future<void> _openCardDetail(
+    CardPrint card, {
+    NavigatorState? navigator,
+  }) async {
+    await (navigator ?? Navigator.of(context)).push(
       MaterialPageRoute<void>(
         builder: (_) => CardDetailScreen(
           cardPrintId: card.id,

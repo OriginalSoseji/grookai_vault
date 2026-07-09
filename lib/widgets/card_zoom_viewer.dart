@@ -133,7 +133,7 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
     }
 
     Navigator.of(context, rootNavigator: true).pop();
-    Future<void>.delayed(Duration.zero, onViewDetails);
+    Future<void>.delayed(const Duration(milliseconds: 180), onViewDetails);
   }
 
   @override
