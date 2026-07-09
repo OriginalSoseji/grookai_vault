@@ -38,6 +38,7 @@ import 'screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
+import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
 import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
@@ -65,6 +66,7 @@ import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
 import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
+import 'widgets/onboarding/onboarding_ladder_sheet.dart';
 import 'widgets/provisional/provisional_card_section.dart';
 
 part 'main_shell.dart';
@@ -3821,6 +3823,13 @@ class HomePageState extends State<HomePage> {
       if (gvviId.isEmpty) {
         throw Exception('Exact copy could not be created.');
       }
+      unawaited(
+        OnboardingLadderService.recordOwnedBestEffort(
+          client: supabase,
+          cardPrintId: card.id,
+          source: 'search',
+        ),
+      );
       return gvviId;
     } catch (error) {
       if (!mounted) {

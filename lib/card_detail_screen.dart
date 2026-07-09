@@ -19,6 +19,7 @@ import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
+import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -970,6 +971,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       if (gvviId.isEmpty) {
         throw Exception('Exact copy could not be created.');
       }
+      unawaited(
+        OnboardingLadderService.recordOwnedBestEffort(
+          client: supabase,
+          cardPrintId: widget.cardPrintId,
+          source: _entrySurface == 'scan' ? 'scan' : 'search',
+        ),
+      );
 
       try {
         await CardEngagementService.recordFeedEvent(

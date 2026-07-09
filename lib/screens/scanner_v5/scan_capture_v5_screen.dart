@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/scanner_v5/scanner_v5_identity_service.dart';
+import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import 'widgets/scanner_result_sheet.dart';
 import 'widgets/scanner_v5_palette.dart';
@@ -390,6 +391,13 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         userId: userId,
         candidate: candidate,
         gvviId: gvviId,
+      );
+      unawaited(
+        OnboardingLadderService.recordOwnedBestEffort(
+          client: Supabase.instance.client,
+          cardPrintId: cardPrintId,
+          source: 'scan',
+        ),
       );
       if (!mounted) return;
       await HapticFeedback.heavyImpact();

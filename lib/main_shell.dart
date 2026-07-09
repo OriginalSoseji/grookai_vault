@@ -51,6 +51,7 @@ class _AppShellState extends State<AppShell> {
   final GlobalKey<_MyWallTabState> _wallKey = GlobalKey();
   final GlobalKey<NetworkScreenState> _networkKey = GlobalKey();
   final GlobalKey<VaultPageState> _vaultKey = GlobalKey();
+  late final OnboardingLadderService _onboardingService;
 
   late final List<Widget?> _shellPages;
   _ShellDestination _destination = _ShellDestination.feed;
@@ -62,11 +63,15 @@ class _AppShellState extends State<AppShell> {
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
   int _pulseUnreadCount = 0;
+  bool _onboardingProbeInFlight = false;
+  bool _onboardingDismissedThisSession = false;
+  OnboardingLadderState? _onboardingOverlayState;
 
   @override
   void initState() {
     super.initState();
     AppBootTiming.mark('app_shell_init_state_start');
+    _onboardingService = OnboardingLadderService(client: _supabase);
     // PERFORMANCE_P1_SHELL_LAZY_TABS
     // Defers heavy tab construction until first visit while preserving tab
     // retention after a surface has been opened once.
@@ -90,6 +95,7 @@ class _AppShellState extends State<AppShell> {
           !kFixedSlotCaptureScannerV1Enabled) {
         unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
       }
+      unawaited(_maybeShowOnboardingForLanding());
     });
     AppBootTiming.mark('app_shell_init_state_complete');
   }
@@ -414,6 +420,14 @@ class _AppShellState extends State<AppShell> {
       _destination = destination;
       _bottomNavCollapsed = false;
     });
+    if (destination == _ShellDestination.feed ||
+        destination == _ShellDestination.search) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          unawaited(_maybeShowOnboardingForLanding());
+        }
+      });
+    }
     if (destination == _ShellDestination.wall) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) {
@@ -662,6 +676,73 @@ class _AppShellState extends State<AppShell> {
     }
   }
 
+  Future<void> _maybeShowOnboardingForLanding() async {
+    if (!kOnboardingLadderEnabled ||
+        _onboardingProbeInFlight ||
+        _onboardingDismissedThisSession ||
+        _onboardingOverlayState != null ||
+        _supabase.auth.currentUser == null ||
+        _handlingCanonicalLink ||
+        widget.pendingCanonicalLink != null ||
+        ModalRoute.of(context)?.isCurrent == false ||
+        (_destination != _ShellDestination.feed &&
+            _destination != _ShellDestination.search)) {
+      return;
+    }
+
+    _onboardingProbeInFlight = true;
+    try {
+      final state = await _onboardingService.loadState().timeout(
+        const Duration(seconds: 8),
+      );
+      if (!mounted ||
+          _onboardingDismissedThisSession ||
+          _onboardingOverlayState != null ||
+          _destination != _ShellDestination.feed &&
+              _destination != _ShellDestination.search) {
+        return;
+      }
+
+      final shouldShow =
+          !state.isComplete &&
+          !state.isDismissed &&
+          (state.needsOwned ||
+              state.needsWanted ||
+              state.shouldShowLoopPromise ||
+              state.shouldShowCollectorSuggestions);
+      if (shouldShow) {
+        setState(() => _onboardingOverlayState = state);
+      }
+    } catch (_) {
+      // Onboarding is never allowed to block the shell.
+    } finally {
+      _onboardingProbeInFlight = false;
+    }
+  }
+
+  void _dismissOnboardingOverlay() {
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _onboardingDismissedThisSession = true;
+      _onboardingOverlayState = null;
+    });
+  }
+
+  Future<void> _openOnboardingScanner() async {
+    await _startScanFlow();
+    if (!mounted) {
+      return;
+    }
+    await _maybeShowOnboardingForLanding();
+  }
+
+  void _openSearchFromOnboarding() {
+    _dismissOnboardingOverlay();
+    _selectDestination(_ShellDestination.search);
+  }
+
   IconButton _appBarActionButton({
     required IconData icon,
     required String tooltip,
@@ -801,6 +882,46 @@ class _AppShellState extends State<AppShell> {
       onNotification: _handleShellScroll,
       child: shellBody,
     );
+    final activeBody = isDesktopShell
+        ? Row(
+            children: [
+              _GrookaiDesktopRail(
+                currentDestination: _destination,
+                onOpenSearch: () =>
+                    _selectDestination(_ShellDestination.search),
+                onOpenFeed: () => _selectDestination(_ShellDestination.feed),
+                onOpenWall: () => _selectDestination(_ShellDestination.wall),
+                onOpenVault: () => _selectDestination(_ShellDestination.vault),
+                onOpenScan: _startScanFlow,
+                onOpenDex: () => unawaited(_openDex()),
+                onOpenSets: () => unawaited(_openSets()),
+                onOpenCompare: () => unawaited(_openCompare()),
+                onOpenMessages: () => unawaited(_openMessages()),
+                onOpenAccount: () => unawaited(_openAccountHub()),
+                onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
+              ),
+              VerticalDivider(
+                width: 1,
+                thickness: 1,
+                color: colorScheme.outline.withValues(alpha: 0.08),
+              ),
+              Expanded(child: shellBody),
+            ],
+          )
+        : mobileShellBody;
+    final bodyWithOnboarding = Stack(
+      children: [
+        activeBody,
+        if (_onboardingOverlayState != null)
+          OnboardingLadderOverlay(
+            service: _onboardingService,
+            initialState: _onboardingOverlayState!,
+            onDismissed: _dismissOnboardingOverlay,
+            onOpenScanner: _openOnboardingScanner,
+            onOpenSearch: _openSearchFromOnboarding,
+          ),
+      ],
+    );
 
     return Scaffold(
       key: _scaffoldKey,
@@ -833,34 +954,7 @@ class _AppShellState extends State<AppShell> {
         ),
         actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
       ),
-      body: isDesktopShell
-          ? Row(
-              children: [
-                _GrookaiDesktopRail(
-                  currentDestination: _destination,
-                  onOpenSearch: () =>
-                      _selectDestination(_ShellDestination.search),
-                  onOpenFeed: () => _selectDestination(_ShellDestination.feed),
-                  onOpenWall: () => _selectDestination(_ShellDestination.wall),
-                  onOpenVault: () =>
-                      _selectDestination(_ShellDestination.vault),
-                  onOpenScan: _startScanFlow,
-                  onOpenDex: () => unawaited(_openDex()),
-                  onOpenSets: () => unawaited(_openSets()),
-                  onOpenCompare: () => unawaited(_openCompare()),
-                  onOpenMessages: () => unawaited(_openMessages()),
-                  onOpenAccount: () => unawaited(_openAccountHub()),
-                  onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
-                ),
-                VerticalDivider(
-                  width: 1,
-                  thickness: 1,
-                  color: colorScheme.outline.withValues(alpha: 0.08),
-                ),
-                Expanded(child: shellBody),
-              ],
-            )
-          : mobileShellBody,
+      body: bodyWithOnboarding,
       bottomNavigationBar: isDesktopShell
           ? null
           : _buildMobileBottomDock(

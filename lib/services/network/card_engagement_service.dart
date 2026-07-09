@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../onboarding/onboarding_ladder_service.dart';
 
 class CardWantState {
   const CardWantState({this.want = false, this.isPublic = false});
@@ -107,6 +111,16 @@ class CardEngagementService {
         metadata: metadata,
       );
     } catch (_) {}
+
+    if (want) {
+      unawaited(
+        OnboardingLadderService.recordWantedBestEffort(
+          client: client,
+          cardPrintId: normalizedCardPrintId,
+          source: surface ?? 'search',
+        ),
+      );
+    }
 
     if (updated == null) {
       return CardWantState(want: want, isPublic: payload['is_public'] == true);
