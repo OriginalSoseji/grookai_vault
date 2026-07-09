@@ -66,6 +66,11 @@ const SOURCE_REFRESH_ADAPTERS = Object.freeze([
   }),
 ]);
 
+const REFERENCE_LIMIT_SOURCES = new Set([
+  "pokemontcg_io_reference",
+  "tcgcsv_reference",
+]);
+
 function normalizeSources(sources) {
   if (sources === null || sources === undefined) {
     return SOURCE_REFRESH_ADAPTERS.filter((adapter) => adapter.default_enabled).map((adapter) => adapter.source);
@@ -99,14 +104,22 @@ export function buildMarketEvidenceSourceRefreshPlanV1({
   generatedAt = new Date().toISOString(),
   allowProviderCalls = false,
   allowDbWrites = false,
+  referenceLimit = 5000,
 } = {}) {
+  if (!Number.isInteger(referenceLimit) || referenceLimit < 1) {
+    throw new Error("[mee-source-refresh] referenceLimit must be a positive integer");
+  }
   const selectedSources = new Set(normalizeSources(sources));
   const adapters = SOURCE_REFRESH_ADAPTERS
     .filter((adapter) => selectedSources.has(adapter.source))
     .map((adapter) => {
       assertAdapterSafe(adapter);
+      const command = adapter.command && REFERENCE_LIMIT_SOURCES.has(adapter.source)
+        ? `${adapter.command} --limit=${referenceLimit}`
+        : adapter.command;
       return {
         ...adapter,
+        command,
         status: adapter.command ? "planned" : "manual_or_licensed_input_required",
         effective_provider_calls: allowProviderCalls && adapter.provider_calls,
         effective_db_writes: allowDbWrites && adapter.db_writes,
@@ -148,6 +161,7 @@ export function buildMarketEvidenceSourceRefreshPlanV1({
       provider_call_adapter_count: adapters.filter((adapter) => adapter.provider_calls).length,
       db_write_adapter_count: adapters.filter((adapter) => adapter.db_writes).length,
       enabled_free_reference_adapter_count: adapters.filter((adapter) => adapter.lane === "free_reference").length,
+      reference_limit: referenceLimit,
     },
     adapters,
     required_downstream_readbacks: [

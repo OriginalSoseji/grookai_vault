@@ -28,8 +28,10 @@ Use `MEE_NIGHTLY_NORMALIZATION_ONLY=1` or `--normalization-only` to reprocess ex
 Optional:
 
 - `MEE_NIGHTLY_REFERENCE_LIMIT`, default `5000`, caps the nightly TCGCSV reference target batch.
+- `TCGCSV_REQUEST_DELAY_MS`, default `100`, throttles refreshed TCGCSV product/price requests.
 
 The nightly worker refreshes TCGCSV alongside the eBay listing ingest when provider calls are enabled. TCGCSV rows are written only through the guarded reference evidence path; they do not publish prices, update app-visible pricing, or write `pricing_observations`.
+The standalone reference refresh timer uses the same `MEE_NIGHTLY_REFERENCE_LIMIT` cap for query planning, acquisition batching, PokemonTCG.io acquisition, and TCGCSV acquisition. Do not let these commands fall back to their script defaults; those defaults are for small local probes.
 
 Preferred installer:
 

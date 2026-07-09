@@ -268,6 +268,8 @@ test("MEE-06B script keeps DB writes and public prices out of the TCGCSV lane", 
   assert.match(pkg, /"mee:tcgcsv"/);
   assert.match(scriptSource, /read_only_db_set_catalog_lookup/);
   assert.match(scriptSource, /curl\.exe/);
+  assert.match(scriptSource, /TCGCSV_REQUEST_DELAY_MS/);
+  assert.match(scriptSource, /GrookaiMarketEvidenceAudit\/1\.0/);
 
   const combined = `${moduleSource}\n${scriptSource}`;
   assert.doesNotMatch(combined, /\.insert\s*\(|\.update\s*\(|\.upsert\s*\(|\.delete\s*\(|\.rpc\s*\(/);

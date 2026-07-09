@@ -13,8 +13,12 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   const verify = read("deploy/scripts/verify-mee-reference-refresh-systemd.sh");
 
   assert.match(service, /market_evidence_engine_query_plan_v1\.mjs/);
+  assert.match(service, /reference_limit="\$\{MEE_NIGHTLY_REFERENCE_LIMIT:-5000\}"/);
+  assert.match(service, /market_evidence_engine_query_plan_v1\.mjs --limit="\$reference_limit"/);
   assert.match(service, /market_evidence_engine_acquisition_batch_v1\.mjs/);
+  assert.match(service, /market_evidence_engine_acquisition_batch_v1\.mjs --sources=pokemontcg_io_reference,tcgcsv_reference --limit="\$reference_limit"/);
   assert.match(service, /mee_reference_source_refresh_worker_v1\.mjs --run/);
+  assert.match(service, /mee_reference_source_refresh_worker_v1\.mjs --run --sources=pokemontcg_io_reference,tcgcsv_reference --limit="\$reference_limit"/);
   assert.match(service, /market_evidence_engine_normalized_reference_v1\.mjs/);
   assert.match(service, /mee_reference_warehouse_delta_writer_v1\.mjs --run/);
   assert.match(service, /--sources=pokemontcg_io_reference,tcgcsv_reference/);
@@ -25,9 +29,11 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(install, /MEE_REFERENCE_REFRESH_ALLOW_PROVIDER_CALLS/);
   assert.match(install, /MEE_REFERENCE_REFRESH_ALLOW_INTERNAL_WRITES"\s+"0"/);
   assert.match(install, /MEE_REFERENCE_WAREHOUSE_DELTA_ALLOW_RUN"\s+"1"/);
-  assert.match(install, /market_evidence_engine_query_plan_v1\.mjs/);
-  assert.match(install, /market_evidence_engine_acquisition_batch_v1\.mjs/);
+  assert.match(install, /MEE_NIGHTLY_REFERENCE_LIMIT"\s+"5000"/);
+  assert.match(install, /market_evidence_engine_query_plan_v1\.mjs --limit="\$\{reference_limit\}"/);
+  assert.match(install, /market_evidence_engine_acquisition_batch_v1\.mjs --sources=pokemontcg_io_reference,tcgcsv_reference --limit="\$\{reference_limit\}"/);
   assert.match(install, /market_evidence_engine_normalized_reference_v1\.mjs/);
+  assert.match(install, /mee_reference_source_refresh_worker_v1\.mjs --dry-run --sources=pokemontcg_io_reference,tcgcsv_reference --limit="\$\{reference_limit\}"/);
   assert.match(install, /mee_reference_warehouse_delta_writer_v1\.mjs --dry-run/);
   assert.match(verify, /journalctl -u "\$\{SERVICE_NAME\}"/);
   assert.match(verify, /mee_reference_warehouse_delta_writer_v1_/);

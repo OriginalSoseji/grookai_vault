@@ -22,6 +22,7 @@ function read(relativePath) {
 test("MEE source refresh plan covers free/reference APIs without direct publication", () => {
   const plan = buildMarketEvidenceSourceRefreshPlanV1({
     generatedAt: "2026-06-28T00:00:00.000Z",
+    referenceLimit: 5000,
   });
 
   assert.equal(plan.package_id, "MEE-SOURCE-REFRESH-LAYER-V1");
@@ -40,6 +41,19 @@ test("MEE source refresh plan covers free/reference APIs without direct publicat
     "tcgdex_tcgplayer_reference",
   ]);
   assert.equal(plan.summary.enabled_free_reference_adapter_count, 4);
+  assert.equal(plan.summary.reference_limit, 5000);
+  assert.match(
+    plan.adapters.find((adapter) => adapter.source === "tcgcsv_reference")?.command ?? "",
+    /--limit=5000/,
+  );
+  assert.match(
+    plan.adapters.find((adapter) => adapter.source === "pokemontcg_io_reference")?.command ?? "",
+    /--limit=5000/,
+  );
+  assert.doesNotMatch(
+    plan.adapters.find((adapter) => adapter.source === "tcgdex_tcgplayer_reference")?.command ?? "",
+    /--limit=5000/,
+  );
 });
 
 test("MEE source refresh worker is gated and does not contain public pricing writes", () => {

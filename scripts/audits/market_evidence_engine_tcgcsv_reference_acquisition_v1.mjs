@@ -22,6 +22,7 @@ const CURL_BIN = os.platform() === 'win32' ? 'curl.exe' : 'curl';
 const CATEGORY_ID = 3;
 const BASE_URL = `https://tcgcsv.com/tcgplayer/${CATEGORY_ID}`;
 const SOURCE = 'tcgcsv_reference';
+const REQUEST_DELAY_MS = Number.parseInt(process.env.TCGCSV_REQUEST_DELAY_MS ?? '100', 10);
 
 function parseArgs(argv) {
   const parsed = {
@@ -124,11 +125,22 @@ async function loadGroups(cacheDir, options) {
   return payload.results ?? [];
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function loadGroupPayload(groupId, cacheDir, options) {
-  const [productsPayload, pricesPayload] = await Promise.all([
-    fetchJsonCached(`${BASE_URL}/${groupId}/products`, path.join(cacheDir, `${groupId}_products.json`), options),
-    fetchJsonCached(`${BASE_URL}/${groupId}/prices`, path.join(cacheDir, `${groupId}_prices.json`), options),
-  ]);
+  const productsPayload = await fetchJsonCached(
+    `${BASE_URL}/${groupId}/products`,
+    path.join(cacheDir, `${groupId}_products.json`),
+    options,
+  );
+  if (options.refreshCache && REQUEST_DELAY_MS > 0) await sleep(REQUEST_DELAY_MS);
+  const pricesPayload = await fetchJsonCached(
+    `${BASE_URL}/${groupId}/prices`,
+    path.join(cacheDir, `${groupId}_prices.json`),
+    options,
+  );
   return {
     products: productsPayload.results ?? [],
     prices: pricesPayload.results ?? [],
@@ -219,6 +231,7 @@ async function main() {
   const groupPayloadsByGroupId = {};
   for (const groupId of neededGroups.keys()) {
     groupPayloadsByGroupId[groupId] = await loadGroupPayload(groupId, args.cacheDir, args);
+    if (args.refreshCache && REQUEST_DELAY_MS > 0) await sleep(REQUEST_DELAY_MS);
   }
 
   const acquisition = acquireTcgcsvReferenceEvidenceV1({

@@ -32,10 +32,18 @@ function sha256(value) {
 function parseArgs(argv) {
   const run = argv.includes("--run");
   const sourcesArg = argv.find((arg) => arg.startsWith("--sources="))?.slice("--sources=".length);
+  const referenceLimitRaw = argv.find((arg) => arg.startsWith("--limit="))?.slice("--limit=".length)
+    ?? process.env.MEE_NIGHTLY_REFERENCE_LIMIT
+    ?? "5000";
+  const referenceLimit = Number.parseInt(referenceLimitRaw, 10);
+  if (!Number.isInteger(referenceLimit) || referenceLimit < 1) {
+    throw new Error("[mee-reference-source-refresh] --limit must be a positive integer");
+  }
   return {
     run,
     dryRun: argv.includes("--dry-run") || !run,
     sources: sourcesArg ? sourcesArg.split(",").map((source) => source.trim()).filter(Boolean) : undefined,
+    referenceLimit,
     allowProviderCalls: process.env.MEE_REFERENCE_REFRESH_ALLOW_PROVIDER_CALLS === "1",
     allowDbWrites: process.env.MEE_REFERENCE_REFRESH_ALLOW_INTERNAL_WRITES === "1",
   };
@@ -123,6 +131,7 @@ const plan = buildMarketEvidenceSourceRefreshPlanV1({
   generatedAt,
   allowProviderCalls: args.run && args.allowProviderCalls,
   allowDbWrites: args.run && args.allowDbWrites,
+  referenceLimit: args.referenceLimit,
 });
 
 if (args.run && findings.length === 0) {
