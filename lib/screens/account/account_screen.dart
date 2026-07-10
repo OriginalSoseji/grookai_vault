@@ -8,6 +8,7 @@ import '../../services/account/account_profile_service.dart';
 import '../../services/network/founder_insight_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../widgets/founder/founder_market_signals_section.dart';
+import '../founder/founder_metrics_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
@@ -334,6 +335,12 @@ class _AccountScreenState extends State<AccountScreen> {
   Future<void> _openSubmitMissingCard() async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const SubmitMissingCardScreen()),
+    );
+  }
+
+  Future<void> _openFounderMetrics() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const FounderMetricsScreen()),
     );
   }
 
@@ -793,6 +800,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
             ],
+            const SizedBox(height: 12),
+            _AccountLinkTile(
+              icon: Icons.insights_rounded,
+              title: 'North Star Metrics',
+              subtitle:
+                  'Weekly product health, notification tap-through, and E7 recommendation flags',
+              onTap: _openFounderMetrics,
+            ),
             const SizedBox(height: 12),
             child,
           ],

@@ -967,13 +967,19 @@ export default async function FounderPage() {
           title="Founder Tools"
           description="Use these guarded lanes for access, review, and staged operational changes."
         />
-        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-5">
           <FounderToolCard
             href="/founder/entitlements"
             eyebrow="Access"
             title="User Entitlements"
             description="Manage Grookai Search, Assistant, Intelligence, vendor, and founder access from one governed source."
             primary
+          />
+          <FounderToolCard
+            href="/founder/metrics"
+            eyebrow="Metrics"
+            title="North Star"
+            description="Read weekly product health, notification tap-through, onboarding conversion, and advisory delivery flags."
           />
           <FounderToolCard
             href="/founder/warehouse"
