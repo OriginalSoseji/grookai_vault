@@ -1,10 +1,32 @@
 # E7 Plan - North-Star Instrumentation
 
-Status: draft for approval. No implementation has started.
+Status: implemented, backfilled, and live-scheduled July 10, 2026.
+
+Implementation commits:
+
+- `72000b03` - PR 1 meaningful interaction contract and mapping fixtures.
+- `bb78c138` - PR 2 weekly rollup tables, rollup RPC, and recommendation flags.
+- `0a56e928` - PR 3 web founder metrics dashboard.
+- `da702761` - PR 4 app founder metrics screen and mobile edge-function surface.
+- `49e15eb6` - migration version collision repair before live apply.
+- `2b0d48f8` - PR 5 weekly rollup schedule enablement.
+
+Live verification recorded July 10, 2026:
+
+- E6 dependency migrations were applied before E7 because E7 rollups read onboarding ladder state.
+- E7 migrations `20260709125000`, `20260709130000`, and schedule migration `20260709131000` are applied in live Supabase migration history.
+- Historical bounded backfill wrote `4` `north_star_weekly_rollups`, `18` `north_star_weekly_breakdowns`, and `0` `notification_type_delivery_recommendations`.
+- Backfill did not mutate source event tables; pricing and identity tables were not touched.
+- Live pg_cron job `e7_north_star_weekly_rollup_v1` is active with schedule `17 9 * * 1`, running the previous completed UTC week every Monday at 09:17 UTC.
+- Full `npm run shipcheck` passed before pushing the schedule enablement commit.
+
+Remaining operational check:
+
+- Confirm the first automatic Monday run after July 10, 2026 updates the latest completed week idempotently.
 
 Date: 2026-07-09
 
-Branch: `engage/metrics`
+Branch: `engage/metrics`, merged to `main`.
 
 Baseline: `main` includes E1 interest graph, E2 notification pipeline, E3 want-match engine, E4 Pulse, E5 Card Journeys, E6 retention onboarding, Scanner V5 production endpoint wiring, and the July 9 MEE/TCGCSV nightly worker repairs.
 
@@ -309,7 +331,8 @@ Schedule:
 
 - use the same `pg_cron` + `pg_net` operational pattern already proven for want-match/notification jobs
 - weekly after UTC week close
-- disabled by default until seeded dev proof and founder approval
+- enabled after founder approval by `20260709131000_product_evolution_e7_weekly_rollup_schedule_enable_v1.sql`
+- live cadence is Monday 09:17 UTC and writes the previous completed UTC week
 
 ## Web Founder Dashboard
 
@@ -490,11 +513,12 @@ Scope:
 
 Gate:
 
-- dry-run summary reviewed
-- no unexplained spikes
-- apply idempotent
-- dashboard reflects latest completed week
-- recommendation flags visible but do not affect delivery
+- dry-run summary reviewed - completed July 10, 2026
+- no unexplained spikes - completed July 10, 2026
+- apply idempotent - completed July 10, 2026
+- dashboard reflects latest completed week - backfilled tables available to founder surfaces
+- recommendation flags visible but do not affect delivery - no flags generated in current data
+- schedule enabled after separate founder approval - completed by `2b0d48f8`
 
 Rollback:
 
@@ -508,4 +532,3 @@ Rollback:
 - WAU: app-observed action WAU from existing durable tables.
 - Auto-demotion: founder-approved flag only in E7; no dispatcher wiring.
 - App parity: include founder-only app metrics screen and service-role edge function in this epic.
-
