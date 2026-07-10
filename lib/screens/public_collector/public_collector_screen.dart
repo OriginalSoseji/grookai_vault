@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
@@ -1232,15 +1232,18 @@ class _PublicCollectorHeader extends StatelessWidget {
                 ),
               ),
               onPressed: () async {
-                await Clipboard.setData(
-                  ClipboardData(text: shareUri.toString()),
-                );
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Profile link copied to clipboard.'),
-                  ),
-                );
+                try {
+                  await SharePlus.instance.share(
+                    ShareParams(uri: shareUri, subject: displayName),
+                  );
+                } catch (_) {
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Unable to share this profile right now.'),
+                    ),
+                  );
+                }
               },
               icon: const Icon(Icons.share_outlined, size: 18),
             ),

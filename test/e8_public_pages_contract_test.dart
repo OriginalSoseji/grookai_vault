@@ -24,6 +24,12 @@ void main() {
   final wallOpenGraphImage = File(
     'apps/web/src/app/u/[slug]/opengraph-image.tsx',
   ).readAsStringSync();
+  final cardDetailScreen = File(
+    'lib/card_detail_screen.dart',
+  ).readAsStringSync();
+  final publicCollectorScreen = File(
+    'lib/screens/public_collector/public_collector_screen.dart',
+  ).readAsStringSync();
 
   test('public counts RPC is aggregate-only and anon safe', () {
     expect(
@@ -141,5 +147,22 @@ void main() {
     );
     expect(wallOpenGraphImage, isNot(contains('card_journey_collectors_v1')));
     expect(wallOpenGraphImage, isNot(contains('card_journey_moments_v1')));
+  });
+
+  test('app sharing uses canonical public card and Wall URLs', () {
+    expect(cardDetailScreen, contains("'/card/\${Uri.encodeComponent(gvId)}'"));
+    expect(cardDetailScreen, contains('SharePlus.instance.share'));
+    expect(cardDetailScreen, contains('ShareParams(uri: shareUri'));
+
+    expect(
+      publicCollectorScreen,
+      contains("GrookaiWebRouteService.buildUri('/u/\${profile.slug}')"),
+    );
+    expect(publicCollectorScreen, contains('SharePlus.instance.share'));
+    expect(publicCollectorScreen, contains('ShareParams(uri: shareUri'));
+    expect(
+      publicCollectorScreen,
+      isNot(contains('Profile link copied to clipboard.')),
+    );
   });
 }
