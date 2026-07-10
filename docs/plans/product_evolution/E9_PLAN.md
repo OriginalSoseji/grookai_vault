@@ -1,6 +1,6 @@
 # E9 Plan - Collector Memories
 
-Status: draft for approval. No implementation has started.
+Status: PR 1 contracts/privacy gates implemented; PR 2 app service layer implemented behind feature flag. PR 3 UI remains design-gated and not started.
 
 Date: 2026-07-10
 
@@ -464,4 +464,3 @@ Gate:
 3. Should PR 1 defer "first completed set" if the reusable completion helper is not clean enough, or should it extract the helper immediately?
 4. Should memory notes allow multiline text up to `1200` chars, or should v1 be shorter?
 5. Should an archived exact copy hide memories entirely or show them read-only in the owner's archive view later? Proposed v1: hide with active GVVI only; archived-copy memories remain in DB but are not surfaced.
-
