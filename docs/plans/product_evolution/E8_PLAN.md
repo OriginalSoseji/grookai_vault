@@ -1,6 +1,27 @@
 # E8 Plan - Public Pages & Share Loop
 
-Status: draft for approval. No implementation, migrations, or UI changes have started.
+Status: implemented on `growth/public-pages`.
+
+Implementation commits:
+
+- `496b9cbf` - PR 1 counts contract and privacy tests.
+- `fa440bc4` - PR 2 public card counts, Wall `og:image`, and private Wall 404 behavior.
+- `7d922584` - PR 3 app Wall sharing standardization.
+
+Verification recorded July 9, 2026:
+
+- Fresh local Supabase reset applied the full migration chain through `20260709120000_product_evolution_e8_public_counts_v1.sql`.
+- Anon PostgREST smoke proved `card_journey_public_counts_v1` callable and E5 authenticated Journey RPCs still denied to anon.
+- Web strict build included `/u/[slug]/opengraph-image` and preserved dynamic `/card/[gv_id]` rendering.
+- E8 contract tests cover counts-only return shape, no Journey PII fields, private Wall 404 guards, Wall OG source boundaries, and app share URL construction.
+- Full `npm run shipcheck` passed for each implementation PR.
+
+Remaining live-only checks after deploy:
+
+- Paste a card URL into Messages/Discord/Slack and verify the existing card image preview plus counts-only description.
+- Paste a public Wall URL into Messages/Discord/Slack and verify the composed Wall preview image.
+- Open a private Wall URL while logged out and verify 404.
+- Sign up from `Claim your vault` on a shared card and verify return to the same card.
 
 Date: 2026-07-09
 
@@ -312,9 +333,9 @@ App share:
 - public collector profile with slug
 - public collector profile without slug fallback
 
-## Open Questions For Approval
+## Open Questions Resolved
 
-1. Should Wall `og:image` be added only to `/u/[slug]` in E8, or should custom section pages get composed previews too if implementation is straightforward?
-2. Should Wall app share remain clipboard-only, or should it be upgraded to the native share sheet for parity with card detail?
+1. Wall `og:image` is limited to `/u/[slug]` in E8. Section-specific previews remain a follow-up.
+2. Wall app share now uses the native share sheet for parity with card detail.
 
-Default recommendation: keep E8 narrow. Ship `/u/[slug]` Wall `og:image` first and keep section images/native Wall share as follow-ups unless they are trivial during PR 2/PR 3.
+E8 stayed narrow: no card-page rebuild, no section OG generation, no additional CTAs, no pricing/identity/ingestion/scanner/notification-delivery writes.
