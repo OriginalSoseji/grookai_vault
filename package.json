@@ -17,6 +17,7 @@
     "contracts:test": "node --test tests/contracts/*.test.mjs apps/web/src/components/vault/ownershipMutationGuards.test.mjs",
     "e7:meaningful-interactions:smoke": "node scripts/audits/e7_meaningful_interactions_local_fixture_smoke_v1.mjs",
     "e7:weekly-rollup:smoke": "node scripts/audits/e7_weekly_rollup_local_fixture_smoke_v1.mjs",
+    "e9:collector-memories:smoke": "node scripts/audits/e9_collector_memories_local_fixture_smoke_v1.mjs",
     "grookai:preflight": "node scripts/contracts/run_runtime_preflight_v1.mjs",
     "worker:import-prices": "npm run pricing:worker:once --prefix backend",
     "worker:system-health": "node backend/infra/system_health_worker.mjs",
