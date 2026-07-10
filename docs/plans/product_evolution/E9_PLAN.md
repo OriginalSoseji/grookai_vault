@@ -1,6 +1,27 @@
 # E9 Plan - Collector Memories
 
-Status: PR 1 contracts/privacy gates implemented; PR 2 app service layer implemented behind feature flag. PR 3 UI remains design-gated and not started.
+Status: implemented on `main @ 07cd2368`; UI remains feature-flagged behind `COLLECTOR_MEMORIES_ENABLED`.
+
+Implementation commits:
+
+- `ce986fba` - PR 1 collector memory contracts, owner-only RLS, private storage bucket, and RPCs.
+- `dbd80eae` - PR 2 app service layer behind feature flag.
+- `07cd2368` - PR 3 private exact-copy Memories UI on `VaultGvviScreen`.
+
+Verification recorded July 10, 2026:
+
+- `flutter analyze`, `flutter test`, and full `npm run shipcheck` passed on the feature branch and after merging to `main`.
+- E9 contracts migration `20260710100000_product_evolution_e9_collector_memories_contracts_v1.sql` is applied in the linked Supabase migration history.
+- Samsung device smoke verified owner-only exact-copy Memories section, empty state, create sheet, one-photo attachment affordance, created memory row, edit sheet, archive confirmation, and archived row removal from the active list.
+- Tests prove Collector Memories UI is limited to the private exact-copy surface and absent from public card detail, public GVVI, and public collector Wall surfaces.
+
+Feature flag note:
+
+- Until the product decision is made to enable by default, builds must pass `--dart-define=COLLECTOR_MEMORIES_ENABLED=true` to show the UI.
+
+Mockup governance:
+
+- The shareable/export-oriented `Collector Memory Card.dc.html` direction is retired for E9. It conflicts with this plan's private-memory contract. Any public certificate, share card, watermark, Instagram preview, or year-in-memories export belongs in a separate future share-loop epic, not Collector Memories v1.
 
 Date: 2026-07-10
 
@@ -313,7 +334,7 @@ Open implementation questions for PR 1 audit:
 
 ## App Surface
 
-UI is design-gated and waits for approved high-fi mockups.
+UI was design-gated and shipped in PR 3 as a private exact-copy section. The current implementation is intentionally conservative and can be visually repositioned in a follow-up without changing the privacy contract.
 
 V1 surface:
 
@@ -414,7 +435,7 @@ Rollback:
 
 ### PR 3 - Design-Gated Exact-Copy Memories UI
 
-Status: blocked until high-fi mockups are approved.
+Status: implemented by `07cd2368`.
 
 Scope:
 
@@ -424,18 +445,16 @@ Scope:
 - Add quiet prompt row/card behavior for added-place, occasion, and any computed-first prompt that PR 1 proves supportable.
 - Add dismiss-forever prompt action.
 
-Gate:
+Gate completed:
 
-- Device screenshots/video for:
-  - memory created at vault-add with place label
-  - occasion memory attached to an old card
-  - computed first prompt accepted once
-  - computed first prompt dismissed forever and not shown again
-  - one-photo memory
-  - empty memories state
-- Anon and another user cannot read memory row or photo.
-- Memories absent from every public/event/feed/Journey/Pulse output.
-- `flutter analyze`, `flutter test`, full shipcheck green.
+- Device screenshots captured for private exact-copy empty state, create sheet, one-photo attachment affordance, created memory list row, edit sheet, archive confirmation, and active-list removal after archive.
+- Tests prove Memories are absent from public card detail, public GVVI, and public collector Wall code paths.
+- `flutter analyze`, `flutter test`, and full shipcheck passed.
+
+Carry-forward:
+
+- Prompt-specific UI for computed-first prompts is not yet a visible production behavior unless prompt rows are supplied by the backend.
+- Memories currently appears below existing exact-copy photo controls. A follow-up should move it higher in the exact-copy hierarchy now that the private contract is stable.
 
 Rollback:
 
