@@ -176,6 +176,52 @@ void main() {
     },
   );
 
+  test('photo preview signs the private storage object path', () async {
+    final signed = <String, dynamic>{};
+    final service = CollectorMemoryService(
+      sign: ({required bucket, required path, required expiresIn}) async {
+        signed['bucket'] = bucket;
+        signed['path'] = path;
+        signed['expiresIn'] = expiresIn;
+        return 'https://storage.example.test/signed-memory-photo';
+      },
+      rpc: (_, {params}) async => fail('photo signing must not call RPC'),
+    );
+
+    final url = await service.createSignedPhotoUrl(
+      '/$userId/memories/$memoryId/photo',
+      expiresIn: 900,
+    );
+
+    expect(url, 'https://storage.example.test/signed-memory-photo');
+    expect(signed['bucket'], CollectorMemoryService.memoryBucket);
+    expect(signed['path'], '$userId/memories/$memoryId/photo');
+    expect(signed['expiresIn'], 900);
+  });
+
+  test('collector memories UI is private exact-copy only', () {
+    final privateScreen = File(
+      'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+    final publicCard = File('lib/card_detail_screen.dart').readAsStringSync();
+    final publicGvvi = File(
+      'lib/screens/gvvi/public_gvvi_screen.dart',
+    ).readAsStringSync();
+    final publicWall = File(
+      'lib/screens/public_collector/public_collector_screen.dart',
+    ).readAsStringSync();
+
+    expect(privateScreen, contains('CollectorMemoryService'));
+    expect(privateScreen, contains('_CollectorMemoriesSurface'));
+    expect(privateScreen, contains('kCollectorMemoriesEnabled'));
+    expect(privateScreen, contains('showModalBottomSheet'));
+    expect(privateScreen, contains('ImagePicker().pickImage'));
+    expect(privateScreen, contains('createSignedPhotoUrl'));
+    expect(publicCard, isNot(contains('CollectorMemory')));
+    expect(publicGvvi, isNot(contains('CollectorMemory')));
+    expect(publicWall, isNot(contains('CollectorMemory')));
+  });
+
   test(
     'photo upload rejects empty and over-limit payloads before storage',
     () async {

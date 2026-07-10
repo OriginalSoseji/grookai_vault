@@ -10,6 +10,7 @@ import '../../card_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
+import '../../services/vault/collector_memory_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -59,15 +60,21 @@ class VaultGvviScreen extends StatefulWidget {
 class _VaultGvviScreenState extends State<VaultGvviScreen> {
   final SupabaseClient _client = Supabase.instance.client;
   final ImagePicker _imagePicker = ImagePicker();
+  final CollectorMemoryService _memoryService = CollectorMemoryService();
   final TextEditingController _notesController = TextEditingController();
 
   VaultGvviData? _data;
   List<_GvviRelatedPrint> _relatedPrints = const [];
+  List<CollectorMemory> _memories = const <CollectorMemory>[];
+  List<CollectorMemoryPrompt> _memoryPrompts = const <CollectorMemoryPrompt>[];
   List<VaultGvviSectionMembership> _sectionMemberships =
       const <VaultGvviSectionMembership>[];
+  Map<String, String> _memoryPhotoUrls = const <String, String>{};
   bool _loading = true;
+  bool _loadingMemories = false;
   bool _savingNotes = false;
   bool _savingIntent = false;
+  bool _savingMemory = false;
   bool _creatingSection = false;
   String? _busySectionId;
   bool _busyFrontMedia = false;
@@ -75,6 +82,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   bool _removing = false;
   String? _error;
   String? _status;
+  String? _memoryError;
 
   @override
   void initState() {
@@ -121,9 +129,17 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         _data = data;
         _relatedPrints = relatedPrints;
         _sectionMemberships = sectionMemberships;
+        _memories = const <CollectorMemory>[];
+        _memoryPrompts = const <CollectorMemoryPrompt>[];
+        _memoryPhotoUrls = const <String, String>{};
+        _loadingMemories = kCollectorMemoriesEnabled && data != null;
+        _memoryError = null;
         _loading = false;
         _error = data == null ? 'Exact copy not found.' : null;
       });
+      if (kCollectorMemoriesEnabled && data != null) {
+        unawaited(_loadMemoriesFor(data.gvviId));
+      }
     } catch (error) {
       if (!mounted) {
         return;
@@ -131,10 +147,65 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       setState(() {
         _loading = false;
         _relatedPrints = const [];
+        _memories = const <CollectorMemory>[];
+        _memoryPrompts = const <CollectorMemoryPrompt>[];
+        _memoryPhotoUrls = const <String, String>{};
+        _loadingMemories = false;
         _sectionMemberships = const <VaultGvviSectionMembership>[];
         _error = error.toString().replaceFirst('Exception: ', '');
       });
     }
+  }
+
+  Future<void> _loadMemoriesFor(String gvviId) async {
+    if (!kCollectorMemoriesEnabled) {
+      return;
+    }
+    setState(() {
+      _loadingMemories = true;
+      _memoryError = null;
+    });
+
+    try {
+      final results = await Future.wait<dynamic>([
+        _memoryService.loadForGvvi(gvviId: gvviId),
+        _memoryService.loadPrompts(gvviId: gvviId),
+      ]);
+      final memories = results[0] as List<CollectorMemory>;
+      final prompts = results[1] as List<CollectorMemoryPrompt>;
+      final photoUrls = await _signedMemoryPhotoUrls(memories);
+      if (!mounted || _data?.gvviId != gvviId) {
+        return;
+      }
+      setState(() {
+        _memories = memories;
+        _memoryPrompts = prompts;
+        _memoryPhotoUrls = photoUrls;
+        _loadingMemories = false;
+        _memoryError = null;
+      });
+    } catch (error) {
+      if (!mounted || _data?.gvviId != gvviId) {
+        return;
+      }
+      setState(() {
+        _loadingMemories = false;
+        _memoryError = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<Map<String, String>> _signedMemoryPhotoUrls(
+    List<CollectorMemory> memories,
+  ) async {
+    final entries = <MapEntry<String, String>>[];
+    for (final memory in memories) {
+      final url = await _memoryService.createSignedPhotoUrl(memory.photoPath);
+      if (url != null) {
+        entries.add(MapEntry<String, String>(memory.id, url));
+      }
+    }
+    return Map<String, String>.fromEntries(entries);
   }
 
   Future<List<_GvviRelatedPrint>> _fetchRelatedPrints(
@@ -744,6 +815,200 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     }
   }
 
+  Future<void> _openMemoryComposer({
+    CollectorMemory? memory,
+    CollectorMemoryPrompt? prompt,
+  }) async {
+    final data = _data;
+    if (data == null || data.isArchived || _savingMemory) {
+      return;
+    }
+
+    final draft = await showModalBottomSheet<_CollectorMemoryDraft>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _CollectorMemoryEditorSheet(
+        memory: memory,
+        prompt: prompt,
+        saving: _savingMemory,
+      ),
+    );
+    if (draft == null || !mounted) {
+      return;
+    }
+
+    await _saveMemoryDraft(draft, existing: memory);
+  }
+
+  Future<void> _saveMemoryDraft(
+    _CollectorMemoryDraft draft, {
+    CollectorMemory? existing,
+  }) async {
+    final data = _data;
+    if (data == null || _savingMemory) {
+      return;
+    }
+
+    setState(() {
+      _savingMemory = true;
+      _status = null;
+      _memoryError = null;
+    });
+
+    try {
+      CollectorMemory saved;
+      final pickedPhoto = draft.photo;
+      if (existing == null) {
+        saved = await _memoryService.create(
+          gvviId: data.gvviId,
+          memoryType: draft.memoryType,
+          note: draft.note,
+          placeLabel: draft.placeLabel,
+          occasionLabel: draft.occasionLabel,
+          memoryDate: draft.memoryDate,
+          promptKey: draft.promptKey,
+        );
+      } else {
+        saved = existing;
+      }
+
+      var photoPath = existing?.photoPath;
+      if (pickedPhoto != null) {
+        final userId = _client.auth.currentUser?.id;
+        if (userId == null) {
+          throw StateError('Sign in to attach a memory photo.');
+        }
+        photoPath = await _memoryService.uploadPhoto(
+          userId: userId,
+          memoryId: saved.id,
+          file: pickedPhoto,
+        );
+      }
+
+      if (existing != null || pickedPhoto != null) {
+        saved = await _memoryService.update(
+          memoryId: saved.id,
+          note: draft.note,
+          photoPath: photoPath,
+          placeLabel: draft.placeLabel,
+          occasionLabel: draft.occasionLabel,
+          memoryDate: draft.memoryDate,
+        );
+      }
+
+      await _loadMemoriesFor(data.gvviId);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _status = existing == null ? 'Memory saved.' : 'Memory updated.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _memoryError = error.toString().replaceFirst('Exception: ', '');
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _savingMemory = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _dismissMemoryPrompt(CollectorMemoryPrompt prompt) async {
+    final data = _data;
+    if (data == null || _savingMemory) {
+      return;
+    }
+    setState(() {
+      _savingMemory = true;
+      _memoryError = null;
+    });
+    try {
+      await _memoryService.dismissPrompt(promptKey: prompt.promptKey);
+      await _loadMemoriesFor(data.gvviId);
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _memoryError = error.toString().replaceFirst('Exception: ', '');
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _savingMemory = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _archiveMemory(CollectorMemory memory) async {
+    final data = _data;
+    if (data == null || _savingMemory) {
+      return;
+    }
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Archive memory?'),
+        content: const Text(
+          'This keeps the exact copy private and removes this memory from the list.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Archive'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _savingMemory = true;
+      _memoryError = null;
+    });
+    try {
+      await _memoryService.archive(
+        memoryId: memory.id,
+        photoPath: memory.photoPath,
+      );
+      await _loadMemoriesFor(data.gvviId);
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _status = 'Memory archived.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _memoryError = error.toString().replaceFirst('Exception: ', '');
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _savingMemory = false;
+        });
+      }
+    }
+  }
+
   Future<void> _removeCopy() async {
     final data = _data;
     if (data == null || data.isArchived || _removing) {
@@ -924,6 +1189,27 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                       ],
                     ),
                   ),
+                  if (kCollectorMemoriesEnabled) ...[
+                    const SizedBox(height: 10),
+                    _VaultSectionFrame(
+                      title: 'Memories',
+                      child: _CollectorMemoriesSurface(
+                        memories: _memories,
+                        prompts: _memoryPrompts,
+                        photoUrls: _memoryPhotoUrls,
+                        loading: _loadingMemories,
+                        saving: _savingMemory,
+                        error: _memoryError,
+                        isArchived: _data!.isArchived,
+                        onAdd: () => _openMemoryComposer(),
+                        onEdit: (memory) => _openMemoryComposer(memory: memory),
+                        onArchive: _archiveMemory,
+                        onAcceptPrompt: (prompt) =>
+                            _openMemoryComposer(prompt: prompt),
+                        onDismissPrompt: _dismissMemoryPrompt,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 10),
                   _VaultSectionFrame(
                     title: 'Details',
@@ -2477,6 +2763,655 @@ class _VaultMeta extends StatelessWidget {
       ),
     );
   }
+}
+
+class _CollectorMemoriesSurface extends StatelessWidget {
+  const _CollectorMemoriesSurface({
+    required this.memories,
+    required this.prompts,
+    required this.photoUrls,
+    required this.loading,
+    required this.saving,
+    required this.isArchived,
+    required this.onAdd,
+    required this.onEdit,
+    required this.onArchive,
+    required this.onAcceptPrompt,
+    required this.onDismissPrompt,
+    this.error,
+  });
+
+  final List<CollectorMemory> memories;
+  final List<CollectorMemoryPrompt> prompts;
+  final Map<String, String> photoUrls;
+  final bool loading;
+  final bool saving;
+  final bool isArchived;
+  final String? error;
+  final VoidCallback onAdd;
+  final ValueChanged<CollectorMemory> onEdit;
+  final ValueChanged<CollectorMemory> onArchive;
+  final ValueChanged<CollectorMemoryPrompt> onAcceptPrompt;
+  final ValueChanged<CollectorMemoryPrompt> onDismissPrompt;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                'Private notes, places, and moments for this exact copy only.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  height: 1.32,
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            OutlinedButton.icon(
+              onPressed: isArchived || saving ? null : onAdd,
+              icon: const Icon(Icons.add_rounded, size: 18),
+              label: const Text('Add'),
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(0, 38),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 9,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+            ),
+          ],
+        ),
+        if (loading) ...[
+          const SizedBox(height: 12),
+          const LinearProgressIndicator(minHeight: 2),
+        ],
+        if ((error ?? '').trim().isNotEmpty) ...[
+          const SizedBox(height: 10),
+          _VaultInlineStatusMessage(message: error!),
+        ],
+        if (prompts.isNotEmpty && !isArchived) ...[
+          const SizedBox(height: 12),
+          for (final prompt in prompts) ...[
+            _CollectorMemoryPromptCard(
+              prompt: prompt,
+              saving: saving,
+              onAccept: () => onAcceptPrompt(prompt),
+              onDismiss: () => onDismissPrompt(prompt),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ],
+        const SizedBox(height: 10),
+        if (!loading && memories.isEmpty)
+          _CollectorMemoryEmptyState(isArchived: isArchived)
+        else
+          for (final memory in memories) ...[
+            _CollectorMemoryRow(
+              memory: memory,
+              photoUrl: photoUrls[memory.id],
+              saving: saving,
+              onEdit: () => onEdit(memory),
+              onArchive: () => onArchive(memory),
+            ),
+            if (memory != memories.last) ...[
+              const SizedBox(height: 10),
+              const _VaultQuietDivider(),
+              const SizedBox(height: 10),
+            ],
+          ],
+      ],
+    );
+  }
+}
+
+class _CollectorMemoryPromptCard extends StatelessWidget {
+  const _CollectorMemoryPromptCard({
+    required this.prompt,
+    required this.saving,
+    required this.onAccept,
+    required this.onDismiss,
+  });
+
+  final CollectorMemoryPrompt prompt;
+  final bool saving;
+  final VoidCallback onAccept;
+  final VoidCallback onDismiss;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.primaryContainer.withValues(alpha: 0.20),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.12)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 11, 12, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.auto_awesome_outlined,
+                  size: 18,
+                  color: colorScheme.primary,
+                ),
+                const SizedBox(width: 7),
+                Expanded(
+                  child: Text(
+                    prompt.promptTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              prompt.promptBody,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.66),
+                height: 1.32,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                FilledButton.tonal(
+                  onPressed: saving ? null : onAccept,
+                  child: const Text('Save memory'),
+                ),
+                TextButton(
+                  onPressed: saving ? null : onDismiss,
+                  child: const Text('Dismiss'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CollectorMemoryEmptyState extends StatelessWidget {
+  const _CollectorMemoryEmptyState({required this.isArchived});
+
+  final bool isArchived;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: 0.52),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.06)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
+        child: Row(
+          children: [
+            Icon(
+              Icons.lock_outline_rounded,
+              size: 18,
+              color: colorScheme.onSurface.withValues(alpha: 0.42),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                isArchived
+                    ? 'Archived copies keep existing private memories hidden.'
+                    : 'No private memories saved for this copy yet.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.58),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CollectorMemoryRow extends StatelessWidget {
+  const _CollectorMemoryRow({
+    required this.memory,
+    required this.saving,
+    required this.onEdit,
+    required this.onArchive,
+    this.photoUrl,
+  });
+
+  final CollectorMemory memory;
+  final String? photoUrl;
+  final bool saving;
+  final VoidCallback onEdit;
+  final VoidCallback onArchive;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final meta = _memoryMeta(memory);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _CollectorMemoryPhotoThumb(photoUrl: photoUrl),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    _memoryIcon(memory.memoryType),
+                    size: 16,
+                    color: colorScheme.primary.withValues(alpha: 0.80),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      _memoryTypeLabel(memory.memoryType),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.4,
+                      ),
+                    ),
+                  ),
+                  PopupMenuButton<String>(
+                    tooltip: 'Memory actions',
+                    enabled: !saving,
+                    onSelected: (value) {
+                      if (value == 'edit') onEdit();
+                      if (value == 'archive') onArchive();
+                    },
+                    itemBuilder: (context) => const [
+                      PopupMenuItem<String>(value: 'edit', child: Text('Edit')),
+                      PopupMenuItem<String>(
+                        value: 'archive',
+                        child: Text('Archive'),
+                      ),
+                    ],
+                    icon: const Icon(Icons.more_horiz_rounded),
+                  ),
+                ],
+              ),
+              if ((memory.note ?? '').trim().isNotEmpty) ...[
+                const SizedBox(height: 2),
+                Text(
+                  memory.note!.trim(),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.84),
+                    height: 1.30,
+                  ),
+                ),
+              ],
+              if (meta.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    for (final item in meta)
+                      GvChip(
+                        label: item,
+                        tone: colorScheme.onSurface.withValues(alpha: 0.70),
+                      ),
+                  ],
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  static List<String> _memoryMeta(CollectorMemory memory) {
+    return <String>[
+      if ((memory.placeLabel ?? '').trim().isNotEmpty)
+        memory.placeLabel!.trim(),
+      if ((memory.occasionLabel ?? '').trim().isNotEmpty)
+        memory.occasionLabel!.trim(),
+      if (memory.memoryDate != null) _formatDate(memory.memoryDate!),
+      if ((memory.photoPath ?? '').trim().isNotEmpty) 'Photo attached',
+    ];
+  }
+}
+
+class _CollectorMemoryPhotoThumb extends StatelessWidget {
+  const _CollectorMemoryPhotoThumb({this.photoUrl});
+
+  final String? photoUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final url = (photoUrl ?? '').trim();
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        width: 58,
+        height: 58,
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.24),
+        child: url.isEmpty
+            ? Icon(
+                Icons.photo_outlined,
+                size: 22,
+                color: colorScheme.onSurface.withValues(alpha: 0.38),
+              )
+            : Image.network(
+                url,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Icon(
+                  Icons.photo_outlined,
+                  size: 22,
+                  color: colorScheme.onSurface.withValues(alpha: 0.38),
+                ),
+              ),
+      ),
+    );
+  }
+}
+
+class _CollectorMemoryEditorSheet extends StatefulWidget {
+  const _CollectorMemoryEditorSheet({
+    required this.saving,
+    this.memory,
+    this.prompt,
+  });
+
+  final CollectorMemory? memory;
+  final CollectorMemoryPrompt? prompt;
+  final bool saving;
+
+  @override
+  State<_CollectorMemoryEditorSheet> createState() =>
+      _CollectorMemoryEditorSheetState();
+}
+
+class _CollectorMemoryEditorSheetState
+    extends State<_CollectorMemoryEditorSheet> {
+  late CollectorMemoryType _type;
+  late final TextEditingController _noteController;
+  late final TextEditingController _placeController;
+  late final TextEditingController _occasionController;
+  late final TextEditingController _dateController;
+  XFile? _photo;
+  String? _dateError;
+
+  @override
+  void initState() {
+    super.initState();
+    final memory = widget.memory;
+    final prompt = widget.prompt;
+    _type =
+        memory?.memoryType ?? prompt?.promptType ?? CollectorMemoryType.note;
+    _noteController = TextEditingController(text: memory?.note ?? '');
+    _placeController = TextEditingController(
+      text: memory?.placeLabel ?? prompt?.suggestedPlaceLabel ?? '',
+    );
+    _occasionController = TextEditingController(
+      text: memory?.occasionLabel ?? prompt?.suggestedOccasionLabel ?? '',
+    );
+    _dateController = TextEditingController(
+      text: memory?.memoryDate != null
+          ? _formatDate(memory!.memoryDate!)
+          : prompt?.suggestedMemoryDate != null
+          ? _formatDate(prompt!.suggestedMemoryDate!)
+          : '',
+    );
+  }
+
+  @override
+  void dispose() {
+    _noteController.dispose();
+    _placeController.dispose();
+    _occasionController.dispose();
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickPhoto() async {
+    final picked = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 88,
+      maxWidth: 1600,
+    );
+    if (picked == null || !mounted) {
+      return;
+    }
+    setState(() {
+      _photo = picked;
+    });
+  }
+
+  void _save() {
+    final parsedDate = _parseDate(_dateController.text);
+    if (_dateController.text.trim().isNotEmpty && parsedDate == null) {
+      setState(() {
+        _dateError = 'Use YYYY-MM-DD.';
+      });
+      return;
+    }
+    Navigator.of(context).pop(
+      _CollectorMemoryDraft(
+        memoryType: _type,
+        note: _blankToNull(_noteController.text),
+        placeLabel: _blankToNull(_placeController.text),
+        occasionLabel: _blankToNull(_occasionController.text),
+        memoryDate: parsedDate,
+        promptKey: widget.prompt?.promptKey ?? widget.memory?.promptKey,
+        photo: _photo,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
+    return Padding(
+      padding: EdgeInsets.only(bottom: bottomInset),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.08),
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(18, 12, 18, 18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: Container(
+                  width: 38,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: colorScheme.onSurface.withValues(alpha: 0.18),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                widget.memory == null ? 'Save private memory' : 'Edit memory',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              if (widget.prompt != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  widget.prompt!.promptBody,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.60),
+                    height: 1.30,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 14),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final type in CollectorMemoryType.values)
+                    GvChip(
+                      label: _memoryTypeLabel(type),
+                      selected: _type == type,
+                      onSelected: (_) => setState(() => _type = type),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              TextField(
+                controller: _noteController,
+                minLines: 3,
+                maxLines: 5,
+                textInputAction: TextInputAction.newline,
+                decoration: const InputDecoration(
+                  labelText: 'Memory note',
+                  hintText: 'Where it came from, who was there, why it matters',
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _placeController,
+                decoration: const InputDecoration(labelText: 'Place'),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _occasionController,
+                decoration: const InputDecoration(labelText: 'Occasion'),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _dateController,
+                keyboardType: TextInputType.datetime,
+                decoration: InputDecoration(
+                  labelText: 'Date',
+                  hintText: 'YYYY-MM-DD',
+                  errorText: _dateError,
+                ),
+                onChanged: (_) {
+                  if (_dateError != null) {
+                    setState(() => _dateError = null);
+                  }
+                },
+              ),
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                onPressed: _pickPhoto,
+                icon: const Icon(Icons.add_photo_alternate_outlined),
+                label: Text(
+                  _photo == null ? 'Attach one photo' : 'Photo ready',
+                ),
+              ),
+              const SizedBox(height: 14),
+              FilledButton(
+                onPressed: widget.saving ? null : _save,
+                child: Text(widget.memory == null ? 'Save memory' : 'Update'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CollectorMemoryDraft {
+  const _CollectorMemoryDraft({
+    required this.memoryType,
+    this.note,
+    this.placeLabel,
+    this.occasionLabel,
+    this.memoryDate,
+    this.promptKey,
+    this.photo,
+  });
+
+  final CollectorMemoryType memoryType;
+  final String? note;
+  final String? placeLabel;
+  final String? occasionLabel;
+  final DateTime? memoryDate;
+  final String? promptKey;
+  final XFile? photo;
+}
+
+IconData _memoryIcon(CollectorMemoryType type) {
+  switch (type) {
+    case CollectorMemoryType.addedPlace:
+      return Icons.place_outlined;
+    case CollectorMemoryType.occasion:
+      return Icons.event_outlined;
+    case CollectorMemoryType.first:
+      return Icons.flag_outlined;
+    case CollectorMemoryType.note:
+      return Icons.edit_note_outlined;
+  }
+}
+
+String _memoryTypeLabel(CollectorMemoryType type) {
+  switch (type) {
+    case CollectorMemoryType.addedPlace:
+      return 'Place';
+    case CollectorMemoryType.occasion:
+      return 'Occasion';
+    case CollectorMemoryType.first:
+      return 'First';
+    case CollectorMemoryType.note:
+      return 'Note';
+  }
+}
+
+String _formatDate(DateTime value) {
+  final local = value.toLocal();
+  final month = local.month.toString().padLeft(2, '0');
+  final day = local.day.toString().padLeft(2, '0');
+  return '${local.year}-$month-$day';
+}
+
+DateTime? _parseDate(String value) {
+  final normalized = value.trim();
+  if (normalized.isEmpty) return null;
+  final match = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$').firstMatch(normalized);
+  if (match == null) return null;
+  return DateTime.tryParse(normalized);
+}
+
+String? _blankToNull(String value) {
+  final normalized = value.trim();
+  return normalized.isEmpty ? null : normalized;
 }
 
 class _VaultSectionFrame extends StatelessWidget {

@@ -28,6 +28,13 @@ typedef CollectorMemoryStorageRemove =
       required List<String> paths,
     });
 
+typedef CollectorMemoryStorageSign =
+    Future<String> Function({
+      required String bucket,
+      required String path,
+      required int expiresIn,
+    });
+
 class CollectorMemoryServiceException implements Exception {
   const CollectorMemoryServiceException(this.operation, this.cause);
 
@@ -152,10 +159,12 @@ class CollectorMemoryService {
     CollectorMemoryRpc? rpc,
     CollectorMemoryStorageUpload? upload,
     CollectorMemoryStorageRemove? remove,
+    CollectorMemoryStorageSign? sign,
   }) : _client = client ?? (rpc == null ? Supabase.instance.client : null),
        _rpc = rpc,
        _upload = upload,
-       _remove = remove;
+       _remove = remove,
+       _sign = sign;
 
   static const String memoryBucket = 'collector-memory-images';
   static const int photoMaxBytes = 10 * 1024 * 1024;
@@ -164,6 +173,7 @@ class CollectorMemoryService {
   final CollectorMemoryRpc? _rpc;
   final CollectorMemoryStorageUpload? _upload;
   final CollectorMemoryStorageRemove? _remove;
+  final CollectorMemoryStorageSign? _sign;
 
   bool get isFeatureEnabled => kCollectorMemoriesEnabled;
 
@@ -331,6 +341,28 @@ class CollectorMemoryService {
 
     final client = _requiredClient();
     await client.storage.from(memoryBucket).remove(<String>[normalizedPath]);
+  }
+
+  Future<String?> createSignedPhotoUrl(
+    String? photoPath, {
+    int expiresIn = 3600,
+  }) async {
+    final normalizedPath = normalizePhotoPath(photoPath);
+    if (normalizedPath == null) return null;
+
+    final injected = _sign;
+    if (injected != null) {
+      return injected(
+        bucket: memoryBucket,
+        path: normalizedPath,
+        expiresIn: expiresIn,
+      );
+    }
+
+    final client = _requiredClient();
+    return client.storage
+        .from(memoryBucket)
+        .createSignedUrl(normalizedPath, expiresIn);
   }
 
   static String buildPhotoPath({
