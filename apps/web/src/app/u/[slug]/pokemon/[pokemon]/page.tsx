@@ -28,7 +28,7 @@ export async function generateMetadata({
   const profile = await getPublicProfileBySlug(params.slug);
   const pokemonLabel = formatPokemonSlugLabel(params.pokemon);
 
-  if (!profile || !normalizePokemonSlug(params.pokemon)) {
+  if (!profile || !profile.vault_sharing_enabled || !normalizePokemonSlug(params.pokemon)) {
     return {
       title: "Collection not found | Grookai Vault",
     };
@@ -69,27 +69,25 @@ export default async function PublicPokemonCollectionPage({
   const pokemonLabel = formatPokemonSlugLabel(params.pokemon);
   const normalizedPokemon = normalizePokemonSlug(params.pokemon);
 
-  if (!profile || !normalizedPokemon) {
+  if (!profile || !profile.vault_sharing_enabled || !normalizedPokemon) {
     notFound();
   }
 
   const [sharedCards, followCounts] = await Promise.all([
-    profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
+    getSharedCardsBySlug(profile.slug),
     getCollectorFollowCounts(profile.user_id),
   ]);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
-  const matchingCards = profile.vault_sharing_enabled ? filterSharedCardsByPokemonSlug(sharedCards, params.pokemon) : [];
+  const matchingCards = filterSharedCardsByPokemonSlug(sharedCards, params.pokemon);
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
-    profile.vault_sharing_enabled && matchingCards.length > 0
+    matchingCards.length > 0
       ? [
           { value: `${matchingCards.length}`, label: matchingCards.length === 1 ? "card" : "cards" },
           { value: `${matchingSetCount}`, label: matchingSetCount === 1 ? "set" : "sets" },
         ]
       : [];
-  const description = profile.vault_sharing_enabled
-    ? `${pokemonLabel} in ${profile.display_name}'s collection on Grookai.`
-    : "A collection on Grookai.";
+  const description = `${pokemonLabel} in ${profile.display_name}'s collection on Grookai.`;
 
   return (
     <div className="space-y-8 py-8">
@@ -135,9 +133,7 @@ export default async function PublicPokemonCollectionPage({
           </div>
           <PublicPokemonJumpForm slug={profile.slug} defaultValue={pokemonLabel} variant="compact" />
         </div>
-        {!profile.vault_sharing_enabled ? (
-          <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
-        ) : matchingCards.length === 0 ? (
+        {matchingCards.length === 0 ? (
           <PublicCollectionEmptyState title="No cards found" body={`No cards match ${pokemonLabel}.`} />
         ) : (
           <PublicCollectionGrid

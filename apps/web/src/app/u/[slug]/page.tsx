@@ -30,7 +30,7 @@ function dedupePublicWallCards(cards: PublicWallCard[]) {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPublicProfileBySlug(params.slug);
-  if (!profile) {
+  if (!profile || !profile.vault_sharing_enabled) {
     return {
       title: "Profile not found | Grookai Vault",
     };
@@ -53,11 +53,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description,
       type: "profile",
       url: siteOrigin ? `${siteOrigin}/u/${profile.slug}` : undefined,
+      images: siteOrigin
+        ? [
+            {
+              url: `${siteOrigin}/u/${profile.slug}/opengraph-image`,
+              width: 1200,
+              height: 630,
+              alt: `${profile.display_name}'s Wall on Grookai`,
+            },
+          ]
+        : undefined,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: siteOrigin ? [`${siteOrigin}/u/${profile.slug}/opengraph-image`] : undefined,
     },
   };
 }
@@ -69,26 +80,26 @@ export default async function PublicProfilePage({
 }) {
   const profile = await getPublicProfileBySlug(params.slug);
 
-  if (!profile) {
+  if (!profile || !profile.vault_sharing_enabled) {
     notFound();
   }
 
   const [sectionViews, followCounts] = await Promise.all([
-    profile.vault_sharing_enabled ? getPublicCollectorWallViewBySlug(profile.slug) : Promise.resolve([]),
+    getPublicCollectorWallViewBySlug(profile.slug),
     getCollectorFollowCounts(profile.user_id),
   ]);
   const renderableCards = dedupePublicWallCards(sectionViews.find((section) => section.id === PUBLIC_WALL_SECTION_ID)?.cards ?? []);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(renderableCards));
   const setCount = new Set(renderableCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
-    profile.vault_sharing_enabled && renderableCards.length > 0
+    renderableCards.length > 0
       ? [
           { value: `${renderableCards.length}`, label: renderableCards.length === 1 ? "card" : "cards" },
           { value: `${setCount}`, label: setCount === 1 ? "set" : "sets" },
         ]
       : [];
 
-  const description = profile.vault_sharing_enabled ? `${profile.display_name}'s Wall on Grookai.` : "A Wall on Grookai.";
+  const description = `${profile.display_name}'s Wall on Grookai.`;
 
   return (
     <div className="space-y-8 py-8">
@@ -116,20 +127,18 @@ export default async function PublicProfilePage({
         }
       />
 
-      {!profile.vault_sharing_enabled ? (
-        <PublicCollectionEmptyState title="Nothing to show right now." />
-      ) : (
-        <PublicCollectorProfileContent
-          slug={profile.slug}
-          collectorDisplayName={profile.display_name}
-          collectorUserId={profile.user_id}
-          sections={sectionViews}
-          isAuthenticated={false}
-          viewerUserId={null}
-          currentPath={`/u/${profile.slug}`}
-          selectedSectionId={PUBLIC_WALL_SECTION_ID}
-        />
-      )}
+      {renderableCards.length === 0 ? <PublicCollectionEmptyState title="Nothing to show right now." /> : null}
+
+      <PublicCollectorProfileContent
+        slug={profile.slug}
+        collectorDisplayName={profile.display_name}
+        collectorUserId={profile.user_id}
+        sections={sectionViews}
+        isAuthenticated={false}
+        viewerUserId={null}
+        currentPath={`/u/${profile.slug}`}
+        selectedSectionId={PUBLIC_WALL_SECTION_ID}
+      />
     </div>
   );
 }

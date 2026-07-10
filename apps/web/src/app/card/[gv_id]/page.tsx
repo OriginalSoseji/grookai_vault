@@ -21,6 +21,10 @@ import CardPagePerformanceProbe from "@/components/performance/CardPagePerforman
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import {
+  formatPublicJourneyCountsLine,
+  getPublicCardJourneyCounts,
+} from "@/lib/cardJourneyPublicCounts";
+import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
@@ -296,6 +300,8 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const displayName = resolveDisplayIdentity(card).display_name;
   const metadataImageUrl =
     normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
+  const publicJourneyCounts = await getPublicCardJourneyCounts(card.id);
+  const publicJourneyCountsLine = formatPublicJourneyCountsLine(publicJourneyCounts);
 
   const collectorNumberLabel = displayIdentity.displayPrintedNumber
     ? `#${displayIdentity.displayPrintedNumber}`
@@ -308,6 +314,7 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
     `${card.gv_id} is the Grookai Vault canonical ID for ${displayName}`,
     card.set_name ? `from ${card.set_name}` : undefined,
     collectorNumberLabel,
+    publicJourneyCountsLine ?? undefined,
     "including finishes and collection info on Grookai Vault.",
   ]
     .filter((value): value is string => Boolean(value))
@@ -812,6 +819,8 @@ export default async function CardPage({
   const signedInDataMs = roundPerfMs(performance.now() - signedInDataStartedAt);
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
+  const publicJourneyCounts = user ? null : await getPublicCardJourneyCounts(resolvedCard.id);
+  const publicJourneyCountsLine = formatPublicJourneyCountsLine(publicJourneyCounts);
   const pricingStartedAt = performance.now();
   // Pricing is intentionally client-loaded for signed-in collectors so exact
   // card identity, hero image, and vault actions are not blocked by market RPCs.
@@ -1154,6 +1163,26 @@ export default async function CardPage({
           </div>
         </div>
       </section>
+
+      {!user ? (
+        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
+          <div className="gv-card-section-header">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Around This Card</p>
+            <h2>{publicJourneyCountsLine ?? "Start your vault with this card"}</h2>
+            <p>
+              {publicJourneyCountsLine
+                ? "Public collection activity only. Collector names, locations, and private copies stay hidden."
+                : "Build a vault, track exact copies, and keep this card page ready when you come back."}
+            </p>
+          </div>
+          <Link
+            href={loginHref}
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+          >
+            Claim your vault
+          </Link>
+        </section>
+      ) : null}
 
       {detailItems.length > 0 ? (
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">

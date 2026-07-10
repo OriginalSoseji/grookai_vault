@@ -12,6 +12,18 @@ void main() {
   final e5Migration = File(
     'supabase/migrations/20260708170000_product_evolution_e5_card_journeys_query_contracts_v1.sql',
   ).readAsStringSync();
+  final cardPage = File(
+    'apps/web/src/app/card/[gv_id]/page.tsx',
+  ).readAsStringSync();
+  final publicProfilePage = File(
+    'apps/web/src/app/u/[slug]/page.tsx',
+  ).readAsStringSync();
+  final publicPokemonPage = File(
+    'apps/web/src/app/u/[slug]/pokemon/[pokemon]/page.tsx',
+  ).readAsStringSync();
+  final wallOpenGraphImage = File(
+    'apps/web/src/app/u/[slug]/opengraph-image.tsx',
+  ).readAsStringSync();
 
   test('public counts RPC is aggregate-only and anon safe', () {
     expect(
@@ -86,5 +98,48 @@ void main() {
         ),
       ),
     );
+  });
+
+  test(
+    'card page uses public counts without rebuilding card metadata images',
+    () {
+      expect(cardPage, contains('getPublicCardJourneyCounts'));
+      expect(cardPage, contains('formatPublicJourneyCountsLine'));
+      expect(cardPage, contains('Claim your vault'));
+      expect(cardPage, contains('/login?next='));
+      expect(cardPage, contains('publicJourneyCountsLine ?? undefined'));
+      expect(cardPage, isNot(contains('card_journey_snapshot_v1')));
+    },
+  );
+
+  test('public Wall page fails closed when vault sharing is disabled', () {
+    expect(
+      publicProfilePage,
+      contains('!profile || !profile.vault_sharing_enabled'),
+    );
+    expect(publicProfilePage, contains('notFound();'));
+    expect(publicProfilePage, contains('/opengraph-image'));
+    expect(publicProfilePage, contains('summary_large_image'));
+    expect(
+      publicPokemonPage,
+      contains(
+        '!profile || !profile.vault_sharing_enabled || !normalizedPokemon',
+      ),
+    );
+  });
+
+  test('Wall Open Graph image uses public Wall data only', () {
+    expect(wallOpenGraphImage, contains('ImageResponse'));
+    expect(wallOpenGraphImage, contains('getPublicProfileBySlug'));
+    expect(wallOpenGraphImage, contains('profile.vault_sharing_enabled'));
+    expect(wallOpenGraphImage, contains('notFound();'));
+    expect(wallOpenGraphImage, contains('getPublicCollectorWallViewBySlug'));
+    expect(wallOpenGraphImage, contains('PUBLIC_WALL_SECTION_ID'));
+    expect(
+      wallOpenGraphImage,
+      contains('Public collector Wall on Grookai Vault'),
+    );
+    expect(wallOpenGraphImage, isNot(contains('card_journey_collectors_v1')));
+    expect(wallOpenGraphImage, isNot(contains('card_journey_moments_v1')));
   });
 }
