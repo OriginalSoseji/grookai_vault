@@ -4266,29 +4266,39 @@ class HomePageState extends State<HomePage> {
           return const SizedBox.shrink();
         }
 
-        return _ProductSurfaceCard(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  '$compareCount card${compareCount == 1 ? '' : 's'} selected',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.72),
-                    fontWeight: FontWeight.w600,
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 390),
+            child: GvSurface(
+              variant: GvSurfaceVariant.glass,
+              borderRadius: 28,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '$compareCount card${compareCount == 1 ? '' : 's'} selected',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.72,
+                        ),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: CompareCardSelectionController.instance.clear,
+                    child: const Text('Clear'),
+                  ),
+                  FilledButton.icon(
+                    onPressed: _openCompareScreen,
+                    icon: const Icon(Icons.compare_arrows_rounded),
+                    label: const Text('Compare'),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: CompareCardSelectionController.instance.clear,
-                child: const Text('Clear'),
-              ),
-              FilledButton.icon(
-                onPressed: _openCompareScreen,
-                icon: const Icon(Icons.compare_arrows_rounded),
-                label: const Text('Compare'),
-              ),
-            ],
+            ),
           ),
         );
       },
@@ -4517,113 +4527,128 @@ class HomePageState extends State<HomePage> {
         ),
         if (isCatalogLoading) const LinearProgressIndicator(minHeight: 2),
         Expanded(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              await Future.wait([reload(), _loadTrending()]);
-            },
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              // ignore: deprecated_member_use
-              cacheExtent: showingCuratedLanding ? 960 : 520,
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
-                    child: _buildResultsLeadIn(
-                      theme,
-                      showingCuratedLanding: showingCuratedLanding,
-                      resultCount: totalResultCount,
-                      visibleCount: visibleResultCount,
-                      trimmed: trimmed,
-                      showFeedDebugToggle:
-                          showingCuratedLanding &&
-                          kDebugMode &&
-                          kFeedDebugOverlay,
-                      showFeedDebugOverlay:
-                          showingCuratedLanding &&
-                          kDebugMode &&
-                          kFeedDebugOverlay &&
-                          _showFeedDebugOverlay,
-                    ),
+          child: Stack(
+            children: [
+              RefreshIndicator(
+                onRefresh: () async {
+                  await Future.wait([reload(), _loadTrending()]);
+                },
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                ),
-                if (_loading && !showingCuratedLanding && _results.isEmpty)
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => const _CatalogSkeletonTile(),
-                      childCount: 6,
-                    ),
-                  )
-                else if (showEmpty)
-                  SliverPadding(
-                    padding: EdgeInsets.fromLTRB(
-                      16,
-                      10,
-                      16,
-                      shellContentBottomPadding(context, extra: 8),
-                    ),
-                    sliver: SliverToBoxAdapter(
-                      child: _ProductEmptyState(
-                        title: showingCuratedLanding
-                            ? 'Nothing trending yet'
-                            : trimmed.isEmpty
-                            ? 'No cards yet'
-                            : 'No results yet',
-                        body: showingCuratedLanding
-                            ? 'Check back soon.'
-                            : trimmed.isEmpty
-                            ? 'Cards will appear here when the catalog loads.'
-                            : 'Try a set code or card number.',
-                      ),
-                    ),
-                  )
-                else
-                  _buildCatalogResultsSliver(
-                    cards,
-                    rows,
-                    trackFeedImpressions: showingCuratedLanding,
-                    showFeedDebugOverlay:
-                        showingCuratedLanding &&
-                        kDebugMode &&
-                        kFeedDebugOverlay &&
-                        _showFeedDebugOverlay,
-                  ),
-                if (!showingCuratedLanding && _hasMoreVisibleResults)
-                  SliverPadding(
-                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
-                    sliver: SliverToBoxAdapter(
-                      child: Center(
-                        child: OutlinedButton.icon(
-                          onPressed: _loadMoreSearchResults,
-                          icon: const Icon(Icons.expand_more_rounded, size: 18),
-                          label: const Text('Load more'),
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  // ignore: deprecated_member_use
+                  cacheExtent: showingCuratedLanding ? 960 : 520,
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
+                        child: _buildResultsLeadIn(
+                          theme,
+                          showingCuratedLanding: showingCuratedLanding,
+                          resultCount: totalResultCount,
+                          visibleCount: visibleResultCount,
+                          trimmed: trimmed,
+                          showFeedDebugToggle:
+                              showingCuratedLanding &&
+                              kDebugMode &&
+                              kFeedDebugOverlay,
+                          showFeedDebugOverlay:
+                              showingCuratedLanding &&
+                              kDebugMode &&
+                              kFeedDebugOverlay &&
+                              _showFeedDebugOverlay,
                         ),
                       ),
                     ),
-                  ),
-                if (hasProvisionalResults)
-                  SliverToBoxAdapter(
-                    child: ProvisionalCardSection(
-                      cards: _provisionalResults,
-                      compact: true,
+                    if (_loading && !showingCuratedLanding && _results.isEmpty)
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => const _CatalogSkeletonTile(),
+                          childCount: 6,
+                        ),
+                      )
+                    else if (showEmpty)
+                      SliverPadding(
+                        padding: EdgeInsets.fromLTRB(
+                          16,
+                          10,
+                          16,
+                          shellContentBottomPadding(context, extra: 8),
+                        ),
+                        sliver: SliverToBoxAdapter(
+                          child: _ProductEmptyState(
+                            title: showingCuratedLanding
+                                ? 'Nothing trending yet'
+                                : trimmed.isEmpty
+                                ? 'No cards yet'
+                                : 'No results yet',
+                            body: showingCuratedLanding
+                                ? 'Check back soon.'
+                                : trimmed.isEmpty
+                                ? 'Cards will appear here when the catalog loads.'
+                                : 'Try a set code or card number.',
+                          ),
+                        ),
+                      )
+                    else
+                      _buildCatalogResultsSliver(
+                        cards,
+                        rows,
+                        trackFeedImpressions: showingCuratedLanding,
+                        showFeedDebugOverlay:
+                            showingCuratedLanding &&
+                            kDebugMode &&
+                            kFeedDebugOverlay &&
+                            _showFeedDebugOverlay,
+                      ),
+                    if (!showingCuratedLanding && _hasMoreVisibleResults)
+                      SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                        sliver: SliverToBoxAdapter(
+                          child: Center(
+                            child: OutlinedButton.icon(
+                              onPressed: _loadMoreSearchResults,
+                              icon: const Icon(
+                                Icons.expand_more_rounded,
+                                size: 18,
+                              ),
+                              label: const Text('Load more'),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (hasProvisionalResults)
+                      SliverToBoxAdapter(
+                        child: ProvisionalCardSection(
+                          cards: _provisionalResults,
+                          compact: true,
+                        ),
+                      ),
+                    SliverToBoxAdapter(
+                      child: ValueListenableBuilder<List<String>>(
+                        valueListenable:
+                            CompareCardSelectionController.instance.listenable,
+                        builder: (context, selectedIds, _) => SizedBox(
+                          height: shellContentBottomPadding(
+                            context,
+                            extra: selectedIds.isEmpty ? 8 : 92,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
-                  sliver: SliverToBoxAdapter(
-                    child: _buildCompareWorkspaceEntry(theme),
-                  ),
+                  ],
                 ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: shellContentBottomPadding(context, extra: 8),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Positioned(
+                left: 16,
+                right: 16,
+                bottom: 18,
+                child: _buildCompareWorkspaceEntry(theme),
+              ),
+            ],
           ),
         ),
       ],
