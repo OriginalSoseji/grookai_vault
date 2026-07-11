@@ -1212,13 +1212,24 @@ class VaultPageState extends State<VaultPage> {
       return;
     }
 
+    final ownedCount = _ownedCountForRow(row);
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    if (ownedCount == 1 && gvviId.isNotEmpty) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+        ),
+      );
+      return;
+    }
+
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => VaultManageCardScreen(
           vaultItemId: vaultItemId,
           cardPrintId: cardPrintId,
-          ownedCount: _ownedCountForRow(row),
-          gvviId: (row['gv_vi_id'] ?? '').toString(),
+          ownedCount: ownedCount,
+          gvviId: gvviId,
           gvId: (row['gv_id'] ?? '').toString(),
           name: (row['name'] ?? '').toString(),
           setName: (row['set_name'] ?? '').toString(),
