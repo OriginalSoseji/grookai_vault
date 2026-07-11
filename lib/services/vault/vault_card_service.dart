@@ -764,7 +764,10 @@ class VaultCardService {
     debugPrint('vault.mobile.archive.begin: $cardId');
     await client.rpc(
       'vault_archive_one_instance_v1',
-      params: {'p_vault_item_id': vaultItemId, 'p_card_print_id': cardId},
+      params: {
+        'p_vault_item_id': _trimmedOrNull(vaultItemId),
+        'p_card_print_id': cardId,
+      },
     );
   }
 
@@ -777,7 +780,10 @@ class VaultCardService {
     debugPrint('vault.mobile.archive.begin: $cardId');
     await client.rpc(
       'vault_archive_all_instances_v1',
-      params: {'p_vault_item_id': vaultItemId, 'p_card_print_id': cardId},
+      params: {
+        'p_vault_item_id': _trimmedOrNull(vaultItemId),
+        'p_card_print_id': cardId,
+      },
     );
   }
 

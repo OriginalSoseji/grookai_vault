@@ -569,49 +569,70 @@ class VaultPageState extends State<VaultPage> {
 
   Future<void> _incQty(Map<String, dynamic> row, int delta) async {
     final vaultItemId = _vaultItemIdForRow(row);
-    final cardId = (row['card_id'] ?? '').toString();
-    if (_uid == null || vaultItemId.isEmpty || cardId.isEmpty) {
+    final cardId = (row['card_id'] ?? '').toString().trim();
+    if (_uid == null || cardId.isEmpty) {
+      _showVaultMutationError('Unable to update this card yet.');
       return;
     }
 
-    if (delta > 0) {
-      await VaultCardService.addOrIncrementVaultItem(
-        client: supabase,
-        userId: _uid!,
-        cardId: cardId,
-        deltaQty: delta,
-        conditionLabel: (row['condition_label'] ?? 'NM').toString(),
-        fallbackName: (row['name'] ?? '').toString(),
-        fallbackSetName: (row['set_name'] ?? '').toString(),
-        fallbackImageUrl: _vaultDisplayImageUrl(row),
-      );
-    } else {
-      await VaultCardService.archiveOneVaultItem(
+    try {
+      if (delta > 0) {
+        await VaultCardService.addOrIncrementVaultItem(
+          client: supabase,
+          userId: _uid!,
+          cardId: cardId,
+          deltaQty: delta,
+          conditionLabel: (row['condition_label'] ?? 'NM').toString(),
+          fallbackName: (row['name'] ?? '').toString(),
+          fallbackSetName: (row['set_name'] ?? '').toString(),
+          fallbackImageUrl: _vaultDisplayImageUrl(row),
+        );
+      } else {
+        await VaultCardService.archiveOneVaultItem(
+          client: supabase,
+          userId: _uid!,
+          vaultItemId: vaultItemId,
+          cardId: cardId,
+        );
+      }
+
+      await reload();
+    } catch (_) {
+      _showVaultMutationError('Unable to update this card. Try again.');
+    }
+  }
+
+  Future<bool> _delete(Map<String, dynamic> row) async {
+    final vaultItemId = _vaultItemIdForRow(row);
+    final cardId = (row['card_id'] ?? '').toString().trim();
+    if (_uid == null || cardId.isEmpty) {
+      _showVaultMutationError('Unable to remove this card yet.');
+      return false;
+    }
+
+    try {
+      await VaultCardService.archiveAllVaultItems(
         client: supabase,
         userId: _uid!,
         vaultItemId: vaultItemId,
         cardId: cardId,
       );
-    }
 
-    await reload();
+      await reload();
+      return true;
+    } catch (_) {
+      _showVaultMutationError('Unable to remove this card. Try again.');
+      return false;
+    }
   }
 
-  Future<void> _delete(Map<String, dynamic> row) async {
-    final vaultItemId = _vaultItemIdForRow(row);
-    final cardId = (row['card_id'] ?? '').toString();
-    if (_uid == null || vaultItemId.isEmpty || cardId.isEmpty) {
+  void _showVaultMutationError(String message) {
+    if (!mounted) {
       return;
     }
-
-    await VaultCardService.archiveAllVaultItems(
-      client: supabase,
-      userId: _uid!,
-      vaultItemId: vaultItemId,
-      cardId: cardId,
-    );
-
-    await reload();
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> _restoreDeletedVaultRow(Map<String, dynamic> row) async {
@@ -1725,9 +1746,9 @@ class VaultPageState extends State<VaultPage> {
       ),
     );
     if (ok == true) {
-      await _delete(row);
+      return _delete(row);
     }
-    return ok ?? false;
+    return false;
   }
 
   Future<bool> _isLowRiskVaultDelete(Map<String, dynamic> row) async {
@@ -1774,7 +1795,10 @@ class VaultPageState extends State<VaultPage> {
 
   Future<void> _deleteWithUndo(Map<String, dynamic> row) async {
     final name = (row['name'] ?? 'Card').toString();
-    await _delete(row);
+    final removed = await _delete(row);
+    if (!removed) {
+      return;
+    }
     if (!mounted) {
       return;
     }
