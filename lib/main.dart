@@ -785,6 +785,8 @@ class _CatalogCardTile extends StatelessWidget {
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
   final VoidCallback? onTap;
+  final VoidCallback? onQuickAdd;
+  final bool isAdding;
   final VoidCallback? onImpressionCandidate;
   final SmartFeedCandidateDebug? feedDebug;
   final bool showFeedDebugOverlay;
@@ -796,6 +798,8 @@ class _CatalogCardTile extends StatelessWidget {
     required this.ownershipState,
     this.pricing,
     this.onTap,
+    this.onQuickAdd,
+    this.isAdding = false,
     this.onImpressionCandidate,
     this.feedDebug,
     this.showFeedDebugOverlay = false,
@@ -890,6 +894,14 @@ class _CatalogCardTile extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (onQuickAdd != null) ...[
+                      SizedBox(width: compact ? 7 : 8),
+                      _CatalogQuickAddButton(
+                        onPressed: isAdding ? null : onQuickAdd,
+                        isBusy: isAdding,
+                        compact: compact,
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -1043,6 +1055,8 @@ class _CatalogCardGridTile extends StatelessWidget {
     required this.card,
     required this.onTap,
     required this.ownershipState,
+    this.onQuickAdd,
+    this.isAdding = false,
     this.pricing,
     this.onImpressionCandidate,
     this.feedDebug,
@@ -1053,6 +1067,8 @@ class _CatalogCardGridTile extends StatelessWidget {
   final VoidCallback onTap;
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
+  final VoidCallback? onQuickAdd;
+  final bool isAdding;
   final VoidCallback? onImpressionCandidate;
   final SmartFeedCandidateDebug? feedDebug;
   final bool showFeedDebugOverlay;
@@ -1135,15 +1151,105 @@ class _CatalogCardGridTile extends StatelessWidget {
                 ),
                 SizedBox(
                   height: GvGridConstants.ownershipSlotHeight,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: _CatalogOwnershipSummaryLine(
-                      ownershipState: ownershipState,
-                      grid: true,
-                    ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: _CatalogOwnershipSummaryLine(
+                            ownershipState: ownershipState,
+                            grid: true,
+                          ),
+                        ),
+                      ),
+                      if (onQuickAdd != null)
+                        _CatalogQuickAddButton(
+                          onPressed: isAdding ? null : onQuickAdd,
+                          isBusy: isAdding,
+                          compact: true,
+                        ),
+                    ],
                   ),
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CatalogQuickAddButton extends StatelessWidget {
+  const _CatalogQuickAddButton({
+    required this.onPressed,
+    required this.isBusy,
+    required this.compact,
+  });
+
+  final VoidCallback? onPressed;
+  final bool isBusy;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final enabled = onPressed != null && !isBusy;
+    final background = enabled
+        ? colorScheme.primary.withValues(alpha: 0.92)
+        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.24);
+    final foreground = enabled
+        ? colorScheme.onPrimary
+        : colorScheme.onSurface.withValues(alpha: 0.46);
+
+    return Semantics(
+      button: true,
+      label: isBusy ? 'Adding to vault' : 'Add to Vault',
+      child: Material(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(999),
+          onTap: enabled ? onPressed : null,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: compact ? 9 : 11,
+                vertical: compact ? 7 : 8,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (isBusy)
+                    SizedBox(
+                      width: compact ? 13 : 14,
+                      height: compact ? 13 : 14,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: foreground,
+                      ),
+                    )
+                  else
+                    Icon(
+                      Icons.add_rounded,
+                      size: compact ? 16 : 18,
+                      color: foreground,
+                    ),
+                  if (!compact) ...[
+                    const SizedBox(width: 5),
+                    Text(
+                      isBusy ? 'Adding' : 'Add',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: foreground,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
           ),
         ),
@@ -3850,6 +3956,72 @@ class HomePageState extends State<HomePage> {
     }
   }
 
+  Future<void> _quickAddSearchResultToVault(CardPrint card) async {
+    if (_addingCardIds.contains(card.id)) {
+      return;
+    }
+
+    final gvviId = await _addToVaultFromSearch(card);
+    if (!mounted || gvviId == null || gvviId.isEmpty) {
+      return;
+    }
+
+    try {
+      await CardEngagementService.recordFeedEvent(
+        client: supabase,
+        cardPrintId: card.id,
+        eventType: 'add_to_vault',
+        surface: 'search_result_tile',
+        metadata: <String, dynamic>{
+          if ((card.gvId ?? '').trim().isNotEmpty)
+            'gv_id': (card.gvId ?? '').trim(),
+          'destination': 'vault',
+        },
+      );
+    } catch (_) {}
+
+    final refreshedOwnershipState = await _refreshCatalogOwnershipState(
+      card.id,
+    );
+    if (!mounted) {
+      return;
+    }
+
+    final displayName = resolveCardPrintDisplayIdentity(card).displayName;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text('Added $displayName to your vault.'),
+          action: SnackBarAction(
+            label: 'View copy',
+            onPressed: () {
+              unawaited(
+                Navigator.of(context)
+                    .push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => VaultGvviScreen(
+                          gvviId: gvviId,
+                          launchedFromSearch: true,
+                        ),
+                      ),
+                    )
+                    .then((_) {
+                      if (mounted) {
+                        unawaited(_refreshCatalogOwnershipState(card.id));
+                      }
+                    }),
+              );
+            },
+          ),
+        ),
+      );
+
+    if (refreshedOwnershipState == null) {
+      unawaited(_refreshCatalogOwnershipState(card.id));
+    }
+  }
+
   // VIEW_YOUR_COPY_RESOLUTION_V1
   // exact-copy resolution order: active vault anchor -> mobile copies wrapper -> collector summary GVVI -> shared primary GVVI -> Manage Card fallback.
   // manage fallback only when: no deterministic GVVI can be proven from current mobile wrappers for the owned card.
@@ -3914,6 +4086,8 @@ class HomePageState extends State<HomePage> {
   }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
     final ownershipState = _catalogOwnershipStateForCard(card.id);
+    final showQuickAdd = !(ownershipState?.owned ?? false);
+    final isAdding = _addingCardIds.contains(card.id);
     final onImpressionCandidate =
         enableFeedImpressionTracking && feedPosition != null
         ? () => _recordFeedImpressionIfEligible(
@@ -3927,6 +4101,10 @@ class HomePageState extends State<HomePage> {
         pricing: pricing,
         ownershipState: ownershipState,
         onTap: () => _openSearchCardActionHub(card),
+        onQuickAdd: showQuickAdd
+            ? () => _quickAddSearchResultToVault(card)
+            : null,
+        isAdding: isAdding,
         onImpressionCandidate: onImpressionCandidate,
         feedDebug: feedDebug,
         showFeedDebugOverlay: showFeedDebugOverlay,
@@ -3939,6 +4117,10 @@ class HomePageState extends State<HomePage> {
       ownershipState: ownershipState,
       viewMode: _viewMode,
       onTap: () => _openSearchCardActionHub(card),
+      onQuickAdd: showQuickAdd
+          ? () => _quickAddSearchResultToVault(card)
+          : null,
+      isAdding: isAdding,
       onImpressionCandidate: onImpressionCandidate,
       feedDebug: feedDebug,
       showFeedDebugOverlay: showFeedDebugOverlay,
