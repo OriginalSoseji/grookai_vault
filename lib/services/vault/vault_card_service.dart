@@ -686,6 +686,7 @@ class VaultCardService {
       client: client,
       vaultItemId: anchor.vaultItemId,
       cardPrintId: anchor.cardPrintId,
+      fallbackOwnedCount: 0,
     );
     final fromCopies = _resolveOwnedTargetFromCopies(
       anchor: anchor,
@@ -807,6 +808,7 @@ class VaultCardService {
       client: client,
       vaultItemId: vaultItemId,
       cardPrintId: cardPrintId,
+      fallbackOwnedCount: fallbackOwnedCount,
     );
     if (copyRows.isEmpty && _trimmedOrNull(fallbackGvviId) != null) {
       final exactCopy = await _loadManageCardCopyByGvvi(
@@ -1363,15 +1365,64 @@ class VaultCardService {
     required SupabaseClient client,
     required String vaultItemId,
     required String cardPrintId,
+    required int fallbackOwnedCount,
   }) async {
-    final rawRows = await client.rpc(
-      'vault_mobile_card_copies_v1',
-      params: {
-        'p_card_print_id': cardPrintId,
-        'p_vault_item_id': _trimmedOrNull(vaultItemId),
-      },
+    try {
+      final rawRows = await client.rpc(
+        'vault_mobile_card_copies_v1',
+        params: {
+          'p_card_print_id': cardPrintId,
+          'p_vault_item_id': _trimmedOrNull(vaultItemId),
+        },
+      );
+      if (rawRows is List && rawRows.isNotEmpty) {
+        final copies = rawRows
+            .whereType<Map>()
+            .map(
+              (row) =>
+                  VaultManageCardCopy.fromJson(Map<String, dynamic>.from(row)),
+            )
+            .where((copy) => copy.instanceId.isNotEmpty)
+            .toList();
+        if (fallbackOwnedCount <= 0 || copies.length >= fallbackOwnedCount) {
+          return copies;
+        }
+      }
+    } catch (_) {
+      // The RPC is a convenience read model. The authoritative copy rows live
+      // in vault_item_instances, so stale grouped anchors must not make the
+      // mobile Copies tab look empty.
+    }
+
+    return _loadManageCardCopiesFromInstances(
+      client: client,
+      cardPrintId: cardPrintId,
     );
-    if (rawRows is! List || rawRows.isEmpty) {
+  }
+
+  static Future<List<VaultManageCardCopy>> _loadManageCardCopiesFromInstances({
+    required SupabaseClient client,
+    required String cardPrintId,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    final normalizedCardPrintId = _trimmedOrNull(cardPrintId);
+    if (userId == null || userId.isEmpty || normalizedCardPrintId == null) {
+      return const <VaultManageCardCopy>[];
+    }
+
+    // LOCK: Manage card Copies tab falls back to exact-copy instance rows by
+    // card_print_id. Do not require legacy vault_items anchors for editing.
+    final rawRows = await client
+        .from('vault_item_instances')
+        .select(
+          'id,gv_vi_id,condition_label,intent,notes,created_at,grade_company,grade_value,grade_label,slab_cert_id',
+        )
+        .eq('user_id', userId)
+        .eq('card_print_id', normalizedCardPrintId)
+        .filter('archived_at', 'is', null)
+        .order('created_at', ascending: false);
+
+    if (rawRows.isEmpty) {
       return const <VaultManageCardCopy>[];
     }
 

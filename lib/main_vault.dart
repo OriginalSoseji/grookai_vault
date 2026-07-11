@@ -938,6 +938,7 @@ class VaultPageState extends State<VaultPage> {
     final vaultItemId = _vaultItemIdForRow(row);
     final name = (row['name'] ?? 'Item').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
+    final canOpen = _canOpenVaultRow(row);
 
     return _VaultItemTile(
       row: row,
@@ -959,7 +960,7 @@ class VaultPageState extends State<VaultPage> {
           await reload();
         }
       },
-      onTap: cardPrintId.isEmpty ? null : () => _openManageCardRow(row),
+      onTap: canOpen ? () => _openManageCardRow(row) : null,
     );
   }
 
@@ -967,11 +968,12 @@ class VaultPageState extends State<VaultPage> {
     final vaultItemId = _vaultItemIdForRow(row);
     final name = (row['name'] ?? 'Item').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
+    final canOpen = _canOpenVaultRow(row);
 
     return _VaultGridTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
-      onTap: cardPrintId.isEmpty ? null : () => _openManageCardRow(row),
+      onTap: canOpen ? () => _openManageCardRow(row) : null,
       onScan: () {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -1010,6 +1012,7 @@ class VaultPageState extends State<VaultPage> {
         itemBuilder: (context, index) {
           final row = recentRows[index];
           final cardPrintId = (row['card_id'] ?? '').toString();
+          final canOpen = _canOpenVaultRow(row);
           final name = (row['name'] ?? 'Item').toString();
           final displayIdentity = resolveDisplayIdentityFromFields(
             name: name,
@@ -1039,9 +1042,7 @@ class VaultPageState extends State<VaultPage> {
                 borderRadius: BorderRadius.circular(
                   GvGridConstants.tileTapRadius,
                 ),
-                onTap: cardPrintId.isEmpty
-                    ? null
-                    : () => _openManageCardRow(row),
+                onTap: canOpen ? () => _openManageCardRow(row) : null,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -1056,9 +1057,9 @@ class VaultPageState extends State<VaultPage> {
                             height: 118,
                             borderRadius: GvGridConstants.imageRadius,
                             padding: const EdgeInsets.all(5),
-                            onViewDetails: cardPrintId.isEmpty
-                                ? null
-                                : () => _openManageCardRow(row),
+                            onViewDetails: canOpen
+                                ? () => _openManageCardRow(row)
+                                : null,
                             detailsLabel: 'Manage card',
                           ),
                         ),
@@ -1228,13 +1229,23 @@ class VaultPageState extends State<VaultPage> {
 
   Future<void> _openManageCardRow(Map<String, dynamic> row) async {
     final vaultItemId = _vaultItemIdForRow(row);
-    final cardPrintId = (row['card_id'] ?? '').toString();
+    final cardPrintId = (row['card_id'] ?? '').toString().trim();
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    if ((vaultItemId.isEmpty || cardPrintId.isEmpty) && gvviId.isEmpty) {
+      return;
+    }
+
     if (vaultItemId.isEmpty || cardPrintId.isEmpty) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+        ),
+      );
+      await reload();
       return;
     }
 
     final ownedCount = _ownedCountForRow(row);
-    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
     if (ownedCount == 1 && gvviId.isNotEmpty) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
@@ -1262,6 +1273,12 @@ class VaultPageState extends State<VaultPage> {
       ),
     );
     await reload();
+  }
+
+  bool _canOpenVaultRow(Map<String, dynamic> row) {
+    final cardPrintId = (row['card_id'] ?? '').toString().trim();
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    return cardPrintId.isNotEmpty || gvviId.isNotEmpty;
   }
 
   Widget _buildVaultMessage(String title, String body) {

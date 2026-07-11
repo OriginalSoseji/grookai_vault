@@ -85,6 +85,25 @@ void main() {
     );
   });
 
+  test('manage card copy loader falls back to active exact-copy rows', () {
+    final service = File(
+      'lib/services/vault/vault_card_service.dart',
+    ).readAsStringSync();
+
+    expect(service, contains('_loadManageCardCopiesFromInstances'));
+    expect(service, contains('required int fallbackOwnedCount'));
+    expect(service, contains('copies.length >= fallbackOwnedCount'));
+    expect(service, contains("from('vault_item_instances')"));
+    expect(service, contains(".eq('card_print_id', normalizedCardPrintId)"));
+    expect(service, contains(".filter('archived_at', 'is', null)"));
+    expect(
+      service,
+      contains('Do not require legacy vault_items anchors for editing.'),
+    );
+    expect(service, contains('stale grouped anchors must not make the'));
+    expect(service, contains('mobile Copies tab look empty'));
+  });
+
   test('copy rows expose GVVI edit and exact-copy removal controls', () {
     final screen = File(
       'lib/screens/vault/vault_manage_card_screen.dart',
