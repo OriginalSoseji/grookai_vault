@@ -630,69 +630,57 @@ class VaultPageState extends State<VaultPage> {
       return;
     }
 
-    final qtyCtrl = TextEditingController(text: '1');
-    final subtitleParts = <String>[];
-    if (picked.displaySet.isNotEmpty) {
-      subtitleParts.add(picked.displaySet);
-    }
-    if (picked.displayNumber.isNotEmpty) {
-      subtitleParts.add('#${picked.displayNumber}');
-    }
-    final subtitle = subtitleParts.join(' - ');
-
-    if (!mounted) {
+    final added = await _addCatalogPickToVault(picked);
+    if (!added || !mounted) {
       return;
     }
 
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Add to Vault'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: _thumb(picked.displayImage),
-              title: Text(resolveDisplayName(picked)),
-              subtitle: Text(subtitle.isEmpty ? picked.displaySet : subtitle),
-            ),
-            TextField(
-              controller: qtyCtrl,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Quantity'),
-            ),
-          ],
+    final displayName = resolveDisplayName(picked);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text('Added $displayName to your vault.'),
+          action: SnackBarAction(
+            label: '+1 more',
+            onPressed: () {
+              unawaited(_addCatalogPickToVault(picked));
+            },
+          ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: const Text('Add'),
-          ),
-        ],
-      ),
-    );
-    if (ok != true) {
-      return;
+      );
+  }
+
+  Future<bool> _addCatalogPickToVault(CardPrint picked) async {
+    final userId = _uid;
+    if (userId == null) {
+      return false;
     }
 
-    final qty = int.tryParse(qtyCtrl.text) ?? 1;
-
-    await VaultCardService.addOrIncrementVaultItem(
-      client: supabase,
-      userId: _uid!,
-      cardId: picked.id,
-      deltaQty: qty,
-      conditionLabel: 'NM',
-      fallbackName: picked.name,
-      fallbackSetName: picked.displaySet,
-      fallbackImageUrl: picked.displayImage,
-    );
-
-    await reload();
+    try {
+      await VaultCardService.addOrIncrementVaultItem(
+        client: supabase,
+        userId: userId,
+        cardId: picked.id,
+        deltaQty: 1,
+        conditionLabel: 'NM',
+        fallbackName: picked.name,
+        fallbackSetName: picked.displaySet,
+        fallbackImageUrl: picked.displayImage,
+      );
+      await reload();
+      return true;
+    } catch (_) {
+      if (mounted) {
+        final displayName = resolveDisplayName(picked);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(content: Text('Could not add $displayName. Try again.')),
+          );
+      }
+      return false;
+    }
   }
 
   List<Map<String, dynamic>> _sortedRows(List<Map<String, dynamic>> rows) {
@@ -1700,18 +1688,6 @@ class VaultPageState extends State<VaultPage> {
       await _delete(row);
     }
     return ok ?? false;
-  }
-
-  Widget _thumb(String? url) {
-    return CardSurfaceArtwork(
-      label: 'Card',
-      imageUrl: url,
-      width: 44,
-      height: 60,
-      borderRadius: 10,
-      padding: const EdgeInsets.all(3),
-      enableTapToZoom: false,
-    );
   }
 }
 
