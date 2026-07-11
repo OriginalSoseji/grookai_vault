@@ -66,20 +66,38 @@ void main() {
     expect(screen, contains('_selectedCopyIds'));
     expect(screen, contains('Future<void> _saveSelectedCopyIntent'));
     expect(screen, contains('Future<void> _bulkCopySectionMembership'));
+    expect(screen, contains('Future<void> _removeSelectedCopies'));
     expect(
       screen,
       contains('VaultCardService.saveVaultItemInstancesIntentBulk'),
     );
     expect(screen, contains('VaultCardService.bulkCopySectionMembership'));
+    expect(screen, contains('VaultGvviService.archiveExactCopy'));
     expect(screen, contains('Bulk actions'));
     expect(screen, contains('Add to section'));
     expect(screen, contains('Remove from section'));
+    expect(screen, contains('Remove selected copies'));
     expect(
       screen,
       contains(
         'Mobile bulk copy management writes only exact-copy instance IDs',
       ),
     );
+  });
+
+  test('copy rows expose GVVI edit and exact-copy removal controls', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains("'GVVI'"));
+    expect(screen, contains("gvviId.isEmpty ? 'GVVI unavailable' : gvviId"));
+    expect(screen, contains("label: const Text('Edit copy')"));
+    expect(screen, contains("label: const Text('Remove')"));
+    expect(screen, contains('Future<void> _removeExactCopy'));
+    expect(screen, contains('onRemoveCopy'));
+    expect(screen, contains('VaultGvviService.archiveExactCopy'));
+    expect(screen, contains('Other copies of this card stay in your vault.'));
   });
 
   test('grouped card copy rows expose exact-copy public preview controls', () {

@@ -11,6 +11,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_price.dart';
@@ -551,6 +552,164 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         return;
       }
 
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _removeExactCopy(VaultManageCardCopy copy) async {
+    if (_bulkCopySaving) {
+      return;
+    }
+
+    final gvviId = (copy.gvviId ?? '').trim();
+    final label = gvviId.isEmpty ? 'this exact copy' : gvviId;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Remove this copy?'),
+        content: Text(
+          'This removes $label from your vault. Other copies of this card stay in your vault.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('Remove copy'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultGvviService.archiveExactCopy(
+        client: _client,
+        instanceId: copy.instanceId,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      final remainingCount =
+          (_data?.copies.where((item) => item.instanceId != copy.instanceId) ??
+                  const Iterable<VaultManageCardCopy>.empty())
+              .length;
+      if (remainingCount <= 0) {
+        Navigator.of(context).pop(true);
+        return;
+      }
+
+      await _load();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkCopySaving = false;
+        _statusMessage = 'Exact copy removed.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _removeSelectedCopies(VaultManageCardData data) async {
+    final selectedIds = _selectedCopyIds.toSet();
+    final selectedCopies = data.copies
+        .where((copy) => selectedIds.contains(copy.instanceId))
+        .toList(growable: false);
+    if (_bulkCopySaving || selectedCopies.isEmpty) {
+      return;
+    }
+
+    final count = selectedCopies.length;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Remove $count selected ${count == 1 ? 'copy' : 'copies'}?',
+        ),
+        content: Text(
+          'This removes only the selected exact ${count == 1 ? 'copy' : 'copies'} from your vault. Unselected copies stay in your vault.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(count == 1 ? 'Remove copy' : 'Remove copies'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      // LOCK: Bulk removal is exact-copy scoped. Each selected row archives by
+      // vault_item_instances.id through the same RPC as the GVVI screen.
+      for (final copy in selectedCopies) {
+        await VaultGvviService.archiveExactCopy(
+          client: _client,
+          instanceId: copy.instanceId,
+        );
+      }
+
+      if (!mounted) {
+        return;
+      }
+
+      final remainingCount = data.copies
+          .where((copy) => !selectedIds.contains(copy.instanceId))
+          .length;
+      if (remainingCount <= 0) {
+        Navigator.of(context).pop(true);
+        return;
+      }
+
+      await _load();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkCopySaving = false;
+        _selectedCopyIds = const <String>{};
+        _statusMessage =
+            '$count exact ${count == 1 ? 'copy' : 'copies'} removed.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _bulkCopySaving = false;
       });
@@ -1404,6 +1563,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                   onAddToSection: () => _bulkCopySectionMembership(add: true),
                   onRemoveFromSection: () =>
                       _bulkCopySectionMembership(add: false),
+                  onRemoveSelected: () => _removeSelectedCopies(data),
                 ),
                 const SizedBox(height: 10),
                 for (var index = 0; index < data.copies.length; index++) ...[
@@ -1442,6 +1602,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                             section,
                           )
                         : null,
+                    onRemoveCopy: _bulkCopySaving
+                        ? null
+                        : () => _removeExactCopy(data.copies[index]),
                     onOpenWall: _openWall,
                     onOpenPublicCopy: () =>
                         _openCopyPublicPage(data.copies[index]),
@@ -1826,6 +1989,7 @@ class _CopyBulkActionSurface extends StatelessWidget {
     required this.onSectionChanged,
     required this.onAddToSection,
     required this.onRemoveFromSection,
+    required this.onRemoveSelected,
   });
 
   final int selectedCount;
@@ -1839,6 +2003,7 @@ class _CopyBulkActionSurface extends StatelessWidget {
   final ValueChanged<String?> onSectionChanged;
   final VoidCallback onAddToSection;
   final VoidCallback onRemoveFromSection;
+  final VoidCallback onRemoveSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -1963,10 +2128,30 @@ class _CopyBulkActionSurface extends StatelessWidget {
                   ),
                 ),
               ],
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                onPressed: busy ? null : onRemoveSelected,
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(0, 40),
+                  foregroundColor: colorScheme.error,
+                  side: BorderSide(
+                    color: colorScheme.error.withValues(alpha: 0.52),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                icon: const Icon(Icons.delete_outline_rounded),
+                label: Text(
+                  selectedCount == 1
+                      ? 'Remove selected copy'
+                      : 'Remove selected copies',
+                ),
+              ),
             ] else if (totalCount > 1) ...[
               const SizedBox(height: 4),
               Text(
-                'Select multiple exact copies to update intent or section placement together.',
+                'Select multiple exact copies to update intent, section placement, or remove them together.',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurface.withValues(alpha: 0.62),
                 ),
@@ -1991,6 +2176,7 @@ class _CopyRow extends StatelessWidget {
     this.onSelectionChanged,
     this.onIntentSelected,
     this.onToggleSection,
+    this.onRemoveCopy,
     this.onOpenWall,
     this.onOpenPublicCopy,
     this.onCopyPublicCopyLink,
@@ -2011,6 +2197,7 @@ class _CopyRow extends StatelessWidget {
   final ValueChanged<bool>? onSelectionChanged;
   final ValueChanged<String>? onIntentSelected;
   final ValueChanged<VaultManageCopySectionMembership>? onToggleSection;
+  final VoidCallback? onRemoveCopy;
   final VoidCallback? onOpenWall;
   final VoidCallback? onOpenPublicCopy;
   final VoidCallback? onCopyPublicCopyLink;
@@ -2024,8 +2211,8 @@ class _CopyRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final gvviId = (copy.gvviId ?? '').trim();
     final metaParts = <String>[
-      if ((copy.gvviId ?? '').isNotEmpty) copy.gvviId!,
       if (copy.createdAt != null) _formatDate(copy.createdAt!),
     ];
     final copyTitle = copy.isGraded
@@ -2051,11 +2238,32 @@ class _CopyRow extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Expanded(
-              child: Text(
-                copyTitle.trim().isEmpty ? 'Vault copy' : copyTitle.trim(),
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'GVVI',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.46),
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.24,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    gvviId.isEmpty ? 'GVVI unavailable' : gvviId,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: gvviId.isEmpty
+                          ? colorScheme.error
+                          : colorScheme.onSurface,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.12,
+                    ),
+                  ),
+                ],
               ),
             ),
             if (onTap != null)
@@ -2075,6 +2283,14 @@ class _CopyRow extends StatelessWidget {
               ),
             ],
           ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          copyTitle.trim().isEmpty ? 'Vault copy' : copyTitle.trim(),
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.76),
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -2170,26 +2386,69 @@ class _CopyRow extends StatelessWidget {
             ),
           ),
         ],
-        if ((secondaryActionLabel ?? '').trim().isNotEmpty &&
-            onSecondaryAction != null) ...[
+        if (onTap != null ||
+            onRemoveCopy != null ||
+            ((secondaryActionLabel ?? '').trim().isNotEmpty &&
+                onSecondaryAction != null)) ...[
           const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: OutlinedButton.icon(
-              onPressed: onSecondaryAction,
-              style: OutlinedButton.styleFrom(
-                minimumSize: const Size(0, 36),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (onTap != null)
+                FilledButton.tonalIcon(
+                  onPressed: onTap,
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  icon: const Icon(Icons.tune_rounded, size: 16),
+                  label: const Text('Edit copy'),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+              if ((secondaryActionLabel ?? '').trim().isNotEmpty &&
+                  onSecondaryAction != null)
+                OutlinedButton.icon(
+                  onPressed: onSecondaryAction,
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  icon: const Icon(Icons.verified_outlined, size: 16),
+                  label: Text(secondaryActionLabel!),
                 ),
-              ),
-              icon: const Icon(Icons.verified_outlined, size: 16),
-              label: Text(secondaryActionLabel!),
-            ),
+              if (onRemoveCopy != null)
+                OutlinedButton.icon(
+                  onPressed: onRemoveCopy,
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    foregroundColor: colorScheme.error,
+                    side: BorderSide(
+                      color: colorScheme.error.withValues(alpha: 0.52),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  icon: const Icon(Icons.delete_outline_rounded, size: 16),
+                  label: const Text('Remove'),
+                ),
+            ],
           ),
         ],
       ],
