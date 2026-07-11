@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('vault quantity removal can archive by card id without anchor', () {
     final vault = File('lib/main_vault.dart').readAsStringSync();
+    final manage = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
     final service = File(
       'lib/services/vault/vault_card_service.dart',
     ).readAsStringSync();
@@ -47,5 +50,10 @@ void main() {
     );
 
     expect(service, contains("'p_vault_item_id': _trimmedOrNull(vaultItemId)"));
+    expect(manage, contains('Future<void> _removeAllCopies'));
+    expect(manage, contains("title: const Text('Remove all copies?')"));
+    expect(manage, contains('VaultCardService.archiveAllVaultItems'));
+    expect(manage, contains("data.totalCopies > 1 ? 'Remove all copies'"));
+    expect(manage, contains('Navigator.of(context).pop(true);'));
   });
 }

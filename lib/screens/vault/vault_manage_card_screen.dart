@@ -641,6 +641,63 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
   }
 
+  Future<void> _removeAllCopies(VaultManageCardData data) async {
+    if (_bulkCopySaving || data.copies.isEmpty) {
+      return;
+    }
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Remove all copies?'),
+        content: Text(
+          'This removes all ${data.totalCopies} active ${data.totalCopies == 1 ? 'copy' : 'copies'} of ${_manageCardDisplayIdentity(data).displayName} from your vault.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('Remove all'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultCardService.archiveAllVaultItems(
+        client: _client,
+        userId: _client.auth.currentUser?.id ?? '',
+        vaultItemId: data.vaultItemId,
+        cardId: data.cardPrintId,
+      );
+
+      if (!mounted) {
+        return;
+      }
+      Navigator.of(context).pop(true);
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
   VaultManageCardData _copyDataWithCopies(
     VaultManageCardData data,
     List<VaultManageCardCopy> copies,
@@ -1272,6 +1329,27 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             icon: const Icon(Icons.open_in_new_rounded),
             label: const Text('View wall'),
           ),
+        OutlinedButton.icon(
+          onPressed: _bulkCopySaving || data.copies.isEmpty
+              ? null
+              : () => _removeAllCopies(data),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(0, 40),
+            foregroundColor: Theme.of(context).colorScheme.error,
+            side: BorderSide(
+              color: Theme.of(
+                context,
+              ).colorScheme.error.withValues(alpha: 0.52),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+          ),
+          icon: const Icon(Icons.delete_outline_rounded),
+          label: Text(
+            data.totalCopies > 1 ? 'Remove all copies' : 'Remove copy',
+          ),
+        ),
       ],
     );
   }

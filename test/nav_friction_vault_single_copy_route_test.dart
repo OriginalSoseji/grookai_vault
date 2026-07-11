@@ -16,6 +16,7 @@ void main() {
     );
     expect(method, contains('if (ownedCount == 1 && gvviId.isNotEmpty)'));
     expect(method, contains('VaultGvviScreen(gvviId: gvviId)'));
+    expect(method, contains('await reload();'));
     expect(method, contains('return;'));
     expect(method, contains('VaultManageCardScreen('));
     expect(method, contains('ownedCount: ownedCount'));

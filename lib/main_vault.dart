@@ -1241,11 +1241,12 @@ class VaultPageState extends State<VaultPage> {
           builder: (_) => VaultGvviScreen(gvviId: gvviId),
         ),
       );
+      await reload();
       return;
     }
 
     await Navigator.of(context).push(
-      MaterialPageRoute<void>(
+      MaterialPageRoute<bool>(
         builder: (_) => VaultManageCardScreen(
           vaultItemId: vaultItemId,
           cardPrintId: cardPrintId,
@@ -1260,6 +1261,7 @@ class VaultPageState extends State<VaultPage> {
         ),
       ),
     );
+    await reload();
   }
 
   Widget _buildVaultMessage(String title, String body) {
