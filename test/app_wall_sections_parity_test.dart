@@ -116,10 +116,8 @@ void main() {
   test('GVVI section membership is exact-copy based', () {
     expect(gvviService, contains('class VaultGvviSectionMembership'));
     expect(gvviService, contains("from('wall_section_memberships')"));
-    expect(
-      gvviService,
-      contains("'vault_item_instance_id': normalizedInstanceId"),
-    );
+    expect(gvviService, contains('vault_set_copy_section_memberships_v1'));
+    expect(gvviService, contains("'p_instance_ids': [normalizedInstanceId]"));
     expect(gvviScreen, contains('class _VaultSectionMembershipSurface'));
     expect(gvviScreen, contains("title: 'Add to'"));
     expect(gvviScreen, contains('assignSectionMembership'));

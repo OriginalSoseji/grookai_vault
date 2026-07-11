@@ -1167,22 +1167,16 @@ class VaultCardService {
       sectionId: normalizedSectionId,
     );
 
-    final existing = await client
-        .from('wall_section_memberships')
-        .select('section_id')
-        .eq('vault_item_instance_id', normalizedInstanceId)
-        .eq('section_id', normalizedSectionId)
-        .maybeSingle();
-    if (existing != null) {
-      return;
-    }
-
     // LOCK: Grouped card row section assignment is exact-copy only.
     // LOCK: Do not write shared_cards or grouped vault_items.
-    await client.from('wall_section_memberships').insert({
-      'section_id': normalizedSectionId,
-      'vault_item_instance_id': normalizedInstanceId,
-    });
+    await client.rpc(
+      'vault_set_copy_section_memberships_v1',
+      params: {
+        'p_instance_ids': [normalizedInstanceId],
+        'p_section_id': normalizedSectionId,
+        'p_add': true,
+      },
+    );
   }
 
   static Future<void> removeCopySectionMembership({
@@ -1210,11 +1204,14 @@ class VaultCardService {
 
     // LOCK: Grouped card row section removal is exact-copy only.
     // LOCK: Do not write shared_cards or grouped vault_items.
-    await client
-        .from('wall_section_memberships')
-        .delete()
-        .eq('vault_item_instance_id', normalizedInstanceId)
-        .eq('section_id', normalizedSectionId);
+    await client.rpc(
+      'vault_set_copy_section_memberships_v1',
+      params: {
+        'p_instance_ids': [normalizedInstanceId],
+        'p_section_id': normalizedSectionId,
+        'p_add': false,
+      },
+    );
   }
 
   static Future<void> bulkCopySectionMembership({
@@ -1260,41 +1257,17 @@ class VaultCardService {
       throw Exception('Section assignment could not be saved.');
     }
 
-    if (add) {
-      final existingRows = await client
-          .from('wall_section_memberships')
-          .select('section_id,vault_item_instance_id')
-          .eq('section_id', normalizedSectionId)
-          .inFilter('vault_item_instance_id', normalizedInstanceIds);
-      final existingInstanceIds = (existingRows as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .map((row) => _trimmedOrNull(row['vault_item_instance_id']))
-          .whereType<String>()
-          .toSet();
-      final rowsToInsert = normalizedInstanceIds
-          .where((id) => !existingInstanceIds.contains(id))
-          .map(
-            (id) => {
-              'section_id': normalizedSectionId,
-              'vault_item_instance_id': id,
-            },
-          )
-          .toList(growable: false);
-
-      if (rowsToInsert.isNotEmpty) {
-        // LOCK: Bulk grouped-card section assignment is exact-copy only.
-        // LOCK: Do not write shared_cards or grouped vault_items.
-        await client.from('wall_section_memberships').insert(rowsToInsert);
-      }
-    } else {
-      // LOCK: Bulk grouped-card section removal is exact-copy only.
-      // LOCK: Do not write shared_cards or grouped vault_items.
-      await client
-          .from('wall_section_memberships')
-          .delete()
-          .eq('section_id', normalizedSectionId)
-          .inFilter('vault_item_instance_id', normalizedInstanceIds);
-    }
+    // LOCK: Bulk grouped-card section assignment is exact-copy only.
+    // LOCK: Bulk grouped-card section removal is exact-copy only.
+    // LOCK: Do not write shared_cards or grouped vault_items.
+    await client.rpc(
+      'vault_set_copy_section_memberships_v1',
+      params: {
+        'p_instance_ids': normalizedInstanceIds,
+        'p_section_id': normalizedSectionId,
+        'p_add': add,
+      },
+    );
   }
 
   static Future<void> _assertOwnedSectionTarget({

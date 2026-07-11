@@ -188,15 +188,9 @@ void main() {
     expect(boundary, greaterThan(removeStart));
     final sectionSource = service.substring(assignStart, boundary);
 
-    expect(sectionSource, contains("from('wall_section_memberships')"));
-    expect(
-      sectionSource,
-      contains("'vault_item_instance_id': normalizedInstanceId"),
-    );
-    expect(
-      sectionSource,
-      contains(".eq('vault_item_instance_id', normalizedInstanceId)"),
-    );
+    expect(sectionSource, contains('vault_set_copy_section_memberships_v1'));
+    expect(sectionSource, contains("'p_instance_ids': [normalizedInstanceId]"));
+    expect(sectionSource, contains("'p_section_id': normalizedSectionId"));
     expect(
       sectionSource,
       contains('Grouped card row section assignment is exact-copy only'),
@@ -238,7 +232,8 @@ void main() {
     expect(bulkSource, contains(".update({'intent': nextIntent})"));
     expect(bulkSource, contains(".inFilter('id', normalizedInstanceIds)"));
     expect(bulkSource, contains("from('wall_sections')"));
-    expect(bulkSource, contains("from('wall_section_memberships')"));
+    expect(bulkSource, contains('vault_set_copy_section_memberships_v1'));
+    expect(bulkSource, contains("'p_instance_ids': normalizedInstanceIds"));
     expect(
       bulkSource,
       contains('Bulk copy intent authority is exact-copy level'),

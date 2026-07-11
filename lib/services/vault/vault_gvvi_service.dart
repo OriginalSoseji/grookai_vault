@@ -742,22 +742,16 @@ class VaultGvviService {
       sectionId: normalizedSectionId,
     );
 
-    final existing = await client
-        .from('wall_section_memberships')
-        .select('section_id')
-        .eq('vault_item_instance_id', normalizedInstanceId)
-        .eq('section_id', normalizedSectionId)
-        .maybeSingle();
-    if (existing != null) {
-      return;
-    }
-
     // LOCK: App section membership is exact-copy only (vault_item_instances.id).
     // LOCK: Do not assign sections from grouped card context.
-    await client.from('wall_section_memberships').insert({
-      'section_id': normalizedSectionId,
-      'vault_item_instance_id': normalizedInstanceId,
-    });
+    await client.rpc(
+      'vault_set_copy_section_memberships_v1',
+      params: {
+        'p_instance_ids': [normalizedInstanceId],
+        'p_section_id': normalizedSectionId,
+        'p_add': true,
+      },
+    );
   }
 
   static Future<void> removeSectionMembership({
@@ -784,11 +778,14 @@ class VaultGvviService {
 
     // LOCK: App section membership is exact-copy only (vault_item_instances.id).
     // LOCK: Do not assign sections from grouped card context.
-    await client
-        .from('wall_section_memberships')
-        .delete()
-        .eq('vault_item_instance_id', normalizedInstanceId)
-        .eq('section_id', normalizedSectionId);
+    await client.rpc(
+      'vault_set_copy_section_memberships_v1',
+      params: {
+        'p_instance_ids': [normalizedInstanceId],
+        'p_section_id': normalizedSectionId,
+        'p_add': false,
+      },
+    );
   }
 
   static Future<String> saveIntent({
