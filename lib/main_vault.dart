@@ -614,6 +614,27 @@ class VaultPageState extends State<VaultPage> {
     await reload();
   }
 
+  Future<void> _restoreDeletedVaultRow(Map<String, dynamic> row) async {
+    final userId = _uid;
+    final cardId = (row['card_id'] ?? '').toString();
+    if (userId == null || cardId.isEmpty) {
+      return;
+    }
+
+    await VaultCardService.addOrIncrementVaultItem(
+      client: supabase,
+      userId: userId,
+      cardId: cardId,
+      deltaQty: 1,
+      conditionLabel: (row['condition_label'] ?? 'NM').toString(),
+      fallbackName: (row['name'] ?? '').toString(),
+      fallbackSetName: (row['set_name'] ?? '').toString(),
+      fallbackImageUrl: _vaultDisplayImageUrl(row),
+    );
+
+    await reload();
+  }
+
   Future<void> showAddOrEditDialog({Map<String, dynamic>? row}) async {
     if (row == null) {
       await _showCatalogPickerAndInsert();
@@ -1667,6 +1688,14 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<bool> _confirmDelete(Map<String, dynamic> row) async {
+    if (await _isLowRiskVaultDelete(row)) {
+      await _deleteWithUndo(row);
+      return false;
+    }
+    if (!mounted) {
+      return false;
+    }
+
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
@@ -1688,6 +1717,71 @@ class VaultPageState extends State<VaultPage> {
       await _delete(row);
     }
     return ok ?? false;
+  }
+
+  Future<bool> _isLowRiskVaultDelete(Map<String, dynamic> row) async {
+    final vaultItemId = _vaultItemIdForRow(row);
+    final cardPrintId = (row['card_id'] ?? '').toString();
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    if (_uid == null ||
+        vaultItemId.isEmpty ||
+        cardPrintId.isEmpty ||
+        gvviId.isEmpty ||
+        _ownedCountForRow(row) != 1) {
+      return false;
+    }
+
+    final sharedState = _sharedStateByCardPrintId[cardPrintId];
+    if (sharedState?.isShared == true ||
+        (sharedState?.wallCategory?.trim().isNotEmpty ?? false)) {
+      return false;
+    }
+
+    try {
+      final manageData = await VaultCardService.loadManageCard(
+        client: supabase,
+        vaultItemId: vaultItemId,
+        cardPrintId: cardPrintId,
+        fallbackOwnedCount: _ownedCountForRow(row),
+        fallbackGvviId: gvviId,
+        fallbackGvId: (row['gv_id'] ?? '').toString(),
+        fallbackName: (row['name'] ?? '').toString(),
+        fallbackSetName: (row['set_name'] ?? '').toString(),
+        fallbackNumber: (row['number'] ?? '').toString(),
+        fallbackImageUrl: _vaultDisplayImageUrl(row),
+      );
+
+      return manageData.totalCopies == 1 &&
+          manageData.slabCount == 0 &&
+          manageData.inPlayCount == 0 &&
+          !manageData.isShared &&
+          (manageData.wallCategory?.trim().isNotEmpty ?? false) == false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> _deleteWithUndo(Map<String, dynamic> row) async {
+    final name = (row['name'] ?? 'Card').toString();
+    await _delete(row);
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text('Removed $name.'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              unawaited(_restoreDeletedVaultRow(row));
+            },
+          ),
+        ),
+      );
   }
 }
 

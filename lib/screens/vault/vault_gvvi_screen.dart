@@ -70,6 +70,10 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   List<VaultGvviSectionMembership> _sectionMemberships =
       const <VaultGvviSectionMembership>[];
   Map<String, String> _memoryPhotoUrls = const <String, String>{};
+  final Set<String> _pendingMemoryArchiveIds = <String>{};
+  final Map<String, Timer> _pendingMemoryArchiveTimers = <String, Timer>{};
+  final Map<String, CollectorMemory> _pendingMemoryArchives =
+      <String, CollectorMemory>{};
   bool _loading = true;
   bool _loadingMemories = false;
   bool _savingNotes = false;
@@ -92,6 +96,18 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
 
   @override
   void dispose() {
+    for (final timer in _pendingMemoryArchiveTimers.values) {
+      timer.cancel();
+    }
+    for (final memory in _pendingMemoryArchives.values) {
+      unawaited(
+        _memoryService
+            .archive(memoryId: memory.id, photoPath: memory.photoPath)
+            .catchError((_) {}),
+      );
+    }
+    _pendingMemoryArchiveTimers.clear();
+    _pendingMemoryArchives.clear();
     _notesController.dispose();
     super.dispose();
   }
@@ -762,6 +778,16 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     }
   }
 
+  List<CollectorMemory> get _visibleMemories {
+    if (_pendingMemoryArchiveIds.isEmpty) {
+      return _memories;
+    }
+
+    return _memories
+        .where((memory) => !_pendingMemoryArchiveIds.contains(memory.id))
+        .toList(growable: false);
+  }
+
   Future<void> _removeMedia(GvviImageSide side) async {
     final data = _data;
     if (data == null || data.isArchived) {
@@ -954,58 +980,82 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     if (data == null || _savingMemory) {
       return;
     }
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Archive memory?'),
-        content: const Text(
-          'This keeps the exact copy private and removes this memory from the list.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Archive'),
-          ),
-        ],
-      ),
-    );
-    if (confirmed != true || !mounted) {
+    if (_pendingMemoryArchiveIds.contains(memory.id)) {
       return;
     }
 
     setState(() {
-      _savingMemory = true;
       _memoryError = null;
+      _status = null;
+      _pendingMemoryArchiveIds.add(memory.id);
+      _pendingMemoryArchives[memory.id] = memory;
     });
+
+    void cancelPendingArchive() {
+      final timer = _pendingMemoryArchiveTimers.remove(memory.id);
+      if (timer == null) {
+        return;
+      }
+      timer.cancel();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _pendingMemoryArchiveIds.remove(memory.id);
+        _pendingMemoryArchives.remove(memory.id);
+        _status = 'Memory restored.';
+      });
+    }
+
+    _pendingMemoryArchiveTimers[memory.id] = Timer(
+      const Duration(seconds: 5),
+      () {
+        unawaited(_commitPendingMemoryArchive(memory, data.gvviId));
+      },
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: const Text('Memory archived.'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: cancelPendingArchive,
+          ),
+        ),
+      );
+  }
+
+  Future<void> _commitPendingMemoryArchive(
+    CollectorMemory memory,
+    String gvviId,
+  ) async {
+    _pendingMemoryArchiveTimers.remove(memory.id);
+    _pendingMemoryArchives.remove(memory.id);
     try {
       await _memoryService.archive(
         memoryId: memory.id,
         photoPath: memory.photoPath,
       );
-      await _loadMemoriesFor(data.gvviId);
       if (!mounted) {
         return;
       }
       setState(() {
+        _pendingMemoryArchiveIds.remove(memory.id);
         _status = 'Memory archived.';
       });
+      await _loadMemoriesFor(gvviId);
     } catch (error) {
       if (!mounted) {
         return;
       }
       setState(() {
+        _pendingMemoryArchiveIds.remove(memory.id);
         _memoryError = error.toString().replaceFirst('Exception: ', '');
       });
-    } finally {
-      if (mounted) {
-        setState(() {
-          _savingMemory = false;
-        });
-      }
+      await _loadMemoriesFor(gvviId);
     }
   }
 
@@ -1194,7 +1244,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     _VaultSectionFrame(
                       title: 'Memories',
                       child: _CollectorMemoriesSurface(
-                        memories: _memories,
+                        memories: _visibleMemories,
                         prompts: _memoryPrompts,
                         photoUrls: _memoryPhotoUrls,
                         loading: _loadingMemories,
