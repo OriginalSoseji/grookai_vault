@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
@@ -317,11 +319,87 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             ? 'Copy removed from section.'
             : 'Copy added to section.';
       });
+      if (section.isMember) {
+        _showCopySectionRemovalUndo(copy: copy, section: section);
+      }
     } catch (error) {
       if (!mounted) {
         return;
       }
 
+      setState(() {
+        _copySectionSavingKey = null;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  void _showCopySectionRemovalUndo({
+    required VaultManageCardCopy copy,
+    required VaultManageCopySectionMembership section,
+  }) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text('Removed copy from ${section.name}.'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              unawaited(
+                _restoreCopySectionMembership(copy: copy, section: section),
+              );
+            },
+          ),
+        ),
+      );
+  }
+
+  Future<void> _restoreCopySectionMembership({
+    required VaultManageCardCopy copy,
+    required VaultManageCopySectionMembership section,
+  }) async {
+    final sectionKey = '${copy.instanceId}:${section.id}';
+    if (_copySectionSavingKey != null) {
+      return;
+    }
+
+    setState(() {
+      _copySectionSavingKey = sectionKey;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultCardService.assignCopySectionMembership(
+        client: _client,
+        instanceId: copy.instanceId,
+        sectionId: section.id,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        final currentSections =
+            _copySectionMemberships[copy.instanceId] ??
+            const <VaultManageCopySectionMembership>[];
+        _copySectionMemberships = {
+          ..._copySectionMemberships,
+          copy.instanceId: currentSections
+              .map(
+                (current) => current.id == section.id
+                    ? current.copyWith(isMember: true)
+                    : current,
+              )
+              .toList(growable: false),
+        };
+        _copySectionSavingKey = null;
+        _statusMessage = 'Copy restored to section.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _copySectionSavingKey = null;
       });
@@ -457,11 +535,105 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             ? '${selectedIds.length} ${selectedIds.length == 1 ? 'copy' : 'copies'} added to section.'
             : '${selectedIds.length} ${selectedIds.length == 1 ? 'copy' : 'copies'} removed from section.';
       });
+      if (!add) {
+        final sectionName = _bulkSectionOptions
+            .where((section) => section.id == sectionId)
+            .map((section) => section.name)
+            .firstOrNull;
+        _showBulkSectionRemovalUndo(
+          instanceIds: selectedIds,
+          sectionId: sectionId,
+          sectionName: sectionName,
+        );
+      }
     } catch (error) {
       if (!mounted) {
         return;
       }
 
+      setState(() {
+        _bulkCopySaving = false;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  void _showBulkSectionRemovalUndo({
+    required Set<String> instanceIds,
+    required String sectionId,
+    required String? sectionName,
+  }) {
+    final count = instanceIds.length;
+    final target = (sectionName ?? '').trim().isEmpty
+        ? 'section'
+        : sectionName!.trim();
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text(
+            'Removed $count ${count == 1 ? 'copy' : 'copies'} from $target.',
+          ),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              unawaited(
+                _restoreBulkSectionMembership(
+                  instanceIds: instanceIds,
+                  sectionId: sectionId,
+                ),
+              );
+            },
+          ),
+        ),
+      );
+  }
+
+  Future<void> _restoreBulkSectionMembership({
+    required Set<String> instanceIds,
+    required String sectionId,
+  }) async {
+    if (instanceIds.isEmpty || sectionId.trim().isEmpty || _bulkCopySaving) {
+      return;
+    }
+
+    setState(() {
+      _bulkCopySaving = true;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultCardService.bulkCopySectionMembership(
+        client: _client,
+        instanceIds: instanceIds,
+        sectionId: sectionId,
+        add: true,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _copySectionMemberships = {
+          for (final entry in _copySectionMemberships.entries)
+            entry.key: instanceIds.contains(entry.key)
+                ? entry.value
+                      .map(
+                        (section) => section.id == sectionId
+                            ? section.copyWith(isMember: true)
+                            : section,
+                      )
+                      .toList(growable: false)
+                : entry.value,
+        };
+        _bulkCopySaving = false;
+        _statusMessage =
+            '${instanceIds.length} ${instanceIds.length == 1 ? 'copy' : 'copies'} restored to section.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _bulkCopySaving = false;
       });

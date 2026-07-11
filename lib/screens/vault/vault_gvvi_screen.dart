@@ -619,6 +619,70 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
             ? 'Removed from section.'
             : 'Added to section.';
       });
+      if (section.isMember) {
+        _showSectionRemovalUndo(section);
+      }
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _busySectionId = null;
+        _status = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  void _showSectionRemovalUndo(VaultGvviSectionMembership section) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text('Removed from ${section.name}.'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              unawaited(_restoreSectionMembership(section));
+            },
+          ),
+        ),
+      );
+  }
+
+  Future<void> _restoreSectionMembership(
+    VaultGvviSectionMembership section,
+  ) async {
+    final data = _data;
+    if (data == null || _busySectionId != null) {
+      return;
+    }
+
+    setState(() {
+      _busySectionId = section.id;
+      _status = null;
+    });
+
+    try {
+      await VaultGvviService.assignSectionMembership(
+        client: _client,
+        instanceId: data.instanceId,
+        sectionId: section.id,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _sectionMemberships = _sectionMemberships
+            .map(
+              (current) => current.id == section.id
+                  ? current.copyWith(isMember: true)
+                  : current,
+            )
+            .toList(growable: false);
+        _busySectionId = null;
+        _status = 'Restored to section.';
+      });
     } catch (error) {
       if (!mounted) {
         return;
