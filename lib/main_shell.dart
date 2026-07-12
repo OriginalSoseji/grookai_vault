@@ -23,7 +23,7 @@ class AppShell extends StatefulWidget {
   State<AppShell> createState() => _AppShellState();
 }
 
-enum _ExploreHeaderAction { dex, sets, compare }
+enum _ExploreHeaderAction { dex, sets }
 
 enum _ShellDestination {
   // BOTTOM_NAV_LUXURY_PASS_V1
@@ -761,76 +761,29 @@ class _AppShellState extends State<AppShell> {
   List<Widget> _buildAppBarActions({required bool isDesktopShell}) {
     return [
       if (_destination == _ShellDestination.search)
-        ValueListenableBuilder<List<String>>(
-          valueListenable: CompareCardSelectionController.instance.listenable,
-          builder: (context, selectedIds, _) {
-            final compareCount = selectedIds.length;
-
-            return PopupMenuButton<_ExploreHeaderAction>(
-              tooltip: 'Explore actions',
-              onSelected: (value) {
-                switch (value) {
-                  case _ExploreHeaderAction.dex:
-                    _openDex();
-                    break;
-                  case _ExploreHeaderAction.sets:
-                    _openSets();
-                    break;
-                  case _ExploreHeaderAction.compare:
-                    _openCompare();
-                    break;
-                }
-              },
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: _ExploreHeaderAction.dex,
-                  child: Text('Grookai Dex'),
-                ),
-                const PopupMenuItem(
-                  value: _ExploreHeaderAction.sets,
-                  child: Text('Sets'),
-                ),
-                if (compareCount > 0)
-                  PopupMenuItem(
-                    value: _ExploreHeaderAction.compare,
-                    child: Text(
-                      compareCount == 1
-                          ? 'Compare 1 selected card'
-                          : 'Compare $compareCount selected cards',
-                    ),
-                  ),
-              ],
-              icon: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  const Icon(Icons.more_horiz_rounded),
-                  if (compareCount > 0)
-                    Positioned(
-                      right: -8,
-                      top: -6,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: Text(
-                          '$compareCount',
-                          style: Theme.of(context).textTheme.labelSmall
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            );
+        PopupMenuButton<_ExploreHeaderAction>(
+          tooltip: 'Explore actions',
+          onSelected: (value) {
+            switch (value) {
+              case _ExploreHeaderAction.dex:
+                _openDex();
+                break;
+              case _ExploreHeaderAction.sets:
+                _openSets();
+                break;
+            }
           },
+          itemBuilder: (context) => const [
+            PopupMenuItem(
+              value: _ExploreHeaderAction.dex,
+              child: Text('Grookai Dex'),
+            ),
+            PopupMenuItem(
+              value: _ExploreHeaderAction.sets,
+              child: Text('Sets'),
+            ),
+          ],
+          icon: const Icon(Icons.more_horiz_rounded),
         ),
       if (_destination == _ShellDestination.wall)
         _appBarActionButton(
@@ -957,12 +910,64 @@ class _AppShellState extends State<AppShell> {
       body: bodyWithOnboarding,
       bottomNavigationBar: isDesktopShell
           ? null
-          : _buildMobileBottomDock(
+          : _buildMobileBottomChrome(
               context: context,
               colorScheme: colorScheme,
               keyboardVisible: keyboardVisible,
               bottomSafeInset: bottomSafeInset,
             ),
+    );
+  }
+
+  Widget _buildMobileBottomChrome({
+    required BuildContext context,
+    required ColorScheme colorScheme,
+    required bool keyboardVisible,
+    required double bottomSafeInset,
+  }) {
+    final routeIsCurrent = ModalRoute.of(context)?.isCurrent ?? true;
+    final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible;
+    final dockHeight = collapsed
+        ? kShellBottomNavCollapsedHeight
+        : kShellBottomNavHeight;
+    final chromeHeight = keyboardVisible
+        ? 0.0
+        : dockHeight + bottomSafeInset + 82;
+    return SizedBox(
+      height: chromeHeight,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.bottomCenter,
+        children: [
+          _buildMobileBottomDock(
+            context: context,
+            colorScheme: colorScheme,
+            keyboardVisible: keyboardVisible,
+            bottomSafeInset: bottomSafeInset,
+          ),
+          if (!keyboardVisible && _destination == _ShellDestination.search)
+            ValueListenableBuilder<List<String>>(
+              valueListenable:
+                  CompareCardSelectionController.instance.listenable,
+              builder: (context, selectedIds, _) {
+                final compareCount = selectedIds.length;
+                if (compareCount == 0) {
+                  return const SizedBox.shrink();
+                }
+
+                return Positioned(
+                  bottom: dockHeight + (bottomSafeInset > 0 ? 10 : 20),
+                  left: 18,
+                  right: 18,
+                  child: _CompareSelectionPill(
+                    count: compareCount,
+                    onPressed: () => unawaited(_openCompare()),
+                  ),
+                );
+              },
+            ),
+        ],
+      ),
     );
   }
 
@@ -1156,6 +1161,108 @@ class _AppShellState extends State<AppShell> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CompareSelectionPill extends StatelessWidget {
+  const _CompareSelectionPill({required this.count, required this.onPressed});
+
+  final int count;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final label = count == 1 ? 'Compare 1 selected' : 'Compare $count selected';
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 390),
+        child: GvSurface(
+          variant: GvSurfaceVariant.glass,
+          borderRadius: 999,
+          padding: EdgeInsets.zero,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(999),
+              onTap: onPressed,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13, 8, 15, 8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary.withValues(alpha: 0.16),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: colorScheme.primary.withValues(alpha: 0.34),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.compare_arrows_rounded,
+                        size: 16,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(width: 9),
+                    Flexible(
+                      child: Text(
+                        label,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: colorScheme.onSurface,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 9),
+                    _CompareSelectionCountBadge(count: count),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CompareSelectionCountBadge extends StatelessWidget {
+  const _CompareSelectionCountBadge({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final label = count > 99 ? '99+' : count.toString();
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.primary,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: colorScheme.onPrimary,
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0,
+            height: 1,
           ),
         ),
       ),

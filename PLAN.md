@@ -20,6 +20,71 @@ The repo is already ahead of several UX Audit v2 assumptions. Future PRs must us
 - Every implementation PR must produce screenshot verification for affected major screens.
 - Approved mockups and UX Audit v2 specs override existing implementation patterns where they conflict.
 
+## 10/10 Polish Pass - PR1 Plan
+
+Branch name: `chore/polish-pass-1`
+Date planned: 2026-07-11
+Head planned: `c9ed7e83 fix: route vault section writes through rpc`
+Primary file: `lib/main_shell.dart`
+
+### Problem
+
+Compare has one permanent drawer entry, but the active-selection workflow on Search is hidden in the `Explore actions` overflow menu. When one or more cards are selected, the user must open the overflow menu and then choose `Compare N selected cards`. The only visible Search-tab signal is a small count badge attached to the overflow icon, which also houses Dex and Sets actions.
+
+This violates the navigation-friction goal: selected cards should expose the next action directly.
+
+### Verified Current State
+
+- `CompareCardSelectionController.instance.listenable` is used inside `_buildAppBarActions`.
+- `_buildAppBarActions` renders a `PopupMenuButton<_ExploreHeaderAction>` with tooltip `Explore actions`.
+- `_ExploreHeaderAction.compare` appears only when the current destination is Search and `compareCount > 0`.
+- `_ExploreHeaderAction.dex` and `_ExploreHeaderAction.sets` share the same overflow menu and should remain there.
+- `_buildMobileBottomDock` is rendered through `bottomNavigationBar`.
+- `GvSurface` is already available in `main_shell.dart` and is used for shell glass surfaces.
+- Existing tests under `test/nav_friction_compare_workspace_route_test.dart` still describe an older inline Search compare-workspace entry and may need to be updated or replaced to match this PR's approved floating-pill direction.
+
+### Proposed Scope
+
+- Add a floating Compare selection pill above the mobile dock when all of these are true:
+  - `_destination == _ShellDestination.search`
+  - `CompareCardSelectionController.instance.selectedCount > 0`
+  - mobile shell bottom dock is visible
+- Use the existing shell glass vocabulary:
+  - `GvSurface(variant: GvSurfaceVariant.glass)` or the nearest existing glass shell variant in `main_shell.dart`
+  - compact pill layout, not a large card
+  - text: `Compare 1 selected` / `Compare N selected`
+  - visible count treatment consistent with the current overflow count badge
+- Position the pill above `_buildMobileBottomDock` with enough bottom offset and safe-area awareness that it does not overlap the dock on small viewports.
+- Tapping the pill calls `_openCompare()` directly.
+- Remove `_ExploreHeaderAction.compare` from the Search overflow menu.
+- Remove the compare count badge treatment from the overflow icon once Compare has its own pill.
+- Leave Dex and Sets in the overflow menu unchanged.
+- Do not change CompareScreen, selection semantics, card-selection controller behavior, drawer Compare route, Dex, Sets, Search results, or desktop shell behavior unless the current code requires a tiny guard around the mobile-only surface.
+
+### Tests
+
+- `flutter analyze`
+- `flutter test`
+- `npm run shipcheck`
+- Update/add a navigation-friction guard test proving:
+  - Compare is no longer a `_ExploreHeaderAction` popup item.
+  - Dex/Sets remain in the overflow menu.
+  - Search selected-card state renders a dedicated floating Compare entry wired to `_openCompare()`.
+  - The pill depends on `CompareCardSelectionController.instance.listenable`.
+
+### Screenshots
+
+- Search tab with 0 selected cards: floating Compare pill absent.
+- Search tab with 1 selected card: pill visible with singular copy.
+- Search tab with 2 selected cards: pill visible with plural count.
+- Small viewport / iPhone SE-height equivalent: dock and pill visible together without overlap.
+
+### Rollback
+
+- Restore `_ExploreHeaderAction.compare` in the overflow menu.
+- Restore overflow compare count badge behavior.
+- Remove the floating Compare pill widget and any related tests.
+
 ## Verify-First Audit
 
 | Item | Status | Evidence / Notes |
