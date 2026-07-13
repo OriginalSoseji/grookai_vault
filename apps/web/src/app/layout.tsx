@@ -24,7 +24,7 @@ const themeBootstrapScript = `
 function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
   const desktopNavItems = [
     { href: "/explore", label: "Search" },
-    { href: "/network", label: "Feed" },
+    { href: "/network", label: "Pulse" },
     { href: "/sets", label: "Sets" },
     ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
     { href: "/compare", label: "Compare" },
@@ -32,7 +32,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
   ];
   const mobileNavItems = [
     { href: "/explore", label: "Search" },
-    { href: "/network", label: "Feed" },
+    { href: "/network", label: "Pulse" },
     ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
     { href: "/wall", label: "Wall" },
     { href: "/vault", label: "Vault" },

@@ -27,9 +27,9 @@ enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
   // BOTTOM_NAV_LUXURY_PASS_V1
-  // Primary app navigation is behavior-first: Search, Feed, Scan, Wall, Vault.
+  // Primary app navigation is behavior-first: Search, Pulse, Scan, Wall, Vault.
   search(navIndex: 0, stackIndex: 0, title: 'Search'),
-  feed(navIndex: 1, stackIndex: 1, title: 'Feed'),
+  feed(navIndex: 1, stackIndex: 1, title: 'Pulse'),
   wall(navIndex: 3, stackIndex: 2, title: 'Wall'),
   vault(navIndex: 4, stackIndex: 3, title: 'Vault');
 
@@ -1020,7 +1020,7 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 1,
-                        label: 'Feed',
+                        label: 'Pulse',
                         icon: Icons.dynamic_feed_rounded,
                         collapsed: collapsed,
                         badgeCount: _pulseUnreadCount,
@@ -1271,7 +1271,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
             ),
             _GrookaiRailTile(
               icon: Icons.dynamic_feed_rounded,
-              label: 'Feed',
+              label: 'Pulse',
               selected: currentDestination == _ShellDestination.feed,
               onTap: onOpenFeed,
             ),
@@ -2087,7 +2087,7 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                               const SizedBox(height: 22),
                               Text(
-                                'Use one Grookai identity across your vault, wall, and collector feed.',
+                                'Use one Grookai identity across your vault, wall, and Pulse.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.46),

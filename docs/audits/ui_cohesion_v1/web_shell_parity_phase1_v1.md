@@ -11,7 +11,7 @@ Begin aligning the web app shell with the actual Grookai app shell.
 The app source-of-truth primary navigation is:
 
 ```text
-Search, Feed, Scan, Wall, Vault
+Search, Pulse, Scan, Wall, Vault
 ```
 
 ## Changes
@@ -24,13 +24,13 @@ Updated:
 
 Implemented:
 
-- Mobile bottom navigation now uses `Search, Feed, Scan, Wall, Vault`.
+- Mobile bottom navigation now uses `Search, Pulse, Scan, Wall, Vault`.
 - Profile was removed from the primary mobile dock.
 - Scan is the center dock action.
 - Scan currently routes to `/vault/import`, the closest existing web scan/import entry point.
 - Desktop header now prioritizes behavior-first app navigation:
   - Search
-  - Feed
+  - Pulse
   - Scan
   - Wall
   - Vault

@@ -7,7 +7,7 @@ type PublicProvisionalDiscoverySectionProps = {
   cards: PublicProvisionalCard[];
 };
 
-// LOCK: Unconfirmed feed cards must remain calm, secondary, and non-canonical.
+// LOCK: Unconfirmed Pulse cards must remain calm, secondary, and non-canonical.
 // LOCK: Do not add vault, pricing, ownership, provenance, or canonical route actions here.
 export default function PublicProvisionalDiscoverySection({ cards }: PublicProvisionalDiscoverySectionProps) {
   if (cards.length === 0) {

@@ -7,7 +7,7 @@ import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalT
 const DISCOVERY_PROVISIONAL_CARD_LIMIT = 6;
 
 // LOCK: Discovery provisional cards must come only from the public provisional adapter.
-// LOCK: Never expose raw warehouse rows in feed surfaces.
+// LOCK: Never expose raw warehouse rows in Pulse surfaces.
 export const getDiscoveryProvisionalCards = cache(async function getDiscoveryProvisionalCards(
   limit = DISCOVERY_PROVISIONAL_CARD_LIMIT,
 ): Promise<PublicProvisionalCard[]> {

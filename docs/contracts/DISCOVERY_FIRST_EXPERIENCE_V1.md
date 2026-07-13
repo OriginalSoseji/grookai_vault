@@ -7,12 +7,12 @@ Make Grookai feel like a collector intelligence system, not a card database.
 The navigation names stay stable:
 
 - Search
-- Feed
+- Pulse
 - Dex
 - Wall
 - Vault
 
-The product upgrade is not renaming surfaces. The upgrade is exposing the relationships Grookai already knows:
+The product upgrade keeps the behavior-first surfaces clear. Pulse is the activity and discovery surface; the upgrade is exposing the relationships Grookai already knows:
 
 - card identities
 - child printings
@@ -72,13 +72,13 @@ Required behavior:
 - Dex must reflect vault ownership
 - Dex must link back into Search for cards, cameos, variants, and missing printings
 
-### 4. Feed and Wall Remain Tangible
+### 4. Pulse and Wall Remain Tangible
 
 Do not replace them with generic "Community".
 
 Required behavior:
 
-- Feed should show activity and discovery
+- Pulse should show activity and discovery
 - Wall should show collector identity
 - both surfaces should connect back to cards, sets, Dex, and variant families
 
@@ -91,7 +91,7 @@ Collector
   Search
   Dex
   Vault
-  Feed
+  Pulse
   Wall
 ```
 
@@ -216,4 +216,3 @@ This phase succeeds when:
 - variant/stamp/error families are visible as first-class collector concepts
 - navigation names remain stable
 - no canonical data behavior changes are required
-

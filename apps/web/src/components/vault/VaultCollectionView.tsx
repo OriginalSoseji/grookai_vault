@@ -789,7 +789,7 @@ export function VaultCollectionView({
 
         {recentError ? (
           <div className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
-            Recently added feed could not be loaded right now: {recentError}
+            Recently added activity could not be loaded right now: {recentError}
           </div>
         ) : recent.length === 0 ? (
           <PublicCollectionEmptyState

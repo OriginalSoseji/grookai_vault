@@ -236,7 +236,7 @@ export default async function WallPage() {
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Feed Window</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Activity Window</p>
             <p className="mt-2 text-3xl font-semibold text-slate-950">{feed.length}</p>
             <p className="mt-1 text-sm text-slate-600">{feed.length === 1 ? "recent item" : "recent items"}</p>
           </div>
@@ -247,7 +247,7 @@ export default async function WallPage() {
 
       {error ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
-          Wall feed could not be loaded right now: {error.message}
+          Wall activity could not be loaded right now: {error.message}
         </section>
       ) : feed.length === 0 ? (
         <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">

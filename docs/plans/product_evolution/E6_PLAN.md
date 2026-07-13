@@ -193,7 +193,7 @@ Why a separate table instead of `card_events`:
 
 ### Entry Conditions
 
-Show E6 onboarding on the first Feed/Search landing only when all are true:
+Show E6 onboarding on the first Pulse/Search landing only when all are true:
 
 - signed in
 - `onboarding_ladder_state_v1().is_complete=false`
@@ -436,6 +436,6 @@ Required before E6 merge:
 
 1. PR 1 uses the bridge approach: `user_card_intents.want` syncs to `wishlist_items` through a DB trigger.
 2. PR 4 UI is design-gated like E4/E5.
-3. Onboarding appears on the first Feed/Search landing with no owned/wanted state, not immediately at signup.
+3. Onboarding appears on the first Pulse/Search landing with no owned/wanted state, not immediately at signup.
 4. Users with owned + wanted but no follows see collector suggestions only.
 5. `rung_3_first_message` counts on either participant's first card message.

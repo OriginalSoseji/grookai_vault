@@ -165,7 +165,7 @@ void main() {
     expect(gridSource, contains('key={cardKey}'));
   });
 
-  test('network feed selects and resolves instance display images', () {
+  test('Pulse selects and resolves instance display images', () {
     expect(networkStreamSource, contains('display_image_url'));
     expect(networkStreamSource, contains('display_image_kind'));
     expect(networkStreamSource, contains('resolveVaultInstanceMediaUrl'));

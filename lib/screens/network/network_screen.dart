@@ -684,7 +684,7 @@ class NetworkScreenState extends State<NetworkScreen> {
                   ),
                 ),
               // PERFORMANCE_P1_NETWORK_LAZY_RENDER
-              // Uses lazy sliver rendering so Network feed scales without
+              // Uses lazy sliver rendering so Pulse scales without
               // eager whole-page builds in grid or list modes.
               if (_segment == _NetworkHomeSegment.pulse)
                 _PulseContentSliver(
@@ -1634,7 +1634,7 @@ class _NetworkRefreshingBanner extends StatelessWidget {
                 child: Text(
                   fromCache
                       ? 'Showing recent cards while refreshing'
-                      : 'Refreshing feed',
+                      : 'Refreshing Pulse',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.68),
                     fontWeight: FontWeight.w700,
@@ -1768,9 +1768,9 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
           }
           final rowIndex = index ~/ 2;
           // FEED_CHIP_REMOVAL_V1
-          // Removed redundant lower-row view controls so the Feed screen keeps
+          // Removed redundant lower-row view controls so the Pulse screen keeps
           // only real content filters and always renders in the default
-          // comfortable/feed card layout.
+          // comfortable Pulse card layout.
           return _buildCard(
             context,
             rows[rowIndex],

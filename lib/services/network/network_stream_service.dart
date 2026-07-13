@@ -2207,7 +2207,7 @@ class NetworkStreamService {
   }) {
     // TASTE_FUNCTION_HOOK_V2:
     // live inputs currently used:
-    // - recent Network feed opens / taps recorded in-session
+    // - recent Pulse opens / taps recorded in-session
     // placeholder inputs left for later:
     // - recent vault adds
     // - recent inquiries/messages
