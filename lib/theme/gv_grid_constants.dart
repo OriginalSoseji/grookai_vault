@@ -20,7 +20,7 @@ class GvGridConstants {
 
   static const double gridSpacing = 6;
   static const double gridOuterPadding = 10;
-  static const double gridChildAspectRatio = 0.5;
+  static const double gridChildAspectRatio = 0.495;
 
   static const double titleSlotHeight = 40;
   static const double subtitleSlotHeight = 17;

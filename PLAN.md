@@ -24,7 +24,7 @@ must not be treated as shipped.
 | Vault delete undo | Present: low-risk vault delete uses `_deleteWithUndo`; high-risk delete still uses a dialog. |
 | Collector Memory archive undo | Present: memory archive is delayed behind a 5-second undo snackbar. |
 | Catalog manual-add friction | Present: `_showCatalogPickerAndInsert` inserts quantity 1 immediately and offers `+1 more`. |
-| Search filter collapse | Mostly present: filters are behind one sheet with active count. Needs screenshot gate later. |
+| Search filter collapse | Complete: filters are behind one sheet, active count is visible after selection, and Samsung screenshot gate passed after a small shared grid-geometry fix. |
 | Icon/label semantics | Complete: Wall uses collection/bookmark iconography, and Search no longer carries grid/@ shortcut buttons in its filter controls. |
 | Card Detail action bar + sign-in | Complete: bottom actions are fixed, Compare is in top chrome, and signed-out Add to Vault/Want opens an intent-preserving sign-in sheet. |
 | Dex pagination | Complete: Dex uses progressive `Load more` append instead of Previous/Next paging. |
@@ -289,6 +289,19 @@ Result: complete in this branch.
   `AccountScreen`, and retries the original action after the user returns
   signed in.
 
+Search filter collapse verification:
+
+Result: complete in this branch.
+
+- Search exposes one `Filters` entry point instead of persistent secondary
+  filter rows.
+- The filter sheet contains Language, Identity, and Rarity controls.
+- Selecting English updates the Search control to `Filters · 1`.
+- Device QA on Samsung `SM S908U` exposed a tiny card-grid overflow in the
+  active-filter state. The shared grid aspect ratio was relaxed from `0.5` to
+  `0.495` so Search/Vault shared card geometry has enough vertical room on this
+  viewport.
+
 Step 5: Dex pagination.
 
 Result: complete in this branch.
@@ -325,3 +338,10 @@ Screenshots/device smoke captured on Samsung `SM S908U` (`R5CT3291F6E`) on
   with `100 shown`.
 - `artifacts/screenshots/grookai_dex_load_more_2.png` - Dex `Load more`
   control.
+- `artifacts/screenshots/step5b_postfix_search_baseline.png` - Search baseline
+  with one `Filters` entry point.
+- `artifacts/screenshots/step5b_postfix_filters_sheet_active_clean.png` -
+  filter sheet with Language, Identity, and Rarity controls and English
+  selected.
+- `artifacts/screenshots/step5b_postfix_filters_active_badge.png` - Search
+  active-filter state showing `Filters · 1` with no debug overflow banner.
