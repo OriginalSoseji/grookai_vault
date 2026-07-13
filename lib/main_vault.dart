@@ -229,7 +229,10 @@ class _VaultGridTile extends StatelessWidget {
   const _VaultGridTile({
     required this.row,
     this.pricing,
+    this.selectionMode = false,
+    this.selected = false,
     this.onTap,
+    this.onLongPress,
     this.onScan,
     this.onIncrement,
     this.onDecrement,
@@ -238,7 +241,10 @@ class _VaultGridTile extends StatelessWidget {
 
   final Map<String, dynamic> row;
   final CardSurfacePricingData? pricing;
+  final bool selectionMode;
+  final bool selected;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
   final VoidCallback? onScan;
   final VoidCallback? onIncrement;
   final VoidCallback? onDecrement;
@@ -276,7 +282,8 @@ class _VaultGridTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
-        onTap: onTap,
+        onTap: selectionMode ? onLongPress : onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
           child: Column(
@@ -295,55 +302,59 @@ class _VaultGridTile extends StatelessWidget {
                   Positioned(
                     right: 4,
                     top: 4,
-                    child: PopupMenuButton<_VaultGridAction>(
-                      tooltip: 'Card actions',
-                      iconSize: 18,
-                      padding: EdgeInsets.zero,
-                      icon: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: colorScheme.surface.withValues(alpha: 0.72),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(2.5),
-                          child: Icon(Icons.more_horiz_rounded, size: 16),
-                        ),
-                      ),
-                      onSelected: (action) async {
-                        switch (action) {
-                          case _VaultGridAction.scan:
-                            onScan?.call();
-                            break;
-                          case _VaultGridAction.add:
-                            onIncrement?.call();
-                            break;
-                          case _VaultGridAction.remove:
-                            onDecrement?.call();
-                            break;
-                          case _VaultGridAction.delete:
-                            onDelete?.call();
-                            break;
-                        }
-                      },
-                      itemBuilder: (context) => const [
-                        PopupMenuItem(
-                          value: _VaultGridAction.scan,
-                          child: Text('Scan card'),
-                        ),
-                        PopupMenuItem(
-                          value: _VaultGridAction.add,
-                          child: Text('Add quantity'),
-                        ),
-                        PopupMenuItem(
-                          value: _VaultGridAction.remove,
-                          child: Text('Remove quantity'),
-                        ),
-                        PopupMenuItem(
-                          value: _VaultGridAction.delete,
-                          child: Text('Delete item'),
-                        ),
-                      ],
-                    ),
+                    child: selectionMode
+                        ? _VaultSelectionMark(selected: selected)
+                        : PopupMenuButton<_VaultGridAction>(
+                            tooltip: 'Card actions',
+                            iconSize: 18,
+                            padding: EdgeInsets.zero,
+                            icon: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: colorScheme.surface.withValues(
+                                  alpha: 0.72,
+                                ),
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(2.5),
+                                child: Icon(Icons.more_horiz_rounded, size: 16),
+                              ),
+                            ),
+                            onSelected: (action) async {
+                              switch (action) {
+                                case _VaultGridAction.scan:
+                                  onScan?.call();
+                                  break;
+                                case _VaultGridAction.add:
+                                  onIncrement?.call();
+                                  break;
+                                case _VaultGridAction.remove:
+                                  onDecrement?.call();
+                                  break;
+                                case _VaultGridAction.delete:
+                                  onDelete?.call();
+                                  break;
+                              }
+                            },
+                            itemBuilder: (context) => const [
+                              PopupMenuItem(
+                                value: _VaultGridAction.scan,
+                                child: Text('Scan card'),
+                              ),
+                              PopupMenuItem(
+                                value: _VaultGridAction.add,
+                                child: Text('Add quantity'),
+                              ),
+                              PopupMenuItem(
+                                value: _VaultGridAction.remove,
+                                child: Text('Remove quantity'),
+                              ),
+                              PopupMenuItem(
+                                value: _VaultGridAction.delete,
+                                child: Text('Delete item'),
+                              ),
+                            ],
+                          ),
                   ),
                 ],
               ),
@@ -422,6 +433,85 @@ class _VaultGridArtwork extends StatelessWidget {
   }
 }
 
+class _VaultSelectionMark extends StatelessWidget {
+  const _VaultSelectionMark({required this.selected});
+
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: selected
+            ? colorScheme.primary
+            : colorScheme.surface.withValues(alpha: 0.74),
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: selected ? colorScheme.primary : colorScheme.outline,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(3),
+        child: Icon(
+          selected ? Icons.check_rounded : Icons.add_rounded,
+          size: 14,
+          color: selected ? colorScheme.onPrimary : colorScheme.onSurface,
+        ),
+      ),
+    );
+  }
+}
+
+class _VaultLotSelectionBar extends StatelessWidget {
+  const _VaultLotSelectionBar({
+    required this.selectedCount,
+    required this.onClear,
+    required this.onListLot,
+  });
+
+  final int selectedCount;
+  final VoidCallback onClear;
+  final VoidCallback onListLot;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.22),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              '$selectedCount selected',
+              style: theme.textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          IconButton(
+            tooltip: 'Clear selection',
+            onPressed: onClear,
+            icon: const Icon(Icons.close_rounded),
+          ),
+          const SizedBox(width: 4),
+          FilledButton.icon(
+            onPressed: selectedCount >= 2 ? onListLot : null,
+            icon: const Icon(Icons.inventory_2_outlined),
+            label: Text('List $selectedCount as Lot'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// ---------------------- VAULT PAGE (uses view + catalog picker) ----------------------
 class VaultPage extends StatefulWidget {
   const VaultPage({super.key});
@@ -445,6 +535,7 @@ class VaultPageState extends State<VaultPage> {
   _VaultStructuralView _view = _VaultStructuralView.all;
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
+  final Set<String> _selectedLotCardPrintIds = <String>{};
 
   @override
   void initState() {
@@ -467,6 +558,7 @@ class VaultPageState extends State<VaultPage> {
       setState(() {
         _items = const [];
         _derivedData = const _VaultDerivedData.empty();
+        _selectedLotCardPrintIds.clear();
       });
       return;
     }
@@ -501,6 +593,9 @@ class VaultPageState extends State<VaultPage> {
         _items = rows;
         _pricingByCardPrintId = pricing;
         _sharedStateByCardPrintId = sharedStates;
+        _selectedLotCardPrintIds.removeWhere(
+          (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
+        );
         _recomputeDerivedData();
       });
     } finally {
@@ -803,6 +898,107 @@ class VaultPageState extends State<VaultPage> {
     });
   }
 
+  bool get _lotSelectionMode => _selectedLotCardPrintIds.isNotEmpty;
+
+  void _toggleLotSelection(Map<String, dynamic> row) {
+    final cardPrintId = (row['card_id'] ?? '').toString().trim();
+    if (cardPrintId.isEmpty) {
+      return;
+    }
+    setState(() {
+      if (_selectedLotCardPrintIds.contains(cardPrintId)) {
+        _selectedLotCardPrintIds.remove(cardPrintId);
+      } else {
+        _selectedLotCardPrintIds.add(cardPrintId);
+      }
+    });
+  }
+
+  void _clearLotSelection() {
+    if (_selectedLotCardPrintIds.isEmpty) {
+      return;
+    }
+    setState(() {
+      _selectedLotCardPrintIds.clear();
+    });
+  }
+
+  Future<void> _openSelectedLotPricing() async {
+    final selectedRows = _items
+        .where(
+          (row) => _selectedLotCardPrintIds.contains(
+            (row['card_id'] ?? '').toString().trim(),
+          ),
+        )
+        .toList(growable: false);
+    if (selectedRows.length < 2) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Select at least 2 cards for a lot.')),
+      );
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => LotPricingScreen(
+          source: GrookaiLotListingSource(
+            title: _defaultLotTitle(selectedRows),
+            sellerHandle: _vaultSellerHandle,
+            items: selectedRows.map(_lotItemSourceForRow).toList(),
+          ),
+          metadata: <String, dynamic>{
+            'card_print_ids': selectedRows
+                .map((row) => (row['card_id'] ?? '').toString().trim())
+                .where((id) => id.isNotEmpty)
+                .toList(),
+            'vault_item_ids': selectedRows
+                .map(_vaultItemIdForRow)
+                .where((id) => id.isNotEmpty)
+                .toList(),
+            'source': 'vault_grid_multi_select',
+          },
+        ),
+      ),
+    );
+  }
+
+  String get _vaultSellerHandle {
+    final metadata = supabase.auth.currentUser?.userMetadata ?? const {};
+    for (final key in const ['display_name', 'full_name', 'name', 'username']) {
+      final value = (metadata[key] ?? '').toString().trim();
+      if (value.isNotEmpty) {
+        return value;
+      }
+    }
+    final email = (supabase.auth.currentUser?.email ?? '').trim();
+    if (email.contains('@')) {
+      return email.split('@').first;
+    }
+    return 'Collector';
+  }
+
+  String _defaultLotTitle(List<Map<String, dynamic>> rows) {
+    final setNames = rows
+        .map((row) => ((row['set_name'] ?? row['set_code']) ?? '').toString())
+        .where((value) => value.trim().isNotEmpty)
+        .toSet();
+    if (setNames.length == 1) {
+      return '${setNames.single} Lot';
+    }
+    return '${rows.length}-Card Vault Lot';
+  }
+
+  GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
+    final cardPrintId = (row['card_id'] ?? '').toString().trim();
+    final price = _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0;
+    return GrookaiLotListingItemSource(
+      cardName: (row['name'] ?? 'Card').toString(),
+      condition: (row['condition_label'] ?? 'Raw NM').toString(),
+      price: price,
+      imageUrl: _vaultDisplayImageUrl(row),
+    );
+  }
+
   void _replaceSearchControllerText(String value) {
     if (_searchController.text == value) {
       return;
@@ -969,11 +1165,16 @@ class VaultPageState extends State<VaultPage> {
     final name = (row['name'] ?? 'Item').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final canOpen = _canOpenVaultRow(row);
+    final selectionMode = _lotSelectionMode;
+    final selected = _selectedLotCardPrintIds.contains(cardPrintId);
 
     return _VaultGridTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
+      selectionMode: selectionMode,
+      selected: selected,
       onTap: canOpen ? () => _openManageCardRow(row) : null,
+      onLongPress: () => _toggleLotSelection(row),
       onScan: () {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -1701,6 +1902,14 @@ class VaultPageState extends State<VaultPage> {
                       ),
                     ],
                   ),
+                  if (_lotSelectionMode) ...[
+                    const SizedBox(height: 8),
+                    _VaultLotSelectionBar(
+                      selectedCount: _selectedLotCardPrintIds.length,
+                      onClear: _clearLotSelection,
+                      onListLot: _openSelectedLotPricing,
+                    ),
+                  ],
                 ],
               ),
             ),

@@ -5,10 +5,14 @@ import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'models/grookai_memory_card.dart';
+import 'models/grookai_sale_listing.dart';
 import 'models/ownership_state.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
+import 'screens/grookai_objects/for_sale_terms_screen.dart';
+import 'screens/grookai_objects/memory_card_capture_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
@@ -21,6 +25,7 @@ import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
+import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
@@ -916,6 +921,109 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         const SnackBar(content: Text('Unable to share this card right now.')),
       );
     }
+  }
+
+  String get _memoryCaptureGvviId {
+    final ownedGvviId = _cleanText(_ownershipState?.primaryGvviId);
+    if (ownedGvviId.isNotEmpty) {
+      return ownedGvviId;
+    }
+    final exactCopyGvviId = _cleanText(widget.exactCopyGvviId);
+    final currentUserId = _cleanText(supabase.auth.currentUser?.id);
+    if (exactCopyGvviId.isNotEmpty &&
+        currentUserId.isNotEmpty &&
+        currentUserId == _cleanText(widget.exactCopyOwnerUserId)) {
+      return exactCopyGvviId;
+    }
+    return '';
+  }
+
+  bool get _canOpenMemoryCapture {
+    if (!kCollectorMemoriesEnabled) {
+      return false;
+    }
+    final currentUserId = _cleanText(supabase.auth.currentUser?.id);
+    if (currentUserId.isEmpty || _memoryCaptureGvviId.isEmpty) {
+      return false;
+    }
+    return _ownershipState?.owned == true ||
+        currentUserId == _cleanText(widget.exactCopyOwnerUserId);
+  }
+
+  bool get _canOpenSaleListing {
+    final currentUserId = _cleanText(supabase.auth.currentUser?.id);
+    if (currentUserId.isEmpty || _memoryCaptureGvviId.isEmpty) {
+      return false;
+    }
+    return _ownershipState?.owned == true ||
+        currentUserId == _cleanText(widget.exactCopyOwnerUserId);
+  }
+
+  Future<void> _openMemoryCapture() async {
+    final gvviId = _memoryCaptureGvviId;
+    if (gvviId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Open your exact copy to share a memory.'),
+        ),
+      );
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => MemoryCardCaptureScreen(
+          gvviId: gvviId,
+          cardPrintId: widget.cardPrintId,
+          source: GrookaiMemoryCardSource(
+            cardName: _displayTitle,
+            setLine: _collectorIdentityLine ?? _resolvedSetName,
+            cardImageUrl: _cardImagePresentation.displayImageUrl,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openSaleTerms() async {
+    final gvviId = _memoryCaptureGvviId;
+    if (gvviId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Open your exact copy to list it for sale.'),
+        ),
+      );
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ForSaleTermsScreen(
+          gvviId: gvviId,
+          source: GrookaiSaleListingSource(
+            cardName: _displayTitle,
+            setLine: _collectorIdentityLine ?? _resolvedSetName,
+            cardImageUrl: _cardImagePresentation.displayImageUrl,
+            sellerHandle: _saleSellerHandle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  String get _saleSellerHandle {
+    final metadata = supabase.auth.currentUser?.userMetadata ?? const {};
+    for (final key in const ['display_name', 'full_name', 'name', 'username']) {
+      final value = _cleanText(metadata[key]?.toString());
+      if (value.isNotEmpty) {
+        return value;
+      }
+    }
+    final email = _cleanText(supabase.auth.currentUser?.email);
+    if (email.contains('@')) {
+      return email.split('@').first;
+    }
+    return 'Collector';
   }
 
   Future<void> _openCommentsSheet() async {
@@ -2942,6 +3050,26 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             children: [
               primaryOwnershipAction,
               const SizedBox(width: 6),
+              if (_canOpenMemoryCapture) ...[
+                _buildGlassIconButton(
+                  tooltip: 'Share Memory',
+                  icon: Icons.auto_awesome_motion_outlined,
+                  active: false,
+                  onPressed: _openMemoryCapture,
+                  colorScheme: colorScheme,
+                ),
+                const SizedBox(width: 6),
+              ],
+              if (_canOpenSaleListing) ...[
+                _buildGlassIconButton(
+                  tooltip: 'List for Sale',
+                  icon: Icons.sell_outlined,
+                  active: false,
+                  onPressed: _openSaleTerms,
+                  colorScheme: colorScheme,
+                ),
+                const SizedBox(width: 6),
+              ],
               _buildGlassIconButton(
                 tooltip: _wantState.want ? 'Wanted' : 'Want this card',
                 icon: _wantState.want

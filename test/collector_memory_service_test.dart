@@ -217,7 +217,8 @@ void main() {
     expect(privateScreen, contains('showModalBottomSheet'));
     expect(privateScreen, contains('ImagePicker().pickImage'));
     expect(privateScreen, contains('createSignedPhotoUrl'));
-    expect(publicCard, isNot(contains('CollectorMemory')));
+    expect(publicCard, contains('MemoryCardCaptureScreen'));
+    expect(publicCard, contains('kCollectorMemoriesEnabled'));
     expect(publicGvvi, isNot(contains('CollectorMemory')));
     expect(publicWall, isNot(contains('CollectorMemory')));
   });
