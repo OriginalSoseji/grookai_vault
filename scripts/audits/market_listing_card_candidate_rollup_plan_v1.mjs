@@ -391,6 +391,26 @@ async function supabaseRequest(factory) {
   return result;
 }
 
+async function resolveAcquisitionRun(supabase, runKey) {
+  const { data } = await supabaseRequest(() => {
+    let query = supabase
+      .from("market_listing_acquisition_runs")
+      .select("id,run_key,created_at")
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .limit(1);
+    if (runKey) query = query.eq("run_key", runKey);
+    return query;
+  });
+  const row = data?.[0];
+  if (!row) {
+    throw new Error(runKey
+      ? `No market_listing_acquisition_runs row found for run_key=${runKey}`
+      : "No market_listing_acquisition_runs rows found");
+  }
+  return row;
+}
+
 function approvalPrompt(report) {
   return `Approve real MARKET-LISTING-CARD-CANDIDATE-ROLLUP-APPLY-V1 apply only. Package fingerprint: ${report.package_fingerprint_sha256}. Row manifest hash: ${report.row_manifest_hash_sha256}. Source readback fingerprint: ${report.source_readback_fingerprint_sha256}. Scope: insert ${report.proposed_table_row_counts.market_listing_card_candidates} review-only market_listing_card_candidates rows and ${report.proposed_table_row_counts.market_listing_rollups} internal-only market_listing_rollups rows from local MEE-11S artifacts only, keeping raw_single and slab rollups separated and not app-visible. No provider calls. No source fetches. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No upserts. No merges. No migrations. No global apply.`;
 }
@@ -438,16 +458,9 @@ async function main() {
   const supabase = createBackendClient();
   const retargetCatalog = await fetchRetargetCatalog(supabase);
   const retargetCatalogIndex = buildRetargetCatalogIndex(retargetCatalog);
-  const runResult = await supabaseRequest(() => {
-    const query = supabase
-      .from("market_listing_acquisition_runs")
-      .select("id,run_key");
-    return args.runKey
-      ? query.eq("run_key", args.runKey).single()
-      : query.order("created_at", { ascending: false }).limit(1).single();
-  });
-  const runId = runResult.data.id;
-  const resolvedRunKey = runResult.data.run_key;
+  const runRow = await resolveAcquisitionRun(supabase, args.runKey);
+  const runId = runRow.id;
+  const resolvedRunKey = runRow.run_key;
 
   const candidatePath = path.join(outputDir, "market_listing_card_candidates.jsonl");
   const rollupPath = path.join(outputDir, "market_listing_rollups.jsonl");

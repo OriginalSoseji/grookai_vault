@@ -18,6 +18,13 @@ const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
+const REFERENCE_PHASE_KEYS = new Set([
+  "tcgcsv_reference_query_plan",
+  "tcgcsv_reference_acquisition_batch",
+  "tcgcsv_reference_refresh",
+  "tcgcsv_reference_normalization",
+  "reference_warehouse_delta_writer",
+]);
 const PREFLIGHT_READBACK_TIMEOUT_MS = Number.parseInt(
   process.env.MEE_PREFLIGHT_READBACK_TIMEOUT_MS ?? String(1000 * 60 * 5),
   10,
@@ -26,11 +33,6 @@ if (!Number.isFinite(PREFLIGHT_READBACK_TIMEOUT_MS) || PREFLIGHT_READBACK_TIMEOU
   throw new Error("MEE_PREFLIGHT_READBACK_TIMEOUT_MS must be a positive integer when set.");
 }
 const REQUIRED_FILES = [
-  "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
-  "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
-  "scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
-  "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
-  "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
   "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
   "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
@@ -75,78 +77,6 @@ const PHASES = [
     dbWrites: true,
   },
   {
-    key: "tcgcsv_reference_query_plan",
-    command: [
-      "node",
-      "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
-      "--limit={referenceLimit}",
-    ],
-    dryRunCommand: [
-      "node",
-      "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
-      "--limit={referenceLimit}",
-    ],
-    providerCalls: false,
-    dbWrites: false,
-  },
-  {
-    key: "tcgcsv_reference_acquisition_batch",
-    command: [
-      "node",
-      "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
-      "--sources=tcgcsv_reference",
-      "--limit={referenceLimit}",
-    ],
-    dryRunCommand: [
-      "node",
-      "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
-      "--sources=tcgcsv_reference",
-      "--limit={referenceLimit}",
-    ],
-    providerCalls: false,
-    dbWrites: false,
-  },
-  {
-    key: "tcgcsv_reference_refresh",
-    command: [
-      "node",
-      "scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
-      "--limit={referenceLimit}",
-      "--refresh-cache",
-    ],
-    dryRunCommand: null,
-    providerCalls: true,
-    dbWrites: false,
-  },
-  {
-    key: "tcgcsv_reference_normalization",
-    command: [
-      "node",
-      "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
-    ],
-    dryRunCommand: [
-      "node",
-      "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
-    ],
-    providerCalls: false,
-    dbWrites: false,
-  },
-  {
-    key: "reference_warehouse_delta_writer",
-    command: [
-      "node",
-      "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
-      "--run",
-    ],
-    dryRunCommand: [
-      "node",
-      "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
-      "--dry-run",
-    ],
-    providerCalls: false,
-    dbWrites: true,
-  },
-  {
     key: "normalization_only_reprocess",
     command: [
       "node",
@@ -167,6 +97,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_lifecycle_post_drain_readback_v1.mjs"],
     providerCalls: false,
     dbWrites: true,
+    lifecycleDrain: true,
   },
   {
     key: "variant_assignment_backfill",
@@ -288,6 +219,7 @@ function parseArgs(argv) {
     skipApply: argv.includes("--skip-apply"),
     lockProbe: argv.includes("--lock-probe"),
     normalizationOnly: argv.includes("--normalization-only") || process.env.MEE_NIGHTLY_NORMALIZATION_ONLY === "1",
+    enableLifecycleDrain: argv.includes("--enable-lifecycle-drain") || process.env.MEE_NIGHTLY_ENABLE_LIFECYCLE_DRAIN === "1",
     providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
     maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
   };
@@ -442,6 +374,191 @@ function directDbUrl() {
   return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;
 }
 
+function pgSslConfig(connectionString) {
+  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString)) return false;
+  return { rejectUnauthorized: false };
+}
+
+function parseJsonTail(text) {
+  if (!text || typeof text !== "string") return null;
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+  try {
+    return JSON.parse(trimmed);
+  } catch {
+    // Continue below.
+  }
+  for (let index = trimmed.lastIndexOf("{"); index >= 0; index = trimmed.lastIndexOf("{", index - 1)) {
+    const candidate = trimmed.slice(index);
+    try {
+      return JSON.parse(candidate);
+    } catch {
+      // Keep walking backward until a complete JSON object parses.
+    }
+  }
+  return null;
+}
+
+function sumObjectValues(value) {
+  return Object.values(value ?? {}).reduce((sum, count) => sum + (Number(count) || 0), 0);
+}
+
+function countsFromPhaseResult(phaseKey, result) {
+  const parsed = parseJsonTail(result?.stdout_tail);
+  const counts = {
+    acquired_count: 0,
+    candidate_count: 0,
+    inserted_count: 0,
+    updated_count: 0,
+    no_op_count: 0,
+    failed_count: result?.status === 0 ? 0 : 1,
+    artifact_path: parsed?.artifacts?.json ?? parsed?.artifacts?.jsonPath ?? null,
+    payload: parsed ? { child_report: parsed } : {},
+  };
+
+  if (phaseKey === "listing_ingest" && parsed?.execution) {
+    const fetchPhase = parsed.execution.find((phase) => phase.phase === "daily_batch_fetch");
+    const fetchReport = parseJsonTail(fetchPhase?.stdout_tail);
+    counts.acquired_count = Number(
+      fetchReport?.summary?.fetched_item_count
+        ?? fetchReport?.summary?.projected_observation_count
+        ?? fetchReport?.summary?.attempted_request_count
+        ?? 0,
+    );
+
+    const applyPhase = parsed.execution.find((phase) => phase.phase === "daily_batch_backfill_apply");
+    const applyReport = parseJsonTail(applyPhase?.stdout_tail);
+    if (applyReport?.apply_result) {
+      counts.inserted_count = sumObjectValues(applyReport.apply_result.inserted);
+      counts.updated_count = sumObjectValues(applyReport.apply_result.updated);
+      counts.no_op_count = sumObjectValues(applyReport.apply_result.no_op);
+      counts.failed_count = sumObjectValues(applyReport.apply_result.failed) || counts.failed_count;
+      counts.candidate_count = counts.inserted_count + counts.updated_count + counts.no_op_count + counts.failed_count;
+      counts.payload = {
+        ...counts.payload,
+        listing_apply_artifacts: applyReport.artifacts ?? null,
+        listing_apply_result: applyReport.apply_result,
+      };
+    }
+  }
+
+  if (REFERENCE_PHASE_KEYS.has(phaseKey)) {
+    counts.candidate_count = Number(
+      parsed?.summary?.candidate_evidence_count
+        ?? parsed?.summary?.projected_normalized_rows
+        ?? parsed?.summary?.projected_candidate_rows
+        ?? parsed?.summary?.target_rows
+        ?? 0,
+    );
+    counts.inserted_count = Number(
+      parsed?.apply_result?.inserted_count
+        ?? parsed?.apply_result?.inserted
+        ?? parsed?.summary?.inserted_count
+        ?? 0,
+    );
+    counts.updated_count = Number(
+      parsed?.apply_result?.updated_count
+        ?? parsed?.apply_result?.updated
+        ?? parsed?.summary?.updated_count
+        ?? 0,
+    );
+    counts.no_op_count = Number(
+      parsed?.apply_result?.no_op_count
+        ?? parsed?.apply_result?.no_op
+        ?? parsed?.summary?.no_op_count
+        ?? 0,
+    );
+  }
+
+  return counts;
+}
+
+async function appendPhaseRunLedger({ args, phase, result, phaseStartedAt, skipped = false, reason = null }) {
+  if (!args.run || !directDbUrl()) return null;
+  const counts = countsFromPhaseResult(phase.key, result);
+  const status = skipped
+    ? "skipped"
+    : result.status === 0
+      ? "succeeded"
+      : phase.nonBlocking
+        ? "warning"
+        : "failed";
+  const client = new Client({
+    connectionString: directDbUrl(),
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 30_000,
+    statement_timeout: 30_000,
+    ssl: pgSslConfig(directDbUrl()),
+  });
+  await client.connect();
+  try {
+    await client.query(
+      `insert into public.market_pricing_pipeline_phase_runs (
+         pipeline,
+         phase,
+         run_key,
+         artifact_path,
+         started_at,
+         finished_at,
+         status,
+         acquired_count,
+         candidate_count,
+         inserted_count,
+         updated_count,
+         no_op_count,
+         failed_count,
+         error,
+         payload
+       ) values (
+         'mee_nightly',
+         $1,
+         $2,
+         $3,
+         $4::timestamptz,
+         now(),
+         $5,
+         $6::int,
+         $7::int,
+         $8::int,
+         $9::int,
+         $10::int,
+         $11::int,
+         $12,
+         $13::jsonb
+       )`,
+      [
+        phase.key,
+        args.runKey,
+        counts.artifact_path,
+        phaseStartedAt,
+        status,
+        counts.acquired_count,
+        counts.candidate_count,
+        counts.inserted_count,
+        counts.updated_count,
+        counts.no_op_count,
+        counts.failed_count,
+        result.stderr_tail || reason || null,
+        JSON.stringify({
+          command: result.command,
+          actual_command: result.actual_command,
+          status: result.status,
+          signal: result.signal,
+          reason,
+          stdout_tail: result.stdout_tail,
+          stderr_tail: result.stderr_tail,
+          ...counts.payload,
+        }),
+      ],
+    );
+    return { status: 0, written: true, table: "market_pricing_pipeline_phase_runs" };
+  } catch (error) {
+    return { status: 1, written: false, error: error.message, table: "market_pricing_pipeline_phase_runs" };
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function acquireLock(args) {
   const connectionString = directDbUrl();
   if (!connectionString) {
@@ -452,7 +569,7 @@ async function acquireLock(args) {
     connectionTimeoutMillis: 15_000,
     query_timeout: 30_000,
     statement_timeout: 30_000,
-    ssl: { rejectUnauthorized: false },
+    ssl: pgSslConfig(connectionString),
   });
   await client.connect();
   try {
@@ -617,11 +734,45 @@ try {
   } else if (findings.length === 0) {
     for (const phase of PHASES) {
       if (phase.normalizationOnly && !args.normalizationOnly) {
-        execution.push({ phase: phase.key, skipped: true, reason: "normalization_only_phase_not_requested" });
+        const skipped = { phase: phase.key, skipped: true, reason: "normalization_only_phase_not_requested", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
+        continue;
+      }
+      if (phase.lifecycleDrain && !args.enableLifecycleDrain) {
+        const skipped = { phase: phase.key, skipped: true, reason: "lifecycle_drain_not_requested", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
         continue;
       }
       if (args.normalizationOnly && phase.providerCalls) {
-        execution.push({ phase: phase.key, skipped: true, reason: "normalization_only_skips_provider_phase" });
+        const skipped = { phase: phase.key, skipped: true, reason: "normalization_only_skips_provider_phase", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
         continue;
       }
       if (!args.run && !phase.dryRunCommand) {
@@ -629,16 +780,39 @@ try {
         continue;
       }
       if (args.skipProvider && phase.providerCalls) {
-        execution.push({ phase: phase.key, skipped: true, reason: "skip_provider" });
+        const skipped = { phase: phase.key, skipped: true, reason: "skip_provider", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
         continue;
       }
       if (args.skipApply && phase.dbWrites) {
-        execution.push({ phase: phase.key, skipped: true, reason: "skip_apply" });
+        const skipped = { phase: phase.key, skipped: true, reason: "skip_apply", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
         continue;
       }
       const command = fillCommand(args.run ? phase.command : phase.dryRunCommand, args);
+      const phaseStartedAt = new Date().toISOString();
       const result = runCommand(command, phase.timeoutMs);
-      execution.push({ phase: phase.key, provider_calls: phase.providerCalls, db_writes: phase.dbWrites, ...result });
+      const ledger = await appendPhaseRunLedger({ args, phase, result, phaseStartedAt });
+      execution.push({ phase: phase.key, provider_calls: phase.providerCalls, db_writes: phase.dbWrites, ...result, ledger });
+      if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
       if (result.status !== 0) {
         if (phase.nonBlocking) {
           execution.push({
@@ -649,6 +823,9 @@ try {
           continue;
         }
         findings.push(`phase_failed:${phase.key}`);
+        if (phase.key === "listing_ingest" || REFERENCE_PHASE_KEYS.has(phase.key)) {
+          continue;
+        }
         break;
       }
     }
@@ -691,6 +868,7 @@ const payload = {
     status: phase.status,
     skipped: phase.skipped,
     reason: phase.reason,
+    ledger: phase.ledger,
   })),
   boundary,
   findings,

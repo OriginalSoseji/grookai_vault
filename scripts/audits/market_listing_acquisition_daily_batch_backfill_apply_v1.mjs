@@ -43,6 +43,160 @@ const INSERT_CHUNK_SIZE = {
   market_listing_price_events: 500,
 };
 
+const TABLE_WRITE_CONTRACTS = {
+  market_listing_acquisition_runs: {
+    columns: [
+      "id",
+      "run_key",
+      "contract_version",
+      "source",
+      "provider_route",
+      "acquisition_strategy",
+      "status",
+      "requested_call_ceiling",
+      "consumed_call_count",
+      "requested_listing_ceiling",
+      "observed_listing_count",
+      "cached_query_count",
+      "error_count",
+      "options",
+      "summary",
+      "artifact_paths",
+      "artifact_hashes",
+      "started_at",
+      "finished_at",
+      "created_at",
+    ],
+    conflict: "id",
+    updateColumns: [
+      "status",
+      "requested_call_ceiling",
+      "consumed_call_count",
+      "requested_listing_ceiling",
+      "observed_listing_count",
+      "cached_query_count",
+      "error_count",
+      "options",
+      "summary",
+      "artifact_paths",
+      "artifact_hashes",
+      "finished_at",
+    ],
+  },
+  market_listing_query_cache: {
+    columns: [
+      "id",
+      "acquisition_run_id",
+      "source",
+      "provider_route",
+      "query_key",
+      "query_text",
+      "query_filters",
+      "target_hints",
+      "page_cursor",
+      "result_count",
+      "response_hash",
+      "cache_status",
+      "observed_at",
+      "expires_at",
+      "created_at",
+    ],
+    conflict: "id",
+    updateColumns: [
+      "acquisition_run_id",
+      "query_text",
+      "query_filters",
+      "target_hints",
+      "result_count",
+      "response_hash",
+      "cache_status",
+      "observed_at",
+      "expires_at",
+    ],
+  },
+  market_listing_raw_snapshots: {
+    columns: [
+      "id",
+      "acquisition_run_id",
+      "query_cache_id",
+      "source",
+      "provider_route",
+      "source_listing_id",
+      "source_url",
+      "raw_payload",
+      "payload_hash",
+      "observed_at",
+      "ingested_at",
+      "created_at",
+    ],
+    conflict: null,
+    updateColumns: [],
+  },
+  market_listing_observations: {
+    columns: [
+      "id",
+      "raw_snapshot_id",
+      "acquisition_run_id",
+      "query_cache_id",
+      "source",
+      "source_listing_id",
+      "listing_url",
+      "listing_title",
+      "listing_status",
+      "listing_format",
+      "ask_price",
+      "shipping_price",
+      "total_ask_price",
+      "currency",
+      "quantity_available",
+      "quantity_sold",
+      "condition_text",
+      "item_location",
+      "seller_key",
+      "observed_at",
+      "created_at",
+    ],
+    conflict: null,
+    updateColumns: [],
+  },
+  market_listing_seller_snapshots: {
+    columns: [
+      "id",
+      "acquisition_run_id",
+      "raw_snapshot_id",
+      "source",
+      "seller_key",
+      "seller_username",
+      "feedback_score",
+      "feedback_percentage",
+      "seller_location",
+      "store_name",
+      "observed_at",
+      "created_at",
+    ],
+    conflict: null,
+    updateColumns: [],
+  },
+  market_listing_price_events: {
+    columns: [
+      "id",
+      "observation_id",
+      "source",
+      "source_listing_id",
+      "event_type",
+      "previous_observation_id",
+      "previous_total_ask_price",
+      "current_total_ask_price",
+      "currency",
+      "event_payload",
+      "observed_at",
+      "created_at",
+    ],
+    conflict: null,
+    updateColumns: [],
+  },
+};
+
 function parseArgs(argv) {
   return {
     apply: argv.includes("--apply"),
@@ -79,6 +233,105 @@ async function supabaseRequest(factory, attempts = 4) {
     }
   }
   throw lastError;
+}
+
+function quoteIdent(value) {
+  return `"${String(value).replaceAll('"', '""')}"`;
+}
+
+function tableWriteContract(table) {
+  const contract = TABLE_WRITE_CONTRACTS[table];
+  if (!contract) throw new Error(`[market-listing-daily-backfill-apply] no write contract for ${table}`);
+  return contract;
+}
+
+function directDbUrl() {
+  return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL;
+}
+
+function pgSslConfig(connectionString) {
+  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString)) return false;
+  return { rejectUnauthorized: false };
+}
+
+async function connectApplyPgClient() {
+  const connectionString = directDbUrl();
+  if (!connectionString) {
+    throw new Error("[market-listing-daily-backfill-apply] SUPABASE_DB_URL is required for idempotent apply");
+  }
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: pgSslConfig(connectionString),
+  });
+  await client.connect();
+  return client;
+}
+
+async function applyChunkRows(pgClient, table, rows) {
+  if (!rows.length) return { inserted: 0, updated: 0, no_op: 0, failed: 0 };
+  const contract = tableWriteContract(table);
+  const columns = contract.columns;
+  const columnSql = columns.map(quoteIdent).join(", ");
+  const selectSql = columns.map((column) => quoteIdent(column)).join(", ");
+  const tableSql = `public.${quoteIdent(table)}`;
+  const inputSql = `select ${selectSql} from jsonb_populate_recordset(null::${tableSql}, $1::jsonb)`;
+  let sql;
+
+  if (contract.conflict && contract.updateColumns.length) {
+    const updateSql = contract.updateColumns
+      .map((column) => `${quoteIdent(column)} = excluded.${quoteIdent(column)}`)
+      .join(", ");
+    const diffSql = contract.updateColumns
+      .map((column) => `target.${quoteIdent(column)} is distinct from excluded.${quoteIdent(column)}`)
+      .join(" or ");
+    sql = `
+      with input_rows as (
+        ${inputSql}
+      ),
+      applied as (
+        insert into ${tableSql} as target (${columnSql})
+        select ${selectSql} from input_rows
+        on conflict (${quoteIdent(contract.conflict)}) do update
+          set ${updateSql}
+        where ${diffSql}
+        returning (xmax = 0) as inserted
+      )
+      select
+        count(*) filter (where inserted)::int as inserted,
+        count(*) filter (where not inserted)::int as updated,
+        ($2::int - count(*))::int as no_op
+      from applied
+    `;
+  } else {
+    sql = `
+      with input_rows as (
+        ${inputSql}
+      ),
+      applied as (
+        insert into ${tableSql} (${columnSql})
+        select ${selectSql} from input_rows
+        on conflict do nothing
+        returning 1
+      )
+      select
+        count(*)::int as inserted,
+        0::int as updated,
+        ($2::int - count(*))::int as no_op
+      from applied
+    `;
+  }
+
+  const result = await pgClient.query(sql, [JSON.stringify(rows), rows.length]);
+  const row = result.rows[0] ?? {};
+  return {
+    inserted: Number(row.inserted ?? 0),
+    updated: Number(row.updated ?? 0),
+    no_op: Number(row.no_op ?? 0),
+    failed: 0,
+  };
 }
 
 async function latestPlanPath() {
@@ -244,12 +497,13 @@ async function firstRowValue(filePath, getValue) {
 }
 
 async function queryPgRows(sql, params) {
+  const connectionString = directDbUrl();
   const client = new Client({
-    connectionString: process.env.SUPABASE_DB_URL,
+    connectionString,
     connectionTimeoutMillis: 15_000,
     query_timeout: 120_000,
     statement_timeout: 120_000,
-    ssl: { rejectUnauthorized: false },
+    ssl: pgSslConfig(connectionString),
   });
   await client.connect();
   try {
@@ -291,7 +545,7 @@ async function dynamicIdCollisions(plan, runId) {
   return result;
 }
 
-async function dynamicRawPayloadCollisions(plan) {
+async function dynamicRawPayloadCollisionDetails(plan) {
   const rawRows = [];
   const listingIds = new Set();
   for await (const row of readJsonLines(plan.row_files.rawSnapshotRows)) {
@@ -317,23 +571,70 @@ async function dynamicRawPayloadCollisions(plan) {
     );
     for (const row of rows) {
       const key = `${row.source_listing_id}:${row.payload_hash}`;
-      if (!existingByKey.has(key)) existingByKey.set(key, new Set());
-      existingByKey.get(key).add(row.id);
+      if (!existingByKey.has(key)) existingByKey.set(key, row.id);
     }
   }
 
-  const seen = new Set();
+  const seen = new Map();
   const collisions = [];
+  const canonicalIdsByPlannedId = {};
   for (const row of rawRows) {
     const key = `${row.source_listing_id}:${row.payload_hash}`;
-    const existingIds = existingByKey.get(key);
-    if (seen.has(key) || (existingIds && !existingIds.has(row.planned_id))) {
+    const existingId = existingByKey.get(key);
+    if (seen.has(key)) {
       collisions.push(row.planned_id);
+      canonicalIdsByPlannedId[row.planned_id] = seen.get(key);
       continue;
     }
-    seen.add(key);
+    if (existingId && existingId !== row.planned_id) {
+      collisions.push(row.planned_id);
+      canonicalIdsByPlannedId[row.planned_id] = existingId;
+      continue;
+    }
+    seen.set(key, row.planned_id);
   }
-  return collisions;
+  return { ids: collisions, canonicalIdsByPlannedId };
+}
+
+async function dynamicObservationCollisionDetails(plan, rawCanonicalIdsByPlannedId) {
+  const observationRows = [];
+  const targetRawIds = new Set();
+  for await (const row of readJsonLines(plan.row_files.observationRows)) {
+    const targetRawId = rawCanonicalIdsByPlannedId[row.raw_snapshot_id] ?? row.raw_snapshot_id;
+    if (!targetRawId) continue;
+    observationRows.push({
+      planned_id: row.id,
+      planned_raw_snapshot_id: row.raw_snapshot_id,
+      target_raw_snapshot_id: targetRawId,
+    });
+    targetRawIds.add(targetRawId);
+  }
+
+  const existingByRawId = new Map();
+  const ids = [...targetRawIds];
+  for (let index = 0; index < ids.length; index += 5_000) {
+    const chunk = ids.slice(index, index + 5_000);
+    const rows = await queryPgRows(
+      `select id, raw_snapshot_id
+         from public.market_listing_observations
+        where raw_snapshot_id = any($1::uuid[])`,
+      [chunk],
+    );
+    for (const row of rows) {
+      if (!existingByRawId.has(row.raw_snapshot_id)) existingByRawId.set(row.raw_snapshot_id, row.id);
+    }
+  }
+
+  const idsWithCanonical = [];
+  const canonicalIdsByPlannedId = {};
+  for (const row of observationRows) {
+    const existingId = existingByRawId.get(row.target_raw_snapshot_id);
+    if (existingId && existingId !== row.planned_id) {
+      idsWithCanonical.push(row.planned_id);
+      canonicalIdsByPlannedId[row.planned_id] = existingId;
+    }
+  }
+  return { ids: idsWithCanonical, canonicalIdsByPlannedId };
 }
 
 async function dynamicQueryCacheCollisions(plan) {
@@ -400,13 +701,18 @@ async function dynamicSellerCollisions(plan) {
 }
 
 async function dynamicCollisionSummary(plan) {
-  if (!process.env.SUPABASE_DB_URL) {
+  if (!directDbUrl()) {
     return { checked: false, skipped_for_dynamic_plan: true, reason: "SUPABASE_DB_URL_unavailable" };
   }
   const runId = await firstRowValue(plan.row_files.acquisitionRunRows, (row) => row.id);
   const idCollisions = await dynamicIdCollisions(plan, runId);
   const queryCacheUniqueCollisionPlannedIds = await dynamicQueryCacheCollisions(plan);
-  const rawPayloadCollisionPlannedIds = await dynamicRawPayloadCollisions(plan);
+  const rawPayloadCollisionDetails = await dynamicRawPayloadCollisionDetails(plan);
+  const rawPayloadCollisionPlannedIds = rawPayloadCollisionDetails.ids;
+  const observationCollisionDetails = await dynamicObservationCollisionDetails(
+    plan,
+    rawPayloadCollisionDetails.canonicalIdsByPlannedId,
+  );
   const sellerUniqueCollisionPlannedIds = await dynamicSellerCollisions(plan);
   return {
     checked: true,
@@ -418,28 +724,43 @@ async function dynamicCollisionSummary(plan) {
     query_cache_unique_collision_samples: queryCacheUniqueCollisionPlannedIds.slice(0, 10),
     raw_payload_collision_count: rawPayloadCollisionPlannedIds.length,
     raw_payload_collision_planned_ids: rawPayloadCollisionPlannedIds,
+    raw_payload_collision_canonical_ids_by_planned_id: rawPayloadCollisionDetails.canonicalIdsByPlannedId,
     raw_payload_collision_samples: rawPayloadCollisionPlannedIds.slice(0, 10),
+    observation_raw_snapshot_collision_count: observationCollisionDetails.ids.length,
+    observation_raw_snapshot_collision_planned_ids: observationCollisionDetails.ids,
+    observation_raw_snapshot_collision_canonical_ids_by_planned_id: observationCollisionDetails.canonicalIdsByPlannedId,
+    observation_raw_snapshot_collision_samples: observationCollisionDetails.ids.slice(0, 10),
     seller_unique_collision_count: sellerUniqueCollisionPlannedIds.length,
     seller_unique_collision_planned_ids: sellerUniqueCollisionPlannedIds,
     seller_unique_collision_samples: sellerUniqueCollisionPlannedIds.slice(0, 10),
   };
 }
 
-async function insertJsonlRows(supabase, table, filePath, chunkSize, options = {}) {
+async function insertJsonlRows(pgClient, table, filePath, chunkSize, options = {}) {
   let inserted = 0;
+  let updated = 0;
+  let noOp = 0;
+  let failed = 0;
   let skipped = 0;
   let chunk = [];
   const progressEvery = options.progressEvery ?? 10_000;
   async function flush() {
     if (!chunk.length) return;
     const rowCount = chunk.length;
-    const { error } = await supabaseRequest(() => supabase
-      .from(table)
-      .insert(chunk));
-    if (error) throw new Error(`[market-listing-daily-backfill-apply] insert failed for ${table}: ${error.message}`);
-    inserted += rowCount;
-    if (inserted % progressEvery < rowCount) {
-      console.error(`[market-listing-daily-backfill-apply] inserted ${inserted} into ${table}`);
+    let result;
+    try {
+      result = await applyChunkRows(pgClient, table, chunk);
+    } catch (error) {
+      failed += rowCount;
+      throw new Error(`[market-listing-daily-backfill-apply] idempotent apply failed for ${table}: ${error.message}`);
+    }
+    inserted += result.inserted;
+    updated += result.updated;
+    noOp += result.no_op;
+    failed += result.failed;
+    const processed = inserted + updated + noOp + failed;
+    if (processed % progressEvery < rowCount) {
+      console.error(`[market-listing-daily-backfill-apply] applied ${processed} into ${table} (inserted=${inserted}, updated=${updated}, no_op=${noOp})`);
     }
     chunk = [];
   }
@@ -449,11 +770,12 @@ async function insertJsonlRows(supabase, table, filePath, chunkSize, options = {
       skipped += 1;
       continue;
     }
-    chunk.push(sanitizeRowForTable(table, row));
+    const transformed = options.transformRow ? options.transformRow(row) : row;
+    chunk.push(sanitizeRowForTable(table, transformed));
     if (chunk.length >= chunkSize) await flush();
   }
   await flush();
-  return { inserted, skipped };
+  return { inserted, updated, no_op: noOp, failed, skipped };
 }
 
 function sanitizeRowForTable(table, row) {
@@ -476,40 +798,66 @@ function buildDynamicSkipState(collision) {
   const idCollisions = Object.fromEntries(
     Object.entries(collision.id_collisions ?? {}).map(([table, ids]) => [table, new Set(ids)]),
   );
-  const queryCacheIds = new Set([
-    ...(idCollisions.market_listing_query_cache ?? []),
-    ...(collision.query_cache_unique_collision_planned_ids ?? []),
-  ]);
-  const rawSnapshotIdCollisions = idCollisions.market_listing_raw_snapshots ?? new Set();
-  const rawUnavailableIds = new Set(
-    (collision.raw_payload_collision_planned_ids ?? [])
-      .filter((id) => !rawSnapshotIdCollisions.has(id)),
+  const queryCacheIds = new Set(collision.query_cache_unique_collision_planned_ids ?? []);
+  const rawCanonicalIdsByPlannedId = new Map(
+    Object.entries(collision.raw_payload_collision_canonical_ids_by_planned_id ?? {}),
   );
-  const observationUnavailableIds = new Set();
-  const sellerIds = new Set([
-    ...(idCollisions.market_listing_seller_snapshots ?? []),
-    ...(collision.seller_unique_collision_planned_ids ?? []),
-  ]);
+  const rawSnapshotIdsToSkip = new Set(collision.raw_payload_collision_planned_ids ?? []);
+  const rawUnavailableIds = new Set(
+    [...rawSnapshotIdsToSkip].filter((id) => !rawCanonicalIdsByPlannedId.has(id)),
+  );
+  const observationCanonicalIdsByPlannedId = new Map(
+    Object.entries(collision.observation_raw_snapshot_collision_canonical_ids_by_planned_id ?? {}),
+  );
+  const observationIdsToSkip = new Set(collision.observation_raw_snapshot_collision_planned_ids ?? []);
+  const observationUnavailableIds = new Set(
+    [...observationIdsToSkip].filter((id) => !observationCanonicalIdsByPlannedId.has(id)),
+  );
+  const sellerIds = new Set(collision.seller_unique_collision_planned_ids ?? []);
   return {
     idCollisions,
     queryCacheIds,
+    rawSnapshotIdsToSkip,
     rawUnavailableIds,
+    rawCanonicalIdsByPlannedId,
+    observationIdsToSkip,
+    observationCanonicalIdsByPlannedId,
     observationUnavailableIds,
     sellerIds,
   };
 }
 
+function transformRowForTable(table, row, state) {
+  if (table === "market_listing_price_events") {
+    const canonicalObservationId = state.observationCanonicalIdsByPlannedId.get(row.observation_id);
+    const canonicalPreviousObservationId = state.observationCanonicalIdsByPlannedId.get(row.previous_observation_id);
+    if (!canonicalObservationId && !canonicalPreviousObservationId) return row;
+    return {
+      ...row,
+      observation_id: canonicalObservationId ?? row.observation_id,
+      previous_observation_id: canonicalPreviousObservationId ?? row.previous_observation_id,
+    };
+  }
+  if (table !== "market_listing_observations" && table !== "market_listing_seller_snapshots") return row;
+  const canonicalRawId = state.rawCanonicalIdsByPlannedId.get(row.raw_snapshot_id);
+  if (!canonicalRawId) return row;
+  return {
+    ...row,
+    raw_snapshot_id: canonicalRawId,
+  };
+}
+
 function skipRowForTable(table, row, state) {
-  if ((state.idCollisions[table] ?? new Set()).has(row.id)) return true;
   if (table === "market_listing_query_cache" && state.queryCacheIds.has(row.id)) return true;
   if (table === "market_listing_raw_snapshots") {
-    if (state.rawUnavailableIds.has(row.id)) return true;
+    if (state.rawSnapshotIdsToSkip.has(row.id)) return true;
     if (row.query_cache_id && state.queryCacheIds.has(row.query_cache_id)) {
       state.rawUnavailableIds.add(row.id);
       return true;
     }
   }
   if (table === "market_listing_observations") {
+    if (state.observationIdsToSkip.has(row.id)) return true;
     if (
       state.rawUnavailableIds.has(row.raw_snapshot_id)
       || (row.query_cache_id && state.queryCacheIds.has(row.query_cache_id))
@@ -523,6 +871,7 @@ function skipRowForTable(table, row, state) {
   }
   if (table === "market_listing_seller_snapshots") {
     if (state.sellerIds.has(row.id)) return true;
+    if (state.rawCanonicalIdsByPlannedId.has(row.raw_snapshot_id)) return false;
     if (state.rawUnavailableIds.has(row.raw_snapshot_id)) {
       state.sellerIds.add(row.id);
       return true;
@@ -531,24 +880,36 @@ function skipRowForTable(table, row, state) {
   return false;
 }
 
-async function applyRows(supabase, plan, args, collision) {
+async function applyRows(plan, args, collision) {
   const inserted = {};
+  const updated = {};
+  const noOp = {};
+  const failed = {};
   const skipped = {};
   const dynamicSkipState = args.allowDynamicPlan ? buildDynamicSkipState(collision) : null;
-  for (const [table, rowsKey] of APPLY_ORDER) {
-    const result = await insertJsonlRows(
-      supabase,
-      table,
-      plan.row_files[rowsKey],
-      INSERT_CHUNK_SIZE[table] ?? 500,
-      {
-        skipRow: dynamicSkipState ? (row) => skipRowForTable(table, row, dynamicSkipState) : null,
-      },
-    );
-    inserted[table] = result.inserted;
-    skipped[table] = result.skipped;
+  const pgClient = await connectApplyPgClient();
+  try {
+    for (const [table, rowsKey] of APPLY_ORDER) {
+      const result = await insertJsonlRows(
+        pgClient,
+        table,
+        plan.row_files[rowsKey],
+        INSERT_CHUNK_SIZE[table] ?? 500,
+        {
+          skipRow: dynamicSkipState ? (row) => skipRowForTable(table, row, dynamicSkipState) : null,
+          transformRow: dynamicSkipState ? (row) => transformRowForTable(table, row, dynamicSkipState) : null,
+        },
+      );
+      inserted[table] = result.inserted;
+      updated[table] = result.updated;
+      noOp[table] = result.no_op;
+      failed[table] = result.failed;
+      skipped[table] = result.skipped;
+    }
+  } finally {
+    await pgClient.end().catch(() => {});
   }
-  return { inserted, skipped };
+  return { inserted, updated, no_op: noOp, failed, skipped };
 }
 
 async function firstRow(filePath) {
@@ -571,7 +932,7 @@ async function countByIn(supabase, table, column, values) {
 }
 
 async function readbackCounts(supabase, plan) {
-  if (process.env.SUPABASE_DB_URL) return readbackCountsWithPg(plan);
+  if (directDbUrl()) return readbackCountsWithPg(plan);
 
   const acquisitionRun = await firstRow(plan.row_files.acquisitionRunRows);
   const runId = acquisitionRun?.id;
@@ -598,12 +959,13 @@ async function readbackCounts(supabase, plan) {
 async function readbackCountsWithPg(plan) {
   const acquisitionRun = await firstRow(plan.row_files.acquisitionRunRows);
   const runId = acquisitionRun?.id;
+  const connectionString = directDbUrl();
   const client = new Client({
-    connectionString: process.env.SUPABASE_DB_URL,
+    connectionString,
     connectionTimeoutMillis: 15_000,
     query_timeout: 60_000,
     statement_timeout: 60_000,
-    ssl: { rejectUnauthorized: false },
+    ssl: pgSslConfig(connectionString),
   });
   await client.connect();
   try {
@@ -645,6 +1007,40 @@ async function readbackCountsWithPg(plan) {
   }
 }
 
+async function readbackCountsByPlannedIdsWithPg(plan) {
+  const client = new Client({
+    connectionString: directDbUrl(),
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: pgSslConfig(directDbUrl()),
+  });
+  await client.connect();
+  try {
+    const countIds = async (table, rowsKey) => {
+      const ids = await collectColumnFromJsonl(plan.row_files[rowsKey], (row) => row.id);
+      let total = 0;
+      for (let index = 0; index < ids.length; index += 5_000) {
+        const chunk = ids.slice(index, index + 5_000);
+        const result = await client.query(
+          `select count(*)::int as count from public.${quoteIdent(table)} where id = any($1::uuid[])`,
+          [chunk],
+        );
+        total += Number(result.rows[0]?.count ?? 0);
+      }
+      return total;
+    };
+
+    const result = {};
+    for (const [table, rowsKey] of APPLY_ORDER) {
+      result[table] = await countIds(table, rowsKey);
+    }
+    return result;
+  } finally {
+    await client.end();
+  }
+}
+
 function expectedReadbackCounts(plan) {
   return {
     market_listing_acquisition_runs: plan.proposed_table_row_counts.market_listing_acquisition_runs,
@@ -675,13 +1071,21 @@ function renderMarkdown(report) {
     `- Row manifest hash: \`${report.row_manifest_hash_sha256}\``,
     `- Plan artifact: \`${report.plan_artifact}\``,
     "",
-    "## Inserted Rows",
+    "## Apply Rows",
     "",
-    "| Table | Rows |",
-    "| --- | ---: |",
+    "| Table | Inserted | Updated | No-op | Failed | Skipped |",
+    "| --- | ---: | ---: | ---: | ---: | ---: |",
     ...(Object.keys(report.apply_result?.inserted ?? {}).length
-      ? Object.entries(report.apply_result.inserted).map(([table, count]) => `| \`${table}\` | ${count} |`)
-      : ["| none in this invocation | 0 |"]),
+      ? Object.keys(report.apply_result.inserted).map((table) => [
+          `| \`${table}\``,
+          report.apply_result.inserted?.[table] ?? 0,
+          report.apply_result.updated?.[table] ?? 0,
+          report.apply_result.no_op?.[table] ?? 0,
+          report.apply_result.failed?.[table] ?? 0,
+          report.apply_result.skipped?.[table] ?? 0,
+          "|",
+        ].join(" | "))
+      : ["| none in this invocation | 0 | 0 | 0 | 0 | 0 |"]),
     "",
     "## Readback Counts",
     "",
@@ -713,9 +1117,18 @@ async function main() {
   let expectedReadback = expectedReadbackCounts(plan.data);
 
   if (args.apply && findings.length === 0) {
-    applyResult = await applyRows(supabase, plan.data, args, collision);
-    if (args.allowDynamicPlan) expectedReadback = applyResult.inserted;
-    readback = await readbackCounts(supabase, plan.data);
+    applyResult = await applyRows(plan.data, args, collision);
+    if (args.allowDynamicPlan) {
+      expectedReadback = Object.fromEntries(APPLY_ORDER.map(([table]) => [
+        table,
+        (applyResult.inserted?.[table] ?? 0)
+          + (applyResult.updated?.[table] ?? 0)
+          + (applyResult.no_op?.[table] ?? 0),
+      ]));
+    }
+    readback = args.allowDynamicPlan
+      ? await readbackCountsByPlannedIdsWithPg(plan.data)
+      : await readbackCounts(supabase, plan.data);
   } else if (args.readbackOnly) {
     readback = await readbackCounts(supabase, plan.data);
   }
@@ -755,7 +1168,7 @@ async function main() {
       vault_writes: false,
       image_writes: false,
       deletes: false,
-      upserts: false,
+      upserts: Boolean(applyResult),
       merges: false,
       migrations: false,
       global_apply: false,

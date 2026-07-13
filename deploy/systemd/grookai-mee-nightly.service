@@ -1,8 +1,8 @@
 [Unit]
 Description=Grookai Market Evidence Engine Nightly Worker
 Wants=network-online.target
-After=network-online.target grookai-mee-reference-refresh.service
-Conflicts=grookai-mee-reference-refresh.service grookai-mee-post-ingest.service
+After=network-online.target
+Conflicts=grookai-mee-post-ingest.service
 
 [Service]
 Type=oneshot

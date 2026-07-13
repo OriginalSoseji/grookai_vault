@@ -67,6 +67,11 @@ if [[ ! -f "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs" ]]; the
   exit 1
 fi
 
+if [[ ! -f "scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs" ]]; then
+  echo "Missing reference refresh phase ledger script. Set REPO_DIR to the Grookai repo path." >&2
+  exit 1
+fi
+
 if [[ ! -f "${ENV_FILE}" ]]; then
   echo "Missing ${ENV_FILE}." >&2
   echo "Create it from deploy/env/mee-nightly.env.example and fill Supabase secrets before installing." >&2
@@ -103,6 +108,7 @@ fi
 
 node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}"
 node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources=pokemontcg_io_reference,tcgcsv_reference --limit="${reference_limit}"
+node --check scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs
 node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run --sources=pokemontcg_io_reference,tcgcsv_reference --limit="${reference_limit}"
 if ! node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run; then
   echo "Reference warehouse delta dry-run reported source artifact findings." >&2
