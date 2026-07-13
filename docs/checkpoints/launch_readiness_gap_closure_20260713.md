@@ -24,8 +24,9 @@ Confirmed already present on current `main`:
 
 Confirmed gaps remaining:
 
-- Mobile crash reporting is not wired. `firebase_core` and `firebase_messaging`
-  exist, but no Crashlytics or Sentry dependency is present.
+- Mobile crash reporting was not wired at the time of the source audit.
+  Crashlytics code-side wiring now exists; Firebase-console readback from a
+  non-public build is still required before launch.
 - Public `/privacy` and `/support` URLs were referenced by release docs but did
   not exist before this checkpoint.
 - Android launcher label was still `grookai_vault`.
@@ -57,8 +58,8 @@ Confirmed gaps remaining:
 
 ## Launch Blocker Queue
 
-1. Add mobile crash reporting and verify a captured test crash in a non-public
-   build.
+1. Verify mobile Crashlytics readback from a non-public build using
+   `docs/checkpoints/mobile_crash_reporting_wiring_20260713.md`.
 2. Produce a Scanner V5 launch checkpoint with the active flag/endpoint, phase,
    real-device still set, top-1/top-3 accuracy, and p50/p95 latency.
 3. Verify MEE production timers and alerting from the deployment host. Record

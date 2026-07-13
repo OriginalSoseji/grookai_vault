@@ -41,6 +41,7 @@ import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
+import 'services/diagnostics/grookai_crash_reporting_service.dart';
 import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
@@ -2157,12 +2158,17 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _configureAppImageCache();
   AppBootTiming.mark('main_start');
+  await GrookaiCrashReportingService.initialize();
+  AppBootTiming.mark('crash_reporting_ready');
   PlatformDispatcher.instance.onError = (error, stackTrace) {
     if (_isInvalidRefreshTokenRecoveryError(error)) {
       debugPrint(
         '[AUTH_STARTUP_V1] clearing invalid persisted session after failed recovery',
       );
       unawaited(_clearInvalidPersistedSession());
+      return true;
+    }
+    if (GrookaiCrashReportingService.recordFatalError(error, stackTrace)) {
       return true;
     }
     return false;
