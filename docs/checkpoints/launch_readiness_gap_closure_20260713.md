@@ -35,7 +35,9 @@ Confirmed gaps remaining:
   reachable and fixture regression passes, but real-device launch proof is
   still required.
 - Pricing timer state and production alerting need a live ops verification, not
-  inference from repo files.
+  inference from repo files. `docs/checkpoints/mee_timer_alerting_checkpoint_20260713.md`
+  adds the host-side readiness gate and records that current repo templates do
+  not prove a human alert route.
 - Trust/safety still needs a first-class block/report workflow for mobile/web
   messaging, public profiles, Wall cards, and listings.
 - E6 onboarding UI remains the largest product-experience launch gap unless a
@@ -65,9 +67,10 @@ Confirmed gaps remaining:
 2. Capture Scanner V5 real-device launch proof per
    `docs/checkpoints/scanner_v5_launch_checkpoint_20260713.md`; top-1/top-3
    and p50/p95 are not yet proven from a phone session.
-3. Verify MEE production timers and alerting from the deployment host. Record
-   whether `grookai-mee-nightly.timer` and `grookai-mee-reference-refresh.timer`
-   are active and whether failures notify a human.
+3. Run `deploy/scripts/verify-mee-live-ops-readiness.sh` on the deployment host
+   and archive the output. This must prove `grookai-mee-nightly.timer` and
+   `grookai-mee-reference-refresh.timer` are active and that failures notify a
+   human.
 4. Add minimal block/report affordances before public messaging and listing
    surfaces are opened broadly.
 5. Decide whether E6 onboarding UI is required for day-1 public launch or

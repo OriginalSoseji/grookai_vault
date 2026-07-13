@@ -127,6 +127,17 @@ cd /opt/grookai_vault_mee_nightly
 bash deploy/scripts/verify-mee-nightly-systemd.sh
 ```
 
+Launch readiness gate:
+
+```bash
+cd /opt/grookai_vault_mee_nightly
+bash deploy/scripts/verify-mee-live-ops-readiness.sh
+```
+
+`verify-mee-live-ops-readiness.sh` must print `MEE_LIVE_OPS_READY` before
+public launch. A missing `OnFailure=` or `FailureAction=` route is
+launch-blocking because failed timers would not be proven to notify a human.
+
 Inspect the newest artifacts:
 
 ```bash
