@@ -57,7 +57,7 @@ The whole card may remain clickable. A separate `OPEN` button is not required.
 
 ## Guardrails
 
-- Keep nav labels: Search, Feed, Scan, Dex, Wall, Vault.
+- Keep nav labels: Search, Pulse, Scan, Dex, Wall, Vault.
 - Preserve dark mode tokens and safe-area behavior.
 - Preserve existing Dex search.
 - Preserve existing Dex routes.

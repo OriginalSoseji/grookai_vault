@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('mobile nearby feed uses the governed RPC contract only', () {
+  test('mobile nearby surface uses the governed RPC contract only', () {
     final service = File(
       'lib/services/network/local_community_feed_service.dart',
     ).readAsStringSync();

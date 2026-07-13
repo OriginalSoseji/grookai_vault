@@ -68,7 +68,7 @@ test("E6 plan records the approved amendments in-body", () => {
 
   assert.match(plan, /uses the bridge approach/i);
   assert.match(plan, /PR 4 UI is design-gated/i);
-  assert.match(plan, /first Feed\/Search landing/i);
+  assert.match(plan, /first Pulse\/Search landing/i);
   assert.match(plan, /owned \+ wanted but no follows see collector suggestions only/i);
   assert.match(plan, /either participant's first card message/i);
 });

@@ -205,7 +205,7 @@ export async function getLocalCommunityFeedRows({
       status: "error",
       rows: [],
       setting: null,
-      message: error instanceof Error ? error.message : "Local community feed is unavailable.",
+      message: error instanceof Error ? error.message : "Local community activity is unavailable.",
     };
   }
 }

@@ -51,7 +51,7 @@ Primary web files reviewed:
 The actual app primary navigation is:
 
 ```text
-Search, Feed, Scan, Wall, Vault
+Search, Pulse, Scan, Wall, Vault
 ```
 
 This is documented in `lib/main_shell.dart` as the bottom navigation direction. Scan is a central primary action. Profile/account is not treated as a bottom-nav destination.
@@ -106,13 +106,13 @@ They do not read like admin tables.
 Current web mobile nav is:
 
 ```text
-Search, Feed, Wall, Vault, Profile
+Search, Pulse, Wall, Vault, Profile
 ```
 
 Actual app nav is:
 
 ```text
-Search, Feed, Scan, Wall, Vault
+Search, Pulse, Scan, Wall, Vault
 ```
 
 This is the strongest cohesion gap. It makes the web app feel like a different product.
@@ -205,7 +205,7 @@ Goal: make the web app immediately feel like the real app.
 
 Tasks:
 
-- update mobile bottom nav to `Search, Feed, Scan, Wall, Vault`
+- update mobile bottom nav to `Search, Pulse, Scan, Wall, Vault`
 - make Scan the center primary action
 - move Profile out of primary bottom navigation
 - align header spacing, surface, and typography with app shell

@@ -4393,8 +4393,8 @@ class HomePageState extends State<HomePage> {
                 const SizedBox(width: 8),
                 IconButton.filledTonal(
                   tooltip: showFeedDebugOverlay
-                      ? 'Hide feed debug overlay'
-                      : 'Show feed debug overlay',
+                      ? 'Hide Pulse debug overlay'
+                      : 'Show Pulse debug overlay',
                   onPressed: () {
                     setState(() {
                       _showFeedDebugOverlay = !_showFeedDebugOverlay;

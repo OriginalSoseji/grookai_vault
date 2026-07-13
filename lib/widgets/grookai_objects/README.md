@@ -102,6 +102,6 @@ newer object type ships ahead of them.
 ## What this deliberately does NOT include
 
 No service layer, no persistence, no multi-select UI, no ContactOwnerButton
-wiring, no post/feed attachment, and no future object types beyond the three
+wiring, no post/Pulse attachment, and no future object types beyond the three
 in scope (Memory, Sale, Lot) — those are noted as future work in the plan
 doc's appendix, not built here.

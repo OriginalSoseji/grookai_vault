@@ -104,8 +104,8 @@ export default async function NearbyNetworkPage() {
       {feed.status === "error" ? (
         <PageSection spacing="compact">
           <PublicCollectionEmptyState
-            title="Nearby feed is unavailable"
-            body="The local feed could not load. Your location and private vault data were not exposed."
+            title="Nearby activity is unavailable"
+            body="Nearby activity could not load. Your location and private vault data were not exposed."
           />
         </PageSection>
       ) : null}

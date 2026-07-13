@@ -20,7 +20,7 @@ type SiteHeaderProps = {
 function NetworkLabel({ unreadCount }: { unreadCount: number }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <span>Feed</span>
+      <span>Pulse</span>
       {unreadCount > 0 ? (
         <span className="inline-flex min-w-[1.35rem] items-center justify-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-950 ring-1 ring-emerald-200">
           {unreadCount > 99 ? "99+" : unreadCount}
@@ -61,7 +61,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
   const accountLabel = isAuthenticated ? "Account" : "Login";
   const primaryNav = [
     { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Search", matchHref: "/explore" },
-    { href: "/network", label: "Feed", matchHref: "/network" },
+    { href: "/network", label: "Pulse", matchHref: "/network" },
     { href: "/vault/import", label: "Scan", matchHref: "/vault/import" },
     { href: "/wall", label: "Wall", matchHref: "/wall" },
     { href: "/vault", label: "Vault", matchHref: "/vault" },
@@ -79,7 +79,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
         : pathname === "/network" || pathname.startsWith("/network/")
-          ? "Feed"
+          ? "Pulse"
           : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
             ? "Wall"
           : pathname === "/dex" || pathname.startsWith("/dex/")

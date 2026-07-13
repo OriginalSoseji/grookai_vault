@@ -516,8 +516,8 @@ export default function ExploreDiscoverySections({
         </section>
       </div>
 
-      {/* LOCK: Canonical, recently confirmed, and unconfirmed feed surfaces must remain visually and structurally separated. */}
-      {/* LOCK: Do not blend trust states into a single undifferentiated feed. */}
+      {/* LOCK: Canonical, recently confirmed, and unconfirmed Pulse surfaces must remain visually and structurally separated. */}
+      {/* LOCK: Do not blend trust states into a single undifferentiated Pulse. */}
       <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} />
       <PublicProvisionalDiscoverySection cards={provisionalCards} />
     </div>

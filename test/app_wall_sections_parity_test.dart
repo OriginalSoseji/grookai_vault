@@ -41,7 +41,7 @@ void main() {
     },
   );
 
-  test('app network feed preserves uploaded copy display images', () {
+  test('app Pulse preserves uploaded copy display images', () {
     expect(networkStreamService, contains('display_image_url'));
     expect(networkStreamService, contains('display_image_kind'));
     expect(

@@ -183,7 +183,7 @@ export function MobileBottomNav({ wallHref, dexEnabled }: MobileBottomNavProps) 
 
   const items: MobileNavItem[] = [
     { key: "search", label: "Search", href: "/explore" },
-    { key: "feed", label: "Feed", href: "/network" },
+    { key: "feed", label: "Pulse", href: "/network" },
     { key: "scan", label: "Scan", href: "/vault/import" },
     ...(dexEnabled ? [{ key: "dex" as const, label: "Dex", href: "/dex" }] : []),
     { key: "wall", label: "Wall", href: currentWallHref },

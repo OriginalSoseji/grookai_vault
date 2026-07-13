@@ -104,7 +104,7 @@ void main() {
     ).firstMatch(shell)!.group(0)!;
 
     expect(bottomNavBlock, contains("label: 'Search'"));
-    expect(bottomNavBlock, contains("label: 'Feed'"));
+    expect(bottomNavBlock, contains("label: 'Pulse'"));
     expect(bottomNavBlock, contains("label: 'Scan'"));
     expect(bottomNavBlock, contains("label: 'Wall'"));
     expect(bottomNavBlock, contains("label: 'Vault'"));
@@ -123,7 +123,7 @@ void main() {
       r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
     ).firstMatch(shell)!.group(0)!;
 
-    for (final label in ['Search', 'Feed', 'Wall', 'Vault']) {
+    for (final label in ['Search', 'Pulse', 'Wall', 'Vault']) {
       expect(bottomNavBlock, contains("label: '$label'"));
       expect(drawerBlock, isNot(contains("label: '$label'")));
     }
@@ -252,7 +252,7 @@ void main() {
     expect(vault, contains("detailsLabel: 'Manage card'"));
   });
 
-  test('Feed inventory cards stay card-first and avoid FOMO hook copy', () {
+  test('Pulse inventory cards stay card-first and avoid FOMO hook copy', () {
     final networkCard = File(
       'lib/widgets/network/network_interaction_card.dart',
     ).readAsStringSync();

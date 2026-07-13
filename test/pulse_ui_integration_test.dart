@@ -41,4 +41,31 @@ void main() {
     expect(mainShell, contains('GrookaiCanonicalRouteKind.feed'));
     expect(mainShell, contains('openPulse'));
   });
+
+  test('Pulse navigation copy does not regress to Feed labels', () {
+    final mainShell = File('lib/main_shell.dart').readAsStringSync();
+    final main = File('lib/main.dart').readAsStringSync();
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+
+    expect(mainShell, contains("title: 'Pulse'"));
+    expect(mainShell, contains("label: 'Pulse'"));
+    expect(
+      mainShell,
+      contains('Use one Grookai identity across your vault, wall, and Pulse.'),
+    );
+    expect(main, contains('Hide Pulse debug overlay'));
+    expect(main, contains('Show Pulse debug overlay'));
+    expect(networkScreen, contains('Refreshing Pulse'));
+    expect(networkScreen, contains('Show older Pulse'));
+    expect(networkScreen, contains('Unable to load Pulse'));
+
+    expect(mainShell, isNot(contains("title: 'Feed'")));
+    expect(mainShell, isNot(contains("label: 'Feed'")));
+    expect(mainShell, isNot(contains('collector feed')));
+    expect(main, isNot(contains('Hide feed debug overlay')));
+    expect(main, isNot(contains('Show feed debug overlay')));
+    expect(networkScreen, isNot(contains('Refreshing feed')));
+  });
 }

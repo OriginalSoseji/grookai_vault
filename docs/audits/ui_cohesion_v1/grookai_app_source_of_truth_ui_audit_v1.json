@@ -7,7 +7,7 @@
   "ui_implementation_changes": false,
   "source_of_truth": {
     "product": "actual_flutter_app",
-    "primary_navigation": ["Search", "Feed", "Scan", "Wall", "Vault"],
+    "primary_navigation": ["Search", "Pulse", "Scan", "Wall", "Vault"],
     "design_principles": [
       "behavior_first_navigation",
       "compact_premium_surfaces",
@@ -45,8 +45,8 @@
   "high_priority_mismatches": [
     {
       "area": "mobile_navigation",
-      "current_web": ["Search", "Feed", "Wall", "Vault", "Profile"],
-      "actual_app": ["Search", "Feed", "Scan", "Wall", "Vault"],
+      "current_web": ["Search", "Pulse", "Wall", "Vault", "Profile"],
+      "actual_app": ["Search", "Pulse", "Scan", "Wall", "Vault"],
       "recommendation": "Move Profile out of primary bottom navigation and add Scan as the center primary action."
     },
     {
