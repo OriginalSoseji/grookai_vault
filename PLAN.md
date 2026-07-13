@@ -3,16 +3,17 @@
 Source: `Grookai Vault - App-Wide Simplification - Master Plan - July 12, 2026`
 Date audited: 2026-07-13
 Branch audited: `fix/pricing-ingestion-nightly`
-Head audited: `93d7192c`
+Head audited: `4193f248`
 
 ## Current Status
 
-Step 1(a) and the shared long-press quick-action sheet are implemented in this
-working tree as of 2026-07-13.
+All implementation rows in this app-wide simplification plan are complete in
+this branch as of 2026-07-13. The branch is pushed through Step 6 at
+`4193f248`.
 
-The worktree was clean before this plan edit. Prior uncommitted work is parked
-in `stash@{0}` (`cleanup dirty worktree before next step 20260713-112534`) and
-must not be treated as shipped.
+Current unrelated dirty work in pricing/deploy/docs audit files is outside this
+plan and must not be treated as part of the shipped app-wide simplification
+work.
 
 ## Master Plan Progress
 
