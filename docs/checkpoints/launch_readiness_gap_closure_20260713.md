@@ -30,8 +30,10 @@ Confirmed gaps remaining:
 - Public `/privacy` and `/support` URLs were referenced by release docs but did
   not exist before this checkpoint.
 - Android launcher label was still `grookai_vault`.
-- Scanner V5 phase/gate status is still not captured in a current launch
-  checkpoint.
+- Scanner V5 phase/gate status is now captured in
+  `docs/checkpoints/scanner_v5_launch_checkpoint_20260713.md`; the service is
+  reachable and fixture regression passes, but real-device launch proof is
+  still required.
 - Pricing timer state and production alerting need a live ops verification, not
   inference from repo files.
 - Trust/safety still needs a first-class block/report workflow for mobile/web
@@ -60,8 +62,9 @@ Confirmed gaps remaining:
 
 1. Verify mobile Crashlytics readback from a non-public build using
    `docs/checkpoints/mobile_crash_reporting_wiring_20260713.md`.
-2. Produce a Scanner V5 launch checkpoint with the active flag/endpoint, phase,
-   real-device still set, top-1/top-3 accuracy, and p50/p95 latency.
+2. Capture Scanner V5 real-device launch proof per
+   `docs/checkpoints/scanner_v5_launch_checkpoint_20260713.md`; top-1/top-3
+   and p50/p95 are not yet proven from a phone session.
 3. Verify MEE production timers and alerting from the deployment host. Record
    whether `grookai-mee-nightly.timer` and `grookai-mee-reference-refresh.timer`
    are active and whether failures notify a human.
