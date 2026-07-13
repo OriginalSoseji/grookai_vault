@@ -17,6 +17,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
 const PAGE_SIZE = 1000;
+const PRICE_EVENT_CHUNK_SIZE = 5000;
 const { Client } = pg;
 
 function parseArgs(argv) {
@@ -321,8 +322,8 @@ async function fetchPriceEventsForObservationsWithPg(observations) {
   });
   await client.connect();
   try {
-    for (let index = 0; index < ids.length; index += 1_000) {
-      const chunk = ids.slice(index, index + 1_000);
+    for (let index = 0; index < ids.length; index += PRICE_EVENT_CHUNK_SIZE) {
+      const chunk = ids.slice(index, index + PRICE_EVENT_CHUNK_SIZE);
       const result = await client.query(
         `select id, observation_id, source, source_listing_id, current_total_ask_price,
                 currency, observed_at, event_payload
@@ -473,6 +474,7 @@ async function main() {
   let candidateCount = 0;
   let scannedCount = 0;
   let skippedCount = 0;
+  let scannedObservationCount = 0;
 
   let lastObservationId = null;
   for (;;) {
@@ -488,6 +490,7 @@ async function main() {
     });
     if (!observations?.length) break;
     lastObservationId = observations.at(-1).id;
+    scannedObservationCount += observations.length;
 
     const data = await fetchPriceEventsForObservations(supabase, observations);
 
@@ -505,6 +508,9 @@ async function main() {
       writeRow(candidateStream, candidateRow(row, generatedAt), candidateHash);
       candidateCount += 1;
       addRollupSignal(groups, row);
+    }
+    if (scannedObservationCount % 10000 === 0 || observations.length < PAGE_SIZE) {
+      console.error(`[market-listing-card-candidate-rollup-plan] scanned observations=${scannedObservationCount} price_events=${scannedCount} candidates=${candidateCount} skipped=${skippedCount}`);
     }
     if (observations.length < PAGE_SIZE) break;
   }
