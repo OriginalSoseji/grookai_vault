@@ -16,10 +16,10 @@ import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/gv_chip.dart';
+import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
-import 'vault_gvvi_screen.dart';
 
 ResolvedDisplayIdentity _manageCardDisplayIdentity(VaultManageCardData data) {
   return resolveDisplayIdentityFromFields(
@@ -34,12 +34,36 @@ ResolvedDisplayIdentity _manageCardDisplayIdentity(VaultManageCardData data) {
 
 enum _ManageCardTab { overview, copies }
 
-class VaultManageCardScreen extends StatefulWidget {
-  const VaultManageCardScreen({
-    super.key,
+class _ManageCardBootstrapContext {
+  const _ManageCardBootstrapContext({
     required this.vaultItemId,
     required this.cardPrintId,
     required this.ownedCount,
+    this.gvviId,
+    this.gvId,
+    this.name,
+    this.setName,
+    this.number,
+    this.imageUrl,
+  });
+
+  final String vaultItemId;
+  final String cardPrintId;
+  final int ownedCount;
+  final String? gvviId;
+  final String? gvId;
+  final String? name;
+  final String? setName;
+  final String? number;
+  final String? imageUrl;
+}
+
+class VaultManageCardScreen extends StatefulWidget {
+  const VaultManageCardScreen({
+    super.key,
+    this.vaultItemId = '',
+    this.cardPrintId = '',
+    this.ownedCount = 1,
     this.gvviId,
     this.gvId,
     this.name,
@@ -115,17 +139,18 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     try {
+      final bootstrap = await _loadBootstrapContext();
       final data = await VaultCardService.loadManageCard(
         client: _client,
-        vaultItemId: widget.vaultItemId,
-        cardPrintId: widget.cardPrintId,
-        fallbackOwnedCount: widget.ownedCount,
-        fallbackGvviId: widget.gvviId,
-        fallbackGvId: widget.gvId,
-        fallbackName: widget.name,
-        fallbackSetName: widget.setName,
-        fallbackNumber: widget.number,
-        fallbackImageUrl: widget.imageUrl,
+        vaultItemId: bootstrap.vaultItemId,
+        cardPrintId: bootstrap.cardPrintId,
+        fallbackOwnedCount: bootstrap.ownedCount,
+        fallbackGvviId: bootstrap.gvviId,
+        fallbackGvId: bootstrap.gvId,
+        fallbackName: bootstrap.name,
+        fallbackSetName: bootstrap.setName,
+        fallbackNumber: bootstrap.number,
+        fallbackImageUrl: bootstrap.imageUrl,
       );
       final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
         client: _client,
@@ -171,6 +196,51 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _loading = false;
       });
     }
+  }
+
+  Future<_ManageCardBootstrapContext> _loadBootstrapContext() async {
+    final vaultItemId = widget.vaultItemId.trim();
+    final cardPrintId = widget.cardPrintId.trim();
+    final gvviId = (widget.gvviId ?? '').trim();
+    if (vaultItemId.isNotEmpty && cardPrintId.isNotEmpty) {
+      return _ManageCardBootstrapContext(
+        vaultItemId: vaultItemId,
+        cardPrintId: cardPrintId,
+        ownedCount: widget.ownedCount,
+        gvviId: gvviId.isEmpty ? null : gvviId,
+        gvId: widget.gvId,
+        name: widget.name,
+        setName: widget.setName,
+        number: widget.number,
+        imageUrl: widget.imageUrl,
+      );
+    }
+
+    if (gvviId.isEmpty) {
+      throw Exception('Unable to load this card.');
+    }
+
+    final privateCopy = await VaultGvviService.loadPrivate(
+      client: _client,
+      gvviId: gvviId,
+    );
+    if (privateCopy == null) {
+      throw Exception('Unable to load this card.');
+    }
+
+    return _ManageCardBootstrapContext(
+      vaultItemId: privateCopy.vaultItemId,
+      cardPrintId: privateCopy.cardPrintId,
+      ownedCount: privateCopy.activeCopyCount <= 0
+          ? widget.ownedCount
+          : privateCopy.activeCopyCount,
+      gvviId: privateCopy.gvviId,
+      gvId: privateCopy.gvId,
+      name: privateCopy.cardName,
+      setName: privateCopy.setName,
+      number: privateCopy.number == '—' ? null : privateCopy.number,
+      imageUrl: privateCopy.primaryImageUrl ?? privateCopy.imageUrl,
+    );
   }
 
   void _applyLoadedState(
@@ -565,7 +635,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     final gvviId = (copy.gvviId ?? '').trim();
-    final label = gvviId.isEmpty ? 'this exact copy' : gvviId;
+    final label = gvviId.isEmpty ? 'this copy' : gvviId;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -620,7 +690,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       }
       setState(() {
         _bulkCopySaving = false;
-        _statusMessage = 'Exact copy removed.';
+        _statusMessage = 'Copy removed.';
       });
     } catch (error) {
       if (!mounted) {
@@ -975,20 +1045,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     );
   }
 
-  Future<void> _openExactCopy(VaultManageCardCopy copy) async {
-    final gvviId = (copy.gvviId ?? '').trim();
-    if (gvviId.isEmpty) {
-      return;
-    }
-
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => VaultGvviScreen(gvviId: gvviId)),
-    );
-    if (mounted) {
-      await _load();
-    }
-  }
-
   Future<void> _openWall() async {
     final slug = _data?.publicSlug;
     if (slug == null || slug.isEmpty) {
@@ -1067,11 +1123,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final data = _data;
+    final showCopiesTab = data != null && data.copies.length > 1;
 
     return PopScope<void>(
       onPopInvokedWithResult: (didPop, result) => _dismissKeyboard(),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Manage Card')),
+        appBar: AppBar(title: Text(data?.name ?? widget.name ?? 'Card')),
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: _dismissKeyboard,
@@ -1098,27 +1155,44 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                         ],
                         _buildHero(theme, colorScheme, data),
                         const SizedBox(height: 12),
-                        _buildTabBar(theme, colorScheme),
-                        const SizedBox(height: 12),
+                        if (showCopiesTab) ...[
+                          _buildTabBar(theme, colorScheme),
+                          const SizedBox(height: 12),
+                        ],
                         Expanded(
-                          child: TabBarView(
-                            controller: _tabController,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              _buildTabListView(
-                                storageKey: 'overview',
-                                children: [
-                                  _buildOverviewTab(theme, colorScheme, data),
-                                ],
-                              ),
-                              _buildTabListView(
-                                storageKey: 'copies',
-                                children: [
-                                  _buildCopiesSection(theme, colorScheme, data),
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: showCopiesTab
+                              ? TabBarView(
+                                  controller: _tabController,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: [
+                                    _buildTabListView(
+                                      storageKey: 'overview',
+                                      children: [
+                                        _buildOverviewTab(
+                                          theme,
+                                          colorScheme,
+                                          data,
+                                        ),
+                                      ],
+                                    ),
+                                    _buildTabListView(
+                                      storageKey: 'copies',
+                                      children: [
+                                        _buildCopiesSection(
+                                          theme,
+                                          colorScheme,
+                                          data,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : _buildTabListView(
+                                  storageKey: 'overview-single',
+                                  children: [
+                                    _buildOverviewTab(theme, colorScheme, data),
+                                  ],
+                                ),
                         ),
                       ],
                     ),
@@ -1335,6 +1409,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         .map((copy) => copy.instanceId)
         .toList(growable: false);
     final hasPrivateCopies = privateCopyIds.isNotEmpty;
+    final showCopiesTab = data.copies.length > 1;
 
     return _ManageSurface(
       child: Column(
@@ -1392,44 +1467,47 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             ],
           ),
           const SizedBox(height: 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              FilledButton.icon(
-                onPressed: data.copies.isEmpty
-                    ? null
-                    : () => _openCopiesTab(
-                        selectedCopyIds: hasPrivateCopies
-                            ? privateCopyIds
-                            : data.copies.map((copy) => copy.instanceId),
-                      ),
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(0, 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+          if (showCopiesTab)
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                FilledButton.icon(
+                  onPressed: data.copies.isEmpty
+                      ? null
+                      : () => _openCopiesTab(
+                          selectedCopyIds: hasPrivateCopies
+                              ? privateCopyIds
+                              : data.copies.map((copy) => copy.instanceId),
+                        ),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  icon: const Icon(Icons.library_add_check_outlined),
+                  label: Text(
+                    hasPrivateCopies
+                        ? 'Select private copies'
+                        : 'Manage copies',
                   ),
                 ),
-                icon: const Icon(Icons.library_add_check_outlined),
-                label: Text(
-                  hasPrivateCopies ? 'Select private copies' : 'Manage copies',
-                ),
-              ),
-              OutlinedButton.icon(
-                onPressed: data.copies.isEmpty
-                    ? null
-                    : () => _openCopiesTab(selectedCopyIds: const <String>[]),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(0, 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                OutlinedButton.icon(
+                  onPressed: data.copies.isEmpty
+                      ? null
+                      : () => _openCopiesTab(selectedCopyIds: const <String>[]),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                   ),
+                  icon: const Icon(Icons.tune_rounded),
+                  label: const Text('Open copy controls'),
                 ),
-                icon: const Icon(Icons.tune_rounded),
-                label: const Text('Open copy controls'),
-              ),
-            ],
-          ),
+              ],
+            ),
           if (mixTags.isNotEmpty) ...[
             const SizedBox(height: 8),
             Wrap(spacing: 6, runSpacing: 6, children: mixTags),
@@ -1437,7 +1515,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           if (data.copies.length > 1) ...[
             const SizedBox(height: 8),
             Text(
-              'Exact copies below can still differ.',
+              'Copies below can still differ.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.54),
                 height: 1.2,
@@ -1446,6 +1524,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           ],
           const SizedBox(height: 12),
           _buildQuickActionsWrap(data),
+          if (!showCopiesTab && data.copies.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            _buildSingleCopyControls(theme, colorScheme, data),
+          ],
           if (_statusMessage != null) ...[
             const SizedBox(height: 8),
             Text(
@@ -1513,6 +1595,70 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     );
   }
 
+  Widget _buildSingleCopyControls(
+    ThemeData theme,
+    ColorScheme colorScheme,
+    VaultManageCardData data,
+  ) {
+    final copy = data.copies.first;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Copy',
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 8),
+        _CopyRow(
+          copy: copy,
+          selected: false,
+          intentSaving: _copyIntentSavingId == copy.instanceId,
+          canPreviewPublic:
+              data.publicProfileEnabled &&
+              data.vaultSharingEnabled &&
+              (data.publicSlug ?? '').trim().isNotEmpty &&
+              normalizeVaultIntentValue(copy.intent) != 'hold' &&
+              (copy.gvviId ?? '').trim().isNotEmpty,
+          sections:
+              _copySectionMemberships[copy.instanceId] ??
+              const <VaultManageCopySectionMembership>[],
+          busySectionKey: _copySectionSavingKey,
+          onSelectionChanged: null,
+          onIntentSelected: _copyIntentSavingId == null
+              ? (intent) => _saveCopyIntent(copy, intent)
+              : null,
+          onToggleSection: _copySectionSavingKey == null
+              ? (section) => _toggleCopySectionMembership(copy, section)
+              : null,
+          onRemoveCopy: _bulkCopySaving ? null : () => _removeExactCopy(copy),
+          onOpenWall: _openWall,
+          onOpenPublicCopy: () => _openCopyPublicPage(copy),
+          onCopyPublicCopyLink: () => _copyPublicPreviewLink(
+            _publicGvviPath(copy.gvviId ?? ''),
+            'Public copy',
+          ),
+          onSharePublicCopy: () => _shareCopyPublicLink(copy),
+          onOpenPublicSection: _openCopyPublicSection,
+          onCopyPublicSectionLink: (section) => _copyPublicPreviewLink(
+            _publicSectionPath(
+              slug: data.publicSlug ?? '',
+              sectionId: section.id,
+            ),
+            section.name,
+          ),
+          secondaryActionLabel: _canUpgradeCopyToSlab(data, copy)
+              ? 'Upgrade to Slab'
+              : null,
+          onSecondaryAction: _canUpgradeCopyToSlab(data, copy)
+              ? () => _openSlabUpgradeFlow(data, copy)
+              : null,
+        ),
+      ],
+    );
+  }
+
   Widget _buildCopiesSection(
     ThemeData theme,
     ColorScheme colorScheme,
@@ -1523,7 +1669,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Exact copies',
+            'Copies',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
             ),
@@ -1587,9 +1733,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                             .instanceId] ??
                         const <VaultManageCopySectionMembership>[],
                     busySectionKey: _copySectionSavingKey,
-                    onTap: (data.copies[index].gvviId ?? '').trim().isEmpty
-                        ? null
-                        : () => _openExactCopy(data.copies[index]),
+                    onTap: null,
                     onSelectionChanged: (selected) =>
                         _toggleCopySelection(data.copies[index], selected),
                     onIntentSelected: _copyIntentSavingId == null
@@ -1614,6 +1758,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                     ),
                     onSharePublicCopy: () =>
                         _shareCopyPublicLink(data.copies[index]),
+                    onLongPress: () =>
+                        _showCopyQuickActions(data, data.copies[index]),
                     onOpenPublicSection: _openCopyPublicSection,
                     onCopyPublicSectionLink: (section) =>
                         _copyPublicPreviewLink(
@@ -1639,6 +1785,58 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showCopyQuickActions(
+    VaultManageCardData data,
+    VaultManageCardCopy copy,
+  ) {
+    final gvviId = (copy.gvviId ?? '').trim();
+    final publicCopyEnabled =
+        data.publicProfileEnabled &&
+        data.vaultSharingEnabled &&
+        (data.publicSlug ?? '').trim().isNotEmpty &&
+        normalizeVaultIntentValue(copy.intent) != 'hold' &&
+        gvviId.isNotEmpty;
+    final canUpgradeToSlab = _canUpgradeCopyToSlab(data, copy);
+
+    return showVaultQuickActionSheet(
+      context: context,
+      title: gvviId.isEmpty ? 'Vault copy' : gvviId,
+      subtitle: copy.isGraded
+          ? [
+              if ((copy.grader ?? '').isNotEmpty) copy.grader!,
+              if ((copy.grade ?? '').isNotEmpty) copy.grade!,
+            ].join(' ')
+          : 'Raw ${copy.conditionLabel}',
+      actions: [
+        VaultQuickAction(
+          icon: Icons.visibility_outlined,
+          label: 'View public page',
+          onPressed: publicCopyEnabled ? () => _openCopyPublicPage(copy) : null,
+        ),
+        VaultQuickAction(
+          icon: Icons.ios_share_outlined,
+          label: 'Share link',
+          onPressed: publicCopyEnabled
+              ? () => _shareCopyPublicLink(copy)
+              : null,
+        ),
+        VaultQuickAction(
+          icon: Icons.verified_outlined,
+          label: 'Slab upgrade',
+          onPressed: canUpgradeToSlab
+              ? () => _openSlabUpgradeFlow(data, copy)
+              : null,
+        ),
+        VaultQuickAction(
+          icon: Icons.delete_outline_rounded,
+          label: 'Remove copy',
+          destructive: true,
+          onPressed: _bulkCopySaving ? null : () => _removeExactCopy(copy),
+        ),
+      ],
     );
   }
 
@@ -1683,7 +1881,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     if (data.intent == 'hold') {
-      return '${data.inPlayCount} exact copies are public to collectors.';
+      return '${data.inPlayCount} copies are public to collectors.';
     }
 
     return '$intentLabel is public to collectors.';
@@ -2151,7 +2349,7 @@ class _CopyBulkActionSurface extends StatelessWidget {
             ] else if (totalCount > 1) ...[
               const SizedBox(height: 4),
               Text(
-                'Select multiple exact copies to update intent, section placement, or remove them together.',
+                'Select multiple copies to update intent, section placement, or remove them together.',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurface.withValues(alpha: 0.62),
                 ),
@@ -2181,6 +2379,7 @@ class _CopyRow extends StatelessWidget {
     this.onOpenPublicCopy,
     this.onCopyPublicCopyLink,
     this.onSharePublicCopy,
+    this.onLongPress,
     this.onOpenPublicSection,
     this.onCopyPublicSectionLink,
     this.secondaryActionLabel,
@@ -2202,6 +2401,7 @@ class _CopyRow extends StatelessWidget {
   final VoidCallback? onOpenPublicCopy;
   final VoidCallback? onCopyPublicCopyLink;
   final VoidCallback? onSharePublicCopy;
+  final VoidCallback? onLongPress;
   final ValueChanged<VaultManageCopySectionMembership>? onOpenPublicSection;
   final ValueChanged<VaultManageCopySectionMembership>? onCopyPublicSectionLink;
   final String? secondaryActionLabel;
@@ -2230,19 +2430,19 @@ class _CopyRow extends StatelessWidget {
       children: [
         Row(
           children: [
-            Checkbox(
-              value: selected,
-              onChanged: onSelectionChanged == null
-                  ? null
-                  : (value) => onSelectionChanged!(value == true),
-            ),
-            const SizedBox(width: 4),
+            if (onSelectionChanged != null) ...[
+              Checkbox(
+                value: selected,
+                onChanged: (value) => onSelectionChanged!(value == true),
+              ),
+              const SizedBox(width: 4),
+            ],
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'GVVI',
+                    'Copy ID',
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.46),
                       fontWeight: FontWeight.w700,
@@ -2251,7 +2451,7 @@ class _CopyRow extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    gvviId.isEmpty ? 'GVVI unavailable' : gvviId,
+                    gvviId.isEmpty ? 'Copy ID unavailable' : gvviId,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleSmall?.copyWith(
@@ -2459,6 +2659,7 @@ class _CopyRow extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
+        onLongPress: onLongPress,
         child: Ink(
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.32),

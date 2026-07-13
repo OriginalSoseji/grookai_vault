@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('card detail Add to Vault is wired to exact owned copy flow', () {
+  test('card detail Add to Vault is wired to unified ownership flow', () {
     final screen = File('lib/card_detail_screen.dart').readAsStringSync();
     final service = File(
       'lib/services/vault/vault_card_service.dart',
@@ -13,12 +13,12 @@ void main() {
     expect(screen, contains('VaultCardService.addOrIncrementVaultItem'));
     expect(screen, contains('cardPrintingId: _selectedPrintingOption?.id'));
     expect(screen, contains("eventType: 'add_to_vault'"));
-    expect(screen, contains('VaultGvviScreen(gvviId: gvviId)'));
-    expect(
-      screen,
-      contains("throw Exception('Exact copy could not be created.')"),
-    );
-    expect(screen, contains('Sign in to add cards to your vault.'));
+    expect(screen, contains('VaultManageCardScreen(gvviId: gvviId)'));
+    expect(screen, contains("throw Exception('Copy could not be created.')"));
+    expect(screen, contains('Future<void> _showSignedOutIntentSheet'));
+    expect(screen, contains('Sign in to add this card to your vault.'));
+    expect(screen, contains('Sign in to save this card to your want list.'));
+    expect(screen, isNot(contains('Sign in to add cards to your vault.')));
 
     expect(service, contains("'vault-add-card-instance-v1'"));
     expect(service, contains("'card_print_id': cardId"));
@@ -107,11 +107,27 @@ void main() {
     expect(bottomNavBlock, contains("label: 'Pulse'"));
     expect(bottomNavBlock, contains("label: 'Scan'"));
     expect(bottomNavBlock, contains("label: 'Wall'"));
+    expect(bottomNavBlock, contains('Icons.collections_bookmark_rounded'));
     expect(bottomNavBlock, contains("label: 'Vault'"));
     expect(bottomNavBlock, isNot(contains("label: 'Dex'")));
     expect(bottomNavBlock, isNot(contains('_openDex()')));
     expect(shell, contains("label: 'Grookai Dex'"));
     expect(shell, contains('onTap: () => _closeThenAsync(context, onOpenDex)'));
+  });
+
+  test('Dex uses progressive loading instead of previous-next paging', () {
+    final dex = File(
+      'lib/screens/dex/grookai_dex_screen.dart',
+    ).readAsStringSync();
+
+    expect(dex, contains('bool _loadingMore = false'));
+    expect(dex, contains('Future<void> _load({bool append = false}) async'));
+    expect(dex, contains('GrookaiDexSpeciesPage('));
+    expect(dex, contains("'Loading more'"));
+    expect(dex, contains("'Load more'"));
+    expect(dex, contains('() => _load(append: true)'));
+    expect(dex, isNot(contains("label: const Text('Previous')")));
+    expect(dex, isNot(contains("label: const Text('Next')")));
   });
 
   test('primary shell destinations are dock-only and drawer stays secondary', () {
@@ -249,7 +265,7 @@ void main() {
       search,
       contains('onViewDetails: interactionLocked ? null : onViewCard'),
     );
-    expect(vault, contains("detailsLabel: 'Manage card'"));
+    expect(vault, contains("detailsLabel: 'Your copies'"));
   });
 
   test('Pulse inventory cards stay card-first and avoid FOMO hook copy', () {
@@ -319,6 +335,7 @@ void main() {
 
   test('search controls do not hide secondary navigation shortcuts', () {
     final search = File('lib/main.dart').readAsStringSync();
+    final shell = File('lib/main_shell.dart').readAsStringSync();
 
     expect(search, isNot(contains('Browse sets')));
     expect(search, isNot(contains('Open collector wall')));
@@ -328,6 +345,9 @@ void main() {
       isNot(contains('Future<void> _openPublicCollectorBySlug()')),
     );
     expect(search, isNot(contains('class _SearchHeaderIconButton')));
+    expect(search, isNot(contains('Icons.grid_view_rounded')));
+    expect(shell, contains('_ExploreHeaderAction.sets'));
+    expect(shell, contains("label: 'Sets'"));
   });
 
   test('search secondary filters are collapsed behind a sheet', () {

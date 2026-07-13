@@ -151,7 +151,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         _loadingMemories = kCollectorMemoriesEnabled && data != null;
         _memoryError = null;
         _loading = false;
-        _error = data == null ? 'Exact copy not found.' : null;
+        _error = data == null ? 'Copy not found.' : null;
       });
       if (kCollectorMemoriesEnabled && data != null) {
         unawaited(_loadMemoriesFor(data.gvviId));
@@ -1135,8 +1135,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         title: Text(data.isGraded ? 'Remove slab?' : 'Remove copy?'),
         content: Text(
           data.isGraded
-              ? 'This exact slab will be removed from your active vault.'
-              : 'This exact copy will be removed from your active vault.',
+              ? 'This slab will be removed from your active vault.'
+              : 'This copy will be removed from your active vault.',
         ),
         actions: [
           TextButton(
@@ -1173,8 +1173,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         SnackBar(
           content: Text(
             data.isGraded
-                ? 'Exact slab removed from your active vault.'
-                : 'Exact copy removed from your active vault.',
+                ? 'Slab removed from your active vault.'
+                : 'Copy removed from your active vault.',
           ),
         ),
       );
@@ -1193,7 +1193,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exact Copy'),
+        title: const Text('Copy'),
         actions: [
           if (widget.launchedFromSearch)
             IconButton(
@@ -1213,8 +1213,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           : _data == null
           ? _VaultGvviStateCard(
               icon: Icons.style_outlined,
-              title: 'Exact copy unavailable',
-              body: _error ?? 'This exact copy could not be loaded.',
+              title: 'Copy unavailable',
+              body: _error ?? 'This copy could not be loaded.',
             )
           : SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(14, 8, 14, 18),
@@ -1351,7 +1351,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                         ],
                         _VaultActionPathRow(
                           leadingLabel: 'Manage',
-                          title: 'Manage Card',
+                          title: 'Your copies',
                           supporting: _data!.activeCopyCount <= 1
                               ? 'Open grouped controls for this card'
                               : 'Open grouped controls for ${_data!.activeCopyCount} active copies',
@@ -1835,7 +1835,7 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
               width: itemWidth,
               child: _VaultOverviewActionCard(
                 icon: Icons.tune_rounded,
-                label: 'Manage card',
+                label: 'Your copies',
                 onTap: onManageCard,
               ),
             ),
@@ -1933,8 +1933,8 @@ class _VaultIntentQuickSurface extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               isPublic
-                  ? 'Change how collectors see this exact copy.'
-                  : 'Choose Showcase, Trade, or Sell to add this exact copy to your public Wall.',
+                  ? 'Change how collectors see this copy.'
+                  : 'Choose Showcase, Trade, or Sell to add this copy to your public Wall.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.62),
                 height: 1.28,
@@ -2035,7 +2035,7 @@ class _VaultPublicPreviewSurface extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(
                         canPreviewWall
-                            ? 'Check where this exact copy appears publicly.'
+                            ? 'Check where this copy appears publicly.'
                             : visibleOnWall
                             ? 'Enable your public profile and vault sharing to preview this copy.'
                             : 'Set this copy to Showcase, Trade, or Sell to activate public preview links.',
@@ -2920,7 +2920,7 @@ class _CollectorMemoriesSurface extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Private notes, places, and moments for this exact copy only.',
+                'Private notes, places, and moments for this copy only.',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurface.withValues(alpha: 0.62),
                   height: 1.32,

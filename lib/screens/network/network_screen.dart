@@ -23,7 +23,7 @@ import '../../widgets/network/network_interaction_card.dart';
 import '../../widgets/provisional/provisional_card_section.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
-import '../vault/vault_gvvi_screen.dart';
+import '../vault/vault_manage_card_screen.dart';
 
 ResolvedDisplayIdentity _networkDisplayIdentity(NetworkStreamRow row) {
   return resolveDisplayIdentityFromFields(
@@ -2603,7 +2603,7 @@ void _openExactCopy(
   Navigator.of(context).push(
     MaterialPageRoute<void>(
       builder: (_) => isOwner
-          ? VaultGvviScreen(gvviId: gvviId)
+          ? VaultManageCardScreen(gvviId: gvviId)
           : PublicGvviScreen(gvviId: gvviId),
     ),
   );

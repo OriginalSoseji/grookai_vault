@@ -31,7 +31,6 @@ import 'screens/grookai_objects/lot_pricing_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
-import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
@@ -70,6 +69,7 @@ import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
 import 'widgets/onboarding/onboarding_ladder_sheet.dart';
 import 'widgets/provisional/provisional_card_section.dart';
+import 'widgets/vault/vault_quick_action_sheet.dart';
 
 part 'main_shell.dart';
 part 'main_vault.dart';
@@ -1632,7 +1632,7 @@ class _SearchResultActionSheet extends StatelessWidget {
       OwnershipAction.viewYourCopy =>
         isOpeningOwnedCopy ? 'Opening your copy...' : 'View your copy',
       OwnershipAction.openManageCard =>
-        isOpeningManageCard ? 'Opening manage card...' : 'Manage card',
+        isOpeningManageCard ? 'Opening your copies...' : 'Your copies',
       OwnershipAction.addAnotherCopy =>
         isAdding
             ? 'Adding copy...'
@@ -3514,8 +3514,7 @@ class HomePageState extends State<HomePage> {
             Navigator.of(sheetContext).pop();
             await parentNavigator.push(
               MaterialPageRoute<void>(
-                builder: (_) =>
-                    VaultGvviScreen(gvviId: gvviId, launchedFromSearch: true),
+                builder: (_) => VaultManageCardScreen(gvviId: gvviId),
               ),
             );
           }
@@ -3671,7 +3670,8 @@ class HomePageState extends State<HomePage> {
               if ((resolvedGvviId ?? '').isNotEmpty) {
                 await parentNavigator.push(
                   MaterialPageRoute<void>(
-                    builder: (_) => VaultGvviScreen(gvviId: resolvedGvviId!),
+                    builder: (_) =>
+                        VaultManageCardScreen(gvviId: resolvedGvviId!),
                   ),
                 );
               } else {
@@ -3730,7 +3730,7 @@ class HomePageState extends State<HomePage> {
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     const SnackBar(
-                      content: Text('Manage Card is not available yet.'),
+                      content: Text('Your copies are not available yet.'),
                       duration: Duration(milliseconds: 1400),
                     ),
                   );
@@ -3929,7 +3929,7 @@ class HomePageState extends State<HomePage> {
       }
 
       if (gvviId.isEmpty) {
-        throw Exception('Exact copy could not be created.');
+        throw Exception('Copy could not be created.');
       }
       unawaited(
         OnboardingLadderService.recordOwnedBestEffort(
@@ -4002,10 +4002,7 @@ class HomePageState extends State<HomePage> {
                 Navigator.of(context)
                     .push(
                       MaterialPageRoute<void>(
-                        builder: (_) => VaultGvviScreen(
-                          gvviId: gvviId,
-                          launchedFromSearch: true,
-                        ),
+                        builder: (_) => VaultManageCardScreen(gvviId: gvviId),
                       ),
                     )
                     .then((_) {
@@ -4025,7 +4022,7 @@ class HomePageState extends State<HomePage> {
   }
 
   // VIEW_YOUR_COPY_RESOLUTION_V1
-  // exact-copy resolution order: active vault anchor -> mobile copies wrapper -> collector summary GVVI -> shared primary GVVI -> Manage Card fallback.
+  // Copy resolution order: active vault anchor -> mobile copies wrapper -> collector summary GVVI -> shared primary GVVI -> ownership fallback.
   // manage fallback only when: no deterministic GVVI can be proven from current mobile wrappers for the owned card.
   Future<VaultOwnedCopyTarget?> _resolveLatestOwnedCopyTarget(
     String cardPrintId,
@@ -4044,7 +4041,7 @@ class HomePageState extends State<HomePage> {
   }
 
   // REMOVE_FROM_VAULT_AUDIT
-  // removal target logic: resolve the same latest active exact copy when possible, otherwise remove one instance from the active vault anchor.
+  // Removal target logic: resolve the same latest active copy when possible, otherwise remove one instance from the active vault anchor.
 
   Future<void> _openCardDetail(
     CardPrint card, {

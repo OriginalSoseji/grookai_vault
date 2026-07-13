@@ -12,7 +12,6 @@ import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../network/network_inbox_screen.dart';
 import '../public_collector/public_collector_screen.dart';
-import '../vault/vault_gvvi_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 
 class PublicGvviScreen extends StatefulWidget {
@@ -60,7 +59,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
         _data = data;
         _viewerOwnershipState = viewerOwnershipState;
         _loading = false;
-        _error = data == null ? 'Exact copy not found.' : null;
+        _error = data == null ? 'Copy not found.' : null;
       });
     } catch (error) {
       if (!mounted) {
@@ -143,18 +142,18 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
         case OwnershipAction.viewYourCopy:
           final gvviId = (state.primaryGvviId ?? '').trim();
           if (gvviId.isEmpty) {
-            throw Exception('Your exact copy is not available yet.');
+            throw Exception('Your copy is not available yet.');
           }
           await Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (_) => VaultGvviScreen(gvviId: gvviId),
+              builder: (_) => VaultManageCardScreen(gvviId: gvviId),
             ),
           );
           break;
         case OwnershipAction.openManageCard:
           final vaultItemId = (state.primaryVaultItemId ?? '').trim();
           if (vaultItemId.isEmpty) {
-            throw Exception('Manage Card is not available yet.');
+            throw Exception('Your copies are not available yet.');
           }
           await Navigator.of(context).push(
             MaterialPageRoute<void>(
@@ -197,7 +196,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           }
           await Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (_) => VaultGvviScreen(gvviId: gvviId),
+              builder: (_) => VaultManageCardScreen(gvviId: gvviId),
             ),
           );
           break;
@@ -272,7 +271,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exact Copy'),
+        title: const Text('Copy'),
         actions: [
           IconButton(
             tooltip: 'Messages',
@@ -297,7 +296,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           : _data == null
           ? _PublicGvviStateCard(
               icon: Icons.style_outlined,
-              title: 'Exact copy unavailable',
+              title: 'Copy unavailable',
               body: _error ?? 'This copy could not be loaded.',
             )
           : SingleChildScrollView(
@@ -508,7 +507,7 @@ String? _publicViewerBridgeActionLabel(OwnershipAction action) {
     case OwnershipAction.addAnotherCopy:
       return 'Add another copy';
     case OwnershipAction.openManageCard:
-      return 'Manage card';
+      return 'Your copies';
     case OwnershipAction.none:
       return null;
   }

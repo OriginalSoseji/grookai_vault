@@ -104,13 +104,13 @@ void main() {
     expect(service, contains('mobile Copies tab look empty'));
   });
 
-  test('copy rows expose GVVI edit and exact-copy removal controls', () {
+  test('copy rows expose copy ID and removal controls', () {
     final screen = File(
       'lib/screens/vault/vault_manage_card_screen.dart',
     ).readAsStringSync();
 
-    expect(screen, contains("'GVVI'"));
-    expect(screen, contains("gvviId.isEmpty ? 'GVVI unavailable' : gvviId"));
+    expect(screen, contains("'Copy ID'"));
+    expect(screen, contains("gvviId.isEmpty ? 'Copy ID unavailable' : gvviId"));
     expect(screen, contains("label: const Text('Edit copy')"));
     expect(screen, contains("label: const Text('Remove')"));
     expect(screen, contains('Future<void> _removeExactCopy'));

@@ -18,6 +18,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
 
   int _page = 1;
   bool _loading = true;
+  bool _loadingMore = false;
   String? _error;
   GrookaiDexSpeciesPage? _speciesPage;
 
@@ -33,12 +34,19 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     super.dispose();
   }
 
-  Future<void> _load({int? page}) async {
-    final nextPage = page ?? _page;
+  Future<void> _load({bool append = false}) async {
+    if (append && (_loading || _loadingMore)) {
+      return;
+    }
+    final currentPage = _speciesPage;
+    final nextPage = append ? (currentPage?.page ?? _page) + 1 : 1;
     setState(() {
-      _loading = true;
-      _error = null;
-      _page = nextPage;
+      if (append) {
+        _loadingMore = true;
+      } else {
+        _loading = true;
+        _error = null;
+      }
     });
 
     try {
@@ -50,19 +58,38 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
         return;
       }
       setState(() {
-        _speciesPage = speciesPage;
+        _page = speciesPage.page;
+        _speciesPage = append && currentPage != null
+            ? GrookaiDexSpeciesPage(
+                species: [...currentPage.species, ...speciesPage.species],
+                allSpecies: speciesPage.allSpecies,
+                page: speciesPage.page,
+                pageSize: speciesPage.pageSize,
+                hasNextPage: speciesPage.hasNextPage,
+              )
+            : speciesPage;
       });
     } catch (error) {
       if (!mounted) {
         return;
       }
-      setState(() {
-        _error = 'Unable to load Grookai Dex.';
-      });
+      if (append) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Unable to load more Dex entries.')),
+        );
+      } else {
+        setState(() {
+          _error = 'Unable to load Grookai Dex.';
+        });
+      }
     } finally {
       if (mounted) {
         setState(() {
-          _loading = false;
+          if (append) {
+            _loadingMore = false;
+          } else {
+            _loading = false;
+          }
         });
       }
     }
@@ -142,7 +169,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
         actions: [
           IconButton(
             tooltip: 'Reload',
-            onPressed: _loading ? null : _load,
+            onPressed: _loading || _loadingMore ? null : _load,
             icon: const Icon(Icons.refresh_rounded),
           ),
         ],
@@ -211,7 +238,11 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                             ],
                           ),
                         ),
-                        _DexPill(label: isSearching ? 'Search' : 'Page $_page'),
+                        _DexPill(
+                          label: isSearching
+                              ? 'Search'
+                              : '${filteredSpecies.length} shown',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -295,31 +326,28 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                     ),
                   ),
                 if (!isSearching) ...[
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: _page <= 1 || _loading
-                              ? null
-                              : () => _load(page: _page - 1),
-                          icon: const Icon(Icons.chevron_left_rounded),
-                          label: const Text('Previous'),
+                  if (speciesPage?.hasNextPage == true) ...[
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: _loadingMore
+                            ? null
+                            : () => _load(append: true),
+                        icon: _loadingMore
+                            ? const SizedBox.square(
+                                dimension: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.expand_more_rounded),
+                        label: Text(
+                          _loadingMore ? 'Loading more' : 'Load more',
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: FilledButton.icon(
-                          onPressed:
-                              speciesPage?.hasNextPage == true && !_loading
-                              ? () => _load(page: _page + 1)
-                              : null,
-                          icon: const Icon(Icons.chevron_right_rounded),
-                          label: const Text('Next'),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ],
               ],
             ],

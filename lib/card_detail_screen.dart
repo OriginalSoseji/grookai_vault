@@ -8,14 +8,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'models/grookai_memory_card.dart';
 import 'models/grookai_sale_listing.dart';
 import 'models/ownership_state.dart';
+import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
-import 'screens/network/network_inbox_screen.dart';
 import 'screens/grookai_objects/for_sale_terms_screen.dart';
 import 'screens/grookai_objects/memory_card_capture_screen.dart';
+import 'screens/network/network_inbox_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
-import 'screens/vault/vault_gvvi_screen.dart';
 import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
@@ -742,7 +742,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => isOwner
-            ? VaultGvviScreen(gvviId: gvviId)
+            ? VaultManageCardScreen(gvviId: gvviId)
             : PublicGvviScreen(gvviId: gvviId),
       ),
     );
@@ -754,6 +754,22 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         ? _cleanText(_ownershipState?.primaryVaultItemId)
         : _cleanText(_managedVaultItemId);
     if (vaultItemId.isEmpty) {
+      final primaryGvviId = _cleanText(_ownershipState?.primaryGvviId);
+      final gvviId = primaryGvviId.isNotEmpty
+          ? primaryGvviId
+          : _hasExactCopyContext
+          ? _cleanText(widget.exactCopyGvviId)
+          : '';
+      if (gvviId.isNotEmpty) {
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+          ),
+        );
+        if (mounted) {
+          await _loadOwnershipState(refresh: true);
+        }
+      }
       return;
     }
 
@@ -801,7 +817,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (gvviId.isNotEmpty) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
         ),
       );
       if (mounted) {
@@ -831,8 +847,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     final userId = supabase.auth.currentUser?.id;
     if (userId == null || userId.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign in to save wanted cards.')),
+      await _showSignedOutIntentSheet(
+        title: 'Sign in to want this card',
+        body:
+            'Sign in to save this card to your want list. When you return, the app will finish that action.',
+        actionLabel: 'Sign in to save',
+        onSignedIn: _toggleWant,
       );
       return;
     }
@@ -963,9 +983,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final gvviId = _memoryCaptureGvviId;
     if (gvviId.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Open your exact copy to share a memory.'),
-        ),
+        const SnackBar(content: Text('Open your copy to share a memory.')),
       );
       return;
     }
@@ -989,9 +1007,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final gvviId = _memoryCaptureGvviId;
     if (gvviId.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Open your exact copy to list it for sale.'),
-        ),
+        const SnackBar(content: Text('Open your copy to list it for sale.')),
       );
       return;
     }
@@ -1039,6 +1055,83 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Future<void> _showSignedOutIntentSheet({
+    required String title,
+    required String body,
+    required String actionLabel,
+    required Future<void> Function() onSignedIn,
+  }) async {
+    if (!mounted) {
+      return;
+    }
+
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.fromLTRB(
+            24,
+            8,
+            24,
+            24 + MediaQuery.of(sheetContext).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                title,
+                style: Theme.of(
+                  sheetContext,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                body,
+                style: Theme.of(
+                  sheetContext,
+                ).textTheme.bodyMedium?.copyWith(height: 1.35),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.of(sheetContext).pop(),
+                    child: const Text('Not now'),
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton.icon(
+                    onPressed: () async {
+                      final navigator = Navigator.of(context);
+                      Navigator.of(sheetContext).pop();
+                      await navigator.push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const AccountScreen(),
+                        ),
+                      );
+                      if (!mounted) {
+                        return;
+                      }
+                      final userId = supabase.auth.currentUser?.id;
+                      if (userId != null && userId.isNotEmpty) {
+                        await onSignedIn();
+                      }
+                    },
+                    icon: const Icon(Icons.login_rounded),
+                    label: Text(actionLabel),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> _addToVault() async {
     if (_addingToVault) {
       return;
@@ -1048,8 +1141,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final navigator = Navigator.of(context);
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
-      messenger.showSnackBar(
-        const SnackBar(content: Text('Sign in to add cards to your vault.')),
+      await _showSignedOutIntentSheet(
+        title: 'Sign in to add to Vault',
+        body:
+            'Sign in to add this card to your vault. When you return, the app will finish that action.',
+        actionLabel: 'Sign in to add',
+        onSignedIn: _addToVault,
       );
       return;
     }
@@ -1077,7 +1174,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       }
 
       if (gvviId.isEmpty) {
-        throw Exception('Exact copy could not be created.');
+        throw Exception('Copy could not be created.');
       }
       unawaited(
         OnboardingLadderService.recordOwnedBestEffort(
@@ -1106,7 +1203,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
       await navigator.pushReplacement(
         MaterialPageRoute<void>(
-          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
         ),
       );
     } catch (error) {
@@ -1810,7 +1907,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 ),
               if (_hasExactCopyContext)
                 _buildTextNavCue(
-                  label: 'Exact copy',
+                  label: 'Copy',
                   onTap: _openExactCopy,
                   theme: theme,
                   colorScheme: colorScheme,
@@ -2699,7 +2796,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       rows.add(
         _buildTrustRow(
           icon: Icons.verified_outlined,
-          label: 'Exact copy on file',
+          label: 'Copy on file',
           actionLabel: 'Open copy',
           onAction: _canOpenPublicExactCopy
               ? _openPublicExactCopy
@@ -3004,32 +3101,30 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ColorScheme colorScheme,
   ) {
     final ownershipAction = _detailOwnershipAction;
-    final primaryOwnershipAction = switch (ownershipAction) {
-      OwnershipAction.addToVault || OwnershipAction.none => FilledButton.icon(
-        onPressed: _addingToVault ? null : _addToVault,
-        style: _primaryActionButtonStyle(theme),
-        icon: _buildPrimaryActionIcon(Icons.add_rounded),
-        label: Text(_addingToVault ? 'Adding...' : 'Add to Vault'),
-      ),
-      OwnershipAction.viewYourCopy => FilledButton.icon(
-        onPressed: _openResolvedOwnedCopy,
-        style: _primaryActionButtonStyle(theme),
-        icon: const Icon(Icons.collections_bookmark_outlined),
-        label: const Text('View your copy'),
-      ),
-      OwnershipAction.addAnotherCopy => FilledButton.icon(
-        onPressed: _addingToVault ? null : _addToVault,
-        style: _primaryActionButtonStyle(theme),
-        icon: _buildPrimaryActionIcon(Icons.add_rounded),
-        label: Text(_addingToVault ? 'Adding...' : 'Add copy'),
-      ),
-      OwnershipAction.openManageCard => FilledButton.icon(
-        onPressed: _openManageCard,
-        style: _primaryActionButtonStyle(theme),
-        icon: const Icon(Icons.tune_rounded),
-        label: const Text('Manage card'),
-      ),
-    };
+    final isOwnedAction =
+        ownershipAction == OwnershipAction.viewYourCopy ||
+        ownershipAction == OwnershipAction.openManageCard ||
+        ownershipAction == OwnershipAction.addAnotherCopy;
+    final ownedCount =
+        _ownershipState?.ownedCount ?? _managedOwnedCount ?? widget.quantity;
+    final ownedLabel = (ownedCount ?? 0) > 1
+        ? 'Your copies (${ownedCount!})'
+        : 'Your copy';
+    final primaryOwnershipAction = !isOwnedAction
+        ? FilledButton.icon(
+            onPressed: _addingToVault ? null : _addToVault,
+            style: _primaryActionButtonStyle(theme),
+            icon: _buildPrimaryActionIcon(Icons.add_rounded),
+            label: Text(_addingToVault ? 'Adding...' : 'Add to Vault'),
+          )
+        : FilledButton.icon(
+            onPressed: ownershipAction == OwnershipAction.viewYourCopy
+                ? _openResolvedOwnedCopy
+                : _openManageCard,
+            style: _primaryActionButtonStyle(theme),
+            icon: const Icon(Icons.collections_bookmark_outlined),
+            label: Text(ownedLabel),
+          );
 
     return SafeArea(
       top: false,

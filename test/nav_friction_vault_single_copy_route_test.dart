@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('single-copy vault rows route directly to exact copy screen', () {
+  test('single-copy vault rows route to unified ownership screen', () {
     final vault = File('lib/main_vault.dart').readAsStringSync();
     final method = RegExp(
       r'Future<void> _openManageCardRow[\s\S]*?\n  bool _canOpenVaultRow',
@@ -22,7 +22,7 @@ void main() {
       contains("final gvviId = (row['gv_vi_id'] ?? '').toString().trim();"),
     );
     expect(method, contains('if (ownedCount == 1 && gvviId.isNotEmpty)'));
-    expect(method, contains('VaultGvviScreen(gvviId: gvviId)'));
+    expect(method, contains('VaultManageCardScreen(gvviId: gvviId)'));
     expect(method, contains('await reload();'));
     expect(method, contains('return;'));
     expect(method, contains('VaultManageCardScreen('));
@@ -43,5 +43,28 @@ void main() {
     expect(vault, contains('Widget _buildRecentVaultStrip'));
     expect(vault, contains('final canOpen = _canOpenVaultRow(row);'));
     expect(vault, contains('() => _openManageCardRow(row)'));
+  });
+
+  test('unified ownership screen handles gvvi-only and single-copy overview', () {
+    final screen = File(
+      'lib/screens/vault/vault_manage_card_screen.dart',
+    ).readAsStringSync();
+
+    expect(screen, contains('this.vaultItemId = \'\','));
+    expect(screen, contains('Future<_ManageCardBootstrapContext>'));
+    expect(screen, contains('VaultGvviService.loadPrivate'));
+    expect(
+      screen,
+      contains('final showCopiesTab = data != null && data.copies.length > 1;'),
+    );
+    expect(screen, contains('if (showCopiesTab) ...['));
+    expect(
+      screen,
+      contains(
+        "_buildTabListView(\n                                  storageKey: 'overview-single'",
+      ),
+    );
+    expect(screen, contains('_buildSingleCopyControls'));
+    expect(screen, isNot(contains("AppBar(title: const Text('Manage Card'))")));
   });
 }

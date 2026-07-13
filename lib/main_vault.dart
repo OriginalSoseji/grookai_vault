@@ -69,7 +69,7 @@ class _VaultItemTile extends StatelessWidget {
         borderRadius: compact ? 10 : 12,
         padding: const EdgeInsets.all(3),
         onViewDetails: onTap,
-        detailsLabel: 'Manage card',
+        detailsLabel: 'Your copies',
       );
     }
 
@@ -428,7 +428,7 @@ class _VaultGridArtwork extends StatelessWidget {
       borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.0),
       onViewDetails: onViewDetails,
-      detailsLabel: 'Manage card',
+      detailsLabel: 'Your copies',
     );
   }
 }
@@ -1174,7 +1174,9 @@ class VaultPageState extends State<VaultPage> {
       selectionMode: selectionMode,
       selected: selected,
       onTap: canOpen ? () => _openManageCardRow(row) : null,
-      onLongPress: () => _toggleLotSelection(row),
+      onLongPress: selectionMode
+          ? () => _toggleLotSelection(row)
+          : () => _showVaultRowQuickActions(row),
       onScan: () {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -1191,6 +1193,64 @@ class VaultPageState extends State<VaultPage> {
           await reload();
         }
       },
+    );
+  }
+
+  Future<void> _showVaultRowQuickActions(Map<String, dynamic> row) {
+    final name = (row['name'] ?? 'Card').toString();
+    final setName = (row['set_name'] ?? '').toString().trim();
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    final canOpen = _canOpenVaultRow(row);
+
+    return showVaultQuickActionSheet(
+      context: context,
+      title: name,
+      subtitle: setName.isEmpty ? null : setName,
+      actions: [
+        VaultQuickAction(
+          icon: Icons.visibility_outlined,
+          label: 'View',
+          onPressed: canOpen ? () => _openManageCardRow(row) : null,
+        ),
+        VaultQuickAction(
+          icon: Icons.tune_rounded,
+          label: 'Set intent',
+          onPressed: canOpen ? () => _openManageCardRow(row) : null,
+        ),
+        VaultQuickAction(
+          icon: Icons.ios_share_outlined,
+          label: 'Share link',
+          onPressed: gvviId.isEmpty ? null : () => _shareVaultRowLink(row),
+        ),
+        VaultQuickAction(
+          icon: Icons.delete_outline_rounded,
+          label: 'Remove',
+          destructive: true,
+          onPressed: () async {
+            final ok = await _confirmDelete(row);
+            if (ok) {
+              await reload();
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Future<void> _shareVaultRowLink(Map<String, dynamic> row) async {
+    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
+    if (gvviId.isEmpty) {
+      return;
+    }
+
+    final uri = GrookaiWebRouteService.buildUri(
+      '/gvvi/${Uri.encodeComponent(gvviId)}',
+    );
+    await SharePlus.instance.share(
+      ShareParams(
+        uri: uri,
+        subject: (row['name'] ?? 'Grookai Vault card').toString(),
+      ),
     );
   }
 
@@ -1261,7 +1321,7 @@ class VaultPageState extends State<VaultPage> {
                             onViewDetails: canOpen
                                 ? () => _openManageCardRow(row)
                                 : null,
-                            detailsLabel: 'Manage card',
+                            detailsLabel: 'Your copies',
                           ),
                         ),
                       ),
@@ -1439,7 +1499,7 @@ class VaultPageState extends State<VaultPage> {
     if (vaultItemId.isEmpty || cardPrintId.isEmpty) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
         ),
       );
       await reload();
@@ -1450,7 +1510,7 @@ class VaultPageState extends State<VaultPage> {
     if (ownedCount == 1 && gvviId.isNotEmpty) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (_) => VaultGvviScreen(gvviId: gvviId),
+          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
         ),
       );
       await reload();

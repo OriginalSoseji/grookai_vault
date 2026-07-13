@@ -8,7 +8,15 @@ void main() {
     final main = File('lib/main.dart').readAsStringSync();
 
     expect(vault, contains('_selectedLotCardPrintIds'));
-    expect(vault, contains('onLongPress: () => _toggleLotSelection(row)'));
+    expect(
+      vault,
+      contains(
+        'onLongPress: selectionMode\n'
+        '          ? () => _toggleLotSelection(row)\n'
+        '          : () => _showVaultRowQuickActions(row)',
+      ),
+    );
+    expect(vault, contains('Future<void> _showVaultRowQuickActions'));
     expect(vault, contains('_VaultLotSelectionBar'));
     expect(vault, contains('List \$selectedCount as Lot'));
     expect(vault, contains('LotPricingScreen'));

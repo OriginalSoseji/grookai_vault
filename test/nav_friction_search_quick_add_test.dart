@@ -19,7 +19,7 @@ void main() {
     );
     expect(search, contains("surface: 'search_result_tile'"));
     expect(search, contains("label: 'View copy'"));
-    expect(search, contains('VaultGvviScreen('));
+    expect(search, contains('VaultManageCardScreen(gvviId: gvviId)'));
     expect(search, contains('onQuickAdd: showQuickAdd'));
     expect(search, contains('onTap: () => _openSearchCardActionHub(card)'));
   });

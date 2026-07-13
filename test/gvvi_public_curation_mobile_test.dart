@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('mobile GVVI screen exposes exact-copy public visibility controls', () {
+  test('mobile owner copy screen exposes public visibility controls', () {
     final screen = File(
       'lib/screens/vault/vault_gvvi_screen.dart',
     ).readAsStringSync();
@@ -19,7 +19,7 @@ void main() {
     expect(screen, isNot(contains('VaultCardService.saveVaultItemIntent')));
   });
 
-  test('mobile GVVI screen exposes exact-copy public preview links', () {
+  test('mobile owner copy screen exposes public preview links', () {
     final screen = File(
       'lib/screens/vault/vault_gvvi_screen.dart',
     ).readAsStringSync();
@@ -61,7 +61,7 @@ void main() {
     );
   });
 
-  test('mobile GVVI screen can create a Wall section for this exact copy', () {
+  test('mobile owner copy screen can create a Wall section for this copy', () {
     final screen = File(
       'lib/screens/vault/vault_gvvi_screen.dart',
     ).readAsStringSync();
