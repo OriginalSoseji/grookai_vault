@@ -21,6 +21,7 @@ import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
 import '../../widgets/provisional/provisional_card_section.dart';
+import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
@@ -983,84 +984,138 @@ class _PulseItemRow extends StatelessWidget {
         ? tone.foreground.withValues(alpha: 0.055)
         : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18);
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: borderColor),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _PulseArtworkTile(item: item),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _PulseKicker(item: item, tone: tone),
-                  const SizedBox(height: 3),
-                  Text(
-                    _primaryLine,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      color: colorScheme.onSurface,
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      height: 1.25,
-                      letterSpacing: 0,
-                    ),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    _secondaryLine,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.62),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      height: 1.20,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 7,
-                    runSpacing: 4,
-                    children: [
-                      _PulseActionPill(
-                        label: item.isCompletion
-                            ? 'View progress'
-                            : 'View card',
-                        icon: item.isCompletion
-                            ? Icons.trending_up_rounded
-                            : Icons.style_outlined,
-                        primary: true,
-                        onPressed: () => unawaited(_openPrimary(context)),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onLongPress: () => _showQuickActions(context),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: borderColor),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _PulseArtworkTile(item: item),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _PulseKicker(item: item, tone: tone),
+                    const SizedBox(height: 3),
+                    Text(
+                      _primaryLine,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: colorScheme.onSurface,
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w600,
+                        height: 1.25,
+                        letterSpacing: 0,
                       ),
-                      if (item.isWantMatch &&
-                          item.contactVaultItemId.isNotEmpty)
-                        ContactOwnerButton(
-                          vaultItemId: item.contactVaultItemId,
-                          cardPrintId: item.cardPrintId,
-                          ownerUserId: item.actorUserId,
-                          ownerDisplayName: item.displayActorName,
-                          cardName: item.displayCardName,
-                          intent: item.intent,
-                          buttonLabel: 'Message collector',
-                          variant: ContactOwnerButtonVariant.pulseSecondary,
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      _secondaryLine,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.62),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        height: 1.20,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 7,
+                      runSpacing: 4,
+                      children: [
+                        _PulseActionPill(
+                          label: item.isCompletion
+                              ? 'View progress'
+                              : 'View card',
+                          icon: item.isCompletion
+                              ? Icons.trending_up_rounded
+                              : Icons.style_outlined,
+                          primary: true,
+                          onPressed: () => unawaited(_openPrimary(context)),
                         ),
-                    ],
-                  ),
-                ],
+                        if (item.isWantMatch &&
+                            item.contactVaultItemId.isNotEmpty)
+                          ContactOwnerButton(
+                            vaultItemId: item.contactVaultItemId,
+                            cardPrintId: item.cardPrintId,
+                            ownerUserId: item.actorUserId,
+                            ownerDisplayName: item.displayActorName,
+                            cardName: item.displayCardName,
+                            intent: item.intent,
+                            buttonLabel: 'Message collector',
+                            variant: ContactOwnerButtonVariant.pulseSecondary,
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showQuickActions(BuildContext context) {
+    final actorSlug = item.actorSlug.trim();
+    final canMessage = item.isWantMatch && item.contactVaultItemId.isNotEmpty;
+    return showVaultQuickActionSheet(
+      context: context,
+      title: item.displayCardName,
+      subtitle: _secondaryLine,
+      actions: [
+        VaultQuickAction(
+          icon: item.isCompletion
+              ? Icons.trending_up_rounded
+              : Icons.style_outlined,
+          label: item.isCompletion ? 'View progress' : 'View card',
+          onPressed: () => unawaited(_openPrimary(context)),
+        ),
+        VaultQuickAction(
+          icon: Icons.dashboard_customize_outlined,
+          label: 'View collector Wall',
+          onPressed: actorSlug.isEmpty
+              ? null
+              : () {
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => PublicCollectorScreen(slug: actorSlug),
+                    ),
+                  );
+                },
+        ),
+        VaultQuickAction(
+          icon: Icons.chat_bubble_outline_rounded,
+          label: 'Message collector',
+          onPressed: canMessage
+              ? () {
+                  unawaited(
+                    showContactOwnerComposerSheet(
+                      context: context,
+                      vaultItemId: item.contactVaultItemId,
+                      cardPrintId: item.cardPrintId,
+                      ownerDisplayName: item.displayActorName,
+                      cardName: item.displayCardName,
+                      intent: item.intent,
+                    ),
+                  );
+                }
+              : null,
+        ),
+      ],
     );
   }
 

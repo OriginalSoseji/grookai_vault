@@ -21,6 +21,7 @@ must not be treated as shipped.
 | Nav dedupe | Complete in this branch, with user-facing Feed renamed to Pulse. |
 | Single-copy vault routing | Complete: single-copy owner rows now open the unified ownership screen. |
 | Card Ownership consolidation | Implemented for current owner routes. `VaultGvviScreen` remains in the tree for rollback/public-adjacent legacy references but is no longer used by the touched owner routes. |
+| Shared long-press quick actions | Complete for current scope: Vault grid, Copies tab, Pulse rows, and Wall card tiles all use the shared bottom-sheet component; Samsung Pulse/Wall screenshot gate passed. |
 | Vault delete undo | Present: low-risk vault delete uses `_deleteWithUndo`; high-risk delete still uses a dialog. |
 | Collector Memory archive undo | Present: memory archive is delayed behind a 5-second undo snackbar. |
 | Catalog manual-add friction | Present: `_showCatalogPickerAndInsert` inserts quantity 1 immediately and offers `+1 more`. |
@@ -311,6 +312,23 @@ Result: complete in this branch.
 - Loading the next page appends species to the current Dex list, preserving the
   already-scrolled result set instead of forcing Previous/Next navigation.
 
+Step 6: Pulse and Wall long-press quick actions.
+
+Result: complete in this branch.
+
+- Pulse rows now support long-press without changing their existing inline
+  primary and message actions. The shared sheet exposes View card/View progress,
+  View collector Wall when a collector slug is available, and Message collector
+  when the Pulse item has a contact target.
+- Public Wall card tiles now support long-press without changing normal tap to
+  card/copy detail. The shared sheet exposes View, Share link, and Message when
+  the card has a contact target and the viewer is not the owner.
+- `test/vault_quick_action_sheet_test.dart` now guards all current shared-sheet
+  call sites: Vault grid, Copies tab, Pulse rows, and Wall card tiles.
+- Samsung `SM S908U` screenshots captured:
+  `artifacts/screenshots/step6_pulse_long_press_sheet.png` and
+  `artifacts/screenshots/step6_wall_long_press_sheet.png`.
+
 ## Verification
 
 Passed:
@@ -345,3 +363,7 @@ Screenshots/device smoke captured on Samsung `SM S908U` (`R5CT3291F6E`) on
   selected.
 - `artifacts/screenshots/step5b_postfix_filters_active_badge.png` - Search
   active-filter state showing `Filters · 1` with no debug overflow banner.
+- `artifacts/screenshots/step6_pulse_long_press_sheet.png` - Pulse row
+  long-press quick-action sheet.
+- `artifacts/screenshots/step6_wall_long_press_sheet.png` - Wall card
+  long-press quick-action sheet.

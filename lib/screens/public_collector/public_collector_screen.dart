@@ -18,6 +18,7 @@ import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/gv_surface.dart';
+import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
 import 'public_collector_relationship_screen.dart';
@@ -1498,11 +1499,86 @@ class _PublicCardTile extends StatelessWidget {
       );
     }
 
+    Uri shareUri() {
+      final gvviId = (card.gvviId ?? '').trim();
+      if (gvviId.isNotEmpty) {
+        return GrookaiWebRouteService.buildUri(
+          '/gvvi/${Uri.encodeComponent(gvviId)}',
+        );
+      }
+      final gvId = card.gvId.trim();
+      final cardPathId = gvId.isNotEmpty ? gvId : card.cardPrintId;
+      return GrookaiWebRouteService.buildUri(
+        '/card/${Uri.encodeComponent(cardPathId)}',
+      );
+    }
+
+    Future<void> shareCardLink() async {
+      try {
+        await SharePlus.instance.share(
+          ShareParams(uri: shareUri(), subject: displayIdentity.displayName),
+        );
+      } catch (_) {
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Unable to share this card right now.')),
+        );
+      }
+    }
+
+    bool canMessageOwner() {
+      if (vaultItemId.isEmpty) return false;
+      try {
+        return Supabase.instance.client.auth.currentUser?.id != profile.userId;
+      } catch (_) {
+        return true;
+      }
+    }
+
+    Future<void> showQuickActions() {
+      return showVaultQuickActionSheet(
+        context: context,
+        title: displayIdentity.displayName,
+        subtitle: metaParts.isEmpty ? null : metaParts.join(' • '),
+        actions: [
+          VaultQuickAction(
+            icon: Icons.visibility_outlined,
+            label: 'View',
+            onPressed: openCardDetails,
+          ),
+          VaultQuickAction(
+            icon: Icons.ios_share_outlined,
+            label: 'Share link',
+            onPressed: () => unawaited(shareCardLink()),
+          ),
+          VaultQuickAction(
+            icon: Icons.chat_bubble_outline_rounded,
+            label: 'Message',
+            onPressed: canMessageOwner()
+                ? () {
+                    unawaited(
+                      showContactOwnerComposerSheet(
+                        context: context,
+                        vaultItemId: vaultItemId,
+                        cardPrintId: card.cardPrintId,
+                        ownerDisplayName: profile.displayName,
+                        cardName: displayIdentity.displayName,
+                        intent: card.intent,
+                      ),
+                    );
+                  }
+                : null,
+          ),
+        ],
+      );
+    }
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: openCardDetails,
+        onLongPress: showQuickActions,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

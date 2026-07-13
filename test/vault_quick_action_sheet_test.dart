@@ -65,6 +65,12 @@ void main() {
     final manage = File(
       'lib/screens/vault/vault_manage_card_screen.dart',
     ).readAsStringSync();
+    final network = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+    final publicCollector = File(
+      'lib/screens/public_collector/public_collector_screen.dart',
+    ).readAsStringSync();
 
     expect(vault, contains('Future<void> _showVaultRowQuickActions'));
     expect(vault, contains(': () => _showVaultRowQuickActions(row)'));
@@ -77,5 +83,15 @@ void main() {
     expect(manage, contains("label: 'View public page'"));
     expect(manage, contains("label: 'Slab upgrade'"));
     expect(manage, contains("label: 'Remove copy'"));
+
+    expect(network, contains('onLongPress: () => _showQuickActions(context)'));
+    expect(network, contains('showVaultQuickActionSheet'));
+    expect(network, contains("label: 'View collector Wall'"));
+    expect(network, contains("label: 'Message collector'"));
+
+    expect(publicCollector, contains('onLongPress: showQuickActions'));
+    expect(publicCollector, contains('showVaultQuickActionSheet'));
+    expect(publicCollector, contains("label: 'Share link'"));
+    expect(publicCollector, contains("label: 'Message'"));
   });
 }
