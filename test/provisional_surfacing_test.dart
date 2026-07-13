@@ -35,8 +35,11 @@ void main() {
     expect(card.displayLabel, provisionalUnderReviewLabel);
     expect(card.identityLine, 'sv01 #025/198');
     expect(provisionalDisplayLabel('UNCONFIRMED'), provisionalUnconfirmedLabel);
-    expect(provisionalTrustCopy, 'Visible while under review.');
-    expect(provisionalNotCanonCopy, 'Not part of the canonical catalog yet.');
+    expect(provisionalTrustCopy, 'Review this possible match before adding it.');
+    expect(
+      provisionalNotCanonCopy,
+      'It is not in your saved card list yet.',
+    );
   });
 
   test('Flutter provisional read layer uses public web APIs only', () {

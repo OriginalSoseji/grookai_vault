@@ -80,7 +80,7 @@ class _ProvisionalCardScreenState extends State<ProvisionalCardScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Unconfirmed Card'), centerTitle: false),
+      appBar: AppBar(title: const Text('Card To Review'), centerTitle: false),
       body: SafeArea(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 180),

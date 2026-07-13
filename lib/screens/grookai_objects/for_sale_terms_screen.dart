@@ -120,7 +120,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
     }
     final copy = _copy;
     if (copy == null) {
-      setState(() => _error = 'Exact copy target could not be resolved.');
+      setState(() => _error = 'This card copy is not available yet.');
       return;
     }
     final price = double.tryParse(_priceController.text.trim());

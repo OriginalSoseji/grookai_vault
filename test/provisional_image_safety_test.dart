@@ -9,7 +9,7 @@ Map<String, dynamic> _payload({String? imageUrl}) {
     'number_hint': '025/198',
     'provisional_state': 'RAW',
     'provisional_label': 'UNCONFIRMED',
-    'public_explanation': 'Not part of the canonical catalog yet.',
+    'public_explanation': 'It is not in your saved card list yet.',
   };
   if (imageUrl != null) {
     payload['image_url'] = imageUrl;

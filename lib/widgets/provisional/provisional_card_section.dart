@@ -8,7 +8,7 @@ import '../card_surface_artwork.dart';
 class ProvisionalCardSection extends StatelessWidget {
   const ProvisionalCardSection({
     required this.cards,
-    this.title = 'Unconfirmed Cards',
+    this.title = 'Cards To Review',
     this.compact = false,
     super.key,
   });

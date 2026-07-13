@@ -948,7 +948,7 @@ class VaultGvviService {
   }) async {
     final normalizedInstanceId = _clean(instanceId);
     if (normalizedInstanceId.isEmpty) {
-      throw Exception('Exact copy target could not be resolved.');
+      throw Exception('This card copy is not available yet.');
     }
 
     final result = await client.rpc(

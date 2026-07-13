@@ -640,22 +640,22 @@ class _ResolverStatusBanner extends StatelessWidget {
       case ResolverSearchState.ambiguousMatch:
         background = colorScheme.tertiaryContainer.withValues(alpha: 0.28);
         border = colorScheme.tertiary.withValues(alpha: 0.40);
-        title = 'Multiple plausible matches';
+        title = 'Multiple possible matches';
         body =
-            'This query is still ambiguous. Review the ranked cards instead of treating the top result as certain.';
+            'This search could match more than one card. Review the ranked cards before adding one.';
         break;
       case ResolverSearchState.weakMatch:
         background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
         border = colorScheme.outline.withValues(alpha: 0.35);
-        title = 'Weak match';
+        title = 'Approximate matches';
         body =
-            'These results are approximate. Add a set code, collector number, or promo code to strengthen the match.';
+            'Add a set code, collector number, or promo code to narrow the match.';
         break;
       case ResolverSearchState.noMatch:
         background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
         border = colorScheme.outline.withValues(alpha: 0.35);
         title = 'No matching cards';
-        body = 'No viable deterministic match was found for "$trimmed".';
+        body = 'No clear match was found for "$trimmed".';
         break;
     }
 

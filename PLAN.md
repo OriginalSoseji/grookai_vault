@@ -3,7 +3,7 @@
 Source: `Grookai Vault - App-Wide Simplification - Master Plan - July 12, 2026`
 Date audited: 2026-07-13
 Branch audited: `fix/pricing-ingestion-nightly`
-Head audited: `0f6d06f8`
+Head audited: `93d7192c`
 
 ## Current Status
 
@@ -28,7 +28,7 @@ must not be treated as shipped.
 | Icon/label semantics | Complete: Wall uses collection/bookmark iconography, and Search no longer carries grid/@ shortcut buttons in its filter controls. |
 | Card Detail action bar + sign-in | Complete: bottom actions are fixed, Compare is in top chrome, and signed-out Add to Vault/Want opens an intent-preserving sign-in sheet. |
 | Dex pagination | Complete: Dex uses progressive `Load more` append instead of Previous/Next paging. |
-| Jargon sweep | Complete for current Flutter visible copy in the audited surfaces; remaining matches are identifiers, comments, tests, or internal model names. |
+| Jargon sweep | Complete for the approved Step 3(b) scope: owner-copy labels, sale/copy errors, scanner hint copy, and provisional-surface copy are cleaned; remaining matches are identifiers, comments, service/API names, tests, or debug/internal wording. |
 
 ## Step 1 Scope and Result
 
@@ -190,12 +190,92 @@ Result: complete in this branch.
 
 Step 3: jargon sweep.
 
-Result: complete for the audited Flutter surfaces.
+Result: complete for the approved Step 3(b) scope.
 
 - Replaced visible owner copy labels from `Exact copy`/`Manage Card`/`GVVI` to
   `Copy`, `Your copies`, and `Copy ID`.
 - Kept identifiers, service names, comments, tests, and data-model terminology
   where changing them would create churn without changing user-visible copy.
+- Step 3(b) cleaned the confirmed remaining user-visible strings:
+  - `Exact copy target could not be resolved.` became
+    `This card copy is not available yet.`
+  - `Hint ready - awaiting resolver` became `Hint ready`.
+  - Search match banners now use collector-facing copy such as
+    `Multiple possible matches`, `Approximate matches`, and
+    `No clear match was found`.
+  - Provisional card surfaces now use `Card To Review`, `Cards To Review`,
+    `Needs Review`, `Reviewing`, and plain review guidance.
+
+## Step 3(b) Result: Jargon Sweep Finish
+
+Audit date: 2026-07-13.
+Implemented: 2026-07-13.
+
+Scope: replace only user-visible copy. Do not rename identifiers, models,
+routes, comments, API paths, service names, or tests unless a test explicitly
+asserts visible copy that must change with the product text.
+
+Updated user-visible hits:
+
+- `lib/screens/grookai_objects/for_sale_terms_screen.dart`
+  - Old copy: `Exact copy target could not be resolved.`
+  - Surface: form error shown when the sale listing screen cannot resolve the
+    selected ownership target.
+  - New copy: `This card copy is not available yet.`
+- `lib/services/grookai_objects/sale_listing_service.dart`
+  - Old copy: `Exact copy target could not be resolved.`
+  - Surface: thrown service error that can bubble into sale listing UI.
+  - New copy: `This card copy is not available yet.`
+- `lib/services/vault/vault_gvvi_service.dart`
+  - Old copy: `Exact copy target could not be resolved.`
+  - Surface: thrown archive error that can bubble into owner UI.
+  - New copy: `This card copy is not available yet.`
+- `lib/screens/identity_scan/identity_scan_screen.dart`
+  - Old copy: `Hint ready - awaiting resolver`
+  - Surface: scanner hint state title.
+  - New copy: `Hint ready`
+- `lib/widgets/provisional/provisional_card_section.dart`
+  - Old section title default: `Unconfirmed Cards`
+  - New title: `Cards To Review`
+  - Support copy now comes from the revised `provisionalTrustCopy`.
+- `lib/screens/provisional/provisional_card_screen.dart`
+  - Old title: `Unconfirmed Card`
+  - Detail copy comes from `provisionalTrustCopy` and
+    `provisionalNotCanonCopy`.
+  - New title: `Card To Review`
+  - New detail copy:
+    - `Review this possible match before adding it.`
+    - `It is not in your saved card list yet.`
+- `lib/services/provisional/provisional_presentation.dart`
+  - Old visible constants: `Unconfirmed`, `Under Review`,
+    `Visible while under review.`, `Not part of the canonical catalog yet.`
+  - New visible constants: `Needs Review`, `Reviewing`,
+    `Review this possible match before adding it.`,
+    `It is not in your saved card list yet.`
+- `lib/main.dart`
+  - Old search banner copy used internal phrasing such as
+    `Multiple plausible matches`, `Weak match`, and
+    `No viable deterministic match was found`.
+  - New copy uses `Multiple possible matches`, `Approximate matches`, and
+    `No clear match was found`.
+
+Excluded from Step 3(b):
+
+- `provisional`, `resolver`, and `GVVI` in identifiers, imports, comments, API
+  paths, debug-only internals, and tests that do not represent user-facing copy.
+- `native_scanner_phase0_screen.dart` debug metric labels unless a visible
+  release surface is confirmed; those labels appear diagnostic/dev-facing.
+
+Gate passed:
+
+- `flutter analyze`
+- `flutter test`
+- Focused grep after implementation confirmed:
+  - no user-visible `Exact copy target could not be resolved`
+  - no user-visible `awaiting resolver`
+  - no user-visible `canonical catalog`
+  - remaining `provisional`/`resolver` matches are identifiers, comments,
+    service/API names, tests, or debug-only internals
 
 Step 4: Card Detail action bar + sign-in.
 

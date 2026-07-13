@@ -1,7 +1,8 @@
-const String provisionalUnconfirmedLabel = 'Unconfirmed';
-const String provisionalUnderReviewLabel = 'Under Review';
-const String provisionalTrustCopy = 'Visible while under review.';
-const String provisionalNotCanonCopy = 'Not part of the canonical catalog yet.';
+const String provisionalUnconfirmedLabel = 'Needs Review';
+const String provisionalUnderReviewLabel = 'Reviewing';
+const String provisionalTrustCopy =
+    'Review this possible match before adding it.';
+const String provisionalNotCanonCopy = 'It is not in your saved card list yet.';
 
 // LOCK: Provisional product language must stay short, calm, and non-technical.
 String provisionalDisplayLabel(String? rawLabel) {

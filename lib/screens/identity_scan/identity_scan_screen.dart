@@ -410,7 +410,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hint ready — awaiting resolver',
+                'Hint ready',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
