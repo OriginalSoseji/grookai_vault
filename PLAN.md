@@ -11,9 +11,9 @@ All implementation rows in this app-wide simplification plan are complete in
 this branch as of 2026-07-13. The branch is pushed through Step 6 at
 `4193f248`.
 
-Current unrelated dirty work in pricing/deploy/docs audit files is outside this
-plan and must not be treated as part of the shipped app-wide simplification
-work.
+Follow-up cleanup audit on 2026-07-13 confirmed `VaultGvviScreen` has no live
+route imports. It remains in the tree only as the planned one-release rollback
+file, with legacy tests still reading it directly.
 
 ## Master Plan Progress
 
@@ -21,7 +21,7 @@ work.
 | --- | --- |
 | Nav dedupe | Complete in this branch, with user-facing Feed renamed to Pulse. |
 | Single-copy vault routing | Complete: single-copy owner rows now open the unified ownership screen. |
-| Card Ownership consolidation | Implemented for current owner routes. `VaultGvviScreen` remains in the tree for rollback/public-adjacent legacy references but is no longer used by the touched owner routes. |
+| Card Ownership consolidation | Complete for current owner routes. `VaultGvviScreen` remains in the tree only for the planned one-release rollback window; no live route imports remain. |
 | Shared long-press quick actions | Complete for current scope: Vault grid, Copies tab, Pulse rows, and Wall card tiles all use the shared bottom-sheet component; Samsung Pulse/Wall screenshot gate passed. |
 | Vault delete undo | Present: low-risk vault delete uses `_deleteWithUndo`; high-risk delete still uses a dialog. |
 | Collector Memory archive undo | Present: memory archive is delayed behind a 5-second undo snackbar. |
@@ -76,39 +76,30 @@ Required behavior:
 - Keep `VaultGvviScreen` file intact but unreferenced for one release cycle as
   rollback. Delete only after a later cleanup confirms no owner route needs it.
 
-Current owner-facing call sites that must be updated:
+Original owner-facing call sites audited for this step, with current result:
 
 - `lib/card_detail_screen.dart`
-  - `_openExactCopy()` routes owners to `VaultGvviScreen` and non-owners to
-    `PublicGvviScreen`.
-  - `_openManageCard()` routes to `VaultManageCardScreen`.
-  - `_openResolvedOwnedCopy()` routes a resolved single owned copy to
-    `VaultGvviScreen`.
-  - add-to-vault success routes to `VaultGvviScreen`.
-  - header nav cue label is still `Exact copy`.
-  - `_buildActions()` still has four ownership states:
-    `Add to Vault`, `View your copy`, `Add copy`, `Manage card`.
+  - Owner paths now route to `VaultManageCardScreen`; non-owner exact-copy
+    paths still route to `PublicGvviScreen`.
+  - Card Detail ownership labels are collapsed to the approved two-state copy.
 - `lib/main_vault.dart`
-  - `_openManageCardRow()` routes rows with only `gvviId`, and rows with
-    exactly one owned copy, to `VaultGvviScreen`.
-  - multi-copy rows route to `VaultManageCardScreen`.
+  - Single-copy and multi-copy rows now route to `VaultManageCardScreen`.
 - `lib/main.dart`
-  - search/add flows still route to `VaultGvviScreen` in several owned-copy
-    paths and to `VaultManageCardScreen` in fallback/manage paths.
+  - Search/add owned-copy success paths now route to `VaultManageCardScreen`.
 - `lib/screens/vault/vault_manage_card_screen.dart`
-  - app bar title is `Manage Card`.
-  - Copies tab rows open `VaultGvviScreen` through `_openExactCopy`.
-  - current tab layout always builds Overview + Copies.
+  - App bar title is the card name.
+  - Single-copy ownership renders Overview only; multi-copy keeps Overview +
+    Copies.
+  - Copies rows use the public copy page/share/slab/remove actions without
+    routing to `VaultGvviScreen`.
 - `lib/screens/vault/vault_gvvi_screen.dart`
-  - owner-facing screen title is `Exact Copy`.
-  - contains the Overview content that must be ported.
-  - still routes back into `VaultManageCardScreen`.
+  - Retained unreferenced as the planned rollback file for one release cycle.
 - `lib/screens/gvvi/public_gvvi_screen.dart`
-  - keep public/non-owner behavior separate, but owner upgrade/manage buttons
-    should route to the unified ownership screen.
+  - Public/non-owner behavior remains separate; owner upgrade/manage routes go
+    to `VaultManageCardScreen`.
 - `lib/screens/network/network_screen.dart`
-  - exact-copy opens route owners to `VaultGvviScreen` and non-owners to
-    `PublicGvviScreen`; owner path must move to the unified screen.
+  - Exact-copy opens route owners to `VaultManageCardScreen` and non-owners to
+    `PublicGvviScreen`.
 
 OwnershipAction change:
 
