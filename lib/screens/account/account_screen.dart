@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/account/account_profile_service.dart';
 import '../../services/network/founder_insight_service.dart';
@@ -336,6 +337,26 @@ class _AccountScreenState extends State<AccountScreen> {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const SubmitMissingCardScreen()),
     );
+  }
+
+  Future<void> _openSupportEmail() async {
+    final uri = Uri(
+      scheme: 'mailto',
+      path: 'support@grookaivault.com',
+      queryParameters: {'subject': 'Grookai Vault support'},
+    );
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication) &&
+        mounted) {
+      _setStatus('Could not open your email app.', success: false);
+    }
+  }
+
+  Future<void> _openPrivacyPolicy() async {
+    final uri = Uri.parse('https://grookaivault.com/privacy');
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication) &&
+        mounted) {
+      _setStatus('Could not open the privacy policy.', success: false);
+    }
   }
 
   Future<void> _openFounderMetrics() async {
@@ -683,6 +704,18 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'Submit Missing Card',
               subtitle: 'Send a native warehouse submission',
               onTap: _openSubmitMissingCard,
+            ),
+            _AccountLinkTile(
+              icon: Icons.support_agent_rounded,
+              title: 'Support',
+              subtitle: 'Get account help or report a problem',
+              onTap: _openSupportEmail,
+            ),
+            _AccountLinkTile(
+              icon: Icons.privacy_tip_outlined,
+              title: 'Privacy',
+              subtitle: 'Review Grookai privacy information',
+              onTap: _openPrivacyPolicy,
             ),
           ],
         ),

@@ -173,6 +173,18 @@ export default async function AccountPage({
               Submit Missing Card
             </Link>
             <Link
+              href="/support"
+              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
+            >
+              Support
+            </Link>
+            <Link
+              href="/privacy"
+              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
+            >
+              Privacy
+            </Link>
+            <Link
               href="/following"
               className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
             >
