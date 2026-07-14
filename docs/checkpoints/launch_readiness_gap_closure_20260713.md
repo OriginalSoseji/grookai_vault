@@ -26,7 +26,9 @@ Confirmed gaps remaining:
 
 - Mobile crash reporting was not wired at the time of the source audit.
   Crashlytics code-side wiring now exists; Firebase-console readback from a
-  non-public build is still required before launch.
+  non-public build is still required before launch. Samsung Crashlytics
+  self-test proof is recorded in
+  `docs/checkpoints/top_one_percent_launch_hardening_session_20260713.md`.
 - Public `/privacy` and `/support` URLs were referenced by release docs but did
   not exist before this checkpoint.
 - Android launcher label was still `grookai_vault`.
@@ -41,7 +43,8 @@ Confirmed gaps remaining:
 - Trust/safety now has a launch-minimum block/report layer in
   `docs/checkpoints/trust_safety_minimum_block_report_20260713.md`. Follow-up
   moderation review tooling and unblock management remain post-minimum
-  hardening.
+  hardening. Linked Supabase migration readback still shows
+  `20260713190000` as local-only.
 - E6 onboarding UI is present on current `main`; the stale product-experience
   blocker is closed by
   `docs/checkpoints/e6_onboarding_day1_checkpoint_20260713.md`.
@@ -58,6 +61,8 @@ Confirmed gaps remaining:
   Vault`.
 - Recorded the E6 onboarding day-1 checkpoint and removed the stale claim that
   no visible onboarding UI exists on `main`.
+- Ran Samsung Crashlytics non-fatal and fatal self-test builds and recorded the
+  device-side proof.
 
 ## Verification
 
@@ -68,7 +73,8 @@ Confirmed gaps remaining:
 ## Launch Blocker Queue
 
 1. Verify mobile Crashlytics readback from a non-public build using
-   `docs/checkpoints/mobile_crash_reporting_wiring_20260713.md`.
+   `docs/checkpoints/mobile_crash_reporting_wiring_20260713.md` and
+   `docs/checkpoints/top_one_percent_launch_hardening_session_20260713.md`.
 2. Capture Scanner V5 real-device launch proof per
    `docs/checkpoints/scanner_v5_launch_checkpoint_20260713.md`; top-1/top-3
    and p50/p95 are not yet proven from a phone session.
@@ -78,6 +84,7 @@ Confirmed gaps remaining:
    human.
 4. Trust/safety launch minimum is code-complete; apply the migration and verify
    reports/blocks in staging before broad public messaging/listing exposure.
+   Linked migration readback still shows `20260713190000` as local-only.
 5. E6 onboarding implementation is no longer a repo blocker; apply the E6
    migrations and smoke-test a signed-in new-account ladder session in staging.
 
