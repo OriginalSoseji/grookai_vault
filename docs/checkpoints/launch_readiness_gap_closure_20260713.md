@@ -42,8 +42,9 @@ Confirmed gaps remaining:
   `docs/checkpoints/trust_safety_minimum_block_report_20260713.md`. Follow-up
   moderation review tooling and unblock management remain post-minimum
   hardening.
-- E6 onboarding UI remains the largest product-experience launch gap unless a
-  separate branch has implemented it.
+- E6 onboarding UI is present on current `main`; the stale product-experience
+  blocker is closed by
+  `docs/checkpoints/e6_onboarding_day1_checkpoint_20260713.md`.
 
 ## Closed In This Pass
 
@@ -55,6 +56,8 @@ Confirmed gaps remaining:
 - Added Support and Privacy actions to the Flutter Account screen.
 - Moved the Android app label to `@string/app_name` and set it to `Grookai
   Vault`.
+- Recorded the E6 onboarding day-1 checkpoint and removed the stale claim that
+  no visible onboarding UI exists on `main`.
 
 ## Verification
 
@@ -75,8 +78,8 @@ Confirmed gaps remaining:
    human.
 4. Trust/safety launch minimum is code-complete; apply the migration and verify
    reports/blocks in staging before broad public messaging/listing exposure.
-5. Decide whether E6 onboarding UI is required for day-1 public launch or
-   explicitly move it to post-launch.
+5. E6 onboarding implementation is no longer a repo blocker; apply the E6
+   migrations and smoke-test a signed-in new-account ladder session in staging.
 
 ## Legal Note
 
