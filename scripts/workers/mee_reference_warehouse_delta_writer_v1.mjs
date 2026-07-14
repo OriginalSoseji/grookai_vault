@@ -4,6 +4,8 @@ import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import pg from "pg";
+
 import "../../backend/env.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 import {
@@ -18,6 +20,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const { Client } = pg;
+const REFERENCE_WAREHOUSE_TABLES = new Set([
+  "market_reference_candidates",
+  "market_reference_normalized_evidence",
+]);
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -74,6 +81,8 @@ function countJsonlLines(filePath) {
 }
 
 async function countRowsBySource(supabase, table) {
+  if (process.env.SUPABASE_DB_URL) return countRowsBySourceWithPg(table);
+
   const out = {};
   for (const source of AUTOMATED_REFERENCE_SOURCES_V1) {
     const { count, error } = await supabase
@@ -84,6 +93,40 @@ async function countRowsBySource(supabase, table) {
     out[source] = count ?? 0;
   }
   return out;
+}
+
+async function withPgClient(callback) {
+  const client = new Client({
+    connectionString: process.env.SUPABASE_DB_URL,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  await client.connect();
+  try {
+    return await callback(client);
+  } finally {
+    await client.end();
+  }
+}
+
+async function countRowsBySourceWithPg(table) {
+  if (!REFERENCE_WAREHOUSE_TABLES.has(table)) {
+    throw new Error(`[mee-reference-delta-writer] unsafe table for pg count: ${table}`);
+  }
+  return withPgClient(async (client) => {
+    const result = await client.query(
+      `select source, count(*)::integer as count
+         from public.${table}
+        where source = any($1::text[])
+        group by source`,
+      [AUTOMATED_REFERENCE_SOURCES_V1],
+    );
+    const out = Object.fromEntries(AUTOMATED_REFERENCE_SOURCES_V1.map((source) => [source, 0]));
+    for (const row of result.rows) out[row.source] = Number(row.count);
+    return out;
+  });
 }
 
 function sourceCountsFromNormalizedArtifact(artifact) {
@@ -241,7 +284,35 @@ async function fetchAll(supabase, table, select, configure = (query) => query, {
   return rows;
 }
 
+async function fetchExistingCandidateMapWithPg(source) {
+  return withPgClient(async (client) => {
+    const result = await client.query(
+      `select id, candidate_hash
+         from public.market_reference_candidates
+        where source = $1
+        order by id asc`,
+      [source],
+    );
+    return new Map(result.rows.map((row) => [row.candidate_hash, row.id]));
+  });
+}
+
+async function fetchExistingNormalizedKeysWithPg(source) {
+  return withPgClient(async (client) => {
+    const result = await client.query(
+      `select candidate_id, normalizer_version
+         from public.market_reference_normalized_evidence
+        where source = $1
+        order by candidate_id asc`,
+      [source],
+    );
+    return new Set(result.rows.map((row) => `${row.candidate_id}:${row.normalizer_version}`));
+  });
+}
+
 async function fetchExistingCandidateMap(supabase, source) {
+  if (process.env.SUPABASE_DB_URL) return fetchExistingCandidateMapWithPg(source);
+
   const rows = await fetchAll(
     supabase,
     "market_reference_candidates",
@@ -252,6 +323,8 @@ async function fetchExistingCandidateMap(supabase, source) {
 }
 
 async function fetchExistingNormalizedKeys(supabase, source) {
+  if (process.env.SUPABASE_DB_URL) return fetchExistingNormalizedKeysWithPg(source);
+
   const rows = await fetchAll(
     supabase,
     "market_reference_normalized_evidence",

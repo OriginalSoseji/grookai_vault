@@ -20,6 +20,12 @@ test("MEE reference warehouse delta writer is guarded and non-public", () => {
   assert.match(script, /guarded_run_missing_rows_only/);
   assert.match(script, /market_reference_candidates/);
   assert.match(script, /market_reference_normalized_evidence/);
+  assert.match(script, /SUPABASE_DB_URL/);
+  assert.match(script, /REFERENCE_WAREHOUSE_TABLES/);
+  assert.match(script, /unsafe table for pg count/);
+  assert.match(script, /countRowsBySourceWithPg/);
+  assert.match(script, /fetchExistingCandidateMapWithPg/);
+  assert.match(script, /fetchExistingNormalizedKeysWithPg/);
   assert.match(script, /db_writes:\s*run\s*&&\s*applyResults\.some/);
   assert.match(script, /pricing_observations_writes:\s*false/);
   assert.match(script, /ebay_active_prices_latest_writes:\s*false/);
