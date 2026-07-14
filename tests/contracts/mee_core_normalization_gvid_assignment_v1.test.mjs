@@ -59,7 +59,7 @@ test("normalization-only runner has no provider acquisition phases", () => {
   assert.match(script, /dry_run_db_write_phase/);
 });
 
-test("candidate planning and nightly ingestion are run-key aware", () => {
+test("candidate planning supports run keys while nightly ingestion resolves the acquisition key dynamically", () => {
   const candidatePlan = read(candidatePlanPath);
   const nightlyIngest = read(nightlyIngestPath);
 
@@ -67,7 +67,8 @@ test("candidate planning and nightly ingestion are run-key aware", () => {
   assert.match(candidatePlan, /args\.runKey/);
   assert.match(candidatePlan, /resolvedRunKey/);
   assert.match(candidatePlan, /source_run_key:\s*resolvedRunKey/);
-  assert.match(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs", "--run-key=\{runKey\}"/);
+  assert.match(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs"/);
+  assert.doesNotMatch(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs", "--run-key=\{runKey\}"/);
 });
 
 test("nightly worker has provider-call budget gates and normalization-only mode", () => {

@@ -129,10 +129,12 @@ test("eBay projection preserves child variant target identity in raw evidence pa
   assert.match(smokeFetch, /unique_printing_target_count_with_results/);
 });
 
-test("nightly worker runs variant assignment after ingest before final readbacks", () => {
+test("nightly worker keeps variant assignment guarded before final readbacks", () => {
   assert.match(nightlyWorker, /docs\/sql\/mee_variant_assignment_v1_backfill\.sql/);
   assert.match(nightlyWorker, /docs\/sql\/mee_variant_assignment_v1_readback\.sql/);
   assert.match(nightlyWorker, /docs\/sql\/mee_variant_read_models_v1_readback\.sql/);
+  assert.match(nightlyWorker, /enableRunOnlyMaintenance/);
+  assert.match(nightlyWorker, /run_only_maintenance_not_requested/);
 
   const lifecycleIndex = nightlyWorker.indexOf('key: "lifecycle_projection_drain"');
   const assignmentIndex = nightlyWorker.indexOf('key: "variant_assignment_backfill"');

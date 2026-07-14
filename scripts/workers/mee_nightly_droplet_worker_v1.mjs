@@ -220,6 +220,8 @@ function parseArgs(argv) {
     lockProbe: argv.includes("--lock-probe"),
     normalizationOnly: argv.includes("--normalization-only") || process.env.MEE_NIGHTLY_NORMALIZATION_ONLY === "1",
     enableLifecycleDrain: argv.includes("--enable-lifecycle-drain") || process.env.MEE_NIGHTLY_ENABLE_LIFECYCLE_DRAIN === "1",
+    enableRunOnlyMaintenance:
+      argv.includes("--enable-run-only-maintenance") || process.env.MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE === "1",
     providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
     maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
   };
@@ -657,6 +659,7 @@ function preflight(args) {
       SUPABASE_DB_URL_present: Boolean(process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL),
       MEE_NIGHTLY_PROVIDER_CALLS_ENABLED: args.providerCallsEnabled,
       MEE_NIGHTLY_NORMALIZATION_ONLY: args.normalizationOnly,
+      MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE: args.enableRunOnlyMaintenance,
       MEE_NIGHTLY_MAX_CALL_CEILING: args.maxCallCeiling,
       MEE_NIGHTLY_REFERENCE_LIMIT: args.referenceLimit,
       EBAY_AUTH_PRESENT: Boolean(
@@ -749,6 +752,20 @@ try {
       }
       if (phase.lifecycleDrain && !args.enableLifecycleDrain) {
         const skipped = { phase: phase.key, skipped: true, reason: "lifecycle_drain_not_requested", status: 0 };
+        const ledger = await appendPhaseRunLedger({
+          args,
+          phase,
+          result: { ...skipped, command: null, actual_command: null, stdout_tail: "", stderr_tail: "" },
+          phaseStartedAt: new Date().toISOString(),
+          skipped: true,
+          reason: skipped.reason,
+        });
+        execution.push({ ...skipped, ledger });
+        if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
+        continue;
+      }
+      if (phase.runOnly && !args.enableRunOnlyMaintenance) {
+        const skipped = { phase: phase.key, skipped: true, reason: "run_only_maintenance_not_requested", status: 0 };
         const ledger = await appendPhaseRunLedger({
           args,
           phase,
