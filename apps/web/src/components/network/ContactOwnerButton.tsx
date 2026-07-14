@@ -15,6 +15,7 @@ import {
   type DiscoverableVaultIntent,
 } from "@/lib/network/intent";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
+import TrustSafetyControls from "@/components/trust/TrustSafetyControls";
 
 type ContactOwnerButtonProps = {
   vaultItemId: string;
@@ -259,6 +260,17 @@ export function ContactOwnerButton({
                   </label>
 
                   <p className="text-xs text-slate-500">Keep it about this card. Maximum 2000 characters.</p>
+
+                  {ownerUserId && !isSelfContact ? (
+                    <TrustSafetyControls
+                      reportedUserId={ownerUserId}
+                      surface="listing"
+                      surfaceId={`${cardPrintId}:${vaultItemId}`}
+                      returnPath={currentPath}
+                      cardPrintId={cardPrintId}
+                      compact
+                    />
+                  ) : null}
 
                   <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                     <button

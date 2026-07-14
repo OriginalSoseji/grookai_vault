@@ -38,8 +38,10 @@ Confirmed gaps remaining:
   inference from repo files. `docs/checkpoints/mee_timer_alerting_checkpoint_20260713.md`
   adds the host-side readiness gate and records that current repo templates do
   not prove a human alert route.
-- Trust/safety still needs a first-class block/report workflow for mobile/web
-  messaging, public profiles, Wall cards, and listings.
+- Trust/safety now has a launch-minimum block/report layer in
+  `docs/checkpoints/trust_safety_minimum_block_report_20260713.md`. Follow-up
+  moderation review tooling and unblock management remain post-minimum
+  hardening.
 - E6 onboarding UI remains the largest product-experience launch gap unless a
   separate branch has implemented it.
 
@@ -71,8 +73,8 @@ Confirmed gaps remaining:
    and archive the output. This must prove `grookai-mee-nightly.timer` and
    `grookai-mee-reference-refresh.timer` are active and that failures notify a
    human.
-4. Add minimal block/report affordances before public messaging and listing
-   surfaces are opened broadly.
+4. Trust/safety launch minimum is code-complete; apply the migration and verify
+   reports/blocks in staging before broad public messaging/listing exposure.
 5. Decide whether E6 onboarding UI is required for day-1 public launch or
    explicitly move it to post-launch.
 

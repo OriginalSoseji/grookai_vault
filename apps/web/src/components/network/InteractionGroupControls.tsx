@@ -7,6 +7,7 @@ import {
   type CardInteractionGroupStateAction,
 } from "@/lib/network/updateCardInteractionGroupStateAction";
 import type { UserCardInteractionGroupState } from "@/lib/network/getUserCardInteractions";
+import TrustSafetyControls from "@/components/trust/TrustSafetyControls";
 
 type InteractionGroupControlsProps = {
   cardPrintId: string;
@@ -104,6 +105,14 @@ export function InteractionGroupControls({
           onClick={handleAction}
         />
       </div>
+      <TrustSafetyControls
+        reportedUserId={counterpartUserId}
+        surface="message"
+        surfaceId={`${cardPrintId}:${counterpartUserId}`}
+        returnPath={currentPath}
+        cardPrintId={cardPrintId}
+        compact
+      />
       {errorMessage ? <p className="text-xs text-rose-700">{errorMessage}</p> : null}
     </div>
   );

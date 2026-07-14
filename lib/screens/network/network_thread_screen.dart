@@ -219,6 +219,62 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
     );
   }
 
+  Future<void> _reportThread() async {
+    final result = await CardInteractionService.reportThread(
+      client: _client,
+      counterpartUserId: _thread.counterpartUserId,
+      cardPrintId: _thread.cardPrintId,
+    );
+    if (!mounted) {
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(result.message)),
+    );
+  }
+
+  Future<void> _blockCounterpart() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Block collector?'),
+        content: Text(
+          'This blocks ${_thread.counterpartDisplayName} from messaging you and archives this thread.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('Block'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) {
+      return;
+    }
+
+    final result = await CardInteractionService.blockCollector(
+      client: _client,
+      counterpartUserId: _thread.counterpartUserId,
+      cardPrintId: _thread.cardPrintId,
+    );
+    if (!mounted) {
+      return;
+    }
+    if (result.ok) {
+      setState(() {
+        _thread = _thread.copyWith(isArchived: true, hasUnread: false);
+      });
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(result.message)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -241,6 +297,27 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
       appBar: AppBar(
         title: Text(_thread.counterpartDisplayName),
         actions: [
+          PopupMenuButton<String>(
+            tooltip: 'Safety actions',
+            onSelected: (value) {
+              switch (value) {
+                case 'report':
+                  _reportThread();
+                case 'block':
+                  _blockCounterpart();
+              }
+            },
+            itemBuilder: (context) => const [
+              PopupMenuItem<String>(
+                value: 'report',
+                child: Text('Report conversation'),
+              ),
+              PopupMenuItem<String>(
+                value: 'block',
+                child: Text('Block collector'),
+              ),
+            ],
+          ),
           IconButton(
             tooltip: 'Reload',
             onPressed: _load,

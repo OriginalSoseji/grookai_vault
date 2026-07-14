@@ -121,6 +121,102 @@ class CardInteractionThreadSummary {
 }
 
 class CardInteractionService {
+  static Future<CardInteractionSendResult> reportThread({
+    required SupabaseClient client,
+    required String counterpartUserId,
+    required String cardPrintId,
+    String reason = 'other',
+    String? details,
+  }) async {
+    final user = client.auth.currentUser;
+    if (user == null) {
+      return const CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.loginRequired,
+        message: 'Sign in required to report.',
+      );
+    }
+
+    final normalizedCounterpartUserId = _clean(counterpartUserId);
+    final normalizedCardPrintId = _clean(cardPrintId);
+    if (normalizedCounterpartUserId.isEmpty ||
+        normalizedCardPrintId.isEmpty ||
+        normalizedCounterpartUserId == user.id) {
+      return const CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.validationError,
+        message: 'This thread cannot be reported.',
+      );
+    }
+
+    await client.from('trust_reports').insert({
+      'reporter_user_id': user.id,
+      'reported_user_id': normalizedCounterpartUserId,
+      'surface': 'message',
+      'surface_id': normalizedCardPrintId,
+      'reason': _normalizeTrustReason(reason),
+      'details': _nullable(details),
+    });
+
+    return const CardInteractionSendResult(
+      ok: true,
+      status: CardInteractionSendStatus.created,
+      message: 'Report submitted.',
+    );
+  }
+
+  static Future<CardInteractionSendResult> blockCollector({
+    required SupabaseClient client,
+    required String counterpartUserId,
+    String? cardPrintId,
+  }) async {
+    final user = client.auth.currentUser;
+    if (user == null) {
+      return const CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.loginRequired,
+        message: 'Sign in required to block.',
+      );
+    }
+
+    final normalizedCounterpartUserId = _clean(counterpartUserId);
+    if (normalizedCounterpartUserId.isEmpty ||
+        normalizedCounterpartUserId == user.id) {
+      return const CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.validationError,
+        message: 'This collector cannot be blocked.',
+      );
+    }
+
+    await client.from('trust_blocks').upsert({
+      'user_id': user.id,
+      'blocked_user_id': normalizedCounterpartUserId,
+    }, onConflict: 'user_id,blocked_user_id');
+
+    final normalizedCardPrintId = _clean(cardPrintId);
+    if (normalizedCardPrintId.isNotEmpty) {
+      final now = DateTime.now().toUtc().toIso8601String();
+      await client.from('card_interaction_group_states').upsert({
+        'user_id': user.id,
+        'card_print_id': normalizedCardPrintId,
+        'counterpart_user_id': normalizedCounterpartUserId,
+        'has_unread': false,
+        'last_read_at': now,
+        'latest_message_at': now,
+        'archived_at': now,
+        'closed_at': null,
+        'updated_at': now,
+      }, onConflict: 'user_id,card_print_id,counterpart_user_id');
+    }
+
+    return const CardInteractionSendResult(
+      ok: true,
+      status: CardInteractionSendStatus.created,
+      message: 'Collector blocked.',
+    );
+  }
+
   static Future<CardInteractionSendResult> sendMessage({
     required SupabaseClient client,
     required String vaultItemId,
@@ -735,6 +831,18 @@ class CardInteractionService {
   }
 
   static String _clean(dynamic value) => (value ?? '').toString().trim();
+
+  static String _normalizeTrustReason(String value) {
+    switch (value.trim().toLowerCase()) {
+      case 'spam':
+      case 'harassment':
+      case 'scam':
+      case 'inappropriate':
+        return value.trim().toLowerCase();
+      default:
+        return 'other';
+    }
+  }
 
   static String? _nullable(dynamic value) {
     final normalized = _clean(value);
