@@ -705,6 +705,7 @@ class VaultPageState extends State<VaultPage> {
       return false;
     }
 
+    final previousItems = _removeVaultRowOptimistically(row);
     try {
       await VaultCardService.archiveAllVaultItems(
         client: supabase,
@@ -716,9 +717,53 @@ class VaultPageState extends State<VaultPage> {
       await reload();
       return true;
     } catch (_) {
+      _restoreVaultRowsAfterFailedDelete(previousItems);
       _showVaultMutationError('Unable to remove this card. Try again.');
       return false;
     }
+  }
+
+  List<Map<String, dynamic>> _removeVaultRowOptimistically(
+    Map<String, dynamic> row,
+  ) {
+    final previousItems = List<Map<String, dynamic>>.from(_items);
+    final cardId = (row['card_id'] ?? '').toString().trim();
+    final vaultItemId = _vaultItemIdForRow(row).trim();
+
+    if (!mounted || cardId.isEmpty) {
+      return previousItems;
+    }
+
+    setState(() {
+      _items = _items
+          .where((item) {
+            final itemCardId = (item['card_id'] ?? '').toString().trim();
+            if (itemCardId == cardId) {
+              return false;
+            }
+
+            final itemVaultItemId = _vaultItemIdForRow(item).trim();
+            return vaultItemId.isEmpty || itemVaultItemId != vaultItemId;
+          })
+          .toList(growable: false);
+      _selectedLotCardPrintIds.remove(cardId);
+      _recomputeDerivedData();
+    });
+
+    return previousItems;
+  }
+
+  void _restoreVaultRowsAfterFailedDelete(
+    List<Map<String, dynamic>> previousItems,
+  ) {
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _items = previousItems;
+      _recomputeDerivedData();
+    });
   }
 
   void _showVaultMutationError(String message) {
@@ -728,27 +773,6 @@ class VaultPageState extends State<VaultPage> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  Future<void> _restoreDeletedVaultRow(Map<String, dynamic> row) async {
-    final userId = _uid;
-    final cardId = (row['card_id'] ?? '').toString();
-    if (userId == null || cardId.isEmpty) {
-      return;
-    }
-
-    await VaultCardService.addOrIncrementVaultItem(
-      client: supabase,
-      userId: userId,
-      cardId: cardId,
-      deltaQty: 1,
-      conditionLabel: (row['condition_label'] ?? 'NM').toString(),
-      fallbackName: (row['name'] ?? '').toString(),
-      fallbackSetName: (row['set_name'] ?? '').toString(),
-      fallbackImageUrl: _vaultDisplayImageUrl(row),
-    );
-
-    await reload();
   }
 
   Future<void> showAddOrEditDialog({Map<String, dynamic>? row}) async {
@@ -1151,10 +1175,7 @@ class VaultPageState extends State<VaultPage> {
       onIncrement: () => _incQty(row, 1),
       onDecrement: () => _incQty(row, -1),
       onDelete: () async {
-        final ok = await _confirmDelete(row);
-        if (ok) {
-          await reload();
-        }
+        await _confirmDelete(row);
       },
       onTap: canOpen ? () => _openManageCardRow(row) : null,
     );
@@ -1188,10 +1209,7 @@ class VaultPageState extends State<VaultPage> {
       onIncrement: () => _incQty(row, 1),
       onDecrement: () => _incQty(row, -1),
       onDelete: () async {
-        final ok = await _confirmDelete(row);
-        if (ok) {
-          await reload();
-        }
+        await _confirmDelete(row);
       },
     );
   }
@@ -1227,10 +1245,7 @@ class VaultPageState extends State<VaultPage> {
           label: 'Remove',
           destructive: true,
           onPressed: () async {
-            final ok = await _confirmDelete(row);
-            if (ok) {
-              await reload();
-            }
+            await _confirmDelete(row);
           },
         ),
       ],
@@ -2008,10 +2023,6 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<bool> _confirmDelete(Map<String, dynamic> row) async {
-    if (await _isLowRiskVaultDelete(row)) {
-      await _deleteWithUndo(row);
-      return false;
-    }
     if (!mounted) {
       return false;
     }
@@ -2037,74 +2048,6 @@ class VaultPageState extends State<VaultPage> {
       return _delete(row);
     }
     return false;
-  }
-
-  Future<bool> _isLowRiskVaultDelete(Map<String, dynamic> row) async {
-    final vaultItemId = _vaultItemIdForRow(row);
-    final cardPrintId = (row['card_id'] ?? '').toString();
-    final gvviId = (row['gv_vi_id'] ?? '').toString().trim();
-    if (_uid == null ||
-        vaultItemId.isEmpty ||
-        cardPrintId.isEmpty ||
-        gvviId.isEmpty ||
-        _ownedCountForRow(row) != 1) {
-      return false;
-    }
-
-    final sharedState = _sharedStateByCardPrintId[cardPrintId];
-    if (sharedState?.isShared == true ||
-        (sharedState?.wallCategory?.trim().isNotEmpty ?? false)) {
-      return false;
-    }
-
-    try {
-      final manageData = await VaultCardService.loadManageCard(
-        client: supabase,
-        vaultItemId: vaultItemId,
-        cardPrintId: cardPrintId,
-        fallbackOwnedCount: _ownedCountForRow(row),
-        fallbackGvviId: gvviId,
-        fallbackGvId: (row['gv_id'] ?? '').toString(),
-        fallbackName: (row['name'] ?? '').toString(),
-        fallbackSetName: (row['set_name'] ?? '').toString(),
-        fallbackNumber: (row['number'] ?? '').toString(),
-        fallbackImageUrl: _vaultDisplayImageUrl(row),
-      );
-
-      return manageData.totalCopies == 1 &&
-          manageData.slabCount == 0 &&
-          manageData.inPlayCount == 0 &&
-          !manageData.isShared &&
-          (manageData.wallCategory?.trim().isNotEmpty ?? false) == false;
-    } catch (_) {
-      return false;
-    }
-  }
-
-  Future<void> _deleteWithUndo(Map<String, dynamic> row) async {
-    final name = (row['name'] ?? 'Card').toString();
-    final removed = await _delete(row);
-    if (!removed) {
-      return;
-    }
-    if (!mounted) {
-      return;
-    }
-
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          duration: const Duration(seconds: 5),
-          content: Text('Removed $name.'),
-          action: SnackBarAction(
-            label: 'Undo',
-            onPressed: () {
-              unawaited(_restoreDeletedVaultRow(row));
-            },
-          ),
-        ),
-      );
   }
 }
 

@@ -16,7 +16,7 @@ void main() {
       r'Future<void> _incQty[\s\S]*?\n  Future<bool> _delete',
     ).firstMatch(vault)!.group(0)!;
     final delete = RegExp(
-      r'Future<bool> _delete[\s\S]*?\n  Future<void> _restoreDeletedVaultRow',
+      r'Future<bool> _delete[\s\S]*?\n  void _showVaultMutationError',
     ).firstMatch(vault)!.group(0)!;
 
     expect(
@@ -39,6 +39,14 @@ void main() {
     );
     expect(delete, contains('if (_uid == null || cardId.isEmpty)'));
     expect(delete, isNot(contains('vaultItemId.isEmpty || cardId.isEmpty')));
+    expect(
+      delete,
+      contains('final previousItems = _removeVaultRowOptimistically(row);'),
+    );
+    expect(
+      delete,
+      contains('_restoreVaultRowsAfterFailedDelete(previousItems);'),
+    );
     expect(delete, contains('VaultCardService.archiveAllVaultItems'));
     expect(delete, contains('return true;'));
     expect(delete, contains('return false;'));

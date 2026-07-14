@@ -3,20 +3,28 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test(
-    'low-risk vault delete uses undo snackbar and keeps high-risk dialog',
-    () {
-      final source = File('lib/main_vault.dart').readAsStringSync();
+  test('vault delete archives immediately with optimistic UI removal', () {
+    final source = File('lib/main_vault.dart').readAsStringSync();
 
-      expect(source, contains('Future<void> _deleteWithUndo'));
-      expect(source, contains("label: 'Undo'"));
-      expect(source, contains('duration: const Duration(seconds: 5)'));
-      expect(source, contains('manageData.slabCount == 0'));
-      expect(source, contains('manageData.inPlayCount == 0'));
-      expect(source, contains('!manageData.isShared'));
-      expect(source, contains("title: const Text('Delete item?')"));
-    },
-  );
+    expect(source, contains('Future<bool> _delete'));
+    expect(
+      source,
+      contains('List<Map<String, dynamic>> _removeVaultRowOptimistically'),
+    );
+    expect(
+      source,
+      contains('final previousItems = _removeVaultRowOptimistically(row);'),
+    );
+    expect(source, contains('VaultCardService.archiveAllVaultItems'));
+    expect(
+      source,
+      contains('_restoreVaultRowsAfterFailedDelete(previousItems);'),
+    );
+    expect(source, isNot(contains('Future<void> _deleteWithUndo')));
+    expect(source, isNot(contains('_restoreDeletedVaultRow')));
+    expect(source, isNot(contains('_isLowRiskVaultDelete')));
+    expect(source, contains("title: const Text('Delete item?')"));
+  });
 
   test('memory archive defers server archive during undo window', () {
     final screen = File(
