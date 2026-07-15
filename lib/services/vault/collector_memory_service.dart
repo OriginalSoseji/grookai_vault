@@ -5,7 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const bool kCollectorMemoriesEnabled = bool.fromEnvironment(
   'COLLECTOR_MEMORIES_ENABLED',
-  defaultValue: false,
+  defaultValue: true,
 );
 
 typedef CollectorMemoryRpc =
@@ -113,6 +113,36 @@ class CollectorMemory {
   }
 }
 
+class OwnerCollectorMemory {
+  const OwnerCollectorMemory({
+    required this.memory,
+    required this.cardPrintId,
+    required this.cardName,
+    required this.setName,
+    this.cardImageUrl,
+  });
+
+  final CollectorMemory memory;
+  final String cardPrintId;
+  final String cardName;
+  final String setName;
+  final String? cardImageUrl;
+
+  static OwnerCollectorMemory? fromJson(Map<String, dynamic> json) {
+    final memory = CollectorMemory.fromJson(json);
+    if (memory == null) return null;
+    final cardPrintId = _text(json['card_print_id']);
+    final cardName = _text(json['card_name']);
+    return OwnerCollectorMemory(
+      memory: memory,
+      cardPrintId: cardPrintId,
+      cardName: cardName.isEmpty ? 'Card memory' : cardName,
+      setName: _text(json['set_name']),
+      cardImageUrl: _optionalText(json['card_image_url']),
+    );
+  }
+}
+
 class CollectorMemoryPrompt {
   const CollectorMemoryPrompt({
     required this.promptKey,
@@ -196,6 +226,26 @@ class CollectorMemoryService {
     return _maps(response)
         .map(CollectorMemory.fromJson)
         .whereType<CollectorMemory>()
+        .toList(growable: false);
+  }
+
+  Future<List<OwnerCollectorMemory>> loadOwnerMemories({
+    int limit = 50,
+    DateTime? beforeCreatedAt,
+    String? beforeId,
+  }) async {
+    final response = await _callRpc(
+      'collector_memories_for_owner_v1',
+      params: _withoutNulls(<String, dynamic>{
+        'p_limit': limit.clamp(1, 100).toInt(),
+        'p_before_created_at': beforeCreatedAt?.toUtc().toIso8601String(),
+        'p_before_id': _optionalText(beforeId),
+      }),
+    );
+
+    return _maps(response)
+        .map(OwnerCollectorMemory.fromJson)
+        .whereType<OwnerCollectorMemory>()
         .toList(growable: false);
   }
 

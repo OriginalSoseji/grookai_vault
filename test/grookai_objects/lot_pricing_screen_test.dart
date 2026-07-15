@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/screens/grookai_objects/lot_pricing_screen.dart';
+import 'package:grookai_vault/widgets/card_surface_artwork.dart';
 
 void main() {
   setUpAll(() {
@@ -71,6 +72,55 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Lot card ready.'), findsOneWidget);
+  });
+
+  testWidgets('lot pricing shows every selected card with artwork rows', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: LotPricingScreen(
+          source: GrookaiLotListingSource(
+            title: 'Test Lot',
+            items: [
+              GrookaiLotListingItemSource(
+                cardName: 'Dunsparce',
+                condition: 'Raw NM',
+                price: 5,
+                imageUrl: 'https://example.test/dunsparce.webp',
+              ),
+              GrookaiLotListingItemSource(
+                cardName: 'Pikachu',
+                condition: 'Raw NM',
+                price: 12,
+                imageUrl: 'https://example.test/pikachu.webp',
+              ),
+              GrookaiLotListingItemSource(
+                cardName: 'Charizard ex',
+                condition: 'Raw NM',
+                price: 20,
+                imageUrl: 'https://example.test/charizard.webp',
+              ),
+              GrookaiLotListingItemSource(
+                cardName: 'Cosmic Eclipse Pikachu',
+                condition: 'Raw LP',
+                price: 18,
+                imageUrl: 'https://example.test/cosmic-pikachu.webp',
+              ),
+            ],
+          ),
+          metadata: <String, dynamic>{},
+        ),
+      ),
+    );
+
+    expect(find.text('4 cards'), findsOneWidget);
+    expect(find.text('Dunsparce'), findsWidgets);
+    expect(find.text('Pikachu'), findsWidgets);
+    expect(find.text('Charizard ex'), findsWidgets);
+    expect(find.text('Cosmic Eclipse Pikachu'), findsOneWidget);
+    expect(find.byType(CardSurfaceArtwork), findsNWidgets(4));
   });
 }
 

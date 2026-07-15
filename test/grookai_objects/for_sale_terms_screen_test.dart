@@ -76,6 +76,35 @@ void main() {
     expect(service.lastPrice, 42.5);
     expect(find.text('Sale listing saved.'), findsOneWidget);
   });
+
+  testWidgets('terms flow accepts short raw vault condition labels', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: const GrookaiSaleListingSource(
+            cardName: 'Umbreon VMAX',
+            setLine: 'Evolving Skies #215',
+          ),
+          service: _FakeSaleListingService(),
+          initialCopy: const SaleListingCopyContext(
+            instanceId: 'INSTANCE-123',
+            gvviId: 'GVVI-123',
+            vaultItemId: 'VAULT-123',
+            cardPrintId: 'CARD-123',
+            conditionLabel: 'NM',
+          ),
+        ),
+      ),
+    );
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('Condition'), findsOneWidget);
+    expect(find.text('Raw NM'), findsWidgets);
+  });
 }
 
 void _useTallViewport(WidgetTester tester) {

@@ -474,6 +474,10 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const CompareScreen());
   }
 
+  Future<void> _openGrookaiObjectsHub() async {
+    await _pushPage<void>(const GrookaiObjectsHubScreen());
+  }
+
   Future<void> _openMessages() async {
     await _pushPage<void>(const NetworkInboxScreen());
   }
@@ -896,6 +900,7 @@ class _AppShellState extends State<AppShell> {
                 onOpenDex: () => unawaited(_openDex()),
                 onOpenSets: () => unawaited(_openSets()),
                 onOpenCompare: () => unawaited(_openCompare()),
+                onOpenGrookaiObjects: () => unawaited(_openGrookaiObjectsHub()),
                 onOpenMessages: () => unawaited(_openMessages()),
                 onOpenAccount: () => unawaited(_openAccountHub()),
                 onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
@@ -933,6 +938,7 @@ class _AppShellState extends State<AppShell> {
         onOpenDex: _openDex,
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
+        onOpenGrookaiObjects: _openGrookaiObjectsHub,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
@@ -1208,6 +1214,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
+    required this.onOpenGrookaiObjects,
     required this.onOpenMessages,
     required this.onOpenAccount,
     required this.onOpenMenu,
@@ -1222,6 +1229,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenDex;
   final VoidCallback onOpenSets;
   final VoidCallback onOpenCompare;
+  final VoidCallback onOpenGrookaiObjects;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
   final VoidCallback onOpenMenu;
@@ -1311,6 +1319,11 @@ class _GrookaiDesktopRail extends StatelessWidget {
               label: 'Compare',
               onTap: onOpenCompare,
             ),
+            _GrookaiRailTile(
+              icon: Icons.auto_awesome_outlined,
+              label: 'Objects',
+              onTap: onOpenGrookaiObjects,
+            ),
             const Spacer(),
             _GrookaiRailTile(
               icon: Icons.mail_rounded,
@@ -1398,6 +1411,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenDex,
     required this.onOpenSets,
     required this.onOpenCompare,
+    required this.onOpenGrookaiObjects,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
@@ -1412,6 +1426,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenDex;
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
+  final Future<void> Function() onOpenGrookaiObjects;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
@@ -1478,6 +1493,11 @@ class _GrookaiAppDrawer extends StatelessWidget {
           icon: Icons.compare_arrows_rounded,
           label: 'Compare',
           onTap: () => _closeThenAsync(context, onOpenCompare),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.auto_awesome_outlined,
+          label: 'Grookai Objects',
+          onTap: () => _closeThenAsync(context, onOpenGrookaiObjects),
         ),
         if (signedIn)
           _GrookaiDrawerTile(
@@ -1658,6 +1678,7 @@ class _LoginPageState extends State<LoginPage> {
   final _password = TextEditingController();
   bool _loading = false;
   bool _showEmailForm = false;
+  bool _creatingAccount = false;
   String? _loginError;
 
   SupabaseClient get supabase => Supabase.instance.client;
@@ -1775,6 +1796,14 @@ class _LoginPageState extends State<LoginPage> {
     unawaited(_signIn());
   }
 
+  void _submitEmailAuth() {
+    if (_creatingAccount) {
+      unawaited(_signUp());
+    } else {
+      _submitSignIn();
+    }
+  }
+
   void _debugAuth(String message, {StackTrace? stackTrace}) {
     if (!_kAuthDiagnostics) {
       return;
@@ -1788,13 +1817,25 @@ class _LoginPageState extends State<LoginPage> {
     }());
   }
 
-  void _showEmailEntry() {
+  void _showEmailEntry({bool creatingAccount = false}) {
     FocusScope.of(context).unfocus();
     if (_loading) {
       return;
     }
     setState(() {
       _showEmailForm = true;
+      _creatingAccount = creatingAccount;
+      _loginError = null;
+    });
+  }
+
+  void _switchEmailMode(bool creatingAccount) {
+    if (_loading) {
+      return;
+    }
+    setState(() {
+      _showEmailForm = true;
+      _creatingAccount = creatingAccount;
       _loginError = null;
     });
   }
@@ -1812,9 +1853,21 @@ class _LoginPageState extends State<LoginPage> {
         email: _email.text.trim(),
         password: _password.text,
       );
-      _snack('Account created. Verify email if enabled.');
+      _snack('Account created. Verify email if prompted.');
     } on AuthException catch (e) {
+      if (mounted) {
+        setState(() {
+          _loginError = e.message;
+        });
+      }
       _snack('Sign up failed: ${e.message}');
+    } catch (error) {
+      if (mounted) {
+        setState(() {
+          _loginError = error.toString();
+        });
+      }
+      _snack('Sign up failed: $error');
     } finally {
       if (mounted) {
         setState(() => _loading = false);
@@ -1918,21 +1971,46 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildEmailEntryButton(ColorScheme scheme) {
-    return OutlinedButton(
-      onPressed: _showEmailForm || _loading ? null : _showEmailEntry,
-      style: OutlinedButton.styleFrom(
-        foregroundColor: Colors.white.withValues(alpha: 0.88),
-        disabledForegroundColor: Colors.white.withValues(alpha: 0.38),
-        backgroundColor: Colors.white.withValues(alpha: 0.01),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        side: BorderSide(color: Colors.white.withValues(alpha: 0.22)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
-      child: const Text(
-        'Continue with Email',
-        style: TextStyle(fontWeight: FontWeight.w600),
-      ),
+  Widget _buildEmailEntryActions(ColorScheme scheme) {
+    final disabled = _showEmailForm || _loading;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        OutlinedButton(
+          onPressed: disabled
+              ? null
+              : () => _showEmailEntry(creatingAccount: false),
+          style: OutlinedButton.styleFrom(
+            foregroundColor: Colors.white.withValues(alpha: 0.88),
+            disabledForegroundColor: Colors.white.withValues(alpha: 0.38),
+            backgroundColor: Colors.white.withValues(alpha: 0.01),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+            side: BorderSide(color: Colors.white.withValues(alpha: 0.22)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          child: const Text(
+            'Sign in with email',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextButton(
+          onPressed: disabled
+              ? null
+              : () => _showEmailEntry(creatingAccount: true),
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white.withValues(alpha: 0.92),
+            disabledForegroundColor: Colors.white.withValues(alpha: 0.38),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          ),
+          child: const Text(
+            'Create account',
+            style: TextStyle(fontWeight: FontWeight.w800),
+          ),
+        ),
+      ],
     );
   }
 
@@ -1956,14 +2034,16 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Use email instead',
+                _creatingAccount ? 'Create your account' : 'Sign in with email',
                 style: textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
-                'Keep your collector identity, vault, and shared shelves under one login.',
+                _creatingAccount
+                    ? 'Start a private vault, then share only what you choose.'
+                    : 'Keep your collector identity, vault, and shared shelves under one login.',
                 style: textTheme.bodySmall?.copyWith(
                   color: scheme.onSurface.withValues(alpha: 0.68),
                   height: 1.35,
@@ -1984,7 +2064,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _password,
                 obscureText: true,
                 textInputAction: TextInputAction.done,
-                onSubmitted: (_) => _submitSignIn(),
+                onSubmitted: (_) => _submitEmailAuth(),
                 decoration: _authFieldDecoration(
                   label: 'Password',
                   icon: Icons.lock_outline_rounded,
@@ -1992,7 +2072,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 16),
               FilledButton(
-                onPressed: _loading ? null : _submitSignIn,
+                onPressed: _loading ? null : _submitEmailAuth,
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -2005,14 +2085,20 @@ class _LoginPageState extends State<LoginPage> {
                         height: 18,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Sign in'),
+                    : Text(_creatingAccount ? 'Create account' : 'Sign in'),
               ),
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.center,
                 child: TextButton(
-                  onPressed: _loading ? null : _signUp,
-                  child: const Text('Create account with email'),
+                  onPressed: _loading
+                      ? null
+                      : () => _switchEmailMode(!_creatingAccount),
+                  child: Text(
+                    _creatingAccount
+                        ? 'Already have an account? Sign in'
+                        : 'New here? Create account',
+                  ),
                 ),
               ),
             ],
@@ -2072,7 +2158,7 @@ class _LoginPageState extends State<LoginPage> {
                               // The mobile auth entry is a branded first-impression surface with Google as the primary sign-in path.
                               _buildGoogleButton(),
                               const SizedBox(height: 14),
-                              _buildEmailEntryButton(scheme),
+                              _buildEmailEntryActions(scheme),
                               _buildEmailForm(scheme, textTheme),
                               if (_loginError != null) ...[
                                 const SizedBox(height: 14),

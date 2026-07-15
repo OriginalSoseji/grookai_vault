@@ -5,8 +5,9 @@ import '../../models/grookai_sale_listing.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/grookai_objects/sale_listing_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
-import '../../widgets/grookai_objects/grookai_object_flattened_renderer.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
+import '../../widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
+import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dart';
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 
@@ -44,7 +45,9 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
 
   SaleListingCopyContext? _copy;
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
-  String _condition = 'Raw NM';
+  GrookaiObjectExportDestination _exportDestination =
+      GrookaiObjectExportDestination.saveImage;
+  String _condition = _saleConditionOptions.first;
   bool _firm = true;
   bool _allowDms = true;
   bool _showFront = true;
@@ -107,7 +110,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
 
   void _applyCopy(SaleListingCopyContext copy) {
     _copy = copy;
-    _condition = copy.conditionLabel ?? 'Raw NM';
+    _condition = normalizeSaleConditionLabel(copy.conditionLabel);
     if (copy.askingPriceAmount != null) {
       _priceController.text = copy.askingPriceAmount!.toStringAsFixed(2);
     }
@@ -180,18 +183,31 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
       return;
     }
 
+    final destination = await showGrookaiObjectShareDestinationSheet(
+      context: context,
+      object: _previewObject,
+    );
+    if (destination == null || !mounted) {
+      return;
+    }
+
     setState(() {
       _sharing = true;
       _error = null;
+      _exportDestination = destination;
     });
 
     try {
       final object = _previewObject;
-      final bytes = await widget.exportService.capturePng(_exportBoundaryKey);
+      final bytes = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _exportBoundaryKey,
+      );
       await widget.exportService.sharePng(
         bytes: bytes,
         fileName: GrookaiObjectExportService.fileNameFor(
-          type: 'sale',
+          type: 'sale-${destination.slug}',
           title: _exportTitle(object),
         ),
         subject: 'Grookai sale card',
@@ -252,9 +268,10 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                   Center(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: GrookaiObjectFlattenedRenderer(
+                      child: GrookaiObjectDestinationExportRenderer(
                         repaintBoundaryKey: _exportBoundaryKey,
                         object: _previewObject,
+                        destination: _exportDestination,
                         showFront: _showFront,
                       ),
                     ),
@@ -306,14 +323,14 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                   DropdownButtonFormField<String>(
                     initialValue: _condition,
                     decoration: const InputDecoration(labelText: 'Condition'),
-                    items: const [
-                      DropdownMenuItem(value: 'Raw NM', child: Text('Raw NM')),
-                      DropdownMenuItem(value: 'Raw LP', child: Text('Raw LP')),
-                      DropdownMenuItem(value: 'Raw MP', child: Text('Raw MP')),
-                      DropdownMenuItem(value: 'PSA 10', child: Text('PSA 10')),
-                      DropdownMenuItem(value: 'PSA 9', child: Text('PSA 9')),
-                      DropdownMenuItem(value: 'CGC 10', child: Text('CGC 10')),
-                    ],
+                    items: _saleConditionOptions
+                        .map(
+                          (condition) => DropdownMenuItem<String>(
+                            value: condition,
+                            child: Text(condition),
+                          ),
+                        )
+                        .toList(),
                     onChanged: (value) {
                       if (value == null) {
                         return;
@@ -437,6 +454,49 @@ Future<SaleListingCopyContext?> _defaultCopyLoader(String gvviId) async {
 String? _blankToNull(String? value) {
   final normalized = (value ?? '').trim();
   return normalized.isEmpty ? null : normalized;
+}
+
+const List<String> _saleConditionOptions = [
+  'Raw NM',
+  'Raw LP',
+  'Raw MP',
+  'PSA 10',
+  'PSA 9',
+  'CGC 10',
+];
+
+String normalizeSaleConditionLabel(String? value) {
+  final normalized = (value ?? '').trim();
+  if (normalized.isEmpty) {
+    return _saleConditionOptions.first;
+  }
+
+  final upper = normalized.toUpperCase();
+  final rawMatch = RegExp(
+    r'^RAW\s+(.+)$',
+    caseSensitive: false,
+  ).firstMatch(normalized);
+  final rawGrade = rawMatch?.group(1)?.trim().toUpperCase() ?? upper;
+  final rawMap = <String, String>{
+    'NM': 'Raw NM',
+    'NEAR MINT': 'Raw NM',
+    'LP': 'Raw LP',
+    'LIGHT PLAY': 'Raw LP',
+    'MP': 'Raw MP',
+    'MODERATE PLAY': 'Raw MP',
+  };
+  final mappedRaw = rawMap[rawGrade];
+  if (mappedRaw != null) {
+    return mappedRaw;
+  }
+
+  for (final option in _saleConditionOptions) {
+    if (option.toUpperCase() == upper) {
+      return option;
+    }
+  }
+
+  return _saleConditionOptions.first;
 }
 
 String _exportTitle(GrookaiObject object) {

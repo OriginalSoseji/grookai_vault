@@ -4,10 +4,8 @@ import 'grookai_object_frame.dart';
 import 'grookai_object_models.dart';
 import 'grookai_object_skin.dart';
 
-/// Front side — "Card For Sale.dc.html" Row 5, lot front: hero card + a
-/// priced thumbnail grid + a "+N more · $total" summary tile once there are
-/// more than 5 cards. Not tied to any single set — [LotListingData.title]
-/// is free text (e.g. "Mixed SIR Lot").
+/// Front side — shareable Lot card. The front must represent the actual
+/// bundle, so it renders every selected card image up to the supported lot cap.
 class LotCardFront extends StatelessWidget {
   final LotListingData data;
   const LotCardFront({super.key, required this.data});
@@ -15,12 +13,8 @@ class LotCardFront extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = grookaiObjectTokens[data.skin]!;
-    final hero = data.items.first;
-    final gridItems = data.items.skip(1).take(4).toList();
-    final remaining = data.items.length - 1 - gridItems.length;
-    final remainingValue = data.items
-        .skip(1 + gridItems.length)
-        .fold<double>(0, (s, i) => s + i.price);
+    final gridItems = data.items.take(12).toList(growable: false);
+    final columns = gridItems.length <= 4 ? gridItems.length : 4;
 
     return GrookaiObjectFrame(
       skin: data.skin,
@@ -43,32 +37,27 @@ class LotCardFront extends StatelessWidget {
               CardBadge(tokens: t, label: 'LOT · ${data.cardCount} CARDS'),
             ],
           ),
-          const SizedBox(height: 14),
-          hero.imageUrl != null
-              ? GrookaiObjectNetworkImage(imageUrl: hero.imageUrl!, width: 108)
-              : const CardArtPlaceholder(width: 108, height: 150),
           const SizedBox(height: 12),
           GridView.count(
-            crossAxisCount: 4,
+            crossAxisCount: columns.clamp(1, 4),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 7,
-            crossAxisSpacing: 7,
-            childAspectRatio: 1.8,
+            mainAxisSpacing: 6,
+            crossAxisSpacing: 6,
+            childAspectRatio: 0.84,
             children: [
-              for (final item in gridItems)
-                _GridTile(tokens: t, price: item.price),
-              if (remaining > 0)
-                _MoreTile(tokens: t, count: remaining, value: remainingValue),
+              for (final item in gridItems) _GridTile(tokens: t, item: item),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Text(
             data.title,
-            style: serifTitle(t, size: 24),
+            style: serifTitle(t, size: 22),
             textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -86,9 +75,9 @@ class LotCardFront extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           CardDivider(tokens: t),
-          const SizedBox(height: 10),
+          const SizedBox(height: 9),
           Text(
             'LOT · NO. ${data.listingNo}',
             style: monoLabel(t, size: 9.5, letterSpacing: 0.1),
@@ -101,60 +90,66 @@ class LotCardFront extends StatelessWidget {
 
 class _GridTile extends StatelessWidget {
   final GrookaiObjectTokens tokens;
-  final double price;
-  const _GridTile({required this.tokens, required this.price});
+  final LotItem item;
+  const _GridTile({required this.tokens, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: tokens.primaryText.withValues(alpha: 0.06),
-            borderRadius: BorderRadius.circular(6),
-          ),
-        ),
-        Positioned(
-          bottom: 4,
-          left: 6,
-          child: Text(
-            '\$${price.toStringAsFixed(0)}',
-            style: monoLabel(
-              tokens,
-              size: 9,
-              color: tokens.accent,
-              weight: FontWeight.w700,
-              letterSpacing: 0,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth.isFinite
+            ? constraints.maxWidth
+            : 58.0;
+        final height = constraints.maxHeight.isFinite
+            ? constraints.maxHeight
+            : 82.0;
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: tokens.primaryText.withValues(alpha: 0.06),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: item.imageUrl == null
+                  ? CardArtPlaceholder(width: width, height: height)
+                  : GrookaiObjectNetworkImage(
+                      imageUrl: item.imageUrl!,
+                      width: width,
+                      height: height,
+                      fit: BoxFit.contain,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
             ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _MoreTile extends StatelessWidget {
-  final GrookaiObjectTokens tokens;
-  final int count;
-  final double value;
-  const _MoreTile({
-    required this.tokens,
-    required this.count,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: tokens.primaryText.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        '+$count more · \$${value.toStringAsFixed(0)}',
-        style: monoLabel(tokens, size: 9),
-      ),
+            Positioned(
+              right: 3,
+              bottom: 3,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: const Color(0xCC000000),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 1.5,
+                  ),
+                  child: Text(
+                    '\$${item.price.toStringAsFixed(0)}',
+                    style: monoLabel(
+                      tokens,
+                      size: 8,
+                      color: tokens.accent,
+                      weight: FontWeight.w700,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

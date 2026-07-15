@@ -3,6 +3,8 @@ import '../widgets/grookai_objects/grookai_object_models.dart';
 import '../widgets/grookai_objects/grookai_object.dart';
 import '../widgets/grookai_objects/grookai_object_skin.dart';
 
+const int kGrookaiLotMaxCards = 12;
+
 class GrookaiSaleListingSource {
   const GrookaiSaleListingSource({
     required this.cardName,
@@ -144,6 +146,7 @@ class GrookaiLotListingAdapter {
     String? listingNo,
   }) {
     final items = source.items
+        .take(kGrookaiLotMaxCards)
         .map(
           (item) => LotItem(
             cardName: _fallback(item.cardName, 'Card'),

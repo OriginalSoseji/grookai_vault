@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../models/grookai_sale_listing.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
-import '../../widgets/grookai_objects/grookai_object_flattened_renderer.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
+import '../../widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
+import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dart';
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 
@@ -29,6 +31,8 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
   late final List<TextEditingController> _itemPriceControllers;
   final GlobalKey _exportBoundaryKey = GlobalKey();
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
+  GrookaiObjectExportDestination _exportDestination =
+      GrookaiObjectExportDestination.saveImage;
   bool _showFront = true;
   bool _sharing = false;
   String? _error;
@@ -126,18 +130,31 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
       return;
     }
 
+    final destination = await showGrookaiObjectShareDestinationSheet(
+      context: context,
+      object: _previewObject,
+    );
+    if (destination == null || !mounted) {
+      return;
+    }
+
     setState(() {
       _sharing = true;
       _error = null;
+      _exportDestination = destination;
     });
 
     try {
       final object = _previewObject;
-      final bytes = await widget.exportService.capturePng(_exportBoundaryKey);
+      final bytes = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _exportBoundaryKey,
+      );
       await widget.exportService.sharePng(
         bytes: bytes,
         fileName: GrookaiObjectExportService.fileNameFor(
-          type: 'lot',
+          type: 'lot-${destination.slug}',
           title: _exportTitle(object),
         ),
         subject: 'Grookai lot card',
@@ -165,18 +182,21 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
     return Scaffold(
       appBar: AppBar(title: const Text('Price Lot')),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          padding: EdgeInsets.fromLTRB(16, 10, 16, 24 + bottomInset),
           children: [
             Center(
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GrookaiObjectFlattenedRenderer(
+                child: GrookaiObjectDestinationExportRenderer(
                   repaintBoundaryKey: _exportBoundaryKey,
                   object: _previewObject,
+                  destination: _exportDestination,
                   showFront: _showFront,
                 ),
               ),
@@ -218,6 +238,27 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               decoration: const InputDecoration(labelText: 'Lot title'),
               onChanged: (_) => setState(_clearReadyState),
             ),
+            const SizedBox(height: 16),
+            Text(
+              '${widget.source.items.length} cards',
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 8),
+            for (var index = 0; index < widget.source.items.length; index += 1)
+              _LotItemPriceRow(
+                item: widget.source.items[index],
+                controller: _itemPriceControllers[index],
+                onChanged: () => setState(_clearReadyState),
+              ),
+            const SizedBox(height: 4),
+            Text(
+              'Estimated value is itemized above. Set one bundle price for the lot.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
             const SizedBox(height: 12),
             TextField(
               controller: _bundlePriceController,
@@ -230,47 +271,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               ),
               onChanged: (_) => setState(_clearReadyState),
             ),
-            const SizedBox(height: 16),
-            Text(
-              '${widget.source.items.length} cards',
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 8),
-            for (var index = 0; index < widget.source.items.length; index += 1)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.source.items[index].cardName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    SizedBox(
-                      width: 112,
-                      child: TextField(
-                        controller: _itemPriceControllers[index],
-                        keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        decoration: const InputDecoration(
-                          labelText: 'Est.',
-                          prefixText: r'$',
-                        ),
-                        onChanged: (_) => setState(_clearReadyState),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            const SizedBox(height: 14),
             if (_error != null) ...[
               const SizedBox(height: 4),
               Text(
@@ -281,7 +282,6 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
                 ),
               ),
             ],
-            const SizedBox(height: 14),
             FilledButton.icon(
               onPressed: _validateForShare,
               icon: const Icon(Icons.inventory_2_outlined),
@@ -302,6 +302,89 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _LotItemPriceRow extends StatelessWidget {
+  const _LotItemPriceRow({
+    required this.item,
+    required this.controller,
+    required this.onChanged,
+  });
+
+  final GrookaiLotListingItemSource item;
+  final TextEditingController controller;
+  final VoidCallback onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Row(
+        children: [
+          CardSurfaceArtwork(
+            label: item.cardName,
+            imageUrl: item.imageUrl,
+            width: 52,
+            height: 72,
+            borderRadius: 8,
+            padding: EdgeInsets.zero,
+            showShadow: false,
+            enableTapToZoom: false,
+            frame: CardArtworkFrame.soft,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.cardName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  item.condition,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          SizedBox(
+            width: 108,
+            child: TextField(
+              controller: controller,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Est.',
+                prefixText: r'$',
+              ),
+              onChanged: (_) => onChanged(),
+            ),
+          ),
+        ],
       ),
     );
   }

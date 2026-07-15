@@ -10,14 +10,15 @@ void main() {
   const gvviId = 'GVVI-123';
 
   test(
-    'service is feature-flagged and does not query memory tables directly',
+    'service defaults on for beta builds and does not query memory tables directly',
     () {
       final source = File(
         'lib/services/vault/collector_memory_service.dart',
       ).readAsStringSync();
 
-      expect(kCollectorMemoriesEnabled, isFalse);
+      expect(kCollectorMemoriesEnabled, isTrue);
       expect(source, contains('COLLECTOR_MEMORIES_ENABLED'));
+      expect(source, contains('defaultValue: true'));
       expect(source, isNot(contains(".from('collector_memories'")));
       expect(source, isNot(contains(".from('collector_memory_prompt_state'")));
     },
@@ -37,6 +38,48 @@ void main() {
 
     expect(memories, isEmpty);
   });
+
+  test(
+    'owner memory feed calls owner-wide RPC and parses card context',
+    () async {
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memories_for_owner_v1');
+          expect(params?['p_limit'], 40);
+          return <Map<String, dynamic>>[
+            <String, dynamic>{
+              'id': memoryId,
+              'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+              'gv_vi_id': gvviId,
+              'card_print_id': '44444444-4444-4444-4444-444444444444',
+              'card_name': 'Pikachu',
+              'set_name': 'Scarlet & Violet Promos',
+              'card_image_url': '/api/canon/cards/GV-PK-JPN-M5-118/image',
+              'memory_type': 'note',
+              'note': 'Trade night pull.',
+              'created_at': '2026-07-10T12:00:00Z',
+            },
+          ];
+        },
+      );
+
+      final memories = await service.loadOwnerMemories(limit: 40);
+
+      expect(memories, hasLength(1));
+      expect(memories.single.memory.id, memoryId);
+      expect(memories.single.memory.gvviId, gvviId);
+      expect(
+        memories.single.cardPrintId,
+        '44444444-4444-4444-4444-444444444444',
+      );
+      expect(memories.single.cardName, 'Pikachu');
+      expect(memories.single.setName, 'Scarlet & Violet Promos');
+      expect(
+        memories.single.cardImageUrl,
+        '/api/canon/cards/GV-PK-JPN-M5-118/image',
+      );
+    },
+  );
 
   test('create memory calls the owner-only RPC and parses the row', () async {
     final service = CollectorMemoryService(
@@ -199,9 +242,12 @@ void main() {
     expect(signed['expiresIn'], 900);
   });
 
-  test('collector memories UI is private exact-copy only', () {
+  test('collector memories UI is private and not public Wall', () {
     final privateScreen = File(
       'lib/screens/vault/vault_gvvi_screen.dart',
+    ).readAsStringSync();
+    final privateHome = File(
+      'lib/screens/grookai_objects/collector_memories_screen.dart',
     ).readAsStringSync();
     final publicCard = File('lib/card_detail_screen.dart').readAsStringSync();
     final publicGvvi = File(
@@ -217,6 +263,8 @@ void main() {
     expect(privateScreen, contains('showModalBottomSheet'));
     expect(privateScreen, contains('ImagePicker().pickImage'));
     expect(privateScreen, contains('createSignedPhotoUrl'));
+    expect(privateHome, contains('loadOwnerMemories'));
+    expect(privateHome, contains('VaultManageCardScreen'));
     expect(publicCard, contains('MemoryCardCaptureScreen'));
     expect(publicCard, contains('kCollectorMemoriesEnabled'));
     expect(publicGvvi, isNot(contains('CollectorMemory')));

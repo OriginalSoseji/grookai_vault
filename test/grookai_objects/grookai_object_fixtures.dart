@@ -79,3 +79,76 @@ GrookaiObject lotCardFixture(GrookaiObjectSkin skin) {
     metadata: const {'fixture': true},
   );
 }
+
+GrookaiObject fourImageLotFixture(GrookaiObjectSkin skin) {
+  final data = LotListingData(
+    skin: skin,
+    listingNo: 'DRAFT',
+    title: 'Four Card Test Lot',
+    items: const [
+      LotItem(
+        cardName: 'Dunsparce',
+        condition: 'Raw NM',
+        price: 5,
+        imageUrl: 'https://example.test/dunsparce.webp',
+      ),
+      LotItem(
+        cardName: 'Pikachu',
+        condition: 'Raw NM',
+        price: 12,
+        imageUrl: 'https://example.test/pikachu.webp',
+      ),
+      LotItem(
+        cardName: 'Charizard ex',
+        condition: 'Raw NM',
+        price: 20,
+        imageUrl: 'https://example.test/charizard.webp',
+      ),
+      LotItem(
+        cardName: 'Cosmic Eclipse Pikachu',
+        condition: 'Raw LP',
+        price: 18,
+        imageUrl: 'https://example.test/cosmic-pikachu.webp',
+      ),
+    ],
+    bundlePrice: 45,
+    sellerHandle: 'Collector',
+    sellerRating: 0,
+    sellerTradeCount: 0,
+  );
+  return GrookaiObject(
+    type: 'lot',
+    skin: skin,
+    layout: 'lot.v1',
+    fields: data.toFields(),
+    metadata: const {'fixture': true},
+  );
+}
+
+GrookaiObject twelveImageLotFixture(GrookaiObjectSkin skin) {
+  final data = LotListingData(
+    skin: skin,
+    listingNo: 'LOT12',
+    title: '12-Card Vault Lot',
+    items: [
+      for (var index = 0; index < 12; index += 1)
+        LotItem(
+          cardName: 'Card ${index + 1}',
+          condition: index.isEven ? 'Raw NM' : 'Raw LP',
+          price: index + 1,
+          imageUrl: 'https://example.test/card-${index + 1}.webp',
+        ),
+    ],
+    bundlePrice: 78,
+    sellerHandle: 'Collector',
+    sellerRating: 0,
+    sellerTradeCount: 0,
+  );
+  return GrookaiObject(
+    type: 'lot',
+    skin: skin,
+    layout: 'lot.v1',
+    fields: data.toFields(),
+    metadata: const {'fixture': true},
+  );
+}

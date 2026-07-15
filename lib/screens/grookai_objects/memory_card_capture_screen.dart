@@ -7,10 +7,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/grookai_memory_card.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/vault/collector_memory_service.dart';
-import '../../widgets/grookai_objects/grookai_object_flattened_renderer.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
+import '../../widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
+import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dart';
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
+import 'collector_memories_screen.dart';
 
 class MemoryCardCaptureScreen extends StatefulWidget {
   MemoryCardCaptureScreen({
@@ -48,6 +50,8 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
 
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
   CollectorMemoryType _memoryType = CollectorMemoryType.note;
+  GrookaiObjectExportDestination _exportDestination =
+      GrookaiObjectExportDestination.saveImage;
   bool _showFront = true;
   bool _saving = false;
   bool _sharing = false;
@@ -153,9 +157,21 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
           signedPhotoUrl: signedPhotoUrl,
         );
       });
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Memory card saved.')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Memory card saved.'),
+          action: SnackBarAction(
+            label: 'View Memories',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => CollectorMemoriesScreen(),
+                ),
+              );
+            },
+          ),
+        ),
+      );
     } catch (error) {
       if (!mounted) {
         return;
@@ -177,18 +193,31 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
       return;
     }
 
+    final destination = await showGrookaiObjectShareDestinationSheet(
+      context: context,
+      object: _previewObject,
+    );
+    if (destination == null || !mounted) {
+      return;
+    }
+
     setState(() {
       _sharing = true;
       _error = null;
+      _exportDestination = destination;
     });
 
     try {
       final object = _previewObject;
-      final bytes = await widget.exportService.capturePng(_exportBoundaryKey);
+      final bytes = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _exportBoundaryKey,
+      );
       await widget.exportService.sharePng(
         bytes: bytes,
         fileName: GrookaiObjectExportService.fileNameFor(
-          type: 'memory',
+          type: 'memory-${destination.slug}',
           title: _exportTitle(object),
         ),
         subject: 'Grookai memory card',
@@ -248,9 +277,10 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
             Center(
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GrookaiObjectFlattenedRenderer(
+                child: GrookaiObjectDestinationExportRenderer(
                   repaintBoundaryKey: _exportBoundaryKey,
                   object: _previewObject,
+                  destination: _exportDestination,
                   showFront: _showFront,
                 ),
               ),

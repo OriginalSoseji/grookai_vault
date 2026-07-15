@@ -5,8 +5,74 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../widgets/grookai_objects/grookai_object.dart';
+
+enum GrookaiObjectExportDestination {
+  instagramFeed,
+  story,
+  ebayListing,
+  saveImage;
+
+  String get label {
+    switch (this) {
+      case GrookaiObjectExportDestination.instagramFeed:
+        return 'Instagram Feed';
+      case GrookaiObjectExportDestination.story:
+        return 'Story';
+      case GrookaiObjectExportDestination.ebayListing:
+        return 'eBay Listing';
+      case GrookaiObjectExportDestination.saveImage:
+        return 'Save Image';
+    }
+  }
+
+  String get slug {
+    switch (this) {
+      case GrookaiObjectExportDestination.instagramFeed:
+        return 'instagram-feed';
+      case GrookaiObjectExportDestination.story:
+        return 'story';
+      case GrookaiObjectExportDestination.ebayListing:
+        return 'ebay-listing';
+      case GrookaiObjectExportDestination.saveImage:
+        return 'save-image';
+    }
+  }
+}
+
 class GrookaiObjectExportService {
   const GrookaiObjectExportService();
+
+  static bool isDestinationAvailableFor(
+    GrookaiObject object,
+    GrookaiObjectExportDestination destination,
+  ) {
+    if (destination == GrookaiObjectExportDestination.ebayListing) {
+      return object.type == 'sale' || object.type == 'lot';
+    }
+    return true;
+  }
+
+  static List<GrookaiObjectExportDestination> destinationsFor(
+    GrookaiObject object,
+  ) {
+    return GrookaiObjectExportDestination.values
+        .where((destination) => isDestinationAvailableFor(object, destination))
+        .toList(growable: false);
+  }
+
+  static void validateDestination(
+    GrookaiObject object,
+    GrookaiObjectExportDestination destination,
+  ) {
+    if (!isDestinationAvailableFor(object, destination)) {
+      throw ArgumentError.value(
+        destination,
+        'destination',
+        '${destination.label} is not available for ${object.type} objects.',
+      );
+    }
+  }
 
   Future<Uint8List> capturePng(
     GlobalKey repaintBoundaryKey, {
@@ -30,6 +96,16 @@ class GrookaiObjectExportService {
       throw StateError('Grookai object export did not produce PNG data.');
     }
     return data.buffer.asUint8List();
+  }
+
+  Future<Uint8List> exportObjectPng({
+    required GrookaiObject object,
+    required GrookaiObjectExportDestination destination,
+    required GlobalKey repaintBoundaryKey,
+    double pixelRatio = 3,
+  }) {
+    validateDestination(object, destination);
+    return capturePng(repaintBoundaryKey, pixelRatio: pixelRatio);
   }
 
   Future<ShareResult> sharePng({

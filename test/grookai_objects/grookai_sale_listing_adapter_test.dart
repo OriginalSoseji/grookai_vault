@@ -97,4 +97,25 @@ void main() {
     expect(object.fields['items'], hasLength(2));
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
   });
+
+  test('lot listing caps emitted items at the supported maximum', () {
+    final object = GrookaiLotListingAdapter.fromTerms(
+      source: GrookaiLotListingSource(
+        title: 'Oversized Lot',
+        items: [
+          for (var index = 0; index < kGrookaiLotMaxCards + 3; index += 1)
+            GrookaiLotListingItemSource(
+              cardName: 'Card $index',
+              condition: 'Raw NM',
+              price: index.toDouble(),
+            ),
+        ],
+      ),
+      skin: GrookaiObjectSkin.onyx,
+      bundlePrice: 100,
+      metadata: const <String, dynamic>{},
+    );
+
+    expect(object.fields['items'], hasLength(kGrookaiLotMaxCards));
+  });
 }

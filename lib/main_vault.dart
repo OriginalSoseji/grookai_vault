@@ -986,6 +986,12 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
+  Future<void> _openMemoriesHome() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => CollectorMemoriesScreen()));
+  }
+
   String get _vaultSellerHandle {
     final metadata = supabase.auth.currentUser?.userMetadata ?? const {};
     for (final key in const ['display_name', 'full_name', 'name', 'username']) {
@@ -1954,6 +1960,11 @@ class VaultPageState extends State<VaultPage> {
                             child: Text('Qty (low-high)'),
                           ),
                         ],
+                      ),
+                      IconButton(
+                        tooltip: 'Memories',
+                        onPressed: _openMemoriesHome,
+                        icon: const Icon(Icons.auto_awesome_motion_outlined),
                       ),
                     ],
                   ),
