@@ -6,6 +6,7 @@ import 'package:grookai_vault/screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'package:grookai_vault/services/scanner_v5/scanner_v5_identity_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:image/image.dart' as img;
 
 void main() {
   group('Scanner V5 identity service failures', () {
@@ -146,6 +147,20 @@ void main() {
         ),
         isFalse,
       );
+    });
+  });
+
+  group('Scanner V5 photo import preparation', () {
+    test('keeps imported gallery photos uncropped and upload sized', () {
+      final source = img.Image(width: 2400, height: 1600);
+      final sourceBytes = Uint8List.fromList(img.encodeJpg(source));
+
+      final preparedBytes = scannerV5PrepareImportedPhotoForUpload(sourceBytes);
+      final prepared = img.decodeImage(preparedBytes);
+
+      expect(prepared, isNotNull);
+      expect(prepared!.width, 1200);
+      expect(prepared.height, 800);
     });
   });
 }
