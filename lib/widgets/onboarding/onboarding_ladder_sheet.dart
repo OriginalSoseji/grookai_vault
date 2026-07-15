@@ -390,13 +390,20 @@ class _OnboardingLadderOverlayState extends State<OnboardingLadderOverlay> {
   Widget _buildOwnPanel(BuildContext context) {
     return _PanelShell(
       key: const ValueKey('own'),
-      icon: Icons.center_focus_strong_rounded,
+      icon: Icons.search_rounded,
       title: 'Add a card to your vault',
-      body: 'Scan is the fastest way to start.',
+      body:
+          'Search like a sentence or scan a card. Both paths can add to your Vault.',
       children: [
         _PrimaryPillButton(
+          icon: Icons.search_rounded,
+          label: 'Search by sentence',
+          onPressed: _busy ? null : widget.onOpenSearch,
+        ),
+        const SizedBox(height: 8),
+        _PrimaryPillButton(
           icon: Icons.center_focus_strong_rounded,
-          label: _busy ? 'Opening scanner' : 'Scan a card',
+          label: _busy ? 'Opening scanner...' : 'Scan a card',
           onPressed: _busy ? null : _openScanner,
         ),
         TextButton(

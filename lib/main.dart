@@ -41,6 +41,7 @@ import 'screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
+import 'services/account/account_profile_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
 import 'services/diagnostics/grookai_crash_reporting_service.dart';
@@ -106,6 +107,12 @@ const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
 const int _kSearchResolverLimit = 32;
+const List<String> _kSentenceSearchExamples = <String>[
+  'Charizard from 151',
+  'Japanese Pikachu promo',
+  'Umbreon alt art',
+  'Lugia silver tempest secret rare',
+];
 const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
     <MapEntry<String, String>>[
       MapEntry<String, String>('all', 'All'),
@@ -527,7 +534,7 @@ class _CatalogSearchField extends StatelessWidget {
             Icons.search,
             color: colorScheme.onSurface.withValues(alpha: 0.58),
           ),
-          hintText: 'Search by name, set, or number',
+          hintText: 'Search in a sentence',
           border: InputBorder.none,
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(
@@ -536,6 +543,52 @@ class _CatalogSearchField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SentenceSearchExamples extends StatelessWidget {
+  const _SentenceSearchExamples({required this.onSelected});
+
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Search like a sentence',
+          style: theme.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w800,
+            color: colorScheme.onSurface.withValues(alpha: 0.74),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Name, set, rarity, language, number, and variant words all help.',
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.58),
+            height: 1.25,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final example in _kSentenceSearchExamples)
+              ActionChip(
+                avatar: const Icon(Icons.search_rounded, size: 17),
+                label: Text(example),
+                onPressed: () => onSelected(example),
+                visualDensity: VisualDensity.compact,
+              ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -2715,13 +2768,16 @@ class _MyAppState extends State<MyApp> {
           return shellReady
               ? () {
                   AppBootTiming.markOnce('first_route_shell');
-                  return AppShell(
-                    pendingCanonicalLink: _pendingCanonicalLink,
-                    onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
-                    pendingDebugAction: _pendingDebugAction,
-                    onDebugActionHandled: _handleDebugActionConsumed,
-                    themeMode: _themeMode,
-                    onThemeModeChanged: _setThemeMode,
+                  return RequiredProfileSetupGate(
+                    key: ValueKey('profile-gate-${session.user.id}'),
+                    child: AppShell(
+                      pendingCanonicalLink: _pendingCanonicalLink,
+                      onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
+                      pendingDebugAction: _pendingDebugAction,
+                      onDebugActionHandled: _handleDebugActionConsumed,
+                      themeMode: _themeMode,
+                      onThemeModeChanged: _setThemeMode,
+                    ),
                   );
                 }()
               : () {
@@ -3313,6 +3369,15 @@ class HomePageState extends State<HomePage> {
         _loading = false;
       });
     }
+  }
+
+  void _runSentenceSearchExample(String query) {
+    _debounce?.cancel();
+    _searchCtrl.value = TextEditingValue(
+      text: query,
+      selection: TextSelection.collapsed(offset: query.length),
+    );
+    unawaited(_runSearch(query));
   }
 
   void _onQueryChanged(String value) {
@@ -4552,21 +4617,32 @@ class HomePageState extends State<HomePage> {
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
-                        child: _buildResultsLeadIn(
-                          theme,
-                          showingCuratedLanding: showingCuratedLanding,
-                          resultCount: totalResultCount,
-                          visibleCount: visibleResultCount,
-                          trimmed: trimmed,
-                          showFeedDebugToggle:
-                              showingCuratedLanding &&
-                              kDebugMode &&
-                              kFeedDebugOverlay,
-                          showFeedDebugOverlay:
-                              showingCuratedLanding &&
-                              kDebugMode &&
-                              kFeedDebugOverlay &&
-                              _showFeedDebugOverlay,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildResultsLeadIn(
+                              theme,
+                              showingCuratedLanding: showingCuratedLanding,
+                              resultCount: totalResultCount,
+                              visibleCount: visibleResultCount,
+                              trimmed: trimmed,
+                              showFeedDebugToggle:
+                                  showingCuratedLanding &&
+                                  kDebugMode &&
+                                  kFeedDebugOverlay,
+                              showFeedDebugOverlay:
+                                  showingCuratedLanding &&
+                                  kDebugMode &&
+                                  kFeedDebugOverlay &&
+                                  _showFeedDebugOverlay,
+                            ),
+                            if (showingCuratedLanding) ...[
+                              const SizedBox(height: 12),
+                              _SentenceSearchExamples(
+                                onSelected: _runSentenceSearchExample,
+                              ),
+                            ],
+                          ],
                         ),
                       ),
                     ),
