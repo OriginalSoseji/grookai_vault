@@ -1,14 +1,14 @@
 # Image Surface Consistency Scan V1
 
-Generated: 2026-06-23T03:45:07.119Z
+Generated: 2026-07-14T21:37:27.125Z
 
 ## Summary
 
-- Parent identities scanned: 25322
-- Child printings scanned: 44137
-- Parent identities with no parent image evidence but at least one child image: 568
+- Parent identities scanned: 53316
+- Child printings scanned: 70090
+- Parent identities with no parent image evidence but at least one child image: 0
 - Surface coverage gate: PASS
-- Known Oshawott case covered: YES
+- Known Oshawott case covered: NO
 
 ## Surface Coverage
 
@@ -31,45 +31,10 @@ Generated: 2026-06-23T03:45:07.119Z
 
 | Set code | Count |
 | --- | ---: |
-| sm115 | 94 |
-| mep | 72 |
-| mfb | 34 |
-| tk-bw-e | 30 |
-| tk-bw-z | 30 |
-| tk-xy-b | 30 |
-| tk-xy-n | 30 |
-| tk-xy-p | 30 |
-| tk-xy-sy | 30 |
-| tk-xy-w | 30 |
-| bw11 | 20 |
-| tk-sm-r | 19 |
+| none | 0 |
 
 ## Examples
 
 | GV ID | Name | Set | Number | Child images |
 | --- | --- | --- | --- | ---: |
-| GV-PK-MCD-2023-1 | Sprigatito | 2023sv | 1 | 1 |
-| GV-PK-MCD-2023-10 | Sandaconda | 2023sv | 10 | 1 |
-| GV-PK-MCD-2023-11 | Klawf | 2023sv | 11 | 1 |
-| GV-PK-MCD-2023-12 | Blissey | 2023sv | 12 | 1 |
-| GV-PK-MCD-2023-13 | Tandemaus | 2023sv | 13 | 1 |
-| GV-PK-MCD-2023-14 | Cyclizar | 2023sv | 14 | 1 |
-| GV-PK-MCD-2023-15 | Kirlia | 2023sv | 15 | 1 |
-| GV-PK-MCD-2023-2 | Fuecoco | 2023sv | 2 | 1 |
-| GV-PK-MCD-2023-3 | Quaxly | 2023sv | 3 | 1 |
-| GV-PK-MCD-2023-4 | Cetoddle | 2023sv | 4 | 1 |
-| GV-PK-MCD-2023-5 | Cetitan | 2023sv | 5 | 1 |
-| GV-PK-MCD-2023-6 | Pikachu | 2023sv | 6 | 1 |
-| GV-PK-MCD-2023-7 | Pawmi | 2023sv | 7 | 1 |
-| GV-PK-MCD-2023-8 | Kilowattrel | 2023sv | 8 | 1 |
-| GV-PK-MCD-2023-9 | Flittle | 2023sv | 9 | 1 |
-| GV-PK-MCD-2024-1 | Charizard | 2024sv | 1 | 1 |
-| GV-PK-MCD-2024-10 | Hydreigon | 2024sv | 10 | 1 |
-| GV-PK-MCD-2024-11 | Roaring Moon | 2024sv | 11 | 1 |
-| GV-PK-MCD-2024-12 | Dragonite | 2024sv | 12 | 1 |
-| GV-PK-MCD-2024-13 | Eevee | 2024sv | 13 | 1 |
-| GV-PK-MCD-2024-14 | Rayquaza | 2024sv | 14 | 1 |
-| GV-PK-MCD-2024-15 | Drampa | 2024sv | 15 | 1 |
-| GV-PK-MCD-2024-2 | Pikachu | 2024sv | 2 | 1 |
-| GV-PK-MCD-2024-3 | Miraidon | 2024sv | 3 | 1 |
-| GV-PK-MCD-2024-4 | Jigglypuff | 2024sv | 4 | 1 |
+| none | none | none | none | 0 |

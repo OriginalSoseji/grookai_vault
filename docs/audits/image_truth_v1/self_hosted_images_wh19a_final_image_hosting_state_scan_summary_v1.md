@@ -1,8 +1,8 @@
 # IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN
 
-- Generated: 2026-07-03T04:43:38.935Z
+- Generated: 2026-07-14T21:37:04.350Z
 - Mode: read_only_final_state_scan_no_write
-- Fingerprint: `50c2b09b787ebf2f3711f162eb8fa5698a1ce8e19048f2c04ee3ebb654e9be9c`
+- Fingerprint: `d5fd075a4c827d9cf60b77fb8449f96195e015f02fa4e70bd5147a28f65cdf51`
 - Self-hosted storage path prefix: `warehouse-derived/self-hosted-images-v1/`
 - DB writes performed: false
 - Storage writes performed: false
@@ -12,18 +12,18 @@
 
 ## Core Coverage
 
-- Parent rows scanned: 53147
-- Parent rows with any image field: 53058
-- Parent rows with self-hosted image_path: 53011
+- Parent rows scanned: 53316
+- Parent rows with any image field: 53227
+- Parent rows with self-hosted image_path: 53177
 - Parent rows without any image field: 89
 - Parent weak-status rows: 535
-- English physical parent rows: 51135
+- English physical parent rows: 51304
 - English physical parent image gaps: 62
 - TCG Pocket excluded parent rows: 2012
 - TCG Pocket excluded parent image gaps: 27
-- Child rows scanned: 69956
-- Child rows with any image field: 26877
-- Child rows with self-hosted image_path: 26209
+- Child rows scanned: 70090
+- Child rows with any image field: 27011
+- Child rows with self-hosted image_path: 26343
 - Child rows without any image field: 43079
 - Child weak-status rows: 42741
 
@@ -58,11 +58,12 @@
 
 | key | count |
 | --- | ---: |
-| exact | 48838 |
+| exact | 48975 |
 | representative_shared | 2395 |
 | representative_shared_stamp | 1373 |
 | unknown | 390 |
 | missing | 145 |
+| ok | 32 |
 | representative_shared_collision | 6 |
 
 ## Child Status Counts
@@ -70,7 +71,7 @@
 | key | count |
 | --- | ---: |
 | unknown | 42741 |
-| exact | 25908 |
+| exact | 26042 |
 | representative_shared | 997 |
 | representative_shared_stamp | 305 |
 | exact_parent_image | 5 |
