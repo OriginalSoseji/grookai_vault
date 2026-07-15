@@ -195,6 +195,7 @@ class PulseService {
     int limit = 30,
     DateTime? afterCreatedAt,
     String? afterEventId,
+    bool includeSeen = false,
   }) async {
     if (_client.auth.currentUser == null) {
       return const PulsePage(items: <PulseItem>[]);
@@ -206,6 +207,7 @@ class PulseService {
         'p_limit': limit.clamp(1, 50).toInt(),
         'p_after_created_at': afterCreatedAt?.toUtc().toIso8601String(),
         'p_after_event_id': _nullableText(afterEventId),
+        'p_include_seen': includeSeen,
       },
     );
 

@@ -379,6 +379,7 @@ class NetworkScreenState extends State<NetworkScreen> {
         limit: older ? 20 : 30,
         afterCreatedAt: older ? _pulseNextCursorCreatedAt : null,
         afterEventId: older ? _pulseNextCursorEventId : null,
+        includeSeen: older,
       );
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -927,12 +928,37 @@ class _PulseContentSliver extends StatelessWidget {
     }
 
     if (items.isEmpty) {
-      return const SliverPadding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+      return SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         sliver: SliverToBoxAdapter(
-          child: _NetworkEmptyState(
-            title: 'Caught up',
-            body: 'Nothing new around your collection right now.',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _NetworkEmptyState(
+                title: 'Caught up',
+                body: 'Nothing new around your collection right now.',
+              ),
+              if (!olderLoaded) ...[
+                const SizedBox(height: 12),
+                OutlinedButton(
+                  onPressed: loadingOlder
+                      ? null
+                      : () => unawaited(onShowOlder()),
+                  style: OutlinedButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                  child: loadingOlder
+                      ? const SizedBox.square(
+                          dimension: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Text('Show older Pulse'),
+                ),
+              ],
+            ],
           ),
         ),
       );

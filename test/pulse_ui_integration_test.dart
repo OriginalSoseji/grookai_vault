@@ -33,6 +33,8 @@ void main() {
     expect(pulseService, contains('pulse_items_v1'));
     expect(pulseService, contains('pulse_unread_count_v1'));
     expect(pulseService, contains('pulse_mark_seen_v1'));
+    expect(pulseService, contains('includeSeen = false'));
+    expect(pulseService, contains("'p_include_seen': includeSeen"));
     expect(pulseService, contains('_pulseDisplayImageUrl'));
     expect(pulseService, contains("payload['display_image_url']"));
 

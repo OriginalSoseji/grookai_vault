@@ -77,3 +77,26 @@ test("E4 Pulse want-match rows carry contact anchors in payload", () => {
   assert.doesNotMatch(sql, /insert into public\.card_events/i);
   assert.doesNotMatch(sql, /insert into public\.notification_outbox/i);
 });
+
+test("E4 Pulse defaults to unseen items and gates recent history behind an explicit flag", () => {
+  const sql = readSource("supabase/migrations/20260715100000_pulse_seen_items_default_hidden_v1.sql");
+  const service = readSource("lib/services/network/pulse_service.dart");
+  const screen = readSource("lib/screens/network/network_screen.dart");
+
+  assert.match(sql, /drop function if exists public\.pulse_items_v1\(integer, timestamptz, uuid\)/i);
+  assert.match(sql, /p_include_seen boolean default false/i);
+  assert.match(sql, /left join state s on true/i);
+  assert.match(sql, /p_include_seen\s+or s\.seen_through_created_at is null/i);
+  assert.match(sql, /e\.created_at > s\.seen_through_created_at/i);
+  assert.match(sql, /e\.card_event_id > s\.seen_through_event_id/i);
+  assert.match(sql, /wm\.vault_item_id as contact_vault_item_id/i);
+  assert.match(sql, /grant execute on function public\.pulse_items_v1\(integer, timestamptz, uuid, boolean\) to authenticated, service_role/i);
+  assert.doesNotMatch(sql, /insert into public\.card_events/i);
+  assert.doesNotMatch(sql, /insert into public\.notification_outbox/i);
+
+  assert.match(service, /bool includeSeen = false/);
+  assert.match(service, /'p_include_seen': includeSeen/);
+  assert.match(screen, /includeSeen: older/);
+  assert.match(screen, /Nothing new around your collection right now/);
+  assert.match(screen, /Show older Pulse/);
+});
