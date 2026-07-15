@@ -384,35 +384,62 @@ async function upsertRun(client, run) {
 }
 
 async function insertArtifacts(client, runId, runKey, artifacts) {
+  const chunkSize = positiveIntFromEnv("TCGCSV_ARTIFACT_BATCH_SIZE", 1000);
   let inserted = 0;
-  for (const artifact of artifacts) {
-    await client.query(
-      `insert into public.tcgcsv_source_artifacts (
-         sync_run_id, run_key, artifact_kind, request_url, local_path, sha256,
-         byte_size, fetched_at, http_status, response_headers, observed_on,
-         category_id, group_id, payload
-       ) values (
-         $1,$2,$3,$4,$5,$6,$7,$8::timestamptz,$9,$10::jsonb,$11::date,$12,$13,$14::jsonb
+  for (let offset = 0; offset < artifacts.length; offset += chunkSize) {
+    const chunk = artifacts.slice(offset, offset + chunkSize);
+    const result = await client.query(
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           artifact_kind text,
+           request_url text,
+           local_path text,
+           sha256 text,
+           byte_size bigint,
+           fetched_at timestamptz,
+           http_status integer,
+           response_headers jsonb,
+           observed_on date,
+           category_id integer,
+           group_id integer,
+           payload jsonb
+         )
+       ), inserted_rows as (
+         insert into public.tcgcsv_source_artifacts (
+           sync_run_id, run_key, artifact_kind, request_url, local_path, sha256,
+           byte_size, fetched_at, http_status, response_headers, observed_on,
+           category_id, group_id, payload
+         )
+         select
+           $2, $3, artifact_kind, request_url, local_path, sha256,
+           byte_size, fetched_at, http_status, coalesce(response_headers, '{}'::jsonb),
+           observed_on, category_id, group_id, coalesce(payload, '{}'::jsonb)
+         from input_rows
+         on conflict (run_key, artifact_kind, local_path, sha256) do nothing
+         returning 1
        )
-       on conflict (run_key, artifact_kind, local_path, sha256) do nothing`,
-      [
-        runId,
-        runKey,
-        artifact.artifact_kind,
-        artifact.request_url ?? null,
-        artifact.local_path,
-        artifact.sha256,
-        artifact.byte_size,
-        artifact.fetched_at ?? null,
-        artifact.http_status ?? null,
-        JSON.stringify(artifact.response_headers ?? {}),
-        artifact.observed_on ?? null,
-        artifact.category_id ?? null,
-        artifact.group_id ?? null,
-        JSON.stringify(artifact.payload ?? {}),
-      ],
+       select count(*)::int as inserted from inserted_rows`,
+      [JSON.stringify(chunk.map((artifact) => ({
+        artifact_kind: artifact.artifact_kind,
+        request_url: artifact.request_url ?? null,
+        local_path: artifact.local_path,
+        sha256: artifact.sha256,
+        byte_size: artifact.byte_size,
+        fetched_at: artifact.fetched_at ?? null,
+        http_status: artifact.http_status ?? null,
+        response_headers: artifact.response_headers ?? {},
+        observed_on: artifact.observed_on ?? null,
+        category_id: artifact.category_id ?? null,
+        group_id: artifact.group_id ?? null,
+        payload: artifact.payload ?? {},
+      }))), runId, runKey],
     );
-    inserted += 1;
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    const processed = Math.min(offset + chunk.length, artifacts.length);
+    if (processed === artifacts.length || processed % (chunkSize * 10) === 0) {
+      console.error(`[tcgcsv-full] artifacts processed=${processed}/${artifacts.length} inserted=${inserted}`);
+    }
   }
   return inserted;
 }
