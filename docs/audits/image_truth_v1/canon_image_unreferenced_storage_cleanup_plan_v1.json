@@ -1,0 +1,172 @@
+{
+  "package_id": "CANON-IMAGE-UNREFERENCED-STORAGE-CLEANUP-PLAN-V1",
+  "generated_at": "2026-07-14T21:46:34.965Z",
+  "storage_bucket": "user-card-images",
+  "minimum_delete_age_days": 7,
+  "metrics": {
+    "canon_storage_objects_scanned": 51964,
+    "referenced_canon_image_paths": 51945,
+    "unreferenced_canon_storage_objects": 19,
+    "delete_candidates": 0,
+    "hold_objects": 19,
+    "delete_candidate_bytes": 0,
+    "hold_bytes": 3716195
+  },
+  "counts": {
+    "by_proposed_action": {
+      "hold": 19
+    },
+    "by_hold_reason": {
+      "retain_image_truth_proof_artifact": 19
+    },
+    "by_top_folder": {
+      "warehouse-derived/image-truth-v1/img03a-pkmncards-representative": 1,
+      "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact": 18
+    },
+    "delete_candidates_by_top_folder": {},
+    "holds_by_top_folder": {
+      "warehouse-derived/image-truth-v1/img03a-pkmncards-representative": 1,
+      "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact": 18
+    }
+  },
+  "samples": {
+    "delete_candidates": [],
+    "holds": [
+      {
+        "name": "warehouse-derived/image-truth-v1/img03a-pkmncards-representative/svp/8bbc59fd-b806-4582-a7ef-ba9a32da8985/5d1a419870158d9f0544988d.jpg",
+        "size": 180772,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-14T22:22:36.927Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/015eea37-c937-4d65-994c-f738357aa089/76593e5f0559fffd2483b6a7.jpg",
+        "size": 170406,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:09.948Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/05524fe1-7184-4ea8-ab51-14519de56384/50612de3638131710bf9fc40.jpg",
+        "size": 201507,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:06.555Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0cd11eaa-0954-4cef-86be-e9e44776ceec/9a83b6da120cf849c1bbc081.jpg",
+        "size": 209912,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:05.723Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/0d1efcda-6719-49b6-8eb7-50e97f780fb9/d9311cb78171931141c12e4b.jpg",
+        "size": 203463,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:08.235Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6343e1de-3a86-4ff3-a3da-e6d75ada2178/b100f7897511c72f9bc35731.jpg",
+        "size": 195318,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:06.984Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/6faccbb7-c455-4a84-87d1-962ae99be91f/74e63eaf4f52f220e4e3a2dc.jpg",
+        "size": 197666,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:12.035Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/7a47f22b-443a-4d50-99a7-6d7a55755f20/e884682d80f4269234061827.jpg",
+        "size": 192250,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:08.655Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/843dd9c7-6c96-4ab3-80ad-161354c9bfee/290c1714c3e2b5bf1c958163.jpg",
+        "size": 187010,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:10.385Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/86656169-01ef-438d-ba52-5efb490d752b/9c103405264c02306a63c3d0.jpg",
+        "size": 218233,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:05.066Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/9cde24e6-e69c-4269-9926-d46304054e11/919c3c32e5d60b432e126cdf.jpg",
+        "size": 193376,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:11.219Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a4fa7f9a-428f-49f5-8cc2-ef2b3ae6ccf3/180b450c645b9f5283ca3a5c.jpg",
+        "size": 196069,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:11.616Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/a60208ed-3178-4142-8fc0-b1dab73889bb/e157fb65556ee97ab117552a.jpg",
+        "size": 174329,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:09.526Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/abcc7798-30d1-4e35-a89c-afd41360a7c3/cbb57cbe4f94f20769708173.jpg",
+        "size": 196986,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:07.824Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/b14fc497-2fc1-482b-837e-0fe5ad32ca86/6521344627da63cdfe335159.jpg",
+        "size": 220114,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:06.143Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/be5ffa44-fb2b-4af8-ad76-9eb734b5d836/23fe2c9443d3e479e6757ff1.jpg",
+        "size": 204380,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:12.466Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/c515cb02-3dd3-41d4-b4b5-52458f8f3ef0/00ac9ee9615c5c92b78a382f.jpg",
+        "size": 183549,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:10.789Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/d02f8947-aa73-409b-8657-5746baef7c48/c49eb98e28dcd7e74163f5f6.jpg",
+        "size": 207668,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:07.410Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      },
+      {
+        "name": "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact/mep/e9fe897b-339e-46ed-a106-fe479e9e1069/7f40978c1fea6987f69ea453.jpg",
+        "size": 183187,
+        "mimetype": "image/jpeg",
+        "updated_at": "2026-06-20T17:42:09.065Z",
+        "hold_reasons": "retain_image_truth_proof_artifact"
+      }
+    ]
+  },
+  "manifest_jsonl": "docs\\audits\\image_truth_v1\\canon_image_unreferenced_storage_cleanup_manifest_v1.jsonl",
+  "fingerprint": "f719f39aeba9c4ddfa46b44ebccfe6da167fbe2112049e9aec2fe0933cd06030"
+}

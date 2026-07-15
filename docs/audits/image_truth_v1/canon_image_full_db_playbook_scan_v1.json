@@ -1,0 +1,41 @@
+{
+  "package_id": "CANON-IMAGE-FULL-DB-PLAYBOOK-SCAN-V1",
+  "generated_at": "2026-07-14T21:46:39.092Z",
+  "storage_bucket": "user-card-images",
+  "metrics": {
+    "parent_rows_scanned": 53316,
+    "child_rows_scanned": 70090,
+    "parent_rows_with_any_image_evidence": 53227,
+    "child_rows_with_any_image_evidence": 27011,
+    "storage_objects_scanned": 51964,
+    "identity_rows": 80206,
+    "identity_rows_with_canon_image_path": 80206,
+    "identity_paths_missing_storage_objects": 0,
+    "identity_paths_with_non_image_metadata": 0,
+    "identity_paths_with_zero_byte_storage_objects": 0,
+    "rows_with_selected_bad_image_patterns": 0,
+    "japanese_rows_with_selected_bad_image_patterns": 0,
+    "unreferenced_canon_storage_objects": 19,
+    "unreferenced_suspicious_storage_objects": 0
+  },
+  "counts": {
+    "missing_storage_by_row_type": {},
+    "missing_storage_by_set_code": {},
+    "bad_selected_patterns": {},
+    "bad_selected_by_set_code": {},
+    "bad_selected_by_row_type": {},
+    "unreferenced_storage_by_top_folder": {
+      "warehouse-derived/image-truth-v1/img03a-pkmncards-representative": 1,
+      "warehouse-derived/image-truth-v1/img19a-mep-first-partner-bulbapedia-exact": 18
+    }
+  },
+  "samples": {
+    "missing_storage_rows": [],
+    "non_image_metadata_rows": [],
+    "zero_byte_storage_rows": [],
+    "bad_selected_image_rows": [],
+    "japanese_bad_selected_image_rows": [],
+    "unreferenced_suspicious_storage_objects": []
+  },
+  "fingerprint": "95ce0f73d0de4869805509852c26d5a026fbb0922a85c2725121d05d2a21551c"
+}

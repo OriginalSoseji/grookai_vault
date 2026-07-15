@@ -1,21 +1,21 @@
 {
   "package_id": "IMG-HOST-WH-19A-FINAL-IMAGE-HOSTING-STATE-SCAN",
-  "generated_at": "2026-07-03T04:43:38.935Z",
+  "generated_at": "2026-07-14T21:37:04.350Z",
   "mode": "read_only_final_state_scan_no_write",
   "self_hosted_storage_path_prefix": "warehouse-derived/self-hosted-images-v1/",
   "metrics": {
-    "parent_rows_scanned": 53147,
-    "parent_rows_with_any_image_field": 53058,
-    "parent_rows_with_self_hosted_image_path": 53011,
+    "parent_rows_scanned": 53316,
+    "parent_rows_with_any_image_field": 53227,
+    "parent_rows_with_self_hosted_image_path": 53177,
     "parent_rows_without_any_image_field": 89,
     "parent_weak_status_rows": 535,
-    "english_physical_parent_rows": 51135,
+    "english_physical_parent_rows": 51304,
     "english_physical_parent_rows_without_any_image_field": 62,
     "tcg_pocket_excluded_parent_rows": 2012,
     "tcg_pocket_excluded_parent_rows_without_any_image_field": 27,
-    "child_rows_scanned": 69956,
-    "child_rows_with_any_image_field": 26877,
-    "child_rows_with_self_hosted_image_path": 26209,
+    "child_rows_scanned": 70090,
+    "child_rows_with_any_image_field": 27011,
+    "child_rows_with_self_hosted_image_path": 26343,
     "child_rows_without_any_image_field": 43079,
     "child_weak_status_rows": 42741,
     "priority_parent_rows": 2951,
@@ -41,27 +41,28 @@
     "base_set_print_run_lane_parent_rows_without_any_image_field": 0
   },
   "parent_image_status_counts": {
-    "exact": 48838,
+    "exact": 48975,
     "missing": 145,
+    "ok": 32,
     "representative_shared": 2395,
     "representative_shared_collision": 6,
     "representative_shared_stamp": 1373,
     "unknown": 390
   },
   "child_image_status_counts": {
-    "exact": 25908,
+    "exact": 26042,
     "exact_parent_image": 5,
     "representative_shared": 997,
     "representative_shared_stamp": 305,
     "unknown": 42741
   },
   "parent_image_source_counts": {
-    "identity": 53034,
+    "identity": 53200,
     "tcgdex": 2,
-    "unknown": 111
+    "unknown": 114
   },
   "child_image_source_counts": {
-    "identity": 26872,
+    "identity": 27006,
     "tcgdex": 5,
     "unknown": 43079
   },
@@ -69,7 +70,7 @@
     "base_set_print_run_lane": 314,
     "mcdonalds": 209,
     "my_first_battle": 34,
-    "other": 50196,
+    "other": 50365,
     "trainer_kit": 450,
     "world_championship_deck": 1944
   },
@@ -77,7 +78,7 @@
     "base_set_print_run_lane": 10,
     "mcdonalds": 234,
     "my_first_battle": 34,
-    "other": 69232,
+    "other": 69366,
     "trainer_kit": 446
   },
   "parent_gap_scope_counts": {
@@ -425,20 +426,6 @@
   "samples": {
     "parent_rows_without_any_image_field": [
       {
-        "gv_id": "GV-TCGP-P-A-99",
-        "printing_gv_id": null,
-        "name": "Marill",
-        "set_code": null,
-        "set_name": null,
-        "number": "99",
-        "finish_key": null,
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "missing",
-        "image_note": null
-      },
-      {
         "gv_id": "GV-TCGP-P-A-98",
         "printing_gv_id": null,
         "name": "Blissey ex",
@@ -772,6 +759,20 @@
         "image_source": null,
         "image_path": null,
         "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "gv_id": null,
+        "printing_gv_id": null,
+        "name": "ケムッソ",
+        "set_code": "jpn-DP1",
+        "set_name": "Japanese DP1",
+        "number": "002",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": null,
         "image_note": null
       }
     ],
@@ -1129,20 +1130,6 @@
     ],
     "tcg_pocket_excluded_parent_rows_without_any_image_field": [
       {
-        "gv_id": "GV-TCGP-P-A-99",
-        "printing_gv_id": null,
-        "name": "Marill",
-        "set_code": null,
-        "set_name": null,
-        "number": "99",
-        "finish_key": null,
-        "variant_key": "",
-        "image_source": null,
-        "image_path": null,
-        "image_status": "missing",
-        "image_note": null
-      },
-      {
         "gv_id": "GV-TCGP-P-A-98",
         "printing_gv_id": null,
         "name": "Blissey ex",
@@ -1471,6 +1458,20 @@
         "set_code": null,
         "set_name": null,
         "number": "95",
+        "finish_key": null,
+        "variant_key": "",
+        "image_source": null,
+        "image_path": null,
+        "image_status": "missing",
+        "image_note": null
+      },
+      {
+        "gv_id": "GV-TCGP-P-A-93",
+        "printing_gv_id": null,
+        "name": "Cleffa",
+        "set_code": null,
+        "set_name": null,
+        "number": "93",
         "finish_key": null,
         "variant_key": "",
         "image_source": null,
@@ -1840,5 +1841,5 @@
   "migrations_created": false,
   "exact_image_claim_changes_performed": false,
   "global_apply_performed": false,
-  "fingerprint": "50c2b09b787ebf2f3711f162eb8fa5698a1ce8e19048f2c04ee3ebb654e9be9c"
+  "fingerprint": "d5fd075a4c827d9cf60b77fb8449f96195e015f02fa4e70bd5147a28f65cdf51"
 }

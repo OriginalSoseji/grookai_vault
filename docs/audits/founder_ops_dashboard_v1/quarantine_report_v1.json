@@ -1,0 +1,13 @@
+{
+  "collected_at": "2026-07-15T01:57:29.254Z",
+  "summary": {
+    "unresolved_count": 0,
+    "stale_threshold_days": 30,
+    "stale_unresolved_count": 0
+  },
+  "by_reason": [],
+  "by_contract": [],
+  "by_source": [],
+  "by_age_bucket": [],
+  "oldest_unresolved": []
+}

@@ -8,6 +8,7 @@ import dotenv from "dotenv";
  */
 const rootEnvLocal = path.resolve(process.cwd(), "../../.env.local");
 const rootEnv = path.resolve(process.cwd(), "../../.env");
+const repoRoot = path.resolve(process.cwd(), "../..");
 
 dotenv.config({ path: rootEnvLocal });
 dotenv.config({ path: rootEnv });
@@ -43,6 +44,25 @@ if (!supabaseUrl || !supabaseAnon) {
 const nextConfig = {
   experimental: {
     cpus: 1,
+    outputFileTracingRoot: repoRoot,
+    outputFileTracingIncludes: {
+      "/founder": [
+        "../../docs/audits/founder_ops_dashboard_v1/*.json",
+        "../../docs/audits/image_truth_v1/canon_image_full_db_playbook_scan_v1.json",
+        "../../docs/audits/image_truth_v1/canon_image_unreferenced_storage_cleanup_plan_v1.json",
+        "../../docs/audits/image_truth_v1/image_surface_consistency_scan_v1.json",
+        "../../docs/audits/image_truth_v1/self_hosted_images_wh19a_final_image_hosting_state_scan_summary_v1.json",
+        "../../docs/audits/new_set_release_ingestion_v1/20260714_abyss_eye_pitch_black/summary_v1.json",
+        "../../docs/audits/english_master_index_completion_v1/english_master_index_completion_v1.json",
+        "../../docs/audits/english_master_index_publishable_v1/english_master_index_publishable_manifest_v1.json",
+        "../../docs/audits/market_evidence_engine_v1/mee_nightly_droplet_worker_v1_2026-07-13T19-27-52-230Z.json",
+        "../../docs/audits/grookai_beta_hardening_readiness_v1/grookai_beta_hardening_readiness_v1.json",
+        "../../docs/audits/app_flow_prod_readiness_v1/app_flow_prod_readiness_v1.json",
+        "../../docs/audits/web_cohesion_link_integrity_v1/web_cohesion_link_integrity_v1.json",
+        "../../docs/audits/release_hardening_v1/release_readiness_matrix_20260517.json",
+        "../../docs/audits/supabase_security_linter_v1/supabase_security_warn_remediation_v2_20260521.md",
+      ],
+    },
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,

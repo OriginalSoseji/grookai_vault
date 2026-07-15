@@ -14,6 +14,15 @@ import {
   getFounderPricingOpsSummary,
   type FounderPricingOpsSummary,
 } from "@/lib/founder/getPricingOpsSummary";
+import {
+  getCatalogImageOpsSummary,
+  type CatalogImageOpsSummary,
+} from "@/lib/founder/getCatalogImageOpsSummary";
+import {
+  getFounderOpsReportRegistry,
+  type FounderOpsReportRegistry,
+  type FounderOpsReportStatus,
+} from "@/lib/founder/getFounderOpsReportRegistry";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
@@ -647,6 +656,27 @@ function formatHoursRemaining(value: number | null) {
   return `${Math.max(value * 60, 1).toFixed(0)}m`;
 }
 
+function formatNumber(value: number) {
+  return new Intl.NumberFormat("en-US").format(value);
+}
+
+function formatBytes(value: number) {
+  if (!Number.isFinite(value) || value <= 0) {
+    return "0 B";
+  }
+
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let size = value;
+  let unitIndex = 0;
+
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex += 1;
+  }
+
+  return `${size >= 10 || unitIndex === 0 ? size.toFixed(0) : size.toFixed(1)} ${units[unitIndex]}`;
+}
+
 function getAlertToneClasses(tone: "neutral" | "warning" | "danger" | "positive") {
   if (tone === "danger") {
     return "border-rose-200 bg-rose-50 text-rose-700";
@@ -694,6 +724,341 @@ function OpsMetric({
       <p className="mt-1 text-xl font-semibold tracking-tight text-slate-950">{value}</p>
       {detail ? <p className="mt-1 text-xs text-slate-600">{detail}</p> : null}
     </div>
+  );
+}
+
+function statusToTone(status: FounderOpsReportStatus) {
+  if (status === "healthy") return "positive";
+  if (status === "warning") return "warning";
+  if (status === "critical") return "danger";
+  return "neutral";
+}
+
+function formatReportAge(ageHours: number | null) {
+  if (ageHours == null) return "unknown";
+  if (ageHours < 1) return `${Math.max(1, Math.round(ageHours * 60))}m`;
+  if (ageHours < 48) return `${ageHours.toFixed(1)}h`;
+  return `${Math.round(ageHours / 24)}d`;
+}
+
+function trendMovementLabel(movement: "new" | "stable" | "improved" | "degraded") {
+  if (movement === "improved") return "improved";
+  if (movement === "degraded") return "degraded";
+  if (movement === "stable") return "stable";
+  return "new trend";
+}
+
+function trendMovementTone(movement: "new" | "stable" | "improved" | "degraded") {
+  if (movement === "improved") return "positive";
+  if (movement === "degraded") return "danger";
+  if (movement === "stable") return "neutral";
+  return "warning";
+}
+
+function trendDotClass(status: FounderOpsReportStatus) {
+  if (status === "healthy") return "bg-emerald-500";
+  if (status === "warning") return "bg-amber-500";
+  if (status === "critical") return "bg-rose-500";
+  return "bg-slate-300";
+}
+
+function FounderOpsReportsSection({ registry }: { registry: FounderOpsReportRegistry }) {
+  const byCategory = registry.cards.reduce(
+    (acc, cardItem) => {
+      const current = acc.get(cardItem.category) ?? { total: 0, critical: 0, warning: 0, healthy: 0 };
+      current.total += 1;
+      if (cardItem.status === "critical") current.critical += 1;
+      if (cardItem.status === "warning") current.warning += 1;
+      if (cardItem.status === "healthy") current.healthy += 1;
+      acc.set(cardItem.category, current);
+      return acc;
+    },
+    new Map<string, { total: number; critical: number; warning: number; healthy: number }>(),
+  );
+
+  return (
+    <PageSection spacing="default">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          title="Founder Ops Reports"
+          description="One operating view across launch gates, catalog trust, ingestion, market evidence, product readiness, and security reports."
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <OpsPill label={`${registry.summary.critical} critical`} tone={registry.summary.critical > 0 ? "danger" : "positive"} />
+          <OpsPill label={`${registry.summary.warning} review`} tone={registry.summary.warning > 0 ? "warning" : "positive"} />
+          <OpsPill label={`${registry.summary.stale} stale`} tone={registry.summary.stale > 0 ? "warning" : "positive"} />
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {Array.from(byCategory.entries()).map(([category, counts]) => (
+          <MetricCard
+            key={category}
+            label={category}
+            value={counts.critical > 0 ? `${counts.critical} critical` : counts.warning > 0 ? `${counts.warning} review` : "Clear"}
+            detail={`${counts.healthy}/${counts.total} healthy reports`}
+          />
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-4 xl:grid-cols-2">
+        {registry.cards.map((report) => (
+          <div key={report.id} className="gv-premium-surface px-5 py-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{report.category}</p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">{report.title}</h3>
+                <p className="mt-1 break-all text-xs leading-6 text-slate-500">{report.sourcePath}</p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <OpsPill label={report.statusLabel} tone={statusToTone(report.status)} />
+                <OpsPill label={report.stale ? "stale" : formatReportAge(report.ageHours)} tone={report.stale ? "warning" : "positive"} />
+                <OpsPill label={trendMovementLabel(report.trend.movement)} tone={trendMovementTone(report.trend.movement)} />
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <OpsMetric label="Status" value={report.primaryMetric} detail={report.secondaryMetric} />
+              <OpsMetric label="Freshness" value={formatReportAge(report.ageHours)} detail={`${report.freshnessHours}h target`} />
+            </div>
+
+            <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Trend</p>
+                  <p className="mt-1 text-sm font-medium text-slate-900">
+                    {report.trend.pointCount > 0
+                      ? `${report.trend.pointCount} snapshots over ${report.trend.windowDays}d`
+                      : "Waiting for scheduled snapshots"}
+                  </p>
+                </div>
+                {report.trend.points.length > 0 ? (
+                  <div className="flex flex-wrap gap-1.5" aria-label={`${report.title} recent status history`}>
+                    {report.trend.points.slice(-14).map((point) => (
+                      <span
+                        key={`${report.id}-${point.collectedAt}`}
+                        title={`${formatTimestamp(point.collectedAt)}: ${point.status} (${point.primaryMetric})`}
+                        className={`h-2.5 w-2.5 rounded-full ${trendDotClass(point.status)}`}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              {report.trend.lastChangedAt ? (
+                <p className="mt-2 text-xs text-slate-600">Last status change: {formatTimestamp(report.trend.lastChangedAt)}</p>
+              ) : null}
+            </div>
+
+            {report.details.length > 0 ? (
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {report.details.slice(0, 4).map((detail) => (
+                  <div key={`${report.id}-${detail.label}`} className="rounded-2xl bg-slate-50 px-4 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{detail.label}</p>
+                    <p className="mt-1 truncate text-sm font-medium text-slate-900">{detail.value}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            {report.findings.length > 0 ? (
+              <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
+                <p className="text-sm font-semibold text-amber-800">Findings</p>
+                <ul className="mt-2 space-y-1 text-sm leading-6 text-amber-700">
+                  {report.findings.slice(0, 3).map((finding) => (
+                    <li key={finding}>{finding}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-6 text-emerald-700">
+                No blocking findings in this report.
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </PageSection>
+  );
+}
+
+function CatalogImageOpsSection({ imageOps }: { imageOps: CatalogImageOpsSummary }) {
+  const statusTone =
+    imageOps.status === "healthy"
+      ? "positive"
+      : imageOps.status === "warning"
+        ? "warning"
+        : imageOps.status === "critical"
+          ? "danger"
+          : "neutral";
+  const full = imageOps.fullScan;
+  const cleanup = imageOps.cleanupPlan;
+  const ageLabel =
+    imageOps.generatedAgeHours == null
+      ? "unknown age"
+      : imageOps.generatedAgeHours < 1
+        ? `${Math.max(1, Math.round(imageOps.generatedAgeHours * 60))}m old`
+        : `${imageOps.generatedAgeHours.toFixed(1)}h old`;
+
+  return (
+    <PageSection spacing="default">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          title="Catalog Image Health"
+          description="Read-only monitoring from the full DB image playbook: referenced image integrity, wrong-image guards, cleanup backlog, and report freshness."
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <OpsPill label={imageOps.statusLabel} tone={statusTone} />
+          <OpsPill label={imageOps.stale ? "stale report" : ageLabel} tone={imageOps.stale ? "warning" : "positive"} />
+        </div>
+      </div>
+
+      {full ? (
+        <>
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
+            <MetricCard
+              label="Identity Paths"
+              value={formatNumber(full.metrics.identityRowsWithCanonImagePath)}
+              detail={`${formatNumber(full.metrics.identityRows)} identity rows scanned`}
+            />
+            <MetricCard
+              label="Missing Objects"
+              value={formatNumber(full.metrics.missingStorageObjects)}
+              detail="Referenced image paths absent from storage"
+            />
+            <MetricCard
+              label="Bad Patterns"
+              value={formatNumber(full.metrics.badSelectedPatterns)}
+              detail="Selected paths matching rejected source patterns"
+            />
+            <MetricCard
+              label="JPN Bad Patterns"
+              value={formatNumber(full.metrics.japaneseBadSelectedPatterns)}
+              detail="Japanese rows with selected bad patterns"
+            />
+            <MetricCard
+              label="Zero-byte"
+              value={formatNumber(full.metrics.zeroByteObjects)}
+              detail="Referenced image files with no content"
+            />
+            <MetricCard
+              label="Suspicious Unref"
+              value={formatNumber(full.metrics.unreferencedSuspiciousStorageObjects)}
+              detail="Unreferenced objects requiring review"
+            />
+          </div>
+
+          <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="gv-premium-surface px-5 py-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Scan coverage</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">Full catalog image surface</h3>
+                </div>
+                <OpsPill label={full.metrics.missingStorageObjects === 0 ? "covered" : "gap"} tone={full.metrics.missingStorageObjects === 0 ? "positive" : "danger"} />
+              </div>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <OpsMetric label="Parent rows" value={formatNumber(full.metrics.parentRowsScanned)} />
+                <OpsMetric label="Child rows" value={formatNumber(full.metrics.childRowsScanned)} />
+                <OpsMetric label="Storage objects" value={formatNumber(full.metrics.storageObjectsScanned)} />
+                <OpsMetric label="Non-image refs" value={formatNumber(full.metrics.nonImageObjects)} />
+              </div>
+
+              <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Report</p>
+                <p className="mt-1 break-all text-xs leading-6 text-slate-600">{full.reportPath}</p>
+                <p className="mt-2 break-all text-xs leading-6 text-slate-500">Fingerprint: {full.fingerprint ?? "—"}</p>
+              </div>
+            </div>
+
+            <div className="gv-premium-surface px-5 py-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Storage hygiene</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">Cleanup readiness</h3>
+                </div>
+                <OpsPill
+                  label={cleanup && cleanup.metrics.deleteCandidates === 0 ? "no backlog" : "review"}
+                  tone={cleanup && cleanup.metrics.deleteCandidates === 0 ? "positive" : "warning"}
+                />
+              </div>
+
+              {cleanup ? (
+                <>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    <OpsMetric label="Referenced paths" value={formatNumber(cleanup.metrics.referencedCanonImagePaths)} />
+                    <OpsMetric label="Delete candidates" value={formatNumber(cleanup.metrics.deleteCandidates)} detail={formatBytes(cleanup.metrics.deleteCandidateBytes)} />
+                    <OpsMetric label="Held proof files" value={formatNumber(cleanup.metrics.holdObjects)} detail={formatBytes(cleanup.metrics.holdBytes)} />
+                    <OpsMetric label="Unreferenced total" value={formatNumber(cleanup.metrics.unreferencedCanonStorageObjects)} />
+                  </div>
+
+                  {cleanup.holdReasons.length > 0 ? (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {cleanup.holdReasons.map((item) => (
+                        <span
+                          key={item.key}
+                          className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
+                        >
+                          {item.key.replace(/_/g, " ")}: {item.count}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+                </>
+              ) : (
+                <p className="mt-5 text-sm leading-6 text-slate-600">Cleanup plan report is unavailable.</p>
+              )}
+            </div>
+          </div>
+
+          {imageOps.blockingFindings.length > 0 || imageOps.warningFindings.length > 0 ? (
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
+              {imageOps.blockingFindings.length > 0 ? (
+                <div className="rounded-2xl border border-rose-200 bg-rose-50 px-5 py-4">
+                  <p className="text-sm font-semibold text-rose-800">Blocking findings</p>
+                  <ul className="mt-3 space-y-2 text-sm leading-6 text-rose-700">
+                    {imageOps.blockingFindings.map((finding) => (
+                      <li key={finding}>{finding}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {imageOps.warningFindings.length > 0 ? (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4">
+                  <p className="text-sm font-semibold text-amber-800">Warnings</p>
+                  <ul className="mt-3 space-y-2 text-sm leading-6 text-amber-700">
+                    {imageOps.warningFindings.map((finding) => (
+                      <li key={finding}>{finding}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm leading-6 text-emerald-700">
+              No image integrity blockers or cleanup backlog were found in the latest report.
+            </div>
+          )}
+
+          {full.topUnreferencedFolders.length > 0 ? (
+            <div className="mt-5 gv-soft-surface px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Unreferenced held folders</p>
+              <div className="mt-3 space-y-2">
+                {full.topUnreferencedFolders.map((item) => (
+                  <div key={item.key} className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <span className="break-all font-medium text-slate-800">{item.key}</span>
+                    <span className="text-slate-500">{item.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </>
+      ) : (
+        <EmptyPanel message="Catalog image health report is unavailable. Run the full DB image playbook scan, then reload the founder page." />
+      )}
+    </PageSection>
   );
 }
 
@@ -848,7 +1213,11 @@ export default async function FounderPage() {
   const admin = createServerAdminClient();
   await requireFounderAccess("/founder");
 
-  const pricingOps = await getFounderPricingOpsSummary(admin);
+  const [pricingOps, imageOps, opsReportRegistry] = await Promise.all([
+    getFounderPricingOpsSummary(admin),
+    getCatalogImageOpsSummary(),
+    getFounderOpsReportRegistry(),
+  ]);
   let marketSignals: FounderInsightBundle | null = null;
   let marketSignalsError: string | null = null;
   try {
@@ -1013,6 +1382,10 @@ export default async function FounderPage() {
       ) : marketSignals ? (
         <FounderMarketSignalsSection insights={marketSignals} />
       ) : null}
+
+      <FounderOpsReportsSection registry={opsReportRegistry} />
+
+      <CatalogImageOpsSection imageOps={imageOps} />
 
       <PricingOpsSection pricingOps={pricingOps} />
 

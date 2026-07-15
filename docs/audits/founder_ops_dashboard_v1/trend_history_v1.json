@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-15T01:57:24.715Z",
+  "retention_days": 90,
+  "snapshots": [
+    {
+      "collected_at": "2026-07-15T01:57:24.715Z",
+      "cards": [
+        {
+          "id": "runtime-preflight",
+          "title": "Launch Gate",
+          "category": "Launch",
+          "status": "warning",
+          "primary_metric": "PASS_WITH_DEFERRED_DEBT",
+          "secondary_metric": "0 critical, 10 deferred"
+        },
+        {
+          "id": "runtime-health",
+          "title": "Contract Runtime",
+          "category": "Launch",
+          "status": "warning",
+          "primary_metric": "Pass",
+          "secondary_metric": "7 deferred runtime gaps"
+        },
+        {
+          "id": "quarantine",
+          "title": "Quarantine",
+          "category": "Launch",
+          "status": "healthy",
+          "primary_metric": "0 unresolved",
+          "secondary_metric": "0 stale"
+        },
+        {
+          "id": "deferred-debt",
+          "title": "Known Runtime Debt",
+          "category": "Launch",
+          "status": "warning",
+          "primary_metric": "7 gaps",
+          "secondary_metric": "5 blocked from use"
+        },
+        {
+          "id": "image-surface",
+          "title": "Image Surface Consistency",
+          "category": "Catalog",
+          "status": "healthy",
+          "primary_metric": "Pass",
+          "secondary_metric": "0 fallback gaps"
+        },
+        {
+          "id": "image-hosting",
+          "title": "Self-hosted Image Coverage",
+          "category": "Catalog",
+          "status": "warning",
+          "primary_metric": "0 priority gaps",
+          "secondary_metric": "62 English physical gaps"
+        },
+        {
+          "id": "new-set-ingestion",
+          "title": "New Set Ingestion",
+          "category": "Ingestion",
+          "status": "warning",
+          "primary_metric": "complete",
+          "secondary_metric": "118 acquired rows"
+        },
+        {
+          "id": "master-index",
+          "title": "Master Index Health",
+          "category": "Catalog",
+          "status": "warning",
+          "primary_metric": "94% publishable",
+          "secondary_metric": "12 sets not publishable"
+        },
+        {
+          "id": "market-evidence",
+          "title": "Market Evidence Engine",
+          "category": "Market",
+          "status": "warning",
+          "primary_metric": "dry_run",
+          "secondary_metric": "0 failed phases"
+        },
+        {
+          "id": "beta-readiness",
+          "title": "Beta Readiness",
+          "category": "Product",
+          "status": "warning",
+          "primary_metric": "beta_ready_with_ranked_followups",
+          "secondary_metric": "0 blockers"
+        },
+        {
+          "id": "app-flow",
+          "title": "App Flow Readiness",
+          "category": "Product",
+          "status": "critical",
+          "primary_metric": "NEEDS_PRODUCT_DECISION",
+          "secondary_metric": "1 blockers, 2 warnings"
+        },
+        {
+          "id": "web-cohesion",
+          "title": "Web Cohesion",
+          "category": "Product",
+          "status": "warning",
+          "primary_metric": "0 broken",
+          "secondary_metric": "900 polish warnings"
+        },
+        {
+          "id": "release-readiness",
+          "title": "Release Readiness",
+          "category": "Launch",
+          "status": "healthy",
+          "primary_metric": "PRODUCTION_READY",
+          "secondary_metric": "0 lane issues"
+        },
+        {
+          "id": "supabase-security",
+          "title": "Supabase Security",
+          "category": "Security",
+          "status": "warning",
+          "primary_metric": "6 warnings",
+          "secondary_metric": "3 lint errors noted"
+        }
+      ]
+    }
+  ]
+}

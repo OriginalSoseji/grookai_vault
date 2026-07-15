@@ -1,0 +1,386 @@
+{
+  "collected_at": "2026-07-15T01:57:29.254Z",
+  "status": "PASS_WITH_DEFERRED_DEBT",
+  "summary": {
+    "critical_fail_checks": 0,
+    "known_deferred_debt_checks": 10
+  },
+  "drift_audit": {
+    "summary": {
+      "total_checks": 13,
+      "critical_fail_checks": 0,
+      "known_deferred_debt_checks": 3,
+      "informational_checks": 0
+    },
+    "rows": [
+      {
+        "issue_name": "contract_runtime_append_only_triggers_missing",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Append-only triggers must protect ledger and quarantine tables.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "contract_runtime_tables_missing",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Runtime evidence tables must exist.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "external_mappings_missing_card_print_owner",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Active mappings must point at a real card_print.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "external_mappings_source_external_duplicates",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "source/external_id ownership must stay unique.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "identity_active_duplicate_card_print_id",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "More than one active card_print_identity row points at the same card_print.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "identity_active_duplicate_domain_hash",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Active identity domain hashes must remain unique.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "quarantine_view_leakage",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Canonical/public views must not reference quarantine_records.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "wall_membership_owner_drift",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Section membership owner must match both section owner and exact copy owner.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "warehouse_staging_without_founder_approval",
+        "severity_bucket": "critical_enforce_now",
+        "row_count": "0",
+        "notes": "Promotion staging rows require founder approval identity and timestamp.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "compatibility_views_missing",
+        "severity_bucket": "unexpected_regression",
+        "row_count": "0",
+        "notes": "Stabilization-critical compatibility/public views must exist.",
+        "gate_category": "critical_fail"
+      },
+      {
+        "issue_name": "card_prints_missing_gv_id",
+        "severity_bucket": "deferred_known_debt",
+        "row_count": "62",
+        "notes": "Legacy canonical card_prints still missing gv_id.",
+        "gate_category": "known_deferred_debt"
+      },
+      {
+        "issue_name": "external_mappings_source_card_duplicates",
+        "severity_bucket": "deferred_known_debt",
+        "row_count": "5",
+        "notes": "Historical many-to-one source/card mapping groups remain deferred repair debt.",
+        "gate_category": "known_deferred_debt"
+      },
+      {
+        "issue_name": "identity_active_missing_for_canonical_card_print",
+        "severity_bucket": "deferred_known_debt",
+        "row_count": "2345",
+        "notes": "Canonical non-excluded card_prints without active identity rows remain deferred debt.",
+        "gate_category": "known_deferred_debt"
+      }
+    ]
+  },
+  "runtime_health": {
+    "ok": true,
+    "summary": {
+      "total_checks": 2,
+      "failed_checks": 0,
+      "deferred_gap_count": 7
+    },
+    "checks": [
+      {
+        "task_name": "contract_scope_registry",
+        "status": "pass",
+        "detail": "Runtime scopes resolve authoritative contract names and known checkpoints."
+      },
+      {
+        "task_name": "runtime_coverage_sanity",
+        "status": "pass",
+        "detail": "Runtime audit, scope registry, execution policies, and proof modes agree for enforced canon paths."
+      }
+    ],
+    "deferred_gap_report": {
+      "summary": {
+        "total": 7,
+        "canon_affecting": 3,
+        "ownership_or_trust_affecting": 6,
+        "intentionally_deferred": 0,
+        "architecture_blocked": 2,
+        "not_yet_audited": 0,
+        "should_be_blocked_from_use": 5
+      },
+      "canon_paths": [
+        {
+          "surface_class": "canon",
+          "path_name": "staging_reconciliation_v1",
+          "source_files": "backend/warehouse/staging_reconciliation_v1.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": false,
+          "public_trust_affecting": false,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep blocked. Direct writes were removed and execution is disabled until a runtime-safe rewrite can split reconciliation-only writes from alias execution reuse.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Direct writes were removed and execution is disabled until a runtime-safe rewrite can split reconciliation-only writes from alias execution reuse."
+        },
+        {
+          "surface_class": "canon",
+          "path_name": "legacy_identity_apply_scripts",
+          "source_files": "backend/identity/*apply*.mjs, backend/identity/*repair*.mjs, backend/identity/*migration*.mjs, backend/identity/*replay*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists."
+        },
+        {
+          "surface_class": "canon",
+          "path_name": "canon_maintenance_replay_and_migration_helpers",
+          "source_files": "backend/domain/domain_baseline_*.mjs, backend/ingestion/justtcg_*apply*.mjs, backend/infra/backfill_print_identity_worker.mjs, backend/pricing/{ba_promote_v1,ba_phase9_ba_canon_promote_v2,ba_phase9a_parent_verify_v1,promote_justtcg_direct_structure_mapping_v1,promote_tcgdex_bridge_to_justtcg_mapping_v1,promote_tcgplayer_to_justtcg_mapping_v1,justtcg_variant_prices_latest_refresh_v1,justtcg_variant_prices_latest_repair_v1}.mjs, supabase/migrations/*.sql, backend/maintenance/*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance."
+        }
+      ],
+      "ownership_trust_paths": [
+        {
+          "surface_class": "canon",
+          "path_name": "legacy_identity_apply_scripts",
+          "source_files": "backend/identity/*apply*.mjs, backend/identity/*repair*.mjs, backend/identity/*migration*.mjs, backend/identity/*replay*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists."
+        },
+        {
+          "surface_class": "canon",
+          "path_name": "canon_maintenance_replay_and_migration_helpers",
+          "source_files": "backend/domain/domain_baseline_*.mjs, backend/ingestion/justtcg_*apply*.mjs, backend/infra/backfill_print_identity_worker.mjs, backend/pricing/{ba_promote_v1,ba_phase9_ba_canon_promote_v2,ba_phase9a_parent_verify_v1,promote_justtcg_direct_structure_mapping_v1,promote_tcgdex_bridge_to_justtcg_mapping_v1,promote_tcgplayer_to_justtcg_mapping_v1,justtcg_variant_prices_latest_refresh_v1,justtcg_variant_prices_latest_repair_v1}.mjs, supabase/migrations/*.sql, backend/maintenance/*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveVaultItemIntentAction",
+          "source_files": "apps/web/src/lib/network/saveVaultItemIntentAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": null,
+          "risk_level": "low",
+          "next_action": "Keep blocked. Grouped intent is already fail-closed and must stay non-authoritative.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped intent is already fail-closed and must stay non-authoritative."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "toggleSharedCardAction",
+          "source_files": "apps/web/src/lib/sharedCards/toggleSharedCardAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Grouped compatibility mutation is deprecated and must not regain authority over exact-copy trust surfaces.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped compatibility mutation is deprecated and must not regain authority over exact-copy trust surfaces."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveSharedCardWallCategoryAction",
+          "source_files": "apps/web/src/lib/sharedCards/saveSharedCardWallCategoryAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Grouped wall_category remains compatibility debris and must not surface as authoritative section or wall mutation.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped wall_category remains compatibility debris and must not surface as authoritative section or wall mutation."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveSharedCardPublicNoteAction",
+          "source_files": "apps/web/src/lib/sharedCards/saveSharedCardPublicNoteAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Shared-card public notes must not impersonate exact-copy ownership truth.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Shared-card public notes must not impersonate exact-copy ownership truth."
+        }
+      ],
+      "gaps": [
+        {
+          "surface_class": "canon",
+          "path_name": "staging_reconciliation_v1",
+          "source_files": "backend/warehouse/staging_reconciliation_v1.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": false,
+          "public_trust_affecting": false,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep blocked. Direct writes were removed and execution is disabled until a runtime-safe rewrite can split reconciliation-only writes from alias execution reuse.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Direct writes were removed and execution is disabled until a runtime-safe rewrite can split reconciliation-only writes from alias execution reuse."
+        },
+        {
+          "surface_class": "canon",
+          "path_name": "legacy_identity_apply_scripts",
+          "source_files": "backend/identity/*apply*.mjs, backend/identity/*repair*.mjs, backend/identity/*migration*.mjs, backend/identity/*replay*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit identity maintenance boundary. These replay/repair scripts now require explicit maintenance mode, the dedicated entrypoint, and dry-run-by-default execution until a dedicated replay architecture exists."
+        },
+        {
+          "surface_class": "canon",
+          "path_name": "canon_maintenance_replay_and_migration_helpers",
+          "source_files": "backend/domain/domain_baseline_*.mjs, backend/ingestion/justtcg_*apply*.mjs, backend/infra/backfill_print_identity_worker.mjs, backend/pricing/{ba_promote_v1,ba_phase9_ba_canon_promote_v2,ba_phase9a_parent_verify_v1,promote_justtcg_direct_structure_mapping_v1,promote_tcgdex_bridge_to_justtcg_mapping_v1,promote_tcgplayer_to_justtcg_mapping_v1,justtcg_variant_prices_latest_refresh_v1,justtcg_variant_prices_latest_repair_v1}.mjs, supabase/migrations/*.sql, backend/maintenance/*.mjs",
+          "canon_affecting": true,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "contained_maintenance_authority",
+          "transaction_mode": "unknown",
+          "post_write_proof": false,
+          "risk_level": "high",
+          "next_action": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance.",
+          "blocker_type": "architecture_blocked",
+          "reason": "Keep behind the explicit canon maintenance boundary. Canon replay/migration helpers are no longer live runtime bypasses; they now require explicit maintenance mode, the dedicated launcher, and dry-run-default execution. SQL migrations remain explicit operator-only schema maintenance."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveVaultItemIntentAction",
+          "source_files": "apps/web/src/lib/network/saveVaultItemIntentAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": null,
+          "risk_level": "low",
+          "next_action": "Keep blocked. Grouped intent is already fail-closed and must stay non-authoritative.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped intent is already fail-closed and must stay non-authoritative."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "toggleSharedCardAction",
+          "source_files": "apps/web/src/lib/sharedCards/toggleSharedCardAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Grouped compatibility mutation is deprecated and must not regain authority over exact-copy trust surfaces.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped compatibility mutation is deprecated and must not regain authority over exact-copy trust surfaces."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveSharedCardWallCategoryAction",
+          "source_files": "apps/web/src/lib/sharedCards/saveSharedCardWallCategoryAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Grouped wall_category remains compatibility debris and must not surface as authoritative section or wall mutation.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Grouped wall_category remains compatibility debris and must not surface as authoritative section or wall mutation."
+        },
+        {
+          "surface_class": "ownership_trust",
+          "path_name": "saveSharedCardPublicNoteAction",
+          "source_files": "apps/web/src/lib/sharedCards/saveSharedCardPublicNoteAction.ts",
+          "canon_affecting": false,
+          "ownership_affecting": true,
+          "public_trust_affecting": true,
+          "runtime_status": "intentionally blocked",
+          "transaction_mode": "non_transactional",
+          "post_write_proof": false,
+          "risk_level": "medium",
+          "next_action": "Keep blocked. Shared-card public notes must not impersonate exact-copy ownership truth.",
+          "blocker_type": "should_be_blocked_from_use",
+          "reason": "Keep blocked. Shared-card public notes must not impersonate exact-copy ownership truth."
+        }
+      ]
+    }
+  }
+}

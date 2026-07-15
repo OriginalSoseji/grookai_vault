@@ -1,0 +1,88 @@
+{
+  "package_id": "NEW-POKEMON-SET-RELEASE-INGESTION-V1",
+  "playbook": "NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1",
+  "release_slug": "20260714_abyss_eye_pitch_black",
+  "generated_at": "2026-07-14T20:42:34.182Z",
+  "mode": "dry-run",
+  "manifest_path": "data\\set_ingest\\20260714_abyss_eye_pitch_black_new_sets_v1.json",
+  "source_snapshot_dir": "docs\\audits\\new_set_release_ingestion_v1\\20260714_abyss_eye_pitch_black\\raw_sources",
+  "summary_json": "docs\\audits\\new_set_release_ingestion_v1\\20260714_abyss_eye_pitch_black\\summary_v1.json",
+  "sets": [
+    {
+      "target_key": "abyss_eye_jp",
+      "name": "Abyss Eye",
+      "language": "ja",
+      "canonical_set_code": "jpn-m5",
+      "acquired_rows": 118,
+      "db_applied": false,
+      "readback": null,
+      "status": "acquired_not_applied"
+    }
+  ],
+  "phases": {
+    "validation": {
+      "findings": []
+    },
+    "tcgdex_discovery": [
+      {
+        "set_key": "abyss_eye_jp",
+        "lang": "ja",
+        "configured_id": null,
+        "available": false,
+        "matched_id": null,
+        "matched_name": null,
+        "count": null,
+        "findings": [
+          "tcgdex_exact_name_match_count:0"
+        ],
+        "probe_url": "https://api.tcgdex.net/v2/ja/sets",
+        "status": 200
+      }
+    ],
+    "acquisitions": [
+      {
+        "set_key": "abyss_eye_jp",
+        "source": "limitless+bulbapedia",
+        "available": true,
+        "index_url": [
+          "https://limitlesstcg.com/cards/jp/M5?show=all",
+          "https://bulbapedia.bulbagarden.net/wiki/Abyss_Eye_(TCG)",
+          "https://jp.pokellector.com/Abyss-Eye-Expansion/"
+        ],
+        "meta": {
+          "title": "Abyss Eye (M5)",
+          "line": "22nd May 2026 • 81 Cards",
+          "logo_url": "https://s3.limitlesstcg.com/sets/jp/M5.png",
+          "card_count": 81
+        },
+        "expected_total": 118,
+        "row_count": 118,
+        "findings": [],
+        "source_parts": {
+          "main_set_rows": 81,
+          "secret_rows": 37,
+          "pokellector_secret_image_rows": 37,
+          "reviewed_image_overrides": 2
+        }
+      }
+    ],
+    "master_indexes": [
+      {
+        "set_key": "abyss_eye_jp",
+        "path": "docs\\audits\\new_set_release_ingestion_v1\\20260714_abyss_eye_pitch_black\\japanese_candidate_set_index_v1.json",
+        "rows": 118
+      }
+    ],
+    "db_apply": [
+      {
+        "set_key": "abyss_eye_jp",
+        "applied": false,
+        "dry_run": true
+      }
+    ],
+    "readbacks": [],
+    "tests": []
+  },
+  "stop_findings": [],
+  "status": "complete"
+}
