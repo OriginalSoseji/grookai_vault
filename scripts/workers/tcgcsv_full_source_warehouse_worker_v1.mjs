@@ -675,25 +675,42 @@ async function markMissingCurrentRows(client, runId) {
 
 async function ensureHistoricalProducts(client, prices, runId) {
   const productIds = Array.from(new Set(prices.map((row) => Number(row.productId)).filter(Number.isInteger)));
+  const chunkSize = positiveIntFromEnv("TCGCSV_HISTORICAL_PRODUCT_BATCH_SIZE", 1000);
   let inserted = 0;
-  for (const productId of productIds) {
+  for (let offset = 0; offset < productIds.length; offset += chunkSize) {
+    const chunk = productIds.slice(offset, offset + chunkSize).map((productId) => ({
+      product_id: productId,
+      raw_payload: { productId, catalog_metadata_status: "historical_price_only" },
+      payload_hash: sha256({ productId, catalog_metadata_status: "historical_price_only" }),
+    }));
     const result = await client.query(
-      `insert into public.tcgcsv_source_products (
-         product_id, raw_payload, payload_hash, last_seen_run_id, source_active,
-         catalog_metadata_status, first_seen_at, last_seen_at, updated_at
-       ) values (
-         $1, $2::jsonb, $3, $4, false, 'historical_price_only', now(), now(), now()
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           product_id integer,
+           raw_payload jsonb,
+           payload_hash text
+         )
+       ), inserted_rows as (
+         insert into public.tcgcsv_source_products (
+           product_id, raw_payload, payload_hash, last_seen_run_id, source_active,
+           catalog_metadata_status, first_seen_at, last_seen_at, updated_at
+         )
+         select
+           product_id, raw_payload, payload_hash, $2, false,
+           'historical_price_only', now(), now(), now()
+         from input_rows
+         on conflict (product_id) do nothing
+         returning 1
        )
-       on conflict (product_id) do nothing
-       returning 1`,
-      [
-        productId,
-        JSON.stringify({ productId, catalog_metadata_status: "historical_price_only" }),
-        sha256({ productId, catalog_metadata_status: "historical_price_only" }),
-        runId,
-      ],
+       select count(*)::int as inserted from inserted_rows`,
+      [JSON.stringify(chunk), runId],
     );
-    inserted += result.rowCount;
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    const processed = Math.min(offset + chunk.length, productIds.length);
+    if (processed === productIds.length || processed % (chunkSize * 10) === 0) {
+      console.error(`[tcgcsv-full] historical_products processed=${processed}/${productIds.length} inserted=${inserted}`);
+    }
   }
   return inserted;
 }
