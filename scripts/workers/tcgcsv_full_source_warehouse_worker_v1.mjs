@@ -539,42 +539,89 @@ async function upsertProducts(client, rows) {
 }
 
 async function upsertPriceObservations(client, rows) {
-  return upsertRows(client, "tcgcsv_source_price_daily_observations", rows, ["source_price_row_identity", "observed_on"], "", (row) => ({
-    sql: `insert into public.tcgcsv_source_price_daily_observations (
-      source_price_row_identity, product_id, category_id, group_id, subtype_name,
-      subtype_name_normalized, observed_on, low_price, mid_price, high_price,
-      market_price, direct_low_price, currency, raw_payload, payload_hash,
-      source_archive_path, source_artifact_id, first_seen_run_id, last_seen_run_id,
-      first_observed_at, last_observed_at, updated_at
-    ) values (
-      $1,$2,$3,$4,$5,$6,$7::date,$8,$9,$10,$11,$12,$13,$14::jsonb,$15,$16,$17,$18,$19,now(),now(),now()
-    )
-    on conflict (source_price_row_identity, observed_on) do update set
-      product_id = excluded.product_id,
-      category_id = coalesce(excluded.category_id, public.tcgcsv_source_price_daily_observations.category_id),
-      group_id = coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id),
-      subtype_name = excluded.subtype_name,
-      subtype_name_normalized = excluded.subtype_name_normalized,
-      low_price = excluded.low_price,
-      mid_price = excluded.mid_price,
-      high_price = excluded.high_price,
-      market_price = excluded.market_price,
-      direct_low_price = excluded.direct_low_price,
-      raw_payload = excluded.raw_payload,
-      payload_hash = excluded.payload_hash,
-      source_archive_path = excluded.source_archive_path,
-      source_artifact_id = coalesce(excluded.source_artifact_id, public.tcgcsv_source_price_daily_observations.source_artifact_id),
-      last_seen_run_id = excluded.last_seen_run_id,
-      last_observed_at = now(),
-      updated_at = now()`,
-    params: [
-      row.source_price_row_identity, row.product_id, row.category_id, row.group_id,
-      row.subtype_name, row.subtype_name_normalized, row.observed_on,
-      row.low_price, row.mid_price, row.high_price, row.market_price, row.direct_low_price,
-      row.currency, JSON.stringify(row.raw_payload), row.payload_hash, row.source_archive_path,
-      row.source_artifact_id, row.first_seen_run_id, row.last_seen_run_id,
-    ],
-  }));
+  const chunkSize = 5000;
+  let inserted = 0;
+  let updated = 0;
+  let noOp = 0;
+  for (let offset = 0; offset < rows.length; offset += chunkSize) {
+    const chunk = rows.slice(offset, offset + chunkSize);
+    const result = await client.query(
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           source_price_row_identity text,
+           product_id integer,
+           category_id integer,
+           group_id integer,
+           subtype_name text,
+           subtype_name_normalized text,
+           observed_on date,
+           low_price numeric,
+           mid_price numeric,
+           high_price numeric,
+           market_price numeric,
+           direct_low_price numeric,
+           currency text,
+           raw_payload jsonb,
+           payload_hash text,
+           source_archive_path text,
+           source_artifact_id uuid,
+           first_seen_run_id uuid,
+           last_seen_run_id uuid
+         )
+       ), upserted as (
+         insert into public.tcgcsv_source_price_daily_observations (
+           source_price_row_identity, product_id, category_id, group_id, subtype_name,
+           subtype_name_normalized, observed_on, low_price, mid_price, high_price,
+           market_price, direct_low_price, currency, raw_payload, payload_hash,
+           source_archive_path, source_artifact_id, first_seen_run_id, last_seen_run_id,
+           first_observed_at, last_observed_at, updated_at
+         )
+         select
+           source_price_row_identity, product_id, category_id, group_id, subtype_name,
+           subtype_name_normalized, observed_on, low_price, mid_price, high_price,
+           market_price, direct_low_price, coalesce(currency, 'USD'), raw_payload, payload_hash,
+           source_archive_path, source_artifact_id, first_seen_run_id, last_seen_run_id,
+           now(), now(), now()
+         from input_rows
+         on conflict (source_price_row_identity, observed_on) do update set
+           product_id = excluded.product_id,
+           category_id = coalesce(excluded.category_id, public.tcgcsv_source_price_daily_observations.category_id),
+           group_id = coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id),
+           subtype_name = excluded.subtype_name,
+           subtype_name_normalized = excluded.subtype_name_normalized,
+           low_price = excluded.low_price,
+           mid_price = excluded.mid_price,
+           high_price = excluded.high_price,
+           market_price = excluded.market_price,
+           direct_low_price = excluded.direct_low_price,
+           raw_payload = excluded.raw_payload,
+           payload_hash = excluded.payload_hash,
+           source_archive_path = excluded.source_archive_path,
+           source_artifact_id = coalesce(excluded.source_artifact_id, public.tcgcsv_source_price_daily_observations.source_artifact_id),
+           last_seen_run_id = excluded.last_seen_run_id,
+           last_observed_at = now(),
+           updated_at = now()
+         returning (xmax = 0) as inserted
+       )
+       select
+         count(*) filter (where inserted)::int as inserted,
+         count(*) filter (where not inserted)::int as updated
+       from upserted`,
+      [JSON.stringify(chunk)],
+    );
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    updated += Number(result.rows[0]?.updated ?? 0);
+  }
+  return {
+    inserted,
+    updated,
+    noOp,
+    table: "tcgcsv_source_price_daily_observations",
+    pkColumns: ["source_price_row_identity", "observed_on"],
+    setSql: "batched jsonb_to_recordset upsert",
+    extraConflict: "",
+  };
 }
 
 async function markMissingCurrentRows(client, runId) {
