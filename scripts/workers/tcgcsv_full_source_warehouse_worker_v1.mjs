@@ -23,10 +23,19 @@ const PARSER_VERSION = "TCGCSV_FULL_SOURCE_PARSER_V1";
 const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
+const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 500;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
 const { Client } = pg;
+
+function positiveIntFromEnv(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === "") return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isInteger(parsed) || parsed < 1) throw new Error(`${name} must be a positive integer`);
+  return parsed;
+}
 
 function parseArgs(argv) {
   const args = {
@@ -539,7 +548,7 @@ async function upsertProducts(client, rows) {
 }
 
 async function upsertPriceObservations(client, rows) {
-  const chunkSize = 5000;
+  const chunkSize = positiveIntFromEnv("TCGCSV_PRICE_OBSERVATION_BATCH_SIZE", DEFAULT_PRICE_OBSERVATION_BATCH_SIZE);
   let inserted = 0;
   let updated = 0;
   let noOp = 0;
@@ -612,6 +621,10 @@ async function upsertPriceObservations(client, rows) {
     );
     inserted += Number(result.rows[0]?.inserted ?? 0);
     updated += Number(result.rows[0]?.updated ?? 0);
+    const processed = Math.min(offset + chunk.length, rows.length);
+    if (processed === rows.length || processed % (chunkSize * 20) === 0) {
+      console.error(`[tcgcsv-full] price_observations processed=${processed}/${rows.length} inserted=${inserted} updated=${updated}`);
+    }
   }
   return {
     inserted,
