@@ -38,6 +38,22 @@ npm run tcgcsv:warehouse:current:apply -- --out-dir=docs/audits/market_evidence_
 
 Use `--force` / `--ignore-last-updated` only when the prior run was incomplete, parser logic changed, or the operator intentionally wants to refresh despite an unchanged `last-updated.txt`.
 
+### Targeted Current Retry
+
+If a full current sync finishes as `partial_success` because a small number of category/group fetches failed, retry only those source groups:
+
+```bash
+node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs \
+  --mode=current \
+  --apply \
+  --force \
+  --category-ids=3 \
+  --group-ids=1543,1663 \
+  --out-dir=docs/audits/market_evidence_engine_v1/tcgcsv_full_source_warehouse_v1
+```
+
+Targeted retries skip source-missing marking so unrelated catalog rows cannot be marked inactive by a partial fetch.
+
 ## Historical Archive Backfill
 
 TCGCSV historical archives start at `2024-02-08`. Run in bounded date windows.

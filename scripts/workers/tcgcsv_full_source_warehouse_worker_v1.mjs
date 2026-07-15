@@ -38,6 +38,18 @@ function positiveIntFromEnv(name, fallback) {
   return parsed;
 }
 
+function parsePositiveIntSet(value, flagName) {
+  const parsed = String(value ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => Number.parseInt(part, 10));
+  if (parsed.length === 0 || parsed.some((part) => !Number.isInteger(part) || part < 1)) {
+    throw new Error(`${flagName} must be a comma-separated list of positive integers`);
+  }
+  return new Set(parsed);
+}
+
 function parseArgs(argv) {
   const args = {
     mode: "current",
@@ -55,6 +67,8 @@ function parseArgs(argv) {
     includeEmptyCategories: false,
     limitCategories: null,
     limitGroups: null,
+    categoryIds: null,
+    groupIds: null,
   };
 
   for (const arg of argv) {
@@ -75,6 +89,8 @@ function parseArgs(argv) {
     else if (arg === "--include-empty-categories") args.includeEmptyCategories = true;
     else if (arg.startsWith("--limit-categories=")) args.limitCategories = Number.parseInt(arg.slice("--limit-categories=".length), 10);
     else if (arg.startsWith("--limit-groups=")) args.limitGroups = Number.parseInt(arg.slice("--limit-groups=".length), 10);
+    else if (arg.startsWith("--category-ids=")) args.categoryIds = parsePositiveIntSet(arg.slice("--category-ids=".length), "--category-ids");
+    else if (arg.startsWith("--group-ids=")) args.groupIds = parsePositiveIntSet(arg.slice("--group-ids=".length), "--group-ids");
   }
 
   if (!["current", "historical"].includes(args.mode)) throw new Error("--mode must be current or historical");
@@ -86,6 +102,8 @@ function parseArgs(argv) {
   if (args.limitGroups !== null && (!Number.isInteger(args.limitGroups) || args.limitGroups < 1)) {
     throw new Error("--limit-groups must be positive");
   }
+  if (args.categoryIds && args.limitCategories !== null) throw new Error("--category-ids cannot be combined with --limit-categories");
+  if (args.groupIds && args.limitGroups !== null) throw new Error("--group-ids cannot be combined with --limit-groups");
   if (args.mode === "historical") {
     if (args.date) {
       args.dateFrom = args.date;
@@ -933,7 +951,9 @@ async function runCurrentSync(args, runKey, artifactRoot) {
   const { json: categoriesPayload } = await fetcher.fetchJson(`${TCGPLAYER_BASE}/categories`, "categories", "categories.json");
   let categories = categoriesPayload.results ?? [];
   if (!args.includeEmptyCategories) categories = categories.filter((category) => !EMPTY_CATEGORY_IDS.has(Number(category.categoryId)));
+  if (args.categoryIds) categories = categories.filter((category) => args.categoryIds.has(Number(category.categoryId)));
   if (args.limitCategories) categories = categories.slice(0, args.limitCategories);
+  const isTargetedCurrentRetry = Boolean(args.categoryIds || args.groupIds);
 
   if (args.apply) {
     let artifactCursor = 0;
@@ -1022,6 +1042,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
             { category_id: categoryId },
           );
           let groups = groupsPayload.results ?? [];
+          if (args.groupIds) groups = groups.filter((group) => args.groupIds.has(Number(group.groupId)));
           if (args.limitGroups) groups = groups.slice(0, args.limitGroups);
           totals.groupCount += groups.length;
           totals.artifactCount += await insertNewArtifacts(runId);
@@ -1080,7 +1101,11 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         await checkpoint(runId);
       }
 
-      const missing = failedFetches.length === 0 ? await markMissingCurrentRows(client, runId) : null;
+      const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
+        ? await markMissingCurrentRows(client, runId)
+        : isTargetedCurrentRetry
+          ? { skipped: "targeted_current_retry" }
+          : null;
       totals.updated += Number(missing?.categories_marked_missing ?? 0) + Number(missing?.groups_marked_missing ?? 0) + Number(missing?.products_marked_missing ?? 0);
       const finalRun = {
         ...run,
@@ -1139,6 +1164,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         { category_id: categoryId },
       );
       let groups = groupsPayload.results ?? [];
+      if (args.groupIds) groups = groups.filter((group) => args.groupIds.has(Number(group.groupId)));
       if (args.limitGroups) groups = groups.slice(0, args.limitGroups);
       allGroups.push(...groups);
       for (const group of groups) {
@@ -1203,7 +1229,11 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         categoryId: row.categoryId,
         groupId: row.groupId,
       })));
-      const missing = failedFetches.length === 0 ? await markMissingCurrentRows(client, runId) : null;
+      const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
+        ? await markMissingCurrentRows(client, runId)
+        : isTargetedCurrentRetry
+          ? { skipped: "targeted_current_retry" }
+          : null;
       const inserted = categoriesResult.inserted + groupsResult.inserted + productsResult.inserted + priceResult.inserted + artifactCount;
       const updated = categoriesResult.updated + groupsResult.updated + productsResult.updated + priceResult.updated + Number(missing?.categories_marked_missing ?? 0) + Number(missing?.groups_marked_missing ?? 0) + Number(missing?.products_marked_missing ?? 0);
       const noOp = categoriesResult.noOp + groupsResult.noOp + productsResult.noOp + priceResult.noOp;
