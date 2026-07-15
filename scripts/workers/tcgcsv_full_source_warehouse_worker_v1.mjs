@@ -23,6 +23,7 @@ const PARSER_VERSION = "TCGCSV_FULL_SOURCE_PARSER_V1";
 const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
+const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 500;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
@@ -463,115 +464,215 @@ async function upsertRows(client, table, rows, pkColumns, setSql, mapParams, ext
 }
 
 async function upsertCategories(client, rows) {
-  return upsertRows(client, "tcgcsv_source_categories", rows, ["category_id"], "", (row) => ({
-    sql: `insert into public.tcgcsv_source_categories (
-      category_id, name, display_name, seo_category_name, category_description,
-      category_page_title, sealed_label, non_sealed_label, condition_guide_url,
-      is_scannable, popularity, is_direct, source_modified_on, raw_payload,
-      payload_hash, last_seen_run_id, source_active, source_missing_since,
-      catalog_metadata_status, last_seen_at, updated_at
-    ) values (
-      $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14::jsonb,$15,$16,true,null,'current',now(),now()
-    )
-    on conflict (category_id) do update set
-      name = excluded.name,
-      display_name = excluded.display_name,
-      seo_category_name = excluded.seo_category_name,
-      category_description = excluded.category_description,
-      category_page_title = excluded.category_page_title,
-      sealed_label = excluded.sealed_label,
-      non_sealed_label = excluded.non_sealed_label,
-      condition_guide_url = excluded.condition_guide_url,
-      is_scannable = excluded.is_scannable,
-      popularity = excluded.popularity,
-      is_direct = excluded.is_direct,
-      source_modified_on = excluded.source_modified_on,
-      raw_payload = excluded.raw_payload,
-      payload_hash = excluded.payload_hash,
-      last_seen_run_id = excluded.last_seen_run_id,
-      source_active = true,
-      source_missing_since = null,
-      catalog_metadata_status = 'current',
-      last_seen_at = now(),
-      updated_at = now()`,
-    params: [
-      row.category_id, row.name, row.display_name, row.seo_category_name, row.category_description,
-      row.category_page_title, row.sealed_label, row.non_sealed_label, row.condition_guide_url,
-      row.is_scannable, row.popularity, row.is_direct, row.source_modified_on,
-      JSON.stringify(row.raw_payload), row.payload_hash, row.last_seen_run_id,
-    ],
-  }));
+  const chunkSize = positiveIntFromEnv("TCGCSV_DIMENSION_BATCH_SIZE", DEFAULT_DIMENSION_BATCH_SIZE);
+  let inserted = 0;
+  let updated = 0;
+  let noOp = 0;
+  for (let offset = 0; offset < rows.length; offset += chunkSize) {
+    const chunk = rows.slice(offset, offset + chunkSize);
+    const result = await client.query(
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           category_id integer,
+           name text,
+           display_name text,
+           seo_category_name text,
+           category_description text,
+           category_page_title text,
+           sealed_label text,
+           non_sealed_label text,
+           condition_guide_url text,
+           is_scannable boolean,
+           popularity integer,
+           is_direct boolean,
+           source_modified_on text,
+           raw_payload jsonb,
+           payload_hash text,
+           last_seen_run_id uuid
+         )
+       ), upserted as (
+         insert into public.tcgcsv_source_categories (
+           category_id, name, display_name, seo_category_name, category_description,
+           category_page_title, sealed_label, non_sealed_label, condition_guide_url,
+           is_scannable, popularity, is_direct, source_modified_on, raw_payload,
+           payload_hash, last_seen_run_id, source_active, source_missing_since,
+           catalog_metadata_status, last_seen_at, updated_at
+         )
+         select
+           category_id, name, display_name, seo_category_name, category_description,
+           category_page_title, sealed_label, non_sealed_label, condition_guide_url,
+           is_scannable, popularity, is_direct, source_modified_on, raw_payload,
+           payload_hash, last_seen_run_id, true, null, 'current', now(), now()
+         from input_rows
+         on conflict (category_id) do update set
+           name = excluded.name,
+           display_name = excluded.display_name,
+           seo_category_name = excluded.seo_category_name,
+           category_description = excluded.category_description,
+           category_page_title = excluded.category_page_title,
+           sealed_label = excluded.sealed_label,
+           non_sealed_label = excluded.non_sealed_label,
+           condition_guide_url = excluded.condition_guide_url,
+           is_scannable = excluded.is_scannable,
+           popularity = excluded.popularity,
+           is_direct = excluded.is_direct,
+           source_modified_on = excluded.source_modified_on,
+           raw_payload = excluded.raw_payload,
+           payload_hash = excluded.payload_hash,
+           last_seen_run_id = excluded.last_seen_run_id,
+           source_active = true,
+           source_missing_since = null,
+           catalog_metadata_status = 'current',
+           last_seen_at = now(),
+           updated_at = now()
+         returning (xmax = 0) as inserted
+       )
+       select count(*) filter (where inserted)::int as inserted,
+              count(*) filter (where not inserted)::int as updated
+       from upserted`,
+      [JSON.stringify(chunk)],
+    );
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    updated += Number(result.rows[0]?.updated ?? 0);
+  }
+  return { inserted, updated, noOp, table: "tcgcsv_source_categories", pkColumns: ["category_id"], setSql: "batched jsonb_to_recordset upsert", extraConflict: "" };
 }
 
 async function upsertGroups(client, rows) {
-  return upsertRows(client, "tcgcsv_source_groups", rows, ["group_id"], "", (row) => ({
-    sql: `insert into public.tcgcsv_source_groups (
-      group_id, category_id, name, abbreviation, is_supplemental, published_on,
-      source_modified_on, raw_payload, payload_hash, last_seen_run_id,
-      source_active, source_missing_since, catalog_metadata_status, last_seen_at, updated_at
-    ) values (
-      $1,$2,$3,$4,$5,$6,$7,$8::jsonb,$9,$10,true,null,'current',now(),now()
-    )
-    on conflict (group_id) do update set
-      category_id = excluded.category_id,
-      name = excluded.name,
-      abbreviation = excluded.abbreviation,
-      is_supplemental = excluded.is_supplemental,
-      published_on = excluded.published_on,
-      source_modified_on = excluded.source_modified_on,
-      raw_payload = excluded.raw_payload,
-      payload_hash = excluded.payload_hash,
-      last_seen_run_id = excluded.last_seen_run_id,
-      source_active = true,
-      source_missing_since = null,
-      catalog_metadata_status = 'current',
-      last_seen_at = now(),
-      updated_at = now()`,
-    params: [
-      row.group_id, row.category_id, row.name, row.abbreviation, row.is_supplemental,
-      row.published_on, row.source_modified_on, JSON.stringify(row.raw_payload),
-      row.payload_hash, row.last_seen_run_id,
-    ],
-  }));
+  const chunkSize = positiveIntFromEnv("TCGCSV_DIMENSION_BATCH_SIZE", DEFAULT_DIMENSION_BATCH_SIZE);
+  let inserted = 0;
+  let updated = 0;
+  let noOp = 0;
+  for (let offset = 0; offset < rows.length; offset += chunkSize) {
+    const chunk = rows.slice(offset, offset + chunkSize);
+    const result = await client.query(
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           group_id integer,
+           category_id integer,
+           name text,
+           abbreviation text,
+           is_supplemental boolean,
+           published_on text,
+           source_modified_on text,
+           raw_payload jsonb,
+           payload_hash text,
+           last_seen_run_id uuid
+         )
+       ), upserted as (
+         insert into public.tcgcsv_source_groups (
+           group_id, category_id, name, abbreviation, is_supplemental, published_on,
+           source_modified_on, raw_payload, payload_hash, last_seen_run_id,
+           source_active, source_missing_since, catalog_metadata_status, last_seen_at, updated_at
+         )
+         select
+           group_id, category_id, name, abbreviation, is_supplemental, published_on,
+           source_modified_on, raw_payload, payload_hash, last_seen_run_id,
+           true, null, 'current', now(), now()
+         from input_rows
+         on conflict (group_id) do update set
+           category_id = excluded.category_id,
+           name = excluded.name,
+           abbreviation = excluded.abbreviation,
+           is_supplemental = excluded.is_supplemental,
+           published_on = excluded.published_on,
+           source_modified_on = excluded.source_modified_on,
+           raw_payload = excluded.raw_payload,
+           payload_hash = excluded.payload_hash,
+           last_seen_run_id = excluded.last_seen_run_id,
+           source_active = true,
+           source_missing_since = null,
+           catalog_metadata_status = 'current',
+           last_seen_at = now(),
+           updated_at = now()
+         returning (xmax = 0) as inserted
+       )
+       select count(*) filter (where inserted)::int as inserted,
+              count(*) filter (where not inserted)::int as updated
+       from upserted`,
+      [JSON.stringify(chunk)],
+    );
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    updated += Number(result.rows[0]?.updated ?? 0);
+  }
+  return { inserted, updated, noOp, table: "tcgcsv_source_groups", pkColumns: ["group_id"], setSql: "batched jsonb_to_recordset upsert", extraConflict: "" };
 }
 
 async function upsertProducts(client, rows) {
-  return upsertRows(client, "tcgcsv_source_products", rows, ["product_id"], "", (row) => ({
-    sql: `insert into public.tcgcsv_source_products (
-      product_id, category_id, group_id, name, clean_name, image_url, source_url,
-      source_modified_on, image_count, presale_info, extended_data, raw_payload,
-      payload_hash, last_seen_run_id, source_active, source_missing_since,
-      catalog_metadata_status, last_seen_at, updated_at
-    ) values (
-      $1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb,$11::jsonb,$12::jsonb,$13,$14,true,null,$15,now(),now()
-    )
-    on conflict (product_id) do update set
-      category_id = excluded.category_id,
-      group_id = excluded.group_id,
-      name = excluded.name,
-      clean_name = excluded.clean_name,
-      image_url = excluded.image_url,
-      source_url = excluded.source_url,
-      source_modified_on = excluded.source_modified_on,
-      image_count = excluded.image_count,
-      presale_info = excluded.presale_info,
-      extended_data = excluded.extended_data,
-      raw_payload = excluded.raw_payload,
-      payload_hash = excluded.payload_hash,
-      last_seen_run_id = excluded.last_seen_run_id,
-      source_active = true,
-      source_missing_since = null,
-      catalog_metadata_status = excluded.catalog_metadata_status,
-      last_seen_at = now(),
-      updated_at = now()`,
-    params: [
-      row.product_id, row.category_id, row.group_id, row.name, row.clean_name,
-      row.image_url, row.source_url, row.source_modified_on, row.image_count,
-      JSON.stringify(row.presale_info ?? null), JSON.stringify(row.extended_data ?? null),
-      JSON.stringify(row.raw_payload), row.payload_hash, row.last_seen_run_id,
-      row.catalog_metadata_status,
-    ],
-  }));
+  const chunkSize = positiveIntFromEnv("TCGCSV_DIMENSION_BATCH_SIZE", DEFAULT_DIMENSION_BATCH_SIZE);
+  let inserted = 0;
+  let updated = 0;
+  let noOp = 0;
+  for (let offset = 0; offset < rows.length; offset += chunkSize) {
+    const chunk = rows.slice(offset, offset + chunkSize);
+    const result = await client.query(
+      `with input_rows as (
+         select *
+         from jsonb_to_recordset($1::jsonb) as x(
+           product_id integer,
+           category_id integer,
+           group_id integer,
+           name text,
+           clean_name text,
+           image_url text,
+           source_url text,
+           source_modified_on text,
+           image_count integer,
+           presale_info jsonb,
+           extended_data jsonb,
+           raw_payload jsonb,
+           payload_hash text,
+           last_seen_run_id uuid,
+           catalog_metadata_status text
+         )
+       ), upserted as (
+         insert into public.tcgcsv_source_products (
+           product_id, category_id, group_id, name, clean_name, image_url, source_url,
+           source_modified_on, image_count, presale_info, extended_data, raw_payload,
+           payload_hash, last_seen_run_id, source_active, source_missing_since,
+           catalog_metadata_status, last_seen_at, updated_at
+         )
+         select
+           product_id, category_id, group_id, name, clean_name, image_url, source_url,
+           source_modified_on, image_count, presale_info, extended_data, raw_payload,
+           payload_hash, last_seen_run_id, true, null, catalog_metadata_status, now(), now()
+         from input_rows
+         on conflict (product_id) do update set
+           category_id = excluded.category_id,
+           group_id = excluded.group_id,
+           name = excluded.name,
+           clean_name = excluded.clean_name,
+           image_url = excluded.image_url,
+           source_url = excluded.source_url,
+           source_modified_on = excluded.source_modified_on,
+           image_count = excluded.image_count,
+           presale_info = excluded.presale_info,
+           extended_data = excluded.extended_data,
+           raw_payload = excluded.raw_payload,
+           payload_hash = excluded.payload_hash,
+           last_seen_run_id = excluded.last_seen_run_id,
+           source_active = true,
+           source_missing_since = null,
+           catalog_metadata_status = excluded.catalog_metadata_status,
+           last_seen_at = now(),
+           updated_at = now()
+         returning (xmax = 0) as inserted
+       )
+       select count(*) filter (where inserted)::int as inserted,
+              count(*) filter (where not inserted)::int as updated
+       from upserted`,
+      [JSON.stringify(chunk)],
+    );
+    inserted += Number(result.rows[0]?.inserted ?? 0);
+    updated += Number(result.rows[0]?.updated ?? 0);
+    const processed = Math.min(offset + chunk.length, rows.length);
+    if (processed === rows.length || processed % (chunkSize * 20) === 0) {
+      console.error(`[tcgcsv-full] products processed=${processed}/${rows.length} inserted=${inserted} updated=${updated}`);
+    }
+  }
+  return { inserted, updated, noOp, table: "tcgcsv_source_products", pkColumns: ["product_id"], setSql: "batched jsonb_to_recordset upsert", extraConflict: "" };
 }
 
 async function upsertPriceObservations(client, rows) {
