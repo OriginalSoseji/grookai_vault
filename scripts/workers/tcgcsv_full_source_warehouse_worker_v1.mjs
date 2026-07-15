@@ -901,6 +901,7 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
 async function runCurrentSync(args, runKey, artifactRoot) {
   const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
   const observedOn = isoDate();
+  const startedAt = new Date().toISOString();
   const { text: sourceMarker } = await fetcher.fetchText(`${BASE_URL}/last-updated.txt`, "last_updated", "last-updated.txt");
 
   let client = null;
@@ -918,7 +919,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         request_count: fetcher.requestCount,
         artifact_root: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
         git_commit_sha: await gitCommitSha(),
-        started_at: new Date().toISOString(),
+        started_at: startedAt,
         finished_at: new Date().toISOString(),
         payload: { existing_marker: existingMarker },
       };
@@ -933,6 +934,195 @@ async function runCurrentSync(args, runKey, artifactRoot) {
   let categories = categoriesPayload.results ?? [];
   if (!args.includeEmptyCategories) categories = categories.filter((category) => !EMPTY_CATEGORY_IDS.has(Number(category.categoryId)));
   if (args.limitCategories) categories = categories.slice(0, args.limitCategories);
+
+  if (args.apply) {
+    let artifactCursor = 0;
+    const failedFetches = [];
+    const totals = {
+      categoryCount: categories.length,
+      groupCount: 0,
+      productCount: 0,
+      priceRowCount: 0,
+      inserted: 0,
+      updated: 0,
+      noOp: 0,
+      artifactCount: 0,
+    };
+    const run = {
+      run_key: runKey,
+      sync_mode: "current_full_sync",
+      status: "running",
+      source_marker: sourceMarker,
+      observed_on: observedOn,
+      request_count: fetcher.requestCount,
+      category_count: totals.categoryCount,
+      group_count: 0,
+      product_count: 0,
+      price_row_count: 0,
+      inserted_count: 0,
+      updated_count: 0,
+      no_op_count: 0,
+      failed_count: 0,
+      artifact_root: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
+      git_commit_sha: await gitCommitSha(),
+      started_at: startedAt,
+      finished_at: null,
+      payload: { failed_fetches: failedFetches, skipped_empty_categories: args.includeEmptyCategories ? [] : Array.from(EMPTY_CATEGORY_IDS) },
+    };
+
+    async function insertNewArtifacts(runId) {
+      const fresh = fetcher.artifacts.slice(artifactCursor);
+      if (fresh.length === 0) return 0;
+      artifactCursor = fetcher.artifacts.length;
+      return insertArtifacts(client, runId, runKey, fresh);
+    }
+
+    async function checkpoint(runId, extraPayload = {}) {
+      await upsertRun(client, {
+        ...run,
+        request_count: fetcher.requestCount,
+        group_count: totals.groupCount,
+        product_count: totals.productCount,
+        price_row_count: totals.priceRowCount,
+        inserted_count: totals.inserted,
+        updated_count: totals.updated,
+        no_op_count: totals.noOp,
+        failed_count: failedFetches.length,
+        payload: {
+          ...run.payload,
+          failed_fetches: failedFetches,
+          progress: {
+            request_count: fetcher.requestCount,
+            group_count: totals.groupCount,
+            product_count: totals.productCount,
+            price_row_count: totals.priceRowCount,
+            artifact_count: totals.artifactCount,
+          },
+          ...extraPayload,
+        },
+      });
+    }
+
+    try {
+      const runId = await upsertRun(client, run);
+      totals.artifactCount += await insertNewArtifacts(runId);
+      const categoriesResult = await upsertCategories(client, categories.map((row) => categoryRow(row, runId)));
+      totals.inserted += categoriesResult.inserted;
+      totals.updated += categoriesResult.updated;
+      totals.noOp += categoriesResult.noOp;
+      await checkpoint(runId, { apply_results: { categoriesResult } });
+
+      for (const category of categories) {
+        const categoryId = Number(category.categoryId);
+        try {
+          const { json: groupsPayload } = await fetcher.fetchJson(
+            `${TCGPLAYER_BASE}/${categoryId}/groups`,
+            "groups",
+            `current/${categoryId}/groups.json`,
+            { category_id: categoryId },
+          );
+          let groups = groupsPayload.results ?? [];
+          if (args.limitGroups) groups = groups.slice(0, args.limitGroups);
+          totals.groupCount += groups.length;
+          totals.artifactCount += await insertNewArtifacts(runId);
+          const groupsResult = await upsertGroups(client, groups.map((row) => groupRow(row, runId)));
+          totals.inserted += groupsResult.inserted;
+          totals.updated += groupsResult.updated;
+          totals.noOp += groupsResult.noOp;
+
+          for (const group of groups) {
+            const groupId = Number(group.groupId);
+            try {
+              const { json: productsPayload } = await fetcher.fetchJson(
+                `${TCGPLAYER_BASE}/${categoryId}/${groupId}/products`,
+                "products",
+                `current/${categoryId}/${groupId}/products.json`,
+                { category_id: categoryId, group_id: groupId },
+              );
+              const products = productsPayload.results ?? [];
+              totals.productCount += products.length;
+              totals.artifactCount += await insertNewArtifacts(runId);
+              const productsResult = await upsertProducts(client, products.map((row) => productRow(row, runId)));
+              totals.inserted += productsResult.inserted;
+              totals.updated += productsResult.updated;
+              totals.noOp += productsResult.noOp;
+
+              const { json: pricesPayload } = await fetcher.fetchJson(
+                `${TCGPLAYER_BASE}/${categoryId}/${groupId}/prices`,
+                "prices",
+                `current/${categoryId}/${groupId}/prices.json`,
+                { category_id: categoryId, group_id: groupId },
+              );
+              const prices = (pricesPayload.results ?? []).map((price) => ({ ...price, categoryId, groupId }));
+              totals.priceRowCount += prices.length;
+              totals.artifactCount += await insertNewArtifacts(runId);
+              const priceResult = await upsertPriceObservations(client, prices.map((row) => priceObservationRow(row, {
+                observedOn,
+                runId,
+                artifactPath: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
+                categoryId: row.categoryId,
+                groupId: row.groupId,
+              })));
+              totals.inserted += priceResult.inserted;
+              totals.updated += priceResult.updated;
+              totals.noOp += priceResult.noOp;
+            } catch (error) {
+              failedFetches.push({ category_id: categoryId, group_id: groupId, error: error.message });
+            }
+            if (totals.groupCount > 0 && (totals.productCount + totals.priceRowCount) % 50000 < 1000) {
+              console.error(`[tcgcsv-full] current progress requests=${fetcher.requestCount} groups=${totals.groupCount} products=${totals.productCount} prices=${totals.priceRowCount} failures=${failedFetches.length}`);
+              await checkpoint(runId);
+            }
+          }
+        } catch (error) {
+          failedFetches.push({ category_id: categoryId, group_id: null, error: error.message });
+        }
+        await checkpoint(runId);
+      }
+
+      const missing = failedFetches.length === 0 ? await markMissingCurrentRows(client, runId) : null;
+      totals.updated += Number(missing?.categories_marked_missing ?? 0) + Number(missing?.groups_marked_missing ?? 0) + Number(missing?.products_marked_missing ?? 0);
+      const finalRun = {
+        ...run,
+        status: failedFetches.length > 0 ? "partial_success" : "completed",
+        request_count: fetcher.requestCount,
+        category_count: totals.categoryCount,
+        group_count: totals.groupCount,
+        product_count: totals.productCount,
+        price_row_count: totals.priceRowCount,
+        inserted_count: totals.inserted,
+        updated_count: totals.updated,
+        no_op_count: totals.noOp,
+        failed_count: failedFetches.length,
+        artifact_hash: sha256(fetcher.artifacts.map((artifact) => ({ path: artifact.local_path, sha256: artifact.sha256 }))),
+        finished_at: new Date().toISOString(),
+        payload: {
+          ...run.payload,
+          failed_fetches: failedFetches,
+          missing_marked: missing,
+          apply_results: {
+            artifactCount: totals.artifactCount,
+            streamed: true,
+          },
+        },
+      };
+      await upsertRun(client, finalRun);
+      return {
+        run: finalRun,
+        summary: {
+          categories: totals.categoryCount,
+          groups: totals.groupCount,
+          products: totals.productCount,
+          prices: totals.priceRowCount,
+          failedFetches,
+          streamed: true,
+        },
+        artifacts: fetcher.artifacts,
+      };
+    } finally {
+      await client.end().catch(() => {});
+    }
+  }
 
   const allGroups = [];
   const allProducts = [];
@@ -994,7 +1184,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
     artifact_root: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
     artifact_hash: sha256(fetcher.artifacts.map((artifact) => ({ path: artifact.local_path, sha256: artifact.sha256 }))),
     git_commit_sha: await gitCommitSha(),
-    started_at: new Date().toISOString(),
+    started_at: startedAt,
     finished_at: new Date().toISOString(),
     payload: { failed_fetches: failedFetches, skipped_empty_categories: args.includeEmptyCategories ? [] : Array.from(EMPTY_CATEGORY_IDS) },
   };
