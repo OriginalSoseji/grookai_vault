@@ -86,7 +86,15 @@ Do not enable a systemd timer until:
 4. at least one historical date-window apply succeeds;
 5. latest status readback confirms no public pricing writes.
 
-Timer should be installed disabled first. Enable only after explicit cutover approval.
+Install the current-sync timer after manual proof:
+
+```bash
+sudo bash deploy/scripts/install-tcgcsv-warehouse-systemd.sh
+```
+
+The timer runs `grookai-tcgcsv-warehouse.service` daily at `08:15 UTC` with a randomized delay. It is intentionally scheduled after the eBay/MEE window to avoid memory and network contention.
+
+Historical archive backfills remain manual bounded jobs; do not wire historical archive backfill to systemd.
 
 ## Rollback
 

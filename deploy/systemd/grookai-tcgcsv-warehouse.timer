@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Grookai TCGCSV Full Source Warehouse Current Sync daily
+
+[Timer]
+OnCalendar=*-*-* 08:15:00
+Persistent=true
+RandomizedDelaySec=900
+Unit=grookai-tcgcsv-warehouse.service
+
+[Install]
+WantedBy=timers.target
