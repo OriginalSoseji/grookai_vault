@@ -52,6 +52,9 @@ class _VaultItemTile extends StatelessWidget {
     final imgUrl = _vaultDisplayImageUrl(row);
 
     final subtitleParts = <String>[];
+    if ((displayIdentity.suffix ?? '').trim().isNotEmpty) {
+      subtitleParts.add(displayIdentity.suffix!.trim());
+    }
     if (set.isNotEmpty) {
       subtitleParts.add(set);
     }
@@ -62,7 +65,7 @@ class _VaultItemTile extends StatelessWidget {
 
     Widget thumb() {
       return CardSurfaceArtwork(
-        label: displayIdentity.displayName,
+        label: displayIdentity.baseName,
         imageUrl: imgUrl,
         width: compact ? 40 : 46,
         height: compact ? 56 : 64,
@@ -116,7 +119,7 @@ class _VaultItemTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          displayIdentity.displayName,
+                          displayIdentity.baseName,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             height: 1.1,
@@ -267,10 +270,12 @@ class _VaultGridTile extends StatelessWidget {
         .toString()
         .trim();
     final number = (row['number'] ?? '').toString().trim();
-    final imageUrl = (row['photo_url'] ?? row['image_url']).toString();
+    final imageUrl = _vaultDisplayImageUrl(row);
     final quantity = _ownedCountForRow(row);
     final condition = (row['condition_label'] ?? 'NM').toString();
     final metaParts = <String>[
+      if ((displayIdentity.suffix ?? '').trim().isNotEmpty)
+        displayIdentity.suffix!.trim(),
       if (setCode.isNotEmpty) setCode,
       if (number.isNotEmpty) '#$number',
       if (condition.isNotEmpty) condition,
@@ -295,7 +300,7 @@ class _VaultGridTile extends StatelessWidget {
                     aspectRatio: GvGridConstants.artworkAspectRatio,
                     child: _VaultGridArtwork(
                       imageUrl: imageUrl,
-                      name: displayIdentity.displayName,
+                      name: displayIdentity.baseName,
                       onViewDetails: onTap,
                     ),
                   ),
@@ -364,7 +369,7 @@ class _VaultGridTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    displayIdentity.displayName,
+                    displayIdentity.baseName,
                     maxLines: GvGridConstants.titleMaxLines,
                     overflow: TextOverflow.ellipsis,
                     style: gvGridTitleStyle(theme),
@@ -1333,7 +1338,7 @@ class VaultPageState extends State<VaultPage> {
                       Expanded(
                         child: Center(
                           child: CardSurfaceArtwork(
-                            label: displayIdentity.displayName,
+                            label: displayIdentity.baseName,
                             imageUrl: imageUrl,
                             width: 88,
                             height: 118,
@@ -1348,7 +1353,7 @@ class VaultPageState extends State<VaultPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        displayIdentity.displayName,
+                        displayIdentity.baseName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(

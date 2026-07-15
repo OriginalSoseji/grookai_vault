@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/image_presentation.dart';
@@ -134,6 +136,16 @@ void main() {
   test('private user-card-images public URLs are rejected', () {
     const original =
         'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/pikachu.webp';
+
+    expect(normalizeDisplayImageUrl(original), isNull);
+  });
+
+  test('expired signed Supabase image URLs are rejected', () {
+    final expiredPayload = base64Url
+        .encode(utf8.encode('{"exp":1}'))
+        .replaceAll('=', '');
+    final original =
+        'https://example.supabase.co/storage/v1/object/sign/user-card-images/jpn/pikachu.webp?token=header.$expiredPayload.signature';
 
     expect(normalizeDisplayImageUrl(original), isNull);
   });

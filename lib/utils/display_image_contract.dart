@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../secrets.dart';
 
 // LOCK: displayImageUrl is the primary product image contract.
@@ -19,6 +21,10 @@ String? normalizeDisplayImageUrl(
   }
 
   if (_isBrokenPublicUserCardImageUrl(parsed)) {
+    return null;
+  }
+
+  if (_isExpiredSupabaseSignedStorageUrl(parsed)) {
     return null;
   }
 
@@ -130,6 +136,43 @@ bool _isBrokenPublicUserCardImageUrl(Uri parsed) {
   final path = parsed.path.toLowerCase();
   return host.endsWith('.supabase.co') &&
       path.startsWith('/storage/v1/object/public/user-card-images/');
+}
+
+bool _isExpiredSupabaseSignedStorageUrl(Uri parsed) {
+  final host = parsed.host.toLowerCase();
+  final path = parsed.path.toLowerCase();
+  if (!host.endsWith('.supabase.co') ||
+      !path.startsWith('/storage/v1/object/sign/')) {
+    return false;
+  }
+
+  final token = (parsed.queryParameters['token'] ?? '').trim();
+  final parts = token.split('.');
+  if (parts.length < 2) {
+    return false;
+  }
+
+  try {
+    final payload = jsonDecode(
+      utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
+    );
+    if (payload is! Map<String, dynamic>) {
+      return false;
+    }
+
+    final expiresAt = payload['exp'];
+    final expiresAtSeconds = expiresAt is num
+        ? expiresAt.toInt()
+        : int.tryParse(expiresAt?.toString() ?? '');
+    if (expiresAtSeconds == null) {
+      return false;
+    }
+
+    final nowSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+    return expiresAtSeconds <= nowSeconds;
+  } catch (_) {
+    return false;
+  }
 }
 
 String? resolveDisplayImageUrl({
