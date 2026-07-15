@@ -76,6 +76,43 @@ Requirements:
 - request ceiling remains at or below `10,000`.
 - failed dates produce `partial_success`, not `completed`.
 
+## Historical Backfill Agent
+
+After bounded manual proof, install the resumable historical backfill agent:
+
+```bash
+sudo bash deploy/scripts/install-tcgcsv-historical-backfill-systemd.sh
+```
+
+The agent:
+
+- processes one archive date per worker invocation;
+- resumes from `/var/lib/grookai/tcgcsv-historical-backfill.next-date`;
+- stops cleanly when `/var/lib/grookai/tcgcsv-historical-backfill.stop` exists;
+- pauses during the normal pricing window (`00:50-10:30 UTC`) so it does not compete with reference refresh, eBay/MEE, or current TCGCSV sync;
+- removes derived extracted archive folders after each successful day while preserving compressed source archives, summaries, DB row provenance, hashes, and byte-size metadata.
+
+Monitor:
+
+```bash
+systemctl status grookai-tcgcsv-historical-backfill.service --no-pager
+journalctl -u grookai-tcgcsv-historical-backfill.service -f
+cat /var/lib/grookai/tcgcsv-historical-backfill.next-date
+```
+
+Pause:
+
+```bash
+sudo touch /var/lib/grookai/tcgcsv-historical-backfill.stop
+```
+
+Resume:
+
+```bash
+sudo rm -f /var/lib/grookai/tcgcsv-historical-backfill.stop
+sudo systemctl restart grookai-tcgcsv-historical-backfill.service
+```
+
 ## Deployment
 
 Do not enable a systemd timer until:
