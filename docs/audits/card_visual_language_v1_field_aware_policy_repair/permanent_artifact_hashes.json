@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-16T19:42:26.931Z",
+  "sha256": {
+    "backend/card_descriptions/card_visual_description_agent_v1.mjs": "3614019dc91e1da55f5f6da78e4e6be3c002c66eb4e746c503be52ea745fbcaf",
+    "tests/contracts/card_visual_description_agent_v1.test.mjs": "54b67b73c101ecbda685b94b1becea0d89d815646e524e492f850c09e119aa05",
+    "docs/audits/card_visual_language_v1_field_aware_policy_repair/VISUAL_LANGUAGE_V1_FIELD_AWARE_POLICY_REPAIR_REPORT.md": "1cd47bc35fdf41478c05d15573015cd724b6e57431bbb70eb91924f7d9592089",
+    "docs/audits/card_visual_language_v1_field_aware_policy_repair/offline_field_aware_policy_replay.json": "3e895e7c081fc0cadd27d44ec628581f178fe74c514a9c6c44e0b984f0111faf",
+    "docs/audits/card_visual_language_v1_field_aware_policy_repair/targeted_test_output.txt": "9ec77381fb564204f11549b4ffc0acd3b37ad94287d66b6b6c0241b303dbf1e6",
+    "docs/audits/card_visual_language_v1_field_aware_policy_repair/diff_check_output.txt": "697b037c68127b66b099f6df9b51b422427782fe3298e1c1b51b9c5a04b39291",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_FIELD_AWARE_POLICY_REPAIR_20260716.md": "dd06fe82ec7a499de5d8dffbef26b04ce6d6783ca2c54bcb04570dca22000456",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "65e04093ad8fd19f89801513668a79d192bc312b7c37a7260265c685c4299ba6"
+  }
+}

@@ -109,6 +109,27 @@ const VISUAL_LANGUAGE_PRIMARY_SUBJECT_ANATOMY_OVERCLAIM_PATTERN =
   /\b(?:gives an impression of|impression of|suggesting|suggests|hinting at)\b[^.]{0,80}\b(?:eyes?|face|facial features?|brow|mouth|limbs?|tail|power|type|nature)\b|\b(?:ethereal eyes|eyes within|furrowed brow area|luminous and reflective)\b/gi;
 const VISUAL_LANGUAGE_ABSTRACT_SHAPE_LITERALIZATION_PATTERN =
   /\b(cityscape|urban skyline|buildings|night cityscape|leaf-shaped object|stylized depiction of a creature|specific creatures?|literal environment)\b/gi;
+const VISUAL_POLICY_EXPRESSION_UNCERTAIN_CLAIM_PATTERN =
+  /\b(confident expression|determined expression|focused expression|thoughtful expression|assertive expression)\b/gi;
+const VISUAL_POLICY_TRAINER_PERSONALITY_CLAIM_PATTERN =
+  /\b(confident expression|determined expression|focused expression|thoughtful expression|confidence|focused|thoughtful|determined|poise|poised|invoking or directing energy|directing energy|intense action|dramatic atmosphere|urgency)\b/gi;
+const VISUAL_POLICY_POKEMON_PERSONALITY_CLAIM_PATTERN =
+  /\b(determined stance|intense eye expression|confident expression|determined gaze|fierce expression|aggressive expression|intimidating presence)\b/gi;
+const VISUAL_POLICY_TYPE_LIKE_VISUAL_CLAIM_PATTERN =
+  /\b(electrically charged body|electric(?:al)? (?:energy|power)|electric type|electric-type|ghost type|ghost-type|water energy|grass energy|psychic energy|dark metal energy)\b/gi;
+const VISUAL_POLICY_ENERGY_INTERPRETATION_PATTERN =
+  /\b(importance|powerful,\s*energetic force|powerful energetic force|unique within the series|fresh and lively atmosphere|mood of vitality and growth|vitality and growth|symbolic meaning|thematic meaning)\b/gi;
+const VISUAL_POLICY_ITEM_ACTION_INTERPRETATION_PATTERN =
+  /\b(spark[^.]{0,50}\bindicating\b[^.]{0,50}\baction|indicating a sense of action|explosion or heightened action|explosion of colors|anticipation and excitement|explosive device|potential action|potential detonation)\b/gi;
+const VISUAL_POLICY_BRANCH_MOOD_REVIEW_PATTERNS = Object.freeze({
+  pokemon: /\b(determined|aggressive|intimidating|confident|fierce)\b/gi,
+  trainer: /\b(focused|determined|confident|poised|thoughtful|assertive)\b/gi,
+  stadium: /\b(mystical|dreamlike|enchanted|awe-inspiring|awe|wonder|intrigue)\b/gi,
+  energy: /\b(powerful|growth|vitality|force|serene|calming)\b/gi,
+  item_tool_supporter: /\b(anticipatory|urgent|triumphant|celebratory|tense|dramatic)\b/gi,
+});
+const VISUAL_POLICY_VISIBLE_EXPRESSION_SUPPORT_PATTERN =
+  /\b(smile|smiling|wide eyes|furrowed brow|furrowed brows|frown|narrowed eyes|raised eyebrow|raised eyebrows|visible grin|open mouth)\b/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -456,6 +477,231 @@ function addManualDetail(details, flag, field, matchedText) {
   const matched_text = normalizeText(matchedText);
   if (!matched_text) return;
   details.push({ flag, matched_text, field });
+}
+
+function uniquePolicyResults(results) {
+  const seen = new Set();
+  const unique = [];
+  for (const result of results) {
+    const key = [
+      result.policy_rule,
+      result.field,
+      normalizeText(result.claim).toLowerCase(),
+      result.decision,
+      result.quality_flag,
+    ].join("\u0000");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(result);
+  }
+  return unique;
+}
+
+function addPolicyResult(results, {
+  policyRule,
+  field,
+  claim,
+  supportingEvidence = [],
+  decision = "needs_review",
+  qualityFlag,
+}) {
+  const normalizedClaim = normalizeText(claim);
+  if (!normalizedClaim) return;
+  results.push({
+    policy_rule: policyRule,
+    field,
+    claim: normalizedClaim,
+    supporting_evidence: uniqueSorted(supportingEvidence.map((item) => normalizeText(item)).filter(Boolean)),
+    decision,
+    quality_flag: qualityFlag,
+  });
+}
+
+function addPolicyRegexResults(results, {
+  policyRule,
+  field,
+  text,
+  pattern,
+  supportingEvidence = [],
+  qualityFlag,
+}) {
+  for (const detail of regexDetails({ flag: qualityFlag, field, text, pattern })) {
+    addPolicyResult(results, {
+      policyRule,
+      field,
+      claim: detail.matched_text,
+      supportingEvidence,
+      qualityFlag,
+    });
+  }
+}
+
+function visibleExpressionSupportEvidence(payload) {
+  const evidence = [];
+  for (const { field, text } of textFieldsForVisualLanguageReview(payload)) {
+    if (field === "semantic_tags" || field === "visual_attributes.mood" || field === "card_surface_and_printing_cues") {
+      continue;
+    }
+    const regex = new RegExp(VISUAL_POLICY_VISIBLE_EXPRESSION_SUPPORT_PATTERN.source, "gi");
+    for (const match of text.matchAll(regex)) {
+      evidence.push(`${field}: ${match[0]}`);
+    }
+  }
+  return uniqueSorted(evidence);
+}
+
+function policyFieldsFor(payload, allowedFields) {
+  return textFieldsForVisualLanguageReview(payload).filter((entry) => allowedFields.includes(entry.field));
+}
+
+export function evaluateVisualDescriptionPolicyV1(payload, card = {}) {
+  const results = [];
+  const fields = textFieldsForVisualLanguageReview(payload);
+  const promptMetadata = resolveCardPromptMetadata(card);
+  const promptBranch = normalizeText(card.prompt_branch) || promptMetadata.prompt_branch;
+  const expressionSupport = visibleExpressionSupportEvidence(payload);
+
+  const surfaceText = fields.find((entry) => entry.field === "card_surface_and_printing_cues")?.text ?? "";
+  addPolicyRegexResults(results, {
+    policyRule: "surface_claim_requires_physical_evidence",
+    field: "card_surface_and_printing_cues",
+    text: surfaceText,
+    pattern: VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN,
+    qualityFlag: "potential_surface_overclaim",
+  });
+
+  const expressionUnclearEvidence = fields.flatMap(({ field, text }) =>
+    regexDetails({
+      flag: "potential_cross_field_expression_contradiction",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN,
+    }).map((detail) => `${detail.field}: ${detail.matched_text}`),
+  );
+  for (const note of normalizeStringArray(payload?.visual_attributes?.uncertainty_notes)) {
+    for (const detail of regexDetails({
+      flag: "potential_cross_field_expression_contradiction",
+      field: "visual_attributes.uncertainty_notes",
+      text: note,
+      pattern: VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN,
+    })) {
+      expressionUnclearEvidence.push(`${detail.field}: ${detail.matched_text}`);
+    }
+  }
+  if (expressionUnclearEvidence.length > 0) {
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.mood", "semantic_tags"])) {
+      addPolicyRegexResults(results, {
+        policyRule: "expression_claim_contradicts_unclear_face",
+        field,
+        text,
+        pattern: VISUAL_POLICY_EXPRESSION_UNCERTAIN_CLAIM_PATTERN,
+        supportingEvidence: expressionUnclearEvidence,
+        qualityFlag: "potential_cross_field_expression_contradiction",
+      });
+    }
+  }
+
+  if (promptBranch === "pokemon") {
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.mood", "semantic_tags"])) {
+      addPolicyRegexResults(results, {
+        policyRule: "pokemon_personality_or_expression_requires_review",
+        field,
+        text,
+        pattern: VISUAL_POLICY_POKEMON_PERSONALITY_CLAIM_PATTERN,
+        supportingEvidence: expressionSupport,
+        qualityFlag: "potential_unsupported_personality_or_species_interpretation",
+      });
+    }
+  }
+
+  if (promptBranch === "trainer") {
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.mood", "semantic_tags"])) {
+      for (const detail of regexDetails({
+        flag: "potential_unsupported_personality_or_species_interpretation",
+        field,
+        text,
+        pattern: VISUAL_POLICY_TRAINER_PERSONALITY_CLAIM_PATTERN,
+      })) {
+        const claim = detail.matched_text;
+        const alwaysReview = /\b(invoking or directing energy|directing energy|intense action|dramatic atmosphere|urgency)\b/i.test(claim);
+        if (alwaysReview || expressionSupport.length === 0) {
+          addPolicyResult(results, {
+            policyRule: alwaysReview
+              ? "trainer_action_or_atmosphere_interpretation_requires_review"
+              : "trainer_personality_or_expression_requires_visible_support",
+            field,
+            claim,
+            supportingEvidence: expressionSupport,
+            qualityFlag: "potential_unsupported_personality_or_species_interpretation",
+          });
+        }
+      }
+    }
+  }
+
+  for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.distinguishing_details", "semantic_tags"])) {
+    addPolicyRegexResults(results, {
+      policyRule: "type_like_visual_claim_requires_visible_support",
+      field,
+      text,
+      pattern: VISUAL_POLICY_TYPE_LIKE_VISUAL_CLAIM_PATTERN,
+      qualityFlag: "potential_canonical_metadata_in_visual_output",
+    });
+  }
+
+  if (promptBranch === "energy") {
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.mood", "semantic_tags"])) {
+      addPolicyRegexResults(results, {
+        policyRule: "energy_branch_force_purpose_or_series_claim_requires_review",
+        field,
+        text,
+        pattern: VISUAL_POLICY_ENERGY_INTERPRETATION_PATTERN,
+        qualityFlag: "potential_purpose_or_lore_interpretation",
+      });
+    }
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.environment.setting", "visual_attributes.distinguishing_details", "semantic_tags"])) {
+      addPolicyRegexResults(results, {
+        policyRule: "energy_abstract_literalization_requires_structured_entity_evidence",
+        field,
+        text,
+        pattern: VISUAL_LANGUAGE_ABSTRACT_SHAPE_LITERALIZATION_PATTERN,
+        qualityFlag: "potential_abstract_shape_literalization",
+      });
+    }
+  }
+
+  if (promptBranch === "item_tool_supporter") {
+    for (const { field, text } of policyFieldsFor(payload, ["artwork_description", "visual_attributes.mood", "semantic_tags"])) {
+      addPolicyRegexResults(results, {
+        policyRule: "item_object_action_or_event_interpretation_requires_review",
+        field,
+        text,
+        pattern: VISUAL_POLICY_ITEM_ACTION_INTERPRETATION_PATTERN,
+        qualityFlag: "potential_dramatic_inferred_action_language",
+      });
+    }
+  }
+
+  const moodText = fields.find((entry) => entry.field === "visual_attributes.mood")?.text ?? "";
+  const branchMoodPattern = VISUAL_POLICY_BRANCH_MOOD_REVIEW_PATTERNS[promptBranch];
+  if (moodText && branchMoodPattern) {
+    const moodQualityFlag = {
+      pokemon: "potential_unsupported_personality_or_species_interpretation",
+      trainer: "potential_unsupported_personality_or_species_interpretation",
+      stadium: "potential_interpretive_mood_language",
+      energy: "potential_purpose_or_lore_interpretation",
+      item_tool_supporter: "potential_dramatic_inferred_action_language",
+    }[promptBranch];
+    addPolicyRegexResults(results, {
+      policyRule: "branch_mood_vocabulary_requires_review",
+      field: "visual_attributes.mood",
+      text: moodText,
+      pattern: branchMoodPattern,
+      qualityFlag: moodQualityFlag,
+    });
+  }
+
+  return uniquePolicyResults(results);
 }
 
 function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) {
@@ -817,6 +1063,10 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
     text: semanticTagsText,
     pattern: VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN,
   }));
+
+  for (const policyResult of evaluateVisualDescriptionPolicyV1(payload, card)) {
+    addManualDetail(details, policyResult.quality_flag, policyResult.field, policyResult.claim);
+  }
 
   return uniqueQualityFlagDetails(details);
 }
@@ -1662,6 +1912,39 @@ function qualityFlagCountsByPromptBranch(rows) {
   );
 }
 
+function policyRuleCounts(rows) {
+  const counts = {};
+  for (const row of rows) {
+    for (const result of row.policy_results ?? []) {
+      const rule = normalizeText(result.policy_rule);
+      if (!rule) continue;
+      counts[rule] = (counts[rule] ?? 0) + 1;
+    }
+  }
+  return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function policyRuleCountsByPromptBranch(rows) {
+  const counts = {};
+  for (const row of rows) {
+    const branch = normalizeText(row.prompt_branch) || "unknown";
+    counts[branch] ??= {};
+    for (const result of row.policy_results ?? []) {
+      const rule = normalizeText(result.policy_rule);
+      if (!rule) continue;
+      counts[branch][rule] = (counts[branch][rule] ?? 0) + 1;
+    }
+  }
+  return Object.fromEntries(
+    Object.entries(counts)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([branch, rules]) => [
+        branch,
+        Object.fromEntries(Object.entries(rules).sort(([left], [right]) => left.localeCompare(right))),
+      ]),
+  );
+}
+
 export function buildCostProjection({ aggregate, validatedCount, totalEligibleCatalogCount }) {
   const perCard = validatedCount ? roundUsd(aggregate.estimated_cost_usd / validatedCount) : null;
   return {
@@ -2223,6 +2506,10 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     ...normalizedPayload,
     semantic_tags: semanticTagSanitization.semantic_tags,
   }, cardForVisualSanitization);
+  const policyResults = evaluateVisualDescriptionPolicyV1({
+    ...normalizedPayload,
+    semantic_tags: semanticTagSanitization.semantic_tags,
+  }, cardForVisualSanitization);
   const reviewFlags = uniqueSorted(reviewFlagDetails.map((detail) => detail.flag));
   const qualityFlags = uniqueSorted([
     ...(image.quality_flags ?? []),
@@ -2264,6 +2551,7 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     image_quality_score: image.image_quality_score,
     quality_flags: qualityFlags,
     quality_flag_details: qualityFlagDetails,
+    policy_results: policyResults,
   };
   row.review_status = classifyDescriptionReviewStatusV1(row);
   row.description_version_key = buildDescriptionVersionKeyV1(row);
@@ -2830,6 +3118,8 @@ function buildSummary({
       }, {})).sort(([left], [right]) => left.localeCompare(right)),
     ),
     quality_flag_counts_by_branch: qualityFlagCountsByPromptBranch(generatedRows),
+    policy_rule_counts: policyRuleCounts(generatedRows),
+    policy_rule_counts_by_branch: policyRuleCountsByPromptBranch(generatedRows),
   };
 }
 

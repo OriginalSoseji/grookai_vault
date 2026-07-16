@@ -11,6 +11,7 @@ import {
   classifyDescriptionReviewStatusV1,
   detectVisualDescriptionReviewFlagDetailsV1,
   detectVisualDescriptionReviewFlagsV1,
+  evaluateVisualDescriptionPolicyV1,
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
   parseCardVisualDescriptionArgsV1,
@@ -1049,6 +1050,161 @@ test("card visual language enforcement catches freeze-candidate false negatives 
     }),
     "needs_review",
   );
+});
+
+test("card visual language policy evaluates claim, field, and support together", () => {
+  const surfacePolicy = evaluateVisualDescriptionPolicyV1(
+    {
+      artwork_description:
+        "Object/Scene: The object is centered against blue gradients with simple visible shapes.",
+      card_surface_and_printing_cues:
+        "The card has a glossy finish and visible foil texture.",
+      visual_attributes: {
+        subjects: { primary: ["object"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["centered object"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["blue gradients", "centered object", "simple shapes"],
+    },
+    { name: "Example Item", supertype: "Trainer", card_category: "Item" },
+  );
+
+  assert.ok(surfacePolicy.some((result) =>
+    result.policy_rule === "surface_claim_requires_physical_evidence"
+    && result.field === "card_surface_and_printing_cues"
+    && result.claim === "glossy finish"
+    && result.decision === "needs_review"));
+
+  const illustratedObjectPolicy = evaluateVisualDescriptionPolicyV1(
+    {
+      artwork_description:
+        "Object/Scene: The artwork shows a glossy black bomb shape with a red fuse and a centered composition.",
+      card_surface_and_printing_cues: "Foil texture cannot be determined, printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["bomb"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["red fuse", "round black bomb"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["black bomb", "red fuse", "centered object"],
+    },
+    { name: "Tremendous Bomb", supertype: "Trainer", card_category: "Item" },
+  );
+  assert.equal(illustratedObjectPolicy.some((result) =>
+    result.policy_rule === "surface_claim_requires_physical_evidence"), false);
+
+  const contradictionPolicy = evaluateVisualDescriptionPolicyV1(
+    {
+      artwork_description:
+        "The face is not clearly visible due to the angle and shadows.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["trainer"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["dark jacket"],
+        uncertainty_notes: ["facial expression cannot be determined"],
+      },
+      semantic_tags: ["confident expression", "trainer portrait", "dark jacket"],
+    },
+    { name: "Example Trainer", supertype: "Trainer", card_category: "Supporter" },
+  );
+  assert.ok(contradictionPolicy.some((result) =>
+    result.policy_rule === "expression_claim_contradicts_unclear_face"
+    && result.field === "semantic_tags"
+    && result.claim === "confident expression"
+    && result.supporting_evidence.some((item) => item.includes("facial expression cannot be determined"))));
+
+  const supportedTrainerPolicy = evaluateVisualDescriptionPolicyV1(
+    {
+      artwork_description:
+        "The trainer has a determined expression with visible furrowed brows and a small smile.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["trainer"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["furrowed brows", "small smile"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["determined expression", "trainer portrait", "furrowed brows"],
+    },
+    { name: "Example Trainer", supertype: "Trainer", card_category: "Supporter" },
+  );
+  assert.equal(supportedTrainerPolicy.some((result) =>
+    result.policy_rule === "trainer_personality_or_expression_requires_visible_support"), false);
+
+  const energyPolicy = evaluateVisualDescriptionPolicyV1(
+    {
+      artwork_description:
+        "Symbolic Artwork: The abstract Energy symbol appears above a city skyline with dark buildings.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: [] },
+        environment: { setting: ["cityscape"] },
+        mood: [],
+        distinguishing_details: ["buildings", "central symbol"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["city skyline", "dark buildings", "energy symbol"],
+    },
+    { name: "Rainbow Energy", supertype: "Energy", card_category: "Special" },
+  );
+  assert.ok(energyPolicy.some((result) =>
+    result.policy_rule === "energy_abstract_literalization_requires_structured_entity_evidence"
+    && result.claim === "buildings"));
+});
+
+test("field-aware policy replay routes failed freeze candidates without dirtying clean pending rows", () => {
+  function replayStatus(row) {
+    const flags = detectVisualDescriptionReviewFlagsV1(row, {
+      name: row.name,
+      supertype: row.card_supertype,
+      subtype: row.card_subtype,
+      card_category: row.card_category,
+      prompt_branch: row.prompt_branch,
+      card_type_metadata_source: row.card_type_metadata_source,
+    });
+    return {
+      flags,
+      status: classifyDescriptionReviewStatusV1({
+        quality_flags: flags,
+        identity_input_confidence: row.identity_input_confidence,
+        description_confidence: row.description_confidence,
+        attribute_confidence: row.attribute_confidence,
+        image_quality_score: row.image_quality_score,
+      }),
+    };
+  }
+
+  const finalRows = source(
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/generated_outputs.jsonl",
+  ).trim().split(/\r?\n/).map((line) => JSON.parse(line));
+  const finalFalseNegativeIds = new Set([
+    "GV-PK-JPN-M5-096",
+    "GV-PK-JPN-M5-116",
+    "GV-PK-JPN-M5-111",
+    "GV-PK-JPN-TCGCOLLECTOR11515-020",
+    "GV-PK-JPN-M5-106",
+  ]);
+  for (const row of finalRows.filter((candidate) => finalFalseNegativeIds.has(candidate.gv_id))) {
+    assert.equal(replayStatus(row).status, "needs_review", row.gv_id);
+  }
+
+  const priorRows = source(
+    "docs/audits/card_visual_language_v1_freeze_candidate_25_dry_run/2026-07-16T18-47-35-745Z_dry_run_0cdc213cc749/generated_outputs.jsonl",
+  ).trim().split(/\r?\n/).map((line) => JSON.parse(line));
+  const previouslyCleanPendingIds = new Set([
+    "GV-PK-JPN-M5-096",
+    "GV-PK-JPN-M5-108",
+    "GV-PK-JPN-M5-072",
+  ]);
+  for (const row of priorRows.filter((candidate) => previouslyCleanPendingIds.has(candidate.gv_id))) {
+    assert.equal(replayStatus(row).status, "pending", row.gv_id);
+  }
 });
 
 test("card visual language enforcement catches final surface phrases and ignores non-problem glare quality", () => {
