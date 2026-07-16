@@ -210,7 +210,7 @@ test("card visual description flags Chandelure anatomy described as a held objec
         distinguishing_details: ["round glass-like body", "curled arms", "pale violet flames"],
         uncertainty_notes: ["background is abstract and not clearly celestial or architectural"],
       },
-      semantic_tags: ["Mega Chandelure", "purple flames", "diagonal composition"],
+      semantic_tags: ["ghostly chandelier", "purple flames", "diagonal composition"],
     },
     { name: "Mega Chandelure ex" },
   );
@@ -592,6 +592,179 @@ test("card visual language enforcement catches broader false-negative families",
   assert.ok(details.some((detail) =>
     detail.flag === "potential_semantic_tag_nonvisual_concept"
     && detail.matched_text === "whimsical"
+    && detail.field === "semantic_tags"));
+});
+
+test("card visual language enforcement catches broad-repair dry-run false negatives by claim class", () => {
+  const pokemonDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description: [
+        "Mega Excadrill has an aggressive stance and readiness for action or attack.",
+        "Mega Zeraora's electric type is emphasized by lightning motifs, hinting at its power.",
+      ].join(" "),
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["Mega Excadrill"], secondary: [] },
+        environment: { setting: ["abstract background"] },
+        mood: [],
+        distinguishing_details: ["drill-shaped head"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["Mega Excadrill", "drill-shaped head", "dynamic pose"],
+    },
+    { name: "Mega Excadrill ex", supertype: "Pokemon" },
+  );
+
+  assert.ok(pokemonDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "aggressive stance"));
+  assert.ok(pokemonDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "readiness for action or attack"));
+  assert.ok(pokemonDetails.some((detail) =>
+    detail.flag === "potential_canonical_metadata_in_visual_output"
+    && detail.matched_text === "electric type"));
+  assert.ok(pokemonDetails.some((detail) =>
+    detail.flag === "potential_primary_subject_anatomy_overclaim"
+    && detail.matched_text === "hinting at its power"));
+  assert.ok(pokemonDetails.some((detail) =>
+    detail.flag === "potential_canonical_metadata_in_visual_output"
+    && detail.matched_text === "Mega Excadrill"
+    && detail.field === "semantic_tags"));
+
+  const trainerDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The trainer has a calm, contemplative expression that creates an emotional charge of the moment and quiet confidence.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["Gwynn"], secondary: [] },
+        environment: { setting: ["stone pathway"] },
+        mood: ["contemplation"],
+        distinguishing_details: ["high-collared coat"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["trainer portrait", "quiet confidence", "stone pathway"],
+    },
+    { name: "Gwynn", supertype: "Trainer", card_category: "Supporter" },
+  );
+
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "contemplative expression"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "emotional charge of the moment"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "quiet confidence"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "contemplation"
+    && detail.field === "visual_attributes.mood"));
+
+  const energyDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description: [
+        "The symbolic design includes a reflective dark orb with glossy finish, matte textures, and a uniform finish.",
+        "The background is interpreted as a night cityscape with buildings and a leaf-shaped object.",
+        "The description says the design is embodying the essence of Water Energy.",
+      ].join(" "),
+      card_surface_and_printing_cues: "Foil texture cannot be determined.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: ["cityscape"] },
+        environment: { setting: ["night cityscape"] },
+        mood: [],
+        distinguishing_details: ["glossy finish", "radiating lines"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["abstract energy", "radiating lines", "water symbol"],
+    },
+    { name: "Water Energy", supertype: "Energy", card_category: "Basic" },
+  );
+
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "reflective dark orb"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "glossy finish"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "matte textures"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "uniform finish"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_abstract_shape_literalization"
+    && detail.matched_text === "night cityscape"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_abstract_shape_literalization"
+    && detail.matched_text === "leaf-shaped object"));
+  assert.ok(energyDetails.some((detail) =>
+    detail.flag === "potential_purpose_or_lore_interpretation"
+    && detail.matched_text === "essence of"));
+
+  const objectDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The bomb has a shiny finish and appears smooth and reflective, suggesting potential for detonation in an explosive atmosphere.",
+      card_surface_and_printing_cues: "Silver border visible, printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["bomb"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["shiny finish"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["visible object", "dynamic composition", "radiating lines"],
+    },
+    { name: "ごうかいボム", supertype: "Trainer", card_category: "Item" },
+  );
+
+  assert.ok(objectDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "shiny finish"));
+  assert.ok(objectDetails.some((detail) =>
+    detail.flag === "potential_visual_material_vs_surface_confusion"
+    && detail.matched_text === "smooth and reflective"));
+  assert.ok(objectDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "potential for detonation"));
+  assert.ok(objectDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "explosive atmosphere"));
+});
+
+test("card visual language enforcement catches cross-field expression contradictions", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The facial expression cannot be determined due to the angle, but the figure later appears assertive.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["trainer"], secondary: [] },
+        environment: { setting: ["abstract background"] },
+        mood: ["confident"],
+        distinguishing_details: ["raised hand"],
+        uncertainty_notes: ["facial expression cannot be determined"],
+      },
+      semantic_tags: ["confident expression", "trainer portrait", "raised hand"],
+    },
+    { name: "Example Trainer", supertype: "Trainer", card_category: "Supporter" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_cross_field_expression_contradiction"
+    && detail.matched_text === "assertive"
+    && detail.field === "artwork_description"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_cross_field_expression_contradiction"
+    && detail.matched_text === "confident"
+    && detail.field === "visual_attributes.mood"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_cross_field_expression_contradiction"
+    && detail.matched_text === "confident"
     && detail.field === "semantic_tags"));
 });
 

@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-07-16T18:19:20.326Z",
+  "sha256": {
+    "backend/card_descriptions/card_visual_description_agent_v1.mjs": "6ef092b19998a6c503098b01afdd103480982311daaec4352d0fda590591f712",
+    "tests/contracts/card_visual_description_agent_v1.test.mjs": "17938a31f0acda1f4ee82fca4c50e3dc9a0795f72413a2d12749529210b81aa4",
+    "docs/audits/card_visual_language_v1_claim_class_repair/VISUAL_LANGUAGE_V1_CLAIM_CLASS_REPAIR_REPORT.md": "42860cabf54d3e75affdd074a44e4d3a11c7b7ae0afab714cbe1aec1c7280ceb",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_CLAIM_CLASS_REPAIR_20260716.md": "9c7673d17abf6a6f1ac45446d2b7b6f68bf648352339cc63d1a7bb5fc30db186",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "ba8728fd02871a7cd72ed6527dfe6901631d79f11769594f72e0793898a0e594"
+  }
+}
