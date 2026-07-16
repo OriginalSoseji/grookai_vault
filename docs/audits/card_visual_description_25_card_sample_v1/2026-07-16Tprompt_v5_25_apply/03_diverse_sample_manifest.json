@@ -1,0 +1,127 @@
+[
+  {
+    "rationale": "Chandelure-family control without reusing the exact Mega Chandelure SAR row",
+    "category": "known_control_family",
+    "card_print_id": "42132d06-0934-4a39-867d-71f1f0031ad8"
+  },
+  {
+    "rationale": "Team Rocket themed Special Illustration Rare with dark atmospheric art",
+    "category": "modern_sir_dark_atmospheric",
+    "card_print_id": "ae839852-6688-4a44-ad54-7664adaeff75"
+  },
+  {
+    "rationale": "Trainer/supporter Special Illustration Rare",
+    "category": "trainer_sir",
+    "card_print_id": "dc0fbf2c-c105-4cfb-8cbc-c346f5365a9a"
+  },
+  {
+    "rationale": "Human-focused Special Illustration Rare",
+    "category": "trainer_sir",
+    "card_print_id": "4a055191-0338-4731-8a18-6bc0ef6209be"
+  },
+  {
+    "rationale": "Cute creature Special Illustration Rare",
+    "category": "cute_modern_sir",
+    "card_print_id": "a11894e4-2423-4950-8733-8f30188c4b7a"
+  },
+  {
+    "rationale": "Complex creature anatomy Special Illustration Rare",
+    "category": "unusual_creature_sir",
+    "card_print_id": "8a2548d3-845a-478b-8d12-286a780ac020"
+  },
+  {
+    "rationale": "Illustration Rare with smaller creature subject",
+    "category": "creature_ir",
+    "card_print_id": "8d74ee7b-085a-4e06-8d6b-b835a4abab3f"
+  },
+  {
+    "rationale": "Dark flying creature Illustration Rare",
+    "category": "dark_creature_ir",
+    "card_print_id": "0ff5e630-499f-4ede-9151-60da2438293a"
+  },
+  {
+    "rationale": "Rainbow VMAX style, high surface/color complexity",
+    "category": "rainbow_full_art",
+    "card_print_id": "022604e1-7c33-4221-a8d3-3291011732e9"
+  },
+  {
+    "rationale": "Rainbow rare with dark/cute ghost subject",
+    "category": "rainbow_dark_subject",
+    "card_print_id": "043468ed-a1ea-43ff-9e49-b8276f64e106"
+  },
+  {
+    "rationale": "Pikachu promo-style subject",
+    "category": "pikachu_promo",
+    "card_print_id": "00cdad9e-1134-51a7-8c47-36a2f305e399"
+  },
+  {
+    "rationale": "Classic dragon-like fan favorite",
+    "category": "charizard_promo",
+    "card_print_id": "1dc9df24-55a7-4da2-bdcb-01ee140e85aa"
+  },
+  {
+    "rationale": "Ghost fan favorite from older Japanese era",
+    "category": "gengar_vintage_ex",
+    "card_print_id": "8bcb82ab-d57d-40ff-81ff-bfc8c01fe926"
+  },
+  {
+    "rationale": "Vintage domestic/cute creature",
+    "category": "vintage_eevee",
+    "card_print_id": "43273f6f-7cef-47c0-8cd2-10ce86c94464"
+  },
+  {
+    "rationale": "Vintage large-bodied creature",
+    "category": "vintage_snorlax",
+    "card_print_id": "21af5df2-5b6b-4dc7-9d3b-772a5724355c"
+  },
+  {
+    "rationale": "Soft scenic mythical artwork",
+    "category": "southern_islands_mew",
+    "card_print_id": "048c955a-58ea-4412-8af8-3944ffc7866a"
+  },
+  {
+    "rationale": "Humanoid psychic creature anatomy",
+    "category": "mewtwo_ex",
+    "card_print_id": "129d59d3-249b-4562-ba22-4f7b5911ebac"
+  },
+  {
+    "rationale": "Multiple subjects / metal-bodied characters",
+    "category": "tag_team_metal",
+    "card_print_id": "0cca54f4-03b8-47aa-8d91-66fbd13cf3e5"
+  },
+  {
+    "rationale": "Elegant humanoid creature anatomy",
+    "category": "gardevoir_ex",
+    "card_print_id": "14b53ba7-78a6-4339-a564-e2520c769fbd"
+  },
+  {
+    "rationale": "Fish subject / nostalgic shiny art",
+    "category": "shining_magikarp",
+    "card_print_id": "1d32193d-e2a4-440f-97ca-d8c8fc89e80d"
+  },
+  {
+    "rationale": "Modern trainer full-art style",
+    "category": "modern_trainer_full_art",
+    "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d"
+  },
+  {
+    "rationale": "Popular trainer portrait subject",
+    "category": "classic_trainer_full_art",
+    "card_print_id": "0b5abddd-22d5-4d61-9615-6fa1405374b9"
+  },
+  {
+    "rationale": "Trainer/action scene with Team Rocket theme",
+    "category": "trainer_card",
+    "card_print_id": "32d4acd4-c1a7-4a8c-8e39-f1e997596221"
+  },
+  {
+    "rationale": "Stadium/environment card rather than Pokemon subject",
+    "category": "stadium_tool",
+    "card_print_id": "434b3e53-e42b-43bc-9ede-f649494a5e1c"
+  },
+  {
+    "rationale": "Energy card / abstract symbol artwork",
+    "category": "energy_card",
+    "card_print_id": "00c2e4db-c4fb-4d8a-aa86-72f355fa8873"
+  }
+]

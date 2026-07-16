@@ -1,0 +1,122 @@
+[
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/00_run_plan_intent.json",
+    "sha256": "d6dcb9c4d11b6a66400152a2ec0c685b7b60e020c1fb5efc67a58b79dc2c12df"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/01_prompt_v5_25_card_plan_output.txt",
+    "sha256": "0b18ad69498c1c6d30a72af4820ad5cbd0e8e78cae09ffe541f9b7bf40fd8ac9"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/02_plan_eligible_cards.jsonl",
+    "sha256": "5d9d7dcc5cc5bddcbc444627ccb2baad733ad9ddf8689136df5bd26da5af63d0"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/03_diverse_sample_manifest.json",
+    "sha256": "8246bd84ebf004f93ba4c76ca39f8406cb9186cd1e1060ced3acbf07f20aca84"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/04_diverse_sample_ids.txt",
+    "sha256": "f433f0a370240aac93f00947b6cd62756e626c89530d8da3a1f21f9ad4f1e889"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/05_diverse_sample_db_verification.json",
+    "sha256": "0d26cbc7d87d8418a71e8202e2915b7e34f895634a75f3d6c7ce74f2b295735c"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/06_exact_list_plan_output.txt",
+    "sha256": "d09eadfc2b8e64aad92c535ce6499949d66a0e5f173fa68f233b18236ea6f22c"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/07_exact_list_plan_eligible_cards.jsonl",
+    "sha256": "9b755d8c734cfdfc8b516ab4e96f749ecd8e66767e1139386511a5861b3fb68a"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/08_prompt_v5_25_card_apply_output.txt",
+    "sha256": "97fd71e1cd6ebab322ff0edc750db5d4abe7fc195c761c316c5e941906a8e482"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/09_prompt_v5_remaining_22_apply_output.txt",
+    "sha256": "e3b793d9d44c8a680ebf336e88815c789c69ba03571c3bc6c251300a1e78244d"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/10_prompt_v5_25_db_rls_boundary_readback.json",
+    "sha256": "1e8235edde7fc8932de67b0733d82cffff1e8311f18f946e0673927e909e2c92"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/11_node_check_output.txt",
+    "sha256": "d2a89b060d169d6402bbbabb844676e08ed1f13fbf753af36908a0ceaa429a2b"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/12_card_visual_contract_test_output.txt",
+    "sha256": "cd3d79991c801473fededed9aaca3979f24a849eb2c222ac8329697ec05d07db"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/CARD_VISUAL_DESCRIPTION_25_CARD_SAMPLE_REPORT.md",
+    "sha256": "bc3d8f63dc9c8045327fc3cd3a2ab61f8976c2ad1b5109b985c06015c0afbe07"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/eligible_cards.jsonl",
+    "sha256": "9b755d8c734cfdfc8b516ab4e96f749ecd8e66767e1139386511a5861b3fb68a"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/generated_outputs.jsonl",
+    "sha256": "df8fc34c428b287856f01f175928b106638ffb158087c654fd7b8665d49daee7"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/review_sample.jsonl",
+    "sha256": "df8fc34c428b287856f01f175928b106638ffb158087c654fd7b8665d49daee7"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/run_plan.json",
+    "sha256": "b182bd09863f628162b19e5a5c90dcacc6bd09162143e41ac2b91263a9cbecc3"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/skipped_images.jsonl",
+    "sha256": "8675056d1d6468422d02681d602bcf27f7812d049ea9f0cbfb44eb6f4ebba43b"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/summary.json",
+    "sha256": "bbb9b9ec1dae4e255df6851569045baf9aff940c30e53c1507aac775c07f25dc"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/validation_failures.jsonl",
+    "sha256": "c0aeda76f5cfe1d6ffc16c300326b1b8485effe63ce207e702affc146768b9bb"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/eligible_cards.jsonl",
+    "sha256": "867d8c3b2e632e7ccc0c54b1be4a3f4b962d1c09b39cf05e55e02411e4af04f8"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/generated_outputs.jsonl",
+    "sha256": "77bb570c32bdcf3c9a779938ed447390893f5720b123f0aa52e94010ce3e7275"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/review_sample.jsonl",
+    "sha256": "77bb570c32bdcf3c9a779938ed447390893f5720b123f0aa52e94010ce3e7275"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/run_plan.json",
+    "sha256": "457e34ea41f92eaf6bd9c38d0e19aa60ef7243be1e2efd91db0e207c098c397d"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/skipped_images.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/summary.json",
+    "sha256": "64485d2866cdf65ce2a99a94a70d81c3167de41dfd99a270e2edd7dc8a5e7052"
+  },
+  {
+    "path": "docs/audits/card_visual_descriptions/2026-07-16T05-25-48-543Z_apply_12bc4fc1b986/validation_failures.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_DESCRIPTION_AGENT_V1_25_CARD_SAMPLE_20260716.md",
+    "sha256": "1ca5185c7a0fedb2382bfa0e6da4bfeee8b2b1babe35abd8d4a77e63b00c763f"
+  },
+  {
+    "path": "docs/checkpoints/card_visual_descriptions/INDEX.md",
+    "sha256": "8d2562d411c21936b43ff63f4952386129b514c4650e1b4927857238df7ef8a3"
+  }
+]

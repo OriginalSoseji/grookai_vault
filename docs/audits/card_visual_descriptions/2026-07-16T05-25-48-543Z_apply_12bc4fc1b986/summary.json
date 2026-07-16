@@ -1,0 +1,70 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "apply",
+  "provider": "openai",
+  "model_version": "gpt-4o-mini",
+  "response_model_version": "gpt-4o-mini-2024-07-18",
+  "response_model_versions": [
+    "gpt-4o-mini-2024-07-18"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V5",
+  "output_schema_version": "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-15",
+    "recorded_at": "2026-07-16T05:25:48.543Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-16T05:25:48.543Z",
+  "finished_at": "2026-07-16T05:29:20.611Z",
+  "eligible_count": 22,
+  "total_eligible_catalog_count": 22,
+  "attempted_count": 22,
+  "validated_count": 22,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "needs_review_count": 1,
+  "pending_count": 21,
+  "usage": {
+    "request_count": 22,
+    "retry_count": 0,
+    "input_tokens": 635153,
+    "output_tokens": 11368,
+    "total_tokens": 646521,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.10209375
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1,
+    "retry_count": 0,
+    "input_tokens": 28870.5909,
+    "output_tokens": 516.7273,
+    "total_tokens": 29387.3182,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.00464062
+  },
+  "estimated_cost_usd": 0.10209375,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.00464062,
+    "projected_500_cards_usd": 2.32031,
+    "projected_1000_cards_usd": 4.64062,
+    "full_eligible_catalog_count": 22,
+    "projected_full_eligible_catalog_usd": 0.10209364
+  },
+  "ceiling": {
+    "max_cards": 22,
+    "max_run_cost_usd": 0.15,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_overconfident_ambiguous_setting": 1
+  }
+}

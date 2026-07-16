@@ -76,6 +76,7 @@ test("card visual description args default to dry-run and block fixture apply", 
     "--max-cards=10",
     "--gv-id=GV-PK-JPN-M5-113",
     "--card-print-id=2412563a-c73d-5970-a389-f4c1dc35d8c6",
+    "--card-print-ids=22222222-2222-2222-2222-222222222222,11111111-1111-1111-1111-111111111111",
     "--max-run-cost-usd=0.25",
     "--openai-input-cost-per-million=0.15",
     "--openai-output-cost-per-million=0.60",
@@ -88,6 +89,10 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(apply.maxCards, 10);
   assert.equal(apply.gvId, "GV-PK-JPN-M5-113");
   assert.equal(apply.cardPrintId, "2412563a-c73d-5970-a389-f4c1dc35d8c6");
+  assert.deepEqual(apply.cardPrintIds, [
+    "22222222-2222-2222-2222-222222222222",
+    "11111111-1111-1111-1111-111111111111",
+  ]);
   assert.equal(apply.maxRunCostUsd, 0.25);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
@@ -381,6 +386,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /semantic_tags must describe visible artwork only/);
   assert.match(agent, /ghostly chandelier/);
   assert.match(agent, /target_gv_id/);
+  assert.match(agent, /target_card_print_ids/);
+  assert.match(agent, /--card-print-ids=/);
   assert.match(agent, /OPENAI_INPUT_COST_PER_MILLION/);
   assert.match(agent, /OPENAI_OUTPUT_COST_PER_MILLION/);
   assert.match(agent, /OPENAI_IMAGE_COST_RULE_VERSION/);
@@ -391,6 +398,19 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /projected_next_call_cost_exceeds_max_run_cost/);
   assert.doesNotMatch(agent, /additionalProperties: true/);
   assert.match(agent, /function formatFetchError/);
+  assert.match(agent, /function tcgdexHighImageUrl/);
+  assert.match(agent, /assets\\.tcgdex\\.net/);
+  assert.match(agent, /high\.webp/);
+  assert.match(agent, /CANON_IMAGE_STORAGE_BUCKET = "user-card-images"/);
+  assert.match(agent, /WAREHOUSE_CANON_IMAGE_PREFIXES/);
+  assert.match(agent, /warehouse-derived\/self-hosted-images-v1\//);
+  assert.match(agent, /warehouse-derived\/image-truth-v1\//);
+  assert.match(agent, /function normalizeWarehouseCanonImagePath/);
+  assert.match(agent, /function warehouseCanonImagePathFromPublicStorageUrl/);
+  assert.match(agent, /\.storage\s*\n\s*\.from\(candidate\.storage_bucket\)\s*\n\s*\.download\(candidate\.storage_path\)/);
+  assert.match(agent, /image_candidates_exhausted/);
+  assert.match(agent, /image_storage_not_configured/);
+  assert.match(agent, /image_storage_download_failed/);
   assert.match(agent, /reason: "image_fetch_failed"/);
   assert.match(agent, /error: image\.error \?\? null/);
   assert.match(agent, /card_prints_mutation: false/);

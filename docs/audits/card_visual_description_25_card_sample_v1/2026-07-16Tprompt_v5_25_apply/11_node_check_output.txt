@@ -1,0 +1,3 @@
+Command: node --check backend\card_descriptions\card_visual_description_agent_v1.mjs
+Result: passed
+Note: node --check produced no stdout or stderr.

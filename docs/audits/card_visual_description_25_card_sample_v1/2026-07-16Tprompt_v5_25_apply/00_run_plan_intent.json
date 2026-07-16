@@ -1,0 +1,14 @@
+{
+  "embeddings": false,
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V5",
+  "app_facing": false,
+  "approval": "none; generated rows remain pending or needs_review",
+  "limit": 25,
+  "max_run_cost_usd": 0.15,
+  "objective": "Bounded 25-card OpenAI apply sample for Card Visual Description Agent prompt V5",
+  "max_cards": 25,
+  "sample_25_card": true,
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "mode": "apply"
+}

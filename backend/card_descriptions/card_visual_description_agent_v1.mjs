@@ -26,6 +26,11 @@ const DEFAULT_MIN_HEIGHT = 240;
 const DEFAULT_MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
+const CANON_IMAGE_STORAGE_BUCKET = "user-card-images";
+const WAREHOUSE_CANON_IMAGE_PREFIXES = [
+  "warehouse-derived/self-hosted-images-v1/",
+  "warehouse-derived/image-truth-v1/",
+];
 const ALLOWED_MIME_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const REVIEW_SAMPLE_LIMIT = 25;
 const NON_PROBLEM_QUALITY_FLAGS = new Set([
@@ -75,6 +80,29 @@ async function createPgClient(clientOptions) {
   const pg = await import("pg");
   const Client = pg.default?.Client ?? pg.Client;
   return new Client(clientOptions);
+}
+
+let cachedSupabaseStorageClient = null;
+
+async function createSupabaseStorageClient() {
+  if (cachedSupabaseStorageClient) return cachedSupabaseStorageClient;
+  const url = normalizeText(process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = normalizeText(
+    process.env.SUPABASE_SECRET_KEY
+      ?? process.env.SUPABASE_SERVICE_ROLE_KEY
+      ?? process.env.SUPABASE_SERVICE_ROLE,
+  );
+  if (!url || !key) return null;
+
+  const supabase = await import("@supabase/supabase-js");
+  const createClient = supabase.createClient;
+  cachedSupabaseStorageClient = createClient(url, key, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
+  return cachedSupabaseStorageClient;
 }
 
 function connectionString() {
@@ -139,6 +167,17 @@ function normalizeText(value) {
 function uniqueSorted(values) {
   return [...new Set(values.map(normalizeText).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right));
+}
+
+function uniquePreserving(values) {
+  const seen = new Set();
+  const result = [];
+  for (const value of values.map(normalizeText).filter(Boolean)) {
+    if (seen.has(value)) continue;
+    seen.add(value);
+    result.push(value);
+  }
+  return result;
 }
 
 function tagKey(value) {
@@ -247,6 +286,10 @@ function parseCommaList(value) {
   return uniqueSorted(String(value ?? "").split(","));
 }
 
+function parseOrderedCommaList(value) {
+  return uniquePreserving(String(value ?? "").split(","));
+}
+
 function roundUsd(value) {
   if (value === null || value === undefined) return null;
   return Number(Number(value).toFixed(8));
@@ -351,6 +394,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     openaiCachedInputCostPerMillion: asNumber(process.env.OPENAI_CACHED_INPUT_COST_PER_MILLION, null, "OPENAI_CACHED_INPUT_COST_PER_MILLION"),
     openaiImageCostRuleVersion: normalizeText(process.env.OPENAI_IMAGE_COST_RULE_VERSION) || null,
     cardPrintId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_ID) || null,
+    cardPrintIds: parseOrderedCommaList(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_IDS),
     gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
     forceVersion: false,
     allowFixtureApply: false,
@@ -372,6 +416,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--output-schema-version=")) parsed.outputSchemaVersion = normalizeText(arg.slice("--output-schema-version=".length));
     else if (arg.startsWith("--agent-version=")) parsed.agentVersion = normalizeText(arg.slice("--agent-version=".length));
     else if (arg.startsWith("--card-print-id=")) parsed.cardPrintId = normalizeText(arg.slice("--card-print-id=".length)) || null;
+    else if (arg.startsWith("--card-print-ids=")) parsed.cardPrintIds = parseOrderedCommaList(arg.slice("--card-print-ids=".length));
     else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
     else if (arg.startsWith("--min-width=")) parsed.minWidth = asPositiveInt(arg.slice("--min-width=".length), DEFAULT_MIN_WIDTH, "--min-width");
     else if (arg.startsWith("--min-height=")) parsed.minHeight = asPositiveInt(arg.slice("--min-height=".length), DEFAULT_MIN_HEIGHT, "--min-height");
@@ -417,34 +462,110 @@ function rowText(row, key) {
   return normalizeText(row[key]);
 }
 
-function resolveImageCandidate(row) {
-  const candidates = [
+function normalizeLowerOrNull(value) {
+  const normalized = normalizeText(value).toLowerCase();
+  return normalized || null;
+}
+
+function isIdentityCardImageSource(value) {
+  return normalizeLowerOrNull(value) === "identity";
+}
+
+function normalizeWarehouseCanonImagePath(value) {
+  const normalized = normalizeText(value).replace(/^\/+/, "");
+  if (
+    !normalized ||
+    normalized.length > 512 ||
+    normalized.includes("..") ||
+    !WAREHOUSE_CANON_IMAGE_PREFIXES.some((prefix) => normalized.startsWith(prefix))
+  ) {
+    return null;
+  }
+  return normalized;
+}
+
+function warehouseCanonImagePathFromPublicStorageUrl(value) {
+  const raw = normalizeText(value);
+  if (!/^https?:\/\//i.test(raw)) return null;
+  try {
+    const url = new URL(raw);
+    const prefix = `/storage/v1/object/public/${CANON_IMAGE_STORAGE_BUCKET}/`;
+    const pathname = decodeURIComponent(url.pathname);
+    if (!pathname.startsWith(prefix)) return null;
+    return normalizeWarehouseCanonImagePath(pathname.slice(prefix.length));
+  } catch {
+    return null;
+  }
+}
+
+function tcgdexHighImageUrl(value) {
+  const url = normalizeText(value).replace(/\/+$/, "");
+  if (!/^https:\/\/assets\.tcgdex\.net\//i.test(url)) return null;
+  if (/\.(?:avif|webp|png|jpe?g)(?:\?.*)?$/i.test(url)) return null;
+  if (/\/high$/i.test(url)) return `${url}.webp`;
+  return `${url}/high.webp`;
+}
+
+function resolveImageCandidates(row) {
+  const rawCandidates = [
+    ["image_path", rowText(row, "image_path")],
     ["image_url", rowText(row, "image_url")],
     ["representative_image_url", rowText(row, "representative_image_url")],
     ["image_alt_url", rowText(row, "image_alt_url")],
-    ["image_path", rowText(row, "image_path")],
   ].filter(([, value]) => value);
 
-  if (candidates.length === 0) {
+  if (rawCandidates.length === 0) {
     return { ok: false, reason: "missing_image" };
   }
 
-  const [field, value] = candidates[0];
-  if (!/^https?:\/\//i.test(value)) {
+  const candidates = [];
+  let unsupportedNonHttp = null;
+  const seenUrls = new Set();
+  const seenStoragePaths = new Set();
+  const canUseCanonicalStorage = isIdentityCardImageSource(row.image_source);
+  for (const [field, value] of rawCandidates) {
+    const storagePath = canUseCanonicalStorage
+      ? (normalizeWarehouseCanonImagePath(value) ?? warehouseCanonImagePathFromPublicStorageUrl(value))
+      : null;
+    if (storagePath && !seenStoragePaths.has(storagePath)) {
+      seenStoragePaths.add(storagePath);
+      candidates.push({
+        kind: "storage",
+        image_source: field,
+        image_source_key: value,
+        storage_bucket: CANON_IMAGE_STORAGE_BUCKET,
+        storage_path: storagePath,
+      });
+    }
+
+    if (!/^https?:\/\//i.test(value)) {
+      if (!storagePath) unsupportedNonHttp ??= { field, value };
+      continue;
+    }
+    for (const url of [value, tcgdexHighImageUrl(value)].filter(Boolean)) {
+      if (seenUrls.has(url)) continue;
+      seenUrls.add(url);
+      candidates.push({
+        kind: "http",
+        image_source: field,
+        image_source_key: value,
+        url,
+      });
+    }
+  }
+
+  if (candidates.length === 0 && unsupportedNonHttp) {
     return {
       ok: false,
       reason: "unsupported_non_http_image_path",
-      image_source: field,
-      image_source_key: value,
+      image_source: unsupportedNonHttp.field,
+      image_source_key: unsupportedNonHttp.value,
     };
   }
 
-  return {
-    ok: true,
-    image_source: field,
-    image_source_key: value,
-    url: value,
-  };
+  if (candidates.length === 0) return { ok: false, reason: "missing_supported_image_candidate" };
+
+  return { ok: true, candidates };
 }
 
 function detectPngDimensions(buffer) {
@@ -542,7 +663,7 @@ function formatFetchError(error) {
   return parts.filter(Boolean).join(": ");
 }
 
-async function fetchImageBytes(candidate, args) {
+async function fetchHttpImageBytes(candidate, args) {
   let response;
   try {
     response = await fetch(candidate.url, {
@@ -584,66 +705,131 @@ async function fetchImageBytes(candidate, args) {
   };
 }
 
+async function fetchStorageImageBytes(candidate, args) {
+  const client = await createSupabaseStorageClient();
+  if (!client) {
+    return {
+      ok: false,
+      reason: "image_storage_not_configured",
+      error: "Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY/SUPABASE_SERVICE_ROLE_KEY.",
+    };
+  }
+
+  const { data, error } = await client.storage
+    .from(candidate.storage_bucket)
+    .download(candidate.storage_path);
+
+  if (error || !data) {
+    return {
+      ok: false,
+      reason: "image_storage_download_failed",
+      error: error?.message ?? "Storage object unavailable.",
+    };
+  }
+
+  const arrayBuffer = await data.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  if (buffer.length > args.maxImageBytes) {
+    return { ok: false, reason: "image_too_large", contentLength: buffer.length };
+  }
+  if (buffer.length === 0) {
+    return { ok: false, reason: "empty_image" };
+  }
+
+  return {
+    ok: true,
+    buffer,
+    contentType: data.type ?? "",
+  };
+}
+
+async function fetchImageBytes(candidate, args) {
+  if (candidate.kind === "storage") return fetchStorageImageBytes(candidate, args);
+  return fetchHttpImageBytes(candidate, args);
+}
+
 async function validateImageForModel(row, args) {
-  const candidate = resolveImageCandidate(row);
-  if (!candidate.ok) {
+  const resolved = resolveImageCandidates(row);
+  if (!resolved.ok) {
     return {
       ok: false,
       card_print_id: row.card_print_id,
-      reason: candidate.reason,
-      image_source: candidate.image_source ?? null,
-      image_source_key: candidate.image_source_key ?? null,
+      reason: resolved.reason,
+      image_source: resolved.image_source ?? null,
+      image_source_key: resolved.image_source_key ?? null,
     };
   }
 
-  const fetched = await fetchImageBytes(candidate, args);
-  if (!fetched.ok) {
-    return {
-      ok: false,
-      card_print_id: row.card_print_id,
-      reason: fetched.reason,
-      error: fetched.error ?? null,
-      image_source: candidate.image_source,
-      image_source_key: candidate.image_source_key,
-    };
-  }
+  const failures = [];
+  for (const candidate of resolved.candidates) {
+    const fetched = await fetchImageBytes(candidate, args);
+    if (!fetched.ok) {
+      failures.push({
+        reason: fetched.reason,
+        error: fetched.error ?? null,
+        image_source: candidate.image_source,
+        image_source_key: candidate.image_source_key,
+        attempted_url: candidate.url ?? null,
+        attempted_storage_bucket: candidate.storage_bucket ?? null,
+        attempted_storage_path: candidate.storage_path ?? null,
+      });
+      continue;
+    }
 
-  const hash = sha256(fetched.buffer);
-  const metadata = detectImageMetadata(fetched.buffer, fetched.contentType);
-  const qualityFlags = [];
-  if (!ALLOWED_MIME_TYPES.has(metadata.mime)) qualityFlags.push("unsupported_format");
-  if (args.placeholderHashes.includes(hash)) qualityFlags.push("placeholder_image");
-  if (metadata.width !== null && metadata.width < args.minWidth) qualityFlags.push("low_resolution");
-  if (metadata.height !== null && metadata.height < args.minHeight) qualityFlags.push("low_resolution");
-  if (metadata.width === null || metadata.height === null) qualityFlags.push("image_dimensions_unknown");
+    const hash = sha256(fetched.buffer);
+    const metadata = detectImageMetadata(fetched.buffer, fetched.contentType);
+    const qualityFlags = [];
+    if (!ALLOWED_MIME_TYPES.has(metadata.mime)) qualityFlags.push("unsupported_format");
+    if (args.placeholderHashes.includes(hash)) qualityFlags.push("placeholder_image");
+    if (metadata.width !== null && metadata.width < args.minWidth) qualityFlags.push("low_resolution");
+    if (metadata.height !== null && metadata.height < args.minHeight) qualityFlags.push("low_resolution");
+    if (metadata.width === null || metadata.height === null) qualityFlags.push("image_dimensions_unknown");
 
-  if (qualityFlags.some((flag) => ["unsupported_format", "placeholder_image"].includes(flag))) {
+    if (qualityFlags.some((flag) => ["unsupported_format", "placeholder_image"].includes(flag))) {
+      failures.push({
+        reason: qualityFlags[0],
+        quality_flags: qualityFlags,
+        image_source: candidate.image_source,
+        image_source_key: candidate.image_source_key,
+        attempted_url: candidate.url ?? null,
+        attempted_storage_bucket: candidate.storage_bucket ?? null,
+        attempted_storage_path: candidate.storage_path ?? null,
+        image_sha256: hash,
+        image_mime_type: metadata.mime,
+        image_width: metadata.width,
+        image_height: metadata.height,
+      });
+      continue;
+    }
+
     return {
-      ok: false,
+      ok: true,
       card_print_id: row.card_print_id,
-      reason: qualityFlags[0],
-      quality_flags: qualityFlags,
       image_source: candidate.image_source,
       image_source_key: candidate.image_source_key,
       image_sha256: hash,
       image_mime_type: metadata.mime,
       image_width: metadata.width,
       image_height: metadata.height,
+      image_quality_score: qualityFlags.length === 0 ? 0.92 : 0.68,
+      quality_flags: qualityFlags,
+      buffer: fetched.buffer,
     };
   }
 
+  const lastFailure = failures.at(-1) ?? {};
   return {
-    ok: true,
+    ok: false,
     card_print_id: row.card_print_id,
-    image_source: candidate.image_source,
-    image_source_key: candidate.image_source_key,
-    image_sha256: hash,
-    image_mime_type: metadata.mime,
-    image_width: metadata.width,
-    image_height: metadata.height,
-    image_quality_score: qualityFlags.length === 0 ? 0.92 : 0.68,
-    quality_flags: qualityFlags,
-    buffer: fetched.buffer,
+    reason: lastFailure.reason ?? "image_candidates_exhausted",
+    error: lastFailure.error ?? null,
+    quality_flags: lastFailure.quality_flags ?? [],
+    image_source: lastFailure.image_source ?? null,
+    image_source_key: lastFailure.image_source_key ?? null,
+    image_sha256: lastFailure.image_sha256 ?? null,
+    image_mime_type: lastFailure.image_mime_type ?? null,
+    image_width: lastFailure.image_width ?? null,
+    image_height: lastFailure.image_height ?? null,
   };
 }
 
@@ -1324,6 +1510,14 @@ async function fetchEligibleCards(client, args) {
     nextParam += 1;
   }
 
+  let explicitCardPrintIdsParam = null;
+  if (args.cardPrintIds.length > 0) {
+    explicitCardPrintIdsParam = nextParam;
+    filters.push(`cp.id = any($${nextParam}::uuid[])`);
+    params.push(args.cardPrintIds);
+    nextParam += 1;
+  }
+
   if (args.gvId) {
     if (!columns.has("gv_id")) return [];
     filters.push(`cp.gv_id = $${nextParam}`);
@@ -1352,8 +1546,8 @@ async function fetchEligibleCards(client, args) {
      ${descriptionJoin}
      where coalesce(${imageExpressions.join(", ")}) is not null
        ${filters.map((filter) => `and ${filter}`).join("\n       ")}
-     order by ${orderExpr}
-     limit $1`,
+      order by ${explicitCardPrintIdsParam ? `array_position($${explicitCardPrintIdsParam}::uuid[], cp.id), ` : ""}${orderExpr}
+      limit $1`,
     params,
   );
   return result.rows;
@@ -1788,6 +1982,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     pricing_snapshot: args.pricingSnapshot,
     force_version: args.forceVersion,
     target_card_print_id: args.cardPrintId,
+    target_card_print_ids: args.cardPrintIds,
     target_gv_id: args.gvId,
     started_at: startedAt,
     boundary: {
