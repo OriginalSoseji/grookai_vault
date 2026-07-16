@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V4";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V5";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 
@@ -931,6 +931,7 @@ function buildPrompt(card) {
     "A short label such as \"Character:\" and \"Artwork:\" is acceptable, but the content must remain readable prose.",
     "Layer 1, character understanding: describe the Pokemon as a living character for someone who has never seen it before. Do not assume the Pokemon name communicates appearance.",
     "Character understanding must cover the overall creature type, real-world object/animal/plant/concept resemblance, body structure, face placement, eyes, expression, posture, limbs, wings, tails, flames, and species-distinguishing features when visible.",
+    "When visible, explicitly describe where the face, eyes, and defining species features are located. If they cannot be confidently identified, state that explicitly rather than implying they do not exist.",
     "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, or emotions to satisfy the checklist.",
     "Never use the Pokemon name as a substitute for describing what it looks like. For example, prefer \"The Pokemon resembles an ornate ghostly chandelier with a round glass lantern body\" over \"Mega Chandelure is shown\".",
     "Layer 2, artwork understanding: after describing the Pokemon itself, describe this specific illustration: pose, movement, composition, framing, cropping, foreground, background, environment, lighting, palette, mood, and atmosphere.",

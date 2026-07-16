@@ -363,11 +363,13 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /card_print_visual_descriptions/);
   assert.match(agent, /card_visual_description_runs/);
   assert.match(agent, /type: "input_image"/);
-  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V4/);
+  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V5/);
   assert.match(agent, /Do not encode nested JSON/);
   assert.match(agent, /Produce two distinct prose layers inside artwork_description/);
   assert.match(agent, /Layer 1, character understanding/);
   assert.match(agent, /Layer 2, artwork understanding/);
+  assert.match(agent, /explicitly describe where the face, eyes, and defining species features are located/);
+  assert.match(agent, /rather than implying they do not exist/);
   assert.match(agent, /Do not invent tails, wings, hands, facial expressions, or emotions/);
   assert.match(agent, /Never use the Pokemon name as a substitute/);
   assert.match(agent, /Do not describe a body part/);

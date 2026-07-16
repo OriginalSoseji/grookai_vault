@@ -1,0 +1,18 @@
+[
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_v5_face_instruction\\2026-07-16Tpre_25_card_gate\\01_node_check_prompt_v5.txt",
+    "sha256": "b71a40b7d0d4f0a1ce3090c6f35cbcd93c3433e11e289b621eefb970c6a5b6ab"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_v5_face_instruction\\2026-07-16Tpre_25_card_gate\\02_contract_tests_prompt_v5.txt",
+    "sha256": "4d8d0f2eac8022714756101bbd475d7cec5509e762e91b6c1cc5448c67d33dc5"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_v5_face_instruction\\2026-07-16Tpre_25_card_gate\\03_secret_scan_output.txt",
+    "sha256": "368bcd1da1684fc0c337f1021f6ca23ed433f84d279df7b554b5e4d75a0f0427"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_v5_face_instruction\\2026-07-16Tpre_25_card_gate\\PROMPT_V5_FACE_INSTRUCTION_REFINEMENT.md",
+    "sha256": "141b03c1f920eb426e958a22a23c591fb2c276e83355340df54ad83b8368c36f"
+  }
+]
