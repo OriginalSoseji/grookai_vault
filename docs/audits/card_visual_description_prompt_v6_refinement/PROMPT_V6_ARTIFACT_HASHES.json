@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-07-16T06:01:10.254Z",
+  "algorithm": "sha256",
+  "hashes": {
+    "backend/card_descriptions/card_visual_description_agent_v1.mjs": "f2758cbedfb1a5de7b94215f22792e539d8101391eff51af42eba6b2604ecf63",
+    "tests/contracts/card_visual_description_agent_v1.test.mjs": "a877eba568c2a6126366cddc6df6bc4fd002339b5305a7b0e13ba1779ec87aec",
+    "docs/audits/card_visual_description_prompt_v6_refinement/PROMPT_V6_BRANCH_COMPARISON_REPORT.md": "2fdec4b693b7ab8c863b2ff797dd370e6211bd9c57ec45690fdb709fb9032e28",
+    "docs/audits/card_visual_description_prompt_v6_refinement/PROMPT_V6_DRY_RUN_DESCRIPTIONS.md": "04268ad28934bbe740dba397a624e0c1984ef41755a76ffd5650bbab3ab53fc1",
+    "docs/audits/card_visual_description_prompt_v6_refinement/failed_transport_run_plan.json": "4d95b4c290b5a063744b6f0d5ee47dd49486fc76211bf3b0830230d1ebe1e80d",
+    "docs/audits/card_visual_description_prompt_v6_refinement/failed_transport_eligible_cards.jsonl": "481d810fc74e6ea1c4c6de9d091135932cce8d5c5567c6bb1974cd50221375a4",
+    "docs/audits/card_visual_description_prompt_v6_refinement/failed_transport_validation_failures.jsonl": "94e0bcd10ac1fa04d9838a680de93f22c78edf57d73f6b8e69eac409804778ac",
+    "docs/audits/card_visual_description_prompt_v6_refinement/failed_transport_summary.json": "f258b8a1f771192d0868db3c8a32a24a6162c1679f49c6ac2719ec4a4d9ea84b",
+    "docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_plan.json": "eb66aea7e3be2a7948825bf86b3d6e558eb29666d5c533aadce5db545ab88c92",
+    "docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_eligible_cards.jsonl": "481d810fc74e6ea1c4c6de9d091135932cce8d5c5567c6bb1974cd50221375a4",
+    "docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_generated_outputs.jsonl": "49472bb316fbc55b6fd2e014374f1b25269fad603a46f6d7ea88f87514d9eed2",
+    "docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_review_sample.jsonl": "49472bb316fbc55b6fd2e014374f1b25269fad603a46f6d7ea88f87514d9eed2",
+    "docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_summary.json": "65e68948b604ad9f29d256effefad1be542651ab1ffb117df25ebcf338eec07c",
+    "docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_four_branch_dry_run_console.txt": "ac7184b924a6b55ba69f275f7269d79beefc0127c819f7660ca43dbcdf0f1603",
+    "docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_four_branch_dry_run_console_tls_workaround.txt": "95582f9856e67e283a606a5fb2ebe06edb6246453381e6c68b815c1074c2678e",
+    "docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_no_db_write_readback.json": "0bd174c905f3530885e05fa0eddca013c7f50bb867ad61039e5e47023ae5e414",
+    "docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_node_check_output.txt": "407048213eb84b6f447f08f423e6b6dff85f5bfab8770725cb03b42d8088e235",
+    "docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_contract_test_output.txt": "b074239ac944cc60e939c3e4c5fc1bae633c997260433dea8963bb39fa4bfd7e",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_DESCRIPTION_PROMPT_V6_BRANCH_GATE_20260716.md": "159a97a3c5ac4083c813495863862762887aea73a559ed834a0c700e576a3247",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "cfd3d99cc4e03cc4f759cdebd8e0dc56cb58799346144e80134a5c568eb26e3c"
+  }
+}

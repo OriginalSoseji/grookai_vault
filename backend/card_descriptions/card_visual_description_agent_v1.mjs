@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V5";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 
@@ -196,6 +196,100 @@ function visualSubjectNameFromCardName(name) {
     .trim();
 }
 
+function promptTypeMetadataValue(value) {
+  return normalizeText(value).replace(/\s+/g, " ");
+}
+
+function promptTypeKey(value) {
+  return tagKey(value);
+}
+
+function firstPromptMetadataCandidate(card, field) {
+  const candidates = [
+    ["exact_trait", card[`exact_${field}`]],
+    ["source_trait", card[`source_${field}`]],
+    ["same_name_trait", card[`same_name_${field}`]],
+    ["direct_card_field", card[field]],
+  ];
+  for (const [source, rawValue] of candidates) {
+    const value = promptTypeMetadataValue(rawValue);
+    if (value) return { value, source };
+  }
+  return { value: "", source: "" };
+}
+
+function fallbackPromptTypeMetadata(card) {
+  const nameKey = promptTypeKey(card.name);
+  if (/^(basic )?(fire|water|grass|lightning|psychic|fighting|darkness|metal|fairy|dragon|colorless|double colorless|rainbow|unit)\s+energy$/.test(nameKey)) {
+    return { supertype: "Energy", card_category: "", source: "name_fallback_energy" };
+  }
+  if (/\b(stadium|garden|forest|city|castle|ruins|cave|library|gym|tower|temple|mountain|island|beach|lake)\b/.test(nameKey)) {
+    return { supertype: "Trainer", card_category: "Stadium", source: "name_fallback_stadium" };
+  }
+  if (/\b(vitality|research|orders|training|advice|care|invitation|encouragement|determination|performance|hospitality|resolve|guidance|scheme|kindness|exploration|challenge|ambition|backup|conviction|support)\b/.test(nameKey)) {
+    return { supertype: "Trainer", card_category: "Supporter", source: "name_fallback_trainer" };
+  }
+  return { supertype: "", card_category: "", source: "" };
+}
+
+function resolvePromptBranch({ supertype, card_category: cardCategory, name }) {
+  const supertypeKey = promptTypeKey(supertype);
+  const categoryKey = promptTypeKey(cardCategory);
+  const nameKey = promptTypeKey(name);
+
+  if (
+    supertypeKey === "energy" ||
+    categoryKey === "energy" ||
+    categoryKey === "basic energy" ||
+    /^(basic )?(fire|water|grass|lightning|psychic|fighting|darkness|metal|fairy|dragon|colorless|double colorless|rainbow|unit)\s+energy$/.test(nameKey)
+  ) {
+    return "energy";
+  }
+  if (categoryKey === "stadium") return "stadium";
+  if (supertypeKey === "pokemon") return "pokemon";
+  if (supertypeKey === "trainer") {
+    if (["item", "tool", "pokemon tool", "technical machine"].includes(categoryKey)) return "item_tool_supporter";
+    return "trainer";
+  }
+  if (["item", "tool", "pokemon tool", "technical machine"].includes(categoryKey)) return "item_tool_supporter";
+  if (categoryKey === "supporter") return "trainer";
+  return "pokemon";
+}
+
+function trainerNameFromCardName(name) {
+  const normalized = normalizeText(name);
+  const possessiveMatch = normalized.match(/^(.+?)'s\b/i);
+  return normalizeText(possessiveMatch?.[1]) || normalized || "unknown";
+}
+
+function resolveCardPromptMetadata(card = {}) {
+  const supertypeCandidate = firstPromptMetadataCandidate(card, "supertype");
+  const categoryCandidate = firstPromptMetadataCandidate(card, "card_category");
+  const fallback = fallbackPromptTypeMetadata(card);
+  const supertype = supertypeCandidate.value || fallback.supertype;
+  const cardCategory = categoryCandidate.value || fallback.card_category;
+  const sources = uniquePreserving([
+    supertypeCandidate.source,
+    categoryCandidate.source,
+    (!supertypeCandidate.value && !categoryCandidate.value) ? fallback.source : "",
+  ]);
+  const promptBranch = resolvePromptBranch({
+    supertype,
+    card_category: cardCategory,
+    name: card.name,
+  });
+
+  return {
+    supertype: supertype || "unknown",
+    subtype: promptTypeMetadataValue(card.subtype) || "unknown",
+    card_category: cardCategory || "unknown",
+    pokemon_name: promptBranch === "pokemon" ? visualSubjectNameFromCardName(card.name) || "unknown" : "not_applicable",
+    trainer_name: promptBranch === "trainer" ? trainerNameFromCardName(card.name) : "not_applicable",
+    prompt_branch: promptBranch,
+    card_type_metadata_source: sources.length > 0 ? sources.join("+") : "unavailable",
+  };
+}
+
 function metadataTagKeysFromCard(card = {}) {
   const values = [
     card.set_name,
@@ -205,6 +299,7 @@ function metadataTagKeysFromCard(card = {}) {
     card.artist,
     card.supertype,
     card.subtype,
+    card.card_category,
   ];
 
   for (const attack of Array.isArray(card.attacks) ? card.attacks : []) {
@@ -1108,20 +1203,106 @@ export function buildEmbeddingInputV1(row) {
   ].join("\n");
 }
 
+const PROMPT_BRANCH_LABELS = Object.freeze({
+  pokemon: "Branch 1 - Pokemon",
+  trainer: "Branch 2 - Trainer",
+  stadium: "Branch 3 - Stadium",
+  energy: "Branch 4 - Energy",
+  item_tool_supporter: "Branch 5 - Item / Tool / Supporter",
+});
+
+function promptBranchInstructions(branch) {
+  switch (branch) {
+    case "trainer":
+      return [
+        "Resolved branch instructions:",
+        "Use Branch 2 - Trainer.",
+        "Do NOT describe the trainer as a humanoid creature.",
+        "Inside artwork_description, write two labeled prose layers in this order: Trainer: then Artwork:.",
+        "Trainer: describe the visible human trainer or human character. Cover apparent age category only when visible, clothing, hairstyle, face location, facial expression, posture, interaction with visible Pokemon or objects, and emotional tone grounded in visible pose and expression.",
+        "Artwork: describe the environment, composition, lighting, movement, foreground, background, visible interactions, palette, mood, atmosphere, framing, and cropping.",
+        "If no human trainer can be confidently identified, state that explicitly and describe only the visible scene or objects.",
+      ];
+    case "stadium":
+      return [
+        "Resolved branch instructions:",
+        "Use Branch 3 - Stadium.",
+        "No character section.",
+        "Inside artwork_description, write two labeled prose layers in this order: Environment: then Artwork:.",
+        "Environment: describe the visible place, architecture, landscape, atmosphere, foreground, background, visual focal points, weather, lighting, and any visible signage or objects.",
+        "Artwork: describe composition, perspective, framing, depth, palette, mood, movement, and artwork-specific distinguishing details.",
+        "Avoid inventing characters, Pokemon, crowds, or activity unless they are clearly visible.",
+      ];
+    case "energy":
+      return [
+        "Resolved branch instructions:",
+        "Use Branch 4 - Energy.",
+        "Do NOT invent creatures.",
+        "Inside artwork_description, write two labeled prose layers in this order: Symbolic Artwork: then Artwork:.",
+        "Symbolic Artwork: describe the visible energy symbol, abstract forms, color fields, gradients, movement, repeated shapes, radiating lines, circular motifs, and lighting.",
+        "Artwork: describe composition, framing, palette, mood, visual theme, focal point, and artwork-specific distinguishing details.",
+        "Treat Energy cards as symbolic or abstract illustrations unless a concrete subject is visibly present.",
+      ];
+    case "item_tool_supporter":
+      return [
+        "Resolved branch instructions:",
+        "Use Branch 5 - Item / Tool / Supporter.",
+        "Inside artwork_description, write two labeled prose layers in this order: Object/Scene: then Artwork:.",
+        "Object/Scene: describe the actual visible object, tool, device, item, prop, or scene. If a Supporter card shows a human trainer, describe the visible person as a trainer rather than a creature.",
+        "Artwork: describe environment, composition, lighting, movement, foreground, background, palette, mood, framing, and artwork-specific distinguishing details.",
+        "Do not attempt to invent Pokemon unless a Pokemon is clearly visible.",
+      ];
+    case "pokemon":
+    default:
+      return [
+        "Resolved branch instructions:",
+        "Use Branch 1 - Pokemon.",
+        "Inside artwork_description, write two labeled prose layers in this order: Character: then Artwork:.",
+        "Character: describe the Pokemon as a living character for someone who has never seen this species before. Do not assume the Pokemon name communicates appearance.",
+        "Character details must cover the overall creature type, real-world object, animal, plant, or concept resemblance, body structure, face location, eye placement, expression, posture, limbs, wings, tails, flames, and species-defining anatomy when visible.",
+        "When visible, explicitly describe where the face, eyes, and defining species features are located. If they cannot be confidently identified, state that explicitly rather than implying they do not exist.",
+        "Artwork: describe this specific illustration: pose, movement, composition, framing, cropping, foreground, background, environment, lighting, palette, mood, and atmosphere.",
+        "Include artwork-specific distinguishing details that would help distinguish this card art from another artwork of the same Pokemon.",
+      ];
+  }
+}
+
 function buildPrompt(card) {
+  const promptMetadata = resolveCardPromptMetadata(card);
+  const branchLabel = PROMPT_BRANCH_LABELS[promptMetadata.prompt_branch] ?? PROMPT_BRANCH_LABELS.pokemon;
   return [
-    "Describe the artwork on this exact Pokemon card for a blind collector.",
+    "# CARD_VISUAL_DESCRIPTION_PROMPT_V6",
+    "## Card-Type Aware Visual Description System",
+    "",
+    "Describe the artwork on this exact Pokemon Trading Card Game card for a blind collector.",
+    "Use canonical card-type metadata before image interpretation so the description strategy matches the card type.",
+    "The canonical metadata is only branch-selection context. Do not treat it as permission to describe details that are not visible.",
+    "Do NOT use lore, flavor text, attacks, Pokedex entries, card mechanics, rarity, market data, or set metadata as visual evidence.",
     "Be grounded in visible evidence only. Do not invent hidden details.",
     "Inside artwork_description, write plain English prose only. Do not encode nested JSON, markdown, bullet lists, or key-value objects inside the string.",
-    "Produce two distinct prose layers inside artwork_description, in this order: first character understanding, then artwork understanding.",
-    "A short label such as \"Character:\" and \"Artwork:\" is acceptable, but the content must remain readable prose.",
-    "Layer 1, character understanding: describe the Pokemon as a living character for someone who has never seen it before. Do not assume the Pokemon name communicates appearance.",
-    "Character understanding must cover the overall creature type, real-world object/animal/plant/concept resemblance, body structure, face placement, eyes, expression, posture, limbs, wings, tails, flames, and species-distinguishing features when visible.",
-    "When visible, explicitly describe where the face, eyes, and defining species features are located. If they cannot be confidently identified, state that explicitly rather than implying they do not exist.",
-    "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, or emotions to satisfy the checklist.",
-    "Never use the Pokemon name as a substitute for describing what it looks like. For example, prefer \"The Pokemon resembles an ornate ghostly chandelier with a round glass lantern body\" over \"Mega Chandelure is shown\".",
-    "Layer 2, artwork understanding: after describing the Pokemon itself, describe this specific illustration: pose, movement, composition, framing, cropping, foreground, background, environment, lighting, palette, mood, and atmosphere.",
-    "Include artwork-specific distinguishing details that would help distinguish this card art from another artwork of the same Pokemon.",
+    "A short label such as \"Character:\", \"Trainer:\", \"Environment:\", \"Symbolic Artwork:\", \"Object/Scene:\", or \"Artwork:\" is acceptable, but the content must remain readable prose.",
+    "",
+    "Canonical card-type metadata:",
+    `- supertype: ${promptMetadata.supertype}`,
+    `- subtype: ${promptMetadata.subtype}`,
+    `- card_category: ${promptMetadata.card_category}`,
+    `- pokemon_name: ${promptMetadata.pokemon_name}`,
+    `- trainer_name: ${promptMetadata.trainer_name}`,
+    `- metadata_source: ${promptMetadata.card_type_metadata_source}`,
+    `- resolved_prompt_branch: ${branchLabel}`,
+    "",
+    "Prompt branches available:",
+    "Branch 1 - Pokemon: describe Character, Artwork, and Card Surface.",
+    "Branch 2 - Trainer: describe visible human trainer details, then Artwork. Do NOT describe the trainer as a humanoid creature.",
+    "Branch 3 - Stadium: describe Environment and Artwork. No character section.",
+    "Branch 4 - Energy: describe Symbolic Artwork and Artwork. Do NOT invent creatures.",
+    "Branch 5 - Item / Tool / Supporter: describe the actual object or scene, then Artwork.",
+    "Use only the resolved prompt branch for this card.",
+    "",
+    ...promptBranchInstructions(promptMetadata.prompt_branch),
+    "",
+    "Shared observation rules:",
+    "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, Pokemon, objects, characters, weather, or emotions to satisfy the checklist.",
     "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
     "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
     "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
@@ -1130,12 +1311,20 @@ function buildPrompt(card) {
     "Avoid speculative labels such as cosmic, celestial, magical portal, distant stars, energy, aura, or night sky unless directly visible. Prefer concrete wording such as dark gradients, scattered light points, abstract swirling forms, layered shadows, and glowing highlights.",
     "Do not say scattered light points suggest stars, energy, or an aura. Say scattered light points or glowing highlights unless the image clearly shows literal stars or energy effects.",
     "Use uncertainty language only when needed for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
+    "Include artwork-specific distinguishing details that would help distinguish this card art from another card of the same subject or card type.",
     "Separate the illustration from card frame, foil, border, or printing cues.",
     "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
     "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
     "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Only report reliable visible surface observations such as silver border visible, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
+    "",
+    "Semantic tag rules:",
     "semantic_tags must describe visible artwork only. Exclude set names, attacks, rarity labels, card mechanics, franchise names, and generic identity metadata already present in canonical fields.",
-    "semantic_tags should help future semantic search. Prefer tags such as ghostly chandelier, purple flames, ornate, diagonal composition, glass lantern, dark palette, or swirling wisps when visible.",
+    "semantic_tags should help future semantic search.",
+    "Pokemon tag examples: ghostly chandelier, purple flames, ornate, diagonal composition, glass lantern, dark palette, swirling wisps.",
+    "Trainer tag examples: trainer portrait, running, laboratory, outdoor, confident expression.",
+    "Stadium tag examples: forest, garden, library, castle, ruins, city, cave.",
+    "Energy tag examples: psychic symbol, purple gradients, radiating lines, abstract energy, circular motif.",
+    "Item / Tool / Supporter tag examples: visible object, handheld device, table scene, glowing tool, indoor setting.",
     "At most one semantic tag may repeat the primary visible subject name; all other tags should describe visible forms, colors, mood, composition, environment, or artwork-specific distinguishing details.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
@@ -1420,11 +1609,18 @@ async function generateDescription(card, image, args) {
 }
 
 function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
-  const semanticTagSanitization = sanitizeSemanticTagsForVisibleArtworkV1(normalizedPayload.semantic_tags, card);
+  const promptMetadata = resolveCardPromptMetadata(card);
+  const cardForVisualSanitization = {
+    ...card,
+    supertype: promptMetadata.supertype,
+    subtype: promptMetadata.subtype,
+    card_category: promptMetadata.card_category,
+  };
+  const semanticTagSanitization = sanitizeSemanticTagsForVisibleArtworkV1(normalizedPayload.semantic_tags, cardForVisualSanitization);
   const reviewFlags = detectVisualDescriptionReviewFlagsV1({
     ...normalizedPayload,
     semantic_tags: semanticTagSanitization.semantic_tags,
-  }, card);
+  }, cardForVisualSanitization);
   const qualityFlags = uniqueSorted([
     ...(image.quality_flags ?? []),
     ...(normalizedPayload.quality_flags ?? []),
@@ -1443,6 +1639,13 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     output_schema_version: args.outputSchemaVersion,
     agent_version: args.agentVersion,
     model_version: args.modelVersion,
+    prompt_branch: promptMetadata.prompt_branch,
+    card_type_metadata_source: promptMetadata.card_type_metadata_source,
+    card_supertype: promptMetadata.supertype,
+    card_subtype: promptMetadata.subtype,
+    card_category: promptMetadata.card_category,
+    pokemon_name: promptMetadata.pokemon_name,
+    trainer_name: promptMetadata.trainer_name,
     ...telemetryForArtifact(telemetry),
     artwork_description: normalizedPayload.artwork_description,
     card_surface_and_printing_cues: normalizedPayload.card_surface_and_printing_cues,
@@ -1464,6 +1667,7 @@ async function fetchEligibleCards(client, args) {
   if (args.mode === "apply" && !descriptionTableExists) {
     throw new Error("[card-visual-description-agent] apply requires card_print_visual_descriptions migration to be applied");
   }
+  const traitTableExists = await tableExists(client, "public", "card_print_traits");
 
   const columns = await tableColumns(client, "public", "card_prints");
   const textColumn = (name) => columns.has(name) ? `cp.${name}` : "null::text";
@@ -1477,6 +1681,65 @@ async function fetchEligibleCards(client, args) {
   if (imageExpressions.length === 0) {
     return [];
   }
+
+  const sourceCardPrintIdExpr = columns.has("external_ids")
+    ? `(case
+         when nullif(cp.external_ids #>> '{grookai,source_card_print_id}', '') ~* '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+         then (cp.external_ids #>> '{grookai,source_card_print_id}')::uuid
+         else null::uuid
+       end)`
+    : "null::uuid";
+  const traitMetadataSelect = traitTableExists
+    ? `nullif(btrim(exact_trait.supertype), '') as exact_supertype,
+       nullif(btrim(exact_trait.card_category), '') as exact_card_category,
+       nullif(btrim(source_trait.supertype), '') as source_supertype,
+       nullif(btrim(source_trait.card_category), '') as source_card_category,
+       nullif(btrim(same_name_trait.supertype), '') as same_name_supertype,
+       nullif(btrim(same_name_trait.card_category), '') as same_name_card_category`
+    : `null::text as exact_supertype,
+       null::text as exact_card_category,
+       null::text as source_supertype,
+       null::text as source_card_category,
+       null::text as same_name_supertype,
+       null::text as same_name_card_category`;
+  const traitMetadataJoin = traitTableExists
+    ? `left join lateral (
+         select t.supertype, t.card_category
+         from public.card_print_traits t
+         where t.card_print_id = cp.id
+           and (nullif(btrim(t.supertype), '') is not null or nullif(btrim(t.card_category), '') is not null)
+         order by
+           case when nullif(btrim(t.card_category), '') is not null then 0 else 1 end,
+           coalesce(t.confidence, 0) desc,
+           t.id desc
+         limit 1
+       ) exact_trait on true
+       left join lateral (
+         select t.supertype, t.card_category
+         from public.card_print_traits t
+         where t.card_print_id = ${sourceCardPrintIdExpr}
+           and (nullif(btrim(t.supertype), '') is not null or nullif(btrim(t.card_category), '') is not null)
+         order by
+           case when nullif(btrim(t.card_category), '') is not null then 0 else 1 end,
+           coalesce(t.confidence, 0) desc,
+           t.id desc
+         limit 1
+       ) source_trait on true
+       left join lateral (
+         select t.supertype, t.card_category
+         from public.card_prints sibling
+         join public.card_print_traits t on t.card_print_id = sibling.id
+         where sibling.id <> cp.id
+           and lower(sibling.name) = lower(cp.name)
+           and (nullif(btrim(t.supertype), '') is not null or nullif(btrim(t.card_category), '') is not null)
+         order by
+           case when lower(nullif(btrim(t.card_category), '')) in ('stadium', 'supporter', 'item', 'pokemon tool', 'tool', 'basic', 'stage 1', 'stage 2', 'v', 'vmax', 'vstar') then 0 else 1 end,
+           case when nullif(btrim(t.card_category), '') is not null then 0 else 1 end,
+           coalesce(t.confidence, 0) desc,
+           t.id desc
+         limit 1
+       ) same_name_trait on true`
+    : "";
 
   const descriptionSelect = descriptionTableExists
     ? "current_desc.id::text as current_description_id, current_desc.review_status as current_review_status"
@@ -1540,9 +1803,11 @@ async function fetchEligibleCards(client, args) {
        ${textColumn("image_source")} as image_source,
        ${textColumn("image_status")} as image_status,
        ${setNameExpr} as set_name,
+       ${traitMetadataSelect},
        ${descriptionSelect}
      from public.card_prints cp
      ${setJoin}
+     ${traitMetadataJoin}
      ${descriptionJoin}
      where coalesce(${imageExpressions.join(", ")}) is not null
        ${filters.map((filter) => `and ${filter}`).join("\n       ")}
@@ -1613,6 +1878,7 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
 }
 
 function compactCardForArtifact(row) {
+  const promptMetadata = resolveCardPromptMetadata(row);
   return {
     card_print_id: row.card_print_id,
     gv_id: row.gv_id,
@@ -1620,6 +1886,13 @@ function compactCardForArtifact(row) {
     set_code: row.set_code,
     set_name: row.set_name,
     number: row.number,
+    prompt_branch: promptMetadata.prompt_branch,
+    card_type_metadata_source: promptMetadata.card_type_metadata_source,
+    supertype: promptMetadata.supertype,
+    subtype: promptMetadata.subtype,
+    card_category: promptMetadata.card_category,
+    pokemon_name: promptMetadata.pokemon_name,
+    trainer_name: promptMetadata.trainer_name,
     image_source: row.image_source,
     image_status: row.image_status,
     current_description_id: row.current_description_id,

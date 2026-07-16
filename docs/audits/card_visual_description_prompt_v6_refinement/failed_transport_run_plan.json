@@ -1,0 +1,40 @@
+{
+  "run_key": "1a1978f4e0c07c70aab2c4eae8f31588954682e1066a2cf2153e084708674252",
+  "mode": "dry_run",
+  "provider": "openai",
+  "requested_limit": 4,
+  "max_cards": 4,
+  "max_run_cost_usd": 0.05,
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V6",
+  "output_schema_version": "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+  "agent_version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "model_version": "gpt-4o-mini",
+  "image_detail": "high",
+  "max_retries": 1,
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-16",
+    "recorded_at": "2026-07-16T05:52:36.462Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "force_version": false,
+  "target_card_print_id": null,
+  "target_card_print_ids": [
+    "42132d06-0934-4a39-867d-71f1f0031ad8",
+    "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+    "434b3e53-e42b-43bc-9ede-f649494a5e1c",
+    "00c2e4db-c4fb-4d8a-aa86-72f355fa8873"
+  ],
+  "target_gv_id": null,
+  "started_at": "2026-07-16T05:52:36.462Z",
+  "boundary": {
+    "db_writes": false,
+    "model_calls": true,
+    "fixture_generation": false,
+    "embeddings": false,
+    "card_prints_mutation": false
+  }
+}
