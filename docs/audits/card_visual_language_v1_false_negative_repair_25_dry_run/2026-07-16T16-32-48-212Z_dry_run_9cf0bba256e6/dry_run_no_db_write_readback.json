@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-07-16T16:37:32.698Z",
+  "run_key": "9cf0bba256e6ada5bbce0c502e36eb5c2b2ab9e9ed6bfc9459fe1f10f2767abb",
+  "run_dir": "docs/audits/card_visual_language_v1_false_negative_repair_25_dry_run/2026-07-16T16-32-48-212Z_dry_run_9cf0bba256e6",
+  "dry_run_boundary": {
+    "db_writes_expected": false,
+    "model_calls_expected": true,
+    "embeddings_expected": false,
+    "card_prints_mutation_expected": false
+  },
+  "run_window": {
+    "started_at": "2026-07-16T16:32:48.212Z",
+    "finished_at": "2026-07-16T16:36:34.901Z"
+  },
+  "card_visual_description_runs_rows_for_run_key": 0,
+  "card_print_visual_descriptions_rows_between_run_window_for_agent_model_prompt": 0
+}
