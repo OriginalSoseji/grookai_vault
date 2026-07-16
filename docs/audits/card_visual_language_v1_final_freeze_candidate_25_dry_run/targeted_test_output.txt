@@ -1,0 +1,169 @@
+COMMAND: node --check backend\card_descriptions\card_visual_description_agent_v1.mjs
+
+COMMAND: node --test tests\contracts\card_visual_description_agent_v1.test.mjs
+TAP version 13
+# Subtest: card visual description schema is private, versioned, and current-row safe
+ok 1 - card visual description schema is private, versioned, and current-row safe
+  ---
+  duration_ms: 1.6508
+  type: 'test'
+  ...
+# Subtest: card visual description args default to dry-run and block fixture apply
+ok 2 - card visual description args default to dry-run and block fixture apply
+  ---
+  duration_ms: 1.8
+  type: 'test'
+  ...
+# Subtest: card visual description semantic tags stay visual and exclude metadata
+ok 3 - card visual description semantic tags stay visual and exclude metadata
+  ---
+  duration_ms: 5.9962
+  type: 'test'
+  ...
+# Subtest: card visual description flags Chandelure anatomy described as a held object
+ok 4 - card visual description flags Chandelure anatomy described as a held object
+  ---
+  duration_ms: 6.38
+  type: 'test'
+  ...
+# Subtest: card visual description flags overconfident celestial settings without uncertainty
+ok 5 - card visual description flags overconfident celestial settings without uncertainty
+  ---
+  duration_ms: 0.5292
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches narrow post-run false negatives
+ok 6 - card visual language enforcement catches narrow post-run false negatives
+  ---
+  duration_ms: 0.6323
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags unsupported emotion after unclear face language
+ok 7 - card visual language enforcement flags unsupported emotion after unclear face language
+  ---
+  duration_ms: 1.0784
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement separates franchise language from creature language on non-Pokemon branches
+ok 8 - card visual language enforcement separates franchise language from creature language on non-Pokemon branches
+  ---
+  duration_ms: 0.2159
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags canonical name visual conflicts
+ok 9 - card visual language enforcement flags canonical name visual conflicts
+  ---
+  duration_ms: 1.1584
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches subject-repair dry-run false negatives
+ok 10 - card visual language enforcement catches subject-repair dry-run false negatives
+  ---
+  duration_ms: 0.5173
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches broader false-negative families
+ok 11 - card visual language enforcement catches broader false-negative families
+  ---
+  duration_ms: 0.5394
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches broad-repair dry-run false negatives by claim class
+ok 12 - card visual language enforcement catches broad-repair dry-run false negatives by claim class
+  ---
+  duration_ms: 1.3385
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches cross-field expression contradictions
+ok 13 - card visual language enforcement catches cross-field expression contradictions
+  ---
+  duration_ms: 0.2997
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches claim-class dry-run final false negatives narrowly
+ok 14 - card visual language enforcement catches claim-class dry-run final false negatives narrowly
+  ---
+  duration_ms: 0.5775
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches freeze-candidate false negatives narrowly
+ok 15 - card visual language enforcement catches freeze-candidate false negatives narrowly
+  ---
+  duration_ms: 1.5781
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches final surface phrases and ignores non-problem glare quality
+ok 16 - card visual language enforcement catches final surface phrases and ignores non-problem glare quality
+  ---
+  duration_ms: 0.4006
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement preserves objective Energy branch wording
+ok 17 - card visual language enforcement preserves objective Energy branch wording
+  ---
+  duration_ms: 0.1435
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement allows literal star-shaped objects
+ok 18 - card visual language enforcement allows literal star-shaped objects
+  ---
+  duration_ms: 0.1337
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags unavailable metadata branch mismatch evidence
+ok 19 - card visual language enforcement flags unavailable metadata branch mismatch evidence
+  ---
+  duration_ms: 0.2015
+  type: 'test'
+  ...
+# Subtest: card visual language review flags preserve matched text and force review
+ok 20 - card visual language review flags preserve matched text and force review
+  ---
+  duration_ms: 0.3537
+  type: 'test'
+  ...
+# Subtest: card visual description resolves fallback card branches and stratified samples
+ok 21 - card visual description resolves fallback card branches and stratified samples
+  ---
+  duration_ms: 0.3851
+  type: 'test'
+  ...
+# Subtest: card visual language review flags interpretive mood false negatives
+ok 22 - card visual language review flags interpretive mood false negatives
+  ---
+  duration_ms: 0.2433
+  type: 'test'
+  ...
+# Subtest: card visual description usage telemetry computes cost, projections, and stop ceilings
+ok 23 - card visual description usage telemetry computes cost, projections, and stop ceilings
+  ---
+  duration_ms: 0.2733
+  type: 'test'
+  ...
+# Subtest: card visual description payload validation separates shape from review approval
+ok 24 - card visual description payload validation separates shape from review approval
+  ---
+  duration_ms: 0.1751
+  type: 'test'
+  ...
+# Subtest: card visual description version and embedding input are deterministic
+ok 25 - card visual description version and embedding input are deterministic
+  ---
+  duration_ms: 0.7237
+  type: 'test'
+  ...
+# Subtest: card visual description agent entrypoints stay guarded and non-identity-authoritative
+ok 26 - card visual description agent entrypoints stay guarded and non-identity-authoritative
+  ---
+  duration_ms: 2.2212
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 108.4759

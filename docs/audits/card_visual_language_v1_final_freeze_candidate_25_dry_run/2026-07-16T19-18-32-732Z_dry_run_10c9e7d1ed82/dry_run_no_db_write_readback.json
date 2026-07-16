@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-07-16T19:24:00.855Z",
+  "run_key": "10c9e7d1ed829f861eba6334aa509506f36ecf517255df63e410e76a0b94b89d",
+  "run_dir": "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82",
+  "dry_run_boundary": {
+    "db_writes_expected": false,
+    "model_calls_expected": true,
+    "embeddings_expected": false,
+    "card_prints_mutation_expected": false
+  },
+  "run_window": {
+    "started_at": "2026-07-16T19:18:32.732Z",
+    "finished_at": "2026-07-16T19:22:41.512Z"
+  },
+  "card_visual_description_runs_rows_for_run_key": 0,
+  "card_print_visual_descriptions_rows_between_run_window_for_agent_model_prompt": 0
+}

@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-07-16T19:27:22.272Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/run_plan.json": "745fbf1d2edb7ac61a93651c6ea886257bbdcd4a04f71b70c6427e713a9a5e06",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/summary.json": "2d6e18da68be93a05282231218e704342980e8910432a7ff783417387e455907",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/dry_run_no_db_write_readback.json": "0a6acbe8bf2e3549283eee559cdcbd48683ffb1fe55dea4c5e274da920ab5c69",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/command_metadata.json": "785deaeb6e611ec7d85d5516c9ed742a243b117b356bb30166a599a474d866ff",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/generated_outputs.jsonl": "8b72e70e23f75bd6ba6e78fbfcb5b122aa3b83eb58e786229811e9855b3f383f",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/review_sample.jsonl": "8b72e70e23f75bd6ba6e78fbfcb5b122aa3b83eb58e786229811e9855b3f383f",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/2026-07-16T19-18-32-732Z_dry_run_10c9e7d1ed82/CARD_VISUAL_LANGUAGE_V1_FINAL_FREEZE_CANDIDATE_25_DESCRIPTIONS.md": "0367365fccec9d679a8acb0c89ce10441732e3824430a572a68a51951242fcc6",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/VISUAL_LANGUAGE_V1_FINAL_FREEZE_CANDIDATE_25_DRY_RUN_REPORT.md": "bc6f5d6ebd69bd956defeb153bfa37753893fec7d2b0475bc6b5dcb8328e3624",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/targeted_test_output.txt": "68557e2d9bd77d498242be9ca2bc1ee0a0c7b066369b74667d7b497d5f237d12",
+    "docs/audits/card_visual_language_v1_final_freeze_candidate_25_dry_run/diff_check_output.txt": "697b037c68127b66b099f6df9b51b422427782fe3298e1c1b51b9c5a04b39291",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_FINAL_FREEZE_CANDIDATE_25_DRY_RUN_20260716.md": "412a453d6b08e55923756c38fd702b171306a9053e5e358c010a22ecf31909c6",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "7c6772bb911cf44d3412853759851128c4fbeb4e372a47709b7384eb142b9d13"
+  }
+}
