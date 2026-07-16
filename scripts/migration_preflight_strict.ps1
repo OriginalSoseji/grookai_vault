@@ -371,11 +371,11 @@ function Normalize-ExpectedIds([string[]]$ids) {
 
 function Compare-IdSets {
   param(
-    [Parameter(Mandatory = $true)]
-    [string[]]$Expected,
+    [AllowEmptyCollection()]
+    [string[]]$Expected = @(),
 
-    [Parameter(Mandatory = $true)]
-    [string[]]$Actual
+    [AllowEmptyCollection()]
+    [string[]]$Actual = @()
   )
 
   $expectedSet = New-IdSet

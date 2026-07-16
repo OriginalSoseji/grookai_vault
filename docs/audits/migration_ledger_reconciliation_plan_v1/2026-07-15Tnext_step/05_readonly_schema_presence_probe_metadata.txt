@@ -1,0 +1,6 @@
+started_at=2026-07-15T13:37:04.6528614-06:00
+command=supabase db query --linked --output json --file docs\audits\migration_ledger_reconciliation_plan_v1\2026-07-15Tnext_step\03_readonly_schema_presence_probe.sql
+
+exit_code=0
+ended_at=2026-07-15T13:37:06.4070534-06:00
+

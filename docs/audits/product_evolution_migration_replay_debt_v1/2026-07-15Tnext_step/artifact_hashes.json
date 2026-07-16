@@ -1,0 +1,42 @@
+[
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\01_full_branch_local_reset_metadata.txt",
+    "sha256": "3602c474504948964cea459653e21c06423b56b77c6b154a8dc237fd0982fe37"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\02_full_branch_local_reset_output.txt",
+    "sha256": "c40a9b558642bfee287aca0275f276aa801df1d04b18e91a4ac562a88f7e7a60"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\03_supabase_start_metadata.txt",
+    "sha256": "cf230a6665c1e14c1c8006e1f9f1b47c2e404812de4492b36ab688e08ab6bd03"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\04_supabase_start_redacted.txt",
+    "sha256": "f9715a94b56099acb8f0a513eb351a18663b61e8d272906b0f9bbf53c1d906a9"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\05_full_branch_local_reset_after_start_output.txt",
+    "sha256": "9bb0cedc05fa70503d1501a0c8f5a4a6f9923ce6aad6f4db4af578eea28c13dc"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\06_full_branch_local_reset_after_start_metadata.txt",
+    "sha256": "439cde3529da9c719f5a7d0b4c251520a165fba2db4f5e0acc360008a107fb40"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\07_supabase_status_before_stop_redacted.txt",
+    "sha256": "1ca4d0a08e3b9b47a710c3f7c97c073f1ab27646f920d87a664307213646893c"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\08_supabase_stop_redacted.txt",
+    "sha256": "4f18f08eac0587089a29b1880df3d511741fc50acdd6d5876dd41f28eef1e43a"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\09_supabase_status_after_stop_redacted.txt",
+    "sha256": "cf5cdb3a4a9cfdb013415e56e06a77cec028db6bb91361b978cb83e8ad5ebcf9"
+  },
+  {
+    "path": ".\\docs\\audits\\product_evolution_migration_replay_debt_v1\\2026-07-15Tnext_step\\FULL_BRANCH_REPLAY_GATE.md",
+    "sha256": "b0fca9010c7385d30c7caf80028692a0e6a1733e242fee50cc0535322bb8ddb2"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\00_pre_repair_metadata.txt",
+    "sha256": "4ecf395307e73369c9294367b46f34fd29aa33cb97e449a8933c6888750b2deb"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\01_pre_repair_linked_migration_list.txt",
+    "sha256": "e1246025591bbb46e68667c3e526d20223670c68c40af38244ad7ee863f8e9c5"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\02_pre_repair_stop_condition_summary.json",
+    "sha256": "be3980d13def486a27e4c7d464fec26bf362ce732ba4ab96c939988fb8a1c359"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\03_migration_repair_command_output.txt",
+    "sha256": "fd54f310fcf55fcd65ea164f67044d63ce08b9ed4157b3ae6295f8d68b8b9164"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\04_migration_repair_command_metadata.txt",
+    "sha256": "7851f2e58e2b23fd877c41d8e8561d258585aa20170b7f3cc4de9382468c1989"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\05_post_repair_linked_migration_list.txt",
+    "sha256": "3cc6b9de8be869afff7c7e577ecf345e35cdca1d689f97dd61b981ea59e7516d"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\06_post_repair_linked_migration_list_metadata.txt",
+    "sha256": "ef85dd9e308fbc6e62594f7ecdccc409316f1a66594213d3e93956af5528e067"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\07_post_repair_ledger_summary.json",
+    "sha256": "69831f5f5faad1b907d2b856bdca57b47f0aabbb8169b9b219ea019a6129e400"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\08_supabase_start_for_strict_prepush_metadata.txt",
+    "sha256": "dd573d4b57a7d238763320d57e1f87c69ef7691327147abe6d0a292771aed356"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\09_supabase_start_for_strict_prepush_redacted.txt",
+    "sha256": "52576dead704e2628849eeb763c23ff5a1a3d1fbd57c812e4b91c9ac2c1e19da"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\10_strict_prepush_after_repair_expected_remaining_3.txt",
+    "sha256": "ca908de0c96b71f2f5d169fcf70c415c968c6973812dc8e27e5e0d3f67c3784f"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\11_strict_prepush_after_repair_metadata.txt",
+    "sha256": "b221198ac037cb68a6a38f6938275cb0450d149193501b2f31cb1436ab95db75"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\12_supabase_status_before_stop_redacted.txt",
+    "sha256": "0339729317aff780a69db5c7d6e982227d1d92346398cfc853216e6ab9cbbc7e"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\13_supabase_stop_after_strict_prepush_redacted.txt",
+    "sha256": "4f18f08eac0587089a29b1880df3d511741fc50acdd6d5876dd41f28eef1e43a"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\14_supabase_status_after_stop_redacted.txt",
+    "sha256": "cf5cdb3a4a9cfdb013415e56e06a77cec028db6bb91361b978cb83e8ad5ebcf9"
+  },
+  {
+    "path": ".\\docs\\audits\\migration_history_repair_execution_v1\\2026-07-15Tapproved_repair\\MIGRATION_HISTORY_REPAIR_EXECUTION_REPORT.md",
+    "sha256": "b88a8931a9a33a2475847ee7672f705a8c521c221a0bb4561e8e7f4ce6cae0a8"
+  }
+]

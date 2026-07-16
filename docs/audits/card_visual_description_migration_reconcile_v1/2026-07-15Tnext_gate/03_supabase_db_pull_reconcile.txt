@@ -1,0 +1,24 @@
+Initialising login role...
+Connecting to remote database...
+The remote database's migration history does not match local files in supabase\migrations directory.
+
+Make sure your local git repo is up-to-date. If the error persists, try repairing the migration history table:
+supabase migration repair --status reverted 20260625130000
+supabase migration repair --status reverted 20260625140000
+supabase migration repair --status reverted 20260625150000
+supabase migration repair --status reverted 20260625160000
+supabase migration repair --status applied 20260523183000
+supabase migration repair --status applied 20260629190000
+supabase migration repair --status applied 20260703090000
+supabase migration repair --status applied 20260706100000
+supabase migration repair --status applied 20260706110000
+supabase migration repair --status applied 20260706120000
+supabase migration repair --status applied 20260706121000
+supabase migration repair --status applied 20260706122000
+supabase migration repair --status applied 20260706123000
+supabase migration repair --status applied 20260708174000
+supabase migration repair --status applied 20260712090000
+supabase migration repair --status applied 20260713190000
+supabase migration repair --status applied 20260715104500
+supabase migration repair --status applied 20260715110000
+

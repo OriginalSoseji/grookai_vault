@@ -1,0 +1,7 @@
+started_at=2026-07-15T18:11:52.8816815-06:00
+command=supabase db query --linked --output json --file docs\audits\notification_dispatcher_cron_gap_v1\2026-07-15Tnext_step\01_notification_dispatcher_cron_state_readback.sql
+workdir=C:\grookai_vault_card_desc_agent
+
+exit_code=0
+ended_at=2026-07-15T18:11:57.9203168-06:00
+

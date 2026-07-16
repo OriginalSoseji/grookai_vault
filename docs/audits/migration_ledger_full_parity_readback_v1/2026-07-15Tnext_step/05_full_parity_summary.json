@@ -1,0 +1,132 @@
+{
+  "recorded_at": "2026-07-15T18:01:39.4114583-06:00",
+  "command_exit_code": "0",
+  "total_checks": 174,
+  "total_missing": 0,
+  "missing_expected_objects": [],
+  "by_section": [
+    {
+      "section": "cron",
+      "total_checks": 1,
+      "missing_checks": 0
+    },
+    {
+      "section": "function",
+      "total_checks": 51,
+      "missing_checks": 0
+    },
+    {
+      "section": "index",
+      "total_checks": 32,
+      "missing_checks": 0
+    },
+    {
+      "section": "policy",
+      "total_checks": 29,
+      "missing_checks": 0
+    },
+    {
+      "section": "relation",
+      "total_checks": 20,
+      "missing_checks": 0
+    },
+    {
+      "section": "rls",
+      "total_checks": 18,
+      "missing_checks": 0
+    },
+    {
+      "section": "trigger",
+      "total_checks": 23,
+      "missing_checks": 0
+    }
+  ],
+  "by_migration": [
+    {
+      "migration_id": "20260629190000",
+      "total_checks": 1,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260703090000",
+      "total_checks": 1,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706100000",
+      "total_checks": 51,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706110000",
+      "total_checks": 27,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706120000",
+      "total_checks": 40,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706121000",
+      "total_checks": 11,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706122000",
+      "total_checks": 2,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260706123000",
+      "total_checks": 3,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260708174000",
+      "total_checks": 1,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260712090000",
+      "total_checks": 8,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260715104500",
+      "total_checks": 1,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    },
+    {
+      "migration_id": "20260715110000",
+      "total_checks": 28,
+      "missing_checks": 0,
+      "status": "catalog_parity_expected_objects_present",
+      "missing": []
+    }
+  ],
+  "security_definer_mismatch_count": 0,
+  "security_definer_mismatches": []
+}

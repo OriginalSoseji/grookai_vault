@@ -1,0 +1,104 @@
+{
+  "captured_at": "2026-07-15T19:16:06.6319801Z",
+  "isolated_worktree": "C:\\grookai_vault_card_desc_isolated_gate",
+  "source_worktree": "C:\\grookai_vault_card_desc_agent",
+  "copied_files": [
+    {
+      "path": "supabase\\migrations\\20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql",
+      "sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63",
+      "bytes": 3599
+    },
+    {
+      "path": "supabase\\migrations\\20260625140000_market_reference_tcgdex_raw_snapshot_support_v1.sql",
+      "sha256": "5e562873cefaa546dcff9fcef6bc2185a3774280348ea68e8e86dfc47e60cfec",
+      "bytes": 1582
+    },
+    {
+      "path": "supabase\\migrations\\20260625150000_market_evidence_publication_gate_fast_path_indexes_v1.sql",
+      "sha256": "1c860630f7d26d5cfa4d5850271224655e286e875a7ba96f98d8eb10c1e33bcd",
+      "bytes": 1295
+    },
+    {
+      "path": "supabase\\migrations\\20260625160000_market_evidence_lifecycle_rollup_summary_materialized_v1.sql",
+      "sha256": "90a60356a7f0781d11cd6390c326e7db312e2aed392184ed02c803009eaba9d4",
+      "bytes": 2595
+    },
+    {
+      "path": "supabase\\migrations\\20260715120000_card_visual_description_agent_v1.sql",
+      "sha256": "fe0bc6b33d11a2f96a54eff3068530524dad2a04edbdb06a82b81ede0d09e5e6",
+      "bytes": 9587
+    }
+  ],
+  "removed_only_from_isolated_worktree": [
+    {
+      "path": "supabase\\migrations\\20260523183000_printing_truth_review_sidecar_v1.sql",
+      "sha256": "ce5bffd7d4561c18e388fd1397a69ccced95c32d8e1f0cb4f35318bcad6d9bd5",
+      "bytes": 4845
+    },
+    {
+      "path": "supabase\\migrations\\20260629190000_market_listing_price_events_observation_idx.sql",
+      "sha256": "3d0e04d877dbfb354da9b875b3d0ba63ffb90313d9dbb436cf43a39acc259be7",
+      "bytes": 129
+    },
+    {
+      "path": "supabase\\migrations\\20260703090000_trade_execution_second_leg_any_trade_copy_v1.sql",
+      "sha256": "c326ad316e944442f5009a0e8841ecf95ca2937aa441b4b8cdc0123fd1d71df0",
+      "bytes": 11861
+    },
+    {
+      "path": "supabase\\migrations\\20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "sha256": "5f22adbeccdec3421d89abff525498bf2fc35c88bd07c605a480e1ae5da88d7b",
+      "bytes": 25254
+    },
+    {
+      "path": "supabase\\migrations\\20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "sha256": "67ea2795b89e7739f8e65c1f0339ae3fbb3cc23ee3b4c8065b46701ede5aaecd",
+      "bytes": 24266
+    },
+    {
+      "path": "supabase\\migrations\\20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "sha256": "239efd8e00d52e70fcea2c8b373d6b465f89b3387c6ae238179e092ad93d9b4d",
+      "bytes": 16037
+    },
+    {
+      "path": "supabase\\migrations\\20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "sha256": "d08fd3a5a4729cdf5b12b61a4acb78e67c703d773db3358276b7f2b072ebfa09",
+      "bytes": 13552
+    },
+    {
+      "path": "supabase\\migrations\\20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql",
+      "sha256": "66fe3a238e5233b817da2469d40b55ceef252eba860805f86847eff261bceebb",
+      "bytes": 2429
+    },
+    {
+      "path": "supabase\\migrations\\20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql",
+      "sha256": "426201137f14f53d2a2235bf91abf34acfb38e8afe874853cd6e6765370faa45",
+      "bytes": 3229
+    },
+    {
+      "path": "supabase\\migrations\\20260708174000_product_evolution_e5_card_journey_moment_rollups_v1.sql",
+      "sha256": "f6181a316b3886f7d7078746bd2fdf44be80074d077a03641c45746794a31825",
+      "bytes": 4924
+    },
+    {
+      "path": "supabase\\migrations\\20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "sha256": "16a4b8c6da8bc56e0d042a3312f40be5bf931851f870fef491ae1b5bc7924300",
+      "bytes": 3519
+    },
+    {
+      "path": "supabase\\migrations\\20260713190000_trust_safety_block_report_v1.sql",
+      "sha256": "956136bf81f54020c8d8d2c829cdaeb9c964fb5ca099dc1fbb2c3f9354ac66e6",
+      "bytes": 6966
+    },
+    {
+      "path": "supabase\\migrations\\20260715104500_mobile_vault_variant_and_canonical_image_contract_v1.sql",
+      "sha256": "d43c9986221b3afd2f03705d3faeec0858fa4fcbf0a119b5195a58d8e4ba14fa",
+      "bytes": 4367
+    },
+    {
+      "path": "supabase\\migrations\\20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "sha256": "b1bf61ada1556d7b31fe90c91b5121781d9ac64207bbdb982c7f3cfdf6c4f89c",
+      "bytes": 13614
+    }
+  ]
+}

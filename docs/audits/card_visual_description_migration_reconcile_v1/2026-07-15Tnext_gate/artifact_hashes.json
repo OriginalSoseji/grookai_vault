@@ -1,0 +1,67 @@
+[
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\01_supabase_link_reconcile_worktree.txt",
+    "sha256": "c1856cfdfbc29c5e05436a44de2a26e6bd434d18d7aa2c6423ad34eac93af1b5",
+    "bytes": 253
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\02_migration_list_clean_reconcile_worktree.txt",
+    "sha256": "fd58e3a55b03f9f62e75707e4279aea1ecf5be9625d1fdf4fcadb1fe677dcbab",
+    "bytes": 17408
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\03_supabase_db_pull_reconcile.txt",
+    "sha256": "2210bff09b9e89f1ca6acbf0fb6e019bd5e1028d853b5ff11229f0819e1d4acf",
+    "bytes": 1346
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\04_supabase_db_pull_dburl_reconcile.txt",
+    "sha256": "8e86ad8c89d3ac93e9fae4bb7c0964224cc13e159d1b29a11db2f473c2ccaffc",
+    "bytes": 15
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\05_migration_ledger_mismatch_summary.json",
+    "sha256": "9455a27e1b9f73ca462f88ce887ab8374dd88cd1a999fa490cf6988d08868fb4",
+    "bytes": 518
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\06_migration_list_after_restoring_remote_only_files.txt",
+    "sha256": "e1246025591bbb46e68667c3e526d20223670c68c40af38244ad7ee863f8e9c5",
+    "bytes": 17467
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\07_strict_prepush_after_restoring_remote_only_files.txt",
+    "sha256": "21592d77865324753bdcb3b3a95f0b8bb41be0b506ac1ebad14f0db5ed2aa573",
+    "bytes": 27447
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\08_migration_ledger_after_restored_files_summary.json",
+    "sha256": "8e2bae95ff1e071abf0f08abf012cb7a450bf190b48e66552749d95b32994a80",
+    "bytes": 446
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_migration_reconcile_v1\\2026-07-15Tnext_gate\\MIGRATION_RECONCILE_GATE.md",
+    "sha256": "c99a91b82e1bab79a61a0fa82814ec6f1e7ee912200ca343ce1529f27fdba058",
+    "bytes": 7073
+  },
+  {
+    "path": ".\\supabase\\migrations\\20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql",
+    "sha256": "e4e0165e125605a6c996d863c8cdda07f8e8537977dcae0482776db6300d0d63",
+    "bytes": 3599
+  },
+  {
+    "path": ".\\supabase\\migrations\\20260625140000_market_reference_tcgdex_raw_snapshot_support_v1.sql",
+    "sha256": "5e562873cefaa546dcff9fcef6bc2185a3774280348ea68e8e86dfc47e60cfec",
+    "bytes": 1582
+  },
+  {
+    "path": ".\\supabase\\migrations\\20260625150000_market_evidence_publication_gate_fast_path_indexes_v1.sql",
+    "sha256": "1c860630f7d26d5cfa4d5850271224655e286e875a7ba96f98d8eb10c1e33bcd",
+    "bytes": 1295
+  },
+  {
+    "path": ".\\supabase\\migrations\\20260625160000_market_evidence_lifecycle_rollup_summary_materialized_v1.sql",
+    "sha256": "90a60356a7f0781d11cd6390c326e7db312e2aed392184ed02c803009eaba9d4",
+    "bytes": 2595
+  }
+]

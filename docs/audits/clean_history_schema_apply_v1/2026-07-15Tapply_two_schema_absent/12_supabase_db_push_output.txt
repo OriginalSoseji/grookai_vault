@@ -1,0 +1,8 @@
+Initialising login role...
+Connecting to remote database...
+Found local migration files to be inserted before the last migration on remote database.
+
+Rerun the command with --include-all flag to apply these migrations:
+supabase\migrations\20260523183000_printing_truth_review_sidecar_v1.sql
+supabase\migrations\20260713190000_trust_safety_block_report_v1.sql    
+

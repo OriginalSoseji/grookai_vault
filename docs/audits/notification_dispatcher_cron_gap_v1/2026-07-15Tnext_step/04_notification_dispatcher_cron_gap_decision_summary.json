@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-07-15T18:12:32.5849421-06:00",
+  "readback_exit_code": "0",
+  "migration_20260706122000_present_in_remote_history": false,
+  "migration_20260707182000_present_in_remote_history": true,
+  "disabled_job_present": false,
+  "every_minute_job_present": true,
+  "runtime_config_table_exists": true,
+  "runtime_config_rls_enabled": true,
+  "runtime_config_policy_present": true,
+  "runtime_config_keys_present_without_values": [
+    {
+      "key": "enabled",
+      "value_present": true,
+      "updated_at": "2026-07-07T19:50:48.485121-06:00"
+    },
+    {
+      "key": "shared_secret",
+      "value_present": true,
+      "updated_at": "2026-07-07T19:50:48.485121-06:00"
+    },
+    {
+      "key": "url",
+      "value_present": true,
+      "updated_at": "2026-07-07T19:50:48.485121-06:00"
+    }
+  ],
+  "scheduled_function_exists": true,
+  "scheduled_function_security_definer": true,
+  "scheduled_function_uses_runtime_config": true,
+  "scheduled_function_uses_legacy_current_setting": false,
+  "conclusion": "20260706122000 disabled cron row was superseded by applied 20260707182000; schedule gap is explained and should not block parity if repair plan treats the schedule as superseded by later applied migration.",
+  "stop_before_mutation": true,
+  "next_gate": "Prepare an explicit migration-history repair plan for the 12 schema-present/superseded IDs, excluding schema-absent IDs; do not execute repair without explicit approval."
+}

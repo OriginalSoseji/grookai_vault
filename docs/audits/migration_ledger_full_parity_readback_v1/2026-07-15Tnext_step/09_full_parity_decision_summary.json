@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-07-15T18:02:47.2087824-06:00",
+  "catalog_readback_exit_code": "0",
+  "catalog_expected_checks": 174,
+  "catalog_missing_expected_checks": 0,
+  "catalog_security_definer_mismatches": 0,
+  "catalog_parity_ids": [
+    "20260629190000",
+    "20260703090000",
+    "20260706100000",
+    "20260706110000",
+    "20260706120000",
+    "20260706121000",
+    "20260706122000",
+    "20260706123000",
+    "20260708174000",
+    "20260712090000",
+    "20260715104500",
+    "20260715110000"
+  ],
+  "cron_readback": {
+    "migration_id": "20260706122000",
+    "cron_job_relation_exists": true,
+    "net_schema_exists": true,
+    "expected_job_name": "notification-dispatcher-disabled-v1",
+    "matching_job_count": 0,
+    "status": "schedule_row_missing"
+  },
+  "repair_ready_after_this_gate": [
+    "20260629190000",
+    "20260703090000",
+    "20260706100000",
+    "20260706110000",
+    "20260706120000",
+    "20260706121000",
+    "20260706123000",
+    "20260708174000",
+    "20260712090000",
+    "20260715104500",
+    "20260715110000"
+  ],
+  "not_repair_ready_after_this_gate": [
+    "20260706122000"
+  ],
+  "still_schema_absent_from_prior_gate": [
+    "20260523183000",
+    "20260713190000",
+    "20260715120000"
+  ],
+  "stop_before_mutation": true,
+  "next_gate": "Decide and prove the 20260706122000 notification dispatcher cron schedule state before any migration repair; do not repair/apply yet."
+}

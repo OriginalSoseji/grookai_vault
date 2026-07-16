@@ -1,0 +1,290 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import test from "node:test";
+
+import {
+  CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+  aggregateUsageRows,
+  buildDescriptionVersionKeyV1,
+  buildEmbeddingInputV1,
+  buildCostProjection,
+  classifyDescriptionReviewStatusV1,
+  estimateUsageCostUsd,
+  evaluateStopBeforeNextCall,
+  parseCardVisualDescriptionArgsV1,
+  validateVisualDescriptionPayloadV1,
+} from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
+
+function source(relativePath) {
+  return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
+}
+
+test("card visual description schema is private, versioned, and current-row safe", () => {
+  const sql = source("supabase/migrations/20260715120000_card_visual_description_agent_v1.sql");
+
+  assert.match(sql, /create table if not exists public\.card_print_visual_descriptions/i);
+  assert.match(sql, /create table if not exists public\.card_visual_description_runs/i);
+  assert.match(sql, /card_print_id uuid not null references public\.card_prints\(id\)/i);
+  assert.match(sql, /prompt_version text not null/i);
+  assert.match(sql, /output_schema_version text not null/i);
+  assert.match(sql, /agent_version text not null/i);
+  assert.match(sql, /model_version text not null/i);
+  assert.match(sql, /response_model_version text null/i);
+  assert.match(sql, /response_model_versions text\[\] not null default '\{\}'::text\[\]/i);
+  assert.match(sql, /input_tokens integer not null default 0/i);
+  assert.match(sql, /output_tokens integer not null default 0/i);
+  assert.match(sql, /total_tokens integer not null default 0/i);
+  assert.match(sql, /cached_input_tokens integer not null default 0/i);
+  assert.match(sql, /reasoning_output_tokens integer not null default 0/i);
+  assert.match(sql, /estimated_cost_usd numeric not null default 0/i);
+  assert.match(sql, /pricing_snapshot jsonb not null default '\{\}'::jsonb/i);
+  assert.match(sql, /image_detail text not null default 'high'/i);
+  assert.match(sql, /request_count integer not null default 0/i);
+  assert.match(sql, /retry_count integer not null default 0/i);
+  assert.match(sql, /review_status = any \(array\['pending'::text, 'approved'::text, 'needs_review'::text, 'rejected'::text\]\)/i);
+  assert.match(sql, /on public\.card_print_visual_descriptions \(card_print_id\)[\s\S]*where is_current = true/i);
+  assert.match(sql, /card_print_visual_descriptions_version_unique_idx[\s\S]*card_print_id[\s\S]*image_sha256[\s\S]*prompt_version[\s\S]*output_schema_version[\s\S]*agent_version[\s\S]*model_version/i);
+  assert.match(sql, /alter table public\.card_visual_description_runs enable row level security/i);
+  assert.match(sql, /alter table public\.card_print_visual_descriptions enable row level security/i);
+  assert.match(sql, /revoke all on table public\.card_print_visual_descriptions from public, anon, authenticated/i);
+  assert.match(sql, /grant all on table public\.card_print_visual_descriptions to service_role/i);
+  assert.doesNotMatch(sql, /grant\s+(select|insert|update|delete|all)[\s\S]*card_print_visual_descriptions[\s\S]*to authenticated/i);
+  assert.doesNotMatch(sql, /alter table public\.card_prints/i);
+});
+
+test("card visual description args default to dry-run and block fixture apply", () => {
+  assert.equal(parseCardVisualDescriptionArgsV1([]).mode, "dry_run");
+  assert.equal(parseCardVisualDescriptionArgsV1(["--plan"]).mode, "plan");
+  assert.equal(parseCardVisualDescriptionArgsV1(["--dry-run"]).mode, "dry_run");
+
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1(["--apply"]),
+    /refusing to apply fixture descriptions/,
+  );
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1(["--provider=openai"]),
+    /--model or CARD_VISUAL_DESCRIPTION_MODEL_VERSION is required/,
+  );
+
+  const apply = parseCardVisualDescriptionArgsV1([
+    "--apply",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--image-detail=low",
+    "--max-cards=10",
+    "--max-run-cost-usd=0.25",
+    "--openai-input-cost-per-million=0.15",
+    "--openai-output-cost-per-million=0.60",
+    "--image-cost-rule-version=gpt-4o-mini-2026-07-15",
+  ]);
+  assert.equal(apply.mode, "apply");
+  assert.equal(apply.provider, "openai");
+  assert.equal(apply.modelVersion, "test-vision-model");
+  assert.equal(apply.imageDetail, "low");
+  assert.equal(apply.maxCards, 10);
+  assert.equal(apply.maxRunCostUsd, 0.25);
+  assert.equal(apply.openaiInputCostPerMillion, 0.15);
+  assert.equal(apply.openaiOutputCostPerMillion, 0.60);
+  assert.equal(apply.openaiImageCostRuleVersion, "gpt-4o-mini-2026-07-15");
+
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1(["--image-detail=ultra"]),
+    /--image-detail must be low, high, original, or auto/,
+  );
+});
+
+test("card visual description usage telemetry computes cost, projections, and stop ceilings", () => {
+  const pricing = {
+    input_per_million: 0.15,
+    output_per_million: 0.60,
+    cached_input_per_million: 0.075,
+  };
+  const rowA = {
+    request_count: 1,
+    retry_count: 0,
+    input_tokens: 1000,
+    output_tokens: 500,
+    total_tokens: 1500,
+    cached_input_tokens: 200,
+    reasoning_output_tokens: 25,
+    estimated_cost_usd: estimateUsageCostUsd({
+      input_tokens: 1000,
+      output_tokens: 500,
+      total_tokens: 1500,
+      cached_input_tokens: 200,
+      reasoning_output_tokens: 25,
+    }, pricing),
+  };
+  const rowB = { ...rowA, estimated_cost_usd: 0.000435 };
+  const aggregate = aggregateUsageRows([rowA, rowB]);
+
+  assert.equal(rowA.estimated_cost_usd, 0.000435);
+  assert.equal(aggregate.request_count, 2);
+  assert.equal(aggregate.input_tokens, 2000);
+  assert.equal(aggregate.estimated_cost_usd, 0.00087);
+
+  const projection = buildCostProjection({
+    aggregate,
+    validatedCount: 2,
+    totalEligibleCatalogCount: 1234,
+  });
+  assert.equal(projection.estimated_cost_per_validated_card_usd, 0.000435);
+  assert.equal(projection.projected_500_cards_usd, 0.2175);
+  assert.equal(projection.projected_1000_cards_usd, 0.435);
+  assert.equal(projection.projected_full_eligible_catalog_usd, 0.53679);
+
+  assert.equal(
+    evaluateStopBeforeNextCall(
+      { maxCards: 2, maxRunCostUsd: null },
+      [rowA, rowB],
+      [],
+    ).stop_reason,
+    "max_cards_reached",
+  );
+
+  assert.equal(
+    evaluateStopBeforeNextCall(
+      { maxCards: null, maxRunCostUsd: 0.001 },
+      [rowA, rowB],
+      [],
+    ).stop_reason,
+    "projected_next_call_cost_exceeds_max_run_cost",
+  );
+});
+
+test("card visual description payload validation separates shape from review approval", () => {
+  const validPayload = {
+    artwork_description:
+      "Pikachu is shown as the central subject in a grounded visual description with visible scene details, mood, color language, and composition cues written for a blind collector.",
+    card_surface_and_printing_cues: "No specific foil, border, or surface treatment is asserted.",
+    visual_attributes: {
+      subjects: { primary: ["Pikachu"], secondary: [] },
+      environment: { setting: ["outdoor"], time_of_day: "day" },
+      palette: { dominant: ["yellow", "green"], temperature: "warm" },
+      mood: ["cheerful"],
+      composition: { framing: "medium" },
+    },
+    semantic_tags: ["pikachu", "yellow", "cheerful"],
+    description_confidence: 0.91,
+    attribute_confidence: 0.85,
+    quality_flags: [],
+  };
+
+  const validation = validateVisualDescriptionPayloadV1(validPayload);
+  assert.equal(validation.ok, true);
+  assert.equal(validation.normalized.semantic_tags.join(","), "cheerful,pikachu,yellow");
+
+  const blankAttributeValidation = validateVisualDescriptionPayloadV1({
+    ...validPayload,
+    visual_attributes: {
+      ...validPayload.visual_attributes,
+      environment: { setting: ["outdoor"], time_of_day: "", weather: "" },
+      composition: { framing: "", subject_position: "" },
+    },
+  });
+  assert.equal(blankAttributeValidation.normalized.visual_attributes.environment.time_of_day, "unknown");
+  assert.equal(blankAttributeValidation.normalized.visual_attributes.environment.weather, "unknown");
+  assert.equal(blankAttributeValidation.normalized.visual_attributes.composition.framing, "unknown");
+
+  const nullishQualityValidation = validateVisualDescriptionPayloadV1({
+    ...validPayload,
+    card_surface_and_printing_cues: "The card has a flat, printed surface.",
+    quality_flags: ["None", "clear", "high detail"],
+  });
+  assert.equal(nullishQualityValidation.ok, true);
+  assert.equal(nullishQualityValidation.normalized.quality_flags.length, 0);
+  assert.match(nullishQualityValidation.normalized.card_surface_and_printing_cues, /No reliable additional card-surface/);
+
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: [],
+      identity_input_confidence: 0.95,
+      description_confidence: 0.91,
+      attribute_confidence: 0.85,
+      image_quality_score: 0.92,
+    }),
+    "pending",
+  );
+
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: ["fixture_generated"],
+      identity_input_confidence: 0.95,
+      description_confidence: 0.91,
+      attribute_confidence: 0.85,
+      image_quality_score: 0.92,
+    }),
+    "needs_review",
+  );
+});
+
+test("card visual description version and embedding input are deterministic", () => {
+  const base = {
+    card_print_id: "11111111-1111-1111-1111-111111111111",
+    image_sha256: "a".repeat(64),
+    prompt_version: "prompt-v1",
+    output_schema_version: "schema-v1",
+    agent_version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+    model_version: "model-v1",
+  };
+
+  assert.equal(buildDescriptionVersionKeyV1(base), buildDescriptionVersionKeyV1({ ...base }));
+  assert.notEqual(
+    buildDescriptionVersionKeyV1(base),
+    buildDescriptionVersionKeyV1({ ...base, model_version: "model-v2" }),
+  );
+
+  const inputA = buildEmbeddingInputV1({
+    artwork_description: "Artwork text",
+    card_surface_and_printing_cues: "Printing text",
+    visual_attributes: {
+      palette: { temperature: "warm", dominant: ["yellow"] },
+      subjects: { secondary: [], primary: ["Pikachu"] },
+      environment: { weather: "rain", setting: ["street"] },
+      mood: ["cozy", "moody"],
+    },
+    semantic_tags: ["z-tag", "a-tag"],
+  });
+  const inputB = buildEmbeddingInputV1({
+    artwork_description: "Artwork text",
+    card_surface_and_printing_cues: "Printing text",
+    visual_attributes: {
+      environment: { setting: ["street"], weather: "rain" },
+      subjects: { primary: ["Pikachu"], secondary: [] },
+      palette: { dominant: ["yellow"], temperature: "warm" },
+      mood: ["moody", "cozy"],
+    },
+    semantic_tags: ["a-tag", "z-tag"],
+  });
+
+  assert.equal(inputA, inputB);
+  assert.match(inputA, /Tags:\na-tag, z-tag/);
+});
+
+test("card visual description agent entrypoints stay guarded and non-identity-authoritative", () => {
+  const agent = source("backend/card_descriptions/card_visual_description_agent_v1.mjs");
+  const script = source("scripts/audits/card_visual_description_agent_v1.mjs");
+  const pkg = source("package.json");
+
+  assert.match(agent, /refusing to apply fixture descriptions without --allow-fixture-apply/);
+  assert.match(agent, /card_print_visual_descriptions/);
+  assert.match(agent, /card_visual_description_runs/);
+  assert.match(agent, /type: "input_image"/);
+  assert.match(agent, /OPENAI_INPUT_COST_PER_MILLION/);
+  assert.match(agent, /OPENAI_OUTPUT_COST_PER_MILLION/);
+  assert.match(agent, /OPENAI_IMAGE_COST_RULE_VERSION/);
+  assert.match(agent, /input_tokens/);
+  assert.match(agent, /projected_500_cards_usd/);
+  assert.match(agent, /projected_1000_cards_usd/);
+  assert.match(agent, /projected_full_eligible_catalog_usd/);
+  assert.match(agent, /projected_next_call_cost_exceeds_max_run_cost/);
+  assert.doesNotMatch(agent, /additionalProperties: true/);
+  assert.match(agent, /function formatFetchError/);
+  assert.match(agent, /reason: "image_fetch_failed"/);
+  assert.match(agent, /error: image\.error \?\? null/);
+  assert.match(agent, /card_prints_mutation: false/);
+  assert.match(script, /card_visual_description_agent_v1/);
+  assert.match(pkg, /"card-desc:plan"/);
+  assert.match(pkg, /"card-desc:dry-run"/);
+  assert.match(pkg, /"card-desc:apply"/);
+});

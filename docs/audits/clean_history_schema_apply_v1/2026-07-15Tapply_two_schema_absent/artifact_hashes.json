@@ -1,0 +1,134 @@
+[
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\00_supabase_link_metadata.txt",
+    "sha256": "a190adedf4b1da46f1f39f851438cdfaf78aedfe1ad9bdbb66307a27964a836e"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\01_supabase_link_output.txt",
+    "sha256": "c1856cfdfbc29c5e05436a44de2a26e6bd434d18d7aa2c6423ad34eac93af1b5"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\02_pre_apply_linked_migration_list.txt",
+    "sha256": "c38b2070f7d7897199345ef0511da562a71afc9c3d708adb57700db842b30b0b"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\03_pre_apply_linked_migration_list_metadata.txt",
+    "sha256": "ffa18bf8d4f559c41a507d6b644f84085a9747e7a484d3efeaf0a073f569f15a"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\04_pre_apply_ledger_summary.json",
+    "sha256": "81fb21672be67800acaebbcb3d75d0f722f155e836e232734ddb0901e0bf5634"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\05_pre_apply_schema_readback.sql",
+    "sha256": "2eb95827f4d95335680bc138b26bf2fea5d57a393b7c76e52c1f0a24901978f7"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\06_pre_apply_schema_readback_output.json",
+    "sha256": "6986e3b289c60e275144915dbbd21bb14afc1d68d6e28e50511db15c39cfe481"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\07_pre_apply_schema_readback_metadata.txt",
+    "sha256": "e4c43346da793abb794273daf9b9b1419499e24178e8340e8b5f4e3c2692a13e"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\08_supabase_start_metadata.txt",
+    "sha256": "d4a8a23399084b925dd34c7acad54dabf5070069dcb693d983a853631d50b72d"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\09_supabase_start_redacted.txt",
+    "sha256": "b922e08f361c7619adb824c4f40f06868cc0eed848c1031b2b0343006494d27a"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\10_strict_prepush_expected_two.txt",
+    "sha256": "d67eceb497c366060da2d84472d5ace45c7e20948b49407e3cbb90e6e1b215e4"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\11_strict_prepush_expected_two_metadata.txt",
+    "sha256": "115b281ea32bae6be915bbbe2710857be9317a1faf52e42f3c3af32cca1b43ce"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\12_supabase_db_push_output.txt",
+    "sha256": "6dc1b9e7851b9377f72dd1f7669ece99600c584ae59169f09a68253d3c0ff825"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\13_supabase_db_push_metadata.txt",
+    "sha256": "9d0492c3efbbff85225e7f4be975e670fa1de6589d9cef33cc57d1e28b93fe7d"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\14_supabase_db_push_include_all_output.txt",
+    "sha256": "be4ef3a232fd2b3912a676ffeebae4cafe36120edaf81a66ead6b4391bd6faa8"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\15_supabase_db_push_include_all_metadata.txt",
+    "sha256": "b827278a437690ead9ca5cb439bdcc510a6d65236f16a8361798c971315c96b5"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\16_post_apply_isolated_linked_migration_list.txt",
+    "sha256": "deddc60addd341bcc20f812281486f58d8ba8d41ce1168af82ec381419b83ab9"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\17_post_apply_isolated_linked_migration_list_metadata.txt",
+    "sha256": "50ab843b73ad219e4461c88922d5dd365e49bef82f8bc7fb0522d712c3900ad4"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\18_post_apply_feature_linked_migration_list.txt",
+    "sha256": "0a8e1c7795d5dad88a9b2cc975eefd00f4c617351fab488b5fc08c4063e27b11"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\19_post_apply_feature_linked_migration_list_metadata.txt",
+    "sha256": "aaf0484447e91ce96391363cb0cefc9a86c725c495c9b4898bd6bd79d22fbf8e"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\20_post_apply_ledger_summary.json",
+    "sha256": "ed62249267ef8be1e108614bdbfef3b27ed711f43595d7c628182e51cfbb9837"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\21_post_apply_schema_rls_grants_readback.sql",
+    "sha256": "e88dbd533086d45691839bd8377037f14b26cd95d20b10c70079821981cd7678"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\22_post_apply_schema_rls_grants_readback_output.json",
+    "sha256": "661d465ace930e2d491a21644cf5c72d0c345465765242041b2c43a2a0b23b8c"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\23_post_apply_schema_rls_grants_readback_metadata.txt",
+    "sha256": "5c8a8b25bdec9f6f631cc5aab85c18879d37157a52010435c2aa443af50b594b"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\24_post_apply_schema_summary.json",
+    "sha256": "9d6114d26a7ed64e77ccf71103fa4ba9c9ec1750a3c497287fa943b7408ee079"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\25_feature_strict_prepush_expected_card_only.txt",
+    "sha256": "878aca4a09a7c982899502e0504160053fd7be8ccb2b716fec168ef24d1356bf"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\26_feature_strict_prepush_expected_card_only_metadata.txt",
+    "sha256": "ab3848dec340ad689bc8dfd9bf06447d1c621c1902cbcd7863dcd49aa7a2fb2d"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\27_trust_safety_contract_test.txt",
+    "sha256": "f964e55df4945bb42187251faac271e2b959084bf1f8e7332fa4883093ee85c4"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\28_trust_safety_contract_test_metadata.txt",
+    "sha256": "404ae42c4691837778ca9aaa9e90bf7171a2f583729a2a5a5597e08c013a8959"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\29_supabase_status_before_stop_redacted.txt",
+    "sha256": "1ca4d0a08e3b9b47a710c3f7c97c073f1ab27646f920d87a664307213646893c"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\30_supabase_stop_redacted.txt",
+    "sha256": "4f18f08eac0587089a29b1880df3d511741fc50acdd6d5876dd41f28eef1e43a"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\31_supabase_status_after_stop_redacted.txt",
+    "sha256": "cf5cdb3a4a9cfdb013415e56e06a77cec028db6bb91361b978cb83e8ad5ebcf9"
+  },
+  {
+    "path": ".\\docs\\audits\\clean_history_schema_apply_v1\\2026-07-15Tapply_two_schema_absent\\CLEAN_HISTORY_SCHEMA_APPLY_REPORT.md",
+    "sha256": "6d1b5133ea99e66df4f33715ef7cf43331f93384de2bd74e9d330dc3fcbcfdb7"
+  }
+]

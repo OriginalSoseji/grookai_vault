@@ -1,0 +1,52 @@
+[
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\01_isolated_workspace_file_plan.json",
+    "sha256": "454464e861f835abff7c767d3c39e6487fc6f1b31d1f02d03113e5e457d2aa8c",
+    "bytes": 4536
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\02_supabase_link_isolated_gate.txt",
+    "sha256": "c1856cfdfbc29c5e05436a44de2a26e6bd434d18d7aa2c6423ad34eac93af1b5",
+    "bytes": 253
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\03_migration_list_isolated_gate.txt",
+    "sha256": "ead56c5bddc7050c0b299ed1ba55f28414c0ea85b72a5562c74b9eb26b0c1279",
+    "bytes": 16641
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\04_migration_ledger_isolated_gate_summary.json",
+    "sha256": "60e7e1492d3db539a89a0deb005e38036ae66f8d6c7b2f8e570474cbf5e0852a",
+    "bytes": 124
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\05_strict_prepush_isolated_gate.txt",
+    "sha256": "42b3cdaebf7abfc0612d0a7c50d99296fcc6f13acdb9d9b8b3a8e9627868dca3",
+    "bytes": 39927
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\06_supabase_db_reset_isolated_full.txt",
+    "sha256": "a9d573352f1ab5b33234bd79065a59dc7d780d5c19b6b0a28dacc90f64bbc912",
+    "bytes": 55549
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\07_supabase_status_after_isolated_reset.txt",
+    "sha256": "8c85db4e924cda25215734fd52f6a68b90e64d1d1590069b28aec106d629a6dd",
+    "bytes": 540
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\08_supabase_stop_isolated_gate.txt",
+    "sha256": "62691dec990a27ec395914291e77d51617f26cab5a4d04eb6986b56a23bc92e6",
+    "bytes": 442
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\09_supabase_status_after_stop.txt",
+    "sha256": "ee86b22da3a04faa371ae802b6042db87c82a53c35719eac97ef56661cdb6537",
+    "bytes": 184
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_isolated_migration_gate_v1\\2026-07-15Tnext_safe_step\\ISOLATED_MIGRATION_GATE.md",
+    "sha256": "9d225edb0a3d79c503e5352a821b36dd454b0d39b1a4a89b179859fb4013bfad",
+    "bytes": 5284
+  }
+]

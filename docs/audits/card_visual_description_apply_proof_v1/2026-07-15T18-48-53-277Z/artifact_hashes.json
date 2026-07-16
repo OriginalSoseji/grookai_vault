@@ -1,0 +1,42 @@
+[
+  {
+    "file": "01_preflight_target_env_and_before_fingerprints.json",
+    "sha256": "b02e1917a0c6b1b0674465f7f119a0e5d04b8e9318d8f55f54a3dda98795b777",
+    "bytes": 12447
+  },
+  {
+    "file": "02_supabase_migration_list_before_apply.txt",
+    "sha256": "18b8b0cd999f1cc8c570fd579ab56e5ab55414e262e63cd12d4b37e974ed4380",
+    "bytes": 17467
+  },
+  {
+    "file": "02a_supabase_link_sandbox.txt",
+    "sha256": "c1856cfdfbc29c5e05436a44de2a26e6bd434d18d7aa2c6423ad34eac93af1b5",
+    "bytes": 253
+  },
+  {
+    "file": "03_strict_prepush_expected_20260715120000.txt",
+    "sha256": "4939176287d64d557c21860d44af236b01f008463b0ec5687e6aadff29d86837",
+    "bytes": 13852
+  },
+  {
+    "file": "04_targeted_contract_tests.txt",
+    "sha256": "e605f05fb0db91f9a76c0bb4144738ea8d12ede80cb2f74277acd57a61f676e1",
+    "bytes": 1751
+  },
+  {
+    "file": "05_node_check_card_visual_description_agent.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "file": "06_git_diff_check.txt",
+    "sha256": "e6e37938ca8a4e562f1e250d678f2f1fbbc7ba81215b7a9fd79ca65cf5e2324c",
+    "bytes": 31
+  },
+  {
+    "file": "FINAL_BLOCKED_APPLY_GATE.md",
+    "sha256": "eeb929f3261f5d55dcc3b541357e00d3e52f7560adcec650d83bc1edfbd83889",
+    "bytes": 4335
+  }
+]

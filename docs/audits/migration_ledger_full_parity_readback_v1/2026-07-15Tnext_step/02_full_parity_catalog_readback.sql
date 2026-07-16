@@ -1,0 +1,240 @@
+with expected_relations(migration_id, file_name, object_kind, schema_name, object_name) as (
+  values
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'table', 'public', 'card_events'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'table', 'public', 'card_events_emit_failures'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'table', 'public', 'completion_crossings'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'table', 'public', 'watches'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'device_tokens'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'notification_delivery_budgets'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'notification_emit_failures'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'notification_outbox'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'notification_prefs'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'table', 'public', 'notifications_log'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'table', 'public', 'market_pricing_pipeline_phase_runs'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'view', 'public', 'v_market_pricing_pipeline_phase_latest_status'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_artifacts'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_categories'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_group_fetch_status'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_groups'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_price_daily_observations'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_products'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'table', 'public', 'tcgcsv_source_sync_runs'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'view', 'public', 'v_tcgcsv_source_sync_latest_status')
+),
+expected_indexes(migration_id, file_name, object_kind, schema_name, object_name) as (
+  values
+    ('20260629190000', '20260629190000_market_listing_price_events_observation_idx.sql', 'index', 'public', 'market_listing_price_events_observation_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_actor_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_card_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_dedupe_key_unique_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_emit_failures_actor_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_emit_failures_source_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_subject_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'card_events_type_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'completion_crossings_subject_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'completion_crossings_user_created_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'watches_subject_lookup_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'watches_user_active_idx'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'index', 'public', 'watches_user_subject_created_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'device_tokens_token_unique_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'device_tokens_user_active_seen_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notification_emit_failures_recipient_created_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notification_emit_failures_source_created_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notification_outbox_pending_drain_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notification_outbox_recipient_created_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notification_outbox_recipient_dedupe_unique_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notifications_log_recipient_created_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notifications_log_recipient_sent_idx'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'index', 'public', 'notifications_log_terminal_outbox_unique_idx'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'index', 'public', 'market_pricing_pipeline_phase_runs_latest_idx'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'index', 'public', 'market_pricing_pipeline_phase_runs_run_key_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_group_fetch_status_run_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_groups_category_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_price_daily_category_day_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_price_daily_product_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_products_category_group_idx'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'index', 'public', 'tcgcsv_source_products_group_idx')
+),
+expected_functions(migration_id, file_name, schema_name, function_name, expected_security_definer) as (
+  values
+    ('20260703090000', '20260703090000_trade_execution_second_leg_any_trade_copy_v1.sql', 'public', 'execute_card_interaction_outcome_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_block_mutation_v1', false),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures_block_mutation_v1', false),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures_set_defaults_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_feed_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_resolve_visibility_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_set_defaults_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'interest_graph_card_event_visible_to_viewer_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'interest_graph_collector_public_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'interest_graph_collectors_visible_to_viewer_v1', true),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'user_set_completion_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'card_events_emit_completion_crossings_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'card_events_emit_vault_import_summary_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_collector_follows_after_delete_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_collector_follows_after_insert_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_completion_snapshot_for_card_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_emit_event_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_log_emit_failure_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_owned_card_count_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_upsert_watch_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_vault_instance_after_insert_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_vault_instance_after_update_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_wall_memberships_after_write_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_wall_sections_after_write_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_watch_rank_v1', false),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_watch_strength_v1', false),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_wishlist_after_delete_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'interest_graph_wishlist_after_insert_v1', true),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'scanner_v5_emit_vault_add_enriched_v1', true),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'enqueue_card_interaction_notification_v1', true),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_log_emit_failure_v1', true),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'prevent_notification_outbox_client_writes_v1', true),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'prevent_notifications_log_client_writes_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_claim_batch_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_defer_outbox_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_disable_token_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_log_validation_failure_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_mark_folded_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_mark_retry_or_failed_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_mark_send_started_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_mark_sent_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_mark_skipped_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_release_budget_v1', true),
+    ('20260706121000', '20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql', 'public', 'notification_dispatcher_reserve_budget_v1', true),
+    ('20260706122000', '20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql', 'public', 'notification_dispatcher_scheduled_http_v1', true),
+    ('20260706123000', '20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql', 'public', 'mark_notification_tapped_v1', true),
+    ('20260706123000', '20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql', 'public', 'notification_disable_device_token_v1', true),
+    ('20260706123000', '20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql', 'public', 'notification_register_device_token_v1', true),
+    ('20260708174000', '20260708174000_product_evolution_e5_card_journey_moment_rollups_v1.sql', 'public', 'card_journey_moments_v1', true),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'public', 'market_pricing_pipeline_phase_runs_append_only_guard_v1', true),
+    ('20260715104500', '20260715104500_mobile_vault_variant_and_canonical_image_contract_v1.sql', 'public', 'vault_mobile_collector_rows_v1', true)
+),
+expected_policies(migration_id, file_name, schema_name, table_name, policy_name) as (
+  values
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'card_events_actor_insert'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'card_events_service_role_all'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'card_events_visibility_select'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'card_events_emit_failures_owner_insert'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'card_events_emit_failures_owner_select'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'card_events_emit_failures_service_role_all'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'completion_crossings', 'completion_crossings_owner_select'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'completion_crossings', 'completion_crossings_service_role_all'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'watches_owner_delete'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'watches_owner_insert'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'watches_owner_select'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'watches_owner_update'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'watches_service_role_all'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'device_tokens', 'device_tokens_insert_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'device_tokens', 'device_tokens_select_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'device_tokens', 'device_tokens_update_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_delivery_budgets', 'notification_delivery_budgets_select_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_prefs', 'notification_prefs_insert_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_prefs', 'notification_prefs_select_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_prefs', 'notification_prefs_update_owner'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notifications_log', 'notifications_log_select_recipient'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'public', 'market_pricing_pipeline_phase_runs', 'market_pricing_pipeline_phase_runs_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_artifacts', 'tcgcsv_source_artifacts_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_categories', 'tcgcsv_source_categories_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_group_fetch_status', 'tcgcsv_source_group_fetch_status_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_groups', 'tcgcsv_source_groups_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_price_daily_observations', 'tcgcsv_source_price_daily_observations_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_products', 'tcgcsv_source_products_service_role_all'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_sync_runs', 'tcgcsv_source_sync_runs_service_role_all')
+),
+expected_triggers(migration_id, file_name, schema_name, table_name, trigger_name) as (
+  values
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'trg_card_events_block_delete'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'trg_card_events_block_update'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events', 'trg_card_events_set_defaults'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'trg_card_events_emit_failures_block_delete'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'trg_card_events_emit_failures_block_update'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures', 'trg_card_events_emit_failures_set_defaults'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches', 'trg_watches_updated_at'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'collector_follows', 'trg_interest_graph_collector_follows_after_delete'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'collector_follows', 'trg_interest_graph_collector_follows_after_insert'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'vault_item_instances', 'trg_interest_graph_vault_instance_after_insert'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'vault_item_instances', 'trg_interest_graph_vault_instance_after_update'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'wall_section_memberships', 'trg_interest_graph_wall_memberships_after_delete'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'wall_section_memberships', 'trg_interest_graph_wall_memberships_after_insert'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'wall_sections', 'trg_interest_graph_wall_sections_after_write'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'wishlist_items', 'trg_interest_graph_wishlist_after_delete'),
+    ('20260706110000', '20260706110000_product_evolution_e1_emission_triggers_v1.sql', 'public', 'wishlist_items', 'trg_interest_graph_wishlist_after_insert'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'card_interactions', 'trg_enqueue_card_interaction_notification_v1'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'device_tokens', 'trg_device_tokens_updated_at'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_delivery_budgets', 'trg_notification_delivery_budgets_updated_at'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_outbox', 'trg_notification_outbox_no_authenticated_insert'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_prefs', 'trg_notification_prefs_updated_at'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notifications_log', 'trg_notifications_log_no_authenticated_mutation'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'public', 'market_pricing_pipeline_phase_runs', 'market_pricing_pipeline_phase_runs_append_only_guard')
+),
+expected_rls(migration_id, file_name, schema_name, table_name) as (
+  values
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'card_events_emit_failures'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'completion_crossings'),
+    ('20260706100000', '20260706100000_product_evolution_e1_interest_graph_schema_v1.sql', 'public', 'watches'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'device_tokens'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_delivery_budgets'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_emit_failures'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_outbox'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notification_prefs'),
+    ('20260706120000', '20260706120000_product_evolution_e2_notification_schema_v1.sql', 'public', 'notifications_log'),
+    ('20260712090000', '20260712090000_pricing_pipeline_phase_runs_v1.sql', 'public', 'market_pricing_pipeline_phase_runs'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_artifacts'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_categories'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_group_fetch_status'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_groups'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_price_daily_observations'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_products'),
+    ('20260715110000', '20260715110000_tcgcsv_full_source_warehouse_v1.sql', 'public', 'tcgcsv_source_sync_runs')
+),
+relation_checks as (
+  select 'relation'::text as section, e.migration_id, e.file_name, e.object_kind, e.schema_name, e.object_name,
+    exists (select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.object_name and ((e.object_kind = 'table' and c.relkind in ('r','p')) or (e.object_kind = 'view' and c.relkind = 'v') or (e.object_kind = 'materialized_view' and c.relkind = 'm'))) as exists_remote,
+    (select jsonb_build_object('relkind', c.relkind, 'rls_enabled', c.relrowsecurity, 'columns', coalesce((select jsonb_agg(jsonb_build_object('name', a.attname, 'type', pg_catalog.format_type(a.atttypid, a.atttypmod), 'not_null', a.attnotnull) order by a.attnum) from pg_attribute a where a.attrelid = c.oid and a.attnum > 0 and not a.attisdropped), '[]'::jsonb), 'grants', jsonb_build_object('anon_select', has_table_privilege('anon', c.oid, 'select'), 'authenticated_select', has_table_privilege('authenticated', c.oid, 'select'), 'authenticated_insert', has_table_privilege('authenticated', c.oid, 'insert'), 'authenticated_update', has_table_privilege('authenticated', c.oid, 'update'), 'service_role_select', has_table_privilege('service_role', c.oid, 'select'), 'service_role_insert', has_table_privilege('service_role', c.oid, 'insert'), 'service_role_update', has_table_privilege('service_role', c.oid, 'update'), 'service_role_delete', has_table_privilege('service_role', c.oid, 'delete'))) from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.object_name limit 1) as details
+  from expected_relations e
+),
+index_checks as (
+  select 'index'::text as section, e.migration_id, e.file_name, e.object_kind, e.schema_name, e.object_name,
+    exists (select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.object_name and c.relkind = 'i') as exists_remote,
+    (select jsonb_build_object('indexdef', pg_get_indexdef(c.oid)) from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.object_name and c.relkind = 'i' limit 1) as details
+  from expected_indexes e
+),
+function_checks as (
+  select 'function'::text as section, e.migration_id, e.file_name, case when e.expected_security_definer then 'security_definer_function' else 'function' end as object_kind, e.schema_name, e.function_name as object_name,
+    exists (select 1 from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = e.schema_name and p.proname = e.function_name) as exists_remote,
+    (select jsonb_agg(jsonb_build_object('identity_arguments', pg_get_function_identity_arguments(p.oid), 'security_definer', p.prosecdef, 'volatility', p.provolatile, 'grants', jsonb_build_object('anon_execute', has_function_privilege('anon', p.oid, 'execute'), 'authenticated_execute', has_function_privilege('authenticated', p.oid, 'execute'), 'service_role_execute', has_function_privilege('service_role', p.oid, 'execute'))) order by pg_get_function_identity_arguments(p.oid)) from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = e.schema_name and p.proname = e.function_name) as details
+  from expected_functions e
+),
+policy_checks as (
+  select 'policy'::text as section, e.migration_id, e.file_name, 'policy'::text as object_kind, e.schema_name, e.table_name || '.' || e.policy_name as object_name,
+    exists (select 1 from pg_policies p where p.schemaname = e.schema_name and p.tablename = e.table_name and p.policyname = e.policy_name) as exists_remote,
+    (select to_jsonb(p) from pg_policies p where p.schemaname = e.schema_name and p.tablename = e.table_name and p.policyname = e.policy_name limit 1) as details
+  from expected_policies e
+),
+trigger_checks as (
+  select 'trigger'::text as section, e.migration_id, e.file_name, 'trigger'::text as object_kind, e.schema_name, e.table_name || '.' || e.trigger_name as object_name,
+    exists (select 1 from pg_trigger t join pg_class c on c.oid = t.tgrelid join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.table_name and t.tgname = e.trigger_name and not t.tgisinternal) as exists_remote,
+    (select jsonb_build_object('enabled', t.tgenabled, 'definition', pg_get_triggerdef(t.oid)) from pg_trigger t join pg_class c on c.oid = t.tgrelid join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.table_name and t.tgname = e.trigger_name and not t.tgisinternal limit 1) as details
+  from expected_triggers e
+),
+rls_checks as (
+  select 'rls'::text as section, e.migration_id, e.file_name, 'rls_enabled'::text as object_kind, e.schema_name, e.table_name as object_name,
+    coalesce((select c.relrowsecurity from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.table_name limit 1), false) as exists_remote,
+    (select jsonb_build_object('rls_enabled', c.relrowsecurity, 'force_rls', c.relforcerowsecurity) from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = e.schema_name and c.relname = e.table_name limit 1) as details
+  from expected_rls e
+),
+cron_checks as (
+  select 'cron'::text as section, '20260706122000'::text as migration_id, '20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql'::text as file_name, 'optional_schedule_catalog'::text as object_kind, 'cron'::text as schema_name, 'notification_dispatcher'::text as object_name,
+    (to_regclass('cron.job') is not null) as exists_remote,
+    jsonb_build_object('cron_schema_exists', exists (select 1 from pg_namespace where nspname = 'cron'), 'cron_job_relation_exists', to_regclass('cron.job') is not null, 'net_schema_exists', exists (select 1 from pg_namespace where nspname = 'net')) as details
+)
+select * from relation_checks
+union all select * from index_checks
+union all select * from function_checks
+union all select * from policy_checks
+union all select * from trigger_checks
+union all select * from rls_checks
+union all select * from cron_checks
+order by migration_id, section, object_name;

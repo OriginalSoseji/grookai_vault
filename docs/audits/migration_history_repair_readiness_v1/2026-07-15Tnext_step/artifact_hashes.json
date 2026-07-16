@@ -1,0 +1,22 @@
+[
+  {
+    "file": "00_metadata.txt",
+    "sha256": "f437e6ba074c45a08b86b683dc30e131ffa84b6940e04681c315526df93ba8e5",
+    "bytes": 231
+  },
+  {
+    "file": "01_linked_migration_list_readiness.txt",
+    "sha256": "e1246025591bbb46e68667c3e526d20223670c68c40af38244ad7ee863f8e9c5",
+    "bytes": 17467
+  },
+  {
+    "file": "02_repair_readiness_summary.json",
+    "sha256": "e65789695b917a552c3e8baf0b81867f2a4fe1835cb6d8ad94f9391dfb1bc573",
+    "bytes": 1730
+  },
+  {
+    "file": "MIGRATION_HISTORY_REPAIR_READINESS.md",
+    "sha256": "7340daeabfe4ba7e49548aacc90b4d601cad65ac8ad6e1604701e15079338b79",
+    "bytes": 2340
+  }
+]

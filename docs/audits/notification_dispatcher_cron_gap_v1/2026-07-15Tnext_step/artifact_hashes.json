@@ -1,0 +1,27 @@
+[
+  {
+    "file": "01_notification_dispatcher_cron_state_readback.sql",
+    "sha256": "55dc0da9d57a9c53234f874e7d7144fd5c75af8ab0ef66200109b5e3cbf1a270",
+    "bytes": 3838
+  },
+  {
+    "file": "02_notification_dispatcher_cron_state_readback_output.json",
+    "sha256": "cc8b47ea9b35659d546523129a759fcc9b11d9e1de2bfcd446b00c5900a59524",
+    "bytes": 2124
+  },
+  {
+    "file": "03_notification_dispatcher_cron_state_readback_metadata.txt",
+    "sha256": "5c364ca715377bb24f4b902dac732dec23901c29c7cabf9af73c0f619ad2a274",
+    "bytes": 321
+  },
+  {
+    "file": "04_notification_dispatcher_cron_gap_decision_summary.json",
+    "sha256": "55a53054c866310b2369f6af88b072556bc400fa661ca2b5495dfe798246e8d3",
+    "bytes": 1490
+  },
+  {
+    "file": "NOTIFICATION_DISPATCHER_CRON_GAP_REPORT.md",
+    "sha256": "8d346a7ff12b9d44da2fb27b4130dc2fe475631ca5b19aabf890ad038db6412b",
+    "bytes": 4475
+  }
+]

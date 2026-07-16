@@ -1,0 +1,7 @@
+Initialising login role...
+Connecting to remote database...
+Repaired migration history: [20260629190000 20260703090000 20260706100000 20260706110000 20260706120000 20260706121000 20260706122000 20260706123000 20260708174000 20260712090000 20260715104500 20260715110000] => applied
+Finished supabase migration repair.
+A new version of Supabase CLI is available: v2.109.1 (currently installed v2.90.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
+Run supabase migration list to show the updated migration history.

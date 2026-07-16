@@ -1,0 +1,461 @@
+{
+  "captured_at": "2026-07-15T18:52:36.713Z",
+  "target": {
+    "classification": "REMOTE",
+    "cwd": "C:\\grookai_vault_card_desc_agent",
+    "config_project_ref": "ycdxbpibncqcchqiihfz",
+    "supabase_url_present": true,
+    "supabase_url_project_ref": "ycdxbpibncqcchqiihfz",
+    "project_ref_matches": true,
+    "db_url_present": true,
+    "openai_api_key_present": true,
+    "node_options_required": "--use-system-ca"
+  },
+  "canonical_invariant_counts": {
+    "card_prints": 53316,
+    "sets": 843,
+    "card_print_traits": 32903
+  },
+  "canonical_invariants_pass": true,
+  "migration_state": {
+    "card_visual_description_runs_exists": null,
+    "card_print_visual_descriptions_exists": null,
+    "migration_20260715120000_applied": 0
+  },
+  "card_prints_fingerprint": {
+    "row_count": "53316",
+    "fingerprint": "a3c8ac917ab99c48f00c8533cd029367"
+  },
+  "gv_assignment_fingerprint": {
+    "row_count": "53316",
+    "fingerprint": "4de084541dc05f12b2edfedaa7ebb260"
+  },
+  "app_facing_object_hashes": [
+    {
+      "kind": "function",
+      "schema_name": "public",
+      "object_name": "search_card_prints_v1(q text, limit_n integer)",
+      "definition_hash": "48fd782b4fe860846e432df841a7cca6"
+    },
+    {
+      "kind": "function",
+      "schema_name": "public",
+      "object_name": "search_card_prints_v1(q text, set_code_in text, number_in text,",
+      "definition_hash": "e937f73f8ed3872267be669eefd97aa5"
+    },
+    {
+      "kind": "function",
+      "schema_name": "public",
+      "object_name": "vault_add_or_increment(p_card_id uuid, p_delta_qty integer, p_c",
+      "definition_hash": "95a89fb9c87fcb888163dd866eb5ad55"
+    },
+    {
+      "kind": "function",
+      "schema_name": "public",
+      "object_name": "vault_add_or_increment(p_card_id uuid, p_delta_qty integer, p_n",
+      "definition_hash": "47758e8e8e7d30f6bb3aef3301e9e3a3"
+    },
+    {
+      "kind": "view",
+      "schema_name": "public",
+      "object_name": "card_print_active_prices",
+      "definition_hash": "517d2a519f32becc31759ed1fa1c216c"
+    },
+    {
+      "kind": "view",
+      "schema_name": "public",
+      "object_name": "v_card_images",
+      "definition_hash": "652fe19af1b0256d290e02adf8accda6"
+    },
+    {
+      "kind": "view",
+      "schema_name": "public",
+      "object_name": "v_card_search",
+      "definition_hash": "9e306ffb7b1e1da135cdcf9d27fc45ac"
+    },
+    {
+      "kind": "view",
+      "schema_name": "public",
+      "object_name": "v_vault_items",
+      "definition_hash": "278ec44b06f2bc7b0603320045063f7c"
+    }
+  ],
+  "pricing_market_table_stats": [
+    {
+      "table_schema": "public",
+      "table_name": "card_price_observations",
+      "estimated_rows": "321",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "card_price_rollups",
+      "estimated_rows": "321",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "card_price_ticks",
+      "estimated_rows": "1886",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "card_prices",
+      "estimated_rows": "1911",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "card_print_price_curves",
+      "estimated_rows": "1676",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "condition_prices",
+      "estimated_rows": "1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "ebay_active_price_snapshots",
+      "estimated_rows": "1694",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "ebay_active_prices_latest",
+      "estimated_rows": "1661",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "graded_prices",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "justtcg_variant_price_snapshots",
+      "estimated_rows": "21956512",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "justtcg_variant_prices_latest",
+      "estimated_rows": "167689",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "latest_card_prices_mv",
+      "estimated_rows": "2138",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "latest_prices",
+      "estimated_rows": "4311",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_lifecycle_events",
+      "estimated_rows": "3537849",
+      "n_tup_ins": "2700453",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_observations",
+      "estimated_rows": "504709",
+      "n_tup_ins": "385780",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_price_review_events",
+      "estimated_rows": "-1",
+      "n_tup_ins": "11",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_review_action_events",
+      "estimated_rows": "2152",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_review_dispositions",
+      "estimated_rows": "2152",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_evidence_variant_assignments",
+      "estimated_rows": "875549",
+      "n_tup_ins": "873703",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_acquisition_runs",
+      "estimated_rows": "-1",
+      "n_tup_ins": "10",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_candidate_cleanup_events",
+      "estimated_rows": "52630",
+      "n_tup_ins": "52630",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_card_candidates",
+      "estimated_rows": "961531",
+      "n_tup_ins": "779527",
+      "n_tup_upd": "75035",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_observations",
+      "estimated_rows": "1746391",
+      "n_tup_ins": "1654007",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_price_events",
+      "estimated_rows": "1764450",
+      "n_tup_ins": "1684742",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_query_cache",
+      "estimated_rows": "8106",
+      "n_tup_ins": "4105",
+      "n_tup_upd": "16000",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_raw_snapshots",
+      "estimated_rows": "1715893",
+      "n_tup_ins": "1654091",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_rollups",
+      "estimated_rows": "81533",
+      "n_tup_ins": "74755",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_listing_seller_snapshots",
+      "estimated_rows": "192342",
+      "n_tup_ins": "151627",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_prices",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_pricing_pipeline_phase_runs",
+      "estimated_rows": "-1",
+      "n_tup_ins": "33",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_acquisition_runs",
+      "estimated_rows": "-1",
+      "n_tup_ins": "1",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_candidates",
+      "estimated_rows": "409442",
+      "n_tup_ins": "388682",
+      "n_tup_upd": "310744",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_coverage_reports",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_normalized_evidence",
+      "estimated_rows": "410200",
+      "n_tup_ins": "388682",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_raw_snapshots",
+      "estimated_rows": "29923",
+      "n_tup_ins": "19135",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "market_reference_signal_rollups",
+      "estimated_rows": "16558",
+      "n_tup_ins": "14572",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "mv_market_evidence_lifecycle_rollup_summary_v1",
+      "estimated_rows": "19726",
+      "n_tup_ins": "276164",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "price_observations",
+      "estimated_rows": "0",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "price_observations_backup_20251115",
+      "estimated_rows": "56393",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "price_rollup_config",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "price_sources",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "prices",
+      "estimated_rows": "1662",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "pricing_jobs",
+      "estimated_rows": "2604",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "pricing_observations",
+      "estimated_rows": "25",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "pricing_watch",
+      "estimated_rows": "317",
+      "n_tup_ins": "22",
+      "n_tup_upd": "19",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "tcgcsv_source_price_daily_observations",
+      "estimated_rows": "11027396",
+      "n_tup_ins": "11564836",
+      "n_tup_upd": "363027",
+      "n_tup_del": "0"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "unmatched_price_rows",
+      "estimated_rows": "-1",
+      "n_tup_ins": "0",
+      "n_tup_upd": "0",
+      "n_tup_del": "0"
+    }
+  ]
+}

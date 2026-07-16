@@ -46,3 +46,4 @@ Do not delete them unless all external citations have been checked.
 - E2/E4 push tap proof: killed-app and background push tap should route correctly on iOS and Android.
 - E7 first automatic Monday run after July 10, 2026 should update the latest completed week idempotently.
 - E9 visual polish: Memories currently works but is buried below existing exact-copy photo controls. A follow-up should move the section higher in the exact-copy hierarchy.
+- Future personalization: [Grookai Signature](./GROOKAI_SIGNATURE_ROADMAP_V1.md) should eventually turn approved visual-description, market, and behavior signals into collector-level taste explanations. It is not part of the current card visual description agent v1.

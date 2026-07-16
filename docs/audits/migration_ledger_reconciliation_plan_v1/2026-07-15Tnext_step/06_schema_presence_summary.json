@@ -1,0 +1,191 @@
+{
+  "recorded_at": "2026-07-15T13:37:27.0762668-06:00",
+  "remote_only": [],
+  "local_only_count": 15,
+  "schema_present_representative_object_ids": [
+    "20260629190000",
+    "20260703090000",
+    "20260706100000",
+    "20260706110000",
+    "20260706120000",
+    "20260706121000",
+    "20260706122000",
+    "20260706123000",
+    "20260708174000",
+    "20260712090000",
+    "20260715104500",
+    "20260715110000"
+  ],
+  "schema_absent_representative_object_ids": [
+    "20260523183000",
+    "20260713190000",
+    "20260715120000"
+  ],
+  "partial_schema_presence_ids": [],
+  "migrations": [
+    {
+      "migration_id": "20260523183000",
+      "file_name": "20260523183000_printing_truth_review_sidecar_v1.sql",
+      "status": "schema_absent_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [],
+      "representative_objects_missing": [
+        "public.card_printing_truth_reviews",
+        "public.v_card_printing_truth_current_v1"
+      ]
+    },
+    {
+      "migration_id": "20260629190000",
+      "file_name": "20260629190000_market_listing_price_events_observation_idx.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 1,
+      "representative_objects_present": [
+        "public.market_listing_price_events_observation_idx"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260703090000",
+      "file_name": "20260703090000_trade_execution_second_leg_any_trade_copy_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 1,
+      "representative_objects_present": [
+        "public.execute_card_interaction_outcome_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 3,
+      "representative_objects_present": [
+        "public.card_events.dedupe_key",
+        "public.card_events",
+        "public.watches"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [
+        "public.interest_graph_emit_event_v1",
+        "public.interest_graph_wishlist_after_insert_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 3,
+      "representative_objects_present": [
+        "public.notification_outbox.dedupe_key",
+        "public.device_tokens",
+        "public.notification_outbox"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [
+        "public.notification_dispatcher_claim_batch_v1",
+        "public.notification_dispatcher_mark_sent_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706122000",
+      "file_name": "20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 1,
+      "representative_objects_present": [
+        "public.notification_dispatcher_scheduled_http_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260706123000",
+      "file_name": "20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [
+        "public.mark_notification_tapped_v1",
+        "public.notification_register_device_token_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260708174000",
+      "file_name": "20260708174000_product_evolution_e5_card_journey_moment_rollups_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 1,
+      "representative_objects_present": [
+        "public.card_journey_moments_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [
+        "public.market_pricing_pipeline_phase_runs",
+        "public.v_market_pricing_pipeline_phase_latest_status"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260713190000",
+      "file_name": "20260713190000_trust_safety_block_report_v1.sql",
+      "status": "schema_absent_representative_objects",
+      "representative_object_count": 3,
+      "representative_objects_present": [],
+      "representative_objects_missing": [
+        "public.trust_block_exists_between_v1",
+        "public.trust_blocks",
+        "public.trust_reports"
+      ]
+    },
+    {
+      "migration_id": "20260715104500",
+      "file_name": "20260715104500_mobile_vault_variant_and_canonical_image_contract_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 1,
+      "representative_objects_present": [
+        "public.vault_mobile_collector_rows_v1"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "status": "schema_present_representative_objects",
+      "representative_object_count": 3,
+      "representative_objects_present": [
+        "public.tcgcsv_source_price_daily_observations",
+        "public.tcgcsv_source_products",
+        "public.tcgcsv_source_sync_runs"
+      ],
+      "representative_objects_missing": []
+    },
+    {
+      "migration_id": "20260715120000",
+      "file_name": "20260715120000_card_visual_description_agent_v1.sql",
+      "status": "schema_absent_representative_objects",
+      "representative_object_count": 2,
+      "representative_objects_present": [],
+      "representative_objects_missing": [
+        "public.card_print_visual_descriptions",
+        "public.card_visual_description_runs"
+      ]
+    }
+  ]
+}

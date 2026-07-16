@@ -1,0 +1,4 @@
+command=supabase migration list --linked
+exit_code=0
+recorded_at=2026-07-15T20:13:45.9695604-06:00
+

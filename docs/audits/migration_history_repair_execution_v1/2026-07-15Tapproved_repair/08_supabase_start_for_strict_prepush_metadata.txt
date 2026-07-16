@@ -1,0 +1,6 @@
+started_at=2026-07-15T20:14:32.0280742-06:00
+command=supabase start
+
+exit_code=0
+ended_at=2026-07-15T20:15:00.4466579-06:00
+

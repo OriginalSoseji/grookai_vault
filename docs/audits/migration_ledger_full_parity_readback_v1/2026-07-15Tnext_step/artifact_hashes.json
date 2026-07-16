@@ -1,0 +1,72 @@
+[
+  {
+    "file": "00_generation_summary.json",
+    "sha256": "05a26c26f2eb183f802fa7a1d3fcbc3a233bf6fa3e79207e1c20fadfe03e6af6",
+    "bytes": 206
+  },
+  {
+    "file": "01_expected_manifest_from_local_migrations.json",
+    "sha256": "9b74466e7272af53eba85c32926b1522122fb289ee6a6e970a4e8bd9d8849922",
+    "bytes": 47504
+  },
+  {
+    "file": "02_full_parity_catalog_readback.sql",
+    "sha256": "89a4e826ebf6f9ceb1de3d707ec76abaeca09523f27c2c12516a5a01dc3e85ed",
+    "bytes": 32334
+  },
+  {
+    "file": "03_full_parity_catalog_readback_output.json",
+    "sha256": "6335e3ae35202299b09bcefdb4ac089ffb3a436d68018902065adf6f9674ad55",
+    "bytes": 149640
+  },
+  {
+    "file": "04_full_parity_catalog_readback_metadata.txt",
+    "sha256": "dcba150e337c550bc1ee1d6c97ba80812617d23747d55ce197db5c4d7f462cff",
+    "bytes": 270
+  },
+  {
+    "file": "05_full_parity_summary.json",
+    "sha256": "f0c69af1b6d032bc664df1655f345397cb49aa75a642e860ec669f34eb40956f",
+    "bytes": 3274
+  },
+  {
+    "file": "06_notification_dispatcher_cron_readback.sql",
+    "sha256": "d85e9f65dc617ac12c4501f71a8194d3e055c9ead90866569b548264ed254e7e",
+    "bytes": 543
+  },
+  {
+    "file": "07_notification_dispatcher_cron_readback_output.json",
+    "sha256": "d28e61c701bfefabdef2fae644fa262bd9aa90403b3558fb55e7ca1fd300a78f",
+    "bytes": 694
+  },
+  {
+    "file": "08_notification_dispatcher_cron_readback_metadata.txt",
+    "sha256": "0c09403d6cf8377f8bdd08cb7072ba13596dc71667eeebd2cf869f7086a904da",
+    "bytes": 279
+  },
+  {
+    "file": "09_full_parity_decision_summary.json",
+    "sha256": "bb624bc7618bd0729d52a40422b52bc6924307d0950eb46ef7d1e3f6416e431c",
+    "bytes": 1466
+  },
+  {
+    "file": "10_linked_migration_list_after_readback.txt",
+    "sha256": "e1246025591bbb46e68667c3e526d20223670c68c40af38244ad7ee863f8e9c5",
+    "bytes": 17467
+  },
+  {
+    "file": "11_linked_migration_list_after_readback_metadata.txt",
+    "sha256": "cec9b28273352ceab6eae9cfc3b1ce66400c4b973f771dc17b2c1f06c5939ada",
+    "bytes": 101
+  },
+  {
+    "file": "12_linked_migration_summary_after_readback.json",
+    "sha256": "2f0291046458242cdb5297d839a2da552397bda2ab4964ba7d4f633603920e2b",
+    "bytes": 505
+  },
+  {
+    "file": "FULL_PARITY_READBACK_REPORT.md",
+    "sha256": "4ec2125c916bea79c669e36693c62d3a95736cf58943044307273b8eadc9cd17",
+    "bytes": 4589
+  }
+]

@@ -1,0 +1,5 @@
+command=supabase migration list --linked
+exit_code=0
+recorded_at=2026-07-15T13:35:07.7778667-06:00
+workdir=C:\grookai_vault_card_desc_agent
+

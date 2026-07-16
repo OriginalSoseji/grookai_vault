@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-07-15T20:21:46.5759779-06:00",
+  "isolated_worktree": "C:\\grookai_vault_clean_history_apply_20260715",
+  "remote_only": [],
+  "local_only": [
+    "20260523183000",
+    "20260713190000"
+  ],
+  "expected_local_only": [
+    "20260523183000",
+    "20260713190000"
+  ],
+  "unexpected_local_only": [],
+  "missing_expected_local_only": [],
+  "card_visual_migration_exists": false,
+  "ready_for_strict_prepush": true
+}

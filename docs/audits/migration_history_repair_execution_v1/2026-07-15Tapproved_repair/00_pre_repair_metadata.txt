@@ -1,0 +1,9 @@
+started_at=2026-07-15T20:13:01.2619450-06:00
+command=supabase migration list --linked
+project_ref_from_config=ycdxbpibncqcchqiihfz
+workdir=C:\grookai_vault_card_desc_agent
+operator_approval=explicit_user_message_you_have_approval_for_repair
+
+exit_code=0
+ended_at=2026-07-15T20:13:03.2157527-06:00
+

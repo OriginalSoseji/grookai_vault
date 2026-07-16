@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-07-15T18:00:00.3758824-06:00",
+  "relation_count": 20,
+  "index_count": 32,
+  "function_count": 51,
+  "policy_count": 29,
+  "trigger_count": 23,
+  "rls_table_count": 18
+}

@@ -1,0 +1,6 @@
+started_at=2026-07-15T18:02:07.1920248-06:00
+command=supabase db query --linked --output json --file docs\audits\migration_ledger_full_parity_readback_v1\2026-07-15Tnext_step\06_notification_dispatcher_cron_readback.sql
+
+exit_code=0
+ended_at=2026-07-15T18:02:09.3599503-06:00
+

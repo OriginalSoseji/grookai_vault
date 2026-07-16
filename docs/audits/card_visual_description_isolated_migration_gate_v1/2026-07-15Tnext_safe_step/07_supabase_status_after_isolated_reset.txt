@@ -1,0 +1,10 @@
+Supabase local development setup was running after the isolated reset attempt.
+
+Sensitive local development keys from `supabase status` were redacted from this artifact.
+
+Relevant non-secret status:
+- Project URL: http://127.0.0.1:54321
+- Database URL host/port/database: 127.0.0.1:54330/postgres
+- Stopped services reported by status: supabase_imgproxy_ycdxbpibncqcchqiihfz, supabase_edge_runtime_ycdxbpibncqcchqiihfz, supabase_pooler_ycdxbpibncqcchqiihfz
+
+Follow-up stop command output is captured in 08_supabase_stop_isolated_gate.txt.

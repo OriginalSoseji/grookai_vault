@@ -1,0 +1,6 @@
+started_at=2026-07-15T20:26:08.3308909-06:00
+command=supabase db query --linked --output json --file C:\grookai_vault_card_desc_agent\docs\audits\clean_history_schema_apply_v1\2026-07-15Tapply_two_schema_absent\21_post_apply_schema_rls_grants_readback.sql
+
+exit_code=0
+ended_at=2026-07-15T20:26:10.2206586-06:00
+

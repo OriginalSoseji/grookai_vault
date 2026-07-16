@@ -1,0 +1,9 @@
+Pre-commit shipcheck was attempted during commit creation after the one-card apply gate.
+Result: failed before commit creation.
+First failure: npm --prefix apps/web run typecheck.
+Observed representative diagnostics included missing Next/React JSX type context and existing app-facing TypeScript errors, for example:
+- Cannot find module next/link or its corresponding type declarations.
+- JSX element implicitly has type any because no interface JSX.IntrinsicElements exists.
+- ExploreCardGridItemProps / FounderInsight props key assignment diagnostics.
+This failure is outside the isolated Node/database card visual description gate and occurred after the targeted migration/RLS/contract checks had passed.
+Flutter analyze/test did not run because the shipcheck stopped at apps/web typecheck.

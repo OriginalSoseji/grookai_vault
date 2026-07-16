@@ -1,0 +1,5 @@
+command=supabase migration list --linked
+exit_code=0
+recorded_at=2026-07-15T20:21:30.9804662-06:00
+workdir=C:\grookai_vault_clean_history_apply_20260715
+

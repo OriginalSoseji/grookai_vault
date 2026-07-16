@@ -148,6 +148,7 @@ apps/web/src/app/api/slabs/upgrade/*
 
 # audit raw byproducts
 docs/audits/**/cache/
+docs/audits/card_visual_descriptions/**
 docs/audits/image_truth_v1/*.jsonl
 docs/audits/master_index_promo_origin_v1/*.jsonl
 

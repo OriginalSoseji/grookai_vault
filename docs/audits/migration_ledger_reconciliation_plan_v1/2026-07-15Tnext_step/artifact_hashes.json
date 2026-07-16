@@ -1,0 +1,42 @@
+[
+  {
+    "file": "00_metadata.txt",
+    "sha256": "c2fa98de0a43ff571df6600caeeb30a1447b3d75cf9fc7d5cfe574f6478e99d0",
+    "bytes": 142
+  },
+  {
+    "file": "01_linked_migration_list.txt",
+    "sha256": "e1246025591bbb46e68667c3e526d20223670c68c40af38244ad7ee863f8e9c5",
+    "bytes": 17467
+  },
+  {
+    "file": "02_linked_migration_summary.json",
+    "sha256": "b5b3c9c358cae5129af1e5614ed1bfe864a22de37c2a79af9dec7e1a5a455d47",
+    "bytes": 530
+  },
+  {
+    "file": "03_readonly_schema_presence_probe.sql",
+    "sha256": "1f6eabdca42c17204110e77f70b6f3160b6cce64dba5ecc17eefd83121aa348a",
+    "bytes": 5927
+  },
+  {
+    "file": "04_readonly_schema_presence_probe_output.json",
+    "sha256": "aeddeafa401a4c363f6d488172afc50c824fcd91ac0557e63fbd15eadd81f5a0",
+    "bytes": 9696
+  },
+  {
+    "file": "05_readonly_schema_presence_probe_metadata.txt",
+    "sha256": "e26a5d090cd53613ed0032fcac899021eec0cd86a4ebe235b94377639551a78a",
+    "bytes": 271
+  },
+  {
+    "file": "06_schema_presence_summary.json",
+    "sha256": "d7a2335dd9d77ed93c435043093847dad98e5d78d0e556ac9dd98f22359d243d",
+    "bytes": 7047
+  },
+  {
+    "file": "LEDGER_RECONCILIATION_PLAN.md",
+    "sha256": "98b0cdbd0c531e6b4c01f430586cf3cafdfe6e7ce99ed59c9d4142530d9774d3",
+    "bytes": 6202
+  }
+]

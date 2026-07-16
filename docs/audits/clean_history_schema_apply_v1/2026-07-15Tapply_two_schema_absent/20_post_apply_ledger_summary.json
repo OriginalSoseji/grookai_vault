@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-07-15T20:25:27.7624554-06:00",
+  "isolated_worktree": {
+    "remote_only": [],
+    "local_only": [],
+    "local_only_count": 0,
+    "remote_only_count": 0
+  },
+  "feature_worktree": {
+    "remote_only": [],
+    "local_only": [
+      "20260715120000"
+    ],
+    "local_only_count": 1,
+    "remote_only_count": 0
+  },
+  "applied_clean_history_ids": [
+    "20260523183000",
+    "20260713190000"
+  ],
+  "card_visual_expected_local_only_in_feature": "20260715120000",
+  "pass": true
+}

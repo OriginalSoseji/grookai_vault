@@ -1,0 +1,20 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20260523183000_printing_truth_review_sidecar_v1.sql
+ • 20260713190000_trust_safety_block_report_v1.sql
+
+ [Y/n] y
+Applying migration 20260523183000_printing_truth_review_sidecar_v1.sql...
+NOTICE (00000): trigger "trg_card_printing_truth_reviews_updated_at_v1" for relation "public.card_printing_truth_reviews" does not exist, skipping
+NOTICE (00000): policy "security_info_deny_all_anon_v1" for relation "public.card_printing_truth_reviews" does not exist, skipping
+NOTICE (00000): policy "security_info_deny_all_authenticated_v1" for relation "public.card_printing_truth_reviews" does not exist, skipping
+Applying migration 20260713190000_trust_safety_block_report_v1.sql...
+NOTICE (00000): policy "trust_blocks_select_owner" for relation "public.trust_blocks" does not exist, skipping
+NOTICE (00000): policy "trust_blocks_insert_owner" for relation "public.trust_blocks" does not exist, skipping
+NOTICE (00000): policy "trust_blocks_delete_owner" for relation "public.trust_blocks" does not exist, skipping
+NOTICE (00000): policy "trust_reports_select_reporter" for relation "public.trust_reports" does not exist, skipping
+NOTICE (00000): policy "trust_reports_insert_reporter" for relation "public.trust_reports" does not exist, skipping
+Finished supabase db push.
+A new version of Supabase CLI is available: v2.109.1 (currently installed v2.90.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli

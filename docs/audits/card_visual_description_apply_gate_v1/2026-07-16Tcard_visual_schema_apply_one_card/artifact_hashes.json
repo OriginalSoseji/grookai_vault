@@ -1,0 +1,90 @@
+[
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\01_strict_prepush_expected_card_visual.txt",
+    "sha256": "0580d071c56e1ff675e889939b17202d3da17f3973e54fc5472c7a0ca86d2d5a"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\02_supabase_start_output.txt",
+    "sha256": "b3b86e543ee857306c794be59929d09c729077267f4dd4681f8d1acd0124a70a"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\03_strict_prepush_expected_card_visual_after_start.txt",
+    "sha256": "7e4681dc5d42c27114520e72ad7d456c3cb235e808161a1de8a66579f38e5c77"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\04_supabase_db_push_card_visual_output.txt",
+    "sha256": "794be58e650840dc3d736c53cc0d7793e2b7b5c9554be79edf2a4a811b4f1e4c"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\05_schema_rls_grants_boundary_readback.sql",
+    "sha256": "82bf7b2469142516bda569108783f30fda4c1a6c8780ade60d437118e93b7d44"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\06_post_apply_migration_list.txt",
+    "sha256": "2c0cc1b6d544173188e611e0bc327bc9ed7243a2f2927f9fa1d35f947b64ff1c"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\07_schema_rls_grants_boundary_readback.json",
+    "sha256": "aa5952c1f651e613dc88cf30a9b8c8e4d5ad898eea2f4dad7217c4123104e30f"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\08_node_check_card_visual_description_agent.txt",
+    "sha256": "34ff84a7d757bba38cc86beb92193981229966ce543509089414d9f8dc636c49"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\09_targeted_contract_tests.txt",
+    "sha256": "7135c1a8e20ca0e1ec4f92bdc4d158c73b076c0b7743b832b7dc48b0f1b6e7e8"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\10_one_card_openai_apply_command_output.txt",
+    "sha256": "f93864f16119999f919aa3d161ebe64f5a898278c9d0294dc29b973734d17163"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\11_one_card_openai_apply_command_output_env_loaded.txt",
+    "sha256": "66a8f2b65d2ce44ff14ea14aa56b8f4d27db37eb7984be9917350c62683eee70"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\12_one_card_openai_apply_command_output_system_ca.txt",
+    "sha256": "02f5b81506fb91e9b120f5564aac486db8b814567200aee6abbb8a15585ca5e5"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\13_one_card_db_readback.sql",
+    "sha256": "e11ac16b5a18293644b1a136b9cc8fafe5abbcbedf7b47d697e1c2304136a59f"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\14_one_card_db_readback.json",
+    "sha256": "2c79468a989549c9ca496d95bfec6b4de7f5d38e7c3096d2133352e80a93f6cf"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\15_strict_audit_linked_schema_after_apply.txt",
+    "sha256": "ce9e7e488059315a9da5d35e247bb5311728b3a3f5b05bef0e50e13791ebb9c3"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\16_strict_prepush_no_pending_after_apply.txt",
+    "sha256": "f39100ac2576d4716877ebf8b5ccaa945610fe22a35377df4c386740163583d1"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\17_strict_prepush_no_pending_after_empty_set_fix.txt",
+    "sha256": "c8e1d5dfc652571dc914241e643861c6f16f6e27310dffe7c4e5bd1b80197e76"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\18_secret_scan_output.txt",
+    "sha256": "f1471bbe224dfd5d247b38667ef19bfdde3a2f6cf49e542b42637946aba259ec"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\19_git_diff_check.txt",
+    "sha256": "7ad61d5bad6fcbbbf7e24f30234fe2cd4d876959214122f369b6441eab26947e"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\20_supabase_stop_output.txt",
+    "sha256": "62691dec990a27ec395914291e77d51617f26cab5a4d04eb6986b56a23bc92e6"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\21_precommit_shipcheck_failure_summary.txt",
+    "sha256": "784e59def24958e08c0b846053e413712a330499db102389ea9072b0730a9f61"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_apply_gate_v1\\2026-07-16Tcard_visual_schema_apply_one_card\\CARD_VISUAL_DESCRIPTION_ONE_CARD_APPLY_REPORT.md",
+    "sha256": "7fa9f659361a1893805916aca8c540230a2bb32925a8712d917ed943a6c3099d"
+  }
+]

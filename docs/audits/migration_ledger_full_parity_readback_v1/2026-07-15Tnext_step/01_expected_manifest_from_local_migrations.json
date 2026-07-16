@@ -1,0 +1,1255 @@
+{
+  "generated_at": "2026-07-15T18:00:00.3400394-06:00",
+  "source": "local migration regex extraction",
+  "migration_ids": [
+    "20260629190000",
+    "20260703090000",
+    "20260706100000",
+    "20260706110000",
+    "20260706120000",
+    "20260706121000",
+    "20260706122000",
+    "20260706123000",
+    "20260708174000",
+    "20260712090000",
+    "20260715104500",
+    "20260715110000"
+  ],
+  "relations": [
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "card_events"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "card_events_emit_failures"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "completion_crossings"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "watches"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "device_tokens"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "notification_delivery_budgets"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "notification_emit_failures"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "notification_outbox"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "notification_prefs"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "notifications_log"
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "market_pricing_pipeline_phase_runs"
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "object_kind": "view",
+      "schema_name": "public",
+      "object_name": "v_market_pricing_pipeline_phase_latest_status"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_artifacts"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_categories"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_group_fetch_status"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_groups"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_price_daily_observations"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_products"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "table",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_sync_runs"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "view",
+      "schema_name": "public",
+      "object_name": "v_tcgcsv_source_sync_latest_status"
+    }
+  ],
+  "indexes": [
+    {
+      "migration_id": "20260629190000",
+      "file_name": "20260629190000_market_listing_price_events_observation_idx.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "market_listing_price_events_observation_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_actor_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_card_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_dedupe_key_unique_idx",
+      "unique": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_emit_failures_actor_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_emit_failures_source_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_subject_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "card_events_type_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "completion_crossings_subject_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "completion_crossings_user_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "watches_subject_lookup_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "watches_user_active_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "watches_user_subject_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "device_tokens_token_unique_idx",
+      "unique": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "device_tokens_user_active_seen_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notification_emit_failures_recipient_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notification_emit_failures_source_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notification_outbox_pending_drain_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notification_outbox_recipient_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notification_outbox_recipient_dedupe_unique_idx",
+      "unique": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notifications_log_recipient_created_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notifications_log_recipient_sent_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "notifications_log_terminal_outbox_unique_idx",
+      "unique": true
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "market_pricing_pipeline_phase_runs_latest_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "market_pricing_pipeline_phase_runs_run_key_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_group_fetch_status_run_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_groups_category_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_price_daily_category_day_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_price_daily_product_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_products_category_group_idx",
+      "unique": false
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "object_kind": "index",
+      "schema_name": "public",
+      "object_name": "tcgcsv_source_products_group_idx",
+      "unique": false
+    }
+  ],
+  "functions": [
+    {
+      "migration_id": "20260703090000",
+      "file_name": "20260703090000_trade_execution_second_leg_any_trade_copy_v1.sql",
+      "schema_name": "public",
+      "function_name": "execute_card_interaction_outcome_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_block_mutation_v1",
+      "expected_security_definer": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_emit_failures_block_mutation_v1",
+      "expected_security_definer": false
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_emit_failures_set_defaults_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_feed_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_resolve_visibility_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_set_defaults_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_card_event_visible_to_viewer_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_collector_public_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_collectors_visible_to_viewer_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "user_set_completion_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_emit_completion_crossings_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_events_emit_vault_import_summary_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_collector_follows_after_delete_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_collector_follows_after_insert_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_completion_snapshot_for_card_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_emit_event_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_log_emit_failure_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_owned_card_count_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_upsert_watch_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_vault_instance_after_insert_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_vault_instance_after_update_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_wall_memberships_after_write_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_wall_sections_after_write_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_watch_rank_v1",
+      "expected_security_definer": false
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_watch_strength_v1",
+      "expected_security_definer": false
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_wishlist_after_delete_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "interest_graph_wishlist_after_insert_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "function_name": "scanner_v5_emit_vault_add_enriched_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "enqueue_card_interaction_notification_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_log_emit_failure_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "prevent_notification_outbox_client_writes_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "function_name": "prevent_notifications_log_client_writes_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_claim_batch_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_defer_outbox_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_disable_token_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_log_validation_failure_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_mark_folded_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_mark_retry_or_failed_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_mark_send_started_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_mark_sent_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_mark_skipped_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_release_budget_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706121000",
+      "file_name": "20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_reserve_budget_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706122000",
+      "file_name": "20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_dispatcher_scheduled_http_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706123000",
+      "file_name": "20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "mark_notification_tapped_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706123000",
+      "file_name": "20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_disable_device_token_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260706123000",
+      "file_name": "20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql",
+      "schema_name": "public",
+      "function_name": "notification_register_device_token_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260708174000",
+      "file_name": "20260708174000_product_evolution_e5_card_journey_moment_rollups_v1.sql",
+      "schema_name": "public",
+      "function_name": "card_journey_moments_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "schema_name": "public",
+      "function_name": "market_pricing_pipeline_phase_runs_append_only_guard_v1",
+      "expected_security_definer": true
+    },
+    {
+      "migration_id": "20260715104500",
+      "file_name": "20260715104500_mobile_vault_variant_and_canonical_image_contract_v1.sql",
+      "schema_name": "public",
+      "function_name": "vault_mobile_collector_rows_v1",
+      "expected_security_definer": true
+    }
+  ],
+  "policies": [
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "policy_name": "card_events_actor_insert"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "policy_name": "card_events_service_role_all"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "policy_name": "card_events_visibility_select"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "policy_name": "card_events_emit_failures_owner_insert"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "policy_name": "card_events_emit_failures_owner_select"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "policy_name": "card_events_emit_failures_service_role_all"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "completion_crossings",
+      "policy_name": "completion_crossings_owner_select"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "completion_crossings",
+      "policy_name": "completion_crossings_service_role_all"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "policy_name": "watches_owner_delete"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "policy_name": "watches_owner_insert"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "policy_name": "watches_owner_select"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "policy_name": "watches_owner_update"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "policy_name": "watches_service_role_all"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "device_tokens",
+      "policy_name": "device_tokens_insert_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "device_tokens",
+      "policy_name": "device_tokens_select_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "device_tokens",
+      "policy_name": "device_tokens_update_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_delivery_budgets",
+      "policy_name": "notification_delivery_budgets_select_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_prefs",
+      "policy_name": "notification_prefs_insert_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_prefs",
+      "policy_name": "notification_prefs_select_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_prefs",
+      "policy_name": "notification_prefs_update_owner"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notifications_log",
+      "policy_name": "notifications_log_select_recipient"
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "schema_name": "public",
+      "table_name": "market_pricing_pipeline_phase_runs",
+      "policy_name": "market_pricing_pipeline_phase_runs_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_artifacts",
+      "policy_name": "tcgcsv_source_artifacts_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_categories",
+      "policy_name": "tcgcsv_source_categories_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_group_fetch_status",
+      "policy_name": "tcgcsv_source_group_fetch_status_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_groups",
+      "policy_name": "tcgcsv_source_groups_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_price_daily_observations",
+      "policy_name": "tcgcsv_source_price_daily_observations_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_products",
+      "policy_name": "tcgcsv_source_products_service_role_all"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_sync_runs",
+      "policy_name": "tcgcsv_source_sync_runs_service_role_all"
+    }
+  ],
+  "triggers": [
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "trigger_name": "trg_card_events_block_delete"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "trigger_name": "trg_card_events_block_update"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events",
+      "trigger_name": "trg_card_events_set_defaults"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "trigger_name": "trg_card_events_emit_failures_block_delete"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "trigger_name": "trg_card_events_emit_failures_block_update"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "trigger_name": "trg_card_events_emit_failures_set_defaults"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches",
+      "trigger_name": "trg_watches_updated_at"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "collector_follows",
+      "trigger_name": "trg_interest_graph_collector_follows_after_delete"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "collector_follows",
+      "trigger_name": "trg_interest_graph_collector_follows_after_insert"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "vault_item_instances",
+      "trigger_name": "trg_interest_graph_vault_instance_after_insert"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "vault_item_instances",
+      "trigger_name": "trg_interest_graph_vault_instance_after_update"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "wall_section_memberships",
+      "trigger_name": "trg_interest_graph_wall_memberships_after_delete"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "wall_section_memberships",
+      "trigger_name": "trg_interest_graph_wall_memberships_after_insert"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "wall_sections",
+      "trigger_name": "trg_interest_graph_wall_sections_after_write"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "wishlist_items",
+      "trigger_name": "trg_interest_graph_wishlist_after_delete"
+    },
+    {
+      "migration_id": "20260706110000",
+      "file_name": "20260706110000_product_evolution_e1_emission_triggers_v1.sql",
+      "schema_name": "public",
+      "table_name": "wishlist_items",
+      "trigger_name": "trg_interest_graph_wishlist_after_insert"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_interactions",
+      "trigger_name": "trg_enqueue_card_interaction_notification_v1"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "device_tokens",
+      "trigger_name": "trg_device_tokens_updated_at"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_delivery_budgets",
+      "trigger_name": "trg_notification_delivery_budgets_updated_at"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_outbox",
+      "trigger_name": "trg_notification_outbox_no_authenticated_insert"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_prefs",
+      "trigger_name": "trg_notification_prefs_updated_at"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notifications_log",
+      "trigger_name": "trg_notifications_log_no_authenticated_mutation"
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "schema_name": "public",
+      "table_name": "market_pricing_pipeline_phase_runs",
+      "trigger_name": "market_pricing_pipeline_phase_runs_append_only_guard"
+    }
+  ],
+  "rls_tables": [
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "completion_crossings"
+    },
+    {
+      "migration_id": "20260706100000",
+      "file_name": "20260706100000_product_evolution_e1_interest_graph_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "watches"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "device_tokens"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_delivery_budgets"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_emit_failures"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_outbox"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notification_prefs"
+    },
+    {
+      "migration_id": "20260706120000",
+      "file_name": "20260706120000_product_evolution_e2_notification_schema_v1.sql",
+      "schema_name": "public",
+      "table_name": "notifications_log"
+    },
+    {
+      "migration_id": "20260712090000",
+      "file_name": "20260712090000_pricing_pipeline_phase_runs_v1.sql",
+      "schema_name": "public",
+      "table_name": "market_pricing_pipeline_phase_runs"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_artifacts"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_categories"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_group_fetch_status"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_groups"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_price_daily_observations"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_products"
+    },
+    {
+      "migration_id": "20260715110000",
+      "file_name": "20260715110000_tcgcsv_full_source_warehouse_v1.sql",
+      "schema_name": "public",
+      "table_name": "tcgcsv_source_sync_runs"
+    }
+  ]
+}

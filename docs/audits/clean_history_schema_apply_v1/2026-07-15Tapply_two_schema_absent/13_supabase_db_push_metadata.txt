@@ -1,0 +1,8 @@
+started_at=2026-07-15T20:24:16.6823195-06:00
+command=supabase db push --linked --yes
+workdir=C:\grookai_vault_clean_history_apply_20260715
+card_visual_migration_exists=False
+
+exit_code=1
+ended_at=2026-07-15T20:24:18.8186278-06:00
+

@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-07-15T20:26:25.2436999-06:00",
+  "checks": {
+    "printing_truth_table_exists": true,
+    "printing_truth_rls_enabled": true,
+    "printing_truth_view_exists": true,
+    "printing_truth_trigger_exists": true,
+    "printing_truth_expected_policies": true,
+    "trust_blocks_table_exists": true,
+    "trust_blocks_rls_enabled": true,
+    "trust_reports_table_exists": true,
+    "trust_reports_rls_enabled": true,
+    "trust_function_security_definer": true,
+    "card_interactions_policy_exists": true,
+    "card_contact_targets_view_exists": true,
+    "card_visual_runs_absent": true,
+    "card_visual_descriptions_absent": true,
+    "card_visual_migration_not_applied": true
+  },
+  "failed_checks": [],
+  "pass": true
+}

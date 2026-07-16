@@ -1,0 +1,7 @@
+started_at=2026-07-15T13:32:26.9457309-06:00
+command=supabase db reset --local --yes
+workdir=C:\grookai_vault_card_desc_agent
+
+exit_code=0
+ended_at=2026-07-15T13:32:56.3216490-06:00
+

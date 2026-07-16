@@ -1,0 +1,6 @@
+started_at=2026-07-15T20:15:09.8978818-06:00
+command=pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260523183000,20260713190000,20260715120000
+
+exit_code=0
+ended_at=2026-07-15T20:15:49.7518103-06:00
+
