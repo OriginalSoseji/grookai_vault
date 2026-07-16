@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-07-16T20:09:21.932Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/run_plan.json": "333307bd69bdb24690724d07ff1f3ce3f52f58575d12f0ebe614e5b42cc56ddb",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/command_metadata.json": "90cc85274923a9efe4c49399913c4efed205ec3d86c5d320dc759fbe660951c1",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/generated_outputs.jsonl": "092896cb900c68ddbcfff867367752c9f273228f04374b2bdbfa9c323298dfcf",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/review_sample.jsonl": "092896cb900c68ddbcfff867367752c9f273228f04374b2bdbfa9c323298dfcf",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/summary.json": "d104e6535b1a4d1bbaea316b8d82edba2d69cf986ea18bb5f0ac11700f412776",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/dry_run_no_db_write_readback.json": "b8af3ac68b660b536b3342b7c4c6064caa93859435942580e0eadcb952950318",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/first_pass_review_buckets.json": "727aa5a3c4f38d4872291c82433a7c3e11a9041f4063335d575a0271f490da9c",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/CARD_VISUAL_LANGUAGE_V1_FIELD_AWARE_FINAL_25_DESCRIPTIONS.md": "959b0ec7cb977bcd5e66c8905f24cd6280de951a03bdc114b6d5d41a15c2bbb9",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/VISUAL_LANGUAGE_V1_FIELD_AWARE_FINAL_25_DRY_RUN_REPORT.md": "42c6a1d29985aa586ffe34c2c3357a18b51d3f5a691238d6b10a833eb517de60",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/targeted_test_output.txt": "3c1ab0ca44dbaea2f6f95be52856ce8c7b0bd0d7e3a431c2ce3fb5598c65bdbc",
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/diff_check_output.txt": "5563d58d6ce9fa70e6228f2ea7f0f02468438e74126741f2fc573771c857f95c",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_FIELD_AWARE_FINAL_25_DRY_RUN_20260716.md": "ccb820302a9d6b21b1236bf1f6c82ba7ef0161c0e296aaad6e3fd4213bdac411",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "5e36bef7c55d0ab019f5346bb3e3d49540c9a1929f287c328969d63de4bcaedb"
+  }
+}

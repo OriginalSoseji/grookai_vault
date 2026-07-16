@@ -1,0 +1,99 @@
+{
+  "artifact_type": "card_visual_language_v1_field_aware_final_25_first_pass_review",
+  "reviewed_at": "2026-07-16T20:05:48.572Z",
+  "reviewer_mode": "codex_first_pass_payload_review_without_local_image_files",
+  "image_review_limitation": "Self-hosted image keys were present in generated outputs, but matching local image files were not found in the active checkout or C:/grookai_vault during this review.",
+  "lock_criteria": {
+    "validated_25_of_25": true,
+    "all_five_branches_correctly_routed": true,
+    "zero_false_positives": false,
+    "zero_or_one_false_negative": false,
+    "no_unflagged_subject_identity_or_anatomy_failure": true,
+    "no_unflagged_physical_card_surface_claim": false,
+    "no_database_writes_approvals_or_embeddings": true
+  },
+  "buckets": {
+    "correctly_left_pending": [
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+        "name": "Magnetic Storm",
+        "branch": "stadium",
+        "rationale": "Environment and weather description is visually grounded enough for pending status in first-pass payload review."
+      }
+    ],
+    "correctly_flagged_needs_review": [
+      "GV-PK-JPN-M5-113",
+      "GV-PK-JPN-M5-118",
+      "GV-PK-JPN-M5-101",
+      "GV-PK-JPN-M5-112",
+      "GV-PK-JPN-M5-096",
+      "GV-PK-JPN-M5-109",
+      "GV-PK-JPN-M5-117",
+      "GV-PK-JPN-M5-116",
+      "GV-PK-JPN-M5-111",
+      "GV-PK-JPN-S6A-100",
+      "GV-PK-JPN-PMCG6-085",
+      "GV-PK-JPN-TCGCOLLECTOR11525-019",
+      "GV-PK-JPN-SMG-039",
+      "GV-PK-JPN-TCGCOLLECTOR11541-013",
+      "GV-PK-JPN-L1BSS-070",
+      "GV-PK-JPN-TCGCOLLECTOR11194-057",
+      "GV-PK-JPN-SM1PLUS-069",
+      "GV-PK-JPN-M5-106",
+      "GV-PK-JPN-M5-105",
+      "GV-PK-JPN-M5-074",
+      "GV-PK-JPN-M5-073"
+    ],
+    "likely_false_positives": [
+      {
+        "gv_id": "GV-PK-JPN-M5-108",
+        "name": "Misty's Vitality",
+        "branch": "trainer",
+        "original_status": "needs_review",
+        "issue": "Trainer expression/personality flag appears over-applied because the generated text supplies visible smile and gesture support for the confidence/cheerful expression language."
+      }
+    ],
+    "status_level_false_negatives": [
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+        "name": "Dark Metal Energy",
+        "branch": "energy",
+        "original_status": "pending",
+        "issue": "Interpretive language remained unflagged: 'mood invokes a sense of intensity' and 'abstract representation of dark energy'."
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-072",
+        "name": "古びたたての化石",
+        "branch": "item_tool_supporter",
+        "original_status": "pending",
+        "issue": "Interpretive/purpose language remained unflagged: 'sense of discovery and ancient history' and fossil 'significance'."
+      }
+    ],
+    "flag_level_false_negatives_inside_needs_review_rows": [
+      {
+        "gv_id": "GV-PK-JPN-M5-101",
+        "name": "Mega Excadrill ex",
+        "issue": "Card surface field says 'smooth surface' and printing treatment 'appears to show muted colors' without a surface-policy flag; row was needs_review for other reasons."
+      },
+      {
+        "gv_id": "GV-PK-JPN-L1BSS-070",
+        "name": "Rainbow Energy",
+        "issue": "Card surface field overclaims standard surface, lack of texturing/gloss effects, edge wear, and print quality without a surface-policy flag; row was needs_review for other reasons."
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-112",
+        "name": "Mega Zeraora ex",
+        "issue": "Unsupported expression/personality phrases such as intensity and determination were not the reason for review; row was needs_review for canonical/type-like language."
+      }
+    ]
+  },
+  "counts": {
+    "correctly_left_pending": 1,
+    "correctly_flagged_needs_review": 21,
+    "likely_false_positives": 1,
+    "status_level_false_negatives": 2,
+    "flag_level_false_negatives_inside_needs_review_rows": 3
+  },
+  "freeze_lock_result": "failed",
+  "failure_summary": "Operational boundaries passed, but freeze-quality criteria failed due one likely status-level false positive, two status-level false negatives, and unflagged physical-surface claims inside needs_review rows."
+}

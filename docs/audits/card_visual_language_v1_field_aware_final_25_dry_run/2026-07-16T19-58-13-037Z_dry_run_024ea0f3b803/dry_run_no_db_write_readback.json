@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-07-16T20:04:19.654Z",
+  "run_key": "024ea0f3b803f336d9fc9c6b4f663bea1227b18717f506eca45d5beaab95f50a",
+  "run_dir": "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803",
+  "dry_run_boundary": {
+    "db_writes_expected": false,
+    "model_calls_expected": true,
+    "embeddings_expected": false,
+    "card_prints_mutation_expected": false
+  },
+  "run_window": {
+    "started_at": "2026-07-16T19:58:13.037Z",
+    "finished_at": "2026-07-16T20:02:03.603Z"
+  },
+  "card_visual_description_runs_rows_for_run_key": 0,
+  "card_print_visual_descriptions_rows_between_run_window_for_agent_model_prompt": 0
+}

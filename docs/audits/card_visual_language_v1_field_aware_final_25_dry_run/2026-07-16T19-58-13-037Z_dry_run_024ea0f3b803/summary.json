@@ -1,0 +1,177 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4o-mini",
+  "response_model_version": "gpt-4o-mini-2024-07-18",
+  "response_model_versions": [
+    "gpt-4o-mini-2024-07-18"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR",
+  "output_schema_version": "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+  "sample_strategy": "branch_stratified",
+  "branch_targets": {
+    "pokemon": 5,
+    "trainer": 5,
+    "stadium": 5,
+    "energy": 5,
+    "item_tool_supporter": 5
+  },
+  "branch_candidate_limit": 60000,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-16",
+    "recorded_at": "2026-07-16T19:58:13.037Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-16T19:58:13.037Z",
+  "finished_at": "2026-07-16T20:02:03.603Z",
+  "eligible_count": 25,
+  "total_eligible_catalog_count": 53227,
+  "attempted_count": 25,
+  "validated_count": 25,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "needs_review_count": 22,
+  "pending_count": 3,
+  "branch_counts": {
+    "energy": 5,
+    "item_tool_supporter": 5,
+    "pokemon": 5,
+    "stadium": 5,
+    "trainer": 5
+  },
+  "usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 682128,
+    "output_tokens": 9854,
+    "total_tokens": 691982,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.1082316
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1,
+    "retry_count": 0,
+    "input_tokens": 27285.12,
+    "output_tokens": 394.16,
+    "total_tokens": 27679.28,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.00432926
+  },
+  "estimated_cost_usd": 0.1082316,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.00432926,
+    "projected_500_cards_usd": 2.16463,
+    "projected_1000_cards_usd": 4.32926,
+    "full_eligible_catalog_count": 53227,
+    "projected_full_eligible_catalog_usd": 230.43352202
+  },
+  "ceiling": {
+    "max_cards": 25,
+    "max_run_cost_usd": 0.25,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_abstract_shape_literalization": 1,
+    "potential_canonical_metadata_in_visual_output": 5,
+    "potential_creature_language_on_non_pokemon_branch": 1,
+    "potential_dramatic_inferred_action_language": 2,
+    "potential_interpretive_claim": 9,
+    "potential_interpretive_mood_language": 2,
+    "potential_metadata_or_identity_language": 1,
+    "potential_object_material_or_card_surface_confusion": 3,
+    "potential_primary_subject_anatomy_overclaim": 2,
+    "potential_purpose_or_lore_interpretation": 3,
+    "potential_semantic_tag_nonvisual_concept": 7,
+    "potential_speculative_setting_language": 4,
+    "potential_surface_overclaim": 1,
+    "potential_unsupported_personality_or_species_interpretation": 7,
+    "potential_visual_material_vs_surface_confusion": 3,
+    "semantic_tags_metadata_or_generic_removed": 1
+  },
+  "quality_flag_counts_by_branch": {
+    "energy": {
+      "potential_abstract_shape_literalization": 1,
+      "potential_canonical_metadata_in_visual_output": 3,
+      "potential_creature_language_on_non_pokemon_branch": 1,
+      "potential_interpretive_claim": 2,
+      "potential_interpretive_mood_language": 1,
+      "potential_purpose_or_lore_interpretation": 2,
+      "potential_speculative_setting_language": 1
+    },
+    "item_tool_supporter": {
+      "potential_dramatic_inferred_action_language": 2,
+      "potential_interpretive_claim": 2,
+      "potential_object_material_or_card_surface_confusion": 2,
+      "potential_semantic_tag_nonvisual_concept": 1,
+      "potential_surface_overclaim": 1,
+      "potential_visual_material_vs_surface_confusion": 2
+    },
+    "pokemon": {
+      "potential_canonical_metadata_in_visual_output": 2,
+      "potential_interpretive_claim": 2,
+      "potential_interpretive_mood_language": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_primary_subject_anatomy_overclaim": 2,
+      "potential_purpose_or_lore_interpretation": 1,
+      "potential_semantic_tag_nonvisual_concept": 2,
+      "potential_speculative_setting_language": 2,
+      "potential_unsupported_personality_or_species_interpretation": 1
+    },
+    "stadium": {
+      "potential_interpretive_claim": 1,
+      "potential_semantic_tag_nonvisual_concept": 4,
+      "potential_speculative_setting_language": 1,
+      "potential_unsupported_personality_or_species_interpretation": 1,
+      "semantic_tags_metadata_or_generic_removed": 1
+    },
+    "trainer": {
+      "potential_interpretive_claim": 2,
+      "potential_object_material_or_card_surface_confusion": 1,
+      "potential_unsupported_personality_or_species_interpretation": 5,
+      "potential_visual_material_vs_surface_confusion": 1
+    }
+  },
+  "policy_rule_counts": {
+    "branch_mood_vocabulary_requires_review": 5,
+    "energy_abstract_literalization_requires_structured_entity_evidence": 1,
+    "energy_branch_force_purpose_or_series_claim_requires_review": 1,
+    "item_object_action_or_event_interpretation_requires_review": 1,
+    "pokemon_personality_or_expression_requires_review": 1,
+    "surface_claim_requires_physical_evidence": 1,
+    "trainer_personality_or_expression_requires_visible_support": 6,
+    "type_like_visual_claim_requires_visible_support": 6
+  },
+  "policy_rule_counts_by_branch": {
+    "energy": {
+      "energy_abstract_literalization_requires_structured_entity_evidence": 1,
+      "energy_branch_force_purpose_or_series_claim_requires_review": 1,
+      "type_like_visual_claim_requires_visible_support": 4
+    },
+    "item_tool_supporter": {
+      "branch_mood_vocabulary_requires_review": 2,
+      "item_object_action_or_event_interpretation_requires_review": 1,
+      "surface_claim_requires_physical_evidence": 1
+    },
+    "pokemon": {
+      "branch_mood_vocabulary_requires_review": 2,
+      "pokemon_personality_or_expression_requires_review": 1,
+      "type_like_visual_claim_requires_visible_support": 2
+    },
+    "stadium": {},
+    "trainer": {
+      "branch_mood_vocabulary_requires_review": 1,
+      "trainer_personality_or_expression_requires_visible_support": 6
+    }
+  }
+}
