@@ -768,6 +768,143 @@ test("card visual language enforcement catches cross-field expression contradict
     && detail.field === "semantic_tags"));
 });
 
+test("card visual language enforcement catches claim-class dry-run final false negatives narrowly", () => {
+  const excadrillDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The posture suggests a readiness to burrow or attack, with a theme of excavation and speed and a formidable appearance.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["Mega Excadrill"], secondary: [] },
+        environment: { setting: [] },
+        mood: ["intimidating mood"],
+        distinguishing_details: ["drill-shaped snout"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["drill-like anatomy", "dynamic pose", "dark background"],
+    },
+    { name: "Mega Excadrill ex", supertype: "Pokemon" },
+  );
+
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "readiness to burrow or attack"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_purpose_or_lore_interpretation"
+    && detail.matched_text === "theme of excavation and speed"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "formidable appearance"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "intimidating mood"
+    && detail.field === "visual_attributes.mood"));
+
+  const trainerDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The trainer has a confident stance, determination or focus, a sense of action and readiness, and an assertive posture.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["Gladion"], secondary: [] },
+        environment: { setting: ["grassy landscape"] },
+        mood: [],
+        distinguishing_details: ["outstretched arm"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["confident expression", "trainer portrait", "grassy landscape"],
+    },
+    { name: "Gladion's Final Battle", supertype: "Trainer", card_category: "Supporter" },
+  );
+
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "confident stance"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "determination or focus"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "action and readiness"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "assertive posture"));
+  assert.ok(trainerDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "confident expression"
+    && detail.field === "semantic_tags"));
+
+  const grassEnergyDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The mood conveys vitality, fitting for a Grass Energy card, and emphasizes elemental qualities associated with grass.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["leaf symbol", "green gradients"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["green gradients", "leaf symbol", "radiating lines"],
+    },
+    { name: "Basic Grass Energy", supertype: "Energy", card_category: "Basic" },
+  );
+
+  assert.ok(grassEnergyDetails.some((detail) =>
+    detail.flag === "potential_purpose_or_lore_interpretation"
+    && detail.matched_text === "fitting for a Grass Energy card"));
+  assert.ok(grassEnergyDetails.some((detail) =>
+    detail.flag === "potential_purpose_or_lore_interpretation"
+    && detail.matched_text === "elemental qualities associated with grass"));
+});
+
+test("card visual language enforcement catches final surface phrases and ignores non-problem glare quality", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description: "The visible object is centered against blue gradients with a simple background.",
+      card_surface_and_printing_cues:
+        "Foil treatment is present and card surface quality appears clear.",
+      visual_attributes: {
+        subjects: { primary: ["object"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["centered object"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["centered object", "blue gradients", "simple background"],
+    },
+    { name: "Example Item", supertype: "Trainer", card_category: "Item" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "Foil treatment is present"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "card surface quality appears clear"));
+
+  const validation = validateVisualDescriptionPayloadV1({
+    artwork_description:
+      "This sufficiently long description focuses on visible shapes, colors, composition, and grounded details only.",
+    card_surface_and_printing_cues:
+      "Glare prevents determination; no reliable additional card-surface or printing-treatment cues are visible enough to describe.",
+    visual_attributes: {
+      subjects: { primary: ["object"], secondary: [] },
+      environment: { setting: [] },
+      mood: [],
+      distinguishing_details: ["centered object"],
+      uncertainty_notes: ["glare prevents determination"],
+    },
+    semantic_tags: ["centered object", "blue gradients", "simple background"],
+    quality_flags: ["glare prevents determination"],
+    description_confidence: 0.95,
+    attribute_confidence: 0.95,
+  });
+
+  assert.equal(validation.normalized.quality_flags.length, 0);
+});
+
 test("card visual language enforcement preserves objective Energy branch wording", () => {
   const flags = detectVisualDescriptionReviewFlagsV1(
     {
