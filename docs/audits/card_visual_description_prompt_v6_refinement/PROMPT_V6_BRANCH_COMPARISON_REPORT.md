@@ -55,7 +55,8 @@ Successful dry run:
   - `docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_review_sample.jsonl`
   - `docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_summary.json`
 - Local raw run artifact directory: `docs/audits/card_visual_descriptions/2026-07-16T05-53-26-653Z_dry_run_4ac9cc1e9168`
-- Descriptions artifact: `docs/audits/card_visual_description_prompt_v6_refinement/PROMPT_V6_DRY_RUN_DESCRIPTIONS.md`
+- Review-format descriptions artifact: `docs/audits/card_visual_description_prompt_v6_refinement/CARD_VISUAL_DESCRIPTION_V6_BRANCH_DESCRIPTIONS.md`
+- Raw generated descriptions artifact: `docs/audits/card_visual_description_prompt_v6_refinement/PROMPT_V6_DRY_RUN_DESCRIPTIONS.md`
 - DB no-write readback: `docs/audits/card_visual_description_prompt_v6_refinement/prompt_v6_no_db_write_readback.json`
 - Result: 4 eligible, 4 validated, 0 skipped, 0 failed.
 - Note: this command used process-local `NODE_TLS_REJECT_UNAUTHORIZED=0` due the local certificate-chain issue. This was an execution-environment workaround only, not a code change.

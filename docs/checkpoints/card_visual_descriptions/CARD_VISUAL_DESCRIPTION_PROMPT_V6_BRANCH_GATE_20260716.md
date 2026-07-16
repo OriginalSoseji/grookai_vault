@@ -71,6 +71,7 @@ docs/audits/card_visual_description_prompt_v6_refinement/successful_dry_run_summ
 Generated descriptions:
 
 ```text
+docs/audits/card_visual_description_prompt_v6_refinement/CARD_VISUAL_DESCRIPTION_V6_BRANCH_DESCRIPTIONS.md
 docs/audits/card_visual_description_prompt_v6_refinement/PROMPT_V6_DRY_RUN_DESCRIPTIONS.md
 ```
 
