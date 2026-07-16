@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-07-16T18:35:24.045Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/run_plan.json": "3bead3a059aab0c087b7fd4951a1f8788d591d70d802eb90670db55b6ce1db96",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/summary.json": "f879e2c6300550dabae73fc92047a1d7602eeea6f88f4e7a2a8af2fe4864da31",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/dry_run_no_db_write_readback.json": "579a06d278177e43f589baf663466626d2b410a0eb43c59541c5fbd22fd91ffc",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/command_metadata.json": "9a71bd5f36c1b0e23f411bd19a5a85bd9b49e0ed83b89056a9666ebfe2e7348e",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/generated_outputs.jsonl": "8554bca76b462da97222bbfb46fdd9a3f4f679efcef901ca2a32254350add08b",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/review_sample.jsonl": "8554bca76b462da97222bbfb46fdd9a3f4f679efcef901ca2a32254350add08b",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29/CARD_VISUAL_LANGUAGE_V1_CLAIM_CLASS_REPAIR_25_DESCRIPTIONS.md": "bcf44c53d1029a07f1cd15e4483190c6cd08ce33e735785743d6975da3584f52",
+    "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/VISUAL_LANGUAGE_V1_CLAIM_CLASS_REPAIR_25_DRY_RUN_REPORT.md": "7f32bd2fc4f9dfa4fce3001ded050c12c5a9c483164ed9e365e60c6a1b6d455c",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_CLAIM_CLASS_REPAIR_25_DRY_RUN_20260716.md": "67da7349098faad8c0334a80a8cae43672b3941df24577e6b0d6df2fb18ea2b5",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "5ea94870f1b975faf4f3ec5ebeba5f7e8295740ad2bf166c6a3bd73607e75e67"
+  }
+}

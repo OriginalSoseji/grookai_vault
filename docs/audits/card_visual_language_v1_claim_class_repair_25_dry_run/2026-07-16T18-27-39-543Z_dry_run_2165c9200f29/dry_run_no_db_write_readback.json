@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-07-16T18:31:52.988Z",
+  "run_key": "2165c9200f292c0816dec1efd4326afcac17bd36dab3c36f4942ecc4139f80ff",
+  "run_dir": "docs/audits/card_visual_language_v1_claim_class_repair_25_dry_run/2026-07-16T18-27-39-543Z_dry_run_2165c9200f29",
+  "dry_run_boundary": {
+    "db_writes_expected": false,
+    "model_calls_expected": true,
+    "embeddings_expected": false,
+    "card_prints_mutation_expected": false
+  },
+  "run_window": {
+    "started_at": "2026-07-16T18:27:39.543Z",
+    "finished_at": "2026-07-16T18:31:14.055Z"
+  },
+  "card_visual_description_runs_rows_for_run_key": 0,
+  "card_print_visual_descriptions_rows_between_run_window_for_agent_model_prompt": 0
+}
