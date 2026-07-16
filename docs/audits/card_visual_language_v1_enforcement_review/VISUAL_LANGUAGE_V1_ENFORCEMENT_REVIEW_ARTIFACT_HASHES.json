@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-07-16T06:51:00.000Z",
+  "algorithm": "sha256",
+  "excludes": [
+    "docs/audits/card_visual_language_v1_enforcement_review/VISUAL_LANGUAGE_V1_ENFORCEMENT_REVIEW_ARTIFACT_HASHES.json"
+  ],
+  "hashes": {
+    "backend/card_descriptions/card_visual_description_agent_v1.mjs": "95136283831ca1919d1ed4ff4d3e8845a1b49b05178c37fb5422bd21c2b42140",
+    "tests/contracts/card_visual_description_agent_v1.test.mjs": "5f3e73f13f58266c4f52fd9ea42b4c7bec9805f89d75c91e9ced07d3848dae76",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/eligible_cards.jsonl": "481d810fc74e6ea1c4c6de9d091135932cce8d5c5567c6bb1974cd50221375a4",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/generated_outputs.jsonl": "06e99403d9ee4fee733b8e04ff9b4dc73896a1ad7432355a127116c8832f6530",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/review_sample.jsonl": "06e99403d9ee4fee733b8e04ff9b4dc73896a1ad7432355a127116c8832f6530",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/run_plan.json": "a79e6f59b7be78ed91e5f43093ae7fb3911e90ece408fa767f0f7558f0a41b8f",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/summary.json": "fed02b8275b844c6a8905adc7f07380b1dbfb62ebb994d5732bbaa80131460b6",
+    "docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_enforcement_review/visual_language_enforcement_review_contract_test_output.txt": "9925e363517b213f229e089d13b9e1b66d606de94a8e18acc9999cdd0ad90714",
+    "docs/audits/card_visual_language_v1_enforcement_review/visual_language_enforcement_review_four_card_dry_run_console.txt": "a7d72356370a6e8c586cdf5350e33461b93b8dac8d2304c8e42d9976a60197bb",
+    "docs/audits/card_visual_language_v1_enforcement_review/visual_language_enforcement_review_git_diff_check_output.txt": "41b10f3e2ef7730d58017d74af45759e96b1a799ab8718b7d72096dc617b4982",
+    "docs/audits/card_visual_language_v1_enforcement_review/visual_language_enforcement_review_no_db_write_readback.json": "b9363b8cf721798f69857309493e633e41814380234b379aa6ae6e69c4264a7c",
+    "docs/audits/card_visual_language_v1_enforcement_review/visual_language_enforcement_review_node_check_output.txt": "a694a76471a60bedc73ccf34acfff76cafbabc6623e57a6c9b1fc1ec508da283",
+    "docs/audits/card_visual_language_v1_enforcement_review/VISUAL_LANGUAGE_V1_ENFORCEMENT_REVIEW_DECISION.md": "c9d22bc61fec6575d4a8d58b55719c0662eb1ec80d7860a66095f8cf83598d25"
+  }
+}

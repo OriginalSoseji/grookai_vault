@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: card visual description schema is private, versioned, and current-row safe
+ok 1 - card visual description schema is private, versioned, and current-row safe
+  ---
+  duration_ms: 2.1715
+  type: 'test'
+  ...
+# Subtest: card visual description args default to dry-run and block fixture apply
+ok 2 - card visual description args default to dry-run and block fixture apply
+  ---
+  duration_ms: 1.0995
+  type: 'test'
+  ...
+# Subtest: card visual description semantic tags stay visual and exclude metadata
+ok 3 - card visual description semantic tags stay visual and exclude metadata
+  ---
+  duration_ms: 5.9629
+  type: 'test'
+  ...
+# Subtest: card visual description flags Chandelure anatomy described as a held object
+ok 4 - card visual description flags Chandelure anatomy described as a held object
+  ---
+  duration_ms: 2.1542
+  type: 'test'
+  ...
+# Subtest: card visual description flags overconfident celestial settings without uncertainty
+ok 5 - card visual description flags overconfident celestial settings without uncertainty
+  ---
+  duration_ms: 0.3759
+  type: 'test'
+  ...
+# Subtest: card visual language review flags preserve matched text and force review
+ok 6 - card visual language review flags preserve matched text and force review
+  ---
+  duration_ms: 0.7268
+  type: 'test'
+  ...
+# Subtest: card visual language review flags interpretive mood false negatives
+ok 7 - card visual language review flags interpretive mood false negatives
+  ---
+  duration_ms: 0.1894
+  type: 'test'
+  ...
+# Subtest: card visual description usage telemetry computes cost, projections, and stop ceilings
+ok 8 - card visual description usage telemetry computes cost, projections, and stop ceilings
+  ---
+  duration_ms: 0.2769
+  type: 'test'
+  ...
+# Subtest: card visual description payload validation separates shape from review approval
+ok 9 - card visual description payload validation separates shape from review approval
+  ---
+  duration_ms: 0.5515
+  type: 'test'
+  ...
+# Subtest: card visual description version and embedding input are deterministic
+ok 10 - card visual description version and embedding input are deterministic
+  ---
+  duration_ms: 0.791
+  type: 'test'
+  ...
+# Subtest: card visual description agent entrypoints stay guarded and non-identity-authoritative
+ok 11 - card visual description agent entrypoints stay guarded and non-identity-authoritative
+  ---
+  duration_ms: 2.0025
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 95.411

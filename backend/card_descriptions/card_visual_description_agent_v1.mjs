@@ -80,6 +80,8 @@ const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
   /\b(no clearly visible face|face (?:is )?not clearly visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial expression(?:s)? (?:cannot be determined|not visible|unclear))\b/i;
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
   /\b(cheerful|joyful|confident|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively)\b/gi;
+const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
+  /\b(mystique)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
   /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|twilight|optimistic|serene|inviting|mysterious|mystique)\b/gi;
 
@@ -437,6 +439,12 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
       field,
       text,
       pattern: VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_interpretive_mood_language",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN,
     }));
   }
 

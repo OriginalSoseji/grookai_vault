@@ -1,0 +1,8 @@
+(node:91308) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[card-visual-description-agent] run_key=d5eb80d40dd29b9594e684e2451cd2564d5a2bc8d3b250e32b880bc3ceefe3e7
+[card-visual-description-agent] run_dir=docs/audits/card_visual_language_v1_enforcement_review/2026-07-16T06-48-52-614Z_dry_run_d5eb80d40dd2
+[card-visual-description-agent] eligible=4
+[card-visual-description-agent] validated=4
+[card-visual-description-agent] skipped=0
+[card-visual-description-agent] failed=0

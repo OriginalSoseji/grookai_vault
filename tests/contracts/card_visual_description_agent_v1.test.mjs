@@ -275,6 +275,42 @@ test("card visual language review flags preserve matched text and force review",
   );
 });
 
+test("card visual language review flags interpretive mood false negatives", () => {
+  const payload = {
+    artwork_description:
+      "Symbolic Artwork: The central symbol is a rounded eye motif with radiating lines. Artwork: The mood conveys a sense of mystique and power.",
+    card_surface_and_printing_cues: "Printing treatment uncertain.",
+    visual_attributes: {
+      subjects: {
+        primary: [],
+        secondary: [],
+      },
+      environment: {
+        setting: [],
+      },
+      mood: ["mystique"],
+      distinguishing_details: ["rounded eye motif", "radiating lines"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["psychic symbol", "purple gradients", "radiating lines"],
+  };
+
+  const details = detectVisualDescriptionReviewFlagDetailsV1(payload, {
+    name: "Psychic Energy",
+    supertype: "Energy",
+    card_category: "Basic",
+  });
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "mystique"
+    && detail.field === "artwork_description"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "mystique"
+    && detail.field === "visual_attributes.mood"));
+});
+
 
 test("card visual description usage telemetry computes cost, projections, and stop ceilings", () => {
   const pricing = {
