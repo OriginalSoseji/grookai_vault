@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-07-16T13:42:00.000Z",
+  "algorithm": "sha256",
+  "excludes": [
+    "docs/audits/card_visual_language_v1_25_card_dry_run/VISUAL_LANGUAGE_V1_25_CARD_ARTIFACT_HASHES.json"
+  ],
+  "hashes": {
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/eligible_cards.jsonl": "6c76eb536f6ae4341d5b938c3816f13d95d05eb0e21d37c896633513bcdf2ceb",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/generated_outputs.jsonl": "26008e1c8d0dfabfeeadc891d04149ff02c68e4502f429614ddb41637f8e276f",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/review_sample.jsonl": "26008e1c8d0dfabfeeadc891d04149ff02c68e4502f429614ddb41637f8e276f",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/run_plan.json": "d5e051c918576d48b3eef33bcd9b038b439800227cd8a52685aec21d3aa900bf",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/summary.json": "ebb79e8c8f8ad21edd57c95111a2f764ec24c4609f03e165638e303a6aab94b5",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/2026-07-16T13-31-44-941Z_dry_run_4b2b45e0a4e3/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/visual_language_25_card_dry_run_console.txt": "687fa6a21c29571f73fe80b468aa08eb59085619f44108924588c5a0ce7bd283",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/visual_language_25_card_git_diff_check_output.txt": "41b10f3e2ef7730d58017d74af45759e96b1a799ab8718b7d72096dc617b4982",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/visual_language_25_card_no_db_write_readback.json": "ea2956509ecfba767bf881b348ee7220c33a151a8e23385a1ce843d447be2f4f",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/visual_language_25_card_review_extract.txt": "87db44c7e1f41ef94cb8e2c591d94f3ed48072ee8c9effd1dae7368accecf5ac",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/visual_language_25_card_review_short_extract.txt": "2b3cb41ab70b2537e175b4c7f5c500b31386b9e0fcbe7da43b186ae085b8c55d",
+    "docs/audits/card_visual_language_v1_25_card_dry_run/VISUAL_LANGUAGE_V1_25_CARD_DRY_RUN_REPORT.md": "1316791dd3f674379a936b1f26364ce2e7b44cfdc285acbeccd2d7e346f65666"
+  }
+}

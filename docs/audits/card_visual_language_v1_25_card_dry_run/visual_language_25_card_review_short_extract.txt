@@ -1,0 +1,125 @@
+
+Mega Chandelure ex | GV-PK-JPN-M5-113
+branch=pokemon status=needs_review flags=potential_speculative_setting_language
+details=potential_speculative_setting_language:ethereal@artwork_description
+Character: Mega Chandelure is a ghostly Pokémon that resembles a chandelier. Its body appears as a rounded glass structure, predominantly transparent with a slight purple tint. The upper part features multiple arms that extend outward, resembling the branches of a chandelier, while their shapes are slender and elongated. The face is not distinctly visible, but the overall structure implies a whimsical and otherworldly character. Mega Chandelure has flowing forms that give an impression of movement, as if it is floating. The limbs taper off in a sinuous manner, leading to rounded tips, and its anatomy includes purple flames that extend from the tips, adding to its spectral imagery. The centra
+
+Misty's Vitality | GV-PK-JPN-M5-108
+branch=trainer status=pending flags=none
+details=
+Trainer: The visible human character is depicted with bright, expressive features, showcasing a youthful demeanor. She has short, spiky, orange hair with a slight sheen, styled with two prominent ponytails secured by black hair ties. Her large, vibrant green eyes convey enthusiasm and determination, and her broad smile adds to her spirited expression. She is wearing a form-fitting, sleeveless blue athletic top, which accentuates her toned arms. Her left arm is raised, possibly in a gesture of encouragement or excitement, while her right arm is extended slightly back, suggesting movement or readiness for action. Artwork: The background features a shimmering aquatic setting, suggesting a swimm
+
+Tremendous Bomb | GV-PK-JPN-M5-106
+branch=pokemon status=pending flags=none
+details=
+Character: The main subject of this artwork is a round bomb, characterized by its glossy black surface and a distinctive red fuse that extends upwards, culminating in a bright spark at the tip. The body is elegantly rounded, with a pronounced separation at the base marked by a golden stripe, giving it an embellished look. The bomb appears stable, resting on a flat surface, although no limbs or facial features are visible, making it purely an object. Artwork: The illustration features a bomb in the center of the image, set against a vibrant background that radiates energy. The explosion effect is depicted with a burst of bright colors, including blues and oranges that create a glowing halo ar
+
+Gladion's Final Battle | GV-PK-JPN-M5-109
+branch=pokemon status=pending flags=none
+details=
+Character: The character presented is a humanoid figure with a notable hairstyle featuring sharp, angular strands primarily in blonde. The face is characterized by angular features, including defined cheekbones and a pointed chin. The eyes are almond-shaped, with a vivid green hue that suggests intensity and focus. The lips are thin and pursed, contributing to a determined expression. The character's pose is assertive, with one arm extended forward as if presenting or commanding attention, while the other arm remains relaxed at their side. The figure wears a black outfit that consists of a fitted jacket with a high collar and a prominent red symbol on the front, further emphasizing their dyn
+
+Mega Darkrai ex | GV-PK-JPN-M5-118
+branch=pokemon status=needs_review flags=low_resolution,potential_speculative_setting_language
+details=potential_speculative_setting_language:mystical@artwork_description
+Character: Mega Darkrai is a Pokémon resembling a shadowy, ghostly creature with a slender, elongated body that has a mystical quality. Its form is predominantly black with dark gradients, giving it a spectral appearance. The face is somewhat obscured, but it features two prominent, large blue eyes that stand out. Its expression is intense yet mysterious, contributing to its eerie presence. The body flows seamlessly into multiple projections that give the illusion of flowing darkness or mist. Arms extend from its form, appearing long and somewhat wispy, suggesting elegance and fluidity in posture. The head is positioned above the body, with the upper part tapering into a delicate, elongated
+
+Gwynn | GV-PK-JPN-M5-117
+branch=pokemon status=pending flags=none
+details=
+Character: The character depicted is a Pokémon that resembles a humanoid figure with distinctive features. It has large, round, spiraled horns on either side of its head, giving it a playful and whimsical appearance. Its face is set in a focused expression, with large, expressive eyes that draw attention. The character's hair appears long and flowing, which adds to its lively look. It has a rounded body structure, with limbs that are soft-edged rather than sharply defined. The character's posture is slightly leaning forward, suggesting engagement and approachability. Artwork: The illustration features the character centrally positioned, with an extended arm pointing outward, symbolizing guid
+
+Mega Excadrill ex | GV-PK-JPN-M5-101
+branch=pokemon status=pending flags=none
+details=
+Character: Mega Excadrill is a large, robust creature resembling a cross between a drill and a mole. It features an elongated, sleek body with a pronounced, glossy black exterior that transitions to a gradient of vivid red towards its limbs. Its head is rounded, with a pair of piercing eyes that glow a light shade of pink, and a wide, menacing grin showing sharp teeth. At the front, it has a prominent, spiraled drill tip that extends outward, conveying its powerful digging capability. The limbs are short and sturdy, each ending in sharp claw-like appendages, which suggest a readiness for vigorous movement. Artwork: The illustration captures Mega Excadrill in a dynamic pose, angled forward as
+
+Dark Bell | GV-PK-JPN-M5-105
+branch=pokemon status=pending flags=none
+details=
+Character: The subject is a bell-like object, resembling a stylized, ornate lantern. Its body is primarily composed of a prism-like glass structure, angular and faceted, which reflects light. The top section features a geometric design, tapering to a narrow handle. The bell's mouth is circular and slightly open, showing an inner light source, which emits a soft glow. The overall form gives the impression of a classic, elegant design reminiscent of vintage metallic lamps, yet with more intricate details and curves. The bell does not show traditional eyes, limbs, or a face, as it is an object rather than a creature. Artwork: The artwork features the bell prominently in the foreground, position
+
+Mega Zeraora ex | GV-PK-JPN-M5-112
+branch=pokemon status=pending flags=none
+details=
+Character: Mega Zeraora is a feline-shaped Pokémon characterized by its sleek, muscular body. Its fur is primarily dark gray with bright yellow and electric blue accents that highlight its limbs and face. The face features a pointed snout and large, expressive eyes positioned forward to create an alert expression. The ears are tall and pointed, extending upwards. The limbs are strong, with clawed paws that reflect its agile nature. Notably, Mega Zeraora showcases distinct electric currents accentuated by luminescent patterns swirling around its body, capturing its energetic essence. Artwork: The illustration depicts Mega Zeraora in a dynamic pose, as if in mid-action, suggesting swift moveme
+
+Mega Zeraora ex | GV-PK-JPN-M5-096
+branch=pokemon status=needs_review flags=potential_interpretive_claim,potential_semantic_tag_nonvisual_concept
+details=potential_interpretive_claim:evokes@artwork_description | potential_semantic_tag_nonvisual_concept:atmosphere@semantic_tags
+Character: Mega Zeraora is depicted as a feline-like creature with a sleek, streamlined body covered in black fur. It has sharp, defined limbs that are muscular, contributing to an agile appearance. The face is wide, with a prominent feature being its large, pointed ears. Its eyes are bright and angular, positioned on either side of the narrow face, giving a fierce expression reminiscent of a predator. The mouth is slightly open, suggesting vitality or readiness. Mega Zeraora's arms and legs are athletic, showcasing dynamic posture, as it appears to be in motion, with one arm raised forward, emphasizing its speed and agility. It has distinct yellow markings along its body, particularly aroun
+
+Mega Darkrai ex | GV-PK-JPN-M5-114
+branch=pokemon status=needs_review flags=potential_semantic_tag_nonvisual_concept
+details=potential_semantic_tag_nonvisual_concept:atmosphere@semantic_tags
+Character: This Pokemon resembles a shadowy, ghost-like figure, embodying a dark and eerie presence. It has a rounded central body that appears almost fluid, resembling dark smoky wisps, from which various curling tendrils extend outward. Its face is not distinct, but there are subtle features suggesting the presence of a face, located in the upper region of the body. The eyes are not clearly defined; however, the overall expression conveys an ominous and haunting demeanor. Its limbs are elongated and graceful, contributing to a serene but disturbing posture that suggests movement. The overall impression is that of a spectral entity, emphasizing mystery and darkness. Artwork: The illustratio
+
+Gladion's Final Battle | GV-PK-JPN-M5-116
+branch=pokemon status=needs_review flags=potential_interpretive_claim
+details=potential_interpretive_claim:evoking@artwork_description
+Character: The visual representation depicts a young character with striking features. They have short, bright blonde hair styled into a distinct, angular shape that frames their face. The character's expression is intense and focused, suggesting determination. Their posture is dynamic, with their left arm raised and fingers poised as if conjuring energy. The character wears a long-sleeved dark jacket with layered elements that have sharp, blade-like designs, draped partially over a high-collared shirt, emphasizing a sense of elegance and readiness for combat. The background highlights a flowing, abstract environment of swirling blue and white, reminiscent of waves or clouds. Artwork: The co
+
+Mega Darkrai ex | GV-PK-JPN-M5-099
+branch=pokemon status=needs_review flags=potential_speculative_setting_language
+details=potential_speculative_setting_language:ethereal@artwork_description
+Character: The Pokémon depicted is Mega Darkrai, resembling a shadowy figure with a sleek, elongated body that conveys both grace and menace. Its overall form suggests a phantom or specter, characterized by undefined edges that blend into the darkness. The head features a slight curve with a distinct face, displaying glowing, piercing eyes positioned forward, conveying a watchful and enigmatic expression. Long, wispy appendages extend from its head and body, resembling flowing hair or tendrils, adding to its ghostly appearance. The limbs are slender and graceful, matching the creature's ethereal quality, while flowing, cloak-like elements drift behind, emphasizing movement. The tail is not d
+
+Mega Chandelure ex | GV-PK-JPN-M5-097
+branch=pokemon status=needs_review flags=potential_speculative_setting_language
+details=potential_speculative_setting_language:ethereal@artwork_description
+Character: Mega Chandelure is depicted as a creature resembling a luxurious, ornate chandelier. Its central body is round and appears like glass, enhancing its luminous quality. Extending from this body are long, flowing arms with a wavy structure that mimics candle holders, with flames flickering at the tips. The face is positioned at the front of the body, featuring two large, expressive eyes that are black with glowing amber highlights. These eyes convey a sense of mystery and intrigue, while a small mouth is subtly indicated below them. The limbs and flames create an elegant, swirling motion that gives the character a dynamic presence, embodying its ghostly nature. Artwork: The illustrat
+
+Gwynn | GV-PK-JPN-M5-111
+branch=pokemon status=pending flags=none
+details=
+Character: The character depicted is a humanoid figure with distinct features. They have a rounded face with proportionately large eyes, giving them an expressive appearance. Their hair is a deep purple, with a glossy finish, framing the face and falling just below the shoulders. Atop their head, they wear a unique hat with a rounded, blue top and black swirled ornaments resembling curls, suggesting creativity and playfulness. Their posture is slightly leaning forward, with hands clasped together in front of their chest. They wear a long, white cloak that drapes elegantly, complemented by a dark undershirt featuring vertical blue stripes. Their gloves are also blue, contrasting subtly with t
+
+Rust Syndicate Grunt | GV-PK-JPN-M5-110
+branch=pokemon status=needs_review flags=potential_interpretive_claim
+details=potential_interpretive_claim:evokes@artwork_description
+Character: The artwork features two characters, both dressed in matching black suits with distinct hairstyles. The character on the left has light blonde, slicked-back hair that glistens, with striking sunglasses that rest on their face, emphasizing a confident smirk. Their posture is relaxed yet assertive, facing slightly toward the viewer. The character on the right has short, dark hair styled upward and a contemplative expression, turned away but looking back towards the viewer, wearing narrow glasses that catch the light. Both characters exude an air of sophistication and confidence, embodying the essence of their roles. Artwork: The illustration is executed with vibrant colors, prominen
+
+カスミの元気 | GV-PK-JPN-M5-075
+branch=pokemon status=needs_review flags=potential_interpretive_claim
+details=potential_interpretive_claim:embodies@artwork_description
+Character: The character depicted is a young girl resembling a sports player, likely designed for an energetic and vibrant persona. She has a rounded face with a cheerful expression that conveys enthusiasm. Her hair is bright orange, styled into two distinct pigtails, with pointed tips. The eyes are large and round, colored in a noticeable cyan, with a winking gesture on her face. She appears to be in a dynamic pose, with her body slightly turned, emphasizing her athleticism. Her limbs are in motion, suggesting an active, playful stance. She wears a cropped sleeveless top and athletic shorts in deep blue, complemented by a black bracelet on her wrist. She does not have visible wings, tails,
+
+リトライバッジ | GV-PK-JPN-M5-074
+branch=pokemon status=needs_review flags=potential_overconfident_ambiguous_setting,potential_speculative_setting_language
+details=potential_overconfident_ambiguous_setting:star@artwork_description | potential_overconfident_ambiguous_setting:star@visual_attributes.distinguishing_details | potential_speculative_setting_language:star@artwork_description | potential_speculative_setting_language:star@visual_attributes.distinguishing_details
+Character: The card features a star-shaped symbol representative of the リトライバッジ. The shape is primarily a central star surrounded by a circular outline, resembling a reward medallion commonly associated with achievements. The star’s points are smooth and symmetrical, giving it a polished, refined appearance. The circular outline is designed with multiple layers of metallic-like lines, subtly indicating depth. The visual lacks any living features like eyes, face, or limbs, as it is purely abstract, focusing on the emblematic design rather than an identifiable creature or character. Artwork: The illustration presents the badge centrally within the frame. The background showcases gradients of s
+
+メガドリュウズex | GV-PK-JPN-M5-063
+branch=pokemon status=needs_review flags=potential_semantic_tag_nonvisual_concept
+details=potential_semantic_tag_nonvisual_concept:atmosphere@semantic_tags
+Character: The character depicted on the card is a creature resembling a mole or armored figure, characterized by its robust body and distinctive design. It has a rounded face, positioned at the front of its body, with a pronounced snout. The eyes are situated near the top of the head, giving it a focused appearance. The limbs are short and robust, adorned with claws that enhance its digging capabilities. Its body features a streamlined shape with angular accents, and it has a prominent, triangular dorsal marking that further defines its silhouette. The tail is not distinctly visible, blending into the overall body structure, and it presents an imposing posture, suggesting readiness for acti
+
+ムク | GV-PK-JPN-M5-078
+branch=pokemon status=pending flags=none
+details=
+Character: The character depicted is a young figure with a somewhat androgynous appearance. They have dark purple hair styled into loose waves, with a distinctive crown-like headpiece that features a sharp peak in the center and decorative swirls. Their facial features are soft, expressive, and framed by their hair, with large, expressive eyes showing a hint of concern or contemplation. They wear a flowing cloak that drapes around their shoulders, which is predominantly white with a black lining and a bold blue circular emblem at the collar. Their posture suggests a reserved or careful demeanor, with one arm positioned across their torso and the other slightly raised, possibly as they gestur
+
+サビ組のしたっぱ | GV-PK-JPN-M5-077
+branch=pokemon status=needs_review flags=potential_interpretive_claim
+details=potential_interpretive_claim:evoking@artwork_description
+Character: The character depicted on this card appears to represent a humanoid figure associated with a faction or group. The individual on the left has a confident posture, with blonde hair, wearing dark clothing and glasses, conveying a sense of authority. The individual on the right has a more reserved stance, with darker skin, short hair, and appears thoughtful or concerned. They are both positioned close to each other, suggesting camaraderie or teamwork. Their expressions vary, with the left character exuding confidence and the right showing more introspection. There are no distinct Pokémon features visible. Artwork: The composition is set against a backdrop that features textured stone
+
+メガダークライex | GV-PK-JPN-M5-046
+branch=pokemon status=needs_review flags=potential_speculative_setting_language
+details=potential_speculative_setting_language:ethereal@artwork_description
+Character: This card features the Pokémon with a sleek, elongated body resembling a shadowy, wraith-like figure. The creature's face is not distinctly visible, but it exhibits a central, somewhat recessed area suggesting an absence of a conventional facial structure. The eyes are represented as glowing, white orbs, set to either side of the face, imparting a piercing gaze. Its limbs appear to be slender and somewhat ethereal, merging into flowing, ghostly wisps that radiate outward. Two prominent light-colored appendages extend forward, resembling arms or tendrils about to propel it forward, enhancing its dynamic pose. The overall structure conveys a ghostly, dark essence that is both intimi
+
+ごうかいボム | GV-PK-JPN-M5-073
+branch=pokemon status=needs_review flags=potential_interpretive_claim
+details=potential_interpretive_claim:embodies@artwork_description
+Character: The artwork features a bomb-like object with a round, glossy black body. It has a prominent central dome at the top where a small circular fuse emerges, forming a short, curved shape. The body is adorned with a decorative design, resembling a flower, in a golden hue. Stripes and a segmented pattern run along the sides. The overall structure suggests it is designed for impact, blending attributes of both a bomb and a whimsical creature in its rounded forms. The face, eyes, and expressive features are not visible; it embodies a more abstract form. Artwork: The composition presents the bomb centrally positioned against a vibrant background that includes swirling light bursts in shade
+
+メガシャンデラex | GV-PK-JPN-M5-036
+branch=pokemon status=needs_review flags=potential_overconfident_ambiguous_setting,potential_speculative_setting_language
+details=potential_overconfident_ambiguous_setting:stars@artwork_description | potential_speculative_setting_language:ethereal@artwork_description | potential_speculative_setting_language:stars@artwork_description | potential_speculative_setting_language:ethereal@visual_attributes.mood
+Character: The Pokémon depicted here has the shape and structure resembling a glowing chandelier, featuring a rounded glass body that is primarily black with a glossy finish. Positioned toward the top of the body, there is a large, circular structure that serves as the main part of the chandelier, complemented by four ornate, curved arms surrounding it. Each arm extends outward, resembling the branches of a chandelier, and culminates in a flame-like shape that is reminiscent of flickering candle flames. The eyes are present as two bright, glossy orbs situated at the front of the body, giving it an animated, almost mischievous expression. The posture is upright, with an elegant presentation,
+
+古びたたての化石 | GV-PK-JPN-M5-072
+branch=pokemon status=pending flags=none
+details=
+Character: The card depicts a fossil resembling a large, rounded shell-shaped object. This fossil-like creature has a smooth, beige exterior with some cracks visible, suggesting age. It is primarily bulbous in shape and rests on a rocky surface. The positioning indicates it is partially buried, with the upper side more prominent. There are no distinct facial features, limbs, or anatomical traits displaying movement or expression, as the structure appears inert. Artwork: The illustration features the fossil placed amid a textured rocky terrain, surrounded by sparse green foliage. Light subtly illuminates the fossil, enhancing its contours and cracks, creating a naturalistic setting. The backg

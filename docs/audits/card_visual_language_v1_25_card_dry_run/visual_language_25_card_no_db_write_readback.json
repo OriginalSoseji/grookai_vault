@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-07-16T13:40:12.155Z",
+  "prompt_version_checked": "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1",
+  "expected_boundary": {
+    "db_writes": false,
+    "embeddings": false,
+    "approvals": false
+  },
+  "counts": {
+    "dry_run_25_artifact_run_rows": 0,
+    "dry_run_25_prompt_description_rows_since_run_start": 0
+  }
+}
