@@ -75,13 +75,13 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
   "vstar",
 ]);
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
-  /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars)\b/gi;
+  /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|fantastical|starry|stars)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
   /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
   /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish|higher quality print|printing quality appears|printing treatment is consistent|without visible errors|imperfections)\b/gi;
 const VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN =
-  /\b(glossy,\s*reflective surface|glossy reflective surface)\b/gi;
+  /\b(glossy(?:,\s*|\s+)reflective surface|shiny(?:,\s*|\s+)reflective surface|smooth silver appearance|polished surface|glossy black (?:body|exterior)|shiny surfaces?|glossy bomb|shiny badge)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
   /\b(creature|monster|animal-like|beast|living subject)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FRANCHISE_ON_NON_POKEMON_PATTERN =
@@ -93,13 +93,15 @@ const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
   /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm)\b/gi;
 const VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN =
-  /\b(aggressive demeanor|strength and aggression|characteristic of (?:its|the) species|concentration or contemplation|serious demeanor|introspection and determination|contemplative pose)\b/gi;
+  /\b(aggressive demeanor|strength and aggression|characteristic of (?:its|the) species|predatory nature|exudes? a sense of (?:agility and strength|speed and power|energy and excitement)|speed and power|excitement associated with (?:this )?(?:pokemon|pokémon)|concentration or contemplation|contemplative or calculated demeanor|serious demeanor|introspection and determination|thoughtful expression|contemplative pose|positive emotional tone|inviting tone|warm and inviting tone|reflective and serious|hot,\s*energetic atmosphere|aggressive mood|cheerful mood|playful atmosphere|whimsical(?: touch)?|achievement and honor|intense and dramatic|serene and primitive setting)\b/gi;
 const VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN =
-  /\b(impending action|excitement and tension|something dramatic is about to occur|dramatic (?:event|action|moment) is about to occur)\b/gi;
+  /\b(impending action|imminent action|imminent detonation|ready to spring(?: into action)?|summoning power(?: or command)?|excitement and tension|something dramatic is about to occur|dramatic (?:event|action|moment) is about to occur|about to occur|final battle (?:is )?suggested by (?:the )?name(?: of the card)?)\b/gi;
+const VISUAL_LANGUAGE_METADATA_OR_IDENTITY_PATTERN =
+  /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)-type\b|\b(?:suggested by the name of the card|name of the card|card name|associated with this (?:pokemon|pokémon)|this (?:pokemon|pokémon)'s design)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
   /\b(mystique|intrigue|tranquil|tranquility|enchantment)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
-  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue|celebratory|uplifting|theme)\b/gi;
+  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue|celebratory|uplifting|theme|whimsical|award)\b/gi;
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -532,6 +534,20 @@ function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) 
   }
 }
 
+function addMetadataOrIdentityFlagDetails(details, payload, card) {
+  const semanticTags = normalizeStringArray(payload?.semantic_tags);
+  const metadataKeys = metadataTagKeysFromCard(card);
+  const cardNameKey = tagKey(card.name);
+
+  for (const tag of semanticTags) {
+    const key = tagKey(tag);
+    if (!key) continue;
+    if (key === cardNameKey || metadataKeys.has(key)) {
+      addManualDetail(details, "potential_metadata_or_identity_language", "semantic_tags", tag);
+    }
+  }
+}
+
 export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const details = [];
   const fields = textFieldsForVisualLanguageReview(payload);
@@ -543,6 +559,7 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const cardTypeMetadataSource = normalizeText(card.card_type_metadata_source) || resolvedPromptMetadata.card_type_metadata_source;
 
   addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch);
+  addMetadataOrIdentityFlagDetails(details, payload, card);
 
   if (
     cardNameKey.includes("chandelure")
@@ -634,6 +651,12 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
       field,
       text,
       pattern: VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_metadata_or_identity_language",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_METADATA_OR_IDENTITY_PATTERN,
     }));
   }
 

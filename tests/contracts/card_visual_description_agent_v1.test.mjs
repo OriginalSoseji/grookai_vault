@@ -479,6 +479,144 @@ test("card visual language enforcement catches subject-repair dry-run false nega
     && detail.matched_text === "theme"));
 });
 
+test("card visual language enforcement catches broader false-negative families", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description: [
+        "Mega Zeraora's predatory nature exudes a sense of agility and strength, speed and power, and excitement associated with this Pokemon.",
+        "Its Electric-type nature makes it look ready to spring into action.",
+        "Gladion appears to be summoning power or command, and the final battle is suggested by the name of the card.",
+        "Gwynn has a contemplative or calculated demeanor, a positive emotional tone, and a warm and inviting tone.",
+        "The gym has a hot, energetic atmosphere and an aggressive mood.",
+        "The valley is a fantastical landscape with a cheerful mood, playful atmosphere, and whimsical touch.",
+        "The bomb has a glossy black body, glossy black exterior, shiny surfaces, and imminent detonation.",
+        "The badge has a shiny reflective surface and smooth silver appearance.",
+      ].join(" "),
+      card_surface_and_printing_cues: "Foil texture cannot be determined.",
+      visual_attributes: {
+        subjects: { primary: ["Mega Zeraora"], secondary: ["Gladion", "Gwynn", "bomb", "badge"] },
+        environment: { setting: ["fantastical valley"] },
+        mood: ["whimsical"],
+        distinguishing_details: ["shiny badge", "glossy bomb"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["Cinnabar City Gym", "award", "Electric-type", "whimsical"],
+    },
+    {
+      name: "Cinnabar City Gym",
+      set_name: "Gym Challenge",
+      supertype: "Trainer",
+      card_category: "Stadium",
+    },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "predatory nature"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "exudes a sense of agility and strength"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "speed and power"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "excitement associated with this Pokemon"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_metadata_or_identity_language"
+    && detail.matched_text === "Electric-type"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "ready to spring into action"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "summoning power or command"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "final battle is suggested by the name of the card"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "contemplative or calculated demeanor"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "positive emotional tone"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "warm and inviting tone"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "hot, energetic atmosphere"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "aggressive mood"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_speculative_setting_language"
+    && detail.matched_text === "fantastical"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "cheerful mood"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "playful atmosphere"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "whimsical touch"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "glossy black body"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "glossy black exterior"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "shiny surfaces"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "imminent detonation"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "shiny reflective surface"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "smooth silver appearance"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "shiny badge"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_metadata_or_identity_language"
+    && detail.matched_text === "Cinnabar City Gym"
+    && detail.field === "semantic_tags"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_semantic_tag_nonvisual_concept"
+    && detail.matched_text === "award"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_semantic_tag_nonvisual_concept"
+    && detail.matched_text === "whimsical"
+    && detail.field === "semantic_tags"));
+});
+
+test("card visual language enforcement preserves objective Energy branch wording", () => {
+  const flags = detectVisualDescriptionReviewFlagsV1(
+    {
+      artwork_description:
+        "Symbolic Artwork: The central energy symbol sits inside a circular motif with blue gradients and radiating lines.",
+      card_surface_and_printing_cues: "Printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["central energy symbol", "radiating lines"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["abstract energy", "energy symbol", "radiating lines"],
+    },
+    { name: "Water Energy", supertype: "Energy", card_category: "Basic" },
+  );
+
+  assert.equal(flags.includes("potential_metadata_or_identity_language"), false);
+  assert.equal(flags.includes("potential_semantic_tag_nonvisual_concept"), false);
+});
+
 test("card visual language enforcement allows literal star-shaped objects", () => {
   const flags = detectVisualDescriptionReviewFlagsV1(
     {
