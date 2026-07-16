@@ -66,6 +66,22 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
   "vmax",
   "vstar",
 ]);
+const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
+  /\b(cosmic|celestial|magical|enchanted|enchanting|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars?)\b/gi;
+const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
+  /\b(symboli[sz]es|represents|embodies|evokes|evoking)\b/gi;
+const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
+  /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish)?|gloss present|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish)\b/gi;
+const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
+  /\b(creature|pokemon|pokémon|monster|animal-like|beast|living subject)\b/gi;
+const VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN =
+  /\b(standard trading card|clear image|print quality appears|high quality image|well-defined image)\b/gi;
+const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
+  /\b(no clearly visible face|face (?:is )?not clearly visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial expression(?:s)? (?:cannot be determined|not visible|unclear))\b/i;
+const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
+  /\b(cheerful|joyful|confident|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively)\b/gi;
+const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
+  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|twilight|optimistic|serene|inviting|mysterious|mystique)\b/gi;
 
 async function loadEnvFilesIfAvailable() {
   try {
@@ -314,21 +330,78 @@ function metadataTagKeysFromCard(card = {}) {
 }
 
 export function detectVisualDescriptionReviewFlagsV1(payload, card = {}) {
-  const flags = [];
-  const text = [
-    payload?.artwork_description,
-    payload?.visual_attributes?.distinguishing_details?.join(" "),
-    payload?.semantic_tags?.join(" "),
-  ].map(normalizeText).join(" ");
-  const lower = text.toLowerCase();
+  return uniqueSorted(detectVisualDescriptionReviewFlagDetailsV1(payload, card).map((detail) => detail.flag));
+}
+
+function normalizeFlagDetail(detail) {
+  return {
+    flag: normalizeText(detail.flag),
+    matched_text: normalizeText(detail.matched_text),
+    field: normalizeText(detail.field),
+  };
+}
+
+function uniqueQualityFlagDetails(details) {
+  const seen = new Set();
+  const result = [];
+  for (const rawDetail of details) {
+    const detail = normalizeFlagDetail(rawDetail);
+    if (!detail.flag || !detail.matched_text || !detail.field) continue;
+    const key = `${detail.flag}\u0000${detail.field}\u0000${detail.matched_text.toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(detail);
+  }
+  return result;
+}
+
+function textFieldsForVisualLanguageReview(payload) {
+  const attributes = payload?.visual_attributes ?? {};
+  const subjects = attributes.subjects ?? {};
+  const environment = attributes.environment ?? {};
+  return [
+    ["artwork_description", payload?.artwork_description],
+    ["card_surface_and_printing_cues", payload?.card_surface_and_printing_cues],
+    ["visual_attributes.subjects.primary", normalizeStringArray(subjects.primary).join(" ")],
+    ["visual_attributes.subjects.secondary", normalizeStringArray(subjects.secondary).join(" ")],
+    ["visual_attributes.environment.setting", normalizeStringArray(environment.setting).join(" ")],
+    ["visual_attributes.mood", normalizeStringArray(attributes.mood).join(" ")],
+    ["visual_attributes.distinguishing_details", normalizeStringArray(attributes.distinguishing_details).join(" ")],
+    ["semantic_tags", normalizeStringArray(payload?.semantic_tags).join(" ")],
+  ].map(([field, text]) => ({ field, text: normalizeText(text) })).filter((entry) => entry.text);
+}
+
+function regexDetails({ flag, field, text, pattern }) {
+  const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+  const regex = new RegExp(pattern.source, flags);
+  return [...text.matchAll(regex)].map((match) => ({
+    flag,
+    matched_text: match[0],
+    field,
+  }));
+}
+
+export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
+  const details = [];
+  const fields = textFieldsForVisualLanguageReview(payload);
+  const combinedText = fields.map((entry) => entry.text).join(" ");
+  const lower = combinedText.toLowerCase();
   const cardNameKey = tagKey(card.name);
+  const promptBranch = resolveCardPromptMetadata(card).prompt_branch;
 
   if (
     cardNameKey.includes("chandelure")
     && /\b(hold|holds|holding|held)\b/i.test(lower)
     && /\b(orb|sphere|spherical|round|chandelier|lamp|flame|flames)\b/i.test(lower)
   ) {
-    flags.push("potential_body_part_as_separate_held_object");
+    for (const { field, text } of fields) {
+      details.push(...regexDetails({
+        flag: "potential_body_part_as_separate_held_object",
+        field,
+        text,
+        pattern: /\b(?:hold|holds|holding|held)\b[^.]{0,80}\b(?:orb|sphere|spherical|round|chandelier|lamp|flames?)\b/gi,
+      }));
+    }
   }
 
   const uncertaintyText = normalizeStringArray(payload?.visual_attributes?.uncertainty_notes).join(" ").toLowerCase();
@@ -336,10 +409,82 @@ export function detectVisualDescriptionReviewFlagsV1(payload, card = {}) {
     /\b(cosmic|celestial|outer space|space scene|stars?|galaxy|galactic)\b/i.test(lower)
     && !/\b(uncertain|ambiguous|abstract|not clear|not clearly|appears|suggests|star-like)\b/i.test(uncertaintyText)
   ) {
-    flags.push("potential_overconfident_ambiguous_setting");
+    for (const { field, text } of fields) {
+      details.push(...regexDetails({
+        flag: "potential_overconfident_ambiguous_setting",
+        field,
+        text,
+        pattern: /\b(cosmic|celestial|outer space|space scene|stars?|galaxy|galactic)\b/gi,
+      }));
+    }
   }
 
-  return uniqueSorted(flags);
+  for (const { field, text } of fields.filter((entry) => entry.field !== "card_surface_and_printing_cues")) {
+    details.push(...regexDetails({
+      flag: "potential_speculative_setting_language",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_interpretive_claim",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_generic_filler",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN,
+    }));
+  }
+
+  const surfaceText = fields.find((entry) => entry.field === "card_surface_and_printing_cues")?.text ?? "";
+  details.push(...regexDetails({
+    flag: "potential_surface_overclaim",
+    field: "card_surface_and_printing_cues",
+    text: surfaceText,
+    pattern: VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN,
+  }));
+  details.push(...regexDetails({
+    flag: "potential_generic_filler",
+    field: "card_surface_and_printing_cues",
+    text: surfaceText,
+    pattern: VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN,
+  }));
+
+  if (promptBranch !== "pokemon") {
+    for (const { field, text } of fields) {
+      details.push(...regexDetails({
+        flag: "potential_creature_language_on_non_pokemon_branch",
+        field,
+        text,
+        pattern: VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN,
+      }));
+    }
+  }
+
+  if (VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN.test(combinedText)) {
+    for (const { field, text } of fields.filter((entry) => entry.field !== "card_surface_and_printing_cues")) {
+      details.push(...regexDetails({
+        flag: "potential_unsupported_emotion_or_personality_claim",
+        field,
+        text,
+        pattern: VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN,
+      }));
+    }
+  }
+
+  const semanticTagsText = fields.find((entry) => entry.field === "semantic_tags")?.text ?? "";
+  details.push(...regexDetails({
+    flag: "potential_semantic_tag_nonvisual_concept",
+    field: "semantic_tags",
+    text: semanticTagsText,
+    pattern: VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN,
+  }));
+
+  return uniqueQualityFlagDetails(details);
 }
 
 export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
@@ -350,6 +495,7 @@ export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
   let removedMetadataOrGeneric = false;
 
   const semantic_tags = [];
+  const quality_flag_details = [];
   for (const tag of normalizedTags) {
     const key = tagKey(tag);
     if (!key) continue;
@@ -362,6 +508,11 @@ export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
 
     if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || metadataKeys.has(key) || key === tagKey(card.name)) {
       removedMetadataOrGeneric = true;
+      quality_flag_details.push({
+        flag: "semantic_tags_metadata_or_generic_removed",
+        matched_text: tag,
+        field: "semantic_tags",
+      });
       continue;
     }
 
@@ -375,6 +526,7 @@ export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
   return {
     semantic_tags: uniqueSorted(semantic_tags),
     quality_flags,
+    quality_flag_details: uniqueQualityFlagDetails(quality_flag_details),
   };
 }
 
@@ -1626,15 +1778,20 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     card_category: promptMetadata.card_category,
   };
   const semanticTagSanitization = sanitizeSemanticTagsForVisibleArtworkV1(normalizedPayload.semantic_tags, cardForVisualSanitization);
-  const reviewFlags = detectVisualDescriptionReviewFlagsV1({
+  const reviewFlagDetails = detectVisualDescriptionReviewFlagDetailsV1({
     ...normalizedPayload,
     semantic_tags: semanticTagSanitization.semantic_tags,
   }, cardForVisualSanitization);
+  const reviewFlags = uniqueSorted(reviewFlagDetails.map((detail) => detail.flag));
   const qualityFlags = uniqueSorted([
     ...(image.quality_flags ?? []),
     ...(normalizedPayload.quality_flags ?? []),
     ...semanticTagSanitization.quality_flags,
     ...reviewFlags,
+  ]);
+  const qualityFlagDetails = uniqueQualityFlagDetails([
+    ...(semanticTagSanitization.quality_flag_details ?? []),
+    ...reviewFlagDetails,
   ]);
   const row = {
     card_print_id: card.card_print_id,
@@ -1665,6 +1822,7 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     attribute_confidence: normalizedPayload.attribute_confidence,
     image_quality_score: image.image_quality_score,
     quality_flags: qualityFlags,
+    quality_flag_details: qualityFlagDetails,
   };
   row.review_status = classifyDescriptionReviewStatusV1(row);
   row.description_version_key = buildDescriptionVersionKeyV1(row);

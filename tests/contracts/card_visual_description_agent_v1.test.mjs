@@ -9,6 +9,7 @@ import {
   buildEmbeddingInputV1,
   buildCostProjection,
   classifyDescriptionReviewStatusV1,
+  detectVisualDescriptionReviewFlagDetailsV1,
   detectVisualDescriptionReviewFlagsV1,
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
@@ -120,6 +121,18 @@ test("card visual description semantic tags stay visual and exclude metadata", (
     "semantic_tags_metadata_or_generic_removed",
     "semantic_tags_too_sparse_after_sanitization",
   ]);
+  assert.deepEqual(result.quality_flag_details, [
+    {
+      flag: "semantic_tags_metadata_or_generic_removed",
+      matched_text: "Abyss Eye",
+      field: "semantic_tags",
+    },
+    {
+      flag: "semantic_tags_metadata_or_generic_removed",
+      matched_text: "Pokemon",
+      field: "semantic_tags",
+    },
+  ]);
 
   const stronger = sanitizeSemanticTagsForVisibleArtworkV1(
     [
@@ -150,7 +163,7 @@ test("card visual description flags Chandelure anatomy described as a held objec
         distinguishing_details: ["glowing orb", "swirling energy effects"],
         uncertainty_notes: ["abstract background elements may imply motion or energy"],
       },
-      semantic_tags: ["Chandelier-like figure", "glowing orb", "mystical"],
+      semantic_tags: ["Chandelier-like figure", "glowing orb", "purple flames"],
     },
     { name: "Mega Chandelure ex" },
   );
@@ -187,7 +200,79 @@ test("card visual description flags overconfident celestial settings without unc
     { name: "Example Pokemon" },
   );
 
-  assert.deepEqual(flags, ["potential_overconfident_ambiguous_setting"]);
+  assert.deepEqual(flags, [
+    "potential_overconfident_ambiguous_setting",
+    "potential_speculative_setting_language",
+  ]);
+});
+
+test("card visual language review flags preserve matched text and force review", () => {
+  const payload = {
+    artwork_description:
+      "Environment: A creature appears in a magical portal. The scene evokes victory and represents hidden lore. The face is not clearly visible, but the subject looks confident and mysterious.",
+    card_surface_and_printing_cues:
+      "The foil texture is visible with a glossy finish. This appears to be a standard printing treatment.",
+    visual_attributes: {
+      subjects: {
+        primary: ["creature"],
+        secondary: [],
+      },
+      environment: {
+        setting: ["portal"],
+      },
+      mood: ["mysterious"],
+      distinguishing_details: ["standard trading card view"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["fantasy", "green garden", "mood"],
+  };
+
+  const details = detectVisualDescriptionReviewFlagDetailsV1(payload, {
+    name: "Fairy Garden",
+    supertype: "Trainer",
+    card_category: "Stadium",
+  });
+  const flags = detectVisualDescriptionReviewFlagsV1(payload, {
+    name: "Fairy Garden",
+    supertype: "Trainer",
+    card_category: "Stadium",
+  });
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_speculative_setting_language"
+    && detail.matched_text === "magical"
+    && detail.field === "artwork_description"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_claim"
+    && detail.matched_text === "evokes"
+    && detail.field === "artwork_description"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "foil texture is visible"
+    && detail.field === "card_surface_and_printing_cues"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_creature_language_on_non_pokemon_branch"
+    && detail.matched_text === "creature"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_generic_filler"
+    && detail.matched_text === "standard trading card"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_semantic_tag_nonvisual_concept"
+    && detail.matched_text === "fantasy"
+    && detail.field === "semantic_tags"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_emotion_or_personality_claim"
+    && detail.matched_text === "confident"));
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: flags,
+      identity_input_confidence: 0.95,
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.95,
+    }),
+    "needs_review",
+  );
 });
 
 

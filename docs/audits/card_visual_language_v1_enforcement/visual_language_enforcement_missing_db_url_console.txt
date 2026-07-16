@@ -1,0 +1,3 @@
+Error: [card-visual-description-agent] Missing SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL.
+    at runCardVisualDescriptionAgentV1 (file:///C:/grookai_vault_card_desc_agent/backend/card_descriptions/card_visual_description_agent_v1.mjs:2393:11)
+    at async main (file:///C:/grookai_vault_card_desc_agent/backend/card_descriptions/card_visual_description_agent_v1.mjs:2566:18)
