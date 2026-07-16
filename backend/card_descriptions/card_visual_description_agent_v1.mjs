@@ -78,9 +78,9 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
   /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|fantastical|starry|stars)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
-  /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative)\b/gi;
+  /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative|invokes?)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
-  /\b(foil (?:texture )?(?:is )?visible|foil treatment is present|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|embossed|texture visible|standard (?:printing treatment|print)|card surface quality appears clear|shimmering finish|higher quality print|printing quality appears|printing treatment is consistent|without visible errors|imperfections)\b/gi;
+  /\b(foil (?:texture )?(?:is )?visible|foil treatment is present|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|smooth surface|embossed|texture visible|standard (?:printing treatment|print|surface|printed surface)|card surface appears standard|card surface quality appears clear|(?:without|no) visible textur(?:e|ing)(?: or gloss effects)?|no visible gloss effects|edges?[^.]{0,40}\bwear\b|no significant defects(?: in the print quality)?|print quality|shimmering finish|higher quality print|printing quality appears|printing treatment (?:is consistent|appears to show[^.]*)|appears to show muted colors|without visible errors|imperfections)\b/gi;
 const VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN =
   /\b(glossy(?:,\s*|\s+)reflective surface|shiny(?:,\s*|\s+)reflective surface|smooth silver appearance|polished surface|glossy black (?:body|exterior|surface)|shiny surfaces?|glossy bomb|shiny badge|glossy finish|shiny finish|smooth and reflective|reflective dark orb|matte textures?|uniform finish|shiny black surface|metallic badge)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
@@ -100,11 +100,11 @@ const VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN =
 const VISUAL_LANGUAGE_METADATA_OR_IDENTITY_PATTERN =
   /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)[-\s]+type\b|\b(?:suggested by the name of the card|name of the card|card name|associated with this (?:pokemon|pokémon)|this (?:pokemon|pokémon)'s design)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
-  /\b(mystique|intrigue|tranquil|tranquility|enchantment|awe-inspiring|natural awe|sense of power)\b/gi;
+  /\b(mystique|intrigue|tranquil|tranquility|enchantment|awe-inspiring|natural awe|sense of power|sense of discovery|sense of discovery and ancient history)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
   /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue|celebratory|uplifting|theme|whimsical|award)\b/gi;
 const VISUAL_LANGUAGE_PURPOSE_OR_LORE_INTERPRETATION_PATTERN =
-  /\b(fits (?:the|this) character'?s theme|fitting for a grass energy card|elemental qualities associated with grass|theme of excavation and speed|connection to history|supportiveness|hidden lore|lore|purpose|essence of|energetic essence|thematic meaning|symbolic meaning)\b/gi;
+  /\b(fits (?:the|this) character'?s theme|fitting for a grass energy card|elemental qualities associated with grass|theme of excavation and speed|connection to history|supportiveness|hidden lore|lore|purpose|essence of|energetic essence|thematic meaning|symbolic meaning|significance|abstract representation of [^.]{0,40} energy)\b/gi;
 const VISUAL_LANGUAGE_PRIMARY_SUBJECT_ANATOMY_OVERCLAIM_PATTERN =
   /\b(?:gives an impression of|impression of|suggesting|suggests|hinting at)\b[^.]{0,80}\b(?:eyes?|face|facial features?|brow|mouth|limbs?|tail|power|type|nature)\b|\b(?:ethereal eyes|eyes within|furrowed brow area|luminous and reflective)\b/gi;
 const VISUAL_LANGUAGE_ABSTRACT_SHAPE_LITERALIZATION_PATTERN =
@@ -114,13 +114,15 @@ const VISUAL_POLICY_EXPRESSION_UNCERTAIN_CLAIM_PATTERN =
 const VISUAL_POLICY_TRAINER_PERSONALITY_CLAIM_PATTERN =
   /\b(confident expression|determined expression|focused expression|thoughtful expression|confidence|focused|thoughtful|determined|poise|poised|invoking or directing energy|directing energy|intense action|dramatic atmosphere|urgency)\b/gi;
 const VISUAL_POLICY_POKEMON_PERSONALITY_CLAIM_PATTERN =
-  /\b(determined stance|intense eye expression|confident expression|determined gaze|fierce expression|aggressive expression|intimidating presence)\b/gi;
+  /\b(determined stance|intense eye expression|confident expression|determined gaze|fierce expression|aggressive expression|intimidating presence|fierce intensity|intensity and determination)\b/gi;
 const VISUAL_POLICY_TYPE_LIKE_VISUAL_CLAIM_PATTERN =
   /\b(electrically charged body|electric(?:al)? (?:energy|power)|electric type|electric-type|ghost type|ghost-type|water energy|grass energy|psychic energy|dark metal energy)\b/gi;
 const VISUAL_POLICY_ENERGY_INTERPRETATION_PATTERN =
-  /\b(importance|powerful,\s*energetic force|powerful energetic force|unique within the series|fresh and lively atmosphere|mood of vitality and growth|vitality and growth|symbolic meaning|thematic meaning)\b/gi;
+  /\b(importance|powerful,\s*energetic force|powerful energetic force|unique within the series|fresh and lively atmosphere|mood of vitality and growth|vitality and growth|symbolic meaning|thematic meaning|invokes? a sense of [a-z ]+|abstract representation of [^.]{0,40} energy)\b/gi;
 const VISUAL_POLICY_ITEM_ACTION_INTERPRETATION_PATTERN =
   /\b(spark[^.]{0,50}\bindicating\b[^.]{0,50}\baction|indicating a sense of action|explosion or heightened action|explosion of colors|anticipation and excitement|explosive device|potential action|potential detonation)\b/gi;
+const VISUAL_POLICY_ITEM_INTERPRETATION_PATTERN =
+  /\b(sense of discovery(?: and ancient history)?|significance)\b/gi;
 const VISUAL_POLICY_BRANCH_MOOD_REVIEW_PATTERNS = Object.freeze({
   pokemon: /\b(determined|aggressive|intimidating|confident|fierce)\b/gi,
   trainer: /\b(focused|determined|confident|poised|thoughtful|assertive)\b/gi,
@@ -550,6 +552,17 @@ function visibleExpressionSupportEvidence(payload) {
   return uniqueSorted(evidence);
 }
 
+function supportedTrainerPersonalityDetails(details, expressionSupport) {
+  if (expressionSupport.length === 0) return details;
+  return details.filter((detail) => {
+    const matchedText = normalizeText(detail.matched_text);
+    if (!/\b(confident expression|determined expression|focused expression|thoughtful expression|assertive expression|confidence|focused|thoughtful|determined)\b/i.test(matchedText)) {
+      return true;
+    }
+    return false;
+  });
+}
+
 function policyFieldsFor(payload, allowedFields) {
   return textFieldsForVisualLanguageReview(payload).filter((entry) => allowedFields.includes(entry.field));
 }
@@ -678,6 +691,13 @@ export function evaluateVisualDescriptionPolicyV1(payload, card = {}) {
         text,
         pattern: VISUAL_POLICY_ITEM_ACTION_INTERPRETATION_PATTERN,
         qualityFlag: "potential_dramatic_inferred_action_language",
+      });
+      addPolicyRegexResults(results, {
+        policyRule: "item_object_purpose_or_interpretation_requires_review",
+        field,
+        text,
+        pattern: VISUAL_POLICY_ITEM_INTERPRETATION_PATTERN,
+        qualityFlag: "potential_purpose_or_lore_interpretation",
       });
     }
   }
@@ -854,6 +874,7 @@ function addPrimarySubjectAnatomyOverclaimFlagDetails(details, payload, promptBr
 function addBranchSpecificMoodOverclaimFlagDetails(details, payload, promptBranch) {
   const moodText = normalizeStringArray(payload?.visual_attributes?.mood).join(" ");
   if (!moodText) return;
+  if (promptBranch === "trainer" && visibleExpressionSupportEvidence(payload).length > 0) return;
 
   const moodChecks = {
     pokemon: [
@@ -889,6 +910,7 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const resolvedPromptMetadata = resolveCardPromptMetadata(card);
   const promptBranch = normalizeText(card.prompt_branch) || resolvedPromptMetadata.prompt_branch;
   const cardTypeMetadataSource = normalizeText(card.card_type_metadata_source) || resolvedPromptMetadata.card_type_metadata_source;
+  const expressionSupport = promptBranch === "trainer" ? visibleExpressionSupportEvidence(payload) : [];
 
   addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch);
   addMetadataOrIdentityFlagDetails(details, payload, card);
@@ -970,12 +992,15 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
       text,
       pattern: VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN,
     }));
-    details.push(...regexDetails({
+    const unsupportedPersonalityDetails = regexDetails({
       flag: "potential_unsupported_personality_or_species_interpretation",
       field,
       text,
       pattern: VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN,
-    }));
+    });
+    details.push(...(promptBranch === "trainer"
+      ? supportedTrainerPersonalityDetails(unsupportedPersonalityDetails, expressionSupport)
+      : unsupportedPersonalityDetails));
     details.push(...regexDetails({
       flag: "potential_dramatic_inferred_action_language",
       field,

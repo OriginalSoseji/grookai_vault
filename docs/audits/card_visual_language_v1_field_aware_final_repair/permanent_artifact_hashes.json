@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-16T21:13:34.136Z",
+  "sha256": {
+    "backend/card_descriptions/card_visual_description_agent_v1.mjs": "1dbc25e3548f62e59048455f31e94639dbe00cf6ee5820bf12f14a7074bc6a40",
+    "tests/contracts/card_visual_description_agent_v1.test.mjs": "9f2b637404ce365ae8775580137ab29e730ce9a5667541eb00e032c1eb713354",
+    "docs/audits/card_visual_language_v1_field_aware_final_repair/VISUAL_LANGUAGE_V1_FIELD_AWARE_FINAL_REPAIR_REPORT.md": "04f5235a63334b72cbcc20692c51dd7655a9ecf9c1bd59e35d88b5911f670a64",
+    "docs/audits/card_visual_language_v1_field_aware_final_repair/offline_field_aware_final_repair_replay.json": "dc741e3a9ceea4e8f5268fbe9a5823aa099c2459af25457739cab37507d0279d",
+    "docs/audits/card_visual_language_v1_field_aware_final_repair/targeted_test_output.txt": "3c01cdbe4cf7bb3b3903c2ba92b0dcbe6d8b33d4688150bf8e8159798e033aec",
+    "docs/audits/card_visual_language_v1_field_aware_final_repair/diff_check_output.txt": "697b037c68127b66b099f6df9b51b422427782fe3298e1c1b51b9c5a04b39291",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_FIELD_AWARE_FINAL_REPAIR_20260716.md": "7ad06577faf69a356724d37ac228b6687d90d99408ff61d895dac6657d5ac9d7",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "110627030c162e11927eb7cd8f7bc624018650da545a8ea36018881900e5b1fa"
+  }
+}

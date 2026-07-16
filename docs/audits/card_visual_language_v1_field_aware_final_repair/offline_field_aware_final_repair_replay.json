@@ -1,0 +1,1179 @@
+{
+  "artifact_type": "card_visual_language_v1_field_aware_final_repair_offline_replay",
+  "recorded_at": "2026-07-16T21:11:58.509Z",
+  "model_calls": 0,
+  "database_writes": 0,
+  "source_generated_outputs": "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/generated_outputs.jsonl",
+  "original_status_counts": {
+    "needs_review": 22,
+    "pending": 3
+  },
+  "replay_status_counts": {
+    "needs_review": 23,
+    "pending": 2
+  },
+  "quality_flag_counts": {
+    "potential_abstract_shape_literalization": 1,
+    "potential_canonical_metadata_in_visual_output": 5,
+    "potential_creature_language_on_non_pokemon_branch": 1,
+    "potential_dramatic_inferred_action_language": 2,
+    "potential_interpretive_claim": 10,
+    "potential_interpretive_mood_language": 3,
+    "potential_metadata_or_identity_language": 1,
+    "potential_object_material_or_card_surface_confusion": 3,
+    "potential_primary_subject_anatomy_overclaim": 2,
+    "potential_purpose_or_lore_interpretation": 6,
+    "potential_semantic_tag_nonvisual_concept": 7,
+    "potential_speculative_setting_language": 4,
+    "potential_surface_overclaim": 3,
+    "potential_unsupported_personality_or_species_interpretation": 8,
+    "potential_visual_material_vs_surface_confusion": 3
+  },
+  "policy_rule_counts": {
+    "branch_mood_vocabulary_requires_review": 5,
+    "energy_abstract_literalization_requires_structured_entity_evidence": 1,
+    "energy_branch_force_purpose_or_series_claim_requires_review": 3,
+    "item_object_action_or_event_interpretation_requires_review": 1,
+    "item_object_purpose_or_interpretation_requires_review": 3,
+    "pokemon_personality_or_expression_requires_review": 3,
+    "surface_claim_requires_physical_evidence": 6,
+    "trainer_personality_or_expression_requires_visible_support": 6,
+    "type_like_visual_claim_requires_visible_support": 6
+  },
+  "gate_checks": {
+    "misty_false_positive_cleared": true,
+    "dark_metal_energy_false_negative_routed": true,
+    "fossil_false_negative_routed": true,
+    "magnetic_storm_clean_pending_preserved": true,
+    "excadrill_surface_policy_flagged": true,
+    "rainbow_energy_surface_policy_flagged": true,
+    "zeraora_personality_policy_flagged": true
+  },
+  "status_changes": [
+    {
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "prompt_branch": "trainer",
+      "from": "needs_review",
+      "to": "pending"
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+      "name": "Dark Metal Energy",
+      "prompt_branch": "energy",
+      "from": "pending",
+      "to": "needs_review"
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-072",
+      "name": "古びたたての化石",
+      "prompt_branch": "item_tool_supporter",
+      "from": "pending",
+      "to": "needs_review"
+    }
+  ],
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-M5-113",
+      "name": "Mega Chandelure ex",
+      "prompt_branch": "pokemon",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_semantic_tag_nonvisual_concept",
+        "potential_speculative_setting_language"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "ethereal",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "atmosphere",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-118",
+      "name": "Mega Darkrai ex",
+      "prompt_branch": "pokemon",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_interpretive_mood_language",
+        "potential_primary_subject_anatomy_overclaim",
+        "potential_purpose_or_lore_interpretation",
+        "potential_semantic_tag_nonvisual_concept",
+        "potential_speculative_setting_language"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_primary_subject_anatomy_overclaim",
+          "matched_text": "suggests a humanoid shape with elongated limbs",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "embodies",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_mood_language",
+          "matched_text": "intrigue",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "essence of",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_mood_language",
+          "matched_text": "intrigue",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "atmosphere",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-101",
+      "name": "Mega Excadrill ex",
+      "prompt_branch": "pokemon",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_surface_overclaim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "aggressive",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "intimidating",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "aggressive expression",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "printing treatment appears to show muted colors with a smooth surface",
+          "field": "card_surface_and_printing_cues"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "printing treatment appears to show muted colors with a smooth surface",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        },
+        {
+          "policy_rule": "pokemon_personality_or_expression_requires_review",
+          "field": "semantic_tags",
+          "claim": "aggressive expression",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "branch_mood_vocabulary_requires_review",
+          "field": "visual_attributes.mood",
+          "claim": "aggressive",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "branch_mood_vocabulary_requires_review",
+          "field": "visual_attributes.mood",
+          "claim": "intimidating",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-112",
+      "name": "Mega Zeraora ex",
+      "prompt_branch": "pokemon",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evoking",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "intensity and determination",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "electric power",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "pokemon_personality_or_expression_requires_review",
+          "field": "artwork_description",
+          "claim": "intensity and determination",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "electric power",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-096",
+      "name": "Mega Zeraora ex",
+      "prompt_branch": "pokemon",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_metadata_or_identity_language",
+        "potential_primary_subject_anatomy_overclaim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_primary_subject_anatomy_overclaim",
+          "matched_text": "suggests action, as if it is preparing to leap forward, with its tail",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_metadata_or_identity_language",
+          "matched_text": "Electric-type",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "Electric-type",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "fierce intensity",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "pokemon_personality_or_expression_requires_review",
+          "field": "artwork_description",
+          "claim": "fierce intensity",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "Electric-type",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "prompt_branch": "trainer",
+      "original_review_status": "needs_review",
+      "replay_review_status": "pending",
+      "status_changed": true,
+      "quality_flags": [],
+      "quality_flag_details": [],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-109",
+      "name": "Gladion's Final Battle",
+      "prompt_branch": "trainer",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "confident",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evoking",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "determined expression",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "determined expression",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "determined expression",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "semantic_tags",
+          "claim": "determined expression",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "branch_mood_vocabulary_requires_review",
+          "field": "visual_attributes.mood",
+          "claim": "confident",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-117",
+      "name": "Gwynn",
+      "prompt_branch": "trainer",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "whimsical",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "focused",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "determined",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "focused",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "determined",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-116",
+      "name": "Gladion's Final Battle",
+      "prompt_branch": "trainer",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evoking",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "determined expression",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "focused expression",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "focused expression",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        },
+        {
+          "policy_rule": "trainer_personality_or_expression_requires_visible_support",
+          "field": "semantic_tags",
+          "claim": "determined expression",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_unsupported_personality_or_species_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-111",
+      "name": "Gwynn",
+      "prompt_branch": "trainer",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_object_material_or_card_surface_confusion",
+        "potential_unsupported_personality_or_species_interpretation",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "serious demeanor",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_object_material_or_card_surface_confusion",
+          "matched_text": "glossy finish",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_visual_material_vs_surface_confusion",
+          "matched_text": "glossy finish",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+      "name": "Magnetic Storm",
+      "prompt_branch": "stadium",
+      "original_review_status": "pending",
+      "replay_review_status": "pending",
+      "status_changed": false,
+      "quality_flags": [],
+      "quality_flag_details": [],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "name": "Turffield Stadium",
+      "prompt_branch": "stadium",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_semantic_tag_nonvisual_concept"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "atmosphere",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-PMCG6-085",
+      "name": "Cinnabar City Gym",
+      "prompt_branch": "stadium",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_semantic_tag_nonvisual_concept"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "atmosphere",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+      "name": "High Pressure System",
+      "prompt_branch": "stadium",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_semantic_tag_nonvisual_concept"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "uplifting",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "mood",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMG-039",
+      "name": "Dimension Valley",
+      "prompt_branch": "stadium",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_semantic_tag_nonvisual_concept",
+        "potential_speculative_setting_language",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evokes",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "whimsical",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "whimsical",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "ethereal",
+          "field": "visual_attributes.distinguishing_details"
+        },
+        {
+          "flag": "potential_unsupported_personality_or_species_interpretation",
+          "matched_text": "whimsical",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "whimsical",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11541-013",
+      "name": "Psychic Energy",
+      "prompt_branch": "energy",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim",
+        "potential_speculative_setting_language"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "mystical",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "represents",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_speculative_setting_language",
+          "matched_text": "mystical",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "Psychic Energy",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "Psychic Energy",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-L1BSS-070",
+      "name": "Rainbow Energy",
+      "prompt_branch": "energy",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_abstract_shape_literalization",
+        "potential_creature_language_on_non_pokemon_branch",
+        "potential_interpretive_mood_language",
+        "potential_surface_overclaim"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_abstract_shape_literalization",
+          "matched_text": "buildings",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_interpretive_mood_language",
+          "matched_text": "intrigue",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "card surface appears standard",
+          "field": "card_surface_and_printing_cues"
+        },
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "without visible texturing or gloss effects",
+          "field": "card_surface_and_printing_cues"
+        },
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "edges of the card exhibit a subtle wear",
+          "field": "card_surface_and_printing_cues"
+        },
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "no significant defects in the print quality",
+          "field": "card_surface_and_printing_cues"
+        },
+        {
+          "flag": "potential_creature_language_on_non_pokemon_branch",
+          "matched_text": "creature",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_creature_language_on_non_pokemon_branch",
+          "matched_text": "creature",
+          "field": "visual_attributes.subjects.secondary"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "card surface appears standard",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        },
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "without visible texturing or gloss effects",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        },
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "edges of the card exhibit a subtle wear",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        },
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "no significant defects in the print quality",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        },
+        {
+          "policy_rule": "energy_abstract_literalization_requires_structured_entity_evidence",
+          "field": "artwork_description",
+          "claim": "buildings",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_abstract_shape_literalization"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11194-057",
+      "name": "Water Energy",
+      "prompt_branch": "energy",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "essence of",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "water energy",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "water energy",
+          "field": "semantic_tags"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "artwork_description",
+          "claim": "water energy",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        },
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "semantic_tags",
+          "claim": "water energy",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+      "name": "Dark Metal Energy",
+      "prompt_branch": "energy",
+      "original_review_status": "pending",
+      "replay_review_status": "needs_review",
+      "status_changed": true,
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "invokes",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "abstract representation of dark energy",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "invokes a sense of intensity",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "energy_branch_force_purpose_or_series_claim_requires_review",
+          "field": "artwork_description",
+          "claim": "invokes a sense of intensity",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        },
+        {
+          "policy_rule": "energy_branch_force_purpose_or_series_claim_requires_review",
+          "field": "artwork_description",
+          "claim": "abstract representation of dark energy",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-SM1PLUS-069",
+      "name": "Basic Grass Energy",
+      "prompt_branch": "energy",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evoking",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "essence of",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_canonical_metadata_in_visual_output",
+          "matched_text": "grass energy",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "importance",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "type_like_visual_claim_requires_visible_support",
+          "field": "semantic_tags",
+          "claim": "grass energy",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_canonical_metadata_in_visual_output"
+        },
+        {
+          "policy_rule": "energy_branch_force_purpose_or_series_claim_requires_review",
+          "field": "artwork_description",
+          "claim": "importance",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-106",
+      "name": "Tremendous Bomb",
+      "prompt_branch": "item_tool_supporter",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_interpretive_claim",
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_dramatic_inferred_action_language",
+          "matched_text": "exciting",
+          "field": "visual_attributes.mood"
+        },
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evokes",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_dramatic_inferred_action_language",
+          "matched_text": "excitement and tension",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_object_material_or_card_surface_confusion",
+          "matched_text": "shiny finish",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_visual_material_vs_surface_confusion",
+          "matched_text": "shiny finish",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_dramatic_inferred_action_language",
+          "matched_text": "explosive device",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_dramatic_inferred_action_language",
+          "matched_text": "tense",
+          "field": "visual_attributes.mood"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "item_object_action_or_event_interpretation_requires_review",
+          "field": "semantic_tags",
+          "claim": "explosive device",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_dramatic_inferred_action_language"
+        },
+        {
+          "policy_rule": "branch_mood_vocabulary_requires_review",
+          "field": "visual_attributes.mood",
+          "claim": "tense",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_dramatic_inferred_action_language"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-105",
+      "name": "Dark Bell",
+      "prompt_branch": "item_tool_supporter",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_object_material_or_card_surface_confusion",
+          "matched_text": "shiny surface",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_visual_material_vs_surface_confusion",
+          "matched_text": "shiny surface",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-074",
+      "name": "リトライバッジ",
+      "prompt_branch": "item_tool_supporter",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_interpretive_claim",
+        "potential_purpose_or_lore_interpretation",
+        "potential_semantic_tag_nonvisual_concept"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_claim",
+          "matched_text": "evokes",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "significance",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "uplifting",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_semantic_tag_nonvisual_concept",
+          "matched_text": "mood",
+          "field": "semantic_tags"
+        },
+        {
+          "flag": "potential_dramatic_inferred_action_language",
+          "matched_text": "celebratory",
+          "field": "visual_attributes.mood"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "item_object_purpose_or_interpretation_requires_review",
+          "field": "artwork_description",
+          "claim": "significance",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        },
+        {
+          "policy_rule": "branch_mood_vocabulary_requires_review",
+          "field": "visual_attributes.mood",
+          "claim": "celebratory",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_dramatic_inferred_action_language"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-073",
+      "name": "ごうかいボム",
+      "prompt_branch": "item_tool_supporter",
+      "original_review_status": "needs_review",
+      "replay_review_status": "needs_review",
+      "status_changed": false,
+      "quality_flags": [
+        "potential_surface_overclaim"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_surface_overclaim",
+          "matched_text": "standard printing treatment",
+          "field": "card_surface_and_printing_cues"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "surface_claim_requires_physical_evidence",
+          "field": "card_surface_and_printing_cues",
+          "claim": "standard printing treatment",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_surface_overclaim"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-072",
+      "name": "古びたたての化石",
+      "prompt_branch": "item_tool_supporter",
+      "original_review_status": "pending",
+      "replay_review_status": "needs_review",
+      "status_changed": true,
+      "quality_flags": [
+        "potential_interpretive_mood_language",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "quality_flag_details": [
+        {
+          "flag": "potential_interpretive_mood_language",
+          "matched_text": "sense of discovery",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "significance",
+          "field": "artwork_description"
+        },
+        {
+          "flag": "potential_purpose_or_lore_interpretation",
+          "matched_text": "sense of discovery and ancient history",
+          "field": "artwork_description"
+        }
+      ],
+      "policy_results": [
+        {
+          "policy_rule": "item_object_purpose_or_interpretation_requires_review",
+          "field": "artwork_description",
+          "claim": "sense of discovery and ancient history",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        },
+        {
+          "policy_rule": "item_object_purpose_or_interpretation_requires_review",
+          "field": "artwork_description",
+          "claim": "significance",
+          "supporting_evidence": [],
+          "decision": "needs_review",
+          "quality_flag": "potential_purpose_or_lore_interpretation"
+        }
+      ]
+    }
+  ]
+}

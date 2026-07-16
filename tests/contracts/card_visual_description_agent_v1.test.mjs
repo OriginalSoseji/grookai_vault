@@ -1207,6 +1207,74 @@ test("field-aware policy replay routes failed freeze candidates without dirtying
   }
 });
 
+test("field-aware final dry-run repair replays exact misses without dirtying clean pending row", () => {
+  function replay(row) {
+    const card = {
+      name: row.name,
+      supertype: row.card_supertype,
+      subtype: row.card_subtype,
+      card_category: row.card_category,
+      prompt_branch: row.prompt_branch,
+      card_type_metadata_source: row.card_type_metadata_source,
+    };
+    const details = detectVisualDescriptionReviewFlagDetailsV1(row, card);
+    const flags = [...new Set(details.map((detail) => detail.flag))].sort();
+    return {
+      details,
+      flags,
+      policies: evaluateVisualDescriptionPolicyV1(row, card),
+      status: classifyDescriptionReviewStatusV1({
+        quality_flags: flags,
+        identity_input_confidence: row.identity_input_confidence,
+        description_confidence: row.description_confidence,
+        attribute_confidence: row.attribute_confidence,
+        image_quality_score: row.image_quality_score,
+      }),
+    };
+  }
+
+  const rows = source(
+    "docs/audits/card_visual_language_v1_field_aware_final_25_dry_run/2026-07-16T19-58-13-037Z_dry_run_024ea0f3b803/generated_outputs.jsonl",
+  ).trim().split(/\r?\n/).map((line) => JSON.parse(line));
+  const byGvId = new Map(rows.map((row) => [row.gv_id, row]));
+
+  const misty = replay(byGvId.get("GV-PK-JPN-M5-108"));
+  assert.equal(misty.status, "pending");
+  assert.equal(misty.flags.includes("potential_unsupported_personality_or_species_interpretation"), false);
+
+  const darkMetalEnergy = replay(byGvId.get("GV-PK-JPN-TCGCOLLECTOR11515-020"));
+  assert.equal(darkMetalEnergy.status, "needs_review");
+  assert.ok(darkMetalEnergy.policies.some((result) =>
+    result.policy_rule === "energy_branch_force_purpose_or_series_claim_requires_review"
+    && /abstract representation|invokes/i.test(result.claim)));
+
+  const fossil = replay(byGvId.get("GV-PK-JPN-M5-072"));
+  assert.equal(fossil.status, "needs_review");
+  assert.ok(fossil.policies.some((result) =>
+    result.policy_rule === "item_object_purpose_or_interpretation_requires_review"
+    && /sense of discovery|significance/i.test(result.claim)));
+
+  const magneticStorm = replay(byGvId.get("GV-PK-JPN-TCGCOLLECTOR11526-019"));
+  assert.equal(magneticStorm.status, "pending");
+  assert.equal(magneticStorm.flags.length, 0);
+
+  const excadrill = replay(byGvId.get("GV-PK-JPN-M5-101"));
+  assert.ok(excadrill.details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.field === "card_surface_and_printing_cues"));
+
+  const rainbowEnergy = replay(byGvId.get("GV-PK-JPN-L1BSS-070"));
+  assert.ok(rainbowEnergy.details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.field === "card_surface_and_printing_cues"
+    && /standard|texturing|wear|print quality/i.test(detail.matched_text)));
+
+  const zeraora = replay(byGvId.get("GV-PK-JPN-M5-112"));
+  assert.ok(zeraora.policies.some((result) =>
+    result.policy_rule === "pokemon_personality_or_expression_requires_review"
+    && result.claim === "intensity and determination"));
+});
+
 test("card visual language enforcement catches final surface phrases and ignores non-problem glare quality", () => {
   const details = detectVisualDescriptionReviewFlagDetailsV1(
     {

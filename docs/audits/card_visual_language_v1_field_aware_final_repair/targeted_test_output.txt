@@ -1,0 +1,189 @@
+COMMAND: node --check backend\card_descriptions\card_visual_description_agent_v1.mjs
+EXIT_CODE: 0
+
+COMMAND: node --test tests\contracts\card_visual_description_agent_v1.test.mjs
+TAP version 13
+# Subtest: card visual description schema is private, versioned, and current-row safe
+ok 1 - card visual description schema is private, versioned, and current-row safe
+  ---
+  duration_ms: 1.7053
+  type: 'test'
+  ...
+# Subtest: card visual description args default to dry-run and block fixture apply
+ok 2 - card visual description args default to dry-run and block fixture apply
+  ---
+  duration_ms: 2.1856
+  type: 'test'
+  ...
+# Subtest: card visual description semantic tags stay visual and exclude metadata
+ok 3 - card visual description semantic tags stay visual and exclude metadata
+  ---
+  duration_ms: 5.9952
+  type: 'test'
+  ...
+# Subtest: card visual description flags Chandelure anatomy described as a held object
+ok 4 - card visual description flags Chandelure anatomy described as a held object
+  ---
+  duration_ms: 7.9853
+  type: 'test'
+  ...
+# Subtest: card visual description flags overconfident celestial settings without uncertainty
+ok 5 - card visual description flags overconfident celestial settings without uncertainty
+  ---
+  duration_ms: 0.6511
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches narrow post-run false negatives
+ok 6 - card visual language enforcement catches narrow post-run false negatives
+  ---
+  duration_ms: 1.0798
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags unsupported emotion after unclear face language
+ok 7 - card visual language enforcement flags unsupported emotion after unclear face language
+  ---
+  duration_ms: 1.116
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement separates franchise language from creature language on non-Pokemon branches
+ok 8 - card visual language enforcement separates franchise language from creature language on non-Pokemon branches
+  ---
+  duration_ms: 0.2387
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags canonical name visual conflicts
+ok 9 - card visual language enforcement flags canonical name visual conflicts
+  ---
+  duration_ms: 1.1828
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches subject-repair dry-run false negatives
+ok 10 - card visual language enforcement catches subject-repair dry-run false negatives
+  ---
+  duration_ms: 0.5983
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches broader false-negative families
+ok 11 - card visual language enforcement catches broader false-negative families
+  ---
+  duration_ms: 0.6645
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches broad-repair dry-run false negatives by claim class
+ok 12 - card visual language enforcement catches broad-repair dry-run false negatives by claim class
+  ---
+  duration_ms: 2.7113
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches cross-field expression contradictions
+ok 13 - card visual language enforcement catches cross-field expression contradictions
+  ---
+  duration_ms: 0.4078
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches claim-class dry-run final false negatives narrowly
+ok 14 - card visual language enforcement catches claim-class dry-run final false negatives narrowly
+  ---
+  duration_ms: 0.6591
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches freeze-candidate false negatives narrowly
+ok 15 - card visual language enforcement catches freeze-candidate false negatives narrowly
+  ---
+  duration_ms: 1.6583
+  type: 'test'
+  ...
+# Subtest: card visual language policy evaluates claim, field, and support together
+ok 16 - card visual language policy evaluates claim, field, and support together
+  ---
+  duration_ms: 0.5373
+  type: 'test'
+  ...
+# Subtest: field-aware policy replay routes failed freeze candidates without dirtying clean pending rows
+ok 17 - field-aware policy replay routes failed freeze candidates without dirtying clean pending rows
+  ---
+  duration_ms: 4.9927
+  type: 'test'
+  ...
+# Subtest: field-aware final dry-run repair replays exact misses without dirtying clean pending row
+ok 18 - field-aware final dry-run repair replays exact misses without dirtying clean pending row
+  ---
+  duration_ms: 3.5391
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement catches final surface phrases and ignores non-problem glare quality
+ok 19 - card visual language enforcement catches final surface phrases and ignores non-problem glare quality
+  ---
+  duration_ms: 0.5893
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement preserves objective Energy branch wording
+ok 20 - card visual language enforcement preserves objective Energy branch wording
+  ---
+  duration_ms: 0.1883
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement allows literal star-shaped objects
+ok 21 - card visual language enforcement allows literal star-shaped objects
+  ---
+  duration_ms: 0.1706
+  type: 'test'
+  ...
+# Subtest: card visual language enforcement flags unavailable metadata branch mismatch evidence
+ok 22 - card visual language enforcement flags unavailable metadata branch mismatch evidence
+  ---
+  duration_ms: 0.2532
+  type: 'test'
+  ...
+# Subtest: card visual language review flags preserve matched text and force review
+ok 23 - card visual language review flags preserve matched text and force review
+  ---
+  duration_ms: 0.585
+  type: 'test'
+  ...
+# Subtest: card visual description resolves fallback card branches and stratified samples
+ok 24 - card visual description resolves fallback card branches and stratified samples
+  ---
+  duration_ms: 0.3313
+  type: 'test'
+  ...
+# Subtest: card visual language review flags interpretive mood false negatives
+ok 25 - card visual language review flags interpretive mood false negatives
+  ---
+  duration_ms: 0.2495
+  type: 'test'
+  ...
+# Subtest: card visual description usage telemetry computes cost, projections, and stop ceilings
+ok 26 - card visual description usage telemetry computes cost, projections, and stop ceilings
+  ---
+  duration_ms: 0.3491
+  type: 'test'
+  ...
+# Subtest: card visual description payload validation separates shape from review approval
+ok 27 - card visual description payload validation separates shape from review approval
+  ---
+  duration_ms: 0.1501
+  type: 'test'
+  ...
+# Subtest: card visual description version and embedding input are deterministic
+ok 28 - card visual description version and embedding input are deterministic
+  ---
+  duration_ms: 0.6179
+  type: 'test'
+  ...
+# Subtest: card visual description agent entrypoints stay guarded and non-identity-authoritative
+ok 29 - card visual description agent entrypoints stay guarded and non-identity-authoritative
+  ---
+  duration_ms: 2.2709
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 127.8365
+EXIT_CODE: 0
