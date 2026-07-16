@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-07-16T19:07:07.374Z",
+  "source_path": "docs/audits/card_visual_language_v1_freeze_candidate_25_dry_run/2026-07-16T18-47-35-745Z_dry_run_0cdc213cc749/generated_outputs.jsonl",
+  "model_calls": 0,
+  "database_writes": 0,
+  "originally_pending_count": 7,
+  "newly_routed_to_needs_review_count": 4,
+  "remained_pending_count": 3,
+  "replay": [
+    {
+      "name": "Mega Excadrill ex",
+      "gv_id": "GV-PK-JPN-M5-101",
+      "branch": "pokemon",
+      "old_status": "pending",
+      "new_status": "needs_review",
+      "flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_unsupported_personality_or_species_interpretation"
+      ]
+    },
+    {
+      "name": "Mega Zeraora ex",
+      "gv_id": "GV-PK-JPN-M5-096",
+      "branch": "pokemon",
+      "old_status": "pending",
+      "new_status": "pending",
+      "flags": []
+    },
+    {
+      "name": "Misty's Vitality",
+      "gv_id": "GV-PK-JPN-M5-108",
+      "branch": "trainer",
+      "old_status": "pending",
+      "new_status": "pending",
+      "flags": []
+    },
+    {
+      "name": "Gladion's Final Battle",
+      "gv_id": "GV-PK-JPN-M5-109",
+      "branch": "trainer",
+      "old_status": "pending",
+      "new_status": "needs_review",
+      "flags": [
+        "potential_unsupported_personality_or_species_interpretation"
+      ]
+    },
+    {
+      "name": "Magnetic Storm",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+      "branch": "stadium",
+      "old_status": "pending",
+      "new_status": "needs_review",
+      "flags": [
+        "potential_interpretive_mood_language"
+      ]
+    },
+    {
+      "name": "Tremendous Bomb",
+      "gv_id": "GV-PK-JPN-M5-106",
+      "branch": "item_tool_supporter",
+      "old_status": "pending",
+      "new_status": "needs_review",
+      "flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ]
+    },
+    {
+      "name": "古びたたての化石",
+      "gv_id": "GV-PK-JPN-M5-072",
+      "branch": "item_tool_supporter",
+      "old_status": "pending",
+      "new_status": "pending",
+      "flags": []
+    }
+  ]
+}

@@ -859,6 +859,198 @@ test("card visual language enforcement catches claim-class dry-run final false n
     && detail.matched_text === "elemental qualities associated with grass"));
 });
 
+test("card visual language enforcement catches freeze-candidate false negatives narrowly", () => {
+  const excadrillPayload = {
+    artwork_description:
+      "The face displays a wide, menacing grin with sharp teeth, giving it an aggressive expression and intimidating presence. The pose is angled forward as if about to drill into the ground.",
+    card_surface_and_printing_cues: "Silver border visible, printing treatment uncertain.",
+    visual_attributes: {
+      subjects: { primary: ["Mega Excadrill"], secondary: [] },
+      environment: { setting: [] },
+      mood: ["aggressive", "intense"],
+      distinguishing_details: ["drill snout", "clawed arms"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["aggressive pose", "drill Pokemon", "dynamic composition"],
+  };
+  const excadrillDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    excadrillPayload,
+    { name: "Mega Excadrill ex", supertype: "Pokemon" },
+  );
+  const excadrillFlags = detectVisualDescriptionReviewFlagsV1(
+    excadrillPayload,
+    { name: "Mega Excadrill ex", supertype: "Pokemon" },
+  );
+
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "menacing grin"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "aggressive expression"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "intimidating presence"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "about to drill into the ground"));
+  assert.ok(excadrillDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "aggressive"
+    && detail.field === "visual_attributes.mood"));
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: excadrillFlags,
+      identity_input_confidence: 0.95,
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.95,
+    }),
+    "needs_review",
+  );
+
+  const gladionPayload = {
+    artwork_description:
+      "The trainer's expression is serious and determined. His left arm is extended forward, suggesting an active gesture of calling or directing something, and the scene carries action and determination.",
+    card_surface_and_printing_cues: "Printing treatment uncertain.",
+    visual_attributes: {
+      subjects: { primary: ["Gladion"], secondary: [] },
+      environment: { setting: ["grassy terrain"] },
+      mood: ["determined", "intense"],
+      distinguishing_details: ["outstretched arm", "black jacket"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["determined expression", "trainer portrait", "black jacket"],
+  };
+  const gladionDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    gladionPayload,
+    { name: "Gladion's Final Battle", supertype: "Trainer", card_category: "Supporter" },
+  );
+  const gladionFlags = detectVisualDescriptionReviewFlagsV1(
+    gladionPayload,
+    { name: "Gladion's Final Battle", supertype: "Trainer", card_category: "Supporter" },
+  );
+
+  assert.ok(gladionDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "serious and determined"));
+  assert.ok(gladionDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "calling or directing"));
+  assert.ok(gladionDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "action and determination"));
+  assert.ok(gladionDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "determined"
+    && detail.field === "visual_attributes.mood"));
+  assert.ok(gladionDetails.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "determined expression"
+    && detail.field === "semantic_tags"));
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: gladionFlags,
+      identity_input_confidence: 0.95,
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.95,
+    }),
+    "needs_review",
+  );
+
+  const magneticStormPayload = {
+    artwork_description:
+      "The scene includes lightning and an aurora. The overall mood feels awe-inspiring, with natural awe and a sense of power created by the sky.",
+    card_surface_and_printing_cues: "Foil texture cannot be determined.",
+    visual_attributes: {
+      subjects: { primary: [], secondary: [] },
+      environment: { setting: ["dark sky", "aurora"] },
+      mood: ["awe-inspiring", "charged"],
+      distinguishing_details: ["lightning", "aurora"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["aurora", "lightning", "dark sky"],
+  };
+  const magneticStormDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    magneticStormPayload,
+    { name: "Magnetic Storm", supertype: "Trainer", card_category: "Stadium" },
+  );
+  const magneticStormFlags = detectVisualDescriptionReviewFlagsV1(
+    magneticStormPayload,
+    { name: "Magnetic Storm", supertype: "Trainer", card_category: "Stadium" },
+  );
+
+  assert.ok(magneticStormDetails.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "awe-inspiring"));
+  assert.ok(magneticStormDetails.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "natural awe"));
+  assert.ok(magneticStormDetails.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "sense of power"));
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: magneticStormFlags,
+      identity_input_confidence: 0.95,
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.95,
+    }),
+    "needs_review",
+  );
+
+  const bombPayload = {
+    artwork_description:
+      "The bomb has a glossy black surface and a bright red fuse with a spark indicating ignition. The background suggests an explosion or heightened action, and the mood carries urgency and excitement.",
+    card_surface_and_printing_cues: "Foil texture cannot be determined.",
+    visual_attributes: {
+      subjects: { primary: ["bomb"], secondary: [] },
+      environment: { setting: [] },
+      mood: ["exciting", "urgent"],
+      distinguishing_details: ["glossy black surface", "red fuse"],
+      uncertainty_notes: [],
+    },
+    semantic_tags: ["bomb object", "red fuse", "radiating colors"],
+  };
+  const bombDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    bombPayload,
+    { name: "Tremendous Bomb", supertype: "Trainer", card_category: "Item" },
+  );
+  const bombFlags = detectVisualDescriptionReviewFlagsV1(
+    bombPayload,
+    { name: "Tremendous Bomb", supertype: "Trainer", card_category: "Item" },
+  );
+
+  assert.ok(bombDetails.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "glossy black surface"));
+  assert.ok(bombDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "spark indicating ignition"));
+  assert.ok(bombDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "explosion or heightened action"));
+  assert.ok(bombDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "urgency and excitement"));
+  assert.ok(bombDetails.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "exciting"
+    && detail.field === "visual_attributes.mood"));
+  assert.equal(
+    classifyDescriptionReviewStatusV1({
+      quality_flags: bombFlags,
+      identity_input_confidence: 0.95,
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.95,
+    }),
+    "needs_review",
+  );
+});
+
 test("card visual language enforcement catches final surface phrases and ignores non-problem glare quality", () => {
   const details = detectVisualDescriptionReviewFlagDetailsV1(
     {

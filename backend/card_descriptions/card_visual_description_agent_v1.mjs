@@ -82,7 +82,7 @@ const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
   /\b(foil (?:texture )?(?:is )?visible|foil treatment is present|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|embossed|texture visible|standard (?:printing treatment|print)|card surface quality appears clear|shimmering finish|higher quality print|printing quality appears|printing treatment is consistent|without visible errors|imperfections)\b/gi;
 const VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN =
-  /\b(glossy(?:,\s*|\s+)reflective surface|shiny(?:,\s*|\s+)reflective surface|smooth silver appearance|polished surface|glossy black (?:body|exterior)|shiny surfaces?|glossy bomb|shiny badge|glossy finish|shiny finish|smooth and reflective|reflective dark orb|matte textures?|uniform finish|shiny black surface|metallic badge)\b/gi;
+  /\b(glossy(?:,\s*|\s+)reflective surface|shiny(?:,\s*|\s+)reflective surface|smooth silver appearance|polished surface|glossy black (?:body|exterior|surface)|shiny surfaces?|glossy bomb|shiny badge|glossy finish|shiny finish|smooth and reflective|reflective dark orb|matte textures?|uniform finish|shiny black surface|metallic badge)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
   /\b(creature|monster|animal-like|beast|living subject)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FRANCHISE_ON_NON_POKEMON_PATTERN =
@@ -94,13 +94,13 @@ const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
   /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm|assertive|commanding)\b/gi;
 const VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN =
-  /\b(aggressive demeanor|aggressive stance|strength and aggression|characteristic of (?:its|the) species|predatory nature|majestic presence|formidable appearance|intimidating mood|confident stance|confident expression|assertive posture|determination or focus|exudes? a sense of (?:agility and strength|speed and power|energy and excitement)|speed and power|excitement associated with (?:this )?(?:pokemon|pokémon)|concentration or contemplation|contemplative or calculated demeanor|serious demeanor|introspection and determination|thoughtful expression|contemplative pose|contemplative expression|contemplation|positive emotional tone|inviting tone|warm and inviting tone|reflective and serious|hot,\s*energetic atmosphere|aggressive mood|cheerful mood|playful atmosphere|whimsical(?: touch)?|achievement and honor|intense and dramatic|serene and primitive setting|quiet confidence|emotional charge(?: of the moment)?|connection to history|supportiveness|fits (?:the|this) character'?s theme|hinting at (?:its|the) power|energetic essence)\b/gi;
+  /\b(menacing grin|aggressive demeanor|aggressive stance|aggressive expression|aggressive pose|strength and aggression|intimidating presence|characteristic of (?:its|the) species|predatory nature|majestic presence|formidable appearance|intimidating mood|serious and determined|determined expression|calling or directing|confident stance|confident expression|assertive posture|determination or focus|action and determination|exudes? a sense of (?:agility and strength|speed and power|energy and excitement)|speed and power|excitement associated with (?:this )?(?:pokemon|pokémon)|concentration or contemplation|contemplative or calculated demeanor|serious demeanor|introspection and determination|thoughtful expression|contemplative pose|contemplative expression|contemplation|positive emotional tone|inviting tone|warm and inviting tone|reflective and serious|hot,\s*energetic atmosphere|aggressive mood|cheerful mood|playful atmosphere|whimsical(?: touch)?|achievement and honor|intense and dramatic|serene and primitive setting|quiet confidence|emotional charge(?: of the moment)?|connection to history|supportiveness|fits (?:the|this) character'?s theme|hinting at (?:its|the) power|energetic essence)\b/gi;
 const VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN =
-  /\b(impending action|imminent action|imminent detonation|ready to spring(?: into action)?|ready for action|readiness for action(?: or attack)?|readiness to burrow or attack|action and readiness|summoning power(?: or command)?|excitement and tension|potential for detonation|explosive atmosphere|something dramatic is about to occur|dramatic (?:event|action|moment) is about to occur|about to occur|final battle (?:is )?suggested by (?:the )?name(?: of the card)?)\b/gi;
+  /\b(impending action|imminent action|imminent detonation|ready to spring(?: into action)?|ready for action|readiness for action(?: or attack)?|readiness to burrow or attack|action and readiness|summoning power(?: or command)?|excitement and tension|urgency and excitement|potential for detonation|spark indicating ignition|explosion or heightened action|explosive atmosphere|about to drill into the ground|something dramatic is about to occur|dramatic (?:event|action|moment) is about to occur|about to occur|final battle (?:is )?suggested by (?:the )?name(?: of the card)?)\b/gi;
 const VISUAL_LANGUAGE_METADATA_OR_IDENTITY_PATTERN =
   /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)[-\s]+type\b|\b(?:suggested by the name of the card|name of the card|card name|associated with this (?:pokemon|pokémon)|this (?:pokemon|pokémon)'s design)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
-  /\b(mystique|intrigue|tranquil|tranquility|enchantment)\b/gi;
+  /\b(mystique|intrigue|tranquil|tranquility|enchantment|awe-inspiring|natural awe|sense of power)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
   /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue|celebratory|uplifting|theme|whimsical|award)\b/gi;
 const VISUAL_LANGUAGE_PURPOSE_OR_LORE_INTERPRETATION_PATTERN =
@@ -605,6 +605,35 @@ function addPrimarySubjectAnatomyOverclaimFlagDetails(details, payload, promptBr
   }
 }
 
+function addBranchSpecificMoodOverclaimFlagDetails(details, payload, promptBranch) {
+  const moodText = normalizeStringArray(payload?.visual_attributes?.mood).join(" ");
+  if (!moodText) return;
+
+  const moodChecks = {
+    pokemon: [
+      ["potential_unsupported_personality_or_species_interpretation", /\b(aggressive|intimidating)\b/gi],
+    ],
+    trainer: [
+      ["potential_unsupported_personality_or_species_interpretation", /\b(determined|assertive|confident)\b/gi],
+    ],
+    stadium: [
+      ["potential_interpretive_mood_language", /\b(awe-inspiring|awe|powerful|sense of power)\b/gi],
+    ],
+    item_tool_supporter: [
+      ["potential_dramatic_inferred_action_language", /\b(urgent|urgency|exciting|excitement|tension)\b/gi],
+    ],
+  };
+
+  for (const [flag, pattern] of moodChecks[promptBranch] ?? []) {
+    details.push(...regexDetails({
+      flag,
+      field: "visual_attributes.mood",
+      text: moodText,
+      pattern,
+    }));
+  }
+}
+
 export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const details = [];
   const fields = textFieldsForVisualLanguageReview(payload);
@@ -620,6 +649,7 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   addCrossFieldExpressionContradictionFlagDetails(details, payload);
   addEnergyAbstractShapeLiteralizationFlagDetails(details, payload, promptBranch);
   addPrimarySubjectAnatomyOverclaimFlagDetails(details, payload, promptBranch);
+  addBranchSpecificMoodOverclaimFlagDetails(details, payload, promptBranch);
 
   if (
     cardNameKey.includes("chandelure")
