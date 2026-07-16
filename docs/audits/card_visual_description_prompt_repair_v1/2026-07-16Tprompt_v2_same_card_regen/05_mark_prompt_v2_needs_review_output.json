@@ -1,0 +1,24 @@
+{
+    "rows": [
+        {
+            "id": "5b106a2c-80f0-4881-a98b-6482a1a1d5f5",
+            "run_id": "6d79d42d-e6a3-40f1-a2d2-d659ab37ab6c",
+            "is_current": true,
+            "updated_at": "2026-07-16T04:52:41.896144+00:00",
+            "approved_at": null,
+            "approved_by": null,
+            "embedded_at": null,
+            "rejected_at": null,
+            "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+            "quality_flags": [
+                "potential_body_part_as_separate_held_object",
+                "prompt_v2_regeneration_quality_failure"
+            ],
+            "review_status": "needs_review",
+            "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V2"
+        }
+    ],
+    "run_key": "6a419f368fd667190f66b50d6c2fd83401757109cb598284f7d78f4f1c3816cf",
+    "operation": "mark_prompt_v2_regeneration_needs_review",
+    "updated_count": 1
+}

@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V1";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V3";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 
@@ -40,6 +40,25 @@ const NON_PROBLEM_QUALITY_FLAGS = new Set([
   "well-defined",
   "well-defined colors",
   "well-defined features",
+]);
+const GENERIC_OR_NON_VISUAL_TAGS = new Set([
+  "card",
+  "ex",
+  "gx",
+  "illustration rare",
+  "pokemon",
+  "pokemon card",
+  "pokemon tcg",
+  "pokémon",
+  "pokémon card",
+  "pokémon tcg",
+  "rare",
+  "rarity",
+  "tcg",
+  "trading card game",
+  "v",
+  "vmax",
+  "vstar",
 ]);
 
 async function loadEnvFilesIfAvailable() {
@@ -120,6 +139,108 @@ function normalizeText(value) {
 function uniqueSorted(values) {
   return [...new Set(values.map(normalizeText).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right));
+}
+
+function tagKey(value) {
+  return normalizeText(value)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function visualSubjectNameFromCardName(name) {
+  return normalizeText(name)
+    .replace(/\s+(ex|gx|v|vmax|vstar)$/i, "")
+    .trim();
+}
+
+function metadataTagKeysFromCard(card = {}) {
+  const values = [
+    card.set_name,
+    card.set_code,
+    card.number,
+    card.rarity,
+    card.artist,
+    card.supertype,
+    card.subtype,
+  ];
+
+  for (const attack of Array.isArray(card.attacks) ? card.attacks : []) {
+    if (typeof attack === "string") values.push(attack);
+    else if (attack && typeof attack === "object") values.push(attack.name);
+  }
+
+  if (Array.isArray(card.attack_names)) values.push(...card.attack_names);
+
+  return new Set(values.map(tagKey).filter(Boolean));
+}
+
+export function detectVisualDescriptionReviewFlagsV1(payload, card = {}) {
+  const flags = [];
+  const text = [
+    payload?.artwork_description,
+    payload?.visual_attributes?.distinguishing_details?.join(" "),
+    payload?.semantic_tags?.join(" "),
+  ].map(normalizeText).join(" ");
+  const lower = text.toLowerCase();
+  const cardNameKey = tagKey(card.name);
+
+  if (
+    cardNameKey.includes("chandelure")
+    && /\b(hold|holds|holding|held)\b/i.test(lower)
+    && /\b(orb|sphere|spherical|round|chandelier|lamp|flame|flames)\b/i.test(lower)
+  ) {
+    flags.push("potential_body_part_as_separate_held_object");
+  }
+
+  const uncertaintyText = normalizeStringArray(payload?.visual_attributes?.uncertainty_notes).join(" ").toLowerCase();
+  if (
+    /\b(cosmic|celestial|outer space|space scene|stars?|galaxy|galactic)\b/i.test(lower)
+    && !/\b(uncertain|ambiguous|abstract|not clear|not clearly|appears|suggests|star-like)\b/i.test(uncertaintyText)
+  ) {
+    flags.push("potential_overconfident_ambiguous_setting");
+  }
+
+  return uniqueSorted(flags);
+}
+
+export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
+  const normalizedTags = uniqueSorted(Array.isArray(tags) ? tags : []);
+  const metadataKeys = metadataTagKeysFromCard(card);
+  const subjectKey = tagKey(visualSubjectNameFromCardName(card.name));
+  let usedSubjectTag = false;
+  let removedMetadataOrGeneric = false;
+
+  const semantic_tags = [];
+  for (const tag of normalizedTags) {
+    const key = tagKey(tag);
+    if (!key) continue;
+
+    if (subjectKey && key === subjectKey && !usedSubjectTag) {
+      semantic_tags.push(tag);
+      usedSubjectTag = true;
+      continue;
+    }
+
+    if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || metadataKeys.has(key) || key === tagKey(card.name)) {
+      removedMetadataOrGeneric = true;
+      continue;
+    }
+
+    semantic_tags.push(tag);
+  }
+
+  const quality_flags = [];
+  if (removedMetadataOrGeneric) quality_flags.push("semantic_tags_metadata_or_generic_removed");
+  if (semantic_tags.length < 3) quality_flags.push("semantic_tags_too_sparse_after_sanitization");
+
+  return {
+    semantic_tags: uniqueSorted(semantic_tags),
+    quality_flags,
+  };
 }
 
 function parseCommaList(value) {
@@ -229,6 +350,8 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     openaiOutputCostPerMillion: asNumber(process.env.OPENAI_OUTPUT_COST_PER_MILLION, null, "OPENAI_OUTPUT_COST_PER_MILLION"),
     openaiCachedInputCostPerMillion: asNumber(process.env.OPENAI_CACHED_INPUT_COST_PER_MILLION, null, "OPENAI_CACHED_INPUT_COST_PER_MILLION"),
     openaiImageCostRuleVersion: normalizeText(process.env.OPENAI_IMAGE_COST_RULE_VERSION) || null,
+    cardPrintId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_ID) || null,
+    gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
     forceVersion: false,
     allowFixtureApply: false,
   };
@@ -248,6 +371,8 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--prompt-version=")) parsed.promptVersion = normalizeText(arg.slice("--prompt-version=".length));
     else if (arg.startsWith("--output-schema-version=")) parsed.outputSchemaVersion = normalizeText(arg.slice("--output-schema-version=".length));
     else if (arg.startsWith("--agent-version=")) parsed.agentVersion = normalizeText(arg.slice("--agent-version=".length));
+    else if (arg.startsWith("--card-print-id=")) parsed.cardPrintId = normalizeText(arg.slice("--card-print-id=".length)) || null;
+    else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
     else if (arg.startsWith("--min-width=")) parsed.minWidth = asPositiveInt(arg.slice("--min-width=".length), DEFAULT_MIN_WIDTH, "--min-width");
     else if (arg.startsWith("--min-height=")) parsed.minHeight = asPositiveInt(arg.slice("--min-height=".length), DEFAULT_MIN_HEIGHT, "--min-height");
     else if (arg.startsWith("--max-image-bytes=")) parsed.maxImageBytes = asPositiveInt(arg.slice("--max-image-bytes=".length), DEFAULT_MAX_IMAGE_BYTES, "--max-image-bytes");
@@ -801,9 +926,16 @@ function buildPrompt(card) {
   return [
     "Describe the artwork on this exact Pokemon card for a blind collector.",
     "Be grounded in visible evidence only. Do not invent hidden details.",
+    "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
+    "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
+    "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
+    "Do not assign a specific setting, location, weather, time of day, celestial theme, or architectural environment unless the image clearly proves it.",
+    "Use uncertainty language for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
     "Separate the illustration from card frame, foil, border, or printing cues.",
     "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
     "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
+    "semantic_tags must describe visible artwork only. Exclude set names, attacks, rarity labels, card mechanics, franchise names, and generic identity metadata already present in canonical fields.",
+    "At most one semantic tag may repeat the primary visible subject name; all other tags should describe visible forms, colors, mood, composition, or environment.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
     "",
@@ -1087,7 +1219,17 @@ async function generateDescription(card, image, args) {
 }
 
 function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
-  const qualityFlags = uniqueSorted([...(image.quality_flags ?? []), ...(normalizedPayload.quality_flags ?? [])]);
+  const semanticTagSanitization = sanitizeSemanticTagsForVisibleArtworkV1(normalizedPayload.semantic_tags, card);
+  const reviewFlags = detectVisualDescriptionReviewFlagsV1({
+    ...normalizedPayload,
+    semantic_tags: semanticTagSanitization.semantic_tags,
+  }, card);
+  const qualityFlags = uniqueSorted([
+    ...(image.quality_flags ?? []),
+    ...(normalizedPayload.quality_flags ?? []),
+    ...semanticTagSanitization.quality_flags,
+    ...reviewFlags,
+  ]);
   const row = {
     card_print_id: card.card_print_id,
     image_source: image.image_source,
@@ -1104,7 +1246,7 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     artwork_description: normalizedPayload.artwork_description,
     card_surface_and_printing_cues: normalizedPayload.card_surface_and_printing_cues,
     visual_attributes: normalizedPayload.visual_attributes,
-    semantic_tags: normalizedPayload.semantic_tags,
+    semantic_tags: semanticTagSanitization.semantic_tags,
     identity_input_confidence: 0.95,
     description_confidence: normalizedPayload.description_confidence,
     attribute_confidence: normalizedPayload.attribute_confidence,
@@ -1148,12 +1290,31 @@ async function fetchEligibleCards(client, args) {
          limit 1
        ) current_desc on true`
     : "";
-  const approvedFilter = descriptionTableExists
-    ? "and ($2::boolean is true or coalesce(current_desc.review_status, '') <> 'approved')"
-    : "";
   const orderExpr = columns.has("created_at")
     ? "cp.created_at desc nulls last, cp.id asc"
     : "cp.id asc";
+  const params = [args.limit];
+  const filters = [];
+  let nextParam = 2;
+
+  if (descriptionTableExists) {
+    filters.push(`($${nextParam}::boolean is true or coalesce(current_desc.review_status, '') <> 'approved')`);
+    params.push(args.forceVersion);
+    nextParam += 1;
+  }
+
+  if (args.cardPrintId) {
+    filters.push(`cp.id = $${nextParam}::uuid`);
+    params.push(args.cardPrintId);
+    nextParam += 1;
+  }
+
+  if (args.gvId) {
+    if (!columns.has("gv_id")) return [];
+    filters.push(`cp.gv_id = $${nextParam}`);
+    params.push(args.gvId);
+    nextParam += 1;
+  }
 
   const result = await client.query(
     `select
@@ -1175,10 +1336,10 @@ async function fetchEligibleCards(client, args) {
      ${setJoin}
      ${descriptionJoin}
      where coalesce(${imageExpressions.join(", ")}) is not null
-       ${approvedFilter}
+       ${filters.map((filter) => `and ${filter}`).join("\n       ")}
      order by ${orderExpr}
      limit $1`,
-    descriptionTableExists ? [args.limit, args.forceVersion] : [args.limit],
+    params,
   );
   return result.rows;
 }
@@ -1611,6 +1772,8 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     max_retries: args.maxRetries,
     pricing_snapshot: args.pricingSnapshot,
     force_version: args.forceVersion,
+    target_card_print_id: args.cardPrintId,
+    target_gv_id: args.gvId,
     started_at: startedAt,
     boundary: {
       db_writes: args.mode === "apply",

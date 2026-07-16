@@ -9,9 +9,11 @@ import {
   buildEmbeddingInputV1,
   buildCostProjection,
   classifyDescriptionReviewStatusV1,
+  detectVisualDescriptionReviewFlagsV1,
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
   parseCardVisualDescriptionArgsV1,
+  sanitizeSemanticTagsForVisibleArtworkV1,
   validateVisualDescriptionPayloadV1,
 } from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
 
@@ -72,6 +74,8 @@ test("card visual description args default to dry-run and block fixture apply", 
     "--model=test-vision-model",
     "--image-detail=low",
     "--max-cards=10",
+    "--gv-id=GV-PK-JPN-M5-113",
+    "--card-print-id=2412563a-c73d-5970-a389-f4c1dc35d8c6",
     "--max-run-cost-usd=0.25",
     "--openai-input-cost-per-million=0.15",
     "--openai-output-cost-per-million=0.60",
@@ -82,6 +86,8 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(apply.modelVersion, "test-vision-model");
   assert.equal(apply.imageDetail, "low");
   assert.equal(apply.maxCards, 10);
+  assert.equal(apply.gvId, "GV-PK-JPN-M5-113");
+  assert.equal(apply.cardPrintId, "2412563a-c73d-5970-a389-f4c1dc35d8c6");
   assert.equal(apply.maxRunCostUsd, 0.25);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
@@ -92,6 +98,93 @@ test("card visual description args default to dry-run and block fixture apply", 
     /--image-detail must be low, high, original, or auto/,
   );
 });
+
+test("card visual description semantic tags stay visual and exclude metadata", () => {
+  const result = sanitizeSemanticTagsForVisibleArtworkV1(
+    ["Abyss Eye", "fantasy", "Mega Chandelure", "Pokemon"],
+    {
+      name: "Mega Chandelure ex",
+      set_name: "Abyss Eye",
+      set_code: "jpn-m5",
+      number: "113",
+    },
+  );
+
+  assert.deepEqual(result.semantic_tags, ["fantasy", "Mega Chandelure"]);
+  assert.deepEqual(result.quality_flags, [
+    "semantic_tags_metadata_or_generic_removed",
+    "semantic_tags_too_sparse_after_sanitization",
+  ]);
+
+  const stronger = sanitizeSemanticTagsForVisibleArtworkV1(
+    [
+      "dark atmosphere",
+      "diagonal composition",
+      "ghostly chandelier",
+      "iridescent background",
+      "Mega Chandelure",
+      "mystical",
+      "ornate",
+      "purple flames",
+      "spectral wisps",
+    ],
+    { name: "Mega Chandelure ex", set_name: "Abyss Eye" },
+  );
+
+  assert.equal(stronger.quality_flags.length, 0);
+  assert.match(stronger.semantic_tags.join(","), /purple flames/);
+  assert.match(stronger.semantic_tags.join(","), /Mega Chandelure/);
+});
+
+test("card visual description flags Chandelure anatomy described as a held object", () => {
+  const flags = detectVisualDescriptionReviewFlagsV1(
+    {
+      artwork_description:
+        "The illustration features a ghostly figure resembling a chandelier. It has a dark body with purple and white accents, and the arms extend upwards, holding a round, glowing orb.",
+      visual_attributes: {
+        distinguishing_details: ["glowing orb", "swirling energy effects"],
+        uncertainty_notes: ["abstract background elements may imply motion or energy"],
+      },
+      semantic_tags: ["Chandelier-like figure", "glowing orb", "mystical"],
+    },
+    { name: "Mega Chandelure ex" },
+  );
+
+  assert.deepEqual(flags, ["potential_body_part_as_separate_held_object"]);
+
+  const saferFlags = detectVisualDescriptionReviewFlagsV1(
+    {
+      artwork_description:
+        "Mega Chandelure sweeps diagonally through a dark abstract scene, with its round glass-like body, curled arms, branch-like limbs, and pale violet flames forming one integrated chandelier-shaped figure.",
+      visual_attributes: {
+        distinguishing_details: ["round glass-like body", "curled arms", "pale violet flames"],
+        uncertainty_notes: ["background is abstract and not clearly celestial or architectural"],
+      },
+      semantic_tags: ["Mega Chandelure", "purple flames", "diagonal composition"],
+    },
+    { name: "Mega Chandelure ex" },
+  );
+
+  assert.equal(saferFlags.length, 0);
+});
+
+test("card visual description flags overconfident celestial settings without uncertainty", () => {
+  const flags = detectVisualDescriptionReviewFlagsV1(
+    {
+      artwork_description:
+        "The subject floats through a cosmic galaxy full of stars and celestial energy.",
+      visual_attributes: {
+        distinguishing_details: ["stars", "cosmic background"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["cosmic", "stars", "celestial"],
+    },
+    { name: "Example Pokemon" },
+  );
+
+  assert.deepEqual(flags, ["potential_overconfident_ambiguous_setting"]);
+});
+
 
 test("card visual description usage telemetry computes cost, projections, and stop ceilings", () => {
   const pricing = {
@@ -270,6 +363,12 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /card_print_visual_descriptions/);
   assert.match(agent, /card_visual_description_runs/);
   assert.match(agent, /type: "input_image"/);
+  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V3/);
+  assert.match(agent, /Do not describe a body part/);
+  assert.match(agent, /For Chandelure-family subjects/);
+  assert.match(agent, /Do not assign a specific setting/);
+  assert.match(agent, /semantic_tags must describe visible artwork only/);
+  assert.match(agent, /target_gv_id/);
   assert.match(agent, /OPENAI_INPUT_COST_PER_MILLION/);
   assert.match(agent, /OPENAI_OUTPUT_COST_PER_MILLION/);
   assert.match(agent, /OPENAI_IMAGE_COST_RULE_VERSION/);

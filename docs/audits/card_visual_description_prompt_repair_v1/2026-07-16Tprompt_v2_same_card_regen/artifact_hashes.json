@@ -1,0 +1,54 @@
+[
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\00_local_test_summary.json",
+    "sha256": "f8fb237a3d25c2b3b7533ba9b1839a0eeeeaec68937913b9daef185655df6b4b"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\01_mark_original_needs_review.sql",
+    "sha256": "756af7b60ecc45e900b60254a19065c00e1240be1f14f04c0a4f718e6dfb6ce2"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\02_mark_original_needs_review_output.json",
+    "sha256": "6d014ae987b56300a87e072df673947eff668094e7a73469069f519b39d6556b"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\03_prompt_v2_one_card_apply_output.txt",
+    "sha256": "97770c02d3e61cf34377fa2b446012095856faf2917595f5994599a7a88126e0"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\04_mark_prompt_v2_needs_review.sql",
+    "sha256": "5b394cc9323f0ccbba0b5b51199695fe9a02887968b3b6a7c53715d1e23cb5f4"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\05_mark_prompt_v2_needs_review_output.json",
+    "sha256": "5b3118eddece94a70dd90d952cbe22cd778ebadce0b7930c2c16f6ab2579d309"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\06_prompt_v3_one_card_apply_output.txt",
+    "sha256": "29cb22e0bd9e752564b560475ab40cd233fae69f1fc6b9ae6a1a70494eeaf9f1"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\07_prompt_v3_db_readback.sql",
+    "sha256": "70e01f523bca2e7625ed885e4783e3732621990b95db4b18f7265673b6d28bab"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\08_prompt_v3_db_readback.json",
+    "sha256": "2226d5380da7f7860124ad45a9bf4c109fc5896e054ccd0d056454b5c976f5db"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\09_node_check_prompt_v3.txt",
+    "sha256": "b71a40b7d0d4f0a1ce3090c6f35cbcd93c3433e11e289b621eefb970c6a5b6ab"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\10_contract_tests_prompt_v3.txt",
+    "sha256": "e08abb778fccf695c2becb434b706dab770cf6b303137426d74372a0abbfa5d4"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\11_secret_scan_output.txt",
+    "sha256": "368bcd1da1684fc0c337f1021f6ca23ed433f84d279df7b554b5e4d75a0f0427"
+  },
+  {
+    "path": ".\\docs\\audits\\card_visual_description_prompt_repair_v1\\2026-07-16Tprompt_v2_same_card_regen\\PROMPT_V3_REPAIR_REPORT.md",
+    "sha256": "c301a237d77e308e2ea6a24f39d9267f21c5c2633682aacc973e272683b23b3e"
+  }
+]

@@ -1,0 +1,24 @@
+{
+    "rows": [
+        {
+            "id": "6723bfa5-f20a-409b-a191-a31c8e9af76a",
+            "run_id": "31bd79dc-8e5e-4ad7-acda-896ae05bab38",
+            "is_current": true,
+            "updated_at": "2026-07-16T04:50:40.890564+00:00",
+            "approved_at": null,
+            "approved_by": null,
+            "embedded_at": null,
+            "rejected_at": null,
+            "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+            "quality_flags": [
+                "prompt_quality_body_part_as_object",
+                "prompt_quality_metadata_tags",
+                "prompt_quality_overconfident_setting"
+            ],
+            "review_status": "needs_review"
+        }
+    ],
+    "operation": "mark_original_description_needs_review",
+    "updated_count": 1,
+    "expected_description_id": "6723bfa5-f20a-409b-a191-a31c8e9af76a"
+}

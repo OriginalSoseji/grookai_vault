@@ -1,0 +1,5 @@
+{
+  "node_check": "node --check backend\\\\card_descriptions\\\\card_visual_description_agent_v1.mjs passed",
+  "contract_tests": "node --test tests\\\\contracts\\\\card_visual_description_agent_v1.test.mjs passed: 9/9",
+  "scope": "prompt v3, semantic tag sanitizer, exact card targeting, Chandelure anatomy review flag, ambiguous celestial setting review flag"
+}
