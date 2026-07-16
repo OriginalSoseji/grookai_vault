@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-07-16T22:07:06.750Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/run_plan.json": "8b03dea93f38ea5588d4840a2e2c8a4d4ab162f27c2ddbfe225038e51a4e9e38",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/command_metadata.json": "90dca024ca61bb02f3a367c4ef0703eae1353ebf6b24b5e0c30bcd7c2a3ef70e",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/generated_outputs.jsonl": "ecab9e09ad571af15794801e12c9fe3b9a4d84bea7158229f5aa45f55b4147bc",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/review_sample.jsonl": "ecab9e09ad571af15794801e12c9fe3b9a4d84bea7158229f5aa45f55b4147bc",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/summary.json": "de52a1cc9df48ede9949a1aa4f6d124d2974a2d1994c2ac825bf26b7d7f528e9",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/dry_run_no_db_write_readback.json": "deefc1bf1e4c2584ac828cd15c193feda8b3e174277a8231d89562fe8e10b077",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/first_pass_review_buckets.json": "1000499858f8ca3dc850281c433ed5e3dd49232c4e1a10220f6c9c7a176bf0e2",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/CARD_VISUAL_LANGUAGE_V1_LOCK_CANDIDATE_25_DESCRIPTIONS.md": "4cdc67c89967597fc0f5768b34e6f9664e1877935b718ee3ac19569c5175d5a2",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/VISUAL_LANGUAGE_V1_LOCK_CANDIDATE_25_DRY_RUN_REPORT.md": "37cf68c3dea794e57c7dac801d6aac4ad411bf119366f00b6dcb88aad7740189",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/targeted_test_output.txt": "4354afa2a62c7ad5bdb93a2e9b41a8f391507f2bcef87dc6012f988270327dea",
+    "docs/audits/card_visual_language_v1_lock_candidate_25_dry_run/2026-07-16T21-56-41-706Z_dry_run_5f2db4471e5a/diff_check_output.txt": "697b037c68127b66b099f6df9b51b422427782fe3298e1c1b51b9c5a04b39291",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_LOCK_CANDIDATE_25_DRY_RUN_20260716.md": "01d93ddab085b49b19aa75ab6ac202d42ba2ff3d827b41d7a7a185f687546aa7",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "2b25a101a768ac3bee1b0102037b06bdfefb96f09b983f9004c1b00e61d7cc73"
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "artifact_type": "card_visual_language_v1_lock_candidate_first_pass_review",
+  "reviewed_at": "2026-07-16T22:04:46.759Z",
+  "reviewer_mode": "codex_first_pass_row_status_review_without_local_image_files",
+  "review_standard": "Practical row-status lock standard: no materially flawed pending rows, no unjustifiable review routing, all branches routed correctly, subject/anatomy and physical-surface risks review-routed, no database writes or downstream integration.",
+  "image_review_limitation": "Self-hosted image keys were present in generated outputs, but matching local image files were not found in the active checkout or C:/grookai_vault during this review. The first-pass review used generated payloads, canonical names, branches, statuses, and deterministic flags.",
+  "lock_criteria": {
+    "validated_25_of_25": true,
+    "all_five_branches_correctly_routed": true,
+    "no_materially_flawed_description_remains_pending": true,
+    "pending_rows_safe_for_later_human_approval": true,
+    "no_clean_row_forced_to_review_without_defensible_reason": true,
+    "subject_identity_and_anatomy_status_safe": true,
+    "physical_card_surface_claims_review_routed": true,
+    "no_database_writes_approvals_or_embeddings": true
+  },
+  "buckets": {
+    "correctly_left_pending": [
+      {
+        "gv_id": "GV-PK-JPN-M5-096",
+        "name": "Mega Zeraora ex",
+        "branch": "pokemon",
+        "rationale": "Pokemon description is visually coherent at row-status level; expression/action language is supported by described angular eyes and pose, and no physical-surface or identity contradiction is present."
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-111",
+        "name": "Gwynn",
+        "branch": "trainer",
+        "rationale": "Trainer description is grounded in visible neutral expression, centered posture, attire, and environment; no unsupported physical-surface or identity contradiction is present."
+      }
+    ],
+    "correctly_flagged_needs_review": [
+      {
+        "gv_id": "GV-PK-JPN-M5-113",
+        "name": "Mega Chandelure ex",
+        "branch": "pokemon",
+        "flags": [
+          "potential_speculative_setting_language",
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-118",
+        "name": "Mega Darkrai ex",
+        "branch": "pokemon",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_speculative_setting_language"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-101",
+        "name": "Mega Excadrill ex",
+        "branch": "pokemon",
+        "flags": [
+          "blurred_image"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-112",
+        "name": "Mega Zeraora ex",
+        "branch": "pokemon",
+        "flags": [
+          "potential_canonical_metadata_in_visual_output",
+          "potential_primary_subject_anatomy_overclaim",
+          "potential_semantic_tag_nonvisual_concept",
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-108",
+        "name": "Misty's Vitality",
+        "branch": "trainer",
+        "flags": [
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-109",
+        "name": "Gladion's Final Battle",
+        "branch": "trainer",
+        "flags": [
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-117",
+        "name": "Gwynn",
+        "branch": "trainer",
+        "flags": [
+          "potential_purpose_or_lore_interpretation",
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-116",
+        "name": "Gladion's Final Battle",
+        "branch": "trainer",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+        "name": "Magnetic Storm",
+        "branch": "stadium",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_semantic_tag_nonvisual_concept"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-S6A-100",
+        "name": "Turffield Stadium",
+        "branch": "stadium",
+        "flags": [
+          "potential_semantic_tag_nonvisual_concept",
+          "semantic_tags_metadata_or_generic_removed"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-PMCG6-085",
+        "name": "Cinnabar City Gym",
+        "branch": "stadium",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_semantic_tag_nonvisual_concept"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+        "name": "High Pressure System",
+        "branch": "stadium",
+        "flags": [
+          "potential_interpretive_mood_language"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-SMG-039",
+        "name": "Dimension Valley",
+        "branch": "stadium",
+        "flags": [
+          "potential_semantic_tag_nonvisual_concept",
+          "potential_speculative_setting_language",
+          "potential_unsupported_personality_or_species_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11541-013",
+        "name": "Psychic Energy",
+        "branch": "energy",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_interpretive_mood_language",
+          "potential_object_material_or_card_surface_confusion",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-L1BSS-070",
+        "name": "Rainbow Energy",
+        "branch": "energy",
+        "flags": [
+          "potential_abstract_shape_literalization",
+          "potential_object_material_or_card_surface_confusion",
+          "potential_purpose_or_lore_interpretation",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11194-057",
+        "name": "Water Energy",
+        "branch": "energy",
+        "flags": [
+          "potential_canonical_metadata_in_visual_output",
+          "potential_interpretive_claim",
+          "potential_metadata_or_identity_language",
+          "potential_purpose_or_lore_interpretation"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+        "name": "Dark Metal Energy",
+        "branch": "energy",
+        "flags": [
+          "potential_canonical_metadata_in_visual_output",
+          "potential_interpretive_claim",
+          "potential_metadata_or_identity_language",
+          "potential_object_material_or_card_surface_confusion",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-SM1PLUS-069",
+        "name": "Basic Grass Energy",
+        "branch": "energy",
+        "flags": [
+          "potential_canonical_metadata_in_visual_output",
+          "potential_interpretive_claim"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-106",
+        "name": "Tremendous Bomb",
+        "branch": "item_tool_supporter",
+        "flags": [
+          "potential_object_material_or_card_surface_confusion",
+          "potential_semantic_tag_nonvisual_concept",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-105",
+        "name": "Dark Bell",
+        "branch": "item_tool_supporter",
+        "flags": [
+          "potential_canonical_metadata_in_visual_output",
+          "potential_interpretive_claim",
+          "potential_interpretive_mood_language",
+          "potential_metadata_or_identity_language",
+          "potential_object_material_or_card_surface_confusion",
+          "potential_surface_overclaim",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-074",
+        "name": "リトライバッジ",
+        "branch": "item_tool_supporter",
+        "flags": [
+          "potential_object_material_or_card_surface_confusion",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-073",
+        "name": "ごうかいボム",
+        "branch": "item_tool_supporter",
+        "flags": [
+          "potential_dramatic_inferred_action_language",
+          "potential_object_material_or_card_surface_confusion",
+          "potential_visual_material_vs_surface_confusion"
+        ]
+      },
+      {
+        "gv_id": "GV-PK-JPN-M5-072",
+        "name": "古びたたての化石",
+        "branch": "item_tool_supporter",
+        "flags": [
+          "potential_interpretive_claim",
+          "potential_interpretive_mood_language",
+          "potential_purpose_or_lore_interpretation",
+          "potential_semantic_tag_nonvisual_concept"
+        ]
+      }
+    ],
+    "false_positives": [],
+    "status_level_false_negatives": [],
+    "materially_flawed_pending_rows": []
+  },
+  "counts": {
+    "correctly_left_pending": 2,
+    "correctly_flagged_needs_review": 23,
+    "false_positives": 0,
+    "status_level_false_negatives": 0,
+    "materially_flawed_pending_rows": 0
+  },
+  "lock_result": "passed",
+  "decision": "Lock Visual Language V1 at row-status trust boundary and move to a bounded apply batch gate."
+}
