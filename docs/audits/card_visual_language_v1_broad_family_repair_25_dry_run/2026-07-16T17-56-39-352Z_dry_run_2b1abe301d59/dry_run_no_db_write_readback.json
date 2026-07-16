@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-07-16T18:02:15.042Z",
+  "run_key": "2b1abe301d59b48f7b2492c15e54266faa7741593244b2cf406b33b855c74616",
+  "run_dir": "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59",
+  "dry_run_boundary": {
+    "db_writes_expected": false,
+    "model_calls_expected": true,
+    "embeddings_expected": false,
+    "card_prints_mutation_expected": false
+  },
+  "run_window": {
+    "started_at": "2026-07-16T17:56:39.352Z",
+    "finished_at": "2026-07-16T18:00:30.361Z"
+  },
+  "card_visual_description_runs_rows_for_run_key": 0,
+  "card_print_visual_descriptions_rows_between_run_window_for_agent_model_prompt": 0
+}

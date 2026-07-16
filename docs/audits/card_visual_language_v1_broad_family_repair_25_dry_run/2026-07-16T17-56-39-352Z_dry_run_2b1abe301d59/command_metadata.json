@@ -1,0 +1,25 @@
+{
+  "executed_at": "2026-07-16T17:56:39.352Z",
+  "working_directory": "C:\\grookai_vault_card_desc_agent",
+  "command": "node scripts\\audits\\card_visual_description_agent_v1.mjs --dry-run --provider=openai --model=gpt-4o-mini --branch-stratified-sample --branch-targets=pokemon:5,trainer:5,stadium:5,energy:5,item_tool_supporter:5 --branch-candidate-limit=60000 --limit=25 --max-cards=25 --max-run-cost-usd=0.25 --out-dir=docs\\audits\\card_visual_language_v1_broad_family_repair_25_dry_run",
+  "secrets_excluded": true,
+  "environment_notes": {
+    "loaded_env_file": "C:\\grookai_vault\\.env.local",
+    "node_tls_reject_unauthorized": "0",
+    "pricing_env_loaded_in_process": false,
+    "pricing_caveat": "The raw summary retained null pricing fields and estimated_cost_usd 0. Cost was recalculated in priced_usage_recalculation.json from actual token usage using the prior versioned pricing snapshot."
+  },
+  "safety_ceilings": {
+    "max_cards": 25,
+    "max_run_cost_usd": 0.25,
+    "note": "Max-card ceiling bounded the run. The cost ceiling could not evaluate nonzero projected cost because pricing env values were not loaded in the sandbox process."
+  },
+  "boundaries": {
+    "mode": "dry_run",
+    "provider": "openai",
+    "db_writes_expected": false,
+    "embeddings_expected": false,
+    "approvals_expected": false,
+    "downstream_integrations_expected": false
+  }
+}

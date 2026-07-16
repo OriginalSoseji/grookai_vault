@@ -1,0 +1,132 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4o-mini",
+  "response_model_version": "gpt-4o-mini-2024-07-18",
+  "response_model_versions": [
+    "gpt-4o-mini-2024-07-18"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR",
+  "output_schema_version": "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+  "sample_strategy": "branch_stratified",
+  "branch_targets": {
+    "pokemon": 5,
+    "trainer": 5,
+    "stadium": 5,
+    "energy": 5,
+    "item_tool_supporter": 5
+  },
+  "branch_candidate_limit": 60000,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": null,
+    "output_per_million": null,
+    "cached_input_per_million": null,
+    "image_cost_rule_version": null,
+    "recorded_at": "2026-07-16T17:56:39.352Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-16T17:56:39.352Z",
+  "finished_at": "2026-07-16T18:00:30.361Z",
+  "eligible_count": 25,
+  "total_eligible_catalog_count": 53227,
+  "attempted_count": 25,
+  "validated_count": 25,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "needs_review_count": 16,
+  "pending_count": 9,
+  "branch_counts": {
+    "energy": 5,
+    "item_tool_supporter": 5,
+    "pokemon": 5,
+    "stadium": 5,
+    "trainer": 5
+  },
+  "usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 682128,
+    "output_tokens": 10154,
+    "total_tokens": 692282,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1,
+    "retry_count": 0,
+    "input_tokens": 27285.12,
+    "output_tokens": 406.16,
+    "total_tokens": 27691.28,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0
+  },
+  "estimated_cost_usd": 0,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0,
+    "projected_500_cards_usd": 0,
+    "projected_1000_cards_usd": 0,
+    "full_eligible_catalog_count": 53227,
+    "projected_full_eligible_catalog_usd": 0
+  },
+  "ceiling": {
+    "max_cards": 25,
+    "max_run_cost_usd": 0.25,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_creature_language_on_non_pokemon_branch": 1,
+    "potential_dramatic_inferred_action_language": 1,
+    "potential_interpretive_claim": 8,
+    "potential_interpretive_mood_language": 2,
+    "potential_metadata_or_identity_language": 4,
+    "potential_object_material_or_card_surface_confusion": 2,
+    "potential_semantic_tag_nonvisual_concept": 6,
+    "potential_speculative_setting_language": 4,
+    "potential_surface_overclaim": 1,
+    "potential_unsupported_emotion_or_personality_claim": 1,
+    "potential_unsupported_personality_or_species_interpretation": 2
+  },
+  "quality_flag_counts_by_branch": {
+    "energy": {
+      "potential_creature_language_on_non_pokemon_branch": 1,
+      "potential_interpretive_claim": 3,
+      "potential_metadata_or_identity_language": 1,
+      "potential_speculative_setting_language": 1
+    },
+    "item_tool_supporter": {
+      "potential_dramatic_inferred_action_language": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_object_material_or_card_surface_confusion": 2,
+      "potential_semantic_tag_nonvisual_concept": 1
+    },
+    "pokemon": {
+      "potential_interpretive_claim": 1,
+      "potential_interpretive_mood_language": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_semantic_tag_nonvisual_concept": 1,
+      "potential_speculative_setting_language": 2,
+      "potential_unsupported_personality_or_species_interpretation": 1
+    },
+    "stadium": {
+      "potential_interpretive_claim": 3,
+      "potential_interpretive_mood_language": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_semantic_tag_nonvisual_concept": 4,
+      "potential_speculative_setting_language": 1,
+      "potential_surface_overclaim": 1,
+      "potential_unsupported_personality_or_species_interpretation": 1
+    },
+    "trainer": {
+      "potential_interpretive_claim": 1,
+      "potential_unsupported_emotion_or_personality_claim": 1
+    }
+  }
+}

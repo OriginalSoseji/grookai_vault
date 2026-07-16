@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-16T18:06:45.703Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/run_plan.json": "d9354cb71648c645393ae9cbc93e16600701457c0789decf0b214492cb3ccec6",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/summary.json": "2dfd49ff9b88f041568646ee0b37952965f8f45ba60fc8b001fd8f357a60b992",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/priced_usage_recalculation.json": "1518cdcf6a1b03c0c4dff09cb173ba0e85b8f753fdf10f3ffe115220c6e46ae5",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/dry_run_no_db_write_readback.json": "f2df907165a141f0d023317675ba794236acd33d3564efe8ea8524e6bb9800b8",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/command_metadata.json": "44f12b60b10047b56e77d1287020a925acff7bf2e1cb25a3fb8b9f5e0add2f96",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/generated_outputs.jsonl": "319ec75d2927af5b969e92d457b0cad94e47857b3b7bc01092809108db82c0c5",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/review_sample.jsonl": "319ec75d2927af5b969e92d457b0cad94e47857b3b7bc01092809108db82c0c5",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/2026-07-16T17-56-39-352Z_dry_run_2b1abe301d59/CARD_VISUAL_LANGUAGE_V1_BROAD_FAMILY_REPAIR_25_DESCRIPTIONS.md": "b87ffdef6ccd2130fe06d366a169254673cf24626b646753d019a35f7653da68",
+    "docs/audits/card_visual_language_v1_broad_family_repair_25_dry_run/VISUAL_LANGUAGE_V1_BROAD_FAMILY_REPAIR_25_DRY_RUN_REPORT.md": "2111e4ceedc651aa765d3460035b765ac16d2b29ee70eb0b6a50c27212b16bab",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_BROAD_FAMILY_REPAIR_25_DRY_RUN_20260716.md": "9fc2d10e30f91e5fa4e1815b65fa25e484d1e029543a7c8b5b2d85c74a09b3b1",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "a85fc52a6e82b4b82454435b9b023d771ce24ca6baa7b7f21af0ffc89929b00e"
+  }
+}
