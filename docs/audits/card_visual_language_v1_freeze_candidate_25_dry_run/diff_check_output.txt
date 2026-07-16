@@ -1,0 +1,2 @@
+COMMAND: git diff --check
+warning: in the working copy of 'docs/audits/card_visual_language_v1_freeze_candidate_25_dry_run/diff_check_output.txt', CRLF will be replaced by LF the next time Git touches it
