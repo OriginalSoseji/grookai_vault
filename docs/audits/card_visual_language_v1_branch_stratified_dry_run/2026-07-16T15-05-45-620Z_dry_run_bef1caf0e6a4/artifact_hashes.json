@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-16T15:12:09.436Z",
+  "sha256": {
+    "CARD_VISUAL_LANGUAGE_V1_BRANCH_STRATIFIED_25_DESCRIPTIONS.md": "922718a0429a7284446b56e0a44b61d6fe06d39e8a6b1bc4cd76f0bd645d483b",
+    "dry_run_no_db_write_readback.json": "f1bf3d5c52e310ae3452ee69fb93410824d73b6e461eff167341368fe0b110d4",
+    "eligible_cards.jsonl": "0441dc0c91221d85fe1d978dc56fe8e008f75226b363d765dda751bd9cd3983f",
+    "generated_outputs.jsonl": "5171f0881d02c9632cc7e9f12a3a17f9ee5fbd5c745a055f919e3e88f2e39567",
+    "review_sample.jsonl": "5171f0881d02c9632cc7e9f12a3a17f9ee5fbd5c745a055f919e3e88f2e39567",
+    "run_plan.json": "70fd349d38c8ad89915e7b137dce39986b6ce251ce1d3c00e598b32bbb142a1c",
+    "skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "summary.json": "78ce7f88854a14c6bba594f717b7dd0de33cc67103a2b72cb7e26773eee9b480",
+    "validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

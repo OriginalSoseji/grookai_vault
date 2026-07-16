@@ -27,6 +27,14 @@ const DEFAULT_MIN_HEIGHT = 240;
 const DEFAULT_MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
+const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
+const BRANCH_STRATIFIED_BRANCHES = Object.freeze([
+  "pokemon",
+  "trainer",
+  "stadium",
+  "energy",
+  "item_tool_supporter",
+]);
 const CANON_IMAGE_STORAGE_BUCKET = "user-card-images";
 const WAREHOUSE_CANON_IMAGE_PREFIXES = [
   "warehouse-derived/self-hosted-images-v1/",
@@ -67,15 +75,15 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
   "vstar",
 ]);
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
-  /\b(cosmic|celestial|magical|enchanted|enchanting|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars?)\b/gi;
+  /\b(cosmic|celestial|magical|enchanted|enchanting|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
-  /\b(symboli[sz]es|represents|embodies|evokes|evoking)\b/gi;
+  /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
-  /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish)?|gloss present|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish)\b/gi;
+  /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish)?|gloss present|layer of gloss|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish|higher quality print|printing quality appears)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
   /\b(creature|pokemon|pokémon|monster|animal-like|beast|living subject)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN =
-  /\b(standard trading card|clear image|print quality appears|high quality image|well-defined image)\b/gi;
+  /\b(standard trading card|clear image|print quality appears|printing quality appears|high quality image|well-defined image)\b/gi;
 const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
   /\b(no clearly visible face|face (?:is )?not clearly visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial expression(?:s)? (?:cannot be determined|not visible|unclear))\b/i;
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
@@ -84,6 +92,10 @@ const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
   /\b(mystique)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
   /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|twilight|optimistic|serene|inviting|mysterious|mystique)\b/gi;
+const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
+  /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
+const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
+  /\b(human character|visible human|trainer portrait|person|girl|boy|man|woman|object rather than a creature|object scene|item card|tool card|badge|bell|bomb|fossil|star-shaped symbol|star symbol|central star|no distinct (?:pokemon|pokémon) features|no visible (?:pokemon|pokémon)|not a creature)\b/i;
 
 async function loadEnvFilesIfAvailable() {
   try {
@@ -179,6 +191,14 @@ function asNumber(value, fallback, label) {
   return parsed;
 }
 
+function asBoolean(value, fallback, label) {
+  if (value === undefined || value === null || value === "") return fallback;
+  const normalized = String(value).trim().toLowerCase();
+  if (["1", "true", "yes", "y", "on"].includes(normalized)) return true;
+  if (["0", "false", "no", "n", "off"].includes(normalized)) return false;
+  throw new Error(`[card-visual-description-agent] ${label} must be true or false`);
+}
+
 function normalizeText(value) {
   return String(value ?? "").trim();
 }
@@ -245,7 +265,10 @@ function fallbackPromptTypeMetadata(card) {
   if (/\b(stadium|garden|forest|city|castle|ruins|cave|library|gym|tower|temple|mountain|island|beach|lake)\b/.test(nameKey)) {
     return { supertype: "Trainer", card_category: "Stadium", source: "name_fallback_stadium" };
   }
-  if (/\b(vitality|research|orders|training|advice|care|invitation|encouragement|determination|performance|hospitality|resolve|guidance|scheme|kindness|exploration|challenge|ambition|backup|conviction|support)\b/.test(nameKey)) {
+  if (/\b(badge|bell|bomb|fossil|item|tool|rod|ball|machine|potion|switch|vessel|cape|ticket|map|stone|charm|amulet)\b/.test(nameKey) || /(?:バッジ|ベル|ボム|化石|どうぐ|グッズ)/.test(card.name ?? "")) {
+    return { supertype: "Trainer", card_category: "Item", source: "name_fallback_item" };
+  }
+  if (/\b(vitality|research|orders|training|advice|care|invitation|encouragement|determination|performance|hospitality|resolve|guidance|scheme|kindness|exploration|challenge|ambition|backup|conviction|support|battle|grunt|gwynn|syndicate)\b/.test(nameKey) || /(?:したっぱ|元気|決戦)/.test(card.name ?? "")) {
     return { supertype: "Trainer", card_category: "Supporter", source: "name_fallback_trainer" };
   }
   return { supertype: "", card_category: "", source: "" };
@@ -281,7 +304,7 @@ function trainerNameFromCardName(name) {
   return normalizeText(possessiveMatch?.[1]) || normalized || "unknown";
 }
 
-function resolveCardPromptMetadata(card = {}) {
+export function resolveCardPromptMetadata(card = {}) {
   const supertypeCandidate = firstPromptMetadataCandidate(card, "supertype");
   const categoryCandidate = firstPromptMetadataCandidate(card, "card_category");
   const fallback = fallbackPromptTypeMetadata(card);
@@ -389,7 +412,9 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const combinedText = fields.map((entry) => entry.text).join(" ");
   const lower = combinedText.toLowerCase();
   const cardNameKey = tagKey(card.name);
-  const promptBranch = resolveCardPromptMetadata(card).prompt_branch;
+  const resolvedPromptMetadata = resolveCardPromptMetadata(card);
+  const promptBranch = normalizeText(card.prompt_branch) || resolvedPromptMetadata.prompt_branch;
+  const cardTypeMetadataSource = normalizeText(card.card_type_metadata_source) || resolvedPromptMetadata.card_type_metadata_source;
 
   if (
     cardNameKey.includes("chandelure")
@@ -408,7 +433,7 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
 
   const uncertaintyText = normalizeStringArray(payload?.visual_attributes?.uncertainty_notes).join(" ").toLowerCase();
   if (
-    /\b(cosmic|celestial|outer space|space scene|stars?|galaxy|galactic)\b/i.test(lower)
+    /\b(cosmic|celestial|outer space|space scene|stars|galaxy|galactic)\b/i.test(lower)
     && !/\b(uncertain|ambiguous|abstract|not clear|not clearly|appears|suggests|star-like)\b/i.test(uncertaintyText)
   ) {
     for (const { field, text } of fields) {
@@ -416,7 +441,25 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
         flag: "potential_overconfident_ambiguous_setting",
         field,
         text,
-        pattern: /\b(cosmic|celestial|outer space|space scene|stars?|galaxy|galactic)\b/gi,
+        pattern: /\b(cosmic|celestial|outer space|space scene|stars|galaxy|galactic)\b/gi,
+      }));
+    }
+  }
+
+  if (promptBranch === "pokemon" && cardTypeMetadataSource === "unavailable") {
+    const nameText = normalizeText(card.name);
+    details.push(...regexDetails({
+      flag: "potential_unavailable_metadata_prompt_branch_mismatch",
+      field: "name",
+      text: nameText,
+      pattern: UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN,
+    }));
+    for (const { field, text } of fields) {
+      details.push(...regexDetails({
+        flag: "potential_unavailable_metadata_prompt_branch_mismatch",
+        field,
+        text,
+        pattern: UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN,
       }));
     }
   }
@@ -546,6 +589,61 @@ function parseOrderedCommaList(value) {
   return uniquePreserving(String(value ?? "").split(","));
 }
 
+function defaultBranchTargetsV1(limit) {
+  const normalizedLimit = asPositiveInt(limit, DEFAULT_LIMIT, "branch target limit");
+  const base = Math.floor(normalizedLimit / BRANCH_STRATIFIED_BRANCHES.length);
+  let remainder = normalizedLimit % BRANCH_STRATIFIED_BRANCHES.length;
+  const targets = {};
+  for (const branch of BRANCH_STRATIFIED_BRANCHES) {
+    targets[branch] = base + (remainder > 0 ? 1 : 0);
+    if (remainder > 0) remainder -= 1;
+  }
+  return targets;
+}
+
+function parseBranchTargetsV1(value, limit) {
+  const raw = normalizeText(value);
+  if (!raw) return defaultBranchTargetsV1(limit);
+
+  const targets = Object.fromEntries(BRANCH_STRATIFIED_BRANCHES.map((branch) => [branch, 0]));
+  const allowed = new Set(BRANCH_STRATIFIED_BRANCHES);
+  for (const part of parseOrderedCommaList(raw)) {
+    const [rawBranch, rawCount, ...extra] = part.split(":");
+    const branch = normalizeText(rawBranch);
+    if (!branch || rawCount === undefined || extra.length > 0) {
+      throw new Error("[card-visual-description-agent] branch targets must use branch:count entries");
+    }
+    if (!allowed.has(branch)) {
+      throw new Error(`[card-visual-description-agent] unsupported branch target: ${branch}`);
+    }
+    targets[branch] = asNonnegativeInt(rawCount, null, `branch target ${branch}`);
+  }
+  return targets;
+}
+
+function totalBranchTargets(targets) {
+  return Object.values(targets ?? {}).reduce((sum, value) => sum + Number(value ?? 0), 0);
+}
+
+export function selectBranchStratifiedCardsV1(rows, branchTargets) {
+  const selected = [];
+  const selectedRows = new Set();
+  for (const branch of BRANCH_STRATIFIED_BRANCHES) {
+    const target = Number(branchTargets?.[branch] ?? 0);
+    if (target < 1) continue;
+    let picked = 0;
+    for (const row of rows) {
+      if (selectedRows.has(row)) continue;
+      if (resolveCardPromptMetadata(row).prompt_branch !== branch) continue;
+      selectedRows.add(row);
+      selected.push(row);
+      picked += 1;
+      if (picked >= target) break;
+    }
+  }
+  return selected;
+}
+
 function roundUsd(value) {
   if (value === null || value === undefined) return null;
   return Number(Number(value).toFixed(8));
@@ -652,6 +750,10 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     cardPrintId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_ID) || null,
     cardPrintIds: parseOrderedCommaList(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_IDS),
     gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
+    branchStratifiedSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE"),
+    branchTargetsSpec: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_TARGETS),
+    branchTargets: null,
+    branchCandidateLimit: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT, null, "CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT"),
     forceVersion: false,
     allowFixtureApply: false,
   };
@@ -674,6 +776,9 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--card-print-id=")) parsed.cardPrintId = normalizeText(arg.slice("--card-print-id=".length)) || null;
     else if (arg.startsWith("--card-print-ids=")) parsed.cardPrintIds = parseOrderedCommaList(arg.slice("--card-print-ids=".length));
     else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
+    else if (arg === "--branch-stratified-sample") parsed.branchStratifiedSample = true;
+    else if (arg.startsWith("--branch-targets=")) parsed.branchTargetsSpec = normalizeText(arg.slice("--branch-targets=".length));
+    else if (arg.startsWith("--branch-candidate-limit=")) parsed.branchCandidateLimit = asPositiveInt(arg.slice("--branch-candidate-limit=".length), null, "--branch-candidate-limit");
     else if (arg.startsWith("--min-width=")) parsed.minWidth = asPositiveInt(arg.slice("--min-width=".length), DEFAULT_MIN_WIDTH, "--min-width");
     else if (arg.startsWith("--min-height=")) parsed.minHeight = asPositiveInt(arg.slice("--min-height=".length), DEFAULT_MIN_HEIGHT, "--min-height");
     else if (arg.startsWith("--max-image-bytes=")) parsed.maxImageBytes = asPositiveInt(arg.slice("--max-image-bytes=".length), DEFAULT_MAX_IMAGE_BYTES, "--max-image-bytes");
@@ -709,6 +814,16 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
   if (parsed.mode === "apply" && parsed.provider === "fixture" && !parsed.allowFixtureApply) {
     throw new Error("[card-visual-description-agent] refusing to apply fixture descriptions without --allow-fixture-apply");
+  }
+  if (parsed.branchStratifiedSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId)) {
+    throw new Error("[card-visual-description-agent] branch-stratified sampling cannot be combined with explicit card targets");
+  }
+  parsed.branchTargets = parseBranchTargetsV1(parsed.branchTargetsSpec, parsed.limit);
+  if (parsed.branchStratifiedSample && totalBranchTargets(parsed.branchTargets) < 1) {
+    throw new Error("[card-visual-description-agent] branch-stratified sampling requires at least one branch target");
+  }
+  if (parsed.branchStratifiedSample && !parsed.branchCandidateLimit) {
+    parsed.branchCandidateLimit = Math.max(parsed.limit * 200, DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT);
   }
 
   return parsed;
@@ -1236,6 +1351,34 @@ function averageUsagePerValidatedDescription(aggregate, validatedCount) {
   };
 }
 
+function countRowsByPromptBranch(rows) {
+  const counts = {};
+  for (const row of rows) {
+    const branch = normalizeText(row.prompt_branch) || "unknown";
+    counts[branch] = (counts[branch] ?? 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function qualityFlagCountsByPromptBranch(rows) {
+  const counts = {};
+  for (const row of rows) {
+    const branch = normalizeText(row.prompt_branch) || "unknown";
+    counts[branch] ??= {};
+    for (const flag of row.quality_flags ?? []) {
+      counts[branch][flag] = (counts[branch][flag] ?? 0) + 1;
+    }
+  }
+  return Object.fromEntries(
+    Object.entries(counts)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([branch, flags]) => [
+        branch,
+        Object.fromEntries(Object.entries(flags).sort(([left], [right]) => left.localeCompare(right))),
+      ]),
+  );
+}
+
 export function buildCostProjection({ aggregate, validatedCount, totalEligibleCatalogCount }) {
   const perCard = validatedCount ? roundUsd(aggregate.estimated_cost_usd / validatedCount) : null;
   return {
@@ -1701,7 +1844,8 @@ async function openAiDescription(card, image, args) {
         await sleep(500 * (attempt + 1));
         continue;
       }
-      error.telemetry = {
+      const transportError = new Error(`[card-visual-description-agent] openai_fetch_failed: ${formatFetchError(error)}`);
+      transportError.telemetry = {
         response_model_version: args.modelVersion,
         image_detail: args.imageDetail,
         request_count: requestCount,
@@ -1709,7 +1853,7 @@ async function openAiDescription(card, image, args) {
         usage: zeroUsage(),
         estimated_cost_usd: 0,
       };
-      throw error;
+      throw transportError;
     }
 
     if (!response.ok) {
@@ -1784,6 +1928,8 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     supertype: promptMetadata.supertype,
     subtype: promptMetadata.subtype,
     card_category: promptMetadata.card_category,
+    prompt_branch: promptMetadata.prompt_branch,
+    card_type_metadata_source: promptMetadata.card_type_metadata_source,
   };
   const semanticTagSanitization = sanitizeSemanticTagsForVisibleArtworkV1(normalizedPayload.semantic_tags, cardForVisualSanitization);
   const reviewFlagDetails = detectVisualDescriptionReviewFlagDetailsV1({
@@ -1932,7 +2078,8 @@ async function fetchEligibleCards(client, args) {
   const orderExpr = columns.has("created_at")
     ? "cp.created_at desc nulls last, cp.id asc"
     : "cp.id asc";
-  const params = [args.limit];
+  const queryLimit = args.branchStratifiedSample ? args.branchCandidateLimit : args.limit;
+  const params = [queryLimit];
   const filters = [];
   let nextParam = 2;
 
@@ -1990,7 +2137,8 @@ async function fetchEligibleCards(client, args) {
       limit $1`,
     params,
   );
-  return result.rows;
+  if (!args.branchStratifiedSample) return result.rows;
+  return selectBranchStratifiedCardsV1(result.rows, args.branchTargets);
 }
 
 async function tableExists(client, schema, tableName) {
@@ -2361,6 +2509,10 @@ function buildSummary({
     image_detail: args.imageDetail,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
+    sample_strategy: args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
+    branch_candidate_limit: args.branchStratifiedSample ? args.branchCandidateLimit : null,
+    local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     pricing_snapshot: args.pricingSnapshot,
     started_at: startedAt,
     finished_at: finishedAt,
@@ -2372,6 +2524,7 @@ function buildSummary({
     skipped_count: skippedImages.length,
     needs_review_count: generatedRows.filter((row) => row.review_status === "needs_review").length,
     pending_count: generatedRows.filter((row) => row.review_status === "pending").length,
+    branch_counts: countRowsByPromptBranch(generatedRows),
     usage,
     average_usage_per_validated_description: averageUsage,
     estimated_cost_usd: usage.estimated_cost_usd,
@@ -2389,6 +2542,7 @@ function buildSummary({
         return counts;
       }, {})).sort(([left], [right]) => left.localeCompare(right)),
     ),
+    quality_flag_counts_by_branch: qualityFlagCountsByPromptBranch(generatedRows),
   };
 }
 
@@ -2423,6 +2577,10 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     max_run_cost_usd: args.maxRunCostUsd,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
+    sample_strategy: args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
+    branch_candidate_limit: args.branchStratifiedSample ? args.branchCandidateLimit : null,
+    local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     agent_version: args.agentVersion,
     model_version: args.modelVersion,
     image_detail: args.imageDetail,

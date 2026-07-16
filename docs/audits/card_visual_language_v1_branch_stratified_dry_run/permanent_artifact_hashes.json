@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-16T15:14:39.783Z",
+  "sha256": {
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/VISUAL_LANGUAGE_V1_BRANCH_STRATIFIED_25_CARD_DRY_RUN_REPORT.md": "93f72c7673413f2003faa76918b8b41a13ffec564ced628e19febad82d4d70ad",
+    "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_BRANCH_STRATIFIED_25_CARD_DRY_RUN_20260716.md": "e94920c637c84f993bdef20b718ce8758bd840cdc720561eb35c9072682ff3bd",
+    "docs/checkpoints/card_visual_descriptions/INDEX.md": "e8fd35b0ebdf87baf59ed19e55e889b45fac28bd638deefd7cc1240880863dc4",
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/2026-07-16T15-05-45-620Z_dry_run_bef1caf0e6a4/summary.json": "78ce7f88854a14c6bba594f717b7dd0de33cc67103a2b72cb7e26773eee9b480",
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/2026-07-16T15-05-45-620Z_dry_run_bef1caf0e6a4/run_plan.json": "70fd349d38c8ad89915e7b137dce39986b6ce251ce1d3c00e598b32bbb142a1c",
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/2026-07-16T15-05-45-620Z_dry_run_bef1caf0e6a4/generated_outputs.jsonl": "5171f0881d02c9632cc7e9f12a3a17f9ee5fbd5c745a055f919e3e88f2e39567",
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/2026-07-16T15-05-45-620Z_dry_run_bef1caf0e6a4/CARD_VISUAL_LANGUAGE_V1_BRANCH_STRATIFIED_25_DESCRIPTIONS.md": "922718a0429a7284446b56e0a44b61d6fe06d39e8a6b1bc4cd76f0bd645d483b",
+    "docs/audits/card_visual_language_v1_branch_stratified_dry_run/2026-07-16T15-05-45-620Z_dry_run_bef1caf0e6a4/dry_run_no_db_write_readback.json": "f1bf3d5c52e310ae3452ee69fb93410824d73b6e461eff167341368fe0b110d4"
+  }
+}

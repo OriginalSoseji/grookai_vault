@@ -14,7 +14,9 @@ import {
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
   parseCardVisualDescriptionArgsV1,
+  resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
+  selectBranchStratifiedCardsV1,
   validateVisualDescriptionPayloadV1,
 } from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
 
@@ -98,6 +100,34 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
   assert.equal(apply.openaiImageCostRuleVersion, "gpt-4o-mini-2026-07-15");
+
+  const branchSample = parseCardVisualDescriptionArgsV1([
+    "--dry-run",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--limit=25",
+    "--branch-stratified-sample",
+    "--branch-targets=pokemon:5,trainer:5,stadium:5,energy:5,item_tool_supporter:5",
+    "--branch-candidate-limit=60000",
+  ]);
+  assert.equal(branchSample.branchStratifiedSample, true);
+  assert.equal(branchSample.branchCandidateLimit, 60000);
+  assert.deepEqual(branchSample.branchTargets, {
+    pokemon: 5,
+    trainer: 5,
+    stadium: 5,
+    energy: 5,
+    item_tool_supporter: 5,
+  });
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1([
+      "--provider=openai",
+      "--model=test-vision-model",
+      "--branch-stratified-sample",
+      "--gv-id=GV-PK-JPN-M5-113",
+    ]),
+    /branch-stratified sampling cannot be combined with explicit card targets/,
+  );
 
   assert.throws(
     () => parseCardVisualDescriptionArgsV1(["--image-detail=ultra"]),
@@ -206,6 +236,88 @@ test("card visual description flags overconfident celestial settings without unc
   ]);
 });
 
+test("card visual language enforcement catches narrow post-run false negatives", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The diagonal pose may evoke motion, with the two figures symbolizing a staged rivalry.",
+      card_surface_and_printing_cues:
+        "A visible layer of gloss and higher quality print are present. The printing quality appears unusually sharp.",
+      visual_attributes: {
+        subjects: { primary: ["two figures"], secondary: [] },
+        environment: { setting: ["plain background"] },
+        mood: [],
+        distinguishing_details: ["diagonal pose"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["diagonal pose", "two figures", "plain background"],
+    },
+    { name: "Example Pokemon" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_claim"
+    && detail.matched_text === "evoke"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_claim"
+    && detail.matched_text === "symbolizing"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "layer of gloss"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "higher quality print"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "printing quality appears"));
+});
+
+test("card visual language enforcement allows literal star-shaped objects", () => {
+  const flags = detectVisualDescriptionReviewFlagsV1(
+    {
+      artwork_description:
+        "The object has a central star-shaped symbol on a rounded badge face, with simple lines around the edge.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["badge object"], secondary: [] },
+        environment: { setting: ["plain background"] },
+        mood: [],
+        distinguishing_details: ["central star", "star-shaped symbol"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["badge object", "central star", "rounded shape"],
+    },
+    { name: "Retry Badge", supertype: "Trainer", card_category: "Item" },
+  );
+
+  assert.equal(flags.includes("potential_overconfident_ambiguous_setting"), false);
+  assert.equal(flags.includes("potential_speculative_setting_language"), false);
+});
+
+test("card visual language enforcement flags unavailable metadata branch mismatch evidence", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The artwork shows an object rather than a creature, with no distinct Pokemon features and a small human character beside it.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["object scene"], secondary: ["human character"] },
+        environment: { setting: ["interior"] },
+        mood: [],
+        distinguishing_details: ["object rather than a creature"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["object scene", "human character", "interior"],
+    },
+    { name: "Unclassified Card" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unavailable_metadata_prompt_branch_mismatch"
+    && detail.field === "artwork_description"
+    && detail.matched_text === "object rather than a creature"));
+});
+
 test("card visual language review flags preserve matched text and force review", () => {
   const payload = {
     artwork_description:
@@ -272,6 +384,35 @@ test("card visual language review flags preserve matched text and force review",
       image_quality_score: 0.95,
     }),
     "needs_review",
+  );
+});
+
+test("card visual description resolves fallback card branches and stratified samples", () => {
+  assert.equal(resolveCardPromptMetadata({ name: "Retry Badge" }).prompt_branch, "item_tool_supporter");
+  assert.equal(resolveCardPromptMetadata({ name: "古びたたての化石" }).prompt_branch, "item_tool_supporter");
+  assert.equal(resolveCardPromptMetadata({ name: "Gwynn" }).prompt_branch, "trainer");
+  assert.equal(resolveCardPromptMetadata({ name: "Rust Syndicate Grunt" }).prompt_branch, "trainer");
+  assert.equal(resolveCardPromptMetadata({ name: "Basic Psychic Energy" }).prompt_branch, "energy");
+  assert.equal(resolveCardPromptMetadata({ name: "Sky Garden" }).prompt_branch, "stadium");
+
+  const rows = [
+    { card_print_id: "p1", name: "Pikachu", supertype: "Pokemon" },
+    { card_print_id: "p2", name: "Bulbasaur", supertype: "Pokemon" },
+    { card_print_id: "t1", name: "Rust Syndicate Grunt" },
+    { card_print_id: "s1", name: "Sky Garden" },
+    { card_print_id: "e1", name: "Basic Psychic Energy" },
+    { card_print_id: "i1", name: "Retry Badge" },
+  ];
+
+  assert.deepEqual(
+    selectBranchStratifiedCardsV1(rows, {
+      pokemon: 1,
+      trainer: 1,
+      stadium: 1,
+      energy: 1,
+      item_tool_supporter: 1,
+    }).map((row) => row.card_print_id),
+    ["p1", "t1", "s1", "e1", "i1"],
   );
 });
 
