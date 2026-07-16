@@ -409,6 +409,76 @@ test("card visual language enforcement flags canonical name visual conflicts", (
     && detail.matched_text === "without limbs"));
 });
 
+test("card visual language enforcement catches subject-repair dry-run false negatives", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description: [
+        "Mega Excadrill has a fierce expression and aggressive demeanor.",
+        "This Pokemon's design emphasizes strength and aggression, characteristic of its species.",
+        "Gwynn's expression conveys concentration or contemplation, with a serious demeanor.",
+        "The overall mood suggests a blend of introspection and determination.",
+        "The bomb suggests impending action, excitement and tension, and something dramatic is about to occur.",
+        "The badge has a glossy, reflective surface.",
+      ].join(" "),
+      card_surface_and_printing_cues:
+        "Standard card border visible, foil texture cannot be determined, printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: ["Mega Excadrill"], secondary: ["Gwynn", "bomb", "badge"] },
+        environment: { setting: ["abstract background"] },
+        mood: [],
+        distinguishing_details: ["contemplative pose"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["celebratory theme", "contemplative pose", "dynamic composition"],
+    },
+    { name: "Mega Excadrill ex", supertype: "Pokemon" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "aggressive demeanor"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "strength and aggression"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "characteristic of its species"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "concentration or contemplation"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "serious demeanor"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "introspection and determination"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_personality_or_species_interpretation"
+    && detail.matched_text === "contemplative pose"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "impending action"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "excitement and tension"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_dramatic_inferred_action_language"
+    && detail.matched_text === "something dramatic is about to occur"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_object_material_or_card_surface_confusion"
+    && detail.matched_text === "glossy, reflective surface"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_generic_filler"
+    && detail.matched_text === "Standard card border visible"
+    && detail.field === "card_surface_and_printing_cues"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_semantic_tag_nonvisual_concept"
+    && detail.matched_text === "celebratory"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_semantic_tag_nonvisual_concept"
+    && detail.matched_text === "theme"));
+});
+
 test("card visual language enforcement allows literal star-shaped objects", () => {
   const flags = detectVisualDescriptionReviewFlagsV1(
     {

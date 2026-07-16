@@ -80,20 +80,26 @@ const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
   /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
   /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish|higher quality print|printing quality appears|printing treatment is consistent|without visible errors|imperfections)\b/gi;
+const VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN =
+  /\b(glossy,\s*reflective surface|glossy reflective surface)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
   /\b(creature|monster|animal-like|beast|living subject)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FRANCHISE_ON_NON_POKEMON_PATTERN =
   /\b(?:pokemon|pokémon)\s+(?:universe|franchise|tcg|trading card game|card)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN =
-  /\b(standard trading card|clear image|print quality appears|printing quality appears|high quality image|well-defined image)\b/gi;
+  /\b(standard trading card|standard card border visible|clear image|print quality appears|printing quality appears|high quality image|well-defined image)\b/gi;
 const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
   /\b(no clearly visible face|face (?:is )?not clearly visible|face details (?:are )?not visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial features? (?:are )?(?:not|not clearly|not explicitly) visible|facial features?[^.]{0,60}\bnot\b[^.]{0,40}\bvisible|facial expression(?:s)? (?:cannot be determined|not visible|unclear)|expression (?:cannot be determined|not visible|unclear))\b/i;
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
   /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm)\b/gi;
+const VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN =
+  /\b(aggressive demeanor|strength and aggression|characteristic of (?:its|the) species|concentration or contemplation|serious demeanor|introspection and determination|contemplative pose)\b/gi;
+const VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN =
+  /\b(impending action|excitement and tension|something dramatic is about to occur|dramatic (?:event|action|moment) is about to occur)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
   /\b(mystique|intrigue|tranquil|tranquility|enchantment)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
-  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue)\b/gi;
+  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue|celebratory|uplifting|theme)\b/gi;
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -610,6 +616,24 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
       field,
       text,
       pattern: VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_unsupported_personality_or_species_interpretation",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_dramatic_inferred_action_language",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN,
+    }));
+    details.push(...regexDetails({
+      flag: "potential_object_material_or_card_surface_confusion",
+      field,
+      text,
+      pattern: VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN,
     }));
   }
 
