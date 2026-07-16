@@ -190,6 +190,7 @@ test("card visual description flags Chandelure anatomy described as a held objec
       artwork_description:
         "The illustration features a ghostly figure resembling a chandelier. It has a dark body with purple and white accents, and the arms extend upwards, holding a round, glowing orb.",
       visual_attributes: {
+        subjects: { primary: ["Mega Chandelure"], secondary: [] },
         distinguishing_details: ["glowing orb", "swirling energy effects"],
         uncertainty_notes: ["abstract background elements may imply motion or energy"],
       },
@@ -205,6 +206,7 @@ test("card visual description flags Chandelure anatomy described as a held objec
       artwork_description:
         "Mega Chandelure sweeps diagonally through a dark abstract scene, with its round glass-like body, curled arms, branch-like limbs, and pale violet flames forming one integrated chandelier-shaped figure.",
       visual_attributes: {
+        subjects: { primary: ["Mega Chandelure"], secondary: [] },
         distinguishing_details: ["round glass-like body", "curled arms", "pale violet flames"],
         uncertainty_notes: ["background is abstract and not clearly celestial or architectural"],
       },
@@ -222,6 +224,7 @@ test("card visual description flags overconfident celestial settings without unc
       artwork_description:
         "The subject floats through a cosmic galaxy full of stars and celestial energy.",
       visual_attributes: {
+        subjects: { primary: ["Example Pokemon"], secondary: [] },
         distinguishing_details: ["stars", "cosmic background"],
         uncertainty_notes: [],
       },
@@ -240,13 +243,13 @@ test("card visual language enforcement catches narrow post-run false negatives",
   const details = detectVisualDescriptionReviewFlagDetailsV1(
     {
       artwork_description:
-        "The diagonal pose may evoke motion, with the two figures symbolizing a staged rivalry.",
+        "The diagonal pose may evoke motion, with the two figures symbolizing a staged rivalry. The scene is evocative and carries a tranquil sense of enchantment.",
       card_surface_and_printing_cues:
-        "A visible layer of gloss and higher quality print are present. The printing quality appears unusually sharp.",
+        "A visible layer of gloss, clear gloss finish, clean, reflective finish, and higher quality print are present. The printing quality appears unusually sharp.",
       visual_attributes: {
         subjects: { primary: ["two figures"], secondary: [] },
         environment: { setting: ["plain background"] },
-        mood: [],
+        mood: ["intrigue"],
         distinguishing_details: ["diagonal pose"],
         uncertainty_notes: [],
       },
@@ -262,14 +265,148 @@ test("card visual language enforcement catches narrow post-run false negatives",
     detail.flag === "potential_interpretive_claim"
     && detail.matched_text === "symbolizing"));
   assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_claim"
+    && detail.matched_text === "evocative"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "tranquil"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "enchantment"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_interpretive_mood_language"
+    && detail.matched_text === "intrigue"
+    && detail.field === "visual_attributes.mood"));
+  assert.ok(details.some((detail) =>
     detail.flag === "potential_surface_overclaim"
     && detail.matched_text === "layer of gloss"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "clear gloss finish"));
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_surface_overclaim"
+    && detail.matched_text === "clean, reflective finish"));
   assert.ok(details.some((detail) =>
     detail.flag === "potential_surface_overclaim"
     && detail.matched_text === "higher quality print"));
   assert.ok(details.some((detail) =>
     detail.flag === "potential_surface_overclaim"
     && detail.matched_text === "printing quality appears"));
+});
+
+test("card visual language enforcement flags unsupported emotion after unclear face language", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "Facial features are not explicitly visible due to the angle, but the expression conveys determination.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["trainer"], secondary: [] },
+        environment: { setting: ["plain background"] },
+        mood: [],
+        distinguishing_details: ["angled face"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["trainer portrait", "angled face", "plain background"],
+    },
+    { name: "Example Trainer", supertype: "Trainer", card_category: "Supporter" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_unsupported_emotion_or_personality_claim"
+    && detail.matched_text === "determination"));
+});
+
+test("card visual language enforcement separates franchise language from creature language on non-Pokemon branches", () => {
+  const details = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The gym environment appears in the Pokemon universe, with benches and a central battle floor.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: [] },
+        environment: { setting: ["gym interior"] },
+        mood: [],
+        distinguishing_details: ["battle floor", "benches"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["gym interior", "battle floor", "benches"],
+    },
+    { name: "Cinnabar City Gym", supertype: "Trainer", card_category: "Stadium" },
+  );
+
+  assert.ok(details.some((detail) =>
+    detail.flag === "potential_generic_franchise_language_on_non_pokemon_branch"
+    && detail.matched_text === "Pokemon universe"));
+  assert.equal(details.some((detail) =>
+    detail.flag === "potential_creature_language_on_non_pokemon_branch"
+    && detail.matched_text === "Pokemon"), false);
+});
+
+test("card visual language enforcement flags canonical name visual conflicts", () => {
+  const mewDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "The artwork shows two small mushroom-like creatures standing together against a simple background.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["mushroom-like creatures"], secondary: [] },
+        environment: { setting: ["plain background"] },
+        mood: [],
+        distinguishing_details: ["two small mushroom-like creatures"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["mushroom-like creatures", "plain background", "small figures"],
+    },
+    { name: "Mew ex", supertype: "Pokemon" },
+  );
+
+  assert.ok(mewDetails.some((detail) => detail.flag === "potential_primary_subject_mismatch"));
+  assert.ok(mewDetails.some((detail) => detail.flag === "potential_subject_count_mismatch"));
+  assert.ok(mewDetails.some((detail) =>
+    detail.flag === "potential_canonical_name_visual_conflict"
+    && /mushroom/.test(detail.matched_text)));
+
+  const tagTeamDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "A single hybrid creature combines Lucario and Melmetal into one merged form.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["Lucario and Melmetal hybrid creature"], secondary: [] },
+        environment: { setting: ["plain background"] },
+        mood: [],
+        distinguishing_details: ["single hybrid creature"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["Lucario", "Melmetal", "hybrid creature"],
+    },
+    { name: "Lucario & Melmetal-GX", supertype: "Pokemon" },
+  );
+
+  assert.ok(tagTeamDetails.some((detail) => detail.flag === "potential_subject_count_mismatch"));
+  assert.ok(tagTeamDetails.some((detail) => detail.flag === "potential_canonical_name_visual_conflict"));
+
+  const gengarDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    {
+      artwork_description:
+        "Gengar is shown as a round purple ghost without limbs against a dark backdrop.",
+      card_surface_and_printing_cues: "No reliable card-surface or printing treatment can be determined.",
+      visual_attributes: {
+        subjects: { primary: ["Gengar"], secondary: [] },
+        environment: { setting: ["dark backdrop"] },
+        mood: [],
+        distinguishing_details: ["round purple ghost without limbs"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["Gengar", "purple ghost", "dark backdrop"],
+    },
+    { name: "Gengar", supertype: "Pokemon" },
+  );
+
+  assert.ok(gengarDetails.some((detail) =>
+    detail.flag === "potential_canonical_name_visual_conflict"
+    && detail.matched_text === "without limbs"));
 });
 
 test("card visual language enforcement allows literal star-shaped objects", () => {
@@ -392,6 +529,8 @@ test("card visual description resolves fallback card branches and stratified sam
   assert.equal(resolveCardPromptMetadata({ name: "古びたたての化石" }).prompt_branch, "item_tool_supporter");
   assert.equal(resolveCardPromptMetadata({ name: "Gwynn" }).prompt_branch, "trainer");
   assert.equal(resolveCardPromptMetadata({ name: "Rust Syndicate Grunt" }).prompt_branch, "trainer");
+  assert.equal(resolveCardPromptMetadata({ name: "Cynthia's Feelings (Temple of Anger No. 064)" }).prompt_branch, "trainer");
+  assert.equal(resolveCardPromptMetadata({ name: "Cynthia's Feelings (Temple of Anger No. 064)" }).card_type_metadata_source, "name_fallback_trainer");
   assert.equal(resolveCardPromptMetadata({ name: "Basic Psychic Energy" }).prompt_branch, "energy");
   assert.equal(resolveCardPromptMetadata({ name: "Sky Garden" }).prompt_branch, "stadium");
 

@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR";
 export const CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION = "CARD_VISUAL_LANGUAGE_V1";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
@@ -75,23 +75,25 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
   "vstar",
 ]);
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
-  /\b(cosmic|celestial|magical|enchanted|enchanting|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars)\b/gi;
+  /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|starry|stars)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
-  /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking)\b/gi;
+  /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
-  /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish)?|gloss present|layer of gloss|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish|higher quality print|printing quality appears)\b/gi;
+  /\b(foil (?:texture )?(?:is )?visible|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|embossed|texture visible|standard (?:printing treatment|print)|shimmering finish|higher quality print|printing quality appears|printing treatment is consistent|without visible errors|imperfections)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
-  /\b(creature|pokemon|pokémon|monster|animal-like|beast|living subject)\b/gi;
+  /\b(creature|monster|animal-like|beast|living subject)\b/gi;
+const VISUAL_LANGUAGE_GENERIC_FRANCHISE_ON_NON_POKEMON_PATTERN =
+  /\b(?:pokemon|pokémon)\s+(?:universe|franchise|tcg|trading card game|card)\b/gi;
 const VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN =
   /\b(standard trading card|clear image|print quality appears|printing quality appears|high quality image|well-defined image)\b/gi;
 const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
-  /\b(no clearly visible face|face (?:is )?not clearly visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial expression(?:s)? (?:cannot be determined|not visible|unclear))\b/i;
+  /\b(no clearly visible face|face (?:is )?not clearly visible|face details (?:are )?not visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial features? (?:are )?(?:not|not clearly|not explicitly) visible|facial features?[^.]{0,60}\bnot\b[^.]{0,40}\bvisible|facial expression(?:s)? (?:cannot be determined|not visible|unclear)|expression (?:cannot be determined|not visible|unclear))\b/i;
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
-  /\b(cheerful|joyful|confident|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively)\b/gi;
+  /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_MOOD_PATTERN =
-  /\b(mystique)\b/gi;
+  /\b(mystique|intrigue|tranquil|tranquility|enchantment)\b/gi;
 const VISUAL_LANGUAGE_SEMANTIC_TAG_NONVISUAL_PATTERN =
-  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|twilight|optimistic|serene|inviting|mysterious|mystique)\b/gi;
+  /\b(atmosphere|mood|personality|emotion|fantasy|mystical|ethereal|dreamlike|dreamy|magical|enchanted|enchanting|enchantment|twilight|optimistic|serene|tranquil|inviting|mysterious|mystique|intrigue)\b/gi;
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -235,6 +237,35 @@ function visualSubjectNameFromCardName(name) {
     .trim();
 }
 
+function expectedVisualSubjectsFromCardName(name) {
+  const cleaned = normalizeText(name)
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/\btag\s*team\b/gi, " ")
+    .replace(/[-\s]+(?:ex|gx|vmax|vstar|v-union|v)\b/gi, " ")
+    .replace(/\b(?:ex|gx|vmax|vstar|v-union|v)\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return [];
+  return uniquePreserving(
+    cleaned
+      .split(/\s*(?:&|\+|\/|\band\b|,|、)\s*/i)
+      .map((part) => part.replace(/\s+/g, " ").trim())
+      .filter((part) => /[A-Za-z]/.test(part)),
+  );
+}
+
+function subjectAliases(subject) {
+  const key = tagKey(subject);
+  const aliases = [key];
+  if (key.startsWith("mega ")) aliases.push(key.replace(/^mega\s+/, ""));
+  return uniquePreserving(aliases);
+}
+
+function textContainsSubject(textKey, subject) {
+  const padded = ` ${textKey} `;
+  return subjectAliases(subject).some((alias) => alias && padded.includes(` ${alias} `));
+}
+
 function promptTypeMetadataValue(value) {
   return normalizeText(value).replace(/\s+/g, " ");
 }
@@ -262,14 +293,14 @@ function fallbackPromptTypeMetadata(card) {
   if (/^(basic )?(fire|water|grass|lightning|psychic|fighting|darkness|metal|fairy|dragon|colorless|double colorless|rainbow|unit)\s+energy$/.test(nameKey)) {
     return { supertype: "Energy", card_category: "", source: "name_fallback_energy" };
   }
-  if (/\b(stadium|garden|forest|city|castle|ruins|cave|library|gym|tower|temple|mountain|island|beach|lake)\b/.test(nameKey)) {
-    return { supertype: "Trainer", card_category: "Stadium", source: "name_fallback_stadium" };
-  }
   if (/\b(badge|bell|bomb|fossil|item|tool|rod|ball|machine|potion|switch|vessel|cape|ticket|map|stone|charm|amulet)\b/.test(nameKey) || /(?:バッジ|ベル|ボム|化石|どうぐ|グッズ)/.test(card.name ?? "")) {
     return { supertype: "Trainer", card_category: "Item", source: "name_fallback_item" };
   }
-  if (/\b(vitality|research|orders|training|advice|care|invitation|encouragement|determination|performance|hospitality|resolve|guidance|scheme|kindness|exploration|challenge|ambition|backup|conviction|support|battle|grunt|gwynn|syndicate)\b/.test(nameKey) || /(?:したっぱ|元気|決戦)/.test(card.name ?? "")) {
+  if (/\b(vitality|research|orders|training|advice|care|invitation|encouragement|determination|performance|hospitality|resolve|guidance|scheme|kindness|exploration|challenge|ambition|backup|conviction|support|battle|grunt|gwynn|syndicate|feelings)\b/.test(nameKey) || /(?:したっぱ|元気|決戦)/.test(card.name ?? "")) {
     return { supertype: "Trainer", card_category: "Supporter", source: "name_fallback_trainer" };
+  }
+  if (/\b(stadium|garden|forest|city|castle|ruins|cave|library|gym|tower|temple|mountain|island|beach|lake)\b/.test(nameKey)) {
+    return { supertype: "Trainer", card_category: "Stadium", source: "name_fallback_stadium" };
   }
   return { supertype: "", card_category: "", source: "" };
 }
@@ -406,6 +437,95 @@ function regexDetails({ flag, field, text, pattern }) {
   }));
 }
 
+function addManualDetail(details, flag, field, matchedText) {
+  const matched_text = normalizeText(matchedText);
+  if (!matched_text) return;
+  details.push({ flag, matched_text, field });
+}
+
+function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) {
+  if (promptBranch !== "pokemon") return;
+  const expectedSubjects = expectedVisualSubjectsFromCardName(card.name);
+  if (expectedSubjects.length === 0) return;
+
+  const attributes = payload?.visual_attributes ?? {};
+  const subjects = attributes.subjects ?? {};
+  const primarySubjects = normalizeStringArray(subjects.primary);
+  const secondarySubjects = normalizeStringArray(subjects.secondary);
+  const subjectText = [...primarySubjects, ...secondarySubjects].join(" ");
+  const subjectTextKey = tagKey(subjectText);
+  const combinedSubjectTextKey = tagKey([
+    subjectText,
+    payload?.artwork_description,
+    normalizeStringArray(payload?.semantic_tags).join(" "),
+  ].join(" "));
+
+  for (const expected of expectedSubjects) {
+    if (!textContainsSubject(subjectTextKey, expected)) {
+      addManualDetail(
+        details,
+        "potential_primary_subject_mismatch",
+        "visual_attributes.subjects.primary",
+        `missing expected subject: ${expected}`,
+      );
+    }
+  }
+
+  const missingExpectedSubjects = expectedSubjects.filter((subject) => !textContainsSubject(combinedSubjectTextKey, subject));
+  const describesSingleMergedSubject = /\b(?:single|one|combined|merged|hybrid|fusion)\b[^.]{0,50}\b(?:creature|subject|figure|pokemon|pokémon|form)\b/i.test(String(payload?.artwork_description ?? ""));
+  if (expectedSubjects.length > 1 && (missingExpectedSubjects.length > 0 || describesSingleMergedSubject)) {
+    addManualDetail(
+      details,
+      "potential_subject_count_mismatch",
+      "artwork_description",
+      describesSingleMergedSubject
+        ? "single merged subject language on multi-subject card"
+        : `missing expected subjects: ${missingExpectedSubjects.join(", ")}`,
+    );
+  }
+
+  if (
+    expectedSubjects.length === 1
+    && /\b(?:two|three|multiple|several)\b[^.]{0,60}\b(?:creatures|pokemon|pokémon|subjects|figures|characters)\b/i.test(String(payload?.artwork_description ?? ""))
+  ) {
+    addManualDetail(details, "potential_subject_count_mismatch", "artwork_description", "multiple subjects described on single-subject card");
+  }
+
+  const expectedKey = tagKey(expectedSubjects.join(" "));
+  const combinedText = [
+    payload?.artwork_description,
+    subjectText,
+    normalizeStringArray(payload?.semantic_tags).join(" "),
+  ].join(" ");
+
+  if (/\bmew\b/.test(expectedKey)) {
+    for (const { field, text } of textFieldsForVisualLanguageReview(payload)) {
+      details.push(...regexDetails({
+        flag: "potential_canonical_name_visual_conflict",
+        field,
+        text,
+        pattern: /\b(mushroom(?:-like)?|fungi?|plant-like|mushroom creatures?|small mushroom-like creatures?)\b/gi,
+      }));
+    }
+  }
+
+  if (/\bgengar\b/.test(expectedKey)) {
+    for (const { field, text } of textFieldsForVisualLanguageReview(payload)) {
+      details.push(...regexDetails({
+        flag: "potential_canonical_name_visual_conflict",
+        field,
+        text,
+        pattern: /\b(no visible limbs|without limbs|limbs? (?:are )?(?:not visible|not shown)|no arms|no legs)\b/gi,
+      }));
+    }
+  }
+
+  if (expectedSubjects.length > 1 && /\b(hybrid creature|single hybrid|combined creature|merged creature|fusion)\b/i.test(combinedText)) {
+    addManualDetail(details, "potential_subject_count_mismatch", "artwork_description", "hybrid creature");
+    addManualDetail(details, "potential_canonical_name_visual_conflict", "artwork_description", "hybrid creature");
+  }
+}
+
 export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const details = [];
   const fields = textFieldsForVisualLanguageReview(payload);
@@ -415,6 +535,8 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const resolvedPromptMetadata = resolveCardPromptMetadata(card);
   const promptBranch = normalizeText(card.prompt_branch) || resolvedPromptMetadata.prompt_branch;
   const cardTypeMetadataSource = normalizeText(card.card_type_metadata_source) || resolvedPromptMetadata.card_type_metadata_source;
+
+  addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch);
 
   if (
     cardNameKey.includes("chandelure")
@@ -512,6 +634,12 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
         field,
         text,
         pattern: VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN,
+      }));
+      details.push(...regexDetails({
+        flag: "potential_generic_franchise_language_on_non_pokemon_branch",
+        field,
+        text,
+        pattern: VISUAL_LANGUAGE_GENERIC_FRANCHISE_ON_NON_POKEMON_PATTERN,
       }));
     }
   }
@@ -1573,6 +1701,7 @@ function promptBranchInstructions(branch) {
 
 function buildPrompt(card) {
   const promptMetadata = resolveCardPromptMetadata(card);
+  const expectedVisualSubjects = expectedVisualSubjectsFromCardName(card.name);
   const branchLabel = PROMPT_BRANCH_LABELS[promptMetadata.prompt_branch] ?? PROMPT_BRANCH_LABELS.pokemon;
   return [
     "# CARD_VISUAL_DESCRIPTION_PROMPT_V6",
@@ -1595,6 +1724,7 @@ function buildPrompt(card) {
     `- card_category: ${promptMetadata.card_category}`,
     `- pokemon_name: ${promptMetadata.pokemon_name}`,
     `- trainer_name: ${promptMetadata.trainer_name}`,
+    `- expected_visible_subjects_from_name: ${expectedVisualSubjects.length ? expectedVisualSubjects.join(", ") : "unknown"}`,
     `- metadata_source: ${promptMetadata.card_type_metadata_source}`,
     `- resolved_prompt_branch: ${branchLabel}`,
     "",
@@ -1611,6 +1741,8 @@ function buildPrompt(card) {
     "Shared observation rules:",
     "Observation hierarchy: first subject, then structure, pose, composition, environment, lighting, palette, and finally mood. Mood may summarize visible cues only after concrete observations.",
     "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, Pokemon, objects, characters, weather, or emotions to satisfy the checklist.",
+    "If the canonical name contains multiple Pokemon, such as a Tag Team or names separated by &, describe each visible Pokemon as a separate subject. Do not merge them into one hybrid creature unless the artwork literally shows a fused body.",
+    "visual_attributes.subjects.primary should include each visible canonical Pokemon subject for multi-subject Pokemon cards. Use secondary for non-primary visible figures or objects.",
     "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
     "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
     "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
