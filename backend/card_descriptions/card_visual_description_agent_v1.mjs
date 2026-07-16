@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1";
+export const CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION = "CARD_VISUAL_LANGUAGE_V1";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 
@@ -1219,7 +1220,7 @@ function promptBranchInstructions(branch) {
         "Use Branch 2 - Trainer.",
         "Do NOT describe the trainer as a humanoid creature.",
         "Inside artwork_description, write two labeled prose layers in this order: Trainer: then Artwork:.",
-        "Trainer: describe the visible human trainer or human character. Cover apparent age category only when visible, clothing, hairstyle, face location, facial expression, posture, interaction with visible Pokemon or objects, and emotional tone grounded in visible pose and expression.",
+        "Trainer: describe the visible human trainer or human character. Cover apparent age category only when visible, hair, clothing, face location, facial expression, posture, gesture, interaction with visible Pokemon or objects, and emotional tone grounded in visible pose and expression.",
         "Artwork: describe the environment, composition, lighting, movement, foreground, background, visible interactions, palette, mood, atmosphere, framing, and cropping.",
         "If no human trainer can be confidently identified, state that explicitly and describe only the visible scene or objects.",
       ];
@@ -1229,9 +1230,9 @@ function promptBranchInstructions(branch) {
         "Use Branch 3 - Stadium.",
         "No character section.",
         "Inside artwork_description, write two labeled prose layers in this order: Environment: then Artwork:.",
-        "Environment: describe the visible place, architecture, landscape, atmosphere, foreground, background, visual focal points, weather, lighting, and any visible signage or objects.",
+        "Environment: describe the visible place, foreground, midground, background, architecture, landscape, plants, objects, visual focal points, weather, and lighting.",
         "Artwork: describe composition, perspective, framing, depth, palette, mood, movement, and artwork-specific distinguishing details.",
-        "Avoid inventing characters, Pokemon, crowds, or activity unless they are clearly visible.",
+        "Avoid inventing characters, Pokemon, crowds, activity, stars, magic, or a specific setting unless those details are clearly visible.",
       ];
     case "energy":
       return [
@@ -1241,7 +1242,7 @@ function promptBranchInstructions(branch) {
         "Inside artwork_description, write two labeled prose layers in this order: Symbolic Artwork: then Artwork:.",
         "Symbolic Artwork: describe the visible energy symbol, abstract forms, color fields, gradients, movement, repeated shapes, radiating lines, circular motifs, and lighting.",
         "Artwork: describe composition, framing, palette, mood, visual theme, focal point, and artwork-specific distinguishing details.",
-        "Treat Energy cards as symbolic or abstract illustrations unless a concrete subject is visibly present.",
+        "Treat Energy cards as symbolic or abstract illustrations unless a concrete subject is visibly present. Use concrete terms such as central symbol, abstract forms, radiating lines, circular motif, soft gradients, and glowing highlights.",
       ];
     case "item_tool_supporter":
       return [
@@ -1273,11 +1274,14 @@ function buildPrompt(card) {
   return [
     "# CARD_VISUAL_DESCRIPTION_PROMPT_V6",
     "## Card-Type Aware Visual Description System",
+    `## Visual Language Contract: ${CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION}`,
     "",
     "Describe the artwork on this exact Pokemon Trading Card Game card for a blind collector.",
     "Use canonical card-type metadata before image interpretation so the description strategy matches the card type.",
     "The canonical metadata is only branch-selection context. Do not treat it as permission to describe details that are not visible.",
     "Do NOT use lore, flavor text, attacks, Pokedex entries, card mechanics, rarity, market data, or set metadata as visual evidence.",
+    "Follow Grookai Visual Language V1: describe like a museum curator, accessibility specialist, and collector; do not write like a novelist, reviewer, or marketing writer.",
+    "Use the same vocabulary for the same visible forms across cards. Prefer stable terms such as glass body, curved arms, rounded face, radiating lines, soft gradients, abstract forms, scattered light points, glowing highlights, central symbol, foreground, and background.",
     "Be grounded in visible evidence only. Do not invent hidden details.",
     "Inside artwork_description, write plain English prose only. Do not encode nested JSON, markdown, bullet lists, or key-value objects inside the string.",
     "A short label such as \"Character:\", \"Trainer:\", \"Environment:\", \"Symbolic Artwork:\", \"Object/Scene:\", or \"Artwork:\" is acceptable, but the content must remain readable prose.",
@@ -1302,20 +1306,25 @@ function buildPrompt(card) {
     ...promptBranchInstructions(promptMetadata.prompt_branch),
     "",
     "Shared observation rules:",
+    "Observation hierarchy: first subject, then structure, pose, composition, environment, lighting, palette, and finally mood. Mood may summarize visible cues only after concrete observations.",
     "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, Pokemon, objects, characters, weather, or emotions to satisfy the checklist.",
     "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
     "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
     "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
     "Do not assign a specific setting, location, weather, time of day, celestial theme, or architectural environment unless the image clearly proves it.",
     "Prefer objective visual observations over artistic interpretation. Describe what is visible, where it appears, and how it is arranged.",
-    "Avoid speculative labels such as cosmic, celestial, magical portal, distant stars, energy, aura, or night sky unless directly visible. Prefer concrete wording such as dark gradients, scattered light points, abstract swirling forms, layered shadows, and glowing highlights.",
-    "Do not say scattered light points suggest stars, energy, or an aura. Say scattered light points or glowing highlights unless the image clearly shows literal stars or energy effects.",
+    "Avoid speculative labels such as cosmic, celestial, magical, enchanted, mystical, dreamlike, portal, distant stars, energy, aura, or night sky unless directly visible. Prefer concrete wording such as dark gradients, scattered light points, abstract forms, layered shadows, soft gradients, radiating lines, and glowing highlights.",
+    "Do not use the words magical, enchanted, enchanting, mystical, ethereal, dreamlike, stars, starry, dusk, or night for ambiguous backgrounds or light points. Use concrete wording such as scattered light points, white flowers, dark background, soft gradients, circular formation, or glowing highlights.",
+    "For this visual-language pass, avoid these exact words in artwork_description, visual_attributes, and semantic_tags unless they name a literal visible object: magical, enchanted, enchanting, mystical, ethereal, dreamlike, dreamy, aura, twilight, fantasy, stars, starry, dusk, and night.",
+    "Do not say scattered light points suggest stars, magic, energy, or an aura. Say scattered light points or glowing highlights unless the image clearly shows literal stars or energy effects.",
+    "Avoid broad praise or marketing language such as beautiful, cool, epic, amazing, premium, cinematic, or iconic.",
     "Use uncertainty language only when needed for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
     "Include artwork-specific distinguishing details that would help distinguish this card art from another card of the same subject or card type.",
     "Separate the illustration from card frame, foil, border, or printing cues.",
     "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
     "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
     "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Only report reliable visible surface observations such as silver border visible, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
+    "Do not say foil texture visible, glossy finish, gloss present, or standard print unless the scan directly proves that physical treatment. Prefer foil texture cannot be determined, printing treatment uncertain, or glare prevents determination.",
     "",
     "Semantic tag rules:",
     "semantic_tags must describe visible artwork only. Exclude set names, attacks, rarity labels, card mechanics, franchise names, and generic identity metadata already present in canonical fields.",

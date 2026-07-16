@@ -363,12 +363,24 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   const agent = source("backend/card_descriptions/card_visual_description_agent_v1.mjs");
   const script = source("scripts/audits/card_visual_description_agent_v1.mjs");
   const pkg = source("package.json");
+  const visualLanguage = source("docs/contracts/CARD_VISUAL_LANGUAGE_V1.md");
+  const contractIndex = source("docs/CONTRACT_INDEX.md");
 
   assert.match(agent, /refusing to apply fixture descriptions without --allow-fixture-apply/);
   assert.match(agent, /card_print_visual_descriptions/);
   assert.match(agent, /card_visual_description_runs/);
   assert.match(agent, /type: "input_image"/);
   assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V6/);
+  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1/);
+  assert.match(agent, /CARD_VISUAL_LANGUAGE_V1/);
+  assert.match(agent, /Visual Language Contract/);
+  assert.match(agent, /museum curator, accessibility specialist, and collector/);
+  assert.match(agent, /Observation hierarchy: first subject, then structure, pose, composition, environment, lighting, palette, and finally mood/);
+  assert.match(agent, /Use the same vocabulary for the same visible forms across cards/);
+  assert.match(agent, /Avoid broad praise or marketing language/);
+  assert.match(agent, /Do not use the words magical, enchanted, enchanting, mystical, ethereal, dreamlike, stars, starry, dusk, or night/);
+  assert.match(agent, /avoid these exact words in artwork_description, visual_attributes, and semantic_tags/);
+  assert.match(agent, /Do not say foil texture visible, glossy finish, gloss present, or standard print/);
   assert.match(agent, /Do not encode nested JSON/);
   assert.match(agent, /Card-Type Aware Visual Description System/);
   assert.match(agent, /Use canonical card-type metadata before image interpretation/);
@@ -395,7 +407,7 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /For Chandelure-family subjects/);
   assert.match(agent, /Do not assign a specific setting/);
   assert.match(agent, /Prefer objective visual observations over artistic interpretation/);
-  assert.match(agent, /Do not say scattered light points suggest stars, energy, or an aura/);
+  assert.match(agent, /Do not say scattered light points suggest stars, magic, energy, or an aura/);
   assert.match(agent, /do not write generic statements such as standard trading card borders/);
   assert.match(agent, /semantic_tags must describe visible artwork only/);
   assert.match(agent, /ghostly chandelier/);
@@ -438,4 +450,10 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(pkg, /"card-desc:plan"/);
   assert.match(pkg, /"card-desc:dry-run"/);
   assert.match(pkg, /"card-desc:apply"/);
+  assert.match(visualLanguage, /# CARD_VISUAL_LANGUAGE_V1/);
+  assert.match(visualLanguage, /Grookai should describe artwork like:/);
+  assert.match(visualLanguage, /Observation Hierarchy/);
+  assert.match(visualLanguage, /Semantic Tag Standards/);
+  assert.match(visualLanguage, /Future Expansion Placeholders/);
+  assert.match(contractIndex, /CARD_VISUAL_LANGUAGE_V1/);
 });
