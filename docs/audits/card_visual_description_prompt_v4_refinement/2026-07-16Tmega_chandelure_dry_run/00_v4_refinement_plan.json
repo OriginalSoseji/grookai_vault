@@ -1,0 +1,13 @@
+{
+  "db_writes": false,
+  "objective": "Prompt V4 refinement dry-run for existing Mega Chandelure card only",
+  "sample_25_card": false,
+  "target_card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+  "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V4",
+  "embeddings": false,
+  "tests": [
+    "node --check backend\\card_descriptions\\card_visual_description_agent_v1.mjs passed",
+    "node --test tests\\contracts\\card_visual_description_agent_v1.test.mjs passed: 9/9"
+  ],
+  "target_gv_id": "GV-PK-JPN-M5-113"
+}

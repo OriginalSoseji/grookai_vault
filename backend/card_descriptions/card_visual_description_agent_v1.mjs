@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V3";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V4";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 
@@ -926,16 +926,30 @@ function buildPrompt(card) {
   return [
     "Describe the artwork on this exact Pokemon card for a blind collector.",
     "Be grounded in visible evidence only. Do not invent hidden details.",
+    "Inside artwork_description, write plain English prose only. Do not encode nested JSON, markdown, bullet lists, or key-value objects inside the string.",
+    "Produce two distinct prose layers inside artwork_description, in this order: first character understanding, then artwork understanding.",
+    "A short label such as \"Character:\" and \"Artwork:\" is acceptable, but the content must remain readable prose.",
+    "Layer 1, character understanding: describe the Pokemon as a living character for someone who has never seen it before. Do not assume the Pokemon name communicates appearance.",
+    "Character understanding must cover the overall creature type, real-world object/animal/plant/concept resemblance, body structure, face placement, eyes, expression, posture, limbs, wings, tails, flames, and species-distinguishing features when visible.",
+    "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, or emotions to satisfy the checklist.",
+    "Never use the Pokemon name as a substitute for describing what it looks like. For example, prefer \"The Pokemon resembles an ornate ghostly chandelier with a round glass lantern body\" over \"Mega Chandelure is shown\".",
+    "Layer 2, artwork understanding: after describing the Pokemon itself, describe this specific illustration: pose, movement, composition, framing, cropping, foreground, background, environment, lighting, palette, mood, and atmosphere.",
+    "Include artwork-specific distinguishing details that would help distinguish this card art from another artwork of the same Pokemon.",
     "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
     "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
     "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
     "Do not assign a specific setting, location, weather, time of day, celestial theme, or architectural environment unless the image clearly proves it.",
-    "Use uncertainty language for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
+    "Prefer objective visual observations over artistic interpretation. Describe what is visible, where it appears, and how it is arranged.",
+    "Avoid speculative labels such as cosmic, celestial, magical portal, distant stars, energy, aura, or night sky unless directly visible. Prefer concrete wording such as dark gradients, scattered light points, abstract swirling forms, layered shadows, and glowing highlights.",
+    "Do not say scattered light points suggest stars, energy, or an aura. Say scattered light points or glowing highlights unless the image clearly shows literal stars or energy effects.",
+    "Use uncertainty language only when needed for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
     "Separate the illustration from card frame, foil, border, or printing cues.",
     "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
     "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
+    "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Only report reliable visible surface observations such as silver border visible, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
     "semantic_tags must describe visible artwork only. Exclude set names, attacks, rarity labels, card mechanics, franchise names, and generic identity metadata already present in canonical fields.",
-    "At most one semantic tag may repeat the primary visible subject name; all other tags should describe visible forms, colors, mood, composition, or environment.",
+    "semantic_tags should help future semantic search. Prefer tags such as ghostly chandelier, purple flames, ornate, diagonal composition, glass lantern, dark palette, or swirling wisps when visible.",
+    "At most one semantic tag may repeat the primary visible subject name; all other tags should describe visible forms, colors, mood, composition, environment, or artwork-specific distinguishing details.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
     "",

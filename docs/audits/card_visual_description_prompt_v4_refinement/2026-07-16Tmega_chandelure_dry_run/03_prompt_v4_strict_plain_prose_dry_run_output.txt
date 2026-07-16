@@ -1,0 +1,6 @@
+[card-visual-description-agent] run_key=9b7b5242efe0bc45f93cf033ccf965f6efbe3061bd65ad07915fe94d243f7ccb
+[card-visual-description-agent] run_dir=docs/audits/card_visual_descriptions/2026-07-16T05-05-55-388Z_dry_run_9b7b5242efe0
+[card-visual-description-agent] eligible=1
+[card-visual-description-agent] validated=1
+[card-visual-description-agent] skipped=0
+[card-visual-description-agent] failed=0

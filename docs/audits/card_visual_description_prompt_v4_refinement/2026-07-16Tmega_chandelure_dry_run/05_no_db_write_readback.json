@@ -1,0 +1,24 @@
+{
+    "current_row": {
+        "id": "bdaa5df8-81d4-4251-898f-0728086b4b82",
+        "is_current": true,
+        "approved_at": null,
+        "approved_by": null,
+        "embedded_at": null,
+        "review_status": "pending",
+        "semantic_tags": [
+            "ethereal",
+            "fantasy",
+            "Mega Chandelure",
+            "mystical",
+            "swirling patterns"
+        ],
+        "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V3",
+        "embedding_is_null": true
+    },
+    "target_gv_id": "GV-PK-JPN-M5-113",
+    "target_card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+    "approved_rows_for_card": 0,
+    "embedded_rows_for_card": 0,
+    "v4_description_rows_in_db": 0
+}

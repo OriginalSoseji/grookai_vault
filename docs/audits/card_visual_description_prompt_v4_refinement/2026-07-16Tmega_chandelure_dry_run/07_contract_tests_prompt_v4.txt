@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: card visual description schema is private, versioned, and current-row safe
+ok 1 - card visual description schema is private, versioned, and current-row safe
+  ---
+  duration_ms: 1.6171
+  type: 'test'
+  ...
+# Subtest: card visual description args default to dry-run and block fixture apply
+ok 2 - card visual description args default to dry-run and block fixture apply
+  ---
+  duration_ms: 0.6922
+  type: 'test'
+  ...
+# Subtest: card visual description semantic tags stay visual and exclude metadata
+ok 3 - card visual description semantic tags stay visual and exclude metadata
+  ---
+  duration_ms: 6.5841
+  type: 'test'
+  ...
+# Subtest: card visual description flags Chandelure anatomy described as a held object
+ok 4 - card visual description flags Chandelure anatomy described as a held object
+  ---
+  duration_ms: 0.3977
+  type: 'test'
+  ...
+# Subtest: card visual description flags overconfident celestial settings without uncertainty
+ok 5 - card visual description flags overconfident celestial settings without uncertainty
+  ---
+  duration_ms: 0.1569
+  type: 'test'
+  ...
+# Subtest: card visual description usage telemetry computes cost, projections, and stop ceilings
+ok 6 - card visual description usage telemetry computes cost, projections, and stop ceilings
+  ---
+  duration_ms: 0.283
+  type: 'test'
+  ...
+# Subtest: card visual description payload validation separates shape from review approval
+ok 7 - card visual description payload validation separates shape from review approval
+  ---
+  duration_ms: 0.3981
+  type: 'test'
+  ...
+# Subtest: card visual description version and embedding input are deterministic
+ok 8 - card visual description version and embedding input are deterministic
+  ---
+  duration_ms: 0.5799
+  type: 'test'
+  ...
+# Subtest: card visual description agent entrypoints stay guarded and non-identity-authoritative
+ok 9 - card visual description agent entrypoints stay guarded and non-identity-authoritative
+  ---
+  duration_ms: 0.9751
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 84.8968
