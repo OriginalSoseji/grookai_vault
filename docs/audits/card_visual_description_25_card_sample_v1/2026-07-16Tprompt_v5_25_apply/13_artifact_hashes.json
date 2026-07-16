@@ -53,7 +53,11 @@
   },
   {
     "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/CARD_VISUAL_DESCRIPTION_25_CARD_SAMPLE_REPORT.md",
-    "sha256": "bc3d8f63dc9c8045327fc3cd3a2ab61f8976c2ad1b5109b985c06015c0afbe07"
+    "sha256": "96be53d884c7f58e3590634cbf28a0766f535901ff9cf2921ab7afc7ec1a4c3f"
+  },
+  {
+    "path": "docs/audits/card_visual_description_25_card_sample_v1/2026-07-16Tprompt_v5_25_apply/CARD_VISUAL_DESCRIPTION_25_DESCRIPTIONS.md",
+    "sha256": "51c9b361f772714fab06d0f0784c821f23eca87ce782a18d9f72d12c42286abd"
   },
   {
     "path": "docs/audits/card_visual_descriptions/2026-07-16T05-17-46-624Z_apply_ca1c3bd33785/eligible_cards.jsonl",

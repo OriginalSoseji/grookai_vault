@@ -178,6 +178,7 @@ The full contract suite was not run for this isolated Node/database gate. Reposi
 - syntax output: `11_node_check_output.txt`
 - contract test output: `12_card_visual_contract_test_output.txt`
 - artifact hash manifest: `13_artifact_hashes.json`
+- all generated descriptions review file: `CARD_VISUAL_DESCRIPTION_25_DESCRIPTIONS.md`
 
 ## Decision
 
