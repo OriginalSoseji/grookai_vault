@@ -1,27 +1,155 @@
 {
-  "generated_at": "2026-07-16T23:04:23.951Z",
+  "generated_at": "2026-07-16T23:30:55.249Z",
   "review_gate_dir": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet",
   "hash_algorithm": "sha256",
   "files": [
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_GATE_PREPARATION_REPORT.md",
-      "sha256": "843fae8db47929a01dfcfd5326459fb7702c9ba319b5901df5aa3edc4009da13"
+      "sha256": "9aa717c9625d1adfd3201ad179072833f05cea673c0d6229e3de462b8e643391"
     },
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_PACKET.md",
       "sha256": "b7678c6272d1922e219d3696c1f2ec17498cd97aefeb6069902ba07def58beed"
     },
     {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_DASHBOARD.html",
+      "sha256": "0ff9631e30ed278acfbbc20ead5bad8851e21a909f6979ea71ad33ee53d180b2"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_MATRIX.md",
+      "sha256": "2c9f987d8e97482157198a01db36a8e41ec30f4ac0a4db0c6ff6cb89fb508bc8"
+    },
+    {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/diff_check_output.txt",
       "sha256": "620be5739e840cf55cf884ddf34d19936c1f1cf9bd91afcc40555ecbbfec3805"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_data.json",
+      "sha256": "a88da8950f7cb98afd7bb4a51f2671ab868a01a534cd05b4aa99bdced69f9d1a"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_validation.json",
+      "sha256": "51b95851a8f38ec2f43ffbbac3f658062e4d2b7143350706a5e3b262582925fd"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_validation_output.txt",
+      "sha256": "0f228ca03ad716a26602235eccfed83f7f673831a65beae401524084048dbbf6"
     },
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_decisions_template.jsonl",
       "sha256": "1317d72ab94ce525c2fc268a1e8b02ce786dcfed106708287cf04114dc6ee74d"
     },
     {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_image_manifest.json",
+      "sha256": "ab27017968b944294059f27e768dbece9a22a4d5a1cce3c43624b915e2b5ac25"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/01_gv-pk-jpn-m5-118.png",
+      "sha256": "3c39521edbd6bc65f144ea514abdc92e98a8210cd661d32d569ac0b9a87353a5"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/02_gv-pk-jpn-m5-112.png",
+      "sha256": "4b729df49a1b2a6ced78ae59cad9117a5ac8aceb86ac31cb421157bbc1f17e85"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/03_gv-pk-jpn-l1bss-070.webp",
+      "sha256": "c2168c45d39587c9f40456d55e76574c5841870fd8b1c76ced3b584f073628b8"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/04_gv-pk-jpn-m5-108.png",
+      "sha256": "c2ae693d7c91ad0f952b19e3bd384953fbb80906cd54ed67c392a40e684a8aa6"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/05_gv-pk-jpn-m5-074.png",
+      "sha256": "018c1c5a973188be73e2bce2afbb5b5124d8084f57d53e7fb92fdb0b63a6b08c"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/06_gv-pk-jpn-m5-096.png",
+      "sha256": "3473e720d6ea1f0a7c24f9a87e87ae06d229f3c85e17de44000fe68dd21dd5d1"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/07_gv-pk-jpn-sm1plus-069.webp",
+      "sha256": "87645afb64fd9f796d1caa57d08f2d5a86a4592253d42a040dd312860321e014"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/08_gv-pk-jpn-s6a-100.webp",
+      "sha256": "fb0ad39ea0b7108528c22f7d0fd8b567f5284da19f534d5c4830c25accd5052a"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/09_gv-pk-jpn-pmcg6-085.png",
+      "sha256": "4d4cda38152f4a1a55cd046897032dc64d0f93dd406e834977257b45225c7a6a"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/10_gv-pk-jpn-m5-072.png",
+      "sha256": "47760987da9fdb1d168c650b4f82bd9b50a6cff9ef3444d300e017d6e9a8ce62"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/11_gv-pk-jpn-m5-109.png",
+      "sha256": "662336a16971e32fb95f3cc8153ba03077be46e6e482f4d522f231f3e4ae9914"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/12_gv-pk-jpn-tcgcollector11526-019.webp",
+      "sha256": "187cf109d5ea38bf75e55e86873c29f52d3c1c10b5c085e8a2ba6e1eeca7b2ce"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/13_gv-pk-jpn-tcgcollector11515-020.webp",
+      "sha256": "4ef151045613b9a43845044d344b6cf845d247d60b0a21bf8d2036b2b2ecd56b"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/14_gv-pk-jpn-m5-106.png",
+      "sha256": "a3921a3278c2539d36ca473e901be34b7aa5f39b082ff448d626ab98442db5ca"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/15_gv-pk-jpn-m5-117.webp",
+      "sha256": "c58b85f749bf13127c3e2fbadc989aa71360dc1501d039ce1ccbf6c67296adb8"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/16_gv-pk-jpn-m5-073.png",
+      "sha256": "868171cf0359ea243eef6a10411e4ba22a1879003f464195aeef5f829234e20e"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/17_gv-pk-jpn-m5-105.png",
+      "sha256": "ef9a5dcf287a961028a914ff8e9baf1bc6dc45b738ff2e32f62d5185bd0c3e7f"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/18_gv-pk-jpn-tcgcollector11194-057.webp",
+      "sha256": "f990412bceb082b860671f417874ad5379e3d63df8e26c1eb4e75eccbcc89b6e"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/19_gv-pk-jpn-m5-101.png",
+      "sha256": "bb29bdfa6fd84b7d3feb8f104f1e0af244a948f0c6ba2a2ebdfb836914f06356"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/20_gv-pk-jpn-m5-116.png",
+      "sha256": "8a7a8ebcce565e4d75a1cb156812dc14afdc940d22e5faabd82ff5880c169c27"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/21_gv-pk-jpn-m5-113.webp",
+      "sha256": "1ae50649ee903a210d8639e02698e826f06372a5a15836755cecd11f6d1c9957"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/22_gv-pk-jpn-smg-039.webp",
+      "sha256": "9f452b720b5542af6b088d2e0b68f903c82fce0090cee05360b6e55c6829e005"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/23_gv-pk-jpn-m5-111.png",
+      "sha256": "1e540bd8e1bdd07ad49e8e706c115373ca2767a30f254dfd9d7b8086e6c312d9"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/24_gv-pk-jpn-tcgcollector11525-019.webp",
+      "sha256": "acaddd18737a338604d935001c44e03d4547d89e09f78de1d48843a8f062ff2b"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/25_gv-pk-jpn-tcgcollector11541-013.webp",
+      "sha256": "6edea98f72eb266dc8b6f5f557b364f1a562dc0e1334f8f16440ae833db38030"
+    },
+    {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_packet_snapshot.json",
       "sha256": "24cc40a3ae1f82dbb6dd18bec35f7a54dcfc315272c62edf8ae40be23de7528d"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_packet_snapshot.with_images.json",
+      "sha256": "d828f1fcf542ec89a9da98f58bffbd443422caf817870dc770bc48640f06a5ca"
     },
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_queue.csv",
@@ -29,11 +157,11 @@
     },
     {
       "path": "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_HUMAN_REVIEW_GATE_PREP_20260716.md",
-      "sha256": "c2fccf2eae821c5252a72d3b4c37b259d1a75005a851c7c5012d5ecc82d64853"
+      "sha256": "210d596915af836a9c6abdcfeee13f24f75a9f3f9f8dd652a75a392b8e6df984"
     },
     {
       "path": "docs/checkpoints/card_visual_descriptions/INDEX.md",
-      "sha256": "ab242962e13bc33e5876344e6f00de65906833ce6cabe3d8de99eab10f64c3f9"
+      "sha256": "82d07dbb4277ff58b5f3efb6ed5a50f79ed0803c418e2932d3ca19a55de5f051"
     }
   ]
 }

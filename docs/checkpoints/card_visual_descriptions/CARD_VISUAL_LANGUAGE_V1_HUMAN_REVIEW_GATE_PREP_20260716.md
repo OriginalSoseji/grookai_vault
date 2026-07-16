@@ -22,7 +22,9 @@ If review preparation updates database rows, approves generated output, creates 
 
 Create a read-only human-review packet from the bounded apply run and a fresh DB snapshot.
 
-The packet records actual `card_print_visual_descriptions.id` values, image keys, generated descriptions, semantic tags, flags, policy results, and blank decision fields. It does not perform any database writes.
+The packet records actual `card_print_visual_descriptions.id` values, image keys, generated descriptions, semantic tags, flags, policy results, and blank decision fields. It also includes a local static dashboard with the exact self-hosted card images and local decision export.
+
+It does not perform any database writes.
 
 ## Alternatives Rejected
 
@@ -50,6 +52,8 @@ supabase/migrations/20260715120000_card_visual_description_agent_v1.sql
 - Status counts at snapshot: `22 needs_review`, `3 pending`, `0 approved`, `0 rejected`.
 - Branch coverage remains exact: `5` Pokemon, `5` Trainer, `5` Stadium, `5` Energy, and `5` Item / Tool / Supporter.
 - Embedding fields remain empty for all 25 rows.
+- Local review images downloaded from `user-card-images`: `25/25`.
+- Dashboard validation passed: `25` rows, `25` image files, embedded review data, no detected secret material.
 - The review packet is read-only and does not mutate review status.
 
 ## Token And Cost Result
@@ -72,7 +76,9 @@ The source bounded apply batch remains:
 - No snapshotted row is `rejected`.
 - No embedding fields are present.
 - No app-facing/public read surface is introduced.
+- Local review images are audit artifacts, not public/app-facing surfaces.
 - The packet records row IDs for later explicit review decisions.
+- Browser dashboard decisions remain local until the reviewer exports JSONL.
 - Review decisions must be applied only in a separate bounded gate.
 
 ## Why The Visual Layer Remains Derived Intelligence
@@ -92,6 +98,8 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 
 - Fresh DB read-only snapshot: pass, `25` rows snapshotted.
 - Review boundary readback: pass, `0 approved`, `0 rejected`, `0` rows with embedding fields.
+- Read-only storage image retrieval: pass, `25/25` local review images downloaded.
+- Dashboard validation: pass, `25` rows, `25` images, no detected secret material.
 - Source apply invariants preserved: pass.
 - `git diff --check` - pass.
 - Full repository contract suite was not run because this gate only generated review artifacts and did not change code or schema.
@@ -100,6 +108,12 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 
 - Review gate directory: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet`
 - Review packet: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_PACKET.md`
+- Review dashboard: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_DASHBOARD.html`
+- Decision matrix: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_MATRIX.md`
+- Dashboard data: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_data.json`
+- Local review images: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/`
+- Image manifest: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_image_manifest.json`
+- Dashboard validation: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_validation.json`
 - Preparation report: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_GATE_PREPARATION_REPORT.md`
 - DB snapshot: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_packet_snapshot.json`
 - Decision template: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_decisions_template.jsonl`
@@ -109,6 +123,6 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 
 ## Explicit Next Gate
 
-A human reviewer must fill the decision template or otherwise provide explicit row-level decisions.
+A human reviewer must use the dashboard, decision matrix, decision template, or equivalent row-level process to provide explicit decisions.
 
 Only after explicit decisions exist should a separate bounded review-decision apply gate update database review statuses. That later apply gate must still not generate embeddings or expose app-facing reads unless explicitly authorized.

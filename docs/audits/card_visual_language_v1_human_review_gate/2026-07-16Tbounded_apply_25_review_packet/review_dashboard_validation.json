@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-07-16T23:29:37.588Z",
+  "checks": {
+    "rows_25": true,
+    "downloaded_25_images": true,
+    "every_dashboard_image_exists": true,
+    "html_embeds_review_data": true,
+    "no_secret_material_in_review_artifacts": true
+  },
+  "missing_images": [],
+  "secret_hits": []
+}

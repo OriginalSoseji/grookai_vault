@@ -1,0 +1,9 @@
+$ node review-dashboard-validation-inline
+{
+  "rows_25": true,
+  "downloaded_25_images": true,
+  "every_dashboard_image_exists": true,
+  "html_embeds_review_data": true,
+  "no_secret_material_in_review_artifacts": true
+}
+exit_code=0

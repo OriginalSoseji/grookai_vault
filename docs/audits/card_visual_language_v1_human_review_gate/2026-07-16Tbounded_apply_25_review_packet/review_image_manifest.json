@@ -1,0 +1,216 @@
+{
+  "generated_at": "2026-07-16T23:24:57.752Z",
+  "boundary": {
+    "storage_reads_only": true,
+    "db_writes": false,
+    "approvals": false,
+    "embeddings": false,
+    "app_facing_reads": false
+  },
+  "bucket": "user-card-images",
+  "requested": 25,
+  "downloaded": 25,
+  "failed": 0,
+  "downloads": [
+    {
+      "queue_index": 1,
+      "gv_id": "GV-PK-JPN-M5-118",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-118/3c39521edbd6bc65.png",
+      "relative_path": "review_images/01_gv-pk-jpn-m5-118.png",
+      "bytes": 1023459
+    },
+    {
+      "queue_index": 2,
+      "gv_id": "GV-PK-JPN-M5-112",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-112/4b729df49a1b2a6c.png",
+      "relative_path": "review_images/02_gv-pk-jpn-m5-112.png",
+      "bytes": 1100566
+    },
+    {
+      "queue_index": 3,
+      "gv_id": "GV-PK-JPN-L1BSS-070",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-l1-bss/gv-pk-jpn-l1bss-070/c2168c45d39587c9f40456d5.webp",
+      "relative_path": "review_images/03_gv-pk-jpn-l1bss-070.webp",
+      "bytes": 126182
+    },
+    {
+      "queue_index": 4,
+      "gv_id": "GV-PK-JPN-M5-108",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-108/c2ae693d7c91ad0f.png",
+      "relative_path": "review_images/04_gv-pk-jpn-m5-108.png",
+      "bytes": 1028625
+    },
+    {
+      "queue_index": 5,
+      "gv_id": "GV-PK-JPN-M5-074",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/jpn-m5/074.png",
+      "relative_path": "review_images/05_gv-pk-jpn-m5-074.png",
+      "bytes": 952068
+    },
+    {
+      "queue_index": 6,
+      "gv_id": "GV-PK-JPN-M5-096",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-096/3473e720d6ea1f0a.png",
+      "relative_path": "review_images/06_gv-pk-jpn-m5-096.png",
+      "bytes": 1083600
+    },
+    {
+      "queue_index": 7,
+      "gv_id": "GV-PK-JPN-SM1PLUS-069",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-sm1/gv-pk-jpn-sm1plus-069/87645afb64fd9f796d1caa57.webp",
+      "relative_path": "review_images/07_gv-pk-jpn-sm1plus-069.webp",
+      "bytes": 134214
+    },
+    {
+      "queue_index": 8,
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-s6a/gv-pk-jpn-s6a-100/fb0ad39ea0b7108528c22f7d.webp",
+      "relative_path": "review_images/08_gv-pk-jpn-s6a-100.webp",
+      "bytes": 418114
+    },
+    {
+      "queue_index": 9,
+      "gv_id": "GV-PK-JPN-PMCG6-085",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-pmcg6/gv-pk-jpn-pmcg6-085/4d4cda38152f4a1a55cd0468.png",
+      "relative_path": "review_images/09_gv-pk-jpn-pmcg6-085.png",
+      "bytes": 226373
+    },
+    {
+      "queue_index": 10,
+      "gv_id": "GV-PK-JPN-M5-072",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/jpn-m5/072.png",
+      "relative_path": "review_images/10_gv-pk-jpn-m5-072.png",
+      "bytes": 1347736
+    },
+    {
+      "queue_index": 11,
+      "gv_id": "GV-PK-JPN-M5-109",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-109/662336a16971e32f.png",
+      "relative_path": "review_images/11_gv-pk-jpn-m5-109.png",
+      "bytes": 959648
+    },
+    {
+      "queue_index": 12,
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-tcgcollector-11526/gv-pk-jpn-tcgcollector11526-019/187cf109d5ea38bf75e55e86.webp",
+      "relative_path": "review_images/12_gv-pk-jpn-tcgcollector11526-019.webp",
+      "bytes": 126448
+    },
+    {
+      "queue_index": 13,
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-tcgcollector-11515/gv-pk-jpn-tcgcollector11515-020/4ef151045613b9a43845044d.webp",
+      "relative_path": "review_images/13_gv-pk-jpn-tcgcollector11515-020.webp",
+      "bytes": 117232
+    },
+    {
+      "queue_index": 14,
+      "gv_id": "GV-PK-JPN-M5-106",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-106/a3921a3278c2539d.png",
+      "relative_path": "review_images/14_gv-pk-jpn-m5-106.png",
+      "bytes": 1054965
+    },
+    {
+      "queue_index": 15,
+      "gv_id": "GV-PK-JPN-M5-117",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-117/c58b85f749bf1312.webp",
+      "relative_path": "review_images/15_gv-pk-jpn-m5-117.webp",
+      "bytes": 36954
+    },
+    {
+      "queue_index": 16,
+      "gv_id": "GV-PK-JPN-M5-073",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/jpn-m5/073.png",
+      "relative_path": "review_images/16_gv-pk-jpn-m5-073.png",
+      "bytes": 1255624
+    },
+    {
+      "queue_index": 17,
+      "gv_id": "GV-PK-JPN-M5-105",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-105/ef9a5dcf287a9610.png",
+      "relative_path": "review_images/17_gv-pk-jpn-m5-105.png",
+      "bytes": 895230
+    },
+    {
+      "queue_index": 18,
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11194-057",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-tcgcollector-11194/gv-pk-jpn-tcgcollector11194-057/f990412bceb082b860671f41.webp",
+      "relative_path": "review_images/18_gv-pk-jpn-tcgcollector11194-057.webp",
+      "bytes": 62552
+    },
+    {
+      "queue_index": 19,
+      "gv_id": "GV-PK-JPN-M5-101",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-101/bb29bdfa6fd84b7d.png",
+      "relative_path": "review_images/19_gv-pk-jpn-m5-101.png",
+      "bytes": 1137303
+    },
+    {
+      "queue_index": 20,
+      "gv_id": "GV-PK-JPN-M5-116",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-116/8a7a8ebcce565e4d.png",
+      "relative_path": "review_images/20_gv-pk-jpn-m5-116.png",
+      "bytes": 1061800
+    },
+    {
+      "queue_index": 21,
+      "gv_id": "GV-PK-JPN-M5-113",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-113/1ae50649ee903a21.webp",
+      "relative_path": "review_images/21_gv-pk-jpn-m5-113.webp",
+      "bytes": 45098
+    },
+    {
+      "queue_index": 22,
+      "gv_id": "GV-PK-JPN-SMG-039",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-smg/gv-pk-jpn-smg-039/9f452b720b5542af6b088d2e.webp",
+      "relative_path": "review_images/22_gv-pk-jpn-smg-039.webp",
+      "bytes": 204668
+    },
+    {
+      "queue_index": 23,
+      "gv_id": "GV-PK-JPN-M5-111",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-m5/gv-pk-jpn-m5-111/1e540bd8e1bdd07a.png",
+      "relative_path": "review_images/23_gv-pk-jpn-m5-111.png",
+      "bytes": 1013054
+    },
+    {
+      "queue_index": 24,
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-tcgcollector-11525/gv-pk-jpn-tcgcollector11525-019/acaddd18737a338604d93500.webp",
+      "relative_path": "review_images/24_gv-pk-jpn-tcgcollector11525-019.webp",
+      "bytes": 130384
+    },
+    {
+      "queue_index": 25,
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11541-013",
+      "status": "downloaded",
+      "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-tcgcollector-11541/gv-pk-jpn-tcgcollector11541-013/6edea98f72eb266dc8b6f5f5.webp",
+      "relative_path": "review_images/25_gv-pk-jpn-tcgcollector11541-013.webp",
+      "bytes": 220202
+    }
+  ]
+}

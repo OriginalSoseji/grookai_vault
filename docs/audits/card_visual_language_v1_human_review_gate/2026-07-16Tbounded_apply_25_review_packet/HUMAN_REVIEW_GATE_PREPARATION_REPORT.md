@@ -26,6 +26,25 @@ Prepare the human-review gate for the 25 private rows written by the bounded Vis
 | approved | 0 |
 | rejected | 0 |
 | rows with embedding fields | 0 |
+| local review images downloaded | 25 |
+
+## Decision Aid
+
+The review gate now includes a local static dashboard with the exact self-hosted card images, row-level decision controls, review checkboxes, flag evidence, and JSONL export.
+
+The dashboard is still read-only. Browser decisions are stored locally until the reviewer exports them.
+
+Open:
+
+```text
+docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_DASHBOARD.html
+```
+
+Use the matrix for review order and decision rules:
+
+```text
+docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_MATRIX.md
+```
 
 ## Invariants
 
@@ -40,6 +59,12 @@ Prepare the human-review gate for the 25 private rows written by the bounded Vis
 ## Artifacts
 
 - Review packet: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_PACKET.md`
+- Review dashboard: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_DASHBOARD.html`
+- Decision matrix: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_MATRIX.md`
+- Dashboard data: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_data.json`
+- Image manifest: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_image_manifest.json`
+- Local review images: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/`
+- Dashboard validation: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_validation.json`
 - DB snapshot: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_packet_snapshot.json`
 - Decision template: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_decisions_template.jsonl`
 - CSV queue: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_queue.csv`
@@ -48,4 +73,4 @@ Prepare the human-review gate for the 25 private rows written by the bounded Vis
 
 ## Exact Next Gate
 
-A human reviewer must fill the decision template or otherwise provide explicit row-level decisions. Only after that should a separate bounded apply gate update review statuses. No embeddings or app-facing reads before explicit approval rows exist.
+A human reviewer should use the dashboard or decision template to export explicit row-level decisions. Only after that should a separate bounded apply gate update review statuses. No embeddings or app-facing reads before explicit approval rows exist.
