@@ -1,0 +1,523 @@
+{
+  "generated_at": "2026-07-16T22:26:27.211Z",
+  "run_key": "fede8846074f414722b0a967e52fff7ba1eaeee18d2fe4bea6c8686f9712f1c8",
+  "run_id": "3e7f390a-e372-41ac-be73-b33e94918a8b",
+  "run_dir": "docs/audits/card_visual_language_v1_bounded_apply_batch/2026-07-16T22-12-37-388Z_apply_fede8846074f",
+  "description_rows_written": 25,
+  "status_counts": {
+    "needs_review": 22,
+    "pending": 3
+  },
+  "branch_counts": {
+    "energy": 5,
+    "item_tool_supporter": 5,
+    "pokemon": 5,
+    "stadium": 5,
+    "trainer": 5
+  },
+  "usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 682128,
+    "output_tokens": 9974,
+    "total_tokens": 692102,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.1083036
+  },
+  "estimated_cost_usd": 0.1083036,
+  "invariants": {
+    "every_written_description_pending_or_needs_review": true,
+    "no_approved_rows_written": true,
+    "no_current_approved_human_reviewed_candidate_overwritten": true,
+    "written_row_count_matches_generated_outputs": true,
+    "run_telemetry_reconciles": true,
+    "artifact_hashes_reconcile": true,
+    "generated_fingerprints_reconcile": true,
+    "no_embedding_vectors_on_written_visual_description_rows": true,
+    "no_embedding_metadata_on_written_visual_description_rows": true,
+    "no_card_embeddings_created_for_written_card_prints_during_apply_window": true,
+    "embedding_boundary_preserved": true
+  },
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-M5-113",
+      "name": "Mega Chandelure ex",
+      "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+      "branch": "pokemon",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_speculative_setting_language"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 10562,
+      "output_tokens": 456,
+      "total_tokens": 11018,
+      "estimated_cost_usd": 0.0018579,
+      "db_is_current": true,
+      "db_supersedes_description_id": "bdaa5df8-81d4-4251-898f-0728086b4b82",
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-118",
+      "name": "Mega Darkrai ex",
+      "card_print_id": "5b25c54c-58b1-5c31-a001-3eb3c449aa27",
+      "branch": "pokemon",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_interpretive_mood_language",
+        "potential_purpose_or_lore_interpretation",
+        "potential_speculative_setting_language"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27562,
+      "output_tokens": 484,
+      "total_tokens": 28046,
+      "estimated_cost_usd": 0.0044247,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-101",
+      "name": "Mega Excadrill ex",
+      "card_print_id": "80c0f1fe-b108-52fe-9c03-2a621c1269b2",
+      "branch": "pokemon",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 27565,
+      "output_tokens": 492,
+      "total_tokens": 28057,
+      "estimated_cost_usd": 0.00442995,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-112",
+      "name": "Mega Zeraora ex",
+      "card_print_id": "99b9c1c9-d179-5a29-a31f-d0015d26aac0",
+      "branch": "pokemon",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 2,
+      "input_tokens": 27564,
+      "output_tokens": 420,
+      "total_tokens": 27984,
+      "estimated_cost_usd": 0.0043866,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-096",
+      "name": "Mega Zeraora ex",
+      "card_print_id": "a7409897-fd63-52dc-9cc7-0aec15fd5313",
+      "branch": "pokemon",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_dramatic_inferred_action_language",
+        "potential_metadata_or_identity_language",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 27561,
+      "output_tokens": 432,
+      "total_tokens": 27993,
+      "estimated_cost_usd": 0.00439335,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+      "branch": "trainer",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_semantic_tag_nonvisual_concept"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27513,
+      "output_tokens": 369,
+      "total_tokens": 27882,
+      "estimated_cost_usd": 0.00434835,
+      "db_is_current": true,
+      "db_supersedes_description_id": "62126b40-df7a-44ca-93c4-47a524fc7a47",
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-109",
+      "name": "Gladion's Final Battle",
+      "card_print_id": "4d5af271-467c-5b27-b7eb-3ffbe38e3736",
+      "branch": "trainer",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_semantic_tag_nonvisual_concept",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 2,
+      "input_tokens": 27514,
+      "output_tokens": 422,
+      "total_tokens": 27936,
+      "estimated_cost_usd": 0.0043803,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-117",
+      "name": "Gwynn",
+      "card_print_id": "66c0d32a-7478-5e04-8bfd-87ec11b25cae",
+      "branch": "trainer",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_mood_language",
+        "potential_speculative_setting_language",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 10508,
+      "output_tokens": 363,
+      "total_tokens": 10871,
+      "estimated_cost_usd": 0.001794,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-116",
+      "name": "Gladion's Final Battle",
+      "card_print_id": "b942d70f-e53a-5b1a-8a48-d2c2e833fcdd",
+      "branch": "trainer",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 5,
+      "input_tokens": 27515,
+      "output_tokens": 397,
+      "total_tokens": 27912,
+      "estimated_cost_usd": 0.00436545,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-111",
+      "name": "Gwynn",
+      "card_print_id": "f876b7a1-6a77-5b41-9a1f-135c873880f1",
+      "branch": "trainer",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 2,
+      "input_tokens": 27510,
+      "output_tokens": 397,
+      "total_tokens": 27907,
+      "estimated_cost_usd": 0.0043647,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+      "name": "Magnetic Storm",
+      "card_print_id": "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+      "branch": "stadium",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27489,
+      "output_tokens": 435,
+      "total_tokens": 27924,
+      "estimated_cost_usd": 0.00438435,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "name": "Turffield Stadium",
+      "card_print_id": "176bc21e-6873-412c-a681-065057c4a48b",
+      "branch": "stadium",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "semantic_tags_metadata_or_generic_removed"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 38812,
+      "output_tokens": 455,
+      "total_tokens": 39267,
+      "estimated_cost_usd": 0.0060948,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-PMCG6-085",
+      "name": "Cinnabar City Gym",
+      "card_print_id": "1dc47687-0920-4b6e-9b1a-cba9b5c3ecf9",
+      "branch": "stadium",
+      "review_status": "pending",
+      "quality_flags": [],
+      "policy_results_count": 0,
+      "input_tokens": 10490,
+      "output_tokens": 436,
+      "total_tokens": 10926,
+      "estimated_cost_usd": 0.0018351,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+      "name": "High Pressure System",
+      "card_print_id": "1f1a5f73-bdcc-458c-86df-be61c89f1ee4",
+      "branch": "stadium",
+      "review_status": "pending",
+      "quality_flags": [],
+      "policy_results_count": 0,
+      "input_tokens": 27487,
+      "output_tokens": 402,
+      "total_tokens": 27889,
+      "estimated_cost_usd": 0.00436425,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-SMG-039",
+      "name": "Dimension Valley",
+      "card_print_id": "227ad91d-8c0b-4a10-9ce9-dd58a524d547",
+      "branch": "stadium",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_interpretive_claim",
+        "potential_semantic_tag_nonvisual_concept",
+        "potential_speculative_setting_language",
+        "potential_unsupported_personality_or_species_interpretation"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 38817,
+      "output_tokens": 472,
+      "total_tokens": 39289,
+      "estimated_cost_usd": 0.00610575,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11541-013",
+      "name": "Psychic Energy",
+      "card_print_id": "00c2e4db-c4fb-4d8a-aa86-72f355fa8873",
+      "branch": "energy",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_mood_language",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 27503,
+      "output_tokens": 320,
+      "total_tokens": 27823,
+      "estimated_cost_usd": 0.00431745,
+      "db_is_current": true,
+      "db_supersedes_description_id": "9166e47e-e7ca-4d7a-bb12-3a9fcb88b144",
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-L1BSS-070",
+      "name": "Rainbow Energy",
+      "card_print_id": "07bc6a24-360b-4f6b-9262-924effa6239f",
+      "branch": "energy",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_abstract_shape_literalization",
+        "potential_interpretive_mood_language",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "policy_results_count": 4,
+      "input_tokens": 38834,
+      "output_tokens": 381,
+      "total_tokens": 39215,
+      "estimated_cost_usd": 0.0060537,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11194-057",
+      "name": "Water Energy",
+      "card_print_id": "08bc3abb-41f6-4f35-8a21-d10ff9f63e9e",
+      "branch": "energy",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 27505,
+      "output_tokens": 351,
+      "total_tokens": 27856,
+      "estimated_cost_usd": 0.00433635,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+      "name": "Dark Metal Energy",
+      "card_print_id": "1cf5cb76-3b8f-4303-a0bf-a5d69b521256",
+      "branch": "energy",
+      "review_status": "pending",
+      "quality_flags": [],
+      "policy_results_count": 0,
+      "input_tokens": 27512,
+      "output_tokens": 403,
+      "total_tokens": 27915,
+      "estimated_cost_usd": 0.0043686,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-SM1PLUS-069",
+      "name": "Basic Grass Energy",
+      "card_print_id": "215b0b20-f529-4618-893e-d3130e6b6f41",
+      "branch": "energy",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 38837,
+      "output_tokens": 324,
+      "total_tokens": 39161,
+      "estimated_cost_usd": 0.00601995,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-106",
+      "name": "Tremendous Bomb",
+      "card_print_id": "45bba21a-4eb5-5217-b13c-5e4bce8ac761",
+      "branch": "item_tool_supporter",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27493,
+      "output_tokens": 371,
+      "total_tokens": 27864,
+      "estimated_cost_usd": 0.00434655,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-105",
+      "name": "Dark Bell",
+      "card_print_id": "80fa4e58-348a-5506-81b4-37eae70c50c9",
+      "branch": "item_tool_supporter",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_interpretive_claim",
+        "potential_interpretive_mood_language",
+        "potential_metadata_or_identity_language",
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27491,
+      "output_tokens": 313,
+      "total_tokens": 27804,
+      "estimated_cost_usd": 0.00431145,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-074",
+      "name": "リトライバッジ",
+      "card_print_id": "1c1236fd-45f1-5136-8e81-c137cc1a6e66",
+      "branch": "item_tool_supporter",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_speculative_setting_language"
+      ],
+      "policy_results_count": 0,
+      "input_tokens": 27494,
+      "output_tokens": 332,
+      "total_tokens": 27826,
+      "estimated_cost_usd": 0.0043233,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-073",
+      "name": "ごうかいボム",
+      "card_print_id": "7e7c4641-c3cb-5921-9896-6d458d1943b3",
+      "branch": "item_tool_supporter",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_dramatic_inferred_action_language",
+        "potential_interpretive_claim",
+        "potential_object_material_or_card_surface_confusion",
+        "potential_visual_material_vs_surface_confusion"
+      ],
+      "policy_results_count": 2,
+      "input_tokens": 27494,
+      "output_tokens": 385,
+      "total_tokens": 27879,
+      "estimated_cost_usd": 0.0043551,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-072",
+      "name": "古びたたての化石",
+      "card_print_id": "9901e52c-bc46-5cae-99bf-0f7506e854d5",
+      "branch": "item_tool_supporter",
+      "review_status": "needs_review",
+      "quality_flags": [
+        "potential_creature_language_on_non_pokemon_branch",
+        "potential_interpretive_claim",
+        "potential_interpretive_mood_language",
+        "potential_purpose_or_lore_interpretation"
+      ],
+      "policy_results_count": 1,
+      "input_tokens": 27496,
+      "output_tokens": 362,
+      "total_tokens": 27858,
+      "estimated_cost_usd": 0.0043416,
+      "db_is_current": true,
+      "db_supersedes_description_id": null,
+      "db_reconciliation_passed": true
+    }
+  ]
+}

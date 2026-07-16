@@ -1,0 +1,735 @@
+{
+  "checked_at": "2026-07-16T22:19:48.058Z",
+  "run_key": "fede8846074f414722b0a967e52fff7ba1eaeee18d2fe4bea6c8686f9712f1c8",
+  "run_dir": "docs/audits/card_visual_language_v1_bounded_apply_batch/2026-07-16T22-12-37-388Z_apply_fede8846074f",
+  "run_row": {
+    "id": "3e7f390a-e372-41ac-be73-b33e94918a8b",
+    "run_key": "fede8846074f414722b0a967e52fff7ba1eaeee18d2fe4bea6c8686f9712f1c8",
+    "mode": "apply",
+    "status": "completed",
+    "requested_limit": 25,
+    "eligible_count": 25,
+    "attempted_count": 25,
+    "validated_count": 25,
+    "failed_count": 0,
+    "skipped_count": 0,
+    "needs_review_count": 22,
+    "prompt_version": "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR",
+    "output_schema_version": "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+    "agent_version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+    "model_version": "gpt-4o-mini",
+    "response_model_version": "gpt-4o-mini-2024-07-18",
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 682128,
+    "output_tokens": 9974,
+    "total_tokens": 692102,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.1083036,
+    "artifact_directory": "docs/audits/card_visual_language_v1_bounded_apply_batch/2026-07-16T22-12-37-388Z_apply_fede8846074f",
+    "artifact_hashes": {
+      "summary.json": "7509a4f1731de1c85a2c892ad86826f367ad43fd8be237e058d74c6f33e9647e",
+      "run_plan.json": "282a6182afb2db10b32cf7a5900f19d96b5a9c042c954b7a1a668cdef37699bd",
+      "review_sample.jsonl": "e1872a3d721b8ad135d13ac7dc3a597982f629ae0add2f3568c0a62a7167f6b0",
+      "eligible_cards.jsonl": "26c973213d3ea4d3cb8ce07be1accef9d86e92a5d8b7394c5bf2378d4fe67288",
+      "skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "generated_outputs.jsonl": "e1872a3d721b8ad135d13ac7dc3a597982f629ae0add2f3568c0a62a7167f6b0",
+      "validation_failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "max_run_cost_usd": 0.25,
+    "max_cards": 25,
+    "stop_reason": null,
+    "started_at": "2026-07-16T22:12:37.388Z",
+    "finished_at": "2026-07-16T22:18:12.338Z"
+  },
+  "description_rows_written": 25,
+  "status_counts": {
+    "needs_review": 22,
+    "pending": 3
+  },
+  "allowed_statuses_only": true,
+  "approved_written_count": 0,
+  "current_written_count": 25,
+  "eligible_current_approved_count": 0,
+  "force_version": false,
+  "current_row_counts_for_written_cards": [
+    {
+      "card_print_id": "1c1236fd-45f1-5136-8e81-c137cc1a6e66",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "7e7c4641-c3cb-5921-9896-6d458d1943b3",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "b942d70f-e53a-5b1a-8a48-d2c2e833fcdd",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "66c0d32a-7478-5e04-8bfd-87ec11b25cae",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "5b25c54c-58b1-5c31-a001-3eb3c449aa27",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "4d5af271-467c-5b27-b7eb-3ffbe38e3736",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "1dc47687-0920-4b6e-9b1a-cba9b5c3ecf9",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "99b9c1c9-d179-5a29-a31f-d0015d26aac0",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "1cf5cb76-3b8f-4303-a0bf-a5d69b521256",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "08bc3abb-41f6-4f35-8a21-d10ff9f63e9e",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "176bc21e-6873-412c-a681-065057c4a48b",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "215b0b20-f529-4618-893e-d3130e6b6f41",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "227ad91d-8c0b-4a10-9ce9-dd58a524d547",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "1f1a5f73-bdcc-458c-86df-be61c89f1ee4",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "45bba21a-4eb5-5217-b13c-5e4bce8ac761",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "80c0f1fe-b108-52fe-9c03-2a621c1269b2",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "07bc6a24-360b-4f6b-9262-924effa6239f",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "80fa4e58-348a-5506-81b4-37eae70c50c9",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "9901e52c-bc46-5cae-99bf-0f7506e854d5",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "00c2e4db-c4fb-4d8a-aa86-72f355fa8873",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "f876b7a1-6a77-5b41-9a1f-135c873880f1",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    },
+    {
+      "card_print_id": "a7409897-fd63-52dc-9cc7-0aec15fd5313",
+      "current_count": 1,
+      "approved_count": 0,
+      "approved_current_count": 0
+    }
+  ],
+  "generated_output_count": 25,
+  "generated_to_db_reconciliation_all_passed": true,
+  "generated_to_db_reconciliation": [
+    {
+      "card_print_id": "07bc6a24-360b-4f6b-9262-924effa6239f",
+      "gv_id": "GV-PK-JPN-L1BSS-070",
+      "name": "Rainbow Energy",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "9901e52c-bc46-5cae-99bf-0f7506e854d5",
+      "gv_id": "GV-PK-JPN-M5-072",
+      "name": "古びたたての化石",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "7e7c4641-c3cb-5921-9896-6d458d1943b3",
+      "gv_id": "GV-PK-JPN-M5-073",
+      "name": "ごうかいボム",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "1c1236fd-45f1-5136-8e81-c137cc1a6e66",
+      "gv_id": "GV-PK-JPN-M5-074",
+      "name": "リトライバッジ",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "a7409897-fd63-52dc-9cc7-0aec15fd5313",
+      "gv_id": "GV-PK-JPN-M5-096",
+      "name": "Mega Zeraora ex",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "80c0f1fe-b108-52fe-9c03-2a621c1269b2",
+      "gv_id": "GV-PK-JPN-M5-101",
+      "name": "Mega Excadrill ex",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "80fa4e58-348a-5506-81b4-37eae70c50c9",
+      "gv_id": "GV-PK-JPN-M5-105",
+      "name": "Dark Bell",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "45bba21a-4eb5-5217-b13c-5e4bce8ac761",
+      "gv_id": "GV-PK-JPN-M5-106",
+      "name": "Tremendous Bomb",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": "62126b40-df7a-44ca-93c4-47a524fc7a47",
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "4d5af271-467c-5b27-b7eb-3ffbe38e3736",
+      "gv_id": "GV-PK-JPN-M5-109",
+      "name": "Gladion's Final Battle",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "f876b7a1-6a77-5b41-9a1f-135c873880f1",
+      "gv_id": "GV-PK-JPN-M5-111",
+      "name": "Gwynn",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "99b9c1c9-d179-5a29-a31f-d0015d26aac0",
+      "gv_id": "GV-PK-JPN-M5-112",
+      "name": "Mega Zeraora ex",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+      "gv_id": "GV-PK-JPN-M5-113",
+      "name": "Mega Chandelure ex",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": "bdaa5df8-81d4-4251-898f-0728086b4b82",
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "b942d70f-e53a-5b1a-8a48-d2c2e833fcdd",
+      "gv_id": "GV-PK-JPN-M5-116",
+      "name": "Gladion's Final Battle",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "66c0d32a-7478-5e04-8bfd-87ec11b25cae",
+      "gv_id": "GV-PK-JPN-M5-117",
+      "name": "Gwynn",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "5b25c54c-58b1-5c31-a001-3eb3c449aa27",
+      "gv_id": "GV-PK-JPN-M5-118",
+      "name": "Mega Darkrai ex",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "1dc47687-0920-4b6e-9b1a-cba9b5c3ecf9",
+      "gv_id": "GV-PK-JPN-PMCG6-085",
+      "name": "Cinnabar City Gym",
+      "review_status": "pending",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "176bc21e-6873-412c-a681-065057c4a48b",
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "name": "Turffield Stadium",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "215b0b20-f529-4618-893e-d3130e6b6f41",
+      "gv_id": "GV-PK-JPN-SM1PLUS-069",
+      "name": "Basic Grass Energy",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "227ad91d-8c0b-4a10-9ce9-dd58a524d547",
+      "gv_id": "GV-PK-JPN-SMG-039",
+      "name": "Dimension Valley",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "08bc3abb-41f6-4f35-8a21-d10ff9f63e9e",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11194-057",
+      "name": "Water Energy",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "1cf5cb76-3b8f-4303-a0bf-a5d69b521256",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11515-020",
+      "name": "Dark Metal Energy",
+      "review_status": "pending",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "1f1a5f73-bdcc-458c-86df-be61c89f1ee4",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+      "name": "High Pressure System",
+      "review_status": "pending",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+      "name": "Magnetic Storm",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": null,
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    },
+    {
+      "card_print_id": "00c2e4db-c4fb-4d8a-aa86-72f355fa8873",
+      "gv_id": "GV-PK-JPN-TCGCOLLECTOR11541-013",
+      "name": "Psychic Energy",
+      "review_status": "needs_review",
+      "is_current": true,
+      "supersedes_description_id": "9166e47e-e7ca-4d7a-bb12-3a9fcb88b144",
+      "checks": {
+        "image_sha256": true,
+        "prompt_version": true,
+        "output_schema_version": true,
+        "agent_version": true,
+        "model_version": true,
+        "review_status": true,
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true
+      },
+      "all_checks_passed": true
+    }
+  ],
+  "artifact_hashes_match_run_row": true,
+  "run_counts_match_summary": {
+    "eligible_count": true,
+    "attempted_count": true,
+    "validated_count": true,
+    "failed_count": true,
+    "skipped_count": true,
+    "needs_review_count": true,
+    "request_count": true,
+    "retry_count": true,
+    "input_tokens": true,
+    "output_tokens": true,
+    "total_tokens": true
+  },
+  "invariants": {
+    "every_written_description_pending_or_needs_review": true,
+    "no_approved_rows_written": true,
+    "no_current_approved_human_reviewed_candidate_overwritten": true,
+    "written_row_count_matches_generated_outputs": true,
+    "run_telemetry_reconciles": true,
+    "artifact_hashes_reconcile": true,
+    "generated_fingerprints_reconcile": true
+  }
+}

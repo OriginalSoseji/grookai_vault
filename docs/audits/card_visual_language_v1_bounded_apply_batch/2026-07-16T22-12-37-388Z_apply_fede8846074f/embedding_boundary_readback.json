@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-07-16T22:22:56.385Z",
+  "run_key": "fede8846074f414722b0a967e52fff7ba1eaeee18d2fe4bea6c8686f9712f1c8",
+  "run_id": "3e7f390a-e372-41ac-be73-b33e94918a8b",
+  "run_dir": "docs/audits/card_visual_language_v1_bounded_apply_batch/2026-07-16T22-12-37-388Z_apply_fede8846074f",
+  "generated_card_print_count": 25,
+  "visual_description_embedding_fields": {
+    "total_rows": 25,
+    "embedding_vector_count": 0,
+    "embedding_input_hash_count": 0,
+    "embedding_model_count": 0,
+    "embedding_dimensions_count": 0,
+    "embedded_at_count": 0
+  },
+  "card_embeddings_for_written_card_prints_total": 0,
+  "card_embeddings_for_written_card_prints_created_during_run_window": 0,
+  "card_embedding_samples_for_written_card_prints": [],
+  "invariants": {
+    "no_embedding_vectors_on_written_visual_description_rows": true,
+    "no_embedding_metadata_on_written_visual_description_rows": true,
+    "no_card_embeddings_created_for_written_card_prints_during_apply_window": true,
+    "embedding_boundary_preserved": true
+  }
+}

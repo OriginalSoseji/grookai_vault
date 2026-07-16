@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-07-16T22:19:38.915Z",
+  "command": [
+    "node",
+    "scripts/audits/card_visual_description_agent_v1.mjs",
+    "--apply",
+    "--provider=openai",
+    "--model=gpt-4o-mini",
+    "--branch-stratified-sample",
+    "--branch-targets=pokemon:5,trainer:5,stadium:5,energy:5,item_tool_supporter:5",
+    "--branch-candidate-limit=60000",
+    "--limit=25",
+    "--max-cards=25",
+    "--max-run-cost-usd=0.25",
+    "--openai-input-cost-per-million=0.15",
+    "--openai-output-cost-per-million=0.6",
+    "--openai-cached-input-cost-per-million=0.075",
+    "--image-cost-rule-version=gpt-4o-mini-standard-2026-07-16",
+    "--out-dir=docs/audits/card_visual_language_v1_bounded_apply_batch"
+  ],
+  "secrets_excluded": true,
+  "environment_notes": {
+    "env_file_loaded": "C:/grookai_vault/.env.local loaded into process environment before command",
+    "openai_api_key": "present_if_command_succeeded_redacted",
+    "supabase_db_url": "present_for_apply_and_readback_redacted",
+    "node_tls_reject_unauthorized": "0 for local TLS workaround during OpenAI call"
+  },
+  "run_key": "fede8846074f414722b0a967e52fff7ba1eaeee18d2fe4bea6c8686f9712f1c8",
+  "run_dir": "docs/audits/card_visual_language_v1_bounded_apply_batch/2026-07-16T22-12-37-388Z_apply_fede8846074f",
+  "commit_sha_at_run_start": "c28e0bc0d615cedea5758a2af6d2ccff02442e74",
+  "boundary": {
+    "db_writes": true,
+    "model_calls": true,
+    "fixture_generation": false,
+    "embeddings": false,
+    "card_prints_mutation": false
+  },
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-16",
+    "recorded_at": "2026-07-16T22:12:37.388Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  }
+}
