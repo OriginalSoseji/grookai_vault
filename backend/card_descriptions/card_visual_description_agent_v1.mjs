@@ -150,7 +150,9 @@ const SEMANTIC_VISUAL_FACT_FOREST_SUPPORT_PATTERN =
 const SEMANTIC_VISUAL_FACT_RAIN_SUPPORT_PATTERN =
   /\b(?:raindrops?|rain streaks?|rainfall|wet ground|puddles?|umbrella|storm clouds?)\b/i;
 const CONTROLLED_VOCABULARY_REMOVED_STYLE_TERMS =
-  /\b(?:anime style|fantasy art|fantasy|mystical|mystic|enchanted|enchanting|dreamlike|ethereal)\b/gi;
+  /\b(?:anime style|comic style drawing|comic style|fantasy art|fantasy|magical|mystical|mystic|enchanted|enchanting|dreamlike|ethereal)\b/gi;
+const CONTROLLED_VOCABULARY_REMOVED_VISUAL_DESIGN_TERMS =
+  /\b(?:holographic foil|holographic|gold foil texture|gold foil|silver foil|foil texture|foil)\b/gi;
 const CONTROLLED_VOCABULARY_POSE_RULES = Object.freeze([
   ["sleeping", /\b(?:sleeping|asleep|lying asleep)\b/i],
   ["standing", /\b(?:standing|upright stance|standing pose)\b/i],
@@ -525,6 +527,7 @@ function normalizeControlledVocabularyFreeText(value) {
   text = text.replace(/\bhuman trainer\b/gi, "human trainer");
   text = text.replace(/\bnight sky\b/gi, "dark sky");
   text = text.replace(/\b(daytime|daylight) sky\b/gi, "bright sky");
+  text = text.replace(/\bwater scene\b/gi, "water body");
   text = text.replace(/\bdynamic leaping pose\b/gi, "leaping");
   text = text.replace(/\bleaping pose\b/gi, "leaping");
   text = text.replace(CONTROLLED_VOCABULARY_REMOVED_STYLE_TERMS, "").replace(/\s+/g, " ");
@@ -536,6 +539,14 @@ function normalizeControlledVocabularyFreeText(value) {
 
 function normalizeObjectiveVisualText(value) {
   return normalizeControlledVocabularyFreeText(value);
+}
+
+function normalizeVisualDesignText(value) {
+  let text = normalizeObjectiveVisualText(value);
+  if (!text) return text;
+  text = text.replace(CONTROLLED_VOCABULARY_REMOVED_VISUAL_DESIGN_TERMS, "").replace(/\s+/g, " ");
+  text = text.replace(/\s+([,.;:])/g, "$1").replace(/^[,.;:\s]+|[,.;:\s]+$/g, "");
+  return normalizeText(text);
 }
 
 function controlledPoseTermsFromText(value) {
@@ -594,6 +605,10 @@ function uniquePreserving(values) {
     result.push(value);
   }
   return result;
+}
+
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function tagKey(value) {
@@ -2290,19 +2305,19 @@ function normalizeRelationships(value) {
 function normalizeVisualDesign(value) {
   const design = normalizeObject(value);
   return {
-    palette: normalizeStringArray(design.palette).map(normalizeObjectiveVisualText).filter(Boolean),
-    lighting: normalizeStringArray(design.lighting).map(normalizeObjectiveVisualText).filter(Boolean),
-    shadows: normalizeStringArray(design.shadows).map(normalizeObjectiveVisualText).filter(Boolean),
-    highlights: normalizeStringArray(design.highlights).map(normalizeObjectiveVisualText).filter(Boolean),
-    composition: normalizeStringArray(design.composition).map(normalizeObjectiveVisualText).filter(Boolean),
-    camera_angle: normalizeObjectiveVisualText(design.camera_angle),
-    framing: normalizeObjectiveVisualText(design.framing),
-    cropping: normalizeStringArray(design.cropping).map(normalizeObjectiveVisualText).filter(Boolean),
-    depth: normalizeObjectiveVisualText(design.depth),
-    motion_cues: normalizeStringArray(design.motion_cues).map(normalizeObjectiveVisualText).filter(Boolean),
-    motifs: normalizeStringArray(design.motifs).map(normalizeObjectiveVisualText).filter(Boolean),
-    repeated_shapes: normalizeStringArray(design.repeated_shapes).map(normalizeObjectiveVisualText).filter(Boolean),
-    style_cues: normalizeStringArray(design.style_cues).map(normalizeObjectiveVisualText).filter(Boolean),
+    palette: normalizeStringArray(design.palette).map(normalizeVisualDesignText).filter(Boolean),
+    lighting: normalizeStringArray(design.lighting).map(normalizeVisualDesignText).filter(Boolean),
+    shadows: normalizeStringArray(design.shadows).map(normalizeVisualDesignText).filter(Boolean),
+    highlights: normalizeStringArray(design.highlights).map(normalizeVisualDesignText).filter(Boolean),
+    composition: normalizeStringArray(design.composition).map(normalizeVisualDesignText).filter(Boolean),
+    camera_angle: normalizeVisualDesignText(design.camera_angle),
+    framing: normalizeVisualDesignText(design.framing),
+    cropping: normalizeStringArray(design.cropping).map(normalizeVisualDesignText).filter(Boolean),
+    depth: normalizeVisualDesignText(design.depth),
+    motion_cues: normalizeStringArray(design.motion_cues).map(normalizeVisualDesignText).filter(Boolean),
+    motifs: normalizeStringArray(design.motifs).map(normalizeVisualDesignText).filter(Boolean),
+    repeated_shapes: normalizeStringArray(design.repeated_shapes).map(normalizeVisualDesignText).filter(Boolean),
+    style_cues: normalizeStringArray(design.style_cues).map(normalizeVisualDesignText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(design.supporting_observation_ids),
   };
 }
@@ -2378,6 +2393,31 @@ function normalizeSearchTermText(value) {
     .trim();
 }
 
+function isGenericSubjectIdentityKey(value) {
+  return /^(?:unknown|visible scene subject|scene subject|subject|character|creature|pokemon|pokémon|human|person|trainer|human trainer|visible trainer)$/i.test(normalizeText(value));
+}
+
+function shouldPreserveExactIdentityInSearchTerm(value) {
+  return /\b(?:happy|smiling|sleeping|asleep|cameo|depicted|poster|screen|plush|pillow|statue|toy|logo|sticker|ice cream|character representation)\b/i.test(normalizeText(value));
+}
+
+function stripRedundantSubjectIdentityFromSearchTerm(value, subjectIdentityKeys = new Set()) {
+  let term = normalizeSearchTermText(value);
+  if (!term || subjectIdentityKeys.size < 1) return term;
+  if (shouldPreserveExactIdentityInSearchTerm(term)) return term;
+  for (const identityKey of [...subjectIdentityKeys].sort((left, right) => right.length - left.length)) {
+    if (!identityKey || isGenericSubjectIdentityKey(identityKey)) continue;
+    const identityPattern = new RegExp(`\\b${identityKey.split(/\s+/).map(escapeRegExp).join("\\s+")}\\b`, "gi");
+    term = term.replace(identityPattern, " ");
+  }
+  term = term
+    .replace(/\s+/g, " ")
+    .replace(/^(?:and|with|of|in|on|at|for|the)\s+/i, "")
+    .replace(/\s+(?:and|with|of|in|on|at|for|the)$/i, "")
+    .trim();
+  return normalizeSearchTermText(term);
+}
+
 function isDisallowedArtworkSearchTerm(value) {
   const term = normalizeText(value);
   return Boolean(
@@ -2449,7 +2489,9 @@ function derivedSearchTermsFromObservations(observations) {
 }
 
 function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
-  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities).map(tagKey).filter(Boolean));
+  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities)
+    .map(tagKey)
+    .filter((key) => key && !isGenericSubjectIdentityKey(key)));
   const uiObservationIds = new Set((options.observations ?? [])
     .filter(isCardUiPrintMarkerObservation)
     .map((observation) => normalizeText(observation.observation_id))
@@ -2460,7 +2502,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
       .filter(([countId, support]) => countId && support.length > 0),
   );
   const normalized = normalizeObjectArray(value).map((entry) => ({
-    term: normalizeSearchTermText(entry.term),
+    term: stripRedundantSubjectIdentityFromSearchTerm(entry.term, subjectIdentityKeys),
     supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
       .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
   })).filter((entry) =>
@@ -2476,18 +2518,18 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     if (!key || seenTerms.has(key)) continue;
     const supportingIds = supportingObservationIdsForSearchTerm(term, options.observations ?? [], options.typedFacts ?? []);
     if (supportingIds.length < 1) continue;
-    const normalizedTerm = normalizeSearchTermText(term);
+    const normalizedTerm = stripRedundantSubjectIdentityFromSearchTerm(term, subjectIdentityKeys);
     const normalizedKey = tagKey(normalizedTerm);
-    if (!normalizedTerm || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
+    if (!normalizedTerm || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
     normalized.push({ term: normalizedTerm, supporting_observation_ids: supportingIds });
     seenTerms.add(normalizedKey);
   }
 
   if (normalized.length < 1) {
     for (const entry of derivedSearchTermsFromObservations(options.observations ?? [])) {
-      const normalizedTerm = normalizeSearchTermText(entry.term);
+      const normalizedTerm = stripRedundantSubjectIdentityFromSearchTerm(entry.term, subjectIdentityKeys);
       const key = tagKey(normalizedTerm);
-      if (!key || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
+      if (!key || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
       normalized.push({ ...entry, term: normalizedTerm });
       seenTerms.add(key);
     }
@@ -2518,26 +2560,88 @@ function addCanonicalVisualConcept(candidates, concept, sourceObservationIds, co
   const normalizedConcept = normalizeControlledVocabularyFreeText(concept);
   const ids = uniquePreserving(sourceObservationIds);
   if (!normalizedConcept || ids.length < 1) return;
-  const key = `${normalizedConcept}\u0000${ids.join(",")}`;
-  if (candidates.has(key)) return;
+  const key = normalizedConcept;
+  const existing = candidates.get(key);
+  if (existing) {
+    existing.source_observation_ids = uniqueSorted([...existing.source_observation_ids, ...ids]);
+    existing.confidence = Math.max(existing.confidence, normalizeConfidence(confidence));
+    return;
+  }
   candidates.set(key, {
     concept: normalizedConcept,
-    source_observation_ids: ids,
+    source_observation_ids: uniqueSorted(ids),
     derivation: "deterministic_rule",
     confidence: normalizeConfidence(confidence),
   });
 }
 
+function observationConceptEvidenceText(observation) {
+  return [
+    observation.normalized_label,
+    observation.kind,
+  ].map(normalizeText).filter(Boolean).join(" ");
+}
+
+function observationSupportsConcept(observation, concept) {
+  const normalizedConcept = normalizeControlledVocabularyFreeText(concept);
+  const evidenceText = observationConceptEvidenceText(observation);
+  if (!normalizedConcept || !evidenceText) return false;
+  if (normalizedConcept === "water") {
+    return /\b(?:water body|water feature|water_feature|lake|river|ocean|sea|pond)\b/i.test(evidenceText);
+  }
+  if (normalizedConcept === "tree") {
+    return /\b(?:trees?|tree group|plant|plant_group|forest|woodland|woods)\b/i.test(evidenceText);
+  }
+  if (normalizedConcept === "building") {
+    return /\b(?:buildings?|architecture|structure|stadium|roof)\b/i.test(evidenceText);
+  }
+  if (normalizedConcept === "sky") {
+    return /\bsky\b/i.test(evidenceText);
+  }
+  if (normalizedConcept === "cloud") {
+    return /\bclouds?\b/i.test(evidenceText);
+  }
+  return conceptNamesFromText(evidenceText).includes(normalizedConcept);
+}
+
+function addCanonicalVisualConceptForClaim(candidates, concept, sourceObservationIds, observationsById, confidence = 0.99) {
+  const knownSupport = uniquePreserving(sourceObservationIds).filter((id) => observationsById.has(id));
+  if (knownSupport.length < 1) return;
+  const matchingSupport = knownSupport.filter((id) => observationSupportsConcept(observationsById.get(id), concept));
+  if (["building", "cloud", "sky", "tree", "water"].includes(normalizeControlledVocabularyFreeText(concept)) && matchingSupport.length < 1) return;
+  addCanonicalVisualConcept(candidates, concept, matchingSupport.length > 0 ? matchingSupport : knownSupport.slice(0, 3), confidence);
+}
+
+function visualDesignConceptClaimTexts(visualDesign) {
+  return [
+    ...normalizeStringArray(visualDesign?.composition),
+    ...normalizeStringArray(visualDesign?.framing),
+    ...normalizeStringArray(visualDesign?.cropping),
+    ...normalizeStringArray(visualDesign?.motifs),
+    ...normalizeStringArray(visualDesign?.repeated_shapes),
+    ...normalizeStringArray(visualDesign?.lighting),
+    ...normalizeStringArray(visualDesign?.highlights),
+    ...normalizeStringArray(visualDesign?.palette),
+    normalizeText(visualDesign?.camera_angle),
+    normalizeText(visualDesign?.depth),
+  ].map(normalizeVisualDesignText).filter(Boolean);
+}
+
 function deriveCanonicalVisualConceptLayerV1(factGraph) {
   const candidates = new Map();
   const knownIds = observationIdSet(factGraph);
+  const observations = (factGraph?.observations ?? []).filter((entry) => !isCardUiPrintMarkerObservation(entry));
+  const observationsById = new Map(observations.map((observation) => [
+    normalizeText(observation.observation_id),
+    observation,
+  ]).filter(([id]) => knownIds.has(id)));
 
-  for (const observation of factGraph?.observations ?? []) {
-    if (isCardUiPrintMarkerObservation(observation)) continue;
+  for (const observation of observations) {
     const observationId = normalizeText(observation.observation_id);
     if (!knownIds.has(observationId)) continue;
     const text = [observation.normalized_label, observation.kind, observation.label].map(normalizeText).filter(Boolean).join(" ");
     for (const concept of conceptNamesFromText(text)) {
+      if (!observationSupportsConcept(observation, concept)) continue;
       addCanonicalVisualConcept(candidates, concept, [observationId], observation.confidence);
     }
   }
@@ -2561,18 +2665,14 @@ function deriveCanonicalVisualConceptLayerV1(factGraph) {
 
   const designSupport = normalizeObservationReferenceArray(factGraph?.visual_design?.supporting_observation_ids)
     .filter((id) => knownIds.has(id));
-  const designText = flattenFactGraphText([
-    factGraph?.visual_design?.composition,
-    factGraph?.visual_design?.framing,
-    factGraph?.visual_design?.cropping,
-    factGraph?.visual_design?.motifs,
-    factGraph?.visual_design?.repeated_shapes,
-    factGraph?.visual_design?.lighting,
-    factGraph?.visual_design?.highlights,
-  ]);
   if (designSupport.length > 0) {
-    for (const concept of conceptNamesFromText(designText)) {
-      addCanonicalVisualConcept(candidates, concept, designSupport.slice(0, 6), 0.92);
+    for (const claimText of visualDesignConceptClaimTexts(factGraph?.visual_design)) {
+      const claimSupport = supportingObservationIdsForSearchTerm(claimText, observations, factGraph?.typed_facts ?? [])
+        .filter((id) => designSupport.includes(id));
+      if (claimSupport.length < 1) continue;
+      for (const concept of conceptNamesFromText(claimText)) {
+        addCanonicalVisualConceptForClaim(candidates, concept, claimSupport, observationsById, 0.92);
+      }
     }
   }
 
@@ -4930,7 +5030,7 @@ function buildPrompt(card) {
     "- character_representation: object shaped like or patterned after a character, such as plush, pillow, statue, toy, ice cream, food decoration, logo, sticker, clothing pattern, or wall pattern.",
     "Pikachu as a pillow or ice cream is a character_representation, not a scene_subject.",
     "Store meaningful semantic visual facts in semantic_visual_facts when directly supported by evidence. Allowed examples include happy, smiling, sleeping, angry, surprised, crying, forest, rainy, floating, eating, fighting, cameo, Pikachu pillow, or ten trees, but only with supporting observation IDs and evidence fields.",
-    "semantic_visual_facts is not optional when obvious reusable meaning is visibly supported. Actively add entries for supported subject states/actions such as floating, flying, sleeping, eating, fighting, standing, sitting, or lying down; environment concepts such as forest, outdoor stadium, rain, snow, nighttime, sunset, water scene, or food scene; exact useful count concepts such as ten trees; and cameo/representation concepts such as Pikachu poster or Pikachu pillow.",
+    "semantic_visual_facts is not optional when obvious reusable meaning is visibly supported. Actively add entries for supported subject states/actions such as floating, flying, sleeping, eating, fighting, standing, sitting, or lying down; environment concepts such as forest, outdoor stadium, rain, snow, nighttime, sunset, water body, or food scene; exact useful count concepts such as ten trees; and cameo/representation concepts such as Pikachu poster or Pikachu pillow.",
     "If a pose/action already appears in creature_anatomy or human_appearance and it is useful for future search, also add a semantic_visual_facts entry with the same supporting observation IDs and concrete evidence.",
     "If an environment field records forest, trees, buildings, stadium, water, weather, or time-of-day cues, add the matching semantic_visual_facts entry unless the field is uncertain or purely abstained.",
     "Do not put evidence-only facial details such as open eyes, closed eyes, neutral eyebrows, face visible, or eyes not clearly visible into semantic_visual_facts as standalone labels. Put those details inside facial_evidence or semantic fact evidence fields supporting a useful label such as smiling, sleeping, surprised, or cannot_determine.",

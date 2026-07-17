@@ -1,0 +1,405 @@
+{
+  "summary": {
+    "source_dir": "docs/audits/card_visual_semantic_facts_v2_4_card_dry_run/2026-07-17T20-26-09-641Z_dry_run_f9d59350922d",
+    "replayed_count": 4,
+    "structurally_validated_count": 4,
+    "validation_failure_count": 0,
+    "raw_observation_label_change_count": 0,
+    "before_duplicate_concept_count": 15,
+    "after_duplicate_concept_count": 0,
+    "redundant_identity_terms_after_count": 0,
+    "review_status_changes": []
+  },
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-M5-118",
+      "name": "Mega Darkrai ex",
+      "branch": "pokemon",
+      "validation_ok": true,
+      "findings": [],
+      "before_review_status": "needs_review",
+      "after_review_status": "needs_review",
+      "before_search_terms": [
+        "floating Mega Darkrai",
+        "yellow and black Mega Darkrai"
+      ],
+      "after_search_terms": [
+        "floating",
+        "yellow and black"
+      ],
+      "removed_search_terms": [
+        "floating Mega Darkrai",
+        "yellow and black Mega Darkrai"
+      ],
+      "added_search_terms": [
+        "floating",
+        "yellow and black"
+      ],
+      "redundant_identity_terms_after": [],
+      "before_duplicate_concepts": [
+        {
+          "concept": "diagonal upright orientation",
+          "count": 2
+        },
+        {
+          "concept": "floating",
+          "count": 2
+        }
+      ],
+      "after_duplicate_concepts": [],
+      "concept_support_changes": [
+        {
+          "concept": "diagonal upright orientation",
+          "before": [
+            "obs_pose_001"
+          ],
+          "after": [
+            "obs_pose_001",
+            "obs_subject_mega_darkrai_001"
+          ]
+        },
+        {
+          "concept": "floating",
+          "before": [
+            "obs_subject_mega_darkrai_001"
+          ],
+          "after": [
+            "obs_pose_001",
+            "obs_subject_mega_darkrai_001"
+          ]
+        }
+      ],
+      "raw_observation_label_changes": [],
+      "before_core_counts": {
+        "observations": 18,
+        "typed_facts": 11,
+        "subjects": 1,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 0,
+        "relationships": 0
+      },
+      "after_core_counts": {
+        "observations": 18,
+        "typed_facts": 11,
+        "subjects": 1,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 0,
+        "relationships": 0
+      },
+      "after_quality_flags": [
+        "potential_module_incomplete_or_low_evidence",
+        "potential_speculative_setting_language"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "branch": "trainer",
+      "validation_ok": true,
+      "findings": [],
+      "before_review_status": "needs_review",
+      "after_review_status": "needs_review",
+      "before_search_terms": [
+        "orange spiky hair ponytail",
+        "dark blue swimsuit",
+        "indoor swimming pool"
+      ],
+      "after_search_terms": [
+        "orange spiky hair ponytail",
+        "dark blue swimsuit",
+        "indoor swimming pool"
+      ],
+      "removed_search_terms": [],
+      "added_search_terms": [],
+      "redundant_identity_terms_after": [],
+      "before_duplicate_concepts": [
+        {
+          "concept": "forward orientation",
+          "count": 2
+        },
+        {
+          "concept": "left arm stretched back",
+          "count": 2
+        },
+        {
+          "concept": "right fist raised forward",
+          "count": 2
+        },
+        {
+          "concept": "water",
+          "count": 2
+        }
+      ],
+      "after_duplicate_concepts": [],
+      "concept_support_changes": [
+        {
+          "concept": "forward orientation",
+          "before": [
+            "obs_posture_001"
+          ],
+          "after": [
+            "obs_posture_001",
+            "obs_subject_001"
+          ]
+        },
+        {
+          "concept": "left arm stretched back",
+          "before": [
+            "obs_posture_001"
+          ],
+          "after": [
+            "obs_posture_001",
+            "obs_subject_001"
+          ]
+        },
+        {
+          "concept": "right fist raised forward",
+          "before": [
+            "obs_posture_001"
+          ],
+          "after": [
+            "obs_posture_001",
+            "obs_subject_001"
+          ]
+        }
+      ],
+      "raw_observation_label_changes": [],
+      "before_core_counts": {
+        "observations": 17,
+        "typed_facts": 14,
+        "subjects": 1,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 0,
+        "relationships": 0
+      },
+      "after_core_counts": {
+        "observations": 17,
+        "typed_facts": 14,
+        "subjects": 1,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 0,
+        "relationships": 0
+      },
+      "after_quality_flags": [
+        "potential_pose_or_action_without_visible_support"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "name": "Turffield Stadium",
+      "branch": "stadium",
+      "validation_ok": true,
+      "findings": [],
+      "before_review_status": "needs_review",
+      "after_review_status": "needs_review",
+      "before_search_terms": [
+        "stadium",
+        "traffic cones",
+        "leaf emblem",
+        "curved building",
+        "trees",
+        "water body",
+        "blue sky",
+        "patterned pathway"
+      ],
+      "after_search_terms": [
+        "stadium",
+        "traffic cones",
+        "leaf emblem",
+        "curved building",
+        "trees",
+        "water body",
+        "blue sky",
+        "patterned pathway"
+      ],
+      "removed_search_terms": [],
+      "added_search_terms": [],
+      "redundant_identity_terms_after": [],
+      "before_duplicate_concepts": [
+        {
+          "concept": "building",
+          "count": 4
+        },
+        {
+          "concept": "sky",
+          "count": 2
+        },
+        {
+          "concept": "tree",
+          "count": 2
+        },
+        {
+          "concept": "water",
+          "count": 3
+        }
+      ],
+      "after_duplicate_concepts": [],
+      "concept_support_changes": [
+        {
+          "concept": "building",
+          "before": [
+            "obs_env_lake_001",
+            "obs_env_leaf_logo_001",
+            "obs_env_light_bands_001",
+            "obs_env_pathway_001",
+            "obs_env_roof_structure_001",
+            "obs_env_sky_001"
+          ],
+          "after": [
+            "obs_env_building_001",
+            "obs_env_roof_structure_001",
+            "obs_env_stadium_structure_001"
+          ]
+        },
+        {
+          "concept": "sky",
+          "before": [
+            "obs_env_light_bands_001"
+          ],
+          "after": [
+            "obs_env_sky_001"
+          ]
+        },
+        {
+          "concept": "tree",
+          "before": [
+            "obs_env_lake_001",
+            "obs_env_leaf_logo_001",
+            "obs_env_light_bands_001",
+            "obs_env_pathway_001",
+            "obs_env_roof_structure_001",
+            "obs_env_sky_001"
+          ],
+          "after": [
+            "obs_env_trees_001"
+          ]
+        },
+        {
+          "concept": "water",
+          "before": [
+            "obs_env_lake_001",
+            "obs_env_leaf_logo_001",
+            "obs_env_light_bands_001",
+            "obs_env_pathway_001",
+            "obs_env_roof_structure_001",
+            "obs_env_sky_001"
+          ],
+          "after": [
+            "obs_env_lake_001"
+          ]
+        },
+        {
+          "concept": "water body",
+          "before": [],
+          "after": [
+            "obs_env_lake_001"
+          ]
+        }
+      ],
+      "raw_observation_label_changes": [],
+      "before_core_counts": {
+        "observations": 12,
+        "typed_facts": 7,
+        "subjects": 0,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 1,
+        "relationships": 0
+      },
+      "after_core_counts": {
+        "observations": 12,
+        "typed_facts": 7,
+        "subjects": 0,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 1,
+        "relationships": 0
+      },
+      "after_quality_flags": [
+        "potential_canonical_metadata_in_visual_output",
+        "potential_metadata_or_identity_language",
+        "potential_module_incomplete_or_low_evidence",
+        "semantic_tags_metadata_or_generic_removed"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-M5-105",
+      "name": "Dark Bell",
+      "branch": "item_tool_supporter",
+      "validation_ok": true,
+      "findings": [],
+      "before_review_status": "needs_review",
+      "after_review_status": "needs_review",
+      "before_search_terms": [
+        "dark bell",
+        "bell shaped object",
+        "black bell",
+        "swirling purple background",
+        "polygonal facets",
+        "circular sphere inside bell"
+      ],
+      "after_search_terms": [
+        "dark bell",
+        "bell shaped object",
+        "black bell",
+        "swirling purple background",
+        "polygonal facets",
+        "circular sphere inside bell"
+      ],
+      "removed_search_terms": [],
+      "added_search_terms": [],
+      "redundant_identity_terms_after": [],
+      "before_duplicate_concepts": [
+        {
+          "concept": "circular motif",
+          "count": 2
+        },
+        {
+          "concept": "spiral motif",
+          "count": 2
+        }
+      ],
+      "after_duplicate_concepts": [],
+      "concept_support_changes": [
+        {
+          "concept": "spiral motif",
+          "before": [
+            "obs_background_001",
+            "obs_object_001"
+          ],
+          "after": [
+            "obs_background_001"
+          ]
+        }
+      ],
+      "raw_observation_label_changes": [],
+      "before_core_counts": {
+        "observations": 15,
+        "typed_facts": 11,
+        "subjects": 0,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 1,
+        "relationships": 0
+      },
+      "after_core_counts": {
+        "observations": 15,
+        "typed_facts": 11,
+        "subjects": 0,
+        "depicted_subjects": 0,
+        "character_representations": 0,
+        "counts": 1,
+        "relationships": 0
+      },
+      "after_quality_flags": [
+        "potential_canonical_metadata_in_fact_grounded_search_terms",
+        "potential_canonical_metadata_in_visual_output",
+        "potential_metadata_or_identity_language"
+      ]
+    }
+  ]
+}

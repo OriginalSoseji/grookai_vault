@@ -2973,6 +2973,142 @@ test("card visual controlled vocabulary preserves raw labels and derives canonic
   assert.equal(normalizedGraph.typed_facts.length, graph.typed_facts.length);
 });
 
+test("card visual controlled vocabulary deduplicates concepts and cleans deterministic drift", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations = [
+    ...graph.observations,
+    {
+      observation_id: "obs_lake_001",
+      kind: "water_feature",
+      label: "reflective water scene",
+      normalized_label: "reflective water scene",
+      scene_layer: "background",
+      frame_position: "lower_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.91,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_sky_001",
+      kind: "sky",
+      label: "blue sky with clouds",
+      normalized_label: "blue sky with clouds",
+      scene_layer: "background",
+      frame_position: "upper_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_building_001",
+      kind: "architecture",
+      label: "curved building silhouette",
+      normalized_label: "curved building",
+      scene_layer: "background",
+      frame_position: "right_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.89,
+      evidence_strength: "strong",
+    },
+  ];
+  graph.subjects[0].identity = "Mega Darkrai";
+  graph.subjects[0].pose = ["floating"];
+  graph.observations.find((observation) => observation.observation_id === "obs_subject_001").label =
+    "Mega Darkrai floating in the foreground";
+  graph.observations.find((observation) => observation.observation_id === "obs_subject_001").normalized_label =
+    "Mega Darkrai floating";
+  graph.observations.find((observation) => observation.observation_id === "obs_palette_001").label =
+    "yellow and black palette";
+  graph.observations.find((observation) => observation.observation_id === "obs_palette_001").normalized_label =
+    "yellow and black palette";
+  graph.scene_layers.background = [
+    ...graph.scene_layers.background,
+    "obs_lake_001",
+    "obs_sky_001",
+    "obs_building_001",
+  ];
+  graph.visual_design = {
+    ...graph.visual_design,
+    palette: ["yellow and black palette"],
+    composition: ["reflective water scene", "blue sky with clouds", "curved building"],
+    motifs: ["abstract magical background", "comic style drawing"],
+    style_cues: ["holographic foil", "comic style drawing"],
+    supporting_observation_ids: [
+      "obs_subject_001",
+      "obs_palette_001",
+      "obs_lake_001",
+      "obs_sky_001",
+      "obs_building_001",
+    ],
+  };
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_fact_water_001",
+      category: "environment",
+      label: "water scene",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_lake_001"],
+      evidence: { environment: ["reflective water scene"] },
+      confidence: 0.84,
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_fact_floating_001",
+      category: "state",
+      label: "floating",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: { body_position: ["floating body position"] },
+      confidence: 0.9,
+    }),
+  ];
+  graph.fact_grounded_search_terms = [
+    { term: "floating Mega Darkrai", supporting_observation_ids: ["obs_subject_001"] },
+    { term: "yellow and black Mega Darkrai", supporting_observation_ids: ["obs_palette_001"] },
+    { term: "water scene", supporting_observation_ids: ["obs_lake_001"] },
+    { term: "dark energy symbol", supporting_observation_ids: ["obs_subject_001"] },
+    { term: "gold foil", supporting_observation_ids: ["obs_palette_001"] },
+  ];
+  graph.modules.fact_grounded_search_terms.terms = [
+    "floating Mega Darkrai",
+    "yellow and black Mega Darkrai",
+    "water scene",
+    "dark energy symbol",
+    "gold foil",
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true);
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const searchTerms = normalizedGraph.fact_grounded_search_terms.map((entry) => entry.term);
+
+  assert.ok(searchTerms.includes("floating"));
+  assert.ok(searchTerms.includes("yellow and black"));
+  assert.ok(searchTerms.includes("water body"));
+  assert.equal(searchTerms.includes("floating Mega Darkrai"), false);
+  assert.equal(searchTerms.includes("yellow and black Mega Darkrai"), false);
+  assert.equal(searchTerms.includes("dark energy symbol"), false);
+  assert.equal(searchTerms.includes("gold foil"), false);
+  assert.ok(normalizedGraph.semantic_visual_facts.some((fact) => fact.label === "water body"));
+  assert.equal(normalizedGraph.semantic_visual_facts.some((fact) => fact.label === "water scene"), false);
+
+  const visualDesignText = JSON.stringify(normalizedGraph.visual_design);
+  assert.doesNotMatch(visualDesignText, /\b(?:comic style|holographic|foil|magical)\b/i);
+  assert.ok(normalizedGraph.visual_design.composition.includes("reflective water body"));
+
+  const concepts = normalizedGraph.canonical_visual_concepts.concepts;
+  assert.equal(concepts.filter((concept) => concept.concept === "floating").length, 1);
+  assert.equal(concepts.filter((concept) => concept.concept === "water").length, 1);
+  const waterConcept = concepts.find((concept) => concept.concept === "water");
+  const skyConcept = concepts.find((concept) => concept.concept === "sky");
+  const buildingConcept = concepts.find((concept) => concept.concept === "building");
+  assert.deepEqual(waterConcept.source_observation_ids, ["obs_lake_001"]);
+  assert.deepEqual(skyConcept.source_observation_ids, ["obs_sky_001"]);
+  assert.deepEqual(buildingConcept.source_observation_ids, ["obs_building_001"]);
+});
+
 function denseItemFactGraph(overrides = {}) {
   return validFactGraph({
     observations: [

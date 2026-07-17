@@ -102,6 +102,10 @@ Keep when supported:
 
 Compound subject-plus-state terms may preserve the franchise or identity word when each component is supported by the fact graph. Normalization should not collapse `sleeping Pokemon` into `sleeping` because the subject class is useful for search. Exact standalone identities and standalone franchise labels remain filtered from generic artwork search terms.
 
+When an exact subject identity is already stored in a subject, depicted subject, or character representation field, redundant identity wording is removed from otherwise useful generic visual search phrases. For example, `floating Mega Darkrai` normalizes to `floating`, while `sleeping Pokemon` remains valid because `Pokemon` is a subject class rather than an exact identity.
+
+Use `water body` instead of `water scene` for generic water evidence. Scene/story wording is avoided unless it names a directly visible setting category such as `forest background` or `food scene`.
+
 Evidence-only face details such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` are preserved in raw observations and facial-evidence fields, but are not canonical semantic facts by themselves. They can support a higher-level semantic fact such as `smiling`, `sleeping`, or `surprised`.
 
 ## Canonical Visual Concepts
@@ -125,6 +129,10 @@ Canonical concepts are derived under:
 ```
 
 Every concept must cite existing observation IDs. Concepts are replaceable derived intelligence, not raw facts.
+
+Concepts are deduplicated by canonical concept name. If the same concept is derived from multiple supported facts, its source observation IDs are unioned under one concept entry instead of creating duplicate concept rows.
+
+Concept support should be as specific as practical. A visual-design claim such as `curved building` should derive a `building` concept supported by the building observation, not by every observation listed in the broader `visual_design.supporting_observation_ids` array. Broad module support is not enough to attach unrelated observations to a concept.
 
 ## Initial Concept Families
 
