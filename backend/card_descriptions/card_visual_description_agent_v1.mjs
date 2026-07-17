@@ -8,12 +8,13 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
 export const CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION = "CARD_VISUAL_LANGUAGE_V1";
-export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
-export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
+export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
+export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v2";
 export const CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION = "CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_V1";
-export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
+export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION_V1 = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
+export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
 
 export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
   "pending",
@@ -23,6 +24,7 @@ export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
 ]);
 
 const DEFAULT_OUT_DIR = path.join(REPO_ROOT, "docs", "audits", "card_visual_descriptions");
+const DEFAULT_V2_STRESS_OUT_DIR = path.join(REPO_ROOT, "docs", "audits", "card_visual_fact_graph_v2_stress_5_dry_run");
 const DEFAULT_LIMIT = 25;
 const DEFAULT_MIN_WIDTH = 180;
 const DEFAULT_MIN_HEIGHT = 240;
@@ -96,7 +98,7 @@ const VISUAL_LANGUAGE_GENERIC_FILLER_PATTERN =
 const VISUAL_LANGUAGE_NO_VISIBLE_EXPRESSION_PATTERN =
   /\b(no clearly visible face|face (?:is )?not clearly visible|face details (?:are )?not visible|no visible face|eyes? (?:are )?(?:not visible|not clearly visible|unclear)|facial features? (?:are )?(?:not|not clearly|not explicitly) visible|facial features?[^.]{0,60}\bnot\b[^.]{0,40}\bvisible|facial expression(?:s)? (?:cannot be determined|not visible|unclear)|expression (?:cannot be determined|not visible|unclear))\b/i;
 const VISUAL_LANGUAGE_UNSUPPORTED_EMOTION_PATTERN =
-  /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm|assertive|commanding)\b/gi;
+  /\b(cheerful|joyful|confident|confidence|angry|sad|friendly|menacing|playful|optimistic|mysterious|enigmatic|elegant|elegance|mystique|personality|demeanor|charm|regal|graceful|gracefully|lively|determination|determined|focused|serious|contemplative|thoughtfulness|introspection|anticipation|enthusiasm|assertive|commanding|sexy|attractive|beautiful|seductive|voluptuous|fierce|majestic)\b/gi;
 const VISUAL_LANGUAGE_UNSUPPORTED_PERSONALITY_OR_SPECIES_PATTERN =
   /\b(menacing grin|aggressive demeanor|aggressive stance|aggressive expression|aggressive pose|strength and aggression|intimidating presence|characteristic of (?:its|the) species|predatory nature|majestic presence|formidable appearance|intimidating mood|serious and determined|determined expression|calling or directing|confident stance|confident expression|assertive posture|determination or focus|action and determination|exudes? a sense of (?:agility and strength|speed and power|energy and excitement)|speed and power|excitement associated with (?:this )?(?:pokemon|pokémon)|concentration or contemplation|contemplative or calculated demeanor|serious demeanor|introspection and determination|thoughtful expression|contemplative pose|contemplative expression|contemplation|positive emotional tone|inviting tone|warm and inviting tone|reflective and serious|hot,\s*energetic atmosphere|aggressive mood|cheerful mood|playful atmosphere|whimsical(?: touch)?|achievement and honor|intense and dramatic|serene and primitive setting|quiet confidence|emotional charge(?: of the moment)?|connection to history|supportiveness|fits (?:the|this) character'?s theme|hinting at (?:its|the) power|energetic essence)\b/gi;
 const VISUAL_LANGUAGE_DRAMATIC_INFERRED_ACTION_PATTERN =
@@ -155,6 +157,35 @@ const FACT_GRAPH_COVERAGE_REVIEW_STATUSES = new Set([
   "uncertain",
   "observed",
 ]);
+const FACT_GRAPH_MODULE_NAMES = Object.freeze([
+  "subjects",
+  "human_appearance",
+  "creature_anatomy",
+  "clothing",
+  "objects_and_props",
+  "environment",
+  "composition",
+  "color_and_light",
+  "visual_effects",
+  "counts",
+  "relationships",
+  "surface_and_scan_cues",
+  "uncertainty_and_abstentions",
+  "fact_grounded_search_terms",
+]);
+const FACT_GRAPH_MODULE_REVIEW_STATUSES = new Set([
+  "complete",
+  "likely_complete",
+  "partial_due_to_crop",
+  "partial_due_to_low_resolution",
+  "partial_due_to_occlusion",
+  "partial_due_to_glare",
+  "none_visible",
+  "not_applicable",
+  "uncertain",
+]);
+const FACT_GRAPH_MODULE_OMISSION_RISK_VALUES = new Set(["none", "low", "medium", "high", "unknown"]);
+const FACT_GRAPH_MODULE_EVIDENCE_QUALITY_VALUES = new Set(["high", "medium", "low", "mixed", "not_applicable", "unknown"]);
 const FACT_GRAPH_COUNT_TYPES = new Set([
   "exact",
   "estimated_range",
@@ -170,6 +201,39 @@ const FACT_GRAPH_MIN_OBSERVATION_COUNT_BY_BRANCH = Object.freeze({
   energy: 7,
   item_tool_supporter: 8,
 });
+const FACT_GRAPH_V1_DRY_RUN_EXCLUDED_CARD_PRINT_IDS = new Set([
+  "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+  "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+  "00c2e4db-c4fb-4d8a-aa86-72f355fa8873",
+  "45bba21a-4eb5-5217-b13c-5e4bce8ac761",
+]);
+const FACT_GRAPH_V2_STRESS_ROLES = Object.freeze([
+  {
+    role: "dense_pokemon_artwork",
+    prompt_branch: "pokemon",
+    reason: "Dense Pokemon artwork stress: complex creature anatomy, body components, effects, and difficult background.",
+  },
+  {
+    role: "trainer_person_artwork",
+    prompt_branch: "trainer",
+    reason: "Trainer/person stress: human appearance, clothing, hair, body regions, accessories, gesture, and background.",
+  },
+  {
+    role: "environment_heavy_stadium",
+    prompt_branch: "stadium",
+    reason: "Environment-heavy Stadium stress: trees, buildings, sky, weather cues when visible, terrain, and counts.",
+  },
+  {
+    role: "abstract_energy",
+    prompt_branch: "energy",
+    reason: "Abstract Energy stress: symbols, gradients, repeated shapes, lighting, and no living subjects unless visibly present.",
+  },
+  {
+    role: "object_heavy_item",
+    prompt_branch: "item_tool_supporter",
+    reason: "Object-heavy Item stress: object parts, colors, shape, material appearance only, and visual effects.",
+  },
+]);
 const FACT_GRAPH_COVERAGE_KEYS = [
   "subjects_review",
   "depicted_subjects_review",
@@ -1134,6 +1198,181 @@ function addBranchSpecificMoodOverclaimFlagDetails(details, payload, promptBranc
   }
 }
 
+function addFactGraphModuleReviewFlagDetails(details, payload) {
+  const factGraph = payload?.visual_attributes?.fact_graph;
+  if (!factGraph || typeof factGraph !== "object") return;
+  const knownFactIds = typedFactIdSet(factGraph);
+
+  for (const moduleName of FACT_GRAPH_MODULE_NAMES) {
+    for (const factId of normalizeFactIdArray(factGraph.modules?.[moduleName]?.fact_ids)) {
+      if (!knownFactIds.has(factId)) {
+        addManualDetail(
+          details,
+          "potential_module_fact_reference_missing",
+          `visual_attributes.fact_graph.modules.${moduleName}.fact_ids`,
+          factId,
+        );
+      }
+    }
+  }
+
+  for (const review of normalizeModuleReviews(factGraph.module_reviews)) {
+    const module = normalizeText(review.module);
+    const status = normalizeText(review.review_status);
+    const omissionRisk = normalizeText(review.omission_risk);
+    const evidenceQuality = normalizeText(review.evidence_quality);
+    if (moduleHasEntries(factGraph.modules?.[module]) && ["none_visible", "not_applicable"].includes(status)) {
+      addManualDetail(
+        details,
+        "potential_module_review_conflicts_with_entries",
+        "visual_attributes.fact_graph.module_reviews",
+        `${module}: status=${status || "missing"}`,
+      );
+    }
+    if (!moduleHasEntries(factGraph.modules?.[module]) && ["complete", "likely_complete"].includes(status)) {
+      addManualDetail(
+        details,
+        "potential_empty_module_marked_complete",
+        "visual_attributes.fact_graph.module_reviews",
+        `${module}: status=${status || "missing"}`,
+      );
+    }
+    if (
+      status.startsWith("partial_")
+      || status === "uncertain"
+      || ["medium", "high", "unknown"].includes(omissionRisk)
+      || ["low", "mixed", "unknown"].includes(evidenceQuality)
+    ) {
+      addManualDetail(
+        details,
+        "potential_module_incomplete_or_low_evidence",
+        "visual_attributes.fact_graph.module_reviews",
+        `${module}: status=${status || "missing"}, omission_risk=${omissionRisk || "missing"}, evidence_quality=${evidenceQuality || "missing"}`,
+      );
+    }
+  }
+}
+
+function addFactGraphSupportAndMetadataFlagDetails(details, payload, card = {}, promptBranch = "") {
+  const factGraph = payload?.visual_attributes?.fact_graph;
+  if (!factGraph || typeof factGraph !== "object") return;
+
+  const knownIds = observationIdSet(factGraph);
+  const visualDesign = factGraph.visual_design ?? {};
+  const designClaimFields = [
+    "palette",
+    "lighting",
+    "shadows",
+    "highlights",
+    "composition",
+    "camera_angle",
+    "framing",
+    "cropping",
+    "depth",
+    "motion_cues",
+    "motifs",
+    "repeated_shapes",
+    "style_cues",
+  ];
+  const designHasClaims = designClaimFields.some((field) => hasFactGraphClaimValue(visualDesign[field]));
+  if (designHasClaims && !hasSupportedObservationReferences(visualDesign.supporting_observation_ids, knownIds)) {
+    details.push({
+      flag: "potential_unsupported_visual_design_claim",
+      field: "visual_attributes.fact_graph.visual_design",
+      matched_text: "visual_design claims without supporting_observation_ids",
+      policy_rule: "fact_graph_visual_design_claims_require_observation_support",
+    });
+  }
+
+  const cardNameKey = tagKey(card.name);
+  for (const term of factGraph.fact_grounded_search_terms ?? []) {
+    const termText = normalizeText(term.term);
+    const termKey = tagKey(termText);
+    if (promptBranch !== "pokemon" && cardNameKey && termKey === cardNameKey) {
+      details.push({
+        flag: "potential_canonical_metadata_in_fact_grounded_search_terms",
+        field: "visual_attributes.fact_graph.fact_grounded_search_terms.term",
+        matched_text: termText,
+        policy_rule: "fact_grounded_search_terms_must_be_visual_not_card_identity",
+      });
+    }
+    if (promptBranch === "energy" && /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)\s+energy\b/i.test(termText)) {
+      details.push({
+        flag: "potential_canonical_metadata_in_fact_grounded_search_terms",
+        field: "visual_attributes.fact_graph.fact_grounded_search_terms.term",
+        matched_text: termText,
+        policy_rule: "energy_search_terms_must_describe_visible_symbol_not_energy_identity",
+      });
+    }
+  }
+
+  for (const subject of factGraph.subjects ?? []) {
+    const poseText = flattenFactGraphText([subject.pose, subject.action_state]);
+    if (!/\bstanding\b/i.test(poseText)) continue;
+    const supportText = flattenFactGraphText([
+      factGraph.relationships,
+      factGraph.observations,
+      factGraph.environment,
+    ]);
+    if (!/\b(standing on|feet|foot|legs?|ground|floor|surface|terrain)\b/i.test(supportText)) {
+      details.push({
+        flag: "potential_pose_or_action_without_visible_support",
+        field: "visual_attributes.fact_graph.subjects.pose",
+        matched_text: `${subject.observation_id || subject.identity || "unknown"}: ${poseText}`,
+        policy_rule: "standing_pose_requires_visible_ground_or_body_support",
+      });
+    }
+  }
+
+  const countIds = new Set((factGraph.counts ?? []).map((count) => normalizeText(count.count_id)).filter(Boolean));
+  for (const object of factGraph.objects_and_props ?? []) {
+    const observationId = normalizeText(object.observation_id);
+    const observation = (factGraph.observations ?? []).find((entry) => normalizeText(entry.observation_id) === observationId);
+    const visibilityText = normalizeText([object.visibility, observation?.visibility].filter(Boolean).join(" "));
+    const visible = /\b(visible|fully_visible|partially_visible)\b/i.test(visibilityText) && !/\bnot_visible\b/i.test(visibilityText);
+    const reference = normalizeText(object.count_reference);
+    const hasCountReference = reference && !["none", "not_applicable", "not applicable"].includes(reference);
+    if ((reference === "not_visible" && visible) || (hasCountReference && !countIds.has(reference) && reference !== "not_visible")) {
+      details.push({
+        flag: "potential_count_reference_inconsistent",
+        field: "visual_attributes.fact_graph.objects_and_props.count_reference",
+        matched_text: `${observationId || object.normalized_label || "unknown"}: ${reference || "missing"}`,
+        policy_rule: "object_count_reference_must_match_visible_count",
+      });
+    }
+    const highSalience = normalizeText(observation?.salience) === "high";
+    if (visible && highSalience && !hasCountReference) {
+      details.push({
+        flag: "potential_salient_object_missing_count_reference",
+        field: "visual_attributes.fact_graph.objects_and_props.count_reference",
+        matched_text: `${observationId || object.normalized_label || "unknown"}: missing count_reference`,
+        policy_rule: "salient_visible_objects_should_reference_counts",
+      });
+    }
+    const materialText = normalizeStringArray(object.material_appearance).join(" ");
+    if (FACT_GRAPH_UNSUPPORTED_MATERIAL_PATTERN.test(materialText)) {
+      details.push({
+        flag: "potential_actual_material_claim_without_visual_evidence",
+        field: "visual_attributes.fact_graph.objects_and_props.material_appearance",
+        matched_text: materialText,
+        policy_rule: "material_fields_describe_appearance_only",
+      });
+    }
+  }
+
+  for (const cue of factGraph.surface_and_scan_cues ?? []) {
+    const observationId = normalizeText(cue.observation_id);
+    if (observationId && !knownIds.has(observationId)) {
+      details.push({
+        flag: "potential_surface_cue_without_observation_support",
+        field: "visual_attributes.fact_graph.surface_and_scan_cues.observation_id",
+        matched_text: observationId,
+        policy_rule: "surface_and_scan_cues_require_valid_observation_support",
+      });
+    }
+  }
+}
+
 export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const details = [];
   const fields = textFieldsForVisualLanguageReview(payload);
@@ -1152,6 +1391,8 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   addEnergyAbstractShapeLiteralizationFlagDetails(details, payload, promptBranch);
   addPrimarySubjectAnatomyOverclaimFlagDetails(details, payload, promptBranch);
   addBranchSpecificMoodOverclaimFlagDetails(details, payload, promptBranch);
+  addFactGraphModuleReviewFlagDetails(details, payload);
+  addFactGraphSupportAndMetadataFlagDetails(details, payload, card, promptBranch);
 
   if (
     cardNameKey.includes("chandelure")
@@ -1436,6 +1677,44 @@ export function selectBranchStratifiedCardsV1(rows, branchTargets) {
   return selected;
 }
 
+function v2StressCandidateScore(row, role) {
+  const name = normalizeText(row.name);
+  let score = 0;
+  if (!FACT_GRAPH_V1_DRY_RUN_EXCLUDED_CARD_PRINT_IDS.has(normalizeText(row.card_print_id))) score += 1000;
+  if (role.prompt_branch === "pokemon" && /\b(mega|tag team|ex|vmax|vstar|gx)\b/i.test(name)) score += 80;
+  if (role.prompt_branch === "trainer" && /\b(cynthia|misty|brock|erika|giovanni|gladion|lillie|trainer|professor|grunt|admin|boss|gym leader)\b/i.test(name)) score += 80;
+  if (role.prompt_branch === "stadium" && /\b(city|gym|forest|stadium|storm|tower|cave|mountain|lake|park|field|arena)\b/i.test(name)) score += 80;
+  if (role.prompt_branch === "energy" && /\b(energy)\b/i.test(name)) score += 80;
+  if (role.prompt_branch === "item_tool_supporter" && /\b(machine|device|tool|gear|bomb|bell|badge|fossil|rod|ball|capsule|blower|scope|camera|map|ticket|switch|receiver|transceiver)\b/i.test(name)) score += 80;
+  if (normalizeText(row.image_source) === "identity" || normalizeText(row.image_status) === "exact") score += 20;
+  if (row.gv_id) score += 5;
+  return score;
+}
+
+export function selectV2StressSampleCardsV1(rows) {
+  const selected = [];
+  const usedIds = new Set();
+  for (const role of FACT_GRAPH_V2_STRESS_ROLES) {
+    const candidates = rows
+      .filter((row) => !usedIds.has(normalizeText(row.card_print_id)))
+      .filter((row) => !FACT_GRAPH_V1_DRY_RUN_EXCLUDED_CARD_PRINT_IDS.has(normalizeText(row.card_print_id)))
+      .filter((row) => resolveCardPromptMetadata(row).prompt_branch === role.prompt_branch)
+      .map((row, index) => ({ row, index, score: v2StressCandidateScore(row, role) }))
+      .sort((left, right) => right.score - left.score || left.index - right.index);
+    const picked = candidates[0]?.row;
+    if (!picked) {
+      throw new Error(`[card-visual-description-agent] unable to select V2 stress role: ${role.role}`);
+    }
+    picked.v2_stress_role = role.role;
+    picked.v2_stress_reason = role.reason;
+    picked.v2_stress_selection_score = candidates[0].score;
+    picked.excluded_prior_fact_graph_v1_cards = true;
+    selected.push(picked);
+    usedIds.add(normalizeText(picked.card_print_id));
+  }
+  return selected;
+}
+
 function roundUsd(value) {
   if (value === null || value === undefined) return null;
   return Number(Number(value).toFixed(8));
@@ -1499,6 +1778,10 @@ function normalizeObservationReferenceArray(value) {
   return normalizeStringArray(value);
 }
 
+function normalizeFactIdArray(value) {
+  return normalizeStringArray(value);
+}
+
 function normalizeFactGraphObservations(value) {
   return normalizeObjectArray(value).map((entry) => ({
     observation_id: normalizeText(entry.observation_id),
@@ -1509,6 +1792,19 @@ function normalizeFactGraphObservations(value) {
     frame_position: normalizeText(entry.frame_position),
     visibility: normalizeText(entry.visibility),
     salience: normalizeText(entry.salience),
+    confidence: normalizeConfidence(entry.confidence),
+    evidence_strength: normalizeText(entry.evidence_strength),
+  }));
+}
+
+function normalizeTypedFacts(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    fact_id: normalizeText(entry.fact_id),
+    module: normalizeText(entry.module),
+    field_path: normalizeText(entry.field_path),
+    claim: normalizeText(entry.claim),
+    value: normalizeText(entry.value),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
     evidence_strength: normalizeText(entry.evidence_strength),
   }));
@@ -1690,11 +1986,189 @@ function normalizeFactGroundedSearchTerms(value, counts = []) {
   }));
 }
 
+function normalizeModuleFactIds(value) {
+  const module = normalizeObject(value);
+  return {
+    fact_ids: normalizeFactIdArray(module.fact_ids),
+  };
+}
+
+function normalizeCountsModule(value) {
+  const module = normalizeObject(value);
+  const rawFactIds = normalizeFactIdArray(module.fact_ids);
+  const misplacedCountIds = rawFactIds.filter((id) => /^count_/i.test(id));
+  return {
+    fact_ids: rawFactIds.filter((id) => !/^count_/i.test(id)),
+    count_ids: uniquePreserving([
+      ...normalizeStringArray(module.count_ids),
+      ...misplacedCountIds,
+    ]),
+  };
+}
+
+function normalizeVisibleBodyRegions(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    region: normalizeText(entry.region),
+    visibility: normalizeText(entry.visibility),
+    details: normalizeStringArray(entry.details),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeHumanFacialEvidenceRows(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    face_position: normalizeText(entry.face_position),
+    eyes: normalizeText(entry.eyes),
+    mouth: normalizeText(entry.mouth),
+    eyebrows: normalizeText(entry.eyebrows),
+    other_visible_evidence: normalizeStringArray(entry.other_visible_evidence),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeAppearanceRows(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    label: normalizeText(entry.label),
+    details: normalizeStringArray(entry.details),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeClothingGarments(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    body_area: normalizeText(entry.body_area),
+    garment: normalizeText(entry.garment),
+    neckline_type: normalizeText(entry.neckline_type),
+    sleeve_type: normalizeText(entry.sleeve_type),
+    colors: normalizeStringArray(entry.colors),
+    visible_details: normalizeStringArray(entry.visible_details),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeCreatureAnatomyRows(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    region: normalizeText(entry.region),
+    feature: normalizeText(entry.feature),
+    visibility: normalizeText(entry.visibility),
+    colors: normalizeStringArray(entry.colors),
+    details: normalizeStringArray(entry.details),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizePoseOrientationRows(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    pose: normalizeStringArray(entry.pose),
+    orientation: normalizeText(entry.orientation),
+    action_state: normalizeStringArray(entry.action_state),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeFactGraphModules(value) {
+  const modules = normalizeObject(value);
+  return {
+    subjects: {
+      ...normalizeModuleFactIds(modules.subjects),
+      scene_subject_observation_ids: normalizeObservationReferenceArray(modules.subjects?.scene_subject_observation_ids),
+      depicted_subject_observation_ids: normalizeObservationReferenceArray(modules.subjects?.depicted_subject_observation_ids),
+      character_representation_observation_ids: normalizeObservationReferenceArray(modules.subjects?.character_representation_observation_ids),
+    },
+    human_appearance: {
+      ...normalizeModuleFactIds(modules.human_appearance),
+      visible_body_regions: normalizeVisibleBodyRegions(modules.human_appearance?.visible_body_regions),
+      facial_evidence: normalizeHumanFacialEvidenceRows(modules.human_appearance?.facial_evidence),
+      hair: normalizeAppearanceRows(modules.human_appearance?.hair),
+      gestures: normalizeAppearanceRows(modules.human_appearance?.gestures),
+      accessories: normalizeAppearanceRows(modules.human_appearance?.accessories),
+    },
+    creature_anatomy: {
+      ...normalizeModuleFactIds(modules.creature_anatomy),
+      body_regions: normalizeCreatureAnatomyRows(modules.creature_anatomy?.body_regions),
+      physical_features: normalizeCreatureAnatomyRows(modules.creature_anatomy?.physical_features),
+      pose_orientation: normalizePoseOrientationRows(modules.creature_anatomy?.pose_orientation),
+      effects: normalizeAppearanceRows(modules.creature_anatomy?.effects),
+    },
+    clothing: {
+      ...normalizeModuleFactIds(modules.clothing),
+      garments: normalizeClothingGarments(modules.clothing?.garments),
+      accessories: normalizeAppearanceRows(modules.clothing?.accessories),
+    },
+    objects_and_props: {
+      ...normalizeModuleFactIds(modules.objects_and_props),
+      object_observation_ids: normalizeObservationReferenceArray(modules.objects_and_props?.object_observation_ids),
+    },
+    environment: {
+      ...normalizeModuleFactIds(modules.environment),
+      observation_ids: normalizeObservationReferenceArray(modules.environment?.observation_ids),
+    },
+    composition: {
+      ...normalizeModuleFactIds(modules.composition),
+      observation_ids: normalizeObservationReferenceArray(modules.composition?.observation_ids),
+    },
+    color_and_light: {
+      ...normalizeModuleFactIds(modules.color_and_light),
+      observation_ids: normalizeObservationReferenceArray(modules.color_and_light?.observation_ids),
+    },
+    visual_effects: {
+      ...normalizeModuleFactIds(modules.visual_effects),
+      observation_ids: normalizeObservationReferenceArray(modules.visual_effects?.observation_ids),
+    },
+    counts: {
+      ...normalizeCountsModule(modules.counts),
+    },
+    relationships: {
+      ...normalizeModuleFactIds(modules.relationships),
+      relationship_ids: normalizeStringArray(modules.relationships?.relationship_ids),
+    },
+    surface_and_scan_cues: {
+      ...normalizeModuleFactIds(modules.surface_and_scan_cues),
+      observation_ids: normalizeObservationReferenceArray(modules.surface_and_scan_cues?.observation_ids),
+    },
+    uncertainty_and_abstentions: {
+      ...normalizeModuleFactIds(modules.uncertainty_and_abstentions),
+      fields: normalizeStringArray(modules.uncertainty_and_abstentions?.fields),
+    },
+    fact_grounded_search_terms: {
+      ...normalizeModuleFactIds(modules.fact_grounded_search_terms),
+      terms: normalizeStringArray(modules.fact_grounded_search_terms?.terms),
+    },
+  };
+}
+
+function normalizeModuleReviews(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    module: normalizeText(entry.module),
+    review_status: normalizeText(entry.review_status),
+    omission_risk: normalizeText(entry.omission_risk),
+    evidence_quality: normalizeText(entry.evidence_quality),
+    abstentions: normalizeObjectArray(entry.abstentions).map((abstention) => ({
+      field_path: normalizeText(abstention.field_path),
+      reason: normalizeText(abstention.reason),
+      affected_observation_ids: normalizeObservationReferenceArray(abstention.affected_observation_ids),
+    })),
+  }));
+}
+
 function normalizeFactGraphV1(value) {
   const graph = normalizeObject(value);
   const counts = normalizeFactGraphCounts(graph.counts);
   return {
     observations: normalizeFactGraphObservations(graph.observations),
+    typed_facts: normalizeTypedFacts(graph.typed_facts),
     subjects: normalizeFactGraphSubjects(graph.subjects),
     depicted_subjects: normalizeDepictedSubjects(graph.depicted_subjects),
     character_representations: normalizeCharacterRepresentations(graph.character_representations),
@@ -1706,6 +2180,8 @@ function normalizeFactGraphV1(value) {
     visual_design: normalizeVisualDesign(graph.visual_design),
     surface_and_scan_cues: normalizeSurfaceAndScanCues(graph.surface_and_scan_cues),
     coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
+    modules: normalizeFactGraphModules(graph.modules),
+    module_reviews: normalizeModuleReviews(graph.module_reviews),
     uncertainty_and_abstentions: normalizeUncertaintyAndAbstentions(graph.uncertainty_and_abstentions),
     fact_grounded_search_terms: normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts),
   };
@@ -1780,11 +2256,13 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     cardPrintIds: parseOrderedCommaList(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_IDS),
     gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
     branchStratifiedSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE"),
+    v2StressSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE"),
     branchTargetsSpec: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_TARGETS),
     branchTargets: null,
     branchCandidateLimit: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT, null, "CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT"),
     forceVersion: false,
     allowFixtureApply: false,
+    outDirExplicit: false,
   };
 
   let explicitMode = null;
@@ -1795,7 +2273,10 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg === "--force-version") parsed.forceVersion = true;
     else if (arg === "--allow-fixture-apply") parsed.allowFixtureApply = true;
     else if (arg.startsWith("--limit=")) parsed.limit = asPositiveInt(arg.slice("--limit=".length), DEFAULT_LIMIT, "--limit");
-    else if (arg.startsWith("--out-dir=")) parsed.outDir = path.resolve(arg.slice("--out-dir=".length));
+    else if (arg.startsWith("--out-dir=")) {
+      parsed.outDir = path.resolve(arg.slice("--out-dir=".length));
+      parsed.outDirExplicit = true;
+    }
     else if (arg.startsWith("--provider=")) parsed.provider = normalizeText(arg.slice("--provider=".length)).toLowerCase();
     else if (arg.startsWith("--model=")) parsed.modelVersion = normalizeText(arg.slice("--model=".length));
     else if (arg.startsWith("--model-version=")) parsed.modelVersion = normalizeText(arg.slice("--model-version=".length));
@@ -1806,6 +2287,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--card-print-ids=")) parsed.cardPrintIds = parseOrderedCommaList(arg.slice("--card-print-ids=".length));
     else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
     else if (arg === "--branch-stratified-sample") parsed.branchStratifiedSample = true;
+    else if (arg === "--v2-stress-sample") parsed.v2StressSample = true;
     else if (arg.startsWith("--branch-targets=")) parsed.branchTargetsSpec = normalizeText(arg.slice("--branch-targets=".length));
     else if (arg.startsWith("--branch-candidate-limit=")) parsed.branchCandidateLimit = asPositiveInt(arg.slice("--branch-candidate-limit=".length), null, "--branch-candidate-limit");
     else if (arg.startsWith("--min-width=")) parsed.minWidth = asPositiveInt(arg.slice("--min-width=".length), DEFAULT_MIN_WIDTH, "--min-width");
@@ -1846,6 +2328,15 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
   if (parsed.branchStratifiedSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId)) {
     throw new Error("[card-visual-description-agent] branch-stratified sampling cannot be combined with explicit card targets");
+  }
+  if (parsed.v2StressSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId || parsed.branchStratifiedSample)) {
+    throw new Error("[card-visual-description-agent] v2 stress sampling cannot be combined with explicit card targets or branch-stratified sampling");
+  }
+  if (parsed.v2StressSample) {
+    parsed.limit = 5;
+    parsed.maxCards = parsed.maxCards === null || parsed.maxCards === undefined ? 5 : Math.min(parsed.maxCards, 5);
+    if (!parsed.outDirExplicit) parsed.outDir = DEFAULT_V2_STRESS_OUT_DIR;
+    if (!parsed.branchCandidateLimit) parsed.branchCandidateLimit = DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT;
   }
   parsed.branchTargets = parseBranchTargetsV1(parsed.branchTargetsSpec, parsed.limit);
   if (parsed.branchStratifiedSample && totalBranchTargets(parsed.branchTargets) < 1) {
@@ -2524,6 +3015,16 @@ function zeroUsage() {
   };
 }
 
+function addUsageValues(left, right) {
+  return {
+    input_tokens: Number(left?.input_tokens ?? 0) + Number(right?.input_tokens ?? 0),
+    output_tokens: Number(left?.output_tokens ?? 0) + Number(right?.output_tokens ?? 0),
+    total_tokens: Number(left?.total_tokens ?? 0) + Number(right?.total_tokens ?? 0),
+    cached_input_tokens: Number(left?.cached_input_tokens ?? 0) + Number(right?.cached_input_tokens ?? 0),
+    reasoning_output_tokens: Number(left?.reasoning_output_tokens ?? 0) + Number(right?.reasoning_output_tokens ?? 0),
+  };
+}
+
 function normalizeResponseUsage(rawUsage) {
   if (!rawUsage || typeof rawUsage !== "object") return zeroUsage();
   const inputTokens = asNonnegativeInt(rawUsage.input_tokens, 0, "response.usage.input_tokens");
@@ -2580,18 +3081,19 @@ export function estimateUsageCostUsd(usage, pricingSnapshot) {
 }
 
 function telemetryForArtifact(telemetry = {}) {
-  const usage = telemetry.usage ?? zeroUsage();
+  const safeTelemetry = telemetry ?? {};
+  const usage = safeTelemetry.usage ?? zeroUsage();
   return {
-    response_model_version: telemetry.response_model_version ?? null,
-    image_detail: telemetry.image_detail ?? null,
-    request_count: telemetry.request_count ?? 0,
-    retry_count: telemetry.retry_count ?? 0,
+    response_model_version: safeTelemetry.response_model_version ?? null,
+    image_detail: safeTelemetry.image_detail ?? null,
+    request_count: safeTelemetry.request_count ?? 0,
+    retry_count: safeTelemetry.retry_count ?? 0,
     input_tokens: usage.input_tokens,
     output_tokens: usage.output_tokens,
     total_tokens: usage.total_tokens,
     cached_input_tokens: usage.cached_input_tokens,
     reasoning_output_tokens: usage.reasoning_output_tokens,
-    estimated_cost_usd: telemetry.estimated_cost_usd ?? 0,
+    estimated_cost_usd: safeTelemetry.estimated_cost_usd ?? 0,
   };
 }
 
@@ -2753,14 +3255,75 @@ function observationIdSet(factGraph) {
   return new Set((factGraph?.observations ?? []).map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
 }
 
+function typedFactIdSet(factGraph) {
+  return new Set((factGraph?.typed_facts ?? []).map((fact) => normalizeText(fact.fact_id)).filter(Boolean));
+}
+
 function addMissingObservationFindings(findings, ids, knownIds, findingPrefix) {
   for (const id of ids.map(normalizeText).filter(Boolean)) {
     if (!knownIds.has(id)) findings.push(`${findingPrefix}:${id}`);
   }
 }
 
+function addMissingFactFindings(findings, ids, knownFactIds, findingPrefix) {
+  for (const id of ids.map(normalizeText).filter(Boolean)) {
+    if (!knownFactIds.has(id)) findings.push(`${findingPrefix}:${id}`);
+  }
+}
+
 function reviewStatusForCoverage(factGraph, key) {
   return normalizeText(factGraph?.coverage_reviews?.[key]);
+}
+
+function moduleReviewByName(factGraph) {
+  const reviews = new Map();
+  for (const review of factGraph?.module_reviews ?? []) {
+    const module = normalizeText(review.module);
+    if (!module) continue;
+    reviews.set(module, review);
+  }
+  return reviews;
+}
+
+function moduleHasEntries(module) {
+  if (!module || typeof module !== "object" || Array.isArray(module)) return false;
+  const visit = (value, key = "") => {
+    if (value === null || value === undefined) return false;
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value === "object") return Object.entries(value).some(([childKey, childValue]) => visit(childValue, childKey));
+    if (key === "omission_risk" || key === "evidence_quality" || key === "review_status") return false;
+    return Boolean(normalizeText(value));
+  };
+  return visit(module);
+}
+
+function addModuleObservationReferenceFindings(findings, value, knownIds, pathPrefix = "fact_graph.modules") {
+  const visit = (node, pathParts) => {
+    if (node === null || node === undefined) return;
+    if (Array.isArray(node)) {
+      node.forEach((item, index) => visit(item, [...pathParts, String(index)]));
+      return;
+    }
+    if (typeof node !== "object") return;
+
+    for (const [key, child] of Object.entries(node)) {
+      const pathText = [...pathParts, key].join(".");
+      if (
+        key === "supporting_observation_ids"
+        || key === "affected_observation_ids"
+        || key.endsWith("_observation_ids")
+      ) {
+        addMissingObservationFindings(findings, normalizeObservationReferenceArray(child), knownIds, `fact_graph_module_observation_missing:${pathText}`);
+        continue;
+      }
+      if (key === "observation_id" || key.endsWith("_observation_id")) {
+        addMissingObservationFindings(findings, [child], knownIds, `fact_graph_module_observation_missing:${pathText}`);
+        continue;
+      }
+      visit(child, [...pathParts, key]);
+    }
+  };
+  visit(value, [pathPrefix]);
 }
 
 function sectionCoveredOrObserved(factGraph, key, rows) {
@@ -2843,7 +3406,6 @@ function hasSupportedObservationReferences(ids, knownIds) {
 function validateFactGraphGroundedFieldsV1(factGraph, knownIds) {
   const findings = [];
   const environment = factGraph.environment ?? {};
-  const visualDesign = factGraph.visual_design ?? {};
   const environmentClaimFields = [
     "setting",
     "indoor_outdoor",
@@ -2856,30 +3418,10 @@ function validateFactGraphGroundedFieldsV1(factGraph, knownIds) {
     "weather",
     "time_of_day_cues",
   ];
-  const designClaimFields = [
-    "palette",
-    "lighting",
-    "shadows",
-    "highlights",
-    "composition",
-    "camera_angle",
-    "framing",
-    "cropping",
-    "depth",
-    "motion_cues",
-    "motifs",
-    "repeated_shapes",
-    "style_cues",
-  ];
 
   const environmentHasClaims = environmentClaimFields.some((field) => hasFactGraphClaimValue(environment[field]));
   if (environmentHasClaims && !hasSupportedObservationReferences(environment.supporting_observation_ids, knownIds)) {
     findings.push("fact_graph_environment_claim_without_support");
-  }
-
-  const designHasClaims = designClaimFields.some((field) => hasFactGraphClaimValue(visualDesign[field]));
-  if (designHasClaims && !hasSupportedObservationReferences(visualDesign.supporting_observation_ids, knownIds)) {
-    findings.push("fact_graph_visual_design_claim_without_support");
   }
 
   const weatherText = flattenFactGraphText([environment.setting, environment.sky, environment.terrain]);
@@ -2895,11 +3437,94 @@ function validateFactGraphGroundedFieldsV1(factGraph, knownIds) {
   return findings;
 }
 
+function validateFactGraphTypedFactsV2(factGraph, knownIds) {
+  const findings = [];
+  const typedFacts = factGraph.typed_facts ?? [];
+  const factIds = typedFactIdSet(factGraph);
+  if (!Array.isArray(typedFacts)) return ["fact_graph_typed_facts_not_array"];
+  if (typedFacts.length < 1) findings.push("fact_graph_typed_facts_missing");
+  if (factIds.size !== typedFacts.length) findings.push("fact_graph_typed_fact_ids_missing_or_not_unique");
+
+  for (const fact of typedFacts) {
+    const factId = normalizeText(fact.fact_id) || "unknown";
+    if (!fact.fact_id) findings.push("fact_graph_typed_fact_missing_id");
+    if (!FACT_GRAPH_MODULE_NAMES.includes(normalizeText(fact.module))) {
+      findings.push(`fact_graph_typed_fact_module_invalid:${factId}`);
+    }
+    if (!fact.field_path) findings.push(`fact_graph_typed_fact_field_path_missing:${factId}`);
+    if (!fact.claim) findings.push(`fact_graph_typed_fact_claim_missing:${factId}`);
+    if (fact.supporting_observation_ids.length < 1) {
+      findings.push(`fact_graph_typed_fact_without_supporting_observation:${factId}`);
+    }
+    addMissingObservationFindings(findings, fact.supporting_observation_ids, knownIds, "fact_graph_typed_fact_observation_missing");
+  }
+  return findings;
+}
+
+function validateFactGraphModulesV2(factGraph, knownIds) {
+  const findings = [];
+  const modules = factGraph.modules ?? {};
+  const knownModuleNames = new Set(FACT_GRAPH_MODULE_NAMES);
+
+  if (!modules || typeof modules !== "object" || Array.isArray(modules)) {
+    findings.push("fact_graph_modules_not_object");
+    return findings;
+  }
+
+  for (const moduleName of FACT_GRAPH_MODULE_NAMES) {
+    if (!Object.hasOwn(modules, moduleName)) {
+      findings.push(`fact_graph_module_missing:${moduleName}`);
+      continue;
+    }
+  }
+  for (const moduleName of Object.keys(modules)) {
+    if (!knownModuleNames.has(moduleName)) findings.push(`fact_graph_module_unknown:${moduleName}`);
+  }
+  addModuleObservationReferenceFindings(findings, modules, knownIds);
+  return findings;
+}
+
+function validateFactGraphModuleReviewsV2(factGraph) {
+  const findings = [];
+  const reviews = factGraph.module_reviews ?? [];
+  if (!Array.isArray(reviews)) return ["fact_graph_module_reviews_not_array"];
+
+  const reviewsByModule = moduleReviewByName(factGraph);
+  if (reviewsByModule.size !== reviews.length) findings.push("fact_graph_module_reviews_missing_or_not_unique");
+
+  for (const moduleName of FACT_GRAPH_MODULE_NAMES) {
+    const review = reviewsByModule.get(moduleName);
+    if (!review) {
+      findings.push(`fact_graph_module_review_missing:${moduleName}`);
+      continue;
+    }
+    if (!FACT_GRAPH_MODULE_REVIEW_STATUSES.has(review.review_status)) {
+      findings.push(`fact_graph_module_review_status_invalid:${moduleName}`);
+    }
+    if (!FACT_GRAPH_MODULE_OMISSION_RISK_VALUES.has(review.omission_risk)) {
+      findings.push(`fact_graph_module_omission_risk_invalid:${moduleName}`);
+    }
+    if (!FACT_GRAPH_MODULE_EVIDENCE_QUALITY_VALUES.has(review.evidence_quality)) {
+      findings.push(`fact_graph_module_evidence_quality_invalid:${moduleName}`);
+    }
+  }
+
+  for (const review of reviews) {
+    const module = normalizeText(review.module);
+    if (module && !FACT_GRAPH_MODULE_NAMES.includes(module)) {
+      findings.push(`fact_graph_module_review_unknown:${module}`);
+    }
+    for (const abstention of review.abstentions ?? []) {
+      if (!abstention.field_path) findings.push(`fact_graph_module_review_abstention_field_missing:${module || "unknown"}`);
+      if (!abstention.reason) findings.push(`fact_graph_module_review_abstention_reason_missing:${module || "unknown"}`);
+    }
+  }
+  return findings;
+}
+
 function validateFactGraphCountConsistencyV1(factGraph) {
   const findings = [];
   const counts = factGraph.counts ?? [];
-  const countIds = new Set(counts.map((count) => normalizeText(count.count_id)).filter(Boolean));
-  const observationById = new Map((factGraph.observations ?? []).map((observation) => [normalizeText(observation.observation_id), observation]));
 
   for (const count of counts) {
     if (count.count_type === "exact" && (count.estimated_min > 0 || count.estimated_max > 0) && (count.estimated_min !== count.exact_count || count.estimated_max !== count.exact_count)) {
@@ -2919,25 +3544,6 @@ function validateFactGraphCountConsistencyV1(factGraph) {
         findings.push(`fact_graph_not_visible_count_has_values:${count.count_id || "unknown"}`);
       }
       if (!count.abstention_reason) findings.push(`fact_graph_count_abstention_reason_missing:${count.count_id || "unknown"}`);
-    }
-  }
-
-  for (const object of factGraph.objects_and_props ?? []) {
-    const observationId = normalizeText(object.observation_id);
-    const observation = observationById.get(observationId) ?? {};
-    const reference = normalizeText(object.count_reference);
-    const visible = /\bvisible|fully_visible\b/i.test(normalizeText(observation.visibility));
-    const highSalience = normalizeText(observation.salience) === "high";
-    const hasCountReference = reference && !["none", "not_applicable", "not applicable"].includes(reference);
-
-    if (reference === "not_visible" && visible) {
-      findings.push(`fact_graph_visible_object_count_reference_not_visible:${observationId || object.normalized_label || "unknown"}`);
-    } else if (hasCountReference && !countIds.has(reference)) {
-      findings.push(`fact_graph_object_count_reference_missing:${observationId || object.normalized_label || "unknown"}`);
-    }
-
-    if (visible && highSalience && !hasCountReference) {
-      findings.push(`fact_graph_salient_object_missing_count_reference:${observationId || object.normalized_label || "unknown"}`);
     }
   }
 
@@ -2969,39 +3575,11 @@ function validateFactGraphOntologyV1(factGraph, card = {}) {
       findings.push(`fact_graph_nonliving_subject_identity:${subject.observation_id || subject.identity || "unknown"}`);
     }
 
-    const poseText = flattenFactGraphText([subject.pose, subject.action_state]);
-    if (/\bstanding\b/i.test(poseText)) {
-      const supportText = flattenFactGraphText([
-        factGraph.relationships,
-        factGraph.observations,
-        factGraph.environment,
-      ]);
-      if (!/\b(standing on|feet|foot|legs?|ground|floor|surface|terrain)\b/i.test(supportText)) {
-        findings.push(`fact_graph_standing_pose_without_ground_support:${subject.observation_id || subject.identity || "unknown"}`);
-      }
-    }
   }
 
   const flattened = flattenFactGraphText(factGraph);
   if (/\bchandelure\b/i.test(normalizeText(card.name)) && /\b(?:hold|holds|holding|held by)\b[^.]{0,80}\b(?:orb|sphere|flame|lamp|chandelier)\b/i.test(flattened)) {
     findings.push("fact_graph_body_component_as_prop:chandelure");
-  }
-
-  for (const object of factGraph.objects_and_props ?? []) {
-    const materialText = normalizeStringArray(object.material_appearance).join(" ");
-    if (FACT_GRAPH_UNSUPPORTED_MATERIAL_PATTERN.test(materialText)) {
-      findings.push(`fact_graph_material_claim_without_visual_evidence:${object.observation_id || object.normalized_label || "unknown"}`);
-    }
-  }
-
-  for (const term of factGraph.fact_grounded_search_terms ?? []) {
-    const termKey = tagKey(term.term);
-    if (promptBranch !== "pokemon" && cardNameKey && termKey === cardNameKey) {
-      findings.push(`fact_graph_search_term_uses_card_identity:${term.term || "unknown"}`);
-    }
-    if (promptBranch === "energy" && /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)\s+energy\b/i.test(term.term)) {
-      findings.push(`fact_graph_energy_search_term_uses_canonical_identity:${term.term || "unknown"}`);
-    }
   }
 
   return findings;
@@ -3038,6 +3616,9 @@ function validateFactGraphV1(factGraph) {
     if (!observation.observation_id) findings.push("fact_graph_observation_missing_id");
     if (!observation.label && !observation.normalized_label) findings.push(`fact_graph_observation_missing_label:${observation.observation_id || "unknown"}`);
   }
+  findings.push(...validateFactGraphTypedFactsV2(factGraph, knownIds));
+  findings.push(...validateFactGraphModulesV2(factGraph, knownIds));
+  findings.push(...validateFactGraphModuleReviewsV2(factGraph));
 
   const referenceChecks = [
     ["subjects", "fact_graph_subject_observation_missing", factGraph.subjects ?? [], (entry) => [entry.observation_id]],
@@ -3045,7 +3626,6 @@ function validateFactGraphV1(factGraph) {
     ["character_representations", "fact_graph_character_representation_observation_missing", factGraph.character_representations ?? [], (entry) => [entry.observation_id]],
     ["objects_and_props", "fact_graph_object_observation_missing", factGraph.objects_and_props ?? [], (entry) => [entry.observation_id]],
     ["relationships", "fact_graph_relationship_observation_missing", factGraph.relationships ?? [], (entry) => [entry.source_observation_id, entry.target_observation_id]],
-    ["surface_and_scan_cues", "fact_graph_surface_cue_observation_missing", factGraph.surface_and_scan_cues ?? [], (entry) => entry.observation_id ? [entry.observation_id] : []],
     ["fact_grounded_search_terms", "fact_graph_search_term_observation_missing", factGraph.fact_grounded_search_terms ?? [], (entry) => entry.supporting_observation_ids ?? []],
   ];
   for (const [, finding, rows, getIds] of referenceChecks) {
@@ -3134,6 +3714,9 @@ function validateFactGraphV1(factGraph) {
 
   if ((factGraph.fact_grounded_search_terms ?? []).length < 3) findings.push("fact_graph_search_terms_too_sparse");
   if (factGraphContainsInterpretedExpression(factGraph)) findings.push("fact_graph_interpreted_expression_not_allowed");
+  if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|fierce|majestic|confident|angry|happy|sad)\b/i.test(flattenFactGraphText(factGraph))) {
+    findings.push("fact_graph_subjective_or_interpreted_label_not_allowed");
+  }
   if (new RegExp(VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN.source, "i").test(flattenFactGraphText(factGraph))) {
     findings.push("fact_graph_story_or_lore_language_not_allowed");
   }
@@ -3163,7 +3746,6 @@ export function validateVisualDescriptionPayloadV1(payload, card = {}) {
   }
   findings.push(...validateFactGraphV1(factGraph));
   findings.push(...validateFactGraphOntologyV1(factGraph, card));
-  findings.push(...validateFactGraphDensityV1(factGraph, card));
   if (semanticTags.length < 3) findings.push("semantic_tags_too_sparse");
   if (!Number.isFinite(descriptionConfidence) || descriptionConfidence < 0 || descriptionConfidence > 1) {
     findings.push("description_confidence_invalid");
@@ -3237,10 +3819,11 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 2 - Trainer.",
-        "Minimum fact density: create at least 10 distinct observations when image quality allows.",
         "Treat physically present people as scene_subject records.",
-        "Record visible hair, clothing, posture, gestures, held objects, facial evidence, and environment as atomic observations.",
-        "Create separate observations for head/face area, eyes or abstention, hair, clothing pieces, hands/gesture, held props, background objects, palette, lighting, and composition when visible.",
+        "Record visible hair, clothing, posture, gestures, held objects, facial evidence, visible body regions, accessories, and environment as atomic observations and typed facts.",
+        "Use the human_appearance module for visible body regions: face, neck, shoulders, upper_chest, midriff, arms, hands, legs, feet, and any visible tattoos or markings.",
+        "Use the clothing module for garments, neckline type, sleeve type, headwear, footwear, armor, cape, mask, and accessories.",
+        "Do not store subjective body-size, attractiveness, or personality labels. Use factual visibility and clothing terms only.",
         "Do not store interpreted emotions such as confident, sad, angry, or determined. Store visible facial evidence only.",
         "If no human trainer is visible, leave subjects empty and set subjects_review to the correct explicit coverage result.",
       ];
@@ -3248,9 +3831,8 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 3 - Stadium.",
-        "Minimum fact density: create at least 8 distinct observations when image quality allows.",
         "Environment and place observations are the primary facts.",
-        "Record separate observations for sky, clouds, lightning bolts or strikes, colored light bands, trees/plants, terrain, architecture, horizon, repeated elements, palette, lighting, and composition.",
+        "Record separate observations and typed facts for sky, clouds, lightning bolts or strikes, colored light bands, trees/plants, terrain, architecture, buildings, horizon, repeated elements, palette, lighting, and composition.",
         "Lightning, sky, aurora-like color bands, clouds, trees, terrain, and other environment facts are observations, environment facts, objects/props, counts, or design facts; they are not subjects.",
         "Do not put the card title, an event name, weather phenomenon, or setting name into subjects.",
         "For Stadium cards, subjects must be [] and subjects_review must be none_visible unless a physically present living person, Pokemon, or creature is visible.",
@@ -3261,9 +3843,8 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 4 - Energy.",
-        "Minimum fact density: create at least 7 distinct observations when image quality allows.",
         "Treat Energy cards as symbolic or abstract illustrations unless concrete subjects or objects are visibly present.",
-        "Record symbols, gradients, radiating lines, circular motifs, repeated shapes, color fields, highlights, central emblem placement, borders between color regions, and symmetry as separate observations.",
+        "Record symbols, gradients, radiating lines, circular motifs, repeated shapes, color fields, highlights, central emblem placement, borders between color regions, lighting, and symmetry as separate observations and typed facts.",
         "Do not name the symbol by card identity such as Psychic Energy. Describe visible shape instead: black eye-like symbol, centered circular emblem, purple gradient, white radiating lines, symmetrical abstract composition.",
         "Do not put an energy symbol, eye symbol, color field, glow, or abstract form into subjects. Use subjects: [] and subjects_review: none_visible unless a living/entity subject is actually visible.",
         "If the card shows one central symbol, create an observation and exact count for the symbol, and add at least three fact-grounded search terms from visible symbol, palette, and composition facts.",
@@ -3273,13 +3854,12 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 5 - Item / Tool / Supporter.",
-        "Minimum fact density: create at least 8 distinct observations when image quality allows.",
         "Record actual visible objects, tools, devices, props, scenes, people, and character representations as fact graph observations.",
         "If a Supporter card shows a human trainer, record that person as a scene_subject rather than a creature.",
         "Do not put a non-living item or tool into subjects. The main item belongs in observations and objects_and_props.",
         "For a visible bomb, bell, badge, fossil, device, or tool, use subjects: [], subjects_review: none_visible, and objects_and_props_review: observed.",
-        "For a bomb-like object, create separate observations for central object, rounded body, stripe/band, fuse, spark or flame effect, radial lines, background color regions, crop/framing, palette, and composition when visible.",
-        "Do not assert actual materials such as metal or plastic. Describe visual appearance only, such as dark rounded body, yellow stripe band, bright spark, or reflective highlight.",
+        "For a mechanical, bomb-like, badge-like, bell-like, fossil-like, or tool-like object, create separate observations and typed facts for central object, body, panels, seams, bands, handles, buttons, openings, fuses, sparks, visual effects, background color regions, crop/framing, palette, and composition when visible.",
+        "Do not assert actual materials such as metal or plastic. Describe material appearance only, such as dark rounded body, yellow stripe band, bright spark, metallic-looking highlight, or reflective-looking highlight.",
         "For each visible main object, create an exact count of 1 and set count_reference to that count_id.",
         "Add at least three fact-grounded search terms from visible object, shape, color, surrounding effects, or composition facts.",
         "Do not infer object purpose, gameplay function, or Pokemon users unless visible.",
@@ -3289,9 +3869,9 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 1 - Pokemon.",
-        "Minimum fact density: create at least 10 distinct observations when image quality allows.",
         "Record physically present Pokemon as scene_subject records.",
-        "Record visible anatomy, physical features, face position, eye evidence or abstention, mouth evidence or abstention, limbs or appendages, flames/effects, body components, colors, pose, orientation, action/state, crop/framing, background, palette, lighting, composition, and interactions as separate observations.",
+        "Record visible anatomy, physical features, face position, eye evidence or abstention, mouth evidence or abstention, limbs or appendages, wings, tails, horns, claws, markings, flames/effects, body components, colors, pose, orientation, action/state, crop/framing, background, palette, lighting, composition, and interactions as separate observations and typed facts.",
+        "Use the creature_anatomy module for body regions, physical features, pose/orientation, and effects.",
         "If the card name contains multiple Pokemon, record each visible Pokemon as a separate subject. Do not merge them into one hybrid unless the image literally shows a fused body.",
         "For object-like Pokemon, body components are anatomy, not props. Chandelier arms, lantern bodies, flames, or central glass/body regions must not be described as separate held objects unless a separate object is visibly independent.",
         "Do not default to standing. Use floating, diagonal, cropped, upright, or cannot_determine unless feet or contact with ground are visible.",
@@ -3305,8 +3885,8 @@ function buildPrompt(card) {
   const expectedVisualSubjects = expectedVisualSubjectsFromCardName(card.name);
   const branchLabel = PROMPT_BRANCH_LABELS[promptMetadata.prompt_branch] ?? PROMPT_BRANCH_LABELS.pokemon;
   return [
-    "# CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
-    "## Exhaustive Observable Fact Graph System",
+    "# CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+    "## Modular Exhaustive Observable Fact Graph System",
     `## Fact Graph Schema: ${CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION}`,
     "",
     "Extract exhaustive directly observable visual facts from this exact Pokemon Trading Card Game card image.",
@@ -3317,7 +3897,13 @@ function buildPrompt(card) {
     "Do NOT use lore, flavor text, attacks, Pokedex entries, card mechanics, rarity, market data, or set metadata as visual evidence.",
     "Capture all useful visible facts, not only the main subject.",
     "Every meaningful visible fact must appear as an atomic observation with an observation_id.",
-    "Subjects, depicted_subjects, character_representations, counts, relationships, search terms, and nontrivial environment/design facts must reference supporting observation_ids.",
+    "Every reusable claim must also appear in typed_facts with fact_id, module, field_path, claim, value, supporting_observation_ids, confidence, and evidence_strength.",
+    "Subjects, depicted_subjects, character_representations, counts, relationships, search terms, typed facts, module facts, and nontrivial environment/design facts must reference supporting observation_ids.",
+    "Completeness is reviewed per module, not by a global fact count.",
+    "For every module, create one module_reviews entry with review_status, omission_risk, evidence_quality, and field-specific abstentions when needed.",
+    "Allowed module review statuses are complete, likely_complete, partial_due_to_crop, partial_due_to_low_resolution, partial_due_to_occlusion, partial_due_to_glare, none_visible, not_applicable, and uncertain.",
+    "Use complete or likely_complete only when another careful pass is unlikely to find meaningful visible facts omitted from that module.",
+    "Use none_visible, not_applicable, or a source-limitation status for empty modules. Do not invent content to make a module appear complete.",
     "Count repeated visible elements whenever practical. Use exact counts when countable; use estimated ranges or abstentions when not countable.",
     "If a forest has 10 visible trees, record an exact tree count of 10 and reference the tree observation.",
     "Keep these concepts rigidly separate:",
@@ -3325,7 +3911,8 @@ function buildPrompt(card) {
     "- depicted_subject: character/entity shown inside another surface such as poster, card, sign, photo, TV, screen, book, painting, or frame.",
     "- character_representation: object shaped like or patterned after a character, such as plush, pillow, statue, toy, ice cream, food decoration, logo, sticker, clothing pattern, or wall pattern.",
     "Pikachu as a pillow or ice cream is a character_representation, not a scene_subject.",
-    "Do not store interpreted expression labels such as angry, happy, confident, sad, friendly, determined, or focused. Store facial evidence only: eyes, mouth, eyebrows, face position, and other visible features.",
+    "Do not store interpreted expression labels such as angry, happy, confident, sad, friendly, determined, fierce, majestic, or focused. Store facial evidence only: eyes, mouth, eyebrows, face position, and other visible features.",
+    "Do not store subjective human appearance labels such as sexy, attractive, body size, breast size, or similar judgments. Store visible body regions and clothing facts only.",
     "No story: allowed facts include Pikachu, standing, dark forest, 10 trees. Do not write Pikachu is lost in the forest.",
     "Use unknown, not_visible, cannot_determine, or explicit coverage review statuses instead of inventing content.",
     "Empty categories are valid only when coverage_reviews proves the category was considered.",
@@ -3355,8 +3942,9 @@ function buildPrompt(card) {
     "observations is the factual backbone. Use stable IDs such as obs_subject_001, obs_tree_group_001, obs_palette_001, obs_surface_001.",
     `visual_attributes.fact_schema_version must be exactly ${CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION}.`,
     "This is an inventory task, not a summary task. Split visible components into distinct observations instead of collapsing them into three broad labels.",
-    "For this branch, meet the minimum observation floor stated above unless image quality, crop, or glare prevents it; if prevented, record the limitation in uncertainty_and_abstentions.",
-    "Every subject, depicted_subject, character_representation, object, relationship, count, scene layer, environment support, design support, uncertainty, and search-term reference must point to an observation_id that actually exists in observations.",
+    "Do not chase a fixed fact count. A simple Energy card may have fewer facts; a dense full-art Trainer may have many more. Success is module completeness, not quantity.",
+    "Every subject, depicted_subject, character_representation, object, relationship, count, scene layer, environment support, design support, typed fact, module fact, uncertainty, and search-term reference must point to an observation_id that actually exists in observations.",
+    "Every module fact_ids entry must point to a real typed_facts.fact_id.",
     "Do not create placeholder counts for things that are not visible. Never create an exact count with exact_count 0. If nothing is countable, use counts: [] and counts_review: none_visible.",
     "Use count_type exact for 1, 2, 3, or other countable repeated elements. Use many only when dense elements cannot be individually counted; do not combine count_type many with an exact_count or an exact min/max range.",
     "Every visible salient object in objects_and_props must have a count_reference that points to a real count_id. Do not use count_reference: not_visible for a visible object.",
@@ -3376,6 +3964,7 @@ function buildPrompt(card) {
     "Each fact_grounded_search_terms entry must include at least one supporting observation_id.",
     "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, or unsupported lore in search terms.",
     "coverage_reviews must include all required review keys. Use observed when the category has entries; otherwise use none_visible, not_applicable, cannot_determine_due_to_low_resolution, cannot_determine_due_to_crop, cannot_determine_due_to_glare, or uncertain.",
+    "module_reviews must include all required module names: subjects, human_appearance, creature_anatomy, clothing, objects_and_props, environment, composition, color_and_light, visual_effects, counts, relationships, surface_and_scan_cues, uncertainty_and_abstentions, fact_grounded_search_terms.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
     "",
@@ -3394,6 +3983,7 @@ function outputJsonSchema() {
   const observationIdArraySchema = { type: "array", items: { type: "string" } };
   const stringArraySchema = { type: "array", items: { type: "string" } };
   const confidenceSchema = { type: "number", minimum: 0, maximum: 1 };
+  const factIdArraySchema = { type: "array", items: { type: "string" } };
   const observationItemSchema = {
     type: "object",
     additionalProperties: false,
@@ -3422,6 +4012,160 @@ function outputJsonSchema() {
       evidence_strength: { type: "string" },
     },
   };
+  const typedFactSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "fact_id",
+      "module",
+      "field_path",
+      "claim",
+      "value",
+      "supporting_observation_ids",
+      "confidence",
+      "evidence_strength",
+    ],
+    properties: {
+      fact_id: { type: "string" },
+      module: { type: "string", enum: [...FACT_GRAPH_MODULE_NAMES] },
+      field_path: { type: "string" },
+      claim: { type: "string" },
+      value: { type: "string" },
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+      evidence_strength: { type: "string" },
+    },
+  };
+  const bodyRegionSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["subject_observation_id", "region", "visibility", "details", "supporting_observation_ids", "confidence"],
+    properties: {
+      subject_observation_id: { type: "string" },
+      region: { type: "string" },
+      visibility: { type: "string" },
+      details: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const appearanceRowSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["subject_observation_id", "label", "details", "supporting_observation_ids", "confidence"],
+    properties: {
+      subject_observation_id: { type: "string" },
+      label: { type: "string" },
+      details: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const humanFacialEvidenceSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "subject_observation_id",
+      "face_position",
+      "eyes",
+      "mouth",
+      "eyebrows",
+      "other_visible_evidence",
+      "supporting_observation_ids",
+      "confidence",
+    ],
+    properties: {
+      subject_observation_id: { type: "string" },
+      face_position: { type: "string" },
+      eyes: { type: "string" },
+      mouth: { type: "string" },
+      eyebrows: { type: "string" },
+      other_visible_evidence: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const clothingGarmentSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "subject_observation_id",
+      "body_area",
+      "garment",
+      "neckline_type",
+      "sleeve_type",
+      "colors",
+      "visible_details",
+      "supporting_observation_ids",
+      "confidence",
+    ],
+    properties: {
+      subject_observation_id: { type: "string" },
+      body_area: { type: "string" },
+      garment: { type: "string" },
+      neckline_type: { type: "string" },
+      sleeve_type: { type: "string" },
+      colors: stringArraySchema,
+      visible_details: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const creatureAnatomyRowSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["subject_observation_id", "region", "feature", "visibility", "colors", "details", "supporting_observation_ids", "confidence"],
+    properties: {
+      subject_observation_id: { type: "string" },
+      region: { type: "string" },
+      feature: { type: "string" },
+      visibility: { type: "string" },
+      colors: stringArraySchema,
+      details: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const poseOrientationSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["subject_observation_id", "pose", "orientation", "action_state", "supporting_observation_ids", "confidence"],
+    properties: {
+      subject_observation_id: { type: "string" },
+      pose: stringArraySchema,
+      orientation: { type: "string" },
+      action_state: stringArraySchema,
+      supporting_observation_ids: observationIdArraySchema,
+      confidence: confidenceSchema,
+    },
+  };
+  const moduleFactIdBaseProperties = {
+    fact_ids: factIdArraySchema,
+  };
+  const moduleReviewSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["module", "review_status", "omission_risk", "evidence_quality", "abstentions"],
+    properties: {
+      module: { type: "string", enum: [...FACT_GRAPH_MODULE_NAMES] },
+      review_status: { type: "string", enum: [...FACT_GRAPH_MODULE_REVIEW_STATUSES] },
+      omission_risk: { type: "string", enum: [...FACT_GRAPH_MODULE_OMISSION_RISK_VALUES] },
+      evidence_quality: { type: "string", enum: [...FACT_GRAPH_MODULE_EVIDENCE_QUALITY_VALUES] },
+      abstentions: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["field_path", "reason", "affected_observation_ids"],
+          properties: {
+            field_path: { type: "string" },
+            reason: { type: "string" },
+            affected_observation_ids: observationIdArraySchema,
+          },
+        },
+      },
+    },
+  };
 
   return {
     type: "object",
@@ -3444,6 +4188,7 @@ function outputJsonSchema() {
             additionalProperties: false,
             required: [
               "observations",
+              "typed_facts",
               "subjects",
               "depicted_subjects",
               "character_representations",
@@ -3455,11 +4200,14 @@ function outputJsonSchema() {
               "visual_design",
               "surface_and_scan_cues",
               "coverage_reviews",
+              "modules",
+              "module_reviews",
               "uncertainty_and_abstentions",
               "fact_grounded_search_terms",
             ],
             properties: {
               observations: { type: "array", items: observationItemSchema },
+              typed_facts: { type: "array", items: typedFactSchema },
               subjects: {
                 type: "array",
                 items: {
@@ -3753,6 +4501,150 @@ function outputJsonSchema() {
                   enum: [...FACT_GRAPH_COVERAGE_REVIEW_STATUSES],
                 }])),
               },
+              modules: {
+                type: "object",
+                additionalProperties: false,
+                required: FACT_GRAPH_MODULE_NAMES,
+                properties: {
+                  subjects: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "scene_subject_observation_ids", "depicted_subject_observation_ids", "character_representation_observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      scene_subject_observation_ids: observationIdArraySchema,
+                      depicted_subject_observation_ids: observationIdArraySchema,
+                      character_representation_observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  human_appearance: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "visible_body_regions", "facial_evidence", "hair", "gestures", "accessories"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      visible_body_regions: { type: "array", items: bodyRegionSchema },
+                      facial_evidence: { type: "array", items: humanFacialEvidenceSchema },
+                      hair: { type: "array", items: appearanceRowSchema },
+                      gestures: { type: "array", items: appearanceRowSchema },
+                      accessories: { type: "array", items: appearanceRowSchema },
+                    },
+                  },
+                  creature_anatomy: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "body_regions", "physical_features", "pose_orientation", "effects"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      body_regions: { type: "array", items: creatureAnatomyRowSchema },
+                      physical_features: { type: "array", items: creatureAnatomyRowSchema },
+                      pose_orientation: { type: "array", items: poseOrientationSchema },
+                      effects: { type: "array", items: appearanceRowSchema },
+                    },
+                  },
+                  clothing: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "garments", "accessories"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      garments: { type: "array", items: clothingGarmentSchema },
+                      accessories: { type: "array", items: appearanceRowSchema },
+                    },
+                  },
+                  objects_and_props: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "object_observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      object_observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  environment: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  composition: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  color_and_light: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  visual_effects: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  counts: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "count_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      count_ids: stringArraySchema,
+                    },
+                  },
+                  relationships: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "relationship_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      relationship_ids: stringArraySchema,
+                    },
+                  },
+                  surface_and_scan_cues: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "observation_ids"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      observation_ids: observationIdArraySchema,
+                    },
+                  },
+                  uncertainty_and_abstentions: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "fields"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      fields: stringArraySchema,
+                    },
+                  },
+                  fact_grounded_search_terms: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", "terms"],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      terms: stringArraySchema,
+                    },
+                  },
+                },
+              },
+              module_reviews: { type: "array", items: moduleReviewSchema },
               uncertainty_and_abstentions: {
                 type: "array",
                 items: {
@@ -3815,6 +4707,38 @@ function fixtureDescription(card) {
         visibility: "not_applicable",
         salience: "high",
         confidence: 1,
+        evidence_strength: "fixture_only",
+      },
+    ],
+    typed_facts: [
+      {
+        fact_id: "fact_subject_001",
+        module: "subjects",
+        field_path: "subjects.scene_subjects[0].identity",
+        claim: `fixture subject identity is ${subject}`,
+        value: subject,
+        supporting_observation_ids: ["obs_subject_001"],
+        confidence: 0.35,
+        evidence_strength: "fixture_only",
+      },
+      {
+        fact_id: "fact_uncertainty_001",
+        module: "uncertainty_and_abstentions",
+        field_path: "uncertainty_and_abstentions[0].reason",
+        claim: "fixture mode does not inspect live image facts",
+        value: "fixture mode does not inspect live image facts",
+        supporting_observation_ids: ["obs_uncertainty_001"],
+        confidence: 1,
+        evidence_strength: "fixture_only",
+      },
+      {
+        fact_id: "fact_search_001",
+        module: "fact_grounded_search_terms",
+        field_path: "fact_grounded_search_terms[0].term",
+        claim: `fixture search term ${subject}`,
+        value: subject,
+        supporting_observation_ids: ["obs_subject_001"],
+        confidence: 0.35,
         evidence_strength: "fixture_only",
       },
     ],
@@ -3906,6 +4830,93 @@ function fixtureDescription(card) {
       visual_design_review: "cannot_determine_due_to_low_resolution",
       surface_and_scan_cues_review: "cannot_determine_due_to_low_resolution",
     },
+    modules: {
+      subjects: {
+        fact_ids: ["fact_subject_001"],
+        scene_subject_observation_ids: ["obs_subject_001"],
+        depicted_subject_observation_ids: [],
+        character_representation_observation_ids: [],
+      },
+      human_appearance: {
+        fact_ids: [],
+        visible_body_regions: [],
+        facial_evidence: [],
+        hair: [],
+        gestures: [],
+        accessories: [],
+      },
+      creature_anatomy: {
+        fact_ids: [],
+        body_regions: [],
+        physical_features: [],
+        pose_orientation: [],
+        effects: [],
+      },
+      clothing: {
+        fact_ids: [],
+        garments: [],
+        accessories: [],
+      },
+      objects_and_props: {
+        fact_ids: [],
+        object_observation_ids: [],
+      },
+      environment: {
+        fact_ids: [],
+        observation_ids: ["obs_uncertainty_001"],
+      },
+      composition: {
+        fact_ids: [],
+        observation_ids: ["obs_uncertainty_001"],
+      },
+      color_and_light: {
+        fact_ids: [],
+        observation_ids: ["obs_uncertainty_001"],
+      },
+      visual_effects: {
+        fact_ids: [],
+        observation_ids: [],
+      },
+      counts: {
+        fact_ids: [],
+        count_ids: ["count_subject_001"],
+      },
+      relationships: {
+        fact_ids: [],
+        relationship_ids: [],
+      },
+      surface_and_scan_cues: {
+        fact_ids: [],
+        observation_ids: [],
+      },
+      uncertainty_and_abstentions: {
+        fact_ids: ["fact_uncertainty_001"],
+        fields: ["fact_graph"],
+      },
+      fact_grounded_search_terms: {
+        fact_ids: ["fact_search_001"],
+        terms: [subject, "fixture visual facts", "image facts not extracted"],
+      },
+    },
+    module_reviews: FACT_GRAPH_MODULE_NAMES.map((module) => ({
+      module,
+      review_status: ["subjects", "environment", "composition", "color_and_light", "counts", "uncertainty_and_abstentions", "fact_grounded_search_terms"].includes(module)
+        ? "partial_due_to_low_resolution"
+        : "not_applicable",
+      omission_risk: ["subjects", "environment", "composition", "color_and_light", "counts", "uncertainty_and_abstentions", "fact_grounded_search_terms"].includes(module)
+        ? "high"
+        : "none",
+      evidence_quality: ["subjects", "environment", "composition", "color_and_light", "counts", "uncertainty_and_abstentions", "fact_grounded_search_terms"].includes(module)
+        ? "low"
+        : "not_applicable",
+      abstentions: ["subjects", "environment", "composition", "color_and_light", "counts", "uncertainty_and_abstentions", "fact_grounded_search_terms"].includes(module)
+        ? [{
+            field_path: module,
+            reason: "fixture mode does not inspect live image facts",
+            affected_observation_ids: ["obs_uncertainty_001"],
+          }]
+        : [],
+    })),
     uncertainty_and_abstentions: [
       {
         field: "fact_graph",
@@ -3971,7 +4982,7 @@ async function openAiDescription(card, image, args) {
     text: {
       format: {
         type: "json_schema",
-        name: "card_visual_fact_graph_schema_v1",
+        name: "card_visual_fact_graph_schema_v2",
         schema: outputJsonSchema(),
         strict: true,
       },
@@ -3980,6 +4991,7 @@ async function openAiDescription(card, image, args) {
 
   let requestCount = 0;
   let retryCount = 0;
+  let accumulatedUsage = zeroUsage();
   for (let attempt = 0; attempt <= args.maxRetries; attempt += 1) {
     requestCount += 1;
     let response;
@@ -4030,35 +5042,80 @@ async function openAiDescription(card, image, args) {
       throw error;
     }
 
-    const parsed = JSON.parse(responseText);
+    let parsed;
+    try {
+      parsed = JSON.parse(responseText);
+    } catch (error) {
+      if (attempt < args.maxRetries) {
+        retryCount += 1;
+        await sleep(500 * (attempt + 1));
+        continue;
+      }
+      const parseError = new Error(`[card-visual-description-agent] openai_response_json_parse_failed: ${error.message}`);
+      parseError.telemetry = {
+        response_model_version: args.modelVersion,
+        image_detail: args.imageDetail,
+        request_count: requestCount,
+        retry_count: retryCount,
+        usage: accumulatedUsage,
+        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
+      };
+      throw parseError;
+    }
+    const responseUsage = normalizeResponseUsage(parsed.usage);
+    accumulatedUsage = addUsageValues(accumulatedUsage, responseUsage);
     const outputText = parsed.output_text
       ?? parsed.output?.flatMap((item) => item.content ?? [])
         .map((content) => content.text ?? "")
         .join("")
       ?? "";
     if (!outputText.trim()) {
+      if (attempt < args.maxRetries) {
+        retryCount += 1;
+        await sleep(500 * (attempt + 1));
+        continue;
+      }
       const error = new Error("[card-visual-description-agent] openai_response_missing_output_text");
       error.telemetry = {
         response_model_version: parsed.model ?? args.modelVersion,
         image_detail: args.imageDetail,
         request_count: requestCount,
         retry_count: retryCount,
-        usage: normalizeResponseUsage(parsed.usage),
-        estimated_cost_usd: estimateUsageCostUsd(normalizeResponseUsage(parsed.usage), args.pricingSnapshot),
+        usage: accumulatedUsage,
+        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot),
       };
       throw error;
     }
 
-    const usage = normalizeResponseUsage(parsed.usage);
+    let payload;
+    try {
+      payload = JSON.parse(outputText);
+    } catch (error) {
+      if (attempt < args.maxRetries) {
+        retryCount += 1;
+        await sleep(500 * (attempt + 1));
+        continue;
+      }
+      const parseError = new Error(`[card-visual-description-agent] openai_output_json_parse_failed: ${error.message}`);
+      parseError.telemetry = {
+        response_model_version: parsed.model ?? args.modelVersion,
+        image_detail: args.imageDetail,
+        request_count: requestCount,
+        retry_count: retryCount,
+        usage: accumulatedUsage,
+        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
+      };
+      throw parseError;
+    }
     return {
-      payload: JSON.parse(outputText),
+      payload,
       telemetry: {
         response_model_version: parsed.model ?? args.modelVersion,
         image_detail: args.imageDetail,
         request_count: requestCount,
         retry_count: retryCount,
-        usage,
-        estimated_cost_usd: estimateUsageCostUsd(usage, args.pricingSnapshot) ?? 0,
+        usage: accumulatedUsage,
+        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
       },
     };
   }
@@ -4239,7 +5296,7 @@ async function fetchEligibleCards(client, args) {
   const orderExpr = columns.has("created_at")
     ? "cp.created_at desc nulls last, cp.id asc"
     : "cp.id asc";
-  const queryLimit = args.branchStratifiedSample ? args.branchCandidateLimit : args.limit;
+  const queryLimit = (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : args.limit;
   const params = [queryLimit];
   const filters = [];
   let nextParam = 2;
@@ -4298,6 +5355,7 @@ async function fetchEligibleCards(client, args) {
       limit $1`,
     params,
   );
+  if (args.v2StressSample) return selectV2StressSampleCardsV1(result.rows);
   if (!args.branchStratifiedSample) return result.rows;
   return selectBranchStratifiedCardsV1(result.rows, args.branchTargets);
 }
@@ -4345,9 +5403,29 @@ function markdownEscape(value) {
   return normalizeText(value).replace(/\|/g, "\\|");
 }
 
+function buildV2StressSelectionArtifact(eligibleCards) {
+  return {
+    selection_version: "CARD_VISUAL_FACT_GRAPH_V2_STRESS_SELECTION_V1",
+    excluded_prior_fact_graph_v1_card_print_ids: [...FACT_GRAPH_V1_DRY_RUN_EXCLUDED_CARD_PRINT_IDS],
+    selected_count: eligibleCards.length,
+    selected_cards: eligibleCards.map((card) => ({
+      card_print_id: card.card_print_id,
+      gv_id: card.gv_id,
+      name: card.name,
+      prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+      v2_stress_role: card.v2_stress_role ?? null,
+      v2_stress_reason: card.v2_stress_reason ?? null,
+      image_source: card.image_source,
+      image_status: card.image_status,
+      excluded_prior_fact_graph_v1_cards: Boolean(card.excluded_prior_fact_graph_v1_cards),
+      selection_score: card.v2_stress_selection_score ?? null,
+    })),
+  };
+}
+
 function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }) {
   const lines = [
-    "# Card Visual Fact Graph V1 Review Packet",
+    "# Card Visual Fact Graph V2 Review Packet",
     "",
     `Generated rows: ${generatedRows.length}`,
     `Validation failures: ${validationFailures.length}`,
@@ -4361,11 +5439,14 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
   for (const row of generatedRows) {
     const factGraph = row.visual_attributes?.fact_graph ?? {};
     const observations = factGraph.observations ?? [];
+    const typedFacts = factGraph.typed_facts ?? [];
+    const moduleReviews = factGraph.module_reviews ?? [];
     const counts = factGraph.counts ?? [];
     const searchTerms = factGraph.fact_grounded_search_terms ?? [];
     lines.push(`### ${row.gv_id || row.card_print_id} - ${row.name || "unknown"}`);
     lines.push("");
     lines.push(`- Branch: \`${row.prompt_branch || "unknown"}\``);
+    if (row.v2_stress_role) lines.push(`- V2 stress role: \`${row.v2_stress_role}\``);
     lines.push(`- Review status: \`${row.review_status}\``);
     lines.push(`- Description confidence: \`${row.description_confidence}\``);
     lines.push(`- Attribute confidence: \`${row.attribute_confidence}\``);
@@ -4379,6 +5460,19 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
       lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.scene_layer)} | ${markdownEscape(observation.salience)} | ${observation.confidence} |`);
     }
     if (observations.length > 30) lines.push(`| ...${observations.length - 30} more observations | | | | |`);
+    lines.push("");
+    lines.push("| Module | Status | Omission risk | Evidence quality | Abstentions |");
+    lines.push("|---|---|---|---|---|");
+    for (const review of moduleReviews) {
+      lines.push(`| ${markdownEscape(review.module)} | ${markdownEscape(review.review_status)} | ${markdownEscape(review.omission_risk)} | ${markdownEscape(review.evidence_quality)} | ${markdownEscape((review.abstentions ?? []).map((entry) => `${entry.field_path}: ${entry.reason}`).join("; "))} |`);
+    }
+    lines.push("");
+    lines.push("| Typed fact | Module | Claim | Support | Confidence |");
+    lines.push("|---|---|---|---|---:|");
+    for (const fact of typedFacts.slice(0, 40)) {
+      lines.push(`| ${markdownEscape(fact.fact_id)} | ${markdownEscape(fact.module)} | ${markdownEscape(fact.claim || fact.value)} | ${markdownEscape((fact.supporting_observation_ids ?? []).join(", "))} | ${fact.confidence} |`);
+    }
+    if (typedFacts.length > 40) lines.push(`| ...${typedFacts.length - 40} more typed facts | | | | |`);
     lines.push("");
     lines.push("| Count | Type | Value | Support | Confidence |");
     lines.push("|---|---|---|---|---:|");
@@ -4419,7 +5513,7 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
   return `${lines.join("\n")}\n`;
 }
 
-async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary }) {
+async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary, v2StressSelection = null }) {
   const reviewSample = generatedRows
     .filter((row) => row.review_status === "pending" || row.review_status === "needs_review")
     .slice(0, REVIEW_SAMPLE_LIMIT);
@@ -4433,6 +5527,7 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
     "review_sample.jsonl": reviewSample,
     "summary.json": summary,
   };
+  if (v2StressSelection) files["v2_stress_selection.json"] = v2StressSelection;
 
   const artifactHashes = {};
   for (const [name, value] of Object.entries(files)) {
@@ -4441,9 +5536,9 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
     else await writeJson(filePath, value);
     artifactHashes[name] = await hashFile(filePath);
   }
-  const packetPath = path.join(runDir, "FACT_GRAPH_V1_REVIEW_PACKET.md");
+  const packetPath = path.join(runDir, "FACT_GRAPH_V2_REVIEW_PACKET.md");
   await writeText(packetPath, buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }));
-  artifactHashes["FACT_GRAPH_V1_REVIEW_PACKET.md"] = await hashFile(packetPath);
+  artifactHashes["FACT_GRAPH_V2_REVIEW_PACKET.md"] = await hashFile(packetPath);
   return artifactHashes;
 }
 
@@ -4465,6 +5560,10 @@ function compactCardForArtifact(row) {
     trainer_name: promptMetadata.trainer_name,
     image_source: row.image_source,
     image_status: row.image_status,
+    v2_stress_role: row.v2_stress_role ?? null,
+    v2_stress_reason: row.v2_stress_reason ?? null,
+    v2_stress_selection_score: row.v2_stress_selection_score ?? null,
+    excluded_prior_fact_graph_v1_cards: row.excluded_prior_fact_graph_v1_cards ?? null,
     current_description_id: row.current_description_id,
     current_review_status: row.current_review_status,
   };
@@ -4756,9 +5855,10 @@ function buildSummary({
     image_detail: args.imageDetail,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
-    branch_candidate_limit: args.branchStratifiedSample ? args.branchCandidateLimit : null,
+    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    v2_stress_sample: args.v2StressSample,
     local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     pricing_snapshot: args.pricingSnapshot,
     started_at: startedAt,
@@ -4826,9 +5926,10 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     max_run_cost_usd: args.maxRunCostUsd,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
-    branch_candidate_limit: args.branchStratifiedSample ? args.branchCandidateLimit : null,
+    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    v2_stress_sample: args.v2StressSample,
     local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     agent_version: args.agentVersion,
     model_version: args.modelVersion,
@@ -4836,6 +5937,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     max_retries: args.maxRetries,
     pricing_snapshot: args.pricingSnapshot,
     force_version: args.forceVersion,
+    v2_stress_roles: args.v2StressSample ? FACT_GRAPH_V2_STRESS_ROLES : null,
     target_card_print_id: args.cardPrintId,
     target_card_print_ids: args.cardPrintIds,
     target_gv_id: args.gvId,
@@ -4854,6 +5956,10 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
   try {
     const eligibleCards = await fetchEligibleCards(client, args);
     const totalEligibleCatalogCount = Number(eligibleCards[0]?.total_eligible_catalog_count ?? eligibleCards.length);
+    const v2StressSelection = args.v2StressSample ? buildV2StressSelectionArtifact(eligibleCards) : null;
+    if (v2StressSelection) {
+      await writeJson(path.join(runDir, "v2_stress_selection.json"), v2StressSelection);
+    }
     const generatedRows = [];
     const validationFailures = [];
     const skippedImages = [];
@@ -4914,6 +6020,8 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
             set_code: card.set_code,
             set_name: card.set_name,
             number: card.number,
+            v2_stress_role: card.v2_stress_role ?? null,
+            v2_stress_reason: card.v2_stress_reason ?? null,
             embedding_input_hash_preview: sha256(buildEmbeddingInputV1(row)),
           });
         } catch (error) {
@@ -4951,6 +6059,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       validationFailures,
       skippedImages,
       summary,
+      v2StressSelection,
     });
 
     let applyResult = null;

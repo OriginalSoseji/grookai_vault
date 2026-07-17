@@ -21,6 +21,7 @@ import {
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
   selectBranchStratifiedCardsV1,
+  selectV2StressSampleCardsV1,
   validateVisualDescriptionPayloadV1,
 } from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
 
@@ -78,6 +79,98 @@ function validFactGraph(overrides = {}) {
         salience: "low",
         confidence: 0.9,
         evidence_strength: "abstention",
+      },
+    ],
+    typed_facts: [
+      {
+        fact_id: "fact_subject_001",
+        module: "subjects",
+        field_path: "subjects[0].identity",
+        claim: "Pikachu is a visible scene subject",
+        value: "Pikachu",
+        supporting_observation_ids: ["obs_subject_001"],
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_creature_001",
+        module: "creature_anatomy",
+        field_path: "modules.creature_anatomy.body_regions[0]",
+        claim: "Pikachu has a small yellow body and long ears visible",
+        value: "small yellow body and long ears",
+        supporting_observation_ids: ["obs_subject_001"],
+        confidence: 0.94,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_environment_001",
+        module: "environment",
+        field_path: "environment.plants",
+        claim: "ten visible trees form a forest background",
+        value: "ten visible trees",
+        supporting_observation_ids: ["obs_tree_group_001"],
+        confidence: 0.97,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_count_001",
+        module: "counts",
+        field_path: "counts[0].exact_count",
+        claim: "tree exact count is 10",
+        value: "10",
+        supporting_observation_ids: ["obs_tree_group_001"],
+        confidence: 0.97,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_color_light_001",
+        module: "color_and_light",
+        field_path: "visual_design.palette",
+        claim: "yellow and green palette is visible",
+        value: "yellow and green",
+        supporting_observation_ids: ["obs_palette_001"],
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_composition_001",
+        module: "composition",
+        field_path: "visual_design.composition",
+        claim: "central subject appears before background trees",
+        value: "central subject with background trees",
+        supporting_observation_ids: ["obs_subject_001", "obs_tree_group_001"],
+        confidence: 0.92,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_surface_001",
+        module: "surface_and_scan_cues",
+        field_path: "surface_and_scan_cues[0].abstention",
+        claim: "foil and texture cannot be determined from this scan",
+        value: "surface finish uncertain",
+        supporting_observation_ids: ["obs_surface_001"],
+        confidence: 0.9,
+        evidence_strength: "abstention",
+      },
+      {
+        fact_id: "fact_uncertainty_001",
+        module: "uncertainty_and_abstentions",
+        field_path: "uncertainty_and_abstentions[0].reason",
+        claim: "physical foil and texture cannot be determined",
+        value: "physical foil and texture cannot be determined from image",
+        supporting_observation_ids: ["obs_surface_001"],
+        confidence: 0.9,
+        evidence_strength: "abstention",
+      },
+      {
+        fact_id: "fact_search_001",
+        module: "fact_grounded_search_terms",
+        field_path: "fact_grounded_search_terms",
+        claim: "search terms are backed by visible subject and forest observations",
+        value: "Pikachu; forest background; ten trees",
+        supporting_observation_ids: ["obs_subject_001", "obs_tree_group_001"],
+        confidence: 0.93,
+        evidence_strength: "strong",
       },
     ],
     subjects: [
@@ -176,6 +269,110 @@ function validFactGraph(overrides = {}) {
       visual_design_review: "observed",
       surface_and_scan_cues_review: "observed",
     },
+    modules: {
+      subjects: {
+        fact_ids: ["fact_subject_001"],
+        scene_subject_observation_ids: ["obs_subject_001"],
+        depicted_subject_observation_ids: [],
+        character_representation_observation_ids: [],
+      },
+      human_appearance: {
+        fact_ids: [],
+        visible_body_regions: [],
+        facial_evidence: [],
+        hair: [],
+        gestures: [],
+        accessories: [],
+      },
+      creature_anatomy: {
+        fact_ids: ["fact_creature_001"],
+        body_regions: [
+          {
+            subject_observation_id: "obs_subject_001",
+            region: "body",
+            feature: "small yellow body",
+            visibility: "visible",
+            colors: ["yellow"],
+            details: ["long ears visible"],
+            supporting_observation_ids: ["obs_subject_001"],
+            confidence: 0.94,
+          },
+        ],
+        physical_features: [],
+        pose_orientation: [
+          {
+            subject_observation_id: "obs_subject_001",
+            pose: ["standing"],
+            orientation: "facing forward",
+            action_state: ["still"],
+            supporting_observation_ids: ["obs_subject_001"],
+            confidence: 0.9,
+          },
+        ],
+        effects: [],
+      },
+      clothing: {
+        fact_ids: [],
+        garments: [],
+        accessories: [],
+      },
+      objects_and_props: {
+        fact_ids: [],
+        object_observation_ids: [],
+      },
+      environment: {
+        fact_ids: ["fact_environment_001"],
+        observation_ids: ["obs_tree_group_001"],
+      },
+      composition: {
+        fact_ids: ["fact_composition_001"],
+        observation_ids: ["obs_subject_001", "obs_tree_group_001"],
+      },
+      color_and_light: {
+        fact_ids: ["fact_color_light_001"],
+        observation_ids: ["obs_palette_001"],
+      },
+      visual_effects: {
+        fact_ids: [],
+        observation_ids: [],
+      },
+      counts: {
+        fact_ids: ["fact_count_001"],
+        count_ids: ["count_tree_001"],
+      },
+      relationships: {
+        fact_ids: [],
+        relationship_ids: [],
+      },
+      surface_and_scan_cues: {
+        fact_ids: ["fact_surface_001"],
+        observation_ids: ["obs_surface_001"],
+      },
+      uncertainty_and_abstentions: {
+        fact_ids: ["fact_uncertainty_001"],
+        fields: ["surface_and_scan_cues"],
+      },
+      fact_grounded_search_terms: {
+        fact_ids: ["fact_search_001"],
+        terms: ["Pikachu", "forest background", "ten trees"],
+      },
+    },
+    module_reviews: [
+      { module: "subjects", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "human_appearance", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "creature_anatomy", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "clothing", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "objects_and_props", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "environment", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "composition", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "color_and_light", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "visual_effects", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "counts", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "relationships", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "surface_and_scan_cues", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [{ field_path: "surface_and_scan_cues.finish", reason: "foil and texture cannot be determined from scan", affected_observation_ids: ["obs_surface_001"] }] },
+      { module: "uncertainty_and_abstentions", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "fact_grounded_search_terms", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+    ],
     uncertainty_and_abstentions: [
       {
         field: "surface_and_scan_cues",
@@ -1837,6 +2034,30 @@ test("card visual description resolves fallback card branches and stratified sam
     }).map((row) => row.card_print_id),
     ["p1", "t1", "s1", "e1", "i1"],
   );
+
+  const stressRows = [
+    {
+      card_print_id: "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+      gv_id: "prior",
+      name: "Prior Mega Chandelure",
+      supertype: "Pokemon",
+      image_source: "self_hosted",
+    },
+    { card_print_id: "sp1", gv_id: "GV-SP1", name: "Mega Lucario ex", supertype: "Pokemon", image_source: "self_hosted" },
+    { card_print_id: "st1", gv_id: "GV-ST1", name: "Cynthia", supertype: "Trainer", card_category: "Supporter", image_source: "self_hosted" },
+    { card_print_id: "ss1", gv_id: "GV-SS1", name: "Forest Stadium", supertype: "Trainer", card_category: "Stadium", image_source: "self_hosted" },
+    { card_print_id: "se1", gv_id: "GV-SE1", name: "Psychic Energy", supertype: "Energy", image_source: "self_hosted" },
+    { card_print_id: "si1", gv_id: "GV-SI1", name: "Technical Machine", supertype: "Trainer", card_category: "Item", image_source: "self_hosted" },
+  ];
+  const stressSample = selectV2StressSampleCardsV1(stressRows);
+  assert.deepEqual(stressSample.map((row) => row.v2_stress_role), [
+    "dense_pokemon_artwork",
+    "trainer_person_artwork",
+    "environment_heavy_stadium",
+    "abstract_energy",
+    "object_heavy_item",
+  ]);
+  assert.deepEqual(stressSample.map((row) => row.card_print_id), ["sp1", "st1", "ss1", "se1", "si1"]);
 });
 
 test("card visual language review flags interpretive mood false negatives", () => {
@@ -2142,6 +2363,78 @@ function denseItemFactGraph(overrides = {}) {
         evidence_strength: "strong",
       },
     ],
+    typed_facts: [
+      {
+        fact_id: "fact_bomb_001",
+        module: "objects_and_props",
+        field_path: "objects_and_props[0].normalized_label",
+        claim: "one central bomb-like object is visible",
+        value: "central bomb",
+        supporting_observation_ids: ["obs_bomb_001"],
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_bomb_detail_001",
+        module: "objects_and_props",
+        field_path: "objects_and_props[0].material_appearance",
+        claim: "the visible object has a dark rounded surface and bright yellow band",
+        value: "dark rounded surface; bright yellow band",
+        supporting_observation_ids: ["obs_bomb_body_001", "obs_yellow_band_001"],
+        confidence: 0.94,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_visual_effect_001",
+        module: "visual_effects",
+        field_path: "visual_effects.spark",
+        claim: "a spark is visible at the fuse tip",
+        value: "spark at fuse tip",
+        supporting_observation_ids: ["obs_spark_001"],
+        confidence: 0.9,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_composition_item_001",
+        module: "composition",
+        field_path: "visual_design.composition",
+        claim: "the object is centered with a close crop and radial background",
+        value: "centered close crop with radial background",
+        supporting_observation_ids: ["obs_centered_composition_001", "obs_radial_lines_001"],
+        confidence: 0.87,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_color_item_001",
+        module: "color_and_light",
+        field_path: "visual_design.palette",
+        claim: "black, yellow, orange, and blue colors are visible",
+        value: "black; yellow; orange; blue",
+        supporting_observation_ids: ["obs_bomb_001", "obs_yellow_band_001", "obs_radial_lines_001", "obs_blue_background_001"],
+        confidence: 0.88,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_count_bomb_001",
+        module: "counts",
+        field_path: "counts[0].exact_count",
+        claim: "bomb exact count is 1",
+        value: "1",
+        supporting_observation_ids: ["obs_bomb_001"],
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_search_item_001",
+        module: "fact_grounded_search_terms",
+        field_path: "fact_grounded_search_terms",
+        claim: "search terms cite the central object, yellow band, and spark",
+        value: "central bomb; yellow stripe band; spark at fuse tip",
+        supporting_observation_ids: ["obs_bomb_001", "obs_yellow_band_001", "obs_spark_001"],
+        confidence: 0.92,
+        evidence_strength: "strong",
+      },
+    ],
     subjects: [],
     counts: [
       {
@@ -2222,6 +2515,90 @@ function denseItemFactGraph(overrides = {}) {
       visual_design_review: "observed",
       surface_and_scan_cues_review: "not_applicable",
     },
+    modules: {
+      subjects: {
+        fact_ids: [],
+        scene_subject_observation_ids: [],
+        depicted_subject_observation_ids: [],
+        character_representation_observation_ids: [],
+      },
+      human_appearance: {
+        fact_ids: [],
+        visible_body_regions: [],
+        facial_evidence: [],
+        hair: [],
+        gestures: [],
+        accessories: [],
+      },
+      creature_anatomy: {
+        fact_ids: [],
+        body_regions: [],
+        physical_features: [],
+        pose_orientation: [],
+        effects: [],
+      },
+      clothing: {
+        fact_ids: [],
+        garments: [],
+        accessories: [],
+      },
+      objects_and_props: {
+        fact_ids: ["fact_bomb_001", "fact_bomb_detail_001"],
+        object_observation_ids: ["obs_bomb_001", "obs_bomb_body_001", "obs_yellow_band_001", "obs_fuse_001"],
+      },
+      environment: {
+        fact_ids: [],
+        observation_ids: [],
+      },
+      composition: {
+        fact_ids: ["fact_composition_item_001"],
+        observation_ids: ["obs_centered_composition_001", "obs_radial_lines_001"],
+      },
+      color_and_light: {
+        fact_ids: ["fact_color_item_001"],
+        observation_ids: ["obs_bomb_001", "obs_yellow_band_001", "obs_radial_lines_001", "obs_blue_background_001"],
+      },
+      visual_effects: {
+        fact_ids: ["fact_visual_effect_001"],
+        observation_ids: ["obs_spark_001", "obs_radial_lines_001"],
+      },
+      counts: {
+        fact_ids: ["fact_count_bomb_001"],
+        count_ids: ["count_bomb_001"],
+      },
+      relationships: {
+        fact_ids: [],
+        relationship_ids: [],
+      },
+      surface_and_scan_cues: {
+        fact_ids: [],
+        observation_ids: [],
+      },
+      uncertainty_and_abstentions: {
+        fact_ids: [],
+        fields: [],
+      },
+      fact_grounded_search_terms: {
+        fact_ids: ["fact_search_item_001"],
+        terms: ["central bomb", "yellow stripe band", "spark at fuse tip"],
+      },
+    },
+    module_reviews: [
+      { module: "subjects", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "human_appearance", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "creature_anatomy", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "clothing", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "objects_and_props", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "environment", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "composition", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "color_and_light", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "visual_effects", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "counts", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "relationships", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "surface_and_scan_cues", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
+      { module: "uncertainty_and_abstentions", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "fact_grounded_search_terms", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+    ],
     fact_grounded_search_terms: [
       { term: "central bomb", supporting_observation_ids: ["obs_bomb_001"] },
       { term: "yellow stripe band", supporting_observation_ids: ["obs_yellow_band_001"] },
@@ -2240,7 +2617,7 @@ function denseItemFactGraph(overrides = {}) {
   });
 }
 
-test("card visual fact graph enforces density grounding ontology and count consistency", () => {
+test("card visual fact graph enforces grounding ontology and count consistency without quota failures", () => {
   const denseItem = validateVisualDescriptionPayloadV1(
     validFactPayload({ fact_graph: denseItemFactGraph() }),
     { name: "Tremendous Bomb", prompt_branch: "item_tool_supporter" },
@@ -2251,8 +2628,8 @@ test("card visual fact graph enforces density grounding ontology and count consi
     validFactPayload(),
     { name: "Tremendous Bomb", prompt_branch: "item_tool_supporter" },
   );
-  assert.equal(sparseItem.ok, false);
-  assert.ok(sparseItem.findings.some((finding) => finding.startsWith("fact_graph_observation_density_too_low:item_tool_supporter")));
+  assert.equal(sparseItem.ok, true);
+  assert.equal(sparseItem.findings.some((finding) => finding.startsWith("fact_graph_observation_density_too_low:item_tool_supporter")), false);
 
   const unsupportedEnvironment = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -2266,7 +2643,7 @@ test("card visual fact graph enforces density grounding ontology and count consi
   assert.equal(unsupportedEnvironment.ok, false);
   assert.ok(unsupportedEnvironment.findings.includes("fact_graph_environment_claim_without_support"));
 
-  const unsupportedDesign = validateVisualDescriptionPayloadV1(validFactPayload({
+  const unsupportedDesignPayload = validFactPayload({
     fact_graph: {
       visual_design: {
         ...validFactGraph().visual_design,
@@ -2274,9 +2651,12 @@ test("card visual fact graph enforces density grounding ontology and count consi
         supporting_observation_ids: [],
       },
     },
-  }));
-  assert.equal(unsupportedDesign.ok, false);
-  assert.ok(unsupportedDesign.findings.includes("fact_graph_visual_design_claim_without_support"));
+  });
+  const unsupportedDesign = validateVisualDescriptionPayloadV1(unsupportedDesignPayload);
+  assert.equal(unsupportedDesign.ok, true);
+  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(unsupportedDesign.normalized).some((detail) =>
+    detail.flag === "potential_unsupported_visual_design_claim"
+    && detail.field === "visual_attributes.fact_graph.visual_design"));
 
   const manyWithExactValues = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -2295,7 +2675,7 @@ test("card visual fact graph enforces density grounding ontology and count consi
   assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_count:count_tree_001"));
   assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_range:count_tree_001"));
 
-  const badObjectCountAndMaterial = validateVisualDescriptionPayloadV1(validFactPayload({
+  const badObjectCountAndMaterialPayload = validFactPayload({
     fact_graph: denseItemFactGraph({
       objects_and_props: [
         {
@@ -2305,10 +2685,16 @@ test("card visual fact graph enforces density grounding ontology and count consi
         },
       ],
     }),
-  }));
-  assert.equal(badObjectCountAndMaterial.ok, false);
-  assert.ok(badObjectCountAndMaterial.findings.includes("fact_graph_visible_object_count_reference_not_visible:obs_bomb_001"));
-  assert.ok(badObjectCountAndMaterial.findings.includes("fact_graph_material_claim_without_visual_evidence:obs_bomb_001"));
+  });
+  const badObjectCountAndMaterial = validateVisualDescriptionPayloadV1(badObjectCountAndMaterialPayload);
+  assert.equal(badObjectCountAndMaterial.ok, true);
+  const badObjectDetails = detectVisualDescriptionReviewFlagDetailsV1(badObjectCountAndMaterial.normalized);
+  assert.ok(badObjectDetails.some((detail) =>
+    detail.flag === "potential_count_reference_inconsistent"
+    && detail.matched_text.includes("obs_bomb_001")));
+  assert.ok(badObjectDetails.some((detail) =>
+    detail.flag === "potential_actual_material_claim_without_visual_evidence"
+    && detail.matched_text.includes("metal")));
 
   const coverageConflict = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -2319,8 +2705,7 @@ test("card visual fact graph enforces density grounding ontology and count consi
   assert.equal(coverageConflict.ok, false);
   assert.ok(coverageConflict.findings.includes("fact_graph_coverage_review_conflicts_with_entries:subjects_review"));
 
-  const energyIdentityTerm = validateVisualDescriptionPayloadV1(
-    validFactPayload({
+  const energyIdentityTermPayload = validFactPayload({
       fact_graph: denseItemFactGraph({
         subjects: [],
         fact_grounded_search_terms: [
@@ -2329,12 +2714,19 @@ test("card visual fact graph enforces density grounding ontology and count consi
           { term: "centered emblem", supporting_observation_ids: ["obs_centered_composition_001"] },
         ],
       }),
-    }),
+  });
+  const energyIdentityTerm = validateVisualDescriptionPayloadV1(
+    energyIdentityTermPayload,
     { name: "Psychic Energy", prompt_branch: "energy" },
   );
-  assert.equal(energyIdentityTerm.ok, false);
-  assert.ok(energyIdentityTerm.findings.includes("fact_graph_search_term_uses_card_identity:Psychic Energy"));
-  assert.ok(energyIdentityTerm.findings.includes("fact_graph_energy_search_term_uses_canonical_identity:Psychic Energy"));
+  assert.equal(energyIdentityTerm.ok, true);
+  const energyIdentityDetails = detectVisualDescriptionReviewFlagDetailsV1(
+    energyIdentityTerm.normalized,
+    { name: "Psychic Energy", prompt_branch: "energy" },
+  );
+  assert.ok(energyIdentityDetails.some((detail) =>
+    detail.flag === "potential_canonical_metadata_in_fact_grounded_search_terms"
+    && detail.matched_text === "Psychic Energy"));
 });
 
 test("card visual fact graph keeps subject kinds and expression evidence separate", () => {
@@ -2579,23 +2971,30 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   const script = source("scripts/audits/card_visual_description_agent_v1.mjs");
   const pkg = source("package.json");
   const visualLanguage = source("docs/contracts/CARD_VISUAL_LANGUAGE_V1.md");
+  const factGraphV2 = source("docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md");
   const contractIndex = source("docs/CONTRACT_INDEX.md");
 
   assert.match(agent, /refusing to apply fixture descriptions without --allow-fixture-apply/);
   assert.match(agent, /card_print_visual_descriptions/);
   assert.match(agent, /card_visual_description_runs/);
   assert.match(agent, /type: "input_image"/);
-  assert.match(agent, /CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1/);
-  assert.match(agent, /CARD_VISUAL_FACT_GRAPH_SCHEMA_V1/);
-  assert.match(agent, /Exhaustive Observable Fact Graph System/);
+  assert.match(agent, /CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2/);
+  assert.match(agent, /CARD_VISUAL_FACT_GRAPH_SCHEMA_V2/);
+  assert.match(agent, /Modular Exhaustive Observable Fact Graph System/);
   assert.match(agent, /Do not write a prose description, story, caption, review, or mood narrative/);
   assert.match(agent, /Every meaningful visible fact must appear as an atomic observation with an observation_id/);
+  assert.match(agent, /typed_facts/);
+  assert.match(agent, /module_reviews/);
+  assert.match(agent, /visible_body_regions/);
+  assert.match(agent, /clothing/);
+  assert.match(agent, /creature_anatomy/);
+  assert.match(agent, /Do not store subjective body-size, attractiveness, or personality labels/);
   assert.match(agent, /scene_subject: physically present/);
   assert.match(agent, /depicted_subject: character\/entity shown inside another surface/);
   assert.match(agent, /character_representation: object shaped like or patterned after a character/);
   assert.match(agent, /Pikachu as a pillow or ice cream is a character_representation/);
   assert.match(agent, /Do not store interpreted expression labels/);
-  assert.match(agent, /coverage_reviews must include all required review keys/);
+  assert.match(agent, /module_reviews must include all required module names/);
   assert.match(agent, /resolved_prompt_branch/);
   assert.match(agent, /Branch 1 - Pokemon/);
   assert.match(agent, /Branch 2 - Trainer/);
@@ -2604,7 +3003,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /Branch 5 - Item \/ Tool \/ Supporter/);
   assert.match(agent, /fact_grounded_search_terms must cite supporting observation_ids/);
   assert.match(agent, /buildFactGraphCompatibilityDigestV1/);
-  assert.match(agent, /FACT_GRAPH_V1_REVIEW_PACKET.md/);
+  assert.match(agent, /FACT_GRAPH_V2_REVIEW_PACKET.md/);
+  assert.match(agent, /--v2-stress-sample/);
   assert.match(agent, /target_gv_id/);
   assert.match(agent, /target_card_print_ids/);
   assert.match(agent, /--card-print-ids=/);
@@ -2649,6 +3049,12 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(visualLanguage, /Observation Hierarchy/);
   assert.match(visualLanguage, /Semantic Tag Standards/);
   assert.match(visualLanguage, /Future Expansion Placeholders/);
+  assert.match(factGraphV2, /# CARD_VISUAL_FACT_GRAPH_V2/);
+  assert.match(factGraphV2, /modular exhaustive ontology/);
+  assert.match(factGraphV2, /No fixed observation quota/);
+  assert.match(factGraphV2, /visible_body_regions/);
+  assert.match(factGraphV2, /material appearance only/);
   assert.match(contractIndex, /CARD_VISUAL_LANGUAGE_V1/);
   assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V1/);
+  assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V2/);
 });
