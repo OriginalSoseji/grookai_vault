@@ -1,0 +1,8 @@
+PASS image_confirmed_human_review_decisions.jsonl
+PASS rows represented exactly once: 9, 12, 13, 24
+PASS image_review_confirmed=true for all 4 rows
+PASS approve_later_gate count: 3
+PASS needs_revision count: 1
+PASS downgraded row: 9
+PASS no database status update recorded
+PASS no embeddings, app-facing reads, semantic search, or downstream integration recorded

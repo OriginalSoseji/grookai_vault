@@ -1,0 +1,42 @@
+{
+  "validated_at": "2026-07-17T01:58:00.000Z",
+  "source_file": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/image_confirmed_human_review_decisions.jsonl",
+  "checks": [
+    {
+      "name": "decisions_cover_text_only_approval_candidates",
+      "passed": true,
+      "details": "Rows 9, 12, 13, and 24 are all represented exactly once."
+    },
+    {
+      "name": "image_review_confirmed_for_all_rows",
+      "passed": true,
+      "details": "All four decision rows have image_review_confirmed=true and a local reviewed_image_path."
+    },
+    {
+      "name": "approve_count_is_3",
+      "passed": true,
+      "details": "Rows 12, 13, and 24 are approve_later_gate."
+    },
+    {
+      "name": "needs_revision_count_is_1",
+      "passed": true,
+      "details": "Row 9 is needs_revision after image-confirmed border mismatch."
+    },
+    {
+      "name": "text_only_artifact_linked",
+      "passed": true,
+      "details": "Each decision links back to text_only_human_review_decisions.jsonl."
+    },
+    {
+      "name": "no_database_status_apply_marker",
+      "passed": true,
+      "details": "No artifact claims a database status update or approval apply was performed."
+    },
+    {
+      "name": "no_embedding_or_app_surface_marker",
+      "passed": true,
+      "details": "No embeddings, semantic search, app-facing reads, or downstream integrations are recorded."
+    }
+  ],
+  "all_passed": true
+}
