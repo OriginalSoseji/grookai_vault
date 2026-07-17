@@ -158,6 +158,12 @@ Fact-grounded search terms must cite observation-backed facts.
 
 They must not contain unsupported lore, story, attacks, rarity, mechanics, set names, franchise labels, or canonical metadata that is not visually present.
 
+Search terms are judged by usefulness, not count. Do not pad redundant, generic, nonvisual, or weak terms to satisfy a quota; one or two strong grounded terms are preferable to three padded terms.
+
+When the model records observations but omits the top-level search-term array, the agent may deterministically derive search terms from high- and medium-salience artwork observations. Derived search terms must still cite observation IDs and must exclude card UI / print-marker observations.
+
+Search terms supported only by card UI / print-marker observations are removed from the artwork search-term layer. Actual-material terms in object fields are normalized to appearance-only language, such as `metal-like appearance`, `wood-like appearance`, or `stone-like appearance`.
+
 ## Boundaries
 
 V2 does not authorize:

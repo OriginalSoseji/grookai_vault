@@ -678,7 +678,6 @@ test("card visual description semantic tags stay visual and exclude metadata", (
   assert.deepEqual(result.semantic_tags, ["fantasy", "Mega Chandelure"]);
   assert.deepEqual(result.quality_flags, [
     "semantic_tags_metadata_or_generic_removed",
-    "semantic_tags_too_sparse_after_sanitization",
   ]);
   assert.deepEqual(result.quality_flag_details, [
     {
@@ -2399,6 +2398,37 @@ test("card visual fact graph validates observation-backed subjects counts and se
     ["obs_tree_group_001"],
   );
 
+  const oneUsefulSearchTerm = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  }));
+  assert.equal(oneUsefulSearchTerm.ok, true);
+  assert.ok(oneUsefulSearchTerm.normalized.semantic_tags.includes("forest background"));
+
+  const genericSearchTerm = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [
+        { term: "card", supporting_observation_ids: ["obs_subject_001"] },
+      ],
+    },
+  }));
+  assert.equal(genericSearchTerm.ok, true);
+  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(genericSearchTerm.normalized).some((detail) =>
+    detail.flag === "potential_generic_or_nonvisual_search_term"
+    && detail.matched_text === "card"));
+
+  const derivedSearchTerms = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [],
+    },
+  }));
+  assert.equal(derivedSearchTerms.ok, true);
+  assert.ok(derivedSearchTerms.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.supporting_observation_ids.includes("obs_subject_001")));
+
   const emptyWithoutReview = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
       depicted_subjects: [],
@@ -2807,6 +2837,20 @@ test("card visual fact graph enforces grounding ontology and count consistency w
   assert.equal(unsupportedEnvironment.ok, false);
   assert.ok(unsupportedEnvironment.findings.includes("fact_graph_environment_claim_without_support"));
 
+  const stormySkyWithoutWeatherField = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      environment: {
+        ...validFactGraph().environment,
+        setting: ["stormy cloudy sky"],
+        sky: ["stormy", "cloudy"],
+        weather: [],
+      },
+    },
+  }));
+  assert.equal(stormySkyWithoutWeatherField.ok, true);
+  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(stormySkyWithoutWeatherField.normalized).some((detail) =>
+    detail.flag === "potential_weather_field_alignment_missing"));
+
   const unsupportedDesignPayload = validFactPayload({
     fact_graph: {
       visual_design: {
@@ -2839,6 +2883,22 @@ test("card visual fact graph enforces grounding ontology and count consistency w
   assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_count:count_tree_001"));
   assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_range:count_tree_001"));
 
+  const estimatedRangeWithExactValue = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      counts: [
+        {
+          ...validFactGraph().counts[0],
+          count_type: "estimated_range",
+          exact_count: 5,
+          estimated_min: 4,
+          estimated_max: 6,
+        },
+      ],
+    },
+  }));
+  assert.equal(estimatedRangeWithExactValue.ok, true);
+  assert.equal(estimatedRangeWithExactValue.normalized.visual_attributes.fact_graph.counts[0].exact_count, 0);
+
   const badObjectCountAndMaterialPayload = validFactPayload({
     fact_graph: denseItemFactGraph({
       objects_and_props: [
@@ -2856,9 +2916,12 @@ test("card visual fact graph enforces grounding ontology and count consistency w
   assert.ok(badObjectDetails.some((detail) =>
     detail.flag === "potential_count_reference_inconsistent"
     && detail.matched_text.includes("obs_bomb_001")));
-  assert.ok(badObjectDetails.some((detail) =>
-    detail.flag === "potential_actual_material_claim_without_visual_evidence"
-    && detail.matched_text.includes("metal")));
+  assert.deepEqual(
+    badObjectCountAndMaterial.normalized.visual_attributes.fact_graph.objects_and_props[0].material_appearance,
+    ["metal-like appearance", "plastic-like appearance"],
+  );
+  assert.equal(badObjectDetails.some((detail) =>
+    detail.flag === "potential_actual_material_claim_without_visual_evidence"), false);
 
   const coverageConflict = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -3001,6 +3064,18 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   const unreadable = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unreadableBottomText }));
   assert.equal(unreadable.ok, true);
 
+  const inventedAbstentionObservation = structuredClone(validFactGraph());
+  inventedAbstentionObservation.module_reviews.find((review) => review.module === "card_ui_and_print_markers").abstentions.push({
+    field_path: "card_ui_and_print_markers.bottom_line_text",
+    reason: "text is too small at the available image resolution",
+    affected_observation_ids: ["obs_invented_bottom_text_001"],
+  });
+  const inventedAbstention = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: inventedAbstentionObservation }));
+  assert.equal(inventedAbstention.ok, true);
+  const normalizedUiReview = inventedAbstention.normalized.visual_attributes.fact_graph.module_reviews
+    .find((review) => review.module === "card_ui_and_print_markers");
+  assert.deepEqual(normalizedUiReview.abstentions.at(-1).affected_observation_ids, []);
+
   const inArtworkSign = structuredClone(validFactGraph());
   inArtworkSign.observations.push({
     observation_id: "obs_artwork_sign_001",
@@ -3045,9 +3120,12 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   uiSearchTerm.modules.fact_grounded_search_terms.terms.push("HP 280");
   const uiSearchValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: uiSearchTerm }));
   assert.equal(uiSearchValidation.ok, true);
-  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(uiSearchValidation.normalized).some((detail) =>
-    detail.flag === "potential_card_ui_text_in_artwork_search_terms"
-    && detail.matched_text === "HP 280"));
+  assert.equal(
+    uiSearchValidation.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((term) => term.term === "HP 280"),
+    false,
+  );
+  assert.equal(detectVisualDescriptionReviewFlagDetailsV1(uiSearchValidation.normalized).some((detail) =>
+    detail.flag === "potential_card_ui_text_in_artwork_search_terms"), false);
 
   assert.equal(
     buildFactGraphCompatibilityDigestV1(validFactGraph()),
@@ -3058,6 +3136,21 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
 test("card visual fact graph keeps subject kinds and expression evidence separate", () => {
   const livingPikachu = validateVisualDescriptionPayloadV1(validFactPayload());
   assert.equal(livingPikachu.ok, true);
+
+  const blankSubjectIdentity = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [
+        {
+          ...validFactGraph().subjects[0],
+          identity: "",
+          identity_confidence: 0,
+        },
+      ],
+    },
+  }));
+  assert.equal(blankSubjectIdentity.ok, true);
+  assert.equal(blankSubjectIdentity.normalized.visual_attributes.fact_graph.subjects[0].identity, "Pikachu");
+  assert.equal(blankSubjectIdentity.normalized.visual_attributes.fact_graph.subjects[0].identity_confidence, 0.5);
 
   const depictedPikachu = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {

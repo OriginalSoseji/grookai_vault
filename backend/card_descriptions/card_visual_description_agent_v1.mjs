@@ -83,6 +83,19 @@ const GENERIC_OR_NON_VISUAL_TAGS = new Set([
   "vmax",
   "vstar",
 ]);
+const SEARCH_TERM_STOP_WORDS = new Set([
+  "and",
+  "are",
+  "card",
+  "figure",
+  "from",
+  "has",
+  "illustration",
+  "scene",
+  "style",
+  "the",
+  "with",
+]);
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
   /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|fantastical|starry|stars)\b/gi;
 const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
@@ -126,7 +139,7 @@ const FACT_GRAPH_NON_LIVING_SUBJECT_LABEL_PATTERN =
 const FACT_GRAPH_SCENE_SUBJECT_OBSERVATION_KIND_PATTERN =
   /\b(?:scene_subject|subject|person|human|trainer|pokemon|pokémon|creature|character|entity|living_entity)\b/i;
 const FACT_GRAPH_UNSUPPORTED_MATERIAL_PATTERN =
-  /\b(?:metal|plastic|glass|wood|stone|rubber|fabric|paper|ceramic|steel|iron|gold|silver)\b/i;
+  /\b(?:metal|plastic|glass|wood|stone|rubber|fabric|paper|ceramic|steel|iron|gold|silver)\b(?![-\s]*(?:like|looking|colored|coloured|appearance|tone|highlight|edge|shine|surface|finish))/i;
 const VISUAL_POLICY_EXPRESSION_UNCERTAIN_CLAIM_PATTERN =
   /\b(confident expression|determined expression|focused expression|thoughtful expression|assertive expression)\b/gi;
 const VISUAL_POLICY_TRAINER_PERSONALITY_CLAIM_PATTERN =
@@ -1324,6 +1337,16 @@ function addFactGraphSupportAndMetadataFlagDetails(details, payload, card = {}, 
 
   const knownIds = observationIdSet(factGraph);
   const uiObservationIds = cardUiObservationIdSet(factGraph);
+  const environment = factGraph.environment ?? {};
+  const weatherText = flattenFactGraphText([environment.setting, environment.sky, environment.terrain]);
+  if (/\b(storm|stormy|lightning|thunderstorm|rain|snow|wind|hail|fog)\b/i.test(weatherText) && !hasFactGraphClaimValue(environment.weather)) {
+    details.push({
+      flag: "potential_weather_field_alignment_missing",
+      field: "visual_attributes.fact_graph.environment",
+      matched_text: "weather-like setting or sky text without environment.weather",
+      policy_rule: "weather_like_environment_terms_should_be_field_aligned",
+    });
+  }
   const visualDesign = factGraph.visual_design ?? {};
   const designClaimFields = [
     "palette",
@@ -1355,6 +1378,14 @@ function addFactGraphSupportAndMetadataFlagDetails(details, payload, card = {}, 
     const termText = normalizeText(term.term);
     const termKey = tagKey(termText);
     const supportIds = normalizeObservationReferenceArray(term.supporting_observation_ids);
+    if (GENERIC_OR_NON_VISUAL_TAGS.has(termKey) || NON_PROBLEM_QUALITY_FLAGS.has(termKey)) {
+      details.push({
+        flag: "potential_generic_or_nonvisual_search_term",
+        field: "visual_attributes.fact_graph.fact_grounded_search_terms.term",
+        matched_text: termText,
+        policy_rule: "fact_grounded_search_terms_must_be_specific_visible_concepts",
+      });
+    }
     if (supportIds.length > 0 && supportIds.every((id) => uiObservationIds.has(id))) {
       details.push({
         flag: "potential_card_ui_text_in_artwork_search_terms",
@@ -1680,7 +1711,7 @@ export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
 
   const quality_flags = [];
   if (removedMetadataOrGeneric) quality_flags.push("semantic_tags_metadata_or_generic_removed");
-  if (semantic_tags.length < 3) quality_flags.push("semantic_tags_too_sparse_after_sanitization");
+  if (semantic_tags.length < 1) quality_flags.push("semantic_tags_missing_after_sanitization");
 
   return {
     semantic_tags: uniqueSorted(semantic_tags),
@@ -1951,7 +1982,9 @@ function normalizeFactGraphCounts(value) {
     count_id: normalizeText(entry.count_id),
     normalized_label: normalizeText(entry.normalized_label),
     count_type: normalizeText(entry.count_type),
-    exact_count: asNonnegativeInt(entry.exact_count, 0, "fact_graph.counts.exact_count"),
+    exact_count: normalizeText(entry.count_type) === "estimated_range"
+      ? 0
+      : asNonnegativeInt(entry.exact_count, 0, "fact_graph.counts.exact_count"),
     estimated_min: asNonnegativeInt(entry.estimated_min, 0, "fact_graph.counts.estimated_min"),
     estimated_max: asNonnegativeInt(entry.estimated_max, 0, "fact_graph.counts.estimated_max"),
     abstention_reason: normalizeText(entry.abstention_reason),
@@ -1994,11 +2027,31 @@ function normalizeObjectsAndProps(value) {
     normalized_label: normalizeText(entry.normalized_label),
     object_type: normalizeText(entry.object_type),
     colors: normalizeStringArray(entry.colors),
-    material_appearance: normalizeStringArray(entry.material_appearance),
+    material_appearance: normalizeStringArray(entry.material_appearance).map(normalizeMaterialAppearanceText),
     location: normalizeText(entry.location),
     count_reference: normalizeText(entry.count_reference),
     confidence: normalizeConfidence(entry.confidence),
   }));
+}
+
+function normalizeMaterialAppearanceText(value) {
+  let text = normalizeText(value);
+  if (!text) return text;
+  text = text.replace(/\bmetal\b/gi, "metal-like appearance");
+  text = text.replace(/\bplastic\b/gi, "plastic-like appearance");
+  text = text.replace(/\bglass\b/gi, "glass-like appearance");
+  text = text.replace(/\bwood(?:en)?\b/gi, "wood-like appearance");
+  text = text.replace(/\bstone\b/gi, "stone-like appearance");
+  text = text.replace(/\brubber\b/gi, "rubber-like appearance");
+  text = text.replace(/\bfabric\b/gi, "fabric-like appearance");
+  text = text.replace(/\bpaper\b/gi, "paper-like appearance");
+  text = text.replace(/\bceramic\b/gi, "ceramic-like appearance");
+  text = text.replace(/\bsteel\b/gi, "steel-like appearance");
+  text = text.replace(/\biron\b/gi, "iron-like appearance");
+  text = text.replace(/\bgold\b/gi, "gold-colored appearance");
+  text = text.replace(/\bsilver\b/gi, "silver-colored appearance");
+  text = text.replace(/\bshiny\b/gi, "reflective-looking");
+  return normalizeText(text);
 }
 
 function normalizeRelationships(value) {
@@ -2054,17 +2107,123 @@ function normalizeUncertaintyAndAbstentions(value) {
   }));
 }
 
-function normalizeFactGroundedSearchTerms(value, counts = []) {
+function searchTermTokens(value) {
+  return tagKey(value)
+    .split(" ")
+    .map((token) => token.trim())
+    .filter((token) => token.length > 2 && !SEARCH_TERM_STOP_WORDS.has(token));
+}
+
+function isUsefulSearchTermCandidate(value) {
+  const key = tagKey(value);
+  if (!key) return false;
+  if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || NON_PROBLEM_QUALITY_FLAGS.has(key)) return false;
+  return searchTermTokens(key).length > 0;
+}
+
+function normalizeSearchTermText(value) {
+  return normalizeText(value).replace(/\bshiny\b/gi, "reflective-looking");
+}
+
+function observationSearchText(observation) {
+  return [
+    observation.label,
+    observation.normalized_label,
+    observation.kind,
+  ].map(normalizeText).filter(Boolean).join(" ");
+}
+
+function supportingObservationIdsForSearchTerm(term, observations, typedFacts) {
+  const tokens = searchTermTokens(term);
+  if (tokens.length < 1) return [];
+  const termKey = tagKey(term);
+  const scored = [];
+  for (const observation of observations.filter((entry) => !isCardUiPrintMarkerObservation(entry))) {
+    const id = normalizeText(observation.observation_id);
+    if (!id) continue;
+    const text = observationSearchText(observation);
+    const observationKey = tagKey(text);
+    const observationTokens = new Set(searchTermTokens(text));
+    const overlap = tokens.filter((token) => observationTokens.has(token)).length;
+    const directMatch = Boolean(termKey && observationKey && (observationKey.includes(termKey) || termKey.includes(observationKey)));
+    if (directMatch || overlap >= Math.min(tokens.length, 2)) {
+      scored.push({
+        id,
+        score: (directMatch ? 10 : 0) + overlap + (normalizeText(observation.salience) === "high" ? 2 : 0),
+      });
+    }
+  }
+  if (scored.length > 0) {
+    return uniquePreserving(scored
+      .sort((left, right) => right.score - left.score)
+      .slice(0, 3)
+      .map((entry) => entry.id));
+  }
+
+  for (const fact of typedFacts ?? []) {
+    const factText = [fact.claim, fact.value, fact.field_path].map(normalizeText).filter(Boolean).join(" ");
+    const factTokens = new Set(searchTermTokens(factText));
+    const overlap = tokens.filter((token) => factTokens.has(token)).length;
+    if (overlap >= Math.min(tokens.length, 2)) {
+      return normalizeObservationReferenceArray(fact.supporting_observation_ids).slice(0, 3);
+    }
+  }
+  return [];
+}
+
+function derivedSearchTermsFromObservations(observations) {
+  const derivableSalience = new Set(["high", "medium", "salient", "moderate"]);
+  return observations
+    .filter((observation) => !isCardUiPrintMarkerObservation(observation))
+    .filter((observation) => derivableSalience.has(normalizeText(observation.salience)))
+    .map((observation) => ({
+      term: normalizeText(observation.normalized_label) || normalizeText(observation.label),
+      supporting_observation_ids: [normalizeText(observation.observation_id)].filter(Boolean),
+    }))
+    .filter((entry) => isUsefulSearchTermCandidate(entry.term) && entry.supporting_observation_ids.length > 0)
+    .slice(0, 8);
+}
+
+function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
+  const uiObservationIds = new Set((options.observations ?? [])
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
   const countSupportById = new Map(
     normalizeObjectArray(counts)
       .map((count) => [normalizeText(count.count_id), normalizeObservationReferenceArray(count.supporting_observation_ids)])
       .filter(([countId, support]) => countId && support.length > 0),
   );
-  return normalizeObjectArray(value).map((entry) => ({
-    term: normalizeText(entry.term),
+  const normalized = normalizeObjectArray(value).map((entry) => ({
+    term: normalizeSearchTermText(entry.term),
     supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
       .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
-  }));
+  })).filter((entry) =>
+    !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
+  );
+
+  const seenTerms = new Set(normalized.map((entry) => tagKey(entry.term)).filter(Boolean));
+  for (const term of normalizeStringArray(options.moduleTerms)) {
+    const key = tagKey(term);
+    if (!key || seenTerms.has(key)) continue;
+    const supportingIds = supportingObservationIdsForSearchTerm(term, options.observations ?? [], options.typedFacts ?? []);
+    if (supportingIds.length < 1) continue;
+    normalized.push({ term: normalizeSearchTermText(term), supporting_observation_ids: supportingIds });
+    seenTerms.add(key);
+  }
+
+  if (normalized.length < 1) {
+    for (const entry of derivedSearchTermsFromObservations(options.observations ?? [])) {
+      const key = tagKey(entry.term);
+      if (!key || seenTerms.has(key)) continue;
+      normalized.push(entry);
+      seenTerms.add(key);
+    }
+  }
+
+  return normalized.filter((entry) =>
+    !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
+  );
 }
 
 function normalizeModuleFactIds(value) {
@@ -2257,7 +2416,7 @@ function normalizeFactGraphModules(value, knownObservationIds = null) {
   };
 }
 
-function normalizeModuleReviews(value) {
+function normalizeModuleReviews(value, knownObservationIds = null) {
   return normalizeObjectArray(value).map((entry) => ({
     module: normalizeText(entry.module),
     review_status: normalizeText(entry.review_status),
@@ -2266,9 +2425,26 @@ function normalizeModuleReviews(value) {
     abstentions: normalizeObjectArray(entry.abstentions).map((abstention) => ({
       field_path: normalizeText(abstention.field_path),
       reason: normalizeText(abstention.reason),
-      affected_observation_ids: normalizeObservationReferenceArray(abstention.affected_observation_ids),
+      affected_observation_ids: normalizeObservationReferenceArray(abstention.affected_observation_ids)
+        .filter((id) => !knownObservationIds || knownObservationIds.has(id)),
     })),
   }));
+}
+
+function applySubjectIdentityFallbacks(subjects, observations) {
+  const observationLabelById = new Map(observations.map((observation) => [
+    normalizeText(observation.observation_id),
+    normalizeText(observation.label) || normalizeText(observation.normalized_label),
+  ]));
+  return subjects.map((subject) => {
+    if (normalizeText(subject.identity)) return subject;
+    const fallbackIdentity = observationLabelById.get(normalizeText(subject.observation_id)) || "visible scene subject";
+    return {
+      ...subject,
+      identity: fallbackIdentity,
+      identity_confidence: subject.identity_confidence || 0.5,
+    };
+  });
 }
 
 function normalizeFactGraphV1(value) {
@@ -2276,10 +2452,19 @@ function normalizeFactGraphV1(value) {
   const counts = normalizeFactGraphCounts(graph.counts);
   const observations = normalizeFactGraphObservations(graph.observations);
   const knownObservationIds = new Set(observations.map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
+  const typedFacts = normalizeTypedFacts(graph.typed_facts);
+  const subjects = applySubjectIdentityFallbacks(normalizeFactGraphSubjects(graph.subjects), observations);
+  const searchTerms = normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts, {
+    observations,
+    typedFacts,
+    moduleTerms: graph.modules?.fact_grounded_search_terms?.terms,
+  });
+  const modules = normalizeFactGraphModules(graph.modules, knownObservationIds);
+  modules.fact_grounded_search_terms.terms = searchTerms.map((entry) => entry.term);
   return {
     observations,
-    typed_facts: normalizeTypedFacts(graph.typed_facts),
-    subjects: normalizeFactGraphSubjects(graph.subjects),
+    typed_facts: typedFacts,
+    subjects,
     depicted_subjects: normalizeDepictedSubjects(graph.depicted_subjects),
     character_representations: normalizeCharacterRepresentations(graph.character_representations),
     counts,
@@ -2290,10 +2475,10 @@ function normalizeFactGraphV1(value) {
     visual_design: normalizeVisualDesign(graph.visual_design),
     surface_and_scan_cues: normalizeSurfaceAndScanCues(graph.surface_and_scan_cues),
     coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
-    modules: normalizeFactGraphModules(graph.modules, knownObservationIds),
-    module_reviews: normalizeModuleReviews(graph.module_reviews),
+    modules,
+    module_reviews: normalizeModuleReviews(graph.module_reviews, knownObservationIds),
     uncertainty_and_abstentions: normalizeUncertaintyAndAbstentions(graph.uncertainty_and_abstentions),
-    fact_grounded_search_terms: normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts),
+    fact_grounded_search_terms: searchTerms,
   };
 }
 
@@ -3050,7 +3235,7 @@ export function evaluateAutoApprovalReadinessV1(row, options = {}) {
     ],
     semantic_tags_remain_visually_grounded: [
       "potential_semantic_tag_nonvisual_concept",
-      "semantic_tags_too_sparse_after_sanitization",
+      "semantic_tags_missing_after_sanitization",
       "semantic_tags_metadata_or_generic_removed",
     ],
     branch_specific_requirements_pass: [
@@ -3569,7 +3754,7 @@ function validateFactGraphGroundedFieldsV1(factGraph, knownIds) {
   }
 
   const weatherText = flattenFactGraphText([environment.setting, environment.sky, environment.terrain]);
-  if (/\b(thunderstorm|storm|stormy|rain|snow|wind|lightning|hail|fog)\b/i.test(weatherText) && !hasFactGraphClaimValue(environment.weather)) {
+  if (/\b(thunderstorm|rain|snow|wind|hail|fog)\b/i.test(weatherText) && !hasFactGraphClaimValue(environment.weather)) {
     findings.push("fact_graph_weather_claim_without_weather_field");
   }
 
@@ -3683,6 +3868,7 @@ function validateFactGraphModulesV2(factGraph, knownIds) {
 
 function validateFactGraphModuleReviewsV2(factGraph) {
   const findings = [];
+  const knownIds = observationIdSet(factGraph);
   const reviews = factGraph.module_reviews ?? [];
   if (!Array.isArray(reviews)) return ["fact_graph_module_reviews_not_array"];
 
@@ -3714,6 +3900,12 @@ function validateFactGraphModuleReviewsV2(factGraph) {
     for (const abstention of review.abstentions ?? []) {
       if (!abstention.field_path) findings.push(`fact_graph_module_review_abstention_field_missing:${module || "unknown"}`);
       if (!abstention.reason) findings.push(`fact_graph_module_review_abstention_reason_missing:${module || "unknown"}`);
+      addMissingObservationFindings(
+        findings,
+        abstention.affected_observation_ids ?? [],
+        knownIds,
+        `fact_graph_module_review_abstention_observation_missing:${module || "unknown"}`,
+      );
     }
   }
   return findings;
@@ -3909,7 +4101,7 @@ function validateFactGraphV1(factGraph) {
     if (!sectionCoveredOrObserved(factGraph, key, rows)) findings.push(`fact_graph_empty_section_without_review:${key}`);
   }
 
-  if ((factGraph.fact_grounded_search_terms ?? []).length < 3) findings.push("fact_graph_search_terms_too_sparse");
+  if ((factGraph.fact_grounded_search_terms ?? []).length < 1) findings.push("fact_graph_search_terms_missing");
   if (factGraphContainsInterpretedExpression(factGraph)) findings.push("fact_graph_interpreted_expression_not_allowed");
   if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|fierce|majestic|confident|angry|happy|sad)\b/i.test(flattenFactGraphText(factGraph))) {
     findings.push("fact_graph_subjective_or_interpreted_label_not_allowed");
@@ -3943,7 +4135,7 @@ export function validateVisualDescriptionPayloadV1(payload, card = {}) {
   }
   findings.push(...validateFactGraphV1(factGraph));
   findings.push(...validateFactGraphOntologyV1(factGraph, card));
-  if (semanticTags.length < 3) findings.push("semantic_tags_too_sparse");
+  if (semanticTags.length < 1) findings.push("semantic_tags_missing");
   if (!Number.isFinite(descriptionConfidence) || descriptionConfidence < 0 || descriptionConfidence > 1) {
     findings.push("description_confidence_invalid");
   }
@@ -4044,7 +4236,7 @@ function promptBranchInstructions(branch) {
         "Record symbols, gradients, radiating lines, circular motifs, repeated shapes, color fields, highlights, central emblem placement, borders between color regions, lighting, and symmetry as separate observations and typed facts.",
         "Do not name the symbol by card identity such as Psychic Energy. Describe visible shape instead: black eye-like symbol, centered circular emblem, purple gradient, white radiating lines, symmetrical abstract composition.",
         "Do not put an energy symbol, eye symbol, color field, glow, or abstract form into subjects. Use subjects: [] and subjects_review: none_visible unless a living/entity subject is actually visible.",
-        "If the card shows one central symbol, create an observation and exact count for the symbol, and add at least three fact-grounded search terms from visible symbol, palette, and composition facts.",
+        "If the card shows one central symbol, create an observation and exact count for the symbol. Add only useful fact-grounded search terms from visible symbol, palette, and composition facts.",
         "Do not invent creatures, environments, metaphysical purpose, powers, or lore.",
       ];
     case "item_tool_supporter":
@@ -4058,7 +4250,7 @@ function promptBranchInstructions(branch) {
         "For a mechanical, bomb-like, badge-like, bell-like, fossil-like, or tool-like object, create separate observations and typed facts for central object, body, panels, seams, bands, handles, buttons, openings, fuses, sparks, visual effects, background color regions, crop/framing, palette, and composition when visible.",
         "Do not assert actual materials such as metal or plastic. Describe material appearance only, such as dark rounded body, yellow stripe band, bright spark, metallic-looking highlight, or reflective-looking highlight.",
         "For each visible main object, create an exact count of 1 and set count_reference to that count_id.",
-        "Add at least three fact-grounded search terms from visible object, shape, color, surrounding effects, or composition facts.",
+        "Add useful fact-grounded search terms from visible object, shape, color, surrounding effects, or composition facts. Do not pad redundant or weak terms to satisfy a quota.",
         "Do not infer object purpose, gameplay function, or Pokemon users unless visible.",
       ];
     case "pokemon":
@@ -4154,7 +4346,7 @@ function buildPrompt(card) {
     "Use count_type exact for 1, 2, 3, or other countable repeated elements. Use many only when dense elements cannot be individually counted; do not combine count_type many with an exact_count or an exact min/max range.",
     "Every visible salient object in objects_and_props must have a count_reference that points to a real count_id. Do not use count_reference: not_visible for a visible object.",
     "Flames, lightning, sky, background, symbols, gradients, color fields, trees, bombs, bells, badges, tools, and abstract effects are not scene_subjects. Record them as observations, objects_and_props, environment, visual_design, counts, or relationships as appropriate.",
-    "Every card must include at least three fact_grounded_search_terms. Multiple useful terms may cite the same observation_id when a simple card has only one or two visible observations.",
+    "fact_grounded_search_terms should capture useful visible search concepts only. Do not pad redundant, generic, nonvisual, or weak terms to satisfy a quota; one or two strong terms are better than three padded terms.",
     "Do not automatically add OCR text, card name text, HP, collector numbers, copyright lines, promo marks, stamps, or logos to fact_grounded_search_terms. Card UI terms remain in card_ui_and_print_markers until a future identity-resolution or search layer intentionally exposes them.",
     "scene_layers arrays must contain observation_id strings only, never labels such as tree, sky, or Pikachu.",
     "environment.supporting_observation_ids, visual_design.supporting_observation_ids, relationships, counts, uncertainty, and search terms must cite observation_id values only.",
@@ -4168,7 +4360,7 @@ function buildPrompt(card) {
     "counts.count_type must be one of: exact, estimated_range, many, uncountable_due_to_crop, uncountable_due_to_density, not_visible.",
     "fact_grounded_search_terms must cite supporting observation_ids. Search terms may include useful future-search phrases such as sleeping Pikachu, Pikachu pillow, forest background, ten trees, food scene, cozy interior, purple flames, or circular motif only when supported by observations.",
     "Each fact_grounded_search_terms entry must include at least one supporting observation_id.",
-    "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, or unsupported lore in search terms.",
+    "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, generic filler, or unsupported lore in search terms.",
     "coverage_reviews must include all required review keys. Use observed when the category has entries; otherwise use none_visible, not_applicable, cannot_determine_due_to_low_resolution, cannot_determine_due_to_crop, cannot_determine_due_to_glare, or uncertain.",
     "card_ui_and_print_markers must include fact_ids plus observation-id arrays for name_text, hp_text, collector_number, set_symbol, rarity_mark, copyright_line, bottom_line_text, promo_stamp, logo, energy_symbol, regulation_mark, illustrator_text, error_marker, and other_print_marker evidence.",
     "Every observation ID listed in card_ui_and_print_markers must also exist as a full observation object in observations. Never place a placeholder ID such as obs_hp_001 or obs_copyright_001 into the UI module unless that exact observation_id exists in observations.",
