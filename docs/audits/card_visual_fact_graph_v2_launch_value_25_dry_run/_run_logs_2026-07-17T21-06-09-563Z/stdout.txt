@@ -1,0 +1,6 @@
+[card-visual-description-agent] run_key=495c890104d3a659b6cc15814b62592a90bd39539625fb82bf9042d1a0830a00
+[card-visual-description-agent] run_dir=docs/audits/card_visual_fact_graph_v2_launch_value_25_dry_run/2026-07-17T21-06-10-044Z_dry_run_495c890104d3
+[card-visual-description-agent] eligible=25
+[card-visual-description-agent] validated=0
+[card-visual-description-agent] skipped=0
+[card-visual-description-agent] failed=25

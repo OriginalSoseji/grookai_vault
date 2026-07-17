@@ -1,0 +1,139 @@
+{
+  "artifact_version": "CARD_VISUAL_FACT_GRAPH_V2_LAUNCH_VALUE_25_DETERMINISTIC_REPAIR_REPLAY_V1",
+  "created_at": "2026-07-17T22:28:00.000Z",
+  "scope": {
+    "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+    "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+    "model_version": "gpt-4.1-mini",
+    "image_detail": "high",
+    "energies": "deferred_excluded",
+    "database_writes": false,
+    "approvals": false,
+    "embeddings": false,
+    "semantic_search": false,
+    "taste_engine": false,
+    "listing_resolver": false,
+    "grookai_signature": false,
+    "story_generation": false
+  },
+  "deterministic_repairs": [
+    "drop evidence-only semantic labels such as colored eyes, neutral mouth, serious/cannot-determine expression, and generic human-character labels",
+    "drop unsupported intention/generic pose semantic labels such as ready for attack, stance, and pose",
+    "allow directly visible semantic labels for winking, gestures, aurora/lightning/electricity effects, bridges, stairs, fences, tables, windows, plants, and explosion/impact effects",
+    "normalize exact counts by clearing stale estimated range values while preserving invalid many-count conflicts for validation",
+    "normalize human body-region and facial-evidence rows through objective visual text cleanup",
+    "derive card UI abstentions when a card UI observation already says unreadable, weak, or cannot determine"
+  ],
+  "run_results": [
+    {
+      "run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_dry_run/2026-07-17T21-26-04-988Z_dry_run_7626a76c2d3d",
+      "live_summary": {
+        "attempted_count": 25,
+        "validated_count": 14,
+        "failed_count": 11,
+        "skipped_count": 0,
+        "needs_review_count": 9,
+        "pending_count": 5,
+        "estimated_cost_usd": 0.2480872,
+        "usage": {
+          "request_count": 25,
+          "retry_count": 0,
+          "input_tokens": 220006,
+          "output_tokens": 105381,
+          "total_tokens": 325387,
+          "cached_input_tokens": 28416,
+          "reasoning_output_tokens": 0,
+          "estimated_cost_usd": 0.2480872
+        },
+        "quality_flag_counts": {
+          "potential_count_reference_inconsistent": 3,
+          "potential_module_incomplete_or_low_evidence": 3,
+          "potential_module_review_conflicts_with_entries": 5,
+          "potential_pose_or_action_without_visible_support": 1,
+          "potential_unavailable_metadata_prompt_branch_mismatch": 1
+        },
+        "policy_rule_counts": {},
+        "local_tls_certificate_verification_disabled": true,
+        "boundary": {
+          "db_writes": false,
+          "model_calls": true,
+          "fixture_generation": false,
+          "embeddings": false,
+          "card_prints_mutation": false
+        }
+      },
+      "offline_replay_summary": {
+        "replayed_count": 25,
+        "ok_count": 25,
+        "failed_count": 0,
+        "recovered_previous_failures": 11,
+        "still_failed_previous_failures": 0,
+        "generated_outputs_still_ok": 14,
+        "generated_outputs_now_failed": 0
+      },
+      "offline_failures": []
+    },
+    {
+      "run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_dry_run/2026-07-17T21-56-45-176Z_dry_run_3a11bae7e273",
+      "live_summary": {
+        "attempted_count": 25,
+        "validated_count": 11,
+        "failed_count": 14,
+        "skipped_count": 0,
+        "needs_review_count": 9,
+        "pending_count": 2,
+        "estimated_cost_usd": 0.2520328,
+        "usage": {
+          "request_count": 25,
+          "retry_count": 0,
+          "input_tokens": 220006,
+          "output_tokens": 108903,
+          "total_tokens": 328909,
+          "cached_input_tokens": 34048,
+          "reasoning_output_tokens": 0,
+          "estimated_cost_usd": 0.2520328
+        },
+        "quality_flag_counts": {
+          "potential_canonical_metadata_in_visual_output": 1,
+          "potential_count_reference_inconsistent": 1,
+          "potential_empty_module_marked_complete": 2,
+          "potential_module_fact_reference_missing": 2,
+          "potential_module_incomplete_or_low_evidence": 1,
+          "potential_module_review_conflicts_with_entries": 5,
+          "potential_overconfident_ambiguous_setting": 1,
+          "potential_salient_object_missing_count_reference": 1,
+          "potential_speculative_setting_language": 1,
+          "potential_subject_kind_classification_confusion": 1
+        },
+        "policy_rule_counts": {
+          "type_like_visual_claim_requires_visible_support": 1
+        },
+        "local_tls_certificate_verification_disabled": true,
+        "boundary": {
+          "db_writes": false,
+          "model_calls": true,
+          "fixture_generation": false,
+          "embeddings": false,
+          "card_prints_mutation": false
+        }
+      },
+      "offline_replay_summary": {
+        "replayed_count": 25,
+        "ok_count": 25,
+        "failed_count": 0,
+        "recovered_previous_failures": 14,
+        "still_failed_previous_failures": 0,
+        "generated_outputs_still_ok": 11,
+        "generated_outputs_now_failed": 0
+      },
+      "offline_failures": []
+    }
+  ],
+  "aggregate_offline_replay": {
+    "replayed_payloads": 50,
+    "ok_count": 50,
+    "failed_count": 0,
+    "recovered_previous_failures": 25,
+    "generated_outputs_now_failed": 0
+  }
+}

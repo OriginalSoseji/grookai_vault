@@ -2724,6 +2724,246 @@ test("card visual fact graph stores semantic visual facts only with supporting e
   assert.equal(sanitizedTerms.includes("gold foil"), false);
   assert.equal(sanitizedTerms.includes("dark energy symbol"), false);
 
+  const launchValueSemanticVariance = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_light_bands_001",
+          kind: "environment",
+          label: "aurora light bands in the sky",
+          normalized_label: "aurora light bands",
+          scene_layer: "background",
+          frame_position: "upper",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.93,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_gesture_001",
+          kind: "human_appearance",
+          label: "left arm extended forward with open hand",
+          normalized_label: "left arm extended forward",
+          scene_layer: "foreground",
+          frame_position: "left",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.92,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_table_001",
+          kind: "objects_and_props",
+          label: "blue table with metallic-looking legs in the background",
+          normalized_label: "blue table",
+          scene_layer: "background",
+          frame_position: "right",
+          visibility: "visible",
+          salience: "low",
+          confidence: 0.86,
+          evidence_strength: "moderate",
+        },
+        {
+          observation_id: "obs_electricity_001",
+          kind: "visual_effects",
+          label: "electricity effects visible around the subject",
+          normalized_label: "electricity effects",
+          scene_layer: "foreground",
+          frame_position: "around subject",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.94,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_leafy_background_001",
+          kind: "environment",
+          label: "forest background with glowing green leaves and branches",
+          normalized_label: "forest background glowing green leaves branches",
+          scene_layer: "background",
+          frame_position: "background",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.88,
+          evidence_strength: "moderate",
+        },
+        {
+          observation_id: "obs_bridge_001",
+          kind: "environment",
+          label: "pedestrian bridge with cables",
+          normalized_label: "pedestrian bridge",
+          scene_layer: "background",
+          frame_position: "middle",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_stairs_001",
+          kind: "environment",
+          label: "stone stairs beside wooden fence",
+          normalized_label: "stone stairs",
+          scene_layer: "foreground",
+          frame_position: "bottom",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_explosion_001",
+          kind: "visual_effects",
+          label: "explosive impact effect",
+          normalized_label: "explosive impact effect",
+          scene_layer: "background",
+          frame_position: "center",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.88,
+          evidence_strength: "moderate",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_yellow_eyes_001",
+          category: "expression",
+          label: "yellow eyes",
+          evidence: { eyes: ["yellow eyes"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_neutral_mouth_001",
+          category: "expression",
+          label: "neutral mouth",
+          evidence: { mouth: ["neutral mouth"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_generic_human_001",
+          category: "cameo",
+          label: "female human character",
+          evidence: { other: ["female human character"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_attack_intent_001",
+          category: "action",
+          label: "ready for attack",
+          evidence: { body_position: ["forward pose"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_fierce_eyes_001",
+          category: "expression",
+          label: "fierce eyes",
+          evidence: { eyes: ["sharp fierce eyes"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_serious_001",
+          category: "expression",
+          label: "serious expression",
+          evidence: { mouth: ["closed"], facial_features: ["serious expression"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_unclear_expression_001",
+          category: "expression",
+          label: "cannot_determine_expression",
+          evidence: { facial_features: ["face details unclear"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_winking_001",
+          category: "expression",
+          label: "winking",
+          evidence: { eyes: ["one eye winking"], mouth: ["smiling"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_aurora_001",
+          category: "environment",
+          label: "aurora light bands",
+          supporting_observation_ids: ["obs_light_bands_001"],
+          evidence: { environment: ["aurora light bands in the sky"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_gesture_001",
+          category: "action",
+          label: "left arm extended forward with open hand",
+          supporting_observation_ids: ["obs_gesture_001"],
+          evidence: { body_language: ["left arm extended forward with open hand"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_table_001",
+          category: "environment",
+          label: "blue table with metallic legs in background",
+          supporting_observation_ids: ["obs_table_001"],
+          evidence: { objects: ["blue table with metallic-looking legs in the background"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_electricity_001",
+          category: "action",
+          label: "electricity effects visible",
+          supporting_observation_ids: ["obs_electricity_001"],
+          evidence: { objects: ["electricity effects visible around the subject"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_forest_branches_001",
+          category: "environment",
+          label: "forest background",
+          supporting_observation_ids: ["obs_leafy_background_001"],
+          evidence: { environment: ["glowing green leaves", "branches"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_hands_clasped_001",
+          category: "action",
+          label: "hands clasped",
+          supporting_observation_ids: ["obs_gesture_001"],
+          evidence: { body_language: ["hands clasped"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_bridge_001",
+          category: "environment",
+          label: "pedestrian bridge",
+          supporting_observation_ids: ["obs_bridge_001"],
+          evidence: { environment: ["bridge with cables"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_stairs_001",
+          category: "environment",
+          label: "stone stairs",
+          supporting_observation_ids: ["obs_stairs_001"],
+          evidence: { environment: ["stone stairs"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_fence_001",
+          category: "environment",
+          label: "wooden fence",
+          supporting_observation_ids: ["obs_stairs_001"],
+          evidence: { environment: ["wooden fence"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_explosion_001",
+          category: "environment",
+          label: "explosive impact effect",
+          supporting_observation_ids: ["obs_explosion_001"],
+          evidence: { environment: ["explosive impact effect"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(launchValueSemanticVariance.ok, true, launchValueSemanticVariance.findings.join(","));
+  const normalizedSemanticLabels = launchValueSemanticVariance.normalized.visual_attributes.fact_graph.semantic_visual_facts
+    .map((fact) => fact.label);
+  assert.deepEqual(normalizedSemanticLabels, [
+    "winking",
+    "aurora light bands",
+    "left arm extended forward with open hand",
+    "blue table with metallic legs in background",
+    "electricity effects visible",
+    "forest background",
+    "hands clasped",
+    "pedestrian bridge",
+    "stone stairs",
+    "wooden fence",
+    "explosive impact effect",
+  ]);
+
   const looseHappy = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
       typed_facts: [
@@ -3579,6 +3819,23 @@ test("card visual fact graph enforces grounding ontology and count consistency w
   assert.equal(estimatedRangeWithExactValue.ok, true, estimatedRangeWithExactValue.findings.join("\n"));
   assert.equal(estimatedRangeWithExactValue.normalized.visual_attributes.fact_graph.counts[0].exact_count, 0);
 
+  const exactCountWithStaleRange = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      counts: [
+        {
+          ...validFactGraph().counts[0],
+          count_type: "exact",
+          exact_count: 10,
+          estimated_min: 1,
+          estimated_max: 1,
+        },
+      ],
+    },
+  }));
+  assert.equal(exactCountWithStaleRange.ok, true, exactCountWithStaleRange.findings.join("\n"));
+  assert.equal(exactCountWithStaleRange.normalized.visual_attributes.fact_graph.counts[0].estimated_min, 0);
+  assert.equal(exactCountWithStaleRange.normalized.visual_attributes.fact_graph.counts[0].estimated_max, 0);
+
   const badObjectCountAndMaterialPayload = validFactPayload({
     fact_graph: denseItemFactGraph({
       objects_and_props: [
@@ -3755,6 +4012,40 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   const normalizedUiReview = inventedAbstention.normalized.visual_attributes.fact_graph.module_reviews
     .find((review) => review.module === "card_ui_and_print_markers");
   assert.deepEqual(normalizedUiReview.abstentions.at(-1).affected_observation_ids, []);
+
+  const inventedUncertaintyObservation = structuredClone(validFactGraph());
+  inventedUncertaintyObservation.uncertainty_and_abstentions.push({
+    field: "card_ui_and_print_markers.hp_text",
+    reason: "HP text is partially obscured by glare",
+    affected_observation_ids: ["obs_invented_hp_text_001"],
+  });
+  const inventedUncertainty = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: inventedUncertaintyObservation }));
+  assert.equal(inventedUncertainty.ok, true);
+  assert.deepEqual(
+    inventedUncertainty.normalized.visual_attributes.fact_graph.uncertainty_and_abstentions.at(-1).affected_observation_ids,
+    [],
+  );
+
+  const unreadableUiWithoutAbstention = structuredClone(validFactGraph());
+  unreadableUiWithoutAbstention.observations.push({
+    observation_id: "obs_ui_bottom_weak_001",
+    kind: "card_ui_text",
+    label: "bottom center text is unreadable",
+    normalized_label: "bottom_line_text_unreadable",
+    scene_layer: "foreground",
+    frame_position: "bottom-center",
+    visibility: "visible",
+    salience: "low",
+    confidence: 0.4,
+    evidence_strength: "weak",
+  });
+  unreadableUiWithoutAbstention.modules.card_ui_and_print_markers.bottom_line_text_observation_ids.push("obs_ui_bottom_weak_001");
+  const unreadableUiRepaired = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unreadableUiWithoutAbstention }));
+  assert.equal(unreadableUiRepaired.ok, true, unreadableUiRepaired.findings.join(","));
+  const repairedUiReview = unreadableUiRepaired.normalized.visual_attributes.fact_graph.module_reviews
+    .find((review) => review.module === "card_ui_and_print_markers");
+  assert.ok(repairedUiReview.abstentions.some((entry) =>
+    entry.affected_observation_ids.includes("obs_ui_bottom_weak_001")));
 
   const inArtworkSign = structuredClone(validFactGraph());
   inArtworkSign.observations.push({
