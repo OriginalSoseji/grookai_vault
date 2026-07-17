@@ -2042,6 +2042,301 @@ test("card visual fact graph validates observation-backed subjects counts and se
   assert.ok(emptyWithoutReview.findings.includes("fact_graph_coverage_review_missing:depicted_subjects_review"));
 });
 
+function denseItemFactGraph(overrides = {}) {
+  return validFactGraph({
+    observations: [
+      {
+        observation_id: "obs_bomb_001",
+        kind: "object",
+        label: "central bomb",
+        normalized_label: "bomb",
+        scene_layer: "foreground",
+        frame_position: "center",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_bomb_body_001",
+        kind: "object_detail",
+        label: "rounded black body",
+        normalized_label: "rounded black body",
+        scene_layer: "foreground",
+        frame_position: "center",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.94,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_yellow_band_001",
+        kind: "object_detail",
+        label: "yellow stripe band",
+        normalized_label: "yellow stripe band",
+        scene_layer: "foreground",
+        frame_position: "across object",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_fuse_001",
+        kind: "object_detail",
+        label: "short fuse",
+        normalized_label: "fuse",
+        scene_layer: "foreground",
+        frame_position: "top",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.9,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_spark_001",
+        kind: "visual_effect",
+        label: "spark at fuse tip",
+        normalized_label: "spark",
+        scene_layer: "foreground",
+        frame_position: "top",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.9,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_radial_lines_001",
+        kind: "visual_effect",
+        label: "radial orange and yellow lines",
+        normalized_label: "radial lines",
+        scene_layer: "background",
+        frame_position: "surrounding object",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.88,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_blue_background_001",
+        kind: "background",
+        label: "blue background region",
+        normalized_label: "blue background",
+        scene_layer: "background",
+        frame_position: "full frame",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.86,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_centered_composition_001",
+        kind: "composition",
+        label: "centered close crop",
+        normalized_label: "centered close crop",
+        scene_layer: "overall",
+        frame_position: "full frame",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.87,
+        evidence_strength: "strong",
+      },
+    ],
+    subjects: [],
+    counts: [
+      {
+        count_id: "count_bomb_001",
+        normalized_label: "bomb",
+        count_type: "exact",
+        exact_count: 1,
+        estimated_min: 1,
+        estimated_max: 1,
+        abstention_reason: "",
+        supporting_observation_ids: ["obs_bomb_001"],
+        scene_layer: "foreground",
+        confidence: 0.96,
+      },
+    ],
+    scene_layers: {
+      foreground: ["obs_bomb_001", "obs_bomb_body_001", "obs_yellow_band_001", "obs_fuse_001", "obs_spark_001"],
+      midground: [],
+      background: ["obs_radial_lines_001", "obs_blue_background_001"],
+    },
+    environment: {
+      setting: [],
+      indoor_outdoor: "not_applicable",
+      sky: [],
+      ground: [],
+      terrain: [],
+      plants: [],
+      architecture: [],
+      water: [],
+      weather: [],
+      time_of_day_cues: [],
+      supporting_observation_ids: [],
+    },
+    objects_and_props: [
+      {
+        observation_id: "obs_bomb_001",
+        label: "central bomb",
+        normalized_label: "bomb",
+        object_type: "item",
+        colors: ["black", "yellow"],
+        material_appearance: ["dark rounded surface", "bright yellow band"],
+        location: "center",
+        count_reference: "count_bomb_001",
+        confidence: 0.96,
+      },
+    ],
+    surface_and_scan_cues: [],
+    uncertainty_and_abstentions: [],
+    visual_design: {
+      palette: ["black", "yellow", "orange", "blue"],
+      lighting: ["bright spark", "high contrast"],
+      shadows: [],
+      highlights: ["spark highlight"],
+      composition: ["centered object", "close crop", "radial background"],
+      camera_angle: "straight-on",
+      framing: "close crop",
+      cropping: [],
+      depth: "flat graphic depth",
+      motion_cues: ["radial lines"],
+      motifs: ["rounded forms", "radial lines"],
+      repeated_shapes: ["circular body", "radial lines"],
+      style_cues: [],
+      supporting_observation_ids: [
+        "obs_bomb_001",
+        "obs_bomb_body_001",
+        "obs_yellow_band_001",
+        "obs_spark_001",
+        "obs_radial_lines_001",
+        "obs_blue_background_001",
+        "obs_centered_composition_001",
+      ],
+    },
+    coverage_reviews: {
+      subjects_review: "none_visible",
+      counts_review: "observed",
+      objects_and_props_review: "observed",
+      environment_review: "not_applicable",
+      visual_design_review: "observed",
+      surface_and_scan_cues_review: "not_applicable",
+    },
+    fact_grounded_search_terms: [
+      { term: "central bomb", supporting_observation_ids: ["obs_bomb_001"] },
+      { term: "yellow stripe band", supporting_observation_ids: ["obs_yellow_band_001"] },
+      { term: "spark at fuse tip", supporting_observation_ids: ["obs_spark_001"] },
+    ],
+    ...overrides,
+    coverage_reviews: {
+      ...validFactGraph().coverage_reviews,
+      subjects_review: "none_visible",
+      counts_review: "observed",
+      objects_and_props_review: "observed",
+      environment_review: "not_applicable",
+      visual_design_review: "observed",
+      ...(overrides.coverage_reviews ?? {}),
+    },
+  });
+}
+
+test("card visual fact graph enforces density grounding ontology and count consistency", () => {
+  const denseItem = validateVisualDescriptionPayloadV1(
+    validFactPayload({ fact_graph: denseItemFactGraph() }),
+    { name: "Tremendous Bomb", prompt_branch: "item_tool_supporter" },
+  );
+  assert.equal(denseItem.ok, true);
+
+  const sparseItem = validateVisualDescriptionPayloadV1(
+    validFactPayload(),
+    { name: "Tremendous Bomb", prompt_branch: "item_tool_supporter" },
+  );
+  assert.equal(sparseItem.ok, false);
+  assert.ok(sparseItem.findings.some((finding) => finding.startsWith("fact_graph_observation_density_too_low:item_tool_supporter")));
+
+  const unsupportedEnvironment = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      environment: {
+        ...validFactGraph().environment,
+        setting: ["dark forest"],
+        supporting_observation_ids: [],
+      },
+    },
+  }));
+  assert.equal(unsupportedEnvironment.ok, false);
+  assert.ok(unsupportedEnvironment.findings.includes("fact_graph_environment_claim_without_support"));
+
+  const unsupportedDesign = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      visual_design: {
+        ...validFactGraph().visual_design,
+        composition: ["centered close crop"],
+        supporting_observation_ids: [],
+      },
+    },
+  }));
+  assert.equal(unsupportedDesign.ok, false);
+  assert.ok(unsupportedDesign.findings.includes("fact_graph_visual_design_claim_without_support"));
+
+  const manyWithExactValues = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      counts: [
+        {
+          ...validFactGraph().counts[0],
+          count_type: "many",
+          exact_count: 2,
+          estimated_min: 2,
+          estimated_max: 2,
+        },
+      ],
+    },
+  }));
+  assert.equal(manyWithExactValues.ok, false);
+  assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_count:count_tree_001"));
+  assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_range:count_tree_001"));
+
+  const badObjectCountAndMaterial = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: denseItemFactGraph({
+      objects_and_props: [
+        {
+          ...denseItemFactGraph().objects_and_props[0],
+          material_appearance: ["metal", "plastic"],
+          count_reference: "not_visible",
+        },
+      ],
+    }),
+  }));
+  assert.equal(badObjectCountAndMaterial.ok, false);
+  assert.ok(badObjectCountAndMaterial.findings.includes("fact_graph_visible_object_count_reference_not_visible:obs_bomb_001"));
+  assert.ok(badObjectCountAndMaterial.findings.includes("fact_graph_material_claim_without_visual_evidence:obs_bomb_001"));
+
+  const coverageConflict = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: validFactGraph().subjects,
+      coverage_reviews: { subjects_review: "none_visible" },
+    },
+  }));
+  assert.equal(coverageConflict.ok, false);
+  assert.ok(coverageConflict.findings.includes("fact_graph_coverage_review_conflicts_with_entries:subjects_review"));
+
+  const energyIdentityTerm = validateVisualDescriptionPayloadV1(
+    validFactPayload({
+      fact_graph: denseItemFactGraph({
+        subjects: [],
+        fact_grounded_search_terms: [
+          { term: "Psychic Energy", supporting_observation_ids: ["obs_bomb_001"] },
+          { term: "purple gradient", supporting_observation_ids: ["obs_blue_background_001"] },
+          { term: "centered emblem", supporting_observation_ids: ["obs_centered_composition_001"] },
+        ],
+      }),
+    }),
+    { name: "Psychic Energy", prompt_branch: "energy" },
+  );
+  assert.equal(energyIdentityTerm.ok, false);
+  assert.ok(energyIdentityTerm.findings.includes("fact_graph_search_term_uses_card_identity:Psychic Energy"));
+  assert.ok(energyIdentityTerm.findings.includes("fact_graph_energy_search_term_uses_canonical_identity:Psychic Energy"));
+});
+
 test("card visual fact graph keeps subject kinds and expression evidence separate", () => {
   const livingPikachu = validateVisualDescriptionPayloadV1(validFactPayload());
   assert.equal(livingPikachu.ok, true);

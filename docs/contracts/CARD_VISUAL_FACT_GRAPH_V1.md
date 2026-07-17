@@ -54,7 +54,9 @@ The graph must include:
 - Every count must reference the observation or observations counted.
 - Every relationship must reference valid source and target observation IDs.
 - Every search term must cite at least one supporting observation ID.
+- Every nontrivial environment and visual-design claim must cite supporting observations.
 - Empty major sections are valid only with an explicit coverage review status.
+- Nonempty major sections must use `observed` as their coverage review status.
 
 Valid coverage review statuses:
 
@@ -108,6 +110,30 @@ Use:
 - abstention when crop, glare, low resolution, or density prevents reliable counting
 
 Example: if a forest has 10 visible trees, record a `tree` count of `10` and cite the tree observation.
+
+Exact, range, many, and abstention counts must be internally coherent. Do not combine `many` with an exact count, and do not attach `not_visible` as the count reference for a visible object.
+
+## Fact Density Rule
+
+The graph must inventory visible components rather than summarize the image into a few broad labels.
+
+Minimum observation floors for OpenAI dry-run validation:
+
+- Pokemon: `10`
+- Trainer: `10`
+- Stadium: `8`
+- Energy: `7`
+- Item / Tool / Supporter: `8`
+
+If image quality, crop, glare, or low resolution prevents meeting the floor, the graph must record the limitation in `uncertainty_and_abstentions`.
+
+## Ontology Rule
+
+Nonliving events, settings, card-title concepts, weather phenomena, symbols, gradients, color fields, tools, and visual effects must not populate `subjects`.
+
+Object-like Pokemon body components are anatomy or physical features, not separate props, unless a separate independent object is visibly present.
+
+Material fields must describe visual appearance only. Do not assert actual materials such as metal, plastic, glass, wood, stone, rubber, fabric, paper, steel, iron, gold, or silver unless the material is visibly labeled or otherwise directly proven.
 
 ## Story Firewall
 

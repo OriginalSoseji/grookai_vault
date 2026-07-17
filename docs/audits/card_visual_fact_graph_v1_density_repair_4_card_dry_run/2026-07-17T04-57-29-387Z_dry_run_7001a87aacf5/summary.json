@@ -1,0 +1,105 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4o-mini",
+  "response_model_version": "gpt-4o-mini-2024-07-18",
+  "response_model_versions": [
+    "gpt-4o-mini-2024-07-18"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1",
+  "sample_strategy": "branch_stratified",
+  "branch_targets": {
+    "pokemon": 1,
+    "trainer": 0,
+    "stadium": 1,
+    "energy": 1,
+    "item_tool_supporter": 1
+  },
+  "branch_candidate_limit": 60000,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-17",
+    "recorded_at": "2026-07-17T04:57:29.387Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-17T04:57:29.387Z",
+  "finished_at": "2026-07-17T04:58:50.928Z",
+  "eligible_count": 4,
+  "total_eligible_catalog_count": 53227,
+  "attempted_count": 4,
+  "validated_count": 4,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "needs_review_count": 1,
+  "pending_count": 3,
+  "branch_counts": {
+    "energy": 1,
+    "item_tool_supporter": 1,
+    "pokemon": 1,
+    "stadium": 1
+  },
+  "usage": {
+    "request_count": 4,
+    "retry_count": 0,
+    "input_tokens": 100618,
+    "output_tokens": 4377,
+    "total_tokens": 104995,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.0177189
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1,
+    "retry_count": 0,
+    "input_tokens": 25154.5,
+    "output_tokens": 1094.25,
+    "total_tokens": 26248.75,
+    "cached_input_tokens": 0,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.00442972
+  },
+  "estimated_cost_usd": 0.0177189,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.00442972,
+    "projected_500_cards_usd": 2.21486,
+    "projected_1000_cards_usd": 4.42972,
+    "full_eligible_catalog_count": 53227,
+    "projected_full_eligible_catalog_usd": 235.78070644
+  },
+  "ceiling": {
+    "max_cards": 4,
+    "max_run_cost_usd": 0.05,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_canonical_metadata_in_visual_output": 1,
+    "potential_metadata_or_identity_language": 1,
+    "potential_subject_kind_classification_confusion": 1
+  },
+  "quality_flag_counts_by_branch": {
+    "energy": {},
+    "item_tool_supporter": {},
+    "pokemon": {
+      "potential_canonical_metadata_in_visual_output": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_subject_kind_classification_confusion": 1
+    },
+    "stadium": {}
+  },
+  "policy_rule_counts": {},
+  "policy_rule_counts_by_branch": {
+    "energy": {},
+    "item_tool_supporter": {},
+    "pokemon": {},
+    "stadium": {}
+  }
+}
