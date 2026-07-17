@@ -4,7 +4,9 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+  CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
   aggregateUsageRows,
+  buildFactGraphCompatibilityDigestV1,
   buildDescriptionVersionKeyV1,
   buildEmbeddingInputV1,
   buildCostProjection,
@@ -24,6 +26,190 @@ import {
 
 function source(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
+}
+
+function validFactGraph(overrides = {}) {
+  const graph = {
+    observations: [
+      {
+        observation_id: "obs_subject_001",
+        kind: "scene_subject",
+        label: "Pikachu",
+        normalized_label: "pikachu",
+        scene_layer: "foreground",
+        frame_position: "center",
+        visibility: "fully_visible",
+        salience: "high",
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_tree_group_001",
+        kind: "plant_group",
+        label: "10 visible trees",
+        normalized_label: "tree",
+        scene_layer: "background",
+        frame_position: "full_width_background",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.97,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_palette_001",
+        kind: "palette",
+        label: "yellow and green palette",
+        normalized_label: "yellow green palette",
+        scene_layer: "overall",
+        frame_position: "full_frame",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_surface_001",
+        kind: "surface_scan_abstention",
+        label: "foil and border finish cannot be determined",
+        normalized_label: "surface finish uncertain",
+        scene_layer: "card_frame",
+        frame_position: "full_frame",
+        visibility: "cannot_determine",
+        salience: "low",
+        confidence: 0.9,
+        evidence_strength: "abstention",
+      },
+    ],
+    subjects: [
+      {
+        observation_id: "obs_subject_001",
+        subject_kind: "scene_subject",
+        identity: "Pikachu",
+        identity_confidence: 0.96,
+        anatomy: ["small body", "long ears"],
+        physical_features: ["yellow body", "pointed ears"],
+        pose: ["standing"],
+        orientation: "facing forward",
+        action_state: ["still"],
+        facial_evidence: {
+          eyes: "visible dark eyes",
+          mouth: "small mouth visible",
+          eyebrows: "not_visible",
+          face_position: "front of head",
+          other_visible_evidence: [],
+        },
+        clothing_or_accessories: [],
+        colors: ["yellow", "black"],
+        visibility: "fully_visible",
+      },
+    ],
+    depicted_subjects: [],
+    character_representations: [],
+    counts: [
+      {
+        count_id: "count_tree_001",
+        normalized_label: "tree",
+        count_type: "exact",
+        exact_count: 10,
+        estimated_min: 0,
+        estimated_max: 0,
+        abstention_reason: "",
+        supporting_observation_ids: ["obs_tree_group_001"],
+        scene_layer: "background",
+        confidence: 0.97,
+      },
+    ],
+    scene_layers: {
+      foreground: ["obs_subject_001"],
+      midground: [],
+      background: ["obs_tree_group_001"],
+    },
+    environment: {
+      setting: ["forest"],
+      indoor_outdoor: "outdoor",
+      sky: [],
+      ground: ["forest ground"],
+      terrain: ["wooded terrain"],
+      plants: ["trees"],
+      architecture: [],
+      water: [],
+      weather: [],
+      time_of_day_cues: [],
+      supporting_observation_ids: ["obs_tree_group_001"],
+    },
+    objects_and_props: [],
+    relationships: [],
+    visual_design: {
+      palette: ["yellow", "green"],
+      lighting: ["soft light"],
+      shadows: [],
+      highlights: [],
+      composition: ["central subject", "background trees"],
+      camera_angle: "front view",
+      framing: "medium framing",
+      cropping: [],
+      depth: "foreground subject with background trees",
+      motion_cues: [],
+      motifs: ["forest background"],
+      repeated_shapes: ["tree trunks"],
+      style_cues: [],
+      supporting_observation_ids: ["obs_subject_001", "obs_tree_group_001", "obs_palette_001"],
+    },
+    surface_and_scan_cues: [
+      {
+        observation_id: "obs_surface_001",
+        cue_type: "abstention",
+        cue: "",
+        abstention: "foil texture and physical surface finish cannot be determined from this scan",
+        confidence: 0.9,
+      },
+    ],
+    coverage_reviews: {
+      subjects_review: "observed",
+      depicted_subjects_review: "none_visible",
+      character_representations_review: "none_visible",
+      counts_review: "observed",
+      scene_layers_review: "observed",
+      environment_review: "observed",
+      objects_and_props_review: "none_visible",
+      relationships_review: "none_visible",
+      visual_design_review: "observed",
+      surface_and_scan_cues_review: "observed",
+    },
+    uncertainty_and_abstentions: [
+      {
+        field: "surface_and_scan_cues",
+        reason: "physical foil and texture cannot be determined from image",
+        affected_observation_ids: ["obs_surface_001"],
+      },
+    ],
+    fact_grounded_search_terms: [
+      { term: "Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+      { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      { term: "ten trees", supporting_observation_ids: ["obs_tree_group_001"] },
+    ],
+  };
+  return {
+    ...graph,
+    ...overrides,
+    coverage_reviews: {
+      ...graph.coverage_reviews,
+      ...(overrides.coverage_reviews ?? {}),
+    },
+  };
+}
+
+function validFactPayload(overrides = {}) {
+  return {
+    visual_attributes: {
+      fact_schema_version: CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
+      fact_graph: validFactGraph(overrides.fact_graph ?? {}),
+    },
+    description_confidence: 0.91,
+    attribute_confidence: 0.85,
+    quality_flags: [],
+    ...overrides,
+  };
 }
 
 test("card visual description schema is private, versioned, and current-row safe", () => {
@@ -1247,29 +1433,14 @@ test("card visual auto-approval readiness stays separate from review status", ()
       card_print_id: "11111111-1111-4111-8111-111111111111",
       image_sha256: "a".repeat(64),
       image_source_key: "warehouse-derived/self-hosted-images-v1/example.png",
-      prompt_version: "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR",
-      output_schema_version: "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+      prompt_version: "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
+      output_schema_version: CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
       agent_version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
       model_version: "gpt-4o-mini",
       prompt_branch: "stadium",
       name: "Example Stadium",
       review_status: "pending",
-      artwork_description:
-        "Environment: The artwork shows a compact outdoor scene with a circular grassy area, stone steps, palm trees, blue sky, and soft cloud shapes. Artwork: The composition centers the circular grass area and uses greens, browns, and blues to separate foreground, midground, and background details.",
-      card_surface_and_printing_cues:
-        "Border visible; color cannot be determined reliably. Foil texture cannot be determined and printing treatment uncertain.",
-      visual_attributes: {
-        subjects: { primary: [], secondary: [] },
-        environment: { setting: ["outdoor field"], time_of_day: "unknown", weather: "unknown" },
-        palette: { dominant: ["green", "brown", "blue"], temperature: "warm" },
-        lighting: ["bright"],
-        mood: [],
-        composition: { framing: "central", subject_position: "center" },
-        style: ["painted"],
-        distinguishing_details: ["circular grassy area", "stone steps", "palm trees"],
-        uncertainty_notes: [],
-      },
-      semantic_tags: ["circular grass", "palm trees", "stone steps"],
+      ...validFactPayload(),
       quality_flags: [],
       description_confidence: 0.95,
       attribute_confidence: 0.95,
@@ -1289,7 +1460,36 @@ test("card visual auto-approval readiness stays separate from review status", ()
   const row9Like = evaluateAutoApprovalReadinessV1(baseRow({
     name: "Cinnabar City Gym",
     gv_id: "GV-PK-JPN-PMCG6-085",
-    card_surface_and_printing_cues: "silver border visible, glare prevents determination",
+    visual_attributes: {
+      fact_schema_version: CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
+      fact_graph: validFactGraph({
+        observations: [
+          ...validFactGraph().observations,
+          {
+            observation_id: "obs_border_001",
+            kind: "surface_scan_cue",
+            label: "silver border visible",
+            normalized_label: "silver border",
+            scene_layer: "card_frame",
+            frame_position: "outer_frame",
+            visibility: "visible",
+            salience: "low",
+            confidence: 0.74,
+            evidence_strength: "weak",
+          },
+        ],
+        surface_and_scan_cues: [
+          {
+            observation_id: "obs_border_001",
+            cue_type: "border",
+            cue: "silver border visible",
+            abstention: "",
+            confidence: 0.74,
+          },
+        ],
+        coverage_reviews: { surface_and_scan_cues_review: "observed" },
+      }),
+    },
   }));
   assert.equal(row9Like.auto_approval_eligible, false);
   assert.equal(row9Like.approval_confidence_tier, "human_review_required");
@@ -1736,47 +1936,21 @@ test("card visual description usage telemetry computes cost, projections, and st
 });
 
 test("card visual description payload validation separates shape from review approval", () => {
-  const validPayload = {
-    artwork_description:
-      "Pikachu is shown as the central subject in a grounded visual description with visible scene details, mood, color language, and composition cues written for a blind collector.",
-    card_surface_and_printing_cues: "No specific foil, border, or surface treatment is asserted.",
-    visual_attributes: {
-      subjects: { primary: ["Pikachu"], secondary: [] },
-      environment: { setting: ["outdoor"], time_of_day: "day" },
-      palette: { dominant: ["yellow", "green"], temperature: "warm" },
-      mood: ["cheerful"],
-      composition: { framing: "medium" },
-    },
-    semantic_tags: ["pikachu", "yellow", "cheerful"],
-    description_confidence: 0.91,
-    attribute_confidence: 0.85,
-    quality_flags: [],
-  };
+  const validPayload = validFactPayload();
 
   const validation = validateVisualDescriptionPayloadV1(validPayload);
   assert.equal(validation.ok, true);
-  assert.equal(validation.normalized.semantic_tags.join(","), "cheerful,pikachu,yellow");
-
-  const blankAttributeValidation = validateVisualDescriptionPayloadV1({
-    ...validPayload,
-    visual_attributes: {
-      ...validPayload.visual_attributes,
-      environment: { setting: ["outdoor"], time_of_day: "", weather: "" },
-      composition: { framing: "", subject_position: "" },
-    },
-  });
-  assert.equal(blankAttributeValidation.normalized.visual_attributes.environment.time_of_day, "unknown");
-  assert.equal(blankAttributeValidation.normalized.visual_attributes.environment.weather, "unknown");
-  assert.equal(blankAttributeValidation.normalized.visual_attributes.composition.framing, "unknown");
+  assert.equal(validation.normalized.semantic_tags.join(","), "forest background,Pikachu,ten trees");
+  assert.match(validation.normalized.artwork_description, /Fact digest/);
+  assert.match(validation.normalized.artwork_description, /Counts: tree: 10/);
+  assert.match(validation.normalized.card_surface_and_printing_cues, /foil texture and physical surface finish cannot be determined/);
 
   const nullishQualityValidation = validateVisualDescriptionPayloadV1({
     ...validPayload,
-    card_surface_and_printing_cues: "The card has a flat, printed surface.",
     quality_flags: ["None", "clear", "high detail"],
   });
   assert.equal(nullishQualityValidation.ok, true);
   assert.equal(nullishQualityValidation.normalized.quality_flags.length, 0);
-  assert.match(nullishQualityValidation.normalized.card_surface_and_printing_cues, /No reliable additional card-surface/);
 
   assert.equal(
     classifyDescriptionReviewStatusV1({
@@ -1799,6 +1973,267 @@ test("card visual description payload validation separates shape from review app
     }),
     "needs_review",
   );
+});
+
+test("card visual fact graph validates observation-backed subjects counts and search terms", () => {
+  const valid = validateVisualDescriptionPayloadV1(validFactPayload());
+  assert.equal(valid.ok, true);
+
+  const missingObservation = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [
+        {
+          ...validFactGraph().subjects[0],
+          observation_id: "obs_missing",
+        },
+      ],
+    },
+  }));
+  assert.equal(missingObservation.ok, false);
+  assert.ok(missingObservation.findings.includes("fact_graph_subject_observation_missing:obs_missing"));
+
+  const countWithoutSupport = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      counts: [
+        {
+          ...validFactGraph().counts[0],
+          supporting_observation_ids: [],
+        },
+      ],
+    },
+  }));
+  assert.equal(countWithoutSupport.ok, false);
+  assert.ok(countWithoutSupport.findings.includes("fact_graph_count_without_supporting_observation:count_tree_001"));
+
+  const searchWithoutSupport = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [
+        { term: "unsupported term", supporting_observation_ids: ["obs_missing"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+        { term: "Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+      ],
+    },
+  }));
+  assert.equal(searchWithoutSupport.ok, false);
+  assert.ok(searchWithoutSupport.findings.includes("fact_graph_search_term_observation_missing:obs_missing"));
+
+  const searchTermCitingCount = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [
+        { term: "ten trees", supporting_observation_ids: ["count_tree_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+        { term: "Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+      ],
+    },
+  }));
+  assert.equal(searchTermCitingCount.ok, true);
+  assert.deepEqual(
+    searchTermCitingCount.normalized.visual_attributes.fact_graph.fact_grounded_search_terms[0].supporting_observation_ids,
+    ["obs_tree_group_001"],
+  );
+
+  const emptyWithoutReview = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      depicted_subjects: [],
+      coverage_reviews: { depicted_subjects_review: "" },
+    },
+  }));
+  assert.equal(emptyWithoutReview.ok, false);
+  assert.ok(emptyWithoutReview.findings.includes("fact_graph_coverage_review_missing:depicted_subjects_review"));
+});
+
+test("card visual fact graph keeps subject kinds and expression evidence separate", () => {
+  const livingPikachu = validateVisualDescriptionPayloadV1(validFactPayload());
+  assert.equal(livingPikachu.ok, true);
+
+  const depictedPikachu = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_poster_001",
+          kind: "depicted_subject",
+          label: "Pikachu shown on a poster",
+          normalized_label: "pikachu poster",
+          scene_layer: "background",
+          frame_position: "upper_left",
+          visibility: "visible",
+          salience: "low",
+          confidence: 0.82,
+          evidence_strength: "moderate",
+        },
+      ],
+      depicted_subjects: [
+        {
+          observation_id: "obs_poster_001",
+          subject_kind: "depicted_subject",
+          represented_identity: "Pikachu",
+          identity_confidence: 0.82,
+          host_surface: "poster",
+          surface_type: "poster",
+          visibility: "visible",
+          confidence: 0.82,
+        },
+      ],
+      scene_layers: {
+        ...validFactGraph().scene_layers,
+        background: ["obs_tree_group_001", "obs_poster_001"],
+      },
+      coverage_reviews: { depicted_subjects_review: "observed" },
+      fact_grounded_search_terms: [
+        ...validFactGraph().fact_grounded_search_terms,
+        { term: "Pikachu poster", supporting_observation_ids: ["obs_poster_001"] },
+      ],
+    },
+  }));
+  assert.equal(depictedPikachu.ok, true);
+
+  const representedPikachu = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_pillow_001",
+          kind: "character_representation",
+          label: "Pikachu-shaped pillow",
+          normalized_label: "pikachu pillow",
+          scene_layer: "foreground",
+          frame_position: "lower_right",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.87,
+          evidence_strength: "moderate",
+        },
+      ],
+      character_representations: [
+        {
+          observation_id: "obs_pillow_001",
+          subject_kind: "character_representation",
+          represented_identity: "Pikachu",
+          identity_confidence: 0.87,
+          host_object: "pillow",
+          representation_form: "pillow shaped like Pikachu",
+          visibility: "visible",
+          confidence: 0.87,
+        },
+      ],
+      scene_layers: {
+        ...validFactGraph().scene_layers,
+        foreground: ["obs_subject_001", "obs_pillow_001"],
+      },
+      coverage_reviews: { character_representations_review: "observed" },
+      fact_grounded_search_terms: [
+        ...validFactGraph().fact_grounded_search_terms,
+        { term: "Pikachu pillow", supporting_observation_ids: ["obs_pillow_001"] },
+      ],
+    },
+  }));
+  assert.equal(representedPikachu.ok, true);
+
+  const interpretedExpression = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [
+        {
+          ...validFactGraph().subjects[0],
+          facial_evidence: {
+            ...validFactGraph().subjects[0].facial_evidence,
+            eyes: "angry eyes",
+          },
+        },
+      ],
+    },
+  }));
+  assert.equal(interpretedExpression.ok, false);
+  assert.ok(interpretedExpression.findings.includes("fact_graph_interpreted_expression_not_allowed"));
+
+  const story = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        {
+          ...validFactGraph().observations[0],
+          label: "Pikachu is lost in the forest",
+        },
+        ...validFactGraph().observations.slice(1),
+      ],
+    },
+  }));
+  assert.equal(story.ok, false);
+  assert.ok(story.findings.includes("fact_graph_story_or_lore_language_not_allowed"));
+
+  assert.equal(
+    buildFactGraphCompatibilityDigestV1(validFactGraph()),
+    buildFactGraphCompatibilityDigestV1(validFactGraph()),
+  );
+});
+
+test("card visual fact graph routes confused subject-kind classifications to review", () => {
+  const payload = validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_sky_001",
+          kind: "environment",
+          label: "stormy sky",
+          normalized_label: "stormy sky",
+          scene_layer: "background",
+          frame_position: "upper_half",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      subjects: [
+        ...validFactGraph().subjects,
+        {
+          observation_id: "obs_sky_001",
+          subject_kind: "scene_subject",
+          identity: "stormy sky",
+          identity_confidence: 0.9,
+          anatomy: [],
+          physical_features: [],
+          pose: "not_applicable",
+          orientation: "not_applicable",
+          action_state: "not_applicable",
+          facial_evidence: {},
+          clothing_accessories: [],
+          colors: ["gray"],
+          visibility: "visible",
+        },
+      ],
+      scene_layers: {
+        ...validFactGraph().scene_layers,
+        background: ["obs_tree_group_001", "obs_sky_001"],
+      },
+      coverage_reviews: {
+        subjects_review: "observed",
+      },
+      fact_grounded_search_terms: [
+        { term: "stormy sky", supporting_observation_ids: ["obs_sky_001"] },
+        { term: "ten trees", supporting_observation_ids: ["obs_tree_group_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  });
+
+  const validation = validateVisualDescriptionPayloadV1(payload);
+  assert.equal(validation.ok, true);
+
+  const flags = detectVisualDescriptionReviewFlagsV1(payload, {
+    name: "Magnetic Storm",
+    supertype: "Trainer",
+    subtype: "Stadium",
+    prompt_branch: "stadium",
+  });
+  assert.ok(flags.includes("potential_subject_kind_classification_confusion"));
+  assert.equal(classifyDescriptionReviewStatusV1({
+    quality_flags: flags,
+    identity_input_confidence: 0.95,
+    description_confidence: 0.91,
+    attribute_confidence: 0.85,
+    image_quality_score: 0.95,
+  }), "needs_review");
 });
 
 test("card visual description version and embedding input are deterministic", () => {
@@ -1855,47 +2290,26 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /card_print_visual_descriptions/);
   assert.match(agent, /card_visual_description_runs/);
   assert.match(agent, /type: "input_image"/);
-  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V6/);
-  assert.match(agent, /CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1/);
-  assert.match(agent, /CARD_VISUAL_LANGUAGE_V1/);
-  assert.match(agent, /Visual Language Contract/);
-  assert.match(agent, /museum curator, accessibility specialist, and collector/);
-  assert.match(agent, /Observation hierarchy: first subject, then structure, pose, composition, environment, lighting, palette, and finally mood/);
-  assert.match(agent, /Use the same vocabulary for the same visible forms across cards/);
-  assert.match(agent, /Avoid broad praise or marketing language/);
-  assert.match(agent, /Do not use the words magical, enchanted, enchanting, mystical, ethereal, dreamlike, stars, starry, dusk, or night/);
-  assert.match(agent, /avoid these exact words in artwork_description, visual_attributes, and semantic_tags/);
-  assert.match(agent, /Do not say foil texture visible, glossy finish, gloss present, or standard print/);
-  assert.match(agent, /Do not encode nested JSON/);
-  assert.match(agent, /Card-Type Aware Visual Description System/);
-  assert.match(agent, /Use canonical card-type metadata before image interpretation/);
+  assert.match(agent, /CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1/);
+  assert.match(agent, /CARD_VISUAL_FACT_GRAPH_SCHEMA_V1/);
+  assert.match(agent, /Exhaustive Observable Fact Graph System/);
+  assert.match(agent, /Do not write a prose description, story, caption, review, or mood narrative/);
+  assert.match(agent, /Every meaningful visible fact must appear as an atomic observation with an observation_id/);
+  assert.match(agent, /scene_subject: physically present/);
+  assert.match(agent, /depicted_subject: character\/entity shown inside another surface/);
+  assert.match(agent, /character_representation: object shaped like or patterned after a character/);
+  assert.match(agent, /Pikachu as a pillow or ice cream is a character_representation/);
+  assert.match(agent, /Do not store interpreted expression labels/);
+  assert.match(agent, /coverage_reviews must include all required review keys/);
   assert.match(agent, /resolved_prompt_branch/);
   assert.match(agent, /Branch 1 - Pokemon/);
   assert.match(agent, /Branch 2 - Trainer/);
-  assert.match(agent, /Do NOT describe the trainer as a humanoid creature/);
   assert.match(agent, /Branch 3 - Stadium/);
-  assert.match(agent, /No character section/);
   assert.match(agent, /Branch 4 - Energy/);
-  assert.match(agent, /Do NOT invent creatures/);
   assert.match(agent, /Branch 5 - Item \/ Tool \/ Supporter/);
-  assert.match(agent, /Object\/Scene/);
-  assert.match(agent, /explicitly describe where the face, eyes, and defining species features are located/);
-  assert.match(agent, /rather than implying they do not exist/);
-  assert.match(agent, /Do not invent tails, wings, hands, facial expressions/);
-  assert.match(agent, /Pokemon tag examples/);
-  assert.match(agent, /Trainer tag examples/);
-  assert.match(agent, /trainer portrait/);
-  assert.match(agent, /Stadium tag examples/);
-  assert.match(agent, /Energy tag examples/);
-  assert.match(agent, /psychic symbol/);
-  assert.match(agent, /Do not describe a body part/);
-  assert.match(agent, /For Chandelure-family subjects/);
-  assert.match(agent, /Do not assign a specific setting/);
-  assert.match(agent, /Prefer objective visual observations over artistic interpretation/);
-  assert.match(agent, /Do not say scattered light points suggest stars, magic, energy, or an aura/);
-  assert.match(agent, /do not write generic statements such as standard trading card borders/);
-  assert.match(agent, /semantic_tags must describe visible artwork only/);
-  assert.match(agent, /ghostly chandelier/);
+  assert.match(agent, /fact_grounded_search_terms must cite supporting observation_ids/);
+  assert.match(agent, /buildFactGraphCompatibilityDigestV1/);
+  assert.match(agent, /FACT_GRAPH_V1_REVIEW_PACKET.md/);
   assert.match(agent, /target_gv_id/);
   assert.match(agent, /target_card_print_ids/);
   assert.match(agent, /--card-print-ids=/);
@@ -1941,4 +2355,5 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(visualLanguage, /Semantic Tag Standards/);
   assert.match(visualLanguage, /Future Expansion Placeholders/);
   assert.match(contractIndex, /CARD_VISUAL_LANGUAGE_V1/);
+  assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V1/);
 });

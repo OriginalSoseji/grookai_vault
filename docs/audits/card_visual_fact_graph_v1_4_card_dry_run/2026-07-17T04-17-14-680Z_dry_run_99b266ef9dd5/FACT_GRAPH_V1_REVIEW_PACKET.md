@@ -1,0 +1,15 @@
+# Card Visual Fact Graph V1 Review Packet
+
+Generated rows: 0
+Validation failures: 4
+Skipped images: 0
+Estimated cost USD: 0.0161466
+
+## Rows
+
+## Validation Failures
+
+- GV-PK-JPN-M5-113: fact_schema_version_invalid, fact_graph_exact_count_missing:count_trees_001, fact_graph_scene_layer_observation_missing:background:dark forest, fact_graph_scene_layer_observation_missing:foreground:Mega Chandelure, fact_graph_subject_kind_invalid:obs_subject_001
+- GV-PK-JPN-TCGCOLLECTOR11526-019: fact_schema_version_invalid, fact_graph_scene_layer_observation_missing:background:sky, fact_graph_scene_layer_observation_missing:background:tree, fact_graph_scene_layer_observation_missing:foreground:lightning, fact_graph_scene_layer_observation_missing:midground:aurora, fact_graph_search_term_observation_missing:count_tree_001
+- GV-PK-JPN-TCGCOLLECTOR11541-013: fact_schema_version_invalid, fact_graph_count_type_invalid:count_light_effect_001, fact_graph_scene_layer_observation_missing:background:purple_background, fact_graph_scene_layer_observation_missing:foreground:psychic_energy_symbol, fact_graph_scene_layer_observation_missing:foreground:radiating_lights
+- GV-PK-JPN-M5-106: fact_schema_version_invalid, fact_graph_scene_layer_observation_missing:background:explosion, fact_graph_scene_layer_observation_missing:foreground:bomb, fact_graph_scene_layer_observation_missing:foreground:fuse, fact_graph_subject_kind_invalid:obs_bomb_001

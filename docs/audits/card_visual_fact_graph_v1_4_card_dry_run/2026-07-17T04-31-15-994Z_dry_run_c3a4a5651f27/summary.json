@@ -1,0 +1,99 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4o-mini",
+  "response_model_version": "gpt-4o-mini-2024-07-18",
+  "response_model_versions": [
+    "gpt-4o-mini-2024-07-18"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1",
+  "sample_strategy": "branch_stratified",
+  "branch_targets": {
+    "pokemon": 1,
+    "trainer": 0,
+    "stadium": 1,
+    "energy": 1,
+    "item_tool_supporter": 1
+  },
+  "branch_candidate_limit": 60000,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-17",
+    "recorded_at": "2026-07-17T04:31:15.994Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-17T04:31:15.994Z",
+  "finished_at": "2026-07-17T04:32:20.530Z",
+  "eligible_count": 4,
+  "total_eligible_catalog_count": 53227,
+  "attempted_count": 4,
+  "validated_count": 2,
+  "failed_count": 2,
+  "skipped_count": 0,
+  "needs_review_count": 1,
+  "pending_count": 1,
+  "branch_counts": {
+    "energy": 1,
+    "item_tool_supporter": 1
+  },
+  "usage": {
+    "request_count": 4,
+    "retry_count": 0,
+    "input_tokens": 97880,
+    "output_tokens": 3077,
+    "total_tokens": 100957,
+    "cached_input_tokens": 1920,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.0163842
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 2,
+    "retry_count": 0,
+    "input_tokens": 48940,
+    "output_tokens": 1538.5,
+    "total_tokens": 50478.5,
+    "cached_input_tokens": 960,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.0081921
+  },
+  "estimated_cost_usd": 0.0163842,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.0081921,
+    "projected_500_cards_usd": 4.09605,
+    "projected_1000_cards_usd": 8.1921,
+    "full_eligible_catalog_count": 53227,
+    "projected_full_eligible_catalog_usd": 436.0409067
+  },
+  "ceiling": {
+    "max_cards": 4,
+    "max_run_cost_usd": 0.05,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_canonical_metadata_in_visual_output": 1
+  },
+  "quality_flag_counts_by_branch": {
+    "energy": {
+      "potential_canonical_metadata_in_visual_output": 1
+    },
+    "item_tool_supporter": {}
+  },
+  "policy_rule_counts": {
+    "type_like_visual_claim_requires_visible_support": 2
+  },
+  "policy_rule_counts_by_branch": {
+    "energy": {
+      "type_like_visual_claim_requires_visible_support": 2
+    },
+    "item_tool_supporter": {}
+  }
+}

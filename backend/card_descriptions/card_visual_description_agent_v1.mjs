@@ -8,11 +8,12 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
-export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR";
+export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1";
 export const CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION = "CARD_VISUAL_LANGUAGE_V1";
-export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
+export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
 export const CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION = "CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_V1";
+export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
 
 export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
   "pending",
@@ -112,6 +113,12 @@ const VISUAL_LANGUAGE_PRIMARY_SUBJECT_ANATOMY_OVERCLAIM_PATTERN =
   /\b(?:gives an impression of|impression of|suggesting|suggests|hinting at)\b[^.]{0,80}\b(?:eyes?|face|facial features?|brow|mouth|limbs?|tail|power|type|nature)\b|\b(?:ethereal eyes|eyes within|furrowed brow area|luminous and reflective)\b/gi;
 const VISUAL_LANGUAGE_ABSTRACT_SHAPE_LITERALIZATION_PATTERN =
   /\b(cityscape|urban skyline|buildings|night cityscape|leaf-shaped object|stylized depiction of a creature|specific creatures?|literal environment)\b/gi;
+const VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN =
+  /\b(lost in|searching for|looking for|protecting|guarding|waiting for|trying to|wants to|decides to|journey|quest|backstory|story of|tells a story|narrative|lore|purpose|symbolic meaning|represents|symbolizes|embodies)\b/gi;
+const FACT_GRAPH_NON_LIVING_SUBJECT_LABEL_PATTERN =
+  /\b(?:sky|cloud|background|space|gradient|color|palette|line|shape|pattern|symbol|energy|flame|fire|smoke|spark|lightning|bolt|storm|rain|snow|water|wave|tree|forest|plant|flower|grass|rock|stone|mountain|ground|terrain|building|stadium|road|path|moon|sun|star|reflection|shadow|highlight|glare|bomb|bell|badge|orb|object|prop|decoration|effect)\b/i;
+const FACT_GRAPH_SCENE_SUBJECT_OBSERVATION_KIND_PATTERN =
+  /\b(?:scene_subject|subject|person|human|trainer|pokemon|pokémon|creature|character|entity|living_entity)\b/i;
 const VISUAL_POLICY_EXPRESSION_UNCERTAIN_CLAIM_PATTERN =
   /\b(confident expression|determined expression|focused expression|thoughtful expression|assertive expression)\b/gi;
 const VISUAL_POLICY_TRAINER_PERSONALITY_CLAIM_PATTERN =
@@ -137,6 +144,35 @@ const VISUAL_POLICY_VISIBLE_EXPRESSION_SUPPORT_PATTERN =
   /\b(smile|smiling|wide eyes|furrowed brow|furrowed brows|frown|narrowed eyes|raised eyebrow|raised eyebrows|visible grin|open mouth)\b/i;
 const VISUAL_POLICY_BLOCKING_DECISION = "needs_review";
 const MIN_DETERMINISTIC_BORDER_COLOR_CONFIDENCE = 0.92;
+const FACT_GRAPH_COVERAGE_REVIEW_STATUSES = new Set([
+  "none_visible",
+  "not_applicable",
+  "cannot_determine_due_to_low_resolution",
+  "cannot_determine_due_to_crop",
+  "cannot_determine_due_to_glare",
+  "uncertain",
+  "observed",
+]);
+const FACT_GRAPH_COUNT_TYPES = new Set([
+  "exact",
+  "estimated_range",
+  "many",
+  "uncountable_due_to_crop",
+  "uncountable_due_to_density",
+  "not_visible",
+]);
+const FACT_GRAPH_COVERAGE_KEYS = [
+  "subjects_review",
+  "depicted_subjects_review",
+  "character_representations_review",
+  "counts_review",
+  "scene_layers_review",
+  "environment_review",
+  "objects_and_props_review",
+  "relationships_review",
+  "visual_design_review",
+  "surface_and_scan_cues_review",
+];
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -454,6 +490,26 @@ function uniqueQualityFlagDetails(details) {
   return result;
 }
 
+function flattenFactGraphText(value) {
+  const parts = [];
+  const visit = (node) => {
+    if (node === null || node === undefined) return;
+    if (typeof node === "string" || typeof node === "number" || typeof node === "boolean") {
+      parts.push(String(node));
+      return;
+    }
+    if (Array.isArray(node)) {
+      for (const item of node) visit(item);
+      return;
+    }
+    if (typeof node === "object") {
+      for (const item of Object.values(node)) visit(item);
+    }
+  };
+  visit(value);
+  return normalizeText(parts.join(" "));
+}
+
 function textFieldsForVisualLanguageReview(payload) {
   const attributes = payload?.visual_attributes ?? {};
   const subjects = attributes.subjects ?? {};
@@ -466,6 +522,7 @@ function textFieldsForVisualLanguageReview(payload) {
     ["visual_attributes.environment.setting", normalizeStringArray(environment.setting).join(" ")],
     ["visual_attributes.mood", normalizeStringArray(attributes.mood).join(" ")],
     ["visual_attributes.distinguishing_details", normalizeStringArray(attributes.distinguishing_details).join(" ")],
+    ["visual_attributes.fact_graph", flattenFactGraphText(attributes.fact_graph)],
     ["semantic_tags", normalizeStringArray(payload?.semantic_tags).join(" ")],
   ].map(([field, text]) => ({ field, text: normalizeText(text) })).filter((entry) => entry.text);
 }
@@ -826,8 +883,18 @@ function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) 
 
   const attributes = payload?.visual_attributes ?? {};
   const subjects = attributes.subjects ?? {};
-  const primarySubjects = normalizeStringArray(subjects.primary);
-  const secondarySubjects = normalizeStringArray(subjects.secondary);
+  const factGraph = attributes.fact_graph ?? {};
+  const factGraphSceneSubjects = normalizeObjectArray(factGraph.subjects)
+    .filter((subject) => subject.subject_kind === "scene_subject")
+    .map((subject) => subject.identity)
+    .filter(Boolean);
+  const factGraphReferencedSubjects = [
+    ...factGraphSceneSubjects,
+    ...normalizeObjectArray(factGraph.depicted_subjects).map((subject) => subject.represented_identity),
+    ...normalizeObjectArray(factGraph.character_representations).map((subject) => subject.represented_identity),
+  ].filter(Boolean);
+  const primarySubjects = uniquePreserving([...normalizeStringArray(subjects.primary), ...factGraphSceneSubjects]);
+  const secondarySubjects = uniquePreserving([...normalizeStringArray(subjects.secondary), ...factGraphReferencedSubjects]);
   const subjectText = [...primarySubjects, ...secondarySubjects].join(" ");
   const subjectTextKey = tagKey(subjectText);
   const combinedSubjectTextKey = tagKey([
@@ -841,7 +908,7 @@ function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) 
       addManualDetail(
         details,
         "potential_primary_subject_mismatch",
-        "visual_attributes.subjects.primary",
+        factGraphSceneSubjects.length > 0 ? "visual_attributes.fact_graph.subjects" : "visual_attributes.subjects.primary",
         `missing expected subject: ${expected}`,
       );
     }
@@ -899,6 +966,68 @@ function addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch) 
   if (expectedSubjects.length > 1 && /\b(hybrid creature|single hybrid|combined creature|merged creature|fusion)\b/i.test(combinedText)) {
     addManualDetail(details, "potential_subject_count_mismatch", "artwork_description", "hybrid creature");
     addManualDetail(details, "potential_canonical_name_visual_conflict", "artwork_description", "hybrid creature");
+  }
+}
+
+function addFactGraphSubjectKindFlagDetails(details, payload) {
+  const factGraph = payload?.visual_attributes?.fact_graph;
+  if (!factGraph || typeof factGraph !== "object") return;
+
+  const observations = normalizeObjectArray(factGraph.observations);
+  const subjects = normalizeObjectArray(factGraph.subjects);
+  const subjectObservationIds = new Set(subjects.map((subject) => normalizeText(subject.observation_id)).filter(Boolean));
+  const observationById = new Map(observations.map((observation) => [normalizeText(observation.observation_id), observation]));
+
+  for (const observation of observations) {
+    const observationId = normalizeText(observation.observation_id);
+    const kind = normalizeText(observation.kind);
+    const label = normalizeText([observation.label, observation.normalized_label].filter(Boolean).join(" "));
+    if (kind === "scene_subject" && observationId && !subjectObservationIds.has(observationId)) {
+      addManualDetail(
+        details,
+        "potential_subject_kind_classification_confusion",
+        "visual_attributes.fact_graph.observations",
+        `${observationId}: ${label || "scene_subject observation without subject row"}`,
+      );
+    }
+    if (kind === "scene_subject" && FACT_GRAPH_NON_LIVING_SUBJECT_LABEL_PATTERN.test(label)) {
+      addManualDetail(
+        details,
+        "potential_subject_kind_classification_confusion",
+        "visual_attributes.fact_graph.observations",
+        `${observationId}: ${label}`,
+      );
+    }
+  }
+
+  for (const subject of subjects) {
+    const observationId = normalizeText(subject.observation_id);
+    const observation = observationById.get(observationId) ?? {};
+    const observationKind = normalizeText(observation.kind);
+    const subjectText = normalizeText([
+      subject.identity,
+      subject.label,
+      observation.label,
+      observation.normalized_label,
+      observationKind,
+    ].filter(Boolean).join(" "));
+
+    if (observationKind && !FACT_GRAPH_SCENE_SUBJECT_OBSERVATION_KIND_PATTERN.test(observationKind)) {
+      addManualDetail(
+        details,
+        "potential_subject_kind_classification_confusion",
+        "visual_attributes.fact_graph.subjects",
+        `${observationId}: observation kind ${observationKind}`,
+      );
+    }
+    if (FACT_GRAPH_NON_LIVING_SUBJECT_LABEL_PATTERN.test(subjectText)) {
+      addManualDetail(
+        details,
+        "potential_subject_kind_classification_confusion",
+        "visual_attributes.fact_graph.subjects",
+        `${observationId}: ${subjectText}`,
+      );
+    }
   }
 }
 
@@ -1008,6 +1137,7 @@ export function detectVisualDescriptionReviewFlagDetailsV1(payload, card = {}) {
   const expressionSupport = promptBranch === "trainer" ? visibleExpressionSupportEvidence(payload) : [];
 
   addSubjectCorrectnessFlagDetails(details, payload, card, promptBranch);
+  addFactGraphSubjectKindFlagDetails(details, payload);
   addMetadataOrIdentityFlagDetails(details, payload, card);
   addCrossFieldExpressionContradictionFlagDetails(details, payload);
   addEnergyAbstractShapeLiteralizationFlagDetails(details, payload, promptBranch);
@@ -1337,6 +1467,241 @@ function normalizeQualityFlags(value) {
   });
 }
 
+function normalizeObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+
+function normalizeObjectArray(value) {
+  return Array.isArray(value) ? value.filter((entry) => entry && typeof entry === "object" && !Array.isArray(entry)) : [];
+}
+
+function normalizeNumberOrZero(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : 0;
+}
+
+function normalizeConfidence(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 0;
+  return Math.max(0, Math.min(1, number));
+}
+
+function normalizeObservationReferenceArray(value) {
+  return normalizeStringArray(value);
+}
+
+function normalizeFactGraphObservations(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    kind: normalizeText(entry.kind),
+    label: normalizeText(entry.label),
+    normalized_label: normalizeText(entry.normalized_label),
+    scene_layer: normalizeText(entry.scene_layer),
+    frame_position: normalizeText(entry.frame_position),
+    visibility: normalizeText(entry.visibility),
+    salience: normalizeText(entry.salience),
+    confidence: normalizeConfidence(entry.confidence),
+    evidence_strength: normalizeText(entry.evidence_strength),
+  }));
+}
+
+function normalizeFacialEvidence(value) {
+  const evidence = normalizeObject(value);
+  return {
+    eyes: normalizeText(evidence.eyes),
+    mouth: normalizeText(evidence.mouth),
+    eyebrows: normalizeText(evidence.eyebrows),
+    face_position: normalizeText(evidence.face_position),
+    other_visible_evidence: normalizeStringArray(evidence.other_visible_evidence),
+  };
+}
+
+function normalizeFactGraphSubjects(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    subject_kind: normalizeText(entry.subject_kind),
+    identity: normalizeText(entry.identity),
+    identity_confidence: normalizeConfidence(entry.identity_confidence),
+    anatomy: normalizeStringArray(entry.anatomy),
+    physical_features: normalizeStringArray(entry.physical_features),
+    pose: normalizeStringArray(entry.pose),
+    orientation: normalizeText(entry.orientation),
+    action_state: normalizeStringArray(entry.action_state),
+    facial_evidence: normalizeFacialEvidence(entry.facial_evidence),
+    clothing_or_accessories: normalizeStringArray(entry.clothing_or_accessories),
+    colors: normalizeStringArray(entry.colors),
+    visibility: normalizeText(entry.visibility),
+  }));
+}
+
+function normalizeDepictedSubjects(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    subject_kind: normalizeText(entry.subject_kind),
+    represented_identity: normalizeText(entry.represented_identity),
+    identity_confidence: normalizeConfidence(entry.identity_confidence),
+    host_surface: normalizeText(entry.host_surface),
+    surface_type: normalizeText(entry.surface_type),
+    visibility: normalizeText(entry.visibility),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeCharacterRepresentations(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    subject_kind: normalizeText(entry.subject_kind),
+    represented_identity: normalizeText(entry.represented_identity),
+    identity_confidence: normalizeConfidence(entry.identity_confidence),
+    host_object: normalizeText(entry.host_object),
+    representation_form: normalizeText(entry.representation_form),
+    visibility: normalizeText(entry.visibility),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeFactGraphCounts(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    count_id: normalizeText(entry.count_id),
+    normalized_label: normalizeText(entry.normalized_label),
+    count_type: normalizeText(entry.count_type),
+    exact_count: asNonnegativeInt(entry.exact_count, 0, "fact_graph.counts.exact_count"),
+    estimated_min: asNonnegativeInt(entry.estimated_min, 0, "fact_graph.counts.estimated_min"),
+    estimated_max: asNonnegativeInt(entry.estimated_max, 0, "fact_graph.counts.estimated_max"),
+    abstention_reason: normalizeText(entry.abstention_reason),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    scene_layer: normalizeText(entry.scene_layer),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeFactGraphSceneLayers(value) {
+  const layers = normalizeObject(value);
+  return {
+    foreground: normalizeObservationReferenceArray(layers.foreground),
+    midground: normalizeObservationReferenceArray(layers.midground),
+    background: normalizeObservationReferenceArray(layers.background),
+  };
+}
+
+function normalizeFactGraphEnvironment(value) {
+  const environment = normalizeObject(value);
+  return {
+    setting: normalizeStringArray(environment.setting),
+    indoor_outdoor: normalizeText(environment.indoor_outdoor),
+    sky: normalizeStringArray(environment.sky),
+    ground: normalizeStringArray(environment.ground),
+    terrain: normalizeStringArray(environment.terrain),
+    plants: normalizeStringArray(environment.plants),
+    architecture: normalizeStringArray(environment.architecture),
+    water: normalizeStringArray(environment.water),
+    weather: normalizeStringArray(environment.weather),
+    time_of_day_cues: normalizeStringArray(environment.time_of_day_cues),
+    supporting_observation_ids: normalizeObservationReferenceArray(environment.supporting_observation_ids),
+  };
+}
+
+function normalizeObjectsAndProps(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    label: normalizeText(entry.label),
+    normalized_label: normalizeText(entry.normalized_label),
+    object_type: normalizeText(entry.object_type),
+    colors: normalizeStringArray(entry.colors),
+    material_appearance: normalizeStringArray(entry.material_appearance),
+    location: normalizeText(entry.location),
+    count_reference: normalizeText(entry.count_reference),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeRelationships(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    relationship_id: normalizeText(entry.relationship_id),
+    source_observation_id: normalizeText(entry.source_observation_id),
+    target_observation_id: normalizeText(entry.target_observation_id),
+    relationship: normalizeText(entry.relationship),
+    evidence_strength: normalizeText(entry.evidence_strength),
+  }));
+}
+
+function normalizeVisualDesign(value) {
+  const design = normalizeObject(value);
+  return {
+    palette: normalizeStringArray(design.palette),
+    lighting: normalizeStringArray(design.lighting),
+    shadows: normalizeStringArray(design.shadows),
+    highlights: normalizeStringArray(design.highlights),
+    composition: normalizeStringArray(design.composition),
+    camera_angle: normalizeText(design.camera_angle),
+    framing: normalizeText(design.framing),
+    cropping: normalizeStringArray(design.cropping),
+    depth: normalizeText(design.depth),
+    motion_cues: normalizeStringArray(design.motion_cues),
+    motifs: normalizeStringArray(design.motifs),
+    repeated_shapes: normalizeStringArray(design.repeated_shapes),
+    style_cues: normalizeStringArray(design.style_cues),
+    supporting_observation_ids: normalizeObservationReferenceArray(design.supporting_observation_ids),
+  };
+}
+
+function normalizeSurfaceAndScanCues(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    observation_id: normalizeText(entry.observation_id),
+    cue_type: normalizeText(entry.cue_type),
+    cue: normalizeText(entry.cue),
+    abstention: normalizeText(entry.abstention),
+    confidence: normalizeConfidence(entry.confidence),
+  }));
+}
+
+function normalizeCoverageReviews(value) {
+  const reviews = normalizeObject(value);
+  return Object.fromEntries(FACT_GRAPH_COVERAGE_KEYS.map((key) => [key, normalizeText(reviews[key])]));
+}
+
+function normalizeUncertaintyAndAbstentions(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    field: normalizeText(entry.field),
+    reason: normalizeText(entry.reason),
+    affected_observation_ids: normalizeObservationReferenceArray(entry.affected_observation_ids),
+  }));
+}
+
+function normalizeFactGroundedSearchTerms(value, counts = []) {
+  const countSupportById = new Map(
+    normalizeObjectArray(counts)
+      .map((count) => [normalizeText(count.count_id), normalizeObservationReferenceArray(count.supporting_observation_ids)])
+      .filter(([countId, support]) => countId && support.length > 0),
+  );
+  return normalizeObjectArray(value).map((entry) => ({
+    term: normalizeText(entry.term),
+    supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
+      .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
+  }));
+}
+
+function normalizeFactGraphV1(value) {
+  const graph = normalizeObject(value);
+  const counts = normalizeFactGraphCounts(graph.counts);
+  return {
+    observations: normalizeFactGraphObservations(graph.observations),
+    subjects: normalizeFactGraphSubjects(graph.subjects),
+    depicted_subjects: normalizeDepictedSubjects(graph.depicted_subjects),
+    character_representations: normalizeCharacterRepresentations(graph.character_representations),
+    counts,
+    scene_layers: normalizeFactGraphSceneLayers(graph.scene_layers),
+    environment: normalizeFactGraphEnvironment(graph.environment),
+    objects_and_props: normalizeObjectsAndProps(graph.objects_and_props),
+    relationships: normalizeRelationships(graph.relationships),
+    visual_design: normalizeVisualDesign(graph.visual_design),
+    surface_and_scan_cues: normalizeSurfaceAndScanCues(graph.surface_and_scan_cues),
+    coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
+    uncertainty_and_abstentions: normalizeUncertaintyAndAbstentions(graph.uncertainty_and_abstentions),
+    fact_grounded_search_terms: normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts),
+  };
+}
+
 function normalizeVisualAttributesV1(value) {
   const attributes = value && typeof value === "object" && !Array.isArray(value) ? value : {};
   const subjects = attributes.subjects && typeof attributes.subjects === "object" && !Array.isArray(attributes.subjects)
@@ -1375,6 +1740,8 @@ function normalizeVisualAttributesV1(value) {
     style: normalizeStringArray(attributes.style),
     distinguishing_details: normalizeStringArray(attributes.distinguishing_details),
     uncertainty_notes: normalizeStringArray(attributes.uncertainty_notes),
+    fact_schema_version: normalizeText(attributes.fact_schema_version),
+    fact_graph: normalizeFactGraphV1(attributes.fact_graph),
   };
 }
 
@@ -2100,23 +2467,23 @@ export function evaluateAutoApprovalReadinessV1(row, options = {}) {
     });
   }
 
-  const distinguishingDetails = normalizeStringArray(row?.visual_attributes?.distinguishing_details);
+  const factGraph = normalizedPayload.visual_attributes?.fact_graph ?? {};
   const outputComplete = validation.ok
-    && normalizeText(row?.artwork_description).length >= 160
-    && normalizeStringArray(row?.semantic_tags).length >= 3
-    && distinguishingDetails.length >= 2;
+    && (factGraph.observations ?? []).length >= 3
+    && (factGraph.fact_grounded_search_terms ?? []).length >= 3
+    && FACT_GRAPH_COVERAGE_KEYS.every((key) => FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key)));
   addAutoApprovalCondition(conditions, "output_complete_enough_to_distinguish_artwork", outputComplete, [
-    `artwork_description_chars=${normalizeText(row?.artwork_description).length}`,
-    `semantic_tags=${normalizeStringArray(row?.semantic_tags).length}`,
-    `distinguishing_details=${distinguishingDetails.length}`,
+    `observations=${(factGraph.observations ?? []).length}`,
+    `fact_grounded_search_terms=${(factGraph.fact_grounded_search_terms ?? []).length}`,
+    `coverage_reviews=${FACT_GRAPH_COVERAGE_KEYS.filter((key) => FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key))).length}`,
   ]);
   if (!outputComplete) {
     addAutoApprovalBlocker(blockers, "output_not_complete_enough_to_distinguish_artwork", {
       condition: "output_complete_enough_to_distinguish_artwork",
       evidence: [
-        `artwork_description_chars=${normalizeText(row?.artwork_description).length}`,
-        `semantic_tags=${normalizeStringArray(row?.semantic_tags).length}`,
-        `distinguishing_details=${distinguishingDetails.length}`,
+        `observations=${(factGraph.observations ?? []).length}`,
+        `fact_grounded_search_terms=${(factGraph.fact_grounded_search_terms ?? []).length}`,
+        `coverage_reviews=${FACT_GRAPH_COVERAGE_KEYS.filter((key) => FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key))).length}`,
       ],
     });
   }
@@ -2373,22 +2740,206 @@ export function evaluateStopBeforeNextCall(args, generatedRows, validationFailur
   };
 }
 
+function observationIdSet(factGraph) {
+  return new Set((factGraph?.observations ?? []).map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
+}
+
+function addMissingObservationFindings(findings, ids, knownIds, findingPrefix) {
+  for (const id of ids.map(normalizeText).filter(Boolean)) {
+    if (!knownIds.has(id)) findings.push(`${findingPrefix}:${id}`);
+  }
+}
+
+function reviewStatusForCoverage(factGraph, key) {
+  return normalizeText(factGraph?.coverage_reviews?.[key]);
+}
+
+function sectionCoveredOrObserved(factGraph, key, rows) {
+  if (Array.isArray(rows) && rows.length > 0) return true;
+  return FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key));
+}
+
+function factGraphSearchTerms(factGraph) {
+  return uniqueSorted((factGraph?.fact_grounded_search_terms ?? []).map((entry) => entry.term));
+}
+
+function factGraphSurfaceDigest(factGraph) {
+  const cues = (factGraph?.surface_and_scan_cues ?? [])
+    .map((entry) => [entry.cue, entry.abstention].map(normalizeText).filter(Boolean).join("; "))
+    .filter(Boolean);
+  if (cues.length > 0) return cues.join(" ");
+  const review = reviewStatusForCoverage(factGraph, "surface_and_scan_cues_review");
+  if (review && review !== "observed") {
+    return `No reliable card-surface, foil, texture, glare, border, or printing-treatment cues are asserted; surface review status: ${review}.`;
+  }
+  return "No reliable card-surface, foil, texture, glare, border, or printing-treatment cues are visible enough to describe from this scan.";
+}
+
+export function buildFactGraphCompatibilityDigestV1(factGraph) {
+  const observations = factGraph?.observations ?? [];
+  const subjects = factGraph?.subjects ?? [];
+  const depictedSubjects = factGraph?.depicted_subjects ?? [];
+  const representations = factGraph?.character_representations ?? [];
+  const counts = factGraph?.counts ?? [];
+  const highSalience = observations
+    .filter((observation) => ["high", "medium"].includes(normalizeText(observation.salience).toLowerCase()))
+    .slice(0, 8)
+    .map((observation) => observation.label || observation.normalized_label)
+    .filter(Boolean);
+  const countParts = counts.slice(0, 6).map((count) => {
+    if (count.count_type === "exact") return `${count.normalized_label}: ${count.exact_count}`;
+    if (count.count_type === "estimated_range") return `${count.normalized_label}: ${count.estimated_min}-${count.estimated_max}`;
+    return `${count.normalized_label}: ${count.count_type}`;
+  }).filter((value) => !value.startsWith(":"));
+  const primary = subjects.map((subject) => subject.identity).filter(Boolean).slice(0, 5);
+  const depicted = depictedSubjects.map((subject) => subject.represented_identity).filter(Boolean).slice(0, 4);
+  const represented = representations.map((subject) =>
+    [subject.represented_identity, subject.representation_form || subject.host_object].filter(Boolean).join(" as "),
+  ).filter(Boolean).slice(0, 4);
+  const parts = [
+    primary.length ? `Scene subjects: ${primary.join(", ")}.` : "",
+    depicted.length ? `Depicted subjects: ${depicted.join(", ")}.` : "",
+    represented.length ? `Character representations: ${represented.join(", ")}.` : "",
+    highSalience.length ? `Visible observations: ${highSalience.join(", ")}.` : "",
+    countParts.length ? `Counts: ${countParts.join(", ")}.` : "",
+  ].filter(Boolean);
+  return parts.length
+    ? `Fact digest. ${parts.join(" ")}`
+    : "Fact digest. No confident visible fact observations were extracted.";
+}
+
+function factGraphContainsInterpretedExpression(factGraph) {
+  const directExpression = flattenFactGraphText([
+    (factGraph?.subjects ?? []).map((subject) => subject.expression ?? subject.interpreted_expression),
+    factGraph?.interpreted_expression,
+  ]);
+  if (directExpression) return true;
+  const facialText = flattenFactGraphText((factGraph?.subjects ?? []).map((subject) => subject.facial_evidence));
+  return /\b(angry|happy|confident|sad|joyful|cheerful|determined|focused|menacing|playful|friendly|serious|thoughtful|assertive)\b/i.test(facialText);
+}
+
+function validateFactGraphV1(factGraph) {
+  const findings = [];
+  if (!factGraph || typeof factGraph !== "object" || Array.isArray(factGraph)) {
+    return ["fact_graph_not_object"];
+  }
+
+  const observations = factGraph.observations ?? [];
+  if (!Array.isArray(observations) || observations.length < 1) findings.push("fact_graph_observations_missing");
+  const knownIds = observationIdSet(factGraph);
+  if (knownIds.size !== observations.length) findings.push("fact_graph_observation_ids_missing_or_not_unique");
+  for (const observation of observations) {
+    if (!observation.observation_id) findings.push("fact_graph_observation_missing_id");
+    if (!observation.label && !observation.normalized_label) findings.push(`fact_graph_observation_missing_label:${observation.observation_id || "unknown"}`);
+  }
+
+  const referenceChecks = [
+    ["subjects", "fact_graph_subject_observation_missing", factGraph.subjects ?? [], (entry) => [entry.observation_id]],
+    ["depicted_subjects", "fact_graph_depicted_subject_observation_missing", factGraph.depicted_subjects ?? [], (entry) => [entry.observation_id]],
+    ["character_representations", "fact_graph_character_representation_observation_missing", factGraph.character_representations ?? [], (entry) => [entry.observation_id]],
+    ["objects_and_props", "fact_graph_object_observation_missing", factGraph.objects_and_props ?? [], (entry) => [entry.observation_id]],
+    ["relationships", "fact_graph_relationship_observation_missing", factGraph.relationships ?? [], (entry) => [entry.source_observation_id, entry.target_observation_id]],
+    ["surface_and_scan_cues", "fact_graph_surface_cue_observation_missing", factGraph.surface_and_scan_cues ?? [], (entry) => entry.observation_id ? [entry.observation_id] : []],
+    ["fact_grounded_search_terms", "fact_graph_search_term_observation_missing", factGraph.fact_grounded_search_terms ?? [], (entry) => entry.supporting_observation_ids ?? []],
+  ];
+  for (const [, finding, rows, getIds] of referenceChecks) {
+    if (!Array.isArray(rows)) {
+      findings.push(`${finding}:section_not_array`);
+      continue;
+    }
+    for (const row of rows) addMissingObservationFindings(findings, getIds(row), knownIds, finding);
+  }
+
+  for (const subject of factGraph.subjects ?? []) {
+    if (subject.subject_kind !== "scene_subject") findings.push(`fact_graph_subject_kind_invalid:${subject.observation_id || subject.identity || "unknown"}`);
+    if (!subject.identity) findings.push(`fact_graph_subject_identity_missing:${subject.observation_id || "unknown"}`);
+  }
+  for (const subject of factGraph.depicted_subjects ?? []) {
+    if (subject.subject_kind !== "depicted_subject") findings.push(`fact_graph_depicted_subject_kind_invalid:${subject.observation_id || subject.represented_identity || "unknown"}`);
+    if (!subject.host_surface || !subject.surface_type) findings.push(`fact_graph_depicted_subject_host_missing:${subject.observation_id || "unknown"}`);
+  }
+  for (const subject of factGraph.character_representations ?? []) {
+    if (subject.subject_kind !== "character_representation") findings.push(`fact_graph_character_representation_kind_invalid:${subject.observation_id || subject.represented_identity || "unknown"}`);
+    if (!subject.host_object || !subject.representation_form) findings.push(`fact_graph_character_representation_host_missing:${subject.observation_id || "unknown"}`);
+  }
+
+  for (const count of factGraph.counts ?? []) {
+    if (!count.count_id) findings.push("fact_graph_count_missing_id");
+    if (!count.normalized_label) findings.push(`fact_graph_count_missing_label:${count.count_id || "unknown"}`);
+    if (!FACT_GRAPH_COUNT_TYPES.has(count.count_type)) findings.push(`fact_graph_count_type_invalid:${count.count_id || "unknown"}`);
+    if (count.supporting_observation_ids.length < 1) findings.push(`fact_graph_count_without_supporting_observation:${count.count_id || "unknown"}`);
+    addMissingObservationFindings(findings, count.supporting_observation_ids, knownIds, "fact_graph_count_observation_missing");
+    if (count.count_type === "exact" && count.exact_count < 1) findings.push(`fact_graph_exact_count_missing:${count.count_id || "unknown"}`);
+    if (count.count_type === "estimated_range" && (count.estimated_min < 1 || count.estimated_max < count.estimated_min)) {
+      findings.push(`fact_graph_estimated_count_range_invalid:${count.count_id || "unknown"}`);
+    }
+    if (count.count_type.startsWith("uncountable") && !count.abstention_reason) {
+      findings.push(`fact_graph_count_abstention_reason_missing:${count.count_id || "unknown"}`);
+    }
+  }
+
+  for (const term of factGraph.fact_grounded_search_terms ?? []) {
+    if (!term.term) findings.push("fact_graph_search_term_missing_term");
+    if (term.supporting_observation_ids.length < 1) {
+      findings.push(`fact_graph_search_term_without_supporting_observation:${term.term || "unknown"}`);
+    }
+  }
+
+  for (const layer of ["foreground", "midground", "background"]) {
+    addMissingObservationFindings(findings, factGraph.scene_layers?.[layer] ?? [], knownIds, `fact_graph_scene_layer_observation_missing:${layer}`);
+  }
+  addMissingObservationFindings(findings, factGraph.environment?.supporting_observation_ids ?? [], knownIds, "fact_graph_environment_observation_missing");
+  addMissingObservationFindings(findings, factGraph.visual_design?.supporting_observation_ids ?? [], knownIds, "fact_graph_visual_design_observation_missing");
+  for (const uncertainty of factGraph.uncertainty_and_abstentions ?? []) {
+    addMissingObservationFindings(findings, uncertainty.affected_observation_ids ?? [], knownIds, "fact_graph_uncertainty_observation_missing");
+  }
+
+  for (const key of FACT_GRAPH_COVERAGE_KEYS) {
+    if (!FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key))) {
+      findings.push(`fact_graph_coverage_review_missing:${key}`);
+    }
+  }
+  const emptySectionChecks = [
+    ["subjects_review", factGraph.subjects],
+    ["depicted_subjects_review", factGraph.depicted_subjects],
+    ["character_representations_review", factGraph.character_representations],
+    ["counts_review", factGraph.counts],
+    ["objects_and_props_review", factGraph.objects_and_props],
+    ["relationships_review", factGraph.relationships],
+    ["surface_and_scan_cues_review", factGraph.surface_and_scan_cues],
+  ];
+  for (const [key, rows] of emptySectionChecks) {
+    if (!sectionCoveredOrObserved(factGraph, key, rows)) findings.push(`fact_graph_empty_section_without_review:${key}`);
+  }
+
+  if ((factGraph.fact_grounded_search_terms ?? []).length < 3) findings.push("fact_graph_search_terms_too_sparse");
+  if (factGraphContainsInterpretedExpression(factGraph)) findings.push("fact_graph_interpreted_expression_not_allowed");
+  if (new RegExp(VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN.source, "i").test(flattenFactGraphText(factGraph))) {
+    findings.push("fact_graph_story_or_lore_language_not_allowed");
+  }
+
+  return uniqueSorted(findings);
+}
+
 export function validateVisualDescriptionPayloadV1(payload) {
   const findings = [];
-  const artworkDescription = normalizeText(payload?.artwork_description);
-  const cardSurfaceAndPrintingCues = normalizeSurfaceCues(payload?.card_surface_and_printing_cues);
   const visualAttributes = payload?.visual_attributes;
   const normalizedVisualAttributes = normalizeVisualAttributesV1(visualAttributes);
-  const semanticTags = Array.isArray(payload?.semantic_tags) ? uniqueSorted(payload.semantic_tags) : [];
+  const factGraph = normalizedVisualAttributes.fact_graph;
+  const artworkDescription = buildFactGraphCompatibilityDigestV1(factGraph);
+  const cardSurfaceAndPrintingCues = normalizeSurfaceCues(factGraphSurfaceDigest(factGraph));
+  const semanticTags = factGraphSearchTerms(factGraph);
   const qualityFlags = normalizeQualityFlags(payload?.quality_flags);
   const descriptionConfidence = Number(payload?.description_confidence);
   const attributeConfidence = Number(payload?.attribute_confidence);
 
-  if (artworkDescription.length < 80) findings.push("artwork_description_too_short");
-  if (cardSurfaceAndPrintingCues.length < 40) findings.push("card_surface_and_printing_cues_too_short");
   if (!visualAttributes || typeof visualAttributes !== "object" || Array.isArray(visualAttributes)) {
     findings.push("visual_attributes_not_object");
   }
+  if (normalizedVisualAttributes.fact_schema_version !== CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION) {
+    findings.push("fact_schema_version_invalid");
+  }
+  findings.push(...validateFactGraphV1(factGraph));
   if (semanticTags.length < 3) findings.push("semantic_tags_too_sparse");
   if (!Number.isFinite(descriptionConfidence) || descriptionConfidence < 0 || descriptionConfidence > 1) {
     findings.push("description_confidence_invalid");
@@ -2419,13 +2970,17 @@ export function buildEmbeddingInputV1(row) {
   const palette = attributes.palette ?? {};
   const mood = Array.isArray(attributes.mood) ? uniqueSorted(attributes.mood) : [];
   const tags = uniqueSorted(row.semantic_tags ?? []);
+  const factGraph = attributes.fact_graph ?? {};
 
   return [
-    "Artwork:",
+    "Compatibility digest:",
     normalizeText(row.artwork_description),
     "",
     "Printing cues:",
     normalizeText(row.card_surface_and_printing_cues),
+    "",
+    "Fact graph:",
+    stableJson(factGraph),
     "",
     "Subjects:",
     stableJson(subjects),
@@ -2458,52 +3013,50 @@ function promptBranchInstructions(branch) {
       return [
         "Resolved branch instructions:",
         "Use Branch 2 - Trainer.",
-        "Do NOT describe the trainer as a humanoid creature.",
-        "Inside artwork_description, write two labeled prose layers in this order: Trainer: then Artwork:.",
-        "Trainer: describe the visible human trainer or human character. Cover apparent age category only when visible, hair, clothing, face location, facial expression, posture, gesture, interaction with visible Pokemon or objects, and emotional tone grounded in visible pose and expression.",
-        "Artwork: describe the environment, composition, lighting, movement, foreground, background, visible interactions, palette, mood, atmosphere, framing, and cropping.",
-        "If no human trainer can be confidently identified, state that explicitly and describe only the visible scene or objects.",
+        "Treat physically present people as scene_subject records.",
+        "Record visible hair, clothing, posture, gestures, held objects, facial evidence, and environment as atomic observations.",
+        "Do not store interpreted emotions such as confident, sad, angry, or determined. Store visible facial evidence only.",
+        "If no human trainer is visible, leave subjects empty and set subjects_review to the correct explicit coverage result.",
       ];
     case "stadium":
       return [
         "Resolved branch instructions:",
         "Use Branch 3 - Stadium.",
-        "No character section.",
-        "Inside artwork_description, write two labeled prose layers in this order: Environment: then Artwork:.",
-        "Environment: describe the visible place, foreground, midground, background, architecture, landscape, plants, objects, visual focal points, weather, and lighting.",
-        "Artwork: describe composition, perspective, framing, depth, palette, mood, movement, and artwork-specific distinguishing details.",
-        "Avoid inventing characters, Pokemon, crowds, activity, stars, magic, or a specific setting unless those details are clearly visible.",
+        "Environment and place observations are the primary facts.",
+    "Record foreground, midground, background, architecture, plants, terrain, sky, weather cues, and repeated visible elements with counts or count abstentions.",
+        "Lightning, sky, aurora, clouds, trees, terrain, and other environment facts are observations, environment facts, objects/props, counts, or design facts; they are not subjects.",
+        "Do not invent people, Pokemon, crowds, activity, weather, time of day, or a specific named setting unless directly visible.",
       ];
     case "energy":
       return [
         "Resolved branch instructions:",
         "Use Branch 4 - Energy.",
-        "Do NOT invent creatures.",
-        "Inside artwork_description, write two labeled prose layers in this order: Symbolic Artwork: then Artwork:.",
-        "Symbolic Artwork: describe the visible energy symbol, abstract forms, color fields, gradients, movement, repeated shapes, radiating lines, circular motifs, and lighting.",
-        "Artwork: describe composition, framing, palette, mood, visual theme, focal point, and artwork-specific distinguishing details.",
-        "Treat Energy cards as symbolic or abstract illustrations unless a concrete subject is visibly present. Use concrete terms such as central symbol, abstract forms, radiating lines, circular motif, soft gradients, and glowing highlights.",
+        "Treat Energy cards as symbolic or abstract illustrations unless concrete subjects or objects are visibly present.",
+        "Record symbols, gradients, radiating lines, circular motifs, repeated shapes, color fields, highlights, and abstraction as observations.",
+        "Do not put an energy symbol, eye symbol, color field, glow, or abstract form into subjects. Use subjects: [] and subjects_review: none_visible unless a living/entity subject is actually visible.",
+        "If the card shows one central symbol, create an observation and exact count for the symbol, and add at least three fact-grounded search terms from visible symbol, palette, and composition facts.",
+        "Do not invent creatures, environments, metaphysical purpose, powers, or lore.",
       ];
     case "item_tool_supporter":
       return [
         "Resolved branch instructions:",
         "Use Branch 5 - Item / Tool / Supporter.",
-        "Inside artwork_description, write two labeled prose layers in this order: Object/Scene: then Artwork:.",
-        "Object/Scene: describe the actual visible object, tool, device, item, prop, or scene. If a Supporter card shows a human trainer, describe the visible person as a trainer rather than a creature.",
-        "Artwork: describe environment, composition, lighting, movement, foreground, background, palette, mood, framing, and artwork-specific distinguishing details.",
-        "Do not attempt to invent Pokemon unless a Pokemon is clearly visible.",
+        "Record actual visible objects, tools, devices, props, scenes, people, and character representations as fact graph observations.",
+        "If a Supporter card shows a human trainer, record that person as a scene_subject rather than a creature.",
+        "Do not put a non-living item or tool into subjects. The main item belongs in observations and objects_and_props.",
+        "For a visible bomb, bell, badge, fossil, device, or tool, use subjects: [], subjects_review: none_visible, and objects_and_props_review: observed.",
+        "Add at least three fact-grounded search terms from visible object, shape, color, surrounding effects, or composition facts.",
+        "Do not infer object purpose, gameplay function, or Pokemon users unless visible.",
       ];
     case "pokemon":
     default:
       return [
         "Resolved branch instructions:",
         "Use Branch 1 - Pokemon.",
-        "Inside artwork_description, write two labeled prose layers in this order: Character: then Artwork:.",
-        "Character: describe the Pokemon as a living character for someone who has never seen this species before. Do not assume the Pokemon name communicates appearance.",
-        "Character details must cover the overall creature type, real-world object, animal, plant, or concept resemblance, body structure, face location, eye placement, expression, posture, limbs, wings, tails, flames, and species-defining anatomy when visible.",
-        "When visible, explicitly describe where the face, eyes, and defining species features are located. If they cannot be confidently identified, state that explicitly rather than implying they do not exist.",
-        "Artwork: describe this specific illustration: pose, movement, composition, framing, cropping, foreground, background, environment, lighting, palette, mood, and atmosphere.",
-        "Include artwork-specific distinguishing details that would help distinguish this card art from another artwork of the same Pokemon.",
+        "Record physically present Pokemon as scene_subject records.",
+        "Record visible anatomy, physical features, face position, eye evidence, mouth evidence, pose, orientation, action/state, colors, scene layer, and interactions.",
+        "If the card name contains multiple Pokemon, record each visible Pokemon as a separate subject. Do not merge them into one hybrid unless the image literally shows a fused body.",
+        "Do not store interpreted expressions. Store visible facial evidence only.",
       ];
   }
 }
@@ -2513,19 +3066,31 @@ function buildPrompt(card) {
   const expectedVisualSubjects = expectedVisualSubjectsFromCardName(card.name);
   const branchLabel = PROMPT_BRANCH_LABELS[promptMetadata.prompt_branch] ?? PROMPT_BRANCH_LABELS.pokemon;
   return [
-    "# CARD_VISUAL_DESCRIPTION_PROMPT_V6",
-    "## Card-Type Aware Visual Description System",
-    `## Visual Language Contract: ${CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION}`,
+    "# CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
+    "## Exhaustive Observable Fact Graph System",
+    `## Fact Graph Schema: ${CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION}`,
     "",
-    "Describe the artwork on this exact Pokemon Trading Card Game card for a blind collector.",
-    "Use canonical card-type metadata before image interpretation so the description strategy matches the card type.",
-    "The canonical metadata is only branch-selection context. Do not treat it as permission to describe details that are not visible.",
+    "Extract exhaustive directly observable visual facts from this exact Pokemon Trading Card Game card image.",
+    "Do not write a prose description, story, caption, review, or mood narrative.",
+    "The output is a reusable fact graph for semantic search, Taste Engine, Grookai Signature, cameo detection, visual matching, future visuals, and optional downstream story generation.",
+    "The fact graph must be sufficient for another system to write prose later, but it must not contain story.",
+    "Use canonical card-type metadata only for branch selection and expected-subject checking. It is not visual evidence.",
     "Do NOT use lore, flavor text, attacks, Pokedex entries, card mechanics, rarity, market data, or set metadata as visual evidence.",
-    "Follow Grookai Visual Language V1: describe like a museum curator, accessibility specialist, and collector; do not write like a novelist, reviewer, or marketing writer.",
-    "Use the same vocabulary for the same visible forms across cards. Prefer stable terms such as glass body, curved arms, rounded face, radiating lines, soft gradients, abstract forms, scattered light points, glowing highlights, central symbol, foreground, and background.",
-    "Be grounded in visible evidence only. Do not invent hidden details.",
-    "Inside artwork_description, write plain English prose only. Do not encode nested JSON, markdown, bullet lists, or key-value objects inside the string.",
-    "A short label such as \"Character:\", \"Trainer:\", \"Environment:\", \"Symbolic Artwork:\", \"Object/Scene:\", or \"Artwork:\" is acceptable, but the content must remain readable prose.",
+    "Capture all useful visible facts, not only the main subject.",
+    "Every meaningful visible fact must appear as an atomic observation with an observation_id.",
+    "Subjects, depicted_subjects, character_representations, counts, relationships, search terms, and nontrivial environment/design facts must reference supporting observation_ids.",
+    "Count repeated visible elements whenever practical. Use exact counts when countable; use estimated ranges or abstentions when not countable.",
+    "If a forest has 10 visible trees, record an exact tree count of 10 and reference the tree observation.",
+    "Keep these concepts rigidly separate:",
+    "- scene_subject: physically present living/entity subject in the illustrated scene.",
+    "- depicted_subject: character/entity shown inside another surface such as poster, card, sign, photo, TV, screen, book, painting, or frame.",
+    "- character_representation: object shaped like or patterned after a character, such as plush, pillow, statue, toy, ice cream, food decoration, logo, sticker, clothing pattern, or wall pattern.",
+    "Pikachu as a pillow or ice cream is a character_representation, not a scene_subject.",
+    "Do not store interpreted expression labels such as angry, happy, confident, sad, friendly, determined, or focused. Store facial evidence only: eyes, mouth, eyebrows, face position, and other visible features.",
+    "No story: allowed facts include Pikachu, standing, dark forest, 10 trees. Do not write Pikachu is lost in the forest.",
+    "Use unknown, not_visible, cannot_determine, or explicit coverage review statuses instead of inventing content.",
+    "Empty categories are valid only when coverage_reviews proves the category was considered.",
+    "Separate illustrated material appearance from physical card surface. Only report border, foil, texture, finish, glare, crop, or scan quality when reliably visible.",
     "",
     "Canonical card-type metadata:",
     `- supertype: ${promptMetadata.supertype}`,
@@ -2538,47 +3103,31 @@ function buildPrompt(card) {
     `- resolved_prompt_branch: ${branchLabel}`,
     "",
     "Prompt branches available:",
-    "Branch 1 - Pokemon: describe Character, Artwork, and Card Surface.",
-    "Branch 2 - Trainer: describe visible human trainer details, then Artwork. Do NOT describe the trainer as a humanoid creature.",
-    "Branch 3 - Stadium: describe Environment and Artwork. No character section.",
-    "Branch 4 - Energy: describe Symbolic Artwork and Artwork. Do NOT invent creatures.",
-    "Branch 5 - Item / Tool / Supporter: describe the actual object or scene, then Artwork.",
+    "Branch 1 - Pokemon: extract physically present Pokemon/creature subjects and all supporting scene facts.",
+    "Branch 2 - Trainer: extract visible human subjects, clothing, gesture, scene facts, and object facts.",
+    "Branch 3 - Stadium: extract environment, structures, terrain, repeated elements, and scene facts.",
+    "Branch 4 - Energy: extract symbols, abstract forms, repeated shapes, palette, lighting, and composition facts.",
+    "Branch 5 - Item / Tool / Supporter: extract objects, props, people if visible, scenes, representations, and interactions.",
     "Use only the resolved prompt branch for this card.",
     "",
     ...promptBranchInstructions(promptMetadata.prompt_branch),
     "",
-    "Shared observation rules:",
-    "Observation hierarchy: first subject, then structure, pose, composition, environment, lighting, palette, and finally mood. Mood may summarize visible cues only after concrete observations.",
-    "If a requested feature is not visible, say it is not visible or cannot be determined. Do not invent tails, wings, hands, facial expressions, Pokemon, objects, characters, weather, or emotions to satisfy the checklist.",
-    "If the canonical name contains multiple Pokemon, such as a Tag Team or names separated by &, describe each visible Pokemon as a separate subject. Do not merge them into one hybrid creature unless the artwork literally shows a fused body.",
-    "visual_attributes.subjects.primary should include each visible canonical Pokemon subject for multi-subject Pokemon cards. Use secondary for non-primary visible figures or objects.",
-    "Do not describe a body part, attached ornament, limb, flame, weapon, accessory, or anatomical feature as a separate held object unless the image clearly shows it being held.",
-    "Some Pokemon have object-like anatomy. If the subject resembles a chandelier, lamp, sword, shield, tool, mask, costume, or ornament, describe those forms as part of the subject unless a separate hand, grip, or physical separation is clearly visible.",
-    "For Chandelure-family subjects, the round glass body, arms, branches, lamps, and flames are subject anatomy. Do not say it is holding an orb, sphere, chandelier, lamp, or flame.",
-    "Do not assign a specific setting, location, weather, time of day, celestial theme, or architectural environment unless the image clearly proves it.",
-    "Prefer objective visual observations over artistic interpretation. Describe what is visible, where it appears, and how it is arranged.",
-    "Avoid speculative labels such as cosmic, celestial, magical, enchanted, mystical, dreamlike, portal, distant stars, energy, aura, or night sky unless directly visible. Prefer concrete wording such as dark gradients, scattered light points, abstract forms, layered shadows, soft gradients, radiating lines, and glowing highlights.",
-    "Do not use the words magical, enchanted, enchanting, mystical, ethereal, dreamlike, stars, starry, dusk, or night for ambiguous backgrounds or light points. Use concrete wording such as scattered light points, white flowers, dark background, soft gradients, circular formation, or glowing highlights.",
-    "For this visual-language pass, avoid these exact words in artwork_description, visual_attributes, and semantic_tags unless they name a literal visible object: magical, enchanted, enchanting, mystical, ethereal, dreamlike, dreamy, aura, twilight, fantasy, stars, starry, dusk, and night.",
-    "Do not say scattered light points suggest stars, magic, energy, or an aura. Say scattered light points or glowing highlights unless the image clearly shows literal stars or energy effects.",
-    "Avoid broad praise or marketing language such as beautiful, cool, epic, amazing, premium, cinematic, or iconic.",
-    "Use uncertainty language only when needed for ambiguous backgrounds, reflective effects, glittering marks, or abstract environments.",
-    "Include artwork-specific distinguishing details that would help distinguish this card art from another card of the same subject or card type.",
-    "Separate the illustration from card frame, foil, border, or printing cues.",
-    "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
-    "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
-    "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Treat card border color as a high-risk physical card-frame claim. Do not confidently declare silver, gold, yellow, black, or another border color unless the scan clearly proves that exact border color without glare, crop, low resolution, or mixed tones. Prefer border color uncertain or border visible; color cannot be determined reliably. Only report reliable visible surface observations such as border visible; color cannot be determined reliably, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
-    "Do not say foil texture visible, glossy finish, gloss present, or standard print unless the scan directly proves that physical treatment. Prefer foil texture cannot be determined, printing treatment uncertain, or glare prevents determination.",
-    "",
-    "Semantic tag rules:",
-    "semantic_tags must describe visible artwork only. Exclude set names, attacks, rarity labels, card mechanics, franchise names, and generic identity metadata already present in canonical fields.",
-    "semantic_tags should help future semantic search.",
-    "Pokemon tag examples: ghostly chandelier, purple flames, ornate, diagonal composition, glass lantern, dark palette, swirling wisps.",
-    "Trainer tag examples: trainer portrait, running, laboratory, outdoor, confident expression.",
-    "Stadium tag examples: forest, garden, library, castle, ruins, city, cave.",
-    "Energy tag examples: psychic symbol, purple gradients, radiating lines, abstract energy, circular motif.",
-    "Item / Tool / Supporter tag examples: visible object, handheld device, table scene, glowing tool, indoor setting.",
-    "At most one semantic tag may repeat the primary visible subject name; all other tags should describe visible forms, colors, mood, composition, environment, or artwork-specific distinguishing details.",
+    "Fact graph rules:",
+    "observations is the factual backbone. Use stable IDs such as obs_subject_001, obs_tree_group_001, obs_palette_001, obs_surface_001.",
+    `visual_attributes.fact_schema_version must be exactly ${CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION}.`,
+    "Every subject, depicted_subject, character_representation, object, relationship, count, scene layer, environment support, design support, uncertainty, and search-term reference must point to an observation_id that actually exists in observations.",
+    "Do not create placeholder counts for things that are not visible. Never create an exact count with exact_count 0. If nothing is countable, use counts: [] and counts_review: none_visible.",
+    "Flames, lightning, sky, background, symbols, gradients, color fields, trees, bombs, bells, badges, tools, and abstract effects are not scene_subjects. Record them as observations, objects_and_props, environment, visual_design, counts, or relationships as appropriate.",
+    "Every card must include at least three fact_grounded_search_terms. Multiple useful terms may cite the same observation_id when a simple card has only one or two visible observations.",
+    "scene_layers arrays must contain observation_id strings only, never labels such as tree, sky, or Pikachu.",
+    "environment.supporting_observation_ids, visual_design.supporting_observation_ids, relationships, counts, uncertainty, and search terms must cite observation_id values only.",
+    "Search terms must not cite count_id values. Counts cite observations; search terms cite observations.",
+    "subjects.subject_kind must be exactly scene_subject. depicted_subjects.subject_kind must be exactly depicted_subject. character_representations.subject_kind must be exactly character_representation.",
+    "counts.count_type must be one of: exact, estimated_range, many, uncountable_due_to_crop, uncountable_due_to_density, not_visible.",
+    "fact_grounded_search_terms must cite supporting observation_ids. Search terms may include useful future-search phrases such as sleeping Pikachu, Pikachu pillow, forest background, ten trees, food scene, cozy interior, purple flames, or circular motif only when supported by observations.",
+    "Each fact_grounded_search_terms entry must include at least one supporting observation_id.",
+    "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, or unsupported lore in search terms.",
+    "coverage_reviews must include all required review keys. Use observed when the category has entries; otherwise use none_visible, not_applicable, cannot_determine_due_to_low_resolution, cannot_determine_due_to_crop, cannot_determine_due_to_glare, or uncertain.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
     "",
@@ -2594,81 +3143,397 @@ function buildPrompt(card) {
 }
 
 function outputJsonSchema() {
+  const observationIdArraySchema = { type: "array", items: { type: "string" } };
+  const stringArraySchema = { type: "array", items: { type: "string" } };
+  const confidenceSchema = { type: "number", minimum: 0, maximum: 1 };
+  const observationItemSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "observation_id",
+      "kind",
+      "label",
+      "normalized_label",
+      "scene_layer",
+      "frame_position",
+      "visibility",
+      "salience",
+      "confidence",
+      "evidence_strength",
+    ],
+    properties: {
+      observation_id: { type: "string" },
+      kind: { type: "string" },
+      label: { type: "string" },
+      normalized_label: { type: "string" },
+      scene_layer: { type: "string" },
+      frame_position: { type: "string" },
+      visibility: { type: "string" },
+      salience: { type: "string" },
+      confidence: confidenceSchema,
+      evidence_strength: { type: "string" },
+    },
+  };
+
   return {
     type: "object",
     additionalProperties: false,
     required: [
-      "artwork_description",
-      "card_surface_and_printing_cues",
       "visual_attributes",
-      "semantic_tags",
       "description_confidence",
       "attribute_confidence",
       "quality_flags",
     ],
     properties: {
-      artwork_description: { type: "string" },
-      card_surface_and_printing_cues: { type: "string" },
       visual_attributes: {
         type: "object",
         additionalProperties: false,
-        required: [
-          "subjects",
-          "environment",
-          "palette",
-          "lighting",
-          "mood",
-          "composition",
-          "style",
-          "distinguishing_details",
-          "uncertainty_notes",
-        ],
+        required: ["fact_schema_version", "fact_graph"],
         properties: {
-          subjects: {
+          fact_schema_version: { type: "string", enum: [CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION] },
+          fact_graph: {
             type: "object",
             additionalProperties: false,
-            required: ["primary", "secondary"],
+            required: [
+              "observations",
+              "subjects",
+              "depicted_subjects",
+              "character_representations",
+              "counts",
+              "scene_layers",
+              "environment",
+              "objects_and_props",
+              "relationships",
+              "visual_design",
+              "surface_and_scan_cues",
+              "coverage_reviews",
+              "uncertainty_and_abstentions",
+              "fact_grounded_search_terms",
+            ],
             properties: {
-              primary: { type: "array", items: { type: "string" } },
-              secondary: { type: "array", items: { type: "string" } },
+              observations: { type: "array", items: observationItemSchema },
+              subjects: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "observation_id",
+                    "subject_kind",
+                    "identity",
+                    "identity_confidence",
+                    "anatomy",
+                    "physical_features",
+                    "pose",
+                    "orientation",
+                    "action_state",
+                    "facial_evidence",
+                    "clothing_or_accessories",
+                    "colors",
+                    "visibility",
+                  ],
+                  properties: {
+                    observation_id: { type: "string" },
+                    subject_kind: { type: "string", enum: ["scene_subject"] },
+                    identity: { type: "string" },
+                    identity_confidence: confidenceSchema,
+                    anatomy: stringArraySchema,
+                    physical_features: stringArraySchema,
+                    pose: stringArraySchema,
+                    orientation: { type: "string" },
+                    action_state: stringArraySchema,
+                    facial_evidence: {
+                      type: "object",
+                      additionalProperties: false,
+                      required: ["eyes", "mouth", "eyebrows", "face_position", "other_visible_evidence"],
+                      properties: {
+                        eyes: { type: "string" },
+                        mouth: { type: "string" },
+                        eyebrows: { type: "string" },
+                        face_position: { type: "string" },
+                        other_visible_evidence: stringArraySchema,
+                      },
+                    },
+                    clothing_or_accessories: stringArraySchema,
+                    colors: stringArraySchema,
+                    visibility: { type: "string" },
+                  },
+                },
+              },
+              depicted_subjects: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "observation_id",
+                    "subject_kind",
+                    "represented_identity",
+                    "identity_confidence",
+                    "host_surface",
+                    "surface_type",
+                    "visibility",
+                    "confidence",
+                  ],
+                  properties: {
+                    observation_id: { type: "string" },
+                    subject_kind: { type: "string", enum: ["depicted_subject"] },
+                    represented_identity: { type: "string" },
+                    identity_confidence: confidenceSchema,
+                    host_surface: { type: "string" },
+                    surface_type: { type: "string" },
+                    visibility: { type: "string" },
+                    confidence: confidenceSchema,
+                  },
+                },
+              },
+              character_representations: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "observation_id",
+                    "subject_kind",
+                    "represented_identity",
+                    "identity_confidence",
+                    "host_object",
+                    "representation_form",
+                    "visibility",
+                    "confidence",
+                  ],
+                  properties: {
+                    observation_id: { type: "string" },
+                    subject_kind: { type: "string", enum: ["character_representation"] },
+                    represented_identity: { type: "string" },
+                    identity_confidence: confidenceSchema,
+                    host_object: { type: "string" },
+                    representation_form: { type: "string" },
+                    visibility: { type: "string" },
+                    confidence: confidenceSchema,
+                  },
+                },
+              },
+              counts: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "count_id",
+                    "normalized_label",
+                    "count_type",
+                    "exact_count",
+                    "estimated_min",
+                    "estimated_max",
+                    "abstention_reason",
+                    "supporting_observation_ids",
+                    "scene_layer",
+                    "confidence",
+                  ],
+                  properties: {
+                    count_id: { type: "string" },
+                    normalized_label: { type: "string" },
+                    count_type: {
+                      type: "string",
+                      enum: [
+                        "exact",
+                        "estimated_range",
+                        "many",
+                        "uncountable_due_to_crop",
+                        "uncountable_due_to_density",
+                        "not_visible",
+                      ],
+                    },
+                    exact_count: { type: "integer", minimum: 0 },
+                    estimated_min: { type: "integer", minimum: 0 },
+                    estimated_max: { type: "integer", minimum: 0 },
+                    abstention_reason: { type: "string" },
+                    supporting_observation_ids: observationIdArraySchema,
+                    scene_layer: { type: "string" },
+                    confidence: confidenceSchema,
+                  },
+                },
+              },
+              scene_layers: {
+                type: "object",
+                additionalProperties: false,
+                required: ["foreground", "midground", "background"],
+                properties: {
+                  foreground: observationIdArraySchema,
+                  midground: observationIdArraySchema,
+                  background: observationIdArraySchema,
+                },
+              },
+              environment: {
+                type: "object",
+                additionalProperties: false,
+                required: [
+                  "setting",
+                  "indoor_outdoor",
+                  "sky",
+                  "ground",
+                  "terrain",
+                  "plants",
+                  "architecture",
+                  "water",
+                  "weather",
+                  "time_of_day_cues",
+                  "supporting_observation_ids",
+                ],
+                properties: {
+                  setting: stringArraySchema,
+                  indoor_outdoor: { type: "string" },
+                  sky: stringArraySchema,
+                  ground: stringArraySchema,
+                  terrain: stringArraySchema,
+                  plants: stringArraySchema,
+                  architecture: stringArraySchema,
+                  water: stringArraySchema,
+                  weather: stringArraySchema,
+                  time_of_day_cues: stringArraySchema,
+                  supporting_observation_ids: observationIdArraySchema,
+                },
+              },
+              objects_and_props: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "observation_id",
+                    "label",
+                    "normalized_label",
+                    "object_type",
+                    "colors",
+                    "material_appearance",
+                    "location",
+                    "count_reference",
+                    "confidence",
+                  ],
+                  properties: {
+                    observation_id: { type: "string" },
+                    label: { type: "string" },
+                    normalized_label: { type: "string" },
+                    object_type: { type: "string" },
+                    colors: stringArraySchema,
+                    material_appearance: stringArraySchema,
+                    location: { type: "string" },
+                    count_reference: { type: "string" },
+                    confidence: confidenceSchema,
+                  },
+                },
+              },
+              relationships: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: [
+                    "relationship_id",
+                    "source_observation_id",
+                    "target_observation_id",
+                    "relationship",
+                    "evidence_strength",
+                  ],
+                  properties: {
+                    relationship_id: { type: "string" },
+                    source_observation_id: { type: "string" },
+                    target_observation_id: { type: "string" },
+                    relationship: { type: "string" },
+                    evidence_strength: { type: "string" },
+                  },
+                },
+              },
+              visual_design: {
+                type: "object",
+                additionalProperties: false,
+                required: [
+                  "palette",
+                  "lighting",
+                  "shadows",
+                  "highlights",
+                  "composition",
+                  "camera_angle",
+                  "framing",
+                  "cropping",
+                  "depth",
+                  "motion_cues",
+                  "motifs",
+                  "repeated_shapes",
+                  "style_cues",
+                  "supporting_observation_ids",
+                ],
+                properties: {
+                  palette: stringArraySchema,
+                  lighting: stringArraySchema,
+                  shadows: stringArraySchema,
+                  highlights: stringArraySchema,
+                  composition: stringArraySchema,
+                  camera_angle: { type: "string" },
+                  framing: { type: "string" },
+                  cropping: stringArraySchema,
+                  depth: { type: "string" },
+                  motion_cues: stringArraySchema,
+                  motifs: stringArraySchema,
+                  repeated_shapes: stringArraySchema,
+                  style_cues: stringArraySchema,
+                  supporting_observation_ids: observationIdArraySchema,
+                },
+              },
+              surface_and_scan_cues: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: ["observation_id", "cue_type", "cue", "abstention", "confidence"],
+                  properties: {
+                    observation_id: { type: "string" },
+                    cue_type: { type: "string" },
+                    cue: { type: "string" },
+                    abstention: { type: "string" },
+                    confidence: confidenceSchema,
+                  },
+                },
+              },
+              coverage_reviews: {
+                type: "object",
+                additionalProperties: false,
+                required: FACT_GRAPH_COVERAGE_KEYS,
+                properties: Object.fromEntries(FACT_GRAPH_COVERAGE_KEYS.map((key) => [key, {
+                  type: "string",
+                  enum: [...FACT_GRAPH_COVERAGE_REVIEW_STATUSES],
+                }])),
+              },
+              uncertainty_and_abstentions: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: ["field", "reason", "affected_observation_ids"],
+                  properties: {
+                    field: { type: "string" },
+                    reason: { type: "string" },
+                    affected_observation_ids: observationIdArraySchema,
+                  },
+                },
+              },
+              fact_grounded_search_terms: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  required: ["term", "supporting_observation_ids"],
+                  properties: {
+                    term: { type: "string" },
+                    supporting_observation_ids: observationIdArraySchema,
+                  },
+                },
+              },
             },
           },
-          environment: {
-            type: "object",
-            additionalProperties: false,
-            required: ["setting", "time_of_day", "weather"],
-            properties: {
-              setting: { type: "array", items: { type: "string" } },
-              time_of_day: { type: "string" },
-              weather: { type: "string" },
-            },
-          },
-          palette: {
-            type: "object",
-            additionalProperties: false,
-            required: ["dominant", "temperature"],
-            properties: {
-              dominant: { type: "array", items: { type: "string" } },
-              temperature: { type: "string" },
-            },
-          },
-          lighting: { type: "array", items: { type: "string" } },
-          mood: { type: "array", items: { type: "string" } },
-          composition: {
-            type: "object",
-            additionalProperties: false,
-            required: ["framing", "subject_position"],
-            properties: {
-              framing: { type: "string" },
-              subject_position: { type: "string" },
-            },
-          },
-          style: { type: "array", items: { type: "string" } },
-          distinguishing_details: { type: "array", items: { type: "string" } },
-          uncertainty_notes: { type: "array", items: { type: "string" } },
         },
       },
-      semantic_tags: { type: "array", items: { type: "string" } },
       description_confidence: { type: "number", minimum: 0, maximum: 1 },
       attribute_confidence: { type: "number", minimum: 0, maximum: 1 },
       quality_flags: { type: "array", items: { type: "string" } },
@@ -2678,37 +3543,139 @@ function outputJsonSchema() {
 
 function fixtureDescription(card) {
   const subject = card.name || "the card subject";
-  return {
-    artwork_description: [
-      `${subject} is the primary subject of the card artwork. This fixture description is intentionally conservative and does not claim specific pose, setting, lighting, palette, or background details because no live vision model was called.`,
-      "It exists to validate the agent pipeline, artifact writing, schema validation, review routing, and database write boundaries before production generation is enabled.",
-    ].join(" "),
-    card_surface_and_printing_cues: "Fixture mode does not inspect foil, border, texture, glare, rarity treatment, or card-frame details.",
-    visual_attributes: {
-      subjects: {
-        primary: [subject],
-        secondary: [],
+  const factGraph = {
+    observations: [
+      {
+        observation_id: "obs_subject_001",
+        kind: "scene_subject",
+        label: subject,
+        normalized_label: subject.toLowerCase(),
+        scene_layer: "foreground",
+        frame_position: "center",
+        visibility: "fixture_unverified",
+        salience: "high",
+        confidence: 0.35,
+        evidence_strength: "fixture_only",
       },
-      environment: {
-        setting: ["unknown"],
-        time_of_day: "unknown",
-        weather: "unknown",
+      {
+        observation_id: "obs_uncertainty_001",
+        kind: "uncertainty",
+        label: "live image facts not extracted in fixture mode",
+        normalized_label: "fixture uncertainty",
+        scene_layer: "not_applicable",
+        frame_position: "not_applicable",
+        visibility: "not_applicable",
+        salience: "high",
+        confidence: 1,
+        evidence_strength: "fixture_only",
       },
-      palette: {
-        dominant: [],
-        temperature: "unknown",
+    ],
+    subjects: [
+      {
+        observation_id: "obs_subject_001",
+        subject_kind: "scene_subject",
+        identity: subject,
+        identity_confidence: 0.35,
+        anatomy: [],
+        physical_features: [],
+        pose: ["cannot_determine"],
+        orientation: "cannot_determine",
+        action_state: ["cannot_determine"],
+        facial_evidence: {
+          eyes: "cannot_determine",
+          mouth: "cannot_determine",
+          eyebrows: "cannot_determine",
+          face_position: "cannot_determine",
+          other_visible_evidence: [],
+        },
+        clothing_or_accessories: [],
+        colors: [],
+        visibility: "fixture_unverified",
       },
-      lighting: ["unknown"],
-      mood: ["unknown"],
-      composition: {
-        framing: "unknown",
-        subject_position: "unknown",
+    ],
+    depicted_subjects: [],
+    character_representations: [],
+    counts: [
+      {
+        count_id: "count_subject_001",
+        normalized_label: "scene_subject",
+        count_type: "exact",
+        exact_count: 1,
+        estimated_min: 0,
+        estimated_max: 0,
+        abstention_reason: "",
+        supporting_observation_ids: ["obs_subject_001"],
+        scene_layer: "foreground",
+        confidence: 0.35,
       },
-      style: ["unknown"],
-      distinguishing_details: [],
-      uncertainty_notes: ["fixture output; live image description not performed"],
+    ],
+    scene_layers: {
+      foreground: ["obs_subject_001"],
+      midground: [],
+      background: [],
     },
-    semantic_tags: uniqueSorted([subject, card.set_code, "fixture", "needs-review"]),
+    environment: {
+      setting: ["cannot_determine"],
+      indoor_outdoor: "cannot_determine",
+      sky: [],
+      ground: [],
+      terrain: [],
+      plants: [],
+      architecture: [],
+      water: [],
+      weather: [],
+      time_of_day_cues: [],
+      supporting_observation_ids: ["obs_uncertainty_001"],
+    },
+    objects_and_props: [],
+    relationships: [],
+    visual_design: {
+      palette: [],
+      lighting: [],
+      shadows: [],
+      highlights: [],
+      composition: [],
+      camera_angle: "cannot_determine",
+      framing: "cannot_determine",
+      cropping: [],
+      depth: "cannot_determine",
+      motion_cues: [],
+      motifs: [],
+      repeated_shapes: [],
+      style_cues: [],
+      supporting_observation_ids: ["obs_uncertainty_001"],
+    },
+    surface_and_scan_cues: [],
+    coverage_reviews: {
+      subjects_review: "observed",
+      depicted_subjects_review: "none_visible",
+      character_representations_review: "none_visible",
+      counts_review: "observed",
+      scene_layers_review: "observed",
+      environment_review: "cannot_determine_due_to_low_resolution",
+      objects_and_props_review: "none_visible",
+      relationships_review: "none_visible",
+      visual_design_review: "cannot_determine_due_to_low_resolution",
+      surface_and_scan_cues_review: "cannot_determine_due_to_low_resolution",
+    },
+    uncertainty_and_abstentions: [
+      {
+        field: "fact_graph",
+        reason: "fixture mode does not inspect live image facts",
+        affected_observation_ids: ["obs_uncertainty_001"],
+      },
+    ],
+    fact_grounded_search_terms: [
+      { term: subject, supporting_observation_ids: ["obs_subject_001"] },
+      { term: "fixture visual facts", supporting_observation_ids: ["obs_uncertainty_001"] },
+      { term: "image facts not extracted", supporting_observation_ids: ["obs_uncertainty_001"] },
+    ],
+  };
+  return {
+    visual_attributes: {
+      fact_schema_version: CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
+      fact_graph: factGraph,
+    },
     description_confidence: 0.42,
     attribute_confidence: 0.35,
     quality_flags: ["fixture_generated"],
@@ -2756,7 +3723,7 @@ async function openAiDescription(card, image, args) {
     text: {
       format: {
         type: "json_schema",
-        name: "card_visual_description_schema_v1",
+        name: "card_visual_fact_graph_schema_v1",
         schema: outputJsonSchema(),
         strict: true,
       },
@@ -3117,8 +4084,91 @@ async function writeJsonl(filePath, rows) {
   await fs.writeFile(filePath, body ? `${body}\n` : "");
 }
 
+async function writeText(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, value);
+}
+
 async function hashFile(filePath) {
   return sha256(await fs.readFile(filePath));
+}
+
+function markdownEscape(value) {
+  return normalizeText(value).replace(/\|/g, "\\|");
+}
+
+function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }) {
+  const lines = [
+    "# Card Visual Fact Graph V1 Review Packet",
+    "",
+    `Generated rows: ${generatedRows.length}`,
+    `Validation failures: ${validationFailures.length}`,
+    `Skipped images: ${skippedImages.length}`,
+    `Estimated cost USD: ${summary.estimated_cost_usd}`,
+    "",
+    "## Rows",
+    "",
+  ];
+
+  for (const row of generatedRows) {
+    const factGraph = row.visual_attributes?.fact_graph ?? {};
+    const observations = factGraph.observations ?? [];
+    const counts = factGraph.counts ?? [];
+    const searchTerms = factGraph.fact_grounded_search_terms ?? [];
+    lines.push(`### ${row.gv_id || row.card_print_id} - ${row.name || "unknown"}`);
+    lines.push("");
+    lines.push(`- Branch: \`${row.prompt_branch || "unknown"}\``);
+    lines.push(`- Review status: \`${row.review_status}\``);
+    lines.push(`- Description confidence: \`${row.description_confidence}\``);
+    lines.push(`- Attribute confidence: \`${row.attribute_confidence}\``);
+    lines.push(`- Cost USD: \`${row.estimated_cost_usd}\``);
+    lines.push(`- Derived digest: ${row.artwork_description}`);
+    lines.push(`- Surface/scan digest: ${row.card_surface_and_printing_cues}`);
+    lines.push("");
+    lines.push("| Observation | Kind | Layer | Salience | Confidence |");
+    lines.push("|---|---|---|---|---:|");
+    for (const observation of observations.slice(0, 30)) {
+      lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.scene_layer)} | ${markdownEscape(observation.salience)} | ${observation.confidence} |`);
+    }
+    if (observations.length > 30) lines.push(`| ...${observations.length - 30} more observations | | | | |`);
+    lines.push("");
+    lines.push("| Count | Type | Value | Support | Confidence |");
+    lines.push("|---|---|---|---|---:|");
+    for (const count of counts) {
+      const value = count.count_type === "exact"
+        ? String(count.exact_count)
+        : count.count_type === "estimated_range"
+          ? `${count.estimated_min}-${count.estimated_max}`
+          : count.abstention_reason || count.count_type;
+      lines.push(`| ${markdownEscape(count.normalized_label)} | ${markdownEscape(count.count_type)} | ${markdownEscape(value)} | ${markdownEscape((count.supporting_observation_ids ?? []).join(", "))} | ${count.confidence} |`);
+    }
+    lines.push("");
+    lines.push("| Search term | Supporting observations |");
+    lines.push("|---|---|");
+    for (const term of searchTerms) {
+      lines.push(`| ${markdownEscape(term.term)} | ${markdownEscape((term.supporting_observation_ids ?? []).join(", "))} |`);
+    }
+    lines.push("");
+    lines.push("<details><summary>Full fact graph JSON</summary>");
+    lines.push("");
+    lines.push("```json");
+    lines.push(JSON.stringify(factGraph, null, 2));
+    lines.push("```");
+    lines.push("");
+    lines.push("</details>");
+    lines.push("");
+  }
+
+  if (validationFailures.length > 0) {
+    lines.push("## Validation Failures");
+    lines.push("");
+    for (const failure of validationFailures) {
+      lines.push(`- ${failure.gv_id || failure.card_print_id}: ${failure.findings?.join(", ") || failure.error || "unknown"}`);
+    }
+    lines.push("");
+  }
+
+  return `${lines.join("\n")}\n`;
 }
 
 async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary }) {
@@ -3143,6 +4193,9 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
     else await writeJson(filePath, value);
     artifactHashes[name] = await hashFile(filePath);
   }
+  const packetPath = path.join(runDir, "FACT_GRAPH_V1_REVIEW_PACKET.md");
+  await writeText(packetPath, buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }));
+  artifactHashes["FACT_GRAPH_V1_REVIEW_PACKET.md"] = await hashFile(packetPath);
   return artifactHashes;
 }
 

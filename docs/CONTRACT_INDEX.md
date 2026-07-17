@@ -76,6 +76,7 @@ If a contract is missing from this index, it is not authoritative.
 | REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1 | Active | docs/contracts/REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1.md — Governs deterministic sibling-base representative fallback for stamped canonical rows when routed promo imagery is unavailable, without crossing exact-image truth boundaries |
 | IMAGE_CONFIDENCE_CONTRACT_V1 | Active | docs/contracts/IMAGE_CONFIDENCE_CONTRACT_V1.md — Governs image confidence labels for exact, representative, missing variant visual, missing, and blocked image states so display coverage never masquerades as exact image truth |
 | CARD_VISUAL_LANGUAGE_V1 | Active | docs/contracts/CARD_VISUAL_LANGUAGE_V1.md — Governs Grookai's visual description vocabulary, observation hierarchy, card-type style guides, semantic tag standards, and review-gated derived-intelligence boundary |
+| CARD_VISUAL_FACT_GRAPH_V1 | Active | docs/contracts/CARD_VISUAL_FACT_GRAPH_V1.md — Governs exhaustive observable card fact extraction: observation IDs, subject-kind separation, counts with support, coverage reviews, fact-grounded search terms, compatibility-only prose, and no story inside the fact graph |
 | USER_PHOTO_NORMALIZATION_PIPELINE_V1 | Planned | Backend normalization of user-uploaded images |
 
 ---

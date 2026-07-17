@@ -1,0 +1,45 @@
+{
+  "run_key": "b6bbb14f7e606e91baa6020a4158b1c9c3d1e511a104970f5d7e283ff3109f9a",
+  "mode": "dry_run",
+  "provider": "openai",
+  "requested_limit": 4,
+  "max_cards": 4,
+  "max_run_cost_usd": 0.05,
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V1",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1",
+  "sample_strategy": "branch_stratified",
+  "branch_targets": {
+    "pokemon": 1,
+    "trainer": 0,
+    "stadium": 1,
+    "energy": 1,
+    "item_tool_supporter": 1
+  },
+  "branch_candidate_limit": 60000,
+  "local_tls_certificate_verification_disabled": true,
+  "agent_version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "model_version": "gpt-4o-mini",
+  "image_detail": "high",
+  "max_retries": 0,
+  "pricing_snapshot": {
+    "input_per_million": 0.15,
+    "output_per_million": 0.6,
+    "cached_input_per_million": 0.075,
+    "image_cost_rule_version": "gpt-4o-mini-standard-2026-07-17",
+    "recorded_at": "2026-07-17T04:33:25.912Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "force_version": false,
+  "target_card_print_id": null,
+  "target_card_print_ids": [],
+  "target_gv_id": null,
+  "started_at": "2026-07-17T04:33:25.912Z",
+  "boundary": {
+    "db_writes": false,
+    "model_calls": true,
+    "fixture_generation": false,
+    "embeddings": false,
+    "card_prints_mutation": false
+  }
+}
