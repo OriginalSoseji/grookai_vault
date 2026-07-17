@@ -1,0 +1,19 @@
+{
+  "audit_version": "CARD_VISUAL_CONTROLLED_VOCABULARY_V1",
+  "source_dir": "C:\\grookai_vault_card_desc_agent\\docs\\audits\\card_visual_descriptions\\2026-07-17T16-41-14-237Z_dry_run_ebcf07959b9f",
+  "replay_id": "c4a735482152",
+  "replayed_count": 25,
+  "generated_output_count": 20,
+  "raw_failure_payload_count": 5,
+  "structurally_valid_count": 25,
+  "validation_failed_count": 0,
+  "lost_observation_references": 0,
+  "new_raw_facts_introduced_rows": 0,
+  "review_status_upgrades_on_generated_rows": 0,
+  "generated_status_changes": [],
+  "unique_search_terms_before": 115,
+  "unique_search_terms_after": 108,
+  "unique_canonical_visual_concepts_after": 48,
+  "transformation_count": 34,
+  "raw_generated_payload_limitation": "generated_outputs.jsonl contains prior normalized rows, not raw OpenAI payloads; validation_failures.jsonl contains raw_payload for failed rows."
+}

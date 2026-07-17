@@ -15,6 +15,7 @@ export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visua
 export const CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION = "CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_V1";
 export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION_V1 = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
 export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
+export const CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION = "CARD_VISUAL_CONTROLLED_VOCABULARY_V1";
 
 export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
   "pending",
@@ -95,6 +96,107 @@ const SEARCH_TERM_STOP_WORDS = new Set([
   "style",
   "the",
   "with",
+]);
+const SEMANTIC_VISUAL_FACT_EVIDENCE_FIELDS = Object.freeze([
+  "mouth",
+  "eyes",
+  "eyebrows",
+  "facial_features",
+  "body_language",
+  "body_position",
+  "motion_state",
+  "environment",
+  "objects",
+  "relationships",
+  "other",
+]);
+const SEMANTIC_VISUAL_FACT_CATEGORIES = new Set([
+  "expression",
+  "state",
+  "action",
+  "environment",
+  "weather",
+  "time_of_day",
+  "scene_type",
+  "count_semantic",
+  "cameo",
+  "motif",
+]);
+const SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN = /\b(?:happy|smiling|smile|cheerful|joyful)\b/i;
+const SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN = /\b(?:sleeping|asleep|sleepy|resting)\b/i;
+const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tree-filled)\b/i;
+const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
+const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?)\b/i;
+const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
+  /\b(?:happy|smiling|smile|angry|surprised|scared|crying|eyes closed|closed eyes|open eyes|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|forest|woodland|woods|rainy|rain|stormy|snowy|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|food scene|cozy interior|abstract background|golden abstract background|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
+const SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN =
+  /\b(?:lost|protecting|guarding|searching for|waiting for|trying to|wants to|symboli[sz](?:e|es|ing)|represents?|embod(?:y|ies|ying)|heroic|evil|loyal|brave|hope|destiny|purpose|theme|lore|story|narrative|backstory)\b/i;
+const SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN =
+  /\b(?:smile|smiling|upturned mouth|open cheerful mouth|raised cheeks|closed crescent eyes|bright eyes|relaxed eyes|arms raised|playful pose)\b/i;
+const SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN =
+  /\b(?:frown|frowning|downturned mouth|crying|tears|grimace|angry|scowling|no visible mouth|mouth not visible|face not visible|cannot_determine)\b/i;
+const SEMANTIC_VISUAL_FACT_SLEEPING_SUPPORT_PATTERN =
+  /\b(?:eyes closed|closed eyes|asleep|sleeping|lying down|reclining|curled up|resting|still body|sleep posture)\b/i;
+const SEMANTIC_VISUAL_FACT_SLEEPING_CONTRADICTION_PATTERN =
+  /\b(?:eyes open|running|leaping|jumping|fighting|active attack|wide open eyes)\b/i;
+const SEMANTIC_VISUAL_FACT_FOREST_SUPPORT_PATTERN =
+  /\b(?:trees?|tree trunks?|forest|woodland|woods|foliage|canopy|dense plants?|wooded terrain)\b/i;
+const SEMANTIC_VISUAL_FACT_RAIN_SUPPORT_PATTERN =
+  /\b(?:raindrops?|rain streaks?|rainfall|wet ground|puddles?|umbrella|storm clouds?)\b/i;
+const CONTROLLED_VOCABULARY_REMOVED_STYLE_TERMS =
+  /\b(?:anime style|fantasy art|fantasy|mystical|mystic|enchanted|enchanting|dreamlike|ethereal)\b/gi;
+const CONTROLLED_VOCABULARY_POSE_RULES = Object.freeze([
+  ["sleeping", /\b(?:sleeping|asleep|lying asleep)\b/i],
+  ["standing", /\b(?:standing|upright stance|standing pose)\b/i],
+  ["sitting", /\b(?:sitting|seated)\b/i],
+  ["lying down", /\b(?:lying down|reclining)\b/i],
+  ["leaping", /\b(?:leaping|jumping|mid-leap|mid leap)\b/i],
+  ["floating", /\b(?:floating|hovering|suspended)\b/i],
+  ["flying", /\b(?:flying|in flight)\b/i],
+  ["running", /\b(?:running|sprinting)\b/i],
+  ["walking", /\bwalking\b/i],
+  ["crouching", /\b(?:crouching|crouched)\b/i],
+  ["kneeling", /\b(?:kneeling|kneels)\b/i],
+  ["reaching", /\b(?:reaching|arm extended|arms extended|forelimbs extended)\b/i],
+  ["holding", /\bholding\b/i],
+]);
+const CONTROLLED_VOCABULARY_CONCEPT_RULES = Object.freeze([
+  ["aurora-like light bands", /\baurora(?:-like)?\b|\blight bands?\b/i],
+  ["lightning", /\blightning\b|\belectric(?:al)?\s+(?:arc|bolt|aura|effect|spark|streak|energy)\b/i],
+  ["flame", /\bflames?\b|\bfire\b/i],
+  ["smoke", /\bsmoky\b|\bsmoke\b|\bmist\b|\bfog\b/i],
+  ["spark", /\bsparks?\b/i],
+  ["glowing highlights", /\bglow(?:ing)?\b|\bbright highlights?\b|\bluminous\b/i],
+  ["radial lines", /\bradial\b|\bradiating lines?\b/i],
+  ["circular motif", /\bcircular\b|\bround(?:ed)?\b|\borb\b|\bcircle\b/i],
+  ["spiral motif", /\bspiral\b|\bswirling\b|\bswirl\b/i],
+  ["diagonal composition", /\bdiagonal\b/i],
+  ["centered composition", /\bcentered\b|\bcentral\b/i],
+  ["close crop", /\bclose crop\b|\btight(?:ly)? framed\b|\btight vertical crop\b/i],
+  ["forest", /\bforest\b|\bwoodland\b/i],
+  ["tree", /\btrees?\b/i],
+  ["building", /\bbuildings?\b|\barchitecture\b|\bstructure\b/i],
+  ["sky", /\bsky\b/i],
+  ["cloud", /\bclouds?\b|\bcloudy\b/i],
+  ["water", /\bwater\b|\briver\b|\blake\b|\bocean\b|\bsea\b/i],
+  ["rain", /\brain\b|\brainfall\b/i],
+  ["snow", /\bsnow\b/i],
+  ["terrain", /\bterrain\b|\bground\b|\bgrass\b|\bpath\b|\brock\b|\bmountain\b/i],
+  ["flower", /\bflowers?\b/i],
+  ["hat", /\bhat\b|\bcap\b|\bheadwear\b/i],
+  ["gloves", /\bgloves?\b/i],
+  ["cape", /\bcapes?\b|\bcloak\b/i],
+  ["mask", /\bmasks?\b/i],
+  ["armor", /\barmor\b|\barmour\b/i],
+  ["long hair", /\blong hair\b|\bflowing hair\b/i],
+  ["short hair", /\bshort hair\b/i],
+  ["exposed shoulders", /\bexposed shoulders?\b|\bbare shoulders?\b/i],
+  ["exposed midriff", /\bexposed midriff\b|\bbare midriff\b/i],
+  ["low-cut neckline", /\blow[- ]cut neckline\b/i],
+  ["sleeveless clothing", /\bsleeveless\b/i],
+  ["metal-like appearance", /\bmetallic-looking\b|\bmetal-like\b|\bmetallic\b/i],
+  ["glass-like appearance", /\bglass-like\b|\bglasslike\b/i],
+  ["reflective-looking surface", /\breflective-looking\b|\breflective highlights?\b|\bshiny\b/i],
 ]);
 const VISUAL_LANGUAGE_SPECULATIVE_SETTING_PATTERN =
   /\b(cosmic|celestial|magical|enchanted|enchanting|enchantment|dreamlike|dreamy|night sky|portal|mystical|ethereal|twilight|fantasy|fantastical|starry|stars)\b/gi;
@@ -399,13 +501,77 @@ function normalizeText(value) {
   return String(value ?? "").trim();
 }
 
-function normalizeObjectiveVisualText(value) {
+function collapseRepeatedAdjacentWords(value) {
+  const words = normalizeText(value).split(/\s+/).filter(Boolean);
+  const collapsed = [];
+  for (const word of words) {
+    if (collapsed.length > 0 && collapsed.at(-1).toLowerCase() === word.toLowerCase()) continue;
+    collapsed.push(word);
+  }
+  return collapsed.join(" ");
+}
+
+function normalizeControlledVocabularyFreeText(value) {
   let text = normalizeText(value);
   if (!text) return text;
+  text = text.replace(/_/g, " ");
+  text = text.replace(/\bhuman trainer visible\b/gi, "human trainer");
+  text = text.replace(/\bhuman trainer\b/gi, "human trainer");
   text = text.replace(/\bnight sky\b/gi, "dark sky");
   text = text.replace(/\b(daytime|daylight) sky\b/gi, "bright sky");
-  text = text.replace(/\b(determined|confident|fierce|majestic|angry|happy|sad)\b\s*/gi, "");
+  text = text.replace(/\bdynamic leaping pose\b/gi, "leaping");
+  text = text.replace(/\bleaping pose\b/gi, "leaping");
+  text = text.replace(CONTROLLED_VOCABULARY_REMOVED_STYLE_TERMS, "").replace(/\s+/g, " ");
+  text = text.replace(/\b(determined|confident|fierce|majestic)\b\s*/gi, "");
+  text = collapseRepeatedAdjacentWords(text);
+  text = text.replace(/\s+([,.;:])/g, "$1").replace(/^[,.;:\s]+|[,.;:\s]+$/g, "");
   return normalizeText(text);
+}
+
+function normalizeObjectiveVisualText(value) {
+  return normalizeControlledVocabularyFreeText(value);
+}
+
+function controlledPoseTermsFromText(value) {
+  const text = normalizeControlledVocabularyFreeText(value);
+  if (!text) return [];
+  const terms = [];
+  for (const [term, pattern] of CONTROLLED_VOCABULARY_POSE_RULES) {
+    if (pattern.test(text)) terms.push(term);
+  }
+  return uniquePreserving(terms);
+}
+
+function normalizePoseTermArray(value) {
+  const terms = [];
+  for (const raw of normalizeStringArray(value)) {
+    const controlled = controlledPoseTermsFromText(raw);
+    if (controlled.length > 0) terms.push(...controlled);
+    else terms.push(normalizeControlledVocabularyFreeText(raw));
+  }
+  return uniquePreserving(terms);
+}
+
+function normalizeOrientationTerm(value) {
+  const text = normalizeControlledVocabularyFreeText(value).toLowerCase();
+  if (!text) return "";
+  const hasForward = /\b(front(?:-facing)?|forward|toward viewer|facing viewer)\b/.test(text);
+  const hasLeft = /\bleft\b/.test(text);
+  const hasRight = /\bright\b/.test(text);
+  const hasUp = /\b(upward|up|above|diagonal upward)\b/.test(text);
+  const hasDown = /\b(downward|down|below|diagonal downward)\b/.test(text);
+  if (hasForward && hasRight) return "forward-right";
+  if (hasForward && hasLeft) return "forward-left";
+  if (hasUp && hasRight) return "upward-right";
+  if (hasUp && hasLeft) return "upward-left";
+  if (hasDown && hasRight) return "downward-right";
+  if (hasDown && hasLeft) return "downward-left";
+  if (hasForward) return "forward";
+  if (hasRight) return "right";
+  if (hasLeft) return "left";
+  if (hasUp) return "upward";
+  if (hasDown) return "downward";
+  return normalizeControlledVocabularyFreeText(value);
 }
 
 function uniqueSorted(values) {
@@ -669,11 +835,22 @@ function factGraphForArtworkLanguageReview(factGraph) {
   };
 }
 
+function factGraphForAcceptedLanguageReview(factGraph) {
+  if (!factGraph || typeof factGraph !== "object" || Array.isArray(factGraph)) return factGraph;
+  return {
+    ...factGraph,
+    observations: (factGraph.observations ?? []).map((observation) => ({
+      ...observation,
+      label: observation.normalized_label,
+    })),
+  };
+}
+
 function textFieldsForVisualLanguageReview(payload) {
   const attributes = payload?.visual_attributes ?? {};
   const subjects = attributes.subjects ?? {};
   const environment = attributes.environment ?? {};
-  const artworkFactGraph = factGraphForArtworkLanguageReview(attributes.fact_graph);
+  const artworkFactGraph = factGraphForAcceptedLanguageReview(factGraphForArtworkLanguageReview(attributes.fact_graph));
   return [
     ["artwork_description", payload?.artwork_description],
     ["card_surface_and_printing_cues", payload?.card_surface_and_printing_cues],
@@ -1904,18 +2081,26 @@ function normalizeFactIdArray(value) {
 }
 
 function normalizeFactGraphObservations(value) {
-  return normalizeObjectArray(value).map((entry) => ({
-    observation_id: normalizeText(entry.observation_id),
-    kind: normalizeText(entry.kind),
-    label: normalizeObjectiveVisualText(entry.label),
-    normalized_label: normalizeObjectiveVisualText(entry.normalized_label),
-    scene_layer: normalizeText(entry.scene_layer),
-    frame_position: normalizeText(entry.frame_position),
-    visibility: normalizeText(entry.visibility),
-    salience: normalizeText(entry.salience),
-    confidence: normalizeConfidence(entry.confidence),
-    evidence_strength: normalizeText(entry.evidence_strength),
-  }));
+  return normalizeObjectArray(value).map((entry) => {
+    const observation = {
+      observation_id: normalizeText(entry.observation_id),
+      kind: normalizeText(entry.kind),
+      label: normalizeText(entry.label),
+      normalized_label: normalizeText(entry.normalized_label || entry.label),
+      scene_layer: normalizeText(entry.scene_layer),
+      frame_position: normalizeText(entry.frame_position),
+      visibility: normalizeText(entry.visibility),
+      salience: normalizeText(entry.salience),
+      confidence: normalizeConfidence(entry.confidence),
+      evidence_strength: normalizeText(entry.evidence_strength),
+    };
+    return {
+      ...observation,
+      normalized_label: isCardUiPrintMarkerObservation(observation)
+        ? observation.normalized_label
+        : normalizeObjectiveVisualText(observation.normalized_label),
+    };
+  });
 }
 
 function normalizeTypedFacts(value) {
@@ -1929,6 +2114,29 @@ function normalizeTypedFacts(value) {
     confidence: normalizeConfidence(entry.confidence),
     evidence_strength: normalizeText(entry.evidence_strength),
   }));
+}
+
+function normalizeTypedFactsWithCardUiMirrorRepair(value, rawGraph, observations) {
+  const typedFacts = normalizeTypedFacts(value);
+  const uiObservationIds = new Set(observations
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
+  const rawCardUiFactIds = new Set(normalizeFactIdArray(rawGraph?.modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE]?.fact_ids));
+  return typedFacts.map((fact) => {
+    const factId = normalizeText(fact.fact_id);
+    const supportsUiObservation = normalizeObservationReferenceArray(fact.supporting_observation_ids)
+      .some((id) => uiObservationIds.has(id));
+    const selfIdentifiedCardUiFact = rawCardUiFactIds.has(factId) || /^fact_card_ui/i.test(factId);
+    if (
+      supportsUiObservation
+      && selfIdentifiedCardUiFact
+      && CARD_UI_PROHIBITED_ARTWORK_MODULES.has(normalizeText(fact.module))
+    ) {
+      return { ...fact, module: CARD_UI_AND_PRINT_MARKERS_MODULE };
+    }
+    return fact;
+  });
 }
 
 function normalizeFacialEvidence(value) {
@@ -1950,9 +2158,9 @@ function normalizeFactGraphSubjects(value) {
     identity_confidence: normalizeConfidence(entry.identity_confidence),
     anatomy: normalizeStringArray(entry.anatomy).map(normalizeObjectiveVisualText),
     physical_features: normalizeStringArray(entry.physical_features).map(normalizeObjectiveVisualText),
-    pose: normalizeStringArray(entry.pose).map(normalizeObjectiveVisualText),
-    orientation: normalizeObjectiveVisualText(entry.orientation),
-    action_state: normalizeStringArray(entry.action_state).map(normalizeObjectiveVisualText),
+    pose: normalizePoseTermArray(entry.pose),
+    orientation: normalizeOrientationTerm(entry.orientation),
+    action_state: normalizeStringArray(entry.action_state).map(normalizeObjectiveVisualText).filter(Boolean),
     facial_evidence: normalizeFacialEvidence(entry.facial_evidence),
     clothing_or_accessories: normalizeStringArray(entry.clothing_or_accessories).map(normalizeObjectiveVisualText),
     colors: normalizeStringArray(entry.colors),
@@ -2015,16 +2223,16 @@ function normalizeFactGraphSceneLayers(value) {
 function normalizeFactGraphEnvironment(value) {
   const environment = normalizeObject(value);
   return {
-    setting: normalizeStringArray(environment.setting).map(normalizeObjectiveVisualText),
+    setting: normalizeStringArray(environment.setting).map(normalizeObjectiveVisualText).filter(Boolean),
     indoor_outdoor: normalizeText(environment.indoor_outdoor),
-    sky: normalizeStringArray(environment.sky).map(normalizeObjectiveVisualText),
-    ground: normalizeStringArray(environment.ground).map(normalizeObjectiveVisualText),
-    terrain: normalizeStringArray(environment.terrain).map(normalizeObjectiveVisualText),
-    plants: normalizeStringArray(environment.plants).map(normalizeObjectiveVisualText),
-    architecture: normalizeStringArray(environment.architecture).map(normalizeObjectiveVisualText),
-    water: normalizeStringArray(environment.water).map(normalizeObjectiveVisualText),
-    weather: normalizeStringArray(environment.weather).map(normalizeObjectiveVisualText),
-    time_of_day_cues: normalizeStringArray(environment.time_of_day_cues).map(normalizeObjectiveVisualText),
+    sky: normalizeStringArray(environment.sky).map(normalizeObjectiveVisualText).filter(Boolean),
+    ground: normalizeStringArray(environment.ground).map(normalizeObjectiveVisualText).filter(Boolean),
+    terrain: normalizeStringArray(environment.terrain).map(normalizeObjectiveVisualText).filter(Boolean),
+    plants: normalizeStringArray(environment.plants).map(normalizeObjectiveVisualText).filter(Boolean),
+    architecture: normalizeStringArray(environment.architecture).map(normalizeObjectiveVisualText).filter(Boolean),
+    water: normalizeStringArray(environment.water).map(normalizeObjectiveVisualText).filter(Boolean),
+    weather: normalizeStringArray(environment.weather).map(normalizeObjectiveVisualText).filter(Boolean),
+    time_of_day_cues: normalizeStringArray(environment.time_of_day_cues).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(environment.supporting_observation_ids),
   };
 }
@@ -2033,9 +2241,9 @@ function normalizeObjectsAndProps(value) {
   return normalizeObjectArray(value).map((entry) => ({
     observation_id: normalizeText(entry.observation_id),
     label: normalizeText(entry.label),
-    normalized_label: normalizeText(entry.normalized_label),
-    object_type: normalizeText(entry.object_type),
-    colors: normalizeStringArray(entry.colors),
+    normalized_label: normalizeObjectiveVisualText(entry.normalized_label || entry.label),
+    object_type: normalizeObjectiveVisualText(entry.object_type),
+    colors: normalizeStringArray(entry.colors).map(normalizeObjectiveVisualText).filter(Boolean),
     material_appearance: normalizeStringArray(entry.material_appearance).map(normalizeMaterialAppearanceText),
     location: normalizeText(entry.location),
     count_reference: normalizeText(entry.count_reference),
@@ -2076,19 +2284,19 @@ function normalizeRelationships(value) {
 function normalizeVisualDesign(value) {
   const design = normalizeObject(value);
   return {
-    palette: normalizeStringArray(design.palette).map(normalizeObjectiveVisualText),
-    lighting: normalizeStringArray(design.lighting).map(normalizeObjectiveVisualText),
-    shadows: normalizeStringArray(design.shadows).map(normalizeObjectiveVisualText),
-    highlights: normalizeStringArray(design.highlights).map(normalizeObjectiveVisualText),
-    composition: normalizeStringArray(design.composition).map(normalizeObjectiveVisualText),
+    palette: normalizeStringArray(design.palette).map(normalizeObjectiveVisualText).filter(Boolean),
+    lighting: normalizeStringArray(design.lighting).map(normalizeObjectiveVisualText).filter(Boolean),
+    shadows: normalizeStringArray(design.shadows).map(normalizeObjectiveVisualText).filter(Boolean),
+    highlights: normalizeStringArray(design.highlights).map(normalizeObjectiveVisualText).filter(Boolean),
+    composition: normalizeStringArray(design.composition).map(normalizeObjectiveVisualText).filter(Boolean),
     camera_angle: normalizeObjectiveVisualText(design.camera_angle),
     framing: normalizeObjectiveVisualText(design.framing),
-    cropping: normalizeStringArray(design.cropping).map(normalizeObjectiveVisualText),
+    cropping: normalizeStringArray(design.cropping).map(normalizeObjectiveVisualText).filter(Boolean),
     depth: normalizeObjectiveVisualText(design.depth),
-    motion_cues: normalizeStringArray(design.motion_cues).map(normalizeObjectiveVisualText),
-    motifs: normalizeStringArray(design.motifs).map(normalizeObjectiveVisualText),
-    repeated_shapes: normalizeStringArray(design.repeated_shapes).map(normalizeObjectiveVisualText),
-    style_cues: normalizeStringArray(design.style_cues).map(normalizeObjectiveVisualText),
+    motion_cues: normalizeStringArray(design.motion_cues).map(normalizeObjectiveVisualText).filter(Boolean),
+    motifs: normalizeStringArray(design.motifs).map(normalizeObjectiveVisualText).filter(Boolean),
+    repeated_shapes: normalizeStringArray(design.repeated_shapes).map(normalizeObjectiveVisualText).filter(Boolean),
+    style_cues: normalizeStringArray(design.style_cues).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(design.supporting_observation_ids),
   };
 }
@@ -2116,6 +2324,27 @@ function normalizeUncertaintyAndAbstentions(value) {
   }));
 }
 
+function normalizeSemanticVisualFactEvidence(value) {
+  const evidence = normalizeObject(value);
+  return Object.fromEntries(SEMANTIC_VISUAL_FACT_EVIDENCE_FIELDS.map((field) => [
+    field,
+    normalizeStringArray(evidence[field]).map(normalizeObjectiveVisualText).filter(Boolean),
+  ]));
+}
+
+function normalizeSemanticVisualFacts(value) {
+  return normalizeObjectArray(value).map((entry) => ({
+    semantic_fact_id: normalizeText(entry.semantic_fact_id),
+    category: normalizeText(entry.category),
+    label: normalizeObjectiveVisualText(entry.label),
+    subject_observation_id: normalizeText(entry.subject_observation_id),
+    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    evidence: normalizeSemanticVisualFactEvidence(entry.evidence),
+    confidence: normalizeConfidence(entry.confidence),
+    uncertainty: normalizeText(entry.uncertainty),
+  }));
+}
+
 function searchTermTokens(value) {
   return tagKey(value)
     .split(" ")
@@ -2131,7 +2360,10 @@ function isUsefulSearchTermCandidate(value) {
 }
 
 function normalizeSearchTermText(value) {
-  return normalizeObjectiveVisualText(value).replace(/\bshiny\b/gi, "reflective-looking");
+  return normalizeObjectiveVisualText(value)
+    .replace(/\bshiny\b/gi, "reflective-looking")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function observationSearchText(observation) {
@@ -2181,7 +2413,7 @@ function supportingObservationIdsForSearchTerm(term, observations, typedFacts) {
 }
 
 function derivedSearchTermsFromObservations(observations) {
-  const derivableSalience = new Set(["high", "medium", "salient", "moderate"]);
+  const derivableSalience = new Set(["high", "medium", "salient", "moderate", "primary", "prominent", "secondary", "background"]);
   return observations
     .filter((observation) => !isCardUiPrintMarkerObservation(observation))
     .filter((observation) => derivableSalience.has(normalizeText(observation.salience)))
@@ -2194,6 +2426,7 @@ function derivedSearchTermsFromObservations(observations) {
 }
 
 function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
+  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities).map(tagKey).filter(Boolean));
   const uiObservationIds = new Set((options.observations ?? [])
     .filter(isCardUiPrintMarkerObservation)
     .map((observation) => normalizeText(observation.observation_id))
@@ -2208,7 +2441,9 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
       .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
   })).filter((entry) =>
-    !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
+    entry.term
+    && !subjectIdentityKeys.has(tagKey(entry.term))
+    && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
   );
 
   const seenTerms = new Set(normalized.map((entry) => tagKey(entry.term)).filter(Boolean));
@@ -2217,22 +2452,118 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     if (!key || seenTerms.has(key)) continue;
     const supportingIds = supportingObservationIdsForSearchTerm(term, options.observations ?? [], options.typedFacts ?? []);
     if (supportingIds.length < 1) continue;
-    normalized.push({ term: normalizeSearchTermText(term), supporting_observation_ids: supportingIds });
-    seenTerms.add(key);
+    const normalizedTerm = normalizeSearchTermText(term);
+    const normalizedKey = tagKey(normalizedTerm);
+    if (!normalizedTerm || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
+    normalized.push({ term: normalizedTerm, supporting_observation_ids: supportingIds });
+    seenTerms.add(normalizedKey);
   }
 
   if (normalized.length < 1) {
     for (const entry of derivedSearchTermsFromObservations(options.observations ?? [])) {
-      const key = tagKey(entry.term);
-      if (!key || seenTerms.has(key)) continue;
-      normalized.push(entry);
+      const normalizedTerm = normalizeSearchTermText(entry.term);
+      const key = tagKey(normalizedTerm);
+      if (!key || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
+      normalized.push({ ...entry, term: normalizedTerm });
       seenTerms.add(key);
     }
   }
 
   return normalized.filter((entry) =>
-    !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
+    entry.term
+    && !subjectIdentityKeys.has(tagKey(entry.term))
+    && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
   );
+}
+
+function conceptNamesFromText(value) {
+  const text = normalizeControlledVocabularyFreeText(value);
+  if (!text) return [];
+  const concepts = [];
+  for (const [concept, pattern] of CONTROLLED_VOCABULARY_CONCEPT_RULES) {
+    if (pattern.test(text)) concepts.push(concept);
+  }
+  for (const pose of controlledPoseTermsFromText(text)) concepts.push(pose);
+  const orientation = normalizeOrientationTerm(text);
+  if (orientation && orientation !== text) concepts.push(`${orientation} orientation`);
+  return uniquePreserving(concepts);
+}
+
+function addCanonicalVisualConcept(candidates, concept, sourceObservationIds, confidence = 0.99) {
+  const normalizedConcept = normalizeControlledVocabularyFreeText(concept);
+  const ids = uniquePreserving(sourceObservationIds);
+  if (!normalizedConcept || ids.length < 1) return;
+  const key = `${normalizedConcept}\u0000${ids.join(",")}`;
+  if (candidates.has(key)) return;
+  candidates.set(key, {
+    concept: normalizedConcept,
+    source_observation_ids: ids,
+    derivation: "deterministic_rule",
+    confidence: normalizeConfidence(confidence),
+  });
+}
+
+function deriveCanonicalVisualConceptLayerV1(factGraph) {
+  const candidates = new Map();
+  const knownIds = observationIdSet(factGraph);
+
+  for (const observation of factGraph?.observations ?? []) {
+    if (isCardUiPrintMarkerObservation(observation)) continue;
+    const observationId = normalizeText(observation.observation_id);
+    if (!knownIds.has(observationId)) continue;
+    const text = [observation.normalized_label, observation.kind, observation.label].map(normalizeText).filter(Boolean).join(" ");
+    for (const concept of conceptNamesFromText(text)) {
+      addCanonicalVisualConcept(candidates, concept, [observationId], observation.confidence);
+    }
+  }
+
+  for (const subject of factGraph?.subjects ?? []) {
+    const subjectId = normalizeText(subject.observation_id);
+    if (!knownIds.has(subjectId)) continue;
+    for (const pose of normalizePoseTermArray(subject.pose)) {
+      addCanonicalVisualConcept(candidates, pose, [subjectId], subject.identity_confidence);
+    }
+    const orientation = normalizeOrientationTerm(subject.orientation);
+    if (orientation) addCanonicalVisualConcept(candidates, `${orientation} orientation`, [subjectId], subject.identity_confidence);
+  }
+
+  for (const row of factGraph?.modules?.creature_anatomy?.pose_orientation ?? []) {
+    const support = normalizeObservationReferenceArray(row.supporting_observation_ids).filter((id) => knownIds.has(id));
+    for (const pose of normalizePoseTermArray(row.pose)) addCanonicalVisualConcept(candidates, pose, support, row.confidence);
+    const orientation = normalizeOrientationTerm(row.orientation);
+    if (orientation) addCanonicalVisualConcept(candidates, `${orientation} orientation`, support, row.confidence);
+  }
+
+  const designSupport = normalizeObservationReferenceArray(factGraph?.visual_design?.supporting_observation_ids)
+    .filter((id) => knownIds.has(id));
+  const designText = flattenFactGraphText([
+    factGraph?.visual_design?.composition,
+    factGraph?.visual_design?.framing,
+    factGraph?.visual_design?.cropping,
+    factGraph?.visual_design?.motifs,
+    factGraph?.visual_design?.repeated_shapes,
+    factGraph?.visual_design?.lighting,
+    factGraph?.visual_design?.highlights,
+  ]);
+  if (designSupport.length > 0) {
+    for (const concept of conceptNamesFromText(designText)) {
+      addCanonicalVisualConcept(candidates, concept, designSupport.slice(0, 6), 0.92);
+    }
+  }
+
+  for (const fact of factGraph?.semantic_visual_facts ?? []) {
+    const support = normalizeObservationReferenceArray(fact.supporting_observation_ids).filter((id) => knownIds.has(id));
+    if (support.length < 1) continue;
+    const label = normalizeText(fact.label);
+    if (!label || /\bcannot_determine\b/i.test(label)) continue;
+    addCanonicalVisualConcept(candidates, label, support.slice(0, 6), fact.confidence || 0.9);
+  }
+
+  return {
+    concept_schema_version: CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION,
+    concepts: [...candidates.values()]
+      .sort((left, right) => left.concept.localeCompare(right.concept)),
+  };
 }
 
 function normalizeModuleFactIds(value) {
@@ -2277,6 +2608,31 @@ function filterCardUiAndPrintMarkersModuleToKnownObservations(module, knownIds) 
   };
 }
 
+function filterCardUiMirrorLeaksFromArtworkModules(modules, rawGraph, observations) {
+  const uiObservationIds = new Set(observations
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
+  const rawCardUiFactIds = new Set(normalizeFactIdArray(rawGraph?.modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE]?.fact_ids));
+  if (uiObservationIds.size < 1 || rawCardUiFactIds.size < 1) return modules;
+  const next = { ...modules };
+  for (const moduleName of CARD_UI_PROHIBITED_ARTWORK_MODULES) {
+    const module = normalizeObject(next[moduleName]);
+    if (!Object.keys(module).length) continue;
+    const cleaned = {
+      ...module,
+      fact_ids: normalizeFactIdArray(module.fact_ids).filter((id) => !rawCardUiFactIds.has(id) && !/^fact_card_ui/i.test(id)),
+    };
+    for (const field of ["observation_ids", "object_observation_ids"]) {
+      if (Array.isArray(cleaned[field])) {
+        cleaned[field] = normalizeObservationReferenceArray(cleaned[field]).filter((id) => !uiObservationIds.has(id));
+      }
+    }
+    next[moduleName] = cleaned;
+  }
+  return next;
+}
+
 function normalizeVisibleBodyRegions(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
@@ -2304,8 +2660,8 @@ function normalizeHumanFacialEvidenceRows(value) {
 function normalizeAppearanceRows(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    label: normalizeText(entry.label),
-    details: normalizeStringArray(entry.details),
+    label: normalizeObjectiveVisualText(entry.label),
+    details: normalizeStringArray(entry.details).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
   }));
@@ -2314,12 +2670,12 @@ function normalizeAppearanceRows(value) {
 function normalizeClothingGarments(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    body_area: normalizeText(entry.body_area),
-    garment: normalizeText(entry.garment),
-    neckline_type: normalizeText(entry.neckline_type),
-    sleeve_type: normalizeText(entry.sleeve_type),
-    colors: normalizeStringArray(entry.colors),
-    visible_details: normalizeStringArray(entry.visible_details),
+    body_area: normalizeObjectiveVisualText(entry.body_area),
+    garment: normalizeObjectiveVisualText(entry.garment),
+    neckline_type: normalizeObjectiveVisualText(entry.neckline_type),
+    sleeve_type: normalizeObjectiveVisualText(entry.sleeve_type),
+    colors: normalizeStringArray(entry.colors).map(normalizeObjectiveVisualText).filter(Boolean),
+    visible_details: normalizeStringArray(entry.visible_details).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
   }));
@@ -2328,11 +2684,11 @@ function normalizeClothingGarments(value) {
 function normalizeCreatureAnatomyRows(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    region: normalizeText(entry.region),
-    feature: normalizeText(entry.feature),
+    region: normalizeObjectiveVisualText(entry.region),
+    feature: normalizeObjectiveVisualText(entry.feature),
     visibility: normalizeText(entry.visibility),
-    colors: normalizeStringArray(entry.colors),
-    details: normalizeStringArray(entry.details),
+    colors: normalizeStringArray(entry.colors).map(normalizeObjectiveVisualText).filter(Boolean),
+    details: normalizeStringArray(entry.details).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
   }));
@@ -2341,9 +2697,9 @@ function normalizeCreatureAnatomyRows(value) {
 function normalizePoseOrientationRows(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    pose: normalizeStringArray(entry.pose),
-    orientation: normalizeText(entry.orientation),
-    action_state: normalizeStringArray(entry.action_state),
+    pose: normalizePoseTermArray(entry.pose),
+    orientation: normalizeOrientationTerm(entry.orientation),
+    action_state: normalizeStringArray(entry.action_state).map(normalizeObjectiveVisualText).filter(Boolean),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
   }));
@@ -2461,14 +2817,26 @@ function normalizeFactGraphV1(value) {
   const counts = normalizeFactGraphCounts(graph.counts);
   const observations = normalizeFactGraphObservations(graph.observations);
   const knownObservationIds = new Set(observations.map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
-  const typedFacts = normalizeTypedFacts(graph.typed_facts);
+  const typedFacts = normalizeTypedFactsWithCardUiMirrorRepair(graph.typed_facts, graph, observations);
   const subjects = applySubjectIdentityFallbacks(normalizeFactGraphSubjects(graph.subjects), observations);
+  const depictedSubjects = normalizeDepictedSubjects(graph.depicted_subjects);
+  const characterRepresentations = normalizeCharacterRepresentations(graph.character_representations);
+  const semanticVisualFacts = normalizeSemanticVisualFacts(graph.semantic_visual_facts);
   const searchTerms = normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts, {
     observations,
     typedFacts,
     moduleTerms: graph.modules?.fact_grounded_search_terms?.terms,
+    subjectIdentities: [
+      ...subjects.map((subject) => subject.identity),
+      ...depictedSubjects.map((subject) => subject.represented_identity),
+      ...characterRepresentations.map((subject) => subject.represented_identity),
+    ],
   });
-  const modules = normalizeFactGraphModules(graph.modules, knownObservationIds);
+  const modules = filterCardUiMirrorLeaksFromArtworkModules(
+    normalizeFactGraphModules(graph.modules, knownObservationIds),
+    graph,
+    observations,
+  );
   modules.fact_grounded_search_terms.terms = searchTerms.map((entry) => entry.term);
   const relationships = normalizeRelationships(graph.relationships)
     .filter((relationship) =>
@@ -2476,12 +2844,12 @@ function normalizeFactGraphV1(value) {
       && knownObservationIds.has(normalizeText(relationship.target_observation_id)));
   const visualDesign = normalizeVisualDesign(graph.visual_design);
   visualDesign.supporting_observation_ids = visualDesign.supporting_observation_ids.filter((id) => knownObservationIds.has(id));
-  return {
+  const normalizedGraph = {
     observations,
     typed_facts: typedFacts,
     subjects,
-    depicted_subjects: normalizeDepictedSubjects(graph.depicted_subjects),
-    character_representations: normalizeCharacterRepresentations(graph.character_representations),
+    depicted_subjects: depictedSubjects,
+    character_representations: characterRepresentations,
     counts,
     scene_layers: normalizeFactGraphSceneLayers(graph.scene_layers),
     environment: normalizeFactGraphEnvironment(graph.environment),
@@ -2492,8 +2860,13 @@ function normalizeFactGraphV1(value) {
     coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
     modules,
     module_reviews: normalizeModuleReviews(graph.module_reviews, knownObservationIds),
+    semantic_visual_facts: semanticVisualFacts,
     uncertainty_and_abstentions: normalizeUncertaintyAndAbstentions(graph.uncertainty_and_abstentions),
     fact_grounded_search_terms: searchTerms,
+  };
+  return {
+    ...normalizedGraph,
+    canonical_visual_concepts: deriveCanonicalVisualConceptLayerV1(normalizedGraph),
   };
 }
 
@@ -3283,7 +3656,7 @@ export function evaluateAutoApprovalReadinessV1(row, options = {}) {
   const factGraph = normalizedPayload.visual_attributes?.fact_graph ?? {};
   const outputComplete = validation.ok
     && (factGraph.observations ?? []).length >= 3
-    && (factGraph.fact_grounded_search_terms ?? []).length >= 3
+    && (factGraph.fact_grounded_search_terms ?? []).length >= 1
     && FACT_GRAPH_COVERAGE_KEYS.every((key) => FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key)));
   addAutoApprovalCondition(conditions, "output_complete_enough_to_distinguish_artwork", outputComplete, [
     `observations=${(factGraph.observations ?? []).length}`,
@@ -3700,7 +4073,7 @@ export function buildFactGraphCompatibilityDigestV1(factGraph) {
     .filter((observation) => !isCardUiPrintMarkerObservation(observation))
     .filter((observation) => ["high", "medium"].includes(normalizeText(observation.salience).toLowerCase()))
     .slice(0, 8)
-    .map((observation) => observation.label || observation.normalized_label)
+    .map((observation) => observation.normalized_label || observation.label)
     .filter(Boolean);
   const countParts = counts.slice(0, 6).map((count) => {
     if (count.count_type === "exact") return `${count.normalized_label}: ${count.exact_count}`;
@@ -3712,11 +4085,16 @@ export function buildFactGraphCompatibilityDigestV1(factGraph) {
   const represented = representations.map((subject) =>
     [subject.represented_identity, subject.representation_form || subject.host_object].filter(Boolean).join(" as "),
   ).filter(Boolean).slice(0, 4);
+  const semanticFacts = (factGraph?.semantic_visual_facts ?? [])
+    .map((fact) => normalizeText(fact.label))
+    .filter(Boolean)
+    .slice(0, 6);
   const parts = [
     primary.length ? `Scene subjects: ${primary.join(", ")}.` : "",
     depicted.length ? `Depicted subjects: ${depicted.join(", ")}.` : "",
     represented.length ? `Character representations: ${represented.join(", ")}.` : "",
     highSalience.length ? `Visible observations: ${highSalience.join(", ")}.` : "",
+    semanticFacts.length ? `Semantic facts: ${semanticFacts.join(", ")}.` : "",
     countParts.length ? `Counts: ${countParts.join(", ")}.` : "",
   ].filter(Boolean);
   return parts.length
@@ -3954,6 +4332,198 @@ function validateFactGraphCountConsistencyV1(factGraph) {
   return findings;
 }
 
+function validateCanonicalVisualConceptsV1(factGraph, knownIds) {
+  const findings = [];
+  const layer = factGraph?.canonical_visual_concepts;
+  if (!layer || typeof layer !== "object" || Array.isArray(layer)) {
+    findings.push("fact_graph_canonical_visual_concepts_missing");
+    return findings;
+  }
+  if (normalizeText(layer.concept_schema_version) !== CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION) {
+    findings.push("fact_graph_canonical_visual_concept_schema_version_invalid");
+  }
+  if (!Array.isArray(layer.concepts)) {
+    findings.push("fact_graph_canonical_visual_concepts_not_array");
+    return findings;
+  }
+  for (const concept of layer.concepts) {
+    const name = normalizeText(concept.concept) || "unknown";
+    if (!normalizeText(concept.concept)) findings.push("fact_graph_canonical_visual_concept_missing_name");
+    if (normalizeText(concept.derivation) !== "deterministic_rule") {
+      findings.push(`fact_graph_canonical_visual_concept_derivation_invalid:${name}`);
+    }
+    const sourceIds = normalizeObservationReferenceArray(concept.source_observation_ids);
+    if (sourceIds.length < 1) findings.push(`fact_graph_canonical_visual_concept_without_source:${name}`);
+    addMissingObservationFindings(findings, sourceIds, knownIds, "fact_graph_canonical_visual_concept_observation_missing");
+  }
+  return findings;
+}
+
+function semanticVisualFactEvidenceText(fact) {
+  return flattenFactGraphText(Object.values(normalizeSemanticVisualFactEvidence(fact?.evidence)));
+}
+
+function semanticVisualFactHasSupport(fact, pattern) {
+  return pattern.test(semanticVisualFactEvidenceText(fact));
+}
+
+function factGraphHasSemanticLabel(factGraph, pattern) {
+  return (factGraph?.semantic_visual_facts ?? []).some((fact) => pattern.test(normalizeText(fact.label)));
+}
+
+function factGraphHasSubjectIdentity(factGraph, identityPattern) {
+  const rows = [
+    ...(factGraph?.subjects ?? []).map((subject) => subject.identity),
+    ...(factGraph?.depicted_subjects ?? []).map((subject) => subject.represented_identity),
+    ...(factGraph?.character_representations ?? []).map((subject) => subject.represented_identity),
+  ];
+  return rows.some((identity) => identityPattern.test(normalizeText(identity)));
+}
+
+function factGraphHasExactCount(factGraph, labelPattern, exactCount) {
+  return (factGraph?.counts ?? []).some((count) =>
+    count.count_type === "exact"
+    && count.exact_count === exactCount
+    && labelPattern.test(normalizeText(count.normalized_label)));
+}
+
+function factGraphHasForestEvidence(factGraph) {
+  return factGraphHasSemanticLabel(factGraph, SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN)
+    || SEMANTIC_VISUAL_FACT_FOREST_SUPPORT_PATTERN.test(flattenFactGraphText([
+      factGraph?.environment?.setting,
+      factGraph?.environment?.plants,
+      factGraph?.observations,
+    ]));
+}
+
+function validateSemanticVisualFactsV1(factGraph, knownIds) {
+  const findings = [];
+  const semanticFacts = factGraph.semantic_visual_facts ?? [];
+  if (!Array.isArray(semanticFacts)) return ["fact_graph_semantic_visual_facts_not_array"];
+  const ids = new Set();
+
+  for (const fact of semanticFacts) {
+    const factId = normalizeText(fact.semantic_fact_id) || "unknown";
+    const label = normalizeText(fact.label);
+    const category = normalizeText(fact.category);
+    const supportIds = normalizeObservationReferenceArray(fact.supporting_observation_ids);
+    const evidenceText = semanticVisualFactEvidenceText(fact);
+
+    if (!normalizeText(fact.semantic_fact_id)) findings.push("fact_graph_semantic_fact_missing_id");
+    if (ids.has(factId)) findings.push(`fact_graph_semantic_fact_duplicate_id:${factId}`);
+    ids.add(factId);
+    if (!category || !SEMANTIC_VISUAL_FACT_CATEGORIES.has(category)) {
+      findings.push(`fact_graph_semantic_fact_category_invalid:${factId}`);
+    }
+    if (!label) findings.push(`fact_graph_semantic_fact_label_missing:${factId}`);
+    if (label && !SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN.test(label)) {
+      findings.push(`fact_graph_semantic_fact_label_not_supported_v1:${factId}`);
+    }
+    if (SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN.test(flattenFactGraphText([label, evidenceText]))) {
+      findings.push(`fact_graph_semantic_fact_story_or_lore_not_allowed:${factId}`);
+    }
+    if (supportIds.length < 1) {
+      findings.push(`fact_graph_semantic_fact_without_supporting_observation:${factId}`);
+    }
+    addMissingObservationFindings(findings, supportIds, knownIds, "fact_graph_semantic_fact_observation_missing");
+    if (fact.subject_observation_id && !knownIds.has(normalizeText(fact.subject_observation_id))) {
+      findings.push(`fact_graph_semantic_fact_subject_observation_missing:${factId}`);
+    }
+    if (!evidenceText) {
+      findings.push(`fact_graph_semantic_fact_without_evidence:${factId}`);
+    }
+
+    if (SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN.test(label)) {
+      if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:happy_without_visible_smile_evidence`);
+      }
+      if (SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN.test(evidenceText)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:happy_conflicts_with_evidence`);
+      }
+    }
+    if (SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN.test(label)) {
+      if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_SLEEPING_SUPPORT_PATTERN)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:sleeping_without_sleep_evidence`);
+      }
+      if (SEMANTIC_VISUAL_FACT_SLEEPING_CONTRADICTION_PATTERN.test(evidenceText)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:sleeping_conflicts_with_evidence`);
+      }
+    }
+    if (SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN.test(label) && !semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_FOREST_SUPPORT_PATTERN)) {
+      findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:forest_without_tree_evidence`);
+    }
+    if (SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN.test(label) && !semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_RAIN_SUPPORT_PATTERN)) {
+      findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:rain_without_weather_evidence`);
+    }
+    if (SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN.test(label) && !evidenceText) {
+      findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:action_without_pose_evidence`);
+    }
+  }
+
+  return findings;
+}
+
+function validateFactGraphSearchTermComponentsV1(factGraph) {
+  const findings = [];
+  for (const entry of factGraph.fact_grounded_search_terms ?? []) {
+    const term = normalizeText(entry.term);
+    const key = tagKey(term);
+    if (!term) continue;
+    if (SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN.test(term)) {
+      findings.push(`fact_graph_search_term_story_or_lore_not_allowed:${term}`);
+    }
+    if (/\b(?:happy|smiling|smile|cheerful|joyful)\b/i.test(term) && !factGraphHasSemanticLabel(factGraph, SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN)) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\bsleeping|asleep|sleepy\b/i.test(term) && !factGraphHasSemanticLabel(factGraph, SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN)) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\bforest|woodland|woods\b/i.test(term) && !factGraphHasForestEvidence(factGraph)) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\b(?:ten|10)\s+trees?\b/i.test(term) && !factGraphHasExactCount(factGraph, /\btrees?\b/i, 10)) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\bpikachu\b/i.test(term) && !factGraphHasSubjectIdentity(factGraph, /\bpikachu\b/i)) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\bcameo\b/i.test(term) && (factGraph.depicted_subjects ?? []).length < 1 && (factGraph.character_representations ?? []).length < 1) {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (/\bpikachu\b/i.test(term) && /\b(?:pillow|plush|statue|toy|ice cream|logo)\b/i.test(term)) {
+      const hasRepresentation = (factGraph.character_representations ?? []).some((representation) =>
+        /\bpikachu\b/i.test(normalizeText(representation.represented_identity))
+        && /\b(?:pillow|plush|statue|toy|ice cream|logo)\b/i.test(normalizeText([representation.host_object, representation.representation_form].join(" "))));
+      if (!hasRepresentation) findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+    if (key === "pokemon" || key === "pokémon") {
+      findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
+    }
+  }
+  return findings;
+}
+
+function validateLooseSemanticLabelsV1(factGraph) {
+  const modules = normalizeObject(factGraph.modules);
+  const reviewGraph = {
+    ...factGraph,
+    modules: {
+      ...modules,
+      fact_grounded_search_terms: {
+        ...normalizeObject(modules.fact_grounded_search_terms),
+        terms: [],
+      },
+    },
+    semantic_visual_facts: [],
+    fact_grounded_search_terms: [],
+    canonical_visual_concepts: { concept_schema_version: CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION, concepts: [] },
+  };
+  const text = flattenFactGraphText(factGraphForAcceptedLanguageReview(reviewGraph));
+  return /\b(happy|cheerful|joyful|angry|surprised|scared|crying|sad|friendly|playful expression|angry expression|happy expression)\b/i.test(text)
+    ? ["fact_graph_loose_semantic_label_outside_semantic_visual_facts"]
+    : [];
+}
+
 function validateFactGraphOntologyV1(factGraph, card = {}) {
   const findings = [];
   const promptBranch = normalizeText(card.prompt_branch) || resolveCardPromptMetadata(card).prompt_branch;
@@ -4023,6 +4593,10 @@ function validateFactGraphV1(factGraph) {
   findings.push(...validateFactGraphTypedFactsV2(factGraph, knownIds));
   findings.push(...validateFactGraphModulesV2(factGraph, knownIds));
   findings.push(...validateFactGraphModuleReviewsV2(factGraph));
+  findings.push(...validateCanonicalVisualConceptsV1(factGraph, knownIds));
+  findings.push(...validateSemanticVisualFactsV1(factGraph, knownIds));
+  findings.push(...validateFactGraphSearchTermComponentsV1(factGraph));
+  findings.push(...validateLooseSemanticLabelsV1(factGraph));
 
   const referenceChecks = [
     ["subjects", "fact_graph_subject_observation_missing", factGraph.subjects ?? [], (entry) => [entry.observation_id]],
@@ -4030,6 +4604,7 @@ function validateFactGraphV1(factGraph) {
     ["character_representations", "fact_graph_character_representation_observation_missing", factGraph.character_representations ?? [], (entry) => [entry.observation_id]],
     ["objects_and_props", "fact_graph_object_observation_missing", factGraph.objects_and_props ?? [], (entry) => [entry.observation_id]],
     ["relationships", "fact_graph_relationship_observation_missing", factGraph.relationships ?? [], (entry) => [entry.source_observation_id, entry.target_observation_id]],
+    ["semantic_visual_facts", "fact_graph_semantic_fact_observation_missing", factGraph.semantic_visual_facts ?? [], (entry) => entry.supporting_observation_ids ?? []],
     ["fact_grounded_search_terms", "fact_graph_search_term_observation_missing", factGraph.fact_grounded_search_terms ?? [], (entry) => entry.supporting_observation_ids ?? []],
   ];
   for (const [, finding, rows, getIds] of referenceChecks) {
@@ -4118,10 +4693,11 @@ function validateFactGraphV1(factGraph) {
 
   if ((factGraph.fact_grounded_search_terms ?? []).length < 1) findings.push("fact_graph_search_terms_missing");
   if (factGraphContainsInterpretedExpression(factGraph)) findings.push("fact_graph_interpreted_expression_not_allowed");
-  if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|fierce|majestic|confident|angry|happy|sad)\b/i.test(flattenFactGraphText(factGraph))) {
+  const acceptedLanguageFactGraph = factGraphForAcceptedLanguageReview(factGraph);
+  if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|fierce|majestic|confident)\b/i.test(flattenFactGraphText(acceptedLanguageFactGraph))) {
     findings.push("fact_graph_subjective_or_interpreted_label_not_allowed");
   }
-  if (new RegExp(VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN.source, "i").test(flattenFactGraphText(factGraph))) {
+  if (new RegExp(VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN.source, "i").test(flattenFactGraphText(acceptedLanguageFactGraph))) {
     findings.push("fact_graph_story_or_lore_language_not_allowed");
   }
   findings.push(...validateFactGraphGroundedFieldsV1(factGraph, knownIds));
@@ -4279,7 +4855,7 @@ function promptBranchInstructions(branch) {
         "If the card name contains multiple Pokemon, record each visible Pokemon as a separate subject. Do not merge them into one hybrid unless the image literally shows a fused body.",
         "For object-like Pokemon, body components are anatomy, not props. Chandelier arms, lantern bodies, flames, or central glass/body regions must not be described as separate held objects unless a separate object is visibly independent.",
         "Do not default to standing. Use floating, diagonal, cropped, upright, or cannot_determine unless feet or contact with ground are visible.",
-        "Do not store interpreted expressions. Store visible facial evidence only.",
+        "Store visible facial evidence in anatomy fields. If a reusable semantic expression/state is visually supported, store it only in semantic_visual_facts with evidence and observation IDs.",
       ];
   }
 }
@@ -4322,7 +4898,13 @@ function buildPrompt(card) {
     "- depicted_subject: character/entity shown inside another surface such as poster, card, sign, photo, TV, screen, book, painting, or frame.",
     "- character_representation: object shaped like or patterned after a character, such as plush, pillow, statue, toy, ice cream, food decoration, logo, sticker, clothing pattern, or wall pattern.",
     "Pikachu as a pillow or ice cream is a character_representation, not a scene_subject.",
-    "Do not store interpreted expression labels such as angry, happy, confident, sad, friendly, determined, fierce, majestic, or focused. Store facial evidence only: eyes, mouth, eyebrows, face position, and other visible features.",
+    "Store meaningful semantic visual facts in semantic_visual_facts when directly supported by evidence. Allowed examples include happy, smiling, sleeping, angry, surprised, crying, forest, rainy, floating, eating, fighting, cameo, Pikachu pillow, or ten trees, but only with supporting observation IDs and evidence fields.",
+    "semantic_visual_facts is not optional when obvious reusable meaning is visibly supported. Actively add entries for supported subject states/actions such as floating, flying, sleeping, eating, fighting, standing, sitting, or lying down; environment concepts such as forest, outdoor stadium, rain, snow, nighttime, sunset, water scene, or food scene; exact useful count concepts such as ten trees; and cameo/representation concepts such as Pikachu poster or Pikachu pillow.",
+    "If a pose/action already appears in creature_anatomy or human_appearance and it is useful for future search, also add a semantic_visual_facts entry with the same supporting observation IDs and concrete evidence.",
+    "If an environment field records forest, trees, buildings, stadium, water, weather, or time-of-day cues, add the matching semantic_visual_facts entry unless the field is uncertain or purely abstained.",
+    "If no semantic visual fact is supportable, use semantic_visual_facts: []. Do not leave the array empty merely because the fact also exists elsewhere in the graph.",
+    "Do not store loose interpreted expression labels in subject, anatomy, clothing, object, environment, visual_design, or search-term fields. Store facial evidence in those modules, then place supported labels such as happy or sleeping only in semantic_visual_facts.",
+    "Never store unsupported personality, attractiveness, body-size, theme, intention, lore, or story as semantic facts. Confident, fierce, majestic, sexy, protecting a friend, symbolizing hope, and similar claims are not V2 facts.",
     "Do not store subjective human appearance labels such as sexy, attractive, body size, breast size, or similar judgments. Store visible body regions and clothing facts only.",
     "No story: allowed facts include Pikachu, standing, dark forest, 10 trees. Do not write Pikachu is lost in the forest.",
     "Use unknown, not_visible, cannot_determine, or explicit coverage review statuses instead of inventing content.",
@@ -4357,11 +4939,17 @@ function buildPrompt(card) {
     "Do not chase a fixed fact count. A sparse card may have fewer facts; a dense full-art Trainer may have many more. Success is module completeness, not quantity.",
     "Every subject, depicted_subject, character_representation, object, relationship, count, scene layer, environment support, design support, typed fact, module fact, uncertainty, and search-term reference must point to an observation_id that actually exists in observations.",
     "Every module fact_ids entry must point to a real typed_facts.fact_id.",
+    "semantic_visual_facts entries must include semantic_fact_id, category, label, subject_observation_id when subject-specific, supporting_observation_ids, evidence, confidence, and uncertainty.",
+    "For semantic facts, evidence must be concrete visible evidence such as smiling mouth, closed eyes, lying-down body position, raised arms, visible trees, rain streaks, or a plush/pillow host object. If the evidence is weak or absent, abstain.",
+    "A semantic fact label must not contradict its evidence. Do not output happy if the evidence says frowning or face not visible. Do not output sleeping if the evidence says eyes open and running.",
+    "Never invent support IDs such as obs_visual_design_001 unless that exact observation object exists in observations. For motifs, composition, palette, or abstract backgrounds, cite the concrete observation IDs that already record the shape, pattern, color, or background evidence.",
+    "Do not create typed_facts for absent printed UI fields such as no HP text, no rarity mark, or no promo stamp. Absence is represented by leaving the relevant card_ui_and_print_markers array empty. Use a module review abstention only when a visible UI area exists but cannot be read.",
     "Do not create placeholder counts for things that are not visible. Never create an exact count with exact_count 0. If nothing is countable, use counts: [] and counts_review: none_visible.",
     "Use count_type exact for 1, 2, 3, or other countable repeated elements. Use many only when dense elements cannot be individually counted; do not combine count_type many with an exact_count or an exact min/max range.",
     "Every visible salient object in objects_and_props must have a count_reference that points to a real count_id. Do not use count_reference: not_visible for a visible object.",
     "Flames, lightning, sky, background, symbols, gradients, color fields, trees, bombs, bells, badges, tools, and abstract effects are not scene_subjects. Record them as observations, objects_and_props, environment, visual_design, counts, or relationships as appropriate.",
     "fact_grounded_search_terms should capture useful visible search concepts only. Do not pad redundant, generic, nonvisual, or weak terms to satisfy a quota; one or two strong terms are better than three padded terms.",
+    "Compound search terms such as happy Pikachu, sleeping Pokemon, Pikachu pillow, forest background, or ten trees are allowed only when each component is supported by subjects, semantic_visual_facts, counts, or representation records.",
     "Do not automatically add OCR text, card name text, HP, collector numbers, copyright lines, promo marks, stamps, or logos to fact_grounded_search_terms. Card UI terms remain in card_ui_and_print_markers until a future identity-resolution or search layer intentionally exposes them.",
     "scene_layers arrays must contain observation_id strings only, never labels such as tree, sky, or Pikachu.",
     "environment.supporting_observation_ids, visual_design.supporting_observation_ids, relationships, counts, uncertainty, and search terms must cite observation_id values only.",
@@ -4584,6 +5172,36 @@ function outputJsonSchema() {
       },
     },
   };
+  const semanticVisualFactEvidenceSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [...SEMANTIC_VISUAL_FACT_EVIDENCE_FIELDS],
+    properties: Object.fromEntries(SEMANTIC_VISUAL_FACT_EVIDENCE_FIELDS.map((field) => [field, stringArraySchema])),
+  };
+  const semanticVisualFactSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "semantic_fact_id",
+      "category",
+      "label",
+      "subject_observation_id",
+      "supporting_observation_ids",
+      "evidence",
+      "confidence",
+      "uncertainty",
+    ],
+    properties: {
+      semantic_fact_id: { type: "string" },
+      category: { type: "string", enum: [...SEMANTIC_VISUAL_FACT_CATEGORIES] },
+      label: { type: "string" },
+      subject_observation_id: { type: "string" },
+      supporting_observation_ids: observationIdArraySchema,
+      evidence: semanticVisualFactEvidenceSchema,
+      confidence: confidenceSchema,
+      uncertainty: { type: "string" },
+    },
+  };
 
   return {
     type: "object",
@@ -4620,6 +5238,7 @@ function outputJsonSchema() {
               "coverage_reviews",
               "modules",
               "module_reviews",
+              "semantic_visual_facts",
               "uncertainty_and_abstentions",
               "fact_grounded_search_terms",
             ],
@@ -5072,6 +5691,7 @@ function outputJsonSchema() {
                 },
               },
               module_reviews: { type: "array", items: moduleReviewSchema },
+              semantic_visual_facts: { type: "array", items: semanticVisualFactSchema },
               uncertainty_and_abstentions: {
                 type: "array",
                 items: {
@@ -5361,6 +5981,7 @@ function fixtureDescription(card) {
           }]
         : [],
     })),
+    semantic_visual_facts: [],
     uncertainty_and_abstentions: [
       {
         field: "fact_graph",
@@ -5883,7 +6504,7 @@ function buildV2StressSelectionArtifact(eligibleCards) {
   };
 }
 
-function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }) {
+export function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }) {
   const lines = [
     "# Card Visual Fact Graph V2 Review Packet",
     "",
@@ -5904,7 +6525,9 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
     const counts = factGraph.counts ?? [];
     const relationships = factGraph.relationships ?? [];
     const uncertainties = factGraph.uncertainty_and_abstentions ?? [];
+    const semanticFacts = factGraph.semantic_visual_facts ?? [];
     const searchTerms = factGraph.fact_grounded_search_terms ?? [];
+    const canonicalConcepts = factGraph.canonical_visual_concepts?.concepts ?? [];
     const uiObservationIds = cardUiObservationIdSet(factGraph);
     const artworkObservations = observations.filter((observation) => !uiObservationIds.has(normalizeText(observation.observation_id)));
     const cardUiObservations = observations.filter((observation) => uiObservationIds.has(normalizeText(observation.observation_id)));
@@ -5930,12 +6553,12 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
     lines.push("");
     lines.push("#### Artwork Observations");
     lines.push("");
-    lines.push("| Observation | Kind | Layer | Salience | Confidence |");
-    lines.push("|---|---|---|---|---:|");
+    lines.push("| Raw observation | Normalized term | Kind | Layer | Salience | Confidence |");
+    lines.push("|---|---|---|---|---|---:|");
     for (const observation of artworkObservations.slice(0, 30)) {
-      lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.scene_layer)} | ${markdownEscape(observation.salience)} | ${observation.confidence} |`);
+      lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.scene_layer)} | ${markdownEscape(observation.salience)} | ${observation.confidence} |`);
     }
-    if (artworkObservations.length > 30) lines.push(`| ...${artworkObservations.length - 30} more artwork observations | | | | |`);
+    if (artworkObservations.length > 30) lines.push(`| ...${artworkObservations.length - 30} more artwork observations | | | | | |`);
     lines.push("");
     lines.push("#### Card UI And Print-Marker Observations");
     lines.push("");
@@ -5981,6 +6604,15 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
       lines.push(`| ${markdownEscape(review.module)} | ${markdownEscape(review.review_status)} | ${markdownEscape(review.omission_risk)} | ${markdownEscape(review.evidence_quality)} | ${markdownEscape((review.abstentions ?? []).map((entry) => `${entry.field_path}: ${entry.reason}`).join("; "))} |`);
     }
     lines.push("");
+    lines.push("#### Semantic Visual Facts");
+    lines.push("");
+    lines.push("| Semantic fact | Category | Label | Subject | Support | Evidence | Confidence |");
+    lines.push("|---|---|---|---|---|---|---:|");
+    for (const fact of semanticFacts) {
+      lines.push(`| ${markdownEscape(fact.semantic_fact_id)} | ${markdownEscape(fact.category)} | ${markdownEscape(fact.label)} | ${markdownEscape(fact.subject_observation_id)} | ${markdownEscape((fact.supporting_observation_ids ?? []).join(", "))} | ${markdownEscape(semanticVisualFactEvidenceText(fact))} | ${fact.confidence} |`);
+    }
+    if (semanticFacts.length === 0) lines.push("| none recorded | | | | | | |");
+    lines.push("");
     lines.push("#### Counts");
     lines.push("");
     lines.push("| Count | Type | Value | Support | Confidence |");
@@ -6019,6 +6651,15 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
     for (const term of searchTerms) {
       lines.push(`| ${markdownEscape(term.term)} | ${markdownEscape((term.supporting_observation_ids ?? []).join(", "))} |`);
     }
+    lines.push("");
+    lines.push("#### Canonical Visual Concepts");
+    lines.push("");
+    lines.push("| Concept | Source observations | Derivation | Confidence |");
+    lines.push("|---|---|---|---:|");
+    for (const concept of canonicalConcepts) {
+      lines.push(`| ${markdownEscape(concept.concept)} | ${markdownEscape((concept.source_observation_ids ?? []).join(", "))} | ${markdownEscape(concept.derivation)} | ${concept.confidence} |`);
+    }
+    if (canonicalConcepts.length === 0) lines.push("| none derived | | | |");
     lines.push("");
     lines.push("#### Flags And Digest");
     lines.push("");

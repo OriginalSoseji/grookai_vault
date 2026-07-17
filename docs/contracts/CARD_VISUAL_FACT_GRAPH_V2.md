@@ -25,8 +25,22 @@ V2 adds:
 - `typed_facts`: traceable claims with `fact_id`, `module`, `field_path`, `claim`, `value`, `supporting_observation_ids`, `confidence`, and `evidence_strength`.
 - `modules`: structured facts for subjects, human appearance, creature anatomy, clothing, objects and props, environment, composition, color and light, visual effects, card UI and print markers, counts, relationships, surface and scan cues, uncertainty, and search terms.
 - `module_reviews`: one completeness review per required module.
+- `semantic_visual_facts`: reusable meaning-level visual facts such as `happy`, `sleeping`, `forest`, `rainy`, `floating`, `eating`, `fighting`, `cameo`, `Pikachu pillow`, or `ten trees`, only when supported by observation IDs and explicit visual evidence.
+- `canonical_visual_concepts`: deterministic, versioned concepts derived from observation-backed facts under `CARD_VISUAL_CONTROLLED_VOCABULARY_V1`.
 
 Every meaningful typed fact must cite valid observation IDs.
+
+## Controlled Vocabulary
+
+V2 separates language into three layers:
+
+- raw observation label
+- normalized vocabulary term
+- canonical visual concept
+
+The raw observation label is preserved for audit. Normalized terms and canonical concepts are deterministic post-processing layers used for stable search and downstream systems. They must not introduce new observations, subjects, counts, typed facts, lore, story, personality, or unsupported visual claims.
+
+The governing vocabulary contract is `docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md`.
 
 ## Card UI And Print Markers
 
@@ -98,7 +112,7 @@ Human and humanoid subjects use factual appearance fields:
 - visible tattoos
 - gestures
 
-Subjective body, attractiveness, personality, or expression labels are prohibited. Store visible evidence, not interpretation.
+Subjective body, attractiveness, and personality labels are prohibited. Facial evidence belongs here as visible evidence such as `smiling mouth`, `closed eyes`, `open mouth`, or `angled eyebrows`. Reusable expression/state labels such as `happy` or `sleeping` are allowed only in `semantic_visual_facts` with supporting observations and evidence.
 
 ## Creature Anatomy
 
@@ -118,7 +132,44 @@ Creature and Pokemon subjects use factual anatomy fields:
 - posture
 - orientation
 
-Pokemon body components remain anatomy, not props. Do not store interpreted expressions such as angry, happy, fierce, confident, majestic, or sexy.
+Pokemon body components remain anatomy, not props. Do not store unsupported expression, personality, or body-value judgments in anatomy fields. Store visible evidence here, then store supported reusable labels such as `happy`, `sleeping`, or `angry` only in `semantic_visual_facts`.
+
+## Semantic Visual Facts
+
+`semantic_visual_facts` turns observable evidence into reusable meaning-level visual facts without creating story.
+
+Each entry must include:
+
+- `semantic_fact_id`
+- `category`
+- `label`
+- `subject_observation_id` when subject-specific
+- `supporting_observation_ids`
+- `evidence`
+- `confidence`
+- `uncertainty`
+
+Allowed examples:
+
+- `happy` supported by smiling mouth, relaxed eyes, or raised arms
+- `sleeping` supported by closed eyes and lying-down body position
+- `forest` supported by visible trees, trunks, foliage, or wooded terrain
+- `rainy` supported by visible rain streaks, raindrops, wet ground, or puddles
+- `Pikachu pillow` supported by a character-representation record and host object
+- `Pikachu cameo` supported by a depicted-subject or character-representation record
+
+Not allowed:
+
+- `protecting a friend`
+- `lost in the forest`
+- `symbolizing hope`
+- `brave`
+- `evil`
+- `majestic`
+- `confident`
+- `sexy`
+
+The semantic label must not contradict the evidence. `happy` cannot be supported only by a frown or a hidden face. `sleeping` cannot be supported by open eyes and running.
 
 ## Object And Material Claims
 
@@ -163,6 +214,8 @@ Search terms are judged by usefulness, not count. Do not pad redundant, generic,
 When the model records observations but omits the top-level search-term array, the agent may deterministically derive search terms from high- and medium-salience artwork observations. Derived search terms must still cite observation IDs and must exclude card UI / print-marker observations.
 
 Search terms supported only by card UI / print-marker observations are removed from the artwork search-term layer. Actual-material terms in object fields are normalized to appearance-only language, such as `metal-like appearance`, `wood-like appearance`, or `stone-like appearance`.
+
+Compound search terms such as `happy Pikachu`, `sleeping Pokemon`, `Pikachu pillow`, `forest background`, or `ten trees` are valid only when every component is backed by subjects, `semantic_visual_facts`, counts, depicted subjects, character representations, or other observation-backed graph facts. Standalone generic franchise labels remain non-useful search terms.
 
 ## Boundaries
 

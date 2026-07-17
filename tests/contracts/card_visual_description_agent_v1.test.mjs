@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+  CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION,
   CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
   aggregateUsageRows,
   buildFactGraphCompatibilityDigestV1,
@@ -508,6 +509,7 @@ function validFactGraph(overrides = {}) {
       { module: "uncertainty_and_abstentions", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "fact_grounded_search_terms", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
     ],
+    semantic_visual_facts: [],
     uncertainty_and_abstentions: [
       {
         field: "surface_and_scan_cues",
@@ -541,6 +543,46 @@ function validFactPayload(overrides = {}) {
     attribute_confidence: 0.85,
     quality_flags: [],
     ...overrides,
+  };
+}
+
+function semanticVisualFact(overrides = {}) {
+  return {
+    semantic_fact_id: "sem_fact_001",
+    category: "expression",
+    label: "happy",
+    subject_observation_id: "obs_subject_001",
+    supporting_observation_ids: ["obs_subject_001"],
+    evidence: {
+      mouth: ["smiling mouth"],
+      eyes: [],
+      eyebrows: [],
+      facial_features: [],
+      body_language: [],
+      body_position: [],
+      motion_state: [],
+      environment: [],
+      objects: [],
+      relationships: [],
+      other: [],
+    },
+    confidence: 0.86,
+    uncertainty: "",
+    ...overrides,
+    evidence: {
+      mouth: ["smiling mouth"],
+      eyes: [],
+      eyebrows: [],
+      facial_features: [],
+      body_language: [],
+      body_position: [],
+      motion_state: [],
+      environment: [],
+      objects: [],
+      relationships: [],
+      other: [],
+      ...(overrides.evidence ?? {}),
+    },
   };
 }
 
@@ -2306,7 +2348,7 @@ test("card visual description payload validation separates shape from review app
 
   const validation = validateVisualDescriptionPayloadV1(validPayload);
   assert.equal(validation.ok, true);
-  assert.equal(validation.normalized.semantic_tags.join(","), "forest background,Pikachu,ten trees");
+  assert.equal(validation.normalized.semantic_tags.join(","), "forest background,ten trees");
   assert.match(validation.normalized.artwork_description, /Fact digest/);
   assert.match(validation.normalized.artwork_description, /Counts: tree: 10/);
   assert.match(validation.normalized.card_surface_and_printing_cues, /foil texture and physical surface finish cannot be determined/);
@@ -2427,7 +2469,28 @@ test("card visual fact graph validates observation-backed subjects counts and se
   }));
   assert.equal(derivedSearchTerms.ok, true);
   assert.ok(derivedSearchTerms.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
-    entry.supporting_observation_ids.includes("obs_subject_001")));
+    entry.supporting_observation_ids.includes("obs_tree_group_001")));
+  assert.equal(derivedSearchTerms.normalized.semantic_tags.includes("Pikachu"), false);
+
+  const derivedFromPrimarySalience = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: validFactGraph().observations.map((observation) =>
+        observation.observation_id === "obs_tree_group_001"
+          ? { ...observation, salience: "background" }
+          : observation),
+      fact_grounded_search_terms: [],
+      modules: {
+        ...validFactGraph().modules,
+        fact_grounded_search_terms: {
+          ...validFactGraph().modules.fact_grounded_search_terms,
+          terms: [],
+        },
+      },
+    },
+  }));
+  assert.equal(derivedFromPrimarySalience.ok, true);
+  assert.ok(derivedFromPrimarySalience.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.supporting_observation_ids.includes("obs_tree_group_001")));
 
   const emptyWithoutReview = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -2437,6 +2500,389 @@ test("card visual fact graph validates observation-backed subjects counts and se
   }));
   assert.equal(emptyWithoutReview.ok, false);
   assert.ok(emptyWithoutReview.findings.includes("fact_graph_coverage_review_missing:depicted_subjects_review"));
+});
+
+test("card visual fact graph stores semantic visual facts only with supporting evidence", () => {
+  const happyGraph = validFactGraph({
+    semantic_visual_facts: [
+      semanticVisualFact({
+        semantic_fact_id: "sem_happy_001",
+        label: "happy",
+        evidence: {
+          mouth: ["smiling mouth"],
+          eyes: ["relaxed eyes"],
+          body_language: ["arms raised"],
+        },
+      }),
+    ],
+    fact_grounded_search_terms: [
+      { term: "happy Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+      { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+    ],
+  });
+  const happy = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: happyGraph }));
+  assert.equal(happy.ok, true);
+  assert.ok(happy.normalized.semantic_tags.includes("happy Pikachu"));
+  assert.match(happy.normalized.artwork_description, /Semantic facts: happy/);
+  assert.ok(happy.normalized.visual_attributes.fact_graph.canonical_visual_concepts.concepts.some((concept) =>
+    concept.concept === "happy"
+    && concept.source_observation_ids.includes("obs_subject_001")));
+
+  const sleepingGraph = validFactGraph({
+    subjects: [
+      {
+        ...validFactGraph().subjects[0],
+        pose: ["lying down"],
+        action_state: ["sleeping"],
+        facial_evidence: {
+          ...validFactGraph().subjects[0].facial_evidence,
+          eyes: "closed eyes",
+          mouth: "small relaxed mouth",
+        },
+      },
+    ],
+    modules: {
+      ...validFactGraph().modules,
+      creature_anatomy: {
+        ...validFactGraph().modules.creature_anatomy,
+        pose_orientation: [
+          {
+            ...validFactGraph().modules.creature_anatomy.pose_orientation[0],
+            pose: ["lying down"],
+            action_state: ["sleeping"],
+          },
+        ],
+      },
+    },
+    semantic_visual_facts: [
+      semanticVisualFact({
+        semantic_fact_id: "sem_sleeping_001",
+        category: "state",
+        label: "sleeping",
+        evidence: {
+          eyes: ["closed eyes"],
+          body_position: ["lying down"],
+          motion_state: ["still body"],
+        },
+      }),
+    ],
+    fact_grounded_search_terms: [
+      { term: "sleeping Pokemon", supporting_observation_ids: ["obs_subject_001"] },
+      { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+    ],
+  });
+  const sleeping = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: sleepingGraph }));
+  assert.equal(sleeping.ok, true);
+  assert.ok(sleeping.normalized.semantic_tags.includes("sleeping Pokemon"));
+
+  const gestureAndStadiumGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations,
+      {
+        observation_id: "obs_stadium_001",
+        kind: "environment",
+        label: "stadium setting with field and stands",
+        normalized_label: "stadium",
+        scene_layer: "background",
+        frame_position: "full_frame",
+        visibility: "visible",
+        salience: "high",
+        confidence: 0.98,
+        evidence_strength: "strong",
+      },
+    ],
+    semantic_visual_facts: [
+      semanticVisualFact({
+        semantic_fact_id: "sem_arms_raised_001",
+        category: "action",
+        label: "arms raised",
+        supporting_observation_ids: ["obs_subject_001"],
+        evidence: {
+          body_language: ["arms raised", "clenched fists"],
+        },
+      }),
+      semanticVisualFact({
+        semantic_fact_id: "sem_eyes_closed_001",
+        category: "expression",
+        label: "eyes closed",
+        supporting_observation_ids: ["obs_subject_001"],
+        evidence: {
+          eyes: ["closed eyes"],
+        },
+      }),
+      semanticVisualFact({
+        semantic_fact_id: "sem_posing_001",
+        category: "action",
+        label: "posing",
+        supporting_observation_ids: ["obs_subject_001"],
+        evidence: {
+          body_language: ["right fist forward", "left fist back"],
+          motion_state: ["posing"],
+        },
+      }),
+      semanticVisualFact({
+        semantic_fact_id: "sem_stadium_001",
+        category: "scene_type",
+        label: "stadium",
+        subject_observation_id: "",
+        supporting_observation_ids: ["obs_stadium_001"],
+        evidence: {
+          environment: ["stadium setting with field and stands"],
+        },
+      }),
+    ],
+  });
+  const gestureAndStadium = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: gestureAndStadiumGraph }));
+  assert.equal(gestureAndStadium.ok, true, gestureAndStadium.findings.join(","));
+  assert.ok(gestureAndStadium.normalized.artwork_description.includes("Semantic facts: arms raised, eyes closed, posing, stadium"));
+
+  const looseHappy = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      typed_facts: [
+        {
+          ...validFactGraph().typed_facts[0],
+          claim: "Pikachu is happy",
+          value: "happy Pikachu",
+        },
+        ...validFactGraph().typed_facts.slice(1),
+      ],
+    },
+  }));
+  assert.equal(looseHappy.ok, false);
+  assert.ok(looseHappy.findings.includes("fact_graph_loose_semantic_label_outside_semantic_visual_facts"));
+
+  const unsupportedSearch = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      fact_grounded_search_terms: [
+        { term: "happy Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  }));
+  assert.equal(unsupportedSearch.ok, false);
+  assert.ok(unsupportedSearch.findings.includes("fact_graph_search_term_without_matching_fact_components:happy Pikachu"));
+
+  const contradictedHappy = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_bad_happy_001",
+          label: "happy",
+          evidence: {
+            mouth: ["frowning downturned mouth"],
+            eyes: ["face not visible"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(contradictedHappy.ok, false);
+  assert.ok(contradictedHappy.findings.some((finding) =>
+    finding.startsWith("fact_graph_semantic_fact_evidence_contradiction:sem_bad_happy_001")));
+
+  const unsupportedStory = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_story_001",
+          category: "state",
+          label: "protecting a friend",
+          evidence: { body_language: ["standing in front of another subject"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(unsupportedStory.ok, false);
+  assert.ok(unsupportedStory.findings.includes("fact_graph_semantic_fact_story_or_lore_not_allowed:sem_story_001"));
+});
+
+test("card visual fact graph handles forest counts and cameo representation component search", () => {
+  const forestSemantic = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_forest_001",
+          category: "environment",
+          label: "forest",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_tree_group_001"],
+          evidence: { environment: ["10 visible trees", "wooded terrain"] },
+        }),
+      ],
+      fact_grounded_search_terms: [
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+        { term: "ten trees", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  }));
+  assert.equal(forestSemantic.ok, true);
+  assert.equal(forestSemantic.normalized.semantic_tags.join(","), "forest background,ten trees");
+
+  const denseForest = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      counts: [
+        {
+          ...validFactGraph().counts[0],
+          count_type: "uncountable_due_to_density",
+          exact_count: 0,
+          estimated_min: 0,
+          estimated_max: 0,
+          abstention_reason: "tree count cannot be determined because dense overlapping foliage prevents reliable individual counting",
+        },
+      ],
+      fact_grounded_search_terms: [
+        { term: "dense forest", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        fact_grounded_search_terms: {
+          ...validFactGraph().modules.fact_grounded_search_terms,
+          terms: ["dense forest"],
+        },
+      },
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_dense_forest_001",
+          category: "environment",
+          label: "forest",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_tree_group_001"],
+          evidence: { environment: ["dense overlapping trees", "foliage"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(denseForest.ok, true, denseForest.findings.join("\n"));
+
+  const cameoGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations,
+      {
+        observation_id: "obs_poster_pikachu_001",
+        kind: "depicted_subject",
+        label: "Pikachu image on poster",
+        normalized_label: "Pikachu on poster",
+        scene_layer: "background",
+        frame_position: "left wall",
+        visibility: "partially_visible",
+        salience: "medium",
+        confidence: 0.82,
+        evidence_strength: "moderate",
+      },
+      {
+        observation_id: "obs_pikachu_pillow_001",
+        kind: "character_representation",
+        label: "Pikachu-shaped pillow",
+        normalized_label: "Pikachu pillow",
+        scene_layer: "foreground",
+        frame_position: "bottom right",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.86,
+        evidence_strength: "strong",
+      },
+    ],
+    depicted_subjects: [
+      {
+        observation_id: "obs_poster_pikachu_001",
+        subject_kind: "depicted_subject",
+        represented_identity: "Pikachu",
+        identity_confidence: 0.82,
+        host_surface: "poster",
+        surface_type: "poster",
+        visibility: "partially_visible",
+        confidence: 0.82,
+      },
+    ],
+    character_representations: [
+      {
+        observation_id: "obs_pikachu_pillow_001",
+        subject_kind: "character_representation",
+        represented_identity: "Pikachu",
+        identity_confidence: 0.86,
+        host_object: "pillow",
+        representation_form: "character-shaped pillow",
+        visibility: "visible",
+        confidence: 0.86,
+      },
+    ],
+    coverage_reviews: {
+      depicted_subjects_review: "observed",
+      character_representations_review: "observed",
+    },
+    modules: {
+      ...validFactGraph().modules,
+      subjects: {
+        ...validFactGraph().modules.subjects,
+        depicted_subject_observation_ids: ["obs_poster_pikachu_001"],
+        character_representation_observation_ids: ["obs_pikachu_pillow_001"],
+      },
+    },
+    fact_grounded_search_terms: [
+      { term: "Pikachu cameo", supporting_observation_ids: ["obs_poster_pikachu_001"] },
+      { term: "Pikachu pillow", supporting_observation_ids: ["obs_pikachu_pillow_001"] },
+    ],
+  });
+  const cameo = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: cameoGraph }));
+  assert.equal(cameo.ok, true);
+  assert.ok(cameo.normalized.semantic_tags.includes("Pikachu cameo"));
+  assert.ok(cameo.normalized.semantic_tags.includes("Pikachu pillow"));
+});
+
+test("card visual controlled vocabulary preserves raw labels and derives canonical concepts", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.find((observation) => observation.observation_id === "obs_subject_001").label =
+    "Pikachu with determined eyes in dynamic leaping pose facing forward and slightly right";
+  graph.observations.find((observation) => observation.observation_id === "obs_subject_001").normalized_label =
+    "human_trainer visible";
+  graph.observations.find((observation) => observation.observation_id === "obs_tree_group_001").label =
+    "dark dark sky behind ten trees";
+  graph.observations.find((observation) => observation.observation_id === "obs_tree_group_001").normalized_label =
+    "dark dark sky";
+  graph.subjects[0].pose = ["dynamic leaping pose facing forward and slightly right"];
+  graph.subjects[0].orientation = "facing forward and slightly right";
+  graph.subjects[0].facial_evidence.eyes = "determined eyes";
+  graph.visual_design.style_cues = ["anime style", "detailed fantasy art"];
+  graph.fact_grounded_search_terms = [
+    { term: "Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+    { term: "floating Pokemon", supporting_observation_ids: ["obs_subject_001"] },
+    { term: "dark dark sky", supporting_observation_ids: ["obs_tree_group_001"] },
+  ];
+  graph.modules.fact_grounded_search_terms.terms = ["Pikachu", "floating Pokemon", "dark dark sky"];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true);
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const subjectObservation = normalizedGraph.observations.find((observation) => observation.observation_id === "obs_subject_001");
+  const skyObservation = normalizedGraph.observations.find((observation) => observation.observation_id === "obs_tree_group_001");
+
+  assert.equal(subjectObservation.label, "Pikachu with determined eyes in dynamic leaping pose facing forward and slightly right");
+  assert.equal(subjectObservation.normalized_label, "human trainer");
+  assert.equal(skyObservation.label, "dark dark sky behind ten trees");
+  assert.equal(skyObservation.normalized_label, "dark sky");
+  assert.deepEqual(normalizedGraph.subjects[0].pose, ["leaping"]);
+  assert.equal(normalizedGraph.subjects[0].orientation, "forward-right");
+  assert.equal(normalizedGraph.subjects[0].facial_evidence.eyes, "eyes");
+  assert.equal(normalizedGraph.visual_design.style_cues.includes("anime style"), false);
+  assert.equal(normalizedGraph.visual_design.style_cues.some((cue) => /\bfantasy\b/i.test(cue)), false);
+  assert.equal(validation.normalized.semantic_tags.includes("Pikachu"), false);
+  assert.ok(validation.normalized.semantic_tags.includes("floating Pokemon"));
+  assert.ok(validation.normalized.semantic_tags.includes("dark sky"));
+
+  const conceptLayer = normalizedGraph.canonical_visual_concepts;
+  assert.equal(conceptLayer.concept_schema_version, CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION);
+  assert.ok(conceptLayer.concepts.some((concept) =>
+    concept.concept === "leaping"
+    && concept.source_observation_ids.includes("obs_subject_001")
+    && concept.derivation === "deterministic_rule"));
+  assert.ok(conceptLayer.concepts.some((concept) =>
+    concept.concept === "forward-right orientation"
+    && concept.source_observation_ids.includes("obs_subject_001")));
+  assert.ok(conceptLayer.concepts.some((concept) =>
+    concept.concept === "sky"
+    && concept.source_observation_ids.includes("obs_tree_group_001")));
+  assert.equal(normalizedGraph.observations.length, graph.observations.length);
+  assert.equal(normalizedGraph.typed_facts.length, graph.typed_facts.length);
 });
 
 function denseItemFactGraph(overrides = {}) {
@@ -2894,9 +3340,19 @@ test("card visual fact graph enforces grounding ontology and count consistency w
           estimated_max: 6,
         },
       ],
+      fact_grounded_search_terms: [
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        fact_grounded_search_terms: {
+          ...validFactGraph().modules.fact_grounded_search_terms,
+          terms: ["forest background"],
+        },
+      },
     },
   }));
-  assert.equal(estimatedRangeWithExactValue.ok, true);
+  assert.equal(estimatedRangeWithExactValue.ok, true, estimatedRangeWithExactValue.findings.join("\n"));
   assert.equal(estimatedRangeWithExactValue.normalized.visual_attributes.fact_graph.counts[0].exact_count, 0);
 
   const badObjectCountAndMaterialPayload = validFactPayload({
@@ -3234,7 +3690,7 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
       ],
     },
   }));
-  assert.equal(representedPikachu.ok, true);
+  assert.equal(representedPikachu.ok, true, representedPikachu.findings.join("\n"));
 
   const interpretedExpression = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -3249,8 +3705,8 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
       ],
     },
   }));
-  assert.equal(interpretedExpression.ok, true);
-  assert.equal(interpretedExpression.normalized.visual_attributes.fact_graph.subjects[0].facial_evidence.eyes, "eyes");
+  assert.equal(interpretedExpression.ok, false);
+  assert.ok(interpretedExpression.findings.includes("fact_graph_interpreted_expression_not_allowed"));
 
   const story = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -3263,8 +3719,12 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
       ],
     },
   }));
-  assert.equal(story.ok, false);
-  assert.ok(story.findings.includes("fact_graph_story_or_lore_language_not_allowed"));
+  assert.equal(story.ok, true);
+  assert.equal(
+    story.normalized.visual_attributes.fact_graph.observations[0].label,
+    "Pikachu is lost in the forest",
+  );
+  assert.equal(story.normalized.visual_attributes.fact_graph.observations[0].normalized_label, "pikachu");
 
   assert.equal(
     buildFactGraphCompatibilityDigestV1(validFactGraph()),
@@ -3416,7 +3876,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /depicted_subject: character\/entity shown inside another surface/);
   assert.match(agent, /character_representation: object shaped like or patterned after a character/);
   assert.match(agent, /Pikachu as a pillow or ice cream is a character_representation/);
-  assert.match(agent, /Do not store interpreted expression labels/);
+  assert.match(agent, /semantic_visual_facts/);
+  assert.match(agent, /happy Pikachu/);
   assert.match(agent, /module_reviews must include all required module names/);
   assert.match(agent, /resolved_prompt_branch/);
   assert.match(agent, /Branch 1 - Pokemon/);
@@ -3476,6 +3937,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(factGraphV2, /modular exhaustive ontology/);
   assert.match(factGraphV2, /No fixed observation quota/);
   assert.match(factGraphV2, /visible_body_regions/);
+  assert.match(factGraphV2, /semantic_visual_facts/);
+  assert.match(factGraphV2, /happy Pikachu/);
   assert.match(factGraphV2, /material appearance only/);
   assert.match(contractIndex, /CARD_VISUAL_LANGUAGE_V1/);
   assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V1/);
