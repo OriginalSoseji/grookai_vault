@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-07-17T02:17:57.934Z",
+  "audit_dir": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1",
+  "hash_algorithm": "sha256",
+  "files": [
+    {
+      "path": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1/AUTO_APPROVAL_CALIBRATION_STANDARD_V1.md",
+      "sha256": "1e85325b2e32b358c80a509becb4c5cf90e98a9b2c8ba8426a5413c7c031776c"
+    },
+    {
+      "path": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1/auto_approval_readiness_25_matrix.csv",
+      "sha256": "de1e486fe8fe31e1c96c47a204ca323aeb4050675cff42af11bc005753e5103d"
+    },
+    {
+      "path": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1/auto_approval_readiness_25_replay.json",
+      "sha256": "7df4cfbf7d7a2e52ea7040a42d12b84b9eadc816657a26bc93a6f942afae0cb6"
+    },
+    {
+      "path": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1/AUTO_APPROVAL_READINESS_V1_REPORT.md",
+      "sha256": "ca98038702b8e679e89e9c2aff7e04e73a9ed77072ab419d525f3914a33510b6"
+    },
+    {
+      "path": "docs/audits/card_visual_auto_approval_readiness_v1/2026-07-16Tauto_approval_readiness_v1/NEXT_CALIBRATION_BATCH_PLAN.md",
+      "sha256": "cdce1578c0ec1b3b71fc682d9c52d02dd710db33fe35088f290918d7a7c04b55"
+    },
+    {
+      "path": "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_AUTO_APPROVAL_READINESS_V1_20260716.md",
+      "sha256": "76be86b090772f1aca956b74d16e430bebdc4aac14c9bc5970fc97600cac524e"
+    },
+    {
+      "path": "docs/checkpoints/card_visual_descriptions/INDEX.md",
+      "sha256": "275c1424ca75875e1c03bdbc3dca273bf559066e2f5944ddc1f8df7a7dd65677"
+    }
+  ]
+}

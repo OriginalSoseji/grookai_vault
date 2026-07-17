@@ -12,6 +12,7 @@ export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_DESCRIPTION_P
 export const CARD_VISUAL_DESCRIPTION_VISUAL_LANGUAGE_VERSION = "CARD_VISUAL_LANGUAGE_V1";
 export const CARD_VISUAL_DESCRIPTION_OUTPUT_SCHEMA_VERSION = "CARD_VISUAL_DESCRIPTION_SCHEMA_V1";
 export const CARD_VISUAL_DESCRIPTION_DEFAULT_MODEL_VERSION = "fixture-card-visual-description-v1";
+export const CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION = "CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_V1";
 
 export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
   "pending",
@@ -81,6 +82,8 @@ const VISUAL_LANGUAGE_INTERPRETIVE_CLAIM_PATTERN =
   /\b(symboli[sz]es|symboli[sz]ing|represents|embodies|evoke|evokes|evoking|evocative|invokes?)\b/gi;
 const VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN =
   /\b(foil (?:texture )?(?:is )?visible|foil treatment is present|visible foil|glossy(?: finish| surface)?|gloss present|layer of gloss|clear gloss finish|clean,\s*reflective finish|reflective finish|metallic finish|smooth silver finish|smooth surface|embossed|texture visible|standard (?:printing treatment|print|surface|printed surface)|card surface appears standard|card surface quality appears clear|(?:without|no) visible textur(?:e|ing)(?: or gloss effects)?|no visible gloss effects|edges?[^.]{0,40}\bwear\b|no significant defects(?: in the print quality)?|print quality|shimmering finish|higher quality print|printing quality appears|printing treatment (?:is consistent|appears to show[^.]*)|appears to show muted colors|without visible errors|imperfections)\b/gi;
+const VISUAL_LANGUAGE_BORDER_COLOR_CLAIM_PATTERN =
+  /\b(?:(silver|gold|yellow|black|white|gray|grey|red|blue|green|purple|brown|orange|bronze|tan)(?:\/(?:gold|yellow))?\s+(?:card\s+)?border|(?:card\s+)?border(?:\s+(?:is|appears|looks|seems|visible|colored|coloured|shows|has))?\s+(silver|gold|yellow|black|white|gray|grey|red|blue|green|purple|brown|orange|bronze|tan)(?:\/(?:gold|yellow))?)\b/gi;
 const VISUAL_LANGUAGE_OBJECT_MATERIAL_CONFUSION_PATTERN =
   /\b(glossy(?:,\s*|\s+)reflective surface|shiny(?:,\s*|\s+)reflective surface|smooth silver appearance|polished surface|glossy black (?:body|exterior|surface)|shiny surfaces?|glossy bomb|shiny badge|glossy finish|shiny finish|smooth and reflective|reflective dark orb|matte textures?|uniform finish|shiny black surface|metallic badge)\b/gi;
 const VISUAL_LANGUAGE_CREATURE_ON_NON_POKEMON_PATTERN =
@@ -132,6 +135,8 @@ const VISUAL_POLICY_BRANCH_MOOD_REVIEW_PATTERNS = Object.freeze({
 });
 const VISUAL_POLICY_VISIBLE_EXPRESSION_SUPPORT_PATTERN =
   /\b(smile|smiling|wide eyes|furrowed brow|furrowed brows|frown|narrowed eyes|raised eyebrow|raised eyebrows|visible grin|open mouth)\b/i;
+const VISUAL_POLICY_BLOCKING_DECISION = "needs_review";
+const MIN_DETERMINISTIC_BORDER_COLOR_CONFIDENCE = 0.92;
 const UNAVAILABLE_METADATA_NON_POKEMON_NAME_PATTERN =
   /\b(badge|battle|bell|bomb|fossil|grunt|gwynn|syndicate|tool|item|potion|ticket|map|machine|rod|cape|charm|amulet)\b|(?:バッジ|ベル|ボム|化石|したっぱ|どうぐ|グッズ)/i;
 const UNAVAILABLE_METADATA_NON_POKEMON_ARTWORK_PATTERN =
@@ -538,6 +543,95 @@ function addPolicyRegexResults(results, {
   }
 }
 
+function normalizeBorderColorName(value) {
+  const text = normalizeText(value).toLowerCase().replace(/grey/g, "gray");
+  if (!text) return null;
+  if (/\byellow\s*\/\s*gold\b|\bgold\s*\/\s*yellow\b|\byellow-gold\b|\bgolden\b/.test(text)) return "yellow_gold";
+  if (text === "yellow" || text === "gold") return text;
+  if ([
+    "silver",
+    "black",
+    "white",
+    "gray",
+    "red",
+    "blue",
+    "green",
+    "purple",
+    "brown",
+    "orange",
+    "bronze",
+    "tan",
+  ].includes(text)) return text;
+  return null;
+}
+
+function colorsFromBorderClaim(claim) {
+  const colors = [];
+  const regex = /\b(silver|gold|yellow|black|white|gray|grey|red|blue|green|purple|brown|orange|bronze|tan|yellow\s*\/\s*gold|gold\s*\/\s*yellow|yellow-gold|golden)\b/gi;
+  for (const match of String(claim ?? "").matchAll(regex)) {
+    const color = normalizeBorderColorName(match[0]);
+    if (color) colors.push(color);
+  }
+  return uniqueSorted(colors);
+}
+
+function normalizeBorderColorEvidence(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const source = normalizeText(value.source);
+  const color = normalizeBorderColorName(value.color ?? value.normalized_color);
+  const confidence = Number(value.confidence);
+  if (!source || !color || !Number.isFinite(confidence)) return null;
+  return {
+    source,
+    color,
+    confidence,
+    status: normalizeText(value.status || "supported"),
+  };
+}
+
+function borderColorEvidenceFor(card = {}) {
+  return normalizeBorderColorEvidence(
+    card.border_color_evidence
+      ?? card.card_border_evidence
+      ?? card.visual_evidence?.border_color
+      ?? null,
+  );
+}
+
+function borderColorEvidenceSupportsClaim(card, claim) {
+  const evidence = borderColorEvidenceFor(card);
+  if (!evidence) return false;
+  if (!/^deterministic_/i.test(evidence.source)) return false;
+  if (evidence.confidence < MIN_DETERMINISTIC_BORDER_COLOR_CONFIDENCE) return false;
+  if (/ambiguous|uncertain|cropped|glare|obscured|mixed|low_resolution/i.test(evidence.status)) return false;
+  const claimColors = colorsFromBorderClaim(claim);
+  if (claimColors.length === 0) return false;
+  if (claimColors.includes(evidence.color)) return true;
+  if (evidence.color === "yellow_gold" && (claimColors.includes("yellow") || claimColors.includes("gold"))) return true;
+  if ((evidence.color === "yellow" || evidence.color === "gold") && claimColors.includes("yellow_gold")) return true;
+  return false;
+}
+
+function addBorderColorPolicyResults(results, surfaceText, card = {}) {
+  for (const detail of regexDetails({
+    flag: "potential_border_color_certainty_issue",
+    field: "card_surface_and_printing_cues",
+    text: surfaceText,
+    pattern: VISUAL_LANGUAGE_BORDER_COLOR_CLAIM_PATTERN,
+  })) {
+    if (borderColorEvidenceSupportsClaim(card, detail.matched_text)) continue;
+    addPolicyResult(results, {
+      policyRule: "border_color_claim_requires_deterministic_visual_evidence",
+      field: detail.field,
+      claim: detail.matched_text,
+      supportingEvidence: borderColorEvidenceFor(card)
+        ? [stableJson(borderColorEvidenceFor(card))]
+        : [],
+      qualityFlag: "potential_border_color_certainty_issue",
+    });
+  }
+}
+
 function visibleExpressionSupportEvidence(payload) {
   const evidence = [];
   for (const { field, text } of textFieldsForVisualLanguageReview(payload)) {
@@ -582,6 +676,7 @@ export function evaluateVisualDescriptionPolicyV1(payload, card = {}) {
     pattern: VISUAL_LANGUAGE_SURFACE_OVERCLAIM_PATTERN,
     qualityFlag: "potential_surface_overclaim",
   });
+  addBorderColorPolicyResults(results, surfaceText, card);
 
   const expressionUnclearEvidence = fields.flatMap(({ field, text }) =>
     regexDetails({
@@ -1792,6 +1887,257 @@ export function classifyDescriptionReviewStatusV1({
   return "pending";
 }
 
+function cardContextFromVisualDescriptionRow(row = {}) {
+  return {
+    name: row.name,
+    set_name: row.set_name,
+    set_code: row.set_code,
+    number: row.number,
+    supertype: row.card_supertype ?? row.supertype,
+    subtype: row.card_subtype ?? row.subtype,
+    card_category: row.card_category,
+    prompt_branch: row.prompt_branch ?? row.branch,
+    card_type_metadata_source: row.card_type_metadata_source,
+    pokemon_name: row.pokemon_name,
+    trainer_name: row.trainer_name,
+    border_color_evidence: row.border_color_evidence,
+    card_border_evidence: row.card_border_evidence,
+    visual_evidence: row.visual_evidence,
+  };
+}
+
+function addAutoApprovalBlocker(blockers, blocker, {
+  condition,
+  evidence = [],
+  severity = "blocking",
+} = {}) {
+  blockers.push({
+    blocker,
+    condition: normalizeText(condition) || blocker,
+    severity,
+    evidence: uniqueSorted(evidence.map((item) => normalizeText(item)).filter(Boolean)),
+  });
+}
+
+function addAutoApprovalCondition(conditions, condition, passed, evidence = []) {
+  conditions.push({
+    condition,
+    passed: Boolean(passed),
+    evidence: uniqueSorted(evidence.map((item) => normalizeText(item)).filter(Boolean)),
+  });
+}
+
+function blockingPolicyResults(policyResults) {
+  return (Array.isArray(policyResults) ? policyResults : [])
+    .filter((result) => normalizeText(result.decision || VISUAL_POLICY_BLOCKING_DECISION) === VISUAL_POLICY_BLOCKING_DECISION);
+}
+
+function normalizedQualityFlagsForAutoApproval(row, freshFlags) {
+  return uniqueSorted([
+    ...normalizeQualityFlags(row?.quality_flags),
+    ...(Array.isArray(freshFlags) ? freshFlags : []),
+  ]);
+}
+
+function promptBranchForRow(row) {
+  return normalizeText(row?.prompt_branch ?? row?.branch);
+}
+
+export function evaluateAutoApprovalReadinessV1(row, options = {}) {
+  const validation = validateVisualDescriptionPayloadV1(row);
+  const normalizedPayload = validation.normalized;
+  const cardContext = {
+    ...cardContextFromVisualDescriptionRow(row),
+    ...(options.card_context ?? {}),
+  };
+  const freshFlagDetails = detectVisualDescriptionReviewFlagDetailsV1(normalizedPayload, cardContext);
+  const freshFlags = uniqueSorted(freshFlagDetails.map((detail) => detail.flag));
+  const policyResults = evaluateVisualDescriptionPolicyV1(normalizedPayload, cardContext);
+  const policyBlockers = blockingPolicyResults(policyResults);
+  const qualityFlags = normalizedQualityFlagsForAutoApproval(row, freshFlags);
+  const blockers = [];
+  const conditions = [];
+
+  addAutoApprovalCondition(conditions, "schema_validation", validation.ok, validation.findings);
+  if (!validation.ok) {
+    addAutoApprovalBlocker(blockers, "schema_validation_failed", {
+      condition: "schema_validation",
+      evidence: validation.findings,
+    });
+  }
+
+  const versionFields = [
+    row?.card_print_id,
+    row?.image_sha256,
+    row?.prompt_version,
+    row?.output_schema_version,
+    row?.agent_version,
+    row?.model_version,
+  ].map(normalizeText);
+  const canRebuildFingerprint = versionFields.every(Boolean);
+  const expectedVersionKey = canRebuildFingerprint
+    ? buildDescriptionVersionKeyV1({
+      card_print_id: row.card_print_id,
+      image_sha256: row.image_sha256,
+      prompt_version: row.prompt_version,
+      output_schema_version: row.output_schema_version,
+      agent_version: row.agent_version,
+      model_version: row.model_version,
+    })
+    : null;
+  const fingerprintMatches = Boolean(
+    expectedVersionKey
+      && normalizeText(row?.description_version_key)
+      && expectedVersionKey === normalizeText(row.description_version_key),
+  );
+  addAutoApprovalCondition(conditions, "canonical_fingerprint_reconciliation", fingerprintMatches, [
+    expectedVersionKey ? `expected=${expectedVersionKey}` : "missing version tuple fields",
+    row?.description_version_key ? `actual=${row.description_version_key}` : "missing description_version_key",
+  ]);
+  if (!fingerprintMatches) {
+    addAutoApprovalBlocker(blockers, canRebuildFingerprint
+      ? "canonical_fingerprint_mismatch"
+      : "canonical_fingerprint_reconciliation_unavailable", {
+      condition: "canonical_fingerprint_reconciliation",
+      evidence: [
+        expectedVersionKey ? `expected=${expectedVersionKey}` : "missing version tuple fields",
+        row?.description_version_key ? `actual=${row.description_version_key}` : "missing description_version_key",
+      ],
+    });
+  }
+
+  const imageReconciles = Boolean(normalizeText(row?.image_sha256) && normalizeText(row?.image_source_key ?? row?.image_storage_path));
+  addAutoApprovalCondition(conditions, "image_hash_and_version_reconciliation", imageReconciles, [
+    row?.image_sha256 ? `image_sha256=${row.image_sha256}` : "missing image_sha256",
+    row?.image_source_key || row?.image_storage_path ? `image_source_key=${row.image_source_key ?? row.image_storage_path}` : "missing image_source_key",
+  ]);
+  if (!imageReconciles) {
+    addAutoApprovalBlocker(blockers, "image_hash_or_source_reconciliation_missing", {
+      condition: "image_hash_and_version_reconciliation",
+      evidence: [
+        row?.image_sha256 ? `image_sha256=${row.image_sha256}` : "missing image_sha256",
+        row?.image_source_key || row?.image_storage_path ? `image_source_key=${row.image_source_key ?? row.image_storage_path}` : "missing image_source_key",
+      ],
+    });
+  }
+
+  addAutoApprovalCondition(conditions, "no_blocking_policy_result", policyBlockers.length === 0, policyBlockers.map((result) => `${result.policy_rule}: ${result.claim}`));
+  if (policyBlockers.length > 0) {
+    addAutoApprovalBlocker(blockers, "blocking_policy_result_present", {
+      condition: "no_blocking_policy_result",
+      evidence: policyBlockers.map((result) => `${result.policy_rule}: ${result.claim}`),
+    });
+  }
+
+  const flagsByCondition = {
+    no_unsupported_subject_identity_claim: [
+      "potential_primary_subject_mismatch",
+      "potential_canonical_name_visual_conflict",
+      "potential_metadata_or_identity_language",
+      "potential_canonical_metadata_in_visual_output",
+      "semantic_tags_metadata_or_generic_removed",
+    ],
+    no_anatomy_contradiction: [
+      "potential_body_part_as_separate_held_object",
+      "potential_primary_subject_anatomy_overclaim",
+      "potential_cross_field_expression_contradiction",
+    ],
+    no_unsupported_subject_count_claim: ["potential_subject_count_mismatch"],
+    no_speculative_environment_literalization: [
+      "potential_overconfident_ambiguous_setting",
+      "potential_speculative_setting_language",
+      "potential_abstract_shape_literalization",
+    ],
+    no_metadata_leakage_into_visual_observations_or_tags: [
+      "potential_metadata_or_identity_language",
+      "potential_canonical_metadata_in_visual_output",
+      "semantic_tags_metadata_or_generic_removed",
+    ],
+    no_physical_card_surface_overclaim: [
+      "potential_surface_overclaim",
+      "potential_visual_material_vs_surface_confusion",
+      "potential_object_material_or_card_surface_confusion",
+      "potential_generic_filler",
+    ],
+    no_unresolved_border_color_certainty_issue: ["potential_border_color_certainty_issue"],
+    no_unsupported_personality_emotion_purpose_lore_or_event_claim: [
+      "potential_unsupported_emotion_or_personality_claim",
+      "potential_unsupported_personality_or_species_interpretation",
+      "potential_purpose_or_lore_interpretation",
+      "potential_dramatic_inferred_action_language",
+      "potential_interpretive_claim",
+      "potential_interpretive_mood_language",
+    ],
+    semantic_tags_remain_visually_grounded: [
+      "potential_semantic_tag_nonvisual_concept",
+      "semantic_tags_too_sparse_after_sanitization",
+      "semantic_tags_metadata_or_generic_removed",
+    ],
+    branch_specific_requirements_pass: [
+      "potential_creature_language_on_non_pokemon_branch",
+      "potential_generic_franchise_language_on_non_pokemon_branch",
+      "potential_unavailable_metadata_prompt_branch_mismatch",
+    ],
+  };
+
+  for (const [condition, conditionFlags] of Object.entries(flagsByCondition)) {
+    const hits = qualityFlags.filter((flag) => conditionFlags.includes(flag));
+    addAutoApprovalCondition(conditions, condition, hits.length === 0, hits);
+    if (hits.length > 0) {
+      addAutoApprovalBlocker(blockers, condition, {
+        condition,
+        evidence: hits,
+      });
+    }
+  }
+
+  const branchKnown = BRANCH_STRATIFIED_BRANCHES.includes(promptBranchForRow(row));
+  addAutoApprovalCondition(conditions, "branch_is_supported", branchKnown, [promptBranchForRow(row) || "missing prompt_branch"]);
+  if (!branchKnown) {
+    addAutoApprovalBlocker(blockers, "unsupported_or_missing_prompt_branch", {
+      condition: "branch_is_supported",
+      evidence: [promptBranchForRow(row) || "missing prompt_branch"],
+    });
+  }
+
+  const distinguishingDetails = normalizeStringArray(row?.visual_attributes?.distinguishing_details);
+  const outputComplete = validation.ok
+    && normalizeText(row?.artwork_description).length >= 160
+    && normalizeStringArray(row?.semantic_tags).length >= 3
+    && distinguishingDetails.length >= 2;
+  addAutoApprovalCondition(conditions, "output_complete_enough_to_distinguish_artwork", outputComplete, [
+    `artwork_description_chars=${normalizeText(row?.artwork_description).length}`,
+    `semantic_tags=${normalizeStringArray(row?.semantic_tags).length}`,
+    `distinguishing_details=${distinguishingDetails.length}`,
+  ]);
+  if (!outputComplete) {
+    addAutoApprovalBlocker(blockers, "output_not_complete_enough_to_distinguish_artwork", {
+      condition: "output_complete_enough_to_distinguish_artwork",
+      evidence: [
+        `artwork_description_chars=${normalizeText(row?.artwork_description).length}`,
+        `semantic_tags=${normalizeStringArray(row?.semantic_tags).length}`,
+        `distinguishing_details=${distinguishingDetails.length}`,
+      ],
+    });
+  }
+
+  const blockerKeys = uniqueSorted(blockers.map((blocker) => blocker.blocker));
+  const autoApprovalEligible = blockerKeys.length === 0;
+  const activationStatus = normalizeText(options.activation_status) || "inactive_calibration_required";
+  return {
+    readiness_version: CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION,
+    auto_approval_eligible: autoApprovalEligible,
+    approval_confidence_tier: autoApprovalEligible ? "eligible_candidate" : "human_review_required",
+    activation_status: activationStatus,
+    auto_approval_blockers: blockers,
+    blocker_keys: blockerKeys,
+    evaluated_conditions: conditions,
+    fresh_quality_flags: qualityFlags,
+    fresh_quality_flag_details: uniqueQualityFlagDetails(freshFlagDetails),
+    fresh_policy_results: policyResults,
+  };
+}
+
 function zeroUsage() {
   return {
     input_tokens: 0,
@@ -2221,7 +2567,7 @@ function buildPrompt(card) {
     "Separate the illustration from card frame, foil, border, or printing cues.",
     "For attributes that are not visible or cannot be determined from the scan, write \"unknown\" rather than an empty string.",
     "Do not infer holographic foil, texture, rarity treatment, or surface gloss unless it is directly visible in the image.",
-    "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Only report reliable visible surface observations such as silver border visible, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
+    "For card_surface_and_printing_cues, do not write generic statements such as standard trading card borders. Treat card border color as a high-risk physical card-frame claim. Do not confidently declare silver, gold, yellow, black, or another border color unless the scan clearly proves that exact border color without glare, crop, low resolution, or mixed tones. Prefer border color uncertain or border visible; color cannot be determined reliably. Only report reliable visible surface observations such as border visible; color cannot be determined reliably, foil texture cannot be determined, embossing not visible, glare prevents determination, or printing treatment uncertain. If nothing meaningful can be determined, state that clearly.",
     "Do not say foil texture visible, glossy finish, gloss present, or standard print unless the scan directly proves that physical treatment. Prefer foil texture cannot be determined, printing treatment uncertain, or glare prevents determination.",
     "",
     "Semantic tag rules:",

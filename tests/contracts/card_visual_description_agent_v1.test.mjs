@@ -9,6 +9,7 @@ import {
   buildEmbeddingInputV1,
   buildCostProjection,
   classifyDescriptionReviewStatusV1,
+  evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
   detectVisualDescriptionReviewFlagsV1,
   evaluateVisualDescriptionPolicyV1,
@@ -1158,6 +1159,152 @@ test("card visual language policy evaluates claim, field, and support together",
     && result.claim === "buildings"));
 });
 
+test("card visual language policy treats physical border color as high-risk surface evidence", () => {
+  function borderPayload(surfaceText, artworkDescription = "Object/Scene: A centered object is shown with silver and gold illustrated details in the artwork itself.") {
+    return {
+      artwork_description: artworkDescription,
+      card_surface_and_printing_cues: surfaceText,
+      visual_attributes: {
+        subjects: { primary: ["object"], secondary: [] },
+        environment: { setting: [] },
+        mood: [],
+        distinguishing_details: ["centered object", "simple composition"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["centered object", "simple composition", "visible artwork"],
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+    };
+  }
+
+  const yellowGold = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Yellow/gold border visible, printing treatment uncertain."),
+    { name: "Old Trainer", prompt_branch: "stadium" },
+  );
+  assert.ok(yellowGold.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"
+    && result.claim === "Yellow/gold border"));
+
+  const silver = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Silver border visible, printing treatment uncertain."),
+    { name: "Modern Trainer", prompt_branch: "stadium" },
+  );
+  assert.ok(silver.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"
+    && result.claim === "Silver border"));
+
+  const black = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Black border visible, foil texture cannot be determined."),
+    { name: "Dark Border Example", prompt_branch: "pokemon" },
+  );
+  assert.ok(black.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"
+    && result.claim === "Black border"));
+
+  const ambiguous = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Border visible; color cannot be determined reliably because the scan is cropped."),
+    { name: "Cropped Border Example", prompt_branch: "trainer" },
+  );
+  assert.equal(ambiguous.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"), false);
+
+  const glare = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Glare obscures the border; border color uncertain, printing treatment uncertain."),
+    { name: "Glare Border Example", prompt_branch: "energy" },
+  );
+  assert.equal(glare.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"), false);
+
+  const artworkObjects = detectVisualDescriptionReviewFlagsV1(
+    borderPayload(
+      "Border visible; color cannot be determined reliably.",
+      "Object/Scene: The artwork contains a silver shield and gold emblem, both drawn inside the illustration area.",
+    ),
+    { name: "Object With Metallic Artwork", prompt_branch: "item_tool_supporter" },
+  );
+  assert.equal(artworkObjects.includes("potential_border_color_certainty_issue"), false);
+
+  const deterministicEvidence = evaluateVisualDescriptionPolicyV1(
+    borderPayload("Silver border visible, printing treatment uncertain."),
+    {
+      name: "Deterministic Border Example",
+      prompt_branch: "stadium",
+      border_color_evidence: {
+        source: "deterministic_border_pixel_classifier_v1",
+        color: "silver",
+        confidence: 0.97,
+        status: "supported",
+      },
+    },
+  );
+  assert.equal(deterministicEvidence.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"), false);
+});
+
+test("card visual auto-approval readiness stays separate from review status", () => {
+  function baseRow(overrides = {}) {
+    const row = {
+      card_print_id: "11111111-1111-4111-8111-111111111111",
+      image_sha256: "a".repeat(64),
+      image_source_key: "warehouse-derived/self-hosted-images-v1/example.png",
+      prompt_version: "CARD_VISUAL_DESCRIPTION_PROMPT_V6_VISUAL_LANGUAGE_V1_SUBJECT_REPAIR",
+      output_schema_version: "CARD_VISUAL_DESCRIPTION_SCHEMA_V1",
+      agent_version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+      model_version: "gpt-4o-mini",
+      prompt_branch: "stadium",
+      name: "Example Stadium",
+      review_status: "pending",
+      artwork_description:
+        "Environment: The artwork shows a compact outdoor scene with a circular grassy area, stone steps, palm trees, blue sky, and soft cloud shapes. Artwork: The composition centers the circular grass area and uses greens, browns, and blues to separate foreground, midground, and background details.",
+      card_surface_and_printing_cues:
+        "Border visible; color cannot be determined reliably. Foil texture cannot be determined and printing treatment uncertain.",
+      visual_attributes: {
+        subjects: { primary: [], secondary: [] },
+        environment: { setting: ["outdoor field"], time_of_day: "unknown", weather: "unknown" },
+        palette: { dominant: ["green", "brown", "blue"], temperature: "warm" },
+        lighting: ["bright"],
+        mood: [],
+        composition: { framing: "central", subject_position: "center" },
+        style: ["painted"],
+        distinguishing_details: ["circular grassy area", "stone steps", "palm trees"],
+        uncertainty_notes: [],
+      },
+      semantic_tags: ["circular grass", "palm trees", "stone steps"],
+      quality_flags: [],
+      description_confidence: 0.95,
+      attribute_confidence: 0.95,
+      image_quality_score: 0.92,
+      identity_input_confidence: 0.95,
+      ...overrides,
+    };
+    row.description_version_key = buildDescriptionVersionKeyV1(row);
+    return row;
+  }
+
+  const clean = evaluateAutoApprovalReadinessV1(baseRow());
+  assert.equal(clean.auto_approval_eligible, true);
+  assert.equal(clean.approval_confidence_tier, "eligible_candidate");
+  assert.equal(clean.activation_status, "inactive_calibration_required");
+
+  const row9Like = evaluateAutoApprovalReadinessV1(baseRow({
+    name: "Cinnabar City Gym",
+    gv_id: "GV-PK-JPN-PMCG6-085",
+    card_surface_and_printing_cues: "silver border visible, glare prevents determination",
+  }));
+  assert.equal(row9Like.auto_approval_eligible, false);
+  assert.equal(row9Like.approval_confidence_tier, "human_review_required");
+  assert.ok(row9Like.blocker_keys.includes("no_unresolved_border_color_certainty_issue"));
+  assert.ok(row9Like.fresh_policy_results.some((result) =>
+    result.policy_rule === "border_color_claim_requires_deterministic_visual_evidence"));
+
+  const flagged = evaluateAutoApprovalReadinessV1(baseRow({
+    quality_flags: ["potential_interpretive_claim"],
+  }));
+  assert.equal(flagged.auto_approval_eligible, false);
+  assert.ok(flagged.blocker_keys.includes("no_unsupported_personality_emotion_purpose_lore_or_event_claim"));
+  assert.equal(flagged.review_status, undefined);
+});
+
 test("field-aware policy replay routes failed freeze candidates without dirtying clean pending rows", () => {
   function replayStatus(row) {
     const flags = detectVisualDescriptionReviewFlagsV1(row, {
@@ -1200,11 +1347,14 @@ test("field-aware policy replay routes failed freeze candidates without dirtying
   const previouslyCleanPendingIds = new Set([
     "GV-PK-JPN-M5-096",
     "GV-PK-JPN-M5-108",
-    "GV-PK-JPN-M5-072",
   ]);
   for (const row of priorRows.filter((candidate) => previouslyCleanPendingIds.has(candidate.gv_id))) {
     assert.equal(replayStatus(row).status, "pending", row.gv_id);
   }
+
+  const formerlyCleanBorderClaim = replayStatus(priorRows.find((row) => row.gv_id === "GV-PK-JPN-M5-072"));
+  assert.equal(formerlyCleanBorderClaim.status, "needs_review", "confident silver-border claim now requires deterministic evidence");
+  assert.ok(formerlyCleanBorderClaim.flags.includes("potential_border_color_certainty_issue"));
 });
 
 test("field-aware final dry-run repair replays exact misses without dirtying clean pending row", () => {
