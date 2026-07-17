@@ -17,6 +17,7 @@ import {
   evaluateVisualDescriptionPolicyV1,
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
+  filterActiveVisualFactExtractionCardsV1,
   parseCardVisualDescriptionArgsV1,
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
@@ -626,7 +627,7 @@ test("card visual description args default to dry-run and block fixture apply", 
     "--model=test-vision-model",
     "--limit=25",
     "--branch-stratified-sample",
-    "--branch-targets=pokemon:5,trainer:5,stadium:5,energy:5,item_tool_supporter:5",
+    "--branch-targets=pokemon:5,trainer:5,stadium:5,item_tool_supporter:5",
     "--branch-candidate-limit=60000",
   ]);
   assert.equal(branchSample.branchStratifiedSample, true);
@@ -635,9 +636,18 @@ test("card visual description args default to dry-run and block fixture apply", 
     pokemon: 5,
     trainer: 5,
     stadium: 5,
-    energy: 5,
     item_tool_supporter: 5,
   });
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1([
+      "--dry-run",
+      "--provider=openai",
+      "--model=test-vision-model",
+      "--branch-stratified-sample",
+      "--branch-targets=energy:1",
+    ]),
+    /unsupported branch target: energy/,
+  );
   assert.throws(
     () => parseCardVisualDescriptionArgsV1([
       "--provider=openai",
@@ -2163,10 +2173,13 @@ test("card visual description resolves fallback card branches and stratified sam
       pokemon: 1,
       trainer: 1,
       stadium: 1,
-      energy: 1,
       item_tool_supporter: 1,
     }).map((row) => row.card_print_id),
-    ["p1", "t1", "s1", "e1", "i1"],
+    ["p1", "t1", "s1", "i1"],
+  );
+  assert.deepEqual(
+    filterActiveVisualFactExtractionCardsV1(rows).map((row) => row.card_print_id),
+    ["p1", "p2", "t1", "s1", "i1"],
   );
 
   const stressRows = [
@@ -2188,10 +2201,9 @@ test("card visual description resolves fallback card branches and stratified sam
     "dense_pokemon_artwork",
     "trainer_person_artwork",
     "environment_heavy_stadium",
-    "abstract_energy",
     "object_heavy_item",
   ]);
-  assert.deepEqual(stressSample.map((row) => row.card_print_id), ["sp1", "st1", "ss1", "se1", "si1"]);
+  assert.deepEqual(stressSample.map((row) => row.card_print_id), ["sp1", "st1", "ss1", "si1"]);
 });
 
 test("card visual language review flags interpretive mood false negatives", () => {

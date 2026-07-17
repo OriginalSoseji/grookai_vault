@@ -24,7 +24,7 @@ export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
 ]);
 
 const DEFAULT_OUT_DIR = path.join(REPO_ROOT, "docs", "audits", "card_visual_descriptions");
-const DEFAULT_V2_STRESS_OUT_DIR = path.join(REPO_ROOT, "docs", "audits", "card_visual_fact_graph_v2_stress_5_dry_run");
+const DEFAULT_V2_STRESS_OUT_DIR = path.join(REPO_ROOT, "docs", "audits", "card_visual_fact_graph_v2_stress_dry_run");
 const DEFAULT_LIMIT = 25;
 const DEFAULT_MIN_WIDTH = 180;
 const DEFAULT_MIN_HEIGHT = 240;
@@ -32,13 +32,17 @@ const DEFAULT_MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
-const BRANCH_STRATIFIED_BRANCHES = Object.freeze([
+const PROMPT_BRANCHES = Object.freeze([
   "pokemon",
   "trainer",
   "stadium",
   "energy",
   "item_tool_supporter",
 ]);
+const DEFERRED_VISUAL_FACT_PROMPT_BRANCHES = new Set(["energy"]);
+const BRANCH_STRATIFIED_BRANCHES = Object.freeze(
+  PROMPT_BRANCHES.filter((branch) => !DEFERRED_VISUAL_FACT_PROMPT_BRANCHES.has(branch)),
+);
 const CANON_IMAGE_STORAGE_BUCKET = "user-card-images";
 const WAREHOUSE_CANON_IMAGE_PREFIXES = [
   "warehouse-derived/self-hosted-images-v1/",
@@ -252,11 +256,6 @@ const FACT_GRAPH_V2_STRESS_ROLES = Object.freeze([
     role: "environment_heavy_stadium",
     prompt_branch: "stadium",
     reason: "Environment-heavy Stadium stress: trees, buildings, sky, weather cues when visible, terrain, and counts.",
-  },
-  {
-    role: "abstract_energy",
-    prompt_branch: "energy",
-    reason: "Abstract Energy stress: symbols, gradients, repeated shapes, lighting, and no living subjects unless visibly present.",
   },
   {
     role: "object_heavy_item",
@@ -1791,6 +1790,12 @@ export function selectV2StressSampleCardsV1(rows) {
   return selected;
 }
 
+export function filterActiveVisualFactExtractionCardsV1(rows) {
+  return (Array.isArray(rows) ? rows : []).filter((row) =>
+    !DEFERRED_VISUAL_FACT_PROMPT_BRANCHES.has(resolveCardPromptMetadata(row).prompt_branch),
+  );
+}
+
 function roundUsd(value) {
   if (value === null || value === undefined) return null;
   return Number(Number(value).toFixed(8));
@@ -2438,8 +2443,11 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     throw new Error("[card-visual-description-agent] v2 stress sampling cannot be combined with explicit card targets or branch-stratified sampling");
   }
   if (parsed.v2StressSample) {
-    parsed.limit = 5;
-    parsed.maxCards = parsed.maxCards === null || parsed.maxCards === undefined ? 5 : Math.min(parsed.maxCards, 5);
+    const stressSampleSize = FACT_GRAPH_V2_STRESS_ROLES.length;
+    parsed.limit = stressSampleSize;
+    parsed.maxCards = parsed.maxCards === null || parsed.maxCards === undefined
+      ? stressSampleSize
+      : Math.min(parsed.maxCards, stressSampleSize);
     if (!parsed.outDirExplicit) parsed.outDir = DEFAULT_V2_STRESS_OUT_DIR;
     if (!parsed.branchCandidateLimit) parsed.branchCandidateLimit = DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT;
   }
@@ -4130,6 +4138,7 @@ function buildPrompt(card) {
     "Branch 3 - Stadium: extract environment, structures, terrain, repeated elements, and scene facts.",
     "Branch 4 - Energy: extract symbols, abstract forms, repeated shapes, palette, lighting, and composition facts.",
     "Branch 5 - Item / Tool / Supporter: extract objects, props, people if visible, scenes, representations, and interactions.",
+    "Current operator scope defers Energy cards from active extraction until a later explicit re-enable.",
     "Use only the resolved prompt branch for this card.",
     "",
     ...promptBranchInstructions(promptMetadata.prompt_branch),
@@ -4138,7 +4147,7 @@ function buildPrompt(card) {
     "observations is the factual backbone. Use stable IDs such as obs_subject_001, obs_tree_group_001, obs_palette_001, obs_surface_001.",
     `visual_attributes.fact_schema_version must be exactly ${CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION}.`,
     "This is an inventory task, not a summary task. Split visible components into distinct observations instead of collapsing them into three broad labels.",
-    "Do not chase a fixed fact count. A simple Energy card may have fewer facts; a dense full-art Trainer may have many more. Success is module completeness, not quantity.",
+    "Do not chase a fixed fact count. A sparse card may have fewer facts; a dense full-art Trainer may have many more. Success is module completeness, not quantity.",
     "Every subject, depicted_subject, character_representation, object, relationship, count, scene layer, environment support, design support, typed fact, module fact, uncertainty, and search-term reference must point to an observation_id that actually exists in observations.",
     "Every module fact_ids entry must point to a real typed_facts.fact_id.",
     "Do not create placeholder counts for things that are not visible. Never create an exact count with exact_count 0. If nothing is countable, use counts: [] and counts_review: none_visible.",
@@ -5535,6 +5544,21 @@ async function fetchEligibleCards(client, args) {
     nextParam += 1;
   }
 
+  if (traitTableExists) {
+    filters.push(`lower(coalesce(
+        nullif(btrim(exact_trait.supertype), ''),
+        nullif(btrim(source_trait.supertype), ''),
+        nullif(btrim(same_name_trait.supertype), ''),
+        ''
+      )) <> 'energy'`);
+    filters.push(`lower(coalesce(
+        nullif(btrim(exact_trait.card_category), ''),
+        nullif(btrim(source_trait.card_category), ''),
+        nullif(btrim(same_name_trait.card_category), ''),
+        ''
+      )) not in ('energy', 'basic energy')`);
+  }
+
   if (args.cardPrintId) {
     filters.push(`cp.id = $${nextParam}::uuid`);
     params.push(args.cardPrintId);
@@ -5583,9 +5607,10 @@ async function fetchEligibleCards(client, args) {
       limit $1`,
     params,
   );
-  if (args.v2StressSample) return selectV2StressSampleCardsV1(result.rows);
-  if (!args.branchStratifiedSample) return result.rows;
-  return selectBranchStratifiedCardsV1(result.rows, args.branchTargets);
+  const activeRows = filterActiveVisualFactExtractionCardsV1(result.rows);
+  if (args.v2StressSample) return selectV2StressSampleCardsV1(activeRows);
+  if (!args.branchStratifiedSample) return activeRows;
+  return selectBranchStratifiedCardsV1(activeRows, args.branchTargets);
 }
 
 async function tableExists(client, schema, tableName) {
@@ -6161,6 +6186,8 @@ function buildSummary({
     sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
     branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
+    deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
     v2_stress_sample: args.v2StressSample,
     local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     pricing_snapshot: args.pricingSnapshot,
@@ -6232,6 +6259,8 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
     branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
+    deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
     v2_stress_sample: args.v2StressSample,
     local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
     agent_version: args.agentVersion,

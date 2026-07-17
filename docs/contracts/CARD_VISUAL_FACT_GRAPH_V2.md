@@ -14,7 +14,7 @@ The source of truth is `visual_attributes.fact_graph`. The required `artwork_des
 
 If visible, record it. If partially visible, qualify it. If uncertain, explain why. If unsupported, abstain.
 
-No fixed observation quota defines success. A simple Energy card may be complete with fewer facts. A dense Trainer, Stadium, or full-art card may remain incomplete with many facts if a careful review finds meaningful visible omissions.
+No fixed observation quota defines success. A sparse card may be complete with fewer facts. A dense Trainer, Stadium, or full-art card may remain incomplete with many facts if a careful review finds meaningful visible omissions.
 
 ## Required Shape
 
@@ -172,4 +172,6 @@ V2 does not authorize:
 - generated story output
 - production apply
 
-The first V2 gate is a 5-card OpenAI dry run only: dense Pokemon artwork, Trainer/person artwork, environment-heavy Stadium, abstract Energy, and object-heavy Item.
+Energy cards are deferred from active visual fact extraction. Historical Energy calibration artifacts may remain for audit context, and the Energy prompt branch may remain available for a future deliberate re-enable, but current candidate selection, branch-stratified runs, stress runs, and production extraction must exclude Energy cards.
+
+The current V2 stress gate uses active non-Energy roles only: dense Pokemon artwork, Trainer/person artwork, environment-heavy Stadium, and object-heavy Item.
