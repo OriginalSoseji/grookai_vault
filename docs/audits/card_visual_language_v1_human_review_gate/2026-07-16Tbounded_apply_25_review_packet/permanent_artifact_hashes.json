@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T23:30:55.249Z",
+  "generated_at": "2026-07-17T01:52:51.872Z",
   "review_gate_dir": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet",
   "hash_algorithm": "sha256",
   "files": [
@@ -18,6 +18,10 @@
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/REVIEW_DECISION_MATRIX.md",
       "sha256": "2c9f987d8e97482157198a01db36a8e41ec30f4ac0a4db0c6ff6cb89fb508bc8"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/TEXT_ONLY_HUMAN_REVIEW_DECISIONS.md",
+      "sha256": "03421015e86edd734a0fc7963e2b395daac74e492d8733412664f75a1d253576"
     },
     {
       "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/diff_check_output.txt",
@@ -156,12 +160,28 @@
       "sha256": "ea8b53dc424e3234bbfed155b5b8d8dbf5721b8760ea0e3e4b4c0fad90a61fe2"
     },
     {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decision_summary.json",
+      "sha256": "452c7c6d84fac23571c9452bfb8dec2ac99c6ad772ba7c29ed3315dfe5a3ca7d"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decision_validation.json",
+      "sha256": "bcbb9a56305382207267106355ad05be8941c18d3273c82b1e32f2e59f893348"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decision_validation_output.txt",
+      "sha256": "8aab832733b0e3b07a23e2f5cc2b4496b83d155fb80793f1e7d8ead4395fe131"
+    },
+    {
+      "path": "docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decisions.jsonl",
+      "sha256": "dbcb10a8787db00a47aae019f205c4a82eb43fe05a0e17a1ccf69456904dbd43"
+    },
+    {
       "path": "docs/checkpoints/card_visual_descriptions/CARD_VISUAL_LANGUAGE_V1_HUMAN_REVIEW_GATE_PREP_20260716.md",
-      "sha256": "210d596915af836a9c6abdcfeee13f24f75a9f3f9f8dd652a75a392b8e6df984"
+      "sha256": "7584c8bbc4fc7ee52121784c92983503d572eb3b7773f5e68ceaf43657acd2d7"
     },
     {
       "path": "docs/checkpoints/card_visual_descriptions/INDEX.md",
-      "sha256": "82d07dbb4277ff58b5f3efb6ed5a50f79ed0803c418e2932d3ca19a55de5f051"
+      "sha256": "9942fe4dcdca0b4aa822af18881d8550cf6173ab97c734a47217cb6352108ca7"
     }
   ]
 }

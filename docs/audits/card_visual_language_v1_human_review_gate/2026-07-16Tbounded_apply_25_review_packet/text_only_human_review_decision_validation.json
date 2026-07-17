@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-07-17T01:51:47.878Z",
+  "checks": {
+    "summary_all_passed": true,
+    "decisions_count_25": true,
+    "unique_description_ids_25": true,
+    "unique_queue_indices_25": true,
+    "queue_indices_are_1_to_25": true,
+    "approved_rows_are_9_12_13_24": true,
+    "every_decision_text_only": true,
+    "no_db_approval_marker": true
+  }
+}

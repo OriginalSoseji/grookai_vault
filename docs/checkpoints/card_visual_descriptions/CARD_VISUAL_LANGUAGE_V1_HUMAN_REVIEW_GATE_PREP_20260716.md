@@ -54,6 +54,8 @@ supabase/migrations/20260715120000_card_visual_description_agent_v1.sql
 - Embedding fields remain empty for all 25 rows.
 - Local review images downloaded from `user-card-images`: `25/25`.
 - Dashboard validation passed: `25` rows, `25` image files, embedded review data, no detected secret material.
+- Text-only human decisions were recorded after reviewing descriptions, tags, flags, and policy results: `4 approve_later_gate`, `21 needs_revision`, `0 reject`, `0 leave_pending`.
+- Text-only approval candidates are rows `9`, `12`, `13`, and `24`.
 - The review packet is read-only and does not mutate review status.
 
 ## Token And Cost Result
@@ -79,6 +81,7 @@ The source bounded apply batch remains:
 - Local review images are audit artifacts, not public/app-facing surfaces.
 - The packet records row IDs for later explicit review decisions.
 - Browser dashboard decisions remain local until the reviewer exports JSONL.
+- Text-only decisions do not satisfy image-confirmed approval by themselves.
 - Review decisions must be applied only in a separate bounded gate.
 
 ## Why The Visual Layer Remains Derived Intelligence
@@ -100,6 +103,7 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 - Review boundary readback: pass, `0 approved`, `0 rejected`, `0` rows with embedding fields.
 - Read-only storage image retrieval: pass, `25/25` local review images downloaded.
 - Dashboard validation: pass, `25` rows, `25` images, no detected secret material.
+- Text-only decision validation: pass, `25` unique decisions, approval candidates exactly `9`, `12`, `13`, and `24`, no DB approval marker.
 - Source apply invariants preserved: pass.
 - `git diff --check` - pass.
 - Full repository contract suite was not run because this gate only generated review artifacts and did not change code or schema.
@@ -114,6 +118,10 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 - Local review images: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_images/`
 - Image manifest: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_image_manifest.json`
 - Dashboard validation: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_dashboard_validation.json`
+- Text-only human review decisions: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decisions.jsonl`
+- Text-only decision summary: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decision_summary.json`
+- Text-only decision report: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/TEXT_ONLY_HUMAN_REVIEW_DECISIONS.md`
+- Text-only decision validation: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/text_only_human_review_decision_validation.json`
 - Preparation report: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/HUMAN_REVIEW_GATE_PREPARATION_REPORT.md`
 - DB snapshot: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_packet_snapshot.json`
 - Decision template: `docs/audits/card_visual_language_v1_human_review_gate/2026-07-16Tbounded_apply_25_review_packet/review_decisions_template.jsonl`
@@ -123,6 +131,6 @@ The packet contains model-generated descriptions, tags, attributes, quality flag
 
 ## Explicit Next Gate
 
-A human reviewer must use the dashboard, decision matrix, decision template, or equivalent row-level process to provide explicit decisions.
+A human reviewer should image-confirm rows `9`, `12`, `13`, and `24`, or explicitly authorize a text-only approval exception.
 
-Only after explicit decisions exist should a separate bounded review-decision apply gate update database review statuses. That later apply gate must still not generate embeddings or expose app-facing reads unless explicitly authorized.
+Only after that should a separate bounded review-decision apply gate update database review statuses. That later apply gate must still not generate embeddings or expose app-facing reads unless explicitly authorized.
