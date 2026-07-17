@@ -399,6 +399,15 @@ function normalizeText(value) {
   return String(value ?? "").trim();
 }
 
+function normalizeObjectiveVisualText(value) {
+  let text = normalizeText(value);
+  if (!text) return text;
+  text = text.replace(/\bnight sky\b/gi, "dark sky");
+  text = text.replace(/\b(daytime|daylight) sky\b/gi, "bright sky");
+  text = text.replace(/\b(determined|confident|fierce|majestic|angry|happy|sad)\b\s*/gi, "");
+  return normalizeText(text);
+}
+
 function uniqueSorted(values) {
   return [...new Set(values.map(normalizeText).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right));
@@ -1898,8 +1907,8 @@ function normalizeFactGraphObservations(value) {
   return normalizeObjectArray(value).map((entry) => ({
     observation_id: normalizeText(entry.observation_id),
     kind: normalizeText(entry.kind),
-    label: normalizeText(entry.label),
-    normalized_label: normalizeText(entry.normalized_label),
+    label: normalizeObjectiveVisualText(entry.label),
+    normalized_label: normalizeObjectiveVisualText(entry.normalized_label),
     scene_layer: normalizeText(entry.scene_layer),
     frame_position: normalizeText(entry.frame_position),
     visibility: normalizeText(entry.visibility),
@@ -1914,8 +1923,8 @@ function normalizeTypedFacts(value) {
     fact_id: normalizeText(entry.fact_id),
     module: normalizeText(entry.module),
     field_path: normalizeText(entry.field_path) || (normalizeText(entry.module) ? `${normalizeText(entry.module)}.unspecified` : ""),
-    claim: normalizeText(entry.claim),
-    value: normalizeText(entry.value),
+    claim: normalizeObjectiveVisualText(entry.claim),
+    value: normalizeObjectiveVisualText(entry.value),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
     confidence: normalizeConfidence(entry.confidence),
     evidence_strength: normalizeText(entry.evidence_strength),
@@ -1925,11 +1934,11 @@ function normalizeTypedFacts(value) {
 function normalizeFacialEvidence(value) {
   const evidence = normalizeObject(value);
   return {
-    eyes: normalizeText(evidence.eyes),
-    mouth: normalizeText(evidence.mouth),
-    eyebrows: normalizeText(evidence.eyebrows),
-    face_position: normalizeText(evidence.face_position),
-    other_visible_evidence: normalizeStringArray(evidence.other_visible_evidence),
+    eyes: normalizeObjectiveVisualText(evidence.eyes),
+    mouth: normalizeObjectiveVisualText(evidence.mouth),
+    eyebrows: normalizeObjectiveVisualText(evidence.eyebrows),
+    face_position: normalizeObjectiveVisualText(evidence.face_position),
+    other_visible_evidence: normalizeStringArray(evidence.other_visible_evidence).map(normalizeObjectiveVisualText),
   };
 }
 
@@ -1939,13 +1948,13 @@ function normalizeFactGraphSubjects(value) {
     subject_kind: normalizeText(entry.subject_kind),
     identity: normalizeText(entry.identity),
     identity_confidence: normalizeConfidence(entry.identity_confidence),
-    anatomy: normalizeStringArray(entry.anatomy),
-    physical_features: normalizeStringArray(entry.physical_features),
-    pose: normalizeStringArray(entry.pose),
-    orientation: normalizeText(entry.orientation),
-    action_state: normalizeStringArray(entry.action_state),
+    anatomy: normalizeStringArray(entry.anatomy).map(normalizeObjectiveVisualText),
+    physical_features: normalizeStringArray(entry.physical_features).map(normalizeObjectiveVisualText),
+    pose: normalizeStringArray(entry.pose).map(normalizeObjectiveVisualText),
+    orientation: normalizeObjectiveVisualText(entry.orientation),
+    action_state: normalizeStringArray(entry.action_state).map(normalizeObjectiveVisualText),
     facial_evidence: normalizeFacialEvidence(entry.facial_evidence),
-    clothing_or_accessories: normalizeStringArray(entry.clothing_or_accessories),
+    clothing_or_accessories: normalizeStringArray(entry.clothing_or_accessories).map(normalizeObjectiveVisualText),
     colors: normalizeStringArray(entry.colors),
     visibility: normalizeText(entry.visibility),
   }));
@@ -2006,16 +2015,16 @@ function normalizeFactGraphSceneLayers(value) {
 function normalizeFactGraphEnvironment(value) {
   const environment = normalizeObject(value);
   return {
-    setting: normalizeStringArray(environment.setting),
+    setting: normalizeStringArray(environment.setting).map(normalizeObjectiveVisualText),
     indoor_outdoor: normalizeText(environment.indoor_outdoor),
-    sky: normalizeStringArray(environment.sky),
-    ground: normalizeStringArray(environment.ground),
-    terrain: normalizeStringArray(environment.terrain),
-    plants: normalizeStringArray(environment.plants),
-    architecture: normalizeStringArray(environment.architecture),
-    water: normalizeStringArray(environment.water),
-    weather: normalizeStringArray(environment.weather),
-    time_of_day_cues: normalizeStringArray(environment.time_of_day_cues),
+    sky: normalizeStringArray(environment.sky).map(normalizeObjectiveVisualText),
+    ground: normalizeStringArray(environment.ground).map(normalizeObjectiveVisualText),
+    terrain: normalizeStringArray(environment.terrain).map(normalizeObjectiveVisualText),
+    plants: normalizeStringArray(environment.plants).map(normalizeObjectiveVisualText),
+    architecture: normalizeStringArray(environment.architecture).map(normalizeObjectiveVisualText),
+    water: normalizeStringArray(environment.water).map(normalizeObjectiveVisualText),
+    weather: normalizeStringArray(environment.weather).map(normalizeObjectiveVisualText),
+    time_of_day_cues: normalizeStringArray(environment.time_of_day_cues).map(normalizeObjectiveVisualText),
     supporting_observation_ids: normalizeObservationReferenceArray(environment.supporting_observation_ids),
   };
 }
@@ -2067,19 +2076,19 @@ function normalizeRelationships(value) {
 function normalizeVisualDesign(value) {
   const design = normalizeObject(value);
   return {
-    palette: normalizeStringArray(design.palette),
-    lighting: normalizeStringArray(design.lighting),
-    shadows: normalizeStringArray(design.shadows),
-    highlights: normalizeStringArray(design.highlights),
-    composition: normalizeStringArray(design.composition),
-    camera_angle: normalizeText(design.camera_angle),
-    framing: normalizeText(design.framing),
-    cropping: normalizeStringArray(design.cropping),
-    depth: normalizeText(design.depth),
-    motion_cues: normalizeStringArray(design.motion_cues),
-    motifs: normalizeStringArray(design.motifs),
-    repeated_shapes: normalizeStringArray(design.repeated_shapes),
-    style_cues: normalizeStringArray(design.style_cues),
+    palette: normalizeStringArray(design.palette).map(normalizeObjectiveVisualText),
+    lighting: normalizeStringArray(design.lighting).map(normalizeObjectiveVisualText),
+    shadows: normalizeStringArray(design.shadows).map(normalizeObjectiveVisualText),
+    highlights: normalizeStringArray(design.highlights).map(normalizeObjectiveVisualText),
+    composition: normalizeStringArray(design.composition).map(normalizeObjectiveVisualText),
+    camera_angle: normalizeObjectiveVisualText(design.camera_angle),
+    framing: normalizeObjectiveVisualText(design.framing),
+    cropping: normalizeStringArray(design.cropping).map(normalizeObjectiveVisualText),
+    depth: normalizeObjectiveVisualText(design.depth),
+    motion_cues: normalizeStringArray(design.motion_cues).map(normalizeObjectiveVisualText),
+    motifs: normalizeStringArray(design.motifs).map(normalizeObjectiveVisualText),
+    repeated_shapes: normalizeStringArray(design.repeated_shapes).map(normalizeObjectiveVisualText),
+    style_cues: normalizeStringArray(design.style_cues).map(normalizeObjectiveVisualText),
     supporting_observation_ids: normalizeObservationReferenceArray(design.supporting_observation_ids),
   };
 }
@@ -2122,7 +2131,7 @@ function isUsefulSearchTermCandidate(value) {
 }
 
 function normalizeSearchTermText(value) {
-  return normalizeText(value).replace(/\bshiny\b/gi, "reflective-looking");
+  return normalizeObjectiveVisualText(value).replace(/\bshiny\b/gi, "reflective-looking");
 }
 
 function observationSearchText(observation) {
@@ -2461,6 +2470,12 @@ function normalizeFactGraphV1(value) {
   });
   const modules = normalizeFactGraphModules(graph.modules, knownObservationIds);
   modules.fact_grounded_search_terms.terms = searchTerms.map((entry) => entry.term);
+  const relationships = normalizeRelationships(graph.relationships)
+    .filter((relationship) =>
+      knownObservationIds.has(normalizeText(relationship.source_observation_id))
+      && knownObservationIds.has(normalizeText(relationship.target_observation_id)));
+  const visualDesign = normalizeVisualDesign(graph.visual_design);
+  visualDesign.supporting_observation_ids = visualDesign.supporting_observation_ids.filter((id) => knownObservationIds.has(id));
   return {
     observations,
     typed_facts: typedFacts,
@@ -2471,8 +2486,8 @@ function normalizeFactGraphV1(value) {
     scene_layers: normalizeFactGraphSceneLayers(graph.scene_layers),
     environment: normalizeFactGraphEnvironment(graph.environment),
     objects_and_props: normalizeObjectsAndProps(graph.objects_and_props),
-    relationships: normalizeRelationships(graph.relationships),
-    visual_design: normalizeVisualDesign(graph.visual_design),
+    relationships,
+    visual_design: visualDesign,
     surface_and_scan_cues: normalizeSurfaceAndScanCues(graph.surface_and_scan_cues),
     coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
     modules,

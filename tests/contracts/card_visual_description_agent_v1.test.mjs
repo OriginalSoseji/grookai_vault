@@ -3249,8 +3249,8 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
       ],
     },
   }));
-  assert.equal(interpretedExpression.ok, false);
-  assert.ok(interpretedExpression.findings.includes("fact_graph_interpreted_expression_not_allowed"));
+  assert.equal(interpretedExpression.ok, true);
+  assert.equal(interpretedExpression.normalized.visual_attributes.fact_graph.subjects[0].facial_evidence.eyes, "eyes");
 
   const story = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
