@@ -84,6 +84,8 @@ Remove or avoid:
 - exact subject identities when identity is already stored in canonical subject fields
 - standalone franchise labels such as `Pokemon` or `Pokémon`
 - rarity, attacks, mechanics, set names, collector numbers, HP, and other card UI text
+- physical print treatment terms such as `gold foil`, `foil`, `holographic`, `embossed`, `print finish`, or `printing treatment`
+- card UI and mechanics terms such as `energy symbol`, `type symbol`, `weakness`, `resistance`, and `retreat cost`
 
 Keep when supported:
 
@@ -99,6 +101,8 @@ Keep when supported:
 - `happy Pikachu` when supported by a happy semantic fact and a visible Pikachu subject
 
 Compound subject-plus-state terms may preserve the franchise or identity word when each component is supported by the fact graph. Normalization should not collapse `sleeping Pokemon` into `sleeping` because the subject class is useful for search. Exact standalone identities and standalone franchise labels remain filtered from generic artwork search terms.
+
+Evidence-only face details such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` are preserved in raw observations and facial-evidence fields, but are not canonical semantic facts by themselves. They can support a higher-level semantic fact such as `smiling`, `sleeping`, or `surprised`.
 
 ## Canonical Visual Concepts
 

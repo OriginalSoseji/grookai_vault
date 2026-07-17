@@ -2634,7 +2634,95 @@ test("card visual fact graph stores semantic visual facts only with supporting e
   });
   const gestureAndStadium = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: gestureAndStadiumGraph }));
   assert.equal(gestureAndStadium.ok, true, gestureAndStadium.findings.join(","));
-  assert.ok(gestureAndStadium.normalized.artwork_description.includes("Semantic facts: arms raised, eyes closed, posing, stadium"));
+  assert.ok(gestureAndStadium.normalized.artwork_description.includes("Semantic facts: arms raised, posing, stadium"));
+  assert.deepEqual(
+    gestureAndStadium.normalized.visual_attributes.fact_graph.semantic_visual_facts.map((fact) => fact.label),
+    ["arms raised", "posing", "stadium"],
+  );
+
+  const environmentObjectSemantics = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_cones_001",
+          kind: "objects_and_props",
+          label: "traffic cones beside the stadium path",
+          normalized_label: "traffic cones",
+          scene_layer: "foreground",
+          frame_position: "lower left",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.91,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_sky_001",
+          kind: "environment",
+          label: "blue sky with clouds",
+          normalized_label: "blue sky with clouds",
+          scene_layer: "background",
+          frame_position: "upper",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.92,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_water_001",
+          kind: "environment",
+          label: "reflective water beside the path",
+          normalized_label: "reflective water",
+          scene_layer: "background",
+          frame_position: "right",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_cones_001",
+          category: "environment",
+          label: "traffic cones",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_cones_001"],
+          evidence: { objects: ["traffic cones beside the path"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_sky_001",
+          category: "environment",
+          label: "blue sky with clouds",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_sky_001"],
+          evidence: { environment: ["blue sky with clouds"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_water_001",
+          category: "environment",
+          label: "reflective water",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_water_001"],
+          evidence: { environment: ["reflective water"] },
+        }),
+      ],
+      fact_grounded_search_terms: [
+        { term: "gold foil", supporting_observation_ids: ["obs_palette_001"] },
+        { term: "dark energy symbol", supporting_observation_ids: ["obs_subject_001"] },
+        { term: "traffic cones", supporting_observation_ids: ["obs_cones_001"] },
+        { term: "blue sky with clouds", supporting_observation_ids: ["obs_sky_001"] },
+        { term: "reflective water", supporting_observation_ids: ["obs_water_001"] },
+      ],
+    },
+  }));
+  assert.equal(environmentObjectSemantics.ok, true, environmentObjectSemantics.findings.join(","));
+  const sanitizedTerms = environmentObjectSemantics.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.map((entry) => entry.term);
+  assert.ok(sanitizedTerms.includes("traffic cones"));
+  assert.ok(sanitizedTerms.includes("blue sky with clouds"));
+  assert.ok(sanitizedTerms.includes("reflective water"));
+  assert.equal(sanitizedTerms.includes("gold foil"), false);
+  assert.equal(sanitizedTerms.includes("dark energy symbol"), false);
 
   const looseHappy = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {

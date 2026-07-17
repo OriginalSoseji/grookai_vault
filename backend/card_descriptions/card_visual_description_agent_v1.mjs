@@ -128,9 +128,15 @@ const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tr
 const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
 const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
-  /\b(?:happy|smiling|smile|angry|surprised|scared|crying|eyes closed|closed eyes|open eyes|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|forest|woodland|woods|rainy|rain|stormy|snowy|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|food scene|cozy interior|abstract background|golden abstract background|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
+  /\b(?:happy|smiling|smile|angry|surprised|scared|crying|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
+const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
+  /\b(?:eyes? (?:not clearly visible|not visible|unclear|open|closed)|(?:open|closed) eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|mouth (?:open|smiling|visible))\b/i;
 const SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN =
   /\b(?:lost|protecting|guarding|searching for|waiting for|trying to|wants to|symboli[sz](?:e|es|ing)|represents?|embod(?:y|ies|ying)|heroic|evil|loyal|brave|hope|destiny|purpose|theme|lore|story|narrative|backstory)\b/i;
+const FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN =
+  /\b(?:foil|gold foil|silver foil|holo(?:graphic)?|card surface|surface texture|texture visible|embossed|glossy finish|glossy surface|print finish|printing treatment)\b/i;
+const FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN =
+  /\b(?:hp\s*\d*|attack(?: name| text| cost)?|weakness|resistance|retreat(?: cost)?|collector number|rarity|set symbol|copyright|illustrator|promo stamp|regulation mark|card name|energy symbol|type symbol|(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)\s+energy symbol)\b/i;
 const SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN =
   /\b(?:smile|smiling|upturned mouth|open cheerful mouth|raised cheeks|closed crescent eyes|bright eyes|relaxed eyes|arms raised|playful pose)\b/i;
 const SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN =
@@ -2332,6 +2338,11 @@ function normalizeSemanticVisualFactEvidence(value) {
   ]));
 }
 
+function isEvidenceOnlySemanticVisualFactLabel(value) {
+  const label = normalizeText(value);
+  return Boolean(label && SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN.test(label));
+}
+
 function normalizeSemanticVisualFacts(value) {
   return normalizeObjectArray(value).map((entry) => ({
     semantic_fact_id: normalizeText(entry.semantic_fact_id),
@@ -2342,7 +2353,7 @@ function normalizeSemanticVisualFacts(value) {
     evidence: normalizeSemanticVisualFactEvidence(entry.evidence),
     confidence: normalizeConfidence(entry.confidence),
     uncertainty: normalizeText(entry.uncertainty),
-  }));
+  })).filter((entry) => !isEvidenceOnlySemanticVisualFactLabel(entry.label));
 }
 
 function searchTermTokens(value) {
@@ -2356,6 +2367,7 @@ function isUsefulSearchTermCandidate(value) {
   const key = tagKey(value);
   if (!key) return false;
   if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || NON_PROBLEM_QUALITY_FLAGS.has(key)) return false;
+  if (isDisallowedArtworkSearchTerm(value)) return false;
   return searchTermTokens(key).length > 0;
 }
 
@@ -2364,6 +2376,17 @@ function normalizeSearchTermText(value) {
     .replace(/\bshiny\b/gi, "reflective-looking")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function isDisallowedArtworkSearchTerm(value) {
+  const term = normalizeText(value);
+  return Boolean(
+    term
+    && (
+      FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN.test(term)
+      || FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN.test(term)
+    )
+  );
 }
 
 function observationSearchText(observation) {
@@ -2442,6 +2465,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
       .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
   })).filter((entry) =>
     entry.term
+    && !isDisallowedArtworkSearchTerm(entry.term)
     && !subjectIdentityKeys.has(tagKey(entry.term))
     && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
   );
@@ -2454,7 +2478,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     if (supportingIds.length < 1) continue;
     const normalizedTerm = normalizeSearchTermText(term);
     const normalizedKey = tagKey(normalizedTerm);
-    if (!normalizedTerm || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
+    if (!normalizedTerm || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
     normalized.push({ term: normalizedTerm, supporting_observation_ids: supportingIds });
     seenTerms.add(normalizedKey);
   }
@@ -2463,7 +2487,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     for (const entry of derivedSearchTermsFromObservations(options.observations ?? [])) {
       const normalizedTerm = normalizeSearchTermText(entry.term);
       const key = tagKey(normalizedTerm);
-      if (!key || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
+      if (!key || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
       normalized.push({ ...entry, term: normalizedTerm });
       seenTerms.add(key);
     }
@@ -2471,6 +2495,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
 
   return normalized.filter((entry) =>
     entry.term
+    && !isDisallowedArtworkSearchTerm(entry.term)
     && !subjectIdentityKeys.has(tagKey(entry.term))
     && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
   );
@@ -4472,6 +4497,12 @@ function validateFactGraphSearchTermComponentsV1(factGraph) {
     if (SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN.test(term)) {
       findings.push(`fact_graph_search_term_story_or_lore_not_allowed:${term}`);
     }
+    if (FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN.test(term)) {
+      findings.push(`fact_graph_search_term_surface_or_print_treatment_not_allowed:${term}`);
+    }
+    if (FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN.test(term)) {
+      findings.push(`fact_graph_search_term_card_ui_or_mechanics_not_allowed:${term}`);
+    }
     if (/\b(?:happy|smiling|smile|cheerful|joyful)\b/i.test(term) && !factGraphHasSemanticLabel(factGraph, SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN)) {
       findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
     }
@@ -4902,6 +4933,8 @@ function buildPrompt(card) {
     "semantic_visual_facts is not optional when obvious reusable meaning is visibly supported. Actively add entries for supported subject states/actions such as floating, flying, sleeping, eating, fighting, standing, sitting, or lying down; environment concepts such as forest, outdoor stadium, rain, snow, nighttime, sunset, water scene, or food scene; exact useful count concepts such as ten trees; and cameo/representation concepts such as Pikachu poster or Pikachu pillow.",
     "If a pose/action already appears in creature_anatomy or human_appearance and it is useful for future search, also add a semantic_visual_facts entry with the same supporting observation IDs and concrete evidence.",
     "If an environment field records forest, trees, buildings, stadium, water, weather, or time-of-day cues, add the matching semantic_visual_facts entry unless the field is uncertain or purely abstained.",
+    "Do not put evidence-only facial details such as open eyes, closed eyes, neutral eyebrows, face visible, or eyes not clearly visible into semantic_visual_facts as standalone labels. Put those details inside facial_evidence or semantic fact evidence fields supporting a useful label such as smiling, sleeping, surprised, or cannot_determine.",
+    "Do not put physical print treatment or card UI terms such as gold foil, foil, HP, attack text, weakness, resistance, retreat cost, collector number, rarity, set symbol, copyright, illustrator text, energy symbol, or type symbol into artwork fact_grounded_search_terms. Keep visible printed symbols and text in card_ui_and_print_markers only.",
     "If no semantic visual fact is supportable, use semantic_visual_facts: []. Do not leave the array empty merely because the fact also exists elsewhere in the graph.",
     "Do not store loose interpreted expression labels in subject, anatomy, clothing, object, environment, visual_design, or search-term fields. Store facial evidence in those modules, then place supported labels such as happy or sleeping only in semantic_visual_facts.",
     "Never store unsupported personality, attractiveness, body-size, theme, intention, lore, or story as semantic facts. Confident, fierce, majestic, sexy, protecting a friend, symbolizing hope, and similar claims are not V2 facts.",

@@ -155,6 +155,9 @@ Allowed examples:
 - `sleeping` supported by closed eyes and lying-down body position
 - `forest` supported by visible trees, trunks, foliage, or wooded terrain
 - `rainy` supported by visible rain streaks, raindrops, wet ground, or puddles
+- `floating` supported by a subject suspended above visible ground or by pose evidence
+- `stadium environment` supported by visible field, stands, path, structures, or signage
+- `coniferous trees`, `traffic cones`, `reflective water`, or `blue sky with clouds` when supported by the corresponding visible environment/object observations
 - `Pikachu pillow` supported by a character-representation record and host object
 - `Pikachu cameo` supported by a depicted-subject or character-representation record
 
@@ -168,6 +171,8 @@ Not allowed:
 - `majestic`
 - `confident`
 - `sexy`
+
+Evidence-only details are not standalone semantic facts. Labels such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` belong in `facial_evidence` or inside a semantic fact's `evidence` object. They may support a useful semantic label such as `smiling`, `sleeping`, `surprised`, or `cannot_determine`, but should not be stored as independent reusable facts.
 
 The semantic label must not contradict the evidence. `happy` cannot be supported only by a frown or a hidden face. `sleeping` cannot be supported by open eyes and running.
 
@@ -214,6 +219,8 @@ Search terms are judged by usefulness, not count. Do not pad redundant, generic,
 When the model records observations but omits the top-level search-term array, the agent may deterministically derive search terms from high- and medium-salience artwork observations. Derived search terms must still cite observation IDs and must exclude card UI / print-marker observations.
 
 Search terms supported only by card UI / print-marker observations are removed from the artwork search-term layer. Actual-material terms in object fields are normalized to appearance-only language, such as `metal-like appearance`, `wood-like appearance`, or `stone-like appearance`.
+
+Artwork search terms must also exclude physical print treatment and card UI/mechanics concepts even when the model misclassifies their supporting observation. Examples to remove or reject include `gold foil`, `foil`, `HP`, `attack text`, `weakness`, `resistance`, `retreat cost`, `collector number`, `rarity`, `set symbol`, `copyright`, `illustrator text`, `energy symbol`, and `type symbol`.
 
 Compound search terms such as `happy Pikachu`, `sleeping Pokemon`, `Pikachu pillow`, `forest background`, or `ten trees` are valid only when every component is backed by subjects, `semantic_visual_facts`, counts, depicted subjects, character representations, or other observation-backed graph facts. Standalone generic franchise labels remain non-useful search terms.
 

@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-07-17T20:30:40.484Z",
+  "algorithm": "sha256",
+  "files": [
+    {
+      "file": "eligible_cards.jsonl",
+      "sha256": "0e400baf79a548aaa04055e10c51a6cd7436bf6531ac3f0d6d98b06858cb5a2f",
+      "bytes": 3062
+    },
+    {
+      "file": "FACT_GRAPH_V2_REVIEW_PACKET.md",
+      "sha256": "ee7b60b504c650732d9e11852406dd89def7735e5b0e377a5c1482a6cf9df55d",
+      "bytes": 134550
+    },
+    {
+      "file": "generated_outputs.jsonl",
+      "sha256": "41714f83817d86b47509c2aea33ce3b9e058081307dcea9f9c91db6c5441251c",
+      "bytes": 84379
+    },
+    {
+      "file": "review_sample.jsonl",
+      "sha256": "41714f83817d86b47509c2aea33ce3b9e058081307dcea9f9c91db6c5441251c",
+      "bytes": 84379
+    },
+    {
+      "file": "run_plan.json",
+      "sha256": "19ee748755aba3c0650bbcedb208e8cc5a9a14f522686f2422995390b06f73aa",
+      "bytes": 2633
+    },
+    {
+      "file": "skipped_images.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "summary.json",
+      "sha256": "9ddd27af423cf061ab7683de72a28ea10fca7860ff48f688eca991fdfae27560",
+      "bytes": 3952
+    },
+    {
+      "file": "v2_stress_selection.json",
+      "sha256": "dff6a87a6302c0d52d01fde7be3bc70e5b9c1e6b218d014da410dc358e906967",
+      "bytes": 2384
+    },
+    {
+      "file": "validation_failures.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}
