@@ -23,10 +23,49 @@ The graph must preserve `observations` as the raw evidence backbone.
 V2 adds:
 
 - `typed_facts`: traceable claims with `fact_id`, `module`, `field_path`, `claim`, `value`, `supporting_observation_ids`, `confidence`, and `evidence_strength`.
-- `modules`: structured facts for subjects, human appearance, creature anatomy, clothing, objects and props, environment, composition, color and light, visual effects, counts, relationships, surface and scan cues, uncertainty, and search terms.
+- `modules`: structured facts for subjects, human appearance, creature anatomy, clothing, objects and props, environment, composition, color and light, visual effects, card UI and print markers, counts, relationships, surface and scan cues, uncertainty, and search terms.
 - `module_reviews`: one completeness review per required module.
 
 Every meaningful typed fact must cite valid observation IDs.
+
+## Card UI And Print Markers
+
+Visible printed card interface evidence is preserved because it can distinguish exact printings, corrected/error cards, promo releases, copyright-line differences, stamp differences, logo differences, and other subtle identity markers.
+
+The governing distinction is:
+
+- Canonical database: authoritative expected identity and metadata.
+- Visible card UI / print markers: image-derived evidence that may support, refine, or conflict with canonical identity.
+- Artwork fact graph: observable visual content inside the illustrated artwork.
+
+`card_ui_and_print_markers` is the required module for printed information outside the illustrated artwork area, including:
+
+- card name text
+- HP text
+- collector number
+- set symbol
+- rarity mark
+- copyright line
+- bottom legal text
+- illustrator text
+- promo stamps
+- WB Kids logos or wording
+- other logos
+- energy/type symbols
+- regulation marks
+- edition markers
+- visible error or correction markers
+- language-specific print text
+
+These facts must use card UI observation kinds such as `card_ui_text`, `card_ui_symbol`, `print_marker`, `promo_stamp`, `copyright_text`, `collector_number`, `rarity_mark`, `set_symbol`, `regulation_mark`, `illustrator_text`, `bottom_line_text`, `logo`, `error_marker`, `card_name_text`, or `hp_text`.
+
+Card UI facts must not be stored under `human_appearance`, `creature_anatomy`, `clothing`, `objects_and_props`, `environment`, `composition`, `color_and_light`, or `visual_effects`.
+
+Visible text inside the illustrated scene, such as a street sign, book, poster, screen, or in-scene logo, remains artwork-scene evidence and is not automatically card UI.
+
+Card UI text must not be copied from canonical metadata unless it is visibly supported by the image. If small text cannot be read reliably, the graph must abstain explicitly rather than invent OCR text.
+
+General artwork search terms must not automatically include OCR text, card names, HP values, collector numbers, copyright lines, promo marks, stamps, or logos. Those stay in `card_ui_and_print_markers` until a future identity-resolution or search layer intentionally exposes them.
 
 ## Module Reviews
 

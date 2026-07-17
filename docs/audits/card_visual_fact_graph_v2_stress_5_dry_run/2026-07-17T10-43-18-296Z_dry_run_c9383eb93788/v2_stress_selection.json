@@ -1,0 +1,72 @@
+{
+  "selection_version": "CARD_VISUAL_FACT_GRAPH_V2_STRESS_SELECTION_V1",
+  "excluded_prior_fact_graph_v1_card_print_ids": [
+    "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+    "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+    "00c2e4db-c4fb-4d8a-aa86-72f355fa8873",
+    "45bba21a-4eb5-5217-b13c-5e4bce8ac761"
+  ],
+  "selected_count": 5,
+  "selected_cards": [
+    {
+      "card_print_id": "5b25c54c-58b1-5c31-a001-3eb3c449aa27",
+      "gv_id": "GV-PK-JPN-M5-118",
+      "name": "Mega Darkrai ex",
+      "prompt_branch": "pokemon",
+      "v2_stress_role": "dense_pokemon_artwork",
+      "v2_stress_reason": "Dense Pokemon artwork stress: complex creature anatomy, body components, effects, and difficult background.",
+      "image_source": "identity",
+      "image_status": "ok",
+      "excluded_prior_fact_graph_v1_cards": true,
+      "selection_score": 1105
+    },
+    {
+      "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+      "gv_id": "GV-PK-JPN-M5-108",
+      "name": "Misty's Vitality",
+      "prompt_branch": "trainer",
+      "v2_stress_role": "trainer_person_artwork",
+      "v2_stress_reason": "Trainer/person stress: human appearance, clothing, hair, body regions, accessories, gesture, and background.",
+      "image_source": "identity",
+      "image_status": "ok",
+      "excluded_prior_fact_graph_v1_cards": true,
+      "selection_score": 1105
+    },
+    {
+      "card_print_id": "176bc21e-6873-412c-a681-065057c4a48b",
+      "gv_id": "GV-PK-JPN-S6A-100",
+      "name": "Turffield Stadium",
+      "prompt_branch": "stadium",
+      "v2_stress_role": "environment_heavy_stadium",
+      "v2_stress_reason": "Environment-heavy Stadium stress: trees, buildings, sky, weather cues when visible, terrain, and counts.",
+      "image_source": "identity",
+      "image_status": "exact",
+      "excluded_prior_fact_graph_v1_cards": true,
+      "selection_score": 1105
+    },
+    {
+      "card_print_id": "07bc6a24-360b-4f6b-9262-924effa6239f",
+      "gv_id": "GV-PK-JPN-L1BSS-070",
+      "name": "Rainbow Energy",
+      "prompt_branch": "energy",
+      "v2_stress_role": "abstract_energy",
+      "v2_stress_reason": "Abstract Energy stress: symbols, gradients, repeated shapes, lighting, and no living subjects unless visibly present.",
+      "image_source": "identity",
+      "image_status": "exact",
+      "excluded_prior_fact_graph_v1_cards": true,
+      "selection_score": 1105
+    },
+    {
+      "card_print_id": "80fa4e58-348a-5506-81b4-37eae70c50c9",
+      "gv_id": "GV-PK-JPN-M5-105",
+      "name": "Dark Bell",
+      "prompt_branch": "item_tool_supporter",
+      "v2_stress_role": "object_heavy_item",
+      "v2_stress_reason": "Object-heavy Item stress: object parts, colors, shape, material appearance only, and visual effects.",
+      "image_source": "identity",
+      "image_status": "ok",
+      "excluded_prior_fact_graph_v1_cards": true,
+      "selection_score": 1105
+    }
+  ]
+}

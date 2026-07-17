@@ -1,0 +1,125 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4.1-mini",
+  "response_model_version": "gpt-4.1-mini-2025-04-14",
+  "response_model_versions": [
+    "gpt-4.1-mini-2025-04-14"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+  "sample_strategy": "v2_stress_sample",
+  "branch_targets": null,
+  "branch_candidate_limit": 5000,
+  "v2_stress_sample": true,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": 0.4,
+    "output_per_million": 1.6,
+    "cached_input_per_million": 0.1,
+    "image_cost_rule_version": "official-openai-pricing-gpt-4.1-mini-2026-07-17",
+    "recorded_at": "2026-07-17T10:43:18.296Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-17T10:43:18.296Z",
+  "finished_at": "2026-07-17T10:47:25.235Z",
+  "eligible_count": 5,
+  "total_eligible_catalog_count": 53227,
+  "attempted_count": 5,
+  "validated_count": 5,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "needs_review_count": 5,
+  "pending_count": 0,
+  "branch_counts": {
+    "energy": 1,
+    "item_tool_supporter": 1,
+    "pokemon": 1,
+    "stadium": 1,
+    "trainer": 1
+  },
+  "usage": {
+    "request_count": 5,
+    "retry_count": 0,
+    "input_tokens": 39523,
+    "output_tokens": 18298,
+    "total_tokens": 57821,
+    "cached_input_tokens": 7296,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.0428972
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1,
+    "retry_count": 0,
+    "input_tokens": 7904.6,
+    "output_tokens": 3659.6,
+    "total_tokens": 11564.2,
+    "cached_input_tokens": 1459.2,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.00857944
+  },
+  "estimated_cost_usd": 0.0428972,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.00857944,
+    "projected_500_cards_usd": 4.28972,
+    "projected_1000_cards_usd": 8.57944,
+    "full_eligible_catalog_count": 53227,
+    "projected_full_eligible_catalog_usd": 456.65785288
+  },
+  "ceiling": {
+    "max_cards": 5,
+    "max_run_cost_usd": 0.1,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "potential_abstract_shape_literalization": 1,
+    "potential_actual_material_claim_without_visual_evidence": 1,
+    "potential_canonical_metadata_in_fact_grounded_search_terms": 1,
+    "potential_canonical_metadata_in_visual_output": 2,
+    "potential_metadata_or_identity_language": 2,
+    "potential_module_fact_reference_missing": 1,
+    "potential_module_incomplete_or_low_evidence": 3,
+    "potential_pose_or_action_without_visible_support": 1
+  },
+  "quality_flag_counts_by_branch": {
+    "energy": {
+      "potential_abstract_shape_literalization": 1
+    },
+    "item_tool_supporter": {
+      "potential_canonical_metadata_in_fact_grounded_search_terms": 1,
+      "potential_canonical_metadata_in_visual_output": 1,
+      "potential_metadata_or_identity_language": 1
+    },
+    "pokemon": {
+      "potential_canonical_metadata_in_visual_output": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_module_incomplete_or_low_evidence": 1
+    },
+    "stadium": {
+      "potential_actual_material_claim_without_visual_evidence": 1,
+      "potential_module_fact_reference_missing": 1,
+      "potential_module_incomplete_or_low_evidence": 1
+    },
+    "trainer": {
+      "potential_module_incomplete_or_low_evidence": 1,
+      "potential_pose_or_action_without_visible_support": 1
+    }
+  },
+  "policy_rule_counts": {
+    "energy_abstract_literalization_requires_structured_entity_evidence": 1
+  },
+  "policy_rule_counts_by_branch": {
+    "energy": {
+      "energy_abstract_literalization_requires_structured_entity_evidence": 1
+    },
+    "item_tool_supporter": {},
+    "pokemon": {},
+    "stadium": {},
+    "trainer": {}
+  }
+}

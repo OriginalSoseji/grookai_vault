@@ -167,11 +167,41 @@ const FACT_GRAPH_MODULE_NAMES = Object.freeze([
   "composition",
   "color_and_light",
   "visual_effects",
+  "card_ui_and_print_markers",
   "counts",
   "relationships",
   "surface_and_scan_cues",
   "uncertainty_and_abstentions",
   "fact_grounded_search_terms",
+]);
+const CARD_UI_AND_PRINT_MARKERS_MODULE = "card_ui_and_print_markers";
+const CARD_UI_PRINT_MARKER_OBSERVATION_KIND_PATTERN =
+  /\b(?:card_ui_text|card_ui_symbol|print_marker|promo_stamp|copyright_text|collector_number|rarity_mark|set_symbol|regulation_mark|illustrator_text|bottom_line_text|logo|error_marker|edition_marker|card_name_text|hp_text|attack_label|ability_label)\b/i;
+const CARD_UI_PRINT_MARKER_FIELDS = Object.freeze([
+  "name_text_observation_ids",
+  "hp_text_observation_ids",
+  "collector_number_observation_ids",
+  "set_symbol_observation_ids",
+  "rarity_mark_observation_ids",
+  "copyright_line_observation_ids",
+  "bottom_line_text_observation_ids",
+  "promo_stamp_observation_ids",
+  "logo_observation_ids",
+  "energy_symbol_observation_ids",
+  "regulation_mark_observation_ids",
+  "illustrator_text_observation_ids",
+  "error_marker_observation_ids",
+  "other_print_marker_observation_ids",
+]);
+const CARD_UI_PROHIBITED_ARTWORK_MODULES = new Set([
+  "human_appearance",
+  "creature_anatomy",
+  "clothing",
+  "objects_and_props",
+  "environment",
+  "composition",
+  "color_and_light",
+  "visual_effects",
 ]);
 const FACT_GRAPH_MODULE_REVIEW_STATUSES = new Set([
   "complete",
@@ -583,10 +613,46 @@ function flattenFactGraphText(value) {
   return normalizeText(parts.join(" "));
 }
 
+function isCardUiPrintMarkerObservation(observation) {
+  const kind = normalizeText(observation?.kind);
+  if (CARD_UI_PRINT_MARKER_OBSERVATION_KIND_PATTERN.test(kind)) return true;
+  const id = normalizeText(observation?.observation_id);
+  if (/^obs_(?:ui|card_ui|print_marker|copyright|promo|logo|collector|rarity|regulation|illustrator|bottom_line|hp_text|name_text)_/i.test(id)) {
+    return true;
+  }
+  return false;
+}
+
+function cardUiObservationIdSet(factGraph) {
+  return new Set((factGraph?.observations ?? [])
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
+}
+
+function factGraphForArtworkLanguageReview(factGraph) {
+  if (!factGraph || typeof factGraph !== "object" || Array.isArray(factGraph)) return factGraph;
+  const uiObservationIds = cardUiObservationIdSet(factGraph);
+  const referencesUiObservation = (ids) => normalizeObservationReferenceArray(ids).some((id) => uiObservationIds.has(id));
+  const modules = normalizeObject(factGraph.modules);
+  const filteredModules = { ...modules };
+  delete filteredModules[CARD_UI_AND_PRINT_MARKERS_MODULE];
+  return {
+    ...factGraph,
+    observations: (factGraph.observations ?? []).filter((observation) => !uiObservationIds.has(normalizeText(observation.observation_id))),
+    typed_facts: (factGraph.typed_facts ?? []).filter((fact) =>
+      normalizeText(fact.module) !== CARD_UI_AND_PRINT_MARKERS_MODULE
+      && !referencesUiObservation(fact.supporting_observation_ids)),
+    modules: filteredModules,
+    module_reviews: (factGraph.module_reviews ?? []).filter((review) => normalizeText(review.module) !== CARD_UI_AND_PRINT_MARKERS_MODULE),
+  };
+}
+
 function textFieldsForVisualLanguageReview(payload) {
   const attributes = payload?.visual_attributes ?? {};
   const subjects = attributes.subjects ?? {};
   const environment = attributes.environment ?? {};
+  const artworkFactGraph = factGraphForArtworkLanguageReview(attributes.fact_graph);
   return [
     ["artwork_description", payload?.artwork_description],
     ["card_surface_and_printing_cues", payload?.card_surface_and_printing_cues],
@@ -595,7 +661,7 @@ function textFieldsForVisualLanguageReview(payload) {
     ["visual_attributes.environment.setting", normalizeStringArray(environment.setting).join(" ")],
     ["visual_attributes.mood", normalizeStringArray(attributes.mood).join(" ")],
     ["visual_attributes.distinguishing_details", normalizeStringArray(attributes.distinguishing_details).join(" ")],
-    ["visual_attributes.fact_graph", flattenFactGraphText(attributes.fact_graph)],
+    ["visual_attributes.fact_graph", flattenFactGraphText(artworkFactGraph)],
     ["semantic_tags", normalizeStringArray(payload?.semantic_tags).join(" ")],
   ].map(([field, text]) => ({ field, text: normalizeText(text) })).filter((entry) => entry.text);
 }
@@ -1258,6 +1324,7 @@ function addFactGraphSupportAndMetadataFlagDetails(details, payload, card = {}, 
   if (!factGraph || typeof factGraph !== "object") return;
 
   const knownIds = observationIdSet(factGraph);
+  const uiObservationIds = cardUiObservationIdSet(factGraph);
   const visualDesign = factGraph.visual_design ?? {};
   const designClaimFields = [
     "palette",
@@ -1288,6 +1355,15 @@ function addFactGraphSupportAndMetadataFlagDetails(details, payload, card = {}, 
   for (const term of factGraph.fact_grounded_search_terms ?? []) {
     const termText = normalizeText(term.term);
     const termKey = tagKey(termText);
+    const supportIds = normalizeObservationReferenceArray(term.supporting_observation_ids);
+    if (supportIds.length > 0 && supportIds.every((id) => uiObservationIds.has(id))) {
+      details.push({
+        flag: "potential_card_ui_text_in_artwork_search_terms",
+        field: "visual_attributes.fact_graph.fact_grounded_search_terms.term",
+        matched_text: termText,
+        policy_rule: "card_ui_terms_stay_in_print_marker_module_not_artwork_search_terms",
+      });
+    }
     if (promptBranch !== "pokemon" && cardNameKey && termKey === cardNameKey) {
       details.push({
         flag: "potential_canonical_metadata_in_fact_grounded_search_terms",
@@ -1801,7 +1877,7 @@ function normalizeTypedFacts(value) {
   return normalizeObjectArray(value).map((entry) => ({
     fact_id: normalizeText(entry.fact_id),
     module: normalizeText(entry.module),
-    field_path: normalizeText(entry.field_path),
+    field_path: normalizeText(entry.field_path) || (normalizeText(entry.module) ? `${normalizeText(entry.module)}.unspecified` : ""),
     claim: normalizeText(entry.claim),
     value: normalizeText(entry.value),
     supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
@@ -2006,6 +2082,28 @@ function normalizeCountsModule(value) {
   };
 }
 
+function normalizeCardUiAndPrintMarkersModule(value) {
+  const module = normalizeObject(value);
+  return {
+    ...normalizeModuleFactIds(module),
+    ...Object.fromEntries(CARD_UI_PRINT_MARKER_FIELDS.map((field) => [
+      field,
+      normalizeObservationReferenceArray(module[field]),
+    ])),
+  };
+}
+
+function filterCardUiAndPrintMarkersModuleToKnownObservations(module, knownIds) {
+  const normalized = normalizeCardUiAndPrintMarkersModule(module);
+  return {
+    ...normalized,
+    ...Object.fromEntries(CARD_UI_PRINT_MARKER_FIELDS.map((field) => [
+      field,
+      normalizeObservationReferenceArray(normalized[field]).filter((id) => knownIds.has(id)),
+    ])),
+  };
+}
+
 function normalizeVisibleBodyRegions(value) {
   return normalizeObjectArray(value).map((entry) => ({
     subject_observation_id: normalizeText(entry.subject_observation_id),
@@ -2078,8 +2176,12 @@ function normalizePoseOrientationRows(value) {
   }));
 }
 
-function normalizeFactGraphModules(value) {
+function normalizeFactGraphModules(value, knownObservationIds = null) {
   const modules = normalizeObject(value);
+  const knownIds = knownObservationIds instanceof Set ? knownObservationIds : null;
+  const cardUiModule = knownIds
+    ? filterCardUiAndPrintMarkersModuleToKnownObservations(modules.card_ui_and_print_markers, knownIds)
+    : normalizeCardUiAndPrintMarkersModule(modules.card_ui_and_print_markers);
   return {
     subjects: {
       ...normalizeModuleFactIds(modules.subjects),
@@ -2127,6 +2229,7 @@ function normalizeFactGraphModules(value) {
       ...normalizeModuleFactIds(modules.visual_effects),
       observation_ids: normalizeObservationReferenceArray(modules.visual_effects?.observation_ids),
     },
+    card_ui_and_print_markers: cardUiModule,
     counts: {
       ...normalizeCountsModule(modules.counts),
     },
@@ -2166,8 +2269,10 @@ function normalizeModuleReviews(value) {
 function normalizeFactGraphV1(value) {
   const graph = normalizeObject(value);
   const counts = normalizeFactGraphCounts(graph.counts);
+  const observations = normalizeFactGraphObservations(graph.observations);
+  const knownObservationIds = new Set(observations.map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
   return {
-    observations: normalizeFactGraphObservations(graph.observations),
+    observations,
     typed_facts: normalizeTypedFacts(graph.typed_facts),
     subjects: normalizeFactGraphSubjects(graph.subjects),
     depicted_subjects: normalizeDepictedSubjects(graph.depicted_subjects),
@@ -2180,7 +2285,7 @@ function normalizeFactGraphV1(value) {
     visual_design: normalizeVisualDesign(graph.visual_design),
     surface_and_scan_cues: normalizeSurfaceAndScanCues(graph.surface_and_scan_cues),
     coverage_reviews: normalizeCoverageReviews(graph.coverage_reviews),
-    modules: normalizeFactGraphModules(graph.modules),
+    modules: normalizeFactGraphModules(graph.modules, knownObservationIds),
     module_reviews: normalizeModuleReviews(graph.module_reviews),
     uncertainty_and_abstentions: normalizeUncertaintyAndAbstentions(graph.uncertainty_and_abstentions),
     fact_grounded_search_terms: normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts),
@@ -3326,6 +3431,36 @@ function addModuleObservationReferenceFindings(findings, value, knownIds, pathPr
   visit(value, [pathPrefix]);
 }
 
+function collectModuleObservationReferences(value) {
+  const references = [];
+  const visit = (node) => {
+    if (node === null || node === undefined) return;
+    if (Array.isArray(node)) {
+      for (const item of node) visit(item);
+      return;
+    }
+    if (typeof node !== "object") return;
+    for (const [key, child] of Object.entries(node)) {
+      if (
+        key === "supporting_observation_ids"
+        || key === "affected_observation_ids"
+        || key.endsWith("_observation_ids")
+      ) {
+        references.push(...normalizeObservationReferenceArray(child));
+        continue;
+      }
+      if (key === "observation_id" || key.endsWith("_observation_id")) {
+        const id = normalizeText(child);
+        if (id) references.push(id);
+        continue;
+      }
+      visit(child);
+    }
+  };
+  visit(value);
+  return uniquePreserving(references);
+}
+
 function sectionCoveredOrObserved(factGraph, key, rows) {
   if (Array.isArray(rows) && rows.length > 0) return true;
   return FACT_GRAPH_COVERAGE_REVIEW_STATUSES.has(reviewStatusForCoverage(factGraph, key));
@@ -3354,6 +3489,7 @@ export function buildFactGraphCompatibilityDigestV1(factGraph) {
   const representations = factGraph?.character_representations ?? [];
   const counts = factGraph?.counts ?? [];
   const highSalience = observations
+    .filter((observation) => !isCardUiPrintMarkerObservation(observation))
     .filter((observation) => ["high", "medium"].includes(normalizeText(observation.salience).toLowerCase()))
     .slice(0, 8)
     .map((observation) => observation.label || observation.normalized_label)
@@ -3481,6 +3617,59 @@ function validateFactGraphModulesV2(factGraph, knownIds) {
     if (!knownModuleNames.has(moduleName)) findings.push(`fact_graph_module_unknown:${moduleName}`);
   }
   addModuleObservationReferenceFindings(findings, modules, knownIds);
+
+  const uiObservationIds = cardUiObservationIdSet(factGraph);
+  const uiModuleFactIds = new Set(normalizeFactIdArray(modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE]?.fact_ids));
+  for (const fact of factGraph.typed_facts ?? []) {
+    const factId = normalizeText(fact.fact_id);
+    const moduleName = normalizeText(fact.module);
+    const supportsUiObservation = normalizeObservationReferenceArray(fact.supporting_observation_ids)
+      .some((id) => uiObservationIds.has(id));
+    if (moduleName === CARD_UI_AND_PRINT_MARKERS_MODULE && factId && !uiModuleFactIds.has(factId)) {
+      findings.push(`fact_graph_card_ui_fact_missing_from_module:${factId}`);
+    }
+    if (supportsUiObservation && CARD_UI_PROHIBITED_ARTWORK_MODULES.has(moduleName)) {
+      findings.push(`fact_graph_card_ui_observation_in_artwork_module:${moduleName}:${factId || "unknown"}`);
+    }
+  }
+
+  for (const moduleName of CARD_UI_PROHIBITED_ARTWORK_MODULES) {
+    const referencedUiIds = collectModuleObservationReferences(modules?.[moduleName])
+      .filter((id) => uiObservationIds.has(id));
+    for (const id of referencedUiIds) {
+      findings.push(`fact_graph_card_ui_observation_in_artwork_module:${moduleName}:${id}`);
+    }
+  }
+
+  for (const object of factGraph.objects_and_props ?? []) {
+    const observationId = normalizeText(object.observation_id);
+    if (uiObservationIds.has(observationId)) {
+      findings.push(`fact_graph_card_ui_observation_in_artwork_module:objects_and_props:${observationId}`);
+    }
+  }
+
+  const uiReview = moduleReviewByName(factGraph).get(CARD_UI_AND_PRINT_MARKERS_MODULE);
+  const unreadableUiObservations = (factGraph.observations ?? []).filter((observation) => {
+    const id = normalizeText(observation.observation_id);
+    if (!uiObservationIds.has(id)) return false;
+    const text = normalizeText([
+      observation.label,
+      observation.normalized_label,
+      observation.visibility,
+      observation.evidence_strength,
+    ].filter(Boolean).join(" "));
+    return /\b(unreadable|illegible|too small|cannot_determine|low_resolution|blurred|glare)\b/i.test(text);
+  });
+  if (unreadableUiObservations.length > 0) {
+    const hasUiAbstention = (uiReview?.abstentions ?? []).some((entry) =>
+      normalizeText(entry.field_path).startsWith(CARD_UI_AND_PRINT_MARKERS_MODULE)
+      && normalizeText(entry.reason));
+    if (!hasUiAbstention) {
+      for (const observation of unreadableUiObservations) {
+        findings.push(`fact_graph_unreadable_card_ui_missing_abstention:${observation.observation_id || "unknown"}`);
+      }
+    }
+  }
   return findings;
 }
 
@@ -3895,6 +4084,13 @@ function buildPrompt(card) {
     "The fact graph must be sufficient for another system to write prose later, but it must not contain story.",
     "Use canonical card-type metadata only for branch selection and expected-subject checking. It is not visual evidence.",
     "Do NOT use lore, flavor text, attacks, Pokedex entries, card mechanics, rarity, market data, or set metadata as visual evidence.",
+    "Inspect both the illustrated artwork and the printed card interface. Artwork facts and card UI facts are separate knowledge layers.",
+    "Canonical database metadata is authoritative expected identity. Visible card UI and print markers are image-derived evidence that may support, refine, or conflict with canonical identity. Artwork fact graph modules describe visual content inside the illustrated artwork.",
+    "Record visible card UI and print markers when they may help identify the exact printing, including card name text, HP text, collector numbers, set symbols, rarity marks, copyright lines, bottom legal text, illustrator text, promo stamps, WB Kids logos or wording, regulation marks, edition markers, language-specific print text, visible error or correction markers, and other small printed differences.",
+    "Use card_ui_and_print_markers for printed card interface facts outside the illustrated artwork area. Do not put those facts in human_appearance, creature_anatomy, clothing, objects_and_props, environment, composition, color_and_light, or visual_effects.",
+    "Do not copy canonical metadata into the output unless it is visibly supported by the image. If visible UI duplicates canonical metadata, record it as image-derived card UI evidence, not as artwork.",
+    "If small print cannot be read reliably, do not invent OCR text. Record an unreadable or partially readable observation and add an explicit card_ui_and_print_markers abstention.",
+    "Visible text inside the illustrated scene, such as a street sign, book, poster, screen, or in-scene logo, remains artwork-scene evidence and should not be automatically classified as card UI.",
     "Capture all useful visible facts, not only the main subject.",
     "Every meaningful visible fact must appear as an atomic observation with an observation_id.",
     "Every reusable claim must also appear in typed_facts with fact_id, module, field_path, claim, value, supporting_observation_ids, confidence, and evidence_strength.",
@@ -3950,6 +4146,7 @@ function buildPrompt(card) {
     "Every visible salient object in objects_and_props must have a count_reference that points to a real count_id. Do not use count_reference: not_visible for a visible object.",
     "Flames, lightning, sky, background, symbols, gradients, color fields, trees, bombs, bells, badges, tools, and abstract effects are not scene_subjects. Record them as observations, objects_and_props, environment, visual_design, counts, or relationships as appropriate.",
     "Every card must include at least three fact_grounded_search_terms. Multiple useful terms may cite the same observation_id when a simple card has only one or two visible observations.",
+    "Do not automatically add OCR text, card name text, HP, collector numbers, copyright lines, promo marks, stamps, or logos to fact_grounded_search_terms. Card UI terms remain in card_ui_and_print_markers until a future identity-resolution or search layer intentionally exposes them.",
     "scene_layers arrays must contain observation_id strings only, never labels such as tree, sky, or Pikachu.",
     "environment.supporting_observation_ids, visual_design.supporting_observation_ids, relationships, counts, uncertainty, and search terms must cite observation_id values only.",
     "If any environment field is populated, environment.supporting_observation_ids must cite the observations that prove it. If any visual_design field is populated or visual_design_review is observed, visual_design.supporting_observation_ids must not be empty and must cite the observations that prove palette, lighting, composition, framing, motifs, repeated shapes, or motion cues.",
@@ -3964,7 +4161,12 @@ function buildPrompt(card) {
     "Each fact_grounded_search_terms entry must include at least one supporting observation_id.",
     "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, or unsupported lore in search terms.",
     "coverage_reviews must include all required review keys. Use observed when the category has entries; otherwise use none_visible, not_applicable, cannot_determine_due_to_low_resolution, cannot_determine_due_to_crop, cannot_determine_due_to_glare, or uncertain.",
-    "module_reviews must include all required module names: subjects, human_appearance, creature_anatomy, clothing, objects_and_props, environment, composition, color_and_light, visual_effects, counts, relationships, surface_and_scan_cues, uncertainty_and_abstentions, fact_grounded_search_terms.",
+    "card_ui_and_print_markers must include fact_ids plus observation-id arrays for name_text, hp_text, collector_number, set_symbol, rarity_mark, copyright_line, bottom_line_text, promo_stamp, logo, energy_symbol, regulation_mark, illustrator_text, error_marker, and other_print_marker evidence.",
+    "Every observation ID listed in card_ui_and_print_markers must also exist as a full observation object in observations. Never place a placeholder ID such as obs_hp_001 or obs_copyright_001 into the UI module unless that exact observation_id exists in observations.",
+    "If a printed UI field is visible but unreadable, create an observation for the visible-but-unreadable print area, reference it from the correct card_ui_and_print_markers field, and add a module_reviews abstention. If the print area cannot be located at all, leave the field array empty and add an abstention without inventing an observation ID.",
+    "If a card UI typed fact cites an observation ID, that exact observation must exist in observations and the fact_id must be listed in card_ui_and_print_markers.fact_ids.",
+    "Use card UI observation kinds such as card_ui_text, card_ui_symbol, print_marker, promo_stamp, copyright_text, collector_number, rarity_mark, set_symbol, regulation_mark, illustrator_text, bottom_line_text, logo, error_marker, card_name_text, or hp_text. Do not force UI observations into generic artwork object kinds.",
+    "module_reviews must include all required module names: subjects, human_appearance, creature_anatomy, clothing, objects_and_props, environment, composition, color_and_light, visual_effects, card_ui_and_print_markers, counts, relationships, surface_and_scan_cues, uncertainty_and_abstentions, fact_grounded_search_terms.",
     "quality_flags must contain only problems requiring review, such as low_resolution, blurred_image, cropped_subject, uncertain_subject, unsupported_format, or visible_text_uncertain. If there is no problem, return an empty array.",
     "Return JSON only using the requested schema.",
     "",
@@ -4597,6 +4799,15 @@ function outputJsonSchema() {
                       observation_ids: observationIdArraySchema,
                     },
                   },
+                  card_ui_and_print_markers: {
+                    type: "object",
+                    additionalProperties: false,
+                    required: ["fact_ids", ...CARD_UI_PRINT_MARKER_FIELDS],
+                    properties: {
+                      ...moduleFactIdBaseProperties,
+                      ...Object.fromEntries(CARD_UI_PRINT_MARKER_FIELDS.map((field) => [field, observationIdArraySchema])),
+                    },
+                  },
                   counts: {
                     type: "object",
                     additionalProperties: false,
@@ -4876,6 +5087,23 @@ function fixtureDescription(card) {
       visual_effects: {
         fact_ids: [],
         observation_ids: [],
+      },
+      card_ui_and_print_markers: {
+        fact_ids: [],
+        name_text_observation_ids: [],
+        hp_text_observation_ids: [],
+        collector_number_observation_ids: [],
+        set_symbol_observation_ids: [],
+        rarity_mark_observation_ids: [],
+        copyright_line_observation_ids: [],
+        bottom_line_text_observation_ids: [],
+        promo_stamp_observation_ids: [],
+        logo_observation_ids: [],
+        energy_symbol_observation_ids: [],
+        regulation_mark_observation_ids: [],
+        illustrator_text_observation_ids: [],
+        error_marker_observation_ids: [],
+        other_print_marker_observation_ids: [],
       },
       counts: {
         fact_ids: [],
@@ -5442,7 +5670,18 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
     const typedFacts = factGraph.typed_facts ?? [];
     const moduleReviews = factGraph.module_reviews ?? [];
     const counts = factGraph.counts ?? [];
+    const relationships = factGraph.relationships ?? [];
+    const uncertainties = factGraph.uncertainty_and_abstentions ?? [];
     const searchTerms = factGraph.fact_grounded_search_terms ?? [];
+    const uiObservationIds = cardUiObservationIdSet(factGraph);
+    const artworkObservations = observations.filter((observation) => !uiObservationIds.has(normalizeText(observation.observation_id)));
+    const cardUiObservations = observations.filter((observation) => uiObservationIds.has(normalizeText(observation.observation_id)));
+    const artworkTypedFacts = typedFacts.filter((fact) => normalizeText(fact.module) !== CARD_UI_AND_PRINT_MARKERS_MODULE);
+    const cardUiTypedFacts = typedFacts.filter((fact) => normalizeText(fact.module) === CARD_UI_AND_PRINT_MARKERS_MODULE);
+    const cardUiModule = factGraph.modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE] ?? {};
+    const cardUiObservationCount = CARD_UI_PRINT_MARKER_FIELDS
+      .map((field) => normalizeObservationReferenceArray(cardUiModule[field]).length)
+      .reduce((sum, count) => sum + count, 0);
     lines.push(`### ${row.gv_id || row.card_print_id} - ${row.name || "unknown"}`);
     lines.push("");
     lines.push(`- Branch: \`${row.prompt_branch || "unknown"}\``);
@@ -5451,15 +5690,58 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
     lines.push(`- Description confidence: \`${row.description_confidence}\``);
     lines.push(`- Attribute confidence: \`${row.attribute_confidence}\``);
     lines.push(`- Cost USD: \`${row.estimated_cost_usd}\``);
+    lines.push(`- Artwork observations: \`${artworkObservations.length}\``);
+    lines.push(`- Card UI / print-marker observations: \`${cardUiObservations.length}\``);
+    lines.push(`- Card UI module evidence references: \`${cardUiObservationCount}\``);
     lines.push(`- Derived digest: ${row.artwork_description}`);
     lines.push(`- Surface/scan digest: ${row.card_surface_and_printing_cues}`);
     lines.push("");
+    lines.push("#### Artwork Observations");
+    lines.push("");
     lines.push("| Observation | Kind | Layer | Salience | Confidence |");
     lines.push("|---|---|---|---|---:|");
-    for (const observation of observations.slice(0, 30)) {
+    for (const observation of artworkObservations.slice(0, 30)) {
       lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.scene_layer)} | ${markdownEscape(observation.salience)} | ${observation.confidence} |`);
     }
-    if (observations.length > 30) lines.push(`| ...${observations.length - 30} more observations | | | | |`);
+    if (artworkObservations.length > 30) lines.push(`| ...${artworkObservations.length - 30} more artwork observations | | | | |`);
+    lines.push("");
+    lines.push("#### Card UI And Print-Marker Observations");
+    lines.push("");
+    lines.push("| Observation | Kind | Frame position | Visibility | Confidence |");
+    lines.push("|---|---|---|---|---:|");
+    for (const observation of cardUiObservations.slice(0, 30)) {
+      lines.push(`| ${markdownEscape(observation.label || observation.normalized_label)} | ${markdownEscape(observation.kind)} | ${markdownEscape(observation.frame_position)} | ${markdownEscape(observation.visibility)} | ${observation.confidence} |`);
+    }
+    if (cardUiObservations.length > 30) lines.push(`| ...${cardUiObservations.length - 30} more card UI observations | | | | |`);
+    if (cardUiObservations.length === 0) lines.push("| none recorded | | | | |");
+    lines.push("");
+    lines.push("#### Typed Artwork Modules");
+    lines.push("");
+    lines.push("| Typed fact | Module | Claim | Support | Confidence |");
+    lines.push("|---|---|---|---|---:|");
+    for (const fact of artworkTypedFacts.slice(0, 40)) {
+      lines.push(`| ${markdownEscape(fact.fact_id)} | ${markdownEscape(fact.module)} | ${markdownEscape(fact.claim || fact.value)} | ${markdownEscape((fact.supporting_observation_ids ?? []).join(", "))} | ${fact.confidence} |`);
+    }
+    if (artworkTypedFacts.length > 40) lines.push(`| ...${artworkTypedFacts.length - 40} more artwork typed facts | | | | |`);
+    lines.push("");
+    lines.push("#### Card UI And Print-Marker Module");
+    lines.push("");
+    lines.push("| Typed fact | Claim | Support | Confidence |");
+    lines.push("|---|---|---|---:|");
+    for (const fact of cardUiTypedFacts) {
+      lines.push(`| ${markdownEscape(fact.fact_id)} | ${markdownEscape(fact.claim || fact.value)} | ${markdownEscape((fact.supporting_observation_ids ?? []).join(", "))} | ${fact.confidence} |`);
+    }
+    if (cardUiTypedFacts.length === 0) lines.push("| none recorded | | | |");
+    lines.push("");
+    lines.push("<details><summary>Card UI module JSON</summary>");
+    lines.push("");
+    lines.push("```json");
+    lines.push(JSON.stringify(cardUiModule, null, 2));
+    lines.push("```");
+    lines.push("");
+    lines.push("</details>");
+    lines.push("");
+    lines.push("#### Module Completeness Reviews");
     lines.push("");
     lines.push("| Module | Status | Omission risk | Evidence quality | Abstentions |");
     lines.push("|---|---|---|---|---|");
@@ -5467,12 +5749,7 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
       lines.push(`| ${markdownEscape(review.module)} | ${markdownEscape(review.review_status)} | ${markdownEscape(review.omission_risk)} | ${markdownEscape(review.evidence_quality)} | ${markdownEscape((review.abstentions ?? []).map((entry) => `${entry.field_path}: ${entry.reason}`).join("; "))} |`);
     }
     lines.push("");
-    lines.push("| Typed fact | Module | Claim | Support | Confidence |");
-    lines.push("|---|---|---|---|---:|");
-    for (const fact of typedFacts.slice(0, 40)) {
-      lines.push(`| ${markdownEscape(fact.fact_id)} | ${markdownEscape(fact.module)} | ${markdownEscape(fact.claim || fact.value)} | ${markdownEscape((fact.supporting_observation_ids ?? []).join(", "))} | ${fact.confidence} |`);
-    }
-    if (typedFacts.length > 40) lines.push(`| ...${typedFacts.length - 40} more typed facts | | | | |`);
+    lines.push("#### Counts");
     lines.push("");
     lines.push("| Count | Type | Value | Support | Confidence |");
     lines.push("|---|---|---|---|---:|");
@@ -5485,11 +5762,37 @@ function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures,
       lines.push(`| ${markdownEscape(count.normalized_label)} | ${markdownEscape(count.count_type)} | ${markdownEscape(value)} | ${markdownEscape((count.supporting_observation_ids ?? []).join(", "))} | ${count.confidence} |`);
     }
     lines.push("");
+    lines.push("#### Relationships");
+    lines.push("");
+    lines.push("| Relationship | Source | Target | Evidence |");
+    lines.push("|---|---|---|---|");
+    for (const relationship of relationships) {
+      lines.push(`| ${markdownEscape(relationship.relationship)} | ${markdownEscape(relationship.source_observation_id)} | ${markdownEscape(relationship.target_observation_id)} | ${markdownEscape(relationship.evidence_strength)} |`);
+    }
+    if (relationships.length === 0) lines.push("| none recorded | | | |");
+    lines.push("");
+    lines.push("#### Uncertainty And Abstentions");
+    lines.push("");
+    lines.push("| Field | Reason | Affected observations |");
+    lines.push("|---|---|---|");
+    for (const uncertainty of uncertainties) {
+      lines.push(`| ${markdownEscape(uncertainty.field)} | ${markdownEscape(uncertainty.reason)} | ${markdownEscape((uncertainty.affected_observation_ids ?? []).join(", "))} |`);
+    }
+    if (uncertainties.length === 0) lines.push("| none recorded | | |");
+    lines.push("");
+    lines.push("#### Search Terms");
+    lines.push("");
     lines.push("| Search term | Supporting observations |");
     lines.push("|---|---|");
     for (const term of searchTerms) {
       lines.push(`| ${markdownEscape(term.term)} | ${markdownEscape((term.supporting_observation_ids ?? []).join(", "))} |`);
     }
+    lines.push("");
+    lines.push("#### Flags And Digest");
+    lines.push("");
+    lines.push(`- Deterministic compatibility digest: ${row.artwork_description}`);
+    lines.push(`- Quality flags: ${(row.quality_flags ?? []).length ? row.quality_flags.map((flag) => `\`${flag}\``).join(", ") : "`none`"}`);
+    lines.push(`- Policy results: ${(row.policy_results ?? []).length}`);
     lines.push("");
     lines.push("<details><summary>Full fact graph JSON</summary>");
     lines.push("");

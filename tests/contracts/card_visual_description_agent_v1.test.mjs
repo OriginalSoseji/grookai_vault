@@ -80,6 +80,66 @@ function validFactGraph(overrides = {}) {
         confidence: 0.9,
         evidence_strength: "abstention",
       },
+      {
+        observation_id: "obs_ui_hp_001",
+        kind: "hp_text",
+        label: "HP 280",
+        normalized_label: "hp 280",
+        scene_layer: "card_frame",
+        frame_position: "top_right",
+        visibility: "visible",
+        salience: "low",
+        confidence: 0.98,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_ui_collector_001",
+        kind: "collector_number",
+        label: "118/081",
+        normalized_label: "118/081",
+        scene_layer: "card_frame",
+        frame_position: "bottom_left",
+        visibility: "visible",
+        salience: "low",
+        confidence: 0.97,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_ui_copyright_001",
+        kind: "copyright_text",
+        label: "visible copyright line",
+        normalized_label: "copyright line visible",
+        scene_layer: "card_frame",
+        frame_position: "bottom_edge",
+        visibility: "partially_visible",
+        salience: "low",
+        confidence: 0.78,
+        evidence_strength: "moderate",
+      },
+      {
+        observation_id: "obs_ui_logo_001",
+        kind: "logo",
+        label: "WB Kids logo",
+        normalized_label: "wb kids logo",
+        scene_layer: "card_frame",
+        frame_position: "right_edge",
+        visibility: "visible",
+        salience: "low",
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+      {
+        observation_id: "obs_ui_error_marker_001",
+        kind: "error_marker",
+        label: "visible correction marker",
+        normalized_label: "correction marker",
+        scene_layer: "card_frame",
+        frame_position: "bottom_right",
+        visibility: "visible",
+        salience: "low",
+        confidence: 0.88,
+        evidence_strength: "moderate",
+      },
     ],
     typed_facts: [
       {
@@ -161,6 +221,56 @@ function validFactGraph(overrides = {}) {
         supporting_observation_ids: ["obs_surface_001"],
         confidence: 0.9,
         evidence_strength: "abstention",
+      },
+      {
+        fact_id: "fact_ui_hp_001",
+        module: "card_ui_and_print_markers",
+        field_path: "card_ui_and_print_markers.hp_text",
+        claim: "HP text is visible in the printed card UI",
+        value: "HP 280",
+        supporting_observation_ids: ["obs_ui_hp_001"],
+        confidence: 0.98,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_ui_collector_001",
+        module: "card_ui_and_print_markers",
+        field_path: "card_ui_and_print_markers.collector_number",
+        claim: "collector number is visible in the printed card UI",
+        value: "118/081",
+        supporting_observation_ids: ["obs_ui_collector_001"],
+        confidence: 0.97,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_ui_copyright_001",
+        module: "card_ui_and_print_markers",
+        field_path: "card_ui_and_print_markers.copyright_line",
+        claim: "bottom copyright line is visibly present but only partially readable",
+        value: "visible copyright line",
+        supporting_observation_ids: ["obs_ui_copyright_001"],
+        confidence: 0.78,
+        evidence_strength: "moderate",
+      },
+      {
+        fact_id: "fact_ui_logo_001",
+        module: "card_ui_and_print_markers",
+        field_path: "card_ui_and_print_markers.logo",
+        claim: "WB Kids logo is visible as print evidence",
+        value: "WB Kids logo",
+        supporting_observation_ids: ["obs_ui_logo_001"],
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+      {
+        fact_id: "fact_ui_error_marker_001",
+        module: "card_ui_and_print_markers",
+        field_path: "card_ui_and_print_markers.error_marker",
+        claim: "visible correction marker is preserved as print evidence",
+        value: "correction marker",
+        supporting_observation_ids: ["obs_ui_error_marker_001"],
+        confidence: 0.88,
+        evidence_strength: "moderate",
       },
       {
         fact_id: "fact_search_001",
@@ -336,6 +446,29 @@ function validFactGraph(overrides = {}) {
         fact_ids: [],
         observation_ids: [],
       },
+      card_ui_and_print_markers: {
+        fact_ids: [
+          "fact_ui_hp_001",
+          "fact_ui_collector_001",
+          "fact_ui_copyright_001",
+          "fact_ui_logo_001",
+          "fact_ui_error_marker_001",
+        ],
+        name_text_observation_ids: [],
+        hp_text_observation_ids: ["obs_ui_hp_001"],
+        collector_number_observation_ids: ["obs_ui_collector_001"],
+        set_symbol_observation_ids: [],
+        rarity_mark_observation_ids: [],
+        copyright_line_observation_ids: ["obs_ui_copyright_001"],
+        bottom_line_text_observation_ids: [],
+        promo_stamp_observation_ids: [],
+        logo_observation_ids: ["obs_ui_logo_001"],
+        energy_symbol_observation_ids: [],
+        regulation_mark_observation_ids: [],
+        illustrator_text_observation_ids: [],
+        error_marker_observation_ids: ["obs_ui_error_marker_001"],
+        other_print_marker_observation_ids: [],
+      },
       counts: {
         fact_ids: ["fact_count_001"],
         count_ids: ["count_tree_001"],
@@ -367,6 +500,7 @@ function validFactGraph(overrides = {}) {
       { module: "composition", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "color_and_light", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "visual_effects", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
+      { module: "card_ui_and_print_markers", review_status: "likely_complete", omission_risk: "low", evidence_quality: "high", abstentions: [{ field_path: "card_ui_and_print_markers.copyright_line", reason: "copyright text is only partially readable in the available image", affected_observation_ids: ["obs_ui_copyright_001"] }] },
       { module: "counts", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "relationships", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
       { module: "surface_and_scan_cues", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [{ field_path: "surface_and_scan_cues.finish", reason: "foil and texture cannot be determined from scan", affected_observation_ids: ["obs_surface_001"] }] },
@@ -2562,6 +2696,23 @@ function denseItemFactGraph(overrides = {}) {
         fact_ids: ["fact_visual_effect_001"],
         observation_ids: ["obs_spark_001", "obs_radial_lines_001"],
       },
+      card_ui_and_print_markers: {
+        fact_ids: [],
+        name_text_observation_ids: [],
+        hp_text_observation_ids: [],
+        collector_number_observation_ids: [],
+        set_symbol_observation_ids: [],
+        rarity_mark_observation_ids: [],
+        copyright_line_observation_ids: [],
+        bottom_line_text_observation_ids: [],
+        promo_stamp_observation_ids: [],
+        logo_observation_ids: [],
+        energy_symbol_observation_ids: [],
+        regulation_mark_observation_ids: [],
+        illustrator_text_observation_ids: [],
+        error_marker_observation_ids: [],
+        other_print_marker_observation_ids: [],
+      },
       counts: {
         fact_ids: ["fact_count_bomb_001"],
         count_ids: ["count_bomb_001"],
@@ -2593,6 +2744,7 @@ function denseItemFactGraph(overrides = {}) {
       { module: "composition", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "color_and_light", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "visual_effects", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
+      { module: "card_ui_and_print_markers", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
       { module: "counts", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] },
       { module: "relationships", review_status: "none_visible", omission_risk: "none", evidence_quality: "high", abstentions: [] },
       { module: "surface_and_scan_cues", review_status: "not_applicable", omission_risk: "none", evidence_quality: "not_applicable", abstentions: [] },
@@ -2727,6 +2879,168 @@ test("card visual fact graph enforces grounding ontology and count consistency w
   assert.ok(energyIdentityDetails.some((detail) =>
     detail.flag === "potential_canonical_metadata_in_fact_grounded_search_terms"
     && detail.matched_text === "Psychic Energy"));
+});
+
+test("card visual fact graph separates card UI print-marker evidence from artwork facts", () => {
+  const valid = validateVisualDescriptionPayloadV1(validFactPayload());
+  assert.equal(valid.ok, true);
+  const cardUiModule = valid.normalized.visual_attributes.fact_graph.modules.card_ui_and_print_markers;
+  assert.deepEqual(cardUiModule.hp_text_observation_ids, ["obs_ui_hp_001"]);
+  assert.deepEqual(cardUiModule.collector_number_observation_ids, ["obs_ui_collector_001"]);
+  assert.deepEqual(cardUiModule.copyright_line_observation_ids, ["obs_ui_copyright_001"]);
+  assert.deepEqual(cardUiModule.logo_observation_ids, ["obs_ui_logo_001"]);
+  assert.deepEqual(cardUiModule.error_marker_observation_ids, ["obs_ui_error_marker_001"]);
+  assert.equal(valid.normalized.semantic_tags.some((tag) => /\bHP 280\b|118\/081|WB Kids/i.test(tag)), false);
+
+  const hpInHuman = structuredClone(validFactGraph());
+  hpInHuman.typed_facts.push({
+    fact_id: "fact_bad_ui_human_001",
+    module: "human_appearance",
+    field_path: "human_appearance.accessories[0]",
+    claim: "HP text is human appearance",
+    value: "HP 280",
+    supporting_observation_ids: ["obs_ui_hp_001"],
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  hpInHuman.modules.human_appearance.fact_ids.push("fact_bad_ui_human_001");
+  const badHuman = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: hpInHuman }));
+  assert.equal(badHuman.ok, false);
+  assert.ok(badHuman.findings.includes("fact_graph_card_ui_observation_in_artwork_module:human_appearance:fact_bad_ui_human_001"));
+
+  const collectorInCreature = structuredClone(validFactGraph());
+  collectorInCreature.typed_facts.push({
+    fact_id: "fact_bad_ui_creature_001",
+    module: "creature_anatomy",
+    field_path: "creature_anatomy.physical_features[0]",
+    claim: "collector number is creature anatomy",
+    value: "118/081",
+    supporting_observation_ids: ["obs_ui_collector_001"],
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  collectorInCreature.modules.creature_anatomy.fact_ids.push("fact_bad_ui_creature_001");
+  const badCreature = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: collectorInCreature }));
+  assert.equal(badCreature.ok, false);
+  assert.ok(badCreature.findings.includes("fact_graph_card_ui_observation_in_artwork_module:creature_anatomy:fact_bad_ui_creature_001"));
+
+  const uiObjectLeak = structuredClone(validFactGraph());
+  uiObjectLeak.objects_and_props.push({
+    observation_id: "obs_ui_logo_001",
+    label: "WB Kids logo",
+    normalized_label: "wb kids logo",
+    object_type: "card ui logo",
+    colors: ["black", "white"],
+    material_appearance: [],
+    location: "right_edge",
+    count_reference: "",
+    confidence: 0.93,
+  });
+  uiObjectLeak.coverage_reviews.objects_and_props_review = "observed";
+  const badObject = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: uiObjectLeak }));
+  assert.equal(badObject.ok, false);
+  assert.ok(badObject.findings.includes("fact_graph_card_ui_observation_in_artwork_module:objects_and_props:obs_ui_logo_001"));
+
+  const unsupportedCanonicalUi = structuredClone(validFactGraph());
+  unsupportedCanonicalUi.typed_facts.push({
+    fact_id: "fact_ui_name_missing_001",
+    module: "card_ui_and_print_markers",
+    field_path: "card_ui_and_print_markers.name_text",
+    claim: "card name text is visible",
+    value: "Pikachu",
+    supporting_observation_ids: ["obs_missing_card_name_001"],
+    confidence: 0.96,
+    evidence_strength: "strong",
+  });
+  unsupportedCanonicalUi.modules.card_ui_and_print_markers.fact_ids.push("fact_ui_name_missing_001");
+  unsupportedCanonicalUi.modules.card_ui_and_print_markers.name_text_observation_ids.push("obs_missing_card_name_001");
+  const badCanonicalCopy = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedCanonicalUi }));
+  assert.equal(badCanonicalCopy.ok, false);
+  assert.ok(badCanonicalCopy.findings.includes("fact_graph_typed_fact_observation_missing:obs_missing_card_name_001"));
+
+  const orphanUiReference = structuredClone(validFactGraph());
+  orphanUiReference.modules.card_ui_and_print_markers.name_text_observation_ids.push("obs_orphan_ui_name_001");
+  const orphanUi = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: orphanUiReference }));
+  assert.equal(orphanUi.ok, true);
+  assert.equal(
+    orphanUi.normalized.visual_attributes.fact_graph.modules.card_ui_and_print_markers.name_text_observation_ids.includes("obs_orphan_ui_name_001"),
+    false,
+  );
+
+  const unreadableBottomText = structuredClone(validFactGraph());
+  unreadableBottomText.observations.push({
+    observation_id: "obs_ui_bottom_unreadable_001",
+    kind: "bottom_line_text",
+    label: "bottom legal text is unreadable",
+    normalized_label: "unreadable bottom text",
+    scene_layer: "card_frame",
+    frame_position: "bottom_edge",
+    visibility: "cannot_determine_due_to_low_resolution",
+    salience: "low",
+    confidence: 0.8,
+    evidence_strength: "abstention",
+  });
+  unreadableBottomText.modules.card_ui_and_print_markers.bottom_line_text_observation_ids.push("obs_ui_bottom_unreadable_001");
+  unreadableBottomText.module_reviews.find((review) => review.module === "card_ui_and_print_markers").abstentions.push({
+    field_path: "card_ui_and_print_markers.bottom_line_text",
+    reason: "text is too small at the available image resolution",
+    affected_observation_ids: ["obs_ui_bottom_unreadable_001"],
+  });
+  const unreadable = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unreadableBottomText }));
+  assert.equal(unreadable.ok, true);
+
+  const inArtworkSign = structuredClone(validFactGraph());
+  inArtworkSign.observations.push({
+    observation_id: "obs_artwork_sign_001",
+    kind: "visual_text",
+    label: "text on a wooden sign inside the forest artwork",
+    normalized_label: "in artwork sign text",
+    scene_layer: "background",
+    frame_position: "left_background",
+    visibility: "visible",
+    salience: "low",
+    confidence: 0.88,
+    evidence_strength: "strong",
+  });
+  inArtworkSign.typed_facts.push({
+    fact_id: "fact_artwork_sign_001",
+    module: "environment",
+    field_path: "environment.signage",
+    claim: "a wooden sign with visible text appears inside the artwork scene",
+    value: "wooden sign with text",
+    supporting_observation_ids: ["obs_artwork_sign_001"],
+    confidence: 0.88,
+    evidence_strength: "strong",
+  });
+  inArtworkSign.modules.environment.fact_ids.push("fact_artwork_sign_001");
+  inArtworkSign.modules.environment.observation_ids.push("obs_artwork_sign_001");
+  inArtworkSign.scene_layers.background.push("obs_artwork_sign_001");
+  inArtworkSign.environment.supporting_observation_ids.push("obs_artwork_sign_001");
+  const sign = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: inArtworkSign }));
+  assert.equal(sign.ok, true);
+
+  const missingUiReview = structuredClone(validFactGraph());
+  missingUiReview.module_reviews = missingUiReview.module_reviews.filter((review) => review.module !== "card_ui_and_print_markers");
+  const missingReview = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: missingUiReview }));
+  assert.equal(missingReview.ok, false);
+  assert.ok(missingReview.findings.includes("fact_graph_module_review_missing:card_ui_and_print_markers"));
+
+  const uiSearchTerm = structuredClone(validFactGraph());
+  uiSearchTerm.fact_grounded_search_terms = [
+    ...uiSearchTerm.fact_grounded_search_terms,
+    { term: "HP 280", supporting_observation_ids: ["obs_ui_hp_001"] },
+  ];
+  uiSearchTerm.modules.fact_grounded_search_terms.terms.push("HP 280");
+  const uiSearchValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: uiSearchTerm }));
+  assert.equal(uiSearchValidation.ok, true);
+  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(uiSearchValidation.normalized).some((detail) =>
+    detail.flag === "potential_card_ui_text_in_artwork_search_terms"
+    && detail.matched_text === "HP 280"));
+
+  assert.equal(
+    buildFactGraphCompatibilityDigestV1(validFactGraph()),
+    buildFactGraphCompatibilityDigestV1(validFactGraph()),
+  );
 });
 
 test("card visual fact graph keeps subject kinds and expression evidence separate", () => {
@@ -2988,6 +3302,10 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /visible_body_regions/);
   assert.match(agent, /clothing/);
   assert.match(agent, /creature_anatomy/);
+  assert.match(agent, /card_ui_and_print_markers/);
+  assert.match(agent, /Inspect both the illustrated artwork and the printed card interface/);
+  assert.match(agent, /If small print cannot be read reliably, do not invent OCR text/);
+  assert.match(agent, /Card UI terms remain in card_ui_and_print_markers/);
   assert.match(agent, /Do not store subjective body-size, attractiveness, or personality labels/);
   assert.match(agent, /scene_subject: physically present/);
   assert.match(agent, /depicted_subject: character\/entity shown inside another surface/);
