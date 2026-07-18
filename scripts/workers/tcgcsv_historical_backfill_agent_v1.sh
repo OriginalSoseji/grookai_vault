@@ -78,8 +78,9 @@ while [[ "${current}" < "${END_DATE}" || "${current}" == "${END_DATE}" ]]; do
   echo "[tcgcsv-history-agent] date_start date=${current} at=$(date -u +%FT%TZ)"
   tmp_output="$(mktemp)"
   set +e
-  TCGCSV_ARTIFACT_BATCH_SIZE="${TCGCSV_ARTIFACT_BATCH_SIZE:-1000}" \
-  TCGCSV_PRICE_OBSERVATION_BATCH_SIZE="${TCGCSV_PRICE_OBSERVATION_BATCH_SIZE:-500}" \
+  TCGCSV_ARTIFACT_BATCH_SIZE="${TCGCSV_ARTIFACT_BATCH_SIZE:-2000}" \
+  TCGCSV_HISTORICAL_PRODUCT_BATCH_SIZE="${TCGCSV_HISTORICAL_PRODUCT_BATCH_SIZE:-5000}" \
+  TCGCSV_PRICE_OBSERVATION_BATCH_SIZE="${TCGCSV_PRICE_OBSERVATION_BATCH_SIZE:-1000}" \
     node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs \
       --mode=historical \
       --apply \

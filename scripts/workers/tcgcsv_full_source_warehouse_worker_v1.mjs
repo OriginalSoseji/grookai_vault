@@ -299,6 +299,13 @@ function productRow(product, runId) {
 }
 
 function priceObservationRow(price, { observedOn, runId, artifactId = null, artifactPath = null, categoryId = null, groupId = null }) {
+  const {
+    categoryId: _categoryId,
+    groupId: _groupId,
+    observedOn: _observedOn,
+    archivePath: _archivePath,
+    ...sourcePricePayload
+  } = price;
   const subtypeName = String(price.subTypeName ?? "Unknown");
   return {
     source_price_row_identity: sourcePriceIdentity(price),
@@ -314,8 +321,8 @@ function priceObservationRow(price, { observedOn, runId, artifactId = null, arti
     market_price: price.marketPrice ?? null,
     direct_low_price: price.directLowPrice ?? null,
     currency: "USD",
-    raw_payload: price,
-    payload_hash: sha256(price),
+    raw_payload: sourcePricePayload,
+    payload_hash: sha256(sourcePricePayload),
     source_archive_path: artifactPath,
     source_artifact_id: artifactId,
     first_seen_run_id: runId,
@@ -757,16 +764,24 @@ async function upsertPriceObservations(client, rows) {
            last_seen_run_id = excluded.last_seen_run_id,
            last_observed_at = now(),
            updated_at = now()
+         where public.tcgcsv_source_price_daily_observations.payload_hash is distinct from excluded.payload_hash
+            or public.tcgcsv_source_price_daily_observations.product_id is distinct from excluded.product_id
+            or public.tcgcsv_source_price_daily_observations.category_id is distinct from coalesce(excluded.category_id, public.tcgcsv_source_price_daily_observations.category_id)
+            or public.tcgcsv_source_price_daily_observations.group_id is distinct from coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id)
+            or public.tcgcsv_source_price_daily_observations.subtype_name is distinct from excluded.subtype_name
+            or public.tcgcsv_source_price_daily_observations.subtype_name_normalized is distinct from excluded.subtype_name_normalized
          returning (xmax = 0) as inserted
        )
        select
          count(*) filter (where inserted)::int as inserted,
-         count(*) filter (where not inserted)::int as updated
+         count(*) filter (where not inserted)::int as updated,
+         ((select count(*) from input_rows) - count(*))::int as no_op
        from upserted`,
       [JSON.stringify(chunk)],
     );
     inserted += Number(result.rows[0]?.inserted ?? 0);
     updated += Number(result.rows[0]?.updated ?? 0);
+    noOp += Number(result.rows[0]?.no_op ?? 0);
     const processed = Math.min(offset + chunk.length, rows.length);
     if (processed === rows.length || processed % (chunkSize * 20) === 0) {
       console.error(`[tcgcsv-full] price_observations processed=${processed}/${rows.length} inserted=${inserted} updated=${updated}`);

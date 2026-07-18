@@ -57,6 +57,7 @@ Targeted retries skip source-missing marking so unrelated catalog rows cannot be
 ## Historical Archive Backfill
 
 TCGCSV historical archives start at `2024-02-08`. Run in bounded date windows.
+TCGCSV's published usage guidance requires a clear custom User-Agent, a short sleep in request loops, and fewer than `10,000` requests per 24 hours. Historical archive backfill keeps this boundary by fetching one compressed archive per date and speeding up only local extraction/database apply work.
 
 Dry-run one day:
 
@@ -90,6 +91,7 @@ The agent:
 - resumes from `/var/lib/grookai/tcgcsv-historical-backfill.next-date`;
 - stops cleanly when `/var/lib/grookai/tcgcsv-historical-backfill.stop` exists;
 - pauses during the normal pricing window (`00:50-10:30 UTC`) so it does not compete with reference refresh, eBay/MEE, or current TCGCSV sync;
+- uses conservative larger database batches for historical rows so retries treat already-identical rows as no-ops instead of rewriting them;
 - removes derived extracted archive folders after each successful day while preserving compressed source archives, summaries, DB row provenance, hashes, and byte-size metadata.
 
 Monitor:
