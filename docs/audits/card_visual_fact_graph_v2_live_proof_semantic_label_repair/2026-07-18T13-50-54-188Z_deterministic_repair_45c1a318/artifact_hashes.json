@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-18T13:50:54.293Z",
+  "artifacts": [
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_live_proof_semantic_label_repair\\2026-07-18T13-50-54-188Z_deterministic_repair_45c1a318\\summary.json",
+      "sha256": "abc045f9af80c0d892547db7ebc9a2dbb97abf6c7732901db387e8264ca8d61b"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_live_proof_semantic_label_repair\\2026-07-18T13-50-54-188Z_deterministic_repair_45c1a318\\replay_results.jsonl",
+      "sha256": "27b3a49a67e04e8b27072088c771ba7ea06236dfae2808afe6dd8ef3565ace6e"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_live_proof_semantic_label_repair\\2026-07-18T13-50-54-188Z_deterministic_repair_45c1a318\\LIVE_PROOF_SEMANTIC_LABEL_REPAIR_REPLAY.md",
+      "sha256": "5c44b37c830b473966747eaf49a76c3decb3805c01ff4b5423da2a9b26e04ec9"
+    }
+  ]
+}

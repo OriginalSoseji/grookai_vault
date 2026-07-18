@@ -128,14 +128,15 @@ const SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN = /\b(?:happy|smiling|smile|cheer
 const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN = /\b(?:angry|annoyed|irritated|scowling|scowl|frowning)\b/i;
 const SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN = /\b(?:scared|surprised|startled|wide[-\s]?eyed|crying|tears?)\b/i;
 const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|determined|serious|concentrated|intent)(?:\s+expression)?\b/i;
+const SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN = /\balert(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN = /\b(?:sleeping|asleep|sleepy|resting)\b/i;
 const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tree-filled)\b/i;
 const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
 const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_LABEL_PATTERN = /\b(?:ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|dusk|twilight)\b/i;
-const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?)\b/i;
+const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|hands on hips)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
-  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
+  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|hands on hips|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
   /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth)\b/i;
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
@@ -184,6 +185,10 @@ const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_SUPPORT_PATTERN =
   /\b(?:sharp eyes?|focused eyes?|narrowed eyes?|slanted eyes?|squinting eyes?|furrowed brow|furrowed eyebrows?|angled brow|angled eyebrows?|angular eyebrows?|\bangular\b|firm mouth|straight mouth|set mouth|clenched teeth|bared teeth|clenched fists?|forward lean)\b/i;
 const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_CONTRADICTION_PATTERN =
   /\b(?:face not visible|mouth not visible|eyes not visible|facial features not visible|cannot_determine|relaxed eyes)\b/i;
+const SEMANTIC_VISUAL_FACT_ALERT_SUPPORT_PATTERN =
+  /\b(?:wide eyes?|open eyes?|raised eyebrows?|upright posture|upright orientation|head raised|raised head|ears? (?:upright|raised|perked)|perked ears?|attentive gaze|looking forward|forward-facing eyes?)\b/i;
+const SEMANTIC_VISUAL_FACT_ALERT_CONTRADICTION_PATTERN =
+  /\b(?:eyes closed|sleeping|asleep|face not visible|eyes not visible|cannot_determine|relaxed eyes)\b/i;
 const SEMANTIC_VISUAL_FACT_SLEEPING_SUPPORT_PATTERN =
   /\b(?:eyes closed|closed eyes|asleep|sleeping|lying down|reclining|curled up|resting|still body|sleep posture)\b/i;
 const SEMANTIC_VISUAL_FACT_SLEEPING_CONTRADICTION_PATTERN =
@@ -221,7 +226,7 @@ const CONTROLLED_VOCABULARY_POSE_RULES = Object.freeze([
 ]);
 const CONTROLLED_VOCABULARY_CONCEPT_RULES = Object.freeze([
   ["aurora-like light bands", /\baurora(?:-like)?\b|\blight bands?\b/i],
-  ["lightning", /\blightning\b|\belectricity\s+effects?\b|\belectric(?:al)?\s+(?:arc|bolt|aura|effect|spark|streak|energy)\b/i],
+  ["lightning", /\blightning\b|\belectricity\b|\belectricity\s+effects?\b|\belectric(?:al)?\s+(?:arc|bolt|aura|effect|spark|streak|energy)\b/i],
   ["flame", /\bflames?\b|\bfire\b/i],
   ["smoke", /\bsmoky\b|\bsmoke\b|\bmist\b|\bfog\b/i],
   ["vapor or haze", /\b(?:visible )?(?:vapor|vapour)\b|\bhaze\b|\bhazy\b/i],
@@ -2689,6 +2694,7 @@ function normalizeSemanticVisualFactLabelText(value) {
       || SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)
+      || SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)
     )
   ) {
     return label;
@@ -2755,6 +2761,12 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
       ...options,
       circularPattern: /\b(?:focused|determined|serious|concentrated|intent)(?:\s+expression)?\b/gi,
     }) || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_CONTRADICTION_PATTERN.test(semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations));
+  }
+  if (SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)) {
+    return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_ALERT_SUPPORT_PATTERN, {
+      ...options,
+      circularPattern: /\balert(?:\s+expression)?\b/gi,
+    }) || SEMANTIC_VISUAL_FACT_ALERT_CONTRADICTION_PATTERN.test(semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations));
   }
   if (SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_SLEEPING_SUPPORT_PATTERN, options)
@@ -5113,6 +5125,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
     || SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(label)
     || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)
   )) return true;
+  if ((category === "expression" || category === "state") && SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)) return true;
   if (category === "time_of_day" && SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN.test(label)) return true;
   if (category === "count_semantic" && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_LABEL_PATTERN.test(label) && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_SUPPORT_PATTERN.test(label)) return true;
   if (SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN.test(label)) return true;
@@ -5216,6 +5229,16 @@ function validateSemanticVisualFactsV1(factGraph, knownIds) {
       }
       if (SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_CONTRADICTION_PATTERN.test(evidenceText)) {
         findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_conflicts_with_evidence`);
+      }
+    }
+    if (SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)) {
+      if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_ALERT_SUPPORT_PATTERN, factGraph, {
+        circularPattern: /\balert(?:\s+expression)?\b/gi,
+      })) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:alert_without_visible_attention_evidence`);
+      }
+      if (SEMANTIC_VISUAL_FACT_ALERT_CONTRADICTION_PATTERN.test(evidenceText)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:alert_conflicts_with_evidence`);
       }
     }
     if (SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN.test(label)) {

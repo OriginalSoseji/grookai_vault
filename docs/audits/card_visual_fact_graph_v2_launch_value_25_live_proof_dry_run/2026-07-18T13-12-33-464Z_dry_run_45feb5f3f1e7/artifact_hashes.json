@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-07-18T13:52:35.406Z",
+  "artifacts": [
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\FACT_GRAPH_V2_REVIEW_PACKET.md",
+      "sha256": "660c220da020282430d5c049e6eb48be8fe5e175d96b5e9b025e04f3ca459f2a"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\eligible_cards.jsonl",
+      "sha256": "43a9fbfa47fba90546d09481a53af2ee3c367ab2d383e009b5f3cc5655d6749a"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\generated_outputs.jsonl",
+      "sha256": "9dcc0313e01ebafbea27af04d85d6c425534ea06dc6179f5c7e23025ef6f5998"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\review_sample.jsonl",
+      "sha256": "9dcc0313e01ebafbea27af04d85d6c425534ea06dc6179f5c7e23025ef6f5998"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\run_plan.json",
+      "sha256": "905bbc8961b405659e0831f51b4fc65c84d8a1c4a275ad8452691e96d323df75"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\skipped_images.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\summary.json",
+      "sha256": "3432451f660d7f1387d06897c939082f4037c16207362bb8ae8fc473f8514483"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_live_proof_dry_run\\2026-07-18T13-12-33-464Z_dry_run_45feb5f3f1e7\\validation_failures.jsonl",
+      "sha256": "c9f8270d1838742e45810e33bec8b09c3ab26c44bb3db2d56a3b63b169649e55"
+    }
+  ]
+}

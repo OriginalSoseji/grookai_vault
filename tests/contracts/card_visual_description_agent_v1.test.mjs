@@ -4946,6 +4946,120 @@ test("card visual fact graph repairs evidence-backed live-lock validation misses
   assert.equal(countSemantic.ok, true, countSemantic.findings.join(","));
 });
 
+test("card visual fact graph repairs live-proof semantic label variance", () => {
+  const electricityGraph = structuredClone(validFactGraph());
+  electricityGraph.observations.push({
+    observation_id: "obs_effect_electricity_001",
+    kind: "visual_effects",
+    label: "blue electrical sparks around body and lightning bolts",
+    normalized_label: "blue electrical sparks lightning bolts",
+    scene_layer: "foreground",
+    frame_position: "around_subject",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.95,
+    evidence_strength: "strong",
+  });
+  electricityGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_electricity_001",
+      category: "motif",
+      label: "electricity",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_effect_electricity_001"],
+      evidence: {
+        motion_state: ["blue electrical sparks"],
+        environment: ["lightning bolts"],
+      },
+    }),
+  ];
+  const electricity = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: electricityGraph }));
+  assert.equal(electricity.ok, true, electricity.findings.join(","));
+  assert.ok(electricity.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "electricity"));
+
+  const alertGraph = structuredClone(validFactGraph());
+  alertGraph.observations.push({
+    observation_id: "obs_alert_face_001",
+    kind: "facial_evidence",
+    label: "eyes looking forward with upright posture",
+    normalized_label: "eyes looking forward upright posture",
+    scene_layer: "foreground",
+    frame_position: "face",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.88,
+    evidence_strength: "moderate",
+  });
+  alertGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_alert_001",
+      category: "expression",
+      label: "alert expression",
+      supporting_observation_ids: ["obs_alert_face_001"],
+      evidence: {
+        eyes: ["eyes looking forward"],
+        body_position: ["upright posture"],
+      },
+    }),
+  ];
+  const alert = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: alertGraph }));
+  assert.equal(alert.ok, true, alert.findings.join(","));
+  assert.ok(alert.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "alert expression"));
+
+  const unsupportedAlert = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_bad_alert_001",
+          category: "state",
+          label: "alert expression",
+          evidence: {
+            body_language: ["alert expression"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(unsupportedAlert.ok, true, unsupportedAlert.findings.join(","));
+  assert.equal(
+    unsupportedAlert.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+      /alert/i.test(fact.label)),
+    false,
+  );
+
+  const handsOnHipsGraph = structuredClone(validFactGraph());
+  handsOnHipsGraph.observations.push({
+    observation_id: "obs_hands_on_hips_001",
+    kind: "human_appearance",
+    label: "person standing with hands on hips",
+    normalized_label: "hands on hips pose",
+    scene_layer: "foreground",
+    frame_position: "center",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.93,
+    evidence_strength: "strong",
+  });
+  handsOnHipsGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_hands_hips_001",
+      category: "action",
+      label: "hands on hips",
+      supporting_observation_ids: ["obs_hands_on_hips_001"],
+      evidence: {
+        body_language: ["hands on hips"],
+        body_position: ["standing pose"],
+      },
+    }),
+  ];
+  const handsOnHips = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: handsOnHipsGraph }));
+  assert.equal(handsOnHips.ok, true, handsOnHips.findings.join(","));
+  assert.ok(handsOnHips.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "hands on hips"));
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {
