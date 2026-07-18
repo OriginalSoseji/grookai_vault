@@ -1,0 +1,45 @@
+{
+  "artifact_type": "semantic_support_drift_repair_replay",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_after_arch_env_repair_dry_run/2026-07-18T15-55-38-238Z_dry_run_9165e0e5b12c",
+  "source_summary": {
+    "attempted_count": 25,
+    "validated_count": 19,
+    "failed_count": 6,
+    "needs_review_count": 13,
+    "pending_count": 6,
+    "request_count": 26,
+    "retry_count": 1,
+    "input_tokens": 222756,
+    "output_tokens": 105621,
+    "total_tokens": 328377,
+    "estimated_cost_usd": 0.2484192
+  },
+  "repair_scope": [
+    "evidence-backed scene_type stylized background pattern labels",
+    "evidence-backed pointing action labels",
+    "evidence-backed clasping hands action labels",
+    "evidence-backed light streak motif labels",
+    "object-only semantic cameo labels are dropped instead of accepted",
+    "ambiguous neutral/sad expression text is normalized to objective facial evidence"
+  ],
+  "replay_counts": {
+    "previous_failures_replayed": 6,
+    "previous_failures_now_valid": 6,
+    "previous_failures_still_failed": 0,
+    "previous_validated_replayed": 19,
+    "previous_validated_still_valid": 19,
+    "previous_validated_now_failed": 0,
+    "total_replayed": 25,
+    "total_after_valid": 25,
+    "total_after_failed": 0
+  },
+  "after_status_counts": {
+    "pending": 8,
+    "needs_review": 17
+  },
+  "remaining_findings": [],
+  "no_model_calls": true,
+  "no_database_writes": true,
+  "no_approvals": true,
+  "no_embeddings": true
+}

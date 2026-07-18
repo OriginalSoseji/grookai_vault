@@ -1,0 +1,11 @@
+{
+  "artifact_hash_version": "sha256-v1",
+  "hashed_at": "2026-07-18T16:37:33.723Z",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_after_arch_env_repair_dry_run/2026-07-18T15-55-38-238Z_dry_run_9165e0e5b12c",
+  "artifacts": {
+    "summary.json": "032edac1da925d365b56217b932ca7dea169fd36a8a2236fa103e86f9cde5e6b",
+    "replay_results.jsonl": "c45876c25e2a2fb0c5dede3d025e78c9701eee4a3df74f574279e07f3770950b",
+    "SEMANTIC_SUPPORT_DRIFT_REPAIR_REPLAY.md": "4bd62c82ff8cbc00dffa5847d89c6672df6d1fb47de1df51550cd4dffa00e2f5"
+  },
+  "source_artifact_hashes_file": "docs\\audits\\card_visual_fact_graph_v2_launch_value_25_after_arch_env_repair_dry_run\\2026-07-18T15-55-38-238Z_dry_run_9165e0e5b12c\\artifact_hashes.json"
+}

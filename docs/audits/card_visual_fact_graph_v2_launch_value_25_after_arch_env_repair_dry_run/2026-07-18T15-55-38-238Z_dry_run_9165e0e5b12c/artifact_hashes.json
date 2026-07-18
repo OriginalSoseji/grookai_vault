@@ -1,0 +1,15 @@
+{
+  "artifact_hash_version": "sha256-v1",
+  "hashed_at": "2026-07-18T16:37:33.721Z",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_after_arch_env_repair_dry_run/2026-07-18T15-55-38-238Z_dry_run_9165e0e5b12c",
+  "artifacts": {
+    "summary.json": "93f94fe93088054bc5890e24041fece83de8f7b8f7472c3e9eb45b8103950421",
+    "run_plan.json": "5c55b57bff3f9b20a6ce0ea9a8bc87c701605a1606e6e49ad617bc264feff4ec",
+    "eligible_cards.jsonl": "43a9fbfa47fba90546d09481a53af2ee3c367ab2d383e009b5f3cc5655d6749a",
+    "generated_outputs.jsonl": "d7f623c9bd6951e5aa2a13024c28ad8a61a08ebbc89464fd8d462f71752964f5",
+    "validation_failures.jsonl": "10690ff4d501d799f9bf9ee3447652be9e01b5764ee321b348171f63944e13f1",
+    "skipped_images.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "review_sample.jsonl": "d7f623c9bd6951e5aa2a13024c28ad8a61a08ebbc89464fd8d462f71752964f5",
+    "FACT_GRAPH_V2_REVIEW_PACKET.md": "1cf4cac5d652b846feb1fa1321ef00dad70726cf59ac70268fe82041dcf9a04d"
+  }
+}

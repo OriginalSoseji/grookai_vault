@@ -5092,6 +5092,199 @@ test("card visual fact graph allows evidence-backed architectural environment la
     fact.label === "brick wall corridor"));
 });
 
+test("card visual fact graph repairs semantic support drift from architecture proof", () => {
+  const sceneTypeGraph = structuredClone(validFactGraph());
+  sceneTypeGraph.observations.push({
+    observation_id: "obs_pattern_001",
+    kind: "environment",
+    label: "abstract patterned design behind the subject",
+    normalized_label: "abstract patterned design",
+    scene_layer: "background",
+    frame_position: "full_background",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.91,
+    evidence_strength: "strong",
+  });
+  sceneTypeGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_scene_type_001",
+      category: "scene_type",
+      label: "stylized background pattern",
+      supporting_observation_ids: ["obs_pattern_001"],
+      evidence: {
+        environment: ["abstract patterned design"],
+      },
+    }),
+  ];
+  const sceneType = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: sceneTypeGraph }));
+  assert.equal(sceneType.ok, true, sceneType.findings.join(","));
+  assert.ok(sceneType.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.category === "scene_type" && fact.label === "stylized background pattern"));
+
+  const gestureGraph = structuredClone(validFactGraph());
+  gestureGraph.observations.push(
+    {
+      observation_id: "obs_pointing_001",
+      kind: "human_appearance",
+      label: "right hand fingers extended outward in pointing gesture",
+      normalized_label: "right hand fingers extended outward pointing gesture",
+      scene_layer: "foreground",
+      frame_position: "right_side",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_clasped_hands_001",
+      kind: "human_appearance",
+      label: "clasped blue gloved hands",
+      normalized_label: "clasped blue gloved hands",
+      scene_layer: "foreground",
+      frame_position: "lower_center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+  );
+  gestureGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_pointing_001",
+      category: "action",
+      label: "pointing",
+      supporting_observation_ids: ["obs_pointing_001"],
+      evidence: {
+        body_language: ["right hand fingers extended outward in pointing gesture"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_clasping_001",
+      category: "action",
+      label: "clasping hands",
+      supporting_observation_ids: ["obs_clasped_hands_001"],
+      evidence: {
+        body_language: ["clasped blue gloved hands"],
+      },
+    }),
+  ];
+  const gestures = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: gestureGraph }));
+  assert.equal(gestures.ok, true, gestures.findings.join(","));
+  assert.ok(gestures.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "pointing"));
+  assert.ok(gestures.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "clasping hands"));
+
+  const motifGraph = structuredClone(validFactGraph());
+  motifGraph.observations.push({
+    observation_id: "obs_light_streaks_001",
+    kind: "visual_effects",
+    label: "pink and white light streaks crossing scene",
+    normalized_label: "pink and white light streaks crossing scene",
+    scene_layer: "background",
+    frame_position: "diagonal_across_frame",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  motifGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_light_streaks_001",
+      category: "motif",
+      label: "pink and white light streaks",
+      supporting_observation_ids: ["obs_light_streaks_001"],
+      evidence: {
+        visual_effects: ["pink and white light streaks crossing scene"],
+      },
+    }),
+  ];
+  const motif = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: motifGraph }));
+  assert.equal(motif.ok, true, motif.findings.join(","));
+  assert.ok(motif.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "pink and white light streaks"));
+
+  const objectCameoGraph = structuredClone(validFactGraph());
+  objectCameoGraph.observations.push({
+    observation_id: "obs_bomb_001",
+    kind: "objects_and_props",
+    label: "bomb with lit fuse",
+    normalized_label: "bomb lit fuse",
+    scene_layer: "foreground",
+    frame_position: "center",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.96,
+    evidence_strength: "strong",
+  });
+  objectCameoGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_bad_cameo_001",
+      category: "cameo",
+      label: "bomb",
+      supporting_observation_ids: ["obs_bomb_001"],
+      evidence: {
+        objects: ["bomb"],
+        other: ["lit fuse"],
+      },
+    }),
+  ];
+  const objectCameo = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: objectCameoGraph }));
+  assert.equal(objectCameo.ok, true, objectCameo.findings.join(","));
+  assert.equal(
+    objectCameo.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+      fact.category === "cameo" && fact.label === "bomb"),
+    false,
+  );
+
+  const looseExpressionGraph = structuredClone(validFactGraph());
+  looseExpressionGraph.observations.push({
+    observation_id: "obs_purple_eye_001",
+    kind: "facial_evidence",
+    label: "purple eyes, sad or neutral expression",
+    normalized_label: "purple eyes, neutral/sad expression",
+    scene_layer: "foreground",
+    frame_position: "face",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.82,
+    evidence_strength: "moderate",
+  });
+  looseExpressionGraph.typed_facts.push({
+    fact_id: "fact_face_001",
+    module: "human_appearance",
+    field_path: "facial_evidence.eyes",
+    claim: "The trainer has purple eyes and a neutral or sad expression",
+    value: "purple eyes, neutral/sad expression",
+    supporting_observation_ids: ["obs_purple_eye_001"],
+    confidence: 0.82,
+    evidence_strength: "moderate",
+  });
+  looseExpressionGraph.subjects[0].facial_evidence = {
+    ...looseExpressionGraph.subjects[0].facial_evidence,
+    eyes: "visible, purple, neutral/sad",
+  };
+  looseExpressionGraph.modules.human_appearance.visible_body_regions.push({
+    region: "face",
+    visibility: "visible",
+    details: ["purple eyes", "neutral/sad expression"],
+    supporting_observation_ids: ["obs_purple_eye_001"],
+  });
+  looseExpressionGraph.modules.human_appearance.facial_evidence.push({
+    subject_observation_id: looseExpressionGraph.subjects[0].observation_id,
+    eyes: "visible, purple, neutral/sad",
+    mouth: "not clearly described",
+    eyebrows: "not clearly described",
+    supporting_observation_ids: ["obs_purple_eye_001"],
+  });
+  const looseExpression = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: looseExpressionGraph }));
+  assert.equal(looseExpression.ok, true, looseExpression.findings.join(","));
+  const normalizedText = JSON.stringify(looseExpression.normalized.visual_attributes.fact_graph);
+  assert.equal(/neutral\/sad|sad or neutral|neutral or sad/i.test(normalizedText), false);
+  assert.equal(/\bsad\b/i.test(normalizedText), false);
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {

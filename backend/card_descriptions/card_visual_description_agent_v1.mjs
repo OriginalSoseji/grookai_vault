@@ -134,13 +134,15 @@ const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tr
 const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
 const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_LABEL_PATTERN = /\b(?:ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|dusk|twilight)\b/i;
-const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|hands on hips)\b/i;
+const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
-  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|arms raised|raised arms|clenched fists?|hands on hips|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|lightning bolt motifs?|angular motifs?|geometric motifs?)\b/i;
+  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
   /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth)\b/i;
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
   /\b(?:ready for attack|ready to attack|preparing to attack|about to attack|female human character|male human character|human character|human trainer|visible trainer|stance|pose)\b/i;
+const SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN =
+  /\b(?:bomb|bell|badge|fuse|tool|item|object)\b/i;
 const SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN =
   /\b(?:lost|protecting|guarding|searching for|waiting for|trying to|wants to|symboli[sz](?:e|es|ing)|represents?|embod(?:y|ies|ying)|heroic|evil|loyal|brave|hope|destiny|purpose|theme|lore|story|narrative|backstory)\b/i;
 const FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN =
@@ -230,6 +232,7 @@ const CONTROLLED_VOCABULARY_CONCEPT_RULES = Object.freeze([
   ["flame", /\bflames?\b|\bfire\b/i],
   ["smoke", /\bsmoky\b|\bsmoke\b|\bmist\b|\bfog\b/i],
   ["vapor or haze", /\b(?:visible )?(?:vapor|vapour)\b|\bhaze\b|\bhazy\b/i],
+  ["light streaks", /\blight(?:ing)? streaks?\b|\b(?:pink|white|blue|yellow|green|orange|red|purple)\s+and\s+(?:pink|white|blue|yellow|green|orange|red|purple)\s+streaks?\b/i],
   ["spark", /\bsparks?\b/i],
   ["explosion", /\bexplos(?:ion|ive)\b|\bimpact effect\b/i],
   ["red eyes", /\bred eyes\b|\bred-eyed\b|\bbloodshot(?:-looking)? eyes?\b/i],
@@ -599,9 +602,11 @@ function normalizeControlledVocabularyFreeText(value) {
   text = text.replace(/\bwater scene\b/gi, "water body");
   text = text.replace(/\bdynamic leaping pose\b/gi, "leaping");
   text = text.replace(/\bleaping pose\b/gi, "leaping");
+  text = text.replace(/\b(?:sad or neutral|neutral or sad|neutral\/sad|sad\/neutral)\s+expression\b/gi, "neutral facial evidence");
+  text = text.replace(/\b(?:sad or neutral|neutral or sad|neutral\/sad|sad\/neutral)\b/gi, "neutral");
   text = text.replace(/\b(?:cannot determine expression|neutral expression|serious expression)\b/gi, "");
   text = text.replace(CONTROLLED_VOCABULARY_REMOVED_STYLE_TERMS, "").replace(/\s+/g, " ");
-  text = text.replace(/\b(determined|confident|fierce|majestic|serious|aggressive|focused|clever|thoughtful|assertive|dynamic)\b\s*/gi, "");
+  text = text.replace(/\b(determined|confident|fierce|majestic|serious|aggressive|focused|clever|thoughtful|assertive|dynamic|sad)\b\s*/gi, "");
   text = collapseRepeatedAdjacentWords(text);
   text = text.replace(/\s+([,.;:])/g, "$1").replace(/^[,.;:\s]+|[,.;:\s]+$/g, "");
   return normalizeText(text);
@@ -609,6 +614,15 @@ function normalizeControlledVocabularyFreeText(value) {
 
 function normalizeObjectiveVisualText(value) {
   return normalizeControlledVocabularyFreeText(value);
+}
+
+function normalizeRawObservationLabelText(value) {
+  let text = normalizeText(value);
+  if (!text) return text;
+  text = text.replace(/\b(?:sad or neutral|neutral or sad|neutral\/sad|sad\/neutral)\s+expression\b/gi, "neutral facial evidence");
+  text = text.replace(/\b(?:sad or neutral|neutral or sad|neutral\/sad|sad\/neutral)\b/gi, "neutral");
+  text = text.replace(/\s+([,.;:])/g, "$1").replace(/^[,.;:\s]+|[,.;:\s]+$/g, "");
+  return normalizeText(text);
 }
 
 function normalizeVisualDesignText(value) {
@@ -2247,7 +2261,7 @@ function normalizeFactGraphObservations(value) {
     const observation = {
       observation_id: normalizeText(entry.observation_id),
       kind: normalizeText(entry.kind),
-      label: normalizeText(entry.label),
+      label: normalizeRawObservationLabelText(entry.label),
       normalized_label: normalizeText(entry.normalized_label || entry.label),
       scene_layer: normalizeText(entry.scene_layer),
       frame_position: normalizeText(entry.frame_position),
@@ -2790,6 +2804,18 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
   return false;
 }
 
+function isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options = {}) {
+  const category = normalizeText(fact?.category);
+  if (category !== "cameo") return false;
+  const label = normalizeSemanticVisualFactLabelText(fact?.label);
+  if (!label || !SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN.test(label)) return false;
+  const evidenceText = semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations ?? []);
+  if (/\b(?:cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|sticker|ice cream|character representation)\b/i.test(evidenceText)) {
+    return false;
+  }
+  return SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN.test(flattenFactGraphText([label, evidenceText]));
+}
+
 function shouldDropSemanticVisualFactLabel(value) {
   const label = normalizeText(value);
   return Boolean(
@@ -2804,6 +2830,7 @@ function shouldDropSemanticVisualFactLabel(value) {
 
 function shouldDropSemanticVisualFact(fact, options = {}) {
   return shouldDropSemanticVisualFactLabel(fact?.label)
+    || isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options)
     || isUnsupportedEvidenceBackedSemanticVisualFact(fact, options);
 }
 
@@ -5131,8 +5158,12 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   if (SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN.test(label)) return true;
   if (conceptNamesFromText(label).length > 0) return true;
 
+  if (category === "scene_type") {
+    return /\b(?:scene|background|pattern|abstract|stylized|design|gradient|swirl|swirling|burst)\b/i.test(label);
+  }
+
   if (category === "action") {
-    return /\b(?:(?:left|right|both)\s+)?(?:arm|hand|fist|leg|knee|forearm|finger|claw)s?\b.*\b(?:extended|raised|forward|back|backward|open|bent|stretched|out|reaching|clasped)\b|\b(?:fist forward|leaning forward|bent knees?|open hand|extended hand|open gesture|hands clasped)\b/i.test(label);
+    return /\bpointing\b|\bclasp(?:ed|ing) hands?\b|\b(?:(?:left|right|both)\s+)?(?:arm|hand|fist|leg|knee|forearm|finger|claw)s?\b.*\b(?:extended|raised|forward|back|backward|open|bent|stretched|out|reaching|clasped)\b|\b(?:fist forward|leaning forward|bent knees?|open hand|extended hand|open gesture|hands clasped)\b/i.test(label);
   }
 
   if (category === "environment") {
@@ -5140,7 +5171,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "motif") {
-    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular)\b/i.test(label);
+    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|light(?:ing)? streaks?|streaks?|burst)\b/i.test(label);
   }
 
   if (category === "cameo") {
