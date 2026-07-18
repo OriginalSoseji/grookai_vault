@@ -5285,6 +5285,148 @@ test("card visual fact graph repairs semantic support drift from architecture pr
   assert.equal(/\bsad\b/i.test(normalizedText), false);
 });
 
+test("card visual fact graph repairs launch-proof semantic support and search fallback drift", () => {
+  const evidenceOnlyExpressionGraph = structuredClone(validFactGraph());
+  evidenceOnlyExpressionGraph.observations.push(
+    {
+      observation_id: "obs_neutral_face_001",
+      kind: "facial_evidence",
+      label: "closed mouth, open eyes, neutral eyebrows",
+      normalized_label: "closed mouth open eyes neutral eyebrows",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "primary_subject_detail",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_neutral_face_002",
+      kind: "facial_evidence",
+      label: "neutral mouth and visible eyes behind purple sunglasses",
+      normalized_label: "neutral mouth visible eyes purple sunglasses",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "primary_subject_detail",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+  );
+  evidenceOnlyExpressionGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_neutral_concerned_001",
+      category: "expression",
+      label: "neutral or slightly concerned expression",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_neutral_face_001"],
+      evidence: {
+        mouth: ["closed"],
+        eyes: ["open"],
+        eyebrows: ["neutral"],
+        facial_features: ["neutral or slightly concerned expression"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_neutral_female_001",
+      category: "expression",
+      label: "neutral expression female",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_neutral_face_002"],
+      evidence: {
+        mouth: ["closed"],
+        eyes: ["visible behind purple tinted glasses"],
+        eyebrows: ["neutral"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_neutral_male_001",
+      category: "expression",
+      label: "neutral expression male side profile",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_neutral_face_002"],
+      evidence: {
+        mouth: ["neutral"],
+        eyes: ["visible"],
+        eyebrows: ["neutral"],
+      },
+    }),
+  ];
+  const expressionValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: evidenceOnlyExpressionGraph }));
+  assert.equal(expressionValidation.ok, true, expressionValidation.findings.join(","));
+  assert.equal(
+    expressionValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+      /neutral.*expression|concerned/i.test(fact.label)),
+    false,
+  );
+
+  const sparkleGraph = structuredClone(validFactGraph());
+  sparkleGraph.observations.push({
+    observation_id: "obs_sparkles_001",
+    kind: "visual_effects",
+    label: "abstract colorful background with star-like sparkles",
+    normalized_label: "star-like sparkles",
+    scene_layer: "background",
+    frame_position: "full_background",
+    visibility: "visible",
+    salience: "background_detail",
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  sparkleGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_sparkles_001",
+      category: "motif",
+      label: "star sparkles",
+      supporting_observation_ids: ["obs_sparkles_001"],
+      evidence: {
+        environment: ["star-like sparkles"],
+      },
+    }),
+  ];
+  const sparkleValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: sparkleGraph }));
+  assert.equal(sparkleValidation.ok, true, sparkleValidation.findings.join(","));
+  assert.ok(sparkleValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "star sparkles"));
+
+  const fallbackSearchGraph = structuredClone(validFactGraph());
+  fallbackSearchGraph.fact_grounded_search_terms = [];
+  fallbackSearchGraph.modules.fact_grounded_search_terms.terms = [];
+  fallbackSearchGraph.observations = [
+    {
+      observation_id: "obs_hair_fallback_001",
+      kind: "human_appearance",
+      label: "purple hair with bob cut and long side strands",
+      normalized_label: "purple hair",
+      scene_layer: "foreground",
+      frame_position: "center_top",
+      visibility: "fully_visible",
+      salience: "primary_subject_detail",
+      confidence: 0.99,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_clothing_fallback_001",
+      kind: "clothing",
+      label: "white long coat with wide sleeves",
+      normalized_label: "white coat",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "fully_visible",
+      salience: "primary_subject_clothing",
+      confidence: 0.99,
+      evidence_strength: "strong",
+    },
+    ...fallbackSearchGraph.observations,
+  ];
+  const fallbackSearch = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: fallbackSearchGraph }));
+  assert.equal(fallbackSearch.ok, true, fallbackSearch.findings.join(","));
+  assert.ok(fallbackSearch.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.term === "purple hair" && entry.supporting_observation_ids.includes("obs_hair_fallback_001")));
+  assert.ok(fallbackSearch.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.term === "white coat" && entry.supporting_observation_ids.includes("obs_clothing_fallback_001")));
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {

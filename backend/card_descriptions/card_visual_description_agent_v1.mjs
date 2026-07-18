@@ -136,9 +136,9 @@ const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_LABEL_PATTERN = /\b(?:ghostly|hau
 const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|dusk|twilight)\b/i;
 const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
-  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern)\b/i;
+  /\b(?:happy|smiling|smile|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|food scene|cozy interior|abstract background|golden abstract background|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
-  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth)\b/i;
+  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth|neutral(?:\s+or\s+slightly\s+concerned)? expression(?:\s+(?:female|male|side profile|male side profile|female side profile))?)\b/i;
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
   /\b(?:ready for attack|ready to attack|preparing to attack|about to attack|female human character|male human character|human character|human trainer|visible trainer|stance|pose)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN =
@@ -234,6 +234,7 @@ const CONTROLLED_VOCABULARY_CONCEPT_RULES = Object.freeze([
   ["vapor or haze", /\b(?:visible )?(?:vapor|vapour)\b|\bhaze\b|\bhazy\b/i],
   ["light streaks", /\blight(?:ing)? streaks?\b|\b(?:pink|white|blue|yellow|green|orange|red|purple)\s+and\s+(?:pink|white|blue|yellow|green|orange|red|purple)\s+streaks?\b/i],
   ["spark", /\bsparks?\b/i],
+  ["sparkle", /\bsparkles?\b|\bstar-like sparkles?\b|\bstar sparkles?\b/i],
   ["explosion", /\bexplos(?:ion|ive)\b|\bimpact effect\b/i],
   ["red eyes", /\bred eyes\b|\bred-eyed\b|\bbloodshot(?:-looking)? eyes?\b/i],
   ["half-closed eyes", /\bhalf[-\s]?(?:closed|lidded) eyes?\b|\bheavy[-\s]?lidded eyes?\b/i],
@@ -2701,6 +2702,9 @@ function isEvidenceOnlySemanticVisualFactLabel(value) {
 
 function normalizeSemanticVisualFactLabelText(value) {
   const label = normalizeText(value);
+  if (isEvidenceOnlySemanticVisualFactLabel(label)) {
+    return label;
+  }
   if (
     label
     && (
@@ -2862,6 +2866,10 @@ function isUsefulSearchTermCandidate(value) {
   return searchTermTokens(key).length > 0;
 }
 
+function isGenericDerivedObservationTerm(value) {
+  return /^(?:clothing|hair|pose|facial expression|face|human face|object|accessory|background|environment|body)$/i.test(normalizeText(value));
+}
+
 function normalizeSearchTermText(value) {
   return normalizeObjectiveVisualText(value)
     .replace(/\bshiny\b/gi, "reflective-looking")
@@ -2953,12 +2961,14 @@ function supportingObservationIdsForSearchTerm(term, observations, typedFacts) {
 }
 
 function derivedSearchTermsFromObservations(observations) {
-  const derivableSalience = new Set(["high", "medium", "salient", "moderate", "primary", "prominent", "secondary", "background"]);
+  const derivableSalience = /\b(?:high|medium|salient|moderate|primary|prominent|secondary|background|foreground|detail|clothing|accessory|environment|subject)\b/i;
   return observations
     .filter((observation) => !isCardUiPrintMarkerObservation(observation))
-    .filter((observation) => derivableSalience.has(normalizeText(observation.salience)))
+    .filter((observation) => derivableSalience.test(normalizeText(observation.salience).replace(/_/g, " ")))
     .map((observation) => ({
-      term: normalizeText(observation.normalized_label) || normalizeText(observation.label),
+      term: isGenericDerivedObservationTerm(observation.normalized_label)
+        ? normalizeText(observation.label)
+        : (normalizeText(observation.normalized_label) || normalizeText(observation.label)),
       supporting_observation_ids: [normalizeText(observation.observation_id)].filter(Boolean),
     }))
     .filter((entry) => isUsefulSearchTermCandidate(entry.term) && entry.supporting_observation_ids.length > 0)
@@ -5171,7 +5181,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "motif") {
-    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|light(?:ing)? streaks?|streaks?|burst)\b/i.test(label);
+    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|light(?:ing)? streaks?|streaks?|burst|star(?:-like)? sparkles?|sparkles?)\b/i.test(label);
   }
 
   if (category === "cameo") {

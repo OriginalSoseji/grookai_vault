@@ -1,0 +1,43 @@
+{
+  "artifact_type": "launch_proof_search_fallback_repair_replay",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_after_semantic_support_drift_repair_dry_run/2026-07-18T19-00-39-893Z_dry_run_41f0e884059b",
+  "source_summary": {
+    "attempted_count": 25,
+    "validated_count": 21,
+    "failed_count": 4,
+    "needs_review_count": 14,
+    "pending_count": 7,
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 222756,
+    "output_tokens": 100668,
+    "total_tokens": 323424,
+    "estimated_cost_usd": 0.2404944
+  },
+  "repair_scope": [
+    "neutral and neutral/concerned expression semantic facts are treated as evidence-only and dropped",
+    "evidence-backed star sparkle motif semantic facts are allowed",
+    "fallback search-term derivation recognizes underscore salience values such as primary_subject_detail",
+    "fallback search-term derivation prefers descriptive observation labels over generic normalized labels"
+  ],
+  "replay_counts": {
+    "previous_failures_replayed": 4,
+    "previous_failures_now_valid": 4,
+    "previous_failures_still_failed": 0,
+    "previous_validated_replayed": 21,
+    "previous_validated_still_valid": 21,
+    "previous_validated_now_failed": 0,
+    "total_replayed": 25,
+    "total_after_valid": 25,
+    "total_after_failed": 0
+  },
+  "after_status_counts": {
+    "needs_review": 18,
+    "pending": 7
+  },
+  "remaining_findings": [],
+  "no_model_calls": true,
+  "no_database_writes": true,
+  "no_approvals": true,
+  "no_embeddings": true
+}
