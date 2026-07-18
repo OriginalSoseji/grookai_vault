@@ -32,6 +32,7 @@ const DEFAULT_MIN_HEIGHT = 240;
 const DEFAULT_MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
+const DEFAULT_OPENAI_REQUEST_TIMEOUT_MS = 180_000;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
 const PROMPT_BRANCHES = Object.freeze([
   "pokemon",
@@ -3148,6 +3149,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     placeholderHashes: parseCommaList(process.env.CARD_VISUAL_DESCRIPTION_PLACEHOLDER_HASHES),
     imageDetail: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_IMAGE_DETAIL) || DEFAULT_IMAGE_DETAIL,
     maxRetries: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES, DEFAULT_MAX_RETRIES, "CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES"),
+    openaiRequestTimeoutMs: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS, DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS"),
     maxRunCostUsd: asNumber(process.env.CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD ?? process.env.OPENAI_MAX_RUN_COST_USD, null, "CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD"),
     maxCards: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_MAX_CARDS, null, "CARD_VISUAL_DESCRIPTION_MAX_CARDS"),
     openaiInputCostPerMillion: asNumber(process.env.OPENAI_INPUT_COST_PER_MILLION, null, "OPENAI_INPUT_COST_PER_MILLION"),
@@ -3198,6 +3200,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--placeholder-hashes=")) parsed.placeholderHashes = parseCommaList(arg.slice("--placeholder-hashes=".length));
     else if (arg.startsWith("--image-detail=")) parsed.imageDetail = normalizeText(arg.slice("--image-detail=".length)).toLowerCase();
     else if (arg.startsWith("--max-retries=")) parsed.maxRetries = asNonnegativeInt(arg.slice("--max-retries=".length), DEFAULT_MAX_RETRIES, "--max-retries");
+    else if (arg.startsWith("--openai-request-timeout-ms=")) parsed.openaiRequestTimeoutMs = asPositiveInt(arg.slice("--openai-request-timeout-ms=".length), DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "--openai-request-timeout-ms");
     else if (arg.startsWith("--max-run-cost-usd=")) parsed.maxRunCostUsd = asNumber(arg.slice("--max-run-cost-usd=".length), null, "--max-run-cost-usd");
     else if (arg.startsWith("--max-cards=")) parsed.maxCards = asNonnegativeInt(arg.slice("--max-cards=".length), null, "--max-cards");
     else if (arg.startsWith("--openai-input-cost-per-million=")) parsed.openaiInputCostPerMillion = asNumber(arg.slice("--openai-input-cost-per-million=".length), null, "--openai-input-cost-per-million");
@@ -6314,6 +6317,8 @@ async function openAiDescription(card, image, args) {
     requestCount += 1;
     let response;
     let responseText = "";
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), args.openaiRequestTimeoutMs);
     try {
       response = await fetch("https://api.openai.com/v1/responses", {
         method: "POST",
@@ -6322,11 +6327,13 @@ async function openAiDescription(card, image, args) {
           "content-type": "application/json",
         },
         body: JSON.stringify(body),
+        signal: controller.signal,
       });
       responseText = await response.text();
     } catch (error) {
       if (attempt < args.maxRetries) {
         retryCount += 1;
+        console.error(`[card-visual-description-agent] openai_request_failed_retrying attempt=${attempt + 1} next_attempt=${attempt + 2} error=${formatFetchError(error)}`);
         await sleep(500 * (attempt + 1));
         continue;
       }
@@ -6340,6 +6347,8 @@ async function openAiDescription(card, image, args) {
         estimated_cost_usd: 0,
       };
       throw transportError;
+    } finally {
+      clearTimeout(timeout);
     }
 
     if (!response.ok) {
@@ -7368,6 +7377,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     model_version: args.modelVersion,
     image_detail: args.imageDetail,
     max_retries: args.maxRetries,
+    openai_request_timeout_ms: args.openaiRequestTimeoutMs,
     pricing_snapshot: args.pricingSnapshot,
     force_version: args.forceVersion,
     v2_stress_roles: args.v2StressSample ? FACT_GRAPH_V2_STRESS_ROLES : null,
@@ -7429,11 +7439,13 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
             break;
           }
 
+          console.error(`[card-visual-description-agent] generating ${generatedRows.length + validationFailures.length + skippedImages.length + 1}/${eligibleCards.length}: ${card.gv_id} ${card.name}`);
           const generation = await generateDescription(card, image, args);
           generationTelemetry = generation.telemetry;
           const rawPayload = generation.payload;
           const validation = validateVisualDescriptionPayloadV1(rawPayload, card);
           if (!validation.ok) {
+            console.error(`[card-visual-description-agent] validation_failed ${card.gv_id} ${card.name}`);
             validationFailures.push({
               card_print_id: card.card_print_id,
               gv_id: card.gv_id,
@@ -7446,6 +7458,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
           }
 
           const row = buildDescriptionRow(card, image, validation.normalized, args, generationTelemetry);
+          console.error(`[card-visual-description-agent] validated ${card.gv_id} ${card.name} status=${row.review_status}`);
           generatedRows.push({
             ...row,
             gv_id: card.gv_id,
@@ -7467,6 +7480,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
             findings: ["generation_exception"],
             error: error.message,
           });
+          console.error(`[card-visual-description-agent] generation_exception ${card.gv_id} ${card.name}: ${error.message}`);
         }
       }
     }

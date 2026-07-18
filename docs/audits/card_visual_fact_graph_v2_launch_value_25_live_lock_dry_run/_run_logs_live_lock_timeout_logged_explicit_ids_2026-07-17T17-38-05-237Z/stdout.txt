@@ -1,0 +1,6 @@
+[card-visual-description-agent] run_key=441470da849a593aabb04de38ffd572841d61112deb90f6c7b62fc2aac68a546
+[card-visual-description-agent] run_dir=docs/audits/card_visual_fact_graph_v2_launch_value_25_live_lock_dry_run/2026-07-17T23-38-05-345Z_dry_run_441470da849a
+[card-visual-description-agent] eligible=25
+[card-visual-description-agent] validated=18
+[card-visual-description-agent] skipped=0
+[card-visual-description-agent] failed=7

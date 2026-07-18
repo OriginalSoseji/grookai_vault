@@ -1,0 +1,51 @@
+{
+  "run_key": "7af3da5bea1a731de1e3c76cb1430f4a8812800e0bf5a61ef61f97bd4cdc7e88",
+  "mode": "dry_run",
+  "provider": "openai",
+  "requested_limit": 25,
+  "max_cards": 1,
+  "max_run_cost_usd": 0.05,
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+  "sample_strategy": "default_order",
+  "branch_targets": null,
+  "branch_candidate_limit": null,
+  "active_prompt_branches": [
+    "pokemon",
+    "trainer",
+    "stadium",
+    "item_tool_supporter"
+  ],
+  "deferred_prompt_branches": [
+    "energy"
+  ],
+  "v2_stress_sample": false,
+  "local_tls_certificate_verification_disabled": true,
+  "agent_version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "model_version": "gpt-4.1-mini",
+  "image_detail": "high",
+  "max_retries": 0,
+  "openai_request_timeout_ms": 15000,
+  "pricing_snapshot": {
+    "input_per_million": 0.4,
+    "output_per_million": 1.6,
+    "cached_input_per_million": 0.1,
+    "image_cost_rule_version": "official-openai-pricing-gpt-4.1-mini-2026-07-17",
+    "recorded_at": "2026-07-17T23:36:33.532Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "force_version": false,
+  "v2_stress_roles": null,
+  "target_card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+  "target_card_print_ids": [],
+  "target_gv_id": null,
+  "started_at": "2026-07-17T23:36:33.532Z",
+  "boundary": {
+    "db_writes": false,
+    "model_calls": true,
+    "fixture_generation": false,
+    "embeddings": false,
+    "card_prints_mutation": false
+  }
+}

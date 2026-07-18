@@ -1,0 +1,53 @@
+(node:65776) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[card-visual-description-agent] generating 1/25: GV-PK-JPN-M5-113 Mega Chandelure ex
+[card-visual-description-agent] validation_failed GV-PK-JPN-M5-113 Mega Chandelure ex
+[card-visual-description-agent] generating 2/25: GV-PK-JPN-M5-118 Mega Darkrai ex
+[card-visual-description-agent] validation_failed GV-PK-JPN-M5-118 Mega Darkrai ex
+[card-visual-description-agent] generating 3/25: GV-PK-JPN-M5-101 Mega Excadrill ex
+[card-visual-description-agent] validated GV-PK-JPN-M5-101 Mega Excadrill ex status=needs_review
+[card-visual-description-agent] generating 4/25: GV-PK-JPN-M5-112 Mega Zeraora ex
+[card-visual-description-agent] validated GV-PK-JPN-M5-112 Mega Zeraora ex status=needs_review
+[card-visual-description-agent] generating 5/25: GV-PK-JPN-M5-096 Mega Zeraora ex
+[card-visual-description-agent] validated GV-PK-JPN-M5-096 Mega Zeraora ex status=needs_review
+[card-visual-description-agent] generating 6/25: GV-PK-JPN-M5-114 Mega Darkrai ex
+[card-visual-description-agent] validated GV-PK-JPN-M5-114 Mega Darkrai ex status=pending
+[card-visual-description-agent] generating 7/25: GV-PK-JPN-M5-099 Mega Darkrai ex
+[card-visual-description-agent] validated GV-PK-JPN-M5-099 Mega Darkrai ex status=needs_review
+[card-visual-description-agent] generating 8/25: GV-PK-JPN-M5-097 Mega Chandelure ex
+[card-visual-description-agent] validation_failed GV-PK-JPN-M5-097 Mega Chandelure ex
+[card-visual-description-agent] generating 9/25: GV-PK-JPN-M5-063 メガドリュウズex
+[card-visual-description-agent] validation_failed GV-PK-JPN-M5-063 メガドリュウズex
+[card-visual-description-agent] generating 10/25: GV-PK-JPN-M5-078 ムク
+[card-visual-description-agent] validated GV-PK-JPN-M5-078 ムク status=needs_review
+[card-visual-description-agent] generating 11/25: GV-PK-JPN-M5-108 Misty's Vitality
+[card-visual-description-agent] validated GV-PK-JPN-M5-108 Misty's Vitality status=needs_review
+[card-visual-description-agent] generating 12/25: GV-PK-JPN-M5-109 Gladion's Final Battle
+[card-visual-description-agent] validated GV-PK-JPN-M5-109 Gladion's Final Battle status=pending
+[card-visual-description-agent] generating 13/25: GV-PK-JPN-M5-117 Gwynn
+[card-visual-description-agent] validated GV-PK-JPN-M5-117 Gwynn status=needs_review
+[card-visual-description-agent] generating 14/25: GV-PK-JPN-M5-116 Gladion's Final Battle
+[card-visual-description-agent] validated GV-PK-JPN-M5-116 Gladion's Final Battle status=needs_review
+[card-visual-description-agent] generating 15/25: GV-PK-JPN-M5-111 Gwynn
+[card-visual-description-agent] validated GV-PK-JPN-M5-111 Gwynn status=needs_review
+[card-visual-description-agent] generating 16/25: GV-PK-JPN-M5-110 Rust Syndicate Grunt
+[card-visual-description-agent] validation_failed GV-PK-JPN-M5-110 Rust Syndicate Grunt
+[card-visual-description-agent] generating 17/25: GV-PK-JPN-M5-075 カスミの元気
+[card-visual-description-agent] openai_request_failed_retrying attempt=1 next_attempt=2 error=This operation was aborted
+[card-visual-description-agent] validated GV-PK-JPN-M5-075 カスミの元気 status=needs_review
+[card-visual-description-agent] generating 18/25: GV-PK-JPN-TCGCOLLECTOR11526-019 Magnetic Storm
+[card-visual-description-agent] validation_failed GV-PK-JPN-TCGCOLLECTOR11526-019 Magnetic Storm
+[card-visual-description-agent] generating 19/25: GV-PK-JPN-S6A-100 Turffield Stadium
+[card-visual-description-agent] validated GV-PK-JPN-S6A-100 Turffield Stadium status=needs_review
+[card-visual-description-agent] generating 20/25: GV-PK-JPN-PMCG6-085 Cinnabar City Gym
+[card-visual-description-agent] validated GV-PK-JPN-PMCG6-085 Cinnabar City Gym status=needs_review
+[card-visual-description-agent] generating 21/25: GV-PK-JPN-TCGCOLLECTOR11525-019 High Pressure System
+[card-visual-description-agent] validation_failed GV-PK-JPN-TCGCOLLECTOR11525-019 High Pressure System
+[card-visual-description-agent] generating 22/25: GV-PK-JPN-M5-106 Tremendous Bomb
+[card-visual-description-agent] validated GV-PK-JPN-M5-106 Tremendous Bomb status=needs_review
+[card-visual-description-agent] generating 23/25: GV-PK-JPN-M5-105 Dark Bell
+[card-visual-description-agent] validated GV-PK-JPN-M5-105 Dark Bell status=needs_review
+[card-visual-description-agent] generating 24/25: GV-PK-JPN-M5-074 リトライバッジ
+[card-visual-description-agent] validated GV-PK-JPN-M5-074 リトライバッジ status=pending
+[card-visual-description-agent] generating 25/25: GV-PK-JPN-M5-073 ごうかいボム
+[card-visual-description-agent] validated GV-PK-JPN-M5-073 ごうかいボム status=pending

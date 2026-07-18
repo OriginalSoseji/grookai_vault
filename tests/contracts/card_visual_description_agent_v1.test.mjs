@@ -643,6 +643,7 @@ test("card visual description args default to dry-run and block fixture apply", 
     "--card-print-id=2412563a-c73d-5970-a389-f4c1dc35d8c6",
     "--card-print-ids=22222222-2222-2222-2222-222222222222,11111111-1111-1111-1111-111111111111",
     "--max-run-cost-usd=0.25",
+    "--openai-request-timeout-ms=240000",
     "--openai-input-cost-per-million=0.15",
     "--openai-output-cost-per-million=0.60",
     "--image-cost-rule-version=gpt-4o-mini-2026-07-15",
@@ -659,6 +660,7 @@ test("card visual description args default to dry-run and block fixture apply", 
     "11111111-1111-1111-1111-111111111111",
   ]);
   assert.equal(apply.maxRunCostUsd, 0.25);
+  assert.equal(apply.openaiRequestTimeoutMs, 240000);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
   assert.equal(apply.openaiImageCostRuleVersion, "gpt-4o-mini-2026-07-15");
