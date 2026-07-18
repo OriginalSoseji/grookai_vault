@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-07-18T06:56:54.225Z",
+  "policy_repair": "live_lock_evidence_backed_validation_repair_v1",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_evidence_policy_retry_dry_run/2026-07-18T06-22-38-454Z_dry_run_81281d9cbc31",
+  "openai_calls": 0,
+  "db_writes": false,
+  "schema_migrations": false,
+  "failed_payloads_replayed": 4,
+  "failed_payloads_after_ok": 4,
+  "failed_payloads_after_failed": 0,
+  "prior_generated_rows_replayed": 21,
+  "prior_generated_rows_after_ok": 21,
+  "prior_generated_rows_after_failed": 0,
+  "repaired_failure_classes": [
+    "evidence-backed focused/determined expression semantic labels are allowed only with visible facial support",
+    "smile/happy search terms may be supported directly by cited facial observations or human appearance evidence",
+    "obvious clothing observation ID typos such as obs_clothes_N are repaired to existing obs_clothing_N references",
+    "count_semantic labels may validate against matching exact count rows with shared supporting observations"
+  ]
+}

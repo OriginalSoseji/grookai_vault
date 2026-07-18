@@ -1,0 +1,143 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_AGENT_V1",
+  "mode": "dry_run",
+  "provider": "openai",
+  "model_version": "gpt-4.1-mini",
+  "response_model_version": "gpt-4.1-mini-2025-04-14",
+  "response_model_versions": [
+    "gpt-4.1-mini-2025-04-14"
+  ],
+  "image_detail": "high",
+  "prompt_version": "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+  "output_schema_version": "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+  "sample_strategy": "default_order",
+  "branch_targets": null,
+  "branch_candidate_limit": null,
+  "active_prompt_branches": [
+    "pokemon",
+    "trainer",
+    "stadium",
+    "item_tool_supporter"
+  ],
+  "deferred_prompt_branches": [
+    "energy"
+  ],
+  "v2_stress_sample": false,
+  "local_tls_certificate_verification_disabled": true,
+  "pricing_snapshot": {
+    "input_per_million": 0.4,
+    "output_per_million": 1.6,
+    "cached_input_per_million": 0.1,
+    "image_cost_rule_version": "official-openai-pricing-gpt-4.1-mini-2026-07-17",
+    "recorded_at": "2026-07-18T06:22:38.454Z",
+    "source": "cli_or_environment",
+    "formula": "((input_tokens - cached_input_tokens) * input_per_million + cached_input_tokens * cached_input_per_million + output_tokens * output_per_million) / 1000000; if cached_input_per_million is null, cached input is priced at input_per_million; image costs are assumed to be represented in input_tokens under image_cost_rule_version."
+  },
+  "started_at": "2026-07-18T06:22:38.454Z",
+  "finished_at": "2026-07-18T06:48:58.950Z",
+  "eligible_count": 25,
+  "total_eligible_catalog_count": 25,
+  "attempted_count": 25,
+  "validated_count": 21,
+  "failed_count": 4,
+  "skipped_count": 0,
+  "needs_review_count": 13,
+  "pending_count": 8,
+  "branch_counts": {
+    "item_tool_supporter": 4,
+    "pokemon": 9,
+    "stadium": 3,
+    "trainer": 5
+  },
+  "usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 222756,
+    "output_tokens": 113182,
+    "total_tokens": 335938,
+    "cached_input_tokens": 64128,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.2509552
+  },
+  "average_usage_per_validated_description": {
+    "request_count": 1.1905,
+    "retry_count": 0,
+    "input_tokens": 10607.4286,
+    "output_tokens": 5389.619,
+    "total_tokens": 15997.0476,
+    "cached_input_tokens": 3053.7143,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.01195025
+  },
+  "estimated_cost_usd": 0.2509552,
+  "cost_projection": {
+    "estimated_cost_per_validated_card_usd": 0.01195025,
+    "projected_500_cards_usd": 5.975125,
+    "projected_1000_cards_usd": 11.95025,
+    "full_eligible_catalog_count": 25,
+    "projected_full_eligible_catalog_usd": 0.29875625
+  },
+  "ceiling": {
+    "max_cards": 25,
+    "max_run_cost_usd": 0.35,
+    "stopped_before_next_call": false,
+    "stop_reason": null,
+    "stop_detail": null
+  },
+  "quality_flag_counts": {
+    "partial_card_ui_due_to_low_resolution": 1,
+    "potential_canonical_metadata_in_fact_grounded_search_terms": 1,
+    "potential_canonical_metadata_in_visual_output": 2,
+    "potential_count_reference_inconsistent": 5,
+    "potential_dramatic_inferred_action_language": 1,
+    "potential_metadata_or_identity_language": 1,
+    "potential_module_incomplete_or_low_evidence": 9,
+    "potential_module_review_conflicts_with_entries": 6,
+    "potential_overconfident_ambiguous_setting": 1,
+    "potential_pose_or_action_without_visible_support": 3,
+    "potential_speculative_setting_language": 1,
+    "potential_weather_field_alignment_missing": 1
+  },
+  "quality_flag_counts_by_branch": {
+    "item_tool_supporter": {
+      "potential_canonical_metadata_in_fact_grounded_search_terms": 1,
+      "potential_canonical_metadata_in_visual_output": 1,
+      "potential_dramatic_inferred_action_language": 1,
+      "potential_metadata_or_identity_language": 1,
+      "potential_module_incomplete_or_low_evidence": 1,
+      "potential_module_review_conflicts_with_entries": 1
+    },
+    "pokemon": {
+      "partial_card_ui_due_to_low_resolution": 1,
+      "potential_canonical_metadata_in_visual_output": 1,
+      "potential_count_reference_inconsistent": 2,
+      "potential_module_incomplete_or_low_evidence": 4,
+      "potential_module_review_conflicts_with_entries": 1,
+      "potential_overconfident_ambiguous_setting": 1,
+      "potential_pose_or_action_without_visible_support": 1,
+      "potential_speculative_setting_language": 1
+    },
+    "stadium": {
+      "potential_count_reference_inconsistent": 1,
+      "potential_module_review_conflicts_with_entries": 2
+    },
+    "trainer": {
+      "potential_count_reference_inconsistent": 2,
+      "potential_module_incomplete_or_low_evidence": 4,
+      "potential_module_review_conflicts_with_entries": 2,
+      "potential_pose_or_action_without_visible_support": 2,
+      "potential_weather_field_alignment_missing": 1
+    }
+  },
+  "policy_rule_counts": {
+    "type_like_visual_claim_requires_visible_support": 1
+  },
+  "policy_rule_counts_by_branch": {
+    "item_tool_supporter": {},
+    "pokemon": {
+      "type_like_visual_claim_requires_visible_support": 1
+    },
+    "stadium": {},
+    "trainer": {}
+  }
+}

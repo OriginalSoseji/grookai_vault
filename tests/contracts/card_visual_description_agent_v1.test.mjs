@@ -4791,6 +4791,161 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
   );
 });
 
+test("card visual fact graph repairs evidence-backed live-lock validation misses", () => {
+  const determinedGraph = structuredClone(validFactGraph());
+  determinedGraph.observations.push({
+    observation_id: "obs_face_determined_001",
+    kind: "creature_anatomy",
+    label: "sharp focused eyes with angular eyebrows",
+    normalized_label: "sharp focused eyes angular eyebrows",
+    scene_layer: "foreground",
+    frame_position: "face",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.95,
+    evidence_strength: "strong",
+  });
+  determinedGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_determined_001",
+      category: "expression",
+      label: "determined expression",
+      supporting_observation_ids: ["obs_face_determined_001"],
+      evidence: {
+        mouth: ["slightly open mouth"],
+        eyes: ["sharp focused eyes"],
+        eyebrows: ["angular eyebrows"],
+      },
+    }),
+  ];
+  const determined = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: determinedGraph }));
+  assert.equal(determined.ok, true, determined.findings.join(","));
+  assert.ok(determined.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "determined expression"));
+
+  const smilingSearchGraph = structuredClone(validFactGraph());
+  smilingSearchGraph.observations.push({
+    observation_id: "obs_human_face_001",
+    kind: "human_appearance",
+    label: "human face with open eyes and smiling mouth",
+    normalized_label: "open eyes smiling mouth",
+    scene_layer: "foreground",
+    frame_position: "face",
+    visibility: "visible",
+    salience: "high",
+    confidence: 0.98,
+    evidence_strength: "strong",
+  });
+  smilingSearchGraph.modules.human_appearance = {
+    ...smilingSearchGraph.modules.human_appearance,
+    facial_evidence: [
+      {
+        subject_observation_id: "obs_subject_001",
+        face_position: "frontal",
+        eyes: "open eyes",
+        mouth: "smiling mouth",
+        eyebrows: "neutral",
+        other_visible_evidence: [],
+        supporting_observation_ids: ["obs_human_face_001"],
+        confidence: 0.98,
+      },
+    ],
+  };
+  smilingSearchGraph.module_reviews = smilingSearchGraph.module_reviews.map((review) =>
+    review.module === "human_appearance"
+      ? { ...review, review_status: "complete", omission_risk: "low", evidence_quality: "high" }
+      : review);
+  smilingSearchGraph.fact_grounded_search_terms = [
+    { term: "human face with open eyes and smiling mouth", supporting_observation_ids: ["obs_human_face_001"] },
+    { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+  ];
+  smilingSearchGraph.modules.fact_grounded_search_terms.terms = [
+    "human face with open eyes and smiling mouth",
+    "forest background",
+  ];
+  const smilingSearch = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: smilingSearchGraph }));
+  assert.equal(smilingSearch.ok, true, smilingSearch.findings.join(","));
+  assert.ok(smilingSearch.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((term) =>
+    term.term === "human face with open eyes and smiling mouth"));
+
+  const referenceTypoGraph = structuredClone(validFactGraph());
+  referenceTypoGraph.observations.push({
+    observation_id: "obs_clothing_005",
+    kind: "clothing",
+    label: "purple tinted glasses lenses",
+    normalized_label: "purple tinted glasses lenses",
+    scene_layer: "foreground",
+    frame_position: "face",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  referenceTypoGraph.typed_facts.push({
+    fact_id: "fact_glasses_001",
+    module: "human_appearance",
+    field_path: "glasses[0]",
+    claim: "purple tinted glasses lenses are visible",
+    value: "purple tinted glasses lenses",
+    supporting_observation_ids: ["obs_clothes_005"],
+    confidence: 0.9,
+    evidence_strength: "strong",
+  });
+  referenceTypoGraph.modules.human_appearance.fact_ids.push("fact_glasses_001");
+  referenceTypoGraph.module_reviews = referenceTypoGraph.module_reviews.map((review) =>
+    review.module === "human_appearance"
+      ? { ...review, review_status: "complete", omission_risk: "low", evidence_quality: "high" }
+      : review);
+  const referenceTypo = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: referenceTypoGraph }));
+  assert.equal(referenceTypo.ok, true, referenceTypo.findings.join(","));
+  assert.deepEqual(
+    referenceTypo.normalized.visual_attributes.fact_graph.typed_facts
+      .find((fact) => fact.fact_id === "fact_glasses_001").supporting_observation_ids,
+    ["obs_clothing_005"],
+  );
+
+  const countSemanticGraph = structuredClone(validFactGraph());
+  countSemanticGraph.observations.push({
+    observation_id: "obs_traffic_cones_001",
+    kind: "counts",
+    label: "four orange and white traffic cones",
+    normalized_label: "traffic cones",
+    scene_layer: "foreground",
+    frame_position: "lower_left",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.99,
+    evidence_strength: "strong",
+  });
+  countSemanticGraph.counts.push({
+    count_id: "count_cone_001",
+    normalized_label: "traffic cones",
+    count_type: "exact",
+    exact_count: 4,
+    estimated_min: 0,
+    estimated_max: 0,
+    abstention_reason: "",
+    supporting_observation_ids: ["obs_traffic_cones_001"],
+    scene_layer: "foreground",
+    confidence: 0.99,
+  });
+  countSemanticGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_count_cones_001",
+      category: "count_semantic",
+      label: "4 traffic cones",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_traffic_cones_001"],
+      evidence: {
+        objects: ["traffic cones"],
+      },
+    }),
+  ];
+  countSemanticGraph.modules.counts.count_ids.push("count_cone_001");
+  const countSemantic = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: countSemanticGraph }));
+  assert.equal(countSemantic.ok, true, countSemantic.findings.join(","));
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {
