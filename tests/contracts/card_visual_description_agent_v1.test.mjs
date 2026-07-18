@@ -5060,6 +5060,38 @@ test("card visual fact graph repairs live-proof semantic label variance", () => 
     fact.label === "hands on hips"));
 });
 
+test("card visual fact graph allows evidence-backed architectural environment labels", () => {
+  const corridorGraph = structuredClone(validFactGraph());
+  corridorGraph.observations.push({
+    observation_id: "obs_brick_corridor_001",
+    kind: "environment",
+    label: "brick wall corridor with arches and lamps",
+    normalized_label: "brick wall corridor lamps",
+    scene_layer: "background",
+    frame_position: "full_background",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.92,
+    evidence_strength: "strong",
+  });
+  corridorGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_brick_corridor_001",
+      category: "environment",
+      label: "brick wall corridor",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_brick_corridor_001"],
+      evidence: {
+        environment: ["brick wall corridor with lamps"],
+      },
+    }),
+  ];
+  const corridor = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: corridorGraph }));
+  assert.equal(corridor.ok, true, corridor.findings.join(","));
+  assert.ok(corridor.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "brick wall corridor"));
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {

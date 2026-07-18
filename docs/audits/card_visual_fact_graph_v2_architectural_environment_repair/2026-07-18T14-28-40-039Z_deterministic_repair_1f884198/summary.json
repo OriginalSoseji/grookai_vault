@@ -1,0 +1,46 @@
+{
+  "repair_version": "CARD_VISUAL_FACT_GRAPH_V2_ARCHITECTURAL_ENVIRONMENT_LABEL_REPAIR_V1",
+  "generated_at": "2026-07-18T14:28:40.145Z",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_after_semantic_label_repair_dry_run/2026-07-18T13-58-31-907Z_dry_run_45a7daa17908",
+  "source_run_status": "failed_live_lock_before_repair",
+  "source_attempted_count": 25,
+  "source_validated_count": 24,
+  "source_failed_count": 1,
+  "source_needs_review_count": 20,
+  "source_pending_count": 4,
+  "source_branch_counts": {
+    "item_tool_supporter": 4,
+    "pokemon": 9,
+    "stadium": 4,
+    "trainer": 7
+  },
+  "source_usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 222756,
+    "output_tokens": 105967,
+    "total_tokens": 328723,
+    "cached_input_tokens": 25344,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.2510464
+  },
+  "source_estimated_cost_usd": 0.2510464,
+  "openai_calls": 0,
+  "db_writes": false,
+  "schema_migrations": false,
+  "embeddings": false,
+  "repair_scope": [
+    "Allow evidence-backed architectural environment labels such as brick wall corridor, corridors, walls, brick, arches, and lamps."
+  ],
+  "replay": {
+    "previous_validation_failures_replayed": 1,
+    "previous_validation_failures_after_ok": 1,
+    "previous_valid_generated_rows_replayed": 24,
+    "previous_valid_generated_rows_after_ok": 24,
+    "total_replayed": 25,
+    "total_after_ok": 25,
+    "total_after_failed": 0
+  },
+  "lock_claimed": false,
+  "exact_next_gate": "Run one fresh 25-card OpenAI dry-run proof with the repaired code frozen; no DB writes, approvals, embeddings, semantic search, Taste Engine, Listing Resolver, or 125-card batch."
+}

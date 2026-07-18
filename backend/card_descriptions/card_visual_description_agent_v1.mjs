@@ -5136,7 +5136,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "environment") {
-    return /\b(?:plants?|leafy|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
+    return /\b(?:plants?|leafy|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|corridors?|hallways?|walls?|brick|bricks?|arches?|arched|lamps?|lanterns?|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
   }
 
   if (category === "motif") {

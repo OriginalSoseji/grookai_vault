@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-18T14:28:40.147Z",
+  "artifacts": [
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_architectural_environment_repair\\2026-07-18T14-28-40-039Z_deterministic_repair_1f884198\\summary.json",
+      "sha256": "982befa0d228e62fb053d6d1679d9d3e8cf132c7d4e3e72a3de25b474c3a1dc5"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_architectural_environment_repair\\2026-07-18T14-28-40-039Z_deterministic_repair_1f884198\\replay_results.jsonl",
+      "sha256": "56bee2dd95ec5e4851ea3b53071643bae07be42e4b7bb8551df3fb86fd93e9a8"
+    },
+    {
+      "path": "docs\\audits\\card_visual_fact_graph_v2_architectural_environment_repair\\2026-07-18T14-28-40-039Z_deterministic_repair_1f884198\\ARCHITECTURAL_ENVIRONMENT_REPAIR_REPLAY.md",
+      "sha256": "61d70faf1b797e6dab9ccd01eeaa6d545b17a754f6d6cd189ecf80e9b6f041c0"
+    }
+  ]
+}
