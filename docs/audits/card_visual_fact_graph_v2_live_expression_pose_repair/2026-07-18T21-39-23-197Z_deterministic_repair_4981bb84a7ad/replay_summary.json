@@ -1,0 +1,41 @@
+{
+  "repair_version": "CARD_VISUAL_FACT_GRAPH_V2_LIVE_EXPRESSION_POSE_REPAIR_20260718",
+  "source_paid_run_dir": "docs/audits/card_visual_fact_graph_v2_evidence_backed_claim_repair_live_25_dry_run/2026-07-18T21-10-40-349Z_dry_run_1975a670b3f2",
+  "generated_at": "2026-07-18T21:40:31.173Z",
+  "before": {
+    "attempted_count": 25,
+    "validated_count": 22,
+    "failed_count": 3,
+    "pending_count": 2,
+    "needs_review_count": 20,
+    "estimated_cost_usd": 0.2430256,
+    "usage": {
+      "request_count": 26,
+      "retry_count": 1,
+      "input_tokens": 222756,
+      "output_tokens": 101674,
+      "total_tokens": 324430,
+      "cached_input_tokens": 29184,
+      "reasoning_output_tokens": 0,
+      "estimated_cost_usd": 0.2430256
+    }
+  },
+  "after_replay": {
+    "attempted_count": 25,
+    "validated_count": 25,
+    "failed_count": 0,
+    "previously_failed_repaired_count": 3,
+    "previously_valid_still_valid_count": 22,
+    "status_counts": {
+      "needs_review": 20,
+      "pending": 5
+    },
+    "still_failed": []
+  },
+  "scope": {
+    "openai_calls": 0,
+    "database_writes": 0,
+    "approvals": 0,
+    "embeddings": 0
+  }
+}

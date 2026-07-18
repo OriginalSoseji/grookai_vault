@@ -5634,6 +5634,106 @@ test("card visual fact graph normalizes circular expression evidence and missing
   assert.equal(reviewsByModule.get("fact_grounded_search_terms").review_status, "uncertain");
 });
 
+test("card visual fact graph repairs evidence-backed live expression and pose labels", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_side_profile_live_001",
+      kind: "creature_anatomy",
+      label: "white face with pink nose and side profile visible",
+      normalized_label: "white face pink nose side profile visible",
+      scene_layer: "foreground",
+      frame_position: "center right",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_upright_live_001",
+      kind: "creature_anatomy",
+      label: "upright diagonal body position with front legs extended forward",
+      normalized_label: "upright diagonal body position",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.96,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_smirk_live_001",
+      kind: "human_appearance",
+      label: "left character facial profile shown with smirking mouth",
+      normalized_label: "smirking mouth",
+      scene_layer: "midground",
+      frame_position: "center left",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.98,
+      evidence_strength: "strong",
+    },
+  );
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_side_profile_live_001",
+      category: "expression",
+      label: "face side profile visible",
+      supporting_observation_ids: ["obs_side_profile_live_001"],
+      evidence: {
+        facial_features: ["white face with pink nose", "side profile visible"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_upright_live_001",
+      category: "state",
+      label: "upright",
+      supporting_observation_ids: ["obs_upright_live_001"],
+      evidence: {
+        body_position: ["upright", "diagonal"],
+        body_language: ["front legs extended forward"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_smirk_live_001",
+      category: "expression",
+      label: "smirking",
+      supporting_observation_ids: ["obs_smirk_live_001"],
+      evidence: {
+        mouth: ["smirking"],
+        body_position: ["standing"],
+      },
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const semanticLabels = validation.normalized.visual_attributes.fact_graph.semantic_visual_facts.map((fact) => fact.label);
+  assert.equal(semanticLabels.includes("face side profile visible"), false);
+  assert.ok(semanticLabels.includes("upright"));
+  assert.ok(semanticLabels.includes("smirking"));
+
+  const unsupportedSmirkGraph = structuredClone(validFactGraph());
+  unsupportedSmirkGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_smirk_unsupported_live_001",
+      category: "expression",
+      label: "smirking",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: {
+        mouth: ["mouth not visible"],
+        eyes: ["eyes not visible"],
+      },
+    }),
+  ];
+  const unsupported = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedSmirkGraph }));
+  assert.equal(unsupported.ok, true, unsupported.findings.join(","));
+  assert.equal(
+    unsupported.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "smirking"),
+    false,
+  );
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {
