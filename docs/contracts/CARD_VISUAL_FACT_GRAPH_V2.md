@@ -2,7 +2,7 @@
 
 Status: Active
 
-Date: 2026-07-17
+Date: 2026-07-18
 
 ## Purpose
 
@@ -160,6 +160,7 @@ Allowed examples:
 - `coniferous trees`, `traffic cones`, `reflective water`, or `blue sky with clouds` when supported by the corresponding visible environment/object observations
 - `Pikachu pillow` supported by a character-representation record and host object
 - `Pikachu cameo` supported by a depicted-subject or character-representation record
+- `red eyes`, `half-closed eyes`, `drooping eyelids`, `smoke`, `vapor`, `haze`, `smoke near mouth`, or `pipe-like object` as concrete visible cues
 
 Not allowed:
 
@@ -171,10 +172,31 @@ Not allowed:
 - `majestic`
 - `confident`
 - `sexy`
+- `stoner`
+- `high`
+- `under the influence`
+- `intoxicated`
+- `drugged`
+- `stoned`
 
 Evidence-only details are not standalone semantic facts. Labels such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` belong in `facial_evidence` or inside a semantic fact's `evidence` object. They may support a useful semantic label such as `smiling`, `sleeping`, `surprised`, or `cannot_determine`, but should not be stored as independent reusable facts.
 
 The semantic label must not contradict the evidence. `happy` cannot be supported only by a frown or a hidden face. `sleeping` cannot be supported by open eyes and running.
+
+## Substance-Cue Alias Boundary
+
+Colloquial searches such as `stoner`, `high`, `under the influence`, or `smoked out` are supported only as future search aliases. They are not factual labels about a subject.
+
+The fact graph may record only directly visible cue evidence:
+
+- eye cues such as `red eyes`, `bloodshot-looking eyes`, `half-closed eyes`, or `drooping eyelids`
+- atmospheric cues such as `smoke`, `smoke cloud`, `smoke plume`, `vapor`, or `haze`
+- object cues such as `pipe-like object`, `pipe-shaped object`, `cigarette-like object`, `cigar-like object`, or `smoking object`
+- positional cues such as `smoke near mouth` or `vapor near mouth`
+
+The derived concept `altered-state visual cue evidence` is search-facing derived intelligence. It may be created only from multiple supported cue families, such as smoke plus red-eye/eyelid cues, or from an explicit visible smoking/paraphernalia-like object cue. It must cite the underlying observation IDs and must not assert that a subject is actually intoxicated, drugged, high, or under the influence.
+
+Raw observation labels may preserve literal visible text when the artwork contains it, but `stoner`, `high`, `under the influence`, `intoxicated`, `drugged`, and `stoned` must not be stored as accepted semantic facts or artwork search terms.
 
 ## Object And Material Claims
 

@@ -2,7 +2,7 @@
 
 Status: Active
 
-Date: 2026-07-17
+Date: 2026-07-18
 
 ## Purpose
 
@@ -97,6 +97,13 @@ Keep when supported:
 - `exposed shoulders`
 - `aurora-like light bands`
 - `radial lines`
+- `red eyes`
+- `half-closed eyes`
+- `drooping eyelids`
+- `smoke cloud`
+- `vapor or haze`
+- `smoke near mouth`
+- `pipe-like object`
 - `sleeping Pokemon` when supported by a sleeping semantic fact and a visible Pokemon subject
 - `happy Pikachu` when supported by a happy semantic fact and a visible Pikachu subject
 
@@ -107,6 +114,30 @@ When an exact subject identity is already stored in a subject, depicted subject,
 Use `water body` instead of `water scene` for generic water evidence. Scene/story wording is avoided unless it names a directly visible setting category such as `forest background` or `food scene`.
 
 Evidence-only face details such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` are preserved in raw observations and facial-evidence fields, but are not canonical semantic facts by themselves. They can support a higher-level semantic fact such as `smiling`, `sleeping`, or `surprised`.
+
+## Substance-Cue Search Aliases
+
+Colloquial query terms such as `stoner`, `high`, `under the influence`, `stoned`, `intoxicated`, `drugged`, or `smoked out` are search aliases only. They must not be stored in artwork facts, semantic facts, search terms, or canonical visual concepts.
+
+The professional stored vocabulary is:
+
+- `red eyes`
+- `bloodshot-looking eyes`
+- `half-closed eyes`
+- `drooping eyelids`
+- `smoke`
+- `smoke cloud`
+- `smoke plume`
+- `vapor or haze`
+- `smoke near mouth`
+- `pipe-like object`
+- `cigarette-like object`
+- `smoking object visual cue`
+- `altered-state visual cue evidence`
+
+`altered-state visual cue evidence` is a derived search-facing concept, not a character state. It requires either multiple supported cue families, such as smoke plus red-eye/eyelid evidence, or an explicit visible smoking/paraphernalia-like object cue. It must cite the underlying observation IDs.
+
+The visual search alias layer may translate `stoner`, `high`, `under the influence`, or similar user wording to `altered-state visual cue evidence` and related cue concepts. User-facing explanations must say that the match is based on visible cue evidence and does not assert actual substance use or intoxication.
 
 ## Canonical Visual Concepts
 
@@ -140,6 +171,7 @@ V1 derives common concepts for:
 
 - pose and orientation
 - lightning, flame, smoke, spark, glow
+- visible altered-state cue evidence such as red eyes, half-closed eyes, drooping eyelids, smoke, vapor, haze, smoke near mouth, and smoking-object-like cues
 - radial, circular, spiral, diagonal, centered, and close-crop composition
 - forest, trees, buildings, sky, clouds, terrain, water, rain, snow, flowers
 - clothing and body-region facts such as hats, gloves, capes, masks, armor, long hair, exposed shoulders, exposed midriff, low-cut neckline, and sleeveless clothing

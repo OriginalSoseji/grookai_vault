@@ -6,6 +6,7 @@ import {
   CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
   CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION,
   CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
+  CARD_VISUAL_SEARCH_ALIAS_VERSION,
   aggregateUsageRows,
   buildFactGraphCompatibilityDigestV1,
   buildDescriptionVersionKeyV1,
@@ -19,6 +20,7 @@ import {
   estimateUsageCostUsd,
   evaluateStopBeforeNextCall,
   filterActiveVisualFactExtractionCardsV1,
+  mapVisualSearchAliasQueryV1,
   parseCardVisualDescriptionArgsV1,
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
@@ -3578,6 +3580,230 @@ test("card visual controlled vocabulary deduplicates concepts and cleans determi
   assert.deepEqual(waterConcept.source_observation_ids, ["obs_lake_001"]);
   assert.deepEqual(skyConcept.source_observation_ids, ["obs_sky_001"]);
   assert.deepEqual(buildingConcept.source_observation_ids, ["obs_building_001"]);
+});
+
+test("card visual controlled vocabulary supports substance-cue aliases without storing substance-state claims", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations = [
+    ...graph.observations,
+    {
+      observation_id: "obs_red_eyes_001",
+      kind: "creature_anatomy",
+      label: "red eyes visible on the subject",
+      normalized_label: "red eyes",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_smoke_cloud_001",
+      kind: "visual_effects",
+      label: "smoke cloud behind the subject",
+      normalized_label: "smoke cloud",
+      scene_layer: "midground",
+      frame_position: "behind subject",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+  ];
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_under_influence_001",
+      category: "state",
+      label: "under the influence",
+      supporting_observation_ids: ["obs_red_eyes_001", "obs_smoke_cloud_001"],
+      evidence: {
+        eyes: ["red eyes"],
+        environment: ["smoke cloud"],
+      },
+    }),
+  ];
+  graph.fact_grounded_search_terms = [
+    { term: "stoner Pikachu", supporting_observation_ids: ["obs_red_eyes_001", "obs_smoke_cloud_001"] },
+    { term: "high Pikachu", supporting_observation_ids: ["obs_red_eyes_001", "obs_smoke_cloud_001"] },
+    { term: "high trainer", supporting_observation_ids: ["obs_red_eyes_001", "obs_smoke_cloud_001"] },
+    { term: "red eyes", supporting_observation_ids: ["obs_red_eyes_001"] },
+    { term: "smoke cloud", supporting_observation_ids: ["obs_smoke_cloud_001"] },
+  ];
+  graph.modules.fact_grounded_search_terms.terms = [
+    "stoner Pikachu",
+    "high Pikachu",
+    "high trainer",
+    "red eyes",
+    "smoke cloud",
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: graph,
+    semantic_tags: ["stoner", "red eyes"],
+  }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const storedText = JSON.stringify([
+    normalizedGraph.semantic_visual_facts,
+    normalizedGraph.fact_grounded_search_terms,
+    normalizedGraph.canonical_visual_concepts,
+    validation.normalized.semantic_tags,
+  ]);
+  assert.doesNotMatch(storedText, /\b(?:stoner|under the influence|intoxicated|drugged|stoned)\b/i);
+  assert.doesNotMatch(storedText, /\bhigh\b/i);
+  assert.ok(normalizedGraph.fact_grounded_search_terms.some((entry) => entry.term === "red eyes"));
+  assert.ok(normalizedGraph.fact_grounded_search_terms.some((entry) => entry.term === "smoke cloud"));
+  assert.equal(normalizedGraph.semantic_visual_facts.some((fact) => fact.label === "under the influence"), false);
+  assert.ok(normalizedGraph.canonical_visual_concepts.concepts.some((concept) =>
+    concept.concept === "altered-state visual cue evidence"
+    && concept.source_observation_ids.includes("obs_red_eyes_001")
+    && concept.source_observation_ids.includes("obs_smoke_cloud_001")));
+  assert.ok(normalizedGraph.canonical_visual_concepts.concepts.some((concept) => concept.concept === "red eyes"));
+  assert.ok(normalizedGraph.canonical_visual_concepts.concepts.some((concept) => concept.concept === "smoke"));
+
+  const redEyesOnlyGraph = structuredClone(validFactGraph());
+  redEyesOnlyGraph.observations = [
+    ...redEyesOnlyGraph.observations,
+    {
+      observation_id: "obs_red_eyes_only_001",
+      kind: "creature_anatomy",
+      label: "red eyes visible",
+      normalized_label: "red eyes",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+  ];
+  redEyesOnlyGraph.fact_grounded_search_terms = [
+    { term: "red eyes", supporting_observation_ids: ["obs_red_eyes_only_001"] },
+  ];
+  const redEyesOnly = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: redEyesOnlyGraph }));
+  assert.equal(redEyesOnly.ok, true, redEyesOnly.findings.join(","));
+  assert.equal(redEyesOnly.normalized.visual_attributes.fact_graph.canonical_visual_concepts.concepts.some((concept) =>
+    concept.concept === "altered-state visual cue evidence"), false);
+
+  const smokeOnlyGraph = structuredClone(validFactGraph());
+  smokeOnlyGraph.observations = [
+    ...smokeOnlyGraph.observations,
+    {
+      observation_id: "obs_smoke_only_001",
+      kind: "visual_effects",
+      label: "smoke plume in background",
+      normalized_label: "smoke plume",
+      scene_layer: "background",
+      frame_position: "right",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+  ];
+  smokeOnlyGraph.fact_grounded_search_terms = [
+    { term: "smoke plume", supporting_observation_ids: ["obs_smoke_only_001"] },
+  ];
+  const smokeOnly = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: smokeOnlyGraph }));
+  assert.equal(smokeOnly.ok, true, smokeOnly.findings.join(","));
+  assert.equal(smokeOnly.normalized.visual_attributes.fact_graph.canonical_visual_concepts.concepts.some((concept) =>
+    concept.concept === "altered-state visual cue evidence"), false);
+
+  const objectCueGraph = structuredClone(validFactGraph());
+  objectCueGraph.observations = [
+    ...objectCueGraph.observations,
+    {
+      observation_id: "obs_pipe_object_001",
+      kind: "objects_and_props",
+      label: "pipe-like object held near the mouth",
+      normalized_label: "pipe-like object",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.86,
+      evidence_strength: "moderate",
+    },
+  ];
+  objectCueGraph.objects_and_props = [
+    {
+      observation_id: "obs_pipe_object_001",
+      label: "pipe-like object held near the mouth",
+      normalized_label: "pipe-like object",
+      object_type: "visible object",
+      colors: ["brown"],
+      material_appearance: [],
+      location: "near mouth",
+      count_reference: "count_pipe_object_001",
+      confidence: 0.86,
+    },
+  ];
+  objectCueGraph.counts = [
+    ...objectCueGraph.counts,
+    {
+      count_id: "count_pipe_object_001",
+      normalized_label: "pipe-like object",
+      count_type: "exact",
+      exact_count: 1,
+      estimated_min: 0,
+      estimated_max: 0,
+      abstention_reason: "",
+      supporting_observation_ids: ["obs_pipe_object_001"],
+      scene_layer: "foreground",
+      confidence: 0.86,
+    },
+  ];
+  objectCueGraph.modules.objects_and_props.object_observation_ids = ["obs_pipe_object_001"];
+  objectCueGraph.modules.counts.count_ids = [
+    ...objectCueGraph.modules.counts.count_ids,
+    "count_pipe_object_001",
+  ];
+  objectCueGraph.module_reviews = objectCueGraph.module_reviews.map((review) =>
+    review.module === "objects_and_props" || review.module === "counts"
+      ? { ...review, review_status: "complete", omission_risk: "low", evidence_quality: "medium" }
+      : review);
+  objectCueGraph.coverage_reviews = {
+    ...objectCueGraph.coverage_reviews,
+    objects_and_props_review: "observed",
+    counts_review: "observed",
+  };
+  objectCueGraph.fact_grounded_search_terms = [
+    { term: "pipe-like object", supporting_observation_ids: ["obs_pipe_object_001"] },
+  ];
+
+  const objectCue = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: objectCueGraph }));
+  assert.equal(objectCue.ok, true, objectCue.findings.join(","));
+  assert.ok(objectCue.normalized.visual_attributes.fact_graph.objects_and_props.some((object) =>
+    object.observation_id === "obs_pipe_object_001"
+    && object.normalized_label === "pipe-like object"));
+  assert.ok(objectCue.normalized.visual_attributes.fact_graph.canonical_visual_concepts.concepts.some((concept) =>
+    concept.concept === "altered-state visual cue evidence"
+    && concept.source_observation_ids.includes("obs_pipe_object_001")));
+
+  const alias = mapVisualSearchAliasQueryV1("high Gengar cards");
+  assert.equal(alias.alias_schema_version, CARD_VISUAL_SEARCH_ALIAS_VERSION);
+  assert.equal(alias.query_mode, "alias_only");
+  assert.ok(alias.matched_aliases.includes("high"));
+  assert.deepEqual(alias.canonical_visual_concepts, ["altered-state visual cue evidence"]);
+  assert.match(alias.explanation, /does not assert/i);
+
+  const nonAlias = mapVisualSearchAliasQueryV1("High Pressure System");
+  assert.deepEqual(nonAlias.matched_aliases, []);
+  assert.equal(nonAlias.query_mode, "literal_visual_terms");
+  const highContrast = mapVisualSearchAliasQueryV1("high contrast background");
+  assert.deepEqual(highContrast.matched_aliases, []);
+  assert.equal(highContrast.query_mode, "literal_visual_terms");
+
+  const unsupportedStateFactGraph = structuredClone(validFactGraph());
+  unsupportedStateFactGraph.typed_facts[0] = {
+    ...unsupportedStateFactGraph.typed_facts[0],
+    claim: "Pikachu looks under the influence",
+    value: "under the influence",
+  };
+  const unsupportedStateFact = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedStateFactGraph }));
+  assert.equal(unsupportedStateFact.ok, false);
+  assert.ok(unsupportedStateFact.findings.includes("fact_graph_loose_semantic_label_outside_semantic_visual_facts"));
 });
 
 function denseItemFactGraph(overrides = {}) {

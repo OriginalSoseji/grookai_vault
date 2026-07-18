@@ -16,6 +16,7 @@ export const CARD_VISUAL_DESCRIPTION_AUTO_APPROVAL_READINESS_VERSION = "CARD_VIS
 export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION_V1 = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V1";
 export const CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
 export const CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION = "CARD_VISUAL_CONTROLLED_VOCABULARY_V1";
+export const CARD_VISUAL_SEARCH_ALIAS_VERSION = "CARD_VISUAL_SEARCH_ALIAS_V1";
 
 export const CARD_VISUAL_DESCRIPTION_REVIEW_STATUSES = Object.freeze([
   "pending",
@@ -144,6 +145,30 @@ const FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN =
   /\b(?:foil|gold foil|silver foil|holo(?:graphic)?|card surface|surface texture|texture visible|embossed|glossy finish|glossy surface|print finish|printing treatment)\b/i;
 const FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN =
   /\b(?:hp\s*\d*|attack(?: name| text| cost)?|weakness|resistance|retreat(?: cost)?|collector number|rarity|set symbol|copyright|illustrator|promo stamp|regulation mark|card name|energy symbol|type symbol|(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)\s+energy symbol)\b/i;
+const SUBSTANCE_STATE_ALIAS_KEYS = new Set([
+  "high",
+  "stoner",
+  "stoned",
+  "under the influence",
+  "intoxicated",
+  "drugged",
+  "smoked out",
+  "smoke out",
+  "looks high",
+  "appears high",
+  "seems high",
+]);
+const SUBSTANCE_STATE_ALIAS_PHRASE_PATTERN =
+  /\b(?:stoner|stoned|under the influence|intoxicated|drugged|smoked out|smoke out|looks high|appears high|seems high|is high)\b/i;
+const SUBSTANCE_SEARCH_STANDALONE_HIGH_NEGATIVE_PATTERN =
+  /\bhigh\s+(?:pressure|contrast|salience|quality|resolution|detail|value|altitude|angle|light|lights|highlight|highlights)\b/i;
+const SUBSTANCE_CUE_EYE_PATTERN =
+  /\b(?:red eyes|red-eyed|bloodshot(?:-looking)? eyes?|half[-\s]?closed eyes?|half[-\s]?lidded eyes?|heavy[-\s]?lidded eyes?|drooping eyelids?|droopy eyelids?)\b/i;
+const SUBSTANCE_CUE_SMOKE_OR_HAZE_PATTERN =
+  /\b(?:smoke|smoky|smoke plume|smoke cloud|visible vapor|visible vapour|vapor|vapour|haze|hazy)\b/i;
+const SUBSTANCE_CUE_EXPLICIT_OBJECT_PATTERN =
+  /\b(?:pipe[-\s]?like object|pipe-shaped object|cigarette[-\s]?like object|cigar[-\s]?like object|smoking object|smoking pipe|cigarette|cigar|smoke near (?:the )?mouth|vapor near (?:the )?mouth|vapour near (?:the )?mouth)\b/i;
+const ALTERED_STATE_VISUAL_CUE_CONCEPT = "altered-state visual cue evidence";
 const SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN =
   /\b(?:smile|smiling|upturned mouth|open cheerful mouth|raised cheeks|closed crescent eyes|bright eyes|relaxed eyes|arms raised|playful pose)\b/i;
 const SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN =
@@ -194,8 +219,14 @@ const CONTROLLED_VOCABULARY_CONCEPT_RULES = Object.freeze([
   ["lightning", /\blightning\b|\belectricity\s+effects?\b|\belectric(?:al)?\s+(?:arc|bolt|aura|effect|spark|streak|energy)\b/i],
   ["flame", /\bflames?\b|\bfire\b/i],
   ["smoke", /\bsmoky\b|\bsmoke\b|\bmist\b|\bfog\b/i],
+  ["vapor or haze", /\b(?:visible )?(?:vapor|vapour)\b|\bhaze\b|\bhazy\b/i],
   ["spark", /\bsparks?\b/i],
   ["explosion", /\bexplos(?:ion|ive)\b|\bimpact effect\b/i],
+  ["red eyes", /\bred eyes\b|\bred-eyed\b|\bbloodshot(?:-looking)? eyes?\b/i],
+  ["half-closed eyes", /\bhalf[-\s]?(?:closed|lidded) eyes?\b|\bheavy[-\s]?lidded eyes?\b/i],
+  ["drooping eyelids", /\bdroop(?:ing|y) eyelids?\b/i],
+  ["smoking object visual cue", /\b(?:pipe[-\s]?like object|pipe-shaped object|cigarette[-\s]?like object|cigar[-\s]?like object|smoking object|smoking pipe|cigarette|cigar)\b/i],
+  ["smoke near mouth", /\b(?:smoke|vapor|vapour)(?: plume| cloud)? near (?:the )?mouth\b/i],
   ["glowing highlights", /\bglow(?:ing)?\b|\bbright highlights?\b|\bluminous\b/i],
   ["radial lines", /\bradial\b|\bradiating lines?\b/i],
   ["circular motif", /\bcircular\b|\bround(?:ed)?\b|\borb\b|\bcircle\b/i],
@@ -648,6 +679,77 @@ function tagKey(value) {
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function isSubstanceStateAliasText(value) {
+  const text = normalizeText(value);
+  const key = tagKey(text);
+  if (!key) return false;
+  if (SUBSTANCE_STATE_ALIAS_KEYS.has(key)) return true;
+  return SUBSTANCE_STATE_ALIAS_PHRASE_PATTERN.test(text);
+}
+
+function hasStandaloneSubstanceHighAlias(value) {
+  const text = normalizeText(value);
+  return /\bhigh\b/i.test(text) && !SUBSTANCE_SEARCH_STANDALONE_HIGH_NEGATIVE_PATTERN.test(text);
+}
+
+function isSubstanceStateAliasLabel(value) {
+  const text = normalizeText(value);
+  if (isSubstanceStateAliasText(text)) return true;
+  return hasStandaloneSubstanceHighAlias(text);
+}
+
+function isSubstanceSearchAliasQuery(value) {
+  const text = normalizeText(value);
+  const key = tagKey(text);
+  if (!key) return false;
+  if (isSubstanceStateAliasText(text)) return true;
+  return hasStandaloneSubstanceHighAlias(text);
+}
+
+function matchedSubstanceSearchAliases(value) {
+  const text = normalizeText(value);
+  const key = tagKey(text);
+  const aliases = [];
+  for (const alias of SUBSTANCE_STATE_ALIAS_KEYS) {
+    if (key === alias || key.includes(alias)) aliases.push(alias);
+  }
+  if (hasStandaloneSubstanceHighAlias(text)) aliases.push("high");
+  return uniquePreserving(aliases);
+}
+
+export function mapVisualSearchAliasQueryV1(query) {
+  const matchedAliases = matchedSubstanceSearchAliases(query);
+  if (matchedAliases.length < 1 || !isSubstanceSearchAliasQuery(query)) {
+    return {
+      alias_schema_version: CARD_VISUAL_SEARCH_ALIAS_VERSION,
+      original_query: normalizeText(query),
+      matched_aliases: [],
+      query_mode: "literal_visual_terms",
+      canonical_visual_concepts: [],
+      evidence_concepts_any_of: [],
+      explanation: "",
+    };
+  }
+
+  return {
+    alias_schema_version: CARD_VISUAL_SEARCH_ALIAS_VERSION,
+    original_query: normalizeText(query),
+    matched_aliases: matchedAliases,
+    query_mode: "alias_only",
+    canonical_visual_concepts: [ALTERED_STATE_VISUAL_CUE_CONCEPT],
+    evidence_concepts_any_of: [
+      "smoke",
+      "vapor or haze",
+      "red eyes",
+      "half-closed eyes",
+      "drooping eyelids",
+      "smoking object visual cue",
+      "smoke near mouth",
+    ],
+    explanation: "Maps colloquial substance-state wording to visible cue evidence only; it does not assert that a subject is under the influence.",
+  };
 }
 
 function visualSubjectNameFromCardName(name) {
@@ -1932,7 +2034,7 @@ export function sanitizeSemanticTagsForVisibleArtworkV1(tags, card = {}) {
       continue;
     }
 
-    if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || metadataKeys.has(key) || key === tagKey(card.name)) {
+    if (GENERIC_OR_NON_VISUAL_TAGS.has(key) || metadataKeys.has(key) || key === tagKey(card.name) || isSubstanceStateAliasLabel(tag)) {
       removedMetadataOrGeneric = true;
       quality_flag_details.push({
         flag: "semantic_tags_metadata_or_generic_removed",
@@ -2634,6 +2736,7 @@ function shouldDropSemanticVisualFactLabel(value) {
     && (
       SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN.test(label)
+      || isSubstanceStateAliasLabel(label)
     )
   );
 }
@@ -2710,6 +2813,7 @@ function isDisallowedArtworkSearchTerm(value) {
     && (
       FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN.test(term)
       || FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN.test(term)
+      || isSubstanceStateAliasLabel(term)
     )
   );
 }
@@ -2870,6 +2974,7 @@ function observationConceptEvidenceText(observation) {
 function observationSupportsConcept(observation, concept) {
   const normalizedConcept = normalizeControlledVocabularyFreeText(concept);
   const evidenceText = observationConceptEvidenceText(observation);
+  const fullObservationText = observationSearchText(observation);
   if (!normalizedConcept || !evidenceText) return false;
   if (normalizedConcept === "water") {
     return /\b(?:water body|water feature|water_feature|lake|river|ocean|sea|pond)\b/i.test(evidenceText);
@@ -2885,6 +2990,15 @@ function observationSupportsConcept(observation, concept) {
   }
   if (normalizedConcept === "cloud") {
     return /\bclouds?\b/i.test(evidenceText);
+  }
+  if (["red eyes", "half-closed eyes", "drooping eyelids"].includes(normalizedConcept)) {
+    return SUBSTANCE_CUE_EYE_PATTERN.test(fullObservationText);
+  }
+  if (normalizedConcept === "vapor or haze") {
+    return /\b(?:visible )?(?:vapor|vapour)\b|\bhaze\b|\bhazy\b/i.test(fullObservationText);
+  }
+  if (normalizedConcept === "smoking object visual cue" || normalizedConcept === "smoke near mouth") {
+    return SUBSTANCE_CUE_EXPLICIT_OBJECT_PATTERN.test(fullObservationText);
   }
   return conceptNamesFromText(evidenceText).includes(normalizedConcept);
 }
@@ -2910,6 +3024,25 @@ function visualDesignConceptClaimTexts(visualDesign) {
     normalizeText(visualDesign?.camera_angle),
     normalizeText(visualDesign?.depth),
   ].map(normalizeVisualDesignText).filter(Boolean);
+}
+
+function observationIdsMatchingVisualCue(observations, pattern) {
+  return uniquePreserving((observations ?? [])
+    .filter((observation) => pattern.test(observationSearchText(observation)))
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
+}
+
+function deriveAlteredStateVisualCueConcept(candidates, observations) {
+  const eyeCueIds = observationIdsMatchingVisualCue(observations, SUBSTANCE_CUE_EYE_PATTERN);
+  const smokeOrHazeIds = observationIdsMatchingVisualCue(observations, SUBSTANCE_CUE_SMOKE_OR_HAZE_PATTERN);
+  const explicitObjectIds = observationIdsMatchingVisualCue(observations, SUBSTANCE_CUE_EXPLICIT_OBJECT_PATTERN);
+  const supportIds = uniquePreserving([
+    ...explicitObjectIds,
+    ...(eyeCueIds.length > 0 && smokeOrHazeIds.length > 0 ? [...eyeCueIds, ...smokeOrHazeIds] : []),
+  ]);
+  if (supportIds.length < 1) return;
+  addCanonicalVisualConcept(candidates, ALTERED_STATE_VISUAL_CUE_CONCEPT, supportIds.slice(0, 6), 0.86);
 }
 
 function deriveCanonicalVisualConceptLayerV1(factGraph) {
@@ -2968,6 +3101,8 @@ function deriveCanonicalVisualConceptLayerV1(factGraph) {
     if (!label || /\bcannot_determine\b/i.test(label)) continue;
     addCanonicalVisualConcept(candidates, label, support.slice(0, 6), fact.confidence || 0.9);
   }
+
+  deriveAlteredStateVisualCueConcept(candidates, observations);
 
   return {
     concept_schema_version: CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION,
@@ -5059,7 +5194,10 @@ function validateLooseSemanticLabelsV1(factGraph) {
     canonical_visual_concepts: { concept_schema_version: CARD_VISUAL_CONTROLLED_VOCABULARY_VERSION, concepts: [] },
   };
   const text = flattenFactGraphText(factGraphForAcceptedLanguageReview(reviewGraph));
-  return /\b(happy|cheerful|joyful|angry|surprised|scared|crying|sad|friendly|playful expression|angry expression|happy expression)\b/i.test(text)
+  return (
+    /\b(happy|cheerful|joyful|angry|surprised|scared|crying|sad|friendly|playful expression|angry expression|happy expression)\b/i.test(text)
+    || isSubstanceStateAliasText(text)
+  )
     ? ["fact_graph_loose_semantic_label_outside_semantic_visual_facts"]
     : [];
 }
@@ -5447,6 +5585,7 @@ function buildPrompt(card) {
     "If no semantic visual fact is supportable, use semantic_visual_facts: []. Do not leave the array empty merely because the fact also exists elsewhere in the graph.",
     "Do not store loose interpreted expression labels in subject, anatomy, clothing, object, environment, visual_design, or search-term fields. Store facial evidence in those modules, then place supported labels such as happy or sleeping only in semantic_visual_facts.",
     "Never store unsupported personality, attractiveness, body-size, theme, intention, lore, or story as semantic facts. Confident, fierce, majestic, sexy, protecting a friend, symbolizing hope, and similar claims are not V2 facts.",
+    "For substance-coded visual searches, record only concrete visible cues such as red eyes, bloodshot-looking eyes, half-closed eyes, drooping eyelids, smoke, vapor, haze, smoke near mouth, or pipe-like/cigarette-like objects. Do not infer or store stoner, high, under the influence, intoxicated, drugged, or stoned as visual facts, semantic facts, or search terms.",
     "Do not store subjective human appearance labels such as sexy, attractive, body size, breast size, or similar judgments. Store visible body regions and clothing facts only.",
     "No story: allowed facts include Pikachu, standing, dark forest, 10 trees. Do not write Pikachu is lost in the forest.",
     "Use unknown, not_visible, cannot_determine, or explicit coverage review statuses instead of inventing content.",
@@ -5505,7 +5644,7 @@ function buildPrompt(card) {
     "counts.count_type must be one of: exact, estimated_range, many, uncountable_due_to_crop, uncountable_due_to_density, not_visible.",
     "fact_grounded_search_terms must cite supporting observation_ids. Search terms may include useful future-search phrases such as sleeping Pikachu, Pikachu pillow, forest background, ten trees, food scene, cozy interior, purple flames, or circular motif only when supported by observations.",
     "Each fact_grounded_search_terms entry must include at least one supporting observation_id.",
-    "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, generic filler, or unsupported lore in search terms.",
+    "Do not include set names, attacks, rarity labels, card mechanics, franchise labels, market data, generic filler, unsupported lore, or colloquial substance-state aliases such as stoner, high, under the influence, intoxicated, drugged, or stoned in search terms.",
     "coverage_reviews must include all required review keys. Use observed when the category has entries; otherwise use none_visible, not_applicable, cannot_determine_due_to_low_resolution, cannot_determine_due_to_crop, cannot_determine_due_to_glare, or uncertain.",
     "card_ui_and_print_markers must include fact_ids plus observation-id arrays for name_text, hp_text, collector_number, set_symbol, rarity_mark, copyright_line, bottom_line_text, promo_stamp, logo, energy_symbol, regulation_mark, illustrator_text, error_marker, and other_print_marker evidence.",
     "Every observation ID listed in card_ui_and_print_markers must also exist as a full observation object in observations. Never place a placeholder ID such as obs_hp_001 or obs_copyright_001 into the UI module unless that exact observation_id exists in observations.",
