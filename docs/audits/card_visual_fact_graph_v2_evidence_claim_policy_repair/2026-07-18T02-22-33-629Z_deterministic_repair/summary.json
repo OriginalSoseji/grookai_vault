@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-18T02:22:33.742Z",
+  "policy_repair": "evidence_backed_claim_policy_repair_v1",
+  "source_run_dir": "docs/audits/card_visual_fact_graph_v2_launch_value_25_live_lock_dry_run/2026-07-17T23-38-05-345Z_dry_run_441470da849a",
+  "openai_calls": 0,
+  "db_writes": false,
+  "schema_migrations": false,
+  "failed_payloads_replayed": 7,
+  "failed_payloads_after_ok": 7,
+  "failed_payloads_after_failed": 0,
+  "prior_generated_rows_replayed": 18,
+  "prior_generated_rows_after_ok": 18,
+  "prior_generated_rows_after_failed": 0,
+  "repaired_failure_classes": [
+    "unsupported environment claims without observation support are normalized away unless support can be inferred",
+    "evidence-only semantic labels such as mouth not visible are dropped from semantic_visual_facts",
+    "ghostly/haunted environment labels are allowed only with ghostly visual evidence",
+    "expression labels such as annoyed are allowed only with visible facial support and non-circular evidence",
+    "count_semantic labels such as two green palms are allowed when observation evidence supports the counted visual object",
+    "time-of-day labels such as night are allowed with dark/night sky evidence",
+    "invented object observation IDs are repaired to the observation backbone when count/label evidence identifies the real observation"
+  ]
+}

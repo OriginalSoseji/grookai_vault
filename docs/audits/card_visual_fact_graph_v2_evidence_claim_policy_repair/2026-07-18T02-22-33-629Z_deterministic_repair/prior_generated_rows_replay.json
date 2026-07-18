@@ -1,0 +1,201 @@
+[
+  {
+    "card_print_id": "80c0f1fe-b108-52fe-9c03-2a621c1269b2",
+    "gv_id": "GV-PK-JPN-M5-101",
+    "name": "Mega Excadrill ex",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence",
+      "potential_pose_or_action_without_visible_support"
+    ]
+  },
+  {
+    "card_print_id": "99b9c1c9-d179-5a29-a31f-d0015d26aac0",
+    "gv_id": "GV-PK-JPN-M5-112",
+    "name": "Mega Zeraora ex",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_canonical_metadata_in_visual_output",
+      "potential_module_review_conflicts_with_entries",
+      "potential_weather_field_alignment_missing"
+    ]
+  },
+  {
+    "card_print_id": "a7409897-fd63-52dc-9cc7-0aec15fd5313",
+    "gv_id": "GV-PK-JPN-M5-096",
+    "name": "Mega Zeraora ex",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_fact_reference_missing"
+    ]
+  },
+  {
+    "card_print_id": "a7deb237-322a-5825-8bf8-d600f102e055",
+    "gv_id": "GV-PK-JPN-M5-114",
+    "name": "Mega Darkrai ex",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": []
+  },
+  {
+    "card_print_id": "cd3e7a70-cc08-58fd-83e6-eed1b47c8ee0",
+    "gv_id": "GV-PK-JPN-M5-099",
+    "name": "Mega Darkrai ex",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_count_reference_inconsistent"
+    ]
+  },
+  {
+    "card_print_id": "21e7e807-7ce3-5487-8e62-f35b17bc7e81",
+    "gv_id": "GV-PK-JPN-M5-078",
+    "name": "ムク",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence",
+      "potential_module_review_conflicts_with_entries"
+    ]
+  },
+  {
+    "card_print_id": "258a029b-697b-5f7b-9ed1-d3b30520b28d",
+    "gv_id": "GV-PK-JPN-M5-108",
+    "name": "Misty's Vitality",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_pose_or_action_without_visible_support"
+    ]
+  },
+  {
+    "card_print_id": "4d5af271-467c-5b27-b7eb-3ffbe38e3736",
+    "gv_id": "GV-PK-JPN-M5-109",
+    "name": "Gladion's Final Battle",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": []
+  },
+  {
+    "card_print_id": "66c0d32a-7478-5e04-8bfd-87ec11b25cae",
+    "gv_id": "GV-PK-JPN-M5-117",
+    "name": "Gwynn",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence"
+    ]
+  },
+  {
+    "card_print_id": "b942d70f-e53a-5b1a-8a48-d2c2e833fcdd",
+    "gv_id": "GV-PK-JPN-M5-116",
+    "name": "Gladion's Final Battle",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence"
+    ]
+  },
+  {
+    "card_print_id": "f876b7a1-6a77-5b41-9a1f-135c873880f1",
+    "gv_id": "GV-PK-JPN-M5-111",
+    "name": "Gwynn",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence",
+      "potential_module_review_conflicts_with_entries",
+      "potential_pose_or_action_without_visible_support"
+    ]
+  },
+  {
+    "card_print_id": "036f99e4-e485-503b-a581-f7b449dee037",
+    "gv_id": "GV-PK-JPN-M5-075",
+    "name": "カスミの元気",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_review_conflicts_with_entries"
+    ]
+  },
+  {
+    "card_print_id": "176bc21e-6873-412c-a681-065057c4a48b",
+    "gv_id": "GV-PK-JPN-S6A-100",
+    "name": "Turffield Stadium",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_review_conflicts_with_entries"
+    ]
+  },
+  {
+    "card_print_id": "1dc47687-0920-4b6e-9b1a-cba9b5c3ecf9",
+    "gv_id": "GV-PK-JPN-PMCG6-085",
+    "name": "Cinnabar City Gym",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_count_reference_inconsistent",
+      "potential_module_review_conflicts_with_entries"
+    ]
+  },
+  {
+    "card_print_id": "45bba21a-4eb5-5217-b13c-5e4bce8ac761",
+    "gv_id": "GV-PK-JPN-M5-106",
+    "name": "Tremendous Bomb",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_module_review_conflicts_with_entries"
+    ]
+  },
+  {
+    "card_print_id": "80fa4e58-348a-5506-81b4-37eae70c50c9",
+    "gv_id": "GV-PK-JPN-M5-105",
+    "name": "Dark Bell",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "needs_review",
+    "after_flags": [
+      "potential_canonical_metadata_in_fact_grounded_search_terms",
+      "potential_canonical_metadata_in_visual_output",
+      "potential_metadata_or_identity_language"
+    ]
+  },
+  {
+    "card_print_id": "1c1236fd-45f1-5136-8e81-c137cc1a6e66",
+    "gv_id": "GV-PK-JPN-M5-074",
+    "name": "リトライバッジ",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": []
+  },
+  {
+    "card_print_id": "7e7c4641-c3cb-5921-9896-6d458d1943b3",
+    "gv_id": "GV-PK-JPN-M5-073",
+    "name": "ごうかいボム",
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": []
+  }
+]

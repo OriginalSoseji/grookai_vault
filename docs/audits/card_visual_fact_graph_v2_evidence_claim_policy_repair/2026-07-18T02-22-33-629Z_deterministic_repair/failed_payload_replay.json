@@ -1,0 +1,326 @@
+[
+  {
+    "card_print_id": "2412563a-c73d-5970-a389-f4c1dc35d8c6",
+    "gv_id": "GV-PK-JPN-M5-113",
+    "name": "Mega Chandelure ex",
+    "before_findings": [
+      "fact_graph_environment_claim_without_support"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence"
+    ],
+    "normalized_semantic_facts": [
+      "floating"
+    ],
+    "normalized_environment": {
+      "setting": [],
+      "indoor_outdoor": "",
+      "sky": [],
+      "ground": [],
+      "terrain": [],
+      "plants": [],
+      "architecture": [],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": []
+    },
+    "normalized_object_observation_ids": [],
+    "normalized_module_object_observation_ids": []
+  },
+  {
+    "card_print_id": "5b25c54c-58b1-5c31-a001-3eb3c449aa27",
+    "gv_id": "GV-PK-JPN-M5-118",
+    "name": "Mega Darkrai ex",
+    "before_findings": [
+      "fact_graph_semantic_fact_label_not_supported_v1:sem_fact_002"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [],
+    "normalized_semantic_facts": [
+      "floating"
+    ],
+    "normalized_environment": {
+      "setting": [
+        "stylized gold abstract background"
+      ],
+      "indoor_outdoor": "unknown",
+      "sky": [],
+      "ground": [],
+      "terrain": [],
+      "plants": [],
+      "architecture": [],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": [
+        "obs_environment_001"
+      ]
+    },
+    "normalized_object_observation_ids": [],
+    "normalized_module_object_observation_ids": []
+  },
+  {
+    "card_print_id": "e07f1b2d-185e-5326-9983-99fb24463a81",
+    "gv_id": "GV-PK-JPN-M5-097",
+    "name": "Mega Chandelure ex",
+    "before_findings": [
+      "fact_graph_semantic_fact_label_not_supported_v1:sem_fact_003"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_module_review_conflicts_with_entries"
+    ],
+    "normalized_semantic_facts": [
+      "floating",
+      "haunted or ghostly environment"
+    ],
+    "normalized_environment": {
+      "setting": [
+        "haunted"
+      ],
+      "indoor_outdoor": "cannot_determine",
+      "sky": [],
+      "ground": [],
+      "terrain": [],
+      "plants": [],
+      "architecture": [],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": [
+        "obs_creature_anatomy_005",
+        "obs_creature_anatomy_006",
+        "obs_creature_anatomy_007"
+      ]
+    },
+    "normalized_object_observation_ids": [],
+    "normalized_module_object_observation_ids": []
+  },
+  {
+    "card_print_id": "1f28d71b-1fb2-5af3-8a54-64d81cf1d515",
+    "gv_id": "GV-PK-JPN-M5-063",
+    "name": "メガドリュウズex",
+    "before_findings": [
+      "fact_graph_semantic_fact_label_not_supported_v1:sem_001"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_count_reference_inconsistent"
+    ],
+    "normalized_semantic_facts": [],
+    "normalized_environment": {
+      "setting": [],
+      "indoor_outdoor": "unknown",
+      "sky": [],
+      "ground": [],
+      "terrain": [],
+      "plants": [],
+      "architecture": [],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": [
+        "obs_environment_001",
+        "obs_environment_002",
+        "obs_environment_003"
+      ]
+    },
+    "normalized_object_observation_ids": [
+      "obs_subject_002"
+    ],
+    "normalized_module_object_observation_ids": [
+      "obs_subject_002"
+    ]
+  },
+  {
+    "card_print_id": "f9210685-34d2-5f0f-a63f-e4ca60ca6174",
+    "gv_id": "GV-PK-JPN-M5-110",
+    "name": "Rust Syndicate Grunt",
+    "before_findings": [
+      "fact_graph_semantic_fact_label_not_supported_v1:sem_004"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_module_incomplete_or_low_evidence",
+      "potential_pose_or_action_without_visible_support"
+    ],
+    "normalized_semantic_facts": [
+      "smiling",
+      "indoor dark background with lighting",
+      "two green palms"
+    ],
+    "normalized_environment": {
+      "setting": [
+        "indoor dark background with lighting"
+      ],
+      "indoor_outdoor": "indoor",
+      "sky": [],
+      "ground": [],
+      "terrain": [],
+      "plants": [
+        "green palms"
+      ],
+      "architecture": [],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": [
+        "obs_environment_001",
+        "obs_object_001"
+      ]
+    },
+    "normalized_object_observation_ids": [
+      "obs_object_001"
+    ],
+    "normalized_module_object_observation_ids": [
+      "obs_object_001"
+    ]
+  },
+  {
+    "card_print_id": "0f0ed2c4-7e73-4079-b870-e9a89a3bb4f0",
+    "gv_id": "GV-PK-JPN-TCGCOLLECTOR11526-019",
+    "name": "Magnetic Storm",
+    "before_findings": [
+      "fact_graph_semantic_fact_label_not_supported_v1:sem_fact_night_001"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_module_review_conflicts_with_entries",
+      "potential_salient_object_missing_count_reference"
+    ],
+    "normalized_semantic_facts": [
+      "stormy",
+      "aurora borealis",
+      "night",
+      "bare trees",
+      "mountain"
+    ],
+    "normalized_environment": {
+      "setting": [
+        "stormy mountainous night with aurora and lightning"
+      ],
+      "indoor_outdoor": "outdoor",
+      "sky": [
+        "stormy dark sky with aurora and lightning"
+      ],
+      "ground": [
+        "dark shadowed ground"
+      ],
+      "terrain": [
+        "snowy mountainous terrain"
+      ],
+      "plants": [
+        "bare leafless trees"
+      ],
+      "architecture": [],
+      "water": [],
+      "weather": [
+        "stormy weather with lightning and clouds"
+      ],
+      "time_of_day_cues": [
+        "night"
+      ],
+      "supporting_observation_ids": [
+        "obs_aurora_borealis_002",
+        "obs_bare_trees_006",
+        "obs_dark_shadowed_ground_008",
+        "obs_lightning_strikes_004",
+        "obs_mountainous_terrain_007",
+        "obs_stormy_night_sky_001"
+      ]
+    },
+    "normalized_object_observation_ids": [
+      "obs_lightning_strikes_004"
+    ],
+    "normalized_module_object_observation_ids": [
+      "obs_lightning_strikes_004"
+    ]
+  },
+  {
+    "card_print_id": "1f1a5f73-bdcc-458c-86df-be61c89f1ee4",
+    "gv_id": "GV-PK-JPN-TCGCOLLECTOR11525-019",
+    "name": "High Pressure System",
+    "before_findings": [
+      "fact_graph_module_observation_missing:fact_graph.modules.objects_and_props.object_observation_ids:obj_palm_trees_left_001",
+      "fact_graph_module_observation_missing:fact_graph.modules.objects_and_props.object_observation_ids:obj_palm_trees_right_001",
+      "fact_graph_module_observation_missing:fact_graph.modules.objects_and_props.object_observation_ids:obj_stone_steps_001",
+      "fact_graph_module_observation_missing:fact_graph.modules.objects_and_props.object_observation_ids:obj_stone_wall_001",
+      "fact_graph_object_observation_missing:obj_palm_trees_left_001",
+      "fact_graph_object_observation_missing:obj_palm_trees_right_001",
+      "fact_graph_object_observation_missing:obj_stone_steps_001",
+      "fact_graph_object_observation_missing:obj_stone_wall_001"
+    ],
+    "after_ok": true,
+    "after_findings": [],
+    "after_status": "pending",
+    "after_flags": [
+      "potential_count_reference_inconsistent"
+    ],
+    "normalized_semantic_facts": [],
+    "normalized_environment": {
+      "setting": [
+        "outdoor"
+      ],
+      "indoor_outdoor": "outdoor",
+      "sky": [
+        "blue sky",
+        "white clouds"
+      ],
+      "ground": [
+        "grass",
+        "grassy mound",
+        "rocky ground"
+      ],
+      "terrain": [
+        "grassy mound",
+        "rocky ground"
+      ],
+      "plants": [
+        "palm trees"
+      ],
+      "architecture": [
+        "stone steps",
+        "stone wall"
+      ],
+      "water": [],
+      "weather": [],
+      "time_of_day_cues": [],
+      "supporting_observation_ids": [
+        "obs_pattern_001",
+        "obs_sky_001",
+        "obs_structure_001",
+        "obs_structure_002",
+        "obs_structure_003",
+        "obs_terrain_001",
+        "obs_trees_001",
+        "obs_trees_002"
+      ]
+    },
+    "normalized_object_observation_ids": [
+      "obs_trees_001",
+      "obs_trees_002",
+      "obs_structure_001",
+      "obs_structure_002"
+    ],
+    "normalized_module_object_observation_ids": [
+      "obs_trees_001",
+      "obs_trees_002",
+      "obs_structure_001",
+      "obs_structure_002"
+    ]
+  }
+]

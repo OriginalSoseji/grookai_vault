@@ -2992,6 +2992,233 @@ test("card visual fact graph stores semantic visual facts only with supporting e
   assert.equal(unsupportedSearch.ok, false);
   assert.ok(unsupportedSearch.findings.includes("fact_graph_search_term_without_matching_fact_components:happy Pikachu"));
 
+  const annoyedWithEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_face_annoyed_001",
+          kind: "creature_anatomy",
+          label: "narrowed eyes and furrowed brow",
+          normalized_label: "narrowed eyes furrowed brow",
+          scene_layer: "foreground",
+          frame_position: "face",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.92,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_annoyed_001",
+          category: "expression",
+          label: "annoyed",
+          supporting_observation_ids: ["obs_face_annoyed_001"],
+          evidence: {
+            mouth: [],
+            eyes: ["narrowed eyes"],
+            eyebrows: ["furrowed brow"],
+          },
+        }),
+      ],
+      fact_grounded_search_terms: [
+        { term: "annoyed Pikachu", supporting_observation_ids: ["obs_face_annoyed_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  }));
+  assert.equal(annoyedWithEvidence.ok, true, annoyedWithEvidence.findings.join(","));
+  assert.ok(
+    annoyedWithEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "annoyed"),
+    JSON.stringify(annoyedWithEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts),
+  );
+
+  const scaredWithEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_face_scared_001",
+          kind: "creature_anatomy",
+          label: "wide eyes and open mouth",
+          normalized_label: "wide eyes open mouth",
+          scene_layer: "foreground",
+          frame_position: "face",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_scared_001",
+          category: "expression",
+          label: "scared",
+          supporting_observation_ids: ["obs_face_scared_001"],
+          evidence: {
+            eyes: ["wide eyes"],
+            mouth: ["open mouth"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(scaredWithEvidence.ok, true, scaredWithEvidence.findings.join(","));
+  assert.ok(scaredWithEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "scared"));
+
+  const unsupportedAnnoyed = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_bad_annoyed_001",
+          category: "expression",
+          label: "annoyed expression",
+          evidence: {
+            mouth: [],
+            eyes: ["black eyes with white sclera"],
+            eyebrows: ["neutral eyebrows"],
+            facial_features: ["annoyed expression"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(unsupportedAnnoyed.ok, true, unsupportedAnnoyed.findings.join(","));
+  assert.equal(
+    unsupportedAnnoyed.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => /annoyed/i.test(fact.label)),
+    false,
+  );
+
+  const ghostlyEnvironment = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_ghost_flame_001",
+          kind: "environment",
+          label: "purple ghost flame and smoke wisps in background",
+          normalized_label: "purple ghost flame smoke wisps",
+          scene_layer: "background",
+          frame_position: "upper right",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.91,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_ghostly_001",
+          category: "environment",
+          label: "ghostly environment",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_ghost_flame_001"],
+          evidence: {
+            environment: ["purple ghost flame", "smoke wisps"],
+          },
+        }),
+      ],
+      fact_grounded_search_terms: [
+        { term: "ghostly environment", supporting_observation_ids: ["obs_ghost_flame_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+    },
+  }));
+  assert.equal(ghostlyEnvironment.ok, true, ghostlyEnvironment.findings.join(","));
+  assert.ok(ghostlyEnvironment.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "ghostly environment"));
+
+  const unsupportedGhostlyEnvironment = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_bad_ghostly_001",
+          category: "environment",
+          label: "ghostly environment",
+          subject_observation_id: "",
+          evidence: {
+            environment: ["ghostly environment"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(unsupportedGhostlyEnvironment.ok, true, unsupportedGhostlyEnvironment.findings.join(","));
+  assert.equal(
+    unsupportedGhostlyEnvironment.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => /ghostly/i.test(fact.label)),
+    false,
+  );
+
+  const nightWithEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_night_sky_001",
+          kind: "environment",
+          label: "dark nighttime storm sky",
+          normalized_label: "dark nighttime storm sky",
+          scene_layer: "background",
+          frame_position: "upper",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_night_001",
+          category: "time_of_day",
+          label: "night",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_night_sky_001"],
+          evidence: {
+            environment: ["dark nighttime storm sky"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(nightWithEvidence.ok, true, nightWithEvidence.findings.join(","));
+  assert.ok(nightWithEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "night"));
+
+  const countSemanticWithEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_two_palms_001",
+          kind: "objects_and_props",
+          label: "two green palms or leaf plants foreground",
+          normalized_label: "green palms or leaves",
+          scene_layer: "foreground",
+          frame_position: "left and right",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.88,
+          evidence_strength: "moderate",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_two_palms_001",
+          category: "count_semantic",
+          label: "two green palms",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_two_palms_001"],
+          evidence: {
+            environment: ["green palm plants"],
+            objects: ["green palms"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(countSemanticWithEvidence.ok, true, countSemanticWithEvidence.findings.join(","));
+  assert.ok(countSemanticWithEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "two green palms"));
+
   const contradictedHappy = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
       semantic_visual_facts: [
@@ -3006,9 +3233,11 @@ test("card visual fact graph stores semantic visual facts only with supporting e
       ],
     },
   }));
-  assert.equal(contradictedHappy.ok, false);
-  assert.ok(contradictedHappy.findings.some((finding) =>
-    finding.startsWith("fact_graph_semantic_fact_evidence_contradiction:sem_bad_happy_001")));
+  assert.equal(contradictedHappy.ok, true, contradictedHappy.findings.join(","));
+  assert.equal(
+    contradictedHappy.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "happy"),
+    false,
+  );
 
   const unsupportedStory = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -3746,8 +3975,95 @@ test("card visual fact graph enforces grounding ontology and count consistency w
       },
     },
   }));
-  assert.equal(unsupportedEnvironment.ok, false);
-  assert.ok(unsupportedEnvironment.findings.includes("fact_graph_environment_claim_without_support"));
+  assert.equal(unsupportedEnvironment.ok, true, unsupportedEnvironment.findings.join(","));
+  assert.deepEqual(unsupportedEnvironment.normalized.visual_attributes.fact_graph.environment.setting, ["dark forest"]);
+  assert.ok(unsupportedEnvironment.normalized.visual_attributes.fact_graph.environment.supporting_observation_ids.includes("obs_tree_group_001"));
+
+  const unsupportedIndoorEnvironment = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      environment: {
+        ...validFactGraph().environment,
+        setting: ["indoor"],
+        indoor_outdoor: "indoor",
+        sky: [],
+        ground: [],
+        terrain: [],
+        plants: [],
+        architecture: [],
+        water: [],
+        weather: [],
+        time_of_day_cues: [],
+        supporting_observation_ids: [],
+      },
+    },
+  }));
+  assert.equal(unsupportedIndoorEnvironment.ok, true, unsupportedIndoorEnvironment.findings.join(","));
+  assert.deepEqual(unsupportedIndoorEnvironment.normalized.visual_attributes.fact_graph.environment.setting, []);
+  assert.equal(unsupportedIndoorEnvironment.normalized.visual_attributes.fact_graph.environment.indoor_outdoor, "");
+
+  const objectBackboneRepair = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_palm_trees_001",
+          kind: "objects_and_props_tree_group",
+          label: "group of palm trees",
+          normalized_label: "palm trees",
+          scene_layer: "midground",
+          frame_position: "left",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.98,
+          evidence_strength: "strong",
+        },
+      ],
+      counts: [
+        ...validFactGraph().counts,
+        {
+          count_id: "count_palm_trees_001",
+          normalized_label: "palm trees",
+          count_type: "estimated_range",
+          exact_count: 0,
+          estimated_min: 2,
+          estimated_max: 3,
+          abstention_reason: "",
+          supporting_observation_ids: ["obs_palm_trees_001"],
+          scene_layer: "midground",
+          confidence: 0.97,
+        },
+      ],
+      objects_and_props: [
+        {
+          observation_id: "obj_palm_trees_left_001",
+          label: "group of palm trees",
+          normalized_label: "palm trees",
+          object_type: "plant",
+          colors: ["green"],
+          material_appearance: ["leafy"],
+          location: "left midground",
+          count_reference: "count_palm_trees_001",
+          confidence: 0.98,
+        },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        objects_and_props: {
+          ...validFactGraph().modules.objects_and_props,
+          object_observation_ids: ["obj_palm_trees_left_001"],
+        },
+      },
+      coverage_reviews: {
+        objects_and_props_review: "observed",
+      },
+    },
+  }));
+  assert.equal(objectBackboneRepair.ok, true, objectBackboneRepair.findings.join(","));
+  assert.equal(objectBackboneRepair.normalized.visual_attributes.fact_graph.objects_and_props[0].observation_id, "obs_palm_trees_001");
+  assert.deepEqual(
+    objectBackboneRepair.normalized.visual_attributes.fact_graph.modules.objects_and_props.object_observation_ids,
+    ["obs_palm_trees_001"],
+  );
 
   const stormySkyWithoutWeatherField = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
