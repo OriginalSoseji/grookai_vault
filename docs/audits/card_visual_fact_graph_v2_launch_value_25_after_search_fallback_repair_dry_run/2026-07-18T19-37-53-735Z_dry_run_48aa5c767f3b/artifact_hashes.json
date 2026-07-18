@@ -1,0 +1,42 @@
+[
+  {
+    "file": "eligible_cards.jsonl",
+    "sha256": "43a9fbfa47fba90546d09481a53af2ee3c367ab2d383e009b5f3cc5655d6749a",
+    "bytes": 15907
+  },
+  {
+    "file": "FACT_GRAPH_V2_REVIEW_PACKET.md",
+    "sha256": "6677601970990168576594423310519a0d9760e912e12f9b8de7b2a7c2007b73",
+    "bytes": 593934
+  },
+  {
+    "file": "generated_outputs.jsonl",
+    "sha256": "7d86b408f7f0ecc8e9d125db12e906c5484ef9265a842241b4a5d7cc3720724c",
+    "bytes": 374490
+  },
+  {
+    "file": "review_sample.jsonl",
+    "sha256": "7d86b408f7f0ecc8e9d125db12e906c5484ef9265a842241b4a5d7cc3720724c",
+    "bytes": 374490
+  },
+  {
+    "file": "run_plan.json",
+    "sha256": "2105afee0b26ede8d7f2d90da9ec31f49058fd10149d24f9d45bf4c87df5a666",
+    "bytes": 2922
+  },
+  {
+    "file": "skipped_images.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "file": "summary.json",
+    "sha256": "5484756409bbc1fe317d12e6a52f3488398a3737c985b60b5aaeb08364a1c6f6",
+    "bytes": 4719
+  },
+  {
+    "file": "validation_failures.jsonl",
+    "sha256": "ae65033856014faa3f14e533b6f7ba9b2923a76c70e8caf345499542d26d75e1",
+    "bytes": 158389
+  }
+]

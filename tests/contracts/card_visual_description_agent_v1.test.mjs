@@ -4624,8 +4624,11 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   const missingUiReview = structuredClone(validFactGraph());
   missingUiReview.module_reviews = missingUiReview.module_reviews.filter((review) => review.module !== "card_ui_and_print_markers");
   const missingReview = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: missingUiReview }));
-  assert.equal(missingReview.ok, false);
-  assert.ok(missingReview.findings.includes("fact_graph_module_review_missing:card_ui_and_print_markers"));
+  assert.equal(missingReview.ok, true, missingReview.findings.join(","));
+  const derivedUiReview = missingReview.normalized.visual_attributes.fact_graph.module_reviews
+    .find((review) => review.module === "card_ui_and_print_markers");
+  assert.equal(derivedUiReview.review_status, "uncertain");
+  assert.equal(derivedUiReview.omission_risk, "unknown");
 
   const uiSearchTerm = structuredClone(validFactGraph());
   uiSearchTerm.fact_grounded_search_terms = [
@@ -4764,8 +4767,11 @@ test("card visual fact graph keeps subject kinds and expression evidence separat
       ],
     },
   }));
-  assert.equal(interpretedExpression.ok, false);
-  assert.ok(interpretedExpression.findings.includes("fact_graph_interpreted_expression_not_allowed"));
+  assert.equal(interpretedExpression.ok, true, interpretedExpression.findings.join(","));
+  assert.equal(
+    interpretedExpression.normalized.visual_attributes.fact_graph.subjects[0].facial_evidence.eyes,
+    "eyes",
+  );
 
   const story = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -5425,6 +5431,207 @@ test("card visual fact graph repairs launch-proof semantic support and search fa
     entry.term === "purple hair" && entry.supporting_observation_ids.includes("obs_hair_fallback_001")));
   assert.ok(fallbackSearch.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
     entry.term === "white coat" && entry.supporting_observation_ids.includes("obs_clothing_fallback_001")));
+});
+
+test("card visual fact graph repairs evidence-backed live-lock semantic labels", () => {
+  const literalGraph = structuredClone(validFactGraph());
+  literalGraph.observations.push(
+    {
+      observation_id: "obs_bomb_live_001",
+      kind: "objects_and_props",
+      label: "black bomb with yellow band and red fuse",
+      normalized_label: "black bomb yellow band red fuse",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.98,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_grassy_field_live_001",
+      kind: "environment",
+      label: "grassy field with scattered leaves",
+      normalized_label: "grassy field scattered leaves",
+      scene_layer: "background",
+      frame_position: "lower_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.91,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_sun_horizon_live_001",
+      kind: "environment",
+      label: "sun near horizon",
+      normalized_label: "sun near horizon",
+      scene_layer: "background",
+      frame_position: "upper_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_gold_sun_emblem_live_001",
+      kind: "clothing",
+      label: "black blue dress with visible gold sun emblem",
+      normalized_label: "black blue dress gold sun emblem",
+      scene_layer: "foreground",
+      frame_position: "torso",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.93,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_gold_background_live_001",
+      kind: "color_and_light",
+      label: "golden yellow monochrome palette with ornate radial highlights",
+      normalized_label: "golden yellow ornate radial highlights",
+      scene_layer: "background",
+      frame_position: "full_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+  );
+  literalGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_bomb_live_001",
+      category: "motif",
+      label: "bomb",
+      supporting_observation_ids: ["obs_bomb_live_001"],
+      evidence: { objects: ["black bomb with yellow band and red fuse"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_grassy_live_001",
+      category: "environment",
+      label: "grassy field with scattered leaves",
+      supporting_observation_ids: ["obs_grassy_field_live_001"],
+      evidence: { environment: ["grassy field with scattered leaves"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_sun_live_001",
+      category: "environment",
+      label: "sun near horizon",
+      supporting_observation_ids: ["obs_sun_horizon_live_001"],
+      evidence: { environment: ["sun near horizon"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_sun_emblem_live_001",
+      category: "motif",
+      label: "gold sun emblem on dress",
+      supporting_observation_ids: ["obs_gold_sun_emblem_live_001"],
+      evidence: {
+        objects: ["black blue dress with visible gold sun emblem"],
+        other: ["gold circular sun emblem visible on dress torso"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_gold_foil_live_001",
+      category: "motif",
+      label: "gold foil",
+      supporting_observation_ids: ["obs_gold_background_live_001"],
+      evidence: {
+        environment: ["gold radial ornate star pattern"],
+        other: ["golden yellow monochrome palette"],
+      },
+    }),
+  ];
+  const literalValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: literalGraph }));
+  assert.equal(literalValidation.ok, true, literalValidation.findings.join(","));
+  assert.ok(literalValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "bomb"));
+  assert.ok(literalValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+    fact.label === "sun near horizon"));
+  assert.equal(
+    literalValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => /\bgold foil\b/i.test(fact.label))
+      || literalValidation.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) => /\bgold foil\b/i.test(entry.term)),
+    false,
+  );
+
+  const genericStyleGraph = structuredClone(validFactGraph());
+  genericStyleGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_dark_style_live_001",
+      category: "scene_type",
+      label: "dark fantasy style pokemon",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: {
+        eyes: ["pink glowing eye"],
+        body_language: ["floating"],
+        environment: ["dark abstract environment"],
+      },
+    }),
+  ];
+  const genericStyleValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: genericStyleGraph }));
+  assert.equal(genericStyleValidation.ok, true, genericStyleValidation.findings.join(","));
+  assert.equal(
+    genericStyleValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) =>
+      /fantasy|style|pokemon/i.test(fact.label)),
+    false,
+  );
+});
+
+test("card visual fact graph normalizes circular expression evidence and missing module reviews", () => {
+  const circularExpressionGraph = structuredClone(validFactGraph());
+  circularExpressionGraph.subjects[0].facial_evidence = {
+    ...circularExpressionGraph.subjects[0].facial_evidence,
+    eyes: "angry eyes",
+    mouth: "angry expression",
+  };
+  circularExpressionGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_angry_circular_live_001",
+      category: "expression",
+      label: "angry",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: {
+        eyes: ["angry"],
+        mouth: ["angry expression"],
+      },
+    }),
+  ];
+  const circularExpression = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: circularExpressionGraph }));
+  assert.equal(circularExpression.ok, true, circularExpression.findings.join(","));
+  const normalizedGraphText = JSON.stringify(circularExpression.normalized.visual_attributes.fact_graph);
+  assert.equal(/\bangry\b/i.test(normalizedGraphText), false);
+
+  const derivedReviewGraph = structuredClone(validFactGraph());
+  derivedReviewGraph.counts = [];
+  derivedReviewGraph.modules.counts = { fact_ids: [], count_ids: [] };
+  derivedReviewGraph.coverage_reviews.counts_review = "none_visible";
+  derivedReviewGraph.surface_and_scan_cues = [];
+  derivedReviewGraph.modules.surface_and_scan_cues = { fact_ids: [], observation_ids: [] };
+  derivedReviewGraph.coverage_reviews.surface_and_scan_cues_review = "none_visible";
+  derivedReviewGraph.uncertainty_and_abstentions = [];
+  derivedReviewGraph.modules.uncertainty_and_abstentions = { fact_ids: [], fields: [] };
+  derivedReviewGraph.fact_grounded_search_terms = derivedReviewGraph.fact_grounded_search_terms.filter((entry) =>
+    !/\b(?:ten|10)\s+trees?\b/i.test(entry.term));
+  derivedReviewGraph.modules.fact_grounded_search_terms.terms = derivedReviewGraph.modules.fact_grounded_search_terms.terms.filter((term) =>
+    !/\b(?:ten|10)\s+trees?\b/i.test(term));
+  derivedReviewGraph.relationships = [
+    {
+      relationship_id: "rel_live_001",
+      relationship_type: "beside",
+      source_observation_id: "obs_subject_001",
+      target_observation_id: "obs_tree_group_001",
+      confidence: 0.85,
+    },
+  ];
+  derivedReviewGraph.modules.relationships.relationship_ids = ["rel_live_001"];
+  derivedReviewGraph.coverage_reviews.relationships_review = "observed";
+  derivedReviewGraph.module_reviews = derivedReviewGraph.module_reviews.filter((review) =>
+    !["counts", "relationships", "surface_and_scan_cues", "uncertainty_and_abstentions", "fact_grounded_search_terms"].includes(review.module));
+  const derivedReview = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: derivedReviewGraph }));
+  assert.equal(derivedReview.ok, true, derivedReview.findings.join(","));
+  const reviewsByModule = new Map(derivedReview.normalized.visual_attributes.fact_graph.module_reviews.map((review) => [review.module, review]));
+  assert.equal(reviewsByModule.get("relationships").review_status, "uncertain");
+  assert.equal(reviewsByModule.get("counts").review_status, "none_visible");
+  assert.equal(reviewsByModule.get("surface_and_scan_cues").review_status, "none_visible");
+  assert.equal(reviewsByModule.get("fact_grounded_search_terms").review_status, "uncertain");
 });
 
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
