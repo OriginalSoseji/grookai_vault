@@ -136,6 +136,8 @@ const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tr
 const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
 const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_LABEL_PATTERN = /\b(?:ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|dusk|twilight)\b/i;
+const SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN = /\b(?:day|daytime|daylight|sunny|sunlit)\b/i;
+const SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN = /\b(?:attack|attacking|striking|hit|hitting)\b/i;
 const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
   /\b(?:happy|smiling|smile|smirk|smirking|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|upright|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|sun(?: near horizon)?|food scene|cozy interior|abstract background|golden abstract background|gold highlights?|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|bomb|fuse|emblem|symbol|sun emblem|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
@@ -209,6 +211,10 @@ const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_SUPPORT_PATTERN =
   /\b(?:ghost(?:ly)?(?:[-\s]type)?|ghost flames?|purple ghost flames?|spectral|wisps?|spirit|haunted|smoke|smoky|shadow|shadows|fog|mist|tombstones?|graves?|haunted house|bats?|pumpkins?|jack[-\s]?o[-\s]?lanterns?|candles?|skulls?|cobwebs?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_SUPPORT_PATTERN =
   /\b(?:night|nighttime|dark sky|black sky|very dark sky|moonlit|moon|dusk|twilight|stars?|stormy night sky)\b/i;
+const SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN =
+  /\b(?:day|daytime|daylight|sunlit|sunny|sun|bright sky|blue sky|visible sun|sun in (?:the )?(?:upper|top|sky))\b/i;
+const SEMANTIC_VISUAL_FACT_ATTACKING_SUPPORT_PATTERN =
+  /\b(?:impact|hit|hitting|strike|striking|opponent|target|contact|claw swipe|punch|kick|bite|tackle|energy blast|beam|projectile|explosion|colliding|charging at)\b/i;
 const SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_LABEL_PATTERN =
   /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b/i;
 const SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_SUPPORT_PATTERN =
@@ -2328,6 +2334,15 @@ function normalizeFactGraphObservations(value) {
         ? observation.normalized_label
         : labelNormalizer(observation.normalized_label),
     };
+  }).filter((observation) => {
+    if (observation.label || observation.normalized_label) return true;
+    return !(
+      /\b(?:not_visible|not visible|not_applicable|cannot_determine|cannot determine)\b/i.test(normalizeText([
+        observation.visibility,
+        observation.evidence_strength,
+        observation.frame_position,
+      ].join(" ")))
+    );
   });
 }
 
@@ -2358,6 +2373,8 @@ function repairObservationReferenceIdToKnown(id, knownIds) {
   const candidates = [
     normalized.replace(/^obs_clothes_/, "obs_clothing_"),
     normalized.replace(/^obs_clothing_/, "obs_clothes_"),
+    normalized.replace(/_color_(\d+)$/, "_$1"),
+    normalized.replace(/_colour_(\d+)$/, "_$1"),
   ].filter((candidate) => candidate && candidate !== normalized);
   return candidates.find((candidate) => knownIds.has(candidate)) ?? normalized;
 }
@@ -2482,12 +2499,16 @@ function normalizeFactGraphCounts(value) {
   });
 }
 
-function normalizeFactGraphSceneLayers(value) {
+function normalizeFactGraphSceneLayers(value, knownObservationIds = null) {
   const layers = normalizeObject(value);
+  const knownIds = knownObservationIds instanceof Set ? knownObservationIds : null;
+  const normalizeLayer = (ids) => knownIds
+    ? repairObservationReferencesToKnown(ids, knownIds)
+    : normalizeObservationReferenceArray(ids);
   return {
-    foreground: normalizeObservationReferenceArray(layers.foreground),
-    midground: normalizeObservationReferenceArray(layers.midground),
-    background: normalizeObservationReferenceArray(layers.background),
+    foreground: normalizeLayer(layers.foreground),
+    midground: normalizeLayer(layers.midground),
+    background: normalizeLayer(layers.background),
   };
 }
 
@@ -2878,6 +2899,15 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
   }
   if (SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_NIGHT_SUPPORT_PATTERN, options);
+  }
+  if (SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN.test(label)) {
+    return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN, options);
+  }
+  if (SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN.test(label)) {
+    return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_ATTACKING_SUPPORT_PATTERN, {
+      ...options,
+      circularPattern: /\b(?:dynamic\s+)?(?:attacking|attack|striking|hitting)\s+(?:pose|stance|action|motion)\b/gi,
+    });
   }
   return false;
 }
@@ -3331,6 +3361,29 @@ function filterCardUiAndPrintMarkersModuleToKnownObservations(module, knownIds) 
   };
 }
 
+function reconcileCardUiModuleFactIdsWithTypedFacts(modules, typedFacts, observations) {
+  const uiObservationIds = new Set((observations ?? [])
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
+  if (uiObservationIds.size < 1) return modules;
+  const cardUiModule = normalizeObject(modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE]);
+  const existingFactIds = normalizeFactIdArray(cardUiModule.fact_ids);
+  const typedCardUiFactIds = (typedFacts ?? [])
+    .filter((fact) => normalizeText(fact.module) === CARD_UI_AND_PRINT_MARKERS_MODULE)
+    .filter((fact) => normalizeObservationReferenceArray(fact.supporting_observation_ids).some((id) => uiObservationIds.has(id)))
+    .map((fact) => normalizeText(fact.fact_id))
+    .filter(Boolean);
+  if (typedCardUiFactIds.length < 1) return modules;
+  return {
+    ...modules,
+    [CARD_UI_AND_PRINT_MARKERS_MODULE]: {
+      ...cardUiModule,
+      fact_ids: uniquePreserving([...existingFactIds, ...typedCardUiFactIds]),
+    },
+  };
+}
+
 function filterCardUiMirrorLeaksFromArtworkModules(modules, rawGraph, observations) {
   const uiObservationIds = new Set(observations
     .filter(isCardUiPrintMarkerObservation)
@@ -3674,7 +3727,7 @@ function normalizeFactGraphV1(value) {
       ...characterRepresentations.map((subject) => subject.represented_identity),
     ],
   });
-  const modules = filterCardUiMirrorLeaksFromArtworkModules(
+  let modules = filterCardUiMirrorLeaksFromArtworkModules(
     repairObjectModuleObservationReferences(
       normalizeFactGraphModules(graph.modules, knownObservationIds),
       objectObservationReplacementMap,
@@ -3682,6 +3735,7 @@ function normalizeFactGraphV1(value) {
     graph,
     observations,
   );
+  modules = reconcileCardUiModuleFactIdsWithTypedFacts(modules, typedFacts, observations);
   modules.fact_grounded_search_terms.terms = searchTerms.map((entry) => entry.term);
   const moduleReviews = normalizeModuleReviewsWithDerivedCardUiAbstentions(
     graph.module_reviews,
@@ -3703,7 +3757,7 @@ function normalizeFactGraphV1(value) {
     depicted_subjects: depictedSubjects,
     character_representations: characterRepresentations,
     counts,
-    scene_layers: normalizeFactGraphSceneLayers(graph.scene_layers),
+    scene_layers: normalizeFactGraphSceneLayers(graph.scene_layers, knownObservationIds),
     environment: normalizeFactGraphEnvironmentWithObservationSupport(graph.environment, observations),
     objects_and_props: objectsAndProps,
     relationships,
@@ -5332,6 +5386,12 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   if ((category === "expression" || category === "state") && SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)) return true;
   if ((category === "action" || category === "state") && SEMANTIC_VISUAL_FACT_UPRIGHT_LABEL_PATTERN.test(label)) return true;
   if (category === "time_of_day" && SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN.test(label)) return true;
+  if (
+    (category === "time_of_day" || category === "environment")
+    && SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN.test(label)
+    && SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN.test(evidenceText)
+  ) return true;
+  if (category === "action" && SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN.test(label)) return true;
   if (category === "count_semantic" && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_LABEL_PATTERN.test(label) && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_SUPPORT_PATTERN.test(label)) return true;
   if (/\bgold(?:en)?\s+(?:foil|highlights?)\b/i.test(normalizeText(fact?.label)) || /\bgold highlights?\b/i.test(label)) return true;
   if (SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN.test(label)) return true;

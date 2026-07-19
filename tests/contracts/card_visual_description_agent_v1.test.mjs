@@ -5734,6 +5734,136 @@ test("card visual fact graph repairs evidence-backed live expression and pose la
   );
 });
 
+test("card visual fact graph repairs final live gate evidence and graph-integrity misses", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_card_ui_illust_001",
+      kind: "illustrator_text",
+      label: "Illustrator GIDORA visible bottom left",
+      normalized_label: "illustrator gidora",
+      scene_layer: "ui",
+      frame_position: "bottom_left",
+      visibility: "visible",
+      salience: "moderate",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_card_ui_text_pokemon_no_hp_text",
+      kind: "hp_text",
+      label: "",
+      normalized_label: "",
+      scene_layer: "card_ui",
+      frame_position: "top_right_blank",
+      visibility: "not_visible",
+      salience: "low",
+      confidence: 1,
+      evidence_strength: "not_applicable",
+    },
+    {
+      observation_id: "obs_bomb_fuse_001",
+      kind: "object_part",
+      label: "red bomb fuse",
+      normalized_label: "red bomb fuse",
+      scene_layer: "midground",
+      frame_position: "center_top",
+      visibility: "visible",
+      salience: "moderate",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_attack_pose_001",
+      kind: "pose",
+      label: "dynamic attacking pose, body angled diagonally upright",
+      normalized_label: "dynamic diagonal upright pose",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_electric_arcs_001",
+      kind: "visual_effects",
+      label: "visible electric energy arcs",
+      normalized_label: "electric energy arcs",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_environment_sun_001",
+      kind: "environment",
+      label: "visible sun in upper left corner",
+      normalized_label: "sun",
+      scene_layer: "background",
+      frame_position: "top_left",
+      visibility: "visible",
+      salience: "salient",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+  );
+  graph.typed_facts.push({
+    fact_id: "fact_card_ui_illustrator_001",
+    module: "card_ui_and_print_markers",
+    field_path: "illustrator_text",
+    claim: "Illustrator text GIDORA visible bottom left",
+    value: "GIDORA",
+    supporting_observation_ids: ["obs_card_ui_illust_001"],
+    confidence: 0.95,
+    evidence_strength: "strong",
+  });
+  graph.scene_layers.midground.push("obs_bomb_fuse_color_001");
+  graph.modules.card_ui_and_print_markers.fact_ids.push("fact_card_ui_illust_001");
+  graph.modules.card_ui_and_print_markers.illustrator_text_observation_ids.push("obs_card_ui_illust_001");
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_attacking_live_gate_001",
+      category: "action",
+      label: "attacking",
+      supporting_observation_ids: ["obs_attack_pose_001", "obs_electric_arcs_001"],
+      evidence: {
+        body_language: ["dynamic pose"],
+        body_position: ["dynamic attacking pose"],
+        motion_state: ["visible electric energy arcs"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_daytime_live_gate_001",
+      category: "environment",
+      label: "daytime",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_environment_sun_001"],
+      evidence: {
+        environment: ["sun"],
+      },
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  assert.equal(
+    normalizedGraph.observations.some((observation) => observation.observation_id === "obs_card_ui_text_pokemon_no_hp_text"),
+    false,
+  );
+  assert.ok(normalizedGraph.scene_layers.midground.includes("obs_bomb_fuse_001"));
+  assert.equal(normalizedGraph.scene_layers.midground.includes("obs_bomb_fuse_color_001"), false);
+  assert.ok(normalizedGraph.modules.card_ui_and_print_markers.fact_ids.includes("fact_card_ui_illustrator_001"));
+
+  const semanticLabels = normalizedGraph.semantic_visual_facts.map((fact) => fact.label);
+  assert.equal(semanticLabels.includes("attacking"), false);
+  assert.ok(semanticLabels.includes("daytime"));
+});
+
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
   const payload = validFactPayload({
     fact_graph: {
