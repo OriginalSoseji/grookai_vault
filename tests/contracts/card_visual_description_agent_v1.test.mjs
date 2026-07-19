@@ -25,6 +25,7 @@ import {
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
   selectBranchStratifiedCardsV1,
+  selectHighValueSampleCardsV1,
   selectV2StressSampleCardsV1,
   validateVisualDescriptionPayloadV1,
 } from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
@@ -646,6 +647,8 @@ test("card visual description args default to dry-run and block fixture apply", 
     "--card-print-ids=22222222-2222-2222-2222-222222222222,11111111-1111-1111-1111-111111111111",
     "--max-run-cost-usd=0.25",
     "--openai-request-timeout-ms=240000",
+    "--concurrency=10",
+    "--exclude-branches=energy",
     "--openai-input-cost-per-million=0.15",
     "--openai-output-cost-per-million=0.60",
     "--image-cost-rule-version=gpt-4o-mini-2026-07-15",
@@ -663,6 +666,8 @@ test("card visual description args default to dry-run and block fixture apply", 
   ]);
   assert.equal(apply.maxRunCostUsd, 0.25);
   assert.equal(apply.openaiRequestTimeoutMs, 240000);
+  assert.equal(apply.concurrency, 10);
+  assert.deepEqual(apply.excludeBranches, ["energy"]);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
   assert.equal(apply.openaiImageCostRuleVersion, "gpt-4o-mini-2026-07-15");
@@ -707,6 +712,33 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.throws(
     () => parseCardVisualDescriptionArgsV1(["--image-detail=ultra"]),
     /--image-detail must be low, high, original, or auto/,
+  );
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1(["--exclude-branches=unknown"]),
+    /unsupported excluded branch: unknown/,
+  );
+  const highValueSample = parseCardVisualDescriptionArgsV1([
+    "--dry-run",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--high-value-sample",
+    "--max-cards=50",
+    "--concurrency=10",
+    "--exclude-branches=energy",
+  ]);
+  assert.equal(highValueSample.highValueSample, true);
+  assert.equal(highValueSample.maxCards, 50);
+  assert.equal(highValueSample.concurrency, 10);
+  assert.deepEqual(highValueSample.excludeBranches, ["energy"]);
+  assert.ok(highValueSample.branchCandidateLimit >= 5000);
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1([
+      "--provider=openai",
+      "--model=test-vision-model",
+      "--high-value-sample",
+      "--gv-id=GV-PK-JPN-M5-113",
+    ]),
+    /high-value sampling cannot be combined/,
   );
 });
 
@@ -2226,6 +2258,64 @@ test("card visual description resolves fallback card branches and stratified sam
     filterActiveVisualFactExtractionCardsV1(rows).map((row) => row.card_print_id),
     ["p1", "p2", "t1", "s1", "i1"],
   );
+
+  const highValueRows = [
+    {
+      card_print_id: "energy-top",
+      gv_id: "GV-E",
+      name: "Basic Psychic Energy",
+      high_value_metric_usd: 999,
+      image_url: "https://example.test/e.webp",
+    },
+    {
+      card_print_id: "shared-parent",
+      gv_id: "GV-P1",
+      name: "Special Illustration Pikachu ex",
+      supertype: "Pokemon",
+      rarity: "Special Illustration Rare",
+      high_value_metric_usd: 50,
+      source_card_print_id: "artwork-a",
+      image_url: "https://example.test/a.webp",
+    },
+    {
+      card_print_id: "shared-child",
+      gv_id: "GV-P2",
+      name: "Special Illustration Pikachu ex stamped",
+      supertype: "Pokemon",
+      rarity: "Special Illustration Rare",
+      high_value_metric_usd: 45,
+      source_card_print_id: "artwork-a",
+      image_url: "https://example.test/a-stamp.webp",
+    },
+    {
+      card_print_id: "trainer-high",
+      gv_id: "GV-T",
+      name: "Cynthia",
+      supertype: "Trainer",
+      card_category: "Supporter",
+      high_value_metric_usd: 35,
+      image_url: "https://example.test/t.webp",
+    },
+    {
+      card_print_id: "fallback-promo",
+      gv_id: "GV-F",
+      name: "Winner Badge",
+      rarity: "Promo",
+      image_url: "https://example.test/f.webp",
+    },
+  ];
+  const highValueSample = selectHighValueSampleCardsV1(highValueRows, {
+    maxCards: 3,
+    excludeBranches: ["energy"],
+  });
+  assert.deepEqual(highValueSample.map((row) => row.card_print_id), [
+    "shared-parent",
+    "trainer-high",
+    "fallback-promo",
+  ]);
+  assert.equal(highValueSample[0].high_value_rank, 1);
+  assert.equal(highValueSample[0].high_value_selection_reason, "value_view_metric_score");
+  assert.ok(highValueSample[2].high_value_selection_signals.some((item) => item.signal === "promo_or_event_signal"));
 
   const stressRows = [
     {
@@ -6021,6 +6111,11 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /buildFactGraphCompatibilityDigestV1/);
   assert.match(agent, /FACT_GRAPH_V2_REVIEW_PACKET.md/);
   assert.match(agent, /--v2-stress-sample/);
+  assert.match(agent, /--high-value-sample/);
+  assert.match(agent, /--concurrency=/);
+  assert.match(agent, /--exclude-branches=/);
+  assert.match(agent, /high_value_selection.json/);
+  assert.match(agent, /per_card/);
   assert.match(agent, /target_gv_id/);
   assert.match(agent, /target_card_print_ids/);
   assert.match(agent, /--card-print-ids=/);

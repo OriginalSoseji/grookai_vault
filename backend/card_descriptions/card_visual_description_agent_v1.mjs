@@ -1,11 +1,14 @@
 import crypto from "node:crypto";
+import { execFile as execFileCallback } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
+const execFile = promisify(execFileCallback);
 
 export const CARD_VISUAL_DESCRIPTION_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
 export const CARD_VISUAL_DESCRIPTION_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
@@ -34,7 +37,23 @@ const DEFAULT_MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
 const DEFAULT_OPENAI_REQUEST_TIMEOUT_MS = 180_000;
+const DEFAULT_CONCURRENCY = 1;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
+const DEFAULT_HIGH_VALUE_CANDIDATE_LIMIT = 5000;
+const HIGH_VALUE_SELECTION_VERSION = "CARD_VISUAL_HIGH_VALUE_SELECTION_V1";
+const HIGH_VALUE_PRICE_VIEW = "v_grookai_value_v1_1";
+const HIGH_VALUE_PRICE_COLUMNS = Object.freeze([
+  "grookai_value_usd",
+  "estimated_value_usd",
+  "market_value_usd",
+  "value_usd",
+  "effective_price_usd",
+  "best_price_usd",
+  "price_usd",
+  "reference_median",
+  "market",
+  "nm_median",
+]);
 const PROMPT_BRANCHES = Object.freeze([
   "pokemon",
   "trainer",
@@ -571,6 +590,15 @@ export function stableJson(value) {
 export function sha256(value) {
   const input = Buffer.isBuffer(value) ? value : Buffer.from(String(value));
   return crypto.createHash("sha256").update(input).digest("hex");
+}
+
+async function gitOutput(args) {
+  try {
+    const { stdout } = await execFile("git", args, { cwd: REPO_ROOT });
+    return normalizeText(stdout);
+  } catch {
+    return null;
+  }
 }
 
 function nowIso() {
@@ -2140,6 +2168,23 @@ function parseOrderedCommaList(value) {
   return uniquePreserving(String(value ?? "").split(","));
 }
 
+function parsePromptBranchListV1(value) {
+  const allowed = new Set(PROMPT_BRANCHES);
+  const branches = [];
+  const seen = new Set();
+  for (const rawBranch of parseOrderedCommaList(value)) {
+    const branch = normalizeText(rawBranch).toLowerCase();
+    if (!branch) continue;
+    if (!allowed.has(branch)) {
+      throw new Error(`[card-visual-description-agent] unsupported excluded branch: ${branch}`);
+    }
+    if (seen.has(branch)) continue;
+    branches.push(branch);
+    seen.add(branch);
+  }
+  return branches;
+}
+
 function defaultBranchTargetsV1(limit) {
   const normalizedLimit = asPositiveInt(limit, DEFAULT_LIMIT, "branch target limit");
   const base = Math.floor(normalizedLimit / BRANCH_STRATIFIED_BRANCHES.length);
@@ -2233,9 +2278,135 @@ export function selectV2StressSampleCardsV1(rows) {
   return selected;
 }
 
+function highValueArtworkKeyV1(row) {
+  return normalizeText(row.source_card_print_id)
+    || normalizeText(row.image_sha256)
+    || normalizeText(row.representative_image_url)
+    || normalizeText(row.image_url)
+    || normalizeText(row.image_alt_url)
+    || normalizeText(row.image_path)
+    || normalizeText(row.card_print_id);
+}
+
+function numericOrNull(value) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
+}
+
+function highValueFallbackSignalsV1(row) {
+  const signals = [];
+  const name = normalizeText(row.name);
+  const rarity = normalizeText(row.rarity);
+  const setCode = normalizeText(row.set_code);
+  const variantKey = normalizeText(row.variant_key);
+  const text = `${name} ${rarity} ${variantKey}`;
+
+  const addSignal = (signal, points) => signals.push({ signal, points });
+  if (/\b(?:special illustration rare|illustration rare|art rare|sar|sir|alt(?:ernate)? art)\b/i.test(text)) addSignal("illustration_or_special_illustration_signal", 600);
+  if (/\b(?:secret|hyper|rainbow|ultra rare|gold|shiny)\b/i.test(text)) addSignal("premium_rarity_signal", 300);
+  if (/\b(?:promo|prerelease|winner|staff|championship|trophy)\b/i.test(text)) addSignal("promo_or_event_signal", 300);
+  if (/\b(?:ex|gx|vmax|vstar|tag team|mega)\b/i.test(name)) addSignal("popular_mechanic_name_signal", 180);
+  if (/\b(?:trainer|cynthia|misty|brock|erika|giovanni|lillie|marnie|iono|acerola|rosa|gladion)\b/i.test(name)) addSignal("trainer_or_named_character_signal", 160);
+  if (/\b(?:base|jungle|fossil|rocket|gym|neo|ecard|e-card|ex)\b/i.test(setCode)) addSignal("vintage_or_early_set_signal", 160);
+  if (normalizeText(row.current_description_id)) addSignal("existing_current_description_penalty", -500);
+  if (normalizeText(row.image_source) === "identity" || normalizeText(row.image_status) === "exact") addSignal("strong_image_source_signal", 40);
+  if (normalizeText(row.gv_id)) addSignal("canonical_gv_id_present", 20);
+  return signals;
+}
+
+function highValueSelectionScoreV1(row) {
+  const metric = numericOrNull(row.high_value_metric_usd);
+  const signals = highValueFallbackSignalsV1(row);
+  const fallbackScore = signals.reduce((sum, item) => sum + item.points, 0);
+  const valueScore = metric === null ? 0 : 1_000_000 + Math.min(Math.round(metric * 100), 900_000);
+  return valueScore + fallbackScore;
+}
+
+export function selectHighValueSampleCardsV1(rows, options = {}) {
+  const target = Math.max(0, Number(options.maxCards ?? options.limit ?? DEFAULT_LIMIT));
+  const excludedBranches = new Set([
+    ...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES,
+    ...(Array.isArray(options.excludeBranches) ? options.excludeBranches : []),
+  ]);
+  const ranked = (Array.isArray(rows) ? rows : [])
+    .filter((row) => !excludedBranches.has(resolveCardPromptMetadata(row).prompt_branch))
+    .map((row, index) => ({
+      row,
+      index,
+      branch: resolveCardPromptMetadata(row).prompt_branch,
+      artworkKey: highValueArtworkKeyV1(row),
+      score: highValueSelectionScoreV1(row),
+      signals: highValueFallbackSignalsV1(row),
+      metric: numericOrNull(row.high_value_metric_usd),
+    }))
+    .sort((left, right) =>
+      right.score - left.score
+      || (right.metric ?? -1) - (left.metric ?? -1)
+      || normalizeText(left.row.gv_id).localeCompare(normalizeText(right.row.gv_id))
+      || left.index - right.index,
+    );
+
+  const selected = [];
+  const usedArtworkKeys = new Set();
+  const usedIds = new Set();
+  for (const candidate of ranked) {
+    const id = normalizeText(candidate.row.card_print_id);
+    if (!id || usedIds.has(id)) continue;
+    if (candidate.artworkKey && usedArtworkKeys.has(candidate.artworkKey)) continue;
+    selected.push({
+      ...candidate.row,
+      high_value_rank: selected.length + 1,
+      high_value_selection_score: candidate.score,
+      high_value_metric_usd: candidate.metric,
+      high_value_metric_source: normalizeText(candidate.row.high_value_metric_source) || null,
+      high_value_artwork_key: candidate.artworkKey || null,
+      high_value_selection_signals: candidate.signals,
+      high_value_selection_reason: candidate.metric === null
+        ? "fallback_metadata_score"
+        : "value_view_metric_score",
+    });
+    usedIds.add(id);
+    if (candidate.artworkKey) usedArtworkKeys.add(candidate.artworkKey);
+    if (selected.length >= target) break;
+  }
+
+  if (selected.length < target) {
+    for (const candidate of ranked) {
+      const id = normalizeText(candidate.row.card_print_id);
+      if (!id || usedIds.has(id)) continue;
+      selected.push({
+        ...candidate.row,
+        high_value_rank: selected.length + 1,
+        high_value_selection_score: candidate.score,
+        high_value_metric_usd: candidate.metric,
+        high_value_metric_source: normalizeText(candidate.row.high_value_metric_source) || null,
+        high_value_artwork_key: candidate.artworkKey || null,
+        high_value_selection_signals: [
+          ...candidate.signals,
+          { signal: "shared_artwork_duplicate_allowed_to_fill_target", points: 0 },
+        ],
+        high_value_selection_reason: candidate.metric === null
+          ? "fallback_metadata_score_shared_artwork_fill"
+          : "value_view_metric_score_shared_artwork_fill",
+      });
+      usedIds.add(id);
+      if (selected.length >= target) break;
+    }
+  }
+  return selected;
+}
+
 export function filterActiveVisualFactExtractionCardsV1(rows) {
   return (Array.isArray(rows) ? rows : []).filter((row) =>
     !DEFERRED_VISUAL_FACT_PROMPT_BRANCHES.has(resolveCardPromptMetadata(row).prompt_branch),
+  );
+}
+
+function filterExcludedPromptBranchesV1(rows, branches) {
+  const excluded = new Set(Array.isArray(branches) ? branches : []);
+  if (excluded.size < 1) return rows;
+  return (Array.isArray(rows) ? rows : []).filter((row) =>
+    !excluded.has(resolveCardPromptMetadata(row).prompt_branch),
   );
 }
 
@@ -3836,6 +4007,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     imageDetail: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_IMAGE_DETAIL) || DEFAULT_IMAGE_DETAIL,
     maxRetries: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES, DEFAULT_MAX_RETRIES, "CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES"),
     openaiRequestTimeoutMs: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS, DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS"),
+    concurrency: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_CONCURRENCY, DEFAULT_CONCURRENCY, "CARD_VISUAL_DESCRIPTION_CONCURRENCY"),
     maxRunCostUsd: asNumber(process.env.CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD ?? process.env.OPENAI_MAX_RUN_COST_USD, null, "CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD"),
     maxCards: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_MAX_CARDS, null, "CARD_VISUAL_DESCRIPTION_MAX_CARDS"),
     openaiInputCostPerMillion: asNumber(process.env.OPENAI_INPUT_COST_PER_MILLION, null, "OPENAI_INPUT_COST_PER_MILLION"),
@@ -3847,6 +4019,8 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
     branchStratifiedSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE"),
     v2StressSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE"),
+    highValueSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_HIGH_VALUE_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_HIGH_VALUE_SAMPLE"),
+    excludeBranches: parsePromptBranchListV1(process.env.CARD_VISUAL_DESCRIPTION_EXCLUDE_BRANCHES),
     branchTargetsSpec: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_TARGETS),
     branchTargets: null,
     branchCandidateLimit: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT, null, "CARD_VISUAL_DESCRIPTION_BRANCH_CANDIDATE_LIMIT"),
@@ -3878,6 +4052,8 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
     else if (arg === "--branch-stratified-sample") parsed.branchStratifiedSample = true;
     else if (arg === "--v2-stress-sample") parsed.v2StressSample = true;
+    else if (arg === "--high-value-sample") parsed.highValueSample = true;
+    else if (arg.startsWith("--exclude-branches=")) parsed.excludeBranches = parsePromptBranchListV1(arg.slice("--exclude-branches=".length));
     else if (arg.startsWith("--branch-targets=")) parsed.branchTargetsSpec = normalizeText(arg.slice("--branch-targets=".length));
     else if (arg.startsWith("--branch-candidate-limit=")) parsed.branchCandidateLimit = asPositiveInt(arg.slice("--branch-candidate-limit=".length), null, "--branch-candidate-limit");
     else if (arg.startsWith("--min-width=")) parsed.minWidth = asPositiveInt(arg.slice("--min-width=".length), DEFAULT_MIN_WIDTH, "--min-width");
@@ -3887,6 +4063,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--image-detail=")) parsed.imageDetail = normalizeText(arg.slice("--image-detail=".length)).toLowerCase();
     else if (arg.startsWith("--max-retries=")) parsed.maxRetries = asNonnegativeInt(arg.slice("--max-retries=".length), DEFAULT_MAX_RETRIES, "--max-retries");
     else if (arg.startsWith("--openai-request-timeout-ms=")) parsed.openaiRequestTimeoutMs = asPositiveInt(arg.slice("--openai-request-timeout-ms=".length), DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "--openai-request-timeout-ms");
+    else if (arg.startsWith("--concurrency=")) parsed.concurrency = asPositiveInt(arg.slice("--concurrency=".length), DEFAULT_CONCURRENCY, "--concurrency");
     else if (arg.startsWith("--max-run-cost-usd=")) parsed.maxRunCostUsd = asNumber(arg.slice("--max-run-cost-usd=".length), null, "--max-run-cost-usd");
     else if (arg.startsWith("--max-cards=")) parsed.maxCards = asNonnegativeInt(arg.slice("--max-cards=".length), null, "--max-cards");
     else if (arg.startsWith("--openai-input-cost-per-million=")) parsed.openaiInputCostPerMillion = asNumber(arg.slice("--openai-input-cost-per-million=".length), null, "--openai-input-cost-per-million");
@@ -3923,6 +4100,9 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   if (parsed.v2StressSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId || parsed.branchStratifiedSample)) {
     throw new Error("[card-visual-description-agent] v2 stress sampling cannot be combined with explicit card targets or branch-stratified sampling");
   }
+  if (parsed.highValueSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId || parsed.branchStratifiedSample || parsed.v2StressSample)) {
+    throw new Error("[card-visual-description-agent] high-value sampling cannot be combined with explicit card targets, branch-stratified sampling, or v2 stress sampling");
+  }
   if (parsed.v2StressSample) {
     const stressSampleSize = FACT_GRAPH_V2_STRESS_ROLES.length;
     parsed.limit = stressSampleSize;
@@ -3931,6 +4111,9 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
       : Math.min(parsed.maxCards, stressSampleSize);
     if (!parsed.outDirExplicit) parsed.outDir = DEFAULT_V2_STRESS_OUT_DIR;
     if (!parsed.branchCandidateLimit) parsed.branchCandidateLimit = DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT;
+  }
+  if (parsed.highValueSample && !parsed.branchCandidateLimit) {
+    parsed.branchCandidateLimit = Math.max((parsed.maxCards ?? parsed.limit) * 100, DEFAULT_HIGH_VALUE_CANDIDATE_LIMIT);
   }
   parsed.branchTargets = parseBranchTargetsV1(parsed.branchTargetsSpec, parsed.limit);
   if (parsed.branchStratifiedSample && totalBranchTargets(parsed.branchTargets) < 1) {
@@ -4809,6 +4992,35 @@ export function evaluateStopBeforeNextCall(args, generatedRows, validationFailur
       attempted_count: attemptedCount,
       max_cards: args.maxCards,
     };
+  }
+
+  if (Number(args.concurrency ?? DEFAULT_CONCURRENCY) > 1) {
+    const severeProviderFailures = validationFailures.filter((row) =>
+      /\b(?:openai_http_429|rate.?limit|quota|overloaded|too many requests)\b/i.test(`${row.error ?? ""} ${(row.findings ?? []).join(" ")}`),
+    );
+    if (severeProviderFailures.length >= Math.max(2, Math.ceil(Number(args.concurrency) / 2))) {
+      return {
+        stopped_before_next_call: true,
+        stop_reason: "severe_provider_failure_pattern",
+        provider_failure_count: severeProviderFailures.length,
+        concurrency: args.concurrency,
+      };
+    }
+
+    const aggregateForRetry = aggregateUsageRows(attemptedRows);
+    if (
+      aggregateForRetry.request_count >= Number(args.concurrency)
+      && aggregateForRetry.retry_count >= Math.max(3, Number(args.concurrency))
+      && aggregateForRetry.retry_count / Math.max(aggregateForRetry.request_count, 1) >= 0.5
+    ) {
+      return {
+        stopped_before_next_call: true,
+        stop_reason: "severe_retry_pattern",
+        request_count: aggregateForRetry.request_count,
+        retry_count: aggregateForRetry.retry_count,
+        concurrency: args.concurrency,
+      };
+    }
   }
 
   if (args.maxRunCostUsd === null || args.maxRunCostUsd === undefined) {
@@ -7398,6 +7610,26 @@ async function fetchEligibleCards(client, args) {
     throw new Error("[card-visual-description-agent] apply requires card_print_visual_descriptions migration to be applied");
   }
   const traitTableExists = await tableExists(client, "public", "card_print_traits");
+  const highValueViewExists = args.highValueSample
+    ? await tableExists(client, "public", HIGH_VALUE_PRICE_VIEW)
+    : false;
+  const highValueColumns = highValueViewExists
+    ? await tableColumns(client, "public", HIGH_VALUE_PRICE_VIEW)
+    : new Set();
+  const highValueCardPrintJoinColumn = highValueColumns.has("card_print_id")
+    ? "card_print_id"
+    : highValueColumns.has("id")
+      ? "id"
+      : null;
+  const highValueMetricColumn = HIGH_VALUE_PRICE_COLUMNS.find((column) => highValueColumns.has(column)) ?? null;
+  const highValueJoin = highValueCardPrintJoinColumn && highValueMetricColumn
+    ? `left join public.${HIGH_VALUE_PRICE_VIEW} high_value on high_value.${highValueCardPrintJoinColumn} = cp.id`
+    : "";
+  const highValueSelect = highValueCardPrintJoinColumn && highValueMetricColumn
+    ? `high_value.${highValueMetricColumn}::numeric as high_value_metric_usd,
+       'public.${HIGH_VALUE_PRICE_VIEW}.${highValueMetricColumn}'::text as high_value_metric_source`
+    : `null::numeric as high_value_metric_usd,
+       null::text as high_value_metric_source`;
 
   const columns = await tableColumns(client, "public", "card_prints");
   const textColumn = (name) => columns.has(name) ? `cp.${name}` : "null::text";
@@ -7487,7 +7719,7 @@ async function fetchEligibleCards(client, args) {
   const orderExpr = columns.has("created_at")
     ? "cp.created_at desc nulls last, cp.id asc"
     : "cp.id asc";
-  const queryLimit = (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : args.limit;
+  const queryLimit = (args.branchStratifiedSample || args.v2StressSample || args.highValueSample) ? args.branchCandidateLimit : args.limit;
   const params = [queryLimit];
   const filters = [];
   let nextParam = 2;
@@ -7542,27 +7774,40 @@ async function fetchEligibleCards(client, args) {
        cp.name,
        ${textColumn("set_code")} as set_code,
        ${textColumn("number")} as number,
+       ${textColumn("rarity")} as rarity,
+       ${textColumn("variant_key")} as variant_key,
        ${textColumn("image_url")} as image_url,
        ${textColumn("image_alt_url")} as image_alt_url,
        ${textColumn("representative_image_url")} as representative_image_url,
        ${textColumn("image_path")} as image_path,
        ${textColumn("image_source")} as image_source,
        ${textColumn("image_status")} as image_status,
+       ${sourceCardPrintIdExpr}::text as source_card_print_id,
        ${setNameExpr} as set_name,
        ${traitMetadataSelect},
-       ${descriptionSelect}
+       ${descriptionSelect},
+       ${highValueSelect}
      from public.card_prints cp
      ${setJoin}
      ${traitMetadataJoin}
      ${descriptionJoin}
+     ${highValueJoin}
      where coalesce(${imageExpressions.join(", ")}) is not null
        ${filters.map((filter) => `and ${filter}`).join("\n       ")}
-      order by ${explicitCardPrintIdsParam ? `array_position($${explicitCardPrintIdsParam}::uuid[], cp.id), ` : ""}${orderExpr}
+      order by ${explicitCardPrintIdsParam ? `array_position($${explicitCardPrintIdsParam}::uuid[], cp.id), ` : ""}${args.highValueSample && highValueMetricColumn ? `high_value.${highValueMetricColumn} desc nulls last, ` : ""}${orderExpr}
       limit $1`,
     params,
   );
-  const activeRows = filterActiveVisualFactExtractionCardsV1(result.rows);
+  const activeRows = filterExcludedPromptBranchesV1(
+    filterActiveVisualFactExtractionCardsV1(result.rows),
+    args.excludeBranches,
+  );
   if (args.v2StressSample) return selectV2StressSampleCardsV1(activeRows);
+  if (args.highValueSample) return selectHighValueSampleCardsV1(activeRows, {
+    maxCards: args.maxCards ?? args.limit,
+    limit: args.limit,
+    excludeBranches: args.excludeBranches,
+  });
   if (!args.branchStratifiedSample) return activeRows;
   return selectBranchStratifiedCardsV1(activeRows, args.branchTargets);
 }
@@ -7626,6 +7871,34 @@ function buildV2StressSelectionArtifact(eligibleCards) {
       image_status: card.image_status,
       excluded_prior_fact_graph_v1_cards: Boolean(card.excluded_prior_fact_graph_v1_cards),
       selection_score: card.v2_stress_selection_score ?? null,
+    })),
+  };
+}
+
+function buildHighValueSelectionArtifact(eligibleCards) {
+  return {
+    selection_version: HIGH_VALUE_SELECTION_VERSION,
+    selected_count: eligibleCards.length,
+    excluded_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
+    price_view: HIGH_VALUE_PRICE_VIEW,
+    selected_cards: eligibleCards.map((card) => ({
+      rank: card.high_value_rank ?? null,
+      card_print_id: card.card_print_id,
+      gv_id: card.gv_id,
+      name: card.name,
+      set_code: card.set_code,
+      set_name: card.set_name,
+      number: card.number,
+      rarity: card.rarity ?? null,
+      prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+      high_value_metric_usd: card.high_value_metric_usd ?? null,
+      high_value_metric_source: card.high_value_metric_source ?? null,
+      high_value_selection_score: card.high_value_selection_score ?? null,
+      high_value_selection_reason: card.high_value_selection_reason ?? null,
+      high_value_selection_signals: card.high_value_selection_signals ?? [],
+      high_value_artwork_key: card.high_value_artwork_key ?? null,
+      image_source: card.image_source,
+      image_status: card.image_status,
     })),
   };
 }
@@ -7815,7 +8088,211 @@ export function buildFactGraphReviewPacketMarkdown({ generatedRows, validationFa
   return `${lines.join("\n")}\n`;
 }
 
-async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary, v2StressSelection = null }) {
+function cardIdSet(rows) {
+  return new Set((Array.isArray(rows) ? rows : []).map((row) => normalizeText(row.card_print_id)).filter(Boolean));
+}
+
+function duplicateIds(ids) {
+  const seen = new Set();
+  const duplicates = new Set();
+  for (const id of ids.map(normalizeText).filter(Boolean)) {
+    if (seen.has(id)) duplicates.add(id);
+    seen.add(id);
+  }
+  return [...duplicates].sort();
+}
+
+function buildSavedSystemExport({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary }) {
+  const generatedById = new Map(generatedRows.map((row) => [normalizeText(row.card_print_id), row]));
+  const failureById = new Map(validationFailures.map((row) => [normalizeText(row.card_print_id), row]));
+  const skippedById = new Map(skippedImages.map((row) => [normalizeText(row.card_print_id), row]));
+  const records = eligibleCards.map((card) => {
+    const id = normalizeText(card.card_print_id);
+    const generated = generatedById.get(id);
+    if (generated) {
+      return {
+        outcome: "validated_generated_output",
+        card_print_id: card.card_print_id,
+        gv_id: card.gv_id,
+        name: card.name,
+        prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+        saved_system_row: generated,
+      };
+    }
+    const failure = failureById.get(id);
+    if (failure) {
+      return {
+        outcome: "validation_failure",
+        card_print_id: card.card_print_id,
+        gv_id: card.gv_id,
+        name: card.name,
+        prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+        findings: failure.findings ?? [],
+        raw_failed_payload: failure.raw_payload ?? null,
+        failure,
+      };
+    }
+    const skipped = skippedById.get(id);
+    if (skipped) {
+      return {
+        outcome: "skipped_image",
+        card_print_id: card.card_print_id,
+        gv_id: card.gv_id,
+        name: card.name,
+        prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+        skipped,
+      };
+    }
+    return {
+      outcome: "not_attempted_due_to_stop",
+      card_print_id: card.card_print_id,
+      gv_id: card.gv_id,
+      name: card.name,
+      prompt_branch: resolveCardPromptMetadata(card).prompt_branch,
+    };
+  });
+
+  return {
+    artifact_kind: "card_visual_saved_system_json_export",
+    created_at: summary.finished_at,
+    run_dir: path.relative(REPO_ROOT, runDir).replace(/\\/g, "/"),
+    commit_sha: runPlan.commit_sha ?? null,
+    branch: runPlan.branch ?? null,
+    note: "Validated records contain the generated saved-system row exactly from generated_outputs.jsonl. Failed records contain raw_failed_payload exactly from validation_failures.jsonl because no generated output row was saved for failed validation.",
+    summary: {
+      selected_count: eligibleCards.length,
+      validated_count: generatedRows.length,
+      failed_count: validationFailures.length,
+      skipped_count: skippedImages.length,
+      request_count: summary.usage?.request_count ?? 0,
+      retry_count: summary.usage?.retry_count ?? 0,
+      input_tokens: summary.usage?.input_tokens ?? 0,
+      output_tokens: summary.usage?.output_tokens ?? 0,
+      total_tokens: summary.usage?.total_tokens ?? 0,
+      cached_input_tokens: summary.usage?.cached_input_tokens ?? 0,
+      estimated_cost_usd: summary.estimated_cost_usd ?? 0,
+    },
+    records,
+  };
+}
+
+function reconciliationCheck(check, expected, actual, pass) {
+  return { check, expected, actual, pass: Boolean(pass) };
+}
+
+function buildReconciliationReport({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary, savedSystemExport }) {
+  const selectedIds = eligibleCards.map((card) => normalizeText(card.card_print_id)).filter(Boolean);
+  const finalExportIds = savedSystemExport.records.map((record) => normalizeText(record.card_print_id)).filter(Boolean);
+  const generatedIds = cardIdSet(generatedRows);
+  const failureIds = cardIdSet(validationFailures);
+  const skippedIds = cardIdSet(skippedImages);
+  const finalExportIdSet = new Set(finalExportIds);
+  const selectedIdSet = new Set(selectedIds);
+  const selectedMissingFromFinalExport = selectedIds.filter((id) => !finalExportIdSet.has(id));
+  const finalExportExtraIds = finalExportIds.filter((id) => !selectedIdSet.has(id));
+  const duplicateFinalExportIds = duplicateIds(finalExportIds);
+  const energyCards = eligibleCards.filter((card) => resolveCardPromptMetadata(card).prompt_branch === "energy");
+  const checks = [
+    reconciliationCheck("eligible_count_matches_summary", eligibleCards.length, summary.eligible_count, eligibleCards.length === summary.eligible_count),
+    reconciliationCheck("attempted_count_matches_generated_plus_failures_plus_skipped", generatedRows.length + validationFailures.length + skippedImages.length, summary.attempted_count + summary.skipped_count, generatedRows.length + validationFailures.length + skippedImages.length === summary.attempted_count + summary.skipped_count),
+    reconciliationCheck("validated_count_matches_generated_outputs", generatedRows.length, summary.validated_count, generatedRows.length === summary.validated_count),
+    reconciliationCheck("failed_count_matches_validation_failures", validationFailures.length, summary.failed_count, validationFailures.length === summary.failed_count),
+    reconciliationCheck("skipped_count_matches_skipped_images", skippedImages.length, summary.skipped_count, skippedImages.length === summary.skipped_count),
+    reconciliationCheck("selected_ids_unique", selectedIds.length, selectedIdSet.size, selectedIds.length === selectedIdSet.size),
+    reconciliationCheck("final_export_ids_unique", finalExportIds.length, finalExportIdSet.size, finalExportIds.length === finalExportIdSet.size),
+    reconciliationCheck("final_export_contains_all_selected_ids", selectedIds.length, selectedIds.length - selectedMissingFromFinalExport.length, selectedMissingFromFinalExport.length === 0),
+    reconciliationCheck("final_export_contains_no_extra_ids", 0, finalExportExtraIds.length, finalExportExtraIds.length === 0),
+    reconciliationCheck("zero_energy_cards", 0, energyCards.length, energyCards.length === 0),
+    reconciliationCheck("cost_under_ceiling", runPlan.max_run_cost_usd === null || runPlan.max_run_cost_usd === undefined ? "not_configured" : `<= ${runPlan.max_run_cost_usd}`, summary.estimated_cost_usd, runPlan.max_run_cost_usd === null || runPlan.max_run_cost_usd === undefined || Number(summary.estimated_cost_usd ?? 0) <= Number(runPlan.max_run_cost_usd)),
+    reconciliationCheck("request_count_available_in_summary", "present", summary.usage?.request_count ?? null, Number(summary.usage?.request_count ?? 0) >= 0),
+    reconciliationCheck("retry_count_available_in_summary", "present", summary.usage?.retry_count ?? null, Number(summary.usage?.retry_count ?? 0) >= 0),
+    reconciliationCheck("token_totals_available_in_summary", "present", summary.usage?.total_tokens ?? null, Number(summary.usage?.total_tokens ?? 0) >= 0),
+  ];
+  const mismatches = checks.filter((check) => !check.pass).map((check) => check.check);
+  const finalExportGeneratedIds = cardIdSet(savedSystemExport.records
+    .filter((record) => record.outcome === "validated_generated_output")
+    .map((record) => record.saved_system_row));
+  const finalExportFailureIds = cardIdSet(savedSystemExport.records
+    .filter((record) => record.outcome === "validation_failure")
+    .map((record) => record.failure));
+  const finalExportSkippedIds = cardIdSet(savedSystemExport.records
+    .filter((record) => record.outcome === "skipped_image")
+    .map((record) => record.skipped));
+  for (const id of generatedIds) {
+    if (!finalExportGeneratedIds.has(id)) mismatches.push(`generated_missing_from_final_export:${id}`);
+  }
+  for (const id of failureIds) {
+    if (!finalExportFailureIds.has(id)) mismatches.push(`failure_missing_from_final_export:${id}`);
+  }
+  for (const id of skippedIds) {
+    if (!finalExportSkippedIds.has(id)) mismatches.push(`skipped_missing_from_final_export:${id}`);
+  }
+
+  return {
+    artifact_kind: "card_visual_run_reconciliation",
+    created_at: summary.finished_at,
+    run_dir: path.relative(REPO_ROOT, runDir).replace(/\\/g, "/"),
+    commit_sha: runPlan.commit_sha ?? null,
+    branch: runPlan.branch ?? null,
+    sample_strategy: runPlan.sample_strategy,
+    concurrency: runPlan.concurrency,
+    counts: {
+      selected: eligibleCards.length,
+      generated_outputs: generatedRows.length,
+      validation_failures: validationFailures.length,
+      skipped_images: skippedImages.length,
+      final_export_records: savedSystemExport.records.length,
+      unique_final_export_ids: finalExportIdSet.size,
+      energy_cards: energyCards.length,
+    },
+    usage: summary.usage,
+    estimated_cost_usd: summary.estimated_cost_usd,
+    ceiling: summary.ceiling,
+    checks,
+    reconciliation_mismatches: uniqueSorted(mismatches),
+    selected_missing_from_final_export: selectedMissingFromFinalExport,
+    final_export_extra_ids: finalExportExtraIds,
+    duplicate_final_export_ids: duplicateFinalExportIds,
+  };
+}
+
+function buildReconciliationMarkdown(report) {
+  const lines = [
+    "# Card Visual Run Reconciliation",
+    "",
+    `- Commit SHA: \`${report.commit_sha ?? "unknown"}\``,
+    `- Branch: \`${report.branch ?? "unknown"}\``,
+    `- Run dir: \`${report.run_dir}\``,
+    `- Sample strategy: \`${report.sample_strategy}\``,
+    `- Concurrency: \`${report.concurrency}\``,
+    "",
+    "## Counts",
+    "",
+    `- Selected: ${report.counts.selected}`,
+    `- Generated outputs: ${report.counts.generated_outputs}`,
+    `- Validation failures: ${report.counts.validation_failures}`,
+    `- Skipped images: ${report.counts.skipped_images}`,
+    `- Provider requests: ${report.usage?.request_count ?? 0}`,
+    `- Retries: ${report.usage?.retry_count ?? 0}`,
+    `- Total tokens: ${report.usage?.total_tokens ?? 0}`,
+    `- Estimated cost: $${report.estimated_cost_usd}`,
+    "",
+    "## Checks",
+    "",
+    "| Check | Expected | Actual | Pass |",
+    "|---|---:|---:|:---:|",
+    ...report.checks.map((check) => `| ${markdownEscape(check.check)} | ${markdownEscape(check.expected)} | ${markdownEscape(check.actual)} | ${check.pass ? "yes" : "no"} |`),
+    "",
+  ];
+  if (report.reconciliation_mismatches.length > 0) {
+    lines.push("## Mismatches", "");
+    for (const mismatch of report.reconciliation_mismatches) lines.push(`- ${mismatch}`);
+    lines.push("");
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary, v2StressSelection = null, highValueSelection = null }) {
   const reviewSample = generatedRows
     .filter((row) => row.review_status === "pending" || row.review_status === "needs_review")
     .slice(0, REVIEW_SAMPLE_LIMIT);
@@ -7830,6 +8307,29 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
     "summary.json": summary,
   };
   if (v2StressSelection) files["v2_stress_selection.json"] = v2StressSelection;
+  if (highValueSelection) files["high_value_selection.json"] = highValueSelection;
+  const savedSystemExport = buildSavedSystemExport({
+    runDir,
+    runPlan,
+    eligibleCards,
+    generatedRows,
+    validationFailures,
+    skippedImages,
+    summary,
+  });
+  const savedSystemExportName = `ALL_${eligibleCards.length}_SAVED_SYSTEM_JSON.json`;
+  files[savedSystemExportName] = savedSystemExport;
+  const reconciliationReport = buildReconciliationReport({
+    runDir,
+    runPlan,
+    eligibleCards,
+    generatedRows,
+    validationFailures,
+    skippedImages,
+    summary,
+    savedSystemExport,
+  });
+  files["RECONCILIATION_REPORT.json"] = reconciliationReport;
 
   const artifactHashes = {};
   for (const [name, value] of Object.entries(files)) {
@@ -7841,6 +8341,9 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
   const packetPath = path.join(runDir, "FACT_GRAPH_V2_REVIEW_PACKET.md");
   await writeText(packetPath, buildFactGraphReviewPacketMarkdown({ generatedRows, validationFailures, skippedImages, summary }));
   artifactHashes["FACT_GRAPH_V2_REVIEW_PACKET.md"] = await hashFile(packetPath);
+  const reconciliationMarkdownPath = path.join(runDir, "RECONCILIATION_REPORT.md");
+  await writeText(reconciliationMarkdownPath, buildReconciliationMarkdown(reconciliationReport));
+  artifactHashes["RECONCILIATION_REPORT.md"] = await hashFile(reconciliationMarkdownPath);
   return artifactHashes;
 }
 
@@ -7853,6 +8356,8 @@ function compactCardForArtifact(row) {
     set_code: row.set_code,
     set_name: row.set_name,
     number: row.number,
+    rarity: row.rarity ?? null,
+    variant_key: row.variant_key ?? null,
     prompt_branch: promptMetadata.prompt_branch,
     card_type_metadata_source: promptMetadata.card_type_metadata_source,
     supertype: promptMetadata.supertype,
@@ -7866,6 +8371,13 @@ function compactCardForArtifact(row) {
     v2_stress_reason: row.v2_stress_reason ?? null,
     v2_stress_selection_score: row.v2_stress_selection_score ?? null,
     excluded_prior_fact_graph_v1_cards: row.excluded_prior_fact_graph_v1_cards ?? null,
+    high_value_rank: row.high_value_rank ?? null,
+    high_value_metric_usd: row.high_value_metric_usd ?? null,
+    high_value_metric_source: row.high_value_metric_source ?? null,
+    high_value_selection_score: row.high_value_selection_score ?? null,
+    high_value_selection_reason: row.high_value_selection_reason ?? null,
+    high_value_selection_signals: row.high_value_selection_signals ?? null,
+    high_value_artwork_key: row.high_value_artwork_key ?? null,
     current_description_id: row.current_description_id,
     current_review_status: row.current_review_status,
   };
@@ -8127,6 +8639,172 @@ async function insertApplyRows(client, { runPlan, summary, artifactHashes, runDi
   }
 }
 
+function safeArtifactNamePart(value) {
+  return (normalizeText(value) || "unknown")
+    .replace(/[^a-z0-9_-]+/gi, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80) || "unknown";
+}
+
+async function writePerCardCompletionArtifact(runDir, index, outcome) {
+  const card = outcome.card ?? {};
+  const fileName = `${String(index + 1).padStart(4, "0")}_${safeArtifactNamePart(card.gv_id || card.card_print_id)}_${outcome.type}.json`;
+  await writeJson(path.join(runDir, "per_card", fileName), {
+    completed_at: nowIso(),
+    selected_index: index,
+    outcome_type: outcome.type,
+    card: compactCardForArtifact(card),
+    generated_row: outcome.row ?? null,
+    validation_failure: outcome.failure ?? null,
+    skipped_image: outcome.skipped ?? null,
+  });
+}
+
+async function processVisualDescriptionCard(card, index, totalCount, args, runDir) {
+  let image;
+  let generationTelemetry = null;
+  try {
+    image = await validateImageForModel(card, args);
+    if (!image.ok) {
+      const skipped = {
+        card_print_id: card.card_print_id,
+        gv_id: card.gv_id,
+        name: card.name,
+        reason: image.reason,
+        error: image.error ?? null,
+        quality_flags: image.quality_flags ?? [],
+        image_source: image.image_source ?? null,
+        image_source_key: image.image_source_key ?? null,
+      };
+      const outcome = { type: "skipped_image", card, skipped };
+      await writePerCardCompletionArtifact(runDir, index, outcome);
+      return outcome;
+    }
+
+    console.error(`[card-visual-description-agent] generating ${index + 1}/${totalCount}: ${card.gv_id} ${card.name}`);
+    const generation = await generateDescription(card, image, args);
+    generationTelemetry = generation.telemetry;
+    const rawPayload = generation.payload;
+    const validation = validateVisualDescriptionPayloadV1(rawPayload, card);
+    if (!validation.ok) {
+      console.error(`[card-visual-description-agent] validation_failed ${card.gv_id} ${card.name}`);
+      const failure = {
+        card_print_id: card.card_print_id,
+        gv_id: card.gv_id,
+        name: card.name,
+        ...telemetryForArtifact(generationTelemetry),
+        findings: validation.findings,
+        raw_payload: rawPayload,
+      };
+      const outcome = { type: "validation_failure", card, failure };
+      await writePerCardCompletionArtifact(runDir, index, outcome);
+      return outcome;
+    }
+
+    const row = buildDescriptionRow(card, image, validation.normalized, args, generationTelemetry);
+    console.error(`[card-visual-description-agent] validated ${card.gv_id} ${card.name} status=${row.review_status}`);
+    const outputRow = {
+      ...row,
+      gv_id: card.gv_id,
+      name: card.name,
+      set_code: card.set_code,
+      set_name: card.set_name,
+      number: card.number,
+      v2_stress_role: card.v2_stress_role ?? null,
+      v2_stress_reason: card.v2_stress_reason ?? null,
+      high_value_rank: card.high_value_rank ?? null,
+      high_value_metric_usd: card.high_value_metric_usd ?? null,
+      high_value_metric_source: card.high_value_metric_source ?? null,
+      high_value_selection_score: card.high_value_selection_score ?? null,
+      high_value_selection_reason: card.high_value_selection_reason ?? null,
+      high_value_selection_signals: card.high_value_selection_signals ?? null,
+      high_value_artwork_key: card.high_value_artwork_key ?? null,
+      embedding_input_hash_preview: sha256(buildEmbeddingInputV1(row)),
+    };
+    const outcome = { type: "generated_row", card, row: outputRow };
+    await writePerCardCompletionArtifact(runDir, index, outcome);
+    return outcome;
+  } catch (error) {
+    const failure = {
+      card_print_id: card.card_print_id,
+      gv_id: card.gv_id,
+      name: card.name,
+      image_sha256: image?.image_sha256 ?? null,
+      ...telemetryForArtifact(error.telemetry ?? generationTelemetry),
+      findings: ["generation_exception"],
+      error: error.message,
+    };
+    console.error(`[card-visual-description-agent] generation_exception ${card.gv_id} ${card.name}: ${error.message}`);
+    const outcome = { type: "validation_failure", card, failure };
+    await writePerCardCompletionArtifact(runDir, index, outcome);
+    return outcome;
+  }
+}
+
+function rowsFromOrderedOutcomes(outcomes, type, key) {
+  return outcomes
+    .filter((outcome) => outcome?.type === type)
+    .map((outcome) => outcome[key]);
+}
+
+async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir }) {
+  const outcomes = new Array(eligibleCards.length);
+  const completedGeneratedRows = [];
+  const completedValidationFailures = [];
+  const completedSkippedImages = [];
+  let nextIndex = 0;
+  let stopBeforeNextCall = null;
+  const workerCount = Math.min(Math.max(1, Number(args.concurrency ?? DEFAULT_CONCURRENCY)), Math.max(eligibleCards.length, 1));
+
+  const claimNextIndex = () => {
+    if (stopBeforeNextCall) return null;
+    if (nextIndex >= eligibleCards.length) return null;
+    if (args.maxCards !== null && args.maxCards !== undefined && nextIndex >= args.maxCards) {
+      stopBeforeNextCall = {
+        stopped_before_next_call: true,
+        stop_reason: "max_cards_reached",
+        attempted_count: nextIndex,
+        max_cards: args.maxCards,
+      };
+      return null;
+    }
+    const ceiling = evaluateStopBeforeNextCall(args, completedGeneratedRows, completedValidationFailures);
+    if (ceiling.stopped_before_next_call) {
+      stopBeforeNextCall = {
+        ...ceiling,
+        next_card_print_id: eligibleCards[nextIndex]?.card_print_id ?? null,
+        next_gv_id: eligibleCards[nextIndex]?.gv_id ?? null,
+        next_name: eligibleCards[nextIndex]?.name ?? null,
+      };
+      return null;
+    }
+    const index = nextIndex;
+    nextIndex += 1;
+    return index;
+  };
+
+  async function worker() {
+    for (;;) {
+      const index = claimNextIndex();
+      if (index === null) return;
+      const outcome = await processVisualDescriptionCard(eligibleCards[index], index, eligibleCards.length, args, runDir);
+      outcomes[index] = outcome;
+      if (outcome.type === "generated_row") completedGeneratedRows.push(outcome.row);
+      else if (outcome.type === "validation_failure") completedValidationFailures.push(outcome.failure);
+      else if (outcome.type === "skipped_image") completedSkippedImages.push(outcome.skipped);
+    }
+  }
+
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+  return {
+    generatedRows: rowsFromOrderedOutcomes(outcomes, "generated_row", "row"),
+    validationFailures: rowsFromOrderedOutcomes(outcomes, "validation_failure", "failure"),
+    skippedImages: rowsFromOrderedOutcomes(outcomes, "skipped_image", "skipped"),
+    stopBeforeNextCall,
+    workerCount,
+  };
+}
+
 function buildSummary({
   args,
   eligibleCards,
@@ -8155,11 +8833,14 @@ function buildSummary({
     response_model_version: responseModelVersions.length === 1 ? responseModelVersions[0] : null,
     response_model_versions: responseModelVersions,
     image_detail: args.imageDetail,
+    concurrency: args.concurrency,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
-    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample || args.highValueSample) ? args.branchCandidateLimit : null,
+    high_value_sample: args.highValueSample,
+    exclude_branches: args.excludeBranches,
     active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
     deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
     v2_stress_sample: args.v2StressSample,
@@ -8210,6 +8891,9 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
 
   const startedAt = nowIso();
   args.pricingSnapshot = buildPricingSnapshot(args, startedAt);
+  const commitSha = await gitOutput(["rev-parse", "HEAD"]);
+  const branch = await gitOutput(["branch", "--show-current"]);
+  const trackedStatusShort = await gitOutput(["status", "--short", "--untracked-files=no"]);
   const runKey = sha256(stableJson({
     version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
     started_at: startedAt,
@@ -8219,20 +8903,31 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     model_version: args.modelVersion,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
+    sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    concurrency: args.concurrency,
+    commit_sha: commitSha,
   }));
   const runDir = path.join(args.outDir, `${stampFromIso(startedAt)}_${args.mode}_${runKey.slice(0, 12)}`);
   const runPlan = {
     run_key: runKey,
+    commit_sha: commitSha,
+    branch,
+    tracked_worktree_status_short: trackedStatusShort,
+    tracked_worktree_clean: trackedStatusShort === "",
     mode: args.mode,
     provider: args.provider,
     requested_limit: args.limit,
     max_cards: args.maxCards,
     max_run_cost_usd: args.maxRunCostUsd,
+    concurrency: args.concurrency,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
+    sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
     branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
-    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample) ? args.branchCandidateLimit : null,
+    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample || args.highValueSample) ? args.branchCandidateLimit : null,
+    high_value_sample: args.highValueSample,
+    high_value_selection_version: args.highValueSample ? HIGH_VALUE_SELECTION_VERSION : null,
+    exclude_branches: args.excludeBranches,
     active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
     deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
     v2_stress_sample: args.v2StressSample,
@@ -8263,90 +8958,30 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
   try {
     const eligibleCards = await fetchEligibleCards(client, args);
     const totalEligibleCatalogCount = Number(eligibleCards[0]?.total_eligible_catalog_count ?? eligibleCards.length);
+    runPlan.selected_count = eligibleCards.length;
+    runPlan.selected_card_print_ids = eligibleCards.map((card) => card.card_print_id);
+    runPlan.selected_cards = eligibleCards.map(compactCardForArtifact);
+    await writeJson(path.join(runDir, "run_plan.json"), runPlan);
     const v2StressSelection = args.v2StressSample ? buildV2StressSelectionArtifact(eligibleCards) : null;
     if (v2StressSelection) {
       await writeJson(path.join(runDir, "v2_stress_selection.json"), v2StressSelection);
     }
-    const generatedRows = [];
-    const validationFailures = [];
-    const skippedImages = [];
+    const highValueSelection = args.highValueSample ? buildHighValueSelectionArtifact(eligibleCards) : null;
+    if (highValueSelection) {
+      highValueSelection.excluded_branches = args.excludeBranches;
+      await writeJson(path.join(runDir, "high_value_selection.json"), highValueSelection);
+    }
+    let generatedRows = [];
+    let validationFailures = [];
+    let skippedImages = [];
     let stopBeforeNextCall = null;
 
     if (args.mode !== "plan") {
-      for (const card of eligibleCards) {
-        let image;
-        let generationTelemetry = null;
-        try {
-          image = await validateImageForModel(card, args);
-          if (!image.ok) {
-            skippedImages.push({
-              card_print_id: card.card_print_id,
-              gv_id: card.gv_id,
-              name: card.name,
-              reason: image.reason,
-              error: image.error ?? null,
-              quality_flags: image.quality_flags ?? [],
-              image_source: image.image_source ?? null,
-              image_source_key: image.image_source_key ?? null,
-            });
-            continue;
-          }
-
-          const ceiling = evaluateStopBeforeNextCall(args, generatedRows, validationFailures);
-          if (ceiling.stopped_before_next_call) {
-            stopBeforeNextCall = {
-              ...ceiling,
-              next_card_print_id: card.card_print_id,
-              next_gv_id: card.gv_id,
-              next_name: card.name,
-            };
-            break;
-          }
-
-          console.error(`[card-visual-description-agent] generating ${generatedRows.length + validationFailures.length + skippedImages.length + 1}/${eligibleCards.length}: ${card.gv_id} ${card.name}`);
-          const generation = await generateDescription(card, image, args);
-          generationTelemetry = generation.telemetry;
-          const rawPayload = generation.payload;
-          const validation = validateVisualDescriptionPayloadV1(rawPayload, card);
-          if (!validation.ok) {
-            console.error(`[card-visual-description-agent] validation_failed ${card.gv_id} ${card.name}`);
-            validationFailures.push({
-              card_print_id: card.card_print_id,
-              gv_id: card.gv_id,
-              name: card.name,
-              ...telemetryForArtifact(generationTelemetry),
-              findings: validation.findings,
-              raw_payload: rawPayload,
-            });
-            continue;
-          }
-
-          const row = buildDescriptionRow(card, image, validation.normalized, args, generationTelemetry);
-          console.error(`[card-visual-description-agent] validated ${card.gv_id} ${card.name} status=${row.review_status}`);
-          generatedRows.push({
-            ...row,
-            gv_id: card.gv_id,
-            name: card.name,
-            set_code: card.set_code,
-            set_name: card.set_name,
-            number: card.number,
-            v2_stress_role: card.v2_stress_role ?? null,
-            v2_stress_reason: card.v2_stress_reason ?? null,
-            embedding_input_hash_preview: sha256(buildEmbeddingInputV1(row)),
-          });
-        } catch (error) {
-          validationFailures.push({
-            card_print_id: card.card_print_id,
-            gv_id: card.gv_id,
-            name: card.name,
-            image_sha256: image?.image_sha256 ?? null,
-            ...telemetryForArtifact(error.telemetry ?? generationTelemetry),
-            findings: ["generation_exception"],
-            error: error.message,
-          });
-          console.error(`[card-visual-description-agent] generation_exception ${card.gv_id} ${card.name}: ${error.message}`);
-        }
-      }
+      const processed = await processEligibleCardsWithConcurrency({ eligibleCards, args, runDir });
+      generatedRows = processed.generatedRows;
+      validationFailures = processed.validationFailures;
+      skippedImages = processed.skippedImages;
+      stopBeforeNextCall = processed.stopBeforeNextCall;
     }
 
     const finishedAt = nowIso();
@@ -8371,6 +9006,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       skippedImages,
       summary,
       v2StressSelection,
+      highValueSelection,
     });
 
     let applyResult = null;
