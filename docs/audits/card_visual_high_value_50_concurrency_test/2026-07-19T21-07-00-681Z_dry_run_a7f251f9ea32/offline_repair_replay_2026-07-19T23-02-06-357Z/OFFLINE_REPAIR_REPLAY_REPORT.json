@@ -1,0 +1,139 @@
+{
+  "artifact": "HIGH_VALUE_50_OFFLINE_REPAIR_REPLAY",
+  "generated_at": "2026-07-19T23:02:06.357Z",
+  "source_run_dir": "docs/audits/card_visual_high_value_50_concurrency_test/2026-07-19T21-07-00-681Z_dry_run_a7f251f9ea32",
+  "source_run_commit_sha": "aa13afa441022378e2cdb274eeb64ba54136f155",
+  "repair_base_commit_sha": "aa13afa441022378e2cdb274eeb64ba54136f155",
+  "branch": "feature/card-visual-description-agent",
+  "provider_calls": 0,
+  "database_writes": 0,
+  "embeddings": 0,
+  "approvals": 0,
+  "summary": {
+    "total_failure_rows": 9,
+    "replayable_payloads": 8,
+    "now_valid": 8,
+    "remaining_invalid": 0,
+    "provider_exceptions_not_replayable": 1
+  },
+  "repaired_failure_classes": [
+    "objective mouth and teeth semantic facts are allowed when evidence-backed",
+    "unsupported/circular expression labels are removed before validation",
+    "non-semantic facial/anatomy fields strip subjective expression words while preserving visible evidence",
+    "environment time/weather fields are aligned when already-supported environment claims include those cues",
+    "weak or blurred card UI observations derive card-ui abstentions even when not represented by a known module field",
+    "OpenAI pricing preflight rejects missing or zero input/output rates before provider calls"
+  ],
+  "rows": [
+    {
+      "card_print_id": "84596ac0-cf2e-41ea-8d45-f8463bc5b3b0",
+      "gv_id": "GV-PK-SK-149",
+      "name": "Ho-oh",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_time_claim_without_time_field",
+        "fact_graph_unreadable_card_ui_missing_abstention:obs_card_ui_resistance_001"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "17fe4b35-8bf9-43e7-bec9-5e828f3d06be",
+      "gv_id": "GV-PK-DR-100",
+      "name": "Charizard",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_loose_semantic_label_outside_semantic_visual_facts"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "060ba7e1-14dd-43c2-bd0d-9cf8aa3db719",
+      "gv_id": "GV-PK-DS-111",
+      "name": "Groudon ★",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_semantic_fact_label_not_supported_v1:sem_fact_003"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "04768870-4934-4cbe-af34-ddda0fbbd4e1",
+      "gv_id": "GV-PK-SLG-76",
+      "name": "Mewtwo GX",
+      "replayable": false,
+      "before_findings": [
+        "generation_exception"
+      ],
+      "after_ok": null,
+      "after_findings": [],
+      "classification": "not_replayable_provider_exception",
+      "error": "[card-visual-description-agent] openai_fetch_failed: This operation was aborted"
+    },
+    {
+      "card_print_id": "02e11652-ab5a-466b-858b-8e7b8fb322b0",
+      "gv_id": "GV-PK-CEC-215",
+      "name": "Blastoise & Piplup-GX",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_loose_semantic_label_outside_semantic_visual_facts"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "006963ee-b15a-412a-b721-07ade4b65027",
+      "gv_id": "GV-PK-PRE-149",
+      "name": "Vaporeon ex",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_loose_semantic_label_outside_semantic_visual_facts"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "01878f9f-f4bf-4478-a130-6b989b397087",
+      "gv_id": "GV-PK-DS-13",
+      "name": "Rayquaza δ",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_semantic_fact_label_not_supported_v1:semfact_001"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "004be467-cc13-49ac-9106-778819636ea7",
+      "gv_id": "GV-PK-SM-SM162",
+      "name": "Pikachu",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_semantic_fact_label_not_supported_v1:sfact_003"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    },
+    {
+      "card_print_id": "8ce3b0b4-8459-4fcb-ad90-b6cdc246c6dc",
+      "gv_id": "GV-PK-CRE-224",
+      "name": "Snorlax",
+      "replayable": true,
+      "before_findings": [
+        "fact_graph_semantic_fact_label_not_supported_v1:semfact_001"
+      ],
+      "after_ok": true,
+      "after_findings": [],
+      "classification": "repaired_offline"
+    }
+  ]
+}

@@ -104,6 +104,9 @@ Keep when supported:
 - `vapor or haze`
 - `smoke near mouth`
 - `pipe-like object`
+- `sharp teeth`
+- `visible fangs`
+- `jagged mouth shape`
 - `sleeping Pokemon` when supported by a sleeping semantic fact and a visible Pokemon subject
 - `happy Pikachu` when supported by a happy semantic fact and a visible Pikachu subject
 
@@ -113,7 +116,7 @@ When an exact subject identity is already stored in a subject, depicted subject,
 
 Use `water body` instead of `water scene` for generic water evidence. Scene/story wording is avoided unless it names a directly visible setting category such as `forest background` or `food scene`.
 
-Evidence-only face details such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` are preserved in raw observations and facial-evidence fields, but are not canonical semantic facts by themselves. They can support a higher-level semantic fact such as `smiling`, `sleeping`, or `surprised`.
+Evidence-only face details such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` are preserved in raw observations and facial-evidence fields, but are not canonical semantic facts by themselves. Distinct objective facial search concepts such as `sharp teeth`, `visible fangs`, or `jagged mouth shape` may be canonical concepts when supported by observations. Interpreted expression concepts such as `happy`, `angry`, `annoyed`, or `snarling` are allowed only when visible facial evidence supports them.
 
 ## Substance-Cue Search Aliases
 

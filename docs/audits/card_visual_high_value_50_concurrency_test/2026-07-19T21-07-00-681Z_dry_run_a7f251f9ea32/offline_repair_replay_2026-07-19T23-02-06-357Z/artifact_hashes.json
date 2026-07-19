@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-19T23:02:06.357Z",
+  "artifacts": [
+    {
+      "path": "docs/audits/card_visual_high_value_50_concurrency_test/2026-07-19T21-07-00-681Z_dry_run_a7f251f9ea32/offline_repair_replay_2026-07-19T23-02-06-357Z/OFFLINE_REPAIR_REPLAY_REPORT.json",
+      "sha256": "727289e70d1c8107b30e163e8cff521b8a84383720dddf05a1d95fef92fa5bbe"
+    },
+    {
+      "path": "docs/audits/card_visual_high_value_50_concurrency_test/2026-07-19T21-07-00-681Z_dry_run_a7f251f9ea32/offline_repair_replay_2026-07-19T23-02-06-357Z/OFFLINE_REPAIR_REPLAY_REPORT.md",
+      "sha256": "cc5743f0b5765a7fb5ce2ff66de3a62bc30ca5a4b488aabff847d8190d8427e3"
+    }
+  ]
+}

@@ -153,6 +153,8 @@ Allowed examples:
 
 - `happy` supported by smiling mouth, relaxed eyes, or raised arms
 - `sleeping` supported by closed eyes and lying-down body position
+- `sharp teeth`, `visible fangs`, or `jagged mouth shape` supported by visible mouth/teeth evidence
+- `snarling` supported by visible open mouth plus teeth/fang evidence, with no closed-mouth contradiction
 - `forest` supported by visible trees, trunks, foliage, or wooded terrain
 - `rainy` supported by visible rain streaks, raindrops, wet ground, or puddles
 - `floating` supported by a subject suspended above visible ground or by pose evidence
@@ -179,7 +181,7 @@ Not allowed:
 - `drugged`
 - `stoned`
 
-Evidence-only details are not standalone semantic facts. Labels such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` belong in `facial_evidence` or inside a semantic fact's `evidence` object. They may support a useful semantic label such as `smiling`, `sleeping`, `surprised`, or `cannot_determine`, but should not be stored as independent reusable facts.
+Evidence-only details are not standalone semantic facts when they are merely generic visibility notes. Labels such as `open eyes`, `closed eyes`, `neutral eyebrows`, `face visible`, or `eyes not clearly visible` belong in `facial_evidence` or inside a semantic fact's `evidence` object. Distinct objective search concepts such as `sharp teeth`, `visible fangs`, or `jagged mouth shape` may be semantic facts when they cite matching observations. Interpreted expression labels such as `happy`, `angry`, `annoyed`, or `snarling` require objective facial support and must not be supported only by circular wording.
 
 The semantic label must not contradict the evidence. `happy` cannot be supported only by a frown or a hidden face. `sleeping` cannot be supported by open eyes and running.
 

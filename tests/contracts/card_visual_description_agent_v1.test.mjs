@@ -12,6 +12,7 @@ import {
   buildDescriptionVersionKeyV1,
   buildEmbeddingInputV1,
   buildCostProjection,
+  assertOpenAiPricingConfigured,
   classifyDescriptionReviewStatusV1,
   evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
@@ -2424,6 +2425,17 @@ test("card visual description usage telemetry computes cost, projections, and st
   assert.equal(projection.projected_500_cards_usd, 0.2175);
   assert.equal(projection.projected_1000_cards_usd, 0.435);
   assert.equal(projection.projected_full_eligible_catalog_usd, 0.53679);
+  assert.equal(estimateUsageCostUsd({
+    input_tokens: 1000,
+    output_tokens: 500,
+    total_tokens: 1500,
+    cached_input_tokens: 200,
+    reasoning_output_tokens: 0,
+  }, {
+    input_per_million: 0.15,
+    output_per_million: 0.60,
+    cached_input_per_million: null,
+  }), 0.00045);
 
   assert.equal(
     evaluateStopBeforeNextCall(
@@ -2442,6 +2454,46 @@ test("card visual description usage telemetry computes cost, projections, and st
     ).stop_reason,
     "projected_next_call_cost_exceeds_max_run_cost",
   );
+});
+
+test("card visual description OpenAI pricing preflight rejects missing or zero rates", () => {
+  assert.throws(
+    () => assertOpenAiPricingConfigured({
+      provider: "openai",
+      mode: "dry_run",
+      openaiInputCostPerMillion: null,
+      openaiOutputCostPerMillion: null,
+      openaiCachedInputCostPerMillion: null,
+    }),
+    /requires positive pricing configuration.*OPENAI_INPUT_COST_PER_MILLION.*OPENAI_OUTPUT_COST_PER_MILLION/,
+  );
+
+  assert.throws(
+    () => assertOpenAiPricingConfigured({
+      provider: "openai",
+      mode: "dry_run",
+      openaiInputCostPerMillion: 0,
+      openaiOutputCostPerMillion: 1.6,
+      openaiCachedInputCostPerMillion: null,
+    }),
+    /OPENAI_INPUT_COST_PER_MILLION/,
+  );
+
+  assert.doesNotThrow(() => assertOpenAiPricingConfigured({
+    provider: "openai",
+    mode: "dry_run",
+    openaiInputCostPerMillion: 0.4,
+    openaiOutputCostPerMillion: 1.6,
+    openaiCachedInputCostPerMillion: null,
+  }));
+
+  assert.doesNotThrow(() => assertOpenAiPricingConfigured({
+    provider: "fixture",
+    mode: "dry_run",
+    openaiInputCostPerMillion: null,
+    openaiOutputCostPerMillion: null,
+    openaiCachedInputCostPerMillion: null,
+  }));
 });
 
 test("card visual description payload validation separates shape from review approval", () => {
@@ -6171,6 +6223,234 @@ test("card visual fact graph repairs high-value live evidence-policy misses", ()
     unsupportedAwake.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "awake"),
     false,
   );
+});
+
+test("card visual fact graph repairs high-value semantic mouth features and expression cleanup", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_sharp_teeth_live_001",
+      kind: "creature_anatomy",
+      label: "open mouth with visible sharp white teeth",
+      normalized_label: "open mouth visible sharp white teeth",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_jagged_mouth_live_001",
+      kind: "creature_anatomy",
+      label: "jagged mouth shape visible on the face",
+      normalized_label: "jagged mouth shape",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_snarl_live_001",
+      kind: "creature_anatomy",
+      label: "wide open mouth with visible fangs",
+      normalized_label: "wide open mouth visible fangs",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.96,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_content_mouth_live_001",
+      kind: "creature_anatomy",
+      label: "content mouth",
+      normalized_label: "content mouth",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.75,
+      evidence_strength: "moderate",
+    },
+  );
+  graph.subjects[0].physical_features = [
+    "angry facial expression",
+    "open happy mouth with visible tongue",
+    "aggressive expression with visible teeth",
+  ];
+  graph.subjects[0].facial_evidence = {
+    eyes: "angry eyes",
+    mouth: "open happy mouth with visible tongue",
+    eyebrows: "furrowed eyebrows",
+    face_position: "front of head",
+    other_visible_evidence: ["aggressive expression with visible teeth"],
+  };
+  graph.typed_facts.push(
+    {
+      fact_id: "fact_expression_cleanup_live_001",
+      module: "creature_anatomy",
+      field_path: "physical_features.facial_expression",
+      claim: "angry_or_aggressive facial expression",
+      value: "open happy mouth with visible tongue",
+      supporting_observation_ids: ["obs_sharp_teeth_live_001"],
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      fact_id: "fact_jagged_mouth_live_001",
+      module: "creature_anatomy",
+      field_path: "physical_features.mouth",
+      claim: "jagged mouth shape visible",
+      value: "jagged mouth shape",
+      supporting_observation_ids: ["obs_jagged_mouth_live_001"],
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+  );
+  graph.modules.creature_anatomy.fact_ids.push("fact_expression_cleanup_live_001", "fact_jagged_mouth_live_001");
+  graph.modules.creature_anatomy.physical_features.push({
+    subject_observation_id: "obs_subject_001",
+    region: "face",
+    feature: "angry expression with jagged mouth shape",
+    visibility: "visible",
+    colors: [],
+    details: ["open happy mouth with visible tongue", "aggressive expression with visible teeth"],
+    supporting_observation_ids: ["obs_sharp_teeth_live_001", "obs_jagged_mouth_live_001"],
+    confidence: 0.92,
+  });
+  graph.scene_layers.foreground.push(
+    "obs_sharp_teeth_live_001",
+    "obs_jagged_mouth_live_001",
+    "obs_snarl_live_001",
+    "obs_content_mouth_live_001",
+  );
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_sharp_teeth_live_001",
+      category: "expression",
+      label: "sharp teeth",
+      supporting_observation_ids: ["obs_sharp_teeth_live_001"],
+      evidence: { mouth: ["open mouth"], facial_features: ["visible sharp white teeth"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_jagged_mouth_live_001",
+      category: "expression",
+      label: "jagged mouth shape",
+      supporting_observation_ids: ["obs_jagged_mouth_live_001"],
+      evidence: { mouth: ["jagged"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_snarling_live_001",
+      category: "expression",
+      label: "snarling",
+      supporting_observation_ids: ["obs_snarl_live_001"],
+      evidence: { mouth: ["wide open mouth"], facial_features: ["visible fangs"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_content_mouth_live_001",
+      category: "expression",
+      label: "content mouth",
+      supporting_observation_ids: ["obs_content_mouth_live_001"],
+      evidence: { mouth: ["content"] },
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const semanticLabels = normalizedGraph.semantic_visual_facts.map((fact) => fact.label);
+  assert.ok(semanticLabels.includes("sharp teeth"));
+  assert.ok(semanticLabels.includes("jagged mouth shape"));
+  assert.ok(semanticLabels.includes("snarling"));
+  assert.equal(semanticLabels.includes("content mouth"), false);
+
+  const acceptedText = JSON.stringify({
+    subjects: normalizedGraph.subjects,
+    typed_facts: normalizedGraph.typed_facts,
+    modules: normalizedGraph.modules,
+  });
+  assert.equal(/\b(?:angry|happy|aggressive)\b/i.test(acceptedText), false);
+  assert.match(acceptedText, /visible tongue|visible teeth|jagged mouth shape/);
+});
+
+test("card visual fact graph repairs environment alignment and card UI weak-marker abstentions", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_environment_night_live_001",
+      kind: "environment",
+      label: "starry night sky background",
+      normalized_label: "starry night sky",
+      scene_layer: "background",
+      frame_position: "full_background",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_environment_thunderstorm_live_001",
+      kind: "environment",
+      label: "thunderstorm clouds with visible lightning",
+      normalized_label: "thunderstorm clouds lightning",
+      scene_layer: "background",
+      frame_position: "upper_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.91,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_card_ui_resistance_live_001",
+      kind: "card_ui_symbol",
+      label: "Resistance symbol: Fighting blurred",
+      normalized_label: "resistance fighting",
+      scene_layer: "interface",
+      frame_position: "bottom_middle",
+      visibility: "visible",
+      salience: "low",
+      confidence: 0.7,
+      evidence_strength: "medium",
+    },
+  );
+  graph.environment = {
+    ...graph.environment,
+    sky: ["starry night sky", "thunderstorm clouds"],
+    weather: [],
+    time_of_day_cues: [],
+    supporting_observation_ids: ["obs_environment_night_live_001", "obs_environment_thunderstorm_live_001"],
+  };
+  graph.scene_layers.background.push("obs_environment_night_live_001", "obs_environment_thunderstorm_live_001");
+  graph.typed_facts.push({
+    fact_id: "fact_card_ui_resistance_live_001",
+    module: "card_ui_and_print_markers",
+    field_path: "card_ui_and_print_markers.resistance_symbol",
+    claim: "resistance symbol visible but blurred",
+    value: "Fighting resistance symbol blurred",
+    supporting_observation_ids: ["obs_card_ui_resistance_live_001"],
+    confidence: 0.7,
+    evidence_strength: "medium",
+  });
+  graph.modules.card_ui_and_print_markers.fact_ids.push("fact_card_ui_resistance_live_001");
+
+  const review = graph.module_reviews.find((entry) => entry.module === "card_ui_and_print_markers");
+  review.review_status = "complete";
+  review.evidence_quality = "high";
+  review.abstentions = [];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  assert.ok(normalizedGraph.environment.time_of_day_cues.includes("night"));
+  assert.ok(normalizedGraph.environment.weather.includes("thunderstorm"));
+
+  const cardUiReview = normalizedGraph.module_reviews.find((entry) => entry.module === "card_ui_and_print_markers");
+  assert.ok(cardUiReview.abstentions.some((entry) =>
+    entry.affected_observation_ids.includes("obs_card_ui_resistance_live_001")));
 });
 
 test("card visual fact graph drops unsupported card UI typed facts", () => {
