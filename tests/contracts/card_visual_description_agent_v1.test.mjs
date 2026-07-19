@@ -22,6 +22,7 @@ import {
   filterActiveVisualFactExtractionCardsV1,
   mapVisualSearchAliasQueryV1,
   parseCardVisualDescriptionArgsV1,
+  cardVisualSelectionQueryLimitV1,
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
   selectBranchStratifiedCardsV1,
@@ -731,6 +732,12 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(highValueSample.concurrency, 10);
   assert.deepEqual(highValueSample.excludeBranches, ["energy"]);
   assert.ok(highValueSample.branchCandidateLimit >= 5000);
+  const explicitIds = Array.from({ length: 50 }, (_, index) => `card-${String(index + 1).padStart(2, "0")}`);
+  const explicitIdSample = parseCardVisualDescriptionArgsV1([
+    "--dry-run",
+    `--card-print-ids=${explicitIds.join(",")}`,
+  ]);
+  assert.equal(cardVisualSelectionQueryLimitV1(explicitIdSample), 50);
   assert.throws(
     () => parseCardVisualDescriptionArgsV1([
       "--provider=openai",
@@ -5952,6 +5959,239 @@ test("card visual fact graph repairs final live gate evidence and graph-integrit
   const semanticLabels = normalizedGraph.semantic_visual_facts.map((fact) => fact.label);
   assert.equal(semanticLabels.includes("attacking"), false);
   assert.ok(semanticLabels.includes("daytime"));
+});
+
+test("card visual fact graph repairs high-value live evidence-policy misses", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_birthday_001",
+      kind: "objects_and_props",
+      label: "birthday cake and gift box visible beside the subject",
+      normalized_label: "birthday cake gift box",
+      scene_layer: "foreground",
+      frame_position: "lower",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_volcanic_001",
+      kind: "environment",
+      label: "lava or flame background with red dark volcanic setting",
+      normalized_label: "lava flame red volcanic setting",
+      scene_layer: "background",
+      frame_position: "full_background",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.91,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_shining_001",
+      kind: "color_and_light",
+      label: "shining blue-black coloration",
+      normalized_label: "shining blue black coloration",
+      scene_layer: "foreground",
+      frame_position: "subject",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_wings_001",
+      kind: "creature_anatomy",
+      label: "wings spread on the floating creature",
+      normalized_label: "wings spread",
+      scene_layer: "foreground",
+      frame_position: "left_and_right",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_roaring_001",
+      kind: "creature_anatomy",
+      label: "wide open mouth with visible fangs",
+      normalized_label: "wide open mouth fangs",
+      scene_layer: "foreground",
+      frame_position: "head",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_fierce_001",
+      kind: "creature_anatomy",
+      label: "narrowed eyes and open mouth with tongue visible",
+      normalized_label: "narrowed eyes open mouth tongue",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.93,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_pink_aura_001",
+      kind: "visual_effects",
+      label: "bold neon pink energy aura around the subject",
+      normalized_label: "bold neon pink energy aura",
+      scene_layer: "foreground",
+      frame_position: "around_subject",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.93,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_awake_001",
+      kind: "creature_anatomy",
+      label: "round open eyes with white pupils",
+      normalized_label: "round open eyes white pupils",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_subject_count_001",
+      kind: "scene_subject",
+      label: "Dark Tyranitar",
+      normalized_label: "dark tyranitar",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+  );
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_birthday_001",
+      category: "scene_type",
+      label: "birthday theme",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_birthday_001"],
+      evidence: { objects: ["birthday cake", "gift box"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_volcanic_001",
+      category: "scene_type",
+      label: "volcanic environment",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_volcanic_001"],
+      evidence: { environment: ["lava or flame background", "red dark volcanic setting"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_shining_001",
+      category: "state",
+      label: "shining",
+      supporting_observation_ids: ["obs_shining_001"],
+      evidence: { body_language: ["shining coloration"], other: ["shining blue-black coloration"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_wings_001",
+      category: "state",
+      label: "wings spread",
+      supporting_observation_ids: ["obs_wings_001"],
+      evidence: { body_language: ["wings spread"], motion_state: ["moving wings"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_roaring_001",
+      category: "expression",
+      label: "roaring",
+      supporting_observation_ids: ["obs_roaring_001"],
+      evidence: { mouth: ["wide open mouth"], facial_features: ["visible fangs"], motion_state: ["roaring"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_fierce_001",
+      category: "expression",
+      label: "fierce expression",
+      supporting_observation_ids: ["obs_fierce_001"],
+      evidence: { mouth: ["open mouth with pink tongue visible"], eyes: ["narrowed eyes"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_aura_001",
+      category: "state",
+      label: "bold neon pink energy aura",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_pink_aura_001"],
+      evidence: { motion_state: ["pink energy aura"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_awake_001",
+      category: "state",
+      label: "awake",
+      supporting_observation_ids: ["obs_awake_001"],
+      evidence: { eyes: ["round with white pupils"], motion_state: ["alert"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_unsupported_count_001",
+      category: "count_semantic",
+      label: "one Dark Tyranitar",
+      supporting_observation_ids: ["obs_subject_count_001"],
+      evidence: {},
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const semanticLabels = validation.normalized.visual_attributes.fact_graph.semantic_visual_facts.map((fact) => fact.label);
+  assert.ok(semanticLabels.includes("birthday theme"));
+  assert.ok(semanticLabels.includes("volcanic environment"));
+  assert.ok(semanticLabels.includes("shining"));
+  assert.ok(semanticLabels.includes("wings spread"));
+  assert.ok(semanticLabels.includes("roaring"));
+  assert.ok(semanticLabels.includes("fierce expression"));
+  assert.ok(semanticLabels.includes("bold neon pink energy aura"));
+  assert.ok(semanticLabels.includes("awake"));
+  assert.equal(semanticLabels.includes("one Dark Tyranitar"), false);
+
+  const unsupportedAwakeGraph = structuredClone(validFactGraph());
+  unsupportedAwakeGraph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_awake_bad_001",
+      category: "state",
+      label: "awake",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: { eyes: ["eyes closed"], body_position: ["sleeping"] },
+    }),
+  ];
+  const unsupportedAwake = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedAwakeGraph }));
+  assert.equal(unsupportedAwake.ok, true, unsupportedAwake.findings.join(","));
+  assert.equal(
+    unsupportedAwake.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "awake"),
+    false,
+  );
+});
+
+test("card visual fact graph drops unsupported card UI typed facts", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.typed_facts.push({
+    fact_id: "fact_card_ui_unobserved_001",
+    module: "card_ui_and_print_markers",
+    field_path: "rarity_mark",
+    claim: "rarity_mark_unreadable_or_absent",
+    value: "",
+    supporting_observation_ids: [],
+    confidence: 0.5,
+    evidence_strength: "abstention",
+  });
+  graph.modules.card_ui_and_print_markers.fact_ids.push("fact_card_ui_unobserved_001");
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  assert.equal(normalizedGraph.typed_facts.some((fact) => fact.fact_id === "fact_card_ui_unobserved_001"), false);
+  assert.equal(normalizedGraph.modules.card_ui_and_print_markers.fact_ids.includes("fact_card_ui_unobserved_001"), false);
 });
 
 test("card visual fact graph routes confused subject-kind classifications to review", () => {
