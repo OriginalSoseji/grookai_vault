@@ -47,6 +47,8 @@
     "card-desc:plan": "node scripts/audits/card_visual_description_agent_v1.mjs --plan",
     "card-desc:dry-run": "node scripts/audits/card_visual_description_agent_v1.mjs --dry-run",
     "card-desc:apply": "node scripts/audits/card_visual_description_agent_v1.mjs --apply",
+    "card-desc:artifact-plan": "node scripts/audits/card_visual_description_artifact_apply_v1.mjs --plan",
+    "card-desc:artifact-apply": "node scripts/audits/card_visual_description_artifact_apply_v1.mjs --apply",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
     "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
