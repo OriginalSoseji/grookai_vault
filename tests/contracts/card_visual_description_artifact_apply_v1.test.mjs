@@ -4,6 +4,8 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS,
+  CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_MAX_ROWS,
+  CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_VERSION,
   aggregateImportedUsageV1,
   buildArtifactApplyFingerprintV1,
   classifyArtifactApplyStateV1,
@@ -36,6 +38,19 @@ test("artifact apply parser defaults to a bounded plan", () => {
   assert.equal(args.mode, "plan");
   assert.equal(args.maxCards, CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS);
   assert.throws(() => parseArtifactApplyArgsV1(["--max-cards=26"]), /between 1 and 25/);
+});
+
+test("artifact apply parser requires the explicit readiness profile above 25 rows", () => {
+  assert.throws(() => parseArtifactApplyArgsV1(["--max-cards=250"]), /between 1 and 25/);
+  const args = parseArtifactApplyArgsV1(["--apply-readiness-canary", "--max-cards=250"]);
+  assert.equal(args.maxCards, CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_MAX_ROWS);
+  assert.equal(args.maxAllowed, CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_MAX_ROWS);
+  assert.equal(args.applyVersion, CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_VERSION);
+  assert.equal(args.applyReadinessCanary, true);
+  assert.throws(
+    () => parseArtifactApplyArgsV1(["--apply-readiness-canary", "--max-cards=251"]),
+    /between 1 and 250/,
+  );
 });
 
 test("artifact apply parser requires a single mode", () => {

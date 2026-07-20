@@ -16,7 +16,9 @@ import {
 const { Client } = pg;
 
 export const CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION = "CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_V1";
+export const CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_VERSION = "CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_V1";
 export const CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS = 25;
+export const CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_MAX_ROWS = 250;
 export const CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_BRANCH = "feature/card-visual-description-agent";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +31,11 @@ const REQUIRED_SOURCE_FILES = Object.freeze([
   "run_plan.json",
   "RECONCILIATION_REPORT.json",
   "ALL_500_SAVED_SYSTEM_JSON.json",
+]);
+const REQUIRED_RECOVERY_SOURCE_FILES = Object.freeze([
+  "run_plan.json",
+  "ALL_1000_APPLY_READINESS_SAVED_SYSTEM_JSON.json",
+  "APPLY_READINESS_RECONCILIATION.json",
 ]);
 const ALLOWED_REVIEW_STATUSES = new Set(["pending", "needs_review"]);
 
@@ -71,14 +78,23 @@ function parseFlag(argv, name) {
 export function parseArtifactApplyArgsV1(argv = []) {
   const apply = argv.includes("--apply");
   const plan = argv.includes("--plan") || !apply;
+  const applyReadinessCanary = argv.includes("--apply-readiness-canary");
   if (apply && argv.includes("--plan")) throw new Error("choose exactly one of --plan or --apply");
   const maxCards = integer(parseFlag(argv, "max-cards") ?? CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS, "max-cards");
-  if (maxCards < 1 || maxCards > CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS) {
-    throw new Error(`max-cards must be between 1 and ${CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS}`);
+  const maxAllowed = applyReadinessCanary
+    ? CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_MAX_ROWS
+    : CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS;
+  if (maxCards < 1 || maxCards > maxAllowed) {
+    throw new Error(`max-cards must be between 1 and ${maxAllowed}`);
   }
   return {
     mode: plan ? "plan" : "apply",
     maxCards,
+    applyReadinessCanary,
+    applyVersion: applyReadinessCanary
+      ? CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_READINESS_CANARY_VERSION
+      : CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+    maxAllowed,
     sourceRunDir: parseFlag(argv, "source-run-dir") ?? DEFAULT_SOURCE_RUN_DIR,
     outputDir: parseFlag(argv, "output-dir"),
     planPath: parseFlag(argv, "plan-path"),
@@ -219,10 +235,15 @@ export function classifyArtifactApplyStateV1(rows) {
   };
 }
 
-async function verifySourceArtifacts(sourceRunDir) {
+async function verifySourceArtifacts(sourceRunDir, { allowApplyReadinessRecovery = false } = {}) {
   const manifestPath = path.join(sourceRunDir, "artifact_hashes.json");
   const manifest = await readJson(manifestPath);
-  const entries = Object.entries(manifest.files ?? {});
+  const recoveryFormat = !manifest.files && Boolean(manifest.artifacts);
+  if (recoveryFormat && !allowApplyReadinessRecovery) {
+    throw new Error("SOURCE_ARTIFACT_VERIFICATION_FAILED: apply_readiness_recovery_requires_canary_profile");
+  }
+  const manifestFiles = manifest.files ?? manifest.artifacts ?? {};
+  const entries = Object.entries(manifestFiles);
   const findings = [];
   const verified = [];
   for (const [relativePath, expectedSha256] of entries) {
@@ -237,17 +258,75 @@ async function verifySourceArtifacts(sourceRunDir) {
     if (actualSha256 !== expectedSha256) findings.push(`source_hash_mismatch:${relativePath}`);
     verified.push({ path: relativePath, expected_sha256: expectedSha256, actual_sha256: actualSha256 });
   }
-  if (entries.length !== Number(manifest.file_count)) findings.push("source_manifest_file_count_mismatch");
-  for (const required of REQUIRED_SOURCE_FILES) {
-    if (!Object.hasOwn(manifest.files ?? {}, required)) findings.push(`source_manifest_required_file_missing:${required}`);
+  if (manifest.file_count != null && entries.length !== Number(manifest.file_count)) findings.push("source_manifest_file_count_mismatch");
+  const requiredSourceFiles = recoveryFormat ? REQUIRED_RECOVERY_SOURCE_FILES : REQUIRED_SOURCE_FILES;
+  for (const required of requiredSourceFiles) {
+    if (!Object.hasOwn(manifestFiles, required)) findings.push(`source_manifest_required_file_missing:${required}`);
   }
   if (findings.length) throw new Error(`SOURCE_ARTIFACT_VERIFICATION_FAILED: ${findings.join(",")}`);
 
-  const generatedRows = await readJsonl(path.join(sourceRunDir, "generated_outputs.jsonl"));
-  const summary = await readJson(path.join(sourceRunDir, "summary.json"));
-  const sourcePlan = await readJson(path.join(sourceRunDir, "run_plan.json"));
-  const reconciliation = await readJson(path.join(sourceRunDir, "RECONCILIATION_REPORT.json"));
+  let generatedRows;
+  let summary;
+  let sourcePlan;
+  let reconciliation;
+  let sourceRowsFile;
   const rowFindings = [];
+  if (recoveryFormat) {
+    sourceRowsFile = "ALL_1000_APPLY_READINESS_SAVED_SYSTEM_JSON.json";
+    const sourceExport = await readJson(path.join(sourceRunDir, sourceRowsFile));
+    const recoveryPlan = await readJson(path.join(sourceRunDir, "run_plan.json"));
+    const recoveryReconciliation = await readJson(path.join(sourceRunDir, "APPLY_READINESS_RECONCILIATION.json"));
+    const records = Array.isArray(sourceExport.records) ? sourceExport.records : [];
+    generatedRows = records.map((record, index) => {
+      if (record.outcome_type !== "generated_row") rowFindings.push(`record_${index + 1}:outcome_not_generated_row`);
+      if (!record.generated_row) rowFindings.push(`record_${index + 1}:generated_row_missing`);
+      if (record.generated_row?.card_print_id !== record.card_print_id) rowFindings.push(`record_${index + 1}:card_print_id_mismatch`);
+      if (record.raw_failed_payload || record.failure) rowFindings.push(`record_${index + 1}:failure_payload_present`);
+      return record.generated_row;
+    }).filter(Boolean);
+    const selectedIds = recoveryPlan.selected_card_print_ids ?? [];
+    if (selectedIds.length !== records.length) rowFindings.push("recovery_selected_count_mismatch");
+    if (selectedIds.some((id, index) => id !== records[index]?.card_print_id)) rowFindings.push("recovery_selected_order_mismatch");
+    if (Number(recoveryReconciliation.counts?.selected) !== records.length) rowFindings.push("recovery_reconciliation_selected_mismatch");
+    if (Number(recoveryReconciliation.counts?.saved_system_rows) !== records.length) rowFindings.push("recovery_saved_system_count_mismatch");
+    if ((recoveryReconciliation.reconciliation_mismatches ?? []).length) rowFindings.push("source_reconciliation_has_findings");
+    if (!recoveryReconciliation.apply_readiness?.overall_ready_for_database_apply) rowFindings.push("source_not_apply_ready");
+    const firstRow = generatedRows[0] ?? {};
+    const modelVersions = [...new Set(generatedRows.map((row) => row.model_version).filter(Boolean))];
+    const agentVersions = [...new Set(generatedRows.map((row) => row.agent_version).filter(Boolean))];
+    const schemaVersions = [...new Set(generatedRows.map((row) => row.output_schema_version).filter(Boolean))];
+    if (modelVersions.length !== 1) rowFindings.push("recovery_model_version_not_uniform");
+    if (agentVersions.length !== 1) rowFindings.push("recovery_agent_version_not_uniform");
+    if (schemaVersions.length !== 1) rowFindings.push("recovery_schema_version_not_uniform");
+    sourcePlan = {
+      run_key: sha256Json({ manifest_sha256: sha256Buffer(await fs.readFile(manifestPath)), purpose: "apply_readiness_recovery_source" }),
+      commit_sha: recoveryPlan.commit_sha,
+      provider: recoveryPlan.provider,
+      model_version: recoveryPlan.model ?? firstRow.model_version,
+      image_detail: recoveryPlan.image_detail ?? firstRow.image_detail,
+      prompt_version: recoveryPlan.prompt_version ?? firstRow.prompt_version,
+      output_schema_version: recoveryPlan.schema_version ?? firstRow.output_schema_version,
+      agent_version: firstRow.agent_version,
+      boundary: recoveryPlan.boundary,
+    };
+    summary = {
+      validated_count: generatedRows.length,
+      pricing_snapshot: {
+        source: "preserved_per_row_telemetry",
+        recorded_at: recoveryReconciliation.created_at,
+      },
+    };
+    reconciliation = {
+      reconciliation_mismatches: recoveryReconciliation.reconciliation_mismatches ?? [],
+      stop_findings: [],
+    };
+  } else {
+    sourceRowsFile = "generated_outputs.jsonl";
+    generatedRows = await readJsonl(path.join(sourceRunDir, sourceRowsFile));
+    summary = await readJson(path.join(sourceRunDir, "summary.json"));
+    sourcePlan = await readJson(path.join(sourceRunDir, "run_plan.json"));
+    reconciliation = await readJson(path.join(sourceRunDir, "RECONCILIATION_REPORT.json"));
+  }
   const seenIds = new Set();
   for (const [index, row] of generatedRows.entries()) {
     const validation = validateArtifactRowForApplyV1(row);
@@ -267,7 +346,10 @@ async function verifySourceArtifacts(sourceRunDir) {
     manifest,
     manifest_sha256: sha256Buffer(await fs.readFile(manifestPath)),
     verified_file_count: verified.length,
-    required_file_hashes: Object.fromEntries(REQUIRED_SOURCE_FILES.map((name) => [name, manifest.files[name]])),
+    required_file_hashes: Object.fromEntries(requiredSourceFiles.map((name) => [name, manifestFiles[name]])),
+    source_format: recoveryFormat ? "apply_readiness_recovery" : "validated_harvest",
+    source_rows_file: sourceRowsFile,
+    source_rows_sha256: manifestFiles[sourceRowsFile],
     generatedRows,
     summary,
     sourcePlan,
@@ -393,21 +475,21 @@ function selectedMetadata(row, sourceLineNumber) {
 
 function buildDatabaseArtifactHashes(planBase) {
   return {
-    artifact_apply_version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+    artifact_apply_version: planBase.version,
     source_manifest_sha256: planBase.source.manifest_sha256,
-    source_generated_outputs_sha256: planBase.source.required_file_hashes["generated_outputs.jsonl"],
+    source_rows_sha256: planBase.source.source_rows_sha256,
     selected_rows_sha256: planBase.selection.selected_rows_sha256,
     canonical_pre_apply_sha256: planBase.database_preflight.canonical_snapshot_sha256,
     apply_plan_fingerprint_sha256: planBase.apply_plan_fingerprint_sha256,
   };
 }
 
-export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCards, client, gitState }) {
+export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCards, client, gitState, applyVersion = CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION, maxAllowed = CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS, allowApplyReadinessRecovery = false }) {
   if (gitState.branch !== CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_BRANCH) {
     throw new Error(`WRONG_BRANCH: expected ${CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_BRANCH}, got ${gitState.branch}`);
   }
   if (gitState.tracked_status_short) throw new Error(`TRACKED_WORKTREE_NOT_CLEAN: ${gitState.tracked_status_short}`);
-  const source = await verifySourceArtifacts(sourceRunDir);
+  const source = await verifySourceArtifacts(sourceRunDir, { allowApplyReadinessRecovery });
   const allState = await queryDatabaseState(client, source.generatedRows);
   assertCanonicalMatch(allState);
   const eligible = allState.filter((state) => !state.current_description_id && !state.duplicate_description_id);
@@ -419,10 +501,10 @@ export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCar
   const canonicalSnapshot = canonicalProjection(selectedStates);
   const usage = aggregateImportedUsageV1(selectedRows);
   const fingerprintInput = {
-    version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+    version: applyVersion,
     producing_commit_sha: gitState.commit_sha,
     source_manifest_sha256: source.manifest_sha256,
-    source_generated_outputs_sha256: source.required_file_hashes["generated_outputs.jsonl"],
+    source_rows_sha256: source.source_rows_sha256,
     selected_rows_sha256: selectedRowsSha256,
     canonical_pre_apply_sha256: sha256Json(canonicalSnapshot),
     selected_card_print_ids: selectedRows.map((row) => row.card_print_id),
@@ -430,7 +512,7 @@ export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCar
   const applyPlanFingerprint = buildArtifactApplyFingerprintV1(fingerprintInput);
   const runKey = sha256Json({ apply_plan_fingerprint_sha256: applyPlanFingerprint, purpose: "artifact_to_database_apply" });
   const plan = {
-    version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+    version: applyVersion,
     mode: "apply_from_validated_artifact",
     created_at: nowIso(),
     producing_commit_sha: gitState.commit_sha,
@@ -446,6 +528,9 @@ export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCar
       manifest_sha256: source.manifest_sha256,
       manifest_file_count: source.verified_file_count,
       required_file_hashes: source.required_file_hashes,
+      source_format: source.source_format,
+      source_rows_file: source.source_rows_file,
+      source_rows_sha256: source.source_rows_sha256,
       validated_source_rows: source.generatedRows.length,
       source_provider: source.sourcePlan.provider,
       source_model_version: source.sourcePlan.model_version,
@@ -457,7 +542,7 @@ export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCar
     },
     selection: {
       policy: "first_source_order_rows_with_exact_canonical_image_path_and_no_existing_visual_version",
-      hard_cap: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS,
+      hard_cap: maxAllowed,
       selected_count: selectedRows.length,
       eligible_count: eligible.length,
       selected_rows_sha256: selectedRowsSha256,
@@ -508,10 +593,10 @@ export async function buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCar
   await writeJson(path.join(outputDir, "run_plan.json"), plan);
   const planSha256 = sha256Buffer(await fs.readFile(path.join(outputDir, "run_plan.json")));
   await writeJson(path.join(outputDir, "command_metadata.json"), {
-    version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+    version: applyVersion,
     mode: "plan",
     created_at: nowIso(),
-    command: `node scripts/audits/card_visual_description_artifact_apply_v1.mjs --plan --max-cards=${maxCards} --source-run-dir=${posixRelative(sourceRunDir)}`,
+    command: `node scripts/audits/card_visual_description_artifact_apply_v1.mjs --plan${allowApplyReadinessRecovery ? " --apply-readiness-canary" : ""} --max-cards=${maxCards} --source-run-dir=${posixRelative(sourceRunDir)}`,
     secrets_included: false,
     provider_calls: 0,
     database_writes: 0,
@@ -567,7 +652,7 @@ async function insertRunLedger(client, plan, selectedRows, outputDir) {
   const pricingSnapshot = {
     ...source.pricing_snapshot,
     artifact_import: {
-      version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+      version: plan.version,
       source_usage_preserved: true,
       provider_calls_during_apply: 0,
       apply_cost_usd: 0,
@@ -831,7 +916,16 @@ export async function runArtifactApplyPlanV1(args) {
   const client = createClient();
   await client.connect();
   try {
-    const result = await buildArtifactApplyPlanV1({ sourceRunDir, outputDir, maxCards: args.maxCards, client, gitState });
+    const result = await buildArtifactApplyPlanV1({
+      sourceRunDir,
+      outputDir,
+      maxCards: args.maxCards,
+      client,
+      gitState,
+      applyVersion: args.applyVersion,
+      maxAllowed: args.maxAllowed,
+      allowApplyReadinessRecovery: args.applyReadinessCanary,
+    });
     return { ...result, outputDir };
   } finally {
     await client.end();
@@ -849,13 +943,14 @@ export async function runArtifactApplyV1(args) {
   const actualPlanSha256 = sha256Buffer(await fs.readFile(planPath));
   if (actualPlanSha256 !== args.expectedPlanSha256) throw new Error("RUN_PLAN_HASH_MISMATCH");
   const plan = await readJson(planPath);
+  if (plan.version !== args.applyVersion) throw new Error("APPLY_PROFILE_MISMATCH");
   const gitState = currentGitStateV1();
   if (gitState.branch !== plan.branch || gitState.commit_sha !== plan.producing_commit_sha) throw new Error("FROZEN_GIT_STATE_MISMATCH");
   if (gitState.tracked_status_short) throw new Error(`TRACKED_WORKTREE_NOT_CLEAN: ${gitState.tracked_status_short}`);
-  if (plan.selection.selected_count > CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_MAX_ROWS) throw new Error("PLAN_ROW_CAP_EXCEEDED");
+  if (plan.selection.hard_cap !== args.maxAllowed || plan.selection.selected_count > args.maxAllowed) throw new Error("PLAN_ROW_CAP_EXCEEDED");
   if (plan.selection.energy_count !== 0) throw new Error("PLAN_CONTAINS_ENERGY_CARD");
   const sourceRunDir = repoPath(plan.source.run_directory);
-  const source = await verifySourceArtifacts(sourceRunDir);
+  const source = await verifySourceArtifacts(sourceRunDir, { allowApplyReadinessRecovery: args.applyReadinessCanary });
   if (source.manifest_sha256 !== plan.source.manifest_sha256) throw new Error("SOURCE_MANIFEST_DRIFT");
   const sourceById = new Map(source.generatedRows.map((row) => [row.card_print_id, row]));
   const selectedRows = plan.selection.rows.map((metadata) => sourceById.get(metadata.card_print_id));
@@ -887,7 +982,7 @@ export async function runArtifactApplyV1(args) {
     await writeJson(path.join(outputDir, "apply_result.json"), applyResult);
     if (idempotencyResult) await writeJson(path.join(outputDir, "idempotency_result.json"), idempotencyResult);
     await writeJson(path.join(outputDir, "db_readback.json"), readback);
-    await writeJson(path.join(outputDir, "ALL_25_SAVED_DATABASE_JSON.json"), readback.descriptions);
+    await writeJson(path.join(outputDir, `ALL_${selectedRows.length}_SAVED_DATABASE_JSON.json`), readback.descriptions);
     await writeJson(path.join(outputDir, "schema_rls_grant_readback.json"), security);
     await writeJson(path.join(outputDir, "boundary_proof.json"), {
       canonical_snapshot_unchanged: beforeCanonicalHash === afterCanonicalHash,
@@ -901,10 +996,10 @@ export async function runArtifactApplyV1(args) {
     await writeJson(path.join(outputDir, "RECONCILIATION_REPORT.json"), reconciliation);
     await writeText(path.join(outputDir, "RECONCILIATION_REPORT.md"), `# Reconciliation\n\n- reconciled: ${reconciliation.reconciled}\n- mismatches: ${reconciliation.mismatches.length}\n- selected: ${reconciliation.selected_count}\n- saved: ${reconciliation.saved_count}\n- unique IDs: ${reconciliation.unique_saved_card_print_ids}\n`);
     await writeJson(path.join(outputDir, "command_metadata.json"), {
-      version: CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_VERSION,
+      version: plan.version,
       mode: "apply",
       created_at: nowIso(),
-      command: `node scripts/audits/card_visual_description_artifact_apply_v1.mjs --apply --plan-path=${posixRelative(planPath)} --expected-plan-sha256=<recorded_sha256> --verify-idempotency`,
+      command: `node scripts/audits/card_visual_description_artifact_apply_v1.mjs --apply${args.applyReadinessCanary ? " --apply-readiness-canary" : ""} --plan-path=${posixRelative(planPath)} --expected-plan-sha256=<recorded_sha256> --verify-idempotency`,
       secrets_included: false,
       provider_calls: 0,
       database_writes: applyResult.inserted_count,
