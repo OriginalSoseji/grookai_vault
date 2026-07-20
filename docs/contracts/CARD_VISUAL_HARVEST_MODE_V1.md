@@ -43,7 +43,26 @@ Each quarantine row must preserve:
 - findings
 - raw failed payload when available
 - usage telemetry
+- image source and source key
+- image SHA-256
+- image dimensions and MIME type
+- image quality score and image-quality flags
 - failure-class grouping
+
+Complete image provenance is required so a payload recovered by a later deterministic validator can be reconstructed as an exact saved-system row without another provider call. `not preserved` is not equivalent to `not observed`.
+
+## Offline Repair Lane
+
+Grouped quarantine repair must:
+
+- use preserved raw payloads only
+- make zero provider calls unless a later paid retry gate is explicitly authorized
+- replay every previously valid row as a regression control
+- reconcile selected, valid, recovered, remaining, and skipped card-print IDs exactly once
+- preserve source artifacts unchanged
+- keep payload recovery separate from apply readiness
+
+A recovered payload is structurally valid, but it is not an exact apply artifact until its image provenance, model telemetry, version fields, derived review status, and saved-system fingerprint reconcile.
 
 ## Harvest Status
 
@@ -78,4 +97,3 @@ New failure classes stop promotion, not extraction.
 If a harvest run completes with quarantine inside tolerance, validated rows may be preserved as evidence and invalid rows may be repaired later in grouped offline replays.
 
 No harvested row becomes apply-ready until a later strict gate proves the selected apply subset reconciles cleanly.
-

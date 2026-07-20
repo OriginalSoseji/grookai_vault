@@ -3317,8 +3317,12 @@ test("card visual fact graph stores semantic visual facts only with supporting e
       ],
     },
   }));
-  assert.equal(unsupportedSearch.ok, false);
-  assert.ok(unsupportedSearch.findings.includes("fact_graph_search_term_without_matching_fact_components:happy Pikachu"));
+  assert.equal(unsupportedSearch.ok, true, unsupportedSearch.findings.join("\n"));
+  assert.equal(
+    unsupportedSearch.normalized.visual_attributes.fact_graph.fact_grounded_search_terms
+      .some((entry) => entry.term === "happy Pikachu"),
+    false,
+  );
 
   const annoyedWithEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -8118,6 +8122,83 @@ test("harvest quarantine repair preserves evidence-backed semantics without acce
     entry.term === "adventure bag"));
 });
 
+test("harvest quarantine repair retains supported sleepy cues and reconciles estimated count semantics", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_sleepy_eyes_001",
+      kind: "creature_anatomy",
+      label: "half-open heavy-lidded eyes",
+      normalized_label: "half-open heavy-lidded eyes",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_buildings_group_001",
+      kind: "objects_and_props",
+      label: "multiple rectangular buildings with lit windows",
+      normalized_label: "rectangular buildings",
+      scene_layer: "background",
+      frame_position: "full_width_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+  );
+  graph.counts.push({
+    count_id: "count_buildings_001",
+    normalized_label: "rectangular buildings",
+    count_type: "estimated_range",
+    exact_count: 20,
+    estimated_min: 15,
+    estimated_max: 25,
+    abstention_reason: "",
+    supporting_observation_ids: ["obs_buildings_group_001"],
+    scene_layer: "background",
+    confidence: 0.9,
+  });
+  graph.modules.counts.count_ids.push("count_buildings_001");
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_sleepy_001",
+      category: "expression",
+      label: "sleepy eyes",
+      supporting_observation_ids: ["obs_sleepy_eyes_001"],
+      evidence: { eyes: ["half-open heavy-lidded eyes"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_generic_creature_001",
+      category: "scene_type",
+      label: "fantasy creature",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: { body_language: ["visible scene subject"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_buildings_count_001",
+      category: "count_semantic",
+      label: "approximately twenty buildings",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_buildings_group_001"],
+      evidence: { environment: ["multiple buildings"] },
+      confidence: 0.9,
+      uncertainty: "low",
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join("\n"));
+  const semanticLabels = validation.normalized.visual_attributes.fact_graph.semantic_visual_facts
+    .map((fact) => fact.label);
+  assert.ok(semanticLabels.includes("sleepy eyes"));
+  assert.ok(semanticLabels.includes("approximately twenty buildings"));
+  assert.equal(semanticLabels.includes("creature"), false);
+});
+
 test("card visual description version and embedding input are deterministic", () => {
   const base = {
     card_print_id: "11111111-1111-1111-1111-111111111111",
@@ -8164,6 +8245,7 @@ test("card visual description version and embedding input are deterministic", ()
 test("card visual description agent entrypoints stay guarded and non-identity-authoritative", () => {
   const agent = source("backend/card_descriptions/card_visual_description_agent_v1.mjs");
   const script = source("scripts/audits/card_visual_description_agent_v1.mjs");
+  const quarantineReplay = source("scripts/audits/card_visual_description_quarantine_replay_v1.mjs");
   const pkg = source("package.json");
   const visualLanguage = source("docs/contracts/CARD_VISUAL_LANGUAGE_V1.md");
   const factGraphV2 = source("docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md");
@@ -8215,6 +8297,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /--exclude-branches=/);
   assert.match(agent, /high_value_selection.json/);
   assert.match(agent, /validation_quarantine\.jsonl/);
+  assert.match(agent, /function imageMetadataForArtifact/);
+  assert.match(agent, /image_quality_flags/);
   assert.match(agent, /HARVEST_REPORT\.json/);
   assert.match(agent, /HARVEST_REPORT\.md/);
   assert.match(agent, /per_card/);
@@ -8254,6 +8338,9 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /error: image\.error \?\? null/);
   assert.match(agent, /card_prints_mutation: false/);
   assert.match(script, /card_visual_description_agent_v1/);
+  assert.match(quarantineReplay, /validateVisualDescriptionPayloadV1/);
+  assert.match(quarantineReplay, /recovered_payloads\.jsonl/);
+  assert.match(quarantineReplay, /provider_calls: 0/);
   assert.match(pkg, /"card-desc:plan"/);
   assert.match(pkg, /"card-desc:dry-run"/);
   assert.match(pkg, /"card-desc:apply"/);
