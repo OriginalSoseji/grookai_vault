@@ -8627,14 +8627,14 @@ export function evaluateHarvestPolicyV1({
     skipped_rate: skippedRate,
     hard_stop_reason: hardStopReason,
     failure_class_counts: failureClassCounts,
-    can_keep_harvesting_without_immediate_repair: enabled && harvestStatus === "clean",
+    can_keep_harvesting_without_immediate_repair: enabled && ["clean", "completed_with_quarantine"].includes(harvestStatus),
     can_preserve_valid_rows_with_quarantine: enabled && ["clean", "completed_with_quarantine"].includes(harvestStatus),
     exact_next_action: !enabled
       ? "strict gate mode; evaluate validation failures as lock blockers"
       : harvestStatus === "clean"
         ? "continue to the next bounded harvest batch under the approved envelope"
         : harvestStatus === "completed_with_quarantine"
-          ? "preserve valid rows, quarantine failed payloads, and batch offline repairs before apply-readiness"
+          ? "continue bounded harvesting if cost and reconciliation remain clean; batch offline quarantine repairs before apply-readiness"
           : harvestStatus === "quarantine_threshold_exceeded"
             ? "repair quarantine classes offline before another harvest batch"
             : "stop and inspect hard-stop reason before continuing",

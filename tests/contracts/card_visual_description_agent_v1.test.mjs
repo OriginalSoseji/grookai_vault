@@ -887,7 +887,8 @@ test("card visual harvest policy quarantines validation failures without blockin
   assert.equal(policy.quarantined_count, 4);
   assert.equal(policy.validation_failure_rate, 0.08);
   assert.equal(policy.can_preserve_valid_rows_with_quarantine, true);
-  assert.equal(policy.can_keep_harvesting_without_immediate_repair, false);
+  assert.equal(policy.can_keep_harvesting_without_immediate_repair, true);
+  assert.match(policy.exact_next_action, /continue bounded harvesting/);
   assert.deepEqual(policy.failure_class_counts, {
     missing_reference_or_backbone_integrity: 1,
     unsupported_or_unrecognized_semantic_fact: 3,
