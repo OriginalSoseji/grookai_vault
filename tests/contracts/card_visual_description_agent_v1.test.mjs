@@ -6876,6 +6876,166 @@ test("card visual fact graph allows evidence-backed live semantic labels and dro
   assert.equal(normalizedIds.includes("sem_intense_circular_live_001"), false);
 });
 
+test("card visual fact graph repairs same-50 rerun semantic labels and compound search terms", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_volcanic_landscape_rerun_001",
+      kind: "environment",
+      label: "erupting volcano with lava flow in volcanic landscape",
+      normalized_label: "volcanic landscape erupting volcano lava flow",
+      scene_layer: "background",
+      frame_position: "bottom_left",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.95,
+      evidence_strength: "medium",
+    },
+    {
+      observation_id: "obs_duplicate_figures_rerun_001",
+      kind: "creature_anatomy",
+      label: "two additional visible figures as duplicates on left and right",
+      normalized_label: "two duplicate figures",
+      scene_layer: "foreground",
+      frame_position: "left_and_right",
+      visibility: "visible",
+      salience: "secondary",
+      confidence: 0.85,
+      evidence_strength: "moderate",
+    },
+    {
+      observation_id: "obs_unclear_face_rerun_001",
+      kind: "creature_anatomy",
+      label: "face expression cannot determine from visible face details",
+      normalized_label: "cannot determine face expression",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "partially_visible",
+      salience: "medium",
+      confidence: 0.8,
+      evidence_strength: "weak",
+    },
+    {
+      observation_id: "obs_happy_pikachu_rerun_001",
+      kind: "facial_evidence",
+      label: "happy expression with open mouth and visible tongue",
+      normalized_label: "open mouth with visible tongue red cheeks",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.98,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_mimikyu_mouth_rerun_001",
+      kind: "creature_anatomy",
+      label: "Mimikyu mouth shaped as jittery line",
+      normalized_label: "mimikyu jittery mouth line",
+      scene_layer: "foreground",
+      frame_position: "center_right",
+      visibility: "visible",
+      salience: "secondary_subject_feature",
+      confidence: 0.97,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_mimikyu_blush_rerun_001",
+      kind: "creature_anatomy",
+      label: "Mimikyu orange blush marks on cheeks",
+      normalized_label: "mimikyu orange blush cheeks",
+      scene_layer: "foreground",
+      frame_position: "center_right",
+      visibility: "visible",
+      salience: "secondary_subject_feature",
+      confidence: 0.96,
+      evidence_strength: "strong",
+    },
+  );
+  graph.scene_layers.foreground.push(
+    "obs_duplicate_figures_rerun_001",
+    "obs_unclear_face_rerun_001",
+    "obs_happy_pikachu_rerun_001",
+    "obs_mimikyu_mouth_rerun_001",
+    "obs_mimikyu_blush_rerun_001",
+  );
+  graph.scene_layers.background.push("obs_volcanic_landscape_rerun_001");
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_volcanic_landscape_rerun_001",
+      category: "environment",
+      label: "volcanic landscape",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_volcanic_landscape_rerun_001"],
+      evidence: { environment: ["erupting volcano", "lava flow"], objects: ["volcano"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_duplicate_figures_rerun_001",
+      category: "motif",
+      label: "two duplicate figures",
+      supporting_observation_ids: ["obs_duplicate_figures_rerun_001"],
+      evidence: { other: ["two duplicates visible on left and right"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_cannot_determine_face_rerun_001",
+      category: "expression",
+      label: "cannot_determine_face_expression",
+      supporting_observation_ids: ["obs_unclear_face_rerun_001"],
+      evidence: {
+        mouth: ["cannot_determine"],
+        eyes: ["cannot_determine"],
+        eyebrows: ["cannot_determine"],
+        facial_features: ["face details unclear"],
+      },
+      uncertainty: "high",
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_happy_pikachu_rerun_001",
+      category: "expression",
+      label: "happy",
+      supporting_observation_ids: ["obs_happy_pikachu_rerun_001"],
+      evidence: {
+        mouth: ["open mouth with visible tongue"],
+        eyes: ["open"],
+        facial_features: ["red cheeks"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_mimikyu_mouth_rerun_001",
+      category: "expression",
+      label: "Mimikyu has jittery line shaped mouth",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_mimikyu_mouth_rerun_001"],
+      evidence: { mouth: ["jittery line"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_mimikyu_blush_rerun_001",
+      category: "expression",
+      label: "Mimikyu has orange blush marks on cheeks",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_mimikyu_blush_rerun_001"],
+      evidence: { facial_features: ["orange blush cheeks"] },
+    }),
+  ];
+  graph.fact_grounded_search_terms.push({
+    term: "happy Pikachu",
+    supporting_observation_ids: ["obs_happy_pikachu_rerun_001"],
+  });
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const semanticIds = normalizedGraph.semantic_visual_facts.map((fact) => fact.semantic_fact_id);
+  const semanticLabels = normalizedGraph.semantic_visual_facts.map((fact) => fact.label);
+  const searchTerms = normalizedGraph.fact_grounded_search_terms.map((entry) => entry.term);
+  assert.ok(semanticLabels.includes("volcanic landscape"));
+  assert.ok(semanticLabels.includes("two duplicate figures"));
+  assert.ok(semanticLabels.includes("Mimikyu has jittery line shaped mouth"));
+  assert.ok(semanticLabels.includes("Mimikyu has orange blush marks on cheeks"));
+  assert.ok(searchTerms.includes("happy Pikachu"));
+  assert.equal(semanticIds.includes("sem_cannot_determine_face_rerun_001"), false);
+});
+
 test("card visual fact graph repairs environment alignment and card UI weak-marker abstentions", () => {
   const graph = structuredClone(validFactGraph());
   graph.observations.push(

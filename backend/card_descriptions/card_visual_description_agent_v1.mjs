@@ -151,7 +151,7 @@ const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|d
 const SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN = /\balert(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_AWAKE_LABEL_PATTERN = /\bawake\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_LABEL_PATTERN =
-  /\b(?:sharp teeth|visible teeth|teeth visible|bared teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth shape|wide open mouth|open mouth|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?)\b/i;
+  /\b(?:sharp teeth|visible teeth|teeth visible|bared teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|jittery (?:line(?: shaped)? )?mouth|line(?:[-\s]?shaped)? mouth|mouth (?:shape|line)|wide open mouth|open mouth|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?|orange blush(?: marks?)?(?: on cheeks)?|blush marks?(?: on cheeks)?|cheek marks?)\b/i;
 const SEMANTIC_VISUAL_FACT_SNARLING_LABEL_PATTERN = /\bsnarl(?:ing)?\b/i;
 const SEMANTIC_VISUAL_FACT_UPRIGHT_LABEL_PATTERN = /\bupright\b/i;
 const SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN = /\b(?:sleeping|asleep|sleepy|resting)\b/i;
@@ -202,7 +202,7 @@ const SUBSTANCE_CUE_EXPLICIT_OBJECT_PATTERN =
   /\b(?:pipe[-\s]?like object|pipe-shaped object|cigarette[-\s]?like object|cigar[-\s]?like object|smoking object|smoking pipe|cigarette|cigar|smoke near (?:the )?mouth|vapor near (?:the )?mouth|vapour near (?:the )?mouth)\b/i;
 const ALTERED_STATE_VISUAL_CUE_CONCEPT = "altered-state visual cue evidence";
 const SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN =
-  /\b(?:smile|smiling|upturned mouth|open cheerful mouth|raised cheeks|closed crescent eyes|bright eyes|relaxed eyes|arms raised|playful pose)\b/i;
+  /\b(?:smile|smiling|upturned mouth|open cheerful mouth|open mouth(?:\s+(?:with|and))?\s+visible tongue|raised cheeks|closed crescent eyes|bright eyes|relaxed eyes|arms raised|playful pose)\b/i;
 const SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN =
   /\b(?:frown|frowning|downturned mouth|crying|tears|grimace|angry|scowling|no visible mouth|mouth not visible|face not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_SUPPORT_PATTERN =
@@ -226,7 +226,7 @@ const SEMANTIC_VISUAL_FACT_AWAKE_SUPPORT_PATTERN =
 const SEMANTIC_VISUAL_FACT_AWAKE_CONTRADICTION_PATTERN =
   /\b(?:eyes closed|closed eyes|sleeping|asleep|sleep posture|face not visible|eyes not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_SUPPORT_PATTERN =
-  /\b(?:sharp teeth|visible sharp teeth|teeth visible|visible teeth|bared teeth|clenched teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth jagged|jagged|wide open mouth|open mouth|mouth open|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?)\b/i;
+  /\b(?:sharp teeth|visible sharp teeth|teeth visible|visible teeth|bared teeth|clenched teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth jagged|jagged|jittery (?:line(?: shaped)? )?mouth|jittery line|line(?:[-\s]?shaped)? mouth|mouth line|wide open mouth|open mouth|mouth open|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?|orange blush(?: marks?)?(?: on cheeks)?|blush marks?(?: on cheeks)?|cheek marks?)\b/i;
 const SEMANTIC_VISUAL_FACT_SNARLING_SUPPORT_PATTERN =
   /\b(?:wide open mouth|open mouth|mouth open|bared teeth|visible teeth|teeth visible|sharp teeth|fangs?|visible fangs?)\b/i;
 const SEMANTIC_VISUAL_FACT_UPRIGHT_SUPPORT_PATTERN =
@@ -3270,6 +3270,7 @@ function shouldDropSemanticVisualFactLabel(value) {
       SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN.test(label)
       || /^(?:mouth|eyes?|eyebrows?|face|facial evidence|expression)$\b/i.test(label)
+      || /\bcannot[-_\s]?determine\b/i.test(label)
       || /\bcontent(?:ed)?\s+(?:mouth|expression|face)\b/i.test(label)
       || isSubstanceStateAliasLabel(label)
     )
@@ -5786,6 +5787,13 @@ function factGraphHasSubjectIdentity(factGraph, identityPattern) {
   return rows.some((identity) => identityPattern.test(normalizeText(identity)));
 }
 
+function factGraphSearchTermHasSubjectAndSemanticLabel(factGraph, term, subjectPattern, semanticPattern) {
+  return subjectPattern.test(normalizeText(term))
+    && semanticPattern.test(normalizeText(term))
+    && factGraphHasSubjectIdentity(factGraph, subjectPattern)
+    && factGraphHasSemanticLabel(factGraph, semanticPattern);
+}
+
 function factGraphHasExactCount(factGraph, labelPattern, exactCount) {
   return (factGraph?.counts ?? []).some((count) =>
     count.count_type === "exact"
@@ -5899,11 +5907,11 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "environment") {
-    return /\b(?:plants?|leafy|leaves|grassy|field|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|sun|horizon|corridors?|hallways?|walls?|brick|bricks?|arches?|arched|lamps?|lanterns?|energy effects?|electric(?:al)? energy effects?|electric arcs?|electricity|aura|visual effects?|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
+    return /\b(?:plants?|leafy|leaves|grassy|field|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|sun|horizon|corridors?|hallways?|walls?|brick|bricks?|arches?|arched|lamps?|lanterns?|volcanic|volcano(?:es)?|lava|eruption|erupting|energy effects?|electric(?:al)? energy effects?|electric arcs?|electricity|aura|visual effects?|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
   }
 
   if (category === "motif") {
-    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|emblems?|symbols?|bomb|fuse|bell|badge|light(?:ing)? streaks?|streaks?|burst|star(?:-like)? sparkles?|sparkles?)\b/i.test(label);
+    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|emblems?|symbols?|duplicate figures?|additional figures?|two duplicate|two additional|mirrored figures?|reflections?|copies|bomb|fuse|bell|badge|light(?:ing)? streaks?|streaks?|burst|star(?:-like)? sparkles?|sparkles?)\b/i.test(label);
   }
 
   if (category === "cameo") {
@@ -6094,6 +6102,7 @@ function validateFactGraphSearchTermComponentsV1(factGraph) {
     if (
       /\b(?:happy|smiling|smile|cheerful|joyful)\b/i.test(term)
       && !factGraphHasSemanticLabel(factGraph, SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN)
+      && !factGraphSearchTermHasSubjectAndSemanticLabel(factGraph, term, /\bpikachu\b/i, SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN)
       && !factGraphSearchTermHasEvidenceSupport(factGraph, entry, SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN, /\bhappy expression\b/gi)
     ) {
       findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
