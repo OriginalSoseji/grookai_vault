@@ -7141,6 +7141,93 @@ test("card visual fact graph repairs autopilot same-50 live failure classes", ()
   );
 });
 
+test("card visual fact graph repairs autopilot expression semantic fact cleanup", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_neutral_face_autopilot_001",
+      kind: "facial_evidence",
+      label: "face front-facing with visible face position",
+      normalized_label: "front-facing visible face",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "primary_subject_detail",
+      confidence: 0.94,
+      evidence_strength: "medium",
+    },
+    {
+      observation_id: "obs_concerned_circular_autopilot_001",
+      kind: "facial_evidence",
+      label: "concerned expression",
+      normalized_label: "concerned expression",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "primary_subject_detail",
+      confidence: 0.9,
+      evidence_strength: "weak",
+    },
+    {
+      observation_id: "obs_concerned_supported_autopilot_001",
+      kind: "facial_evidence",
+      label: "wide eyes and downturned mouth",
+      normalized_label: "wide eyes downturned mouth",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "primary_subject_detail",
+      confidence: 0.93,
+      evidence_strength: "strong",
+    },
+  );
+  graph.semantic_visual_facts.push(
+    semanticVisualFact({
+      semantic_fact_id: "sem_neutral_face_position_autopilot_001",
+      category: "expression",
+      label: "neutral face position",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_neutral_face_autopilot_001"],
+      evidence: { facial_features: ["face front-facing"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_neutral_face_autopilot_001",
+      category: "expression",
+      label: "neutral face",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_neutral_face_autopilot_001"],
+      evidence: { facial_features: ["visible face"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_concerned_circular_autopilot_001",
+      category: "expression",
+      label: "concerned",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_concerned_circular_autopilot_001"],
+      evidence: { facial_features: ["concerned expression"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_concerned_supported_autopilot_001",
+      category: "expression",
+      label: "concerned",
+      subject_observation_id: "obs_subject_001",
+      supporting_observation_ids: ["obs_concerned_supported_autopilot_001"],
+      evidence: {
+        eyes: ["wide eyes"],
+        mouth: ["downturned mouth"],
+      },
+    }),
+  );
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedFacts = validation.normalized.visual_attributes.fact_graph.semantic_visual_facts;
+  assert.equal(normalizedFacts.some((fact) => fact.semantic_fact_id === "sem_neutral_face_position_autopilot_001"), false);
+  assert.equal(normalizedFacts.some((fact) => fact.semantic_fact_id === "sem_neutral_face_autopilot_001"), false);
+  assert.equal(normalizedFacts.some((fact) => fact.semantic_fact_id === "sem_concerned_circular_autopilot_001"), false);
+  assert.ok(normalizedFacts.some((fact) => fact.semantic_fact_id === "sem_concerned_supported_autopilot_001" && fact.label === "concerned"));
+});
+
 test("card visual fact graph repairs environment alignment and card UI weak-marker abstentions", () => {
   const graph = structuredClone(validFactGraph());
   graph.observations.push(

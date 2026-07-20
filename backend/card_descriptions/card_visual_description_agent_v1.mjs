@@ -146,6 +146,7 @@ const SEMANTIC_VISUAL_FACT_CATEGORIES = new Set([
 const SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN = /\b(?:happy|smiling|smile|cheerful|joyful)\b/i;
 const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN = /\b(?:angry|annoyed|irritated|scowling|scowl|frowning|aggressive(?:\s+expression)?|fierce(?:\s+expression)?)\b/i;
 const SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN = /\b(?:scared|surprised|startled|wide[-\s]?eyed|crying|tears?)\b/i;
+const SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN = /\b(?:concerned|worried|uneasy)(?:\s+(?:expression|face))?\b/i;
 const SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN = /\b(?:smirk|smirking)\b/i;
 const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|determined|serious|concentrated|intent|intense)(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN = /\balert(?:\s+expression)?\b/i;
@@ -168,7 +169,7 @@ const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
   /\b(?:happy|smiling|smile|smirk|smirking|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|upright|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|sun(?: near horizon)?|food scene|birthday celebration|cozy interior|abstract background|golden abstract background|gold highlights?|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|bomb|pok[eé]ball|poke ball|fuse|emblem|symbol|sun emblem|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
-  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|face side profile visible|side profile visible|face (?:not clearly visible|not visible|unclear|mostly obscured)|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth|neutral(?:\s+or\s+slightly\s+concerned)? expression(?:\s+(?:female|male|side profile|male side profile|female side profile))?)\b/i;
+  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|face side profile visible|side profile visible|neutral face(?: position)?|face (?:not clearly visible|not visible|unclear|mostly obscured)|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth|neutral(?:\s+or\s+slightly\s+concerned)? expression(?:\s+(?:female|male|side profile|male side profile|female side profile))?)\b/i;
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
   /\b(?:ready for attack|ready to attack|preparing to attack|about to attack|female human character|male human character|human character|human trainer|visible trainer|dark fantasy style pokemon|fantasy style pokemon|dark style pokemon|pokemon style|pok[eé]mon style|stance|pose)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN =
@@ -213,6 +214,10 @@ const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_CONTRADICTION_PATTERN =
   /\b(?:neutral eyebrows?|natural eyebrows?|relaxed eyes?|smile|smiling|upturned mouth|mouth not visible|face not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_SUPPORT_PATTERN =
   /\b(?:wide eyes?|wide[-\s]open eyes?|raised eyebrows?|open mouth|gasp|tears?|crying|startled posture|recoiling|flinching)\b/i;
+const SEMANTIC_VISUAL_FACT_CONCERNED_SUPPORT_PATTERN =
+  /\b(?:downturned mouth|frown(?:ing)?|furrowed brow|furrowed eyebrows?|raised eyebrows?|wide eyes?|wide[-\s]open eyes?|worried eyes?|tears?|sweat drops?|grimace|hands? (?:near|to) face|recoiling|flinching)\b/i;
+const SEMANTIC_VISUAL_FACT_CONCERNED_CONTRADICTION_PATTERN =
+  /\b(?:smile|smiling|upturned mouth|relaxed eyes|neutral eyebrows?|mouth not visible|face not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_SMIRKING_SUPPORT_PATTERN =
   /\b(?:smirk|smirking|one[-\s]?sided smile|asymmetrical smile|crooked smile|mouth corner raised|raised mouth corner|upturned mouth corner|slight smile|curved mouth)\b/i;
 const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_SUPPORT_PATTERN =
@@ -3089,6 +3094,7 @@ function normalizeSemanticVisualFactLabelText(value) {
       SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(label)
+      || SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)
@@ -3153,6 +3159,12 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
       ...options,
       circularPattern: /\b(?:scared|surprised|startled) expression\b/gi,
     });
+  }
+  if (SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN.test(label)) {
+    return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_CONCERNED_SUPPORT_PATTERN, {
+      ...options,
+      circularPattern: /\b(?:concerned|worried|uneasy)(?:\s+(?:expression|face))?\b/gi,
+    }) || SEMANTIC_VISUAL_FACT_CONCERNED_CONTRADICTION_PATTERN.test(semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations));
   }
   if (SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_SMIRKING_SUPPORT_PATTERN, {
@@ -5907,6 +5919,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
     SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN.test(label)
     || SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN.test(label)
     || SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(label)
+    || SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN.test(label)
     || SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN.test(label)
     || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)
   )) return true;
@@ -6037,6 +6050,16 @@ function validateSemanticVisualFactsV1(factGraph, knownIds) {
       circularPattern: /\b(?:scared|surprised|startled) expression\b/gi,
     })) {
       findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_without_visible_facial_evidence`);
+    }
+    if (SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN.test(label)) {
+      if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_CONCERNED_SUPPORT_PATTERN, factGraph, {
+        circularPattern: /\b(?:concerned|worried|uneasy)(?:\s+(?:expression|face))?\b/gi,
+      })) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_without_visible_facial_evidence`);
+      }
+      if (SEMANTIC_VISUAL_FACT_CONCERNED_CONTRADICTION_PATTERN.test(evidenceText)) {
+        findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_conflicts_with_evidence`);
+      }
     }
     if (SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN.test(label)) {
       if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_SMIRKING_SUPPORT_PATTERN, factGraph, {
