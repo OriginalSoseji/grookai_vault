@@ -151,7 +151,7 @@ const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|d
 const SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN = /\balert(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_AWAKE_LABEL_PATTERN = /\bawake\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_LABEL_PATTERN =
-  /\b(?:sharp teeth|visible teeth|teeth visible|bared teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth shape|wide open mouth|open mouth|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?)\b/i;
+  /\b(?:sharp teeth|visible teeth|teeth visible|bared teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth shape|wide open mouth|open mouth|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?)\b/i;
 const SEMANTIC_VISUAL_FACT_SNARLING_LABEL_PATTERN = /\bsnarl(?:ing)?\b/i;
 const SEMANTIC_VISUAL_FACT_UPRIGHT_LABEL_PATTERN = /\bupright\b/i;
 const SEMANTIC_VISUAL_FACT_SLEEPING_LABEL_PATTERN = /\b(?:sleeping|asleep|sleepy|resting)\b/i;
@@ -164,13 +164,13 @@ const SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN = /\broaring\b/i;
 const SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN = /\b(?:attack|attacking|striking|hit|hitting)\b/i;
 const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
-  /\b(?:happy|smiling|smile|smirk|smirking|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|upright|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|sun(?: near horizon)?|food scene|cozy interior|abstract background|golden abstract background|gold highlights?|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|bomb|fuse|emblem|symbol|sun emblem|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
+  /\b(?:happy|smiling|smile|smirk|smirking|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|upright|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|sun(?: near horizon)?|food scene|birthday celebration|cozy interior|abstract background|golden abstract background|gold highlights?|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|bomb|pok[eé]ball|poke ball|fuse|emblem|symbol|sun emblem|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
-  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|face side profile visible|side profile visible|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth|neutral(?:\s+or\s+slightly\s+concerned)? expression(?:\s+(?:female|male|side profile|male side profile|female side profile))?)\b/i;
+  /\b(?:eyes?|eyes? (?:not clearly visible|not visible|unclear|open|closed|visible)|(?:open|closed|visible|narrowed|sharp) eyes?|(?:yellow|blue|red|green|black|white|brown|purple|orange|gold(?:en)?|pink|gray|grey|amber)\s+eyes?|neutral eyebrows?|natural eyebrows?|eyebrows? (?:neutral|natural|visible)|face visible|face side profile visible|side profile visible|face (?:not clearly visible|not visible|unclear|mostly obscured)|mouth (?:not clearly visible|not visible|unclear|open|smiling|visible|neutral|closed)|(?:neutral|closed|visible|open) mouth|neutral(?:\s+or\s+slightly\s+concerned)? expression(?:\s+(?:female|male|side profile|male side profile|female side profile))?)\b/i;
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
   /\b(?:ready for attack|ready to attack|preparing to attack|about to attack|female human character|male human character|human character|human trainer|visible trainer|dark fantasy style pokemon|fantasy style pokemon|dark style pokemon|pokemon style|pok[eé]mon style|stance|pose)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN =
-  /\b(?:bomb|bell|badge|fuse|tool|item|object)\b/i;
+  /\b(?:bomb|bell|badge|pok[eé]ball|poke ball|fuse|tool|item|object)\b/i;
 const SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN =
   /\b(?:lost|protecting|guarding|searching for|waiting for|trying to|wants to|symboli[sz](?:e|es|ing)|represents?|embod(?:y|ies|ying)|heroic|evil|loyal|brave|hope|destiny|purpose|lore|story|narrative|backstory)\b/i;
 const FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN =
@@ -226,7 +226,7 @@ const SEMANTIC_VISUAL_FACT_AWAKE_SUPPORT_PATTERN =
 const SEMANTIC_VISUAL_FACT_AWAKE_CONTRADICTION_PATTERN =
   /\b(?:eyes closed|closed eyes|sleeping|asleep|sleep posture|face not visible|eyes not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_SUPPORT_PATTERN =
-  /\b(?:sharp teeth|visible sharp teeth|teeth visible|visible teeth|bared teeth|clenched teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth jagged|jagged|wide open mouth|open mouth|mouth open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?)\b/i;
+  /\b(?:sharp teeth|visible sharp teeth|teeth visible|visible teeth|bared teeth|clenched teeth|fangs?|visible fangs?|jagged mouth(?: shape)?|mouth jagged|jagged|wide open mouth|open mouth|mouth open|open jaw|jaw open|closed mouth|visible tongue|tongue visible|smiling mouth|upturned mouth|downturned mouth|narrowed eyes?|slanted eyes?|furrowed eyebrows?|blushing cheeks?|blush cheeks?|red blush cheeks?)\b/i;
 const SEMANTIC_VISUAL_FACT_SNARLING_SUPPORT_PATTERN =
   /\b(?:wide open mouth|open mouth|mouth open|bared teeth|visible teeth|teeth visible|sharp teeth|fangs?|visible fangs?)\b/i;
 const SEMANTIC_VISUAL_FACT_UPRIGHT_SUPPORT_PATTERN =
@@ -706,6 +706,7 @@ function normalizeNonSemanticFacialEvidenceText(value) {
   text = text.replace(/\b(?:angry|annoyed|irritated|aggressive|happy|cheerful|joyful|scared|surprised|sad|friendly|playful|menacing|content(?:ed)?)\s+(expression|face|eyes?|mouth|eyebrows?)\b/gi, "$1");
   text = text.replace(/\b(?:angry|annoyed|irritated|aggressive|happy|cheerful|joyful|scared|surprised|sad|friendly|playful|menacing|content(?:ed)?)\b/gi, "");
   text = text.replace(/\bexpression\b/gi, "facial evidence");
+  text = text.replace(/\b(?:appearing|appears|looks?|seems?)\b/gi, "");
   text = text.replace(/\b(?:or|and|with)\s*(?:or|and|with)?\b/gi, " ");
   text = collapseRepeatedAdjacentWords(text);
   text = text.replace(/\s+([,.;:])/g, "$1").replace(/^[,.;:\s]+|[,.;:\s]+$/g, "");
@@ -713,7 +714,7 @@ function normalizeNonSemanticFacialEvidenceText(value) {
 }
 
 function hasFacialEvidenceContext(value) {
-  return /\b(?:facial|expression|eyes?|mouth|eyebrows?|brows?|face|teeth|fangs?|tongue|smile|smiling|frown|frowning|scowl|scowling)\b/i
+  return /\b(?:facial|expression|eyes?|mouth|eyebrows?|brows?|face|teeth|fangs?|tongue|smile|smiling|frown|frowning|scowl|scowling|happy|cheerful|joyful|angry|annoyed|irritated|scared|surprised|sad|friendly|playful|menacing|content(?:ed)?)\b/i
     .test(normalizeText(value).replace(/_/g, " "));
 }
 
@@ -2569,6 +2570,22 @@ function normalizeTypedFacts(value) {
   });
 }
 
+function isAbsentPlaceholderTypedFact(fact) {
+  const module = normalizeText(fact?.module);
+  const text = tagKey([
+    fact?.field_path,
+    fact?.claim,
+    fact?.value,
+    fact?.evidence_strength,
+  ].map(normalizeText).filter(Boolean).join(" "));
+  const supportIds = normalizeObservationReferenceArray(fact?.supporting_observation_ids);
+  if (supportIds.length > 0 || !module || !text) return false;
+  if (!["human_appearance", "creature_anatomy", "clothing", "objects_and_props", "surface_and_scan_cues"].includes(module)) {
+    return false;
+  }
+  return /\b(?:none|not applicable|not visible|no visible|false|absent|not observed|cannot determine)\b/i.test(text);
+}
+
 function repairObservationReferenceIdToKnown(id, knownIds) {
   const normalized = normalizeText(id);
   if (!normalized || knownIds.has(normalized)) return normalized;
@@ -2596,6 +2613,7 @@ function normalizeTypedFactsWithCardUiMirrorRepair(value, rawGraph, observations
       ...fact,
       supporting_observation_ids: repairObservationReferencesToKnown(fact.supporting_observation_ids, knownObservationIds),
     }))
+    .filter((fact) => !isAbsentPlaceholderTypedFact(fact))
     .filter((fact) =>
       normalizeText(fact.module) !== CARD_UI_AND_PRINT_MARKERS_MODULE
       || normalizeObservationReferenceArray(fact.supporting_observation_ids).length > 0);
@@ -2889,10 +2907,14 @@ function normalizeObjectsAndPropsWithObservationRepair(value, observations, coun
   const knownIds = new Set((observations ?? [])
     .map((observation) => normalizeText(observation.observation_id))
     .filter(Boolean));
+  const uiObservationIds = new Set((observations ?? [])
+    .filter(isCardUiPrintMarkerObservation)
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
   const countSupportById = countSupportObservationIdsByCountId(counts);
   const replacementMap = new Map();
 
-  const repairedObjects = objects.map((object) => {
+  const repairedObjects = objects.filter((object) => !uiObservationIds.has(normalizeText(object.observation_id))).map((object) => {
     const originalId = normalizeText(object.observation_id);
     if (!originalId || knownIds.has(originalId)) return object;
 
@@ -3198,6 +3220,15 @@ function isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options = {}) {
   return SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN.test(flattenFactGraphText([label, evidenceText]));
 }
 
+function isSubjectIdentityOnlySemanticVisualFact(fact, options = {}) {
+  const labelKey = tagKey(fact?.label);
+  if (!labelKey) return false;
+  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities).map(tagKey).filter(Boolean));
+  if (subjectIdentityKeys.has(labelKey)) return true;
+  if (/^mega\s+/.test(labelKey) && subjectIdentityKeys.has(labelKey.replace(/^mega\s+/, ""))) return true;
+  return false;
+}
+
 function shouldDropSemanticVisualFactLabel(value) {
   const label = normalizeText(value);
   return Boolean(
@@ -3214,6 +3245,7 @@ function shouldDropSemanticVisualFactLabel(value) {
 
 function shouldDropSemanticVisualFact(fact, options = {}) {
   return shouldDropSemanticVisualFactLabel(fact?.label)
+    || isSubjectIdentityOnlySemanticVisualFact(fact, options)
     || isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options)
     || isUnsupportedEvidenceBackedSemanticVisualFact(fact, options);
 }
@@ -3282,6 +3314,24 @@ function stripRedundantSubjectIdentityFromSearchTerm(value, subjectIdentityKeys 
   return normalizeSearchTermText(term);
 }
 
+function staleSubjectObservationLabelKeys(subjects = [], observations = []) {
+  const observationById = new Map(normalizeObjectArray(observations)
+    .map((observation) => [normalizeText(observation.observation_id), observation])
+    .filter(([id]) => id));
+  const staleKeys = new Set();
+  for (const subject of normalizeObjectArray(subjects)) {
+    const subjectIdentityKey = tagKey(subject.identity);
+    const observation = observationById.get(normalizeText(subject.observation_id));
+    if (!subjectIdentityKey || !observation) continue;
+    for (const value of [observation.label, observation.normalized_label]) {
+      const key = tagKey(value);
+      if (!key || key === subjectIdentityKey || isGenericSubjectIdentityKey(key)) continue;
+      staleKeys.add(key);
+    }
+  }
+  return staleKeys;
+}
+
 function isDisallowedArtworkSearchTerm(value) {
   const term = normalizeText(value);
   return Boolean(
@@ -3289,6 +3339,8 @@ function isDisallowedArtworkSearchTerm(value) {
     && (
       FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN.test(term)
       || FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN.test(term)
+      || /\b(?:fire|water|grass|lightning|electric|psychic|fighting|darkness|dark|metal|dragon|colorless|fairy)[-\s]+type(?:\s+(?:pokemon|pok[eé]mon|symbol))?\b/i.test(term)
+      || /\b[a-z][a-z0-9'-]*[-\s]+like\s+pok[eé]mon\b/i.test(term)
       || isSubstanceStateAliasLabel(term)
     )
   );
@@ -3359,6 +3411,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
   const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities)
     .map(tagKey)
     .filter((key) => key && !isGenericSubjectIdentityKey(key)));
+  const staleSubjectLabelKeys = staleSubjectObservationLabelKeys(options.subjects, options.observations);
   const uiObservationIds = new Set((options.observations ?? [])
     .filter(isCardUiPrintMarkerObservation)
     .map((observation) => normalizeText(observation.observation_id))
@@ -3368,16 +3421,23 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
       .map((count) => [normalizeText(count.count_id), normalizeObservationReferenceArray(count.supporting_observation_ids)])
       .filter(([countId, support]) => countId && support.length > 0),
   );
-  const normalized = normalizeObjectArray(value).map((entry) => ({
-    term: stripRedundantSubjectIdentityFromSearchTerm(entry.term, subjectIdentityKeys),
-    supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
-      .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
-  })).filter((entry) =>
+  const normalized = normalizeObjectArray(value).map((entry) => {
+    const rawTerm = normalizeSearchTermText(entry.term);
+    return {
+      raw_term: rawTerm,
+      term: stripRedundantSubjectIdentityFromSearchTerm(rawTerm, subjectIdentityKeys),
+      supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
+        .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
+    };
+  }).filter((entry) =>
     entry.term
+    && !isDisallowedArtworkSearchTerm(entry.raw_term)
     && !isDisallowedArtworkSearchTerm(entry.term)
     && !subjectIdentityKeys.has(tagKey(entry.term))
+    && !staleSubjectLabelKeys.has(tagKey(entry.term))
+    && !(tagKey(entry.term) === "pikachu" && !subjectIdentityKeys.has("pikachu"))
     && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
-  );
+  ).map(({ raw_term, ...entry }) => entry);
 
   const seenTerms = new Set(normalized.map((entry) => tagKey(entry.term)).filter(Boolean));
   for (const term of normalizeStringArray(options.moduleTerms)) {
@@ -3387,7 +3447,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     if (supportingIds.length < 1) continue;
     const normalizedTerm = stripRedundantSubjectIdentityFromSearchTerm(term, subjectIdentityKeys);
     const normalizedKey = tagKey(normalizedTerm);
-    if (!normalizedTerm || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
+    if (!normalizedTerm || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(normalizedKey) || staleSubjectLabelKeys.has(normalizedKey) || seenTerms.has(normalizedKey)) continue;
     normalized.push({ term: normalizedTerm, supporting_observation_ids: supportingIds });
     seenTerms.add(normalizedKey);
   }
@@ -3396,7 +3456,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     for (const entry of derivedSearchTermsFromObservations(options.observations ?? [])) {
       const normalizedTerm = stripRedundantSubjectIdentityFromSearchTerm(entry.term, subjectIdentityKeys);
       const key = tagKey(normalizedTerm);
-      if (!key || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(key) || seenTerms.has(key)) continue;
+      if (!key || !isUsefulSearchTermCandidate(normalizedTerm) || isDisallowedArtworkSearchTerm(normalizedTerm) || subjectIdentityKeys.has(key) || staleSubjectLabelKeys.has(key) || seenTerms.has(key)) continue;
       normalized.push({ ...entry, term: normalizedTerm });
       seenTerms.add(key);
     }
@@ -3406,6 +3466,7 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
     entry.term
     && !isDisallowedArtworkSearchTerm(entry.term)
     && !subjectIdentityKeys.has(tagKey(entry.term))
+    && !staleSubjectLabelKeys.has(tagKey(entry.term))
     && !(entry.supporting_observation_ids.length > 0 && entry.supporting_observation_ids.every((id) => uiObservationIds.has(id))),
   );
 }
@@ -3683,7 +3744,7 @@ function filterCardUiMirrorLeaksFromArtworkModules(modules, rawGraph, observatio
     .map((observation) => normalizeText(observation.observation_id))
     .filter(Boolean));
   const rawCardUiFactIds = new Set(normalizeFactIdArray(rawGraph?.modules?.[CARD_UI_AND_PRINT_MARKERS_MODULE]?.fact_ids));
-  if (uiObservationIds.size < 1 || rawCardUiFactIds.size < 1) return modules;
+  if (uiObservationIds.size < 1) return modules;
   const next = { ...modules };
   for (const moduleName of CARD_UI_PROHIBITED_ARTWORK_MODULES) {
     const module = normalizeObject(next[moduleName]);
@@ -4013,18 +4074,23 @@ function normalizeFactGraphV1(value) {
   const subjects = applySubjectIdentityFallbacks(normalizeFactGraphSubjects(graph.subjects), observations);
   const depictedSubjects = normalizeDepictedSubjects(graph.depicted_subjects);
   const characterRepresentations = normalizeCharacterRepresentations(graph.character_representations);
-  const semanticVisualFacts = normalizeSemanticVisualFacts(graph.semantic_visual_facts, { observations });
+  const subjectIdentities = [
+    ...subjects.map((subject) => subject.identity),
+    ...depictedSubjects.map((subject) => subject.represented_identity),
+    ...characterRepresentations.map((subject) => subject.represented_identity),
+  ];
+  const semanticVisualFacts = normalizeSemanticVisualFacts(graph.semantic_visual_facts, {
+    observations,
+    subjectIdentities,
+  });
   const { objects: objectsAndProps, replacementMap: objectObservationReplacementMap } =
     normalizeObjectsAndPropsWithObservationRepair(graph.objects_and_props, observations, counts);
   const searchTerms = normalizeFactGroundedSearchTerms(graph.fact_grounded_search_terms, counts, {
     observations,
     typedFacts,
     moduleTerms: graph.modules?.fact_grounded_search_terms?.terms,
-    subjectIdentities: [
-      ...subjects.map((subject) => subject.identity),
-      ...depictedSubjects.map((subject) => subject.represented_identity),
-      ...characterRepresentations.map((subject) => subject.represented_identity),
-    ],
+    subjectIdentities,
+    subjects,
   });
   let modules = filterCardUiMirrorLeaksFromArtworkModules(
     repairObjectModuleObservationReferences(
@@ -5753,7 +5819,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   if ((category === "expression" || category === "state") && SEMANTIC_VISUAL_FACT_AWAKE_LABEL_PATTERN.test(label)) return true;
   if (category === "expression" && SEMANTIC_VISUAL_FACT_SNARLING_LABEL_PATTERN.test(label)) return true;
   if (
-    category === "expression"
+    ["action", "expression", "state"].includes(category)
     && SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_LABEL_PATTERN.test(label)
     && SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_SUPPORT_PATTERN.test(evidenceText)
   ) return true;

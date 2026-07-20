@@ -3404,6 +3404,239 @@ test("card visual fact graph stores semantic visual facts only with supporting e
   }));
   assert.equal(unsupportedStory.ok, false);
   assert.ok(unsupportedStory.findings.includes("fact_graph_semantic_fact_story_or_lore_not_allowed:sem_story_001"));
+
+  const birthdayScene = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_cake_001",
+          kind: "objects_and_props",
+          label: "birthday cake with five lit candles",
+          normalized_label: "birthday cake five lit candles",
+          scene_layer: "foreground",
+          frame_position: "left",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.94,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_gift_box_001",
+          kind: "objects_and_props",
+          label: "wrapped gift box with bow",
+          normalized_label: "gift box with bow",
+          scene_layer: "foreground",
+          frame_position: "right",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_birthday_001",
+          category: "scene_type",
+          label: "birthday celebration",
+          subject_observation_id: "",
+          supporting_observation_ids: ["obs_cake_001", "obs_gift_box_001"],
+          evidence: { objects: ["birthday cake", "gift box"] },
+        }),
+      ],
+      fact_grounded_search_terms: [
+        { term: "birthday cake", supporting_observation_ids: ["obs_cake_001"] },
+        { term: "wrapped gift box", supporting_observation_ids: ["obs_gift_box_001"] },
+      ],
+    },
+  }));
+  assert.equal(birthdayScene.ok, true, birthdayScene.findings.join(","));
+  assert.ok(birthdayScene.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "birthday celebration"));
+
+  const supportedHappyDoesNotLeakIntoActionState = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [{
+        ...validFactGraph().subjects[0],
+        action_state: ["appearing happy", "looking at cake"],
+      }],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_happy_001",
+          category: "expression",
+          label: "happy",
+          supporting_observation_ids: ["obs_subject_001"],
+          evidence: {
+            mouth: ["open smiling mouth"],
+            body_language: ["raised arms"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(supportedHappyDoesNotLeakIntoActionState.ok, true, supportedHappyDoesNotLeakIntoActionState.findings.join(","));
+  assert.deepEqual(
+    supportedHappyDoesNotLeakIntoActionState.normalized.visual_attributes.fact_graph.subjects[0].action_state,
+    ["looking at cake"],
+  );
+
+  const objectiveMouthAndBlushFacts = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_open_jaw_001",
+          kind: "creature_anatomy",
+          label: "open jaw with sharp teeth",
+          normalized_label: "open jaw sharp teeth",
+          scene_layer: "foreground",
+          frame_position: "mouth",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.93,
+          evidence_strength: "strong",
+        },
+        {
+          observation_id: "obs_blush_cheeks_001",
+          kind: "creature_anatomy",
+          label: "red blush cheeks",
+          normalized_label: "red blush cheeks",
+          scene_layer: "foreground",
+          frame_position: "face",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.9,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_open_jaw_001",
+          category: "action",
+          label: "open jaw",
+          supporting_observation_ids: ["obs_open_jaw_001"],
+          evidence: { mouth: ["open jaw with sharp teeth"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_blush_001",
+          category: "expression",
+          label: "blushing cheeks",
+          supporting_observation_ids: ["obs_blush_cheeks_001"],
+          evidence: { facial_features: ["red blush cheeks"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(objectiveMouthAndBlushFacts.ok, true, objectiveMouthAndBlushFacts.findings.join(","));
+  assert.ok(objectiveMouthAndBlushFacts.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "open jaw"));
+  assert.ok(objectiveMouthAndBlushFacts.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "blushing cheeks"));
+
+  const absentClothingFact = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      typed_facts: [
+        ...validFactGraph().typed_facts,
+        {
+          fact_id: "fact_clothing_none_001",
+          module: "clothing",
+          field_path: "none",
+          claim: "no_visible_clothing",
+          value: "none",
+          supporting_observation_ids: [],
+          confidence: 1,
+          evidence_strength: "strong",
+        },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        clothing: {
+          ...validFactGraph().modules.clothing,
+          fact_ids: [...validFactGraph().modules.clothing.fact_ids, "fact_clothing_none_001"],
+        },
+      },
+    },
+  }));
+  assert.equal(absentClothingFact.ok, true, absentClothingFact.findings.join(","));
+  assert.equal(
+    absentClothingFact.normalized.visual_attributes.fact_graph.typed_facts.some((fact) => fact.fact_id === "fact_clothing_none_001"),
+    false,
+  );
+
+  const cardUiObjectsInArtworkProps = structuredClone(validFactGraph());
+  cardUiObjectsInArtworkProps.objects_and_props.push({
+    observation_id: "obs_ui_hp_001",
+    label: "HP text 280",
+    normalized_label: "hp text 280",
+    object_type: "card_ui_text",
+    colors: ["black"],
+    material_appearance: ["printed"],
+    location: "top right",
+    count_reference: "",
+    confidence: 0.98,
+  });
+  cardUiObjectsInArtworkProps.modules.objects_and_props.object_observation_ids.push("obs_ui_hp_001");
+  const cardUiObjectRepair = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: cardUiObjectsInArtworkProps }));
+  assert.equal(cardUiObjectRepair.ok, true, cardUiObjectRepair.findings.join(","));
+  assert.equal(
+    cardUiObjectRepair.normalized.visual_attributes.fact_graph.objects_and_props.some((object) => object.observation_id === "obs_ui_hp_001"),
+    false,
+  );
+  assert.equal(
+    cardUiObjectRepair.normalized.visual_attributes.fact_graph.modules.objects_and_props.object_observation_ids.includes("obs_ui_hp_001"),
+    false,
+  );
+
+  const identityAndWrongIdentitySearchCleanup = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [{
+        ...validFactGraph().subjects[0],
+        identity: "Celebi",
+      }],
+      fact_grounded_search_terms: [
+        { term: "floating Celebi", supporting_observation_ids: ["obs_subject_001"] },
+        { term: "green Pikachu-like Pokemon", supporting_observation_ids: ["obs_subject_001"] },
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        fact_grounded_search_terms: {
+          ...validFactGraph().modules.fact_grounded_search_terms,
+          terms: ["floating Celebi", "green Pikachu-like Pokemon", "forest background"],
+        },
+      },
+    },
+  }));
+  assert.equal(identityAndWrongIdentitySearchCleanup.ok, true, identityAndWrongIdentitySearchCleanup.findings.join(","));
+  assert.deepEqual(identityAndWrongIdentitySearchCleanup.normalized.semantic_tags, ["floating", "forest background"]);
+
+  const subjectIdentityOnlySemantic = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [{
+        ...validFactGraph().subjects[0],
+        identity: "Mega Kangaskhan",
+      }],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_identity_001",
+          category: "scene_type",
+          label: "Mega Kangaskhan",
+          supporting_observation_ids: ["obs_subject_001"],
+          evidence: { facial_features: ["red eyes"], other: ["pouch with baby kangaskhan"] },
+        }),
+        semanticVisualFact({
+          semantic_fact_id: "sem_baby_pouch_001",
+          category: "action",
+          label: "baby kangaskhan in pouch",
+          supporting_observation_ids: ["obs_subject_001"],
+          evidence: { other: ["pouch with baby kangaskhan"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(subjectIdentityOnlySemantic.ok, true, subjectIdentityOnlySemantic.findings.join(","));
+  assert.equal(
+    subjectIdentityOnlySemantic.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.semantic_fact_id === "sem_identity_001"),
+    false,
+  );
+  assert.ok(subjectIdentityOnlySemantic.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "baby kangaskhan in pouch"));
 });
 
 test("card visual fact graph handles forest counts and cameo representation component search", () => {
@@ -4643,8 +4876,11 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   });
   uiObjectLeak.coverage_reviews.objects_and_props_review = "observed";
   const badObject = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: uiObjectLeak }));
-  assert.equal(badObject.ok, false);
-  assert.ok(badObject.findings.includes("fact_graph_card_ui_observation_in_artwork_module:objects_and_props:obs_ui_logo_001"));
+  assert.equal(badObject.ok, true);
+  assert.equal(
+    badObject.normalized.visual_attributes.fact_graph.objects_and_props.some((object) => object.observation_id === "obs_ui_logo_001"),
+    false,
+  );
 
   const unsupportedCanonicalUi = structuredClone(validFactGraph());
   unsupportedCanonicalUi.typed_facts.push({
