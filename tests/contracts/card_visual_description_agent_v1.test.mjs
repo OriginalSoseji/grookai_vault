@@ -12,8 +12,11 @@ import {
   buildDescriptionVersionKeyV1,
   buildEmbeddingInputV1,
   buildCostProjection,
+  buildValidationQuarantineRowsV1,
   assertOpenAiPricingConfigured,
+  classifyVisualHarvestFailureV1,
   classifyDescriptionReviewStatusV1,
+  evaluateHarvestPolicyV1,
   evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
   detectVisualDescriptionReviewFlagsV1,
@@ -743,6 +746,29 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(highValueSample.concurrency, 10);
   assert.deepEqual(highValueSample.excludeBranches, ["energy"]);
   assert.ok(highValueSample.branchCandidateLimit >= 5000);
+  const harvest = parseCardVisualDescriptionArgsV1([
+    "--harvest",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--max-cards=250",
+    "--concurrency=10",
+    "--exclude-branches=energy",
+    "--harvest-max-validation-failure-rate=0.12",
+    "--harvest-max-validation-failures=30",
+  ]);
+  assert.equal(harvest.mode, "harvest");
+  assert.equal(harvest.maxCards, 250);
+  assert.equal(harvest.concurrency, 10);
+  assert.equal(harvest.harvestMaxValidationFailureRate, 0.12);
+  assert.equal(harvest.harvestMaxValidationFailures, 30);
+  assert.deepEqual(harvest.excludeBranches, ["energy"]);
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1([
+      "--harvest",
+      "--harvest-max-validation-failure-rate=1.5",
+    ]),
+    /harvest validation failure rate must be between 0 and 1/,
+  );
   const explicitIds = Array.from({ length: 50 }, (_, index) => `card-${String(index + 1).padStart(2, "0")}`);
   const explicitIdSample = parseCardVisualDescriptionArgsV1([
     "--dry-run",
@@ -806,6 +832,94 @@ test("card visual description semantic tags stay visual and exclude metadata", (
   assert.equal(stronger.quality_flags.length, 0);
   assert.match(stronger.semantic_tags.join(","), /purple flames/);
   assert.match(stronger.semantic_tags.join(","), /Mega Chandelure/);
+});
+
+test("card visual harvest policy quarantines validation failures without blocking preserved rows", () => {
+  const generatedRows = Array.from({ length: 46 }, (_, index) => ({
+    card_print_id: `valid-${index + 1}`,
+    review_status: index % 2 === 0 ? "pending" : "needs_review",
+  }));
+  const validationFailures = [
+    {
+      card_print_id: "failed-1",
+      gv_id: "GV-PK-N4-11",
+      name: "Dark Tyranitar",
+      findings: ["fact_graph_semantic_fact_label_not_supported_v1:sem_fact_001"],
+    },
+    {
+      card_print_id: "failed-2",
+      gv_id: "GV-PK-MEW-199",
+      name: "Charizard ex",
+      findings: ["fact_graph_semantic_fact_label_not_supported_v1:semfac03"],
+    },
+    {
+      card_print_id: "failed-3",
+      gv_id: "GV-PK-UNB-213",
+      name: "Red's Challenge",
+      findings: ["fact_graph_semantic_fact_label_not_supported_v1:svf_hair_001"],
+    },
+    {
+      card_print_id: "failed-4",
+      gv_id: "GV-PK-PR-XY-XY38",
+      name: "Mudkip",
+      findings: [
+        "fact_graph_object_observation_missing:obs_object_001",
+        "fact_graph_search_term_observation_missing:obs_object_001",
+      ],
+    },
+  ];
+  const eligibleCards = [...generatedRows, ...validationFailures].map((row) => ({ card_print_id: row.card_print_id }));
+  const policy = evaluateHarvestPolicyV1({
+    args: {
+      mode: "harvest",
+      harvestMaxValidationFailureRate: 0.15,
+      harvestMaxValidationFailures: null,
+    },
+    eligibleCards,
+    generatedRows,
+    validationFailures,
+    skippedImages: [],
+  });
+
+  assert.equal(policy.enabled, true);
+  assert.equal(policy.harvest_status, "completed_with_quarantine");
+  assert.equal(policy.validated_count, 46);
+  assert.equal(policy.quarantined_count, 4);
+  assert.equal(policy.validation_failure_rate, 0.08);
+  assert.equal(policy.can_preserve_valid_rows_with_quarantine, true);
+  assert.equal(policy.can_keep_harvesting_without_immediate_repair, false);
+  assert.deepEqual(policy.failure_class_counts, {
+    missing_reference_or_backbone_integrity: 1,
+    unsupported_or_unrecognized_semantic_fact: 3,
+  });
+
+  const quarantineRows = buildValidationQuarantineRowsV1(validationFailures);
+  assert.equal(quarantineRows.length, 4);
+  assert.equal(quarantineRows[0].failure_class, "unsupported_or_unrecognized_semantic_fact");
+  assert.equal(quarantineRows[3].failure_class, "missing_reference_or_backbone_integrity");
+  assert.deepEqual(quarantineRows[3].finding_prefixes, [
+    "fact_graph_object_observation_missing",
+    "fact_graph_search_term_observation_missing",
+  ]);
+
+  assert.equal(
+    classifyVisualHarvestFailureV1({ findings: ["generation_exception"] }),
+    "provider_or_generation_exception",
+  );
+
+  const exceeded = evaluateHarvestPolicyV1({
+    args: {
+      mode: "harvest",
+      harvestMaxValidationFailureRate: 0.05,
+      harvestMaxValidationFailures: null,
+    },
+    eligibleCards,
+    generatedRows,
+    validationFailures,
+    skippedImages: [],
+  });
+  assert.equal(exceeded.harvest_status, "quarantine_threshold_exceeded");
+  assert.equal(exceeded.can_preserve_valid_rows_with_quarantine, false);
 });
 
 test("card visual description flags Chandelure anatomy described as a held object", () => {
@@ -7444,6 +7558,7 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   const pkg = source("package.json");
   const visualLanguage = source("docs/contracts/CARD_VISUAL_LANGUAGE_V1.md");
   const factGraphV2 = source("docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md");
+  const harvestMode = source("docs/contracts/CARD_VISUAL_HARVEST_MODE_V1.md");
   const contractIndex = source("docs/CONTRACT_INDEX.md");
 
   assert.match(agent, /refusing to apply fixture descriptions without --allow-fixture-apply/);
@@ -7484,8 +7599,12 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /--v2-stress-sample/);
   assert.match(agent, /--high-value-sample/);
   assert.match(agent, /--concurrency=/);
+  assert.match(agent, /--harvest/);
   assert.match(agent, /--exclude-branches=/);
   assert.match(agent, /high_value_selection.json/);
+  assert.match(agent, /validation_quarantine\.jsonl/);
+  assert.match(agent, /HARVEST_REPORT\.json/);
+  assert.match(agent, /HARVEST_REPORT\.md/);
   assert.match(agent, /per_card/);
   assert.match(agent, /target_gv_id/);
   assert.match(agent, /target_card_print_ids/);
@@ -7538,7 +7657,10 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(factGraphV2, /semantic_visual_facts/);
   assert.match(factGraphV2, /happy Pikachu/);
   assert.match(factGraphV2, /material appearance only/);
+  assert.match(harvestMode, /Validation failures in harvest mode are not discarded/);
+  assert.match(harvestMode, /New failure classes stop promotion, not extraction/);
   assert.match(contractIndex, /CARD_VISUAL_LANGUAGE_V1/);
   assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V1/);
   assert.match(contractIndex, /CARD_VISUAL_FACT_GRAPH_V2/);
+  assert.match(contractIndex, /CARD_VISUAL_HARVEST_MODE_V1/);
 });

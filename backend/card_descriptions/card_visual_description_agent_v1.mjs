@@ -38,6 +38,7 @@ const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
 const DEFAULT_OPENAI_REQUEST_TIMEOUT_MS = 180_000;
 const DEFAULT_CONCURRENCY = 1;
+const DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE = 0.15;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
 const DEFAULT_HIGH_VALUE_CANDIDATE_LIMIT = 5000;
 const HIGH_VALUE_SELECTION_VERSION = "CARD_VISUAL_HIGH_VALUE_SELECTION_V1";
@@ -4294,6 +4295,16 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     concurrency: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_CONCURRENCY, DEFAULT_CONCURRENCY, "CARD_VISUAL_DESCRIPTION_CONCURRENCY"),
     maxRunCostUsd: asNumber(process.env.CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD ?? process.env.OPENAI_MAX_RUN_COST_USD, null, "CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD"),
     maxCards: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_MAX_CARDS, null, "CARD_VISUAL_DESCRIPTION_MAX_CARDS"),
+    harvestMaxValidationFailureRate: asNumber(
+      process.env.CARD_VISUAL_DESCRIPTION_HARVEST_MAX_VALIDATION_FAILURE_RATE,
+      DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE,
+      "CARD_VISUAL_DESCRIPTION_HARVEST_MAX_VALIDATION_FAILURE_RATE",
+    ),
+    harvestMaxValidationFailures: asNonnegativeInt(
+      process.env.CARD_VISUAL_DESCRIPTION_HARVEST_MAX_VALIDATION_FAILURES,
+      null,
+      "CARD_VISUAL_DESCRIPTION_HARVEST_MAX_VALIDATION_FAILURES",
+    ),
     openaiInputCostPerMillion: asNumber(process.env.OPENAI_INPUT_COST_PER_MILLION, null, "OPENAI_INPUT_COST_PER_MILLION"),
     openaiOutputCostPerMillion: asNumber(process.env.OPENAI_OUTPUT_COST_PER_MILLION, null, "OPENAI_OUTPUT_COST_PER_MILLION"),
     openaiCachedInputCostPerMillion: asNumber(process.env.OPENAI_CACHED_INPUT_COST_PER_MILLION, null, "OPENAI_CACHED_INPUT_COST_PER_MILLION"),
@@ -4317,6 +4328,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   for (const arg of argv) {
     if (arg === "--plan") explicitMode = "plan";
     else if (arg === "--dry-run") explicitMode = "dry_run";
+    else if (arg === "--harvest") explicitMode = "harvest";
     else if (arg === "--apply") explicitMode = "apply";
     else if (arg === "--force-version") parsed.forceVersion = true;
     else if (arg === "--allow-fixture-apply") parsed.allowFixtureApply = true;
@@ -4353,6 +4365,20 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--concurrency=")) parsed.concurrency = asPositiveInt(arg.slice("--concurrency=".length), DEFAULT_CONCURRENCY, "--concurrency");
     else if (arg.startsWith("--max-run-cost-usd=")) parsed.maxRunCostUsd = asNumber(arg.slice("--max-run-cost-usd=".length), null, "--max-run-cost-usd");
     else if (arg.startsWith("--max-cards=")) parsed.maxCards = asNonnegativeInt(arg.slice("--max-cards=".length), null, "--max-cards");
+    else if (arg.startsWith("--harvest-max-validation-failure-rate=")) {
+      parsed.harvestMaxValidationFailureRate = asNumber(
+        arg.slice("--harvest-max-validation-failure-rate=".length),
+        DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE,
+        "--harvest-max-validation-failure-rate",
+      );
+    }
+    else if (arg.startsWith("--harvest-max-validation-failures=")) {
+      parsed.harvestMaxValidationFailures = asNonnegativeInt(
+        arg.slice("--harvest-max-validation-failures=".length),
+        null,
+        "--harvest-max-validation-failures",
+      );
+    }
     else if (arg.startsWith("--openai-input-cost-per-million=")) parsed.openaiInputCostPerMillion = asNumber(arg.slice("--openai-input-cost-per-million=".length), null, "--openai-input-cost-per-million");
     else if (arg.startsWith("--openai-output-cost-per-million=")) parsed.openaiOutputCostPerMillion = asNumber(arg.slice("--openai-output-cost-per-million=".length), null, "--openai-output-cost-per-million");
     else if (arg.startsWith("--openai-cached-input-cost-per-million=")) parsed.openaiCachedInputCostPerMillion = asNumber(arg.slice("--openai-cached-input-cost-per-million=".length), null, "--openai-cached-input-cost-per-million");
@@ -4363,8 +4389,15 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
 
   if (explicitMode) parsed.mode = explicitMode;
-  if (!["plan", "dry_run", "apply"].includes(parsed.mode)) {
+  if (!["plan", "dry_run", "harvest", "apply"].includes(parsed.mode)) {
     throw new Error(`[card-visual-description-agent] unsupported mode: ${parsed.mode}`);
+  }
+  if (
+    parsed.harvestMaxValidationFailureRate !== null
+    && parsed.harvestMaxValidationFailureRate !== undefined
+    && (parsed.harvestMaxValidationFailureRate < 0 || parsed.harvestMaxValidationFailureRate > 1)
+  ) {
+    throw new Error("[card-visual-description-agent] harvest validation failure rate must be between 0 and 1");
   }
   if (!["fixture", "openai"].includes(parsed.provider)) {
     throw new Error(`[card-visual-description-agent] unsupported provider: ${parsed.provider}`);
@@ -8489,6 +8522,224 @@ function duplicateIds(ids) {
   return [...duplicates].sort();
 }
 
+function findingPrefix(finding) {
+  return normalizeText(finding).split(":")[0] || "unknown_finding";
+}
+
+function classifyVisualHarvestFindingPrefixV1(prefix) {
+  const normalized = normalizeText(prefix).toLowerCase();
+  if (normalized.includes("missing") || normalized.endsWith("_missing")) return "missing_reference_or_backbone_integrity";
+  if (normalized.includes("semantic_fact_label_not_supported")) return "unsupported_or_unrecognized_semantic_fact";
+  if (normalized.includes("surface")) return "surface_or_material_claim_requires_evidence";
+  if (/\b(?:story|lore|metadata)\b/i.test(normalized)) return "unsupported_story_lore_or_metadata_claim";
+  if (/\b(?:expression|emotion|personality)\b/i.test(normalized)) return "expression_or_personality_claim_requires_evidence";
+  if (normalized.includes("count")) return "count_consistency_or_support";
+  if (normalized.includes("subject")) return "subject_identity_or_kind_boundary";
+  return "structural_validation_failure";
+}
+
+export function classifyVisualHarvestFailureV1(failure = {}) {
+  const findings = normalizeStringArray(failure.findings);
+  if (findings.includes("generation_exception")) return "provider_or_generation_exception";
+  if (findings.length === 0) return "unclassified_validation_failure";
+  const classes = uniqueSorted(findings.map((finding) => classifyVisualHarvestFindingPrefixV1(findingPrefix(finding))));
+  if (classes.length === 1) return classes[0];
+  if (classes.includes("missing_reference_or_backbone_integrity")) return "missing_reference_or_backbone_integrity";
+  if (classes.includes("unsupported_or_unrecognized_semantic_fact")) return "unsupported_or_unrecognized_semantic_fact";
+  return "mixed_validation_failure";
+}
+
+export function buildValidationQuarantineRowsV1(validationFailures = []) {
+  return validationFailures.map((failure, index) => {
+    const findings = normalizeStringArray(failure.findings);
+    const prefixes = uniqueSorted(findings.map(findingPrefix));
+    return {
+      quarantine_index: index + 1,
+      quarantine_reason: "structural_validation_failure",
+      failure_class: classifyVisualHarvestFailureV1(failure),
+      finding_prefixes: prefixes,
+      card_print_id: failure.card_print_id,
+      gv_id: failure.gv_id,
+      name: failure.name,
+      findings,
+      request_count: failure.request_count ?? 0,
+      retry_count: failure.retry_count ?? 0,
+      input_tokens: failure.input_tokens ?? 0,
+      output_tokens: failure.output_tokens ?? 0,
+      total_tokens: failure.total_tokens ?? 0,
+      cached_input_tokens: failure.cached_input_tokens ?? 0,
+      estimated_cost_usd: failure.estimated_cost_usd ?? 0,
+      error: failure.error ?? null,
+      raw_failed_payload: failure.raw_payload ?? null,
+      failure,
+    };
+  });
+}
+
+export function evaluateHarvestPolicyV1({
+  args = {},
+  eligibleCards = [],
+  generatedRows = [],
+  validationFailures = [],
+  skippedImages = [],
+  stopBeforeNextCall = null,
+} = {}) {
+  const enabled = args.mode === "harvest";
+  const attemptedCount = generatedRows.length + validationFailures.length;
+  const selectedCount = eligibleCards.length;
+  const validationFailureRate = attemptedCount > 0 ? Number((validationFailures.length / attemptedCount).toFixed(6)) : 0;
+  const maxValidationFailureRate = args.harvestMaxValidationFailureRate ?? DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE;
+  const maxValidationFailures = args.harvestMaxValidationFailures ?? null;
+  const failureClassCounts = Object.fromEntries(
+    Object.entries(buildValidationQuarantineRowsV1(validationFailures).reduce((counts, row) => {
+      counts[row.failure_class] = (counts[row.failure_class] ?? 0) + 1;
+      return counts;
+    }, {})).sort(([left], [right]) => left.localeCompare(right)),
+  );
+  const skippedRate = selectedCount > 0 ? Number((skippedImages.length / selectedCount).toFixed(6)) : 0;
+  const rateWithinTolerance = maxValidationFailureRate === null
+    || maxValidationFailureRate === undefined
+    || validationFailureRate <= Number(maxValidationFailureRate);
+  const countWithinTolerance = maxValidationFailures === null
+    || maxValidationFailures === undefined
+    || validationFailures.length <= Number(maxValidationFailures);
+  const hardStopReason = stopBeforeNextCall?.stop_reason ?? null;
+  let harvestStatus = "not_enabled";
+  if (enabled) {
+    if (hardStopReason && hardStopReason !== "max_cards_reached") harvestStatus = "hard_stop";
+    else if (!rateWithinTolerance || !countWithinTolerance) harvestStatus = "quarantine_threshold_exceeded";
+    else if (validationFailures.length > 0) harvestStatus = "completed_with_quarantine";
+    else harvestStatus = "clean";
+  }
+  return {
+    enabled,
+    harvest_status: harvestStatus,
+    selected_count: selectedCount,
+    attempted_count: attemptedCount,
+    validated_count: generatedRows.length,
+    quarantined_count: validationFailures.length,
+    skipped_count: skippedImages.length,
+    validation_failure_rate: validationFailureRate,
+    max_validation_failure_rate: maxValidationFailureRate,
+    max_validation_failures: maxValidationFailures,
+    rate_within_tolerance: rateWithinTolerance,
+    count_within_tolerance: countWithinTolerance,
+    skipped_rate: skippedRate,
+    hard_stop_reason: hardStopReason,
+    failure_class_counts: failureClassCounts,
+    can_keep_harvesting_without_immediate_repair: enabled && harvestStatus === "clean",
+    can_preserve_valid_rows_with_quarantine: enabled && ["clean", "completed_with_quarantine"].includes(harvestStatus),
+    exact_next_action: !enabled
+      ? "strict gate mode; evaluate validation failures as lock blockers"
+      : harvestStatus === "clean"
+        ? "continue to the next bounded harvest batch under the approved envelope"
+        : harvestStatus === "completed_with_quarantine"
+          ? "preserve valid rows, quarantine failed payloads, and batch offline repairs before apply-readiness"
+          : harvestStatus === "quarantine_threshold_exceeded"
+            ? "repair quarantine classes offline before another harvest batch"
+            : "stop and inspect hard-stop reason before continuing",
+  };
+}
+
+function buildHarvestReportJson({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary }) {
+  const quarantineRows = buildValidationQuarantineRowsV1(validationFailures);
+  return {
+    artifact_kind: "card_visual_harvest_report",
+    created_at: summary.finished_at,
+    run_dir: path.relative(REPO_ROOT, runDir).replace(/\\/g, "/"),
+    commit_sha: runPlan.commit_sha ?? null,
+    branch: runPlan.branch ?? null,
+    mode: runPlan.mode,
+    provider: runPlan.provider,
+    model_version: runPlan.model_version,
+    image_detail: runPlan.image_detail,
+    concurrency: runPlan.concurrency,
+    prompt_version: runPlan.prompt_version,
+    output_schema_version: runPlan.output_schema_version,
+    boundaries: {
+      db_writes: false,
+      approvals: false,
+      embeddings: false,
+      downstream_integrations: false,
+    },
+    harvest_policy: summary.harvest_policy,
+    counts: {
+      selected: eligibleCards.length,
+      validated: generatedRows.length,
+      quarantined: validationFailures.length,
+      skipped: skippedImages.length,
+      pending: summary.pending_count,
+      needs_review: summary.needs_review_count,
+    },
+    usage: summary.usage,
+    estimated_cost_usd: summary.estimated_cost_usd,
+    quarantine_failure_class_counts: summary.harvest_policy?.failure_class_counts ?? {},
+    quarantine_records: quarantineRows.map((row) => ({
+      quarantine_index: row.quarantine_index,
+      failure_class: row.failure_class,
+      card_print_id: row.card_print_id,
+      gv_id: row.gv_id,
+      name: row.name,
+      finding_prefixes: row.finding_prefixes,
+      findings: row.findings,
+    })),
+  };
+}
+
+function buildHarvestReportMarkdown(report) {
+  const lines = [
+    "# Card Visual Harvest Report",
+    "",
+    `- Commit SHA: \`${report.commit_sha ?? "unknown"}\``,
+    `- Branch: \`${report.branch ?? "unknown"}\``,
+    `- Run dir: \`${report.run_dir}\``,
+    `- Status: \`${report.harvest_policy?.harvest_status ?? "unknown"}\``,
+    `- Next action: ${report.harvest_policy?.exact_next_action ?? "unknown"}`,
+    "",
+    "## Counts",
+    "",
+    `- Selected: ${report.counts.selected}`,
+    `- Validated: ${report.counts.validated}`,
+    `- Quarantined validation failures: ${report.counts.quarantined}`,
+    `- Skipped images: ${report.counts.skipped}`,
+    `- Pending validated rows: ${report.counts.pending}`,
+    `- Needs-review validated rows: ${report.counts.needs_review}`,
+    `- Validation failure rate: ${report.harvest_policy?.validation_failure_rate ?? 0}`,
+    `- Max validation failure rate: ${report.harvest_policy?.max_validation_failure_rate ?? "not_configured"}`,
+    "",
+    "## Usage",
+    "",
+    `- Provider requests: ${report.usage?.request_count ?? 0}`,
+    `- Retries: ${report.usage?.retry_count ?? 0}`,
+    `- Total tokens: ${report.usage?.total_tokens ?? 0}`,
+    `- Estimated cost: $${report.estimated_cost_usd}`,
+    "",
+    "## Failure Classes",
+    "",
+  ];
+  const classEntries = Object.entries(report.quarantine_failure_class_counts ?? {});
+  if (classEntries.length === 0) {
+    lines.push("- none");
+  } else {
+    for (const [failureClass, count] of classEntries) lines.push(`- \`${failureClass}\`: ${count}`);
+  }
+  lines.push("", "## Quarantine Records", "");
+  if (report.quarantine_records.length === 0) {
+    lines.push("- none");
+  } else {
+    for (const row of report.quarantine_records) {
+      lines.push(`- ${row.quarantine_index}. \`${row.gv_id}\` ${row.name} - \`${row.failure_class}\``);
+    }
+  }
+  lines.push("", "## Boundaries", "");
+  lines.push("- No database writes.");
+  lines.push("- No approvals.");
+  lines.push("- No embeddings.");
+  lines.push("- No downstream integrations.");
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
 function buildSavedSystemExport({ runDir, runPlan, eligibleCards, generatedRows, validationFailures, skippedImages, summary }) {
   const generatedById = new Map(generatedRows.map((row) => [normalizeText(row.card_print_id), row]));
   const failureById = new Map(validationFailures.map((row) => [normalizeText(row.card_print_id), row]));
@@ -8695,6 +8946,20 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
   };
   if (v2StressSelection) files["v2_stress_selection.json"] = v2StressSelection;
   if (highValueSelection) files["high_value_selection.json"] = highValueSelection;
+  let harvestReport = null;
+  if (runPlan.mode === "harvest") {
+    files["validation_quarantine.jsonl"] = buildValidationQuarantineRowsV1(validationFailures);
+    harvestReport = buildHarvestReportJson({
+      runDir,
+      runPlan,
+      eligibleCards,
+      generatedRows,
+      validationFailures,
+      skippedImages,
+      summary,
+    });
+    files["HARVEST_REPORT.json"] = harvestReport;
+  }
   const savedSystemExport = buildSavedSystemExport({
     runDir,
     runPlan,
@@ -8731,6 +8996,11 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
   const reconciliationMarkdownPath = path.join(runDir, "RECONCILIATION_REPORT.md");
   await writeText(reconciliationMarkdownPath, buildReconciliationMarkdown(reconciliationReport));
   artifactHashes["RECONCILIATION_REPORT.md"] = await hashFile(reconciliationMarkdownPath);
+  if (harvestReport) {
+    const harvestMarkdownPath = path.join(runDir, "HARVEST_REPORT.md");
+    await writeText(harvestMarkdownPath, buildHarvestReportMarkdown(harvestReport));
+    artifactHashes["HARVEST_REPORT.md"] = await hashFile(harvestMarkdownPath);
+  }
   return artifactHashes;
 }
 
@@ -9255,6 +9525,14 @@ function buildSummary({
       stop_reason: stopBeforeNextCall?.stop_reason ?? null,
       stop_detail: stopBeforeNextCall,
     },
+    harvest_policy: evaluateHarvestPolicyV1({
+      args,
+      eligibleCards,
+      generatedRows,
+      validationFailures,
+      skippedImages,
+      stopBeforeNextCall,
+    }),
     quality_flag_counts: Object.fromEntries(
       Object.entries(generatedRows.flatMap((row) => row.quality_flags).reduce((counts, flag) => {
         counts[flag] = (counts[flag] ?? 0) + 1;
@@ -9306,6 +9584,8 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     requested_limit: args.limit,
     max_cards: args.maxCards,
     max_run_cost_usd: args.maxRunCostUsd,
+    harvest_max_validation_failure_rate: args.harvestMaxValidationFailureRate,
+    harvest_max_validation_failures: args.harvestMaxValidationFailures,
     concurrency: args.concurrency,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
@@ -9428,6 +9708,10 @@ export async function main(argv = process.argv.slice(2)) {
   console.log(`[card-visual-description-agent] validated=${result.summary.validated_count}`);
   console.log(`[card-visual-description-agent] skipped=${result.summary.skipped_count}`);
   console.log(`[card-visual-description-agent] failed=${result.summary.failed_count}`);
+  if (result.summary.harvest_policy?.enabled) {
+    console.log(`[card-visual-description-agent] harvest_status=${result.summary.harvest_policy.harvest_status}`);
+    console.log(`[card-visual-description-agent] quarantined=${result.summary.harvest_policy.quarantined_count}`);
+  }
   if (result.apply_result) {
     console.log(`[card-visual-description-agent] inserted=${result.apply_result.insertedCount}`);
     console.log(`[card-visual-description-agent] apply_skipped=${result.apply_result.applySkippedCount}`);

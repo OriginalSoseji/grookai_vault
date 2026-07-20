@@ -78,6 +78,7 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_LANGUAGE_V1 | Active | docs/contracts/CARD_VISUAL_LANGUAGE_V1.md — Governs Grookai's visual description vocabulary, observation hierarchy, card-type style guides, semantic tag standards, and review-gated derived-intelligence boundary |
 | CARD_VISUAL_FACT_GRAPH_V1 | Active | docs/contracts/CARD_VISUAL_FACT_GRAPH_V1.md — Governs exhaustive observable card fact extraction: observation IDs, subject-kind separation, counts with support, coverage reviews, fact-grounded search terms, compatibility-only prose, and no story inside the fact graph |
 | CARD_VISUAL_FACT_GRAPH_V2 | Active | docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md — Governs the modular exhaustive observable fact ontology: raw observation backbone, evidence-backed typed facts, module-level completeness reviews, human appearance, creature anatomy, material-appearance-only object facts, and no fixed observation quota |
+| CARD_VISUAL_HARVEST_MODE_V1 | Active | docs/contracts/CARD_VISUAL_HARVEST_MODE_V1.md — Governs large calibration runs that preserve validated visual fact graph rows while quarantining invalid payloads for grouped offline repair, without database writes, approvals, embeddings, or downstream integrations |
 | USER_PHOTO_NORMALIZATION_PIPELINE_V1 | Planned | Backend normalization of user-uploaded images |
 
 ---
