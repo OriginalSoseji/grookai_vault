@@ -7446,6 +7446,312 @@ test("card visual fact graph repairs environment alignment and card UI weak-mark
     entry.affected_observation_ids.includes("obs_card_ui_resistance_live_001")));
 });
 
+test("card visual fact graph repairs harvest quarantine evidence-backed semantic and representation cases", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_meteor_trails_001",
+      kind: "visual_effects",
+      label: "multiple meteor trails across the background",
+      normalized_label: "multiple meteor trails",
+      scene_layer: "background",
+      frame_position: "upper_background",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_zigzag_001",
+      kind: "creature_anatomy",
+      label: "red zigzag markings on the body",
+      normalized_label: "red zigzag markings",
+      scene_layer: "foreground",
+      frame_position: "body",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_town_001",
+      kind: "environment",
+      label: "white buildings with arched doorways and a decorative street lamp",
+      normalized_label: "white buildings arched doorways decorative street lamp",
+      scene_layer: "background",
+      frame_position: "background",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_orchard_001",
+      kind: "environment",
+      label: "apple tree with red apples",
+      normalized_label: "apple tree red apples",
+      scene_layer: "background",
+      frame_position: "background",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.96,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_tongue_001",
+      kind: "creature_anatomy",
+      label: "long curved tongue extending from open mouth",
+      normalized_label: "long curved tongue open mouth",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_breath_001",
+      kind: "visual_effects",
+      label: "mist or breath emerging from open mouth",
+      normalized_label: "mist breath open mouth",
+      scene_layer: "foreground",
+      frame_position: "mouth",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.92,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_rider_001",
+      kind: "scene_subject",
+      label: "small rider sitting on horse-like creature with reins",
+      normalized_label: "rider sitting horse reins",
+      scene_layer: "foreground",
+      frame_position: "center",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_flaming_mane_001",
+      kind: "creature_anatomy",
+      label: "large mane with red and yellow flame-shaped colors",
+      normalized_label: "flaming mane red yellow",
+      scene_layer: "foreground",
+      frame_position: "head",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.97,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_shuriken_001",
+      kind: "object",
+      label: "visible shuriken near the subject",
+      normalized_label: "shuriken",
+      scene_layer: "foreground",
+      frame_position: "right",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.9,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_pikachu_magnet_001",
+      kind: "object",
+      label: "small Pikachu magnet attached to a refrigerator",
+      normalized_label: "pikachu magnet",
+      scene_layer: "background",
+      frame_position: "right_background",
+      visibility: "visible",
+      salience: "low",
+      confidence: 0.87,
+      evidence_strength: "moderate",
+    },
+    {
+      observation_id: "obs_pikachu_cookie_cutter_001",
+      kind: "object",
+      label: "cookie cutters in star and Pikachu shapes",
+      normalized_label: "star and pikachu shaped cookie cutters",
+      scene_layer: "foreground",
+      frame_position: "lower",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.89,
+      evidence_strength: "moderate",
+    },
+    {
+      observation_id: "obs_treecko_object_001",
+      kind: "object",
+      label: "Treecko",
+      normalized_label: "treecko",
+      scene_layer: "foreground",
+      frame_position: "left",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+  );
+  graph.subjects.push({
+    observation_id: "obs_treecko_object_001",
+    subject_kind: "scene_subject",
+    identity: "Treecko",
+    identity_confidence: 0.94,
+    anatomy: ["lizard-like body", "tail"],
+    physical_features: ["green skin"],
+    pose: ["standing"],
+    orientation: "left",
+    action_state: ["stationary"],
+    facial_evidence: {
+      eyes: "open",
+      mouth: "closed",
+      eyebrows: "not_visible",
+      face_position: "side_view",
+      other_visible_evidence: [],
+    },
+    clothing_or_accessories: [],
+    colors: ["green"],
+    visibility: "visible",
+  });
+  graph.relationships = [
+    {
+      relationship_id: "rel_rider_001",
+      source_observation_id: "obs_rider_001",
+      target_observation_id: "obs_subject_001",
+      relationship: "sitting on",
+      evidence_strength: "strong",
+    },
+  ];
+  graph.coverage_reviews.relationships_review = "observed";
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_meteor_001",
+      category: "motif",
+      label: "meteor shower",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_meteor_trails_001"],
+      evidence: { objects: ["multiple meteor trails"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_zigzag_001",
+      category: "motif",
+      label: "zigzag pattern",
+      supporting_observation_ids: ["obs_zigzag_001"],
+      evidence: { objects: ["red zigzag markings"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_town_001",
+      category: "scene_type",
+      label: "Mediterranean-style town",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_town_001"],
+      evidence: { environment: ["white buildings", "arched doorways"], objects: ["decorative street lamp"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_orchard_001",
+      category: "scene_type",
+      label: "apple orchard",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_orchard_001"],
+      evidence: { environment: ["apple tree", "red apples"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_licking_001",
+      category: "expression",
+      label: "licking",
+      supporting_observation_ids: ["obs_tongue_001"],
+      evidence: { mouth: ["tongue extended and visible"], facial_features: ["long curved tongue"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_breath_001",
+      category: "state",
+      label: "exhaling breath",
+      supporting_observation_ids: ["obs_breath_001"],
+      evidence: { mouth: ["open mouth with breath or mist"], motion_state: ["breath exhalation effect"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_riding_001",
+      category: "action",
+      label: "riding horse",
+      supporting_observation_ids: ["rel_rider_001"],
+      evidence: { body_position: ["upright sitting"], relationships: ["rider on horse"], objects: ["reins"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_mane_001",
+      category: "motif",
+      label: "flaming mane",
+      supporting_observation_ids: ["obs_flaming_mane_001"],
+      evidence: { other: ["large mane with bright red and yellow flame shape colors"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_ninja_001",
+      category: "motif",
+      label: "ninja theme",
+      supporting_observation_ids: ["obs_shuriken_001"],
+      evidence: { objects: ["shuriken"] },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_generic_001",
+      category: "scene_type",
+      label: "pokemon scene",
+      supporting_observation_ids: ["obs_subject_001"],
+      evidence: { body_language: ["upright posture"] },
+    }),
+  ];
+  graph.fact_grounded_search_terms = [
+    { term: "Pikachu magnet", supporting_observation_ids: ["obs_pikachu_magnet_001"] },
+    { term: "cookie cutters in star and Pikachu shapes", supporting_observation_ids: ["obs_pikachu_cookie_cutter_001"] },
+    { term: "rider on horse", supporting_observation_ids: ["rel_rider_001"] },
+  ];
+  graph.scene_layers.foreground.push("obs_treecko_object_001", "obs_rider_001");
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }), {
+    name: "Energy Switch",
+    prompt_branch: "item_tool_supporter",
+  });
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const labels = normalizedGraph.semantic_visual_facts.map((fact) => fact.label);
+  assert.ok(labels.includes("meteor shower"));
+  assert.ok(labels.includes("zigzag pattern"));
+  assert.ok(labels.includes("Mediterranean-style town"));
+  assert.ok(labels.includes("apple orchard"));
+  assert.ok(labels.includes("licking"));
+  assert.ok(labels.includes("exhaling breath"));
+  assert.ok(labels.includes("riding horse"));
+  assert.ok(labels.includes("flaming mane"));
+  assert.ok(labels.includes("ninja theme"));
+  assert.equal(labels.includes("pokemon scene"), false);
+  const riding = normalizedGraph.semantic_visual_facts.find((fact) => fact.semantic_fact_id === "sem_riding_001");
+  assert.deepEqual(riding.supporting_observation_ids, ["obs_rider_001", "obs_subject_001"]);
+
+  const terms = normalizedGraph.fact_grounded_search_terms.map((entry) => entry.term);
+  assert.ok(terms.includes("Pikachu magnet"));
+  assert.ok(terms.includes("cookie cutters in star and Pikachu shapes"));
+
+  const unsupportedGraph = structuredClone(validFactGraph());
+  unsupportedGraph.observations[0] = {
+    ...unsupportedGraph.observations[0],
+    label: "Joltik",
+    normalized_label: "joltik",
+  };
+  unsupportedGraph.subjects[0] = {
+    ...unsupportedGraph.subjects[0],
+    identity: "Joltik",
+  };
+  unsupportedGraph.fact_grounded_search_terms = [
+    { term: "crouched Pikachu", supporting_observation_ids: ["obs_subject_001"] },
+  ];
+  const unsupported = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedGraph }), {
+    name: "Joltik",
+    prompt_branch: "pokemon",
+  });
+  assert.equal(unsupported.ok, false);
+  assert.ok(unsupported.findings.includes("fact_graph_search_term_without_matching_fact_components:crouched Pikachu"));
+});
+
 test("card visual fact graph drops unsupported card UI typed facts", () => {
   const graph = structuredClone(validFactGraph());
   graph.typed_facts.push({

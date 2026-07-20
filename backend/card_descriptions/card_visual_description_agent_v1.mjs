@@ -2627,6 +2627,29 @@ function repairObservationReferencesToKnown(ids, knownIds) {
   return known.length > 0 ? known : repaired;
 }
 
+function relationshipSupportObservationIdsByRelationshipId(relationships = []) {
+  return new Map(normalizeObjectArray(relationships)
+    .map((relationship) => [
+      normalizeText(relationship.relationship_id),
+      uniquePreserving([
+        normalizeText(relationship.source_observation_id),
+        normalizeText(relationship.target_observation_id),
+      ].filter(Boolean)),
+    ])
+    .filter(([relationshipId, supportIds]) => relationshipId && supportIds.length > 0));
+}
+
+function expandFactGraphSupportReferenceIds(ids, maps = []) {
+  return uniquePreserving(normalizeObservationReferenceArray(ids)
+    .flatMap((reference) => {
+      for (const map of maps) {
+        const replacement = map?.get?.(reference);
+        if (replacement?.length > 0) return replacement;
+      }
+      return [reference];
+    }));
+}
+
 function repairModuleObservationReferencesToKnown(value, knownIds) {
   if (!knownIds) return value;
   if (Array.isArray(value)) return value.map((entry) => repairModuleObservationReferencesToKnown(entry, knownIds));
@@ -2669,7 +2692,7 @@ function normalizeTypedFactsWithCardUiMirrorRepair(value, rawGraph, observations
     const supportsRawCardUiModuleObservation = factSupportIds.some((id) => rawCardUiObservationIds.has(id));
     const selfIdentifiedCardUiFact = rawCardUiFactIds.has(factId) || /^fact_card_ui/i.test(factId);
     if (
-      ((supportsUiObservation && selfIdentifiedCardUiFact) || supportsRawCardUiModuleObservation)
+      (supportsUiObservation || supportsRawCardUiModuleObservation || selfIdentifiedCardUiFact)
       && CARD_UI_PROHIBITED_ARTWORK_MODULES.has(normalizeText(fact.module))
     ) {
       return { ...fact, module: CARD_UI_AND_PRINT_MARKERS_MODULE };
@@ -3337,6 +3360,7 @@ function shouldDropSemanticVisualFactLabel(value) {
       SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN.test(label)
       || SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN.test(label)
       || /^(?:mouth|eyes?|eyebrows?|face|facial evidence|expression|environment|scene|background)$\b/i.test(label)
+      || /^(?:pokemon|pok[eé]mon)\s+scene$/i.test(label)
       || /\bcannot[-_\s]?determine\b/i.test(label)
       || /\bcontent(?:ed)?\s+(?:mouth|expression|face)\b/i.test(label)
       || isSubstanceStateAliasLabel(label)
@@ -3354,6 +3378,7 @@ function shouldDropSemanticVisualFact(fact, options = {}) {
 
 function normalizeSemanticVisualFacts(value, options = {}) {
   const countSupportById = countSupportObservationIdsByCountId(options.counts ?? []);
+  const relationshipSupportById = relationshipSupportObservationIdsByRelationshipId(options.relationships ?? []);
   const knownObservationIds = new Set((options.observations ?? [])
     .map((observation) => normalizeText(observation.observation_id))
     .filter(Boolean));
@@ -3364,12 +3389,16 @@ function normalizeSemanticVisualFacts(value, options = {}) {
     subject_observation_id: normalizeText(entry.subject_observation_id),
     supporting_observation_ids: knownObservationIds.size > 0
       ? repairObservationReferencesToKnown(
-        normalizeObservationReferenceArray(entry.supporting_observation_ids)
-          .flatMap((reference) => countSupportById.get(reference) ?? [reference]),
+        expandFactGraphSupportReferenceIds(entry.supporting_observation_ids, [
+          countSupportById,
+          relationshipSupportById,
+        ]),
         knownObservationIds,
       )
-      : uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
-        .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
+      : expandFactGraphSupportReferenceIds(entry.supporting_observation_ids, [
+        countSupportById,
+        relationshipSupportById,
+      ]),
     evidence: normalizeSemanticVisualFactEvidence(entry.evidence),
     confidence: normalizeConfidence(entry.confidence),
     uncertainty: normalizeText(entry.uncertainty),
@@ -3403,7 +3432,7 @@ function normalizeSearchTermText(value) {
     || SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(raw)
     || SEMANTIC_VISUAL_FACT_CONCERNED_LABEL_PATTERN.test(raw)
     || SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN.test(raw)
-    || /\b(?:cameo|depicted|plush|pillow|statue|toy|logo|icon|sticker|ice cream|character representation)\b/i.test(raw);
+    || /\b(?:cameo|depicted|plush|pillow|statue|toy|figure|figurine|magnet|logo|icon|sticker|ice cream|shapes?|shaped|character representation)\b/i.test(raw);
   const normalized = shouldPreserveSemanticIntent ? raw : normalizeObjectiveVisualText(raw);
   return normalized
     .replace(/\bpok[eé]mon\s+detective\s+pikachu\s+logo\b/gi, "detective pikachu logo")
@@ -3417,7 +3446,7 @@ function isGenericSubjectIdentityKey(value) {
 }
 
 function shouldPreserveExactIdentityInSearchTerm(value) {
-  return /\b(?:happy|smiling|sleeping|asleep|cameo|depicted|poster|screen|plush|pillow|statue|toy|logo|icon|sticker|ice cream|character representation)\b/i.test(normalizeText(value));
+  return /\b(?:happy|smiling|sleeping|asleep|cameo|depicted|poster|screen|plush|pillow|statue|toy|figure|figurine|magnet|logo|icon|sticker|ice cream|shapes?|shaped|character representation)\b/i.test(normalizeText(value));
 }
 
 function stripRedundantSubjectIdentityFromSearchTerm(value, subjectIdentityKeys = new Set()) {
@@ -3557,13 +3586,16 @@ function normalizeFactGroundedSearchTerms(value, counts = [], options = {}) {
       .map((count) => [normalizeText(count.count_id), normalizeObservationReferenceArray(count.supporting_observation_ids)])
       .filter(([countId, support]) => countId && support.length > 0),
   );
+  const relationshipSupportById = relationshipSupportObservationIdsByRelationshipId(options.relationships ?? []);
   const normalized = normalizeObjectArray(value).map((entry) => {
     const rawTerm = normalizeSearchTermText(entry.term);
     return {
       raw_term: rawTerm,
       term: stripRedundantSubjectIdentityFromSearchTerm(rawTerm, subjectIdentityKeys),
-      supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
-        .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
+      supporting_observation_ids: expandFactGraphSupportReferenceIds(entry.supporting_observation_ids, [
+        countSupportById,
+        relationshipSupportById,
+      ]),
     };
   }).filter((entry) =>
     entry.term
@@ -4222,6 +4254,10 @@ function normalizeFactGraphV1(value) {
   const counts = normalizeFactGraphCounts(graph.counts);
   const observations = normalizeFactGraphObservations(graph.observations);
   const knownObservationIds = new Set(observations.map((observation) => normalizeText(observation.observation_id)).filter(Boolean));
+  const relationships = normalizeRelationships(graph.relationships)
+    .filter((relationship) =>
+      knownObservationIds.has(normalizeText(relationship.source_observation_id))
+      && knownObservationIds.has(normalizeText(relationship.target_observation_id)));
   const typedFacts = normalizeTypedFactsWithCardUiMirrorRepair(graph.typed_facts, graph, observations);
   const subjects = applySubjectIdentityFallbacks(normalizeFactGraphSubjects(graph.subjects), observations);
   const depictedSubjects = normalizeDepictedSubjects(graph.depicted_subjects);
@@ -4235,6 +4271,7 @@ function normalizeFactGraphV1(value) {
     observations,
     subjectIdentities,
     counts,
+    relationships,
   });
   const { objects: objectsAndProps, replacementMap: objectObservationReplacementMap } =
     normalizeObjectsAndPropsWithObservationRepair(graph.objects_and_props, observations, counts);
@@ -4246,6 +4283,7 @@ function normalizeFactGraphV1(value) {
     cardUiObservationIds: rawCardUiObservationIds,
     subjectIdentities,
     subjects,
+    relationships,
   });
   let modules = filterCardUiMirrorLeaksFromArtworkModules(
     repairObjectModuleObservationReferences(
@@ -4275,10 +4313,6 @@ function normalizeFactGraphV1(value) {
     modules,
     normalizeCoverageReviews(graph.coverage_reviews),
   );
-  const relationships = normalizeRelationships(graph.relationships)
-    .filter((relationship) =>
-      knownObservationIds.has(normalizeText(relationship.source_observation_id))
-      && knownObservationIds.has(normalizeText(relationship.target_observation_id)));
   const visualDesign = normalizeVisualDesign(graph.visual_design);
   visualDesign.supporting_observation_ids = visualDesign.supporting_observation_ids.filter((id) => knownObservationIds.has(id));
   const normalizedGraph = {
@@ -6100,6 +6134,7 @@ function isAllowedSemanticVisualFactLabelV1(fact, observations = []) {
     ))
   ) return true;
   if ((category === "action" || category === "state" || category === "expression") && SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN.test(label)) return true;
+  if (category === "expression" && /\blick(?:ing)?\b/i.test(label) && /\b(?:tongue|licking|lick|mouth)\b/i.test(evidenceForSupport)) return true;
   if (category === "action" && SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN.test(label)) return true;
   if (category === "count_semantic" && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_LABEL_PATTERN.test(label)) return true;
   if (/\bgold(?:en)?\s+(?:foil|highlights?)\b/i.test(normalizeText(fact?.label)) || /\bgold highlights?\b/i.test(label)) return true;
@@ -6114,13 +6149,37 @@ function isAllowedSemanticVisualFactLabelV1(fact, observations = []) {
     if (/\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)?\s*(?:headed|heads?|serpent|serpentine)\b/i.test(label)) {
       return /\b(?:heads?|headed|serpent|serpentine|multiple heads?)\b/i.test(evidenceForSupport);
     }
-    return /\b(?:scene|background|pattern|abstract|stylized|design|gradient|swirl|swirling|burst|theme|garden|volcano|landscape|cityscape|underwater|island|cave)\b/i.test(label)
+    if (/\borchard\b/i.test(label)) {
+      return /\b(?:apple|fruit|tree|trees|red apples?)\b/i.test(evidenceForSupport);
+    }
+    if (/\btown\b/i.test(label)) {
+      return /\b(?:buildings?|architecture|arched?|doorways?|street|lamp|potted plants?|white buildings?)\b/i.test(evidenceForSupport);
+    }
+    return /\b(?:scene|background|pattern|abstract|stylized|design|gradient|swirl|swirling|burst|theme|garden|volcano|landscape|cityscape|underwater|island|cave|town|orchard)\b/i.test(label)
       && semanticVisualFactLabelHasDirectEvidenceSupportV1(label, evidenceForSupport);
   }
 
   if (category === "action") {
+    if (/\blick(?:ing)?\b/i.test(label)) {
+      return /\b(?:tongue|licking|lick|mouth)\b/i.test(evidenceForSupport);
+    }
+    if (/\bexhal(?:e|ing|ation)|\bbreath\b/i.test(label)) {
+      return /\b(?:open mouth|mouth|breath|mist|vapor|vapour|exhalation)\b/i.test(evidenceForSupport);
+    }
+    if (/\briding\b.*\bhorse\b|\brider\b/i.test(label)) {
+      return /\b(?:rider|horse|reins|sitting|mounted|on horse)\b/i.test(evidenceForSupport);
+    }
     return /\bpointing\b|\bclasp(?:ed|ing) hands?\b|\b(?:(?:left|right|both)\s+)?(?:arm|hand|fist|leg|knee|forearm|finger|claw)s?\b.*\b(?:extended|raised|forward|back|backward|open|bent|stretched|out|reaching|clasped)\b|\b(?:fist forward|leaning forward|bent knees?|open hand|extended hand|extended claws?|open gesture|hands clasped)\b/i.test(label)
       && normalizeText(evidenceForSupport);
+  }
+
+  if (category === "state") {
+    if (/\bexhal(?:e|ing|ation)|\bbreath\b/i.test(label)) {
+      return /\b(?:open mouth|mouth|breath|mist|vapor|vapour|exhalation)\b/i.test(evidenceForSupport);
+    }
+    if (/\briding\b.*\bhorse\b|\brider\b/i.test(label)) {
+      return /\b(?:rider|horse|reins|sitting|mounted|on horse)\b/i.test(evidenceForSupport);
+    }
   }
 
   if (category === "environment") {
@@ -6129,7 +6188,10 @@ function isAllowedSemanticVisualFactLabelV1(fact, observations = []) {
   }
 
   if (category === "motif") {
-    return /\b(?:motif|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|emblems?|symbols?|duplicate figures?|additional figures?|two duplicate|two additional|mirrored figures?|reflections?|copies|bomb|fuse|bell|badge|light(?:ing)? streaks?|streaks?|burst|star(?:-like)? sparkles?|sparkles?|star shapes?|cream color)\b/i.test(label)
+    if (/\bninja\b/i.test(label)) {
+      return /\b(?:shuriken|throwing star|kunai|mask|scarf|leaping|stealth)\b/i.test(evidenceForSupport);
+    }
+    return /\b(?:motif|patterns?|zigzag|meteor(?:\s+shower|\s+trails?)?|trails?|autumn colors?|flaming mane|mane|repeated shapes?|radial|spiral|swirl|circular|geometric|angular|emblems?|symbols?|duplicate figures?|additional figures?|two duplicate|two additional|mirrored figures?|reflections?|copies|bomb|fuse|bell|badge|light(?:ing)? streaks?|streaks?|burst|star(?:-like)? sparkles?|sparkles?|star shapes?|cream color)\b/i.test(label)
       && normalizeText(evidenceForSupport);
   }
 
@@ -6359,7 +6421,7 @@ function validateFactGraphSearchTermComponentsV1(factGraph) {
       factGraph,
       entry,
       /\bpikachu\b/i,
-      /\b(?:pillow|plush|statue|toy|ice cream|logo|icon)\b/i,
+      /\b(?:pillow|plush|statue|toy|figure|figurine|magnet|ice cream|logo|icon|shapes?|shaped|cookie cutter)\b/i,
     );
     if (/\bpikachu\b/i.test(term) && !factGraphHasSubjectIdentity(factGraph, /\bpikachu\b/i) && !hasPikachuRepresentationEvidence) {
       findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
@@ -6367,7 +6429,7 @@ function validateFactGraphSearchTermComponentsV1(factGraph) {
     if (/\bcameo\b/i.test(term) && !factGraphSearchTermHasCameoEvidence(factGraph, entry)) {
       findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
     }
-    if (/\bpikachu\b/i.test(term) && /\b(?:pillow|plush|statue|toy|ice cream|logo|icon)\b/i.test(term)) {
+    if (/\bpikachu\b/i.test(term) && /\b(?:pillow|plush|statue|toy|figure|figurine|magnet|ice cream|logo|icon|shapes?|shaped|cookie cutter)\b/i.test(term)) {
       if (!hasPikachuRepresentationEvidence) findings.push(`fact_graph_search_term_without_matching_fact_components:${term}`);
     }
     if (key === "pokemon" || key === "pokémon") {
@@ -6417,7 +6479,8 @@ function validateFactGraphOntologyV1(factGraph, card = {}) {
   for (const subject of factGraph.subjects ?? []) {
     const subjectText = normalizeText([
       subject.identity,
-      observationTextById.get(normalizeText(subject.observation_id)),
+      subject.anatomy,
+      subject.physical_features,
     ].filter(Boolean).join(" "));
     if (cardNameKey && tagKey(subject.identity) === cardNameKey && promptBranch !== "pokemon" && promptBranch !== "trainer") {
       findings.push(`fact_graph_card_title_as_subject:${subject.observation_id || subject.identity || "unknown"}`);
@@ -6579,7 +6642,7 @@ function validateFactGraphV1(factGraph) {
     },
   });
   const artworkAcceptedLanguageFactGraph = factGraphForAcceptedLanguageReview(factGraphForArtworkLanguageReview(acceptedLanguageFactGraph));
-  if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|fierce|majestic|confident)\b/i.test(flattenFactGraphText(artworkAcceptedLanguageFactGraph))) {
+  if (/\b(sexy|attractive|beautiful|seductive|voluptuous|breast size|large breasts|small breasts|majestic|confident)\b/i.test(flattenFactGraphText(artworkAcceptedLanguageFactGraph))) {
     findings.push("fact_graph_subjective_or_interpreted_label_not_allowed");
   }
   if (new RegExp(VISUAL_LANGUAGE_STORY_OR_LORE_PATTERN.source, "i").test(flattenFactGraphText(artworkAcceptedLanguageFactGraph))) {
