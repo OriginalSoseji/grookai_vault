@@ -669,10 +669,20 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(apply.maxRunCostUsd, 0.25);
   assert.equal(apply.openaiRequestTimeoutMs, 240000);
   assert.equal(apply.concurrency, 10);
+  assert.equal(apply.maxRetries, 1);
   assert.deepEqual(apply.excludeBranches, ["energy"]);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
   assert.equal(apply.openaiOutputCostPerMillion, 0.60);
   assert.equal(apply.openaiImageCostRuleVersion, "gpt-4o-mini-2026-07-15");
+
+  const explicitNoRetry = parseCardVisualDescriptionArgsV1([
+    "--dry-run",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--concurrency=10",
+    "--max-retries=0",
+  ]);
+  assert.equal(explicitNoRetry.maxRetries, 0);
 
   const branchSample = parseCardVisualDescriptionArgsV1([
     "--dry-run",
@@ -6751,6 +6761,119 @@ test("card visual fact graph repairs high-value semantic mouth features and expr
   });
   assert.equal(/\b(?:angry|happy|aggressive)\b/i.test(acceptedText), false);
   assert.match(acceptedText, /visible tongue|visible teeth|jagged mouth shape/);
+});
+
+test("card visual fact graph allows evidence-backed live semantic labels and drops circular expression claims", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_energy_effects_live_001",
+      kind: "visual_effects",
+      label: "background colorful energy effects with yellow lightning bolt shapes",
+      normalized_label: "colorful energy effects lightning bolts",
+      scene_layer: "background",
+      frame_position: "around_subject",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.93,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_aggressive_face_live_001",
+      kind: "creature_anatomy",
+      label: "open mouth with teeth and lowered eyebrows",
+      normalized_label: "open mouth with teeth lowered eyebrows",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_intense_circular_live_001",
+      kind: "creature_anatomy",
+      label: "yellow eyes with red pupils, intense expression",
+      normalized_label: "yellow eyes red pupils intense expression",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.91,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_intense_supported_live_001",
+      kind: "creature_anatomy",
+      label: "narrowed eyes and furrowed brow",
+      normalized_label: "narrowed eyes furrowed brow",
+      scene_layer: "foreground",
+      frame_position: "face",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.94,
+      evidence_strength: "strong",
+    },
+  );
+  graph.scene_layers.foreground.push(
+    "obs_aggressive_face_live_001",
+    "obs_intense_circular_live_001",
+    "obs_intense_supported_live_001",
+  );
+  graph.scene_layers.background.push("obs_energy_effects_live_001");
+  graph.semantic_visual_facts = [
+    semanticVisualFact({
+      semantic_fact_id: "sem_energy_effects_live_001",
+      category: "environment",
+      label: "energy effects",
+      subject_observation_id: "",
+      supporting_observation_ids: ["obs_energy_effects_live_001"],
+      evidence: {
+        environment: ["colorful energy", "lightning bolts"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_aggressive_supported_live_001",
+      category: "expression",
+      label: "aggressive expression",
+      supporting_observation_ids: ["obs_aggressive_face_live_001"],
+      evidence: {
+        mouth: ["open mouth with teeth"],
+        eyes: ["focused eyes"],
+        eyebrows: ["lowered eyebrows"],
+        facial_features: ["teeth visible"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_intense_circular_live_001",
+      category: "expression",
+      label: "intense expression",
+      supporting_observation_ids: ["obs_intense_circular_live_001"],
+      evidence: {
+        eyes: ["intense expression"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_intense_supported_live_001",
+      category: "expression",
+      label: "intense expression",
+      supporting_observation_ids: ["obs_intense_supported_live_001"],
+      evidence: {
+        eyes: ["narrowed eyes"],
+        eyebrows: ["furrowed brow"],
+      },
+    }),
+  ];
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedFacts = validation.normalized.visual_attributes.fact_graph.semantic_visual_facts;
+  const normalizedIds = normalizedFacts.map((fact) => fact.semantic_fact_id);
+  const normalizedLabels = normalizedFacts.map((fact) => fact.label);
+  assert.ok(normalizedLabels.includes("energy effects"));
+  assert.ok(normalizedLabels.includes("aggressive expression"));
+  assert.ok(normalizedIds.includes("sem_intense_supported_live_001"));
+  assert.equal(normalizedIds.includes("sem_intense_circular_live_001"), false);
 });
 
 test("card visual fact graph repairs environment alignment and card UI weak-marker abstentions", () => {

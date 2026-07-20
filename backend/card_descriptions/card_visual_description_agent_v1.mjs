@@ -144,10 +144,10 @@ const SEMANTIC_VISUAL_FACT_CATEGORIES = new Set([
   "motif",
 ]);
 const SEMANTIC_VISUAL_FACT_HAPPY_LABEL_PATTERN = /\b(?:happy|smiling|smile|cheerful|joyful)\b/i;
-const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN = /\b(?:angry|annoyed|irritated|scowling|scowl|frowning|fierce(?:\s+expression)?)\b/i;
+const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN = /\b(?:angry|annoyed|irritated|scowling|scowl|frowning|aggressive(?:\s+expression)?|fierce(?:\s+expression)?)\b/i;
 const SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN = /\b(?:scared|surprised|startled|wide[-\s]?eyed|crying|tears?)\b/i;
 const SEMANTIC_VISUAL_FACT_SMIRKING_LABEL_PATTERN = /\b(?:smirk|smirking)\b/i;
-const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|determined|serious|concentrated|intent)(?:\s+expression)?\b/i;
+const SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN = /\b(?:focused|determined|serious|concentrated|intent|intense)(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN = /\balert(?:\s+expression)?\b/i;
 const SEMANTIC_VISUAL_FACT_AWAKE_LABEL_PATTERN = /\bawake\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECTIVE_FACIAL_FEATURE_LABEL_PATTERN =
@@ -206,7 +206,7 @@ const SEMANTIC_VISUAL_FACT_HAPPY_SUPPORT_PATTERN =
 const SEMANTIC_VISUAL_FACT_HAPPY_CONTRADICTION_PATTERN =
   /\b(?:frown|frowning|downturned mouth|crying|tears|grimace|angry|scowling|no visible mouth|mouth not visible|face not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_SUPPORT_PATTERN =
-  /\b(?:narrowed eyes?|sharp eyes?|slanted eyes?|squinting eyes?|furrowed brow|furrowed eyebrows?|angled brow|angled eyebrows?|downward[-\s]angled eyebrows?|frown|frowning|downturned mouth|grimace|scowl|scowling|bared teeth|clenched teeth)\b/i;
+  /\b(?:narrowed eyes?|sharp eyes?|slanted eyes?|squinting eyes?|furrowed brow|furrowed eyebrows?|lowered eyebrows?|angled brow|angled eyebrows?|downward[-\s]angled eyebrows?|frown|frowning|downturned mouth|grimace|scowl|scowling|bared teeth|clenched teeth|visible teeth|teeth visible|open mouth with teeth|open mouth showing teeth)\b/i;
 const SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_CONTRADICTION_PATTERN =
   /\b(?:neutral eyebrows?|natural eyebrows?|relaxed eyes?|smile|smiling|upturned mouth|mouth not visible|face not visible|cannot_determine)\b/i;
 const SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_SUPPORT_PATTERN =
@@ -3123,7 +3123,7 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
   if (SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_SUPPORT_PATTERN, {
       ...options,
-      circularPattern: /\b(?:angry|annoyed|irritated|scowling|frowning|fierce)(?:\s+expression)?\b/gi,
+      circularPattern: /\b(?:angry|annoyed|irritated|scowling|frowning|aggressive|fierce)(?:\s+expression)?\b/gi,
     }) || SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_CONTRADICTION_PATTERN.test(semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations));
   }
   if (SEMANTIC_VISUAL_FACT_SCARED_OR_SURPRISED_LABEL_PATTERN.test(label)) {
@@ -3141,7 +3141,7 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
   if (SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_SUPPORT_PATTERN, {
       ...options,
-      circularPattern: /\b(?:focused|determined|serious|concentrated|intent)(?:\s+expression)?\b/gi,
+      circularPattern: /\b(?:focused|determined|serious|concentrated|intent|intense)(?:\s+expression)?\b/gi,
     }) || SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_CONTRADICTION_PATTERN.test(semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations));
   }
   if (SEMANTIC_VISUAL_FACT_ALERT_LABEL_PATTERN.test(label)) {
@@ -4223,6 +4223,7 @@ function normalizeVisualAttributesV1(value) {
 }
 
 export function parseCardVisualDescriptionArgsV1(argv = []) {
+  let maxRetriesConfigured = normalizeText(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES) !== "";
   const parsed = {
     mode: "dry_run",
     limit: DEFAULT_LIMIT,
@@ -4293,7 +4294,10 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--max-image-bytes=")) parsed.maxImageBytes = asPositiveInt(arg.slice("--max-image-bytes=".length), DEFAULT_MAX_IMAGE_BYTES, "--max-image-bytes");
     else if (arg.startsWith("--placeholder-hashes=")) parsed.placeholderHashes = parseCommaList(arg.slice("--placeholder-hashes=".length));
     else if (arg.startsWith("--image-detail=")) parsed.imageDetail = normalizeText(arg.slice("--image-detail=".length)).toLowerCase();
-    else if (arg.startsWith("--max-retries=")) parsed.maxRetries = asNonnegativeInt(arg.slice("--max-retries=".length), DEFAULT_MAX_RETRIES, "--max-retries");
+    else if (arg.startsWith("--max-retries=")) {
+      parsed.maxRetries = asNonnegativeInt(arg.slice("--max-retries=".length), DEFAULT_MAX_RETRIES, "--max-retries");
+      maxRetriesConfigured = true;
+    }
     else if (arg.startsWith("--openai-request-timeout-ms=")) parsed.openaiRequestTimeoutMs = asPositiveInt(arg.slice("--openai-request-timeout-ms=".length), DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "--openai-request-timeout-ms");
     else if (arg.startsWith("--concurrency=")) parsed.concurrency = asPositiveInt(arg.slice("--concurrency=".length), DEFAULT_CONCURRENCY, "--concurrency");
     else if (arg.startsWith("--max-run-cost-usd=")) parsed.maxRunCostUsd = asNumber(arg.slice("--max-run-cost-usd=".length), null, "--max-run-cost-usd");
@@ -4353,6 +4357,14 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
   if (parsed.branchStratifiedSample && !parsed.branchCandidateLimit) {
     parsed.branchCandidateLimit = Math.max(parsed.limit * 200, DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT);
+  }
+  if (
+    parsed.provider === "openai"
+    && parsed.concurrency > 1
+    && !maxRetriesConfigured
+    && parsed.maxRetries === DEFAULT_MAX_RETRIES
+  ) {
+    parsed.maxRetries = 1;
   }
 
   return parsed;
@@ -5887,7 +5899,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "environment") {
-    return /\b(?:plants?|leafy|leaves|grassy|field|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|sun|horizon|corridors?|hallways?|walls?|brick|bricks?|arches?|arched|lamps?|lanterns?|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
+    return /\b(?:plants?|leafy|leaves|grassy|field|table|window|background|storm|aurora|light bands?|traffic cones?|sky|clouds?|water|trees?|buildings?|bridge|stairs?|steps?|fences?|terrain|mountains?|ground|path|room|interior|outdoor|indoor|sun|horizon|corridors?|hallways?|walls?|brick|bricks?|arches?|arched|lamps?|lanterns?|energy effects?|electric(?:al)? energy effects?|electric arcs?|electricity|aura|visual effects?|ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i.test(label);
   }
 
   if (category === "motif") {
@@ -5959,7 +5971,7 @@ function validateSemanticVisualFactsV1(factGraph, knownIds) {
     }
     if (SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_LABEL_PATTERN.test(label)) {
       if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_ANGRY_OR_ANNOYED_SUPPORT_PATTERN, factGraph, {
-        circularPattern: /\b(?:angry|annoyed|irritated|scowling|frowning|fierce)(?:\s+expression)?\b/gi,
+        circularPattern: /\b(?:angry|annoyed|irritated|scowling|frowning|aggressive|fierce)(?:\s+expression)?\b/gi,
       })) {
         findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_without_visible_facial_evidence`);
       }
@@ -5984,7 +5996,7 @@ function validateSemanticVisualFactsV1(factGraph, knownIds) {
     }
     if (SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_LABEL_PATTERN.test(label)) {
       if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_FOCUSED_OR_DETERMINED_SUPPORT_PATTERN, factGraph, {
-        circularPattern: /\b(?:focused|determined|serious|concentrated|intent)(?:\s+expression)?\b/gi,
+        circularPattern: /\b(?:focused|determined|serious|concentrated|intent|intense)(?:\s+expression)?\b/gi,
       })) {
         findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:expression_without_visible_facial_evidence`);
       }
