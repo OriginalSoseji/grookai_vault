@@ -2736,9 +2736,9 @@ test("card visual fact graph validates observation-backed subjects counts and se
     },
   }));
   assert.equal(genericSearchTerm.ok, true);
-  assert.ok(detectVisualDescriptionReviewFlagDetailsV1(genericSearchTerm.normalized).some((detail) =>
-    detail.flag === "potential_generic_or_nonvisual_search_term"
-    && detail.matched_text === "card"));
+  assert.equal(genericSearchTerm.normalized.semantic_tags.includes("card"), false);
+  assert.equal(genericSearchTerm.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.term === "card"), false);
 
   const derivedSearchTerms = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -3254,8 +3254,11 @@ test("card visual fact graph stores semantic visual facts only with supporting e
       ],
     },
   }));
-  assert.equal(looseHappy.ok, false);
-  assert.ok(looseHappy.findings.includes("fact_graph_loose_semantic_label_outside_semantic_visual_facts"));
+  assert.equal(looseHappy.ok, true, looseHappy.findings.join("\n"));
+  assert.equal(
+    /happy/i.test(JSON.stringify(looseHappy.normalized.visual_attributes.fact_graph.typed_facts)),
+    false,
+  );
 
   const unsupportedSearch = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -4978,11 +4981,21 @@ test("card visual fact graph enforces grounding ontology and count consistency w
           estimated_max: 2,
         },
       ],
+      fact_grounded_search_terms: [
+        { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+      ],
+      modules: {
+        ...validFactGraph().modules,
+        fact_grounded_search_terms: {
+          ...validFactGraph().modules.fact_grounded_search_terms,
+          terms: ["forest background"],
+        },
+      },
     },
   }));
-  assert.equal(manyWithExactValues.ok, false);
-  assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_count:count_tree_001"));
-  assert.ok(manyWithExactValues.findings.includes("fact_graph_many_count_has_exact_range:count_tree_001"));
+  assert.equal(manyWithExactValues.ok, true, manyWithExactValues.findings.join("\n"));
+  assert.equal(manyWithExactValues.normalized.visual_attributes.fact_graph.counts[0].count_type, "exact");
+  assert.equal(manyWithExactValues.normalized.visual_attributes.fact_graph.counts[0].exact_count, 2);
 
   const estimatedRangeWithExactValue = validateVisualDescriptionPayloadV1(validFactPayload({
     fact_graph: {
@@ -5108,8 +5121,15 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   });
   hpInHuman.modules.human_appearance.fact_ids.push("fact_bad_ui_human_001");
   const badHuman = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: hpInHuman }));
-  assert.equal(badHuman.ok, false);
-  assert.ok(badHuman.findings.includes("fact_graph_card_ui_observation_in_artwork_module:human_appearance:fact_bad_ui_human_001"));
+  assert.equal(badHuman.ok, true, badHuman.findings.join("\n"));
+  assert.equal(
+    badHuman.normalized.visual_attributes.fact_graph.modules.human_appearance.fact_ids.includes("fact_bad_ui_human_001"),
+    false,
+  );
+  assert.equal(
+    badHuman.normalized.visual_attributes.fact_graph.modules.card_ui_and_print_markers.fact_ids.includes("fact_bad_ui_human_001"),
+    true,
+  );
 
   const collectorInCreature = structuredClone(validFactGraph());
   collectorInCreature.typed_facts.push({
@@ -5124,8 +5144,15 @@ test("card visual fact graph separates card UI print-marker evidence from artwor
   });
   collectorInCreature.modules.creature_anatomy.fact_ids.push("fact_bad_ui_creature_001");
   const badCreature = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: collectorInCreature }));
-  assert.equal(badCreature.ok, false);
-  assert.ok(badCreature.findings.includes("fact_graph_card_ui_observation_in_artwork_module:creature_anatomy:fact_bad_ui_creature_001"));
+  assert.equal(badCreature.ok, true, badCreature.findings.join("\n"));
+  assert.equal(
+    badCreature.normalized.visual_attributes.fact_graph.modules.creature_anatomy.fact_ids.includes("fact_bad_ui_creature_001"),
+    false,
+  );
+  assert.equal(
+    badCreature.normalized.visual_attributes.fact_graph.modules.card_ui_and_print_markers.fact_ids.includes("fact_bad_ui_creature_001"),
+    true,
+  );
 
   const uiObjectLeak = structuredClone(validFactGraph());
   uiObjectLeak.objects_and_props.push({
@@ -7508,6 +7535,232 @@ test("card visual fact graph routes confused subject-kind classifications to rev
     attribute_confidence: 0.85,
     image_quality_score: 0.95,
   }), "needs_review");
+});
+
+test("harvest quarantine repair preserves evidence-backed semantics without accepting unsupported facts", () => {
+  const highContrastGraph = validFactGraph({
+    typed_facts: [
+      ...validFactGraph().typed_facts,
+      {
+        fact_id: "fact_lighting_001",
+        module: "color_and_light",
+        field_path: "visual_design.lighting",
+        claim: "artwork lighting is high contrast with bright highlights",
+        value: "high contrast bright highlights",
+        supporting_observation_ids: ["obs_palette_001"],
+        confidence: 0.93,
+        evidence_strength: "strong",
+      },
+    ],
+  });
+  const highContrast = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: highContrastGraph }));
+  assert.equal(highContrast.ok, true);
+
+  const expressionAbstentionGraph = validFactGraph({
+    semantic_visual_facts: [
+      semanticVisualFact({
+        semantic_fact_id: "sem_expression_abstention_001",
+        category: "expression",
+        label: "cannot_determine_expression_due_to_art_style",
+        evidence: {
+          mouth: ["cannot determine due to art style"],
+          eyes: ["cannot determine due to art style"],
+          eyebrows: ["cannot determine due to art style"],
+          facial_features: ["face visible"],
+        },
+      }),
+    ],
+  });
+  const expressionAbstention = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: expressionAbstentionGraph }));
+  assert.equal(expressionAbstention.ok, true);
+  assert.equal(expressionAbstention.normalized.visual_attributes.fact_graph.semantic_visual_facts.length, 0);
+
+  const uiMirrorGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations,
+      {
+        observation_id: "obs_energy_symbol_001",
+        kind: "object",
+        label: "lightning energy symbol near HP on card UI",
+        normalized_label: "lightning energy symbol",
+        scene_layer: "card_ui",
+        frame_position: "top_right",
+        visibility: "visible",
+        salience: "low",
+        confidence: 0.98,
+        evidence_strength: "strong",
+      },
+    ],
+    typed_facts: [
+      ...validFactGraph().typed_facts,
+      {
+        fact_id: "fact_ui_energy_symbol_001",
+        module: "objects_and_props",
+        field_path: "objects[0]",
+        claim: "lightning energy symbol appears near HP on card UI",
+        value: "lightning energy symbol",
+        supporting_observation_ids: ["obs_energy_symbol_001"],
+        confidence: 0.98,
+        evidence_strength: "strong",
+      },
+    ],
+    objects_and_props: [
+      ...validFactGraph().objects_and_props,
+      {
+        observation_id: "obs_energy_symbol_001",
+        label: "lightning energy symbol",
+        normalized_label: "lightning energy symbol",
+        object_type: "symbol",
+        colors: ["yellow"],
+        material_appearance: ["flat graphic"],
+        location: "near HP on card UI",
+        count_reference: "",
+        confidence: 0.98,
+      },
+    ],
+    modules: {
+      ...validFactGraph().modules,
+      objects_and_props: {
+        ...validFactGraph().modules.objects_and_props,
+        fact_ids: [...validFactGraph().modules.objects_and_props.fact_ids, "fact_ui_energy_symbol_001"],
+        object_observation_ids: ["obs_energy_symbol_001"],
+      },
+      card_ui_and_print_markers: {
+        ...validFactGraph().modules.card_ui_and_print_markers,
+        energy_symbol_observation_ids: ["obs_energy_symbol_001"],
+      },
+    },
+  });
+  const uiMirror = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: uiMirrorGraph }));
+  assert.equal(uiMirror.ok, true);
+  assert.equal(
+    uiMirror.normalized.visual_attributes.fact_graph.objects_and_props.some((object) => object.observation_id === "obs_energy_symbol_001"),
+    false,
+  );
+
+  const representationGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations.map((observation) => observation.observation_id === "obs_subject_001"
+        ? { ...observation, label: "Iono", normalized_label: "iono" }
+        : observation),
+      {
+        observation_id: "obs_pikachu_plush_001",
+        kind: "object",
+        label: "plate with pancakes, ice cream, and a Pikachu plush toy",
+        normalized_label: "pancakes ice cream pikachu plush toy",
+        scene_layer: "foreground",
+        frame_position: "right",
+        visibility: "visible",
+        salience: "medium",
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+    ],
+    subjects: validFactGraph().subjects.map((subject) => subject.observation_id === "obs_subject_001"
+      ? { ...subject, identity: "Iono" }
+      : subject),
+    typed_facts: validFactGraph().typed_facts.map((fact) => fact.fact_id === "fact_subject_001"
+      ? { ...fact, claim: "Iono is a visible scene subject", value: "Iono" }
+      : fact),
+    modules: {
+      ...validFactGraph().modules,
+      fact_grounded_search_terms: {
+        ...validFactGraph().modules.fact_grounded_search_terms,
+        terms: ["pancakes with ice cream and Pikachu plush", "forest background"],
+      },
+    },
+    fact_grounded_search_terms: [
+      { term: "pancakes with ice cream and Pikachu plush", supporting_observation_ids: ["obs_pikachu_plush_001"] },
+      { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+    ],
+  });
+  const representation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: representationGraph }));
+  assert.equal(representation.ok, true, representation.findings.join("\n"));
+
+  const cameoGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations,
+      {
+        observation_id: "obs_gyarados_001",
+        kind: "scene_subject",
+        label: "Gyarados partially visible in background",
+        normalized_label: "gyarados",
+        scene_layer: "background",
+        frame_position: "upper_right",
+        visibility: "partial",
+        salience: "medium",
+        confidence: 0.94,
+        evidence_strength: "strong",
+      },
+    ],
+    subjects: [
+      ...validFactGraph().subjects,
+      {
+        observation_id: "obs_gyarados_001",
+        subject_kind: "scene_subject",
+        identity: "Gyarados",
+        identity_confidence: 0.94,
+        anatomy: ["serpentine body"],
+        physical_features: ["partially visible head"],
+        pose: [],
+        orientation: "right",
+        action_state: [],
+        facial_evidence: {
+          eyes: "visible",
+          mouth: "visible",
+          eyebrows: "",
+          face_position: "background upper right",
+          other_visible_evidence: [],
+        },
+        clothing_or_accessories: [],
+        colors: ["blue"],
+        visibility: "partial",
+      },
+    ],
+    modules: {
+      ...validFactGraph().modules,
+      subjects: {
+        ...validFactGraph().modules.subjects,
+        scene_subject_observation_ids: ["obs_subject_001", "obs_gyarados_001"],
+      },
+    },
+    fact_grounded_search_terms: [
+      { term: "gyarados cameo", supporting_observation_ids: ["obs_gyarados_001"] },
+      { term: "forest background", supporting_observation_ids: ["obs_tree_group_001"] },
+    ],
+  });
+  const cameo = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: cameoGraph }));
+  assert.equal(cameo.ok, true);
+
+  const normalSalienceObjectGraph = validFactGraph({
+    observations: [
+      ...validFactGraph().observations,
+      {
+        observation_id: "obs_bag_001",
+        kind: "object",
+        label: "yellow adventure bag",
+        normalized_label: "adventure bag",
+        scene_layer: "foreground",
+        frame_position: "center",
+        visibility: "visible",
+        salience: "normal",
+        confidence: 0.96,
+        evidence_strength: "strong",
+      },
+    ],
+    fact_grounded_search_terms: [],
+    modules: {
+      ...validFactGraph().modules,
+      fact_grounded_search_terms: {
+        ...validFactGraph().modules.fact_grounded_search_terms,
+        terms: [],
+      },
+    },
+  });
+  const normalSalienceObject = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: normalSalienceObjectGraph }));
+  assert.equal(normalSalienceObject.ok, true);
+  assert.ok(normalSalienceObject.normalized.visual_attributes.fact_graph.fact_grounded_search_terms.some((entry) =>
+    entry.term === "adventure bag"));
 });
 
 test("card visual description version and embedding input are deterministic", () => {
