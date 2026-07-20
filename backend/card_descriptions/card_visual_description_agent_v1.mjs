@@ -162,7 +162,7 @@ const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|
 const SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN = /\b(?:day|daytime|daylight|sunny|sunlit)\b/i;
 const SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN = /\broaring\b/i;
 const SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN = /\b(?:attack|attacking|striking|hit|hitting)\b/i;
-const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
+const SEMANTIC_VISUAL_FACT_ACTION_LABEL_PATTERN = /\b(?:floating|flying|running|walking|standing|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|extended claws?|claws? extended|clenched fists?|hands on hips|clasp(?:ed|ing) hands?)\b/i;
 const SEMANTIC_VISUAL_FACT_ALLOWED_LABEL_PATTERN =
   /\b(?:happy|smiling|smile|smirk|smirking|winking|wink|angry|annoyed|irritated|surprised|scared|crying|tears?|sleeping|asleep|sleepy|resting|floating|flying|running|walking|standing|upright|sitting|lying down|leaping|jumping|eating|fighting|holding|reaching|hiding|posing|pointing|arms raised|raised arms|clenched fists?|hands on hips|clasp(?:ed|ing) hands?|forest|woodland|woods|trees?|coniferous trees?|traffic cones?|rainy|rain|stormy|snowy|night|nighttime|sunset|daylight|indoors?|outdoors?|stadium|swimming pool|beach|water|reflective water|sky|clouds?|blue sky(?: with clouds)?|sun(?: near horizon)?|food scene|birthday celebration|cozy interior|abstract background|golden abstract background|gold highlights?|ghostly|haunted|spooky|halloween|spectral|cameo|depicted|plush|pillow|statue|toy|logo|poster|screen|card|bell|dark bell|bomb|pok[eé]ball|poke ball|fuse|emblem|symbol|sun emblem|ten trees?|tree group|repeated shapes?|circular motif|spiral motif|radial lines?|light(?:ing)? streaks?|lightning bolt motifs?|angular motifs?|geometric motifs?|background pattern|stylized background pattern|star(?:-like)? sparkles?|sparkles?)\b/i;
 const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
@@ -170,7 +170,7 @@ const SEMANTIC_VISUAL_FACT_EVIDENCE_ONLY_LABEL_PATTERN =
 const SEMANTIC_VISUAL_FACT_DROP_LABEL_PATTERN =
   /\b(?:ready for attack|ready to attack|preparing to attack|about to attack|female human character|male human character|human character|human trainer|visible trainer|dark fantasy style pokemon|fantasy style pokemon|dark style pokemon|pokemon style|pok[eé]mon style|stance|pose)\b/i;
 const SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN =
-  /\b(?:bomb|bell|badge|pok[eé]ball|poke ball|fuse|tool|item|object)\b/i;
+  /\b(?:bomb|bell|badge|pok[eé]ball|poke ball|promo stamp|stamp|fuse|tool|item|object)\b/i;
 const SEMANTIC_VISUAL_FACT_UNSUPPORTED_LABEL_PATTERN =
   /\b(?:lost|protecting|guarding|searching for|waiting for|trying to|wants to|symboli[sz](?:e|es|ing)|represents?|embod(?:y|ies|ying)|heroic|evil|loyal|brave|hope|destiny|purpose|lore|story|narrative|backstory)\b/i;
 const FACT_GRAPH_SEARCH_TERM_SURFACE_OR_PRINT_PATTERN =
@@ -3220,12 +3220,45 @@ function isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options = {}) {
   return SEMANTIC_VISUAL_FACT_OBJECT_ONLY_CAMEO_LABEL_PATTERN.test(flattenFactGraphText([label, evidenceText]));
 }
 
+function isCardUiOnlyCameoSemanticVisualFact(fact, options = {}) {
+  const category = normalizeText(fact?.category);
+  if (category !== "cameo") return false;
+  const supportIds = normalizeObservationReferenceArray(fact?.supporting_observation_ids);
+  const observationsById = new Map(normalizeObjectArray(options.observations)
+    .map((observation) => [normalizeText(observation.observation_id), observation])
+    .filter(([id]) => id));
+  if (supportIds.length > 0 && supportIds.every((id) => isCardUiPrintMarkerObservation(observationsById.get(id)))) return true;
+  return FACT_GRAPH_SEARCH_TERM_CARD_UI_OR_MECHANICS_PATTERN.test(flattenFactGraphText([
+    fact?.label,
+    semanticVisualFactEvidenceTextWithoutCircularClaims(fact, options.observations ?? []),
+  ]));
+}
+
+function subjectIdentityOnlyKeys(value) {
+  const key = tagKey(normalizeText(value).replace(/δ/gi, " delta "));
+  if (!key || isGenericSubjectIdentityKey(key)) return [];
+  const stripped = key
+    .replace(/\b(?:ex|gx|v|vmax|vstar|lv|level|legend|delta|star|shiny|radiant|mega|m)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return uniquePreserving([key, stripped].filter(Boolean));
+}
+
+function stripCountAndIdentitySuffixes(value) {
+  return tagKey(normalizeText(value).replace(/δ/gi, " delta "))
+    .replace(/^(?:single|one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+/, "")
+    .replace(/\b(?:ex|gx|v|vmax|vstar|lv|level|legend|delta|star|shiny|radiant)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function isSubjectIdentityOnlySemanticVisualFact(fact, options = {}) {
   const labelKey = tagKey(fact?.label);
   if (!labelKey) return false;
-  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities).map(tagKey).filter(Boolean));
+  const subjectIdentityKeys = new Set(normalizeStringArray(options.subjectIdentities).flatMap(subjectIdentityOnlyKeys).filter(Boolean));
   if (subjectIdentityKeys.has(labelKey)) return true;
   if (/^mega\s+/.test(labelKey) && subjectIdentityKeys.has(labelKey.replace(/^mega\s+/, ""))) return true;
+  if (subjectIdentityKeys.has(stripCountAndIdentitySuffixes(labelKey))) return true;
   return false;
 }
 
@@ -3247,16 +3280,19 @@ function shouldDropSemanticVisualFact(fact, options = {}) {
   return shouldDropSemanticVisualFactLabel(fact?.label)
     || isSubjectIdentityOnlySemanticVisualFact(fact, options)
     || isObjectOnlyMisclassifiedCameoSemanticVisualFact(fact, options)
+    || isCardUiOnlyCameoSemanticVisualFact(fact, options)
     || isUnsupportedEvidenceBackedSemanticVisualFact(fact, options);
 }
 
 function normalizeSemanticVisualFacts(value, options = {}) {
+  const countSupportById = countSupportObservationIdsByCountId(options.counts ?? []);
   return normalizeObjectArray(value).map((entry) => ({
     semantic_fact_id: normalizeText(entry.semantic_fact_id),
     category: normalizeText(entry.category),
     label: normalizeSemanticVisualFactLabelText(entry.label),
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    supporting_observation_ids: normalizeObservationReferenceArray(entry.supporting_observation_ids),
+    supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
+      .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
     evidence: normalizeSemanticVisualFactEvidence(entry.evidence),
     confidence: normalizeConfidence(entry.confidence),
     uncertainty: normalizeText(entry.uncertainty),
@@ -4082,6 +4118,7 @@ function normalizeFactGraphV1(value) {
   const semanticVisualFacts = normalizeSemanticVisualFacts(graph.semantic_visual_facts, {
     observations,
     subjectIdentities,
+    counts,
   });
   const { objects: objectsAndProps, replacementMap: objectObservationReplacementMap } =
     normalizeObjectsAndPropsWithObservationRepair(graph.objects_and_props, observations, counts);
@@ -5846,7 +5883,7 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
   }
 
   if (category === "action") {
-    return /\bpointing\b|\bclasp(?:ed|ing) hands?\b|\b(?:(?:left|right|both)\s+)?(?:arm|hand|fist|leg|knee|forearm|finger|claw)s?\b.*\b(?:extended|raised|forward|back|backward|open|bent|stretched|out|reaching|clasped)\b|\b(?:fist forward|leaning forward|bent knees?|open hand|extended hand|open gesture|hands clasped)\b/i.test(label);
+    return /\bpointing\b|\bclasp(?:ed|ing) hands?\b|\b(?:(?:left|right|both)\s+)?(?:arm|hand|fist|leg|knee|forearm|finger|claw)s?\b.*\b(?:extended|raised|forward|back|backward|open|bent|stretched|out|reaching|clasped)\b|\b(?:fist forward|leaning forward|bent knees?|open hand|extended hand|extended claws?|open gesture|hands clasped)\b/i.test(label);
   }
 
   if (category === "environment") {

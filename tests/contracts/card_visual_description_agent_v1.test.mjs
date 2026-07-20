@@ -3637,6 +3637,146 @@ test("card visual fact graph stores semantic visual facts only with supporting e
     false,
   );
   assert.ok(subjectIdentityOnlySemantic.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "baby kangaskhan in pouch"));
+
+  const cardUiPromoStampIsNotCameo = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_ui_promo_stamp_001",
+          kind: "promo_stamp",
+          label: "PROMO stamp at right edge of illustration",
+          normalized_label: "promo stamp",
+          scene_layer: "card_frame",
+          frame_position: "right_edge",
+          visibility: "visible",
+          salience: "medium",
+          confidence: 0.98,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_promo_stamp_001",
+          category: "cameo",
+          label: "promo stamp",
+          supporting_observation_ids: ["obs_ui_promo_stamp_001"],
+          evidence: { objects: ["promo stamp"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(cardUiPromoStampIsNotCameo.ok, true, cardUiPromoStampIsNotCameo.findings.join(","));
+  assert.equal(
+    cardUiPromoStampIsNotCameo.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.semantic_fact_id === "sem_promo_stamp_001"),
+    false,
+  );
+
+  const subjectIdentityWithPrintSuffixIsNotCameo = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [{
+        ...validFactGraph().subjects[0],
+        identity: "Salamence ex δ",
+      }],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_identity_suffix_001",
+          category: "cameo",
+          label: "Salamence ex delta",
+          supporting_observation_ids: ["obs_subject_001"],
+          evidence: {
+            mouth: ["open mouth with visible teeth"],
+            facial_features: ["face visible"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(subjectIdentityWithPrintSuffixIsNotCameo.ok, true, subjectIdentityWithPrintSuffixIsNotCameo.findings.join(","));
+  assert.equal(
+    subjectIdentityWithPrintSuffixIsNotCameo.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.semantic_fact_id === "sem_identity_suffix_001"),
+    false,
+  );
+
+  const singleSubjectIdentitySceneTypeIsDropped = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      subjects: [{
+        ...validFactGraph().subjects[0],
+        identity: "Empoleon",
+      }],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_single_identity_001",
+          category: "scene_type",
+          label: "single Empoleon",
+          supporting_observation_ids: ["obs_subject_001", "count_tree_001"],
+          evidence: {
+            eyes: ["red eyes"],
+            body_position: ["upright body"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(singleSubjectIdentitySceneTypeIsDropped.ok, true, singleSubjectIdentitySceneTypeIsDropped.findings.join(","));
+  assert.equal(
+    singleSubjectIdentitySceneTypeIsDropped.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.semantic_fact_id === "sem_single_identity_001"),
+    false,
+  );
+
+  const countIdSemanticSupportIsMappedToObservation = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_count_tree_001",
+          category: "count_semantic",
+          label: "ten trees",
+          supporting_observation_ids: ["count_tree_001"],
+          evidence: { other: ["10 visible trees"] },
+        }),
+      ],
+    },
+  }));
+  assert.equal(countIdSemanticSupportIsMappedToObservation.ok, true, countIdSemanticSupportIsMappedToObservation.findings.join(","));
+  assert.deepEqual(
+    countIdSemanticSupportIsMappedToObservation.normalized.visual_attributes.fact_graph.semantic_visual_facts
+      .find((fact) => fact.semantic_fact_id === "sem_count_tree_001").supporting_observation_ids,
+    ["obs_tree_group_001"],
+  );
+
+  const extendedClawsWithBodyEvidence = validateVisualDescriptionPayloadV1(validFactPayload({
+    fact_graph: {
+      observations: [
+        ...validFactGraph().observations,
+        {
+          observation_id: "obs_extended_claws_001",
+          kind: "creature_anatomy",
+          label: "clawed hands extended",
+          normalized_label: "extended claws",
+          scene_layer: "foreground",
+          frame_position: "right",
+          visibility: "visible",
+          salience: "high",
+          confidence: 0.94,
+          evidence_strength: "strong",
+        },
+      ],
+      semantic_visual_facts: [
+        semanticVisualFact({
+          semantic_fact_id: "sem_extended_claws_001",
+          category: "action",
+          label: "extended claws",
+          supporting_observation_ids: ["obs_extended_claws_001"],
+          evidence: {
+            body_language: ["clawed hands extended"],
+            body_position: ["upright"],
+          },
+        }),
+      ],
+    },
+  }));
+  assert.equal(extendedClawsWithBodyEvidence.ok, true, extendedClawsWithBodyEvidence.findings.join(","));
+  assert.ok(extendedClawsWithBodyEvidence.normalized.visual_attributes.fact_graph.semantic_visual_facts.some((fact) => fact.label === "extended claws"));
 });
 
 test("card visual fact graph handles forest counts and cameo representation component search", () => {
