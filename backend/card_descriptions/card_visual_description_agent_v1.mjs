@@ -4432,6 +4432,9 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     forceVersion: false,
     allowFixtureApply: false,
     outDirExplicit: false,
+    resumeRunDir: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_RESUME_RUN_DIR)
+      ? path.resolve(process.env.CARD_VISUAL_DESCRIPTION_RESUME_RUN_DIR)
+      : null,
   };
 
   let explicitMode = null;
@@ -4447,6 +4450,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
       parsed.outDir = path.resolve(arg.slice("--out-dir=".length));
       parsed.outDirExplicit = true;
     }
+    else if (arg.startsWith("--resume-run-dir=")) parsed.resumeRunDir = path.resolve(arg.slice("--resume-run-dir=".length));
     else if (arg.startsWith("--provider=")) parsed.provider = normalizeText(arg.slice("--provider=".length)).toLowerCase();
     else if (arg.startsWith("--model=")) parsed.modelVersion = normalizeText(arg.slice("--model=".length));
     else if (arg.startsWith("--model-version=")) parsed.modelVersion = normalizeText(arg.slice("--model-version=".length));
@@ -4523,6 +4527,9 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
   if (parsed.mode === "apply" && parsed.provider === "fixture" && !parsed.allowFixtureApply) {
     throw new Error("[card-visual-description-agent] refusing to apply fixture descriptions without --allow-fixture-apply");
+  }
+  if (parsed.resumeRunDir && !["dry_run", "harvest"].includes(parsed.mode)) {
+    throw new Error("[card-visual-description-agent] --resume-run-dir is supported only for dry_run or harvest mode");
   }
   if (parsed.branchStratifiedSample && (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId)) {
     throw new Error("[card-visual-description-agent] branch-stratified sampling cannot be combined with explicit card targets");
@@ -8451,8 +8458,22 @@ async function tableColumns(client, schema, tableName) {
 }
 
 async function writeJson(filePath, value) {
+  await writeJsonAtomic(filePath, value);
+}
+
+async function writeJsonAtomic(filePath, value) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+  const temporaryPath = `${filePath}.${process.pid}.${crypto.randomUUID()}.tmp`;
+  try {
+    await fs.writeFile(temporaryPath, `${JSON.stringify(value, null, 2)}\n`);
+    await fs.rename(temporaryPath, filePath);
+  } finally {
+    await fs.rm(temporaryPath, { force: true }).catch(() => {});
+  }
+}
+
+async function readJson(filePath) {
+  return JSON.parse(await fs.readFile(filePath, "utf8"));
 }
 
 async function writeJsonl(filePath, rows) {
@@ -9502,10 +9523,81 @@ function safeArtifactNamePart(value) {
     .slice(0, 80) || "unknown";
 }
 
+function persistedOutcomePayload(record) {
+  if (record?.outcome_type === "generated_row") return record.generated_row;
+  if (record?.outcome_type === "validation_failure") return record.validation_failure;
+  if (record?.outcome_type === "skipped_image") return record.skipped_image;
+  return null;
+}
+
+export function validatePersistedCardOutcomeV1(record, eligibleCards) {
+  const selectedIndex = Number(record?.selected_index);
+  if (!Number.isInteger(selectedIndex) || selectedIndex < 0 || selectedIndex >= eligibleCards.length) {
+    return { ok: false, reason: "invalid_selected_index" };
+  }
+  const expectedCard = eligibleCards[selectedIndex];
+  if (normalizeText(record?.card?.card_print_id) !== normalizeText(expectedCard?.card_print_id)) {
+    return { ok: false, reason: "card_print_id_mismatch", selectedIndex };
+  }
+  if (!persistedOutcomePayload(record) || !["generated_row", "validation_failure", "skipped_image"].includes(record?.outcome_type)) {
+    return { ok: false, reason: "invalid_outcome_payload", selectedIndex };
+  }
+  return {
+    ok: true,
+    selectedIndex,
+    outcome: {
+      type: record.outcome_type,
+      card: expectedCard,
+      row: record.generated_row ?? null,
+      failure: record.validation_failure ?? null,
+      skipped: record.skipped_image ?? null,
+    },
+  };
+}
+
+async function loadPersistedCardOutcomes(runDir, eligibleCards) {
+  const perCardDir = path.join(runDir, "per_card");
+  let entries = [];
+  try {
+    entries = await fs.readdir(perCardDir, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+
+  const outcomes = new Array(eligibleCards.length);
+  const corruptFiles = [];
+  for (const entry of entries.filter((item) => item.isFile() && item.name.endsWith(".json")).sort((left, right) => left.name.localeCompare(right.name))) {
+    const filePath = path.join(perCardDir, entry.name);
+    let record;
+    try {
+      record = await readJson(filePath);
+    } catch (error) {
+      corruptFiles.push({ file: entry.name, reason: "invalid_json", error: error.message });
+      continue;
+    }
+    const validation = validatePersistedCardOutcomeV1(record, eligibleCards);
+    if (!validation.ok) {
+      corruptFiles.push({ file: entry.name, reason: validation.reason });
+      continue;
+    }
+    if (outcomes[validation.selectedIndex]) {
+      throw new Error(`[card-visual-description-agent] duplicate valid per-card checkpoint for selected index ${validation.selectedIndex}`);
+    }
+    outcomes[validation.selectedIndex] = validation.outcome;
+  }
+
+  return {
+    outcomes,
+    recoveredCount: outcomes.filter(Boolean).length,
+    corruptFiles,
+    missingCount: outcomes.filter((outcome) => !outcome).length,
+  };
+}
+
 async function writePerCardCompletionArtifact(runDir, index, outcome) {
   const card = outcome.card ?? {};
   const fileName = `${String(index + 1).padStart(4, "0")}_${safeArtifactNamePart(card.gv_id || card.card_print_id)}_${outcome.type}.json`;
-  await writeJson(path.join(runDir, "per_card", fileName), {
+  await writeJsonAtomic(path.join(runDir, "per_card", fileName), {
     completed_at: nowIso(),
     selected_index: index,
     outcome_type: outcome.type,
@@ -9603,17 +9695,21 @@ function rowsFromOrderedOutcomes(outcomes, type, key) {
     .map((outcome) => outcome[key]);
 }
 
-async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir }) {
+async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir, initialOutcomes = [] }) {
   const outcomes = new Array(eligibleCards.length);
-  const completedGeneratedRows = [];
-  const completedValidationFailures = [];
-  const completedSkippedImages = [];
+  for (let index = 0; index < eligibleCards.length; index += 1) {
+    if (initialOutcomes[index]) outcomes[index] = initialOutcomes[index];
+  }
+  const completedGeneratedRows = rowsFromOrderedOutcomes(outcomes, "generated_row", "row");
+  const completedValidationFailures = rowsFromOrderedOutcomes(outcomes, "validation_failure", "failure");
+  const completedSkippedImages = rowsFromOrderedOutcomes(outcomes, "skipped_image", "skipped");
   let nextIndex = 0;
   let stopBeforeNextCall = null;
   const workerCount = Math.min(Math.max(1, Number(args.concurrency ?? DEFAULT_CONCURRENCY)), Math.max(eligibleCards.length, 1));
 
   const claimNextIndex = () => {
     if (stopBeforeNextCall) return null;
+    while (nextIndex < eligibleCards.length && outcomes[nextIndex]) nextIndex += 1;
     if (nextIndex >= eligibleCards.length) return null;
     if (args.maxCards !== null && args.maxCards !== undefined && nextIndex >= args.maxCards) {
       stopBeforeNextCall = {
@@ -9744,90 +9840,177 @@ function buildSummary({
   };
 }
 
+function assertResumeValue(label, actual, expected) {
+  if (stableJson(actual) !== stableJson(expected)) {
+    throw new Error(`[card-visual-description-agent] resume configuration mismatch for ${label}: expected ${stableJson(expected)}, received ${stableJson(actual)}`);
+  }
+}
+
+function configureResumeArgsV1(args, runPlan, branch) {
+  if (!runPlan || !Array.isArray(runPlan.selected_card_print_ids) || runPlan.selected_card_print_ids.length < 1) {
+    throw new Error("[card-visual-description-agent] resume run_plan.json is missing selected_card_print_ids");
+  }
+  if (runPlan.boundary?.db_writes || !["dry_run", "harvest"].includes(runPlan.mode)) {
+    throw new Error("[card-visual-description-agent] refusing to resume a run with database-write boundaries");
+  }
+
+  assertResumeValue("branch", branch, runPlan.branch);
+  assertResumeValue("mode", args.mode, runPlan.mode);
+  assertResumeValue("provider", args.provider, runPlan.provider);
+  assertResumeValue("model_version", args.modelVersion, runPlan.model_version);
+  assertResumeValue("prompt_version", args.promptVersion, runPlan.prompt_version);
+  assertResumeValue("output_schema_version", args.outputSchemaVersion, runPlan.output_schema_version);
+  assertResumeValue("image_detail", args.imageDetail, runPlan.image_detail);
+  assertResumeValue("concurrency", args.concurrency, runPlan.concurrency);
+  assertResumeValue("max_cards", args.maxCards, runPlan.max_cards);
+  assertResumeValue("max_run_cost_usd", args.maxRunCostUsd, runPlan.max_run_cost_usd);
+  assertResumeValue("max_retries", args.maxRetries, runPlan.max_retries);
+  assertResumeValue("openai_request_timeout_ms", args.openaiRequestTimeoutMs, runPlan.openai_request_timeout_ms);
+  assertResumeValue("exclude_branches", args.excludeBranches, runPlan.exclude_branches ?? []);
+  assertResumeValue("pricing.input_per_million", args.openaiInputCostPerMillion, runPlan.pricing_snapshot?.input_per_million ?? null);
+  assertResumeValue("pricing.output_per_million", args.openaiOutputCostPerMillion, runPlan.pricing_snapshot?.output_per_million ?? null);
+  assertResumeValue("pricing.cached_input_per_million", args.openaiCachedInputCostPerMillion, runPlan.pricing_snapshot?.cached_input_per_million ?? null);
+  assertResumeValue("pricing.image_cost_rule_version", args.openaiImageCostRuleVersion, runPlan.pricing_snapshot?.image_cost_rule_version ?? null);
+  if (args.cardPrintIds.length > 0) {
+    assertResumeValue("selected_card_print_ids", args.cardPrintIds, runPlan.selected_card_print_ids);
+  }
+
+  args.cardPrintId = null;
+  args.cardPrintIds = [...runPlan.selected_card_print_ids];
+  args.gvId = null;
+  args.branchStratifiedSample = false;
+  args.v2StressSample = false;
+  args.highValueSample = false;
+  args.limit = Number(runPlan.requested_limit ?? args.limit);
+  args.harvestMaxValidationFailureRate = runPlan.harvest_max_validation_failure_rate ?? args.harvestMaxValidationFailureRate;
+  args.harvestMaxValidationFailures = runPlan.harvest_max_validation_failures ?? args.harvestMaxValidationFailures;
+  args.pricingSnapshot = runPlan.pricing_snapshot;
+  return args;
+}
+
+function assertResumeSelectionV1(runPlan, eligibleCards) {
+  const selectedIds = eligibleCards.map((card) => normalizeText(card.card_print_id));
+  const plannedIds = runPlan.selected_card_print_ids.map(normalizeText);
+  assertResumeValue("database_selected_card_print_ids", selectedIds, plannedIds);
+}
+
 export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
   await loadEnvFilesIfAvailable();
-  const args = parseCardVisualDescriptionArgsV1(rawArgs);
-  assertOpenAiPricingConfigured(args);
+  let args = parseCardVisualDescriptionArgsV1(rawArgs);
   const conn = connectionString();
   if (!conn) {
     throw new Error("[card-visual-description-agent] Missing SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL.");
   }
 
-  const startedAt = nowIso();
-  args.pricingSnapshot = buildPricingSnapshot(args, startedAt);
+  const invocationStartedAt = nowIso();
   const commitSha = await gitOutput(["rev-parse", "HEAD"]);
   const branch = await gitOutput(["branch", "--show-current"]);
   const trackedStatusShort = await gitOutput(["status", "--short", "--untracked-files=no"]);
-  const runKey = sha256(stableJson({
-    version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
-    started_at: startedAt,
-    mode: args.mode,
-    limit: args.limit,
-    provider: args.provider,
-    model_version: args.modelVersion,
-    prompt_version: args.promptVersion,
-    output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
-    concurrency: args.concurrency,
-    commit_sha: commitSha,
-  }));
-  const runDir = path.join(args.outDir, `${stampFromIso(startedAt)}_${args.mode}_${runKey.slice(0, 12)}`);
-  const runPlan = {
-    run_key: runKey,
-    commit_sha: commitSha,
-    branch,
-    tracked_worktree_status_short: trackedStatusShort,
-    tracked_worktree_clean: trackedStatusShort === "",
-    mode: args.mode,
-    provider: args.provider,
-    requested_limit: args.limit,
-    max_cards: args.maxCards,
-    max_run_cost_usd: args.maxRunCostUsd,
-    harvest_max_validation_failure_rate: args.harvestMaxValidationFailureRate,
-    harvest_max_validation_failures: args.harvestMaxValidationFailures,
-    concurrency: args.concurrency,
-    prompt_version: args.promptVersion,
-    output_schema_version: args.outputSchemaVersion,
-    sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
-    branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
-    branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample || args.highValueSample) ? args.branchCandidateLimit : null,
-    high_value_sample: args.highValueSample,
-    high_value_selection_version: args.highValueSample ? HIGH_VALUE_SELECTION_VERSION : null,
-    exclude_branches: args.excludeBranches,
-    active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
-    deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
-    v2_stress_sample: args.v2StressSample,
-    local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
-    agent_version: args.agentVersion,
-    model_version: args.modelVersion,
-    image_detail: args.imageDetail,
-    max_retries: args.maxRetries,
-    openai_request_timeout_ms: args.openaiRequestTimeoutMs,
-    pricing_snapshot: args.pricingSnapshot,
-    force_version: args.forceVersion,
-    v2_stress_roles: args.v2StressSample ? FACT_GRAPH_V2_STRESS_ROLES : null,
-    target_card_print_id: args.cardPrintId,
-    target_card_print_ids: args.cardPrintIds,
-    target_gv_id: args.gvId,
-    started_at: startedAt,
-    boundary: {
-      db_writes: args.mode === "apply",
-      model_calls: args.mode !== "plan" && args.provider !== "fixture",
-      fixture_generation: args.provider === "fixture",
-      embeddings: false,
-      card_prints_mutation: false,
-    },
-  };
+  let startedAt = invocationStartedAt;
+  let runKey;
+  let runDir;
+  let runPlan;
+  if (args.resumeRunDir) {
+    runDir = path.resolve(args.resumeRunDir);
+    runPlan = await readJson(path.join(runDir, "run_plan.json"));
+    args = configureResumeArgsV1(args, runPlan, branch);
+    startedAt = runPlan.started_at;
+    runKey = runPlan.run_key;
+  } else {
+    args.pricingSnapshot = buildPricingSnapshot(args, startedAt);
+    runKey = sha256(stableJson({
+      version: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+      started_at: startedAt,
+      mode: args.mode,
+      limit: args.limit,
+      provider: args.provider,
+      model_version: args.modelVersion,
+      prompt_version: args.promptVersion,
+      output_schema_version: args.outputSchemaVersion,
+      sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
+      concurrency: args.concurrency,
+      commit_sha: commitSha,
+    }));
+    runDir = path.join(args.outDir, `${stampFromIso(startedAt)}_${args.mode}_${runKey.slice(0, 12)}`);
+    runPlan = {
+      run_key: runKey,
+      commit_sha: commitSha,
+      branch,
+      tracked_worktree_status_short: trackedStatusShort,
+      tracked_worktree_clean: trackedStatusShort === "",
+      mode: args.mode,
+      provider: args.provider,
+      requested_limit: args.limit,
+      max_cards: args.maxCards,
+      max_run_cost_usd: args.maxRunCostUsd,
+      harvest_max_validation_failure_rate: args.harvestMaxValidationFailureRate,
+      harvest_max_validation_failures: args.harvestMaxValidationFailures,
+      concurrency: args.concurrency,
+      prompt_version: args.promptVersion,
+      output_schema_version: args.outputSchemaVersion,
+      sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
+      branch_targets: args.branchStratifiedSample ? args.branchTargets : null,
+      branch_candidate_limit: (args.branchStratifiedSample || args.v2StressSample || args.highValueSample) ? args.branchCandidateLimit : null,
+      high_value_sample: args.highValueSample,
+      high_value_selection_version: args.highValueSample ? HIGH_VALUE_SELECTION_VERSION : null,
+      exclude_branches: args.excludeBranches,
+      active_prompt_branches: BRANCH_STRATIFIED_BRANCHES,
+      deferred_prompt_branches: [...DEFERRED_VISUAL_FACT_PROMPT_BRANCHES],
+      v2_stress_sample: args.v2StressSample,
+      local_tls_certificate_verification_disabled: process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0",
+      agent_version: args.agentVersion,
+      model_version: args.modelVersion,
+      image_detail: args.imageDetail,
+      max_retries: args.maxRetries,
+      openai_request_timeout_ms: args.openaiRequestTimeoutMs,
+      pricing_snapshot: args.pricingSnapshot,
+      force_version: args.forceVersion,
+      v2_stress_roles: args.v2StressSample ? FACT_GRAPH_V2_STRESS_ROLES : null,
+      target_card_print_id: args.cardPrintId,
+      target_card_print_ids: args.cardPrintIds,
+      target_gv_id: args.gvId,
+      started_at: startedAt,
+      boundary: {
+        db_writes: args.mode === "apply",
+        model_calls: args.mode !== "plan" && args.provider !== "fixture",
+        fixture_generation: args.provider === "fixture",
+        embeddings: false,
+        card_prints_mutation: false,
+      },
+    };
+  }
+  assertOpenAiPricingConfigured(args);
 
   const client = await createPgClient({ connectionString: conn });
   await client.connect();
   try {
     const eligibleCards = await fetchEligibleCards(client, args);
     const totalEligibleCatalogCount = Number(eligibleCards[0]?.total_eligible_catalog_count ?? eligibleCards.length);
-    runPlan.selected_count = eligibleCards.length;
-    runPlan.selected_card_print_ids = eligibleCards.map((card) => card.card_print_id);
-    runPlan.selected_cards = eligibleCards.map(compactCardForArtifact);
-    await writeJson(path.join(runDir, "run_plan.json"), runPlan);
+    let resumeState = null;
+    if (args.resumeRunDir) {
+      assertResumeSelectionV1(runPlan, eligibleCards);
+      resumeState = await loadPersistedCardOutcomes(runDir, eligibleCards);
+      runPlan.recovery_attempts = [
+        ...(Array.isArray(runPlan.recovery_attempts) ? runPlan.recovery_attempts : []),
+        {
+          resumed_at: invocationStartedAt,
+          original_commit_sha: runPlan.commit_sha,
+          resume_commit_sha: commitSha,
+          resume_tracked_worktree_status_short: trackedStatusShort,
+          resume_tracked_worktree_clean: trackedStatusShort === "",
+          recovered_outcome_count: resumeState.recoveredCount,
+          missing_outcome_count: resumeState.missingCount,
+          corrupt_checkpoint_files: resumeState.corruptFiles,
+        },
+      ];
+      await writeJsonAtomic(path.join(runDir, "run_plan.json"), runPlan);
+      console.error(`[card-visual-description-agent] resume recovered=${resumeState.recoveredCount} missing=${resumeState.missingCount} corrupt=${resumeState.corruptFiles.length}`);
+    } else {
+      runPlan.selected_count = eligibleCards.length;
+      runPlan.selected_card_print_ids = eligibleCards.map((card) => card.card_print_id);
+      runPlan.selected_cards = eligibleCards.map(compactCardForArtifact);
+      await writeJson(path.join(runDir, "run_plan.json"), runPlan);
+    }
     const v2StressSelection = args.v2StressSample ? buildV2StressSelectionArtifact(eligibleCards) : null;
     if (v2StressSelection) {
       await writeJson(path.join(runDir, "v2_stress_selection.json"), v2StressSelection);
@@ -9843,7 +10026,12 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     let stopBeforeNextCall = null;
 
     if (args.mode !== "plan") {
-      const processed = await processEligibleCardsWithConcurrency({ eligibleCards, args, runDir });
+      const processed = await processEligibleCardsWithConcurrency({
+        eligibleCards,
+        args,
+        runDir,
+        initialOutcomes: resumeState?.outcomes ?? [],
+      });
       generatedRows = processed.generatedRows;
       validationFailures = processed.validationFailures;
       skippedImages = processed.skippedImages;

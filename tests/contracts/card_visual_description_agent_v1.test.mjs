@@ -32,6 +32,7 @@ import {
   selectBranchStratifiedCardsV1,
   selectHighValueSampleCardsV1,
   selectV2StressSampleCardsV1,
+  validatePersistedCardOutcomeV1,
   validateVisualDescriptionPayloadV1,
 } from "../../backend/card_descriptions/card_visual_description_agent_v1.mjs";
 
@@ -762,6 +763,17 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(harvest.harvestMaxValidationFailureRate, 0.12);
   assert.equal(harvest.harvestMaxValidationFailures, 30);
   assert.deepEqual(harvest.excludeBranches, ["energy"]);
+  const resume = parseCardVisualDescriptionArgsV1([
+    "--harvest",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--resume-run-dir=docs/audits/card_visual_descriptions/interrupted-run",
+  ]);
+  assert.equal(resume.resumeRunDir, new URL("../../docs/audits/card_visual_descriptions/interrupted-run", import.meta.url).pathname.replace(/^\/(?:([A-Za-z]):)/, "$1:").replace(/\//g, "\\"));
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1(["--apply", "--provider=openai", "--model=test-vision-model", "--resume-run-dir=interrupted-run"]),
+    /--resume-run-dir is supported only for dry_run or harvest mode/,
+  );
   assert.throws(
     () => parseCardVisualDescriptionArgsV1([
       "--harvest",
@@ -784,6 +796,37 @@ test("card visual description args default to dry-run and block fixture apply", 
     ]),
     /high-value sampling cannot be combined/,
   );
+});
+
+test("persisted per-card outcomes require the planned index, card, type, and payload", () => {
+  const eligibleCards = [{ card_print_id: "card-1", gv_id: "GV-PK-TEST-1", name: "Test Card" }];
+  const valid = validatePersistedCardOutcomeV1({
+    selected_index: 0,
+    outcome_type: "generated_row",
+    card: { card_print_id: "card-1" },
+    generated_row: { card_print_id: "card-1", review_status: "pending" },
+  }, eligibleCards);
+  assert.equal(valid.ok, true);
+  assert.equal(valid.selectedIndex, 0);
+  assert.equal(valid.outcome.type, "generated_row");
+  assert.equal(valid.outcome.card, eligibleCards[0]);
+
+  assert.deepEqual(
+    validatePersistedCardOutcomeV1({ ...valid, selected_index: 2 }, eligibleCards),
+    { ok: false, reason: "invalid_selected_index" },
+  );
+  assert.equal(validatePersistedCardOutcomeV1({
+    selected_index: 0,
+    outcome_type: "generated_row",
+    card: { card_print_id: "different-card" },
+    generated_row: { card_print_id: "different-card" },
+  }, eligibleCards).reason, "card_print_id_mismatch");
+  assert.equal(validatePersistedCardOutcomeV1({
+    selected_index: 0,
+    outcome_type: "generated_row",
+    card: { card_print_id: "card-1" },
+    generated_row: null,
+  }, eligibleCards).reason, "invalid_outcome_payload");
 });
 
 test("card visual description semantic tags stay visual and exclude metadata", () => {
@@ -8160,6 +8203,8 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /--high-value-sample/);
   assert.match(agent, /--concurrency=/);
   assert.match(agent, /--harvest/);
+  assert.match(agent, /--resume-run-dir=/);
+  assert.match(agent, /writeJsonAtomic/);
   assert.match(agent, /--exclude-branches=/);
   assert.match(agent, /high_value_selection.json/);
   assert.match(agent, /validation_quarantine\.jsonl/);
