@@ -5086,6 +5086,16 @@ async function validateImageForModel(row, args) {
   };
 }
 
+export async function validateCardImageProvenanceV1(row, options = {}) {
+  await loadEnvFilesIfAvailable();
+  return validateImageForModel(row, {
+    minWidth: options.minWidth ?? DEFAULT_MIN_WIDTH,
+    minHeight: options.minHeight ?? DEFAULT_MIN_HEIGHT,
+    maxImageBytes: options.maxImageBytes ?? DEFAULT_MAX_IMAGE_BYTES,
+    placeholderHashes: options.placeholderHashes ?? parseCommaList(process.env.CARD_VISUAL_DESCRIPTION_PLACEHOLDER_HASHES),
+  });
+}
+
 export function buildDescriptionVersionKeyV1({ card_print_id, image_sha256, prompt_version, output_schema_version, agent_version, model_version }) {
   return sha256(stableJson({
     card_print_id,
@@ -8366,7 +8376,8 @@ async function openAiDescription(card, image, args) {
   throw new Error("[card-visual-description-agent] openai_retry_loop_exhausted");
 }
 
-async function generateDescription(card, image, args) {
+export async function generateVisualDescriptionPayloadV1(card, image, args) {
+  await loadEnvFilesIfAvailable();
   if (args.provider === "fixture") {
     return {
       payload: fixtureDescription(card),
@@ -8377,8 +8388,17 @@ async function generateDescription(card, image, args) {
   throw new Error(`[card-visual-description-agent] unsupported provider: ${args.provider}`);
 }
 
-function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
+export function buildDescriptionRowV1(card, image, normalizedPayload, args, telemetry) {
   const promptMetadata = resolveCardPromptMetadata(card);
+  const sharedRepresentativeImageStatus = /^representative_shared/i.test(normalizeText(card.image_status));
+  const sharedRepresentativeFlag = "variant_specific_print_marker_not_confirmed_by_image";
+  const sharedRepresentativeFlagDetails = sharedRepresentativeImageStatus
+    ? [{
+        flag: sharedRepresentativeFlag,
+        matched_text: card.image_status,
+        field: "image_status",
+      }]
+    : [];
   const cardForVisualSanitization = {
     ...card,
     supertype: promptMetadata.supertype,
@@ -8392,20 +8412,32 @@ function buildDescriptionRow(card, image, normalizedPayload, args, telemetry) {
     ...normalizedPayload,
     semantic_tags: semanticTagSanitization.semantic_tags,
   }, cardForVisualSanitization);
-  const policyResults = evaluateVisualDescriptionPolicyV1({
+  const policyResults = uniquePolicyResults([
+    ...evaluateVisualDescriptionPolicyV1({
     ...normalizedPayload,
     semantic_tags: semanticTagSanitization.semantic_tags,
-  }, cardForVisualSanitization);
+    }, cardForVisualSanitization),
+    ...(sharedRepresentativeImageStatus ? [{
+      policy_rule: "shared_artwork_image_does_not_confirm_variant_print_markers",
+      field: "image_status",
+      claim: card.image_status,
+      supporting_evidence: ["artwork facts may be shared; variant print markers require a printing-specific image"],
+      decision: "needs_review",
+      quality_flag: sharedRepresentativeFlag,
+    }] : []),
+  ]);
   const reviewFlags = uniqueSorted(reviewFlagDetails.map((detail) => detail.flag));
   const qualityFlags = uniqueSorted([
     ...(image.quality_flags ?? []),
     ...(normalizedPayload.quality_flags ?? []),
     ...semanticTagSanitization.quality_flags,
     ...reviewFlags,
+    ...(sharedRepresentativeImageStatus ? [sharedRepresentativeFlag] : []),
   ]);
   const qualityFlagDetails = uniqueQualityFlagDetails([
     ...(semanticTagSanitization.quality_flag_details ?? []),
     ...reviewFlagDetails,
+    ...sharedRepresentativeFlagDetails,
   ]);
   const row = {
     card_print_id: card.card_print_id,
@@ -9888,7 +9920,7 @@ async function processVisualDescriptionCard(card, index, totalCount, args, runDi
     }
 
     console.error(`[card-visual-description-agent] generating ${index + 1}/${totalCount}: ${card.gv_id} ${card.name}`);
-    const generation = await generateDescription(card, image, args);
+    const generation = await generateVisualDescriptionPayloadV1(card, image, args);
     generationTelemetry = generation.telemetry;
     const rawPayload = generation.payload;
     const validation = validateVisualDescriptionPayloadV1(rawPayload, card);
@@ -9908,7 +9940,7 @@ async function processVisualDescriptionCard(card, index, totalCount, args, runDi
       return outcome;
     }
 
-    const row = buildDescriptionRow(card, image, validation.normalized, args, generationTelemetry);
+    const row = buildDescriptionRowV1(card, image, validation.normalized, args, generationTelemetry);
     console.error(`[card-visual-description-agent] validated ${card.gv_id} ${card.name} status=${row.review_status}`);
     const outputRow = {
       ...row,

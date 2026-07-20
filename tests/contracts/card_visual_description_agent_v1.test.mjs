@@ -8,6 +8,7 @@ import {
   CARD_VISUAL_FACT_GRAPH_SCHEMA_VERSION,
   CARD_VISUAL_SEARCH_ALIAS_VERSION,
   aggregateUsageRows,
+  buildDescriptionRowV1,
   buildFactGraphCompatibilityDigestV1,
   buildDescriptionVersionKeyV1,
   buildEmbeddingInputV1,
@@ -8199,6 +8200,92 @@ test("harvest quarantine repair retains supported sleepy cues and reconciles est
   assert.equal(semanticLabels.includes("creature"), false);
 });
 
+test("apply-readiness recovery builds the production saved-row shape from recovered evidence", () => {
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload());
+  assert.equal(validation.ok, true, validation.findings.join("\n"));
+  const row = buildDescriptionRowV1(
+    {
+      card_print_id: "11111111-1111-1111-1111-111111111111",
+      gv_id: "GV-PK-TEST-001",
+      name: "Pikachu",
+      prompt_branch: "pokemon",
+      supertype: "Pokemon",
+      card_category: "Basic",
+    },
+    {
+      image_source: "image_path",
+      image_source_key: "warehouse-derived/self-hosted-images-v1/card_prints/test/pikachu/image.png",
+      image_sha256: "a".repeat(64),
+      image_width: 600,
+      image_height: 825,
+      image_mime_type: "image/png",
+      image_quality_score: 0.92,
+      quality_flags: [],
+    },
+    validation.normalized,
+    {
+      promptVersion: "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+      outputSchemaVersion: "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+      agentVersion: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+      modelVersion: "gpt-4.1-mini",
+    },
+    {
+      response_model_version: "gpt-4.1-mini-2025-04-14",
+      image_detail: "high",
+      request_count: 1,
+      retry_count: 0,
+      usage: {
+        input_tokens: 100,
+        output_tokens: 200,
+        total_tokens: 300,
+        cached_input_tokens: 0,
+        reasoning_output_tokens: 0,
+      },
+      estimated_cost_usd: 0.001,
+    },
+  );
+  assert.equal(row.card_print_id, "11111111-1111-1111-1111-111111111111");
+  assert.equal(row.image_sha256, "a".repeat(64));
+  assert.equal(row.input_tokens, 100);
+  assert.equal(row.output_tokens, 200);
+  assert.ok(["pending", "needs_review"].includes(row.review_status));
+  assert.equal(row.description_version_key.length, 64);
+
+  const sharedVariantRow = buildDescriptionRowV1(
+    {
+      card_print_id: "22222222-2222-2222-2222-222222222222",
+      gv_id: "GV-PK-TEST-002-STAMP",
+      name: "Pikachu",
+      prompt_branch: "pokemon",
+      supertype: "Pokemon",
+      card_category: "Basic",
+      image_status: "representative_shared_stamp",
+    },
+    {
+      image_source: "image_path",
+      image_source_key: "warehouse-derived/self-hosted-images-v1/card_prints/test/pikachu/shared.png",
+      image_sha256: "b".repeat(64),
+      image_width: 600,
+      image_height: 825,
+      image_mime_type: "image/png",
+      image_quality_score: 0.92,
+      quality_flags: [],
+    },
+    validation.normalized,
+    {
+      promptVersion: "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2",
+      outputSchemaVersion: "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+      agentVersion: CARD_VISUAL_DESCRIPTION_AGENT_VERSION,
+      modelVersion: "gpt-4.1-mini",
+    },
+    {},
+  );
+  assert.equal(sharedVariantRow.review_status, "needs_review");
+  assert.ok(sharedVariantRow.quality_flags.includes("variant_specific_print_marker_not_confirmed_by_image"));
+  assert.ok(sharedVariantRow.policy_results.some((result) =>
+    result.policy_rule === "shared_artwork_image_does_not_confirm_variant_print_markers"));
+});
+
 test("card visual description version and embedding input are deterministic", () => {
   const base = {
     card_print_id: "11111111-1111-1111-1111-111111111111",
@@ -8246,6 +8333,7 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   const agent = source("backend/card_descriptions/card_visual_description_agent_v1.mjs");
   const script = source("scripts/audits/card_visual_description_agent_v1.mjs");
   const quarantineReplay = source("scripts/audits/card_visual_description_quarantine_replay_v1.mjs");
+  const applyReadinessRecovery = source("scripts/audits/card_visual_description_apply_readiness_recovery_v1.mjs");
   const pkg = source("package.json");
   const visualLanguage = source("docs/contracts/CARD_VISUAL_LANGUAGE_V1.md");
   const factGraphV2 = source("docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md");
@@ -8341,6 +8429,9 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(quarantineReplay, /validateVisualDescriptionPayloadV1/);
   assert.match(quarantineReplay, /recovered_payloads\.jsonl/);
   assert.match(quarantineReplay, /provider_calls: 0/);
+  assert.match(applyReadinessRecovery, /reconstructed_saved_rows\.jsonl/);
+  assert.match(applyReadinessRecovery, /--retry-provider/);
+  assert.match(applyReadinessRecovery, /database_writes: false/);
   assert.match(pkg, /"card-desc:plan"/);
   assert.match(pkg, /"card-desc:dry-run"/);
   assert.match(pkg, /"card-desc:apply"/);

@@ -64,6 +64,20 @@ Grouped quarantine repair must:
 
 A recovered payload is structurally valid, but it is not an exact apply artifact until its image provenance, model telemetry, version fields, derived review status, and saved-system fingerprint reconcile.
 
+## Shared Artwork And Variant Images
+
+Artwork facts may be reconstructed from a shared representative image when variants use the same artwork.
+
+Shared artwork does not confirm printing-specific evidence. If `image_status` indicates a representative/shared image:
+
+- retain reusable artwork facts
+- do not treat stamps, logos, copyright lines, bottom text, borders, errors, or color differences as confirmed for the specific printing
+- add `variant_specific_print_marker_not_confirmed_by_image`
+- force the row to `needs_review`
+- preserve the representative image status in the provenance audit
+
+`not observed` does not mean `not present`, and a shared image does not prove two printings are identical.
+
 ## Harvest Status
 
 Harvest runs report one of:
