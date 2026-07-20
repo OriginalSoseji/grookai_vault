@@ -7036,6 +7036,111 @@ test("card visual fact graph repairs same-50 rerun semantic labels and compound 
   assert.equal(semanticIds.includes("sem_cannot_determine_face_rerun_001"), false);
 });
 
+test("card visual fact graph repairs autopilot same-50 live failure classes", () => {
+  const graph = structuredClone(validFactGraph());
+  graph.observations.push(
+    {
+      observation_id: "obs_blue_flame_autopilot_001",
+      kind: "visual_effects",
+      label: "blue flame emitting from open mouth",
+      normalized_label: "blue flame mouth",
+      scene_layer: "foreground",
+      frame_position: "center_left",
+      visibility: "visible",
+      salience: "high",
+      confidence: 0.99,
+      evidence_strength: "strong",
+    },
+    {
+      observation_id: "obs_cityscape_autopilot_001",
+      kind: "environment",
+      label: "cityscape background with illuminated buildings",
+      normalized_label: "cityscape background illuminated buildings",
+      scene_layer: "background",
+      frame_position: "full_background",
+      visibility: "visible",
+      salience: "medium",
+      confidence: 0.95,
+      evidence_strength: "strong",
+    },
+  );
+  graph.scene_layers.foreground.push("obs_blue_flame_autopilot_001");
+  graph.scene_layers.background.push("obs_cityscape_autopilot_001");
+  graph.modules.creature_anatomy.pose_orientation.push({
+    subject_observation_id: "obs_subject_001",
+    pose: ["upright"],
+    orientation: "diagonal forward-facing",
+    action_state: ["exhaling flame"],
+    supporting_observation_ids: ["obs_subject_001", "obs_creature_anatomy_missing_999"],
+    confidence: 0.99,
+  });
+  graph.environment = {
+    ...graph.environment,
+    setting: ["cityscape"],
+    architecture: ["illuminated buildings"],
+    supporting_observation_ids: ["obs_cityscape_autopilot_001"],
+  };
+  graph.semantic_visual_facts.push(
+    semanticVisualFact({
+      semantic_fact_id: "sem_blue_flame_autopilot_001",
+      category: "action",
+      label: "exhaling blue flame",
+      supporting_observation_ids: ["obs_blue_flame_autopilot_001", "obs_creature_anatomy_missing_999"],
+      evidence: {
+        mouth: ["open mouth"],
+        motion_state: ["exhaling flame"],
+        objects: ["blue flame"],
+      },
+    }),
+    semanticVisualFact({
+      semantic_fact_id: "sem_cityscape_autopilot_001",
+      category: "environment",
+      label: "cityscape",
+      supporting_observation_ids: ["obs_cityscape_autopilot_001"],
+      evidence: { environment: ["illuminated buildings", "nighttime"] },
+    }),
+  );
+
+  const validation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: graph }));
+  assert.equal(validation.ok, true, validation.findings.join(","));
+  const normalizedGraph = validation.normalized.visual_attributes.fact_graph;
+  const blueFlame = normalizedGraph.semantic_visual_facts.find((fact) => fact.semantic_fact_id === "sem_blue_flame_autopilot_001");
+  const cityscape = normalizedGraph.semantic_visual_facts.find((fact) => fact.semantic_fact_id === "sem_cityscape_autopilot_001");
+  assert.deepEqual(blueFlame.supporting_observation_ids, ["obs_blue_flame_autopilot_001"]);
+  assert.equal(cityscape.label, "cityscape");
+  assert.ok(normalizedGraph.modules.creature_anatomy.pose_orientation
+    .some((row) => row.supporting_observation_ids.length === 1 && row.supporting_observation_ids[0] === "obs_subject_001"));
+
+  const unsupportedGraph = structuredClone(validFactGraph());
+  unsupportedGraph.observations.push({
+    observation_id: "obs_cityscape_unsupported_autopilot_001",
+    kind: "environment",
+    label: "abstract dark background",
+    normalized_label: "abstract dark background",
+    scene_layer: "background",
+    frame_position: "full_background",
+    visibility: "visible",
+    salience: "medium",
+    confidence: 0.9,
+    evidence_strength: "medium",
+  });
+  unsupportedGraph.scene_layers.background.push("obs_cityscape_unsupported_autopilot_001");
+  unsupportedGraph.semantic_visual_facts.push(semanticVisualFact({
+    semantic_fact_id: "sem_cityscape_unsupported_autopilot_001",
+    category: "environment",
+    label: "cityscape",
+    supporting_observation_ids: ["obs_cityscape_unsupported_autopilot_001"],
+    evidence: { environment: ["cityscape"] },
+  }));
+  const unsupportedValidation = validateVisualDescriptionPayloadV1(validFactPayload({ fact_graph: unsupportedGraph }));
+  assert.equal(unsupportedValidation.ok, true, unsupportedValidation.findings.join(","));
+  assert.equal(
+    unsupportedValidation.normalized.visual_attributes.fact_graph.semantic_visual_facts
+      .some((fact) => fact.semantic_fact_id === "sem_cityscape_unsupported_autopilot_001"),
+    false,
+  );
+});
+
 test("card visual fact graph repairs environment alignment and card UI weak-marker abstentions", () => {
   const graph = structuredClone(validFactGraph());
   graph.observations.push(

@@ -159,6 +159,8 @@ const SEMANTIC_VISUAL_FACT_FOREST_LABEL_PATTERN = /\b(?:forest|woodland|woods|tr
 const SEMANTIC_VISUAL_FACT_RAIN_LABEL_PATTERN = /\b(?:rain|rainy|rainfall|wet weather)\b/i;
 const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_LABEL_PATTERN = /\b(?:ghostly|haunted|spooky|halloween|spectral|ghost(?:[-\s]?type)?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN = /\b(?:night|nighttime|dark sky|dusk|twilight)\b/i;
+const SEMANTIC_VISUAL_FACT_CITYSCAPE_LABEL_PATTERN =
+  /\b(?:cityscape|skyline|urban(?:\s+scene|\s+background)?|city\s+background)\b/i;
 const SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN = /\b(?:day|daytime|daylight|sunny|sunlit)\b/i;
 const SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN = /\broaring\b/i;
 const SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN = /\b(?:attack|attacking|striking|hit|hitting)\b/i;
@@ -243,6 +245,8 @@ const SEMANTIC_VISUAL_FACT_GHOSTLY_ENVIRONMENT_SUPPORT_PATTERN =
   /\b(?:ghost(?:ly)?(?:[-\s]type)?|ghost flames?|purple ghost flames?|spectral|wisps?|spirit|haunted|smoke|smoky|shadow|shadows|fog|mist|tombstones?|graves?|haunted house|bats?|pumpkins?|jack[-\s]?o[-\s]?lanterns?|candles?|skulls?|cobwebs?)\b/i;
 const SEMANTIC_VISUAL_FACT_NIGHT_SUPPORT_PATTERN =
   /\b(?:night|nighttime|dark sky|black sky|very dark sky|moonlit|moon|dusk|twilight|stars?|stormy night sky)\b/i;
+const SEMANTIC_VISUAL_FACT_CITYSCAPE_SUPPORT_PATTERN =
+  /\b(?:buildings?|illuminated windows?|windows?|signage|streets?|skyline|city lights?|urban|architecture|towers?|skyscrapers?)\b/i;
 const SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN =
   /\b(?:day|daytime|daylight|sunlit|sunny|sun|bright sky|blue sky|visible sun|sun in (?:the )?(?:upper|top|sky))\b/i;
 const SEMANTIC_VISUAL_FACT_ROARING_SUPPORT_PATTERN =
@@ -2599,9 +2603,27 @@ function repairObservationReferenceIdToKnown(id, knownIds) {
 }
 
 function repairObservationReferencesToKnown(ids, knownIds) {
-  return uniquePreserving(normalizeObservationReferenceArray(ids)
+  const repaired = uniquePreserving(normalizeObservationReferenceArray(ids)
     .map((id) => repairObservationReferenceIdToKnown(id, knownIds))
     .filter(Boolean));
+  const known = repaired.filter((id) => knownIds.has(id));
+  return known.length > 0 ? known : repaired;
+}
+
+function repairModuleObservationReferencesToKnown(value, knownIds) {
+  if (!knownIds) return value;
+  if (Array.isArray(value)) return value.map((entry) => repairModuleObservationReferencesToKnown(entry, knownIds));
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(Object.entries(value).map(([key, child]) => {
+    if (
+      key === "observation_ids"
+      || key === "supporting_observation_ids"
+      || key.endsWith("_observation_ids")
+    ) {
+      return [key, repairObservationReferencesToKnown(child, knownIds)];
+    }
+    return [key, repairModuleObservationReferencesToKnown(child, knownIds)];
+  }));
 }
 
 function normalizeTypedFactsWithCardUiMirrorRepair(value, rawGraph, observations) {
@@ -3187,6 +3209,12 @@ function isUnsupportedEvidenceBackedSemanticVisualFact(fact, options = {}) {
   if (SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_NIGHT_SUPPORT_PATTERN, options);
   }
+  if (SEMANTIC_VISUAL_FACT_CITYSCAPE_LABEL_PATTERN.test(label)) {
+    return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_CITYSCAPE_SUPPORT_PATTERN, {
+      ...options,
+      circularPattern: /\b(?:cityscape|skyline|urban(?:\s+scene|\s+background)?|city\s+background)\b/gi,
+    });
+  }
   if (SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN.test(label)) {
     return !semanticVisualFactHasEvidenceBackedSupport(fact, SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN, options);
   }
@@ -3287,13 +3315,22 @@ function shouldDropSemanticVisualFact(fact, options = {}) {
 
 function normalizeSemanticVisualFacts(value, options = {}) {
   const countSupportById = countSupportObservationIdsByCountId(options.counts ?? []);
+  const knownObservationIds = new Set((options.observations ?? [])
+    .map((observation) => normalizeText(observation.observation_id))
+    .filter(Boolean));
   return normalizeObjectArray(value).map((entry) => ({
     semantic_fact_id: normalizeText(entry.semantic_fact_id),
     category: normalizeText(entry.category),
     label: normalizeSemanticVisualFactLabelText(entry.label),
     subject_observation_id: normalizeText(entry.subject_observation_id),
-    supporting_observation_ids: uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
-      .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
+    supporting_observation_ids: knownObservationIds.size > 0
+      ? repairObservationReferencesToKnown(
+        normalizeObservationReferenceArray(entry.supporting_observation_ids)
+          .flatMap((reference) => countSupportById.get(reference) ?? [reference]),
+        knownObservationIds,
+      )
+      : uniquePreserving(normalizeObservationReferenceArray(entry.supporting_observation_ids)
+        .flatMap((reference) => countSupportById.get(reference) ?? [reference])),
     evidence: normalizeSemanticVisualFactEvidence(entry.evidence),
     confidence: normalizeConfidence(entry.confidence),
     uncertainty: normalizeText(entry.uncertainty),
@@ -3878,7 +3915,7 @@ function normalizeFactGraphModules(value, knownObservationIds = null) {
   const cardUiModule = knownIds
     ? filterCardUiAndPrintMarkersModuleToKnownObservations(modules.card_ui_and_print_markers, knownIds)
     : normalizeCardUiAndPrintMarkersModule(modules.card_ui_and_print_markers);
-  return {
+  const normalizedModules = {
     subjects: {
       ...normalizeModuleFactIds(modules.subjects),
       scene_subject_observation_ids: normalizeObservationReferenceArray(modules.subjects?.scene_subject_observation_ids),
@@ -3946,6 +3983,7 @@ function normalizeFactGraphModules(value, knownObservationIds = null) {
       terms: normalizeStringArray(modules.fact_grounded_search_terms?.terms),
     },
   };
+  return knownIds ? repairModuleObservationReferencesToKnown(normalizedModules, knownIds) : normalizedModules;
 }
 
 function normalizeModuleReviews(value, knownObservationIds = null) {
@@ -5887,6 +5925,14 @@ function isAllowedSemanticVisualFactLabelV1(fact) {
     && SEMANTIC_VISUAL_FACT_DAYTIME_LABEL_PATTERN.test(label)
     && SEMANTIC_VISUAL_FACT_DAYTIME_SUPPORT_PATTERN.test(evidenceText)
   ) return true;
+  if (
+    category === "environment"
+    && SEMANTIC_VISUAL_FACT_CITYSCAPE_LABEL_PATTERN.test(label)
+    && SEMANTIC_VISUAL_FACT_CITYSCAPE_SUPPORT_PATTERN.test(evidenceText.replace(
+      /\b(?:cityscape|skyline|urban(?:\s+scene|\s+background)?|city\s+background)\b/gi,
+      " ",
+    ))
+  ) return true;
   if ((category === "action" || category === "state" || category === "expression") && SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN.test(label)) return true;
   if (category === "action" && SEMANTIC_VISUAL_FACT_ATTACKING_LABEL_PATTERN.test(label)) return true;
   if (category === "count_semantic" && SEMANTIC_VISUAL_FACT_COUNT_SEMANTIC_LABEL_PATTERN.test(label)) return true;
@@ -6056,6 +6102,11 @@ function validateSemanticVisualFactsV1(factGraph, knownIds) {
     }
     if (SEMANTIC_VISUAL_FACT_NIGHT_LABEL_PATTERN.test(label) && !semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_NIGHT_SUPPORT_PATTERN, factGraph)) {
       findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:night_without_visible_time_evidence`);
+    }
+    if (SEMANTIC_VISUAL_FACT_CITYSCAPE_LABEL_PATTERN.test(label) && !semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_CITYSCAPE_SUPPORT_PATTERN, factGraph, {
+      circularPattern: /\b(?:cityscape|skyline|urban(?:\s+scene|\s+background)?|city\s+background)\b/gi,
+    })) {
+      findings.push(`fact_graph_semantic_fact_evidence_contradiction:${factId}:cityscape_without_visible_building_evidence`);
     }
     if (SEMANTIC_VISUAL_FACT_ROARING_LABEL_PATTERN.test(label)) {
       if (!semanticVisualFactHasSupport(fact, SEMANTIC_VISUAL_FACT_ROARING_SUPPORT_PATTERN, factGraph, {
