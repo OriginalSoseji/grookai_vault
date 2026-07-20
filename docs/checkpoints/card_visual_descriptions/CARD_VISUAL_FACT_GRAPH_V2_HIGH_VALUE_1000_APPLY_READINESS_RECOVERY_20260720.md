@@ -1,6 +1,6 @@
 # Card Visual Fact Graph V2 High-Value 1,000 Apply-Readiness Recovery
 
-Status: 999 SAVED ROWS RECONCILED; ONE PROVIDER RETRY BLOCKED; NO DATABASE APPLY
+Status: 1,000 SAVED ROWS RECONCILED; APPLY-READY; NO DATABASE APPLY
 
 Date: 2026-07-20
 
@@ -43,9 +43,9 @@ None.
 
 ## Artifacts
 
-Frozen recovery gate:
+Final frozen recovery gate:
 
-`docs/audits/card_visual_descriptions/2026-07-20T22-03-34-380Z_apply_readiness_recovery_0751b9727880`
+`docs/audits/card_visual_descriptions/2026-07-20T22-12-14-625Z_apply_readiness_recovery_4f20931ab564`
 
 Key files:
 
@@ -68,11 +68,12 @@ All 7 recorded artifact hashes were verified.
 - reconstructed saved rows: 37/37
 - image failures: 0
 - payload reconstruction failures: 0
-- saved-system rows available: 999
-- remaining failures: 1
+- saved-system rows available: 1,000
+- remaining failures: 0
 - duplicate export IDs: 0
 - reconciliation mismatches: 0
 - reconstructed statuses: 10 pending / 27 needs_review / 0 approved
+- Happiny retry status: needs_review
 
 ## Variant Boundary Proof
 
@@ -96,7 +97,9 @@ Target:
 - image detail: high
 - ceiling: $0.03
 
-The frozen retry gate was invoked, but `OPENAI_API_KEY` was not configured. No provider request was made, no tokens were consumed, and no cost was incurred. Happiny remains quarantined with no generated payload.
+The existing `OPENAI_API_KEY` was loaded transiently from the approved Grookai local secret file without printing or copying the value. Node used the Windows system CA store to verify the provider certificate. The frozen retry generated and validated Happiny once, with no model retry, and routed the row to `needs_review`.
+
+The first launcher attempt imported unrelated shared environment values and encountered a TLS certificate error before receiving a provider response. It cost $0, produced a noncanonical diagnostic artifact, and was not used for final reconciliation. The final gate imported only `OPENAI_API_KEY` and retained the agent repository's own Supabase configuration.
 
 ## Provenance Truth
 
@@ -118,21 +121,25 @@ The repository-wide shipcheck was not rerun because its environment preflight re
 
 ## Current Truths
 
-- 999 card-print outcomes now have saved-system rows.
-- One card remains an explicit provider quarantine.
+- All 1,000 card-print outcomes now have saved-system rows.
+- Happiny is present as a generated `needs_review` row.
 - No row is approved.
 - No database row was written.
 - No embedding or downstream integration occurred.
-- The full 1,000-card set is not wholly apply-ready because Happiny has no payload.
+- The reconciled 1,000-card artifact is ready for a separately governed database apply canary.
 
 ## Token And Cost Result
 
-This recovery gate used:
+The final Happiny retry used:
 
-- OpenAI requests: 0
+- OpenAI requests: 1
 - retries: 0
-- tokens: 0
-- new estimated cost: $0
+- input tokens: 8,928
+- output tokens: 4,239
+- total tokens: 13,167
+- new estimated cost: $0.0103536
+- model: `gpt-4.1-mini-2025-04-14`
+- image detail: high
 
 The source harvest cost remains $10.5361256.
 
@@ -151,4 +158,4 @@ These rows contain model-extracted and deterministically normalized visual facts
 
 ## Explicit Next Gate
 
-Configure `OPENAI_API_KEY` and rerun the frozen recovery command with `--retry-provider --max-retry-cost-usd=0.03` to generate Happiny only. If Happiny validates and all 1,000 outcomes reconcile, request the separately governed 250-row artifact-to-database apply/readback canary. Do not regenerate the other 999 cards.
+Run a separately governed 250-row artifact-to-database apply/readback canary from the reconciled 1,000-row saved-system export. Keep every written row `pending` or `needs_review`, preserve approved/current human-reviewed rows, and prove exact write/readback reconciliation. Do not regenerate these 1,000 cards.
