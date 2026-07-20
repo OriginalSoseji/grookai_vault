@@ -16,6 +16,7 @@ import {
   assertOpenAiPricingConfigured,
   classifyVisualHarvestFailureV1,
   classifyDescriptionReviewStatusV1,
+  countMissingCardOutcomesV1,
   evaluateHarvestPolicyV1,
   evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
@@ -827,6 +828,11 @@ test("persisted per-card outcomes require the planned index, card, type, and pay
     card: { card_print_id: "card-1" },
     generated_row: null,
   }, eligibleCards).reason, "invalid_outcome_payload");
+
+  const sparseOutcomes = [];
+  sparseOutcomes[0] = { type: "generated_row" };
+  sparseOutcomes[3] = { type: "validation_failure" };
+  assert.equal(countMissingCardOutcomesV1(sparseOutcomes, 5), 3);
 });
 
 test("card visual description semantic tags stay visual and exclude metadata", () => {
@@ -8205,6 +8211,7 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /--harvest/);
   assert.match(agent, /--resume-run-dir=/);
   assert.match(agent, /writeJsonAtomic/);
+  assert.match(agent, /artifact_hashes\.json/);
   assert.match(agent, /--exclude-branches=/);
   assert.match(agent, /high_value_selection.json/);
   assert.match(agent, /validation_quarantine\.jsonl/);

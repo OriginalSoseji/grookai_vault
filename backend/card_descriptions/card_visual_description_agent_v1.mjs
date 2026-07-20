@@ -8491,6 +8491,40 @@ async function hashFile(filePath) {
   return sha256(await fs.readFile(filePath));
 }
 
+export async function writeRunArtifactHashManifestV1(runDir) {
+  const fileHashes = {};
+  const topLevelEntries = await fs.readdir(runDir, { withFileTypes: true });
+  for (const entry of topLevelEntries.filter((item) => item.isFile() && item.name !== "artifact_hashes.json").sort((left, right) => left.name.localeCompare(right.name))) {
+    fileHashes[entry.name] = await hashFile(path.join(runDir, entry.name));
+  }
+
+  const perCardDir = path.join(runDir, "per_card");
+  try {
+    const perCardEntries = await fs.readdir(perCardDir, { withFileTypes: true });
+    for (const entry of perCardEntries.filter((item) => item.isFile() && item.name.endsWith(".json")).sort((left, right) => left.name.localeCompare(right.name))) {
+      fileHashes[`per_card/${entry.name}`] = await hashFile(path.join(perCardDir, entry.name));
+    }
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+
+  const manifestPath = path.join(runDir, "artifact_hashes.json");
+  const manifest = {
+    artifact_kind: "card_visual_run_artifact_hash_manifest",
+    hash_algorithm: "sha256",
+    generated_at: nowIso(),
+    run_directory: path.relative(REPO_ROOT, runDir).replace(/\\/g, "/"),
+    file_count: Object.keys(fileHashes).length,
+    files: fileHashes,
+  };
+  await writeJsonAtomic(manifestPath, manifest);
+  return {
+    manifest,
+    manifest_path: manifestPath,
+    manifest_sha256: await hashFile(manifestPath),
+  };
+}
+
 function markdownEscape(value) {
   return normalizeText(value).replace(/\|/g, "\\|");
 }
@@ -9221,6 +9255,8 @@ async function writeRunArtifacts({ runDir, runPlan, eligibleCards, generatedRows
     await writeText(harvestMarkdownPath, buildHarvestReportMarkdown(harvestReport));
     artifactHashes["HARVEST_REPORT.md"] = await hashFile(harvestMarkdownPath);
   }
+  const hashManifest = await writeRunArtifactHashManifestV1(runDir);
+  artifactHashes["artifact_hashes.json"] = hashManifest.manifest_sha256;
   return artifactHashes;
 }
 
@@ -9555,6 +9591,14 @@ export function validatePersistedCardOutcomeV1(record, eligibleCards) {
   };
 }
 
+export function countMissingCardOutcomesV1(outcomes, expectedCount = outcomes.length) {
+  let missingCount = 0;
+  for (let index = 0; index < expectedCount; index += 1) {
+    if (!outcomes[index]) missingCount += 1;
+  }
+  return missingCount;
+}
+
 async function loadPersistedCardOutcomes(runDir, eligibleCards) {
   const perCardDir = path.join(runDir, "per_card");
   let entries = [];
@@ -9590,7 +9634,7 @@ async function loadPersistedCardOutcomes(runDir, eligibleCards) {
     outcomes,
     recoveredCount: outcomes.filter(Boolean).length,
     corruptFiles,
-    missingCount: outcomes.filter((outcome) => !outcome).length,
+    missingCount: countMissingCardOutcomesV1(outcomes, eligibleCards.length),
   };
 }
 
