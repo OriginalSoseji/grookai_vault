@@ -1,0 +1,258 @@
+{
+  "existing_current_count": 0,
+  "existing_duplicate_version_count": 0,
+  "approved_current_count": 0,
+  "canonical_snapshot_sha256": "13626259ed4173747152c2e7b5312d9e20fc87a9676c4159a2f141fb49487691",
+  "canonical_rows": [
+    {
+      "card_print_id": "ce664425-aede-4426-8060-a60964641707",
+      "gv_id": "GV-PK-PAR-191",
+      "name": "Wimpod",
+      "set_code": "sv04",
+      "number": "191",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-191/5a0939a77a42bd82cb11412d.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "2dc2d00f-7b59-4de2-a457-8a74b197ae5f",
+      "gv_id": "GV-PK-PAR-192",
+      "name": "Veluza",
+      "set_code": "sv04",
+      "number": "192",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-192/1c0b3f15c3a59a7965c3ebbe.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "3b5ca904-70dc-41c6-b5d4-df264c6c3b13",
+      "gv_id": "GV-PK-PAR-193",
+      "name": "Plusle",
+      "set_code": "sv04",
+      "number": "193",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-193/6143b488f4c4ac7ffa8723e0.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "c5523a8e-4daa-4c2e-868e-66f5e633f3a6",
+      "gv_id": "GV-PK-PAR-194",
+      "name": "Minun",
+      "set_code": "sv04",
+      "number": "194",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-194/3afd83eae399c5dd09c295d7.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "d2c715b9-1be5-4399-be27-1937c60d0a34",
+      "gv_id": "GV-PK-PAR-195",
+      "name": "Blitzle",
+      "set_code": "sv04",
+      "number": "195",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-195/0503282b300d5d131404bc7f.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "d773cb4d-d16a-46cd-99b1-ba8f13617518",
+      "gv_id": "GV-PK-PAR-196",
+      "name": "Joltik",
+      "set_code": "sv04",
+      "number": "196",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-196/f5b3c3da5559ff4ab54d6634.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "ed1f6217-69b4-4265-81cb-3a37297fc967",
+      "gv_id": "GV-PK-PAR-197",
+      "name": "Espathra",
+      "set_code": "sv04",
+      "number": "197",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-197/bdaa6fb9d3359296b4a31d05.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "17115396-47cb-4578-beac-25c8ec2a56bc",
+      "gv_id": "GV-PK-PAR-198",
+      "name": "Gimmighoul",
+      "set_code": "sv04",
+      "number": "198",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-198/47677af27dbbc117cc684322.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "1818d430-4ae0-4b4e-95bd-eb6f8a61223d",
+      "gv_id": "GV-PK-PAR-199",
+      "name": "Groudon",
+      "set_code": "sv04",
+      "number": "199",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-199/15a5a1324397cd567cda7be4.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "f883d8c6-71c0-4c63-931e-2591b9576d7e",
+      "gv_id": "GV-PK-PAR-200",
+      "name": "Mienshao",
+      "set_code": "sv04",
+      "number": "200",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-200/4b9aae4f746e77f87dbc385d.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "5cfaa911-c5d3-4f3b-aadf-092381d7e384",
+      "gv_id": "GV-PK-PAR-202",
+      "name": "Garganacl",
+      "set_code": "sv04",
+      "number": "202",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-202/fb1b046c4c356061c7152b19.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "1c7f9330-77aa-44ac-9e22-c1f29681cfbf",
+      "gv_id": "GV-PK-PAR-203",
+      "name": "Slither Wing",
+      "set_code": "sv04",
+      "number": "203",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-203/0f5b7145a3f73138642cc3a3.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "a336d549-8af8-4efe-9dd9-5e3940a89cee",
+      "gv_id": "GV-PK-PAR-204",
+      "name": "Garbodor",
+      "set_code": "sv04",
+      "number": "204",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-204/dfa46c08ff7c4ad00a84a1e6.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "c11b705e-59d5-46cd-941d-b7390450785e",
+      "gv_id": "GV-PK-PAR-205",
+      "name": "Yveltal",
+      "set_code": "sv04",
+      "number": "205",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-205/14a3fb5fad097c099e7074c7.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "58ee9b26-55e1-48ed-8707-b5d2238d5bb4",
+      "gv_id": "GV-PK-PAR-206",
+      "name": "Morpeko",
+      "set_code": "sv04",
+      "number": "206",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-206/76979d0b31f42551bfebe7fa.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "6cf6d00c-a2e2-4e8f-abf0-ccbb280392a4",
+      "gv_id": "GV-PK-PAR-207",
+      "name": "Brute Bonnet",
+      "set_code": "sv04",
+      "number": "207",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-207/9e905961ba63a064e9c9a8df.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "67cf030b-d379-417f-b8a9-290507d5d298",
+      "gv_id": "GV-PK-PAR-208",
+      "name": "Steelix",
+      "set_code": "sv04",
+      "number": "208",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-208/c7eaf8e2635fc0a6783a9da7.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "9f3eb45b-646a-4335-bbe8-6f974a4460f8",
+      "gv_id": "GV-PK-PAR-209",
+      "name": "Ferrothorn",
+      "set_code": "sv04",
+      "number": "209",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-209/621d192a3981e039714f2553.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "a7f1a587-43ad-4c02-a967-8835a48b5b77",
+      "gv_id": "GV-PK-PAR-211",
+      "name": "Aipom",
+      "set_code": "sv04",
+      "number": "211",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-211/d878cf7d5ce25b531e3650d3.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "597f585f-2362-4493-9a3d-f3fb03b547a9",
+      "gv_id": "GV-PK-PAR-212",
+      "name": "Loudred",
+      "set_code": "sv04",
+      "number": "212",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-212/3137f0c36e7d3b8738a720ca.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "58381f78-922f-49c3-b8d5-06a1fbb6efae",
+      "gv_id": "GV-PK-PAR-213",
+      "name": "Swablu",
+      "set_code": "sv04",
+      "number": "213",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-213/054b9db6a4ff924d3bbaec09.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "eeb54a78-ad59-44b3-b699-3cf8ef0e1761",
+      "gv_id": "GV-PK-PAR-214",
+      "name": "Porygon-Z",
+      "set_code": "sv04",
+      "number": "214",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-214/e547f76bd3bd215203119134.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "29491d0e-b633-4243-a2f3-552681e43f65",
+      "gv_id": "GV-PK-PAR-215",
+      "name": "Cyclizar",
+      "set_code": "sv04",
+      "number": "215",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-215/925d232d7a8deb3dae2c2726.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "d711b6e0-2efe-477d-b7ef-92d6b65f29e3",
+      "gv_id": "GV-PK-PAR-216",
+      "name": "Iron Jugulis",
+      "set_code": "sv04",
+      "number": "216",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-216/c5311b50e2abd1ee64b8d521.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    },
+    {
+      "card_print_id": "7056f633-b367-4d66-ad83-68b887f4c191",
+      "gv_id": "GV-PK-PAR-254",
+      "name": "Mela",
+      "set_code": "sv04",
+      "number": "254",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-254/f6cf08ed971583fe9e4b50d5.webp",
+      "image_hash": null,
+      "image_status": "exact"
+    }
+  ]
+}

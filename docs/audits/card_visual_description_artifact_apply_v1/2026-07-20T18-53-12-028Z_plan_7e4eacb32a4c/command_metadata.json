@@ -1,0 +1,11 @@
+{
+  "version": "CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_V1",
+  "mode": "apply",
+  "created_at": "2026-07-20T18:53:44.745Z",
+  "command": "node scripts/audits/card_visual_description_artifact_apply_v1.mjs --apply --plan-path=docs/audits/card_visual_description_artifact_apply_v1/2026-07-20T18-53-12-028Z_plan_7e4eacb32a4c/run_plan.json --expected-plan-sha256=<recorded_sha256> --verify-idempotency",
+  "secrets_included": false,
+  "provider_calls": 0,
+  "database_writes": 25,
+  "frozen_commit_sha": "7e4eacb32a4c2ce5c2c0cdf60e58f2971ff669a4",
+  "run_plan_sha256": "81373e81fad39ed39cace93fb8c1154bd2ff608cc6ab3c28e5235891ab082774"
+}

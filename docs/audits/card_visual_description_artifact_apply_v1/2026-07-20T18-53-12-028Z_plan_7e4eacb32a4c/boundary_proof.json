@@ -1,0 +1,12 @@
+{
+  "canonical_snapshot_unchanged": true,
+  "approved_rows": 0,
+  "embedded_rows": 0,
+  "provider_calls_during_apply": 0,
+  "model_cost_during_apply_usd": 0,
+  "public_app_role_grants": [],
+  "database_tables_written": [
+    "public.card_visual_description_runs",
+    "public.card_print_visual_descriptions"
+  ]
+}

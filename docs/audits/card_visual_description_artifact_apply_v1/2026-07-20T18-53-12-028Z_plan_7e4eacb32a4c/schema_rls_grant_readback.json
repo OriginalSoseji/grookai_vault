@@ -1,0 +1,40 @@
+{
+  "migration_20260715120000_present": true,
+  "tables": [
+    {
+      "table_name": "card_print_visual_descriptions",
+      "rls_enabled": true,
+      "force_rls": false
+    },
+    {
+      "table_name": "card_visual_description_runs",
+      "rls_enabled": true,
+      "force_rls": false
+    }
+  ],
+  "policies": [],
+  "grants": [
+    {
+      "table_name": "card_print_visual_descriptions",
+      "grantee": "postgres",
+      "privileges": "{DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE}"
+    },
+    {
+      "table_name": "card_print_visual_descriptions",
+      "grantee": "service_role",
+      "privileges": "{DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE}"
+    },
+    {
+      "table_name": "card_visual_description_runs",
+      "grantee": "postgres",
+      "privileges": "{DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE}"
+    },
+    {
+      "table_name": "card_visual_description_runs",
+      "grantee": "service_role",
+      "privileges": "{DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE}"
+    }
+  ],
+  "forbidden_app_role_grants": [],
+  "verified": true
+}

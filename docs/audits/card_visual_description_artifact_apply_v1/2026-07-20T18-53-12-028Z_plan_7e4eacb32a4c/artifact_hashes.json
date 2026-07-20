@@ -1,0 +1,24 @@
+{
+  "artifact_kind": "card_visual_description_artifact_apply_audit_hash_manifest",
+  "hash_algorithm": "sha256",
+  "generated_at": "2026-07-20T18:56:43.133Z",
+  "file_count": 16,
+  "files": {
+    "ALL_25_SAVED_DATABASE_JSON.json": "e50203023b6ff48080eb4708ccb5357a4336cbf4c922029d77111998b08a46e7",
+    "apply_result.json": "6b6d6f5e1f625bae8458117c2d6a6e1114bc29e84a1017c6b3a97fdaa722a094",
+    "boundary_proof.json": "8662def290015c44e217e20f7463da74c0ef01269219ad6912799ffdf5b517ed",
+    "CARD_VISUAL_DESCRIPTION_ARTIFACT_APPLY_REPORT.md": "17e4cc21a4d711c9efdaedeccbe287b133f02b0f03b314308f7a47792173d3fa",
+    "checkpoint_hashes.json": "68fc2dcb22d9585d4c84b032a4a4f43db9c1f1b3d5871e056a9a6924ca17ac37",
+    "command_metadata.json": "a040c40a07c54784efb387c8760d14d7a9c73ccd0157a7c40ea212111b14e13d",
+    "db_readback.json": "e6a7a6bbe81183f2cf0a29ff5a156c7ba7868fcd2fc458329a2534e3b447c4cb",
+    "idempotency_result.json": "0284f9a997f89bf75c7f39817a22ffe5482c7420268cd2a2acc7fd1eea6a9288",
+    "pre_apply_db_snapshot.json": "46a9e6dd312ec1a8a46d31d2d524e3c609cf5fcff02975a3821f484be2eb1708",
+    "RECONCILIATION_REPORT.json": "ce2a50da949df0589044ad333fc542cb3c84d6ea37ba00d1489d4fc34333c34d",
+    "RECONCILIATION_REPORT.md": "62b12d3c7e3fdd866bc4f27607792bf3e5a4f5c9bcce7b9abae3cbab0965b2ee",
+    "run_plan.json": "81373e81fad39ed39cace93fb8c1154bd2ff608cc6ab3c28e5235891ab082774",
+    "schema_rls_grant_readback.json": "c8a25225881058ff12f15f149694824332286216dc31e0073c51d9c1dd11543d",
+    "selected_rows.jsonl": "806def20a482d4f27fa90ba65f2479f1f1cd17b66d98b050012722120096000b",
+    "source_hash_verification.json": "ccaae498583d841e98152d1cc1b7c95e70bef8b1bd6870ebbe8991fc85727ff0",
+    "targeted_test_results.json": "52e7a2d204df092e3cdd3e219974cad7cf496589a78d39ffe2b792bccd3f10ea"
+  }
+}

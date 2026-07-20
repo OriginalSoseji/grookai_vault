@@ -1,0 +1,12 @@
+{
+  "verified": true,
+  "source_manifest_sha256": "6a80d724cd0b18ccec0378af4efbc4b7f89009cf328210a9349fef693fa839fd",
+  "verified_file_count": 515,
+  "required_file_hashes": {
+    "generated_outputs.jsonl": "5c2ddd00c2c63021958b421200d348646292ab7c997f532bb65a1a9b88c1b984",
+    "summary.json": "662f2c2ed214cf70c60ef96c1d7e5c8a698b56524b6230dd7b923a856f1da19d",
+    "run_plan.json": "d1ec747641a9f40e213b007918c5ca4fadae59d22d2e8abe8fa58bf079cbf678",
+    "RECONCILIATION_REPORT.json": "a415c7dcdc3d95b790db601de352803977536fd74541982834da8e9982dddc54",
+    "ALL_500_SAVED_SYSTEM_JSON.json": "a9504f0d4c3764d23c3bffb7a8dc0e7f5e07027b7578c6d23087a07805337a46"
+  }
+}

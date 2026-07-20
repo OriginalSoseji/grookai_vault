@@ -1,0 +1,38 @@
+{
+  "captured_at": "2026-07-20T19:00:00.000Z",
+  "result": "pass",
+  "tests": [
+    {
+      "command": "node --test tests/contracts/card_visual_description_artifact_apply_v1.test.mjs tests/contracts/card_visual_description_agent_v1.test.mjs",
+      "passed": 72,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "node --check backend/card_descriptions/card_visual_description_agent_v1.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node --check backend/card_descriptions/card_visual_description_artifact_apply_v1.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node --check scripts/audits/card_visual_description_artifact_apply_v1.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass"
+    }
+  ],
+  "database_smoke": {
+    "migration_20260715120000_present": true,
+    "rls_enabled_table_count": 2,
+    "forbidden_app_role_grant_count": 0,
+    "policy_count": 0,
+    "result": "pass",
+    "readback_artifact": "schema_rls_grant_readback.json"
+  },
+  "full_repository_contract_suite_run": false,
+  "full_repository_contract_suite_note": "Not run for this isolated Node/database apply. The relevant visual-agent, importer, migration, and RLS contracts were run. The broad pre-commit shipcheck could not start runtime preflight because this worktree intentionally does not contain SUPABASE_DB_URL; the guarded apply loaded the external environment file explicitly."
+}

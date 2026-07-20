@@ -1,0 +1,37 @@
+{
+  "reconciled": true,
+  "mismatches": [],
+  "selected_count": 25,
+  "saved_count": 25,
+  "unique_saved_card_print_ids": 25,
+  "review_status_counts": {
+    "pending": 10,
+    "needs_review": 15
+  },
+  "approved_count": 0,
+  "embedded_count": 0,
+  "imported_source_usage": {
+    "request_count": 25,
+    "retry_count": 0,
+    "input_tokens": 223303,
+    "output_tokens": 125457,
+    "total_tokens": 348760,
+    "cached_input_tokens": 77824,
+    "reasoning_output_tokens": 0,
+    "estimated_cost_usd": 0.2667052,
+    "response_model_versions": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  "apply_execution_usage": {
+    "provider_request_count": 0,
+    "retry_count": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "estimated_cost_usd": 0
+  },
+  "canonical_before_sha256": "13626259ed4173747152c2e7b5312d9e20fc87a9676c4159a2f141fb49487691",
+  "canonical_after_sha256": "13626259ed4173747152c2e7b5312d9e20fc87a9676c4159a2f141fb49487691",
+  "schema_security_verified": true
+}
