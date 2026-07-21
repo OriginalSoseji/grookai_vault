@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_SEARCH_PROJECTION_VERSION,
+  isCardUiProjectionEntryV1,
   isLockedEligibilityReportV1,
   parseVisualSearchProjectionArgsV1,
   projectArtworkGraphV1,
@@ -38,12 +39,16 @@ function fixture(overrides = {}) {
       { observation_id: "obs-trees", kind: "object_group", label: "ten visible trees", normalized_label: "trees", confidence: 0.94, evidence_strength: "strong" },
       { observation_id: "obs-color", kind: "color_and_light", label: "yellow and green palette", normalized_label: "yellow green palette", confidence: 0.97, evidence_strength: "strong" },
       { observation_id: "obs-ui", kind: "card_ui", label: "120 HP", normalized_label: "120 hp", confidence: 0.99, evidence_strength: "strong" },
+      { observation_id: "obs-illustrator", kind: "illustrator_text", label: "Illus. Example Artist", normalized_label: "illus example artist", confidence: 0.99, evidence_strength: "strong" },
+      { observation_id: "obs-body-color", kind: "object_detail", label: "yellow body", normalized_label: "yellow body", confidence: 0.98, evidence_strength: "strong" },
+      { observation_id: "obs-sign", kind: "environment_sign_text", label: "SALE sign", normalized_label: "sale sign", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-object", kind: "objects_and_props", label: "metal object", normalized_label: "metal object", confidence: 0.9, evidence_strength: "medium" },
     ],
     typed_facts: [
       { fact_id: "fact-anatomy", module: "creature_anatomy", field_path: "ears", claim: "ear shape", value: "long and pointed", supporting_observation_ids: ["obs-anatomy"], confidence: 0.98, evidence_strength: "strong" },
       { fact_id: "fact-environment", module: "environment", field_path: "setting", claim: "setting", value: "dense forest", supporting_observation_ids: ["obs-forest"], confidence: 0.95, evidence_strength: "strong" },
       { fact_id: "fact-color", module: "color_and_light", field_path: "palette", claim: "palette", value: ["yellow", "green"], supporting_observation_ids: ["obs-color"], confidence: 0.97, evidence_strength: "strong" },
+      { fact_id: "fact-body-color", module: "creature_anatomy", field_path: "body.color", claim: "body color", value: "yellow", supporting_observation_ids: ["obs-body-color"], confidence: 0.98, evidence_strength: "strong" },
       { fact_id: "fact-material", module: "objects_and_props", field_path: "material", claim: "material", value: "metal", supporting_observation_ids: ["obs-object"], confidence: 0.9, evidence_strength: "medium" },
       { fact_id: "fact-missing", module: "environment", field_path: "ground", claim: "ground", value: "grass", supporting_observation_ids: ["obs-missing"], confidence: 0.9, evidence_strength: "medium" },
     ],
@@ -73,13 +78,21 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_1");
 });
 
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
   assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciled: true }), true);
   assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciliation: { reconciled: true } }), false);
   assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3", reconciled: true }), false);
+});
+
+test("source card UI taxonomies are blocked without treating artwork sign text as card UI", () => {
+  for (const module of ["illustrator_text", "hp_text", "set_symbol", "rarity_mark", "card_name_text", "energy_symbol", "attack_name_text", "rule_text"]) {
+    assert.equal(isCardUiProjectionEntryV1({ module, field_path: null, category: module, observation_kinds: [module], supporting_observation_ids: ["obs-neutral"], term: "visible value" }), true, module);
+  }
+  assert.equal(isCardUiProjectionEntryV1({ module: "environment_sign_text", field_path: null, category: "environment_sign_text", observation_kinds: ["environment_sign_text"], supporting_observation_ids: ["obs-sign"], term: "SALE sign" }), false);
+  assert.equal(isCardUiProjectionEntryV1({ module: "character_representation", field_path: "representation_form", category: "logo", observation_kinds: ["character_representation"], supporting_observation_ids: ["obs-logo"], term: "Pikachu logo on shirt" }), false);
 });
 
 test("projection produces three evidence-backed documents and keeps canonical context separate", () => {
@@ -95,9 +108,21 @@ test("projection produces three evidence-backed documents and keeps canonical co
 test("card UI, depicted-on-UI identity, unsupported material, and missing references are excluded", () => {
   const result = projectArtworkGraphV1(fixture());
   assert.ok(result.exclusions.some((row) => row.source_id === "obs-ui" && row.exclusion_reasons.includes("card_ui_or_print_marker_observation")));
+  assert.ok(result.exclusions.some((row) => row.source_id === "obs-illustrator" && row.exclusion_reasons.includes("card_ui_or_print_marker_observation")));
   assert.ok(result.exclusions.some((row) => row.source_id === "fact-material" && row.exclusion_reasons.includes("actual_material_claim_without_appearance_qualification")));
   assert.ok(result.exclusions.some((row) => row.source_id === "fact-missing" && row.exclusion_reasons.includes("missing_observation_reference")));
   assert.ok(result.evidence.every((row) => !row.supporting_observation_ids.includes("obs-ui")));
+  assert.ok(result.evidence.every((row) => !row.supporting_observation_ids.includes("obs-illustrator")));
+});
+
+test("subject-linked generic observations route to subject while artwork sign text remains scene evidence", () => {
+  const result = projectArtworkGraphV1(fixture());
+  const bodyColor = result.evidence.find((row) => row.source_id === "obs-body-color");
+  const sign = result.evidence.find((row) => row.source_id === "obs-sign");
+  assert.equal(bodyColor?.document_type, "subject");
+  assert.equal(sign?.document_type, "scene");
+  assert.match(document(result, "subject").document_text, /yellow body/);
+  assert.match(document(result, "scene").document_text, /SALE sign/);
 });
 
 test("count guard removes numeric count claims but preserves the counted visible object", () => {

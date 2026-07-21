@@ -7,13 +7,13 @@ import { fileURLToPath } from "node:url";
 import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_ARTWORK_GROUPING_VERSION } from "./card_visual_artwork_grouping_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1";
+export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_GROUPING_DIR = "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469";
 const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_1";
 const DOCUMENT_TYPES = Object.freeze(["subject", "scene", "style_composition"]);
 const KNOWN_GUARDS = new Set([
   "module_completeness",
@@ -34,7 +34,11 @@ const KNOWN_GUARDS = new Set([
 
 const SUBJECT_PATTERN = /subject|anatomy|human|clothing|hair|face|facial|body|pose|orientation|gesture|limb|appendage/u;
 const STYLE_PATTERN = /composition|color|palette|lighting|shadow|highlight|contrast|camera|framing|crop|depth|motif|style|motion[_ ]?cue/u;
-const UI_PATTERN = /card[_ ]?ui|print[_ ]?marker|surface[_ ]?and[_ ]?scan|scan[_ ]?cue|border|copyright|collector[_ ]?number|attack[_ ]?text|retreat[_ ]?cost|weakness|resistance/u;
+const SCENE_PATTERN = /environment|setting|terrain|sky|ground|plant|tree|architecture|building|water|weather|foreground|midground|background/u;
+const UI_TAXONOMY_PATTERN = /\b(?:card ui|print marker|surface and scan|scan cue|card border|copyright|legal text|collector number|illustrator(?: credit| text)?|artist (?:credit|text)|creator text|hp(?: text| type symbol)?|card (?:name|type|subtype|supertype|category|stage|number|set|text|energy|hp|effect|abilities|evolves from)(?: text| symbol| icon| marker| info)?|attack(?: name| damage| cost| description| effect| power| title| value| energy requirement)?(?: text| symbol| icons?)?|move(?: name| damage| description)? text|ability(?: name| title| header| description| effect| label)?(?: text| box| area| indicator)?|poke[- ]?(?:body|power)(?: text)?|retreat(?: cost| text)?|weakness|resistance|rarity(?: mark| symbol)?|rare (?:mark|symbol)|set (?:symbol|mark|icon|number|code|info)|stage (?:text|marker|label|symbol|indicator|icon)|evol(?:ution|ves? from|ve from)(?: info)?(?: text| marker| symbol| icon)?|regulation mark|promo stamp|edition marker|watermark|printer logo|brand logo|trainer gallery text|deck icon|energy (?:cost |type )?symbols?|type (?:symbol|icon|indicator|mark|label|text)|bottom (?:line|flavor) text|flavor text|pokedex data|height weight text|language text|printed text|print text|small print text|rule(?:s)?(?: text| box)?|basic (?:label|marker|text)|trainer (?:icon|symbol|text)|item (?:subtype|text))\b/u;
+const UI_GENERIC_TAXONOMIES = new Set(["text", "text block", "text box", "text line", "text section", "text area"]);
+const UI_TERM_FALLBACK_PATTERN = /\b(?:hp\s*\d+|\d+\s*hp|ill(?:us|ustrator)\.?\s|collector (?:no\.?|number)|weakness|resistance|retreat cost|evolves? from|attack (?:name|damage|cost|description|text)|ability (?:name|text)|copyright|rarity (?:mark|symbol)|set (?:symbol|code|number)|promo stamp|ht:\s*\d|wt:\s*\d)\b/u;
+const UI_OBSERVATION_ID_PATTERN = /^(?:obs_)?(?:card_?ui|ui)(?:_|$)/u;
 const WEATHER_TIME_PATTERN = /weather|rain|snow|storm|lightning storm|sunset|sunrise|daytime|night|dawn|dusk|cloudy|fog|mist/u;
 const POSE_PATTERN = /pose|orientation|action|state|standing|sitting|sleeping|flying|floating|running|leaping|walking|crouching/u;
 const ANATOMY_PATTERN = /anatomy|physical[_ ]?feature|body[_ ]?region|limb|appendage|wing|tail|horn|claw|eye|mouth|teeth|fang/u;
@@ -123,19 +127,22 @@ function documentTypeForKinds(kinds) {
   return "scene";
 }
 
-function documentTypeForEntry(entry) {
+function documentTypeForEntry(entry, routingContext = {}) {
   const module = normalizeTerm(entry.module);
   const category = normalizeTerm(entry.category);
   const field = normalizeTerm(entry.field_path);
   const combined = `${module} ${category} ${field} ${entry.observation_kinds.join(" ")}`;
   if (entry.source_type === "subject_role") return "subject";
-  if (entry.source_type === "count" || entry.source_type === "relationship") return "scene";
   if (SUBJECT_PATTERN.test(combined)) return "subject";
+  if (SCENE_PATTERN.test(combined)) return "scene";
+  if (entry.supporting_observation_ids.some((id) => routingContext.subjectObservationIds?.has(id))) return "subject";
   if (STYLE_PATTERN.test(combined)) return "style_composition";
+  if (entry.supporting_observation_ids.some((id) => routingContext.styleObservationIds?.has(id))) return "style_composition";
+  if (entry.source_type === "count" || entry.source_type === "relationship") return "scene";
   return documentTypeForKinds(entry.observation_kinds);
 }
 
-function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null, fieldPath = null, category = null, subjectRole = null, observationIds, observationById, confidence = null, evidenceStrength = null, details = {} }) {
+function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null, fieldPath = null, category = null, subjectRole = null, observationIds, observationById, routingContext, confidence = null, evidenceStrength = null, details = {} }) {
   const normalized = normalizeTerm(term);
   const ids = uniqueSorted(observationIds ?? []);
   const kinds = uniqueSorted(ids.map((id) => observationById.get(id)?.kind));
@@ -154,7 +161,7 @@ function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null
     evidence_strength: evidenceStrength ?? null,
     details,
   };
-  entry.document_type = documentTypeForEntry(entry);
+  entry.document_type = documentTypeForEntry(entry, routingContext);
   entry.entry_hash = sha256JsonV1(entry);
   return entry;
 }
@@ -167,10 +174,31 @@ function subjectRoleByObservation(graph) {
   return roles;
 }
 
+function observationRoutingContext(graph) {
+  const subjectObservationIds = new Set(subjectRoleByObservation(graph).keys());
+  const styleObservationIds = new Set();
+  for (const fact of graph.typed_facts ?? []) {
+    const classification = normalizeTerm(`${fact.module} ${fact.field_path}`);
+    const target = SUBJECT_PATTERN.test(classification)
+      ? subjectObservationIds
+      : STYLE_PATTERN.test(classification)
+        ? styleObservationIds
+        : null;
+    for (const id of target ? fact.supporting_observation_ids ?? [] : []) target.add(id);
+  }
+  for (const semantic of graph.semantic_visual_facts ?? []) {
+    if (!semantic.subject_observation_id) continue;
+    subjectObservationIds.add(semantic.subject_observation_id);
+    for (const id of semantic.supporting_observation_ids ?? []) subjectObservationIds.add(id);
+  }
+  return { subjectObservationIds, styleObservationIds };
+}
+
 function buildEvidenceEntries(graph) {
   const observations = graph.observations ?? [];
   const observationById = new Map(observations.map((row) => [row.observation_id, row]));
   const roleByObservation = subjectRoleByObservation(graph);
+  const routingContext = observationRoutingContext(graph);
   const entries = [];
 
   for (const observation of observations) {
@@ -183,6 +211,7 @@ function buildEvidenceEntries(graph) {
       subjectRole: roleByObservation.get(observation.observation_id) ?? null,
       observationIds: [observation.observation_id],
       observationById,
+      routingContext,
       confidence: observation.confidence,
       evidenceStrength: observation.evidence_strength,
       details: {
@@ -205,6 +234,7 @@ function buildEvidenceEntries(graph) {
       fieldPath: fact.field_path,
       observationIds: fact.supporting_observation_ids,
       observationById,
+      routingContext,
       confidence: fact.confidence,
       evidenceStrength: fact.evidence_strength,
       details: { claim: fact.claim ?? null, value: fact.value ?? null },
@@ -228,6 +258,7 @@ function buildEvidenceEntries(graph) {
         subjectRole: role,
         observationIds: [row.observation_id],
         observationById,
+        routingContext,
         confidence: row.identity_confidence ?? row.confidence,
         evidenceStrength: null,
         details: { identity, qualifiers: qualifiers.filter(Boolean) },
@@ -250,6 +281,7 @@ function buildEvidenceEntries(graph) {
       category: "count",
       observationIds: count.supporting_observation_ids,
       observationById,
+      routingContext,
       confidence: count.confidence,
       details: { count_type: count.count_type, exact_count: count.exact_count ?? null, estimated_min: count.estimated_min ?? null, estimated_max: count.estimated_max ?? null },
     }));
@@ -270,6 +302,7 @@ function buildEvidenceEntries(graph) {
       category: "relationship",
       observationIds,
       observationById,
+      routingContext,
       confidence: relationship.confidence,
       details: relationship,
     }));
@@ -285,6 +318,7 @@ function buildEvidenceEntries(graph) {
       subjectRole: semantic.subject_observation_id ? roleByObservation.get(semantic.subject_observation_id) ?? null : null,
       observationIds: semantic.supporting_observation_ids,
       observationById,
+      routingContext,
       confidence: semantic.confidence,
       details: { uncertainty: semantic.uncertainty ?? null },
     }));
@@ -298,6 +332,7 @@ function buildEvidenceEntries(graph) {
       category: "search_term",
       observationIds: searchTerm.supporting_observation_ids,
       observationById,
+      routingContext,
       confidence: searchTerm.confidence,
       details: {},
     }));
@@ -311,6 +346,7 @@ function buildEvidenceEntries(graph) {
       category: "canonical_concept",
       observationIds: concept.source_observation_ids,
       observationById,
+      routingContext,
       confidence: concept.confidence,
       details: { derivation: concept.derivation ?? null },
     }));
@@ -343,8 +379,17 @@ function entryText(entry) {
   return normalizeTerm([entry.module, entry.field_path, entry.category, entry.term, entry.observation_kinds.join(" ")].filter(Boolean).join(" "));
 }
 
-function supportedByUiObservation(entry) {
-  return entry.observation_kinds.some((kind) => UI_PATTERN.test(normalizeTerm(kind)));
+function cardUiTaxonomyText(entry) {
+  return normalizeTerm(`${entry.module} ${entry.field_path} ${entry.category} ${entry.observation_kinds.join(" ")}`);
+}
+
+export function isCardUiProjectionEntryV1(entry) {
+  const observationIds = entry.supporting_observation_ids ?? [];
+  if (observationIds.some((id) => UI_OBSERVATION_ID_PATTERN.test(String(id).toLocaleLowerCase("en-US")))) return true;
+  const taxonomies = [entry.module, entry.field_path, entry.category, ...(entry.observation_kinds ?? [])].map(normalizeTerm);
+  if (taxonomies.some((value) => UI_GENERIC_TAXONOMIES.has(value))) return true;
+  if (UI_TAXONOMY_PATTERN.test(cardUiTaxonomyText(entry))) return true;
+  return UI_TERM_FALLBACK_PATTERN.test(normalizeTerm(entry.term));
 }
 
 function actualMaterialClaim(entry) {
@@ -358,8 +403,7 @@ function globallyBlocked(entry, observationById) {
   if (!entry.term || !entry.normalized_term) return "empty_projection_term";
   if (entry.supporting_observation_ids.length === 0) return "missing_observation_support";
   if (entry.supporting_observation_ids.some((id) => !observationById.has(id))) return "missing_observation_reference";
-  if (supportedByUiObservation(entry)) return "card_ui_or_print_marker_observation";
-  if (UI_PATTERN.test(normalizeTerm(`${entry.module} ${entry.field_path} ${entry.category}`))) return "card_ui_or_print_marker_field";
+  if (isCardUiProjectionEntryV1(entry)) return "card_ui_or_print_marker_observation";
   if (/\b(stoner|stoned|high|under the influence|intoxicated|drugged|smoked out)\b/u.test(entry.normalized_term)) return "query_alias_not_visual_fact";
   if (actualMaterialClaim(entry)) return "actual_material_claim_without_appearance_qualification";
   return null;
@@ -390,7 +434,7 @@ function guardClassesForEntry(entry, context) {
   if (sourceType === "subject_role" || module === "subjects" || /scene[_ ]?subject|depicted[_ ]?subject|character[_ ]?representation/u.test(`${module} ${category}`)) classes.push("subject_semantics");
   if (flaggedPhraseMatch(entry, context.flaggedPhrasesByGuard.get("metadata_terms"))) classes.push("metadata_terms");
   if (MATERIAL_PATTERN.test(text)) classes.push("material_surface");
-  if (UI_PATTERN.test(`${module} ${field} ${category}`) || supportedByUiObservation(entry)) classes.push("print_markers", "card_ui_terms");
+  if (isCardUiProjectionEntryV1(entry)) classes.push("print_markers", "card_ui_terms");
   if (EXPRESSION_PATTERN.test(`${category} ${field} ${entry.normalized_term}`)) classes.push("expression_personality_mood");
   if (VISIBILITY_PATTERN.test(`${module} ${field} ${category} ${entry.normalized_term}`)
       || entry.evidence_strength === "weak"
@@ -688,7 +732,7 @@ function reconcileProjection({ groups, memberships, artworks, printings, documen
   for (const entry of evidence) {
     if (!documentById.has(entry.search_document_id)) findings.push(`evidence_missing_document:${entry.search_document_id}`);
     if (!entry.supporting_observation_ids?.length) findings.push(`evidence_missing_observation:${entry.search_document_id}:${entry.source_id}`);
-    if (supportedByUiObservation(entry) || UI_PATTERN.test(normalizeTerm(`${entry.module} ${entry.field_path} ${entry.category}`))) {
+    if (isCardUiProjectionEntryV1(entry)) {
       findings.push(`card_ui_evidence_projected:${entry.search_document_id}:${entry.source_id}`);
     }
   }
@@ -726,13 +770,13 @@ function reconcileProjection({ groups, memberships, artworks, printings, documen
 
 function markdownReport(report) {
   const counts = report.reconciliation.counts;
-  return `# Card Visual Search Projection V1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
+  return `# Card Visual Search Projection V1.1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
 }
 
 async function hashManifest(outputDir, files) {
   const entries = {};
   for (const file of files) entries[file] = sha256Buffer(await fs.readFile(path.join(outputDir, file)));
-  return { artifact_kind: "card_visual_search_projection_v1_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
+  return { artifact_kind: "card_visual_search_projection_v1_1_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
 }
 
 export async function runVisualSearchProjectionV1(args = parseVisualSearchProjectionArgsV1([])) {
