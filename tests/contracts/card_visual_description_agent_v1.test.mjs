@@ -21,6 +21,7 @@ import {
   classifyDescriptionReviewStatusV1,
   countMissingCardOutcomesV1,
   createConcurrencySemaphoreV1,
+  evaluateAdaptiveRetryRateDecisionV1,
   evaluateHarvestPolicyV1,
   evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
@@ -880,6 +881,39 @@ test("image-fetch semaphore never exceeds its configured concurrency", async () 
   })));
   assert.equal(maximumActive, 3);
   assert.deepEqual(semaphore.snapshot(), { active: 0, waiting: 0, limit: 3 });
+});
+
+test("adaptive retry policy backs off before opening the circuit breaker", () => {
+  const retrySpike = Array.from({ length: 50 }, (_, index) => ({
+    request_count: 1,
+    retry_count: index < 6 ? 1 : 0,
+  }));
+  const first = evaluateAdaptiveRetryRateDecisionV1({
+    outcomes: retrySpike,
+    currentConcurrency: 100,
+    adaptiveConcurrency: true,
+  });
+  assert.equal(first.action, "backoff");
+  assert.equal(first.next_concurrency, 50);
+  assert.equal(first.retry_rate_backoff_count, 1);
+  assert.equal(first.rolling_retry_rate, 0.12);
+
+  const exhausted = evaluateAdaptiveRetryRateDecisionV1({
+    outcomes: retrySpike,
+    currentConcurrency: 25,
+    adaptiveConcurrency: true,
+    retryRateBackoffCount: 3,
+  });
+  assert.equal(exhausted.action, "stop");
+
+  const healthy = evaluateAdaptiveRetryRateDecisionV1({
+    outcomes: Array.from({ length: 50 }, () => ({ request_count: 1, retry_count: 0 })),
+    currentConcurrency: 50,
+    adaptiveConcurrency: true,
+    retryRateBackoffCount: 2,
+  });
+  assert.equal(healthy.action, "continue");
+  assert.equal(healthy.rolling_retry_rate, 0);
 });
 
 test("card visual description accepts a hashable explicit ID selection file", () => {

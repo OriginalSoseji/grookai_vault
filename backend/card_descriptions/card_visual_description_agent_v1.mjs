@@ -42,6 +42,10 @@ const DEFAULT_CONCURRENCY = 1;
 const DEFAULT_ADAPTIVE_INITIAL_CONCURRENCY = 20;
 const DEFAULT_ADAPTIVE_CONCURRENCY_STEP = 10;
 const DEFAULT_ADAPTIVE_RAMP_EVERY = 25;
+const DEFAULT_ADAPTIVE_RETRY_WINDOW = 50;
+const DEFAULT_ADAPTIVE_RETRY_RATE_THRESHOLD = 0.10;
+const DEFAULT_ADAPTIVE_RETRY_BACKOFF_PAUSE_MS = 30_000;
+const DEFAULT_ADAPTIVE_MAX_RETRY_BACKOFFS = 3;
 const DEFAULT_IMAGE_CONCURRENCY = 20;
 const DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE = 0.15;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
@@ -10141,6 +10145,47 @@ function rowsFromOrderedOutcomes(outcomes, type, key) {
     .map((outcome) => outcome[key]);
 }
 
+export function evaluateAdaptiveRetryRateDecisionV1({
+  outcomes = [],
+  currentConcurrency,
+  adaptiveConcurrency,
+  retryRateBackoffCount = 0,
+  minimumConcurrency = 10,
+  windowSize = DEFAULT_ADAPTIVE_RETRY_WINDOW,
+  retryRateThreshold = DEFAULT_ADAPTIVE_RETRY_RATE_THRESHOLD,
+  maxRetryBackoffs = DEFAULT_ADAPTIVE_MAX_RETRY_BACKOFFS,
+} = {}) {
+  const recent = outcomes.slice(-windowSize);
+  if (recent.length < windowSize) return null;
+  const requestCount = recent.reduce((total, entry) => total + Number(entry.request_count ?? 0), 0);
+  const retryCount = recent.reduce((total, entry) => total + Number(entry.retry_count ?? 0), 0);
+  const retryRate = requestCount > 0 ? retryCount / requestCount : 0;
+  const metrics = {
+    rolling_request_count: requestCount,
+    rolling_retry_count: retryCount,
+    rolling_retry_rate: retryRate,
+  };
+  if (retryRate <= retryRateThreshold) return { action: "continue", ...metrics };
+
+  const concurrency = Math.max(1, Number(currentConcurrency ?? minimumConcurrency));
+  const canBackoff = Boolean(adaptiveConcurrency)
+    && concurrency > minimumConcurrency
+    && retryRateBackoffCount < maxRetryBackoffs;
+  if (canBackoff) {
+    return {
+      action: "backoff",
+      next_concurrency: Math.max(minimumConcurrency, Math.floor(concurrency / 2)),
+      retry_rate_backoff_count: retryRateBackoffCount + 1,
+      ...metrics,
+    };
+  }
+  return {
+    action: "stop",
+    retry_rate_backoff_count: retryRateBackoffCount,
+    ...metrics,
+  };
+}
+
 async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir, initialOutcomes = [] }) {
   const outcomes = new Array(eligibleCards.length);
   for (let index = 0; index < eligibleCards.length; index += 1) {
@@ -10161,8 +10206,10 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
   let maximumAchievedConcurrency = currentConcurrency;
   let activeCount = 0;
   let cleanCompletionsSinceRamp = 0;
+  let retryRateBackoffCount = 0;
   let pausedUntilMs = 0;
   const recentProviderOutcomes = [];
+  const retryWindowProviderOutcomes = [];
   const rateLimitEventTimes = [];
   const concurrencyTimeline = [{
     recorded_at: nowIso(),
@@ -10184,6 +10231,8 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
       maximum_achieved_concurrency: maximumAchievedConcurrency,
       active_count: activeCount,
       completed_provider_outcomes: recentProviderOutcomes.length,
+      retry_window_provider_outcomes: retryWindowProviderOutcomes.length,
+      retry_rate_backoff_count: retryRateBackoffCount,
       paused_until: pausedUntilMs > Date.now() ? new Date(pausedUntilMs).toISOString() : null,
       timeline: concurrencyTimeline,
     });
@@ -10209,13 +10258,15 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
     const statuses = attempts.map((attempt) => Number(attempt.http_status)).filter(Number.isFinite);
     const rateLimitedAttempts = attempts.filter((attempt) => Number(attempt.http_status) === 429);
     const now = Date.now();
-    recentProviderOutcomes.push({
+    const providerOutcome = {
       completed_at_ms: now,
       request_count: Number(telemetry.request_count ?? 0),
       retry_count: Number(telemetry.retry_count ?? 0),
       generation_exception: (outcome.failure?.findings ?? []).includes("generation_exception"),
       statuses,
-    });
+    };
+    recentProviderOutcomes.push(providerOutcome);
+    retryWindowProviderOutcomes.push(providerOutcome);
 
     if (rateLimitedAttempts.length > 0) {
       for (const _attempt of rateLimitedAttempts) rateLimitEventTimes.push(now);
@@ -10224,6 +10275,7 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
       currentConcurrency = Math.max(10, Math.floor(currentConcurrency / 2));
       currentConcurrency = Math.min(currentConcurrency, workerCount);
       cleanCompletionsSinceRamp = 0;
+      retryWindowProviderOutcomes.length = 0;
       const retryDelayMs = Math.max(
         1000,
         ...rateLimitedAttempts.map((attempt) => Number(attempt.retry_delay_ms ?? 0)),
@@ -10245,23 +10297,47 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
       return;
     }
 
-    const recent = recentProviderOutcomes.slice(-50);
-    if (recent.length >= 50) {
-      const requestCount = recent.reduce((total, entry) => total + entry.request_count, 0);
-      const retryCount = recent.reduce((total, entry) => total + entry.retry_count, 0);
-      const retryRate = requestCount > 0 ? retryCount / requestCount : 0;
-      if (retryRate > 0.10 && !stopBeforeNextCall) {
+    const retryDecision = evaluateAdaptiveRetryRateDecisionV1({
+      outcomes: retryWindowProviderOutcomes,
+      currentConcurrency,
+      adaptiveConcurrency: args.adaptiveConcurrency,
+      retryRateBackoffCount,
+    });
+    if (retryDecision?.action === "continue" && retryDecision.rolling_retry_rate <= 0.05) {
+      retryRateBackoffCount = 0;
+    }
+    if (retryDecision?.action === "backoff" && !stopBeforeNextCall) {
+      const previousConcurrency = currentConcurrency;
+      currentConcurrency = Math.min(workerCount, retryDecision.next_concurrency);
+      retryRateBackoffCount = retryDecision.retry_rate_backoff_count;
+      cleanCompletionsSinceRamp = 0;
+      pausedUntilMs = Math.max(pausedUntilMs, now + DEFAULT_ADAPTIVE_RETRY_BACKOFF_PAUSE_MS);
+      retryWindowProviderOutcomes.length = 0;
+      await recordConcurrencyChange("retry_rate_backoff", {
+        previous_concurrency: previousConcurrency,
+        retry_rate_backoff_count: retryRateBackoffCount,
+        retry_delay_ms: DEFAULT_ADAPTIVE_RETRY_BACKOFF_PAUSE_MS,
+        rolling_request_count: retryDecision.rolling_request_count,
+        rolling_retry_count: retryDecision.rolling_retry_count,
+        rolling_retry_rate: retryDecision.rolling_retry_rate,
+      });
+      return;
+    }
+    if (retryDecision?.action === "stop" && !stopBeforeNextCall) {
         stopBeforeNextCall = {
           stopped_before_next_call: true,
           stop_reason: "adaptive_retry_rate_circuit_breaker",
-          rolling_request_count: requestCount,
-          rolling_retry_count: retryCount,
-          rolling_retry_rate: retryRate,
+          rolling_request_count: retryDecision.rolling_request_count,
+          rolling_retry_count: retryDecision.rolling_retry_count,
+          rolling_retry_rate: retryDecision.rolling_retry_rate,
+          retry_rate_backoff_count: retryDecision.retry_rate_backoff_count,
           concurrency: currentConcurrency,
         };
-        await recordConcurrencyChange("retry_rate_circuit_breaker", { rolling_retry_rate: retryRate });
+        await recordConcurrencyChange("retry_rate_circuit_breaker", {
+          rolling_retry_rate: retryDecision.rolling_retry_rate,
+          retry_rate_backoff_count: retryDecision.retry_rate_backoff_count,
+        });
         return;
-      }
     }
 
     if (!args.adaptiveConcurrency || currentConcurrency >= workerCount) return;
