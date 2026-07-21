@@ -43,6 +43,7 @@ function fixture(overrides = {}) {
       { observation_id: "obs-body-color", kind: "object_detail", label: "yellow body", normalized_label: "yellow body", confidence: 0.98, evidence_strength: "strong" },
       { observation_id: "obs-sign", kind: "environment_sign_text", label: "SALE sign", normalized_label: "sale sign", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-sky-surface", kind: "environment_surface", label: "sky visible through dome", normalized_label: "sky", confidence: 0.96, evidence_strength: "strong" },
+      { observation_id: "obs-body-region", kind: "body_region", label: "pink torso", normalized_label: "pink torso", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-object", kind: "objects_and_props", label: "metal object", normalized_label: "metal object", confidence: 0.9, evidence_strength: "medium" },
     ],
     typed_facts: [
@@ -50,6 +51,7 @@ function fixture(overrides = {}) {
       { fact_id: "fact-environment", module: "environment", field_path: "setting", claim: "setting", value: "dense forest", supporting_observation_ids: ["obs-forest"], confidence: 0.95, evidence_strength: "strong" },
       { fact_id: "fact-color", module: "color_and_light", field_path: "palette", claim: "palette", value: ["yellow", "green"], supporting_observation_ids: ["obs-color"], confidence: 0.97, evidence_strength: "strong" },
       { fact_id: "fact-body-color", module: "creature_anatomy", field_path: "body.color", claim: "body color", value: "yellow", supporting_observation_ids: ["obs-body-color"], confidence: 0.98, evidence_strength: "strong" },
+      { fact_id: "fact-body-region-style-context", module: "color_and_light", field_path: "palette", claim: "subject color", value: "pink", supporting_observation_ids: ["obs-body-region"], confidence: 0.96, evidence_strength: "strong" },
       { fact_id: "fact-material", module: "objects_and_props", field_path: "material", claim: "material", value: "metal", supporting_observation_ids: ["obs-object"], confidence: 0.9, evidence_strength: "medium" },
       { fact_id: "fact-missing", module: "environment", field_path: "ground", claim: "ground", value: "grass", supporting_observation_ids: ["obs-missing"], confidence: 0.9, evidence_strength: "medium" },
     ],
@@ -58,12 +60,13 @@ function fixture(overrides = {}) {
     character_representations: [],
     counts: [{ count_id: "count-trees", normalized_label: "tree", count_type: "exact", exact_count: 10, supporting_observation_ids: ["obs-trees"], confidence: 0.94 }],
     relationships: [],
-    semantic_visual_facts: [{ semantic_fact_id: "sem-sleeping", category: "state", label: "sleeping", subject_observation_id: "obs-subject", supporting_observation_ids: ["obs-pose"], confidence: 0.96 }],
+    semantic_visual_facts: [{ semantic_fact_id: "sem-sleeping", category: "state", label: "sleeping", subject_observation_id: "obs-subject", supporting_observation_ids: ["obs-pose"], confidence: 0.96 }, { semantic_fact_id: "sem-scene-context", category: "state", label: "visible with sky", subject_observation_id: "obs-subject", supporting_observation_ids: ["obs-sky-surface"], confidence: 0.8 }],
     fact_grounded_search_terms: [
       { term: "sleeping Pikachu", supporting_observation_ids: ["obs-subject", "obs-pose"] },
       { term: "forest background", supporting_observation_ids: ["obs-forest"] },
       { term: "black eyes", supporting_observation_ids: ["obs-anatomy"] },
       { term: "sky inside dome", supporting_observation_ids: ["obs-sky-surface"] },
+      { term: "pink torso", supporting_observation_ids: ["obs-body-region"] },
     ],
     canonical_visual_concepts: { concept_schema_version: "CARD_VISUAL_CONTROLLED_VOCABULARY_V1", concepts: [{ concept: "forest", source_observation_ids: ["obs-forest"], confidence: 0.95 }, { concept: "yellow green palette", source_observation_ids: ["obs-color"], confidence: 0.97 }] },
   };
@@ -81,7 +84,7 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_4");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_5");
 });
 
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
@@ -146,6 +149,8 @@ test("subject-linked generic observations route to subject while artwork sign te
   assert.doesNotMatch(document(result, "scene").document_text, /black eyes/);
   assert.match(document(result, "scene").document_text, /sky inside dome/);
   assert.doesNotMatch(document(result, "subject").document_text, /sky inside dome/);
+  assert.match(document(result, "subject").document_text, /pink torso/);
+  assert.doesNotMatch(document(result, "style_composition").document_text, /pink torso/);
 });
 
 test("count guard removes numeric count claims but preserves the counted visible object", () => {

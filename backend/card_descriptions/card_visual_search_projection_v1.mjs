@@ -7,13 +7,13 @@ import { fileURLToPath } from "node:url";
 import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_ARTWORK_GROUPING_VERSION } from "./card_visual_artwork_grouping_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_4";
+export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_5";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_GROUPING_DIR = "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469";
 const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_4";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_5";
 const DOCUMENT_TYPES = Object.freeze(["subject", "scene", "style_composition"]);
 const KNOWN_GUARDS = new Set([
   "module_completeness",
@@ -134,7 +134,7 @@ function documentTypeForEntry(entry, routingContext = {}) {
   const module = normalizeTerm(entry.module);
   const category = normalizeTerm(entry.category);
   const field = normalizeTerm(entry.field_path);
-  const combined = `${module} ${category} ${field} ${entry.observation_kinds.join(" ")}`;
+  const combined = `${module} ${category} ${field} ${normalizeTerm(entry.observation_kinds.join(" "))}`;
   if (entry.source_type === "subject_role") return "subject";
   if (SUBJECT_PATTERN.test(combined)) return "subject";
   if (SCENE_PATTERN.test(combined)) return "scene";
@@ -799,13 +799,13 @@ function reconcileProjection({ groups, memberships, artworks, printings, documen
 
 function markdownReport(report) {
   const counts = report.reconciliation.counts;
-  return `# Card Visual Search Projection V1.4\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
+  return `# Card Visual Search Projection V1.5\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
 }
 
 async function hashManifest(outputDir, files) {
   const entries = {};
   for (const file of files) entries[file] = sha256Buffer(await fs.readFile(path.join(outputDir, file)));
-  return { artifact_kind: "card_visual_search_projection_v1_4_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
+  return { artifact_kind: "card_visual_search_projection_v1_5_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
 }
 
 export async function runVisualSearchProjectionV1(args = parseVisualSearchProjectionArgsV1([])) {
