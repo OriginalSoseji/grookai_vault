@@ -123,7 +123,8 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1.md — Original Tier A/B/C policy retained for provenance; superseded after the first stratified audit exposed subject-name, subject-role, and prompt-branch classification failures |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1.md — First audit repair retained for provenance; superseded after its sample exposed cross-branch Energy and Pokémon identity leakage |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2.md — Cross-branch Energy and Pokémon identity repair retained for provenance; superseded after its sample exposed Pokémon-branch rows without canonical Pokémon identity agreement |
-| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3.md — Requires canonical Pokémon name aliases and typed scene-subject aliases to agree, while preserving Energy exclusion and all reviewed evidence-backed recoveries |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3.md — Canonical Pokémon subject-agreement repair retained for provenance; superseded after its expanded audit exposed narrow romanized-Japanese alias false exclusions |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md — Preserves canonical subject agreement while adding deterministic kana romanization and tightly bounded spelling tolerance for Japanese identity aliases |
 
 ---
 

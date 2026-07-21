@@ -9,12 +9,12 @@ import {
   sha256JsonV1,
 } from "./card_visual_corpus_v1_inventory.mjs";
 
-export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3";
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_INVENTORY_DIR = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_3";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_4";
 const POKEMON_IDENTITY_MAP_PATH = "lib/services/identity/pokemon_japanese_name_map.dart";
 const EXPECTED_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
 const EXPECTED_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
@@ -95,6 +95,22 @@ const IDENTITY_STOP_TOKENS = new Set([
 const HUMAN_IDENTITY_PATTERN = /\b(adult|boy|child|female|girl|human|male|man|person|trainer|woman)\b/i;
 const ENERGY_NAME_SUFFIX_PATTERN = /(?:^|[\s_-])(energy|energie|énergie|energia|energía)$/iu;
 const CJK_ENERGY_NAME_SUFFIX_PATTERN = /(?:エネルギー|에너지|能量)$/u;
+const KANA_ROMAJI = new Map(Object.entries({
+  ア: "a", イ: "i", ウ: "u", エ: "e", オ: "o",
+  カ: "ka", キ: "ki", ク: "ku", ケ: "ke", コ: "ko", ガ: "ga", ギ: "gi", グ: "gu", ゲ: "ge", ゴ: "go",
+  サ: "sa", シ: "shi", ス: "su", セ: "se", ソ: "so", ザ: "za", ジ: "ji", ズ: "zu", ゼ: "ze", ゾ: "zo",
+  タ: "ta", チ: "chi", ツ: "tsu", テ: "te", ト: "to", ダ: "da", ヂ: "ji", ヅ: "zu", デ: "de", ド: "do",
+  ナ: "na", ニ: "ni", ヌ: "nu", ネ: "ne", ノ: "no",
+  ハ: "ha", ヒ: "hi", フ: "fu", ヘ: "he", ホ: "ho", バ: "ba", ビ: "bi", ブ: "bu", ベ: "be", ボ: "bo", パ: "pa", ピ: "pi", プ: "pu", ペ: "pe", ポ: "po",
+  マ: "ma", ミ: "mi", ム: "mu", メ: "me", モ: "mo", ヤ: "ya", ユ: "yu", ヨ: "yo",
+  ラ: "ra", リ: "ri", ル: "ru", レ: "re", ロ: "ro", ワ: "wa", ヰ: "i", ヱ: "e", ヲ: "o", ン: "n", ヴ: "vu",
+  キャ: "kya", キュ: "kyu", キョ: "kyo", ギャ: "gya", ギュ: "gyu", ギョ: "gyo",
+  シャ: "sha", シュ: "shu", ショ: "sho", ジャ: "ja", ジュ: "ju", ジョ: "jo",
+  チャ: "cha", チュ: "chu", チョ: "cho", ニャ: "nya", ニュ: "nyu", ニョ: "nyo",
+  ヒャ: "hya", ヒュ: "hyu", ヒョ: "hyo", ビャ: "bya", ビュ: "byu", ビョ: "byo", ピャ: "pya", ピュ: "pyu", ピョ: "pyo",
+  ミャ: "mya", ミュ: "myu", ミョ: "myo", リャ: "rya", リュ: "ryu", リョ: "ryo",
+  ファ: "fa", フィ: "fi", フェ: "fe", フォ: "fo", ティ: "ti", ディ: "di", ウィ: "wi", ウェ: "we", ウォ: "wo",
+}));
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -238,6 +254,66 @@ function normalizedNameContainsIdentity(normalizedName, normalizedIdentity) {
   return ` ${normalizedName} `.includes(` ${normalizedIdentity} `);
 }
 
+function katakana(value) {
+  return [...String(value ?? "")].map((character) => {
+    const code = character.codePointAt(0);
+    return code >= 0x3041 && code <= 0x3096 ? String.fromCodePoint(code + 0x60) : character;
+  }).join("");
+}
+
+function kanaToRomaji(value) {
+  const source = [...katakana(value)];
+  let result = "";
+  let geminate = false;
+  for (let index = 0; index < source.length; index += 1) {
+    const character = source[index];
+    if (character === "ッ") {
+      geminate = true;
+      continue;
+    }
+    if (character === "ー") {
+      const vowel = result.match(/[aeiou](?!.*[aeiou])/u)?.[0];
+      if (vowel) result += vowel;
+      continue;
+    }
+    const pair = `${character}${source[index + 1] ?? ""}`;
+    let syllable = KANA_ROMAJI.get(pair);
+    if (syllable) index += 1;
+    else syllable = KANA_ROMAJI.get(character) ?? "";
+    if (!syllable) continue;
+    if (geminate && /^[bcdfghjklmnpqrstvwxyz]/u.test(syllable)) syllable = `${syllable[0]}${syllable}`;
+    geminate = false;
+    result += syllable;
+  }
+  return result;
+}
+
+function editDistance(left, right) {
+  const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    const current = [leftIndex];
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      current[rightIndex] = Math.min(
+        current[rightIndex - 1] + 1,
+        previous[rightIndex] + 1,
+        previous[rightIndex - 1] + (left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1),
+      );
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+  return previous[right.length];
+}
+
+function subjectIdentityMatchesAlias(normalizedSubject, alias) {
+  if (normalizedNameContainsIdentity(normalizedSubject, alias)) return true;
+  if (!/^[a-z0-9 ]+$/u.test(alias) || alias.length < 5) return false;
+  const candidates = normalizedSubject.split(/\s+/u).filter((token) => /^[a-z0-9]+$/u.test(token) && token.length >= 4);
+  return candidates.some((candidate) => {
+    const maximumDistance = Math.max(1, Math.floor(Math.max(candidate.length, alias.length) * 0.12));
+    return editDistance(candidate, alias) <= maximumDistance;
+  });
+}
+
 function pokemonAliasesForCanonicalName(name, context = {}) {
   const normalized = normalizedIdentityName(name);
   if (!normalized || !Array.isArray(context.pokemonIdentityPairs)) return [];
@@ -262,7 +338,7 @@ function primarySubjectIdentityMatches(generatedRow, graph, context = {}) {
     )));
     if (tokenMatch) return true;
     const normalizedSubject = normalizedIdentityName(subject.identity);
-    return canonicalAliases.some((alias) => normalizedNameContainsIdentity(normalizedSubject, alias));
+    return canonicalAliases.some((alias) => subjectIdentityMatchesAlias(normalizedSubject, alias));
   });
 }
 
@@ -534,7 +610,8 @@ async function loadPokemonIdentityContext() {
   const pairs = [];
   const entryPattern = /^\s*'([^']+)'\s*:\s*'([^']+)'\s*,?\s*$/gmu;
   for (const match of source.matchAll(entryPattern)) {
-    const aliases = uniqueSorted([match[1], match[2]].map(normalizedIdentityName));
+    const romanized = kanaToRomaji(match[1]);
+    const aliases = uniqueSorted([match[1], match[2], romanized].map(normalizedIdentityName));
     if (aliases.length) pairs.push({ aliases });
     for (const value of [match[1], match[2]]) {
       const normalized = normalizedIdentityName(value);

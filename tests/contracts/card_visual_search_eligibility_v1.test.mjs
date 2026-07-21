@@ -291,6 +291,37 @@ test("Pokemon branch requires a known canonical Pokemon identity and matching sc
   assert.deepEqual(recovered.critical_reasons, []);
 });
 
+test("tight romanized Japanese alias matching recovers spelling variants without accepting another species", () => {
+  const context = {
+    pokemonIdentityNames: ["garchomp", "ガブリアス", "swadloon", "クルマユ", "purrloin", "チョロネコ"],
+    pokemonIdentityPairs: [
+      { aliases: ["garchomp", "ガブリアス", "gaburiasu"] },
+      { aliases: ["swadloon", "クルマユ", "kurumayu"] },
+      { aliases: ["purrloin", "チョロネコ", "choroneko"] },
+    ],
+  };
+  for (const [name, identity] of [
+    ["シロナのガブリアスex", "Gaburias"],
+    ["クルマユ", "kuramayu"],
+  ]) {
+    const row = generatedRow({
+      name,
+      prompt_branch: "pokemon",
+      visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-subject" }], subjects: [{ observation_id: "obs-subject", subject_kind: "scene_subject", identity }], module_reviews: [] } },
+    });
+    assert.equal(classifyEligibilityV1(row, inventoryRow(row), context).tier, "A");
+  }
+
+  const wrongSpecies = generatedRow({
+    name: "チョロネコ",
+    prompt_branch: "pokemon",
+    visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-subject" }], subjects: [{ observation_id: "obs-subject", subject_kind: "scene_subject", identity: "Lucario" }], module_reviews: [] } },
+  });
+  const decision = classifyEligibilityV1(wrongSpecies, inventoryRow(wrongSpecies), context);
+  assert.equal(decision.tier, "C");
+  assert.ok(decision.critical_reasons.includes("prompt_branch_profile_conflict:pokemon_without_matching_canonical_subject"));
+});
+
 test("Energy identity is excluded independently of prompt branch without blocking Energy tools", () => {
   for (const name of ["Basic Water Energy", "ダブル無色エネルギー", "Energía", "기본 물 에너지"]) {
     const row = generatedRow({ name, prompt_branch: "pokemon" });
