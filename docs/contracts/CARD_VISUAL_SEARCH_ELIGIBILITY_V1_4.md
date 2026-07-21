@@ -1,6 +1,6 @@
 # CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4
 
-Status: Active - offline eligibility repair and audit only
+Status: Active - LOCKED at the tier and projection-guard boundary
 
 Date: 2026-07-21
 

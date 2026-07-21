@@ -20,7 +20,7 @@ function decision(id, tier, branch, options = {}) {
 
 test("eligibility audit defaults to the reconciled policy artifact", () => {
   const args = parseEligibilityAuditArgsV1([]);
-  assert.match(args.eligibilityDir, /2026-07-21T16-27-41-733Z_eligibility_9c39e1521be3$/);
+  assert.match(args.eligibilityDir, /2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b$/);
 });
 
 test("audit selection deterministically covers branches guards critical reasons and gaps", () => {
