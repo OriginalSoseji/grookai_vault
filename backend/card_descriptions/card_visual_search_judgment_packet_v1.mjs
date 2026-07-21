@@ -17,6 +17,7 @@ const DEFAULT_BOOTSTRAP_DIR = "docs/audits/card_visual_search_evaluation_bootstr
 const DEFAULT_CORPUS_INVENTORY = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_valid_candidates.jsonl";
 const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_judgment_packet_v1";
 const IMAGE_PATH_PREFIXES = ["warehouse-derived/self-hosted-images-v1/", "warehouse-derived/image-truth-v1/"];
+const REVIEW_IMAGE_HOST_ALLOWLIST = new Set(["assets.tcgdex.net", "images.pokemontcg.io"]);
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -86,8 +87,16 @@ function currentGitState() {
 
 export function grookaiImageUrlV1(imageSourceKey) {
   const normalized = String(imageSourceKey ?? "").trim().replace(/^\/+/, "");
-  if (!IMAGE_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))) return null;
-  return `https://grookaivault.com/api/canon/image?path=${encodeURIComponent(normalized)}`;
+  if (IMAGE_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))) {
+    return `https://grookaivault.com/api/canon/image?path=${encodeURIComponent(normalized)}`;
+  }
+  try {
+    const source = new URL(normalized);
+    if (source.protocol !== "https:" || !REVIEW_IMAGE_HOST_ALLOWLIST.has(source.hostname.toLocaleLowerCase("en-US"))) return null;
+    return `https://grookaivault.com/_next/image?url=${encodeURIComponent(source.toString())}&w=640&q=85`;
+  } catch {
+    return null;
+  }
 }
 
 function sourceRecords(payload) {

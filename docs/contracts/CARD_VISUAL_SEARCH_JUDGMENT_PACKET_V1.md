@@ -19,7 +19,7 @@ Create a local artwork-first review packet for the `200` calibration queries fro
 
 ## Image Boundary
 
-Image paths come from immutable source artifacts and are converted to Grookai `/api/canon/image` URLs. Packet generation does not fetch remote images. Missing image evidence must be reported rather than substituted.
+Image references come from immutable source artifacts. Warehouse paths are converted to Grookai `/api/canon/image` URLs. Legacy extraction rows that contain allowlisted TCGdex or Pokemon TCG image URLs are routed through Grookai's own `/_next/image` proxy. Packet generation does not fetch remote images. Missing image evidence must be reported rather than substituted.
 
 ## Boundaries
 

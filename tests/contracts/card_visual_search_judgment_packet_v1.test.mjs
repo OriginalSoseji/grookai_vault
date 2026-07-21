@@ -46,6 +46,8 @@ test("Grookai image URLs accept governed storage paths only", () => {
   assert.equal(grookaiImageUrlV1("https://example.com/card.png"), null);
   assert.equal(grookaiImageUrlV1("../secret.png"), null);
   assert.equal(grookaiImageUrlV1("warehouse-derived/self-hosted-images-v1/cards/a b.png"), "https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fcards%2Fa%20b.png");
+  assert.equal(grookaiImageUrlV1("https://images.pokemontcg.io/set/1.png"), "https://grookaivault.com/_next/image?url=https%3A%2F%2Fimages.pokemontcg.io%2Fset%2F1.png&w=640&q=85");
+  assert.equal(grookaiImageUrlV1("http://images.pokemontcg.io/set/1.png"), null);
 });
 
 test("judgment rows contain exactly 200 calibration queries and no completed judgments", () => {
