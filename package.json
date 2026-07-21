@@ -55,6 +55,7 @@
     "card-visual:artwork-grouping": "node scripts/audits/card_visual_artwork_grouping_v1.mjs",
     "card-visual:artwork-grouping-audit": "node scripts/audits/card_visual_artwork_grouping_audit_v1.mjs",
     "card-visual:search-projection": "node scripts/audits/card_visual_search_projection_v1.mjs",
+    "card-visual:search-evaluation-bootstrap": "node scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
     "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
