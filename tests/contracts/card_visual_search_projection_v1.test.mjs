@@ -78,7 +78,7 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_2");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_3");
 });
 
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
@@ -97,6 +97,7 @@ test("source card UI taxonomies are blocked without treating artwork sign text a
   assert.equal(isCardUiProjectionEntryV1({ module: "objects_and_props", field_path: null, category: "objects_and_props", observation_kinds: ["objects_and_props"], supporting_observation_ids: ["obs-book"], term: "printed text on an open book" }), false);
   assert.equal(isCardUiProjectionEntryV1({ module: "objects_and_props", field_path: null, category: "objects_and_props", observation_kinds: ["objects_and_props"], supporting_observation_ids: ["obs-logo"], term: "Rapid Strike logo floating near the subject" }), true);
   assert.equal(isCardUiProjectionEntryV1({ module: "clothing", field_path: "garments.jacket.logo", category: "clothing", observation_kinds: ["clothing"], supporting_observation_ids: ["obs-jacket"], term: "Rapid Strike logo on jacket" }), false);
+  assert.equal(isCardUiProjectionEntryV1({ module: "objects_and_props", field_path: null, category: "objects_and_props", observation_kinds: ["objects_and_props"], supporting_observation_ids: ["obs-icon"], term: "mushroom icon printed on card top-left" }), true);
 });
 
 test("card UI classification propagates from raw observations to derived concepts and search terms", () => {
