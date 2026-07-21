@@ -73,6 +73,7 @@ The goal is clarity without destructive churn:
 - [Card Visual Search Eligibility V1.4](/c:/grookai_vault/docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md)
 - [Card Visual Artwork Grouping V1](/c:/grookai_vault/docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1.md)
 - [Card Visual Artwork Grouping V1.1](/c:/grookai_vault/docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md)
+- [Card Visual Search Projection V1](/c:/grookai_vault/docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1.md)
 - [Pricing Scheduler Contract](/c:/grookai_vault/docs/contracts/PRICING_SCHEDULER_CONTRACT_V1.md)
 - [Pricing Surface Contract](/c:/grookai_vault/docs/contracts/PRICING_SURFACE_CONTRACT_V1.md)
 - [Pricing Schema Audit](/c:/grookai_vault/docs/audits/PRICING_SCHEMA_AUDIT_V1.md)
