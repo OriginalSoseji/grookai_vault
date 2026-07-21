@@ -7,12 +7,12 @@ import { fileURLToPath } from "node:url";
 import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION } from "./card_visual_search_eligibility_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_ELIGIBILITY_AUDIT_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_AUDIT_V1";
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_AUDIT_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_AUDIT_V1_1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
-const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1/2026-07-21T15-59-27-069Z_eligibility_bf56850e0cb0";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_audit_v1";
+const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_3/2026-07-21T16-27-41-733Z_eligibility_9c39e1521be3";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_audit_v1_1";
 const INCLUDED_BRANCHES = Object.freeze(["pokemon", "trainer", "stadium", "item_tool_supporter"]);
 
 function repoPath(value) {
@@ -95,7 +95,7 @@ function buildStrata(decisions) {
   const criticalReasons = [...new Set(decisions
     .filter((row) => row.tier === "C")
     .flatMap((row) => row.critical_reasons)
-    .filter((reason) => reason.startsWith("critical_flag:")))].sort();
+    .filter((reason) => !reason.startsWith("source_gap:")))].sort();
   const sourceGaps = [...new Set(decisions
     .filter((row) => row.tier === "C")
     .flatMap((row) => row.critical_reasons)

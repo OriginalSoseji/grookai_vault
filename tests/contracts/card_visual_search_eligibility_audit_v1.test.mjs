@@ -20,7 +20,7 @@ function decision(id, tier, branch, options = {}) {
 
 test("eligibility audit defaults to the reconciled policy artifact", () => {
   const args = parseEligibilityAuditArgsV1([]);
-  assert.match(args.eligibilityDir, /2026-07-21T15-59-27-069Z_eligibility_bf56850e0cb0$/);
+  assert.match(args.eligibilityDir, /2026-07-21T16-27-41-733Z_eligibility_9c39e1521be3$/);
 });
 
 test("audit selection deterministically covers branches guards critical reasons and gaps", () => {
@@ -33,6 +33,7 @@ test("audit selection deterministically covers branches guards critical reasons 
   decisions.push(decision("bg1", "B", "pokemon", { guards: ["environment_setting"] }));
   decisions.push(decision("bg2", "B", "trainer", { guards: ["environment_setting"] }));
   for (let i = 0; i < 3; i += 1) decisions.push(decision(`c${i}`, "C", "pokemon", { reasons: ["critical_flag:potential_primary_subject_mismatch"] }));
+  for (let i = 0; i < 3; i += 1) decisions.push(decision(`e${i}`, "C", "pokemon", { reasons: ["energy_card_excluded"] }));
   decisions.push(decision("g1", "C", "pokemon", { reasons: ["source_gap:image_skip"] }));
   decisions.push(decision("g2", "C", "trainer", { reasons: ["source_gap:image_skip"] }));
 
@@ -42,6 +43,7 @@ test("audit selection deterministically covers branches guards critical reasons 
   assert.ok(first.coverage.every((row) => row.satisfied));
   assert.ok(first.sample.some((row) => row.audit_strata.includes("tier_b_guard:environment_setting")));
   assert.ok(first.sample.some((row) => row.audit_strata.includes("tier_c_reason:critical_flag:potential_primary_subject_mismatch")));
+  assert.ok(first.sample.some((row) => row.audit_strata.includes("tier_c_reason:energy_card_excluded")));
   assert.ok(first.sample.some((row) => row.audit_strata.includes("tier_c_gap:source_gap:image_skip")));
 });
 
