@@ -79,6 +79,7 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_FACT_GRAPH_V1 | Active | docs/contracts/CARD_VISUAL_FACT_GRAPH_V1.md — Governs exhaustive observable card fact extraction: observation IDs, subject-kind separation, counts with support, coverage reviews, fact-grounded search terms, compatibility-only prose, and no story inside the fact graph |
 | CARD_VISUAL_FACT_GRAPH_V2 | Active | docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md — Governs the modular exhaustive observable fact ontology: raw observation backbone, evidence-backed typed facts, module-level completeness reviews, human appearance, creature anatomy, material-appearance-only object facts, and no fixed observation quota |
 | CARD_VISUAL_HARVEST_MODE_V1 | Active | docs/contracts/CARD_VISUAL_HARVEST_MODE_V1.md — Governs large calibration runs that preserve validated visual fact graph rows while quarantining invalid payloads for grouped offline repair, without database writes, approvals, embeddings, or downstream integrations |
+| CARD_VISUAL_CORPUS_V1_BLUEPRINT | Active | docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md — Defines the extraction freeze, current candidate corpus, Tier A/B/C search eligibility, artwork/printing boundary, quarantine and gap accounting, and exact reconciliation required before apply or indexing |
 | USER_PHOTO_NORMALIZATION_PIPELINE_V1 | Planned | Backend normalization of user-uploaded images |
 
 ---
@@ -116,6 +117,9 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
 | GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
+| CARD_VISUAL_SEARCH_CONTRACT_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md — Defines evidence-backed visual query behavior, strict subject roles, deterministic projections, artwork-first grouping, decomposable ranking, and why-matched explanations |
+| CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md — Defines the proposed immutable artwork-level index, printing mappings, deterministic documents, structured evidence, lexical/vector layers, versioning, rollback, and private read boundary |
+| CARD_VISUAL_SEARCH_EVALUATION_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md — Defines the fixed 250-query evaluation suite, judgment and failure labels, relevance/trust metrics, baseline procedure, holdout, regression policy, and threshold-locking gate |
 
 ---
 
