@@ -78,7 +78,7 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_1");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_2");
 });
 
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
@@ -93,6 +93,21 @@ test("source card UI taxonomies are blocked without treating artwork sign text a
   }
   assert.equal(isCardUiProjectionEntryV1({ module: "environment_sign_text", field_path: null, category: "environment_sign_text", observation_kinds: ["environment_sign_text"], supporting_observation_ids: ["obs-sign"], term: "SALE sign" }), false);
   assert.equal(isCardUiProjectionEntryV1({ module: "character_representation", field_path: "representation_form", category: "logo", observation_kinds: ["character_representation"], supporting_observation_ids: ["obs-logo"], term: "Pikachu logo on shirt" }), false);
+  assert.equal(isCardUiProjectionEntryV1({ module: "visual_effects", field_path: null, category: "visual_effects", observation_kinds: ["visual_effects"], supporting_observation_ids: ["obs-overlay"], term: "large glowing text MEGATONSLAM across the foreground" }), true);
+  assert.equal(isCardUiProjectionEntryV1({ module: "objects_and_props", field_path: null, category: "objects_and_props", observation_kinds: ["objects_and_props"], supporting_observation_ids: ["obs-book"], term: "printed text on an open book" }), false);
+  assert.equal(isCardUiProjectionEntryV1({ module: "objects_and_props", field_path: null, category: "objects_and_props", observation_kinds: ["objects_and_props"], supporting_observation_ids: ["obs-logo"], term: "Rapid Strike logo floating near the subject" }), true);
+  assert.equal(isCardUiProjectionEntryV1({ module: "clothing", field_path: "garments.jacket.logo", category: "clothing", observation_kinds: ["clothing"], supporting_observation_ids: ["obs-jacket"], term: "Rapid Strike logo on jacket" }), false);
+});
+
+test("card UI classification propagates from raw observations to derived concepts and search terms", () => {
+  const input = fixture();
+  const graph = input.generatedRow.visual_attributes.fact_graph;
+  graph.observations.push({ observation_id: "obs-overlay", kind: "visual_effects", label: "large glowing text MEGATONSLAM across the foreground", normalized_label: "megatonslam text", confidence: 0.98, evidence_strength: "strong" });
+  graph.fact_grounded_search_terms.push({ term: "MEGATONSLAM text", supporting_observation_ids: ["obs-overlay"] });
+  graph.canonical_visual_concepts.concepts.push({ concept: "MEGATONSLAM text", source_observation_ids: ["obs-overlay"], confidence: 0.98 });
+  const result = projectArtworkGraphV1(input);
+  assert.ok(result.exclusions.some((row) => row.source_id === "obs-overlay"));
+  assert.ok(result.evidence.every((row) => !row.supporting_observation_ids.includes("obs-overlay")));
 });
 
 test("projection produces three evidence-backed documents and keeps canonical context separate", () => {

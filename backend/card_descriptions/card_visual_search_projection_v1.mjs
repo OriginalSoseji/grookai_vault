@@ -7,13 +7,13 @@ import { fileURLToPath } from "node:url";
 import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_ARTWORK_GROUPING_VERSION } from "./card_visual_artwork_grouping_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_1";
+export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_2";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_GROUPING_DIR = "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469";
 const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_1";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_2";
 const DOCUMENT_TYPES = Object.freeze(["subject", "scene", "style_composition"]);
 const KNOWN_GUARDS = new Set([
   "module_completeness",
@@ -37,8 +37,11 @@ const STYLE_PATTERN = /composition|color|palette|lighting|shadow|highlight|contr
 const SCENE_PATTERN = /environment|setting|terrain|sky|ground|plant|tree|architecture|building|water|weather|foreground|midground|background/u;
 const UI_TAXONOMY_PATTERN = /\b(?:card ui|print marker|surface and scan|scan cue|card border|copyright|legal text|collector number|illustrator(?: credit| text)?|artist (?:credit|text)|creator text|hp(?: text| type symbol)?|card (?:name|type|subtype|supertype|category|stage|number|set|text|energy|hp|effect|abilities|evolves from)(?: text| symbol| icon| marker| info)?|attack(?: name| damage| cost| description| effect| power| title| value| energy requirement)?(?: text| symbol| icons?)?|move(?: name| damage| description)? text|ability(?: name| title| header| description| effect| label)?(?: text| box| area| indicator)?|poke[- ]?(?:body|power)(?: text)?|retreat(?: cost| text)?|weakness|resistance|rarity(?: mark| symbol)?|rare (?:mark|symbol)|set (?:symbol|mark|icon|number|code|info)|stage (?:text|marker|label|symbol|indicator|icon)|evol(?:ution|ves? from|ve from)(?: info)?(?: text| marker| symbol| icon)?|regulation mark|promo stamp|edition marker|watermark|printer logo|brand logo|trainer gallery text|deck icon|energy (?:cost |type )?symbols?|type (?:symbol|icon|indicator|mark|label|text)|bottom (?:line|flavor) text|flavor text|pokedex data|height weight text|language text|printed text|print text|small print text|rule(?:s)?(?: text| box)?|basic (?:label|marker|text)|trainer (?:icon|symbol|text)|item (?:subtype|text))\b/u;
 const UI_GENERIC_TAXONOMIES = new Set(["text", "text block", "text box", "text line", "text section", "text area"]);
-const UI_TERM_FALLBACK_PATTERN = /\b(?:hp\s*\d+|\d+\s*hp|ill(?:us|ustrator)\.?\s|collector (?:no\.?|number)|weakness|resistance|retreat cost|evolves? from|attack (?:name|damage|cost|description|text)|ability (?:name|text)|copyright|rarity (?:mark|symbol)|set (?:symbol|code|number)|promo stamp|ht:\s*\d|wt:\s*\d)\b/u;
+const UI_TERM_FALLBACK_PATTERN = /\b(?:hp\s*\d+|\d+\s*hp|ill(?:us|ustrator)\.?\s|collector (?:no\.?|number)|weakness|resistance|retreat cost|evolves? from|attack (?:name|damage|cost|description|text)|ability (?:name|text)|copyright|rarity (?:mark|symbol)|set (?:symbol|code|number)|promo stamp|ht:\s*\d|wt:\s*\d|card (?:user interface|ui|interface|frame|border|header|text)|trading card frame|poke[- ]?body|(?:energy|type|stage|rarity|set|regulation) (?:symbol|icon|mark))\b/u;
 const UI_OBSERVATION_ID_PATTERN = /^(?:obs_)?(?:card_?ui|ui)(?:_|$)/u;
+const UI_OVERLAY_TEXT_PATTERN = /\b(?:text|wording|letters?)\b.*\b(?:overlay|across (?:the )?(?:foreground|artwork|image)|floating)\b|\b(?:overlay|floating)\b.*\b(?:text|wording|letters?)\b/u;
+const UI_CARD_LOGO_PATTERN = /\b(?:pokemon league|pok[eé]mon league|fusion strike|single strike|rapid strike|wb kids) logo\b/u;
+const ARTWORK_TEXT_OR_LOGO_HOST_PATTERN = /\b(?:sign|poster|book|paper|screen|game board|building|wall|shirt|jacket|cloak|garment|clothing|banner)\b/u;
 const WEATHER_TIME_PATTERN = /weather|rain|snow|storm|lightning storm|sunset|sunrise|daytime|night|dawn|dusk|cloudy|fog|mist/u;
 const POSE_PATTERN = /pose|orientation|action|state|standing|sitting|sleeping|flying|floating|running|leaping|walking|crouching/u;
 const ANATOMY_PATTERN = /anatomy|physical[_ ]?feature|body[_ ]?region|limb|appendage|wing|tail|horn|claw|eye|mouth|teeth|fang/u;
@@ -146,6 +149,7 @@ function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null
   const normalized = normalizeTerm(term);
   const ids = uniqueSorted(observationIds ?? []);
   const kinds = uniqueSorted(ids.map((id) => observationById.get(id)?.kind));
+  const supportingCardUiObservationIds = ids.filter((id) => isCardUiObservationRecordV1(observationById.get(id)));
   const entry = {
     source_type: sourceType,
     source_id: explicitSourceId ?? sourceId(sourceType, null, { term: normalized, module, fieldPath, category, ids }),
@@ -161,6 +165,7 @@ function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null
     evidence_strength: evidenceStrength ?? null,
     details,
   };
+  if (supportingCardUiObservationIds.length) entry.supporting_card_ui_observation_ids = supportingCardUiObservationIds;
   entry.document_type = documentTypeForEntry(entry, routingContext);
   entry.entry_hash = sha256JsonV1(entry);
   return entry;
@@ -383,13 +388,37 @@ function cardUiTaxonomyText(entry) {
   return normalizeTerm(`${entry.module} ${entry.field_path} ${entry.category} ${entry.observation_kinds.join(" ")}`);
 }
 
+function cardUiTermFallback(entry) {
+  const term = normalizeTerm(entry.term);
+  const context = normalizeTerm(`${entry.module} ${entry.field_path} ${entry.category} ${entry.term}`);
+  if (UI_TERM_FALLBACK_PATTERN.test(term)) return true;
+  if (UI_OVERLAY_TEXT_PATTERN.test(term) && !ARTWORK_TEXT_OR_LOGO_HOST_PATTERN.test(context)) return true;
+  if (UI_CARD_LOGO_PATTERN.test(term) && !ARTWORK_TEXT_OR_LOGO_HOST_PATTERN.test(context)) return true;
+  return false;
+}
+
+function isCardUiObservationRecordV1(observation) {
+  if (!observation) return false;
+  const entry = {
+    module: observation.kind,
+    field_path: null,
+    category: observation.kind,
+    observation_kinds: [observation.kind],
+    supporting_observation_ids: [observation.observation_id],
+    supporting_card_ui_observation_ids: [],
+    term: observation.label || observation.normalized_label,
+  };
+  return isCardUiProjectionEntryV1(entry);
+}
+
 export function isCardUiProjectionEntryV1(entry) {
   const observationIds = entry.supporting_observation_ids ?? [];
+  if (entry.supporting_card_ui_observation_ids?.length) return true;
   if (observationIds.some((id) => UI_OBSERVATION_ID_PATTERN.test(String(id).toLocaleLowerCase("en-US")))) return true;
   const taxonomies = [entry.module, entry.field_path, entry.category, ...(entry.observation_kinds ?? [])].map(normalizeTerm);
   if (taxonomies.some((value) => UI_GENERIC_TAXONOMIES.has(value))) return true;
   if (UI_TAXONOMY_PATTERN.test(cardUiTaxonomyText(entry))) return true;
-  return UI_TERM_FALLBACK_PATTERN.test(normalizeTerm(entry.term));
+  return cardUiTermFallback(entry);
 }
 
 function actualMaterialClaim(entry) {
@@ -770,13 +799,13 @@ function reconcileProjection({ groups, memberships, artworks, printings, documen
 
 function markdownReport(report) {
   const counts = report.reconciliation.counts;
-  return `# Card Visual Search Projection V1.1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
+  return `# Card Visual Search Projection V1.2\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Planned artwork groups: \`${counts.planned_artwork_groups}\`\n- Projected artworks: \`${counts.projected_artworks}\`\n- Projected printings: \`${counts.projected_printings}\`\n- Documents: \`${counts.documents}\`\n- Evidence entries: \`${counts.evidence_entries}\`\n- Guard/global exclusions: \`${counts.exclusions}\`\n- Projection failures: \`${counts.projection_failures}\`\n- Input hash mismatches: \`${counts.input_hash_mismatches}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Boundaries\n\nDocuments were built mechanically from existing evidence. No provider calls, database connections or writes, approvals, embeddings, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nRun the fixed offline lexical and structured evaluation suite. Do not generate embeddings or write a migration until evaluation passes.\n`;
 }
 
 async function hashManifest(outputDir, files) {
   const entries = {};
   for (const file of files) entries[file] = sha256Buffer(await fs.readFile(path.join(outputDir, file)));
-  return { artifact_kind: "card_visual_search_projection_v1_1_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
+  return { artifact_kind: "card_visual_search_projection_v1_2_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
 }
 
 export async function runVisualSearchProjectionV1(args = parseVisualSearchProjectionArgsV1([])) {
