@@ -125,6 +125,7 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2.md — Cross-branch Energy and Pokémon identity repair retained for provenance; superseded after its sample exposed Pokémon-branch rows without canonical Pokémon identity agreement |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3.md — Canonical Pokémon subject-agreement repair retained for provenance; superseded after its expanded audit exposed narrow romanized-Japanese alias false exclusions |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md — Preserves canonical subject agreement while adding deterministic kana romanization and tightly bounded spelling tolerance for Japanese identity aliases |
+| CARD_VISUAL_ARTWORK_GROUPING_V1 | Active | docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1.md — Fail-closed offline grouping that merges only exact image hashes with the same normalized canonical name and branch, preserves conflicts, and forbids visual-similarity merges or print-marker inheritance |
 
 ---
 
