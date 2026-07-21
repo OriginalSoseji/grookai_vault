@@ -7,6 +7,7 @@ import {
   buildCalibrationJudgmentRowsV1,
   grookaiImageUrlV1,
   renderCalibrationDashboardV1,
+  savedVisualRecordV1,
 } from "../../backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs";
 
 function query(index, split = "calibration") {
@@ -78,11 +79,38 @@ test("source candidate outside the result window retains artwork identity and im
   assert.equal(rows[0].source_candidate.present_in_top_results, false);
 });
 
+test("saved visual records preserve the exact generated row and Fact Graph provenance", () => {
+  const generatedRow = {
+    card_print_id: "print-1",
+    gv_id: "GV-1",
+    name: "Wingull",
+    artwork_description: "Fact digest.",
+    visual_attributes: {
+      fact_schema_version: "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2",
+      fact_graph: {
+        observations: [{ observation_id: "obs-sky", kind: "environment", label: "blue sky" }],
+        typed_facts: [{ fact_id: "fact-sky", module: "environment", field_path: "environment.sky", claim: "sky", value: "blue", supporting_observation_ids: ["obs-sky"] }],
+        environment: { sky: ["blue sky"] },
+      },
+    },
+  };
+  const saved = savedVisualRecordV1({ outcome_type: "generated", generated_row: generatedRow }, "audit/source.json");
+  assert.deepEqual(saved.generated_row, generatedRow);
+  assert.equal(saved.source_artifact_path, "audit/source.json");
+  assert.equal(saved.generated_row.visual_attributes.fact_graph.observations[0].label, "blue sky");
+  assert.match(saved.generated_row_sha256, /^[a-f0-9]{64}$/u);
+  assert.match(saved.source_record_sha256, /^[a-f0-9]{64}$/u);
+});
+
 test("dashboard preserves packet provenance and excludes network or mutation code", () => {
-  const packet = { packet_version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, judgment_set_version: "fixture", run_key: "run", commit_sha: "sha", queries: [] };
+  const packet = { packet_version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, judgment_set_version: "fixture", run_key: "run", commit_sha: "sha", saved_visual_records_by_card_id: {}, queries: [] };
   const html = renderCalibrationDashboardV1(packet);
   assert.match(html, /Grookai Visual Search Calibration/);
   assert.match(html, /Export JSONL/);
+  assert.match(html, /Search match evidence only/);
+  assert.match(html, /Full saved Fact Graph/);
+  assert.match(html, /Exact saved generated row JSON/);
+  assert.match(html, /Canonical:/);
   assert.doesNotMatch(html, /fetch\(|XMLHttpRequest|supabase|openai/i);
 });
 
