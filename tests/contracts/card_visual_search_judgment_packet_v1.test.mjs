@@ -108,8 +108,11 @@ test("dashboard preserves packet provenance and excludes network or mutation cod
   assert.match(html, /Grookai Visual Search Calibration/);
   assert.match(html, /Export JSONL/);
   assert.match(html, /Search match evidence only/);
+  assert.match(html, /click to inspect image/);
   assert.match(html, /Full saved Fact Graph/);
   assert.match(html, /Exact saved generated row JSON/);
+  assert.match(html, /facts-image-panel/);
+  assert.match(html, /evidence and complete saved visual record/);
   assert.match(html, /Canonical:/);
   assert.doesNotMatch(html, /fetch\(|XMLHttpRequest|supabase|openai/i);
 });
