@@ -251,9 +251,44 @@ test("Pokemon branch without a typed scene subject fails closed", () => {
 
 test("Pokemon identity lexicon fails closed on a Pokemon-named Stadium row", () => {
   const row = generatedRow({ name: "Unown R (Temple of Anger No. 022)", prompt_branch: "stadium" });
-  const decision = classifyEligibilityV1(row, inventoryRow(row), { pokemonIdentityNames: ["unown"] });
+  const decision = classifyEligibilityV1(row, inventoryRow(row), {
+    pokemonIdentityNames: ["unown", "アンノーン"],
+    pokemonIdentityPairs: [{ aliases: ["unown", "アンノーン"] }],
+  });
   assert.equal(decision.tier, "C");
   assert.ok(decision.critical_reasons.includes("prompt_branch_profile_conflict:non_pokemon_branch_with_pokemon_named_card"));
+});
+
+test("Pokemon branch requires a known canonical Pokemon identity and matching scene subject", () => {
+  const context = {
+    pokemonIdentityNames: ["growlithe", "ガーディ"],
+    pokemonIdentityPairs: [{ aliases: ["growlithe", "ガーディ"] }],
+  };
+  for (const [name, identity] of [
+    ["タチワキシティジム", "building"],
+    ["アララギ博士", "female human"],
+  ]) {
+    const row = generatedRow({
+      name,
+      prompt_branch: "pokemon",
+      visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-subject" }], subjects: [{ observation_id: "obs-subject", subject_kind: "scene_subject", identity }], module_reviews: [] } },
+    });
+    const decision = classifyEligibilityV1(row, inventoryRow(row), context);
+    assert.equal(decision.tier, "C");
+    assert.ok(decision.critical_reasons.includes("prompt_branch_profile_conflict:pokemon_branch_without_known_pokemon_identity"));
+  }
+
+  const growlithe = generatedRow({
+    name: "ガーディ",
+    pokemon_name: "ガーディ",
+    prompt_branch: "pokemon",
+    review_status: "needs_review",
+    quality_flags: ["potential_unavailable_metadata_prompt_branch_mismatch"],
+    visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-growlithe" }], subjects: [{ observation_id: "obs-growlithe", subject_kind: "scene_subject", identity: "Growlithe" }], module_reviews: [] } },
+  });
+  const recovered = classifyEligibilityV1(growlithe, inventoryRow(growlithe), context);
+  assert.equal(recovered.tier, "B");
+  assert.deepEqual(recovered.critical_reasons, []);
 });
 
 test("Energy identity is excluded independently of prompt branch without blocking Energy tools", () => {

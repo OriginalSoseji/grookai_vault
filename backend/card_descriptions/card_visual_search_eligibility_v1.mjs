@@ -9,12 +9,12 @@ import {
   sha256JsonV1,
 } from "./card_visual_corpus_v1_inventory.mjs";
 
-export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2";
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_INVENTORY_DIR = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_2";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_3";
 const POKEMON_IDENTITY_MAP_PATH = "lib/services/identity/pokemon_japanese_name_map.dart";
 const EXPECTED_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
 const EXPECTED_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
@@ -232,19 +232,37 @@ function pokemonNamedCard(name, pokemonIdentityNames) {
   return pokemonIdentityNames.some((identity) => normalized === identity || normalized.startsWith(`${identity} `));
 }
 
-function primarySubjectIdentityMatches(generatedRow, graph) {
+function normalizedNameContainsIdentity(normalizedName, normalizedIdentity) {
+  if (!normalizedName || !normalizedIdentity) return false;
+  if (/[^\u0000-\u024f]/u.test(normalizedIdentity)) return normalizedName.includes(normalizedIdentity);
+  return ` ${normalizedName} `.includes(` ${normalizedIdentity} `);
+}
+
+function pokemonAliasesForCanonicalName(name, context = {}) {
+  const normalized = normalizedIdentityName(name);
+  if (!normalized || !Array.isArray(context.pokemonIdentityPairs)) return [];
+  return uniqueSorted(context.pokemonIdentityPairs
+    .filter((pair) => pair.aliases.some((alias) => normalizedNameContainsIdentity(normalized, alias)))
+    .flatMap((pair) => pair.aliases));
+}
+
+function primarySubjectIdentityMatches(generatedRow, graph, context = {}) {
   const expectedValues = [generatedRow?.pokemon_name, generatedRow?.name]
     .filter((value) => value && value !== "not_applicable");
   const expectedTokens = uniqueSorted(expectedValues.flatMap(identityTokens));
-  if (!expectedTokens.length) return false;
+  const canonicalAliases = pokemonAliasesForCanonicalName(generatedRow?.name, context);
+  if (!expectedTokens.length && !canonicalAliases.length) return false;
   return (graph?.subjects ?? []).some((subject) => {
     if (subject?.subject_kind !== "scene_subject") return false;
     const subjectTokens = identityTokens(subject.identity);
-    return subjectTokens.some((subjectToken) => expectedTokens.some((expectedToken) => (
+    const tokenMatch = subjectTokens.some((subjectToken) => expectedTokens.some((expectedToken) => (
       subjectToken === expectedToken
       || (subjectToken.length >= 5 && expectedToken.includes(subjectToken))
       || (expectedToken.length >= 5 && subjectToken.includes(expectedToken))
     )));
+    if (tokenMatch) return true;
+    const normalizedSubject = normalizedIdentityName(subject.identity);
+    return canonicalAliases.some((alias) => normalizedNameContainsIdentity(normalizedSubject, alias));
   });
 }
 
@@ -284,6 +302,13 @@ function branchProfileCriticalReasons(generatedRow, graph, context = {}) {
   const hasHuman = hasHumanAppearanceEvidence(graph);
   const hasSceneSubject = (graph?.subjects ?? []).some((subject) => subject?.subject_kind === "scene_subject");
   if (branch === "pokemon" && !hasSceneSubject) reasons.push("prompt_branch_profile_conflict:pokemon_without_scene_subject");
+  if (branch === "pokemon" && Array.isArray(context.pokemonIdentityPairs)) {
+    const canonicalAliases = pokemonAliasesForCanonicalName(generatedRow?.name, context);
+    if (!canonicalAliases.length) reasons.push("prompt_branch_profile_conflict:pokemon_branch_without_known_pokemon_identity");
+    else if (hasSceneSubject && !primarySubjectIdentityMatches(generatedRow, graph, context)) {
+      reasons.push("prompt_branch_profile_conflict:pokemon_without_matching_canonical_subject");
+    }
+  }
   if (branch === "trainer" && !hasHuman) reasons.push("prompt_branch_profile_conflict:trainer_without_human_evidence");
   if (branch === "stadium" && hasHuman) reasons.push("prompt_branch_profile_conflict:stadium_with_human_evidence");
   if (branch === "stadium" && /\btrainer\b/i.test(String(generatedRow?.name ?? ""))) {
@@ -295,8 +320,8 @@ function branchProfileCriticalReasons(generatedRow, graph, context = {}) {
   return reasons;
 }
 
-function reviewedCriticalFlagDisposition(flag, generatedRow, graph) {
-  if (flag === "potential_primary_subject_mismatch" && primarySubjectIdentityMatches(generatedRow, graph)) {
+function reviewedCriticalFlagDisposition(flag, generatedRow, graph, context = {}) {
+  if (flag === "potential_primary_subject_mismatch" && primarySubjectIdentityMatches(generatedRow, graph, context)) {
     return {
       disposition: "downgraded_to_guarded_review",
       reason: "base_subject_identity_matches_canonical_name",
@@ -310,7 +335,7 @@ function reviewedCriticalFlagDisposition(flag, generatedRow, graph) {
       guard_key: "subject_semantics",
     };
   }
-  if (flag === "potential_unavailable_metadata_prompt_branch_mismatch" && primarySubjectIdentityMatches(generatedRow, graph)) {
+  if (flag === "potential_unavailable_metadata_prompt_branch_mismatch" && primarySubjectIdentityMatches(generatedRow, graph, context)) {
     return {
       disposition: "downgraded_to_guarded_review",
       reason: "canonical_subject_is_visibly_present_despite_secondary_non_pokemon_evidence",
@@ -364,7 +389,7 @@ export function classifyEligibilityV1(generatedRow, inventoryRow, context = {}) 
 
   for (const flag of qualityFlags) {
     if (CRITICAL_FLAGS.has(flag)) {
-      const reviewedDisposition = reviewedCriticalFlagDisposition(flag, generatedRow, graph);
+      const reviewedDisposition = reviewedCriticalFlagDisposition(flag, generatedRow, graph, context);
       if (reviewedDisposition) {
         reviewedFlagReclassifications.push({ flag, ...reviewedDisposition });
         guardKeys.push(reviewedDisposition.guard_key);
@@ -503,18 +528,24 @@ async function loadGeneratedRows(validRows, inventoryPlan, concurrency) {
   });
 }
 
-async function loadPokemonIdentityNames() {
+async function loadPokemonIdentityContext() {
   const source = await fs.readFile(repoPath(POKEMON_IDENTITY_MAP_PATH), "utf8");
   const names = new Set();
+  const pairs = [];
   const entryPattern = /^\s*'([^']+)'\s*:\s*'([^']+)'\s*,?\s*$/gmu;
   for (const match of source.matchAll(entryPattern)) {
+    const aliases = uniqueSorted([match[1], match[2]].map(normalizedIdentityName));
+    if (aliases.length) pairs.push({ aliases });
     for (const value of [match[1], match[2]]) {
       const normalized = normalizedIdentityName(value);
       if (normalized) names.add(normalized);
     }
   }
   if (names.size < 1000) throw new Error(`Pokemon identity map unexpectedly small: ${names.size}`);
-  return [...names].sort((left, right) => right.length - left.length || left.localeCompare(right));
+  return {
+    pokemonIdentityNames: [...names].sort((left, right) => right.length - left.length || left.localeCompare(right)),
+    pokemonIdentityPairs: pairs,
+  };
 }
 
 function duplicates(values) {
@@ -595,11 +626,11 @@ export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
   };
   await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
 
-  const [generatedRows, pokemonIdentityNames] = await Promise.all([
+  const [generatedRows, pokemonIdentityContext] = await Promise.all([
     loadGeneratedRows(validRows, inventoryReport.run_plan, args.concurrency),
-    loadPokemonIdentityNames(),
+    loadPokemonIdentityContext(),
   ]);
-  const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row, { pokemonIdentityNames }));
+  const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row, pokemonIdentityContext));
   const gapDecisions = gapRows.map((row) => classifySourceGapV1(row));
   const decisions = [...validDecisions, ...gapDecisions];
   const findings = [];

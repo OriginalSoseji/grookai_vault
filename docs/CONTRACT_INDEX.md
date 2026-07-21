@@ -122,7 +122,8 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_SEARCH_EVALUATION_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md — Defines the fixed 250-query evaluation suite, judgment and failure labels, relevance/trust metrics, baseline procedure, holdout, regression policy, and threshold-locking gate |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1.md — Original Tier A/B/C policy retained for provenance; superseded after the first stratified audit exposed subject-name, subject-role, and prompt-branch classification failures |
 | CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1.md — First audit repair retained for provenance; superseded after its sample exposed cross-branch Energy and Pokémon identity leakage |
-| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2.md — Excludes Energy identity independently of prompt branch, requires a typed scene subject for Pokémon rows, catches known Pokémon names routed as Trainer/Stadium, and preserves valid secondary-human scene evidence |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2.md — Cross-branch Energy and Pokémon identity repair retained for provenance; superseded after its sample exposed Pokémon-branch rows without canonical Pokémon identity agreement |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3.md — Requires canonical Pokémon name aliases and typed scene-subject aliases to agree, while preserving Energy exclusion and all reviewed evidence-backed recoveries |
 
 ---
 
