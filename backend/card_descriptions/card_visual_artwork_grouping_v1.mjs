@@ -6,12 +6,12 @@ import { fileURLToPath } from "node:url";
 
 import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 
-export const CARD_VISUAL_ARTWORK_GROUPING_VERSION = "CARD_VISUAL_ARTWORK_GROUPING_V1";
+export const CARD_VISUAL_ARTWORK_GROUPING_VERSION = "CARD_VISUAL_ARTWORK_GROUPING_V1_1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_artwork_grouping_v1";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_artwork_grouping_v1_1";
 export const CARD_VISUAL_ARTWORK_GROUPING_AUTHORITY = "exact_image_hash_same_canonical_name_and_branch";
 
 function repoPath(value) {
@@ -66,7 +66,9 @@ export function normalizeArtworkCanonicalNameV1(value) {
   return String(value ?? "")
     .normalize("NFKC")
     .toLocaleLowerCase("en-US")
+    .replace(/[\u2018\u2019\u02bc\uff07]/gu, "'")
     .replace(/\s+/gu, " ")
+    .replace(/[ -]+(ex|gx)$/u, " $1")
     .trim();
 }
 
@@ -310,13 +312,13 @@ function currentGitState() {
 
 function markdownReport(report) {
   const counts = report.reconciliation.counts;
-  return `# Card Visual Artwork Grouping V1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Eligible rows: \`${counts.eligible_rows}\`\n- Artwork groups: \`${counts.artwork_groups}\`\n- Memberships: \`${counts.memberships}\`\n- Explicit conflict rows: \`${counts.conflict_rows}\`\n- Singleton groups: \`${counts.singleton_groups}\`\n- Multi-member groups: \`${counts.multi_member_groups}\`\n- Multi-member memberships: \`${counts.multi_member_memberships}\`\n- Tier C memberships: \`${counts.tier_c_memberships}\`\n- Energy memberships: \`${counts.energy_memberships}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Authority\n\nRows merge only when source image SHA-256, normalized canonical name, and prompt branch all agree. Cross-identity image collisions are explicit conflicts. Same-name rows with different images remain separate.\n\n## Boundaries\n\nNo provider calls, database connections or writes, approvals, embeddings, search projections, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nAudit every collision plus deterministic multi-member, singleton, and same-name split samples. Do not build search projections until that audit passes.\n`;
+  return `# Card Visual Artwork Grouping V1.1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Eligible rows: \`${counts.eligible_rows}\`\n- Artwork groups: \`${counts.artwork_groups}\`\n- Memberships: \`${counts.memberships}\`\n- Explicit conflict rows: \`${counts.conflict_rows}\`\n- Singleton groups: \`${counts.singleton_groups}\`\n- Multi-member groups: \`${counts.multi_member_groups}\`\n- Multi-member memberships: \`${counts.multi_member_memberships}\`\n- Tier C memberships: \`${counts.tier_c_memberships}\`\n- Energy memberships: \`${counts.energy_memberships}\`\n- Findings: \`${report.reconciliation.findings.length}\`\n\n## Authority\n\nRows merge only when source image SHA-256, normalized canonical name, and prompt branch all agree. Cross-identity image collisions are explicit conflicts. Same-name rows with different images remain separate.\n\n## Boundaries\n\nNo provider calls, database connections or writes, approvals, embeddings, search projections, index writes, or public reads occurred.\n\n## Exact Next Gate\n\nAudit every collision plus deterministic multi-member, singleton, and same-name split samples. Do not build search projections until that audit passes.\n`;
 }
 
 async function hashManifest(outputDir, files) {
   const entries = {};
   for (const file of files) entries[file] = sha256Buffer(await fs.readFile(path.join(outputDir, file)));
-  return { artifact_kind: "card_visual_artwork_grouping_v1_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
+  return { artifact_kind: "card_visual_artwork_grouping_v1_1_hash_manifest", hash_algorithm: "sha256", generated_at: nowIso(), directory: posixRelative(outputDir), file_count: files.length, files: entries };
 }
 
 export async function runArtworkGroupingV1(args = parseArtworkGroupingArgsV1([])) {

@@ -48,12 +48,17 @@ test("grouping arguments remain pinned to locked eligibility V1.4", () => {
   const args = parseArtworkGroupingArgsV1([]);
   assert.match(args.eligibilityDir, /card_visual_search_eligibility_v1_4/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
-  assert.equal(CARD_VISUAL_ARTWORK_GROUPING_VERSION, "CARD_VISUAL_ARTWORK_GROUPING_V1");
+  assert.equal(CARD_VISUAL_ARTWORK_GROUPING_VERSION, "CARD_VISUAL_ARTWORK_GROUPING_V1_1");
   assert.equal(CARD_VISUAL_ARTWORK_GROUPING_AUTHORITY, "exact_image_hash_same_canonical_name_and_branch");
 });
 
 test("normalization preserves identity tokens while normalizing case and whitespace", () => {
   assert.equal(normalizeArtworkCanonicalNameV1("  Erika's   Pikachu ex  "), "erika's pikachu ex");
+  assert.equal(normalizeArtworkCanonicalNameV1("Rocket’s Mewtwo"), "rocket's mewtwo");
+  assert.equal(normalizeArtworkCanonicalNameV1("Aegislash-EX"), "aegislash ex");
+  assert.equal(normalizeArtworkCanonicalNameV1("Zoroark-GX"), "zoroark gx");
+  assert.equal(normalizeArtworkCanonicalNameV1("Ho-Oh"), "ho-oh");
+  assert.equal(normalizeArtworkCanonicalNameV1("Porygon-Z"), "porygon-z");
   assert.notEqual(normalizeArtworkCanonicalNameV1("Pikachu ex"), normalizeArtworkCanonicalNameV1("Pikachu"));
 });
 

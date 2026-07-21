@@ -1,6 +1,6 @@
 # CARD_VISUAL_ARTWORK_GROUPING_V1
 
-Status: Active - offline fail-closed grouping only
+Status: Superseded by `CARD_VISUAL_ARTWORK_GROUPING_V1_1`
 
 Date: 2026-07-21
 
