@@ -1,6 +1,6 @@
 # CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1
 
-Status: Active - offline eligibility repair and audit only
+Status: Superseded by `CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2`
 
 Date: 2026-07-21
 

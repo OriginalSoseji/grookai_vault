@@ -9,12 +9,13 @@ import {
   sha256JsonV1,
 } from "./card_visual_corpus_v1_inventory.mjs";
 
-export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1";
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_2";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_INVENTORY_DIR = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_1";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_2";
+const POKEMON_IDENTITY_MAP_PATH = "lib/services/identity/pokemon_japanese_name_map.dart";
 const EXPECTED_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
 const EXPECTED_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
 const EXPECTED_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
@@ -92,6 +93,8 @@ const IDENTITY_STOP_TOKENS = new Set([
   "with",
 ]);
 const HUMAN_IDENTITY_PATTERN = /\b(adult|boy|child|female|girl|human|male|man|person|trainer|woman)\b/i;
+const ENERGY_NAME_SUFFIX_PATTERN = /(?:^|[\s_-])(energy|energie|énergie|energia|energía)$/iu;
+const CJK_ENERGY_NAME_SUFFIX_PATTERN = /(?:エネルギー|에너지|能量)$/u;
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -206,6 +209,29 @@ function identityTokens(value) {
     .filter((token) => token.length >= 3 && !IDENTITY_STOP_TOKENS.has(token));
 }
 
+function normalizedIdentityName(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .toLocaleLowerCase("en-US")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+export function isEnergyCardEvidenceV1(generatedRow, inventoryRow = {}) {
+  if (generatedRow?.prompt_branch === "energy" || inventoryRow?.prompt_branch === "energy") return true;
+  if ([generatedRow?.card_supertype, generatedRow?.card_subtype, generatedRow?.card_category]
+    .some((value) => normalizedIdentityName(value) === "energy")) return true;
+  const name = String(generatedRow?.name ?? inventoryRow?.name ?? "").normalize("NFKC").trim();
+  return ENERGY_NAME_SUFFIX_PATTERN.test(name) || CJK_ENERGY_NAME_SUFFIX_PATTERN.test(name);
+}
+
+function pokemonNamedCard(name, pokemonIdentityNames) {
+  if (!pokemonIdentityNames?.length) return false;
+  const normalized = normalizedIdentityName(name);
+  if (!normalized) return false;
+  return pokemonIdentityNames.some((identity) => normalized === identity || normalized.startsWith(`${identity} `));
+}
+
 function primarySubjectIdentityMatches(generatedRow, graph) {
   const expectedValues = [generatedRow?.pokemon_name, generatedRow?.name]
     .filter((value) => value && value !== "not_applicable");
@@ -252,14 +278,19 @@ function hasHumanAppearanceEvidence(graph) {
   return (graph?.subjects ?? []).some((subject) => HUMAN_IDENTITY_PATTERN.test(String(subject?.identity ?? "")));
 }
 
-function branchProfileCriticalReasons(generatedRow, graph) {
+function branchProfileCriticalReasons(generatedRow, graph, context = {}) {
   const reasons = [];
   const branch = generatedRow?.prompt_branch;
   const hasHuman = hasHumanAppearanceEvidence(graph);
+  const hasSceneSubject = (graph?.subjects ?? []).some((subject) => subject?.subject_kind === "scene_subject");
+  if (branch === "pokemon" && !hasSceneSubject) reasons.push("prompt_branch_profile_conflict:pokemon_without_scene_subject");
   if (branch === "trainer" && !hasHuman) reasons.push("prompt_branch_profile_conflict:trainer_without_human_evidence");
   if (branch === "stadium" && hasHuman) reasons.push("prompt_branch_profile_conflict:stadium_with_human_evidence");
   if (branch === "stadium" && /\btrainer\b/i.test(String(generatedRow?.name ?? ""))) {
     reasons.push("prompt_branch_profile_conflict:stadium_with_trainer_named_card");
+  }
+  if (["stadium", "trainer"].includes(branch) && pokemonNamedCard(generatedRow?.name, context.pokemonIdentityNames)) {
+    reasons.push("prompt_branch_profile_conflict:non_pokemon_branch_with_pokemon_named_card");
   }
   return reasons;
 }
@@ -276,6 +307,13 @@ function reviewedCriticalFlagDisposition(flag, generatedRow, graph) {
     return {
       disposition: "downgraded_to_guarded_review",
       reason: "subject_role_collections_are_structurally_separated",
+      guard_key: "subject_semantics",
+    };
+  }
+  if (flag === "potential_unavailable_metadata_prompt_branch_mismatch" && primarySubjectIdentityMatches(generatedRow, graph)) {
+    return {
+      disposition: "downgraded_to_guarded_review",
+      reason: "canonical_subject_is_visibly_present_despite_secondary_non_pokemon_evidence",
       guard_key: "subject_semantics",
     };
   }
@@ -299,7 +337,7 @@ function decisionBase(inventoryRow) {
   };
 }
 
-export function classifyEligibilityV1(generatedRow, inventoryRow) {
+export function classifyEligibilityV1(generatedRow, inventoryRow, context = {}) {
   const qualityFlags = uniqueSorted(generatedRow?.quality_flags ?? []);
   const policyResults = Array.isArray(generatedRow?.policy_results) ? generatedRow.policy_results : [];
   const qualityDetails = Array.isArray(generatedRow?.quality_flag_details) ? generatedRow.quality_flag_details : [];
@@ -317,11 +355,12 @@ export function classifyEligibilityV1(generatedRow, inventoryRow) {
   if (generatedRow?.prompt_version !== EXPECTED_PROMPT_VERSION) criticalReasons.push("unexpected_prompt_version");
   if (generatedRow?.output_schema_version !== EXPECTED_SCHEMA_VERSION) criticalReasons.push("unexpected_schema_version");
   if (generatedRow?.agent_version !== EXPECTED_AGENT_VERSION) criticalReasons.push("unexpected_agent_version");
-  if (generatedRow?.prompt_branch === "energy") criticalReasons.push("energy_branch_excluded");
+  const energyCardDetected = isEnergyCardEvidenceV1(generatedRow, inventoryRow);
+  if (energyCardDetected) criticalReasons.push("energy_card_excluded");
   if (!ALLOWED_REVIEW_STATUSES.has(generatedRow?.review_status)) criticalReasons.push("unsupported_review_status");
   if ((generatedRow?.identity_input_confidence ?? 0) < 0.8) criticalReasons.push("identity_confidence_below_0_80");
   if ((generatedRow?.attribute_confidence ?? 0) < 0.8) criticalReasons.push("attribute_confidence_below_0_80");
-  criticalReasons.push(...branchProfileCriticalReasons(generatedRow, graph));
+  criticalReasons.push(...branchProfileCriticalReasons(generatedRow, graph, context));
 
   for (const flag of qualityFlags) {
     if (CRITICAL_FLAGS.has(flag)) {
@@ -405,12 +444,14 @@ export function classifyEligibilityV1(generatedRow, inventoryRow) {
       image_quality: generatedRow?.image_quality_score ?? null,
     },
     image_source: generatedRow?.image_source ?? null,
+    energy_card_detected: energyCardDetected,
   };
   decision.decision_sha256 = sha256JsonV1(decision);
   return decision;
 }
 
 export function classifySourceGapV1(inventoryRow) {
+  const energyCardDetected = isEnergyCardEvidenceV1(null, inventoryRow);
   const decision = {
     ...decisionBase(inventoryRow),
     tier: "C",
@@ -427,6 +468,7 @@ export function classifySourceGapV1(inventoryRow) {
     module_limitations: [],
     confidence: null,
     image_source: null,
+    energy_card_detected: energyCardDetected,
   };
   decision.decision_sha256 = sha256JsonV1(decision);
   return decision;
@@ -459,6 +501,20 @@ async function loadGeneratedRows(validRows, inventoryPlan, concurrency) {
     const artifact = await readJson(repoPath(inventoryRow.source_artifact_path));
     return artifact.generated_row ?? null;
   });
+}
+
+async function loadPokemonIdentityNames() {
+  const source = await fs.readFile(repoPath(POKEMON_IDENTITY_MAP_PATH), "utf8");
+  const names = new Set();
+  const entryPattern = /^\s*'([^']+)'\s*:\s*'([^']+)'\s*,?\s*$/gmu;
+  for (const match of source.matchAll(entryPattern)) {
+    for (const value of [match[1], match[2]]) {
+      const normalized = normalizedIdentityName(value);
+      if (normalized) names.add(normalized);
+    }
+  }
+  if (names.size < 1000) throw new Error(`Pokemon identity map unexpectedly small: ${names.size}`);
+  return [...names].sort((left, right) => right.length - left.length || left.localeCompare(right));
 }
 
 function duplicates(values) {
@@ -539,8 +595,11 @@ export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
   };
   await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
 
-  const generatedRows = await loadGeneratedRows(validRows, inventoryReport.run_plan, args.concurrency);
-  const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row));
+  const [generatedRows, pokemonIdentityNames] = await Promise.all([
+    loadGeneratedRows(validRows, inventoryReport.run_plan, args.concurrency),
+    loadPokemonIdentityNames(),
+  ]);
+  const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row, { pokemonIdentityNames }));
   const gapDecisions = gapRows.map((row) => classifySourceGapV1(row));
   const decisions = [...validDecisions, ...gapDecisions];
   const findings = [];
@@ -555,7 +614,7 @@ export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
   if (unknownPolicyRules.length) findings.push(`unknown_policy_rules:${uniqueSorted(unknownPolicyRules).join(",")}`);
   const invalidTierA = validDecisions.filter((row) => row.tier === "A" && (row.quality_flags.length || row.review_reasons.length || row.critical_reasons.length || row.module_limitations.length));
   if (invalidTierA.length) findings.push(`tier_a_contains_limitations:${invalidTierA.length}`);
-  const energyEligible = decisions.filter((row) => row.prompt_branch === "energy" && row.search_eligible);
+  const energyEligible = decisions.filter((row) => row.energy_card_detected && row.search_eligible);
   if (energyEligible.length) findings.push(`energy_rows_eligible:${energyEligible.length}`);
 
   const tierA = decisions.filter((row) => row.tier === "A");

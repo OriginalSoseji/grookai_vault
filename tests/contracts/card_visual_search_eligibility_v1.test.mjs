@@ -6,6 +6,7 @@ import {
   CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION,
   classifyEligibilityV1,
   classifySourceGapV1,
+  isEnergyCardEvidenceV1,
   parseEligibilityArgsV1,
 } from "../../backend/card_descriptions/card_visual_search_eligibility_v1.mjs";
 import { sha256JsonV1 } from "../../backend/card_descriptions/card_visual_corpus_v1_inventory.mjs";
@@ -32,6 +33,7 @@ function generatedRow(overrides = {}) {
     visual_attributes: {
       fact_graph: {
         observations: [{ observation_id: "obs-1" }],
+        subjects: [{ observation_id: "obs-1", subject_kind: "scene_subject", identity: "Test Card" }],
         module_reviews: [{ module: "subjects", review_status: "complete", omission_risk: "low", evidence_quality: "high", abstentions: [] }],
       },
     },
@@ -81,12 +83,25 @@ test("known noncritical setting uncertainty is Tier B with a projection guard", 
   assert.equal(decision.flagged_evidence[0].field, "environment.setting");
 });
 
-test("primary-subject and subject-role conflicts are Tier C", () => {
-  for (const flag of ["potential_primary_subject_mismatch", "potential_subject_kind_classification_confusion"]) {
-    const row = generatedRow({ review_status: "needs_review", quality_flags: [flag] });
+test("unresolved primary-subject and subject-role conflicts are Tier C", () => {
+  const cases = [
+    generatedRow({
+      name: "Espeon",
+      pokemon_name: "Espeon",
+      review_status: "needs_review",
+      quality_flags: ["potential_primary_subject_mismatch"],
+      visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-groudon" }], subjects: [{ observation_id: "obs-groudon", subject_kind: "scene_subject", identity: "Groudon" }], module_reviews: [] } },
+    }),
+    generatedRow({
+      review_status: "needs_review",
+      quality_flags: ["potential_subject_kind_classification_confusion"],
+      visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-shared" }], subjects: [{ observation_id: "obs-shared", subject_kind: "scene_subject", identity: "Pikachu" }], depicted_subjects: [{ observation_id: "obs-shared", represented_identity: "Pikachu" }], module_reviews: [] } },
+    }),
+  ];
+  for (const row of cases) {
     const decision = classifyEligibilityV1(row, inventoryRow(row));
     assert.equal(decision.tier, "C");
-    assert.ok(decision.critical_reasons.includes(`critical_flag:${flag}`));
+    assert.ok(decision.critical_reasons.some((reason) => reason.startsWith("critical_flag:")));
   }
 });
 
@@ -138,6 +153,30 @@ test("structurally separated scene subjects recover subject-kind heuristic false
   const decision = classifyEligibilityV1(row, inventoryRow(row));
   assert.equal(decision.tier, "B");
   assert.deepEqual(decision.projection_guard_keys, ["subject_semantics"]);
+});
+
+test("visible canonical Pokemon subject recovers unavailable-metadata branch heuristic false positive", () => {
+  const row = generatedRow({
+    name: "ガーディ",
+    pokemon_name: "ガーディ",
+    review_status: "needs_review",
+    quality_flags: ["potential_unavailable_metadata_prompt_branch_mismatch"],
+    visual_attributes: {
+      fact_graph: {
+        observations: [{ observation_id: "obs-growlithe" }, { observation_id: "obs-man" }],
+        subjects: [
+          { observation_id: "obs-growlithe", subject_kind: "scene_subject", identity: "ガーディ" },
+          { observation_id: "obs-man", subject_kind: "scene_subject", identity: "man" },
+        ],
+        depicted_subjects: [],
+        character_representations: [],
+        module_reviews: [],
+      },
+    },
+  });
+  const decision = classifyEligibilityV1(row, inventoryRow(row));
+  assert.equal(decision.tier, "B");
+  assert.equal(decision.reviewed_flag_reclassifications[0].reason, "canonical_subject_is_visibly_present_despite_secondary_non_pokemon_evidence");
 });
 
 test("cross-role observation reuse remains a critical subject-kind conflict", () => {
@@ -198,6 +237,36 @@ test("Trainer branch remains eligible when human appearance evidence exists", ()
     },
   });
   assert.equal(classifyEligibilityV1(row, inventoryRow(row)).tier, "A");
+});
+
+test("Pokemon branch without a typed scene subject fails closed", () => {
+  const row = generatedRow({
+    prompt_branch: "pokemon",
+    visual_attributes: { fact_graph: { observations: [{ observation_id: "obs-object" }], subjects: [], module_reviews: [] } },
+  });
+  const decision = classifyEligibilityV1(row, inventoryRow(row));
+  assert.equal(decision.tier, "C");
+  assert.ok(decision.critical_reasons.includes("prompt_branch_profile_conflict:pokemon_without_scene_subject"));
+});
+
+test("Pokemon identity lexicon fails closed on a Pokemon-named Stadium row", () => {
+  const row = generatedRow({ name: "Unown R (Temple of Anger No. 022)", prompt_branch: "stadium" });
+  const decision = classifyEligibilityV1(row, inventoryRow(row), { pokemonIdentityNames: ["unown"] });
+  assert.equal(decision.tier, "C");
+  assert.ok(decision.critical_reasons.includes("prompt_branch_profile_conflict:non_pokemon_branch_with_pokemon_named_card"));
+});
+
+test("Energy identity is excluded independently of prompt branch without blocking Energy tools", () => {
+  for (const name of ["Basic Water Energy", "ダブル無色エネルギー", "Energía", "기본 물 에너지"]) {
+    const row = generatedRow({ name, prompt_branch: "pokemon" });
+    assert.equal(isEnergyCardEvidenceV1(row), true);
+    const decision = classifyEligibilityV1(row, inventoryRow(row));
+    assert.equal(decision.tier, "C");
+    assert.ok(decision.critical_reasons.includes("energy_card_excluded"));
+  }
+  for (const name of ["Energy Search", "Energy Switch", "エネルギー転送"]) {
+    assert.equal(isEnergyCardEvidenceV1(generatedRow({ name, prompt_branch: "item_tool_supporter" })), false);
+  }
 });
 
 test("unknown quality flags fail closed to Tier C", () => {
