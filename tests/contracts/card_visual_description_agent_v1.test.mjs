@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 import {
@@ -28,6 +30,7 @@ import {
   filterActiveVisualFactExtractionCardsV1,
   mapVisualSearchAliasQueryV1,
   parseCardVisualDescriptionArgsV1,
+  parseCardPrintIdsDocumentV1,
   cardVisualSelectionQueryLimitV1,
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
@@ -798,6 +801,34 @@ test("card visual description args default to dry-run and block fixture apply", 
     ]),
     /high-value sampling cannot be combined/,
   );
+});
+
+test("card visual description accepts a hashable explicit ID selection file", () => {
+  const ids = [
+    "11111111-1111-4111-8111-111111111111",
+    "22222222-2222-4222-8222-222222222222",
+  ];
+  assert.deepEqual(parseCardPrintIdsDocumentV1({ selected_cards: ids.map((card_print_id) => ({ card_print_id })) }), ids);
+  assert.throws(
+    () => parseCardPrintIdsDocumentV1({ selected_card_print_ids: [ids[0], ids[0]] }),
+    /contains duplicates/,
+  );
+
+  const directory = mkdtempSync(path.join(tmpdir(), "card-visual-id-file-"));
+  const selectionPath = path.join(directory, "selection.json");
+  try {
+    writeFileSync(selectionPath, JSON.stringify({ selected_card_print_ids: ids }));
+    const args = parseCardVisualDescriptionArgsV1([`--card-print-ids-file=${selectionPath}`]);
+    assert.deepEqual(args.cardPrintIds, ids);
+    assert.equal(args.cardPrintIdsFile, selectionPath);
+    assert.match(args.cardPrintIdsFileSha256, /^[0-9a-f]{64}$/);
+    assert.throws(
+      () => parseCardVisualDescriptionArgsV1([`--card-print-ids-file=${selectionPath}`, `--card-print-id=${ids[0]}`]),
+      /cannot be combined/,
+    );
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
 });
 
 test("persisted per-card outcomes require the planned index, card, type, and payload", () => {

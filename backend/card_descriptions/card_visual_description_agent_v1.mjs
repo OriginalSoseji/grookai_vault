@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { execFile as execFileCallback } from "node:child_process";
+import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
@@ -2235,6 +2236,25 @@ function parseCommaList(value) {
 
 function parseOrderedCommaList(value) {
   return uniquePreserving(String(value ?? "").split(","));
+}
+
+export function parseCardPrintIdsDocumentV1(document) {
+  const rawIds = Array.isArray(document)
+    ? document
+    : Array.isArray(document?.selected_card_print_ids)
+      ? document.selected_card_print_ids
+      : Array.isArray(document?.selected_cards)
+        ? document.selected_cards.map((card) => card?.card_print_id)
+        : null;
+  if (!rawIds) {
+    throw new Error("[card-visual-description-agent] card-print ID file must contain an array, selected_card_print_ids, or selected_cards");
+  }
+  const ids = rawIds.map(normalizeText).filter(Boolean);
+  if (ids.length < 1) throw new Error("[card-visual-description-agent] card-print ID file is empty");
+  const invalid = ids.find((id) => !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id));
+  if (invalid) throw new Error(`[card-visual-description-agent] invalid card-print ID in file: ${invalid}`);
+  if (new Set(ids).size !== ids.length) throw new Error("[card-visual-description-agent] card-print ID file contains duplicates");
+  return ids;
 }
 
 function parsePromptBranchListV1(value) {
@@ -4550,6 +4570,8 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     openaiImageCostRuleVersion: normalizeText(process.env.OPENAI_IMAGE_COST_RULE_VERSION) || null,
     cardPrintId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_ID) || null,
     cardPrintIds: parseOrderedCommaList(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_IDS),
+    cardPrintIdsFile: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_CARD_PRINT_IDS_FILE) || null,
+    cardPrintIdsFileSha256: null,
     gvId: normalizeText(process.env.CARD_VISUAL_DESCRIPTION_GV_ID) || null,
     branchStratifiedSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_BRANCH_STRATIFIED_SAMPLE"),
     v2StressSample: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE, false, "CARD_VISUAL_DESCRIPTION_V2_STRESS_SAMPLE"),
@@ -4588,6 +4610,7 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     else if (arg.startsWith("--agent-version=")) parsed.agentVersion = normalizeText(arg.slice("--agent-version=".length));
     else if (arg.startsWith("--card-print-id=")) parsed.cardPrintId = normalizeText(arg.slice("--card-print-id=".length)) || null;
     else if (arg.startsWith("--card-print-ids=")) parsed.cardPrintIds = parseOrderedCommaList(arg.slice("--card-print-ids=".length));
+    else if (arg.startsWith("--card-print-ids-file=")) parsed.cardPrintIdsFile = normalizeText(arg.slice("--card-print-ids-file=".length)) || null;
     else if (arg.startsWith("--gv-id=")) parsed.gvId = normalizeText(arg.slice("--gv-id=".length)) || null;
     else if (arg === "--branch-stratified-sample") parsed.branchStratifiedSample = true;
     else if (arg === "--v2-stress-sample") parsed.v2StressSample = true;
@@ -4632,6 +4655,16 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
 
   if (explicitMode) parsed.mode = explicitMode;
+  if (parsed.cardPrintIdsFile) {
+    if (parsed.cardPrintId || parsed.cardPrintIds.length > 0 || parsed.gvId) {
+      throw new Error("[card-visual-description-agent] --card-print-ids-file cannot be combined with other explicit card targets");
+    }
+    const absolutePath = path.resolve(parsed.cardPrintIdsFile);
+    const raw = readFileSync(absolutePath, "utf8");
+    parsed.cardPrintIds = parseCardPrintIdsDocumentV1(JSON.parse(raw));
+    parsed.cardPrintIdsFile = absolutePath;
+    parsed.cardPrintIdsFileSha256 = sha256(raw);
+  }
   if (!["plan", "dry_run", "harvest", "apply"].includes(parsed.mode)) {
     throw new Error(`[card-visual-description-agent] unsupported mode: ${parsed.mode}`);
   }
@@ -10259,6 +10292,10 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       v2_stress_roles: args.v2StressSample ? FACT_GRAPH_V2_STRESS_ROLES : null,
       target_card_print_id: args.cardPrintId,
       target_card_print_ids: args.cardPrintIds,
+      target_card_print_ids_file: args.cardPrintIdsFile
+        ? path.relative(REPO_ROOT, args.cardPrintIdsFile).replace(/\\/g, "/")
+        : null,
+      target_card_print_ids_file_sha256: args.cardPrintIdsFileSha256,
       target_gv_id: args.gvId,
       started_at: startedAt,
       boundary: {
