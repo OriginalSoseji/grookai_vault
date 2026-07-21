@@ -91,6 +91,35 @@ test("unsupported strict concept produces a valid zero-result shape", () => {
   assert.deepEqual(ranked.results, []);
 });
 
+test("concept-scoped contradictions cannot satisfy a positive query", () => {
+  const contradictedStanding = syntheticGroup(1, {
+    documents: {
+      subject: { search_document_id: "doc-negated-subject", document_type: "subject", subject_role_keys: ["scene_subject"], structured_concepts: [concept("not-standing", "subject is floating, not standing", "pose action state", "subject")] },
+      scene: { search_document_id: "doc-negated-scene", document_type: "scene", subject_role_keys: [], structured_concepts: [] },
+      style_composition: { search_document_id: "doc-negated-style", document_type: "style_composition", subject_role_keys: [], structured_concepts: [] },
+    },
+  });
+  const hiddenEyes = syntheticGroup(2, {
+    documents: {
+      subject: { search_document_id: "doc-hidden-eyes-subject", document_type: "subject", subject_role_keys: ["scene_subject"], structured_concepts: [concept("hidden-eyes", "eyes not visible: true", "creature anatomy", "subject")] },
+      scene: { search_document_id: "doc-hidden-eyes-scene", document_type: "scene", subject_role_keys: [], structured_concepts: [] },
+      style_composition: { search_document_id: "doc-hidden-eyes-style", document_type: "style_composition", subject_role_keys: [], structured_concepts: [] },
+    },
+  });
+  const validFloating = syntheticGroup(3, {
+    documents: {
+      subject: { search_document_id: "doc-floating-subject", document_type: "subject", subject_role_keys: ["scene_subject"], structured_concepts: [concept("floating", "floating pose, no visible feet", "pose action state", "subject")] },
+      scene: { search_document_id: "doc-floating-scene", document_type: "scene", subject_role_keys: [], structured_concepts: [] },
+      style_composition: { search_document_id: "doc-floating-style", document_type: "style_composition", subject_role_keys: [], structured_concepts: [] },
+    },
+  });
+
+  const query = (visualConcept) => ({ intent: { canonical_filters: { subjects: [], set_codes: [], years: null, artist: [] }, visual_concepts: [visualConcept], subject_roles: [], count_constraints: [], printing_filters: [], query_aliases: [], negative_filters: [], unrecognized_terms: [] } });
+  assert.equal(rankVisualSearchQueryV1(query("standing"), [contradictedStanding]).total_matches, 0);
+  assert.equal(rankVisualSearchQueryV1(query("eyes"), [hiddenEyes]).total_matches, 0);
+  assert.equal(rankVisualSearchQueryV1(query("floating"), [validFloating]).total_matches, 1);
+});
+
 test("in-memory candidate index preserves brute-force ranking semantics", () => {
   const groups = Array.from({ length: 80 }, (_, index) => syntheticGroup(index + 1));
   const index = buildVisualSearchCandidateIndexV1(groups);

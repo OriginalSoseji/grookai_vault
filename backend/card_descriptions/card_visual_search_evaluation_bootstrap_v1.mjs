@@ -348,6 +348,16 @@ export function buildEvaluationQuerySuiteV1(groups) {
 function entryMatchesConcept(entry, concept) {
   const normalizedEntry = entry.normalized_term ?? normalizeVisualSearchTextV1(entry.term);
   const normalizedConcept = normalizeVisualSearchTextV1(concept);
+  const escapedConcept = normalizedConcept.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  const contradictionPatterns = [
+    new RegExp(`\\bnot ${escapedConcept}\\b`, "u"),
+    new RegExp(`\\bno (?:visible |clearly visible )?${escapedConcept}\\b`, "u"),
+    new RegExp(`\\bwithout (?:visible )?${escapedConcept}\\b`, "u"),
+    new RegExp(`\\b(?:lacks|lacking) (?:visible )?${escapedConcept}\\b`, "u"),
+    new RegExp(`\\babsence of (?:visible )?${escapedConcept}\\b`, "u"),
+    new RegExp(`\\b${escapedConcept} (?:is |are )?not visible\\b`, "u"),
+  ];
+  if (contradictionPatterns.some((pattern) => pattern.test(normalizedEntry))) return false;
   if (normalizedEntry === normalizedConcept) return true;
   const entryTokens = new Set(entry.search_tokens ?? tokenizeVisualSearchTextV1(normalizedEntry));
   const conceptTokens = tokenizeVisualSearchTextV1(normalizedConcept);
