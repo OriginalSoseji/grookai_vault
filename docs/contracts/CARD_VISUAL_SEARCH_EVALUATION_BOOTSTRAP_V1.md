@@ -15,6 +15,7 @@ Bootstrap the governed `CARD_VISUAL_SEARCH_EVALUATION_V1` process without mislab
 - Preserve only checksummed expectation seals for holdout queries.
 - Run the structured and lexical baseline over calibration queries only.
 - Produce artwork-group-first results, printing expansion, decomposed scores, evidence explanations, latency, failures, and hashes.
+- Use a read-only in-memory candidate index for canonical subject, set, role, exact-term, and token postings. Every candidate must still pass the original evidence matcher, and indexed results must remain semantically equivalent to the brute-force reference.
 
 ## Authority Boundary
 
@@ -30,7 +31,7 @@ The candidate suite totals exactly `250` queries across canonical-plus-visual, v
 
 ## Boundaries
 
-No provider calls, database connections or writes, approvals, embeddings, index writes, holdout execution, or public reads.
+No provider calls, database connections or writes, approvals, embeddings, persistent index writes, holdout execution, or public reads.
 
 ## Exact Next Gate
 

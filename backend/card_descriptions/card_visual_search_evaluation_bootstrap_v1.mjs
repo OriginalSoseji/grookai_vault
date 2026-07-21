@@ -11,6 +11,7 @@ import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_
 export const CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_VERSION = "CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1";
 export const CARD_VISUAL_SEARCH_QUERY_SUITE_VERSION = "CARD_VISUAL_SEARCH_QUERY_SUITE_V1_CANDIDATE";
 export const CARD_VISUAL_SEARCH_JUDGMENT_VERSION = "CARD_VISUAL_SEARCH_JUDGMENTS_V1_BOOTSTRAP_NOT_GOLD";
+export const CARD_VISUAL_SEARCH_CANDIDATE_INDEX_VERSION = "CARD_VISUAL_SEARCH_CANDIDATE_INDEX_V1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
@@ -149,7 +150,8 @@ function entryScope(entry) {
 
 function entryPriority(entry) {
   const sourceOrder = { canonical_concept: 0, search_term: 1, semantic_fact: 2, observation: 3, typed_fact: 4, subject_role: 5, count: 6, relationship: 7 };
-  return [sourceOrder[entry.source_type] ?? 9, normalizeVisualSearchTextV1(entry.term).length, normalizeVisualSearchTextV1(entry.term)];
+  const normalizedTerm = entry.normalized_term ?? normalizeVisualSearchTextV1(entry.term);
+  return [sourceOrder[entry.source_type] ?? 9, normalizedTerm.length, normalizedTerm];
 }
 
 function compareEntry(left, right) {
@@ -158,18 +160,30 @@ function compareEntry(left, right) {
   return a[0] - b[0] || a[1] - b[1] || a[2].localeCompare(b[2]);
 }
 
-function groupEntries(group, documentType = null, predicate = () => true) {
+function groupEntries(group, documentType = null, predicate = null) {
   if (!group.search_entries) {
     group.search_entries = Object.values(group.documents)
-      .flatMap((document) => document.structured_concepts.map((entry) => ({ ...entry, document_type: document.document_type, search_document_id: document.search_document_id })))
+      .flatMap((document) => document.structured_concepts.map((entry) => {
+        const normalizedTerm = normalizeVisualSearchTextV1(entry.term);
+        return {
+          ...entry,
+          document_type: document.document_type,
+          search_document_id: document.search_document_id,
+          normalized_term: normalizedTerm,
+          search_tokens: tokenizeVisualSearchTextV1(normalizedTerm),
+        };
+      }))
       .filter(conciseEntry);
   }
+  if (!documentType && !predicate && group.search_entries_unique) return group.search_entries_unique;
   const rows = group.search_entries
     .filter((entry) => !documentType || entry.document_type === documentType)
-    .filter(predicate);
+    .filter((entry) => !predicate || predicate(entry));
   const byTerm = new Map();
-  for (const row of rows.sort(compareEntry)) if (!byTerm.has(normalizeVisualSearchTextV1(row.term))) byTerm.set(normalizeVisualSearchTextV1(row.term), row);
-  return [...byTerm.values()];
+  for (const row of rows.sort(compareEntry)) if (!byTerm.has(row.normalized_term)) byTerm.set(row.normalized_term, row);
+  const result = [...byTerm.values()];
+  if (!documentType && !predicate) group.search_entries_unique = result;
+  return result;
 }
 
 function deterministicSort(rows, key) {
@@ -328,15 +342,103 @@ export function buildEvaluationQuerySuiteV1(groups) {
 }
 
 function entryMatchesConcept(entry, concept) {
-  const normalizedEntry = normalizeVisualSearchTextV1(entry.term);
+  const normalizedEntry = entry.normalized_term ?? normalizeVisualSearchTextV1(entry.term);
   const normalizedConcept = normalizeVisualSearchTextV1(concept);
   if (normalizedEntry === normalizedConcept) return true;
-  const entryTokens = new Set(tokenizeVisualSearchTextV1(normalizedEntry));
+  const entryTokens = new Set(entry.search_tokens ?? tokenizeVisualSearchTextV1(normalizedEntry));
   const conceptTokens = tokenizeVisualSearchTextV1(normalizedConcept);
   return conceptTokens.length > 0 && conceptTokens.every((token) => entryTokens.has(token));
 }
 
-export function rankVisualSearchQueryV1(query, groups, { topK = 25 } = {}) {
+function addPosting(postings, key, groupId) {
+  if (!key) return;
+  if (!postings.has(key)) postings.set(key, new Set());
+  postings.get(key).add(groupId);
+}
+
+function unionPostings(postings, keys) {
+  const result = new Set();
+  for (const key of keys) for (const groupId of postings.get(key) ?? []) result.add(groupId);
+  return result;
+}
+
+function intersectSets(left, right) {
+  if (left === null) return new Set(right);
+  const result = new Set();
+  const [small, large] = left.size <= right.size ? [left, right] : [right, left];
+  for (const value of small) if (large.has(value)) result.add(value);
+  return result;
+}
+
+export function buildVisualSearchCandidateIndexV1(groups) {
+  const start = performance.now();
+  const groupsById = new Map();
+  const subjectPostings = new Map();
+  const setPostings = new Map();
+  const rolePostings = new Map();
+  const exactTermPostings = new Map();
+  const tokenPostings = new Map();
+  let indexedEntries = 0;
+
+  for (const group of groups) {
+    groupsById.set(group.artwork_group_id, group);
+    addPosting(subjectPostings, normalizeVisualSearchTextV1(group.name), group.artwork_group_id);
+    for (const printing of group.printings) addPosting(setPostings, normalizeVisualSearchTextV1(printing.set_code), group.artwork_group_id);
+    const roles = uniqueSorted(Object.values(group.documents).flatMap((document) => document.subject_role_keys ?? []));
+    for (const role of roles) addPosting(rolePostings, role, group.artwork_group_id);
+    for (const entry of groupEntries(group)) {
+      indexedEntries += 1;
+      addPosting(exactTermPostings, entry.normalized_term, group.artwork_group_id);
+      for (const token of new Set(entry.search_tokens)) addPosting(tokenPostings, token, group.artwork_group_id);
+    }
+  }
+
+  return {
+    version: CARD_VISUAL_SEARCH_CANDIDATE_INDEX_VERSION,
+    groups_by_id: groupsById,
+    all_group_ids: [...groupsById.keys()].sort(),
+    postings: { subject: subjectPostings, set: setPostings, role: rolePostings, exact_term: exactTermPostings, token: tokenPostings },
+    stats: {
+      artwork_groups: groupsById.size,
+      indexed_entries: indexedEntries,
+      subject_keys: subjectPostings.size,
+      set_keys: setPostings.size,
+      role_keys: rolePostings.size,
+      exact_term_keys: exactTermPostings.size,
+      token_keys: tokenPostings.size,
+      build_latency_ms: performance.now() - start,
+    },
+  };
+}
+
+function candidateGroupIds(query, candidateIndex) {
+  const requestedSubjects = query.intent.canonical_filters?.subjects ?? [];
+  const requestedSets = query.intent.canonical_filters?.set_codes ?? [];
+  const requestedRoles = query.intent.subject_roles ?? [];
+  const requestedConcepts = query.intent.visual_concepts ?? [];
+  let candidates = null;
+
+  if (requestedSubjects.length) {
+    candidates = intersectSets(candidates, unionPostings(candidateIndex.postings.subject, requestedSubjects.map(normalizeVisualSearchTextV1)));
+  }
+  if (requestedSets.length) {
+    candidates = intersectSets(candidates, unionPostings(candidateIndex.postings.set, requestedSets.map(normalizeVisualSearchTextV1)));
+  }
+  for (const role of requestedRoles) candidates = intersectSets(candidates, candidateIndex.postings.role.get(role) ?? new Set());
+  for (const concept of requestedConcepts) {
+    const normalizedConcept = normalizeVisualSearchTextV1(concept);
+    const exact = candidateIndex.postings.exact_term.get(normalizedConcept) ?? new Set();
+    const tokens = tokenizeVisualSearchTextV1(normalizedConcept);
+    let tokenCandidates = null;
+    for (const token of tokens) tokenCandidates = intersectSets(tokenCandidates, candidateIndex.postings.token.get(token) ?? new Set());
+    const conceptCandidates = new Set(exact);
+    for (const groupId of tokenCandidates ?? []) conceptCandidates.add(groupId);
+    candidates = intersectSets(candidates, conceptCandidates);
+  }
+  return [...(candidates ?? candidateIndex.all_group_ids)].sort();
+}
+
+export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateIndex = null } = {}) {
   const start = performance.now();
   const results = [];
   const requestedSubjects = query.intent.canonical_filters?.subjects ?? [];
@@ -344,7 +446,10 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25 } = {}) {
   const requestedRoles = query.intent.subject_roles ?? [];
   const requestedConcepts = query.intent.visual_concepts ?? [];
 
-  for (const group of groups) {
+  const candidateGroups = candidateIndex
+    ? candidateGroupIds(query, candidateIndex).map((groupId) => candidateIndex.groups_by_id.get(groupId))
+    : groups;
+  for (const group of candidateGroups) {
     if (requestedSubjects.length && !requestedSubjects.some((name) => normalizeVisualSearchTextV1(name) === normalizeVisualSearchTextV1(group.name))) continue;
     if (requestedSets.length && !requestedSets.some((setCode) => group.printings.some((printing) => normalizeVisualSearchTextV1(printing.set_code) === normalizeVisualSearchTextV1(setCode)))) continue;
     const roles = uniqueSorted(Object.values(group.documents).flatMap((document) => document.subject_role_keys ?? []));
@@ -398,7 +503,7 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25 } = {}) {
     });
   }
   results.sort((left, right) => right.score - left.score || left.artwork_group_id.localeCompare(right.artwork_group_id));
-  return { results: results.slice(0, topK), total_matches: results.length, latency_ms: performance.now() - start };
+  return { results: results.slice(0, topK), total_matches: results.length, candidate_groups_scanned: candidateGroups.length, latency_ms: performance.now() - start };
 }
 
 function percentile(values, value) {
@@ -496,6 +601,7 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
   const projectionDir = repoPath(args.projectionDir);
   const projection = await loadProjection(projectionDir);
+  const candidateIndex = buildVisualSearchCandidateIndexV1(projection.groups);
   const inputHashes = {
     projection_reconciliation: sha256Buffer(await fs.readFile(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"))),
     projection_artifact_manifest: sha256Buffer(await fs.readFile(path.join(projectionDir, "artifact_hashes.json"))),
@@ -518,11 +624,14 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     planned_calibration_queries: 200,
     sealed_holdout_queries: 50,
     top_k: args.topK,
+    candidate_index_version: candidateIndex.version,
+    candidate_index_mode: "in_memory_read_only",
     family_targets: CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS,
     input_hashes_sha256: inputHashes,
     boundaries: { provider_calls: false, database_connection: false, database_writes: false, approvals: false, embeddings: false, index_writes: false, holdout_execution: false, public_reads: false },
   };
   await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
+  await writeJson(path.join(outputDir, "candidate_index_summary.json"), { version: candidateIndex.version, mode: "in_memory_read_only", ...candidateIndex.stats });
 
   const suite = buildEvaluationQuerySuiteV1(projection.groups);
   const publicSuite = suite.map((query) => {
@@ -540,9 +649,9 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   const failures = [];
   const evaluations = [];
   for (const query of calibrationQueries) {
-    const ranked = rankVisualSearchQueryV1(query, projection.groups, { topK: args.topK });
+    const ranked = rankVisualSearchQueryV1(query, projection.groups, { topK: args.topK, candidateIndex });
     const evaluation = evaluateCalibration(query, ranked);
-    rankedOutputs.push({ query_id: query.query_id, family: query.family, query_text: query.query_text, intent: query.intent, latency_ms: ranked.latency_ms, total_matches: ranked.total_matches, results: ranked.results, bootstrap_evaluation: evaluation });
+    rankedOutputs.push({ query_id: query.query_id, family: query.family, query_text: query.query_text, intent: query.intent, latency_ms: ranked.latency_ms, candidate_groups_scanned: ranked.candidate_groups_scanned, total_matches: ranked.total_matches, results: ranked.results, bootstrap_evaluation: evaluation });
     evaluations.push({ query, ranked, evaluation });
     failures.push(...evaluation.failures.map((failure) => ({ query_id: query.query_id, family: query.family, query_text: query.query_text, ...failure })));
   }
@@ -563,6 +672,8 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     explanation_reference_validity: evaluations.length ? evaluations.filter(({ evaluation }) => evaluation.explanation_references_valid).length / evaluations.length : null,
     printing_expansion_accuracy: positive.length ? positive.filter(({ evaluation }) => evaluation.printing_expansion_correct).length / positive.length : null,
     failure_count: failures.length,
+    candidate_index: candidateIndex.stats,
+    candidate_groups_scanned: { p50: percentile(evaluations.map(({ ranked }) => ranked.candidate_groups_scanned), 0.5), p95: percentile(evaluations.map(({ ranked }) => ranked.candidate_groups_scanned), 0.95), max: Math.max(...evaluations.map(({ ranked }) => ranked.candidate_groups_scanned)) },
     latency_ms: { p50: percentile(latency, 0.5), p95: percentile(latency, 0.95), p99: percentile(latency, 0.99), max: latency.length ? Math.max(...latency) : null },
     unavailable_without_human_gold: ["precision_at_10", "ndcg_at_10", "unsupported_match_rate", "subject_role_confusion_rate", "alias_overreach_rate"],
   };
@@ -582,7 +693,7 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     decision: { bootstrap_status: failures.length ? "candidate_baseline_has_failures" : "candidate_baseline_complete", official_evaluation_status: "not_run_missing_human_gold_judgments", threshold_status: "not_locked" },
   };
 
-  const files = ["run_plan.json", "query_suite.jsonl", "holdout_judgment_seals.jsonl", "ranked_outputs.jsonl", "evaluation_failures.jsonl", "BOOTSTRAP_EVALUATION_REPORT.json", "BOOTSTRAP_EVALUATION_REPORT.md"];
+  const files = ["run_plan.json", "candidate_index_summary.json", "query_suite.jsonl", "holdout_judgment_seals.jsonl", "ranked_outputs.jsonl", "evaluation_failures.jsonl", "BOOTSTRAP_EVALUATION_REPORT.json", "BOOTSTRAP_EVALUATION_REPORT.md"];
   await writeJsonl(path.join(outputDir, "ranked_outputs.jsonl"), rankedOutputs);
   await writeJsonl(path.join(outputDir, "evaluation_failures.jsonl"), failures);
   await writeJson(path.join(outputDir, "BOOTSTRAP_EVALUATION_REPORT.json"), report);

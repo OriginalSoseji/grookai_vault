@@ -6,6 +6,7 @@ import {
   CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_VERSION,
   CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS,
   assignEvaluationSplitsV1,
+  buildVisualSearchCandidateIndexV1,
   buildEvaluationQuerySuiteV1,
   normalizeVisualSearchTextV1,
   rankVisualSearchQueryV1,
@@ -88,6 +89,26 @@ test("unsupported strict concept produces a valid zero-result shape", () => {
   const ranked = rankVisualSearchQueryV1(query, [syntheticGroup(1)]);
   assert.equal(ranked.total_matches, 0);
   assert.deepEqual(ranked.results, []);
+});
+
+test("in-memory candidate index preserves brute-force ranking semantics", () => {
+  const groups = Array.from({ length: 80 }, (_, index) => syntheticGroup(index + 1));
+  const index = buildVisualSearchCandidateIndexV1(groups);
+  const queries = [
+    { intent: { canonical_filters: { subjects: ["Creature 007"], set_codes: [], years: null, artist: [] }, visual_concepts: ["long pointed ears 007"], subject_roles: [], count_constraints: [], printing_filters: [], query_aliases: [], negative_filters: [], unrecognized_terms: [] } },
+    { intent: { canonical_filters: { subjects: [], set_codes: ["SET3"], years: null, artist: [] }, visual_concepts: ["purple palette 011"], subject_roles: [], count_constraints: [], printing_filters: [], query_aliases: [], negative_filters: [], unrecognized_terms: [] } },
+    { intent: { canonical_filters: { subjects: [], set_codes: [], years: null, artist: [] }, visual_concepts: ["forest background 019"], subject_roles: ["scene_subject"], count_constraints: [], printing_filters: [], query_aliases: [], negative_filters: [], unrecognized_terms: [] } },
+    { intent: { canonical_filters: { subjects: [], set_codes: [], years: null, artist: [] }, visual_concepts: ["seventeen umbrellas in a volcano"], subject_roles: [], count_constraints: [], printing_filters: [], query_aliases: [], negative_filters: [], unrecognized_terms: [] } },
+  ];
+  for (const query of queries) {
+    const bruteForce = rankVisualSearchQueryV1(query, groups);
+    const indexed = rankVisualSearchQueryV1(query, groups, { candidateIndex: index });
+    assert.deepEqual(indexed.results, bruteForce.results);
+    assert.equal(indexed.total_matches, bruteForce.total_matches);
+    assert.ok(indexed.candidate_groups_scanned <= bruteForce.candidate_groups_scanned);
+  }
+  assert.equal(index.stats.artwork_groups, 80);
+  assert.ok(index.stats.indexed_entries > 0);
 });
 
 test("bootstrap implementation has no provider, database, embedding, or index-write path", () => {
