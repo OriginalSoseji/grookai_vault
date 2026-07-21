@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_SEARCH_PROJECTION_VERSION,
+  isLockedEligibilityReportV1,
   parseVisualSearchProjectionArgsV1,
   projectArtworkGraphV1,
 } from "../../backend/card_descriptions/card_visual_search_projection_v1.mjs";
@@ -73,6 +74,12 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
   assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1");
+});
+
+test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
+  assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciled: true }), true);
+  assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciliation: { reconciled: true } }), false);
+  assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_3", reconciled: true }), false);
 });
 
 test("projection produces three evidence-backed documents and keeps canonical context separate", () => {

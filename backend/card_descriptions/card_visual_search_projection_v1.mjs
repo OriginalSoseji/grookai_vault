@@ -66,6 +66,10 @@ export function parseVisualSearchProjectionArgsV1(argv = []) {
   };
 }
 
+export function isLockedEligibilityReportV1(report) {
+  return report?.reconciled === true && report?.version === "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4";
+}
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -761,7 +765,7 @@ export async function runVisualSearchProjectionV1(args = parseVisualSearchProjec
   ]);
   if (!groupingReport.reconciliation?.reconciled || groupingReport.version !== CARD_VISUAL_ARTWORK_GROUPING_VERSION) throw new Error("grouping input is not the reconciled locked version");
   if (conflicts.length) throw new Error(`grouping input contains ${conflicts.length} conflicts`);
-  if (!eligibilityReport.reconciliation?.reconciled || eligibilityReport.version !== "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4") throw new Error("eligibility input is not reconciled V1.4");
+  if (!isLockedEligibilityReportV1(eligibilityReport)) throw new Error("eligibility input is not reconciled V1.4");
   const inventoryDir = repoPath(eligibilityReport.run_plan.inventory_dir);
   const inventoryPath = path.join(inventoryDir, "corpus_inventory.jsonl");
   const inventoryRows = await readJsonl(inventoryPath);
