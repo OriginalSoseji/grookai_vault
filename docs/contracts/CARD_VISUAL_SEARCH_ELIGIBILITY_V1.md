@@ -172,4 +172,3 @@ After eligibility reconciliation, run a stratified audit of Tier A, Tier B, and 
 - `docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md`
 - `docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md`
 - `docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md`
-
