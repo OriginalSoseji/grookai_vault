@@ -1,0 +1,505 @@
+import crypto from "node:crypto";
+import { execFileSync } from "node:child_process";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import {
+  CARD_VISUAL_CORPUS_EXPECTED_BRANCH,
+  sha256JsonV1,
+} from "./card_visual_corpus_v1_inventory.mjs";
+
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1";
+
+const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
+const DEFAULT_INVENTORY_DIR = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1";
+const EXPECTED_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
+const EXPECTED_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
+const EXPECTED_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
+const ALLOWED_REVIEW_STATUSES = new Set(["pending", "needs_review"]);
+const SEARCH_PROJECTION_TYPES = Object.freeze(["subject", "scene", "style_composition"]);
+
+const CRITICAL_FLAGS = new Set([
+  "potential_primary_subject_mismatch",
+  "potential_canonical_name_visual_conflict",
+  "potential_subject_kind_classification_confusion",
+  "potential_unavailable_metadata_prompt_branch_mismatch",
+]);
+
+const FLAG_GUARDS = new Map([
+  ["potential_module_incomplete_or_low_evidence", "module_completeness"],
+  ["potential_module_review_conflicts_with_entries", "module_completeness"],
+  ["potential_empty_module_marked_complete", "module_completeness"],
+  ["potential_count_reference_inconsistent", "counts"],
+  ["potential_salient_object_missing_count_reference", "counts"],
+  ["potential_subject_count_mismatch", "counts"],
+  ["potential_speculative_setting_language", "environment_setting"],
+  ["potential_overconfident_ambiguous_setting", "environment_setting"],
+  ["potential_weather_field_alignment_missing", "weather_time"],
+  ["potential_pose_or_action_without_visible_support", "pose_action_state"],
+  ["potential_dramatic_inferred_action_language", "pose_action_state"],
+  ["potential_primary_subject_anatomy_overclaim", "anatomy"],
+  ["potential_creature_language_on_non_pokemon_branch", "subject_semantics"],
+  ["potential_generic_franchise_language_on_non_pokemon_branch", "subject_semantics"],
+  ["potential_canonical_metadata_in_visual_output", "metadata_terms"],
+  ["potential_metadata_or_identity_language", "metadata_terms"],
+  ["potential_canonical_metadata_in_fact_grounded_search_terms", "metadata_terms"],
+  ["potential_semantic_tag_nonvisual_concept", "metadata_terms"],
+  ["semantic_tags_metadata_or_generic_removed", "metadata_terms"],
+  ["potential_object_material_or_card_surface_confusion", "material_surface"],
+  ["potential_visual_material_vs_surface_confusion", "material_surface"],
+  ["potential_surface_cue_without_observation_support", "material_surface"],
+  ["potential_surface_overclaim", "material_surface"],
+  ["potential_border_color_certainty_issue", "material_surface"],
+  ["variant_specific_print_marker_not_confirmed_by_image", "print_markers"],
+  ["potential_unsupported_personality_or_species_interpretation", "expression_personality_mood"],
+  ["potential_cross_field_expression_contradiction", "expression_personality_mood"],
+  ["potential_unsupported_emotion_or_personality_claim", "expression_personality_mood"],
+  ["potential_interpretive_mood_language", "expression_personality_mood"],
+  ["potential_interpretive_claim", "expression_personality_mood"],
+  ["potential_card_ui_text_in_artwork_search_terms", "card_ui_terms"],
+  ["semantic_tags_missing_after_sanitization", "search_term_fallback"],
+  ["potential_generic_filler", "search_term_fallback"],
+]);
+
+const POLICY_RULE_GUARDS = new Map([
+  ["shared_artwork_image_does_not_confirm_variant_print_markers", "print_markers"],
+  ["type_like_visual_claim_requires_visible_support", "metadata_terms"],
+  ["pokemon_personality_or_expression_requires_review", "expression_personality_mood"],
+  ["trainer_personality_or_expression_requires_visible_support", "expression_personality_mood"],
+  ["surface_claim_requires_physical_evidence", "material_surface"],
+  ["border_color_claim_requires_deterministic_visual_evidence", "material_surface"],
+]);
+
+const IMAGE_LIMITATION_PATTERN = /^(low_resolution|cropped_subject|blurred_image|visible_text_uncertain|partial_|partially_|blurred_|small_|text_uncertain|hp_text_|name_text_)/;
+
+function repoPath(value) {
+  return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
+}
+
+function posixRelative(value) {
+  return path.relative(REPO_ROOT, value).replace(/\\/g, "/");
+}
+
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function safeTimestamp(value = nowIso()) {
+  return value.replace(/[:.]/g, "-");
+}
+
+function parseFlag(argv, name) {
+  const prefix = `--${name}=`;
+  const entry = argv.find((value) => value.startsWith(prefix));
+  return entry ? entry.slice(prefix.length) : null;
+}
+
+export function parseEligibilityArgsV1(argv = []) {
+  return {
+    inventoryDir: parseFlag(argv, "inventory-dir") ?? DEFAULT_INVENTORY_DIR,
+    outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
+    outputDir: parseFlag(argv, "output-dir"),
+    concurrency: Number.parseInt(parseFlag(argv, "concurrency") ?? "32", 10),
+  };
+}
+
+function sha256Buffer(value) {
+  return crypto.createHash("sha256").update(value).digest("hex");
+}
+
+async function readJson(filePath) {
+  return JSON.parse(await fs.readFile(filePath, "utf8"));
+}
+
+async function readJsonl(filePath) {
+  const text = await fs.readFile(filePath, "utf8");
+  return text.split(/\r?\n/).filter((line) => line.trim()).map((line) => JSON.parse(line));
+}
+
+async function writeJson(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+async function writeJsonl(filePath, rows) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, rows.map((row) => JSON.stringify(row)).join("\n") + (rows.length ? "\n" : ""));
+}
+
+async function writeText(filePath, value) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, value);
+}
+
+function gitValue(args) {
+  return execFileSync("git", args, { cwd: REPO_ROOT, encoding: "utf8" }).trim();
+}
+
+function currentGitState() {
+  return {
+    commit_sha: gitValue(["rev-parse", "HEAD"]),
+    branch: gitValue(["branch", "--show-current"]),
+    tracked_status_short: gitValue(["status", "--short", "--untracked-files=no"]),
+  };
+}
+
+function uniqueSorted(values) {
+  return [...new Set(values.filter(Boolean))].sort();
+}
+
+function countBy(rows, selector) {
+  const counts = {};
+  for (const row of rows) {
+    const key = selector(row) ?? "unknown";
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
+}
+
+function moduleLimitations(graph) {
+  const limitations = [];
+  for (const review of graph?.module_reviews ?? []) {
+    const reasons = [];
+    if (["high", "unknown"].includes(review.omission_risk)) reasons.push(`omission_risk:${review.omission_risk}`);
+    if (["low", "unknown"].includes(review.evidence_quality)) reasons.push(`evidence_quality:${review.evidence_quality}`);
+    if (review.review_status === "uncertain") reasons.push("review_status:uncertain");
+    if (reasons.length) limitations.push({ module: review.module, reasons });
+  }
+  return limitations;
+}
+
+function guardForFlag(flag) {
+  if (FLAG_GUARDS.has(flag)) return FLAG_GUARDS.get(flag);
+  if (IMAGE_LIMITATION_PATTERN.test(flag)) return "image_or_text_visibility";
+  return null;
+}
+
+function decisionBase(inventoryRow) {
+  return {
+    policy_version: CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION,
+    card_print_id: inventoryRow.card_print_id,
+    gv_id: inventoryRow.gv_id ?? null,
+    name: inventoryRow.name ?? null,
+    source: inventoryRow.source,
+    source_outcome: inventoryRow.outcome_class,
+    source_generated_row_sha256: inventoryRow.generated_row_sha256 ?? null,
+    source_fact_graph_sha256: inventoryRow.fact_graph_sha256 ?? null,
+    prompt_branch: inventoryRow.prompt_branch ?? null,
+    review_status: inventoryRow.review_status ?? null,
+    artwork_group_id: null,
+    artwork_group_status: inventoryRow.outcome_class === "valid" ? "pending_grouping" : "not_available",
+  };
+}
+
+export function classifyEligibilityV1(generatedRow, inventoryRow) {
+  const qualityFlags = uniqueSorted(generatedRow?.quality_flags ?? []);
+  const policyResults = Array.isArray(generatedRow?.policy_results) ? generatedRow.policy_results : [];
+  const qualityDetails = Array.isArray(generatedRow?.quality_flag_details) ? generatedRow.quality_flag_details : [];
+  const graph = generatedRow?.visual_attributes?.fact_graph;
+  const criticalReasons = [];
+  const reviewReasons = [];
+  const guardKeys = [];
+  const unknownFlags = [];
+  const unknownPolicyRules = [];
+
+  if (!graph || !Array.isArray(graph.observations)) criticalReasons.push("missing_fact_graph_or_observations");
+  if (!inventoryRow.generated_row_sha256 || sha256JsonV1(generatedRow) !== inventoryRow.generated_row_sha256) criticalReasons.push("generated_row_hash_mismatch");
+  if (!inventoryRow.fact_graph_sha256 || (graph && sha256JsonV1(graph) !== inventoryRow.fact_graph_sha256)) criticalReasons.push("fact_graph_hash_mismatch");
+  if (generatedRow?.prompt_version !== EXPECTED_PROMPT_VERSION) criticalReasons.push("unexpected_prompt_version");
+  if (generatedRow?.output_schema_version !== EXPECTED_SCHEMA_VERSION) criticalReasons.push("unexpected_schema_version");
+  if (generatedRow?.agent_version !== EXPECTED_AGENT_VERSION) criticalReasons.push("unexpected_agent_version");
+  if (generatedRow?.prompt_branch === "energy") criticalReasons.push("energy_branch_excluded");
+  if (!ALLOWED_REVIEW_STATUSES.has(generatedRow?.review_status)) criticalReasons.push("unsupported_review_status");
+  if ((generatedRow?.identity_input_confidence ?? 0) < 0.8) criticalReasons.push("identity_confidence_below_0_80");
+  if ((generatedRow?.attribute_confidence ?? 0) < 0.8) criticalReasons.push("attribute_confidence_below_0_80");
+
+  for (const flag of qualityFlags) {
+    if (CRITICAL_FLAGS.has(flag)) {
+      criticalReasons.push(`critical_flag:${flag}`);
+      continue;
+    }
+    const guard = guardForFlag(flag);
+    if (!guard) {
+      unknownFlags.push(flag);
+      criticalReasons.push(`unknown_quality_flag:${flag}`);
+      continue;
+    }
+    guardKeys.push(guard);
+    reviewReasons.push(`quality_flag:${flag}`);
+  }
+
+  for (const result of policyResults) {
+    const rule = result.policy_rule ?? result.rule;
+    const guard = POLICY_RULE_GUARDS.get(rule);
+    if (!guard) {
+      unknownPolicyRules.push(rule ?? "missing_rule");
+      criticalReasons.push(`unknown_policy_rule:${rule ?? "missing_rule"}`);
+      continue;
+    }
+    guardKeys.push(guard);
+    reviewReasons.push(`policy_rule:${rule}`);
+  }
+
+  const limitations = moduleLimitations(graph);
+  if (limitations.length) {
+    guardKeys.push("module_completeness");
+    reviewReasons.push("module_review_limitation");
+  }
+  if ((generatedRow?.image_quality_score ?? 0) < 0.75) {
+    guardKeys.push("image_or_text_visibility");
+    reviewReasons.push("image_quality_below_0_75");
+  }
+  if (generatedRow?.image_source === "representative_image_url") {
+    guardKeys.push("print_markers");
+    reviewReasons.push("representative_image_source");
+  }
+  if (generatedRow?.review_status === "needs_review" && !reviewReasons.length && !criticalReasons.length) {
+    reviewReasons.push("source_review_status_needs_review");
+  }
+
+  let tier = "A";
+  if (criticalReasons.length) tier = "C";
+  else if (qualityFlags.length || policyResults.length || reviewReasons.length || limitations.length || generatedRow?.review_status !== "pending") tier = "B";
+
+  const decision = {
+    ...decisionBase(inventoryRow),
+    tier,
+    search_eligible: tier !== "C",
+    rank_adjustment_key: tier === "A" ? "tier_a" : tier === "B" ? "tier_b" : "excluded",
+    allowed_projection_types: tier === "C" ? [] : [...SEARCH_PROJECTION_TYPES],
+    projection_guard_keys: uniqueSorted(guardKeys),
+    critical_reasons: uniqueSorted(criticalReasons),
+    review_reasons: uniqueSorted(reviewReasons),
+    quality_flags: qualityFlags,
+    unknown_quality_flags: uniqueSorted(unknownFlags),
+    unknown_policy_rules: uniqueSorted(unknownPolicyRules),
+    flagged_evidence: qualityDetails.map((detail) => ({
+      flag: detail.flag ?? null,
+      field: detail.field ?? null,
+      matched_text: detail.matched_text ?? null,
+      guard_key: guardForFlag(detail.flag),
+    })),
+    module_limitations: limitations,
+    confidence: {
+      identity_input: generatedRow?.identity_input_confidence ?? null,
+      description: generatedRow?.description_confidence ?? null,
+      attributes: generatedRow?.attribute_confidence ?? null,
+      image_quality: generatedRow?.image_quality_score ?? null,
+    },
+    image_source: generatedRow?.image_source ?? null,
+  };
+  decision.decision_sha256 = sha256JsonV1(decision);
+  return decision;
+}
+
+export function classifySourceGapV1(inventoryRow) {
+  const decision = {
+    ...decisionBase(inventoryRow),
+    tier: "C",
+    search_eligible: false,
+    rank_adjustment_key: "excluded",
+    allowed_projection_types: [],
+    projection_guard_keys: [],
+    critical_reasons: [`source_gap:${inventoryRow.outcome_class}`],
+    review_reasons: [],
+    quality_flags: [],
+    unknown_quality_flags: [],
+    unknown_policy_rules: [],
+    flagged_evidence: [],
+    module_limitations: [],
+    confidence: null,
+    image_source: null,
+  };
+  decision.decision_sha256 = sha256JsonV1(decision);
+  return decision;
+}
+
+async function mapConcurrent(items, concurrency, mapper) {
+  if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 128) throw new Error("concurrency must be between 1 and 128");
+  const results = new Array(items.length);
+  let cursor = 0;
+  async function worker() {
+    while (true) {
+      const index = cursor;
+      cursor += 1;
+      if (index >= items.length) return;
+      results[index] = await mapper(items[index], index);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, () => worker()));
+  return results;
+}
+
+async function loadGeneratedRows(validRows, inventoryPlan, concurrency) {
+  const dbExportPath = repoPath(inventoryPlan.sources.database_saved_export);
+  const dbExport = await readJson(dbExportPath);
+  const databaseRows = new Map((dbExport.records ?? []).map((record) => [record.card_print_id, record.generated_row]));
+  return mapConcurrent(validRows, concurrency, async (inventoryRow) => {
+    if (inventoryRow.source === "private_database_apply_1000") {
+      return databaseRows.get(inventoryRow.card_print_id) ?? null;
+    }
+    const artifact = await readJson(repoPath(inventoryRow.source_artifact_path));
+    return artifact.generated_row ?? null;
+  });
+}
+
+function duplicates(values) {
+  const seen = new Set();
+  const repeated = new Set();
+  for (const value of values) {
+    if (seen.has(value)) repeated.add(value);
+    seen.add(value);
+  }
+  return [...repeated].sort();
+}
+
+function markdownReport(report) {
+  const c = report.counts;
+  const tierRows = Object.entries(report.distributions.tiers).map(([tier, count]) => `| ${tier} | ${count} |`).join("\n");
+  const guardRows = Object.entries(report.distributions.projection_guards).map(([key, count]) => `| ${key} | ${count} |`).join("\n");
+  const criticalRows = Object.entries(report.distributions.critical_reasons).map(([key, count]) => `| ${key} | ${count} |`).join("\n");
+  return `# Card Visual Search Eligibility V1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciled}\`\n- Producing commit: \`${report.run_plan.commit_sha}\`\n- Source IDs: \`${c.source_ids}\`\n- Tier A: \`${c.tier_a}\`\n- Tier B: \`${c.tier_b}\`\n- Tier C: \`${c.tier_c}\`\n- Search eligible: \`${c.search_eligible}\`\n- Source-gap Tier C: \`${c.source_gap_tier_c}\`\n- Critical valid-row Tier C: \`${c.valid_row_tier_c}\`\n- Unknown quality flags: \`${c.unknown_quality_flags}\`\n- Unknown policy rules: \`${c.unknown_policy_rules}\`\n- Energy rows eligible: \`${c.energy_rows_eligible}\`\n- Reconciliation findings: \`${report.findings.length}\`\n\n## Tiers\n\n| Tier | Count |\n| --- | ---: |\n${tierRows}\n\n## Projection Guards\n\n| Guard | Decisions |\n| --- | ---: |\n${guardRows || "| none | 0 |"}\n\n## Critical Reasons\n\n| Reason | Decisions |\n| --- | ---: |\n${criticalRows || "| none | 0 |"}\n\n## Boundaries\n\nNo provider calls, database connections or writes, approvals, embeddings, artwork grouping, projections, index writes, or public reads occurred. Decisions are offline policy artifacts only.\n\n## Exact Next Gate\n\nReview a deterministic stratified sample across Tier A, each Tier B guard class, and each valid-row Tier C reason. If the policy audit passes, freeze eligibility and begin fail-closed artwork grouping.\n`;
+}
+
+async function createHashManifest(outputDir, files) {
+  const entries = {};
+  for (const file of files) entries[file] = sha256Buffer(await fs.readFile(path.join(outputDir, file)));
+  return {
+    artifact_kind: "card_visual_search_eligibility_v1_hash_manifest",
+    hash_algorithm: "sha256",
+    generated_at: nowIso(),
+    directory: posixRelative(outputDir),
+    file_count: files.length,
+    files: entries,
+  };
+}
+
+export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
+  const git = currentGitState();
+  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
+
+  const inventoryDir = repoPath(args.inventoryDir);
+  const inventoryReportPath = path.join(inventoryDir, "CORPUS_SOURCE_RECONCILIATION.json");
+  const validPath = path.join(inventoryDir, "corpus_valid_candidates.jsonl");
+  const gapsPath = path.join(inventoryDir, "corpus_coverage_gaps.jsonl");
+  const [inventoryReport, validRows, gapRows] = await Promise.all([readJson(inventoryReportPath), readJsonl(validPath), readJsonl(gapsPath)]);
+  if (!inventoryReport.reconciliation?.reconciled) throw new Error("source inventory is not reconciled");
+
+  const inputHashes = {
+    inventory_report: sha256Buffer(await fs.readFile(inventoryReportPath)),
+    valid_candidates: sha256Buffer(await fs.readFile(validPath)),
+    coverage_gaps: sha256Buffer(await fs.readFile(gapsPath)),
+  };
+  const runKey = sha256JsonV1({ version: CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION, commit_sha: git.commit_sha, input_hashes: inputHashes });
+  const outputDir = args.outputDir ? repoPath(args.outputDir) : path.join(repoPath(args.outputRoot), `${safeTimestamp()}_eligibility_${runKey.slice(0, 12)}`);
+  const runPlan = {
+    version: CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION,
+    created_at: nowIso(),
+    run_key: runKey,
+    commit_sha: git.commit_sha,
+    branch: git.branch,
+    tracked_worktree_clean: true,
+    inventory_dir: posixRelative(inventoryDir),
+    inventory_run_key: inventoryReport.run_plan.run_key,
+    input_hashes_sha256: inputHashes,
+    expected_source_ids: inventoryReport.reconciliation.counts.source_rows_total,
+    expected_valid_candidates: inventoryReport.reconciliation.counts.valid_rows_total,
+    expected_coverage_gaps: inventoryReport.reconciliation.counts.coverage_gaps_total,
+    concurrency: args.concurrency,
+    boundaries: {
+      provider_calls: false,
+      database_connection: false,
+      database_writes: false,
+      approvals: false,
+      embeddings: false,
+      artwork_grouping: false,
+      search_projections: false,
+      index_writes: false,
+      public_reads: false,
+    },
+  };
+  await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
+
+  const generatedRows = await loadGeneratedRows(validRows, inventoryReport.run_plan, args.concurrency);
+  const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row));
+  const gapDecisions = gapRows.map((row) => classifySourceGapV1(row));
+  const decisions = [...validDecisions, ...gapDecisions];
+  const findings = [];
+  const duplicateIds = duplicates(decisions.map((row) => row.card_print_id));
+  if (duplicateIds.length) findings.push(`duplicate_decision_ids:${duplicateIds.length}`);
+  if (decisions.length !== runPlan.expected_source_ids) findings.push(`source_decision_count_mismatch:${decisions.length}`);
+  if (validDecisions.length !== runPlan.expected_valid_candidates) findings.push(`valid_decision_count_mismatch:${validDecisions.length}`);
+  if (gapDecisions.length !== runPlan.expected_coverage_gaps) findings.push(`gap_decision_count_mismatch:${gapDecisions.length}`);
+  const unknownQualityFlags = validDecisions.flatMap((row) => row.unknown_quality_flags);
+  const unknownPolicyRules = validDecisions.flatMap((row) => row.unknown_policy_rules);
+  if (unknownQualityFlags.length) findings.push(`unknown_quality_flags:${uniqueSorted(unknownQualityFlags).join(",")}`);
+  if (unknownPolicyRules.length) findings.push(`unknown_policy_rules:${uniqueSorted(unknownPolicyRules).join(",")}`);
+  const invalidTierA = validDecisions.filter((row) => row.tier === "A" && (row.quality_flags.length || row.review_reasons.length || row.critical_reasons.length || row.module_limitations.length));
+  if (invalidTierA.length) findings.push(`tier_a_contains_limitations:${invalidTierA.length}`);
+  const energyEligible = decisions.filter((row) => row.prompt_branch === "energy" && row.search_eligible);
+  if (energyEligible.length) findings.push(`energy_rows_eligible:${energyEligible.length}`);
+
+  const tierA = decisions.filter((row) => row.tier === "A");
+  const tierB = decisions.filter((row) => row.tier === "B");
+  const tierC = decisions.filter((row) => row.tier === "C");
+  const report = {
+    version: CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION,
+    created_at: nowIso(),
+    run_plan: runPlan,
+    reconciled: findings.length === 0,
+    findings,
+    counts: {
+      source_ids: decisions.length,
+      tier_a: tierA.length,
+      tier_b: tierB.length,
+      tier_c: tierC.length,
+      search_eligible: tierA.length + tierB.length,
+      source_gap_tier_c: gapDecisions.length,
+      valid_row_tier_c: validDecisions.filter((row) => row.tier === "C").length,
+      unknown_quality_flags: uniqueSorted(unknownQualityFlags).length,
+      unknown_policy_rules: uniqueSorted(unknownPolicyRules).length,
+      energy_rows_eligible: energyEligible.length,
+      duplicate_decision_ids: duplicateIds.length,
+    },
+    distributions: {
+      tiers: countBy(decisions, (row) => row.tier),
+      tier_by_source: countBy(decisions, (row) => `${row.source}:${row.tier}`),
+      tier_by_branch: countBy(decisions, (row) => `${row.prompt_branch ?? "unknown"}:${row.tier}`),
+      projection_guards: countBy(tierB.flatMap((row) => row.projection_guard_keys.map((guard) => ({ guard }))), (row) => row.guard),
+      critical_reasons: countBy(tierC.flatMap((row) => row.critical_reasons.map((reason) => ({ reason }))), (row) => row.reason),
+      quality_flags: countBy(validDecisions.flatMap((row) => row.quality_flags.map((flag) => ({ flag }))), (row) => row.flag),
+    },
+  };
+
+  const files = [
+    "run_plan.json",
+    "eligibility_decisions.jsonl",
+    "tier_a_decisions.jsonl",
+    "tier_b_decisions.jsonl",
+    "tier_c_decisions.jsonl",
+    "ELIGIBILITY_RECONCILIATION.json",
+    "ELIGIBILITY_RECONCILIATION.md",
+  ];
+  await writeJsonl(path.join(outputDir, "eligibility_decisions.jsonl"), decisions);
+  await writeJsonl(path.join(outputDir, "tier_a_decisions.jsonl"), tierA);
+  await writeJsonl(path.join(outputDir, "tier_b_decisions.jsonl"), tierB);
+  await writeJsonl(path.join(outputDir, "tier_c_decisions.jsonl"), tierC);
+  await writeJson(path.join(outputDir, "ELIGIBILITY_RECONCILIATION.json"), report);
+  await writeText(path.join(outputDir, "ELIGIBILITY_RECONCILIATION.md"), markdownReport(report));
+  await writeJson(path.join(outputDir, "artifact_hashes.json"), await createHashManifest(outputDir, files));
+  return { outputDir, report };
+}
+
+export async function main(argv = process.argv.slice(2)) {
+  const result = await runEligibilityV1(parseEligibilityArgsV1(argv));
+  console.log(`[card-visual-search-eligibility] output_dir=${posixRelative(result.outputDir)}`);
+  console.log(`[card-visual-search-eligibility] tier_a=${result.report.counts.tier_a}`);
+  console.log(`[card-visual-search-eligibility] tier_b=${result.report.counts.tier_b}`);
+  console.log(`[card-visual-search-eligibility] tier_c=${result.report.counts.tier_c}`);
+  console.log(`[card-visual-search-eligibility] reconciled=${result.report.reconciled}`);
+  if (!result.report.reconciled) process.exitCode = 1;
+}
