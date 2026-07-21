@@ -51,6 +51,7 @@
     "card-desc:artifact-apply": "node scripts/audits/card_visual_description_artifact_apply_v1.mjs --apply",
     "card-visual:corpus-inventory": "node scripts/audits/card_visual_corpus_v1_inventory.mjs",
     "card-visual:search-eligibility": "node scripts/audits/card_visual_search_eligibility_v1.mjs",
+    "card-visual:eligibility-audit": "node scripts/audits/card_visual_search_eligibility_audit_v1.mjs",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
     "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
