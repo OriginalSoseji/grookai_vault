@@ -186,6 +186,10 @@ function groupEntries(group, documentType = null, predicate = null) {
   return result;
 }
 
+export function visualSearchGroupEntriesV1(group, documentType = null, predicate = null) {
+  return groupEntries(group, documentType, predicate);
+}
+
 function deterministicSort(rows, key) {
   return [...rows].sort((left, right) => sha256JsonV1({ key, row: left.sort_key }).localeCompare(sha256JsonV1({ key, row: right.sort_key })));
 }
@@ -375,6 +379,7 @@ export function buildVisualSearchCandidateIndexV1(groups) {
   const groupsById = new Map();
   const subjectPostings = new Map();
   const setPostings = new Map();
+  const branchPostings = new Map();
   const rolePostings = new Map();
   const exactTermPostings = new Map();
   const tokenPostings = new Map();
@@ -383,6 +388,7 @@ export function buildVisualSearchCandidateIndexV1(groups) {
   for (const group of groups) {
     groupsById.set(group.artwork_group_id, group);
     addPosting(subjectPostings, normalizeVisualSearchTextV1(group.name), group.artwork_group_id);
+    addPosting(branchPostings, normalizeVisualSearchTextV1(group.branch), group.artwork_group_id);
     for (const printing of group.printings) addPosting(setPostings, normalizeVisualSearchTextV1(printing.set_code), group.artwork_group_id);
     const roles = uniqueSorted(Object.values(group.documents).flatMap((document) => document.subject_role_keys ?? []));
     for (const role of roles) addPosting(rolePostings, role, group.artwork_group_id);
@@ -397,12 +403,13 @@ export function buildVisualSearchCandidateIndexV1(groups) {
     version: CARD_VISUAL_SEARCH_CANDIDATE_INDEX_VERSION,
     groups_by_id: groupsById,
     all_group_ids: [...groupsById.keys()].sort(),
-    postings: { subject: subjectPostings, set: setPostings, role: rolePostings, exact_term: exactTermPostings, token: tokenPostings },
+    postings: { subject: subjectPostings, set: setPostings, branch: branchPostings, role: rolePostings, exact_term: exactTermPostings, token: tokenPostings },
     stats: {
       artwork_groups: groupsById.size,
       indexed_entries: indexedEntries,
       subject_keys: subjectPostings.size,
       set_keys: setPostings.size,
+      branch_keys: branchPostings.size,
       role_keys: rolePostings.size,
       exact_term_keys: exactTermPostings.size,
       token_keys: tokenPostings.size,
@@ -414,15 +421,22 @@ export function buildVisualSearchCandidateIndexV1(groups) {
 function candidateGroupIds(query, candidateIndex) {
   const requestedSubjects = query.intent.canonical_filters?.subjects ?? [];
   const requestedSets = query.intent.canonical_filters?.set_codes ?? [];
+  const requestedBranches = query.intent.canonical_filters?.branches ?? [];
   const requestedRoles = query.intent.subject_roles ?? [];
   const requestedConcepts = query.intent.visual_concepts ?? [];
+  const allowedGroupIds = query.intent.artwork_group_ids ?? [];
   let candidates = null;
+
+  if (allowedGroupIds.length) candidates = intersectSets(candidates, new Set(allowedGroupIds));
 
   if (requestedSubjects.length) {
     candidates = intersectSets(candidates, unionPostings(candidateIndex.postings.subject, requestedSubjects.map(normalizeVisualSearchTextV1)));
   }
   if (requestedSets.length) {
     candidates = intersectSets(candidates, unionPostings(candidateIndex.postings.set, requestedSets.map(normalizeVisualSearchTextV1)));
+  }
+  if (requestedBranches.length) {
+    candidates = intersectSets(candidates, unionPostings(candidateIndex.postings.branch, requestedBranches.map(normalizeVisualSearchTextV1)));
   }
   for (const role of requestedRoles) candidates = intersectSets(candidates, candidateIndex.postings.role.get(role) ?? new Set());
   for (const concept of requestedConcepts) {
@@ -438,13 +452,30 @@ function candidateGroupIds(query, candidateIndex) {
   return [...(candidates ?? candidateIndex.all_group_ids)].sort();
 }
 
+function parsedCountEntry(entry) {
+  if (entry.source_type !== "count") return null;
+  const match = normalizeVisualSearchTextV1(entry.term).match(/^(.*?) count exact (\d+)$/u);
+  if (!match) return null;
+  return { label: match[1], exact_count: Number.parseInt(match[2], 10) };
+}
+
+function countConstraintMatches(entry, constraint) {
+  const parsed = parsedCountEntry(entry);
+  if (!parsed || parsed.exact_count !== constraint.exact_count) return false;
+  const requestedTokens = tokenizeVisualSearchTextV1(constraint.label);
+  const entryTokens = new Set(tokenizeVisualSearchTextV1(parsed.label));
+  return requestedTokens.length > 0 && requestedTokens.every((token) => entryTokens.has(token) || entryTokens.has(token.replace(/s$/u, "")));
+}
+
 export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateIndex = null } = {}) {
   const start = performance.now();
   const results = [];
   const requestedSubjects = query.intent.canonical_filters?.subjects ?? [];
   const requestedSets = query.intent.canonical_filters?.set_codes ?? [];
+  const requestedBranches = query.intent.canonical_filters?.branches ?? [];
   const requestedRoles = query.intent.subject_roles ?? [];
   const requestedConcepts = query.intent.visual_concepts ?? [];
+  const requestedCounts = query.intent.count_constraints ?? [];
 
   const candidateGroups = candidateIndex
     ? candidateGroupIds(query, candidateIndex).map((groupId) => candidateIndex.groups_by_id.get(groupId))
@@ -452,10 +483,31 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateInd
   for (const group of candidateGroups) {
     if (requestedSubjects.length && !requestedSubjects.some((name) => normalizeVisualSearchTextV1(name) === normalizeVisualSearchTextV1(group.name))) continue;
     if (requestedSets.length && !requestedSets.some((setCode) => group.printings.some((printing) => normalizeVisualSearchTextV1(printing.set_code) === normalizeVisualSearchTextV1(setCode)))) continue;
+    if (requestedBranches.length && !requestedBranches.some((branch) => normalizeVisualSearchTextV1(branch) === normalizeVisualSearchTextV1(group.branch))) continue;
     const roles = uniqueSorted(Object.values(group.documents).flatMap((document) => document.subject_role_keys ?? []));
     if (requestedRoles.length && !requestedRoles.every((role) => roles.includes(role))) continue;
     const entries = groupEntries(group);
     const matchedEvidence = [];
+    let countsSatisfied = true;
+    for (const constraint of requestedCounts) {
+      const matches = entries.filter((entry) => countConstraintMatches(entry, constraint));
+      if (!matches.length) {
+        countsSatisfied = false;
+        break;
+      }
+      matchedEvidence.push(...matches.slice(0, 3).map((entry) => ({
+        query_concept: `${constraint.exact_count} ${constraint.label}`,
+        search_document_id: entry.search_document_id,
+        document_type: entry.document_type,
+        source_type: entry.source_type,
+        source_id: entry.source_id,
+        term: entry.term,
+        subject_role: entry.subject_role,
+        supporting_observation_ids: entry.supporting_observation_ids,
+        confidence: entry.confidence,
+      })));
+    }
+    if (!countsSatisfied) continue;
     let conceptsSatisfied = true;
     for (const concept of requestedConcepts) {
       const matches = entries.filter((entry) => entryMatchesConcept(entry, concept));
@@ -482,12 +534,14 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateInd
     const scoreComponents = {
       canonical_filter: requestedSubjects.length ? 20 : 0,
       metadata_filter: requestedSets.length ? 8 : 0,
+      branch_filter: requestedBranches.length ? 6 : 0,
       subject_role: requestedRoles.length ? 8 : 0,
+      exact_count: requestedCounts.length * 10,
       structured_visual: requestedConcepts.length * 10,
       evidence_confidence: confidence * 2,
       tier_adjustment: group.tier === "A" ? 1 : 0.9,
     };
-    const subtotal = scoreComponents.canonical_filter + scoreComponents.metadata_filter + scoreComponents.subject_role + scoreComponents.structured_visual + scoreComponents.evidence_confidence;
+    const subtotal = scoreComponents.canonical_filter + scoreComponents.metadata_filter + scoreComponents.branch_filter + scoreComponents.subject_role + scoreComponents.exact_count + scoreComponents.structured_visual + scoreComponents.evidence_confidence;
     results.push({
       artwork_group_id: group.artwork_group_id,
       representative_card_print_id: group.representative_card_print_id,
@@ -547,7 +601,7 @@ function markdownReport(report) {
   return `# Card Visual Search Evaluation Bootstrap V1\n\nGenerated: ${report.created_at}\n\n## Result\n\n- Reconciled: \`${report.reconciliation.reconciled}\`\n- Official evaluation passed: \`false\`\n- Candidate queries: \`${report.query_suite.total_queries}\`\n- Calibration queries run: \`${m.calibration_queries}\`\n- Holdout queries run: \`0\`\n- Bootstrap Recall@10: \`${m.bootstrap_recall_at_10}\`\n- Bootstrap Recall@25: \`${m.bootstrap_recall_at_25}\`\n- Bootstrap MRR: \`${m.bootstrap_mrr}\`\n- Valid-zero accuracy: \`${m.valid_zero_result_accuracy}\`\n- Explanation reference validity: \`${m.explanation_reference_validity}\`\n- Failures: \`${m.failure_count}\`\n\n## Interpretation\n\nThis is a source-derived self-retrieval baseline, not human gold relevance evaluation. Precision@10, nDCG@10, unsupported-match rate, semantic false positives, and official release thresholds remain unmeasured.\n\n## Boundaries\n\nNo provider calls, database connections or writes, approvals, embeddings, index writes, holdout evaluation, or public reads occurred.\n\n## Exact Next Gate\n\nReview and freeze the candidate query suite, collect human artwork-first judgments, and lock baseline thresholds before executing the 50-query holdout.\n`;
 }
 
-async function loadProjection(projectionDir) {
+export async function loadVisualSearchProjectionV1(projectionDir) {
   const report = await readJson(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"));
   if (report.version !== EXPECTED_PROJECTION_VERSION || report.reconciliation?.reconciled !== true) throw new Error("projection input is not locked reconciled V1.5");
   const manifest = await readJson(path.join(projectionDir, "artifact_hashes.json"));
@@ -600,7 +654,7 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
   if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
   const projectionDir = repoPath(args.projectionDir);
-  const projection = await loadProjection(projectionDir);
+  const projection = await loadVisualSearchProjectionV1(projectionDir);
   const candidateIndex = buildVisualSearchCandidateIndexV1(projection.groups);
   const inputHashes = {
     projection_reconciliation: sha256Buffer(await fs.readFile(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"))),
