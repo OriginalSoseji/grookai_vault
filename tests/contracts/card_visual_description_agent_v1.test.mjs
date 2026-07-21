@@ -20,6 +20,7 @@ import {
   classifyVisualHarvestFailureV1,
   classifyDescriptionReviewStatusV1,
   countMissingCardOutcomesV1,
+  createConcurrencySemaphoreV1,
   evaluateHarvestPolicyV1,
   evaluateAutoApprovalReadinessV1,
   detectVisualDescriptionReviewFlagDetailsV1,
@@ -31,6 +32,9 @@ import {
   mapVisualSearchAliasQueryV1,
   parseCardVisualDescriptionArgsV1,
   parseCardPrintIdsDocumentV1,
+  parseOpenAiRetryDelayMsV1,
+  parseOpenAiResetDurationMsV1,
+  readOpenAiRateLimitHeadersV1,
   cardVisualSelectionQueryLimitV1,
   resolveCardPromptMetadata,
   sanitizeSemanticTagsForVisibleArtworkV1,
@@ -678,6 +682,8 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(apply.maxRunCostUsd, 0.25);
   assert.equal(apply.openaiRequestTimeoutMs, 240000);
   assert.equal(apply.concurrency, 10);
+  assert.equal(apply.adaptiveConcurrency, false);
+  assert.equal(apply.initialConcurrency, 10);
   assert.equal(apply.maxRetries, 1);
   assert.deepEqual(apply.excludeBranches, ["energy"]);
   assert.equal(apply.openaiInputCostPerMillion, 0.15);
@@ -768,6 +774,33 @@ test("card visual description args default to dry-run and block fixture apply", 
   assert.equal(harvest.harvestMaxValidationFailureRate, 0.12);
   assert.equal(harvest.harvestMaxValidationFailures, 30);
   assert.deepEqual(harvest.excludeBranches, ["energy"]);
+  const adaptiveHarvest = parseCardVisualDescriptionArgsV1([
+    "--harvest",
+    "--provider=openai",
+    "--model=test-vision-model",
+    "--concurrency=50",
+    "--adaptive-concurrency",
+    "--initial-concurrency=20",
+    "--concurrency-step=10",
+    "--concurrency-ramp-every=25",
+    "--image-concurrency=20",
+  ]);
+  assert.equal(adaptiveHarvest.concurrency, 50);
+  assert.equal(adaptiveHarvest.adaptiveConcurrency, true);
+  assert.equal(adaptiveHarvest.initialConcurrency, 20);
+  assert.equal(adaptiveHarvest.concurrencyStep, 10);
+  assert.equal(adaptiveHarvest.concurrencyRampEvery, 25);
+  assert.equal(adaptiveHarvest.imageConcurrency, 20);
+  assert.throws(
+    () => parseCardVisualDescriptionArgsV1([
+      "--provider=openai",
+      "--model=test-vision-model",
+      "--concurrency=20",
+      "--adaptive-concurrency",
+      "--initial-concurrency=30",
+    ]),
+    /--initial-concurrency cannot exceed --concurrency/,
+  );
   const resume = parseCardVisualDescriptionArgsV1([
     "--harvest",
     "--provider=openai",
@@ -801,6 +834,52 @@ test("card visual description args default to dry-run and block fixture apply", 
     ]),
     /high-value sampling cannot be combined/,
   );
+});
+
+test("OpenAI retry timing honors provider headers and captures quota telemetry", () => {
+  assert.equal(parseOpenAiResetDurationMsV1("1m2s500ms"), 62500);
+  assert.equal(parseOpenAiResetDurationMsV1("12ms"), 12);
+  assert.equal(parseOpenAiResetDurationMsV1("invalid"), null);
+  assert.equal(parseOpenAiRetryDelayMsV1({ "retry-after": "2" }, 0, 0), 2000);
+  assert.equal(parseOpenAiRetryDelayMsV1({
+    "x-ratelimit-remaining-tokens": "0",
+    "x-ratelimit-reset-tokens": "750ms",
+  }, 0, 0), 750);
+  assert.equal(parseOpenAiRetryDelayMsV1({}, 0, 0), 250);
+  assert.equal(parseOpenAiRetryDelayMsV1({}, 1, 1), 1500);
+  assert.deepEqual(readOpenAiRateLimitHeadersV1({
+    "x-request-id": "req_test_123",
+    "x-ratelimit-limit-requests": "5000",
+    "x-ratelimit-remaining-requests": "4999",
+    "x-ratelimit-reset-requests": "12ms",
+    "x-ratelimit-limit-tokens": "2000000",
+    "x-ratelimit-remaining-tokens": "1980000",
+    "x-ratelimit-reset-tokens": "600ms",
+    "retry-after": "1",
+  }), {
+    request_id: "req_test_123",
+    limit_requests: "5000",
+    remaining_requests: "4999",
+    reset_requests: "12ms",
+    limit_tokens: "2000000",
+    remaining_tokens: "1980000",
+    reset_tokens: "600ms",
+    retry_after: "1",
+  });
+});
+
+test("image-fetch semaphore never exceeds its configured concurrency", async () => {
+  const semaphore = createConcurrencySemaphoreV1(3);
+  let active = 0;
+  let maximumActive = 0;
+  await Promise.all(Array.from({ length: 12 }, (_, index) => semaphore.run(async () => {
+    active += 1;
+    maximumActive = Math.max(maximumActive, active);
+    await new Promise((resolve) => setTimeout(resolve, 2 + (index % 2)));
+    active -= 1;
+  })));
+  assert.equal(maximumActive, 3);
+  assert.deepEqual(semaphore.snapshot(), { active: 0, waiting: 0, limit: 3 });
 });
 
 test("card visual description accepts a hashable explicit ID selection file", () => {
@@ -8409,6 +8488,10 @@ test("card visual description agent entrypoints stay guarded and non-identity-au
   assert.match(agent, /--v2-stress-sample/);
   assert.match(agent, /--high-value-sample/);
   assert.match(agent, /--concurrency=/);
+  assert.match(agent, /--adaptive-concurrency/);
+  assert.match(agent, /--initial-concurrency=/);
+  assert.match(agent, /CONCURRENCY_TELEMETRY\.json/);
+  assert.match(agent, /x-ratelimit-remaining-tokens/);
   assert.match(agent, /--harvest/);
   assert.match(agent, /--resume-run-dir=/);
   assert.match(agent, /writeJsonAtomic/);

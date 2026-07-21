@@ -39,6 +39,10 @@ const DEFAULT_IMAGE_DETAIL = "high";
 const DEFAULT_MAX_RETRIES = 0;
 const DEFAULT_OPENAI_REQUEST_TIMEOUT_MS = 180_000;
 const DEFAULT_CONCURRENCY = 1;
+const DEFAULT_ADAPTIVE_INITIAL_CONCURRENCY = 20;
+const DEFAULT_ADAPTIVE_CONCURRENCY_STEP = 10;
+const DEFAULT_ADAPTIVE_RAMP_EVERY = 25;
+const DEFAULT_IMAGE_CONCURRENCY = 20;
 const DEFAULT_HARVEST_MAX_VALIDATION_FAILURE_RATE = 0.15;
 const DEFAULT_BRANCH_STRATIFIED_CANDIDATE_LIMIT = 5000;
 const DEFAULT_HIGH_VALUE_CANDIDATE_LIMIT = 5000;
@@ -4552,6 +4556,11 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     maxRetries: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES, DEFAULT_MAX_RETRIES, "CARD_VISUAL_DESCRIPTION_OPENAI_MAX_RETRIES"),
     openaiRequestTimeoutMs: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS, DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "CARD_VISUAL_DESCRIPTION_OPENAI_REQUEST_TIMEOUT_MS"),
     concurrency: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_CONCURRENCY, DEFAULT_CONCURRENCY, "CARD_VISUAL_DESCRIPTION_CONCURRENCY"),
+    adaptiveConcurrency: asBoolean(process.env.CARD_VISUAL_DESCRIPTION_ADAPTIVE_CONCURRENCY, false, "CARD_VISUAL_DESCRIPTION_ADAPTIVE_CONCURRENCY"),
+    initialConcurrency: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_INITIAL_CONCURRENCY, null, "CARD_VISUAL_DESCRIPTION_INITIAL_CONCURRENCY"),
+    concurrencyStep: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_CONCURRENCY_STEP, DEFAULT_ADAPTIVE_CONCURRENCY_STEP, "CARD_VISUAL_DESCRIPTION_CONCURRENCY_STEP"),
+    concurrencyRampEvery: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_CONCURRENCY_RAMP_EVERY, DEFAULT_ADAPTIVE_RAMP_EVERY, "CARD_VISUAL_DESCRIPTION_CONCURRENCY_RAMP_EVERY"),
+    imageConcurrency: asPositiveInt(process.env.CARD_VISUAL_DESCRIPTION_IMAGE_CONCURRENCY, DEFAULT_IMAGE_CONCURRENCY, "CARD_VISUAL_DESCRIPTION_IMAGE_CONCURRENCY"),
     maxRunCostUsd: asNumber(process.env.CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD ?? process.env.OPENAI_MAX_RUN_COST_USD, null, "CARD_VISUAL_DESCRIPTION_MAX_RUN_COST_USD"),
     maxCards: asNonnegativeInt(process.env.CARD_VISUAL_DESCRIPTION_MAX_CARDS, null, "CARD_VISUAL_DESCRIPTION_MAX_CARDS"),
     harvestMaxValidationFailureRate: asNumber(
@@ -4629,6 +4638,12 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
     }
     else if (arg.startsWith("--openai-request-timeout-ms=")) parsed.openaiRequestTimeoutMs = asPositiveInt(arg.slice("--openai-request-timeout-ms=".length), DEFAULT_OPENAI_REQUEST_TIMEOUT_MS, "--openai-request-timeout-ms");
     else if (arg.startsWith("--concurrency=")) parsed.concurrency = asPositiveInt(arg.slice("--concurrency=".length), DEFAULT_CONCURRENCY, "--concurrency");
+    else if (arg === "--adaptive-concurrency") parsed.adaptiveConcurrency = true;
+    else if (arg === "--no-adaptive-concurrency") parsed.adaptiveConcurrency = false;
+    else if (arg.startsWith("--initial-concurrency=")) parsed.initialConcurrency = asPositiveInt(arg.slice("--initial-concurrency=".length), null, "--initial-concurrency");
+    else if (arg.startsWith("--concurrency-step=")) parsed.concurrencyStep = asPositiveInt(arg.slice("--concurrency-step=".length), DEFAULT_ADAPTIVE_CONCURRENCY_STEP, "--concurrency-step");
+    else if (arg.startsWith("--concurrency-ramp-every=")) parsed.concurrencyRampEvery = asPositiveInt(arg.slice("--concurrency-ramp-every=".length), DEFAULT_ADAPTIVE_RAMP_EVERY, "--concurrency-ramp-every");
+    else if (arg.startsWith("--image-concurrency=")) parsed.imageConcurrency = asPositiveInt(arg.slice("--image-concurrency=".length), DEFAULT_IMAGE_CONCURRENCY, "--image-concurrency");
     else if (arg.startsWith("--max-run-cost-usd=")) parsed.maxRunCostUsd = asNumber(arg.slice("--max-run-cost-usd=".length), null, "--max-run-cost-usd");
     else if (arg.startsWith("--max-cards=")) parsed.maxCards = asNonnegativeInt(arg.slice("--max-cards=".length), null, "--max-cards");
     else if (arg.startsWith("--harvest-max-validation-failure-rate=")) {
@@ -4686,6 +4701,14 @@ export function parseCardVisualDescriptionArgsV1(argv = []) {
   }
   if (parsed.provider === "openai" && !parsed.modelVersion) {
     throw new Error("[card-visual-description-agent] --model or CARD_VISUAL_DESCRIPTION_MODEL_VERSION is required for provider=openai");
+  }
+  if (parsed.initialConcurrency === null || parsed.initialConcurrency === undefined) {
+    parsed.initialConcurrency = parsed.adaptiveConcurrency
+      ? Math.min(DEFAULT_ADAPTIVE_INITIAL_CONCURRENCY, parsed.concurrency)
+      : parsed.concurrency;
+  }
+  if (parsed.initialConcurrency > parsed.concurrency) {
+    throw new Error("[card-visual-description-agent] --initial-concurrency cannot exceed --concurrency");
   }
   if (parsed.mode === "apply" && parsed.provider === "fixture" && !parsed.allowFixtureApply) {
     throw new Error("[card-visual-description-agent] refusing to apply fixture descriptions without --allow-fixture-apply");
@@ -5513,6 +5536,10 @@ function telemetryForArtifact(telemetry = {}) {
     cached_input_tokens: usage.cached_input_tokens,
     reasoning_output_tokens: usage.reasoning_output_tokens,
     estimated_cost_usd: safeTelemetry.estimated_cost_usd ?? 0,
+    provider_attempts: Array.isArray(safeTelemetry.provider_attempts) ? safeTelemetry.provider_attempts : [],
+    provider_rate_limit: safeTelemetry.provider_rate_limit ?? null,
+    provider_latency_ms: Number(safeTelemetry.provider_latency_ms ?? 0),
+    provider_http_statuses: Array.isArray(safeTelemetry.provider_http_statuses) ? safeTelemetry.provider_http_statuses : [],
   };
 }
 
@@ -8240,6 +8267,63 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function responseHeaderValue(headers, name) {
+  if (!headers) return null;
+  if (typeof headers.get === "function") return normalizeText(headers.get(name)) || null;
+  const entry = Object.entries(headers).find(([key]) => key.toLowerCase() === name.toLowerCase());
+  return normalizeText(entry?.[1]) || null;
+}
+
+export function parseOpenAiResetDurationMsV1(value) {
+  const normalized = normalizeText(value).toLowerCase();
+  if (!normalized) return null;
+  const unitPattern = /(\d+(?:\.\d+)?)(ms|s|m|h)/g;
+  let totalMs = 0;
+  let matchedLength = 0;
+  for (const match of normalized.matchAll(unitPattern)) {
+    const amount = Number(match[1]);
+    const multiplier = match[2] === "ms" ? 1 : match[2] === "s" ? 1000 : match[2] === "m" ? 60_000 : 3_600_000;
+    totalMs += amount * multiplier;
+    matchedLength += match[0].length;
+  }
+  return matchedLength === normalized.length && Number.isFinite(totalMs) ? Math.ceil(totalMs) : null;
+}
+
+export function parseOpenAiRetryDelayMsV1(headers, attempt = 0, randomUnit = Math.random()) {
+  const retryAfter = responseHeaderValue(headers, "retry-after");
+  if (retryAfter) {
+    const seconds = Number(retryAfter);
+    if (Number.isFinite(seconds) && seconds >= 0) return Math.ceil(seconds * 1000);
+    const retryAt = Date.parse(retryAfter);
+    if (Number.isFinite(retryAt)) return Math.max(0, retryAt - Date.now());
+  }
+  const exhaustedResetDelays = [
+    ["x-ratelimit-remaining-requests", "x-ratelimit-reset-requests"],
+    ["x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens"],
+  ].flatMap(([remainingHeader, resetHeader]) => {
+    const remaining = Number(responseHeaderValue(headers, remainingHeader));
+    const resetMs = parseOpenAiResetDurationMsV1(responseHeaderValue(headers, resetHeader));
+    return Number.isFinite(remaining) && remaining <= 0 && resetMs !== null ? [resetMs] : [];
+  });
+  if (exhaustedResetDelays.length > 0) return Math.max(...exhaustedResetDelays);
+  const baseMs = Math.min(500 * (2 ** Math.max(0, attempt)), 10_000);
+  const jitter = Math.max(0, Math.min(1, Number(randomUnit)));
+  return Math.ceil(baseMs * (0.5 + jitter));
+}
+
+export function readOpenAiRateLimitHeadersV1(headers) {
+  return {
+    request_id: responseHeaderValue(headers, "x-request-id"),
+    limit_requests: responseHeaderValue(headers, "x-ratelimit-limit-requests"),
+    remaining_requests: responseHeaderValue(headers, "x-ratelimit-remaining-requests"),
+    reset_requests: responseHeaderValue(headers, "x-ratelimit-reset-requests"),
+    limit_tokens: responseHeaderValue(headers, "x-ratelimit-limit-tokens"),
+    remaining_tokens: responseHeaderValue(headers, "x-ratelimit-remaining-tokens"),
+    reset_tokens: responseHeaderValue(headers, "x-ratelimit-reset-tokens"),
+    retry_after: responseHeaderValue(headers, "retry-after"),
+  };
+}
+
 async function openAiDescription(card, image, args) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
@@ -8272,10 +8356,25 @@ async function openAiDescription(card, image, args) {
   let requestCount = 0;
   let retryCount = 0;
   let accumulatedUsage = zeroUsage();
+  const providerAttempts = [];
+  const buildTelemetry = (responseModelVersion = args.modelVersion, usage = accumulatedUsage) => ({
+    response_model_version: responseModelVersion,
+    image_detail: args.imageDetail,
+    request_count: requestCount,
+    retry_count: retryCount,
+    usage,
+    estimated_cost_usd: estimateUsageCostUsd(usage, args.pricingSnapshot) ?? 0,
+    provider_attempts: providerAttempts,
+    provider_rate_limit: [...providerAttempts].reverse().find((entry) => entry.rate_limit)?.rate_limit ?? null,
+    provider_latency_ms: providerAttempts.reduce((total, entry) => total + Number(entry.duration_ms ?? 0), 0),
+    provider_http_statuses: providerAttempts.map((entry) => entry.http_status).filter((status) => status !== null),
+  });
   for (let attempt = 0; attempt <= args.maxRetries; attempt += 1) {
     requestCount += 1;
     let response;
     let responseText = "";
+    const requestStartedAt = Date.now();
+    let attemptRecord = null;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), args.openaiRequestTimeoutMs);
     try {
@@ -8289,22 +8388,41 @@ async function openAiDescription(card, image, args) {
         signal: controller.signal,
       });
       responseText = await response.text();
+      attemptRecord = {
+        attempt: attempt + 1,
+        started_at: new Date(requestStartedAt).toISOString(),
+        finished_at: nowIso(),
+        duration_ms: Date.now() - requestStartedAt,
+        http_status: response.status,
+        retryable: isRetryableOpenAiStatus(response.status),
+        retry_delay_ms: null,
+        rate_limit: readOpenAiRateLimitHeadersV1(response.headers),
+        transport_error: null,
+      };
+      providerAttempts.push(attemptRecord);
     } catch (error) {
+      attemptRecord = {
+        attempt: attempt + 1,
+        started_at: new Date(requestStartedAt).toISOString(),
+        finished_at: nowIso(),
+        duration_ms: Date.now() - requestStartedAt,
+        http_status: null,
+        retryable: true,
+        retry_delay_ms: null,
+        rate_limit: null,
+        transport_error: formatFetchError(error),
+      };
+      providerAttempts.push(attemptRecord);
       if (attempt < args.maxRetries) {
         retryCount += 1;
+        const retryDelayMs = parseOpenAiRetryDelayMsV1(null, attempt);
+        attemptRecord.retry_delay_ms = retryDelayMs;
         console.error(`[card-visual-description-agent] openai_request_failed_retrying attempt=${attempt + 1} next_attempt=${attempt + 2} error=${formatFetchError(error)}`);
-        await sleep(500 * (attempt + 1));
+        await sleep(retryDelayMs);
         continue;
       }
       const transportError = new Error(`[card-visual-description-agent] openai_fetch_failed: ${formatFetchError(error)}`);
-      transportError.telemetry = {
-        response_model_version: args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: zeroUsage(),
-        estimated_cost_usd: 0,
-      };
+      transportError.telemetry = buildTelemetry(args.modelVersion, zeroUsage());
       throw transportError;
     } finally {
       clearTimeout(timeout);
@@ -8313,18 +8431,13 @@ async function openAiDescription(card, image, args) {
     if (!response.ok) {
       if (isRetryableOpenAiStatus(response.status) && attempt < args.maxRetries) {
         retryCount += 1;
-        await sleep(500 * (attempt + 1));
+        const retryDelayMs = parseOpenAiRetryDelayMsV1(response.headers, attempt);
+        attemptRecord.retry_delay_ms = retryDelayMs;
+        await sleep(retryDelayMs);
         continue;
       }
       const error = new Error(`[card-visual-description-agent] openai_http_${response.status}: ${responseText.slice(0, 500)}`);
-      error.telemetry = {
-        response_model_version: args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: zeroUsage(),
-        estimated_cost_usd: 0,
-      };
+      error.telemetry = buildTelemetry(args.modelVersion, zeroUsage());
       throw error;
     }
 
@@ -8334,18 +8447,13 @@ async function openAiDescription(card, image, args) {
     } catch (error) {
       if (attempt < args.maxRetries) {
         retryCount += 1;
-        await sleep(500 * (attempt + 1));
+        const retryDelayMs = parseOpenAiRetryDelayMsV1(response.headers, attempt);
+        attemptRecord.retry_delay_ms = retryDelayMs;
+        await sleep(retryDelayMs);
         continue;
       }
       const parseError = new Error(`[card-visual-description-agent] openai_response_json_parse_failed: ${error.message}`);
-      parseError.telemetry = {
-        response_model_version: args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: accumulatedUsage,
-        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
-      };
+      parseError.telemetry = buildTelemetry(args.modelVersion);
       throw parseError;
     }
     const responseUsage = normalizeResponseUsage(parsed.usage);
@@ -8358,18 +8466,13 @@ async function openAiDescription(card, image, args) {
     if (!outputText.trim()) {
       if (attempt < args.maxRetries) {
         retryCount += 1;
-        await sleep(500 * (attempt + 1));
+        const retryDelayMs = parseOpenAiRetryDelayMsV1(response.headers, attempt);
+        attemptRecord.retry_delay_ms = retryDelayMs;
+        await sleep(retryDelayMs);
         continue;
       }
       const error = new Error("[card-visual-description-agent] openai_response_missing_output_text");
-      error.telemetry = {
-        response_model_version: parsed.model ?? args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: accumulatedUsage,
-        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot),
-      };
+      error.telemetry = buildTelemetry(parsed.model ?? args.modelVersion);
       throw error;
     }
 
@@ -8379,30 +8482,18 @@ async function openAiDescription(card, image, args) {
     } catch (error) {
       if (attempt < args.maxRetries) {
         retryCount += 1;
-        await sleep(500 * (attempt + 1));
+        const retryDelayMs = parseOpenAiRetryDelayMsV1(response.headers, attempt);
+        attemptRecord.retry_delay_ms = retryDelayMs;
+        await sleep(retryDelayMs);
         continue;
       }
       const parseError = new Error(`[card-visual-description-agent] openai_output_json_parse_failed: ${error.message}`);
-      parseError.telemetry = {
-        response_model_version: parsed.model ?? args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: accumulatedUsage,
-        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
-      };
+      parseError.telemetry = buildTelemetry(parsed.model ?? args.modelVersion);
       throw parseError;
     }
     return {
       payload,
-      telemetry: {
-        response_model_version: parsed.model ?? args.modelVersion,
-        image_detail: args.imageDetail,
-        request_count: requestCount,
-        retry_count: retryCount,
-        usage: accumulatedUsage,
-        estimated_cost_usd: estimateUsageCostUsd(accumulatedUsage, args.pricingSnapshot) ?? 0,
-      },
+      telemetry: buildTelemetry(parsed.model ?? args.modelVersion),
     };
   }
 
@@ -9931,11 +10022,42 @@ async function writePerCardCompletionArtifact(runDir, index, outcome) {
   });
 }
 
-async function processVisualDescriptionCard(card, index, totalCount, args, runDir) {
+export function createConcurrencySemaphoreV1(limit) {
+  const maxActive = Math.max(1, Number(limit));
+  let active = 0;
+  const waiters = [];
+  const release = () => {
+    active -= 1;
+    const next = waiters.shift();
+    if (next) {
+      active += 1;
+      next(release);
+    }
+  };
+  return {
+    async run(task) {
+      const unlock = active < maxActive
+        ? (active += 1, release)
+        : await new Promise((resolve) => waiters.push(resolve));
+      try {
+        return await task();
+      } finally {
+        unlock();
+      }
+    },
+    snapshot() {
+      return { active, waiting: waiters.length, limit: maxActive };
+    },
+  };
+}
+
+async function processVisualDescriptionCard(card, index, totalCount, args, runDir, imageSemaphore = null) {
   let image;
   let generationTelemetry = null;
   try {
-    image = await validateImageForModel(card, args);
+    image = imageSemaphore
+      ? await imageSemaphore.run(() => validateImageForModel(card, args))
+      : await validateImageForModel(card, args);
     if (!image.ok) {
       const skipped = {
         card_print_id: card.card_print_id,
@@ -10030,6 +10152,133 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
   let nextIndex = 0;
   let stopBeforeNextCall = null;
   const workerCount = Math.min(Math.max(1, Number(args.concurrency ?? DEFAULT_CONCURRENCY)), Math.max(eligibleCards.length, 1));
+  const initialConcurrency = Math.min(
+    workerCount,
+    Math.max(1, Number(args.initialConcurrency ?? workerCount)),
+  );
+  const imageSemaphore = createConcurrencySemaphoreV1(Math.min(args.imageConcurrency ?? workerCount, workerCount));
+  let currentConcurrency = args.adaptiveConcurrency ? initialConcurrency : workerCount;
+  let maximumAchievedConcurrency = currentConcurrency;
+  let activeCount = 0;
+  let cleanCompletionsSinceRamp = 0;
+  let pausedUntilMs = 0;
+  const recentProviderOutcomes = [];
+  const rateLimitEventTimes = [];
+  const concurrencyTimeline = [{
+    recorded_at: nowIso(),
+    reason: "scheduler_started",
+    concurrency: currentConcurrency,
+    maximum_concurrency: workerCount,
+    adaptive: Boolean(args.adaptiveConcurrency),
+  }];
+
+  const writeConcurrencyTelemetry = async () => {
+    await writeJsonAtomic(path.join(runDir, "CONCURRENCY_TELEMETRY.json"), {
+      artifact_kind: "card_visual_adaptive_concurrency_telemetry",
+      generated_at: nowIso(),
+      adaptive: Boolean(args.adaptiveConcurrency),
+      configured_maximum_concurrency: workerCount,
+      configured_initial_concurrency: initialConcurrency,
+      configured_image_concurrency: args.imageConcurrency,
+      current_concurrency: currentConcurrency,
+      maximum_achieved_concurrency: maximumAchievedConcurrency,
+      active_count: activeCount,
+      completed_provider_outcomes: recentProviderOutcomes.length,
+      paused_until: pausedUntilMs > Date.now() ? new Date(pausedUntilMs).toISOString() : null,
+      timeline: concurrencyTimeline,
+    });
+  };
+
+  const recordConcurrencyChange = async (reason, details = {}) => {
+    concurrencyTimeline.push({
+      recorded_at: nowIso(),
+      reason,
+      concurrency: currentConcurrency,
+      active_count: activeCount,
+      ...details,
+    });
+    await writeConcurrencyTelemetry();
+  };
+
+  const telemetryFromOutcome = (outcome) => outcome?.row ?? outcome?.failure ?? null;
+
+  const updateAdaptiveState = async (outcome) => {
+    const telemetry = telemetryFromOutcome(outcome);
+    if (!telemetry || Number(telemetry.request_count ?? 0) < 1) return;
+    const attempts = Array.isArray(telemetry.provider_attempts) ? telemetry.provider_attempts : [];
+    const statuses = attempts.map((attempt) => Number(attempt.http_status)).filter(Number.isFinite);
+    const rateLimitedAttempts = attempts.filter((attempt) => Number(attempt.http_status) === 429);
+    const now = Date.now();
+    recentProviderOutcomes.push({
+      completed_at_ms: now,
+      request_count: Number(telemetry.request_count ?? 0),
+      retry_count: Number(telemetry.retry_count ?? 0),
+      generation_exception: (outcome.failure?.findings ?? []).includes("generation_exception"),
+      statuses,
+    });
+
+    if (rateLimitedAttempts.length > 0) {
+      for (const _attempt of rateLimitedAttempts) rateLimitEventTimes.push(now);
+      while (rateLimitEventTimes.length > 0 && rateLimitEventTimes[0] < now - 60_000) rateLimitEventTimes.shift();
+      const previousConcurrency = currentConcurrency;
+      currentConcurrency = Math.max(10, Math.floor(currentConcurrency / 2));
+      currentConcurrency = Math.min(currentConcurrency, workerCount);
+      cleanCompletionsSinceRamp = 0;
+      const retryDelayMs = Math.max(
+        1000,
+        ...rateLimitedAttempts.map((attempt) => Number(attempt.retry_delay_ms ?? 0)),
+      );
+      pausedUntilMs = Math.max(pausedUntilMs, now + retryDelayMs);
+      await recordConcurrencyChange("rate_limit_backoff", {
+        previous_concurrency: previousConcurrency,
+        retry_delay_ms: retryDelayMs,
+        rolling_429_count: rateLimitEventTimes.length,
+      });
+      if (rateLimitEventTimes.length >= 5 && !stopBeforeNextCall) {
+        stopBeforeNextCall = {
+          stopped_before_next_call: true,
+          stop_reason: "adaptive_rate_limit_circuit_breaker",
+          rolling_429_count: rateLimitEventTimes.length,
+          concurrency: currentConcurrency,
+        };
+      }
+      return;
+    }
+
+    const recent = recentProviderOutcomes.slice(-50);
+    if (recent.length >= 50) {
+      const requestCount = recent.reduce((total, entry) => total + entry.request_count, 0);
+      const retryCount = recent.reduce((total, entry) => total + entry.retry_count, 0);
+      const retryRate = requestCount > 0 ? retryCount / requestCount : 0;
+      if (retryRate > 0.10 && !stopBeforeNextCall) {
+        stopBeforeNextCall = {
+          stopped_before_next_call: true,
+          stop_reason: "adaptive_retry_rate_circuit_breaker",
+          rolling_request_count: requestCount,
+          rolling_retry_count: retryCount,
+          rolling_retry_rate: retryRate,
+          concurrency: currentConcurrency,
+        };
+        await recordConcurrencyChange("retry_rate_circuit_breaker", { rolling_retry_rate: retryRate });
+        return;
+      }
+    }
+
+    if (!args.adaptiveConcurrency || currentConcurrency >= workerCount) return;
+    if (Number(telemetry.retry_count ?? 0) === 0 && !recentProviderOutcomes.at(-1).generation_exception) {
+      cleanCompletionsSinceRamp += 1;
+    }
+    if (cleanCompletionsSinceRamp >= Number(args.concurrencyRampEvery ?? DEFAULT_ADAPTIVE_RAMP_EVERY)) {
+      const previousConcurrency = currentConcurrency;
+      currentConcurrency = Math.min(
+        workerCount,
+        currentConcurrency + Number(args.concurrencyStep ?? DEFAULT_ADAPTIVE_CONCURRENCY_STEP),
+      );
+      maximumAchievedConcurrency = Math.max(maximumAchievedConcurrency, currentConcurrency);
+      cleanCompletionsSinceRamp = 0;
+      await recordConcurrencyChange("clean_completion_ramp", { previous_concurrency: previousConcurrency });
+    }
+  };
 
   const claimNextIndex = () => {
     if (stopBeforeNextCall) return null;
@@ -10059,25 +10308,68 @@ async function processEligibleCardsWithConcurrency({ eligibleCards, args, runDir
     return index;
   };
 
-  async function worker() {
-    for (;;) {
-      const index = claimNextIndex();
-      if (index === null) return;
-      const outcome = await processVisualDescriptionCard(eligibleCards[index], index, eligibleCards.length, args, runDir);
-      outcomes[index] = outcome;
-      if (outcome.type === "generated_row") completedGeneratedRows.push(outcome.row);
-      else if (outcome.type === "validation_failure") completedValidationFailures.push(outcome.failure);
-      else if (outcome.type === "skipped_image") completedSkippedImages.push(outcome.skipped);
-    }
-  }
+  await writeConcurrencyTelemetry();
+  await new Promise((resolve, reject) => {
+    let pauseTimer = null;
+    let resolved = false;
+    const finishIfDone = async () => {
+      const noMoreWork = stopBeforeNextCall || nextIndex >= eligibleCards.length;
+      if (!resolved && activeCount === 0 && noMoreWork) {
+        resolved = true;
+        if (pauseTimer) clearTimeout(pauseTimer);
+        await recordConcurrencyChange(stopBeforeNextCall ? "scheduler_stopped" : "scheduler_completed", {
+          stop_reason: stopBeforeNextCall?.stop_reason ?? null,
+        });
+        resolve();
+        return true;
+      }
+      return false;
+    };
 
-  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+    const schedule = async () => {
+      try {
+        if (await finishIfDone()) return;
+        if (pausedUntilMs > Date.now() && !stopBeforeNextCall) {
+          if (!pauseTimer) {
+            pauseTimer = setTimeout(() => {
+              pauseTimer = null;
+              schedule().catch(reject);
+            }, pausedUntilMs - Date.now());
+          }
+          return;
+        }
+        while (!stopBeforeNextCall && activeCount < currentConcurrency) {
+          const index = claimNextIndex();
+          if (index === null) break;
+          activeCount += 1;
+          processVisualDescriptionCard(eligibleCards[index], index, eligibleCards.length, args, runDir, imageSemaphore)
+            .then(async (outcome) => {
+              outcomes[index] = outcome;
+              if (outcome.type === "generated_row") completedGeneratedRows.push(outcome.row);
+              else if (outcome.type === "validation_failure") completedValidationFailures.push(outcome.failure);
+              else if (outcome.type === "skipped_image") completedSkippedImages.push(outcome.skipped);
+              await updateAdaptiveState(outcome);
+              activeCount -= 1;
+              await schedule();
+            })
+            .catch(reject);
+        }
+        await finishIfDone();
+      } catch (error) {
+        reject(error);
+      }
+    };
+    schedule().catch(reject);
+  });
   return {
     generatedRows: rowsFromOrderedOutcomes(outcomes, "generated_row", "row"),
     validationFailures: rowsFromOrderedOutcomes(outcomes, "validation_failure", "failure"),
     skippedImages: rowsFromOrderedOutcomes(outcomes, "skipped_image", "skipped"),
     stopBeforeNextCall,
     workerCount,
+    initialConcurrency,
+    maximumAchievedConcurrency,
+    concurrencyTimeline,
   };
 }
 
@@ -10091,6 +10383,7 @@ function buildSummary({
   startedAt,
   finishedAt,
   stopBeforeNextCall,
+  concurrencyControl = null,
 }) {
   const attemptedRows = [...generatedRows, ...validationFailures];
   const usage = aggregateUsageRows(attemptedRows);
@@ -10110,6 +10403,10 @@ function buildSummary({
     response_model_versions: responseModelVersions,
     image_detail: args.imageDetail,
     concurrency: args.concurrency,
+    adaptive_concurrency: args.adaptiveConcurrency,
+    initial_concurrency: args.initialConcurrency,
+    image_concurrency: args.imageConcurrency,
+    concurrency_control: concurrencyControl,
     prompt_version: args.promptVersion,
     output_schema_version: args.outputSchemaVersion,
     sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
@@ -10186,6 +10483,11 @@ function configureResumeArgsV1(args, runPlan, branch) {
   assertResumeValue("output_schema_version", args.outputSchemaVersion, runPlan.output_schema_version);
   assertResumeValue("image_detail", args.imageDetail, runPlan.image_detail);
   assertResumeValue("concurrency", args.concurrency, runPlan.concurrency);
+  assertResumeValue("adaptive_concurrency", args.adaptiveConcurrency, runPlan.adaptive_concurrency ?? false);
+  assertResumeValue("initial_concurrency", args.initialConcurrency, runPlan.initial_concurrency ?? runPlan.concurrency);
+  assertResumeValue("concurrency_step", args.concurrencyStep, runPlan.concurrency_step ?? DEFAULT_ADAPTIVE_CONCURRENCY_STEP);
+  assertResumeValue("concurrency_ramp_every", args.concurrencyRampEvery, runPlan.concurrency_ramp_every ?? DEFAULT_ADAPTIVE_RAMP_EVERY);
+  assertResumeValue("image_concurrency", args.imageConcurrency, runPlan.image_concurrency ?? DEFAULT_IMAGE_CONCURRENCY);
   assertResumeValue("max_cards", args.maxCards, runPlan.max_cards);
   assertResumeValue("max_run_cost_usd", args.maxRunCostUsd, runPlan.max_run_cost_usd);
   assertResumeValue("max_retries", args.maxRetries, runPlan.max_retries);
@@ -10253,6 +10555,8 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       output_schema_version: args.outputSchemaVersion,
       sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
       concurrency: args.concurrency,
+      adaptive_concurrency: args.adaptiveConcurrency,
+      initial_concurrency: args.initialConcurrency,
       commit_sha: commitSha,
     }));
     runDir = path.join(args.outDir, `${stampFromIso(startedAt)}_${args.mode}_${runKey.slice(0, 12)}`);
@@ -10270,6 +10574,11 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       harvest_max_validation_failure_rate: args.harvestMaxValidationFailureRate,
       harvest_max_validation_failures: args.harvestMaxValidationFailures,
       concurrency: args.concurrency,
+      adaptive_concurrency: args.adaptiveConcurrency,
+      initial_concurrency: args.initialConcurrency,
+      concurrency_step: args.concurrencyStep,
+      concurrency_ramp_every: args.concurrencyRampEvery,
+      image_concurrency: args.imageConcurrency,
       prompt_version: args.promptVersion,
       output_schema_version: args.outputSchemaVersion,
       sample_strategy: args.highValueSample ? "high_value_sample" : args.v2StressSample ? "v2_stress_sample" : args.branchStratifiedSample ? "branch_stratified" : "default_order",
@@ -10352,6 +10661,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
     let validationFailures = [];
     let skippedImages = [];
     let stopBeforeNextCall = null;
+    let concurrencyControl = null;
 
     if (args.mode !== "plan") {
       const processed = await processEligibleCardsWithConcurrency({
@@ -10364,6 +10674,12 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       validationFailures = processed.validationFailures;
       skippedImages = processed.skippedImages;
       stopBeforeNextCall = processed.stopBeforeNextCall;
+      concurrencyControl = {
+        configured_maximum_concurrency: processed.workerCount,
+        configured_initial_concurrency: processed.initialConcurrency,
+        maximum_achieved_concurrency: processed.maximumAchievedConcurrency,
+        timeline_event_count: processed.concurrencyTimeline.length,
+      };
     }
 
     const finishedAt = nowIso();
@@ -10377,6 +10693,7 @@ export async function runCardVisualDescriptionAgentV1(rawArgs = []) {
       startedAt,
       finishedAt,
       stopBeforeNextCall,
+      concurrencyControl,
     });
 
     const artifactHashes = await writeRunArtifacts({
