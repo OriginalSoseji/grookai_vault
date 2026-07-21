@@ -90,6 +90,116 @@ test("primary-subject and subject-role conflicts are Tier C", () => {
   }
 });
 
+test("owner and variant naming mismatches recover to guarded Tier B when base identity matches", () => {
+  for (const [name, identity] of [
+    ["Erika's Exeggutor", "Exeggutor"],
+    ["giovanniのmeowth（u）", "meowth"],
+    ["Flareon δ", "flareon_delta_species_pokemon"],
+  ]) {
+    const row = generatedRow({
+      name,
+      pokemon_name: name,
+      review_status: "needs_review",
+      quality_flags: ["potential_primary_subject_mismatch"],
+      visual_attributes: {
+        fact_graph: {
+          observations: [{ observation_id: "obs-subject" }],
+          subjects: [{ observation_id: "obs-subject", subject_kind: "scene_subject", identity }],
+          depicted_subjects: [],
+          character_representations: [],
+          module_reviews: [],
+        },
+      },
+    });
+    const decision = classifyEligibilityV1(row, inventoryRow(row));
+    assert.equal(decision.tier, "B");
+    assert.deepEqual(decision.projection_guard_keys, ["subject_semantics"]);
+    assert.equal(decision.reviewed_flag_reclassifications[0].reason, "base_subject_identity_matches_canonical_name");
+  }
+});
+
+test("structurally separated scene subjects recover subject-kind heuristic false positives", () => {
+  const row = generatedRow({
+    review_status: "needs_review",
+    quality_flags: ["potential_subject_kind_classification_confusion"],
+    visual_attributes: {
+      fact_graph: {
+        observations: [{ observation_id: "obs-main" }, { observation_id: "obs-background" }],
+        subjects: [
+          { observation_id: "obs-main", subject_kind: "scene_subject", identity: "Magikarp" },
+          { observation_id: "obs-background", subject_kind: "scene_subject", identity: "Magikarp" },
+        ],
+        depicted_subjects: [],
+        character_representations: [],
+        module_reviews: [],
+      },
+    },
+  });
+  const decision = classifyEligibilityV1(row, inventoryRow(row));
+  assert.equal(decision.tier, "B");
+  assert.deepEqual(decision.projection_guard_keys, ["subject_semantics"]);
+});
+
+test("cross-role observation reuse remains a critical subject-kind conflict", () => {
+  const row = generatedRow({
+    review_status: "needs_review",
+    quality_flags: ["potential_subject_kind_classification_confusion"],
+    visual_attributes: {
+      fact_graph: {
+        observations: [{ observation_id: "obs-pikachu" }],
+        subjects: [{ observation_id: "obs-pikachu", subject_kind: "scene_subject", identity: "Pikachu" }],
+        depicted_subjects: [{ observation_id: "obs-pikachu", represented_identity: "Pikachu" }],
+        character_representations: [],
+        module_reviews: [],
+      },
+    },
+  });
+  assert.equal(classifyEligibilityV1(row, inventoryRow(row)).tier, "C");
+});
+
+test("branch profiles fail closed when Trainer and Stadium evidence contradicts routing", () => {
+  const trainerWithoutHuman = generatedRow({
+    name: "Mount Lanakila",
+    prompt_branch: "trainer",
+    visual_attributes: {
+      fact_graph: {
+        observations: [{ observation_id: "obs-mountain" }],
+        subjects: [],
+        typed_facts: [],
+        modules: { human_appearance: { fact_ids: [], visible_body_regions: [], facial_evidence: [], hair: [], gestures: [], accessories: [] } },
+        module_reviews: [],
+      },
+    },
+  });
+  const trainerDecision = classifyEligibilityV1(trainerWithoutHuman, inventoryRow(trainerWithoutHuman));
+  assert.equal(trainerDecision.tier, "C");
+  assert.ok(trainerDecision.critical_reasons.includes("prompt_branch_profile_conflict:trainer_without_human_evidence"));
+
+  const stadiumNamedTrainer = generatedRow({
+    name: "Gym Trainer",
+    prompt_branch: "stadium",
+  });
+  const stadiumDecision = classifyEligibilityV1(stadiumNamedTrainer, inventoryRow(stadiumNamedTrainer));
+  assert.equal(stadiumDecision.tier, "C");
+  assert.ok(stadiumDecision.critical_reasons.includes("prompt_branch_profile_conflict:stadium_with_trainer_named_card"));
+});
+
+test("Trainer branch remains eligible when human appearance evidence exists", () => {
+  const row = generatedRow({
+    name: "Lillie",
+    prompt_branch: "trainer",
+    visual_attributes: {
+      fact_graph: {
+        observations: [{ observation_id: "obs-person" }],
+        subjects: [{ observation_id: "obs-person", subject_kind: "scene_subject", identity: "Lillie" }],
+        modules: { human_appearance: { fact_ids: ["fact-face"], visible_body_regions: [], facial_evidence: [], hair: [], gestures: [], accessories: [] } },
+        module_reviews: [],
+      },
+    },
+  });
+  assert.equal(classifyEligibilityV1(row, inventoryRow(row)).tier, "A");
+});
+
 test("unknown quality flags fail closed to Tier C", () => {
   const row = generatedRow({ review_status: "needs_review", quality_flags: ["potential_new_unclassified_claim"] });
   const decision = classifyEligibilityV1(row, inventoryRow(row));

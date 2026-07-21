@@ -120,7 +120,8 @@ If a contract is missing from this index, it is not authoritative.
 | CARD_VISUAL_SEARCH_CONTRACT_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md — Defines evidence-backed visual query behavior, strict subject roles, deterministic projections, artwork-first grouping, decomposable ranking, and why-matched explanations |
 | CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md — Defines the proposed immutable artwork-level index, printing mappings, deterministic documents, structured evidence, lexical/vector layers, versioning, rollback, and private read boundary |
 | CARD_VISUAL_SEARCH_EVALUATION_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md — Defines the fixed 250-query evaluation suite, judgment and failure labels, relevance/trust metrics, baseline procedure, holdout, regression policy, and threshold-locking gate |
-| CARD_VISUAL_SEARCH_ELIGIBILITY_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1.md — Deterministically separates structurally valid rows into Tier A trusted retrieval, Tier B guarded retrieval, and Tier C exclusion without implying approval, mutating source graphs, or authorizing indexing |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1 | Superseded | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1.md — Original Tier A/B/C policy retained for provenance; superseded after the first stratified audit exposed subject-name, subject-role, and prompt-branch classification failures |
+| CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1 | Active | docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1.md — Preserves Tier A/B/C boundaries while deterministically recovering evidence-backed base-identity and structurally separated subject-role false positives and failing closed on Trainer/Stadium branch-profile contradictions |
 
 ---
 

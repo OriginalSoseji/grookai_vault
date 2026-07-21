@@ -9,12 +9,12 @@ import {
   sha256JsonV1,
 } from "./card_visual_corpus_v1_inventory.mjs";
 
-export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1";
+export const CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION = "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_INVENTORY_DIR = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04";
-const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1";
+const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_eligibility_v1_1";
 const EXPECTED_PROMPT_VERSION = "CARD_VISUAL_FACT_EXTRACTION_PROMPT_V2";
 const EXPECTED_SCHEMA_VERSION = "CARD_VISUAL_FACT_GRAPH_SCHEMA_V2";
 const EXPECTED_AGENT_VERSION = "CARD_VISUAL_DESCRIPTION_AGENT_V1";
@@ -74,6 +74,24 @@ const POLICY_RULE_GUARDS = new Map([
 ]);
 
 const IMAGE_LIMITATION_PATTERN = /^(low_resolution|cropped_subject|blurred_image|visible_text_uncertain|partial_|partially_|blurred_|small_|text_uncertain|hp_text_|name_text_)/;
+const IDENTITY_STOP_TOKENS = new Set([
+  "adult",
+  "card",
+  "character",
+  "creature",
+  "delta",
+  "female",
+  "human",
+  "male",
+  "pokemon",
+  "pokémon",
+  "scene",
+  "species",
+  "subject",
+  "unknown",
+  "with",
+]);
+const HUMAN_IDENTITY_PATTERN = /\b(adult|boy|child|female|girl|human|male|man|person|trainer|woman)\b/i;
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -177,6 +195,93 @@ function guardForFlag(flag) {
   return null;
 }
 
+function identityTokens(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .toLocaleLowerCase("en-US")
+    .replace(/の/gu, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
+    .split(/\s+/u)
+    .filter((token) => token.length >= 3 && !IDENTITY_STOP_TOKENS.has(token));
+}
+
+function primarySubjectIdentityMatches(generatedRow, graph) {
+  const expectedValues = [generatedRow?.pokemon_name, generatedRow?.name]
+    .filter((value) => value && value !== "not_applicable");
+  const expectedTokens = uniqueSorted(expectedValues.flatMap(identityTokens));
+  if (!expectedTokens.length) return false;
+  return (graph?.subjects ?? []).some((subject) => {
+    if (subject?.subject_kind !== "scene_subject") return false;
+    const subjectTokens = identityTokens(subject.identity);
+    return subjectTokens.some((subjectToken) => expectedTokens.some((expectedToken) => (
+      subjectToken === expectedToken
+      || (subjectToken.length >= 5 && expectedToken.includes(subjectToken))
+      || (expectedToken.length >= 5 && subjectToken.includes(expectedToken))
+    )));
+  });
+}
+
+function subjectRolesAreStructurallySeparated(graph) {
+  const subjects = Array.isArray(graph?.subjects) ? graph.subjects : [];
+  const depicted = Array.isArray(graph?.depicted_subjects) ? graph.depicted_subjects : [];
+  const representations = Array.isArray(graph?.character_representations) ? graph.character_representations : [];
+  if (!subjects.length) return false;
+  if (subjects.some((subject) => subject?.subject_kind !== "scene_subject" || !subject?.observation_id)) return false;
+
+  const categoryIds = [subjects, depicted, representations].map((entries) => new Set(entries.map((entry) => entry?.observation_id).filter(Boolean)));
+  for (let left = 0; left < categoryIds.length; left += 1) {
+    for (let right = left + 1; right < categoryIds.length; right += 1) {
+      if ([...categoryIds[left]].some((id) => categoryIds[right].has(id))) return false;
+    }
+  }
+  return true;
+}
+
+function hasHumanAppearanceEvidence(graph) {
+  const module = graph?.modules?.human_appearance;
+  if (module && [
+    "fact_ids",
+    "visible_body_regions",
+    "facial_evidence",
+    "hair",
+    "gestures",
+    "accessories",
+  ].some((key) => Array.isArray(module[key]) && module[key].length > 0)) return true;
+  if ((graph?.typed_facts ?? []).some((fact) => fact?.module === "human_appearance")) return true;
+  return (graph?.subjects ?? []).some((subject) => HUMAN_IDENTITY_PATTERN.test(String(subject?.identity ?? "")));
+}
+
+function branchProfileCriticalReasons(generatedRow, graph) {
+  const reasons = [];
+  const branch = generatedRow?.prompt_branch;
+  const hasHuman = hasHumanAppearanceEvidence(graph);
+  if (branch === "trainer" && !hasHuman) reasons.push("prompt_branch_profile_conflict:trainer_without_human_evidence");
+  if (branch === "stadium" && hasHuman) reasons.push("prompt_branch_profile_conflict:stadium_with_human_evidence");
+  if (branch === "stadium" && /\btrainer\b/i.test(String(generatedRow?.name ?? ""))) {
+    reasons.push("prompt_branch_profile_conflict:stadium_with_trainer_named_card");
+  }
+  return reasons;
+}
+
+function reviewedCriticalFlagDisposition(flag, generatedRow, graph) {
+  if (flag === "potential_primary_subject_mismatch" && primarySubjectIdentityMatches(generatedRow, graph)) {
+    return {
+      disposition: "downgraded_to_guarded_review",
+      reason: "base_subject_identity_matches_canonical_name",
+      guard_key: "subject_semantics",
+    };
+  }
+  if (flag === "potential_subject_kind_classification_confusion" && subjectRolesAreStructurallySeparated(graph)) {
+    return {
+      disposition: "downgraded_to_guarded_review",
+      reason: "subject_role_collections_are_structurally_separated",
+      guard_key: "subject_semantics",
+    };
+  }
+  return null;
+}
+
 function decisionBase(inventoryRow) {
   return {
     policy_version: CARD_VISUAL_SEARCH_ELIGIBILITY_VERSION,
@@ -204,6 +309,7 @@ export function classifyEligibilityV1(generatedRow, inventoryRow) {
   const guardKeys = [];
   const unknownFlags = [];
   const unknownPolicyRules = [];
+  const reviewedFlagReclassifications = [];
 
   if (!graph || !Array.isArray(graph.observations)) criticalReasons.push("missing_fact_graph_or_observations");
   if (!inventoryRow.generated_row_sha256 || sha256JsonV1(generatedRow) !== inventoryRow.generated_row_sha256) criticalReasons.push("generated_row_hash_mismatch");
@@ -215,9 +321,17 @@ export function classifyEligibilityV1(generatedRow, inventoryRow) {
   if (!ALLOWED_REVIEW_STATUSES.has(generatedRow?.review_status)) criticalReasons.push("unsupported_review_status");
   if ((generatedRow?.identity_input_confidence ?? 0) < 0.8) criticalReasons.push("identity_confidence_below_0_80");
   if ((generatedRow?.attribute_confidence ?? 0) < 0.8) criticalReasons.push("attribute_confidence_below_0_80");
+  criticalReasons.push(...branchProfileCriticalReasons(generatedRow, graph));
 
   for (const flag of qualityFlags) {
     if (CRITICAL_FLAGS.has(flag)) {
+      const reviewedDisposition = reviewedCriticalFlagDisposition(flag, generatedRow, graph);
+      if (reviewedDisposition) {
+        reviewedFlagReclassifications.push({ flag, ...reviewedDisposition });
+        guardKeys.push(reviewedDisposition.guard_key);
+        reviewReasons.push(`reviewed_critical_flag:${flag}:${reviewedDisposition.reason}`);
+        continue;
+      }
       criticalReasons.push(`critical_flag:${flag}`);
       continue;
     }
@@ -276,6 +390,7 @@ export function classifyEligibilityV1(generatedRow, inventoryRow) {
     quality_flags: qualityFlags,
     unknown_quality_flags: uniqueSorted(unknownFlags),
     unknown_policy_rules: uniqueSorted(unknownPolicyRules),
+    reviewed_flag_reclassifications: reviewedFlagReclassifications,
     flagged_evidence: qualityDetails.map((detail) => ({
       flag: detail.flag ?? null,
       field: detail.field ?? null,
