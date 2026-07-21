@@ -4,6 +4,8 @@
 
 This checkpoint pack preserves the architectural and operational memory for canonical card visual descriptions.
 
+- `CARD_VISUAL_CORPUS_V1_SOURCE_INVENTORY_20260721.md` - `2026-07-21` - COMPLETE; EXACT SOURCE CORPUS RECONCILED - Records the four-contract lock and read-only Corpus V1 source inventory from producing commit `d1ac24480a6774c2c89347324acbbf30ec89de8e`: `11,000` unique source IDs, `10,376` structurally valid candidates, `624` explicit gaps (`302` quarantine, `49` image skips, `273` unprocessed), `0` source overlaps, `0` approvals, `0` Energy rows, uniform prompt/schema/agent/model versions, per-row graph hashes, `6/6` verified audit files, `7/7` inventory contracts, `69/69` visual-agent contracts, no provider calls or database connection/writes, and the next gate as offline deterministic Tier A/B/C eligibility derivation only.
+
 The visual description layer exists to create detailed, reviewable, derived intelligence for matching and future semantic search. It must not become canonical identity truth, image truth, pricing truth, or an app-facing surface until later gates explicitly approve those boundaries.
 
 ## Checkpoints
