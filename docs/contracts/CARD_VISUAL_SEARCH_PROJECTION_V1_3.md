@@ -1,6 +1,6 @@
 # CARD_VISUAL_SEARCH_PROJECTION_V1_3
 
-Status: Active - offline projection construction only
+Status: Superseded by `CARD_VISUAL_SEARCH_PROJECTION_V1_4`
 
 Date: 2026-07-21
 

@@ -42,6 +42,7 @@ function fixture(overrides = {}) {
       { observation_id: "obs-illustrator", kind: "illustrator_text", label: "Illus. Example Artist", normalized_label: "illus example artist", confidence: 0.99, evidence_strength: "strong" },
       { observation_id: "obs-body-color", kind: "object_detail", label: "yellow body", normalized_label: "yellow body", confidence: 0.98, evidence_strength: "strong" },
       { observation_id: "obs-sign", kind: "environment_sign_text", label: "SALE sign", normalized_label: "sale sign", confidence: 0.96, evidence_strength: "strong" },
+      { observation_id: "obs-sky-surface", kind: "environment_surface", label: "sky visible through dome", normalized_label: "sky", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-object", kind: "objects_and_props", label: "metal object", normalized_label: "metal object", confidence: 0.9, evidence_strength: "medium" },
     ],
     typed_facts: [
@@ -61,6 +62,8 @@ function fixture(overrides = {}) {
     fact_grounded_search_terms: [
       { term: "sleeping Pikachu", supporting_observation_ids: ["obs-subject", "obs-pose"] },
       { term: "forest background", supporting_observation_ids: ["obs-forest"] },
+      { term: "black eyes", supporting_observation_ids: ["obs-anatomy"] },
+      { term: "sky inside dome", supporting_observation_ids: ["obs-sky-surface"] },
     ],
     canonical_visual_concepts: { concept_schema_version: "CARD_VISUAL_CONTROLLED_VOCABULARY_V1", concepts: [{ concept: "forest", source_observation_ids: ["obs-forest"], confidence: 0.95 }, { concept: "yellow green palette", source_observation_ids: ["obs-color"], confidence: 0.97 }] },
   };
@@ -78,7 +81,7 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_3");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_4");
 });
 
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
@@ -139,6 +142,10 @@ test("subject-linked generic observations route to subject while artwork sign te
   assert.equal(sign?.document_type, "scene");
   assert.match(document(result, "subject").document_text, /yellow body/);
   assert.match(document(result, "scene").document_text, /SALE sign/);
+  assert.match(document(result, "subject").document_text, /black eyes/);
+  assert.doesNotMatch(document(result, "scene").document_text, /black eyes/);
+  assert.match(document(result, "scene").document_text, /sky inside dome/);
+  assert.doesNotMatch(document(result, "subject").document_text, /sky inside dome/);
 });
 
 test("count guard removes numeric count claims but preserves the counted visible object", () => {
