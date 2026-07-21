@@ -514,4 +514,3 @@ export async function main(argv = process.argv.slice(2)) {
   console.log(`[card-visual-corpus-inventory] reconciled=${result.report.reconciliation.reconciled}`);
   if (!result.report.reconciliation.reconciled) process.exitCode = 1;
 }
-

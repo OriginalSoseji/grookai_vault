@@ -99,4 +99,3 @@ test("inventory implementation contains no provider, database, or embedding inte
   assert.match(source, /eligibility_derivation:\s*false/);
   assert.match(source, /artwork_grouping:\s*false/);
 });
-
