@@ -58,6 +58,28 @@ For `vsq_0002`:
 - Rank 4, `GV-PK-AR-80`, saved `green trees with red trunks`, grassy hills, water, and blue sky.
 - Rank 5, `GV-PK-DX-81`, saved `sky background with orange and purple hues` and omitted the visible cast-shadow interpretation. This is a real extraction/search-evidence defect, not merely a truncated dashboard display.
 
+## Image-Paired Evidence Addendum
+
+Producing commit `5bdd4974` makes each matched-evidence panel directly clickable. The evidence inspection dialog now keeps the full card image visible beside the matched evidence, complete Fact Graph, compatibility digest, and exact saved JSON.
+
+Superseding packet:
+
+`docs/audits/card_visual_search_judgment_packet_v1/2026-07-21T23-24-19-117Z_packet_35334262474f/`
+
+- Calibration queries: `200`
+- Holdout queries: `0`
+- Saved visual records resolved: `753/753`
+- Images resolved: `753/753`
+- Missing records or images: `0`
+- Dashboard script syntax: valid
+
+Readiness artifact:
+
+`docs/audits/card_visual_search_calibration_evaluator_v1/2026-07-21T23-24-24-849Z_readiness_e049e5439484/`
+
+- Ready: `true`
+- Official metrics: `not_run_awaiting_human_judgments`
+
 ## Boundaries
 
 No provider calls, database connections or writes, approvals, embeddings, persistent index writes, holdout execution, or public release occurred.
@@ -74,4 +96,4 @@ The full repository shipcheck was not run because `SUPABASE_DB_URL` is unavailab
 
 ## Explicit Next Gate
 
-Use packet `145826909292` for human calibration. Judge result relevance while opening the complete saved Fact Graph whenever extraction completeness or support is uncertain. Record rank 5 of `vsq_0002` as a likely `not_relevant` result with `unsupported_inference`, then continue the primary calibration review. Do not execute the sealed holdout yet.
+Use image-paired packet `35334262474f` for human calibration. Click the matched evidence to compare it with the image and complete saved Fact Graph. Record rank 5 of `vsq_0002` as a likely `not_relevant` result with `unsupported_inference`, then continue the primary calibration review. Do not execute the sealed holdout yet.
