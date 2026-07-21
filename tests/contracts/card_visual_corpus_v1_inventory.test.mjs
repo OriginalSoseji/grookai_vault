@@ -4,6 +4,8 @@ import test from "node:test";
 
 import {
   CARD_VISUAL_CORPUS_SOURCE_INVENTORY_VERSION,
+  buildSegmentStartIndexByRunKeyV1,
+  expectedArtifactSelectedIndexV1,
   parseCorpusInventoryArgsV1,
   reconcileCorpusRecordsV1,
   sha256JsonV1,
@@ -50,6 +52,20 @@ test("corpus inventory arguments remain local and read-only", () => {
 test("stable corpus hashes ignore object key order", () => {
   assert.equal(sha256JsonV1({ b: 2, a: 1 }), sha256JsonV1({ a: 1, b: 2 }));
   assert.notEqual(sha256JsonV1([1, 2]), sha256JsonV1([2, 1]));
+});
+
+test("combined global selection indices reconcile to zero-based segment artifact indices", () => {
+  const outcomes = [
+    { selected_index: 1, run_key: "run-a" },
+    { selected_index: 2, run_key: "run-a" },
+    { selected_index: 701, run_key: "run-b" },
+    { selected_index: 702, run_key: "run-b" },
+  ];
+  const starts = buildSegmentStartIndexByRunKeyV1(outcomes);
+  assert.equal(expectedArtifactSelectedIndexV1(outcomes[0], starts), 0);
+  assert.equal(expectedArtifactSelectedIndexV1(outcomes[1], starts), 1);
+  assert.equal(expectedArtifactSelectedIndexV1(outcomes[2], starts), 0);
+  assert.equal(expectedArtifactSelectedIndexV1(outcomes[3], starts), 1);
 });
 
 test("source reconciliation separates valid rows from coverage gaps", () => {

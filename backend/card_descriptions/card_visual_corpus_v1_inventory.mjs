@@ -130,6 +130,22 @@ function sameNumber(actual, expected) {
   return Number(actual) === Number(expected);
 }
 
+export function buildSegmentStartIndexByRunKeyV1(outcomes) {
+  const starts = new Map();
+  for (const outcome of outcomes) {
+    if (!outcome.run_key || !Number.isInteger(outcome.selected_index)) continue;
+    const current = starts.get(outcome.run_key);
+    if (current === undefined || outcome.selected_index < current) starts.set(outcome.run_key, outcome.selected_index);
+  }
+  return starts;
+}
+
+export function expectedArtifactSelectedIndexV1(outcome, segmentStarts) {
+  const segmentStart = segmentStarts.get(outcome.run_key);
+  if (!Number.isInteger(outcome.selected_index) || !Number.isInteger(segmentStart)) return null;
+  return outcome.selected_index - segmentStart;
+}
+
 function checkCount(findings, label, actual, expected) {
   if (!sameNumber(actual, expected)) findings.push(`${label}:expected=${expected}:actual=${actual}`);
 }
@@ -268,6 +284,7 @@ async function loadOvernightSource(args, expected) {
   const outcomePath = repoPath(args.overnightOutcomeIndex);
   const outcomes = await readJsonl(outcomePath);
   const findings = [];
+  const segmentStarts = buildSegmentStartIndexByRunKeyV1(outcomes);
 
   const records = await mapConcurrent(outcomes, args.concurrency, async (outcome) => {
     const expectedClass = OUTCOME_CLASS_BY_TYPE[outcome.outcome_type];
@@ -280,9 +297,10 @@ async function loadOvernightSource(args, expected) {
       const bytes = await fs.readFile(artifactPath);
       artifactHash = sha256Buffer(bytes);
       artifact = JSON.parse(bytes.toString("utf8"));
-      if (artifact.selected_index !== outcome.selected_index) findings.push(`overnight_artifact_index_mismatch:${outcome.card_print_id}`);
+      const expectedArtifactIndex = expectedArtifactSelectedIndexV1(outcome, segmentStarts);
+      if (artifact.selected_index !== expectedArtifactIndex) findings.push(`overnight_artifact_segment_index_mismatch:${outcome.card_print_id}`);
       if (artifact.outcome_type !== outcome.outcome_type) findings.push(`overnight_artifact_outcome_mismatch:${outcome.card_print_id}`);
-      if (artifact.card?.id && artifact.card.id !== outcome.card_print_id) findings.push(`overnight_artifact_card_id_mismatch:${outcome.card_print_id}`);
+      if (artifact.card?.card_print_id !== outcome.card_print_id) findings.push(`overnight_artifact_card_id_mismatch:${outcome.card_print_id}`);
     } else if (outcome.outcome_type !== "unprocessed") {
       findings.push(`overnight_artifact_missing:${outcome.card_print_id}`);
     }
