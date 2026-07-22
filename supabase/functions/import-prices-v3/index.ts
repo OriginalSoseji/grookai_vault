@@ -18,7 +18,7 @@ function jsonResponse(body: Json, status = 200): Response {
   });
 }
 
-export default async (req: Request): Promise<Response> => {
+const handler = async (req: Request): Promise<Response> => {
   if (req.method !== "POST") {
     return jsonResponse({ ok: false, reason: "method-not-allowed" }, 405);
   }
@@ -40,3 +40,9 @@ export default async (req: Request): Promise<Response> => {
     replacement: "ebay-source-backed-pricing",
   }, 410);
 };
+
+if (typeof Deno !== "undefined") {
+  Deno.serve(handler);
+}
+
+export default handler;
