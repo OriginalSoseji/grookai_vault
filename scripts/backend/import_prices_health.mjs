@@ -1,23 +1,37 @@
-// scripts/backend/import_prices_health.mjs
-import { createBackendClient } from './supabase_backend_client.mjs';
+const baseUrl = process.env.SUPABASE_URL;
+const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+const slug = 'import-prices-v3';
 
 async function main() {
-  const supabase = createBackendClient();
+  if (!baseUrl || !publishableKey) {
+    throw new Error('Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY');
+  }
 
-  console.log('[health] calling import-prices-v3 health...');
-  const { data, error } = await supabase.functions.invoke('import-prices-v3', {
-    body: { mode: 'health', source: 'backend-health' },
+  const url = new URL(`/functions/v1/${slug}`, baseUrl);
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      apikey: publishableKey,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ mode: 'health', source: 'backend-health' }),
+    signal: AbortSignal.timeout(10_000),
   });
+  const data = await response.json().catch(() => null);
 
-  if (error) {
-    console.error('[health] ERROR:', error);
-    process.exit(1);
+  if (
+    response.status !== 200 ||
+    data?.ok !== true ||
+    data?.mode !== 'health' ||
+    data?.pipeline !== 'retired'
+  ) {
+    throw new Error(`Unexpected retired health response (${response.status}): ${JSON.stringify(data)}`);
   }
 
   console.log('[health] OK:', JSON.stringify(data, null, 2));
 }
 
-main().catch((err) => {
-  console.error('[health] unhandled:', err);
+main().catch((error) => {
+  console.error('[health] ERROR:', error);
   process.exit(1);
 });

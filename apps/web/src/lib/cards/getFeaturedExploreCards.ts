@@ -9,6 +9,7 @@ import {
 } from "@/lib/cards/childDisplayImageFallbacks";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { getPublicSets } from "@/lib/publicSets";
 
 type FeaturedExploreCardRow = {
   id: string | null;
@@ -61,6 +62,19 @@ export type FeaturedExploreCard = {
 
 const FEATURED_EXPLORE_CARD_COUNT = 10;
 const FEATURED_EXPLORE_CANDIDATE_WINDOW = 48;
+const FEATURED_EXPLORE_MAX_COUNT = 24;
+const FEATURED_EXPLORE_CANDIDATE_LIMIT = 240;
+const FEATURED_EXPLORE_SET_LOOKBACK = 24;
+const FEATURED_EXPLORE_RARITIES = [
+  "Special Illustration Rare",
+  "Special illustration rare",
+] as const;
+const FEATURED_EXPLORE_FALLBACK_SET_CODES = [
+  "sv02",
+  "sv06",
+  "sv08",
+  "sv8pt5",
+] as const;
 
 async function normalizeFeaturedExploreCard(
   row: FeaturedExploreCardRow | null | undefined,
@@ -120,37 +134,37 @@ async function normalizeFeaturedExploreCard(
   } satisfies FeaturedExploreCard;
 }
 
-async function fetchFeaturedExploreCardCount() {
+async function getFeaturedExploreCandidates() {
   const supabase = createPublicServerClient();
-  const { count, error } = await supabase
-    .from("card_prints")
-    .select("gv_id", {
-      head: true,
-      count: "exact",
-    })
-    .ilike("rarity", "%Special Illustration Rare%");
+  const recentSetCodes = (await getPublicSets().catch(() => []))
+    .slice(0, FEATURED_EXPLORE_SET_LOOKBACK)
+    .map((setInfo) => setInfo.code);
+  const setCodes = Array.from(new Set([
+    ...recentSetCodes,
+    ...FEATURED_EXPLORE_FALLBACK_SET_CODES,
+  ]));
 
-  if (error) {
-    throw error;
-  }
-
-  return count ?? 0;
-}
-
-async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: number) {
-  const supabase = createPublicServerClient();
   const { data, error } = await supabase
     .from("card_prints")
     .select("id,gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
-    .ilike("rarity", "%Special Illustration Rare%")
+    // card_prints has a set_code index but no rarity index. Keep the query on
+    // the indexed recent-set lane and use exact rarity values so discovery
+    // never falls back to the former full-table leading-wildcard scan.
+    .in("set_code", setCodes)
+    .in("rarity", [...FEATURED_EXPLORE_RARITIES])
+    .not("gv_id", "is", null)
     .order("gv_id", { ascending: true })
-    .range(offset, offset + windowSize - 1);
+    .limit(FEATURED_EXPLORE_CANDIDATE_LIMIT);
 
   if (error) {
     throw error;
   }
 
-  const rows = (data ?? []) as FeaturedExploreCardRow[];
+  return (data ?? []) as FeaturedExploreCardRow[];
+}
+
+async function normalizeFeaturedExploreCards(rows: FeaturedExploreCardRow[]) {
+  const supabase = createPublicServerClient();
   const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
     supabase,
     rows,
@@ -183,21 +197,21 @@ function dedupeFeaturedExploreCards(cards: FeaturedExploreCard[]) {
 export const getFeaturedExploreCards = cache(async function getFeaturedExploreCards(
   limit = FEATURED_EXPLORE_CARD_COUNT,
 ): Promise<FeaturedExploreCard[]> {
-  const targetCount = Math.max(1, limit);
-  const totalRows = await fetchFeaturedExploreCardCount();
-  if (totalRows <= 0) {
+  const targetCount = Math.min(
+    Math.max(1, Math.trunc(limit)),
+    FEATURED_EXPLORE_MAX_COUNT,
+  );
+  const candidates = await getFeaturedExploreCandidates();
+  if (candidates.length === 0) {
     return [];
   }
 
-  const windowSize = Math.max(targetCount, FEATURED_EXPLORE_CANDIDATE_WINDOW);
-  const offset = getRotationOffset(totalRows, windowSize);
-  const rotatedCards = await getFeaturedExploreCardsFromWindow(offset, windowSize);
-  const dedupedRotatedCards = dedupeFeaturedExploreCards(rotatedCards).slice(0, targetCount);
-
-  if (dedupedRotatedCards.length >= targetCount || offset === 0) {
-    return dedupedRotatedCards;
-  }
-
-  const fallbackCards = await getFeaturedExploreCardsFromWindow(0, windowSize);
-  return dedupeFeaturedExploreCards([...dedupedRotatedCards, ...fallbackCards]).slice(0, targetCount);
+  const windowSize = Math.min(
+    candidates.length,
+    Math.max(targetCount, FEATURED_EXPLORE_CANDIDATE_WINDOW),
+  );
+  const offset = getRotationOffset(candidates.length, windowSize);
+  const rotatedRows = candidates.slice(offset, offset + windowSize);
+  const rotatedCards = await normalizeFeaturedExploreCards(rotatedRows);
+  return dedupeFeaturedExploreCards(rotatedCards).slice(0, targetCount);
 });

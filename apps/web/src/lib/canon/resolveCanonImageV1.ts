@@ -5,10 +5,11 @@ import {
   isExternalCompatibleCardImageSource,
   isIdentityCardImageSource,
 } from "@/lib/publicCardImage";
-import { buildCanonImageProxyUrl } from "@/lib/canon/canonImageProxy";
-import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
+import { buildCanonCardImageProxyUrl, buildCanonImageProxyUrl } from "@/lib/canon/canonImageProxy";
 
 export type CanonImageLike = {
+  gv_id?: string | null;
+  printing_gv_id?: string | null;
   image_source?: string | null;
   image_path?: string | null;
   image_url?: string | null;
@@ -38,7 +39,7 @@ export async function resolveCanonImageV1(
   const externalUrl = getBestPublicCardImageUrl(cardPrint?.image_url, cardPrint?.image_alt_url);
 
   if (isIdentityCardImageSource(imageSource) && imagePath) {
-    const proxyUrl = buildCanonImageProxyUrl(imagePath);
+    const proxyUrl = buildCanonCardImageProxyUrl(cardPrint?.gv_id ?? cardPrint?.printing_gv_id) ?? buildCanonImageProxyUrl(imagePath);
     if (proxyUrl) {
       return {
         url: proxyUrl,
@@ -47,11 +48,9 @@ export async function resolveCanonImageV1(
       };
     }
 
-    const signedUrl = await resolveVaultInstanceMediaUrl(imagePath);
-
     return {
-      url: signedUrl,
-      source: signedUrl ? "identity" : "none",
+      url: null,
+      source: "none",
       image_path: imagePath,
     };
   }

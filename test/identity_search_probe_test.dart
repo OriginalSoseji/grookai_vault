@@ -74,10 +74,10 @@ void main() {
       setIdentityModel: 'standard',
     );
 
-    expect(
-      resolveDisplayName(pikachuStamp),
-      'Pikachu · Pokémon Together Stamp',
-    );
+    final pikachuIdentity = resolveCardPrintDisplayIdentity(pikachuStamp);
+    expect(pikachuIdentity.baseName, 'Pikachu');
+    expect(pikachuIdentity.suffix, 'Pokémon Together');
+    expect(resolveDisplayName(pikachuStamp), 'Pikachu · Pokémon Together');
     expect(
       matchesIdentityFilter(pikachuStamp, kIdentityFilterPokemonTogetherStamp),
       isTrue,

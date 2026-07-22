@@ -1,51 +1,55 @@
 <#
-Test import-prices health probe using standardized auth headers
+Read-only health probe for a retired import-prices Edge Function.
 
-Reads from environment:
-  - SUPABASE_URL              (e.g., https://<ref>.supabase.co)
-  - SUPABASE_PUBLISHABLE_KEY  (publishable key)
-  - ACCESS_JWT                (user-provided JWT; do not mint here)
-  - BRIDGE_IMPORT_TOKEN       (bridge token secret)
+Required environment:
+  - SUPABASE_URL
+  - SUPABASE_PUBLISHABLE_KEY
 #>
+
+param(
+  [ValidateSet('import-prices', 'import-prices-v3', 'import-prices-bridge')]
+  [string]$FunctionName = 'import-prices'
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-function RequireVar([string]$name) {
-  $v = (Get-Item -Path env:$name -ErrorAction SilentlyContinue).Value
-  if ([string]::IsNullOrWhiteSpace($v)) { throw "Missing env: $name" }
-  return $v
+function Require-EnvironmentVariable([string]$Name) {
+  $value = (Get-Item -Path "env:$Name" -ErrorAction SilentlyContinue).Value
+  if ([string]::IsNullOrWhiteSpace($value)) { throw "Missing env: $Name" }
+  return $value
 }
 
-$base  = RequireVar 'SUPABASE_URL'
-$pub   = RequireVar 'SUPABASE_PUBLISHABLE_KEY'
-$jwt   = RequireVar 'ACCESS_JWT'
-$bridge= RequireVar 'BRIDGE_IMPORT_TOKEN'
-
-$url = "$($base.TrimEnd('/'))/functions/v1/import-prices"
-$body = @{ ping = 1; source = 'bridge_health' } | ConvertTo-Json -Depth 3
-
+$baseUrl = Require-EnvironmentVariable 'SUPABASE_URL'
+$publishableKey = Require-EnvironmentVariable 'SUPABASE_PUBLISHABLE_KEY'
+$url = "$($baseUrl.TrimEnd('/'))/functions/v1/$FunctionName"
 $headers = @{
-  'apikey'         = $pub
-  'Authorization'  = "Bearer $jwt"
-  'x-bridge-token' = $bridge
-  'Content-Type'   = 'application/json'
+  apikey = $publishableKey
+  'content-type' = 'application/json'
 }
+$body = @{ mode = 'health'; source = 'powershell-health' } | ConvertTo-Json
 
 try {
-  $resp = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 30
-  Write-Host ("HTTP " + [int]$resp.StatusCode)
-  Write-Host ($resp.Content)
+  $response = Invoke-WebRequest `
+    -Method POST `
+    -Uri $url `
+    -Headers $headers `
+    -Body $body `
+    -UseBasicParsing `
+    -TimeoutSec 20
 } catch {
-  $r = $_.Exception.Response
-  if ($r) {
-    $code = [int]$r.StatusCode.value__
-    $reader = New-Object IO.StreamReader($r.GetResponseStream())
-    $txt = $reader.ReadToEnd()
-    Write-Host ("HTTP " + $code)
-    Write-Host $txt
-  } else {
-    throw
-  }
+  $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
+  throw "Retired $FunctionName health probe failed with HTTP $code."
 }
 
+$json = $response.Content | ConvertFrom-Json
+if (
+  [int]$response.StatusCode -ne 200 -or
+  $json.ok -ne $true -or
+  $json.mode -ne 'health' -or
+  $json.pipeline -ne 'retired'
+) {
+  throw "Unexpected retired $FunctionName health response: $($response.Content)"
+}
+
+Write-Host "[health] PASS: $FunctionName is retired, reachable, and database-free." -ForegroundColor Green

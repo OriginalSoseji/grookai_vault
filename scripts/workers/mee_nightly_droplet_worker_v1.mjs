@@ -851,7 +851,6 @@ try {
   if (args.run && lock?.acquired) {
     lockRelease = await releaseLock(lock, args);
     execution.push({ phase: "release_lock", ...lockRelease });
-    if (!lockRelease.released) findings.push("nightly_worker_lock_release_failed");
   }
 }
 

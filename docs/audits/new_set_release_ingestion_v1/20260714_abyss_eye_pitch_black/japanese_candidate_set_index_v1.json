@@ -1,0 +1,982 @@
+{
+  "version": "JAPANESE_CANDIDATE_SET_INDEX_V1",
+  "generated_at": "2026-07-14T20:43:08.449Z",
+  "audit_only": true,
+  "db_writes": false,
+  "status": "candidate_source_backed_not_master_verified",
+  "playbook": "NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1",
+  "set": {
+    "key": "jpn-m5",
+    "set_name": "Abyss Eye",
+    "language": "ja",
+    "printed_set_abbrev": "M5",
+    "release_date": "2026-05-22",
+    "source_aliases": {
+      "limitless": "jp/M5",
+      "tcgdex": null
+    },
+    "source_urls": [
+      "https://limitlesstcg.com/cards/jp/M5?show=all",
+      "https://bulbapedia.bulbagarden.net/wiki/Abyss_Eye_(TCG)",
+      "https://jp.pokellector.com/Abyss-Eye-Expansion/",
+      "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/pokemon/japanese-abyss-eye",
+      "https://www.pricecharting.com/console/pokemon-japanese-abyss-eye"
+    ],
+    "source_totals": {
+      "limitless": {
+        "total": 118
+      },
+      "expected": {
+        "official": 81,
+        "secret": 37,
+        "total": 118
+      }
+    },
+    "rows": [
+      {
+        "number": "1",
+        "name": "トロピウス",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_1_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/1",
+        "external_id": "limitless:jp/M5/1"
+      },
+      {
+        "number": "2",
+        "name": "アゴジムシ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_2_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/2",
+        "external_id": "limitless:jp/M5/2"
+      },
+      {
+        "number": "3",
+        "name": "カリキリ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_3_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/3",
+        "external_id": "limitless:jp/M5/3"
+      },
+      {
+        "number": "4",
+        "name": "ラランテスex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_4_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/4",
+        "external_id": "limitless:jp/M5/4"
+      },
+      {
+        "number": "5",
+        "name": "チャデス",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_5_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/5",
+        "external_id": "limitless:jp/M5/5"
+      },
+      {
+        "number": "6",
+        "name": "ヤバソチャ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_6_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/6",
+        "external_id": "limitless:jp/M5/6"
+      },
+      {
+        "number": "7",
+        "name": "ヒードラン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_7_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/7",
+        "external_id": "limitless:jp/M5/7"
+      },
+      {
+        "number": "8",
+        "name": "ヤクデ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_8_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/8",
+        "external_id": "limitless:jp/M5/8"
+      },
+      {
+        "number": "9",
+        "name": "マルヤクデ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_9_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/9",
+        "external_id": "limitless:jp/M5/9"
+      },
+      {
+        "number": "10",
+        "name": "カルボウ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_10_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/10",
+        "external_id": "limitless:jp/M5/10"
+      },
+      {
+        "number": "11",
+        "name": "グレンアルマ",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_11_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/11",
+        "external_id": "limitless:jp/M5/11"
+      },
+      {
+        "number": "12",
+        "name": "トサキント",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_12_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/12",
+        "external_id": "limitless:jp/M5/12"
+      },
+      {
+        "number": "13",
+        "name": "アズマオウ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_13_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/13",
+        "external_id": "limitless:jp/M5/13"
+      },
+      {
+        "number": "14",
+        "name": "ホエルコ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_14_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/14",
+        "external_id": "limitless:jp/M5/14"
+      },
+      {
+        "number": "15",
+        "name": "ホエルオーex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_15_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/15",
+        "external_id": "limitless:jp/M5/15"
+      },
+      {
+        "number": "16",
+        "name": "ジーランス",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_16_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/16",
+        "external_id": "limitless:jp/M5/16"
+      },
+      {
+        "number": "17",
+        "name": "アシマリ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_17_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/17",
+        "external_id": "limitless:jp/M5/17"
+      },
+      {
+        "number": "18",
+        "name": "オシャマリ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_18_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/18",
+        "external_id": "limitless:jp/M5/18"
+      },
+      {
+        "number": "19",
+        "name": "アシレーヌ",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_19_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/19",
+        "external_id": "limitless:jp/M5/19"
+      },
+      {
+        "number": "20",
+        "name": "ナミイルカ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_20_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/20",
+        "external_id": "limitless:jp/M5/20"
+      },
+      {
+        "number": "21",
+        "name": "イルカマン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_21_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/21",
+        "external_id": "limitless:jp/M5/21"
+      },
+      {
+        "number": "22",
+        "name": "ラクライ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_22_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/22",
+        "external_id": "limitless:jp/M5/22"
+      },
+      {
+        "number": "23",
+        "name": "ライボルト",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_23_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/23",
+        "external_id": "limitless:jp/M5/23"
+      },
+      {
+        "number": "24",
+        "name": "デンヂムシ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_24_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/24",
+        "external_id": "limitless:jp/M5/24"
+      },
+      {
+        "number": "25",
+        "name": "クワガノン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_25_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/25",
+        "external_id": "limitless:jp/M5/25"
+      },
+      {
+        "number": "26",
+        "name": "メガゼラオラex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_26_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/26",
+        "external_id": "limitless:jp/M5/26"
+      },
+      {
+        "number": "27",
+        "name": "ミライドン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_27_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/27",
+        "external_id": "limitless:jp/M5/27"
+      },
+      {
+        "number": "28",
+        "name": "ヤドン",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_28_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/28",
+        "external_id": "limitless:jp/M5/28"
+      },
+      {
+        "number": "29",
+        "name": "ヤドラン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_29_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/29",
+        "external_id": "limitless:jp/M5/29"
+      },
+      {
+        "number": "30",
+        "name": "ルージュラ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_30_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/30",
+        "external_id": "limitless:jp/M5/30"
+      },
+      {
+        "number": "31",
+        "name": "カゲボウズ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_31_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/31",
+        "external_id": "limitless:jp/M5/31"
+      },
+      {
+        "number": "32",
+        "name": "ジュペッタ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_32_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/32",
+        "external_id": "limitless:jp/M5/32"
+      },
+      {
+        "number": "33",
+        "name": "ミカルゲ",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_33_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/33",
+        "external_id": "limitless:jp/M5/33"
+      },
+      {
+        "number": "34",
+        "name": "ヒトモシ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_34_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/34",
+        "external_id": "limitless:jp/M5/34"
+      },
+      {
+        "number": "35",
+        "name": "ランプラー",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_35_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/35",
+        "external_id": "limitless:jp/M5/35"
+      },
+      {
+        "number": "36",
+        "name": "メガシャンデラex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_36_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/36",
+        "external_id": "limitless:jp/M5/36"
+      },
+      {
+        "number": "37",
+        "name": "ダダリン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_37_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/37",
+        "external_id": "limitless:jp/M5/37"
+      },
+      {
+        "number": "38",
+        "name": "マーシャドー",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_38_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/38",
+        "external_id": "limitless:jp/M5/38"
+      },
+      {
+        "number": "39",
+        "name": "コノヨザル",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_39_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/39",
+        "external_id": "limitless:jp/M5/39"
+      },
+      {
+        "number": "40",
+        "name": "マンキー",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_40_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/40",
+        "external_id": "limitless:jp/M5/40"
+      },
+      {
+        "number": "41",
+        "name": "オコリザル",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_41_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/41",
+        "external_id": "limitless:jp/M5/41"
+      },
+      {
+        "number": "42",
+        "name": "ズガイドス",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_42_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/42",
+        "external_id": "limitless:jp/M5/42"
+      },
+      {
+        "number": "43",
+        "name": "ラムパルドex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_43_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/43",
+        "external_id": "limitless:jp/M5/43"
+      },
+      {
+        "number": "44",
+        "name": "モグリュー",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_44_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/44",
+        "external_id": "limitless:jp/M5/44"
+      },
+      {
+        "number": "45",
+        "name": "コライドン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_45_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/45",
+        "external_id": "limitless:jp/M5/45"
+      },
+      {
+        "number": "46",
+        "name": "メガダークライex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_46_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/46",
+        "external_id": "limitless:jp/M5/46"
+      },
+      {
+        "number": "47",
+        "name": "バルチャイ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_47_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/47",
+        "external_id": "limitless:jp/M5/47"
+      },
+      {
+        "number": "48",
+        "name": "バルジーナ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_48_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/48",
+        "external_id": "limitless:jp/M5/48"
+      },
+      {
+        "number": "49",
+        "name": "マーイーカ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_49_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/49",
+        "external_id": "limitless:jp/M5/49"
+      },
+      {
+        "number": "50",
+        "name": "カラマネロ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_50_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/50",
+        "external_id": "limitless:jp/M5/50"
+      },
+      {
+        "number": "51",
+        "name": "クスネ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_51_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/51",
+        "external_id": "limitless:jp/M5/51"
+      },
+      {
+        "number": "52",
+        "name": "フォクスライ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_52_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/52",
+        "external_id": "limitless:jp/M5/52"
+      },
+      {
+        "number": "53",
+        "name": "モルペコex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_53_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/53",
+        "external_id": "limitless:jp/M5/53"
+      },
+      {
+        "number": "54",
+        "name": "ザルード",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_54_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/54",
+        "external_id": "limitless:jp/M5/54"
+      },
+      {
+        "number": "55",
+        "name": "オラチフ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_55_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/55",
+        "external_id": "limitless:jp/M5/55"
+      },
+      {
+        "number": "56",
+        "name": "マフィティフ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_56_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/56",
+        "external_id": "limitless:jp/M5/56"
+      },
+      {
+        "number": "57",
+        "name": "イーユイ",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_57_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/57",
+        "external_id": "limitless:jp/M5/57"
+      },
+      {
+        "number": "58",
+        "name": "エアームド",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_58_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/58",
+        "external_id": "limitless:jp/M5/58"
+      },
+      {
+        "number": "59",
+        "name": "タテトプス",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_59_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/59",
+        "external_id": "limitless:jp/M5/59"
+      },
+      {
+        "number": "60",
+        "name": "トリデプス",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_60_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/60",
+        "external_id": "limitless:jp/M5/60"
+      },
+      {
+        "number": "61",
+        "name": "ドーミラー",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_61_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/61",
+        "external_id": "limitless:jp/M5/61"
+      },
+      {
+        "number": "62",
+        "name": "ドータクン",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_62_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/62",
+        "external_id": "limitless:jp/M5/62"
+      },
+      {
+        "number": "63",
+        "name": "メガドリュウズex",
+        "rarity": "Double Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_63_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/63",
+        "external_id": "limitless:jp/M5/63"
+      },
+      {
+        "number": "64",
+        "name": "ツツケラ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_64_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/64",
+        "external_id": "limitless:jp/M5/64"
+      },
+      {
+        "number": "65",
+        "name": "ケララッパ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_65_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/65",
+        "external_id": "limitless:jp/M5/65"
+      },
+      {
+        "number": "66",
+        "name": "ドデカバシ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_66_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/66",
+        "external_id": "limitless:jp/M5/66"
+      },
+      {
+        "number": "67",
+        "name": "タイプ：ヌル",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_67_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/67",
+        "external_id": "limitless:jp/M5/67"
+      },
+      {
+        "number": "68",
+        "name": "シルヴァディ",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_68_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/68",
+        "external_id": "limitless:jp/M5/68"
+      },
+      {
+        "number": "69",
+        "name": "オトシドリ",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_69_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/69",
+        "external_id": "limitless:jp/M5/69"
+      },
+      {
+        "number": "70",
+        "name": "ダークベル",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_70_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/70",
+        "external_id": "limitless:jp/M5/70"
+      },
+      {
+        "number": "71",
+        "name": "古びたずがいの化石",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_71_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/71",
+        "external_id": "limitless:jp/M5/71"
+      },
+      {
+        "number": "72",
+        "name": "古びたたての化石",
+        "rarity": "Common",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_72_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/72",
+        "external_id": "limitless:jp/M5/72"
+      },
+      {
+        "number": "73",
+        "name": "ごうかいボム",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_73_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/73",
+        "external_id": "limitless:jp/M5/73"
+      },
+      {
+        "number": "74",
+        "name": "リトライバッジ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_74_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/74",
+        "external_id": "limitless:jp/M5/74"
+      },
+      {
+        "number": "75",
+        "name": "カスミの元気",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_75_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/75",
+        "external_id": "limitless:jp/M5/75"
+      },
+      {
+        "number": "76",
+        "name": "グラジオの決戦",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_76_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/76",
+        "external_id": "limitless:jp/M5/76"
+      },
+      {
+        "number": "77",
+        "name": "サビ組のしたっぱ",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_77_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/77",
+        "external_id": "limitless:jp/M5/77"
+      },
+      {
+        "number": "78",
+        "name": "ムク",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_78_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/78",
+        "external_id": "limitless:jp/M5/78"
+      },
+      {
+        "number": "79",
+        "name": "化石採掘場",
+        "rarity": "Uncommon",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_79_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/79",
+        "external_id": "limitless:jp/M5/79"
+      },
+      {
+        "number": "80",
+        "name": "ボルト雷エネルギー",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_80_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/80",
+        "external_id": "limitless:jp/M5/80"
+      },
+      {
+        "number": "81",
+        "name": "シャドー悪エネルギー",
+        "rarity": "Rare",
+        "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/M5/M5_81_R_JP.png",
+        "source_url": "https://limitlesstcg.com/cards/jp/M5/81",
+        "external_id": "limitless:jp/M5/81"
+      },
+      {
+        "number": "082",
+        "name": "Fomantis",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Fomantis.M5.82.61544.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Fomantis_(Abyss_Eye_82)",
+        "external_id": "bulbapedia:Abyss_Eye:082/081"
+      },
+      {
+        "number": "083",
+        "name": "Armarouge",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Armarouge.M5.82.61545.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Armarouge_(Abyss_Eye_83)",
+        "external_id": "bulbapedia:Abyss_Eye:083/081"
+      },
+      {
+        "number": "084",
+        "name": "Goldeen",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Goldeen.M5.84.61546.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Goldeen_(Abyss_Eye_84)",
+        "external_id": "bulbapedia:Abyss_Eye:084/081"
+      },
+      {
+        "number": "085",
+        "name": "Primarina",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Primarina.M5.85.61547.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Primarina_(Abyss_Eye_85)",
+        "external_id": "bulbapedia:Abyss_Eye:085/081"
+      },
+      {
+        "number": "086",
+        "name": "Manectric",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Manectric.M5.86.61548.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Manectric_(Abyss_Eye_86)",
+        "external_id": "bulbapedia:Abyss_Eye:086/081"
+      },
+      {
+        "number": "087",
+        "name": "Slowbro",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Slowbro.M5.87.61549.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Slowbro_(Abyss_Eye_87)",
+        "external_id": "bulbapedia:Abyss_Eye:087/081"
+      },
+      {
+        "number": "088",
+        "name": "Dhelmise",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Dhelmise.M5.88.61551.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dhelmise_(Abyss_Eye_88)",
+        "external_id": "bulbapedia:Abyss_Eye:088/081"
+      },
+      {
+        "number": "089",
+        "name": "Thievul",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Thievul.M5.89.61552.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Thievul_(Abyss_Eye_89)",
+        "external_id": "bulbapedia:Abyss_Eye:089/081"
+      },
+      {
+        "number": "090",
+        "name": "Zarude",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Zarude.M5.90.61553.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Zarude_(Abyss_Eye_90)",
+        "external_id": "bulbapedia:Abyss_Eye:090/081"
+      },
+      {
+        "number": "091",
+        "name": "Bastiodon",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Bastiodon.M5.91.61554.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Bastiodon_(Abyss_Eye_91)",
+        "external_id": "bulbapedia:Abyss_Eye:091/081"
+      },
+      {
+        "number": "092",
+        "name": "Toucannon",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Toucannon.M5.92.61555.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Toucannon_(Abyss_Eye_92)",
+        "external_id": "bulbapedia:Abyss_Eye:092/081"
+      },
+      {
+        "number": "093",
+        "name": "Silvally",
+        "rarity": "AR",
+        "image_url": "https://den-cards.pokellector.com/433/Silvally.M5.93.61556.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Silvally_(Abyss_Eye_93)",
+        "external_id": "bulbapedia:Abyss_Eye:093/081"
+      },
+      {
+        "number": "094",
+        "name": "Lurantis ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Lurantis-ex.M5.94.61557.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lurantis_ex_(Abyss_Eye_94)",
+        "external_id": "bulbapedia:Abyss_Eye:094/081"
+      },
+      {
+        "number": "095",
+        "name": "Wailord ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Wailord-ex.M5.95.61558.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wailord_ex_(Abyss_Eye_95)",
+        "external_id": "bulbapedia:Abyss_Eye:095/081"
+      },
+      {
+        "number": "096",
+        "name": "Mega Zeraora ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Zeraora-ex.M5.96.61559.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Zeraora_ex_(Abyss_Eye_96)",
+        "external_id": "bulbapedia:Abyss_Eye:096/081"
+      },
+      {
+        "number": "097",
+        "name": "Mega Chandelure ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Chandelure-ex.M5.97.61560.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Chandelure_ex_(Abyss_Eye_97)",
+        "external_id": "bulbapedia:Abyss_Eye:097/081"
+      },
+      {
+        "number": "098",
+        "name": "Rampardos ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Rampardos-ex.M5.98.61561.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rampardos_ex_(Abyss_Eye_98)",
+        "external_id": "bulbapedia:Abyss_Eye:098/081"
+      },
+      {
+        "number": "099",
+        "name": "Mega Darkrai ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Darkrai-ex.M5.99.61562.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Darkrai_ex_(Abyss_Eye_99)",
+        "external_id": "bulbapedia:Abyss_Eye:099/081"
+      },
+      {
+        "number": "100",
+        "name": "Morpeko ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Morpeko-ex.M5.100.61563.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Morpeko_ex_(Abyss_Eye_100)",
+        "external_id": "bulbapedia:Abyss_Eye:100/081"
+      },
+      {
+        "number": "101",
+        "name": "Mega Excadrill ex",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Excadrill-ex.M5.101.61564.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Excadrill_ex_(Abyss_Eye_101)",
+        "external_id": "bulbapedia:Abyss_Eye:101/081"
+      },
+      {
+        "number": "102",
+        "name": "Iron Defender",
+        "rarity": "SR",
+        "image_url": "https://archives.bulbagarden.net/media/upload/a/af/IronDefenderMegaEvolution118.jpg",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Iron_Defender_(Abyss_Eye_102)",
+        "external_id": "bulbapedia:Abyss_Eye:102/081"
+      },
+      {
+        "number": "103",
+        "name": "Energy Switch",
+        "rarity": "SR",
+        "image_url": "https://archives.bulbagarden.net/media/upload/1/15/EnergySwitchSilverTempest212.jpg",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Energy_Switch_(Abyss_Eye_103)",
+        "external_id": "bulbapedia:Abyss_Eye:103/081"
+      },
+      {
+        "number": "104",
+        "name": "Crushing Hammer",
+        "rarity": "SR",
+        "image_url": "https://archives.bulbagarden.net/media/upload/2/2f/CrushingHammerSunMoon115.jpg",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crushing_Hammer_(Abyss_Eye_104)",
+        "external_id": "bulbapedia:Abyss_Eye:104/081"
+      },
+      {
+        "number": "105",
+        "name": "Dark Bell",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Dark-Bell.M5.105.61568.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Bell_(Abyss_Eye_105)",
+        "external_id": "bulbapedia:Abyss_Eye:105/081"
+      },
+      {
+        "number": "106",
+        "name": "Tremendous Bomb",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Terrific-Bomb.M5.106.61569.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Tremendous_Bomb_(Abyss_Eye_106)",
+        "external_id": "bulbapedia:Abyss_Eye:106/081"
+      },
+      {
+        "number": "107",
+        "name": "Brave Bangle",
+        "rarity": "SR",
+        "image_url": "https://archives.bulbagarden.net/media/upload/d/dd/BraveBangleWhiteFlare80.jpg",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Brave_Bangle_(Abyss_Eye_107)",
+        "external_id": "bulbapedia:Abyss_Eye:107/081"
+      },
+      {
+        "number": "108",
+        "name": "Misty's Vitality",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Mistys-Spirit.M5.108.61571.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Misty%27s_Vitality_(Abyss_Eye_108)",
+        "external_id": "bulbapedia:Abyss_Eye:108/081"
+      },
+      {
+        "number": "109",
+        "name": "Gladion's Final Battle",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Gladions-Showdown.M5.109.61572.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Gladion%27s_Final_Battle_(Abyss_Eye_109)",
+        "external_id": "bulbapedia:Abyss_Eye:109/081"
+      },
+      {
+        "number": "110",
+        "name": "Rust Syndicate Grunt",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Rust-Syndicate-Grunt.M5.110.61573.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rust_Syndicate_Grunt_(Abyss_Eye_110)",
+        "external_id": "bulbapedia:Abyss_Eye:110/081"
+      },
+      {
+        "number": "111",
+        "name": "Gwynn",
+        "rarity": "SR",
+        "image_url": "https://den-cards.pokellector.com/433/Gwynn.M5.111.61574.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Gwynn_(Abyss_Eye_111)",
+        "external_id": "bulbapedia:Abyss_Eye:111/081"
+      },
+      {
+        "number": "112",
+        "name": "Mega Zeraora ex",
+        "rarity": "SAR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Zeraora-ex.M5.112.61575.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Zeraora_ex_(Abyss_Eye_112)",
+        "external_id": "bulbapedia:Abyss_Eye:112/081"
+      },
+      {
+        "number": "113",
+        "name": "Mega Chandelure ex",
+        "rarity": "SAR",
+        "image_url": "https://static.tcgcollector.com/content/images/59/54/5b/59545bf83fa322a70c9dad054aee62551bfb038c3ad7be921da166f319b0cef3.webp",
+        "source_url": "https://www.tcgcollector.com/cards/66190/mega-chandelure-ex-abyss-eye-113-081",
+        "external_id": "tcgcollector:113"
+      },
+      {
+        "number": "114",
+        "name": "Mega Darkrai ex",
+        "rarity": "SAR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Darkrai-ex.M5.114.61576.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Darkrai_ex_(Abyss_Eye_114)",
+        "external_id": "bulbapedia:Abyss_Eye:114/081"
+      },
+      {
+        "number": "115",
+        "name": "Morpeko ex",
+        "rarity": "SAR",
+        "image_url": "https://den-cards.pokellector.com/433/Morpeko-ex.M5.115.61577.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Morpeko_ex_(Abyss_Eye_115)",
+        "external_id": "bulbapedia:Abyss_Eye:115/081"
+      },
+      {
+        "number": "116",
+        "name": "Gladion's Final Battle",
+        "rarity": "SAR",
+        "image_url": "https://den-cards.pokellector.com/433/Gladions-Showdown.M5.116.61578.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Gladion%27s_Final_Battle_(Abyss_Eye_116)",
+        "external_id": "bulbapedia:Abyss_Eye:116/081"
+      },
+      {
+        "number": "117",
+        "name": "Gwynn",
+        "rarity": "SAR",
+        "image_url": "https://static.tcgcollector.com/content/images/84/ef/7b/84ef7b97b1922b5251f7a9cab576342ee041b988d7b94472c330d14c648b3ba2.webp",
+        "source_url": "https://www.tcgcollector.com/cards/66191/gwynn-abyss-eye-117-081",
+        "external_id": "tcgcollector:117"
+      },
+      {
+        "number": "118",
+        "name": "Mega Darkrai ex",
+        "rarity": "MUR",
+        "image_url": "https://den-cards.pokellector.com/433/Mega-Darkrai-ex.M5.118.61579.png",
+        "source_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Darkrai_ex_(Abyss_Eye_118)",
+        "external_id": "bulbapedia:Abyss_Eye:118/081"
+      }
+    ]
+  }
+}

@@ -496,6 +496,7 @@ class _CollectorAvatar extends StatelessWidget {
           : Image.network(
               avatarUrl,
               fit: BoxFit.cover,
+              cacheWidth: 192,
               errorBuilder: (context, error, stackTrace) => Center(
                 child: Text(
                   initials,

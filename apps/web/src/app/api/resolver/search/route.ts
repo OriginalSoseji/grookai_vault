@@ -27,6 +27,11 @@ import {
   getOwnedCountsByCardPrintIds,
 } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import {
+  getPublicPricingByCardIds,
+  mergePublicPricingIntoRows,
+  PublicPricingSortUnavailableError,
+} from "@/lib/pricing/getPublicPricingByCardIds";
 
 export const revalidate = 120;
 
@@ -360,10 +365,11 @@ export async function GET(request: NextRequest) {
   const explicitStampLabels = parseMultiParam(request.nextUrl.searchParams, "stamp");
   const explicitImageState = parseImageState(request.nextUrl.searchParams.get("image_state") ?? request.nextUrl.searchParams.get("image"));
   const sortMode = parseSortMode(request.nextUrl.searchParams.get("sort"));
-  const includePricing =
+  const valueSortRequested =
+    sortMode === "value_high" || sortMode === "value_low";
+  const pricingRequested =
     parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
-    sortMode === "value_high" ||
-    sortMode === "value_low";
+    valueSortRequested;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator")) ?? smartSearchIntent.artist;
   const effectiveSmartSearchIntent: SmartSearchIntent = {
@@ -428,14 +434,38 @@ export async function GET(request: NextRequest) {
 
   try {
     let userId: string | null = null;
+    let requestSupabase: ReturnType<typeof createServerComponentClient> | null = null;
 
-    if (hasSmartOwnershipIntent) {
-      const supabase = createServerComponentClient();
+    if (hasSmartOwnershipIntent || pricingRequested) {
+      requestSupabase = createServerComponentClient();
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await requestSupabase.auth.getUser();
       userId = user?.id ?? null;
     }
+
+    if (valueSortRequested && !userId) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Sign in to sort search results by Grookai Value.",
+          requested_sort: sortMode,
+          applied_sort: null,
+          sort_degraded_reason: "authentication_required",
+        },
+        {
+          status: 401,
+          headers: { "Cache-Control": "private, no-store" },
+        },
+      );
+    }
+
+    // Pricing is signed-in-only. For non-value sorts it is safe to defer the
+    // bridge read until after filtering and the response limit are applied.
+    // Value sorts still enrich the whole bounded candidate set so ordering
+    // remains correct.
+    const includePricing = pricingRequested && Boolean(userId);
+    const includePricingDuringResolution = includePricing && valueSortRequested;
 
     const includeProvisional =
       languageScope !== "ja" &&
@@ -458,7 +488,7 @@ export async function GET(request: NextRequest) {
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
             languageScope,
-            includePricing,
+            includePricing: includePricingDuringResolution,
           }),
         ).then((rows) => ({
           rows,
@@ -471,7 +501,7 @@ export async function GET(request: NextRequest) {
             query,
             languageScope,
             sortMode,
-            includePricing,
+            includePricingDuringResolution,
           ).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -491,7 +521,7 @@ export async function GET(request: NextRequest) {
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
             languageScope,
-            includePricing,
+            includePricing: includePricingDuringResolution,
           }).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -511,7 +541,7 @@ export async function GET(request: NextRequest) {
               stampLabels: effectiveSmartSearchIntent.stampLabels,
               imageState: effectiveSmartSearchIntent.imageState,
               languageScope,
-              includePricing,
+              includePricing: includePricingDuringResolution,
             }).then((rows) => ({
               rows,
               meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -528,7 +558,7 @@ export async function GET(request: NextRequest) {
               releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
               releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
               languageScope,
-              includePricing,
+              includePricing: includePricingDuringResolution,
             }).then((resolved) => ({
               ...resolved,
               smartSearchIntent: effectiveSmartSearchIntent,
@@ -548,6 +578,22 @@ export async function GET(request: NextRequest) {
           })
         : Promise.resolve([]),
     ]);
+    if (valueSortRequested && resolved.degraded) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Value sorting timed out before a complete ordering could be produced. Narrow the search and try again.",
+          requested_sort: sortMode,
+          applied_sort: null,
+          sort_degraded_reason: "resolver_timeout",
+        },
+        {
+          status: 503,
+          headers: { "Cache-Control": "private, no-store" },
+        },
+      );
+    }
     const canonicalResults = resolved.rows.filter((row) =>
       matchesPublicLanguageScope(row, languageScope),
     );
@@ -566,7 +612,18 @@ export async function GET(request: NextRequest) {
       effectiveSmartSearchIntent,
       userId,
     );
-    const limitedCanonicalResults = smartFilteredCanonicalResults.slice(0, resultLimit);
+    const limitedCanonicalResultsWithoutDeferredPricing =
+      smartFilteredCanonicalResults.slice(0, resultLimit);
+    const limitedCanonicalResults =
+      includePricing && !includePricingDuringResolution && requestSupabase
+        ? mergePublicPricingIntoRows(
+            limitedCanonicalResultsWithoutDeferredPricing,
+            await getPublicPricingByCardIds(
+              requestSupabase,
+              limitedCanonicalResultsWithoutDeferredPricing.map((row) => row.id),
+            ),
+          )
+        : limitedCanonicalResultsWithoutDeferredPricing;
     // LOCK: Canonical truth must replace promoted provisional visibility.
     // LOCK: Do not dual-render the same entity across canonical and provisional sections.
     // LOCK: Uniqueness suppression must use explicit canonical linkage only.
@@ -602,14 +659,19 @@ export async function GET(request: NextRequest) {
         meta: resolved.meta,
         limit: resultLimit,
         returned_count: limitedCanonicalResults.length,
+        requested_sort: sortMode,
+        applied_sort: resolved.degraded ? null : sortMode,
+        sort_degraded_reason: resolved.degraded ? "resolver_timeout" : null,
         source: resolved.degraded
           ? "web_ranked_resolver_v2_degraded_soft_timeout"
           : "web_ranked_resolver_v2",
       },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=300",
-          ...(effectiveSmartSearchIntent.ownedState ? { "Cache-Control": "private, no-store" } : {}),
+          "Cache-Control":
+            pricingRequested || effectiveSmartSearchIntent.ownedState
+              ? "private, no-store"
+              : "public, s-maxage=120, stale-while-revalidate=300",
         },
       },
     );
@@ -622,6 +684,30 @@ export async function GET(request: NextRequest) {
           : error
             ? JSON.stringify(error)
             : "Resolver request failed.";
+    if (
+      valueSortRequested &&
+      error instanceof PublicPricingSortUnavailableError
+    ) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: error.message,
+          requested_sort: sortMode,
+          applied_sort: null,
+          sort_degraded_reason: error.reason,
+          sort_candidate_count: error.requestedCount,
+          sort_candidate_limit: error.maximumCount,
+        },
+        {
+          status:
+            error.reason === "candidate_limit_exceeded" ||
+            error.reason === "pricing_values_unavailable"
+              ? 422
+              : 503,
+          headers: { "Cache-Control": "private, no-store" },
+        },
+      );
+    }
     if (isTimeoutLikeError(error)) {
       console.warn("[public-search] resolver timed out; returning degraded empty result", {
         query,
@@ -630,7 +716,16 @@ export async function GET(request: NextRequest) {
 
       return NextResponse.json(
         {
-          ok: true,
+          ok: valueSortRequested ? false : true,
+          ...(valueSortRequested
+            ? {
+                error:
+                  "Value sorting timed out before a complete ordering could be produced. Narrow the search and try again.",
+                requested_sort: sortMode,
+                applied_sort: null,
+                sort_degraded_reason: "resolver_timeout",
+              }
+            : {}),
           query,
           smart_search: effectiveSmartSearchIntent,
           rows: [],
@@ -641,8 +736,9 @@ export async function GET(request: NextRequest) {
           source: "web_ranked_resolver_v2_degraded_timeout",
         },
         {
+          status: valueSortRequested ? 503 : 200,
           headers: {
-            "Cache-Control": effectiveSmartSearchIntent.ownedState
+            "Cache-Control": pricingRequested || effectiveSmartSearchIntent.ownedState
               ? "private, no-store"
               : "public, s-maxage=30, stale-while-revalidate=120",
           },
@@ -654,6 +750,13 @@ export async function GET(request: NextRequest) {
       {
         ok: false,
         error: process.env.NODE_ENV === "production" ? "Search is temporarily unavailable." : message,
+        ...(valueSortRequested
+          ? {
+              requested_sort: sortMode,
+              applied_sort: null,
+              sort_degraded_reason: "search_unavailable",
+            }
+          : {}),
       },
       { status: 500 },
     );

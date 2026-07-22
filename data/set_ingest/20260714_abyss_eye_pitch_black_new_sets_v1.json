@@ -1,0 +1,101 @@
+{
+  "release_slug": "20260714_abyss_eye_pitch_black",
+  "playbook": "NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1",
+  "sets": [
+    {
+      "target_key": "abyss_eye_jp",
+      "name": "Abyss Eye",
+      "language": "ja",
+      "region": "japanese",
+      "release_date": "2026-05-22",
+      "canonical_set_code": "jpn-m5",
+      "printed_set_abbrev": "M5",
+      "source_route": "limitless_manifest_seed",
+      "source_ids": {
+        "tcgdex": null,
+        "limitless": "jp/M5",
+        "bulbapedia": "Abyss_Eye_(TCG)",
+        "manual_seed": "abyss_eye_jp_m5_v1"
+      },
+      "source_urls": [
+        "https://limitlesstcg.com/cards/jp/M5?show=all",
+        "https://bulbapedia.bulbagarden.net/wiki/Abyss_Eye_(TCG)",
+        "https://jp.pokellector.com/Abyss-Eye-Expansion/",
+        "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/pokemon/japanese-abyss-eye",
+        "https://www.pricecharting.com/console/pokemon-japanese-abyss-eye"
+      ],
+      "image_identity_guard": {
+        "reject_url_patterns": [
+          "PitchBlack",
+          "card-placeholder"
+        ],
+        "reject_source_title_patterns": [
+          "Pitch Black"
+        ]
+      },
+      "image_overrides": [
+        {
+          "number": "113",
+          "source": "tcgcollector",
+          "source_url": "https://www.tcgcollector.com/cards/66190/mega-chandelure-ex-abyss-eye-113-081",
+          "image_url": "https://static.tcgcollector.com/content/images/59/54/5b/59545bf83fa322a70c9dad054aee62551bfb038c3ad7be921da166f319b0cef3.webp",
+          "note": "Reviewed exact JP Abyss Eye 113/081 image; Pokellector still served a placeholder on 2026-07-14."
+        },
+        {
+          "number": "117",
+          "source": "tcgcollector",
+          "source_url": "https://www.tcgcollector.com/cards/66191/gwynn-abyss-eye-117-081",
+          "image_url": "https://static.tcgcollector.com/content/images/84/ef/7b/84ef7b97b1922b5251f7a9cab576342ee041b988d7b94472c330d14c648b3ba2.webp",
+          "note": "Reviewed exact JP Abyss Eye 117/081 image; Pokellector still served a placeholder on 2026-07-14."
+        }
+      ],
+      "expected_counts": {
+        "official": 81,
+        "secret": 37,
+        "total": 118
+      },
+      "notes": [
+        "TCGdex live API did not expose Abyss Eye/M5 during the initial 2026-07-14 probe.",
+        "Limitless exposes the M5 set page and 81 main-set card image/detail links.",
+        "Bulbapedia exposes the Abyss Eye secret rare table from 082/081 through 118/081."
+      ]
+    },
+    {
+      "target_key": "pitch_black_en",
+      "name": "Mega Evolution: Pitch Black",
+      "language": "en",
+      "region": "english",
+      "release_date": "2026-07-17",
+      "canonical_set_code": "me05",
+      "printed_set_abbrev": "MEP",
+      "source_route": "tcgdex_or_manifest_seed",
+      "source_ids": {
+        "tcgdex": null,
+        "pokemon_official": "mega-evolution-pitch-black",
+        "manual_seed": "pitch_black_en_v1"
+      },
+      "source_urls": [
+        "https://www.pokemon.com/us/pokemon-tcg/mega-evolution-pitch-black",
+        "https://bulbapedia.bulbagarden.net/wiki/Pitch_Black_(TCG)"
+      ],
+      "expected_counts": {
+        "official": 115,
+        "secret": null,
+        "total": null
+      },
+      "notes": [
+        "This is Pitch Black, not Black Bolt.",
+        "English card-level source rows are required before DB apply for this set."
+      ],
+      "reject_source_ids": {
+        "tcgdex": [
+          "sv10.5b",
+          "SV11B"
+        ],
+        "names": [
+          "Black Bolt"
+        ]
+      }
+    }
+  ]
+}

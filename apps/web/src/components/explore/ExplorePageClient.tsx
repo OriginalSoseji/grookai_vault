@@ -566,6 +566,9 @@ export default function ExplorePageClient({
   const [assistantPreviewLoading, setAssistantPreviewLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sortDegradedReason, setSortDegradedReason] = useState<string | null>(
+    null,
+  );
   const [visibleResultCount, setVisibleResultCount] = useState(
     INITIAL_VISIBLE_RESULT_COUNT,
   );
@@ -588,12 +591,14 @@ export default function ExplorePageClient({
         setResolverMeta(null);
         setSmartSearchIntent(null);
         setError(null);
+        setSortDegradedReason(null);
         setLoading(false);
         return;
       }
 
       setLoading(true);
       setError(null);
+      setSortDegradedReason(null);
 
       try {
         const params = new URLSearchParams();
@@ -675,8 +680,12 @@ export default function ExplorePageClient({
           provisional?: PublicProvisionalCard[];
           meta?: ResolverMeta;
           smart_search?: SmartSearchIntent;
+          requested_sort?: SortMode;
+          applied_sort?: SortMode | null;
+          sort_degraded_reason?: string | null;
         };
 
+        setSortDegradedReason(payload.sort_degraded_reason ?? null);
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error ?? "Search failed.");
         }
@@ -757,6 +766,13 @@ export default function ExplorePageClient({
   };
 
   const commitSortMode = (nextSortMode: SortMode) => {
+    if (
+      !effectiveCanViewPricing &&
+      (nextSortMode === "value_high" || nextSortMode === "value_low")
+    ) {
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
 
     if (nextSortMode === "relevance") {
@@ -1367,14 +1383,25 @@ export default function ExplorePageClient({
             commitSortMode(event.target.value as SortMode)
           }
           className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-slate-700"
+          title={
+            effectiveCanViewPricing
+              ? undefined
+              : "Sign in to sort by Grookai Value"
+          }
         >
           <option value="relevance">Relevance</option>
           <option value="newest">Newest first</option>
           <option value="oldest">Oldest first</option>
           <option value="set_order">Set order</option>
           <option value="number">Collector number</option>
-          <option value="value_high">Value high to low</option>
-          <option value="value_low">Value low to high</option>
+          <option value="value_high" disabled={!effectiveCanViewPricing}>
+            Value high to low
+            {effectiveCanViewPricing ? "" : " (sign in required)"}
+          </option>
+          <option value="value_low" disabled={!effectiveCanViewPricing}>
+            Value low to high
+            {effectiveCanViewPricing ? "" : " (sign in required)"}
+          </option>
         </select>
       </label>
       <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
@@ -1598,7 +1625,15 @@ export default function ExplorePageClient({
 
       {error ? (
         <div className="rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100">
-          Search is taking longer than expected. Narrow the query with a set code, number, language, or filter.
+          <p>{error}</p>
+          {sortDegradedReason === "authentication_required" ? (
+            <Link
+              href={pricingSignInHref}
+              className="mt-2 inline-flex font-semibold underline underline-offset-2"
+            >
+              Sign in to use value sorting
+            </Link>
+          ) : null}
         </div>
       ) : null}
 

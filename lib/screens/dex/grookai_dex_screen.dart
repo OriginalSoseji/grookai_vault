@@ -547,6 +547,7 @@ class _PokemonSpriteFrame extends StatelessWidget {
               child: Image.network(
                 url,
                 fit: BoxFit.contain,
+                cacheWidth: 320,
                 filterQuality: FilterQuality.none,
                 errorBuilder: (context, error, stackTrace) => Center(
                   child: Text(

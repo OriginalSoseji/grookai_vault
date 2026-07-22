@@ -1,153 +1,48 @@
 /**
- * WARNING: DEPRECATED - HISTORICAL REFERENCE ONLY
+ * RETIRED PRICING ENTRYPOINT
  *
- * This function is not part of the active pricing pipeline.
- *
- * DO NOT USE.
- *
- * See: STABILIZATION_CONTRACT_V1.md
+ * The legacy database-write pricing pipeline is intentionally unreachable.
+ * Keep only a database-free health response so old monitors fail safely.
  */
-// LEGACY NOTICE:
-// This Edge function is part of the deprecated pricing pipeline
-// (admin.import_prices_do) and remains only for historical reference.
-// New pricing work must flow through the eBay-based pipelines instead.
-
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { getPublishableKey } from "../_shared/key_resolver.ts";
-
-console.log("[IMPORT-PRICES-BRIDGE] version=GV-EDGE-2025-11-20");
 
 type Json = Record<string, unknown>;
 
 function jsonResponse(body: Json, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "content-type": "application/json" },
+    headers: {
+      "content-type": "application/json",
+      "cache-control": "no-store",
+      "x-grookai-pricing-pipeline": "retired",
+    },
   });
 }
 
-export default async (req: Request): Promise<Response> => {
-  let body: any = {};
-  try {
-    body = await req.json();
-  } catch {
-    body = {};
+const handler = async (req: Request): Promise<Response> => {
+  if (req.method !== "POST") {
+    return jsonResponse({ ok: false, reason: "method-not-allowed" }, 405);
   }
 
-  const mode: string | undefined =
-    typeof body?.mode === "string" ? body.mode : undefined;
-
-  const dryRun: boolean =
-    typeof body?.dryRun === "boolean" ? body.dryRun : false;
-
-  const limit: number =
-    typeof body?.limit === "number" ? body.limit : 50;
-
-  if (mode === "health") {
+  const body = await req.json().catch(() => ({})) as Json;
+  if (body.mode === "health") {
     return jsonResponse({
       ok: true,
       mode: "health",
       source: "edge",
+      pipeline: "retired",
       timestamp: new Date().toISOString(),
     });
   }
 
-  if (mode === "env_debug") {
-    const envSnapshot = {
-      SUPABASE_URL: !!Deno.env.get("SUPABASE_URL"),
-      PROJECT_URL: !!Deno.env.get("PROJECT_URL"),
-      SUPABASE_PUBLISHABLE_KEY: !!getPublishableKey(),
-      BRIDGE_IMPORT_TOKEN: !!Deno.env.get("BRIDGE_IMPORT_TOKEN"),
-    };
-
-    return jsonResponse({
-      ok: true,
-      mode: "env_debug",
-      env: envSnapshot,
-    });
-  }
-
-  const url =
-    Deno.env.get("SUPABASE_URL") ??
-    Deno.env.get("PROJECT_URL") ??
-    "";
-
-  const pub = getPublishableKey() ?? "";
-
-  const bridgeToken = Deno.env.get("BRIDGE_IMPORT_TOKEN") ?? "";
-
-  if (!url || !pub) {
-    return jsonResponse(
-      {
-        ok: false,
-        code: 500,
-        reason: "supabase-config-missing",
-      },
-      500,
-    );
-  }
-
-  if (!bridgeToken) {
-    return jsonResponse(
-      {
-        ok: false,
-        code: 500,
-        reason: "bridge-token-config-missing",
-      },
-      500,
-    );
-  }
-
-  const headerToken =
-    req.headers.get("x-bridge-token") ??
-    req.headers.get("X-Bridge-Token");
-
-  if (!headerToken || headerToken !== bridgeToken) {
-    return jsonResponse(
-      {
-        ok: false,
-        code: 401,
-        reason: "bridge-token-invalid",
-      },
-      401,
-    );
-  }
-
-  const supabase = createClient(url, pub);
-
-  try {
-    const { data, error } = await supabase.rpc(
-      "admin.import_prices_do",
-      {
-        dry_run: dryRun,
-        limit,
-      },
-    );
-
-    if (error) {
-      return jsonResponse(
-        {
-          ok: false,
-          error: error.message ?? String(error),
-        },
-        500,
-      );
-    }
-
-    return jsonResponse(
-      {
-        ok: true,
-        data,
-      },
-      200,
-    );
-  } catch (e) {
-    return jsonResponse(
-      {
-        ok: false,
-        error: e instanceof Error ? e.message : String(e),
-      },
-      500,
-    );
-  }
+  return jsonResponse({
+    ok: false,
+    reason: "legacy-pricing-pipeline-disabled",
+    replacement: "ebay-source-backed-pricing",
+  }, 410);
 };
+
+if (typeof Deno !== "undefined") {
+  Deno.serve(handler);
+}
+
+export default handler;

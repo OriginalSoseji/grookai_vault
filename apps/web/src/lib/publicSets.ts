@@ -12,6 +12,13 @@ import {
 } from "@/lib/baseSetPrintRunLanes";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
+  chooseCanonicalSetRow,
+  getEmbeddedCardPrintCount,
+  getManifestCardPrintCount,
+  type EmbeddedCardPrintCount,
+} from "@/lib/publicSetCanonicalization";
+import publicSetCardCountManifest from "@/lib/publicSetCardCounts.generated.json";
+import {
   matchesPublicSetSearch,
   isSpecialPublicSet,
   normalizePublicSetDisplayName,
@@ -34,10 +41,7 @@ type SetRow = {
   printed_total: number | null;
   release_date: string | null;
   created_at: string | null;
-};
-
-type SetCodeRow = {
-  set_code: string | null;
+  card_prints?: EmbeddedCardPrintCount;
 };
 
 type PublicSetCardRow = {
@@ -227,118 +231,79 @@ function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
   return Date.parse(setInfo.sort_date);
 }
 
-function scoreSetCandidate(
-  row: SetRow & { code: string; name: string },
-  cardCount: number,
-) {
-  let score = 0;
+const PUBLIC_SET_LIST_SELECT = `
+  code,
+  name,
+  printed_set_abbrev,
+  printed_total,
+  release_date,
+  created_at
+`;
 
-  if (cardCount > 0) score += 1000;
-  if (row.release_date) score += 100;
-  score += Math.min(cardCount, 500);
+const PUBLIC_SET_DETAIL_SELECT = `
+  ${PUBLIC_SET_LIST_SELECT},
+  card_prints(count)
+`;
 
-  return score;
-}
+const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<
+  Record<string, number>
+>;
 
-function chooseCanonicalSetRow(
-  existing: PublicSetSummary,
-  candidate: PublicSetSummary,
-) {
-  if (candidate.card_count !== existing.card_count) {
-    return candidate.card_count > existing.card_count ? candidate : existing;
+function mapSetRowToSummary(
+  row: SetRow,
+  canonicalCardCount: number,
+): PublicSetSummary | null {
+  if (!row.code || !row.name) {
+    return null;
   }
 
-  if (Boolean(candidate.release_date) !== Boolean(existing.release_date)) {
-    return candidate.release_date ? candidate : existing;
-  }
+  const code = row.code.trim().toLowerCase();
+  const displayName = normalizePublicSetDisplayName(row.name);
 
-  return candidate.code.length < existing.code.length ? candidate : existing;
-}
-
-async function fetchAllCanonicalSetCodes(
-  supabase: ReturnType<typeof createServerSupabase>,
-) {
-  const rows: SetCodeRow[] = [];
-  const pageSize = 1000;
-  let offset = 0;
-
-  while (true) {
-    const { data, error } = await supabase
-      .from("card_prints")
-      .select("set_code")
-      .not("gv_id", "is", null)
-      .range(offset, offset + pageSize - 1);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const batch = (data ?? []) as SetCodeRow[];
-    rows.push(...batch);
-
-    if (batch.length < pageSize) {
-      break;
-    }
-
-    offset += pageSize;
-  }
-
-  return rows;
+  return {
+    code,
+    name: displayName,
+    printed_set_abbrev:
+      row.printed_set_abbrev?.trim().toUpperCase() || undefined,
+    printed_total:
+      typeof row.printed_total === "number" ? row.printed_total : undefined,
+    release_date: row.release_date ?? undefined,
+    sort_date: getSetSortDate(row),
+    release_year: getReleaseYear(row.release_date),
+    card_count:
+      canonicalCardCount +
+      getBaseSetPrintRunLaneCardCountAdjustment(code),
+    normalized_code: normalizeSetCode(code),
+    normalized_name: normalizeSetQuery(displayName),
+    normalized_tokens: tokenizeSetWords(displayName),
+    normalized_printed_set_abbrev: normalizeSetQuery(
+      row.printed_set_abbrev ?? "",
+    ),
+  };
 }
 
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const supabase = createServerSupabase();
-  const [{ data: setRows, error: setError }, setCodeRows] = await Promise.all([
-    supabase
-      .from("sets")
-      .select(
-        "code,name,printed_set_abbrev,printed_total,release_date,created_at",
-      ),
-    fetchAllCanonicalSetCodes(supabase),
-  ]);
+  const { data: setRows, error: setError } = await supabase
+    .from("sets")
+    .select(PUBLIC_SET_LIST_SELECT);
 
   if (setError) {
     throw new Error(setError.message);
   }
 
-  const cardCountBySetCode = new Map<string, number>();
-  for (const row of setCodeRows) {
-    const setCode = (row.set_code ?? "").trim().toLowerCase();
-    if (!setCode) continue;
-    cardCountBySetCode.set(setCode, (cardCountBySetCode.get(setCode) ?? 0) + 1);
-  }
-
   const canonicalSetsByName = new Map<string, PublicSetSummary>();
 
   for (const row of (setRows ?? []) as SetRow[]) {
-    if (!row.code || !row.name) {
+    const candidate = mapSetRowToSummary(
+      row,
+      getManifestCardPrintCount(publicSetCardCounts, row.code),
+    );
+    if (!candidate) {
       continue;
     }
 
-    const code = row.code.trim().toLowerCase();
-    const displayName = normalizePublicSetDisplayName(row.name);
-    const canonicalNameKey = normalizeSetQuery(row.name);
-    const normalizedName = normalizeSetQuery(displayName);
-    const candidate: PublicSetSummary = {
-      code,
-      name: displayName,
-      printed_set_abbrev:
-        row.printed_set_abbrev?.trim().toUpperCase() || undefined,
-      printed_total:
-        typeof row.printed_total === "number" ? row.printed_total : undefined,
-      release_date: row.release_date ?? undefined,
-      sort_date: getSetSortDate(row),
-      release_year: getReleaseYear(row.release_date),
-      card_count:
-        (cardCountBySetCode.get(code) ?? 0) +
-        getBaseSetPrintRunLaneCardCountAdjustment(code),
-      normalized_code: normalizeSetCode(code),
-      normalized_name: normalizedName,
-      normalized_tokens: tokenizeSetWords(displayName),
-      normalized_printed_set_abbrev: normalizeSetQuery(
-        row.printed_set_abbrev ?? "",
-      ),
-    };
+    const canonicalNameKey = normalizeSetQuery(candidate.name);
 
     const existing = canonicalSetsByName.get(canonicalNameKey);
     if (!existing) {
@@ -380,8 +345,27 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
     return null;
   }
 
-  const sets = await getPublicSets();
-  return sets.find((setInfo) => setInfo.code === normalizedCode) ?? null;
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase
+    .from("sets")
+    .select(PUBLIC_SET_DETAIL_SELECT)
+    .ilike("code", normalizedCode)
+    .not("card_prints.gv_id", "is", null)
+    .not("card_prints.set_code", "is", null)
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  const setInfo = data
+    ? mapSetRowToSummary(
+        data as SetRow,
+        getEmbeddedCardPrintCount((data as SetRow).card_prints),
+      )
+    : null;
+  return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });
 
 export const getPublicSetCards = cache(async function getPublicSetCards(
@@ -620,9 +604,19 @@ export const getPublicSetDetail = cache(async function getPublicSetDetail(
 
   return {
     ...setInfo,
-    cards: await getPublicSetCards(setInfo.code, 0, setInfo.card_count),
+    cards: await getAllPublicSetCards(setInfo.code),
   };
 });
+
+async function getAllPublicSetCards(setCode: string) {
+  const pageSize = 500;
+  const cards: PublicSetCard[] = [];
+  for (let offset = 0; ; offset += pageSize) {
+    const page = await getPublicSetCards(setCode, offset, pageSize);
+    cards.push(...page);
+    if (page.length < pageSize) return cards;
+  }
+}
 
 export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
   const queryTokens = normalizeSetSearchQuery(rawQuery);

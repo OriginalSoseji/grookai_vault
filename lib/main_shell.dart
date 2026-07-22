@@ -1,5 +1,385 @@
 part of 'main.dart';
 
+class RequiredProfileSetupGate extends StatefulWidget {
+  const RequiredProfileSetupGate({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  State<RequiredProfileSetupGate> createState() =>
+      _RequiredProfileSetupGateState();
+}
+
+class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
+  bool _loading = true;
+  bool _needsSetup = false;
+  String? _error;
+  AccountProfileData? _profile;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_load());
+  }
+
+  Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+    try {
+      final profile = await AccountProfileService.loadCurrentProfile(
+        client: Supabase.instance.client,
+      );
+      if (!mounted) return;
+      final needsSetup =
+          profile.slug.trim().isEmpty || profile.displayName.trim().isEmpty;
+      setState(() {
+        _profile = profile;
+        _needsSetup = needsSetup;
+        _loading = false;
+      });
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _error = 'Unable to load profile setup.';
+      });
+    }
+  }
+
+  void _handleProfileCreated(AccountProfileData profile) {
+    setState(() {
+      _profile = profile;
+      _needsSetup = false;
+      _loading = false;
+      _error = null;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator.adaptive()),
+      );
+    }
+    if (_error != null) {
+      return Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    _error!,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    onPressed: _load,
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: const Text('Try again'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    final profile = _profile;
+    if (_needsSetup && profile != null) {
+      return _RequiredProfileSetupScreen(
+        profile: profile,
+        onCreated: _handleProfileCreated,
+      );
+    }
+    return widget.child;
+  }
+}
+
+class _RequiredProfileSetupScreen extends StatefulWidget {
+  const _RequiredProfileSetupScreen({
+    required this.profile,
+    required this.onCreated,
+  });
+
+  final AccountProfileData profile;
+  final ValueChanged<AccountProfileData> onCreated;
+
+  @override
+  State<_RequiredProfileSetupScreen> createState() =>
+      _RequiredProfileSetupScreenState();
+}
+
+class _RequiredProfileSetupScreenState
+    extends State<_RequiredProfileSetupScreen> {
+  late final TextEditingController _displayNameController;
+  late final TextEditingController _slugController;
+  bool _saving = false;
+  Map<String, String> _fieldErrors = const {};
+  String? _statusMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    final user = Supabase.instance.client.auth.currentUser;
+    final displayName = _profileDisplayNameSuggestion(user, widget.profile);
+    _displayNameController = TextEditingController(text: displayName);
+    _slugController = TextEditingController(
+      text: _profileSlugSuggestion(user, widget.profile, displayName),
+    );
+  }
+
+  @override
+  void dispose() {
+    _displayNameController.dispose();
+    _slugController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _save() async {
+    if (_saving) return;
+    final draft = widget.profile.copyWith(
+      displayName: _displayNameController.text,
+      slug: _slugController.text,
+      publicProfileEnabled: true,
+      vaultSharingEnabled: true,
+    );
+    final errors = AccountProfileService.validate(draft);
+    if (errors.isNotEmpty) {
+      setState(() {
+        _fieldErrors = errors;
+        _statusMessage = 'Fix the highlighted fields before continuing.';
+      });
+      return;
+    }
+
+    setState(() {
+      _saving = true;
+      _fieldErrors = const {};
+      _statusMessage = null;
+    });
+    try {
+      final saved = await AccountProfileService.save(
+        client: Supabase.instance.client,
+        data: draft,
+      );
+      if (!mounted) return;
+      widget.onCreated(saved);
+    } on PostgrestException catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _fieldErrors = error.code == '23505'
+            ? const {'slug': 'That profile URL is already taken.'}
+            : const {};
+        _statusMessage = error.code == '23505'
+            ? 'That profile URL is already taken.'
+            : 'Could not create your public profile.';
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _statusMessage = 'Could not create your public profile.';
+      });
+    }
+  }
+
+  static String _profileDisplayNameSuggestion(
+    User? user,
+    AccountProfileData profile,
+  ) {
+    if (profile.displayName.trim().isNotEmpty) {
+      return profile.displayName.trim();
+    }
+    final metadata = user?.userMetadata ?? const <String, dynamic>{};
+    for (final key in const ['display_name', 'full_name', 'name', 'username']) {
+      final value = (metadata[key] ?? '').toString().trim();
+      if (value.isNotEmpty) return value;
+    }
+    final emailPrefix = (profile.email.split('@').first).trim();
+    if (emailPrefix.isNotEmpty && profile.email.contains('@')) {
+      return emailPrefix
+          .split(RegExp(r'[._-]+'))
+          .where((part) => part.isNotEmpty)
+          .map((part) => '${part[0].toUpperCase()}${part.substring(1)}')
+          .join(' ');
+    }
+    return 'Collector';
+  }
+
+  static String _profileSlugSuggestion(
+    User? user,
+    AccountProfileData profile,
+    String displayName,
+  ) {
+    final existing = AccountProfileService.normalizeSlug(profile.slug);
+    if (existing.isNotEmpty) return existing;
+    final metadata = user?.userMetadata ?? const <String, dynamic>{};
+    for (final key in const ['preferred_username', 'username', 'name']) {
+      final value = AccountProfileService.normalizeSlug(
+        (metadata[key] ?? '').toString(),
+      );
+      if (value.isNotEmpty) return value;
+    }
+    final fromDisplay = AccountProfileService.normalizeSlug(displayName);
+    if (fromDisplay.isNotEmpty) return fromDisplay;
+    final emailPrefix = profile.email.contains('@')
+        ? profile.email.split('@').first
+        : '';
+    final fromEmail = AccountProfileService.normalizeSlug(emailPrefix);
+    if (fromEmail.isNotEmpty) return fromEmail;
+    final id = profile.userId.replaceAll('-', '');
+    return 'collector-${id.length >= 6 ? id.substring(0, 6) : id}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final normalizedSlug = AccountProfileService.normalizeSlug(
+      _slugController.text,
+    );
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 520),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Icon(
+                    Icons.public_rounded,
+                    size: 42,
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(height: 18),
+                  Text(
+                    'Claim your collector link',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Your profile is public by default so you can share your Wall as soon as cards are added.',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.66),
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  TextField(
+                    controller: _displayNameController,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      labelText: 'Display name',
+                      prefixIcon: const Icon(Icons.badge_outlined),
+                      errorText: _fieldErrors['displayName'],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: _slugController,
+                    textInputAction: TextInputAction.done,
+                    onChanged: (_) => setState(() {}),
+                    onSubmitted: (_) => _save(),
+                    decoration: InputDecoration(
+                      labelText: 'Collector URL',
+                      prefixText: '/u/',
+                      prefixIcon: const Icon(Icons.link_rounded),
+                      errorText: _fieldErrors['slug'],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: colorScheme.primaryContainer.withValues(
+                        alpha: 0.44,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.ios_share_rounded,
+                            color: colorScheme.onPrimaryContainer,
+                            size: 19,
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              normalizedSlug.isEmpty
+                                  ? 'grookaivault.com/u/your-name'
+                                  : 'grookaivault.com/u/$normalizedSlug',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: colorScheme.onPrimaryContainer,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (_statusMessage != null) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      _statusMessage!,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.error,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 18),
+                  FilledButton.icon(
+                    onPressed: _saving ? null : _save,
+                    icon: _saving
+                        ? const SizedBox.square(
+                            dimension: 18,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.arrow_forward_rounded),
+                    label: Text(
+                      _saving ? 'Creating profile...' : 'Create public profile',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'You can turn public profile or Vault sharing off later in Account.',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.56),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// ---------------------- APP SHELL (Home + Vault) ----------------------
 class AppShell extends StatefulWidget {
   const AppShell({
@@ -26,12 +406,13 @@ class AppShell extends StatefulWidget {
 enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
-  // BOTTOM_NAV_LUXURY_PASS_V1
-  // Primary app navigation is behavior-first: Search, Pulse, Scan, Wall, Vault.
-  search(navIndex: 0, stackIndex: 0, title: 'Search'),
-  feed(navIndex: 1, stackIndex: 1, title: 'Pulse'),
-  wall(navIndex: 3, stackIndex: 2, title: 'Wall'),
-  vault(navIndex: 4, stackIndex: 3, title: 'Vault');
+  // PULSE_WALL_VAULT_SHELL_V1
+  // The three product pillars lead the shell. Scan and Search remain global
+  // acquisition/discovery actions without competing with those pillars.
+  feed(navIndex: 0, stackIndex: 0, title: 'Pulse'),
+  wall(navIndex: 1, stackIndex: 1, title: 'Wall'),
+  vault(navIndex: 2, stackIndex: 2, title: 'Vault'),
+  search(navIndex: 4, stackIndex: 3, title: 'Search');
 
   const _ShellDestination({
     required this.navIndex,
@@ -86,15 +467,9 @@ class _AppShellState extends State<AppShell> {
       AppBootTiming.markOnce('app_shell_first_post_frame');
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
-      if (!kScannerConstructionPlaceholderEnabled &&
-          !kFixedSlotCaptureScannerV1Enabled &&
-          kNativeScannerPhase0Enabled) {
-        unawaited(NativeScannerPhase0Bridge.startSession());
-      }
-      if (!kScannerConstructionPlaceholderEnabled &&
-          !kFixedSlotCaptureScannerV1Enabled) {
-        unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
-      }
+      // APP_STARTUP_NO_CAMERA_CONTENTION_V1
+      // Camera startup competes with the first network surface for CPU, memory,
+      // and platform-channel time. Scan initializes on demand when tapped.
       unawaited(_maybeShowOnboardingForLanding());
     });
     AppBootTiming.mark('app_shell_init_state_complete');
@@ -482,6 +857,10 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const NetworkInboxScreen());
   }
 
+  Future<void> _openGettingStarted() async {
+    await _pushPage<void>(const GettingStartedScreen());
+  }
+
   Future<void> _openNearby() async {
     await _pushPage<void>(const NetworkNearbyScreen());
   }
@@ -512,6 +891,9 @@ class _AppShellState extends State<AppShell> {
         break;
       case AccountHubAction.messages:
         await _openMessages();
+        break;
+      case AccountHubAction.gettingStarted:
+        await _openGettingStarted();
         break;
       case AccountHubAction.signOut:
         await _signOut();
@@ -875,7 +1257,10 @@ class _AppShellState extends State<AppShell> {
     final bottomSafeInset = MediaQuery.viewPaddingOf(context).bottom;
     final shellChildren = List<Widget>.generate(
       _ShellDestination.values.length,
-      (index) => _shellPages[index] ?? const SizedBox.shrink(),
+      (index) => TickerMode(
+        enabled: index == _destination.stackIndex,
+        child: _shellPages[index] ?? const SizedBox.shrink(),
+      ),
       growable: false,
     );
     final shellBody = IndexedStack(
@@ -903,6 +1288,7 @@ class _AppShellState extends State<AppShell> {
                 onOpenGrookaiObjects: () => unawaited(_openGrookaiObjectsHub()),
                 onOpenMessages: () => unawaited(_openMessages()),
                 onOpenAccount: () => unawaited(_openAccountHub()),
+                onOpenGettingStarted: () => unawaited(_openGettingStarted()),
                 onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
               ),
               VerticalDivider(
@@ -942,6 +1328,7 @@ class _AppShellState extends State<AppShell> {
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
+        onOpenGettingStarted: _openGettingStarted,
         onOpenFollowers: () =>
             _openOwnRelationships(PublicCollectorRelationshipMode.followers),
         onOpenFollowing: () =>
@@ -1015,17 +1402,6 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 0,
-                        label: 'Search',
-                        icon: Icons.search_rounded,
-                        collapsed: collapsed,
-                        onPressed: () =>
-                            _selectDestination(_ShellDestination.search),
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildDockButton(
-                        colorScheme: colorScheme,
-                        navIndex: 1,
                         label: 'Pulse',
                         icon: Icons.dynamic_feed_rounded,
                         collapsed: collapsed,
@@ -1037,18 +1413,7 @@ class _AppShellState extends State<AppShell> {
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
-                        navIndex: 2,
-                        label: 'Scan',
-                        icon: Icons.center_focus_strong_rounded,
-                        collapsed: collapsed,
-                        isPrimaryAction: true,
-                        onPressed: _startScanFlow,
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildDockButton(
-                        colorScheme: colorScheme,
-                        navIndex: 3,
+                        navIndex: 1,
                         label: 'Wall',
                         icon: Icons.collections_bookmark_rounded,
                         collapsed: collapsed,
@@ -1059,12 +1424,34 @@ class _AppShellState extends State<AppShell> {
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
-                        navIndex: 4,
+                        navIndex: 2,
                         label: 'Vault',
                         icon: Icons.inventory_2_rounded,
                         collapsed: collapsed,
                         onPressed: () =>
                             _selectDestination(_ShellDestination.vault),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 3,
+                        label: 'Scan',
+                        icon: Icons.center_focus_strong_rounded,
+                        collapsed: collapsed,
+                        isPrimaryAction: true,
+                        onPressed: _startScanFlow,
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 4,
+                        label: 'Search',
+                        icon: Icons.search_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.search),
                       ),
                     ),
                   ],
@@ -1217,6 +1604,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenGrookaiObjects,
     required this.onOpenMessages,
     required this.onOpenAccount,
+    required this.onOpenGettingStarted,
     required this.onOpenMenu,
   });
 
@@ -1232,6 +1620,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenGrookaiObjects;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
+  final VoidCallback onOpenGettingStarted;
   final VoidCallback onOpenMenu;
 
   @override
@@ -1272,21 +1661,10 @@ class _GrookaiDesktopRail extends StatelessWidget {
               ),
             ),
             _GrookaiRailTile(
-              icon: Icons.search_rounded,
-              label: 'Search',
-              selected: currentDestination == _ShellDestination.search,
-              onTap: onOpenSearch,
-            ),
-            _GrookaiRailTile(
               icon: Icons.dynamic_feed_rounded,
               label: 'Pulse',
               selected: currentDestination == _ShellDestination.feed,
               onTap: onOpenFeed,
-            ),
-            _GrookaiRailTile(
-              icon: Icons.center_focus_strong_rounded,
-              label: 'Scan',
-              onTap: onOpenScan,
             ),
             _GrookaiRailTile(
               icon: Icons.collections_bookmark_rounded,
@@ -1299,6 +1677,17 @@ class _GrookaiDesktopRail extends StatelessWidget {
               label: 'Vault',
               selected: currentDestination == _ShellDestination.vault,
               onTap: onOpenVault,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.center_focus_strong_rounded,
+              label: 'Scan',
+              onTap: onOpenScan,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.search_rounded,
+              label: 'Search',
+              selected: currentDestination == _ShellDestination.search,
+              onTap: onOpenSearch,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
@@ -1329,6 +1718,11 @@ class _GrookaiDesktopRail extends StatelessWidget {
               icon: Icons.mail_rounded,
               label: 'Messages',
               onTap: onOpenMessages,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.school_outlined,
+              label: 'Getting Started',
+              onTap: onOpenGettingStarted,
             ),
             _GrookaiRailTile(
               icon: Icons.account_circle_rounded,
@@ -1415,6 +1809,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
+    required this.onOpenGettingStarted,
     required this.onOpenFollowers,
     required this.onOpenFollowing,
     required this.themeMode,
@@ -1430,6 +1825,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
+  final Future<void> Function() onOpenGettingStarted;
   final Future<void> Function() onOpenFollowers;
   final Future<void> Function() onOpenFollowing;
   final ThemeMode themeMode;
@@ -1523,6 +1919,11 @@ class _GrookaiAppDrawer extends StatelessWidget {
           icon: Icons.account_circle_rounded,
           label: 'Account',
           onTap: () => _closeThenAsync(context, onOpenAccount),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.school_outlined,
+          label: 'Getting Started',
+          onTap: () => _closeThenAsync(context, onOpenGettingStarted),
         ),
         const Divider(indent: 20, endIndent: 20),
         _GrookaiDrawerAppearanceSelector(
@@ -1662,6 +2063,139 @@ class _GrookaiDrawerAppearanceSelector extends StatelessWidget {
   }
 }
 
+class GettingStartedScreen extends StatelessWidget {
+  const GettingStartedScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Scaffold(
+      appBar: AppBar(title: const Text('Getting Started')),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+          children: [
+            Text(
+              'Start with a sentence search',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Search like you would ask a person. Name, set, rarity, language, number, and variant words all help.',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const _GettingStartedCard(
+              icon: Icons.search_rounded,
+              title: 'Search in a sentence',
+              body:
+                  'Try “Charizard from 151”, “Japanese Pikachu promo”, or “Umbreon alt art”.',
+            ),
+            const _GettingStartedCard(
+              icon: Icons.center_focus_strong_rounded,
+              title: 'Scan or import a photo',
+              body:
+                  'Use Scan for live cards, or Photos for card images already on your phone.',
+            ),
+            const _GettingStartedCard(
+              icon: Icons.inventory_2_outlined,
+              title: 'Add cards to Vault',
+              body:
+                  'Add a result to create your private collection and unlock card-specific tools.',
+            ),
+            const _GettingStartedCard(
+              icon: Icons.bookmark_add_outlined,
+              title: 'Mark cards you want',
+              body:
+                  'Want helps Pulse and collector matching understand what matters to you.',
+            ),
+            const _GettingStartedCard(
+              icon: Icons.public_rounded,
+              title: 'Share your Wall',
+              body:
+                  'Your /u/slug is ready by default. Add cards to your Wall when you want them public.',
+            ),
+            const _GettingStartedCard(
+              icon: Icons.auto_awesome_outlined,
+              title: 'Create Grookai Objects',
+              body:
+                  'Once cards are in your Vault, make Memories, For Sale cards, and Lot shares.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GettingStartedCard extends StatelessWidget {
+  const _GettingStartedCard({
+    required this.icon,
+    required this.title,
+    required this.body,
+  });
+
+  final IconData icon;
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.08),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(icon, color: colorScheme.primary, size: 22),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      body,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.68),
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// ---------------------- LOGIN PAGE ----------------------
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -1680,6 +2214,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _showEmailForm = false;
   bool _creatingAccount = false;
   String? _loginError;
+  String? _signupConfirmationEmail;
 
   SupabaseClient get supabase => Supabase.instance.client;
 
@@ -1737,6 +2272,7 @@ class _LoginPageState extends State<LoginPage> {
     _debugGoogleOAuthTap('tap');
     setState(() {
       _loginError = null;
+      _signupConfirmationEmail = null;
       _loading = true;
     });
     try {
@@ -1792,6 +2328,7 @@ class _LoginPageState extends State<LoginPage> {
     }
     setState(() {
       _loginError = null;
+      _signupConfirmationEmail = null;
     });
     unawaited(_signIn());
   }
@@ -1826,6 +2363,7 @@ class _LoginPageState extends State<LoginPage> {
       _showEmailForm = true;
       _creatingAccount = creatingAccount;
       _loginError = null;
+      _signupConfirmationEmail = null;
     });
   }
 
@@ -1837,6 +2375,7 @@ class _LoginPageState extends State<LoginPage> {
       _showEmailForm = true;
       _creatingAccount = creatingAccount;
       _loginError = null;
+      _signupConfirmationEmail = null;
     });
   }
 
@@ -1849,11 +2388,19 @@ class _LoginPageState extends State<LoginPage> {
     }
     setState(() => _loading = true);
     try {
-      await supabase.auth.signUp(
-        email: _email.text.trim(),
+      final email = _email.text.trim();
+      final response = await supabase.auth.signUp(
+        email: email,
         password: _password.text,
       );
-      _snack('Account created. Verify email if prompted.');
+      if (response.session == null && mounted) {
+        setState(() {
+          _signupConfirmationEmail = email;
+          _showEmailForm = false;
+        });
+      } else {
+        _snack('Account created.');
+      }
     } on AuthException catch (e) {
       if (mounted) {
         setState(() {
@@ -2042,7 +2589,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 6),
               Text(
                 _creatingAccount
-                    ? 'Start a private vault, then share only what you choose.'
+                    ? 'Start your Vault, claim your public link, and share your Wall as it grows.'
                     : 'Keep your collector identity, vault, and shared shelves under one login.',
                 style: textTheme.bodySmall?.copyWith(
                   color: scheme.onSurface.withValues(alpha: 0.68),
@@ -2108,6 +2655,62 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _buildSignupConfirmation(ColorScheme scheme, TextTheme textTheme) {
+    final email = _signupConfirmationEmail;
+    if (email == null) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.only(top: 14),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: Colors.white.withValues(alpha: 0.05),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+        ),
+        padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Icon(
+              Icons.mark_email_read_outlined,
+              color: scheme.primary,
+              size: 30,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Check your email',
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'We sent the account link to $email. Open it on this device, then Grookai will finish setup.',
+              style: textTheme.bodySmall?.copyWith(
+                color: scheme.onSurface.withValues(alpha: 0.68),
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: _loading
+                  ? null
+                  : () {
+                      setState(() {
+                        _signupConfirmationEmail = null;
+                        _showEmailForm = true;
+                        _creatingAccount = false;
+                      });
+                    },
+              child: const Text('Back to sign in'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -2159,6 +2762,7 @@ class _LoginPageState extends State<LoginPage> {
                               _buildGoogleButton(),
                               const SizedBox(height: 14),
                               _buildEmailEntryActions(scheme),
+                              _buildSignupConfirmation(scheme, textTheme),
                               _buildEmailForm(scheme, textTheme),
                               if (_loginError != null) ...[
                                 const SizedBox(height: 14),

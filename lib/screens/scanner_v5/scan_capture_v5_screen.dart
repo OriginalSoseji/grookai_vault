@@ -7,6 +7,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -31,6 +32,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   static const _uploadMaxLongEdge = 1200;
 
   final _identityService = ScannerV5IdentityService();
+  final _imagePicker = ImagePicker();
   final String _sessionId =
       'scanner_v5_${DateTime.now().toUtc().microsecondsSinceEpoch}';
   CameraController? _controller;
@@ -190,6 +192,64 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     }
   }
 
+  Future<void> _pickPhotoAndIdentify() async {
+    if (_capturing || _addingToVault) return;
+
+    final picked = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 100,
+      requestFullMetadata: false,
+    );
+    if (picked == null) return;
+
+    await HapticFeedback.selectionClick();
+    setState(() {
+      _capturing = true;
+      _result = null;
+      _toastTitle = null;
+      _toastMessage = null;
+      _frozenUploadBytes = null;
+      _showExactAlternates = false;
+    });
+
+    try {
+      final imageBytes = scannerV5PrepareImportedPhotoForUpload(
+        await File(picked.path).readAsBytes(),
+      );
+      if (!mounted) return;
+      setState(() {
+        _frozenUploadBytes = imageBytes;
+      });
+
+      final result = await _identityService.identify(imageBytes);
+      await _appendSessionLog(result, source: 'photo_library');
+      if (!mounted) return;
+      final hasCandidates = result.candidates.isNotEmpty;
+      setState(() {
+        _result = hasCandidates ? result : null;
+        _capturing = false;
+        _frozenUploadBytes = hasCandidates ? _frozenUploadBytes : null;
+        if (!hasCandidates) {
+          _toastTitle = "Couldn't read this photo";
+          _toastMessage =
+              result.retakeHint ?? 'Use a clear photo of one card front.';
+        }
+      });
+      await HapticFeedback.selectionClick();
+    } catch (error) {
+      await _appendIdentifyErrorLog(error, source: 'photo_library');
+      if (!mounted) return;
+      final copy = scannerV5UserFacingError(error);
+      setState(() {
+        _capturing = false;
+        _result = null;
+        _frozenUploadBytes = null;
+        _toastTitle = copy.title;
+        _toastMessage = copy.message;
+      });
+    }
+  }
+
   Future<void> _prepareStill(CameraController controller) async {
     try {
       await controller.setFocusPoint(const Offset(0.5, 0.5));
@@ -303,20 +363,13 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   }
 
   img.Image _resizeForUpload(img.Image source) {
-    final longEdge = math.max(source.width, source.height);
-    if (longEdge <= _uploadMaxLongEdge) {
-      return source;
-    }
-    final scale = _uploadMaxLongEdge / longEdge;
-    return img.copyResize(
-      source,
-      width: math.max(1, (source.width * scale).round()),
-      height: math.max(1, (source.height * scale).round()),
-      interpolation: img.Interpolation.average,
-    );
+    return scannerV5ResizeForUpload(source);
   }
 
-  Future<void> _appendSessionLog(ScannerV5IdentifyResult result) async {
+  Future<void> _appendSessionLog(
+    ScannerV5IdentifyResult result, {
+    String source = 'live_camera',
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
     final retainedRows = rows.length > 49
@@ -328,6 +381,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         'event_type': 'scanner_v5_identify_result',
         'ts': DateTime.now().toUtc().toIso8601String(),
         'session_id': _sessionId,
+        'source': source,
         'endpoint': _identityService.endpoint,
         'result': result.toSessionJson(),
       }),
@@ -335,7 +389,10 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     await prefs.setStringList(_sessionLogKey, nextRows);
   }
 
-  Future<void> _appendIdentifyErrorLog(Object error) async {
+  Future<void> _appendIdentifyErrorLog(
+    Object error, {
+    String source = 'live_camera',
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
     final retainedRows = rows.length > 49
@@ -347,6 +404,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         'event_type': 'scanner_v5_identify_error',
         'ts': DateTime.now().toUtc().toIso8601String(),
         'session_id': _sessionId,
+        'source': source,
         'endpoint': _identityService.endpoint,
         'error_type': scannerV5ErrorType(error),
         'http_status': error is ScannerV5HttpException
@@ -523,10 +581,6 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     }
   }
 
-  void _showPhotoImportStub() {
-    _showScanNotice('Photos coming soon', 'Use the live camera for this pass.');
-  }
-
   void _showHistoryStub() {
     _showScanNotice('History coming soon', 'Recent scans will live here.');
   }
@@ -636,7 +690,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
                     onFlashToggle: _toggleFlash,
                     onHistory: _showHistoryStub,
                     onCapture: _captureAndIdentify,
-                    onPhotos: _showPhotoImportStub,
+                    onPhotos: _pickPhotoAndIdentify,
                     onVault: _popToVault,
                   ),
                   if (endpointNotConfigured)
@@ -721,6 +775,37 @@ String scannerV5ErrorType(Object error) {
   if (error is ScannerV5HttpException) return 'http';
   if (error is ScannerV5ProtocolException) return 'protocol';
   return error.runtimeType.toString();
+}
+
+@visibleForTesting
+Uint8List scannerV5PrepareImportedPhotoForUpload(Uint8List rawBytes) {
+  final decoded = img.decodeImage(rawBytes);
+  if (decoded == null) {
+    return rawBytes;
+  }
+  final oriented = img.bakeOrientation(decoded);
+  final resized = scannerV5ResizeForUpload(oriented);
+  return Uint8List.fromList(
+    img.encodeJpg(
+      resized,
+      quality: _ScanCaptureV5ScreenState._uploadJpegQuality,
+    ),
+  );
+}
+
+@visibleForTesting
+img.Image scannerV5ResizeForUpload(img.Image source) {
+  final longEdge = math.max(source.width, source.height);
+  if (longEdge <= _ScanCaptureV5ScreenState._uploadMaxLongEdge) {
+    return source;
+  }
+  final scale = _ScanCaptureV5ScreenState._uploadMaxLongEdge / longEdge;
+  return img.copyResize(
+    source,
+    width: math.max(1, (source.width * scale).round()),
+    height: math.max(1, (source.height * scale).round()),
+    interpolation: img.Interpolation.average,
+  );
 }
 
 bool scannerV5EndpointNotConfiguredForDevice({

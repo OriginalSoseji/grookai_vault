@@ -14,7 +14,15 @@ import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
 
-enum AccountHubAction { wall, vault, network, sets, messages, signOut }
+enum AccountHubAction {
+  wall,
+  vault,
+  network,
+  sets,
+  messages,
+  gettingStarted,
+  signOut,
+}
 
 enum _AccountSegment { profile, vendorTools }
 
@@ -642,6 +650,13 @@ class _AccountScreenState extends State<AccountScreen> {
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 10),
+            _AccountLinkTile(
+              icon: Icons.school_outlined,
+              title: 'Getting Started',
+              subtitle: 'Search, scan, add cards, share your Wall',
+              onTap: () =>
+                  Navigator.pop(context, AccountHubAction.gettingStarted),
+            ),
             _AccountLinkTile(
               icon: Icons.public_rounded,
               title: 'My Wall',

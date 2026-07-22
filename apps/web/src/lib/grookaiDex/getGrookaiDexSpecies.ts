@@ -1,16 +1,16 @@
 import "server-only";
 
+import { unstable_cache } from "next/cache";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 
 type DexSpeciesViewRow = {
-  species_id: string | null;
+  id: string | null;
   national_dex_number: number | null;
   display_name: string | null;
   slug: string | null;
   types: string[] | null;
   generation: number | null;
-  total_print_count: number | null;
 };
 
 type SpeciesMappingRow = {
@@ -61,20 +61,23 @@ function normalizeSearchQuery(value: string | null | undefined) {
   return normalizeString(value).replace(/[%_]/g, "").slice(0, 64);
 }
 
-export async function getGrookaiDexSpeciesPage(
-  userId: string | null,
-  options: GetGrookaiDexSpeciesPageOptions = {},
-): Promise<GrookaiDexSpeciesPage> {
-  const pageSize = Math.min(Math.max(options.pageSize ?? 100, 24), 120);
-  const page = Math.max(options.page ?? 1, 1);
+type CachedGrookaiDexSpeciesPage = GrookaiDexSpeciesPage & {
+  mappings: SpeciesMappingRow[];
+};
+
+const getCachedGrookaiDexBaseSpeciesPage = unstable_cache(
+  async (
+    page: number,
+    pageSize: number,
+    searchQuery: string,
+  ): Promise<CachedGrookaiDexSpeciesPage> => {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
-  const searchQuery = normalizeSearchQuery(options.searchQuery);
   const admin = createServerAdminClient();
 
   let speciesQuery = admin
-    .from("v_grookai_dex_species_v1")
-    .select("species_id,national_dex_number,display_name,slug,types,generation,total_print_count", { count: "exact" })
+    .from("pokemon_species")
+    .select("id,national_dex_number,display_name,slug,types,generation", { count: "exact" })
     .eq("active", true)
     .order("national_dex_number", { ascending: true });
 
@@ -98,26 +101,27 @@ export async function getGrookaiDexSpeciesPage(
 
   const species = ((speciesRows ?? []) as DexSpeciesViewRow[])
     .map((row) => ({
-      speciesId: normalizeString(row.species_id),
+      speciesId: normalizeString(row.id),
       nationalDexNumber: row.national_dex_number ?? 0,
       displayName: normalizeString(row.display_name),
       slug: normalizeString(row.slug),
       types: Array.isArray(row.types) ? row.types.filter((type): type is string => typeof type === "string") : [],
       generation: row.generation ?? null,
-      totalPrintCount: row.total_print_count ?? 0,
+      totalPrintCount: 0,
       ownedPrintCount: 0,
       ownedCopyCount: 0,
       completionPercent: 0,
     }))
     .filter((row) => row.speciesId && row.slug && row.nationalDexNumber > 0);
 
-  if (!userId || species.length === 0) {
+  if (species.length === 0) {
     return {
       species,
       totalSpeciesCount: count ?? species.length,
       page,
       pageSize,
       totalPages: Math.max(1, Math.ceil((count ?? species.length) / pageSize)),
+      mappings: [],
     };
   }
 
@@ -135,6 +139,54 @@ export async function getGrookaiDexSpeciesPage(
       throw new Error(`[grookai-dex:species-mappings] ${error.message}`);
     }
     mappings.push(...((data ?? []) as SpeciesMappingRow[]));
+  }
+
+  const printIdsBySpecies = new Map<string, Set<string>>();
+  for (const row of mappings) {
+    const speciesId = normalizeString(row.species_id);
+    const cardPrintId = normalizeString(row.card_print_id);
+    if (!speciesId || !cardPrintId) continue;
+    const printIds = printIdsBySpecies.get(speciesId) ?? new Set<string>();
+    printIds.add(cardPrintId);
+    printIdsBySpecies.set(speciesId, printIds);
+  }
+  const speciesWithTotals = species.map((row) => ({
+    ...row,
+    totalPrintCount: printIdsBySpecies.get(row.speciesId)?.size ?? 0,
+  }));
+
+  return {
+    species: speciesWithTotals,
+    totalSpeciesCount: count ?? speciesWithTotals.length,
+    page,
+    pageSize,
+    totalPages: Math.max(1, Math.ceil((count ?? speciesWithTotals.length) / pageSize)),
+    mappings,
+  };
+  },
+  ["grookai-dex-base-species-v2"],
+  {
+    revalidate: 300,
+    tags: ["grookai-dex-species"],
+  },
+);
+
+export async function getGrookaiDexSpeciesPage(
+  userId: string | null,
+  options: GetGrookaiDexSpeciesPageOptions = {},
+): Promise<GrookaiDexSpeciesPage> {
+  const pageSize = Math.min(Math.max(options.pageSize ?? 100, 24), 120);
+  const page = Math.max(options.page ?? 1, 1);
+  const searchQuery = normalizeSearchQuery(options.searchQuery);
+  const cachedPage = await getCachedGrookaiDexBaseSpeciesPage(
+    page,
+    pageSize,
+    searchQuery,
+  );
+  const { mappings, ...publicPage } = cachedPage;
+
+  if (!userId || publicPage.species.length === 0) {
+    return publicPage;
   }
 
   const speciesByCardPrintId = new Map<string, Set<string>>();
@@ -166,7 +218,8 @@ export async function getGrookaiDexSpeciesPage(
   }
 
   return {
-    species: species.map((row) => {
+    ...publicPage,
+    species: publicPage.species.map((row) => {
       const ownedPrintCount = ownedPrintsBySpecies.get(row.speciesId)?.size ?? 0;
       const completionPercent = row.totalPrintCount > 0 ? Math.round((ownedPrintCount / row.totalPrintCount) * 100) : 0;
       return {
@@ -176,10 +229,6 @@ export async function getGrookaiDexSpeciesPage(
         completionPercent,
       };
     }),
-    totalSpeciesCount: count ?? species.length,
-    page,
-    pageSize,
-    totalPages: Math.max(1, Math.ceil((count ?? species.length) / pageSize)),
   };
 }
 

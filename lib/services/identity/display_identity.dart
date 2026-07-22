@@ -16,7 +16,7 @@ class ResolvedDisplayIdentity {
 }
 
 const Map<String, String> _variantKeyMap = <String, String>{
-  'pokemon_together_stamp': 'Pokémon Together Stamp',
+  'pokemon_together_stamp': 'Pokémon Together',
   'prerelease': 'Prerelease Stamp',
   'prerelease_stamp': 'Prerelease Stamp',
   'staff': 'Staff Stamp',

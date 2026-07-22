@@ -11,6 +11,7 @@ import {
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   getPublicPricingByCardIds,
+  PublicPricingSortUnavailableError,
   type PublicPricingRecord,
 } from "@/lib/pricing/getPublicPricingByCardIds";
 import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
@@ -42,6 +43,7 @@ const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
 const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
+const VALUE_SORT_CANDIDATE_LIMIT = SEARCH_LIMIT;
 const SPECIES_FAMILY_SEARCH_LIMIT = 360;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
@@ -946,7 +948,21 @@ function limitRowsBeforeEnrichment(
   query: ResolverQuery,
   sortMode: SortMode,
 ) {
-  if (sortMode !== "relevance" || rows.length <= PRE_ENRICHMENT_RELEVANCE_LIMIT) {
+  const valueSort = sortMode === "value_high" || sortMode === "value_low";
+  const candidateLimit = valueSort
+    ? VALUE_SORT_CANDIDATE_LIMIT
+    : PRE_ENRICHMENT_RELEVANCE_LIMIT;
+  if (valueSort && rows.length > candidateLimit) {
+    throw new PublicPricingSortUnavailableError(
+      "candidate_limit_exceeded",
+      rows.length,
+      candidateLimit,
+    );
+  }
+  if (
+    (sortMode !== "relevance" && !valueSort) ||
+    rows.length <= candidateLimit
+  ) {
     return rows;
   }
 
@@ -983,8 +999,24 @@ function limitRowsBeforeEnrichment(
 
       return left.index - right.index;
     })
-    .slice(0, PRE_ENRICHMENT_RELEVANCE_LIMIT)
+    .slice(0, candidateLimit)
     .map(({ row }) => row);
+}
+
+function assertValueSortPricingEnabled(
+  sortMode: SortMode,
+  includePricing: boolean,
+) {
+  if (
+    (sortMode === "value_high" || sortMode === "value_low") &&
+    !includePricing
+  ) {
+    throw new PublicPricingSortUnavailableError(
+      "pricing_read_incomplete",
+      0,
+      VALUE_SORT_CANDIDATE_LIMIT,
+    );
+  }
 }
 
 function getRowVariantCueSet(row: ExploreRow) {
@@ -2014,6 +2046,21 @@ function sortRows(
 ) {
   if (sortMode === "relevance") {
     return rankRows(rows, query);
+  }
+
+  if (
+    (sortMode === "value_high" || sortMode === "value_low") &&
+    rows.length > 0 &&
+    !rows.some(
+      (row) =>
+        typeof row.raw_price === "number" && Number.isFinite(row.raw_price),
+    )
+  ) {
+    throw new PublicPricingSortUnavailableError(
+      "pricing_values_unavailable",
+      rows.length,
+      VALUE_SORT_CANDIDATE_LIMIT,
+    );
   }
 
   return [...rows].sort((a, b) => {
@@ -3692,6 +3739,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   sortMode: SortMode,
   includePricing = false,
 ): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(sortMode, includePricing);
   const query = await buildResolverQuery(normalizeQuery(rawQuery));
   const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
   const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
@@ -3700,10 +3748,14 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   );
   const supabase = createServerComponentClient();
   const pricingByCardId =
-    includePricing || sortMode === "value_high" || sortMode === "value_low"
+    includePricing
       ? await getPublicPricingByCardIds(
           supabase,
           enrichmentRows.map((row) => row.id),
+          {
+            requireComplete:
+              sortMode === "value_high" || sortMode === "value_low",
+          },
         )
       : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
@@ -4031,6 +4083,7 @@ async function fetchSmartDiscoveryChildRows(
 export async function getExploreRowsForSmartFilterDiscovery(
   options: SmartFilterDiscoveryOptions,
 ): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const parentRows = applyLanguageScopeRows(
     await fetchSmartDiscoverySeedParentRows(options),
     options.languageScope,
@@ -4047,16 +4100,25 @@ export async function getExploreRowsForSmartFilterDiscovery(
         : parentRows,
     options,
   );
-  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
+  const enrichmentRows = limitRowsBeforeEnrichment(
+    exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT),
+    query,
+    options.sortMode,
+  );
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = options.includePricing
-    ? await getPublicPricingByCardIds(
+      ? await getPublicPricingByCardIds(
         supabase,
         enrichmentRows.map((row) => row.id),
+        {
+          requireComplete:
+            options.sortMode === "value_high" ||
+            options.sortMode === "value_low",
+        },
       )
     : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
@@ -4073,6 +4135,7 @@ export async function getExploreRowsForSmartStructuredTextSearch(
   rawQuery: string,
   options: SmartFilterDiscoveryOptions,
 ): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const packet = normalizeQuery(rawQuery);
   const query = await buildResolverQuery(packet);
 
@@ -4115,15 +4178,24 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return [];
   }
 
-  const enrichmentRows = childScopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+  const enrichmentRows = limitRowsBeforeEnrichment(
+    childScopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT),
+    query,
+    options.sortMode,
+  );
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = options.includePricing
-    ? await getPublicPricingByCardIds(
+      ? await getPublicPricingByCardIds(
         supabase,
         enrichmentRows.map((row) => row.id),
+        {
+          requireComplete:
+            options.sortMode === "value_high" ||
+            options.sortMode === "value_low",
+        },
       )
     : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
@@ -4158,6 +4230,7 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   ownedCardPrintIds: string[],
   options: SmartFilterDiscoveryOptions,
 ): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const parentRows = await fetchCardRowsByIds(ownedCardPrintIds);
   const shouldUseChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
@@ -4168,16 +4241,25 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
       : applyLanguageScopeRows(parentRows, options.languageScope),
     options,
   );
-  const enrichmentRows = exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
   const query = await buildResolverQuery(normalizeQuery(""));
+  const enrichmentRows = limitRowsBeforeEnrichment(
+    exactRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT),
+    query,
+    options.sortMode,
+  );
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const supabase = createServerComponentClient();
   const pricingByCardId = options.includePricing
-    ? await getPublicPricingByCardIds(
+      ? await getPublicPricingByCardIds(
         supabase,
         enrichmentRows.map((row) => row.id),
+        {
+          requireComplete:
+            options.sortMode === "value_high" ||
+            options.sortMode === "value_low",
+        },
       )
     : new Map<string, PublicPricingRecord>();
   const rows = await buildExploreRows(
@@ -4238,6 +4320,7 @@ export async function getExploreRowsPacketWithTiming(
   languageScope: PublicLanguageScope = "all",
   includePricing = false,
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
+  assertValueSortPricingEnabled(sortMode, includePricing);
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
   const buildQueryStage = await measureStage(() => buildResolverQuery(packet));
@@ -4422,11 +4505,13 @@ export async function getExploreRowsPacketWithTiming(
   Object.assign(exactFiltersStage, timedExactFilters.timing);
   exactRows = timedExactFilters.value;
 
+  const valueSort = sortMode === "value_high" || sortMode === "value_low";
   const shouldLimitBeforeEnrichment =
-    sortMode === "relevance" &&
-    typeof exactReleaseYear !== "number" &&
-    typeof releaseYearMin !== "number" &&
-    typeof releaseYearMax !== "number";
+    valueSort ||
+    (sortMode === "relevance" &&
+      typeof exactReleaseYear !== "number" &&
+      typeof releaseYearMin !== "number" &&
+      typeof releaseYearMax !== "number");
   if (shouldLimitBeforeEnrichment) {
     exactRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
   }
@@ -4445,6 +4530,7 @@ export async function getExploreRowsPacketWithTiming(
       ? getPublicPricingByCardIds(
           supabase,
           exactRows.map((row) => row.id),
+          { requireComplete: valueSort },
         )
       : Promise.resolve(new Map<string, PublicPricingRecord>()),
   );

@@ -24,8 +24,10 @@ const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
 const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
-const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 500;
+const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
+const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
+const HISTORICAL_ADVISORY_LOCK_NAME = "grookai:tcgcsv:historical:v1";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
 const { Client } = pg;
@@ -36,6 +38,18 @@ function positiveIntFromEnv(name, fallback) {
   const parsed = Number.parseInt(raw, 10);
   if (!Number.isInteger(parsed) || parsed < 1) throw new Error(`${name} must be a positive integer`);
   return parsed;
+}
+
+function parsePositiveIntSet(value, flagName) {
+  const parsed = String(value ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => Number.parseInt(part, 10));
+  if (parsed.length === 0 || parsed.some((part) => !Number.isInteger(part) || part < 1)) {
+    throw new Error(`${flagName} must be a comma-separated list of positive integers`);
+  }
+  return new Set(parsed);
 }
 
 function parseArgs(argv) {
@@ -55,6 +69,8 @@ function parseArgs(argv) {
     includeEmptyCategories: false,
     limitCategories: null,
     limitGroups: null,
+    categoryIds: null,
+    groupIds: null,
   };
 
   for (const arg of argv) {
@@ -75,6 +91,8 @@ function parseArgs(argv) {
     else if (arg === "--include-empty-categories") args.includeEmptyCategories = true;
     else if (arg.startsWith("--limit-categories=")) args.limitCategories = Number.parseInt(arg.slice("--limit-categories=".length), 10);
     else if (arg.startsWith("--limit-groups=")) args.limitGroups = Number.parseInt(arg.slice("--limit-groups=".length), 10);
+    else if (arg.startsWith("--category-ids=")) args.categoryIds = parsePositiveIntSet(arg.slice("--category-ids=".length), "--category-ids");
+    else if (arg.startsWith("--group-ids=")) args.groupIds = parsePositiveIntSet(arg.slice("--group-ids=".length), "--group-ids");
   }
 
   if (!["current", "historical"].includes(args.mode)) throw new Error("--mode must be current or historical");
@@ -86,6 +104,8 @@ function parseArgs(argv) {
   if (args.limitGroups !== null && (!Number.isInteger(args.limitGroups) || args.limitGroups < 1)) {
     throw new Error("--limit-groups must be positive");
   }
+  if (args.categoryIds && args.limitCategories !== null) throw new Error("--category-ids cannot be combined with --limit-categories");
+  if (args.groupIds && args.limitGroups !== null) throw new Error("--group-ids cannot be combined with --limit-groups");
   if (args.mode === "historical") {
     if (args.date) {
       args.dateFrom = args.date;
@@ -281,6 +301,13 @@ function productRow(product, runId) {
 }
 
 function priceObservationRow(price, { observedOn, runId, artifactId = null, artifactPath = null, categoryId = null, groupId = null }) {
+  const {
+    categoryId: _categoryId,
+    groupId: _groupId,
+    observedOn: _observedOn,
+    archivePath: _archivePath,
+    ...sourcePricePayload
+  } = price;
   const subtypeName = String(price.subTypeName ?? "Unknown");
   return {
     source_price_row_identity: sourcePriceIdentity(price),
@@ -296,8 +323,8 @@ function priceObservationRow(price, { observedOn, runId, artifactId = null, arti
     market_price: price.marketPrice ?? null,
     direct_low_price: price.directLowPrice ?? null,
     currency: "USD",
-    raw_payload: price,
-    payload_hash: sha256(price),
+    raw_payload: sourcePricePayload,
+    payload_hash: sha256(sourcePricePayload),
     source_archive_path: artifactPath,
     source_artifact_id: artifactId,
     first_seen_run_id: runId,
@@ -337,6 +364,9 @@ async function upsertRun(client, run) {
      on conflict (run_key) do update set
        status = excluded.status,
        source_marker = excluded.source_marker,
+       observed_on = excluded.observed_on,
+       date_from = excluded.date_from,
+       date_to = excluded.date_to,
        request_count = excluded.request_count,
        category_count = excluded.category_count,
        group_count = excluded.group_count,
@@ -348,6 +378,7 @@ async function upsertRun(client, run) {
        failed_count = excluded.failed_count,
        artifact_root = excluded.artifact_root,
        artifact_hash = excluded.artifact_hash,
+       started_at = excluded.started_at,
        finished_at = excluded.finished_at,
        error = excluded.error,
        payload = excluded.payload
@@ -677,6 +708,13 @@ async function upsertProducts(client, rows) {
 
 async function upsertPriceObservations(client, rows) {
   const chunkSize = positiveIntFromEnv("TCGCSV_PRICE_OBSERVATION_BATCH_SIZE", DEFAULT_PRICE_OBSERVATION_BATCH_SIZE);
+  const batchDelayMs = Number.parseInt(
+    process.env.TCGCSV_PRICE_BATCH_DELAY_MS ?? String(DEFAULT_PRICE_BATCH_DELAY_MS),
+    10,
+  );
+  if (!Number.isInteger(batchDelayMs) || batchDelayMs < 0) {
+    throw new Error("TCGCSV_PRICE_BATCH_DELAY_MS must be a non-negative integer");
+  }
   let inserted = 0;
   let updated = 0;
   let noOp = 0;
@@ -739,20 +777,29 @@ async function upsertPriceObservations(client, rows) {
            last_seen_run_id = excluded.last_seen_run_id,
            last_observed_at = now(),
            updated_at = now()
+         where public.tcgcsv_source_price_daily_observations.payload_hash is distinct from excluded.payload_hash
+            or public.tcgcsv_source_price_daily_observations.product_id is distinct from excluded.product_id
+            or public.tcgcsv_source_price_daily_observations.category_id is distinct from coalesce(excluded.category_id, public.tcgcsv_source_price_daily_observations.category_id)
+            or public.tcgcsv_source_price_daily_observations.group_id is distinct from coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id)
+            or public.tcgcsv_source_price_daily_observations.subtype_name is distinct from excluded.subtype_name
+            or public.tcgcsv_source_price_daily_observations.subtype_name_normalized is distinct from excluded.subtype_name_normalized
          returning (xmax = 0) as inserted
        )
        select
          count(*) filter (where inserted)::int as inserted,
-         count(*) filter (where not inserted)::int as updated
+         count(*) filter (where not inserted)::int as updated,
+         ((select count(*) from input_rows) - count(*))::int as no_op
        from upserted`,
       [JSON.stringify(chunk)],
     );
     inserted += Number(result.rows[0]?.inserted ?? 0);
     updated += Number(result.rows[0]?.updated ?? 0);
+    noOp += Number(result.rows[0]?.no_op ?? 0);
     const processed = Math.min(offset + chunk.length, rows.length);
     if (processed === rows.length || processed % (chunkSize * 20) === 0) {
       console.error(`[tcgcsv-full] price_observations processed=${processed}/${rows.length} inserted=${inserted} updated=${updated}`);
     }
+    if (processed < rows.length) await sleep(batchDelayMs);
   }
   return {
     inserted,
@@ -933,7 +980,9 @@ async function runCurrentSync(args, runKey, artifactRoot) {
   const { json: categoriesPayload } = await fetcher.fetchJson(`${TCGPLAYER_BASE}/categories`, "categories", "categories.json");
   let categories = categoriesPayload.results ?? [];
   if (!args.includeEmptyCategories) categories = categories.filter((category) => !EMPTY_CATEGORY_IDS.has(Number(category.categoryId)));
+  if (args.categoryIds) categories = categories.filter((category) => args.categoryIds.has(Number(category.categoryId)));
   if (args.limitCategories) categories = categories.slice(0, args.limitCategories);
+  const isTargetedCurrentRetry = Boolean(args.categoryIds || args.groupIds);
 
   if (args.apply) {
     let artifactCursor = 0;
@@ -1022,6 +1071,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
             { category_id: categoryId },
           );
           let groups = groupsPayload.results ?? [];
+          if (args.groupIds) groups = groups.filter((group) => args.groupIds.has(Number(group.groupId)));
           if (args.limitGroups) groups = groups.slice(0, args.limitGroups);
           totals.groupCount += groups.length;
           totals.artifactCount += await insertNewArtifacts(runId);
@@ -1080,7 +1130,11 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         await checkpoint(runId);
       }
 
-      const missing = failedFetches.length === 0 ? await markMissingCurrentRows(client, runId) : null;
+      const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
+        ? await markMissingCurrentRows(client, runId)
+        : isTargetedCurrentRetry
+          ? { skipped: "targeted_current_retry" }
+          : null;
       totals.updated += Number(missing?.categories_marked_missing ?? 0) + Number(missing?.groups_marked_missing ?? 0) + Number(missing?.products_marked_missing ?? 0);
       const finalRun = {
         ...run,
@@ -1139,6 +1193,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         { category_id: categoryId },
       );
       let groups = groupsPayload.results ?? [];
+      if (args.groupIds) groups = groups.filter((group) => args.groupIds.has(Number(group.groupId)));
       if (args.limitGroups) groups = groups.slice(0, args.limitGroups);
       allGroups.push(...groups);
       for (const group of groups) {
@@ -1203,7 +1258,11 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         categoryId: row.categoryId,
         groupId: row.groupId,
       })));
-      const missing = failedFetches.length === 0 ? await markMissingCurrentRows(client, runId) : null;
+      const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
+        ? await markMissingCurrentRows(client, runId)
+        : isTargetedCurrentRetry
+          ? { skipped: "targeted_current_retry" }
+          : null;
       const inserted = categoriesResult.inserted + groupsResult.inserted + productsResult.inserted + priceResult.inserted + artifactCount;
       const updated = categoriesResult.updated + groupsResult.updated + productsResult.updated + priceResult.updated + Number(missing?.categories_marked_missing ?? 0) + Number(missing?.groups_marked_missing ?? 0) + Number(missing?.products_marked_missing ?? 0);
       const noOp = categoriesResult.noOp + groupsResult.noOp + productsResult.noOp + priceResult.noOp;
@@ -1222,7 +1281,8 @@ async function runCurrentSync(args, runKey, artifactRoot) {
 
 async function runHistoricalSync(args, runKey, artifactRoot) {
   const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
-  const dates = dateRange(args.dateFrom, args.dateTo);
+  const dates = dateRange(args.dateFrom, args.dateTo)
+    .filter((date) => !args.completedHistoricalDates?.has(date));
   const allPrices = [];
   const failedDates = [];
   const extractedRoots = [];
@@ -1282,8 +1342,8 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
     artifact_root: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
     artifact_hash: sha256(fetcher.artifacts.map((artifact) => ({ path: artifact.local_path, sha256: artifact.sha256 }))),
     git_commit_sha: await gitCommitSha(),
-    started_at: new Date().toISOString(),
-    finished_at: new Date().toISOString(),
+    started_at: args.actualStartedAt ?? new Date().toISOString(),
+    finished_at: null,
     payload: { failed_dates: failedDates, extracted_roots: extractedRoots.map((root) => path.relative(REPO_ROOT, root).replace(/\\/g, "/")) },
   };
 
@@ -1305,6 +1365,7 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
       run.updated_count = priceResult.updated;
       run.no_op_count = priceResult.noOp;
       run.payload = { ...run.payload, apply_results: { artifactCount, placeholderProducts, priceResult } };
+      run.finished_at = new Date().toISOString();
       await upsertRun(client, run);
     } finally {
       await client.end().catch(() => {});
@@ -1312,6 +1373,90 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
   }
 
   return { run, summary: { dates: dates.length, prices: allPrices.length, failedDates }, artifacts: fetcher.artifacts };
+}
+
+async function acquireHistoricalGuard(args) {
+  if (!args.apply || args.mode !== "historical") return null;
+  const client = await connectDb();
+  const lock = await client.query(
+    "select pg_try_advisory_lock(hashtext($1)) as acquired",
+    [HISTORICAL_ADVISORY_LOCK_NAME],
+  );
+  if (!lock.rows[0]?.acquired) {
+    await client.end().catch(() => {});
+    const error = new Error("another historical TCGCSV worker already owns the production lock");
+    error.code = "HISTORICAL_WORKER_LOCKED";
+    throw error;
+  }
+
+  const staleRunHours = positiveIntFromEnv(
+    "TCGCSV_HISTORICAL_STALE_RUN_HOURS",
+    3,
+  );
+  const reconciled = await client.query(
+    `update public.tcgcsv_source_sync_runs
+     set status = 'failed',
+         finished_at = coalesce(finished_at, now()),
+         error = coalesce(nullif(error, ''), 'reconciled_abandoned_historical_run'),
+         payload = coalesce(payload, '{}'::jsonb) || jsonb_build_object(
+           'reconciled_at', now(),
+           'reconciled_reason', 'abandoned_historical_run'
+         )
+     where sync_mode = 'historical_archive_backfill'
+       and status = 'running'
+       and coalesce(started_at, created_at) <
+         now() - ($1::integer * interval '1 hour')`,
+    [staleRunHours],
+  );
+  if (reconciled.rowCount > 0) {
+    console.error(
+      `[tcgcsv-full] reconciled_abandoned_historical_runs count=${reconciled.rowCount} older_than_hours=${staleRunHours}`,
+    );
+  }
+
+  if (!args.force) {
+    const completed = await client.query(
+      `select date_from::text as date
+       from public.tcgcsv_source_sync_runs
+       where sync_mode = 'historical_archive_backfill'
+         and status in ('completed', 'partial_success')
+         and failed_count = 0
+         and date_from = date_to
+         and date_from between $1::date and $2::date`,
+      [args.dateFrom, args.dateTo],
+    );
+    args.completedHistoricalDates = new Set(completed.rows.map((row) => row.date));
+  }
+  return client;
+}
+
+async function releaseHistoricalGuard(client) {
+  if (!client) return;
+  try {
+    await client.query("select pg_advisory_unlock(hashtext($1))", [HISTORICAL_ADVISORY_LOCK_NAME]);
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
+async function recordHistoricalFailure(args, runKey, error) {
+  if (!args.apply || args.mode !== "historical") return;
+  const client = await connectDb();
+  try {
+    await upsertRun(client, {
+      run_key: runKey,
+      sync_mode: "historical_archive_backfill",
+      status: "failed",
+      date_from: args.dateFrom,
+      date_to: args.dateTo,
+      error: String(error?.message ?? error).slice(0, 4000),
+      started_at: args.actualStartedAt,
+      finished_at: new Date().toISOString(),
+      payload: { failure_code: error?.code ?? null },
+    });
+  } finally {
+    await client.end().catch(() => {});
+  }
 }
 
 async function writeSummary(outDir, runKey, result) {
@@ -1323,15 +1468,42 @@ async function writeSummary(outDir, runKey, result) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const runKey = args.resumeRunKey ?? `TCGCSV-FULL-${args.mode.toUpperCase()}-${timestampStamp()}`;
+  args.actualStartedAt = new Date().toISOString();
+  const deterministicHistoricalKey = args.mode === "historical" && !args.force && args.dateFrom === args.dateTo
+    ? `TCGCSV-FULL-HISTORICAL-${args.dateFrom}`
+    : null;
+  const runKey = args.resumeRunKey
+    ?? deterministicHistoricalKey
+    ?? `TCGCSV-FULL-${args.mode.toUpperCase()}-${timestampStamp()}`;
   const artifactRoot = path.join(args.outDir, runKey);
   await fs.mkdir(artifactRoot, { recursive: true });
 
+  let historicalGuard = null;
   let result;
   try {
-    result = args.mode === "current"
-      ? await runCurrentSync(args, runKey, artifactRoot)
-      : await runHistoricalSync(args, runKey, artifactRoot);
+    historicalGuard = await acquireHistoricalGuard(args);
+    const requestedDates = args.mode === "historical" ? dateRange(args.dateFrom, args.dateTo) : [];
+    if (requestedDates.length > 0 && requestedDates.every((date) => args.completedHistoricalDates?.has(date))) {
+      result = {
+        run: {
+          run_key: runKey,
+          sync_mode: "historical_archive_backfill",
+          status: "skipped_already_completed",
+          date_from: args.dateFrom,
+          date_to: args.dateTo,
+          request_count: 0,
+          price_row_count: 0,
+          started_at: args.actualStartedAt,
+          finished_at: new Date().toISOString(),
+        },
+        summary: { dates: 0, skipped_dates: requestedDates },
+        artifacts: [],
+      };
+    } else {
+      result = args.mode === "current"
+        ? await runCurrentSync(args, runKey, artifactRoot)
+        : await runHistoricalSync(args, runKey, artifactRoot);
+    }
   } catch (error) {
     if (error?.code === "REQUEST_CEILING") {
       result = {
@@ -1360,9 +1532,25 @@ async function main() {
           await client.end().catch(() => {});
         }
       }
+    } else if (error?.code === "HISTORICAL_WORKER_LOCKED") {
+      result = {
+        run: {
+          run_key: runKey,
+          sync_mode: "historical_archive_backfill",
+          status: "skipped_worker_locked",
+          error: error.message,
+          started_at: args.actualStartedAt,
+          finished_at: new Date().toISOString(),
+        },
+        summary: { error: error.message },
+        artifacts: [],
+      };
     } else {
+      await recordHistoricalFailure(args, runKey, error);
       throw error;
     }
+  } finally {
+    await releaseHistoricalGuard(historicalGuard);
   }
 
   const summaryPath = await writeSummary(artifactRoot, runKey, {

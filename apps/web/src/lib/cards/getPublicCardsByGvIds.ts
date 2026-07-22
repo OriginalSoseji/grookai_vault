@@ -5,6 +5,7 @@ import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
+import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
@@ -87,7 +88,10 @@ function getReleaseYear(releaseDate?: string | null) {
   return Number.isFinite(parsed) ? parsed : undefined;
 }
 
-export async function getPublicCardsByGvIds(gvIds: string[]) {
+export async function getPublicCardsByGvIds(
+  gvIds: string[],
+  options: { includePricing?: boolean } = {},
+) {
   const normalizedIds = normalizeCompareCardsParam(gvIds);
   if (normalizedIds.length === 0) {
     return [] as ComparePublicCard[];
@@ -131,7 +135,9 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
   const rows = (data ?? []) as PublicCompareCardRow[];
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
   const [pricesByCardId, childDisplayImageFallbacks] = await Promise.all([
-    getPublicPricingByCardIds(supabase, cardIds),
+    options.includePricing
+      ? getPublicPricingByCardIds(createServerComponentClient(), cardIds)
+      : Promise.resolve(new Map()),
     getChildDisplayImageFallbacks(supabase, rows),
   ]);
 

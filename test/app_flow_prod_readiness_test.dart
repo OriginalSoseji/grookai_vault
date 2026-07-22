@@ -185,6 +185,19 @@ void main() {
     expect(main, contains('_configureAppImageCache'));
   });
 
+  test('vault grid uses normalized images and shows variant line', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+
+    expect(vault, contains('final imageUrl = _vaultDisplayImageUrl(row);'));
+    expect(
+      vault,
+      contains("if ((displayIdentity.suffix ?? '').trim().isNotEmpty)"),
+    );
+    expect(vault, contains('displayIdentity.suffix!.trim()'));
+    expect(vault, contains('displayIdentity.baseName'));
+    expect(vault, isNot(contains("final imageUrl = (row['photo_url']")));
+  });
+
   test('mobile Japanese display mirrors web English primary contract', () {
     final identity = File(
       'lib/services/identity/display_identity.dart',
