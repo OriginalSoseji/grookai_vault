@@ -62,6 +62,9 @@ const nextConfig = {
         "../../docs/audits/release_hardening_v1/release_readiness_matrix_20260517.json",
         "../../docs/audits/supabase_security_linter_v1/supabase_security_warn_remediation_v2_20260521.md",
       ],
+      "/api/review/visual-search/dashboard": [
+        "./private/review/visual-search/**",
+      ],
     },
   },
   env: {

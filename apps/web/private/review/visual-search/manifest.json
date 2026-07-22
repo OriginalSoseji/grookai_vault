@@ -1,0 +1,18 @@
+{
+  "bundle_version": "CARD_VISUAL_SEARCH_REVIEW_PORTAL_BUNDLE_V1",
+  "created_at": "2026-07-22T05:22:39.163Z",
+  "source_packet_dir": "docs/audits/card_visual_search_judgment_packet_v1/2026-07-22T05-22-02-356Z_packet_13bc0f5043d5",
+  "packet_version": "CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1",
+  "packet_run_key": "13bc0f5043d574246c739c89953b43c07df991d717ff1bdd39f991ba24cc5f0e",
+  "source_commit_sha": "bf0ac663e945460d77f1b506a329431c0671f0bb",
+  "calibration_query_count": 200,
+  "holdout_query_count": 0,
+  "saved_visual_record_count": 753,
+  "server_writes": false,
+  "browser_local_storage_only": true,
+  "jsonl_export_only": true,
+  "source_html_sha256": "7ab735665eb1d25f14c2bbfc916d64179c1602d91cedaed6b7ea3bb654b998c3",
+  "source_html_bytes": 22179971,
+  "bundle_sha256": "2bbf5cd1fa816c0d6635a3c78416406a05bee6ca6ac4bc300eb1370891ee0316",
+  "bundle_bytes": 1358764
+}
