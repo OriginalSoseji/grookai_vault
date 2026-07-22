@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-22T17:03:04.108Z",
-  "source": "build-time paged public.card_prints snapshot, filtered to non-null gv_id and set_code",
+  "generated_at": "2026-07-22T17:32:37.860Z",
+  "source": "public.card_prints grouped by normalized set_code, filtered to non-null gv_id and set_code",
   "set_code_count": 691,
   "counts": {
     "2021swsh": 25,
