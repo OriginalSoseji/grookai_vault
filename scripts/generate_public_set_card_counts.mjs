@@ -1,11 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import dotenv from "dotenv";
-import { createClient } from "@supabase/supabase-js";
-import pg from "pg";
-
-const { Client } = pg;
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDirectory, "..");
@@ -18,6 +13,7 @@ const outputPath = path.join(
   "publicSetCardCounts.generated.json",
 );
 const allowStale = process.argv.includes("--allow-stale");
+const validateOnly = process.argv.includes("--validate-only");
 const PAGE_SIZE = 1000;
 const DB_CONNECTION_TIMEOUT_MS = 5_000;
 const DB_STATEMENT_TIMEOUT_MS = 30_000;
@@ -25,8 +21,35 @@ const API_PAGE_TIMEOUT_MS = 6_000;
 const API_TOTAL_TIMEOUT_MS = 45_000;
 const MIN_RETAINED_SNAPSHOT_RATIO = 0.95;
 
-dotenv.config({ path: path.join(repoRoot, ".env.local"), quiet: true });
-dotenv.config({ path: path.join(repoRoot, ".env"), quiet: true });
+async function loadEnvFile(filePath) {
+  try {
+    const contents = await fs.readFile(filePath, "utf8");
+    for (const rawLine of contents.split(/\r?\n/)) {
+      const line = rawLine.trim().replace(/^export\s+/, "");
+      if (!line || line.startsWith("#")) continue;
+      const separatorIndex = line.indexOf("=");
+      if (separatorIndex <= 0) continue;
+      const name = line.slice(0, separatorIndex).trim();
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) continue;
+      if (process.env[name] !== undefined) continue;
+
+      let value = line.slice(separatorIndex + 1).trim();
+      if (
+        value.length >= 2 &&
+        ((value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'")))
+      ) {
+        value = value.slice(1, -1);
+      }
+      process.env[name] = value;
+    }
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+}
+
+await loadEnvFile(path.join(repoRoot, ".env.local"));
+await loadEnvFile(path.join(repoRoot, ".env"));
 
 function normalizeSetCode(value) {
   return String(value ?? "").trim().toLowerCase();
@@ -78,6 +101,8 @@ function assertPlausibleSnapshot(counts, existingManifest) {
 }
 
 async function fetchCountsFromDatabase(connectionString) {
+  const { default: pg } = await import("pg");
+  const { Client } = pg;
   const client = new Client({
     connectionString,
     ssl: { rejectUnauthorized: false },
@@ -110,13 +135,6 @@ async function fetchCountsFromDatabase(connectionString) {
 }
 
 async function fetchCountsFromPublicApi(url, publishableKey) {
-  const supabase = createClient(url, publishableKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-    },
-  });
   const counts = {};
   const deadlineAtMs = Date.now() + API_TOTAL_TIMEOUT_MS;
   for (let offset = 0; ; offset += PAGE_SIZE) {
@@ -124,27 +142,41 @@ async function fetchCountsFromPublicApi(url, publishableKey) {
     if (remainingMs <= 0) {
       throw new Error("Public set count refresh exceeded its total timeout.");
     }
-    const { data, error } = await supabase
-      .from("card_prints")
-      .select("set_code")
-      .not("gv_id", "is", null)
-      .not("set_code", "is", null)
-      .order("id", { ascending: true })
-      .range(offset, offset + PAGE_SIZE - 1)
-      .abortSignal(
-        AbortSignal.timeout(Math.min(API_PAGE_TIMEOUT_MS, remainingMs)),
+    const requestUrl = new URL("/rest/v1/card_prints", url);
+    requestUrl.searchParams.set("select", "set_code");
+    requestUrl.searchParams.set("gv_id", "not.is.null");
+    requestUrl.searchParams.set("set_code", "not.is.null");
+    requestUrl.searchParams.set("order", "id.asc");
+    requestUrl.searchParams.set("offset", String(offset));
+    requestUrl.searchParams.set("limit", String(PAGE_SIZE));
+    const headers = new Headers({
+      accept: "application/json",
+      apikey: publishableKey,
+    });
+    headers.set("authorization", `Bearer ${publishableKey}`);
+    headers.set("accept-profile", "public");
+    const response = await fetch(requestUrl, {
+      headers,
+      signal: AbortSignal.timeout(
+        Math.min(API_PAGE_TIMEOUT_MS, remainingMs),
+      ),
+    });
+    if (!response.ok) {
+      throw new Error(
+        `Public set count page failed with HTTP ${response.status}.`,
       );
-
-    if (error) {
-      throw new Error(error.message);
+    }
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error("Public set count page returned a non-array payload.");
     }
 
-    for (const row of data ?? []) {
+    for (const row of data) {
       const code = normalizeSetCode(row.set_code);
       if (code) counts[code] = (counts[code] ?? 0) + 1;
     }
 
-    if ((data ?? []).length < PAGE_SIZE) break;
+    if (data.length < PAGE_SIZE) break;
   }
 
   return {
@@ -193,14 +225,32 @@ async function generateManifest() {
   );
 }
 
-try {
-  await generateManifest();
-} catch (error) {
-  if (allowStale && (await readUsableExistingManifest())) {
-    console.warn(
-      `[public-set-counts] refresh failed; using checked-in manifest: ${error instanceof Error ? error.message : String(error)}`,
-    );
-  } else {
-    throw error;
+async function validateExistingManifest() {
+  const manifest = await readUsableExistingManifest();
+  if (!manifest) {
+    throw new Error("Checked-in public set count manifest is missing or invalid.");
+  }
+  assertPlausibleSnapshot(manifest.counts, null);
+  if (manifest.set_code_count !== Object.keys(manifest.counts).length) {
+    throw new Error("Checked-in public set count manifest has a stale set count.");
+  }
+  console.log(
+    `[public-set-counts] validated ${manifest.set_code_count} checked-in set counts`,
+  );
+}
+
+if (validateOnly) {
+  await validateExistingManifest();
+} else {
+  try {
+    await generateManifest();
+  } catch (error) {
+    if (allowStale && (await readUsableExistingManifest())) {
+      console.warn(
+        `[public-set-counts] refresh failed; using checked-in manifest: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    } else {
+      throw error;
+    }
   }
 }

@@ -21,6 +21,9 @@ const manifest = JSON.parse(
     "utf8",
   ),
 );
+const webPackage = JSON.parse(
+  fs.readFileSync(path.resolve(here, "../../package.json"), "utf8"),
+);
 const listFunctionSource = source.slice(
   source.indexOf("export const getPublicSets"),
   source.indexOf("export const getPublicSetByCode"),
@@ -43,6 +46,13 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.match(generatorSource, /MIN_RETAINED_SNAPSHOT_RATIO/);
   assert.match(generatorSource, /assertPlausibleSnapshot/);
   assert.match(generatorSource, /for \(let offset = 0;/);
+  assert.doesNotMatch(
+    generatorSource,
+    /^import .* from ["'](?:pg|dotenv|@supabase\/supabase-js)["'];?$/m,
+  );
+  assert.match(generatorSource, /validateOnly/);
+  assert.match(webPackage.scripts.prebuild, /--validate-only/);
+  assert.doesNotMatch(webPackage.scripts.prebuild, /--allow-stale/);
   assert.doesNotMatch(source, /Math\.max\(row\.printed_total \?\? 0, 1\)/);
 });
 

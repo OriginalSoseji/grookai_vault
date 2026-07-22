@@ -14,7 +14,7 @@ const forbidden = [
   ['Supabase client construction', /createClient\s*\(/],
   ['RPC invocation', /\.rpc\s*\(/],
   ['database connection string', /DATABASE_URL|SUPABASE_DB_URL/],
-  ['service-role credential', /SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEY/],
+  ['privileged credential', /SUPABASE_(?:SERVICE_ROLE|SECRET)_KEY/],
   ['legacy run branch', /mode\s*===?\s*["']run["']/],
   ['legacy debug branch', /mode\s*===?\s*["']env_debug["']/],
 ];

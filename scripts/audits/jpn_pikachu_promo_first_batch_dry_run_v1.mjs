@@ -187,9 +187,9 @@ function toMarkdown(report) {
 
 async function supabaseClient() {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_ANON_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key) {
-    throw new Error('Missing SUPABASE_URL and Supabase key env vars.');
+    throw new Error('Missing SUPABASE_URL and SUPABASE_SECRET_KEY/SUPABASE_PUBLISHABLE_KEY.');
   }
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
