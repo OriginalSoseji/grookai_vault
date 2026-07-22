@@ -81,16 +81,26 @@ test("public card image chooses an initial source before hydration", () => {
   assert.doesNotMatch(nextConfig, /3840/);
 });
 
-test("canonical catalog image route is immutable and does not redirect through signed URLs", () => {
+test("canonical catalog image routes use safe cache policies and do not redirect through signed URLs", () => {
   const canonImageRoute = readSource("app", "api", "canon", "image", "route.ts");
+  const canonCardImageRoute = readSource("app", "api", "canon", "cards", "[gv_id]", "image", "route.ts");
+  const publicCardImageHelper = readSource("lib", "publicCardImage.ts");
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
 
   assert.match(canonImageRoute, /normalizeWarehouseCanonImagePath/);
   assert.match(canonImageRoute, /download\(path\)/);
   assert.match(canonImageRoute, /max-age=31536000, immutable/);
+  assert.match(canonCardImageRoute, /download\(imagePath\)/);
+  assert.match(canonCardImageRoute, /CDN-Cache-Control/);
+  assert.match(canonCardImageRoute, /Vercel-CDN-Cache-Control/);
+  assert.match(canonCardImageRoute, /s-maxage=300, stale-while-revalidate=600/);
+  assert.doesNotMatch(canonCardImageRoute, /31536000, immutable/);
+  assert.match(publicCardImageHelper, /normalizeCanonCardImageProxyUrl\(normalized\)/);
   assert.doesNotMatch(canonImageRoute, /NextResponse\.redirect/);
+  assert.doesNotMatch(canonCardImageRoute, /NextResponse\.redirect/);
   assert.doesNotMatch(canonImageRoute, /resolveVaultInstanceMediaUrl/);
   assert.match(cardPage, /function isCanonImageProxyUrl/);
+  assert.match(cardPage, /Boolean\(normalizeCanonCardImageProxyUrl\(value\)\)/);
   assert.match(cardPage, /unoptimized=\{isCanonImageProxyUrl\(resolvedCardImageSrc\)\}/);
 });
 

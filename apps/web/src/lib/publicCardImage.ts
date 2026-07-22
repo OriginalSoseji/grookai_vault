@@ -1,6 +1,7 @@
 import {
   buildCanonImageProxyUrlFromStorageUrl,
   isPrivateCardImagePublicUrl,
+  normalizeCanonCardImageProxyUrl,
 } from "@/lib/canon/canonImageProxy";
 
 const NEXT_IMAGE_PATHNAME = "/_next/image";
@@ -88,8 +89,12 @@ export function normalizePublicCardImageSrc(value: string | null | undefined) {
   }
 
   const normalized = normalizePublicCardImageUrl(value.trim());
+  const canonCardProxyUrl = normalizeCanonCardImageProxyUrl(normalized);
   if (normalized.startsWith("/api/canon/image?path=")) {
     return normalized;
+  }
+  if (canonCardProxyUrl) {
+    return canonCardProxyUrl;
   }
 
   return isUsablePublicImageUrl(normalized) ? normalized : undefined;
