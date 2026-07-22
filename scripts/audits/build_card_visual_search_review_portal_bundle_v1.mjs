@@ -11,7 +11,7 @@ export const CARD_VISUAL_SEARCH_REVIEW_PORTAL_BUNDLE_VERSION =
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_SOURCE_PACKET_DIR =
-  "docs/audits/card_visual_search_judgment_packet_v1/2026-07-21T23-24-19-117Z_packet_35334262474f";
+  "docs/audits/card_visual_search_judgment_packet_v1/2026-07-22T05-07-32-269Z_packet_dbd10cbc7ca6";
 const DEFAULT_OUTPUT_DIR = "apps/web/private/review/visual-search";
 const brotliCompress = promisify(brotliCompressCallback);
 
