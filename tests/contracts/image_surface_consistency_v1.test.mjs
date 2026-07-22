@@ -68,6 +68,7 @@ test("canon identity images prefer stable card image routes over raw signed URLs
   const resolver = source("apps/web/src/lib/canon/resolveCanonImageV1.ts");
   const route = source("apps/web/src/app/api/canon/cards/[gv_id]/image/route.ts");
   const batchRoute = source("apps/web/src/app/api/canon/images/route.ts");
+  const publicImageResolver = source("apps/web/src/lib/publicCardImage.ts");
 
   assert.match(proxy, /buildCanonCardImageProxyUrl/);
   assert.match(proxy, /warehouse-derived\/self-hosted-images-v1\//);
@@ -80,7 +81,11 @@ test("canon identity images prefer stable card image routes over raw signed URLs
   assert.match(route, /\.from\("card_printings"\)/);
   assert.match(route, /\.select\("printing_gv_id,image_source,image_path"\)/);
   assert.match(route, /\.download\(imagePath\)/);
-  assert.match(route, /"Cache-Control": "no-store, max-age=0"/);
+  assert.match(route, /"Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=600"/);
+  assert.match(route, /"CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"/);
+  assert.match(route, /"Vercel-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"/);
+  assert.doesNotMatch(route, /31536000, immutable/);
+  assert.match(publicImageResolver, /normalizeCanonCardImageProxyUrl\(normalized\)/);
   assert.match(batchRoute, /\.from\("card_prints"\)/);
   assert.match(batchRoute, /\.from\("card_printings"\)/);
   assert.match(batchRoute, /buildCanonCardImageProxyUrl\(row\.gv_id \?\? row\.printing_gv_id\)/);

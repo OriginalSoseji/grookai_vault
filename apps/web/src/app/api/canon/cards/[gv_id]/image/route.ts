@@ -72,7 +72,9 @@ export async function GET(
 
   return new NextResponse(await data.arrayBuffer(), {
     headers: {
-      "Cache-Control": "no-store, max-age=0",
+      "Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=600",
+      "CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      "Vercel-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
       "Content-Type": data.type || getContentTypeForPath(imagePath),
     },
   });

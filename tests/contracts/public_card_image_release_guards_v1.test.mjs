@@ -17,6 +17,8 @@ test("public card image URLs unwrap nested Next optimizer sources before renderi
   assert.match(imageHelper, /NEXT_IMAGE_UNWRAP_LIMIT = 3/);
   assert.match(imageHelper, /url\.searchParams\.get\("url"\)/);
   assert.match(imageHelper, /unwrapNextImageUrl\(normalized\)/);
+  assert.match(imageHelper, /normalizeCanonCardImageProxyUrl\(normalized\)/);
+  assert.match(imageHelper, /if \(canonCardProxyUrl\)/);
   assert.match(publicCardImage, /normalizePublicCardImageSrc\(src\)/);
   assert.match(publicCardImage, /normalizePublicCardImageSrc\(fallbackSrc\)/);
 });

@@ -107,3 +107,20 @@ export function buildCanonCardImageProxyUrl(gvId: string | null | undefined) {
   const normalizedGvId = normalizeCanonImageGvId(gvId);
   return normalizedGvId ? `/api/canon/cards/${encodeURIComponent(normalizedGvId)}/image` : null;
 }
+
+export function normalizeCanonCardImageProxyUrl(value: unknown) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const match = value.trim().match(/^\/api\/canon\/cards\/([^/?#]+)\/image$/);
+  if (!match) {
+    return null;
+  }
+
+  try {
+    return buildCanonCardImageProxyUrl(decodeURIComponent(match[1]));
+  } catch {
+    return null;
+  }
+}

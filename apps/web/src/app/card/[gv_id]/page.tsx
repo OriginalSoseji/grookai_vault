@@ -20,6 +20,7 @@ import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CardPagePerformanceProbe from "@/components/performance/CardPagePerformanceProbe";
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
+import { normalizeCanonCardImageProxyUrl } from "@/lib/canon/canonImageProxy";
 import {
   formatPublicJourneyCountsLine,
   getPublicCardJourneyCounts,
@@ -140,7 +141,8 @@ function buildExactExternalImageFallback(primaryImageUrl: string | null | undefi
 }
 
 function isCanonImageProxyUrl(value: string | null | undefined) {
-  return value?.startsWith("/api/canon/image?") ?? false;
+  if (!value) return false;
+  return value.startsWith("/api/canon/image?") || Boolean(normalizeCanonCardImageProxyUrl(value));
 }
 
 function formatReleaseDate(releaseDate?: string) {
