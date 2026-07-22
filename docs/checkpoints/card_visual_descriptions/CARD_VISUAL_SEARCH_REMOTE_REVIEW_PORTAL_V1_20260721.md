@@ -1,7 +1,7 @@
 # Card Visual Search Remote Review Portal V1
 
 Date: 2026-07-21
-Status: COMPLETE LOCALLY; REMOTE DEPLOYMENT PENDING
+Status: DEPLOYED; REVIEWER LOGIN/EXPORT HANDOFF PENDING
 
 ## Context
 
@@ -34,6 +34,9 @@ A public static packet would expose private calibration evidence. A normal revie
 - Evidence-layout producer commit: `bf0ac663e945460d77f1b506a329431c0671f0bb`.
 - Pinned packet builder commit: `fff624f4357b0562e45c36c82d6c6cb3e9c66575`.
 - Private bundle commit: `bf6257284ad90c2cb5fd98a85f89f88a8f09001d`.
+- Minimal production release commit: `f2e57e476e8d68aa241d2b6a3afbc8480e9d7100`.
+- Production Vercel deployment: `5550380187`.
+- Production route: `https://grookaivault.com/review/visual-search`.
 - Contract: `docs/contracts/CARD_VISUAL_SEARCH_REVIEW_PORTAL_V1.md`.
 - Private bundle: `apps/web/private/review/visual-search/CALIBRATION_REVIEW_DASHBOARD.html.br`.
 - Bundle manifest: `apps/web/private/review/visual-search/manifest.json`.
@@ -70,12 +73,14 @@ A public static packet would expose private calibration evidence. A normal revie
 - Bundle validation proved `200` calibration queries, `0` holdout queries, `753` saved visual records, local-only progress, JSONL-only export, and no dashboard network or mutation code.
 - Local HTTP proof: anonymous page access redirected to `/login?next=%2Freview%2Fvisual-search`; anonymous dashboard API access returned `401` without bundle bytes.
 - Browser proof: reviewer hint populated `PokeJavi`; clicking search evidence opened the card image beside the complete saved Fact Graph and exact-row controls; long schema and prompt identifiers wrapped within their summary tiles.
+- Minimal release proof: the production commit contains exactly `7` web files and `210` inserted lines plus the immutable binary bundle; typecheck, lint, strict build, and the isolated Vercel preview all passed before promotion.
+- Production HTTP proof: `https://grookaivault.com/review/visual-search` returns `307` to the Grookai login with the encoded return route, while unauthenticated bundle access returns `401` with `private, no-store`, `noindex`, and `connect-src 'none'`.
 
 ## Current Truths
 
-- The portal is implemented, bundled, and production-build verified on `feature/card-visual-search-review-portal`.
-- It is not yet deployed to a remotely accessible Grookai environment.
-- PokeJavi can use the existing Grookai login after deployment.
+- The portal is live at `https://grookaivault.com/review/visual-search`.
+- Production `main` received only the isolated seven-file portal commit; the broader visual-agent branch was not merged.
+- PokeJavi can use the existing Grookai login.
 - Review work is not durable across browsers or devices until JSONL is exported.
 - Exported work remains untrusted until founder review and offline calibration validation.
 
@@ -89,4 +94,4 @@ A public static packet would expose private calibration evidence. A normal revie
 
 ## Explicit Next Gate
 
-Deploy this frozen branch to an authenticated Grookai environment, verify anonymous and unauthorized access are denied, verify PokeJavi and founder access, complete desktop/mobile visual smoke checks, and confirm a JSONL export without any server-side mutation. Do not import the export or run holdout evaluation in the deployment gate.
+Have PokeJavi sign in at the production route, confirm the dashboard opens under his existing account, complete a short review smoke, and export JSONL. Founder review must confirm the exported run key and reviewer identity before any offline evaluator import. Do not add server persistence, import judgments, or run holdout evaluation in this handoff gate.
