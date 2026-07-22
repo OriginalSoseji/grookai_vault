@@ -4,7 +4,7 @@ Wants=network-online.target
 After=network-online.target grookai-mee-reference-refresh.service grookai-mee-nightly.service grookai-tcgcsv-warehouse.service
 
 [Service]
-Type=simple
+Type=oneshot
 User=grookai
 WorkingDirectory=/opt/grookai_vault_mee_nightly
 EnvironmentFile=/etc/grookai/mee-nightly.env
@@ -14,13 +14,14 @@ Environment=TCGCSV_HISTORICAL_BACKFILL_OUT_DIR=docs/audits/market_evidence_engin
 Environment=TCGCSV_HISTORICAL_BACKFILL_PAUSE_START_HHMM=0050
 Environment=TCGCSV_HISTORICAL_BACKFILL_PAUSE_END_HHMM=1030
 Environment=TCGCSV_HISTORICAL_BACKFILL_CLEANUP_EXTRACTED=1
+Environment=TCGCSV_HISTORICAL_BACKFILL_MAX_DAYS=1
+Environment=TCGCSV_HISTORICAL_BACKFILL_MAX_RUNTIME_SECONDS=7200
+Environment=TCGCSV_HISTORICAL_BACKFILL_LOAD_GUARD_ENABLED=1
 ExecStart=/usr/bin/env bash scripts/workers/tcgcsv_historical_backfill_agent_v1.sh
-Restart=on-failure
-RestartSec=90
-TimeoutStartSec=infinity
+Restart=no
+TimeoutStartSec=2h
+TimeoutStopSec=2m
 Nice=10
 IOSchedulingClass=best-effort
 IOSchedulingPriority=7
-
-[Install]
-WantedBy=multi-user.target
+OOMScoreAdjust=500

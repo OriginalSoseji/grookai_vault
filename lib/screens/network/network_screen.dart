@@ -105,7 +105,6 @@ class NetworkScreenState extends State<NetworkScreen> {
       OwnershipResolverAdapter.instance;
   static const int _networkInitialPageSize = 12;
   static const int _networkNextPageSize = 24;
-  static const int _networkInitialOwnershipPrimeRowCount = 6;
 
   final PulseService _pulseService = PulseService(
     client: Supabase.instance.client,
@@ -135,7 +134,7 @@ class NetworkScreenState extends State<NetworkScreen> {
   String? _pulseNextCursorEventId;
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
       const <String, OwnershipState>{};
-  int _loadVersion = 0;
+  int _resetGeneration = 0;
 
   @override
   void initState() {
@@ -145,7 +144,6 @@ class NetworkScreenState extends State<NetworkScreen> {
     unawaited(_restoreCachedRows());
     if (_segment == _NetworkHomeSegment.pulse) {
       unawaited(_loadPulse(reset: true));
-      unawaited(_refreshPulseUnread());
     } else {
       _loadRows(resetSession: true);
     }
@@ -162,7 +160,6 @@ class NetworkScreenState extends State<NetworkScreen> {
   void reload() {
     if (_segment == _NetworkHomeSegment.pulse) {
       unawaited(_loadPulse(reset: true));
-      unawaited(_refreshPulseUnread());
       return;
     }
     _loadRows(resetSession: true);
@@ -199,7 +196,11 @@ class NetworkScreenState extends State<NetworkScreen> {
     if (!append) {
       AppBootTiming.markOnce('network_feed_initial_load_start');
     }
-    final loadVersion = ++_loadVersion;
+    // NETWORK_RESET_GENERATION_V1
+    // Append requests belong to the active feed generation. Only a root load
+    // invalidates work from the previous surface/filter, so first-page
+    // ownership hydration can safely finish while a later page is loading.
+    final resetGeneration = append ? _resetGeneration : ++_resetGeneration;
     final pageSize = append ? _networkNextPageSize : _networkInitialPageSize;
     setState(() {
       if (append) {
@@ -221,65 +222,24 @@ class NetworkScreenState extends State<NetworkScreen> {
         limit: pageSize,
         resetSession: resetSession,
       );
-      final provisionalFuture = !append && _intent == null
-          ? ProvisionalService.fetchDiscovery(limit: 6)
-          : Future<List<PublicProvisionalCard>>.value(
-              const <PublicProvisionalCard>[],
-            );
-      final results = await Future.wait([pageFuture, provisionalFuture]);
+      if (!append && _intent == null) {
+        unawaited(_loadProvisionalCards(resetGeneration));
+      }
+      final page = await pageFuture;
       if (!append) {
         AppBootTiming.markOnce('network_feed_initial_rpc_complete');
       }
-      final page = results[0] as NetworkStreamPage;
-      final provisionalCards = results[1] as List<PublicProvisionalCard>;
       if (!append) {
         unawaited(_cacheRows(page.rows));
       }
 
-      if (!mounted || loadVersion != _loadVersion) {
-        return;
-      }
-
-      final pageCardPrintIds = _cardPrintIdsForRows(page.rows);
-      final immediateOwnershipIds = append
-          ? pageCardPrintIds
-          : _cardPrintIdsForRows(
-              page.rows.take(_networkInitialOwnershipPrimeRowCount),
-            );
-      final deferredOwnershipIds = append
-          ? const <String>[]
-          : pageCardPrintIds
-                .where((id) => !immediateOwnershipIds.contains(id))
-                .toList(growable: false);
-      Map<String, OwnershipState> pageOwnershipStates =
-          const <String, OwnershipState>{};
-      if (immediateOwnershipIds.isNotEmpty) {
-        try {
-          await _ownershipAdapter.primeBatch(immediateOwnershipIds);
-          pageOwnershipStates = _ownershipAdapter.snapshotForIds(
-            pageCardPrintIds,
-          );
-        } catch (error) {
-          _debugOwnershipPrime('immediate prime failed: $error');
-        }
-      }
-
-      if (!mounted || loadVersion != _loadVersion) {
+      if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
 
       setState(() {
         _rows = append ? [..._rows, ...page.rows] : page.rows;
         _showingCachedRows = false;
-        if (!append) {
-          _provisionalCards = provisionalCards;
-        }
-        _ownershipStatesByCardPrintId = append
-            ? <String, OwnershipState>{
-                ..._ownershipStatesByCardPrintId,
-                ...pageOwnershipStates,
-              }
-            : pageOwnershipStates;
         if (!append) {
           _emptyState = page.emptyState;
         }
@@ -294,20 +254,17 @@ class NetworkScreenState extends State<NetworkScreen> {
         AppBootTiming.markOnce('network_feed_initial_render_ready');
       }
 
-      if (!append && deferredOwnershipIds.isNotEmpty) {
-        // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1
-        // Paint the first viewport after priming only the immediately visible
-        // ownership hints, then hydrate the rest of the first page in the
-        // background so first open feels lighter.
-        unawaited(
-          _primeDeferredOwnership(
-            cardPrintIds: deferredOwnershipIds,
-            loadVersion: loadVersion,
-          ),
-        );
-      }
+      // NETWORK_PROGRESSIVE_FIRST_PAINT_V2
+      // Ownership hints enrich actions but are not required to paint the feed.
+      // Hydrate them only after the core rows are visible.
+      unawaited(
+        _primeDeferredOwnership(
+          cardPrintIds: _cardPrintIdsForRows(page.rows),
+          resetGeneration: resetGeneration,
+        ),
+      );
     } catch (error) {
-      if (!mounted || loadVersion != _loadVersion) {
+      if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
 
@@ -330,22 +287,19 @@ class NetworkScreenState extends State<NetworkScreen> {
     }
   }
 
-  Future<void> _refreshPulseUnread() async {
-    if (!kPulseSurfaceEnabled) {
-      return;
-    }
-
+  Future<void> _loadProvisionalCards(int resetGeneration) async {
     try {
-      final snapshot = await _pulseService.fetchUnread();
-      if (!mounted) {
+      final cards = await ProvisionalService.fetchDiscovery(limit: 6);
+      if (!mounted || resetGeneration != _resetGeneration || _intent != null) {
         return;
       }
       setState(() {
-        _pulseUnreadSnapshot = snapshot;
+        _provisionalCards = cards;
       });
-      widget.onPulseUnreadChanged?.call(snapshot.unreadCount);
     } catch (error) {
-      debugPrint('[PULSE_E4] unread_failed=$error');
+      debugPrint(
+        '[NETWORK_PROGRESSIVE_FIRST_PAINT_V2] provisional_failed=$error',
+      );
     }
   }
 
@@ -354,8 +308,7 @@ class NetworkScreenState extends State<NetworkScreen> {
       return;
     }
 
-    final loadVersion = ++_loadVersion;
-    PulseUnreadSnapshot? unreadAtOpen;
+    final resetGeneration = older ? _resetGeneration : ++_resetGeneration;
     setState(() {
       if (older) {
         _pulseLoadingOlder = true;
@@ -372,16 +325,15 @@ class NetworkScreenState extends State<NetworkScreen> {
     });
 
     try {
-      if (!older) {
-        unreadAtOpen = await _pulseService.fetchUnread();
-      }
-      final page = await _pulseService.fetchItems(
+      final unreadFuture = older ? null : _fetchPulseUnreadBestEffort();
+      final pageFuture = _pulseService.fetchItems(
         limit: older ? 20 : 30,
         afterCreatedAt: older ? _pulseNextCursorCreatedAt : null,
         afterEventId: older ? _pulseNextCursorEventId : null,
         includeSeen: older,
       );
-      if (!mounted || loadVersion != _loadVersion) {
+      final page = await pageFuture;
+      if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
 
@@ -394,21 +346,21 @@ class NetworkScreenState extends State<NetworkScreen> {
         if (older) {
           _pulseOlderLoaded = true;
         }
-        if (unreadAtOpen != null) {
-          _pulseUnreadSnapshot = unreadAtOpen;
-        }
       });
 
-      if (!older && unreadAtOpen != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted || loadVersion != _loadVersion) {
-            return;
-          }
-          unawaited(_markPulseSeen(unreadAtOpen!));
-        });
+      if (unreadFuture != null) {
+        // PULSE_UNREAD_BEST_EFFORT_V1
+        // The item page owns first paint. Badge/seen bookkeeping continues in
+        // the background and cannot turn a successful feed read into an error.
+        unawaited(
+          _applyPulseUnreadWhenReady(
+            unreadFuture: unreadFuture,
+            resetGeneration: resetGeneration,
+          ),
+        );
       }
     } catch (error) {
-      if (!mounted || loadVersion != _loadVersion) {
+      if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
       setState(() {
@@ -419,10 +371,44 @@ class NetworkScreenState extends State<NetworkScreen> {
     }
   }
 
-  Future<void> _markPulseSeen(PulseUnreadSnapshot snapshot) async {
+  Future<PulseUnreadSnapshot?> _fetchPulseUnreadBestEffort() async {
+    try {
+      return await _pulseService.fetchUnread();
+    } catch (error) {
+      debugPrint('[PULSE_E4] unread_failed=$error');
+      return null;
+    }
+  }
+
+  Future<void> _applyPulseUnreadWhenReady({
+    required Future<PulseUnreadSnapshot?> unreadFuture,
+    required int resetGeneration,
+  }) async {
+    final snapshot = await unreadFuture;
+    if (snapshot == null || !mounted || resetGeneration != _resetGeneration) {
+      return;
+    }
+
+    setState(() {
+      _pulseUnreadSnapshot = snapshot;
+    });
+    widget.onPulseUnreadChanged?.call(snapshot.unreadCount);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || resetGeneration != _resetGeneration) {
+        return;
+      }
+      unawaited(_markPulseSeen(snapshot, resetGeneration: resetGeneration));
+    });
+  }
+
+  Future<void> _markPulseSeen(
+    PulseUnreadSnapshot snapshot, {
+    required int resetGeneration,
+  }) async {
     try {
       await _pulseService.markSeen(snapshot);
-      if (!mounted) {
+      if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
       setState(() {
@@ -500,7 +486,7 @@ class NetworkScreenState extends State<NetworkScreen> {
 
   Future<void> _primeDeferredOwnership({
     required Iterable<String> cardPrintIds,
-    required int loadVersion,
+    required int resetGeneration,
   }) async {
     final pendingIds = cardPrintIds
         .map((id) => id.trim())
@@ -518,7 +504,7 @@ class NetworkScreenState extends State<NetworkScreen> {
       return;
     }
 
-    if (!mounted || loadVersion != _loadVersion) {
+    if (!mounted || resetGeneration != _resetGeneration) {
       return;
     }
 
@@ -549,7 +535,6 @@ class NetworkScreenState extends State<NetworkScreen> {
     if (_segment == segment) {
       if (segment == _NetworkHomeSegment.pulse) {
         await _loadPulse(reset: true);
-        await _refreshPulseUnread();
       }
       return;
     }
@@ -574,7 +559,6 @@ class NetworkScreenState extends State<NetworkScreen> {
 
     if (segment == _NetworkHomeSegment.pulse) {
       await _loadPulse(reset: true);
-      await _refreshPulseUnread();
       return;
     }
 
@@ -1702,14 +1686,7 @@ class _NetworkRefreshingBanner extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
           child: Row(
             children: [
-              SizedBox(
-                width: 14,
-                height: 14,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: colorScheme.primary,
-                ),
-              ),
+              Icon(Icons.sync_rounded, size: 16, color: colorScheme.primary),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(

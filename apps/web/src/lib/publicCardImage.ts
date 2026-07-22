@@ -1,7 +1,33 @@
+import {
+  buildCanonImageProxyUrlFromStorageUrl,
+  isPrivateCardImagePublicUrl,
+} from "@/lib/canon/canonImageProxy";
+
 const NEXT_IMAGE_PATHNAME = "/_next/image";
 const NEXT_IMAGE_UNWRAP_LIMIT = 3;
 
 export function isUsablePublicImageUrl(value: string | null | undefined) {
+  if (!value) return false;
+
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return false;
+    }
+
+    // user-card-images is private. Only immutable catalog objects may be
+    // recovered from the legacy /public/ URL shape, through our server proxy.
+    if (isPrivateCardImagePublicUrl(value)) {
+      return Boolean(buildCanonImageProxyUrlFromStorageUrl(value));
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isHttpImageUrl(value: string | null | undefined) {
   if (!value) return false;
 
   try {
@@ -23,7 +49,7 @@ function unwrapNextImageUrl(value: string) {
       }
 
       const innerUrl = url.searchParams.get("url")?.trim();
-      if (!innerUrl || innerUrl === current || !isUsablePublicImageUrl(innerUrl)) {
+      if (!innerUrl || innerUrl === current || !isHttpImageUrl(innerUrl)) {
         return current;
       }
 
@@ -39,6 +65,11 @@ function unwrapNextImageUrl(value: string) {
 export function normalizePublicCardImageUrl(value: string) {
   const normalized = value.trim();
   const unwrapped = unwrapNextImageUrl(normalized);
+  const privateCatalogProxyUrl = buildCanonImageProxyUrlFromStorageUrl(unwrapped);
+
+  if (privateCatalogProxyUrl) {
+    return privateCatalogProxyUrl;
+  }
 
   if (
     unwrapped.startsWith("https://assets.tcgdex.net/en/") &&
@@ -52,11 +83,16 @@ export function normalizePublicCardImageUrl(value: string) {
 }
 
 export function normalizePublicCardImageSrc(value: string | null | undefined) {
-  if (!isUsablePublicImageUrl(value)) {
+  if (!value) {
     return undefined;
   }
 
-  return normalizePublicCardImageUrl(value!.trim());
+  const normalized = normalizePublicCardImageUrl(value.trim());
+  if (normalized.startsWith("/api/canon/image?path=")) {
+    return normalized;
+  }
+
+  return isUsablePublicImageUrl(normalized) ? normalized : undefined;
 }
 
 export function shouldBypassNextImageOptimization(value: string | null | undefined) {
@@ -99,12 +135,14 @@ export function isExternalCompatibleCardImageSource(value: string | null | undef
 }
 
 export function getBestPublicCardImageUrl(image_url?: string | null, image_alt_url?: string | null) {
-  if (isUsablePublicImageUrl(image_url)) {
-    return normalizePublicCardImageUrl(image_url!);
+  const primary = normalizePublicCardImageSrc(image_url);
+  if (primary) {
+    return primary;
   }
 
-  if (isUsablePublicImageUrl(image_alt_url)) {
-    return normalizePublicCardImageUrl(image_alt_url!);
+  const alternate = normalizePublicCardImageSrc(image_alt_url);
+  if (alternate) {
+    return alternate;
   }
 
   return undefined;

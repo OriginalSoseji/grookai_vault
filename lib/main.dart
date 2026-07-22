@@ -51,7 +51,6 @@ import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
 import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_condition_camera_bridge.dart';
-import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -2253,8 +2252,11 @@ Future<void> main() async {
 
 void _configureAppImageCache() {
   final cache = PaintingBinding.instance.imageCache;
-  cache.maximumSize = 1600;
-  cache.maximumSizeBytes = 192 << 20;
+  // MOBILE_IMAGE_MEMORY_BUDGET_V2
+  // Card artwork is image-heavy. A 192 MB decoded cache pushed the Samsung
+  // test device into system swap and made every surface compete for memory.
+  cache.maximumSize = 320;
+  cache.maximumSizeBytes = 64 << 20;
 }
 
 bool _isInvalidRefreshTokenRecoveryError(Object error) {

@@ -5,6 +5,12 @@ export const WAREHOUSE_CANON_IMAGE_PREFIXES = [
 
 export const WAREHOUSE_CANON_IMAGE_PREFIX = WAREHOUSE_CANON_IMAGE_PREFIXES[0];
 
+const PRIVATE_CARD_IMAGE_BUCKET = "user-card-images";
+const SUPABASE_STORAGE_OBJECT_PREFIXES = [
+  `/storage/v1/object/public/${PRIVATE_CARD_IMAGE_BUCKET}/`,
+  `/storage/v1/object/sign/${PRIVATE_CARD_IMAGE_BUCKET}/`,
+] as const;
+
 export function normalizeWarehouseCanonImagePath(value: unknown) {
   if (typeof value !== "string") {
     return null;
@@ -26,6 +32,62 @@ export function normalizeWarehouseCanonImagePath(value: unknown) {
 export function buildCanonImageProxyUrl(path: string | null | undefined) {
   const normalizedPath = normalizeWarehouseCanonImagePath(path);
   return normalizedPath ? `/api/canon/image?path=${encodeURIComponent(normalizedPath)}` : null;
+}
+
+function parseSupabaseStorageUrl(value: unknown) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  try {
+    const url = new URL(value.trim());
+    if (
+      (url.protocol !== "http:" && url.protocol !== "https:") ||
+      !url.hostname.toLowerCase().endsWith(".supabase.co")
+    ) {
+      return null;
+    }
+
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+export function isPrivateCardImagePublicUrl(value: unknown) {
+  const url = parseSupabaseStorageUrl(value);
+  return Boolean(
+    url &&
+      url.pathname
+        .toLowerCase()
+        .startsWith(`/storage/v1/object/public/${PRIVATE_CARD_IMAGE_BUCKET}/`),
+  );
+}
+
+export function extractWarehouseCanonImagePathFromStorageUrl(value: unknown) {
+  const url = parseSupabaseStorageUrl(value);
+  if (!url) {
+    return null;
+  }
+
+  const lowerPathname = url.pathname.toLowerCase();
+  const storagePrefix = SUPABASE_STORAGE_OBJECT_PREFIXES.find((prefix) =>
+    lowerPathname.startsWith(prefix),
+  );
+  if (!storagePrefix) {
+    return null;
+  }
+
+  try {
+    const objectPath = decodeURIComponent(url.pathname.slice(storagePrefix.length));
+    return normalizeWarehouseCanonImagePath(objectPath);
+  } catch {
+    return null;
+  }
+}
+
+export function buildCanonImageProxyUrlFromStorageUrl(value: unknown) {
+  return buildCanonImageProxyUrl(extractWarehouseCanonImagePathFromStorageUrl(value));
 }
 
 export function normalizeCanonImageGvId(value: unknown) {

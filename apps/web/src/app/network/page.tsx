@@ -13,6 +13,7 @@ import {
 } from "@/lib/network/intent";
 
 export const revalidate = 60;
+const NETWORK_STREAM_PAGE_LIMIT = 24;
 
 function buildCurrentPath(intent: string | null) {
   const params = new URLSearchParams();
@@ -34,7 +35,7 @@ export default async function NetworkPage({
   const rows = await getCardStreamRows({
     intent,
     excludeUserId: null,
-    limit: 60,
+    limit: NETWORK_STREAM_PAGE_LIMIT,
   });
 
   return (

@@ -2038,6 +2038,7 @@ class _CardThumb extends StatelessWidget {
             : Image.network(
                 normalized,
                 fit: BoxFit.contain,
+                cacheWidth: 720,
                 filterQuality: FilterQuality.high,
                 errorBuilder: (context, error, stackTrace) => DecoratedBox(
                   decoration: BoxDecoration(

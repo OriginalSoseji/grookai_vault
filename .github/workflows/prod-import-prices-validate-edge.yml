@@ -1,4 +1,4 @@
-name: Prod Import-Prices Validate (EDGE - bridge-only)
+name: Prod Retired Import-Prices Health
 
 on:
   workflow_dispatch:
@@ -6,58 +6,53 @@ on:
 permissions:
   contents: read
 
-env:
-  PROJECT_REF: ycdxbpibncqcchqiihfz
-  FUNCS_BASE: https://ycdxbpibncqcchqiihfz.functions.supabase.co
-
 jobs:
-  validate:
+  validate-health-only:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Bridge-only probe
-        id: probe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify checked-in entrypoint is database-free
+        run: node scripts/ci/assert_retired_pricing_entrypoints.mjs
+      - name: Probe retired health branch
         shell: pwsh
         env:
-          BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+          SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
         run: |
           Set-StrictMode -Version Latest
           $ErrorActionPreference = 'Stop'
-          function Hash8([string]$s){ if(-not $s){return '<missing>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
 
-          $u = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"
-          $H = @{
-            'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
+          if ([string]::IsNullOrWhiteSpace($env:SUPABASE_URL)) {
+            throw 'Missing PROD_SUPABASE_URL'
+          }
+          if ([string]::IsNullOrWhiteSpace($env:SUPABASE_PUBLISHABLE_KEY)) {
+            throw 'Missing PROD_PUBLISHABLE_KEY'
+          }
+
+          $url = "$($env:SUPABASE_URL.TrimEnd('/'))/functions/v1/import-prices"
+          $headers = @{
+            apikey = $env:SUPABASE_PUBLISHABLE_KEY
             'content-type' = 'application/json'
           }
-          $B = '{"ping":"ci-emit"}'
-          try {
-            $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 30
-            $status = [string]$r.StatusCode
-            $content = [string]$r.Content
-          } catch {
-            $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
-            $content = ''
+          $body = @{ mode = 'health'; source = 'github-actions-health' } | ConvertTo-Json
+          $response = Invoke-WebRequest `
+            -Method POST `
+            -Uri $url `
+            -Headers $headers `
+            -Body $body `
+            -UseBasicParsing `
+            -TimeoutSec 20
+
+          if ([int]$response.StatusCode -ne 200) {
+            throw "Retired health endpoint returned HTTP $($response.StatusCode)"
           }
 
-          # Emit six-line summary markers consumed by orchestrator
-          Write-Output "DIAG: B/A"
-          Write-Output "VARIANT: EDGE-bridge-only"
-          Write-Output "FINAL: $status"
-          Write-Output "PUBLISHABLE_HASH8: <missing>"
-          Write-Output "BRIDGE_HASH8: <hidden>"
-          $body100 = if($content.Length -gt 100){ $content.Substring(0,100) } else { $content }
-          Write-Output "BODY100: $body100"
-          $s = @()
-          $s += "DIAG: B/A"
-          $s += "VARIANT: EDGE-bridge-only"
-          $s += "FINAL: $status"
-          $s += "PUBLISHABLE_HASH8: <missing>"
-          $s += "BRIDGE_HASH8: <hidden>"
-          $s += "BODY100: $body100"
-          Set-Content -Path summary.txt -Value ($s -join "`n") -Encoding UTF8
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bridge-validate
-          path: summary.txt
+          $json = $response.Content | ConvertFrom-Json
+          if ($json.ok -ne $true -or $json.mode -ne 'health' -or $json.pipeline -ne 'retired') {
+            throw "Unexpected retired health response: $($response.Content)"
+          }
+
+          Write-Host 'PASS: import-prices exposes only its retired health contract.'

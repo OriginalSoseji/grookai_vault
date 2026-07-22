@@ -7,6 +7,7 @@ ENV_FILE="${ENV_FILE:-${ENV_DIR}/mee-nightly.env}"
 STATE_DIR="${TCGCSV_HISTORICAL_BACKFILL_STATE_DIR:-/var/lib/grookai}"
 OUT_DIR="${TCGCSV_HISTORICAL_BACKFILL_OUT_DIR:-docs/audits/market_evidence_engine_v1/tcgcsv_full_source_warehouse_v1}"
 SERVICE_NAME="grookai-tcgcsv-historical-backfill.service"
+START_ON_INSTALL="${TCGCSV_HISTORICAL_BACKFILL_START_ON_INSTALL:-0}"
 
 cd "${REPO_DIR}"
 
@@ -51,6 +52,7 @@ fi
 require_env_value "SUPABASE_DB_URL"
 
 node --check scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs
+node --check scripts/workers/tcgcsv_historical_load_guard_v1.mjs
 bash -n scripts/workers/tcgcsv_historical_backfill_agent_v1.sh
 
 sudo mkdir -p "${STATE_DIR}"
@@ -65,6 +67,16 @@ sudo cp "${tmp_service}" "/etc/systemd/system/${SERVICE_NAME}"
 rm -f "${tmp_service}"
 sudo systemctl daemon-reload
 sudo systemctl reset-failed "${SERVICE_NAME}" 2>/dev/null || true
-sudo systemctl enable --now "${SERVICE_NAME}"
+sudo systemctl disable "${SERVICE_NAME}" 2>/dev/null || true
+sudo systemctl stop "${SERVICE_NAME}" 2>/dev/null || true
+if [[ "${START_ON_INSTALL}" == "1" ]]; then
+  if [[ "$(env_value "TCGCSV_HISTORICAL_BACKFILL_ENABLED")" != "1" ]]; then
+    echo "Refusing to start: ${ENV_FILE} must explicitly set TCGCSV_HISTORICAL_BACKFILL_ENABLED=1." >&2
+    exit 1
+  fi
+  sudo systemctl start "${SERVICE_NAME}"
+else
+  echo "Installed ${SERVICE_NAME} as a non-recurring unit. Set TCGCSV_HISTORICAL_BACKFILL_ENABLED=1 and rerun with TCGCSV_HISTORICAL_BACKFILL_START_ON_INSTALL=1 for one guarded date."
+fi
 
-systemctl status "${SERVICE_NAME}" --no-pager
+systemctl status "${SERVICE_NAME}" --no-pager || true

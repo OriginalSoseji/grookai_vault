@@ -1,15 +1,4 @@
 Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = 'Stop'
 
-Set-Location C:\grookai_vault
-
-$path = ".github\auto_align_import_prices.bump"
-$ts = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
-
-"auto-align import-prices bump $ts" | Set-Content $path -Encoding UTF8
-
-git add $path
-git commit -m "ci(auto): bump align workflow $ts" 2>$null
-git push origin HEAD:main
-Write-Host "Pushed bump to trigger auto-align via push-path."
-
+throw 'legacy-pricing-pipeline-disabled: the auto-align push trigger is retired.'

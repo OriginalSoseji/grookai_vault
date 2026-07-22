@@ -133,11 +133,71 @@ void main() {
     expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
   });
 
-  test('private user-card-images public URLs are rejected', () {
+  test('private catalog public URLs use the secure Grookai proxy', () {
     const original =
-        'https://example.supabase.co/storage/v1/object/public/user-card-images/jpn/pikachu.webp';
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/jpn/pikachu.webp';
+
+    expect(
+      normalizeDisplayImageUrl(original),
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fpikachu.webp',
+    );
+  });
+
+  test('image-truth catalog URLs use the secure Grookai proxy', () {
+    const original =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/image-truth-v1/exact/pikachu.webp';
+
+    expect(
+      normalizeDisplayImageUrl(original),
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fimage-truth-v1%2Fexact%2Fpikachu.webp',
+    );
+  });
+
+  test('private non-catalog public URLs remain rejected', () {
+    const original =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/users/user-1/vault-instances/item-1/front/current';
 
     expect(normalizeDisplayImageUrl(original), isNull);
+  });
+
+  test('nested optimized private catalog URLs still use the secure proxy', () {
+    const privateCatalogUrl =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/jpn/pikachu.webp';
+    final optimizedUrl = Uri.https(
+      'grookaivault.com',
+      '/_next/image',
+      <String, String>{'url': privateCatalogUrl, 'w': '828', 'q': '85'},
+    ).toString();
+
+    expect(
+      normalizeDisplayImageUrl(optimizedUrl),
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fpikachu.webp',
+    );
+  });
+
+  test('nested optimized private personal URLs remain rejected', () {
+    const privatePersonalUrl =
+        'https://example.supabase.co/storage/v1/object/public/user-card-images/users/user-1/vault-instances/item-1/front/current';
+    final optimizedUrl = Uri.https(
+      'grookaivault.com',
+      '/_next/image',
+      <String, String>{'url': privatePersonalUrl, 'w': '828', 'q': '85'},
+    ).toString();
+
+    expect(normalizeDisplayImageUrl(optimizedUrl), isNull);
+  });
+
+  test('signed catalog URLs become stable proxy URLs before expiry checks', () {
+    final expiredPayload = base64Url
+        .encode(utf8.encode('{"exp":1}'))
+        .replaceAll('=', '');
+    final original =
+        'https://example.supabase.co/storage/v1/object/sign/user-card-images/warehouse-derived/self-hosted-images-v1/jpn/pikachu.webp?token=header.$expiredPayload.signature';
+
+    expect(
+      normalizeDisplayImageUrl(original),
+      'https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fjpn%2Fpikachu.webp',
+    );
   });
 
   test('expired signed Supabase image URLs are rejected', () {

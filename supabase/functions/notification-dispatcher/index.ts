@@ -68,11 +68,74 @@ const DEFAULT_PREFS: Prefs = {
   timezone: null,
 };
 
+const MAX_DISPATCH_BATCH = 8;
+const DISPATCH_CONCURRENCY = 2;
+const MAX_DEVICE_TOKENS_PER_RECIPIENT = 3;
+const MAX_FCM_ATTEMPTS_PER_ROW = 2;
+const EXTERNAL_REQUEST_TIMEOUT_MS = 8_000;
+const INVOCATION_DEADLINE_MS = 50_000;
+const INVOCATION_CLEANUP_RESERVE_MS = 5_000;
+const ROW_DISPATCH_DEADLINE_MS = 9_000;
+const MIN_FCM_ATTEMPT_BUDGET_MS = 500;
+
 let cachedAccessToken: { token: string; expiresAtMs: number } | null = null;
+let pendingAccessToken: Promise<string> | null = null;
 
 function normalizeLimit(value: unknown): number {
-  if (typeof value !== "number" || !Number.isFinite(value)) return 25;
-  return Math.max(1, Math.min(100, Math.trunc(value)));
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return MAX_DISPATCH_BATCH;
+  }
+  return Math.max(1, Math.min(MAX_DISPATCH_BATCH, Math.trunc(value)));
+}
+
+function remainingTimeMs(deadlineAtMs: number): number {
+  return Math.max(0, deadlineAtMs - Date.now());
+}
+
+function deadlineSignal(deadlineAtMs: number): AbortSignal {
+  return AbortSignal.timeout(Math.max(1, remainingTimeMs(deadlineAtMs)));
+}
+
+function deadlineError(reason = "dispatch_deadline_exhausted"): Error {
+  return new Error(reason);
+}
+
+function assertDeadline(deadlineAtMs: number): void {
+  if (remainingTimeMs(deadlineAtMs) <= 0) throw deadlineError();
+}
+
+async function fetchWithTimeout(
+  input: string | URL | Request,
+  init: RequestInit,
+  timeoutMs = EXTERNAL_REQUEST_TIMEOUT_MS,
+  deadlineAtMs?: number,
+): Promise<Response> {
+  if (deadlineAtMs !== undefined) assertDeadline(deadlineAtMs);
+  const remaining = deadlineAtMs === undefined
+    ? timeoutMs
+    : remainingTimeMs(deadlineAtMs);
+  const effectiveTimeoutMs = Math.max(1, Math.min(timeoutMs, remaining));
+  const deadlineLimited = deadlineAtMs !== undefined && remaining <= timeoutMs;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), effectiveTimeoutMs);
+  try {
+    const response = await fetch(input, { ...init, signal: controller.signal });
+    const body = await response.arrayBuffer();
+    return new Response(body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    });
+  } catch (error) {
+    if (controller.signal.aborted) {
+      throw deadlineLimited
+        ? deadlineError()
+        : new Error(`external_request_timeout:${effectiveTimeoutMs}`);
+    }
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function cleanString(value: unknown): string | null {
@@ -172,33 +235,52 @@ async function signJwt(serviceAccount: Json): Promise<string> {
   return `${signingInput}.${base64Url(signature)}`;
 }
 
-async function getFcmAccessToken(serviceAccount: Json): Promise<string> {
+async function getFcmAccessToken(
+  serviceAccount: Json,
+  deadlineAtMs: number,
+): Promise<string> {
   if (
     cachedAccessToken && cachedAccessToken.expiresAtMs > Date.now() + 60_000
   ) {
     return cachedAccessToken.token;
   }
 
-  const assertion = await signJwt(serviceAccount);
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion,
-    }),
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok || typeof body.access_token !== "string") {
-    throw new Error(`fcm_oauth_failed:${res.status}`);
+  if (!pendingAccessToken) {
+    pendingAccessToken = (async () => {
+      const assertion = await signJwt(serviceAccount);
+      const res = await fetchWithTimeout(
+        "https://oauth2.googleapis.com/token",
+        {
+          method: "POST",
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+            assertion,
+          }),
+        },
+        EXTERNAL_REQUEST_TIMEOUT_MS,
+        deadlineAtMs,
+      );
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || typeof body.access_token !== "string") {
+        throw new Error(`fcm_oauth_failed:${res.status}`);
+      }
+
+      cachedAccessToken = {
+        token: body.access_token,
+        expiresAtMs: Date.now() +
+          Math.max(60, Number(body.expires_in ?? 3600) - 60) * 1000,
+      };
+      return cachedAccessToken.token;
+    })();
   }
 
-  cachedAccessToken = {
-    token: body.access_token,
-    expiresAtMs: Date.now() +
-      Math.max(60, Number(body.expires_in ?? 3600) - 60) * 1000,
-  };
-  return cachedAccessToken.token;
+  const request = pendingAccessToken;
+  try {
+    return await request;
+  } finally {
+    if (pendingAccessToken === request) pendingAccessToken = null;
+  }
 }
 
 function readFcmServiceAccount(): Json | null {
@@ -221,6 +303,7 @@ async function sendFcm(
   formatted: FormattedNotification,
   force: DispatchRequest["force_fcm_result"],
   mock: boolean,
+  deadlineAtMs: number,
 ): Promise<FcmResult> {
   if (force === "success") {
     return { kind: "success", providerMessageId: "forced-success" };
@@ -244,7 +327,7 @@ async function sendFcm(
   const projectId = cleanString(serviceAccount.project_id);
   if (!projectId) return { kind: "permanent", reason: "fcm_project_missing" };
 
-  const accessToken = await getFcmAccessToken(serviceAccount);
+  const accessToken = await getFcmAccessToken(serviceAccount, deadlineAtMs);
   const message = {
     message: {
       token: token.token,
@@ -279,7 +362,7 @@ async function sendFcm(
     },
   };
 
-  const res = await fetch(
+  const res = await fetchWithTimeout(
     `https://fcm.googleapis.com/v1/projects/${projectId}/messages:send`,
     {
       method: "POST",
@@ -289,6 +372,8 @@ async function sendFcm(
       },
       body: JSON.stringify(message),
     },
+    EXTERNAL_REQUEST_TIMEOUT_MS,
+    deadlineAtMs,
   );
   const responseText = await res.text();
   if (res.ok) {
@@ -372,6 +457,18 @@ function backoffAfterAttempt(attempts: number): Date {
   return new Date(Date.now() + seconds * 1000);
 }
 
+function disabledPreferenceReason(
+  tier: OutboxRow["tier"],
+  prefs: Prefs,
+): string | null {
+  if (tier === "instant" && !prefs.instant_enabled) return "instant_disabled";
+  if (tier === "daily_pulse" && !prefs.daily_pulse_enabled) {
+    return "daily_pulse_disabled";
+  }
+  if (tier === "weekly" && !prefs.weekly_enabled) return "weekly_disabled";
+  return null;
+}
+
 function messagePreview(payload: Json): string {
   const preview = cleanString(payload.message_preview);
   if (!preview) return "Open Grookai Vault to reply.";
@@ -443,8 +540,16 @@ function formatNotification(
   return { notificationId, title, body, deepLink, webUrl };
 }
 
-async function rpc(sb: any, name: string, params: Json = {}): Promise<any> {
-  const { data, error } = await sb.rpc(name, params);
+async function rpc(
+  sb: any,
+  name: string,
+  params: Json = {},
+  signal?: AbortSignal,
+): Promise<any> {
+  if (signal?.aborted) throw deadlineError();
+  const request = sb.rpc(name, params);
+  const { data, error } =
+    await (signal ? request.abortSignal(signal) : request);
   if (error) throw new Error(`${name}:${error.message}`);
   return data;
 }
@@ -454,15 +559,17 @@ async function markFolded(
   row: OutboxRow,
   formatted: FormattedNotification | null,
   reason: string,
+  signal?: AbortSignal,
 ) {
   if (
-    (row.event_type === "want_match_digest" || row.event_type === "pulse_daily") &&
+    (row.event_type === "want_match_digest" ||
+      row.event_type === "pulse_daily") &&
     reason === "daily_budget_exhausted"
   ) {
     await rpc(sb, "notification_dispatcher_reschedule_digest_fold_v1", {
       p_outbox_id: row.id,
       p_reason: reason,
-    });
+    }, signal);
     return;
   }
 
@@ -472,7 +579,7 @@ async function markFolded(
     p_body: formatted?.body ?? "Notification folded into your digest.",
     p_deep_link: formatted?.deepLink ?? "grookai://",
     p_reason: reason,
-  });
+  }, signal);
 }
 
 async function markSkipped(
@@ -480,78 +587,109 @@ async function markSkipped(
   row: OutboxRow,
   formatted: FormattedNotification | null,
   reason: string,
+  signal?: AbortSignal,
 ) {
   await rpc(sb, "notification_dispatcher_log_validation_failure_v1", {
     p_outbox_id: row.id,
     p_reason: reason,
     p_payload: row.payload ?? {},
-  });
+  }, signal);
   await rpc(sb, "notification_dispatcher_mark_skipped_v1", {
     p_outbox_id: row.id,
     p_title: formatted?.title ?? "Grookai Vault",
     p_body: formatted?.body ?? "Notification skipped.",
     p_deep_link: formatted?.deepLink ?? "grookai://",
     p_reason: reason,
-  });
+  }, signal);
 }
 
 async function dispatchOne(
   sb: any,
   row: OutboxRow,
   requestBody: DispatchRequest,
+  workDeadlineAtMs: number,
+  invocationSignal: AbortSignal,
 ) {
   let formatted: FormattedNotification | null = null;
+  const rowDeadlineAtMs = Math.min(
+    workDeadlineAtMs,
+    Date.now() + ROW_DISPATCH_DEADLINE_MS,
+  );
+  assertDeadline(rowDeadlineAtMs);
+  const rowSignal = deadlineSignal(rowDeadlineAtMs);
 
   if (!row.card_print_id) {
-    await markSkipped(sb, row, null, "missing_card_anchor");
+    await markSkipped(sb, row, null, "missing_card_anchor", rowSignal);
     return { id: row.id, status: "skipped", reason: "missing_card_anchor" };
   }
 
-  const { data: card, error: cardError } = await sb
+  const cardQuery = sb
     .from("card_prints")
     .select("id, gv_id, name, set_code, number")
     .eq("id", row.card_print_id)
-    .maybeSingle();
-  if (cardError || !card) {
-    await markSkipped(sb, row, null, "card_lookup_failed");
-    return { id: row.id, status: "skipped", reason: "card_lookup_failed" };
-  }
-
-  const { data: profile } = row.actor_user_id
-    ? await sb
+    .maybeSingle()
+    .abortSignal(rowSignal);
+  const profileQuery = row.actor_user_id
+    ? sb
       .from("public_profiles")
       .select("display_name, slug")
       .eq("user_id", row.actor_user_id)
       .maybeSingle()
-    : { data: null };
-  const actorName = cleanString(profile?.display_name) ??
-    cleanString(profile?.slug);
-  formatted = formatNotification(row, card as CardPrint, actorName);
-
-  const { data: prefsRow } = await sb
+      .abortSignal(rowSignal)
+    : Promise.resolve({ data: null, error: null });
+  const prefsQuery = sb
     .from("notification_prefs")
     .select(
       "instant_enabled, daily_pulse_enabled, weekly_enabled, quiet_hours_start, quiet_hours_end, timezone",
     )
     .eq("user_id", row.recipient_user_id)
-    .maybeSingle();
-  const prefs = { ...DEFAULT_PREFS, ...(prefsRow ?? {}) } as Prefs;
+    .maybeSingle()
+    .abortSignal(rowSignal);
 
-  if (row.tier === "instant" && !prefs.instant_enabled) {
-    await markFolded(sb, row, formatted, "instant_disabled");
-    return { id: row.id, status: "folded", reason: "instant_disabled" };
+  const [cardResult, profileResult, prefsResult] = await Promise.all([
+    cardQuery,
+    profileQuery,
+    prefsQuery,
+  ]);
+
+  const { data: card, error: cardError } = cardResult;
+  if (cardError || !card) {
+    await markSkipped(sb, row, null, "card_lookup_failed", rowSignal);
+    return { id: row.id, status: "skipped", reason: "card_lookup_failed" };
   }
 
-  if (isInsideQuietHours(new Date(), prefs)) {
+  if (profileResult.error) {
+    throw new Error(`profile_lookup_failed:${profileResult.error.message}`);
+  }
+  if (prefsResult.error) {
+    throw new Error(`prefs_lookup_failed:${prefsResult.error.message}`);
+  }
+
+  const profile = profileResult.data;
+  const actorName = cleanString(profile?.display_name) ??
+    cleanString(profile?.slug);
+  formatted = formatNotification(row, card as CardPrint, actorName);
+
+  const prefsRow = prefsResult.data;
+  const prefs = { ...DEFAULT_PREFS, ...(prefsRow ?? {}) } as Prefs;
+
+  const preferenceDisabled = disabledPreferenceReason(row.tier, prefs);
+  if (preferenceDisabled) {
+    await markFolded(sb, row, formatted, preferenceDisabled, rowSignal);
+    return { id: row.id, status: "folded", reason: preferenceDisabled };
+  }
+
+  const now = new Date();
+  if (isInsideQuietHours(now, prefs)) {
     await rpc(sb, "notification_dispatcher_defer_outbox_v1", {
       p_outbox_id: row.id,
-      p_available_at: nextQuietEnd(new Date(), prefs).toISOString(),
+      p_available_at: nextQuietEnd(now, prefs).toISOString(),
       p_reason: "quiet_hours",
-    });
+    }, rowSignal);
     return { id: row.id, status: "deferred", reason: "quiet_hours" };
   }
 
-  const { data: mutedWatch } = await sb
+  const mutedWatchResult = await sb
     .from("watches")
     .select("id")
     .eq("user_id", row.recipient_user_id)
@@ -559,20 +697,39 @@ async function dispatchOne(
     .eq("subject_id", row.card_print_id)
     .not("muted_at", "is", null)
     .limit(1)
-    .maybeSingle();
+    .maybeSingle()
+    .abortSignal(rowSignal);
+  if (mutedWatchResult.error) {
+    throw new Error(`watch_lookup_failed:${mutedWatchResult.error.message}`);
+  }
+
+  const mutedWatch = mutedWatchResult.data;
   if (mutedWatch) {
-    await markSkipped(sb, row, formatted, "watch_muted");
+    await markSkipped(sb, row, formatted, "watch_muted", rowSignal);
     return { id: row.id, status: "skipped", reason: "watch_muted" };
   }
 
-  const { data: tokens, error: tokenError } = await sb
+  const tokenResult = await sb
     .from("device_tokens")
     .select("id, user_id, token, platform")
     .eq("user_id", row.recipient_user_id)
     .is("disabled_at", null)
-    .order("last_seen_at", { ascending: false });
-  if (tokenError || !tokens || tokens.length === 0) {
-    await markSkipped(sb, row, formatted, "no_active_device_tokens");
+    .order("last_seen_at", { ascending: false })
+    .limit(MAX_DEVICE_TOKENS_PER_RECIPIENT)
+    .abortSignal(rowSignal);
+  if (tokenResult.error) {
+    throw new Error(`device_token_lookup_failed:${tokenResult.error.message}`);
+  }
+
+  const tokens = tokenResult.data;
+  if (!tokens || tokens.length === 0) {
+    await markSkipped(
+      sb,
+      row,
+      formatted,
+      "no_active_device_tokens",
+      rowSignal,
+    );
     return { id: row.id, status: "skipped", reason: "no_active_device_tokens" };
   }
 
@@ -580,37 +737,79 @@ async function dispatchOne(
   const reserved = await rpc(sb, "notification_dispatcher_reserve_budget_v1", {
     p_user_id: row.recipient_user_id,
     p_budget_date: budgetDate,
-  });
+  }, rowSignal);
   if (!reserved) {
-    await markFolded(sb, row, formatted, "daily_budget_exhausted");
+    await markFolded(
+      sb,
+      row,
+      formatted,
+      "daily_budget_exhausted",
+      rowSignal,
+    );
     return { id: row.id, status: "folded", reason: "daily_budget_exhausted" };
   }
 
-  await rpc(sb, "notification_dispatcher_mark_send_started_v1", {
-    p_outbox_id: row.id,
-  });
-
-  const mock = shouldUseMockFcm(requestBody);
   let successToken: DeviceToken | null = null;
   const failures: FcmResult[] = [];
-  for (const token of tokens as DeviceToken[]) {
-    const result = await sendFcm(
-      token,
-      formatted,
-      requestBody.force_fcm_result,
-      mock,
+  let hasDeferredFallback = false;
+  try {
+    await rpc(sb, "notification_dispatcher_mark_send_started_v1", {
+      p_outbox_id: row.id,
+    }, rowSignal);
+
+    const mock = shouldUseMockFcm(requestBody);
+    const availableTokens = tokens as DeviceToken[];
+    const tokenOffset = ((Math.max(1, row.attempts) - 1) *
+      MAX_FCM_ATTEMPTS_PER_ROW) % availableTokens.length;
+    const attemptTokens = Array.from(
+      { length: Math.min(MAX_FCM_ATTEMPTS_PER_ROW, availableTokens.length) },
+      (_, index) =>
+        availableTokens[(tokenOffset + index) % availableTokens.length],
     );
-    if (result.kind === "success") {
-      successToken = token;
-      break;
+    hasDeferredFallback = availableTokens.length > attemptTokens.length;
+
+    for (const token of attemptTokens) {
+      if (remainingTimeMs(rowDeadlineAtMs) < MIN_FCM_ATTEMPT_BUDGET_MS) {
+        failures.push({
+          kind: "transient",
+          reason: "dispatch_row_deadline_exhausted",
+        });
+        break;
+      }
+
+      let result: FcmResult;
+      try {
+        result = await sendFcm(
+          token,
+          formatted,
+          requestBody.force_fcm_result,
+          mock,
+          rowDeadlineAtMs,
+        );
+      } catch (error) {
+        result = {
+          kind: "transient",
+          reason: String((error as Error)?.message ?? error),
+        };
+      }
+      if (result.kind === "success") {
+        successToken = token;
+        break;
+      }
+      failures.push(result);
+      if (result.kind === "unregistered") {
+        await rpc(sb, "notification_dispatcher_disable_token_v1", {
+          p_device_token_id: token.id,
+          p_reason: result.reason,
+        }, rowSignal).catch(() => null);
+      }
     }
-    failures.push(result);
-    if (result.kind === "unregistered") {
-      await rpc(sb, "notification_dispatcher_disable_token_v1", {
-        p_device_token_id: token.id,
-        p_reason: result.reason,
-      });
-    }
+  } catch (error) {
+    await rpc(sb, "notification_dispatcher_release_budget_v1", {
+      p_user_id: row.recipient_user_id,
+      p_budget_date: budgetDate,
+    }, invocationSignal).catch(() => null);
+    throw error;
   }
 
   if (successToken) {
@@ -621,7 +820,7 @@ async function dispatchOne(
       p_title: formatted.title,
       p_body: formatted.body,
       p_deep_link: formatted.deepLink,
-    });
+    }, invocationSignal);
     return {
       id: row.id,
       status: "sent",
@@ -629,12 +828,21 @@ async function dispatchOne(
     };
   }
 
-  const hasTransient = failures.some((failure) => failure.kind === "transient");
-  const reason = failures
+  const hasTransient = hasDeferredFallback ||
+    failures.some((failure) => failure.kind === "transient");
+  const failureReasons = failures
     .map((failure) =>
       failure.kind === "success" ? "unexpected_success" : failure.reason
     )
-    .join(";") || "fcm_send_failed";
+    .filter((reason) => reason.length > 0);
+  if (hasDeferredFallback) failureReasons.push("fcm_fallback_deferred");
+  const reason = failureReasons.join(";") || "fcm_send_failed";
+
+  await rpc(sb, "notification_dispatcher_release_budget_v1", {
+    p_user_id: row.recipient_user_id,
+    p_budget_date: budgetDate,
+  }, invocationSignal);
+
   if (!hasTransient) {
     await rpc(sb, "notification_dispatcher_mark_skipped_v1", {
       p_outbox_id: row.id,
@@ -642,18 +850,10 @@ async function dispatchOne(
       p_body: formatted.body,
       p_deep_link: formatted.deepLink,
       p_reason: reason,
-    });
-    await rpc(sb, "notification_dispatcher_release_budget_v1", {
-      p_user_id: row.recipient_user_id,
-      p_budget_date: budgetDate,
-    });
+    }, invocationSignal);
     return { id: row.id, status: "skipped", reason };
   }
 
-  await rpc(sb, "notification_dispatcher_release_budget_v1", {
-    p_user_id: row.recipient_user_id,
-    p_budget_date: budgetDate,
-  });
   const retryStatus = await rpc(
     sb,
     "notification_dispatcher_mark_retry_or_failed_v1",
@@ -662,8 +862,32 @@ async function dispatchOne(
       p_reason: reason,
       p_next_attempt_at: backoffAfterAttempt(row.attempts).toISOString(),
     },
+    invocationSignal,
   );
   return { id: row.id, status: retryStatus, reason };
+}
+
+async function releaseUnstartedRow(
+  sb: any,
+  row: OutboxRow,
+  signal: AbortSignal,
+) {
+  const reason = "invocation_work_deadline_exhausted";
+  try {
+    const retryStatus = await rpc(
+      sb,
+      "notification_dispatcher_mark_retry_or_failed_v1",
+      {
+        p_outbox_id: row.id,
+        p_reason: reason,
+        p_next_attempt_at: backoffAfterAttempt(row.attempts).toISOString(),
+      },
+      signal,
+    );
+    return { id: row.id, status: retryStatus, reason };
+  } catch {
+    return { id: row.id, status: "lease_retained", reason };
+  }
 }
 
 serve(async (req) => {
@@ -678,30 +902,59 @@ serve(async (req) => {
     const authFailure = authorizeDispatcher(req);
     if (authFailure) return authFailure;
 
+    const invocationDeadlineAtMs = Date.now() + INVOCATION_DEADLINE_MS;
+    const workDeadlineAtMs = invocationDeadlineAtMs -
+      INVOCATION_CLEANUP_RESERVE_MS;
+    const invocationSignal = deadlineSignal(invocationDeadlineAtMs);
     const requestBody = (await req.json().catch(() => ({}))) as DispatchRequest;
     const sb = createServiceRoleClient();
     const rows = await rpc(sb, "notification_dispatcher_claim_batch_v1", {
       p_limit: normalizeLimit(requestBody.limit),
-    }) as OutboxRow[];
+    }, invocationSignal) as OutboxRow[];
 
     const results = [];
-    for (const row of rows) {
-      try {
-        results.push(await dispatchOne(sb, row, requestBody));
-      } catch (error) {
-        const reason = String((error as Error)?.message ?? error);
-        await rpc(sb, "notification_dispatcher_log_validation_failure_v1", {
-          p_outbox_id: row.id,
-          p_reason: reason,
-          p_payload: row.payload ?? {},
-        }).catch(() => null);
-        await rpc(sb, "notification_dispatcher_mark_retry_or_failed_v1", {
-          p_outbox_id: row.id,
-          p_reason: reason,
-          p_next_attempt_at: backoffAfterAttempt(row.attempts).toISOString(),
-        }).catch(() => null);
-        results.push({ id: row.id, status: "error", reason });
+    for (let offset = 0; offset < rows.length; offset += DISPATCH_CONCURRENCY) {
+      if (remainingTimeMs(workDeadlineAtMs) <= 0) {
+        const unstartedRows = rows.slice(offset);
+        results.push(
+          ...await Promise.all(
+            unstartedRows.map((row) =>
+              releaseUnstartedRow(sb, row, invocationSignal)
+            ),
+          ),
+        );
+        break;
       }
+
+      const chunk = rows.slice(offset, offset + DISPATCH_CONCURRENCY);
+      const chunkResults = await Promise.all(chunk.map(async (row) => {
+        try {
+          return await dispatchOne(
+            sb,
+            row,
+            requestBody,
+            workDeadlineAtMs,
+            invocationSignal,
+          );
+        } catch (error) {
+          const reason = String((error as Error)?.message ?? error);
+          await Promise.allSettled([
+            rpc(sb, "notification_dispatcher_log_validation_failure_v1", {
+              p_outbox_id: row.id,
+              p_reason: reason,
+              p_payload: row.payload ?? {},
+            }, invocationSignal),
+            rpc(sb, "notification_dispatcher_mark_retry_or_failed_v1", {
+              p_outbox_id: row.id,
+              p_reason: reason,
+              p_next_attempt_at: backoffAfterAttempt(row.attempts)
+                .toISOString(),
+            }, invocationSignal),
+          ]);
+          return { id: row.id, status: "error", reason };
+        }
+      }));
+      results.push(...chunkResults);
     }
 
     return corsJson(200, {

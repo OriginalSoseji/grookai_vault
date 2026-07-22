@@ -3240,6 +3240,7 @@ class _CollectorMemoryPhotoThumb extends StatelessWidget {
             : Image.network(
                 url,
                 fit: BoxFit.cover,
+                cacheWidth: 240,
                 errorBuilder: (context, error, stackTrace) => Icon(
                   Icons.photo_outlined,
                   size: 22,

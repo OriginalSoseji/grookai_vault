@@ -33,6 +33,8 @@ export async function GET(request: NextRequest) {
   const response = new NextResponse(await data.arrayBuffer(), {
     headers: {
       "Cache-Control": "public, max-age=31536000, immutable",
+      "CDN-Cache-Control": "public, max-age=31536000, immutable",
+      "Vercel-CDN-Cache-Control": "public, max-age=31536000, immutable",
       "Content-Type": data.type || getContentTypeForPath(path),
     },
   });

@@ -614,6 +614,7 @@ class _SetTile extends StatelessWidget {
                       ? Image.network(
                           heroImageUrl,
                           fit: BoxFit.cover,
+                          cacheWidth: 640,
                           errorBuilder: (context, error, stackTrace) {
                             return _SetHeroPlaceholder(setInfo: setInfo);
                           },

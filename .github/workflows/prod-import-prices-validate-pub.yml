@@ -3,9 +3,12 @@ name: Prod Import-Prices Validate (LEGACY DISABLED)
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   disabled:
-    if: false # GV_CI_DISABLED
+    if: ${{ false }} # GV_CI_DISABLED
     runs-on: ubuntu-latest
     steps:
-      - run: echo "GV_CI_DISABLED: superseded by prod-import-prices-validate-edge.yml"
+      - run: 'echo "GV_CI_DISABLED: superseded by prod-import-prices-validate-edge.yml"'

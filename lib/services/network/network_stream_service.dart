@@ -142,6 +142,7 @@ class NetworkStreamRow {
     String? printedIdentityModifier,
     String? setIdentityModel,
     String? imageUrl,
+    bool clearImageUrl = false,
     List<NetworkStreamCopy>? inPlayCopies,
     CardSurfacePricingData? pricing,
     int? listingCount,
@@ -179,7 +180,7 @@ class NetworkStreamRow {
       setIdentityModel: setIdentityModel ?? this.setIdentityModel,
       sourceLabel: sourceLabel ?? this.sourceLabel,
       rarity: rarity ?? this.rarity,
-      imageUrl: imageUrl ?? this.imageUrl,
+      imageUrl: clearImageUrl ? null : imageUrl ?? this.imageUrl,
       inPlayCopies: inPlayCopies ?? this.inPlayCopies,
       pricing: pricing ?? this.pricing,
       listingCount: listingCount ?? this.listingCount,
@@ -266,6 +267,9 @@ class _NetworkFeedSession {
 }
 
 class NetworkStreamService {
+  static const Duration _selectedCollectorHydrationBudget = Duration(
+    milliseconds: 1800,
+  );
   static const bool _kNetworkFeedDiagnostics = false;
   static const int _sessionExposureMemory = 72;
   static const int _firstViewportFreshnessCount = 8;
@@ -476,12 +480,27 @@ class NetworkStreamService {
       limit: limit,
     );
     final collectorBudget = _clampedInt(limit - targetDiscoveryCount, 1, limit);
-    final collectorRows = _selectCollectorRowsForPage(
+    final selectedCollectorRows = _selectCollectorRowsForPage(
       eligibleCollectors: eligibleCollectors,
       budget: collectorBudget,
       session: session,
       context: 'mixed',
     );
+    final pageParts = await Future.wait<List<NetworkStreamRow>>([
+      _hydrateSelectedCollectorRows(
+        client: client,
+        rows: selectedCollectorRows,
+      ),
+      _fetchDiscoveryPage(
+        client: client,
+        session: session,
+        limit: limit - selectedCollectorRows.length,
+        excludeCardPrintIds: selectedCollectorRows
+            .map((row) => row.cardPrintId)
+            .toSet(),
+      ),
+    ]);
+    final collectorRows = pageParts[0];
     final remainingCollectorCount =
         eligibleCollectors.length - collectorRows.length;
 
@@ -492,12 +511,7 @@ class NetworkStreamService {
       );
     }
 
-    final discoveryRows = await _fetchDiscoveryPage(
-      client: client,
-      session: session,
-      limit: limit - collectorRows.length,
-      excludeCardPrintIds: collectorRows.map((row) => row.cardPrintId).toSet(),
-    );
+    final discoveryRows = pageParts[1];
     final mergedRows = _injectDiscoveryRows(
       collectors: collectorRows,
       discovery: discoveryRows,
@@ -578,7 +592,10 @@ class NetworkStreamService {
       return const <NetworkStreamRow>[];
     }
 
-    final collectorQueryLimit = _clampedInt(limit * 8, 48, 240);
+    // NETWORK_DISCOVERY_BOUNDED_OVERFETCH_V1
+    // A first page needs enough candidates for diversity, not an eight-page
+    // payload that must also be signed and enriched before it can render.
+    final collectorQueryLimit = _clampedInt(limit * 2, 24, 96);
 
     dynamic query = client
         .from('v_card_stream_v1')
@@ -605,20 +622,16 @@ class NetworkStreamService {
     final normalizedRows = (response as List<dynamic>)
         .map((raw) => Map<String, dynamic>.from(raw as Map))
         .toList();
-    final signedRows = await _withSignedVaultInstanceMediaRows(
-      client: client,
-      rows: normalizedRows,
-    );
-    final baseRows = signedRows
+    final baseRows = normalizedRows
         .map((raw) => _normalizeRow(Map<String, dynamic>.from(raw as Map)))
         .whereType<NetworkStreamRow>()
         .toList();
 
-    final collectorRows = await _enrichCollectorRows(
-      client: client,
-      rows: baseRows,
-    );
-    return _rankRows(collectorRows, session: session);
+    // NETWORK_COLLECTOR_FIRST_PAINT_V1
+    // v_card_stream_v1 already contains the fields required to render and open
+    // a collector card. Multi-source pricing/copy enrichment must not hold the
+    // entire Discover surface behind four additional reads.
+    return _rankRows(baseRows, session: session);
   }
 
   static Future<List<NetworkStreamRow>> _fetchDiscoveryPage({
@@ -803,7 +816,7 @@ class NetworkStreamService {
     final eligibleCollectors = collectorCandidates
         .where((row) => !_hasEmittedCollectorRow(session, row))
         .toList();
-    final pageRows = _diversifyFirstViewportRows(
+    final selectedRows = _diversifyFirstViewportRows(
       _selectCollectorRowsForPage(
         eligibleCollectors: eligibleCollectors,
         budget: limit,
@@ -811,6 +824,10 @@ class NetworkStreamService {
         context: context,
       ),
       session: session,
+    );
+    final pageRows = await _hydrateSelectedCollectorRows(
+      client: client,
+      rows: selectedRows,
     );
     _commitSessionRows(session, pageRows);
     _debugPageSnapshot(session, pageRows);
@@ -1188,18 +1205,30 @@ class NetworkStreamService {
     }
 
     final results = await Future.wait<dynamic>([
-      _fetchInPlayCopies(client: client, rows: rows),
-      _fetchCardIdentityMap(
-        client: client,
-        cardPrintIds: rows.map((row) => row.cardPrintId),
+      _bestEffortWithinBudget<Map<String, List<NetworkStreamCopy>>>(
+        _fetchInPlayCopies(client: client, rows: rows),
+        const <String, List<NetworkStreamCopy>>{},
       ),
-      CardSurfacePricingService.fetchByCardPrintIds(
-        client: client,
-        cardPrintIds: rows.map((row) => row.cardPrintId),
+      _bestEffortWithinBudget<Map<String, _NetworkCardIdentity>>(
+        _fetchCardIdentityMap(
+          client: client,
+          cardPrintIds: rows.map((row) => row.cardPrintId),
+        ),
+        const <String, _NetworkCardIdentity>{},
       ),
-      _fetchListingCounts(
-        client: client,
-        cardPrintIds: rows.map((row) => row.cardPrintId),
+      _bestEffortWithinBudget<Map<String, CardSurfacePricingData>>(
+        CardSurfacePricingService.fetchByCardPrintIds(
+          client: client,
+          cardPrintIds: rows.map((row) => row.cardPrintId),
+        ),
+        const <String, CardSurfacePricingData>{},
+      ),
+      _bestEffortWithinBudget<Map<String, int>>(
+        _fetchListingCounts(
+          client: client,
+          cardPrintIds: rows.map((row) => row.cardPrintId),
+        ),
+        const <String, int>{},
       ),
     ]);
 
@@ -1237,24 +1266,28 @@ class NetworkStreamService {
         .toSet();
     final normalizedTargetCount = _clampedInt(targetCount, 1, 16);
 
-    final highEndRows = await _fetchHighEndDiscoveryRows(
-      client: client,
-      session: session,
-      excludeCardPrintIds: excludedIds,
-      limit: _clampedInt(normalizedTargetCount * 2, 8, 36),
-    );
-
-    final randomRows = await _fetchRandomExploreRows(
-      client: client,
-      session: session,
-      excludeCardPrintIds: {
-        ...excludedIds,
-        ...highEndRows.map((row) => row.cardPrintId),
-      },
-      limit: _clampedInt(normalizedTargetCount, 4, 12),
-    );
-
-    return [...highEndRows, ...randomRows];
+    // NETWORK_DISCOVERY_PARALLEL_FETCH_V1
+    // These sources are independent. Fetch them together and deduplicate after
+    // both complete instead of adding a full network round trip to Discover.
+    final results = await Future.wait<List<NetworkStreamRow>>([
+      _fetchHighEndDiscoveryRows(
+        client: client,
+        session: session,
+        excludeCardPrintIds: excludedIds,
+        limit: _clampedInt(normalizedTargetCount * 2, 8, 36),
+      ),
+      _fetchRandomExploreRows(
+        client: client,
+        session: session,
+        excludeCardPrintIds: excludedIds,
+        limit: _clampedInt(normalizedTargetCount, 4, 12),
+      ),
+    ]);
+    final rowsByCardPrintId = <String, NetworkStreamRow>{};
+    for (final row in [...results[0], ...results[1]]) {
+      rowsByCardPrintId.putIfAbsent(row.cardPrintId, () => row);
+    }
+    return rowsByCardPrintId.values.toList(growable: false);
   }
 
   static Future<List<NetworkStreamRow>> _fetchHighEndDiscoveryRows({
@@ -1357,7 +1390,7 @@ class NetworkStreamService {
           'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,identity_model)',
         )
         .order('name', ascending: true)
-        .limit(240);
+        .limit(96);
 
     final catalogRows = (rawRows as List<dynamic>)
         .map((raw) => Map<String, dynamic>.from(raw as Map))
@@ -1511,7 +1544,25 @@ class NetworkStreamService {
   }
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
-    return resolveDisplayImageUrlFromRow(row);
+    final resolved = resolveDisplayImageUrlFromRow(row);
+    if (resolved != null || row == null) {
+      return resolved;
+    }
+
+    // Keep only a recognized private exact-copy storage path long enough for
+    // the selected-row signer. Arbitrary non-URL values still fail closed.
+    for (final key in const <String>[
+      'display_image_url',
+      'image_url',
+      'image_alt_url',
+      'representative_image_url',
+    ]) {
+      final raw = _nullable(row[key]);
+      if (raw != null && _isVaultInstanceMediaPath(raw)) {
+        return raw;
+      }
+    }
+    return null;
   }
 
   static String? _preferredImageUrl(String? rowImageUrl, String? fallbackUrl) {
@@ -1519,41 +1570,90 @@ class NetworkStreamService {
         normalizeDisplayImageUrl(fallbackUrl);
   }
 
-  static Future<List<Map<String, dynamic>>> _withSignedVaultInstanceMediaRows({
+  static Future<List<NetworkStreamRow>> _withSignedCollectorMedia({
     required SupabaseClient client,
-    required List<Map<String, dynamic>> rows,
+    required List<NetworkStreamRow> rows,
   }) {
     return Future.wait(
       rows.map((row) async {
-        return <String, dynamic>{
-          ...row,
-          'display_image_url':
-              await _resolveVaultInstanceMediaSignedUrl(
-                client: client,
-                value: row['display_image_url'],
-              ) ??
-              row['display_image_url'],
-          'image_url':
-              await _resolveVaultInstanceMediaSignedUrl(
-                client: client,
-                value: row['image_url'],
-              ) ??
-              row['image_url'],
-          'image_alt_url':
-              await _resolveVaultInstanceMediaSignedUrl(
-                client: client,
-                value: row['image_alt_url'],
-              ) ??
-              row['image_alt_url'],
-          'representative_image_url':
-              await _resolveVaultInstanceMediaSignedUrl(
-                client: client,
-                value: row['representative_image_url'],
-              ) ??
-              row['representative_image_url'],
-        };
+        final signedUrl = await _resolveVaultInstanceMediaSignedUrl(
+          client: client,
+          value: row.imageUrl,
+        );
+        final resolvedImageUrl =
+            normalizeDisplayImageUrl(signedUrl) ??
+            normalizeDisplayImageUrl(row.imageUrl);
+        return row.copyWith(
+          imageUrl: resolvedImageUrl,
+          clearImageUrl: resolvedImageUrl == null,
+        );
       }),
     );
+  }
+
+  static Future<List<NetworkStreamRow>> _hydrateSelectedCollectorRows({
+    required SupabaseClient client,
+    required List<NetworkStreamRow> rows,
+  }) async {
+    if (rows.isEmpty) {
+      return const <NetworkStreamRow>[];
+    }
+
+    // Enrich only rows selected for this page. Exact-copy navigation, variant
+    // identity, and pricing remain available without making the overfetch
+    // candidate pool part of first-paint work. Every lane is fail-open and
+    // shares a short wall-clock budget.
+    final hydrated = await Future.wait<List<NetworkStreamRow>>([
+      _bestEffortWithinBudget<List<NetworkStreamRow>>(
+        _enrichCollectorRows(client: client, rows: rows),
+        rows,
+      ),
+      _bestEffortWithinBudget<List<NetworkStreamRow>>(
+        _withSignedCollectorMedia(client: client, rows: rows),
+        rows,
+      ),
+    ]);
+    final enrichedRows = hydrated[0];
+    final signedRows = hydrated[1];
+
+    return List<NetworkStreamRow>.generate(rows.length, (index) {
+      final enriched = enrichedRows[index];
+      final signedImageUrl = normalizeDisplayImageUrl(
+        signedRows[index].imageUrl,
+      );
+      final resolvedImageUrl =
+          signedImageUrl ?? normalizeDisplayImageUrl(enriched.imageUrl);
+      return enriched.copyWith(
+        imageUrl: resolvedImageUrl,
+        clearImageUrl: resolvedImageUrl == null,
+      );
+    }, growable: false);
+  }
+
+  static Future<T> _bestEffortWithinBudget<T>(
+    Future<T> operation,
+    T fallback,
+  ) async {
+    try {
+      return await operation.timeout(
+        _selectedCollectorHydrationBudget,
+        onTimeout: () => fallback,
+      );
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  static bool _isVaultInstanceMediaPath(String value) {
+    final normalized = value.trim().replaceFirst(RegExp(r'^/+'), '');
+    final uri = Uri.tryParse(normalized);
+    if (uri != null && (uri.scheme == 'http' || uri.scheme == 'https')) {
+      return false;
+    }
+    return RegExp(
+      r'(^|/)vault-instances/[^/]+/(front|back)/current$',
+      caseSensitive: false,
+    ).hasMatch(normalized);
   }
 
   static Future<String?> _resolveVaultInstanceMediaSignedUrl({
@@ -1570,17 +1670,15 @@ class NetworkStreamService {
       return normalized;
     }
 
-    if (!RegExp(
-      r'(^|/)vault-instances/[^/]+/(front|back)/current$',
-      caseSensitive: false,
-    ).hasMatch(normalized)) {
+    if (!_isVaultInstanceMediaPath(normalized)) {
       return null;
     }
 
     try {
       return await client.storage
           .from('user-card-images')
-          .createSignedUrl(normalized, 60 * 60);
+          .createSignedUrl(normalized, 60 * 60)
+          .timeout(const Duration(seconds: 2));
     } catch (_) {
       return null;
     }

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node ../../scripts/generate_public_set_card_counts.mjs --allow-stale",
     "build": "node ../../scripts/ci/run_next_build_with_system_ca.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit",

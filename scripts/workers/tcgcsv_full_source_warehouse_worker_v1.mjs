@@ -24,8 +24,10 @@ const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
 const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
-const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 500;
+const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
+const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
+const HISTORICAL_ADVISORY_LOCK_NAME = "grookai:tcgcsv:historical:v1";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
 const { Client } = pg;
@@ -362,6 +364,9 @@ async function upsertRun(client, run) {
      on conflict (run_key) do update set
        status = excluded.status,
        source_marker = excluded.source_marker,
+       observed_on = excluded.observed_on,
+       date_from = excluded.date_from,
+       date_to = excluded.date_to,
        request_count = excluded.request_count,
        category_count = excluded.category_count,
        group_count = excluded.group_count,
@@ -373,6 +378,7 @@ async function upsertRun(client, run) {
        failed_count = excluded.failed_count,
        artifact_root = excluded.artifact_root,
        artifact_hash = excluded.artifact_hash,
+       started_at = excluded.started_at,
        finished_at = excluded.finished_at,
        error = excluded.error,
        payload = excluded.payload
@@ -702,6 +708,13 @@ async function upsertProducts(client, rows) {
 
 async function upsertPriceObservations(client, rows) {
   const chunkSize = positiveIntFromEnv("TCGCSV_PRICE_OBSERVATION_BATCH_SIZE", DEFAULT_PRICE_OBSERVATION_BATCH_SIZE);
+  const batchDelayMs = Number.parseInt(
+    process.env.TCGCSV_PRICE_BATCH_DELAY_MS ?? String(DEFAULT_PRICE_BATCH_DELAY_MS),
+    10,
+  );
+  if (!Number.isInteger(batchDelayMs) || batchDelayMs < 0) {
+    throw new Error("TCGCSV_PRICE_BATCH_DELAY_MS must be a non-negative integer");
+  }
   let inserted = 0;
   let updated = 0;
   let noOp = 0;
@@ -786,6 +799,7 @@ async function upsertPriceObservations(client, rows) {
     if (processed === rows.length || processed % (chunkSize * 20) === 0) {
       console.error(`[tcgcsv-full] price_observations processed=${processed}/${rows.length} inserted=${inserted} updated=${updated}`);
     }
+    if (processed < rows.length) await sleep(batchDelayMs);
   }
   return {
     inserted,
@@ -1267,7 +1281,8 @@ async function runCurrentSync(args, runKey, artifactRoot) {
 
 async function runHistoricalSync(args, runKey, artifactRoot) {
   const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
-  const dates = dateRange(args.dateFrom, args.dateTo);
+  const dates = dateRange(args.dateFrom, args.dateTo)
+    .filter((date) => !args.completedHistoricalDates?.has(date));
   const allPrices = [];
   const failedDates = [];
   const extractedRoots = [];
@@ -1327,8 +1342,8 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
     artifact_root: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
     artifact_hash: sha256(fetcher.artifacts.map((artifact) => ({ path: artifact.local_path, sha256: artifact.sha256 }))),
     git_commit_sha: await gitCommitSha(),
-    started_at: new Date().toISOString(),
-    finished_at: new Date().toISOString(),
+    started_at: args.actualStartedAt ?? new Date().toISOString(),
+    finished_at: null,
     payload: { failed_dates: failedDates, extracted_roots: extractedRoots.map((root) => path.relative(REPO_ROOT, root).replace(/\\/g, "/")) },
   };
 
@@ -1350,6 +1365,7 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
       run.updated_count = priceResult.updated;
       run.no_op_count = priceResult.noOp;
       run.payload = { ...run.payload, apply_results: { artifactCount, placeholderProducts, priceResult } };
+      run.finished_at = new Date().toISOString();
       await upsertRun(client, run);
     } finally {
       await client.end().catch(() => {});
@@ -1357,6 +1373,90 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
   }
 
   return { run, summary: { dates: dates.length, prices: allPrices.length, failedDates }, artifacts: fetcher.artifacts };
+}
+
+async function acquireHistoricalGuard(args) {
+  if (!args.apply || args.mode !== "historical") return null;
+  const client = await connectDb();
+  const lock = await client.query(
+    "select pg_try_advisory_lock(hashtext($1)) as acquired",
+    [HISTORICAL_ADVISORY_LOCK_NAME],
+  );
+  if (!lock.rows[0]?.acquired) {
+    await client.end().catch(() => {});
+    const error = new Error("another historical TCGCSV worker already owns the production lock");
+    error.code = "HISTORICAL_WORKER_LOCKED";
+    throw error;
+  }
+
+  const staleRunHours = positiveIntFromEnv(
+    "TCGCSV_HISTORICAL_STALE_RUN_HOURS",
+    3,
+  );
+  const reconciled = await client.query(
+    `update public.tcgcsv_source_sync_runs
+     set status = 'failed',
+         finished_at = coalesce(finished_at, now()),
+         error = coalesce(nullif(error, ''), 'reconciled_abandoned_historical_run'),
+         payload = coalesce(payload, '{}'::jsonb) || jsonb_build_object(
+           'reconciled_at', now(),
+           'reconciled_reason', 'abandoned_historical_run'
+         )
+     where sync_mode = 'historical_archive_backfill'
+       and status = 'running'
+       and coalesce(started_at, created_at) <
+         now() - ($1::integer * interval '1 hour')`,
+    [staleRunHours],
+  );
+  if (reconciled.rowCount > 0) {
+    console.error(
+      `[tcgcsv-full] reconciled_abandoned_historical_runs count=${reconciled.rowCount} older_than_hours=${staleRunHours}`,
+    );
+  }
+
+  if (!args.force) {
+    const completed = await client.query(
+      `select date_from::text as date
+       from public.tcgcsv_source_sync_runs
+       where sync_mode = 'historical_archive_backfill'
+         and status in ('completed', 'partial_success')
+         and failed_count = 0
+         and date_from = date_to
+         and date_from between $1::date and $2::date`,
+      [args.dateFrom, args.dateTo],
+    );
+    args.completedHistoricalDates = new Set(completed.rows.map((row) => row.date));
+  }
+  return client;
+}
+
+async function releaseHistoricalGuard(client) {
+  if (!client) return;
+  try {
+    await client.query("select pg_advisory_unlock(hashtext($1))", [HISTORICAL_ADVISORY_LOCK_NAME]);
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
+async function recordHistoricalFailure(args, runKey, error) {
+  if (!args.apply || args.mode !== "historical") return;
+  const client = await connectDb();
+  try {
+    await upsertRun(client, {
+      run_key: runKey,
+      sync_mode: "historical_archive_backfill",
+      status: "failed",
+      date_from: args.dateFrom,
+      date_to: args.dateTo,
+      error: String(error?.message ?? error).slice(0, 4000),
+      started_at: args.actualStartedAt,
+      finished_at: new Date().toISOString(),
+      payload: { failure_code: error?.code ?? null },
+    });
+  } finally {
+    await client.end().catch(() => {});
+  }
 }
 
 async function writeSummary(outDir, runKey, result) {
@@ -1368,15 +1468,42 @@ async function writeSummary(outDir, runKey, result) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const runKey = args.resumeRunKey ?? `TCGCSV-FULL-${args.mode.toUpperCase()}-${timestampStamp()}`;
+  args.actualStartedAt = new Date().toISOString();
+  const deterministicHistoricalKey = args.mode === "historical" && !args.force && args.dateFrom === args.dateTo
+    ? `TCGCSV-FULL-HISTORICAL-${args.dateFrom}`
+    : null;
+  const runKey = args.resumeRunKey
+    ?? deterministicHistoricalKey
+    ?? `TCGCSV-FULL-${args.mode.toUpperCase()}-${timestampStamp()}`;
   const artifactRoot = path.join(args.outDir, runKey);
   await fs.mkdir(artifactRoot, { recursive: true });
 
+  let historicalGuard = null;
   let result;
   try {
-    result = args.mode === "current"
-      ? await runCurrentSync(args, runKey, artifactRoot)
-      : await runHistoricalSync(args, runKey, artifactRoot);
+    historicalGuard = await acquireHistoricalGuard(args);
+    const requestedDates = args.mode === "historical" ? dateRange(args.dateFrom, args.dateTo) : [];
+    if (requestedDates.length > 0 && requestedDates.every((date) => args.completedHistoricalDates?.has(date))) {
+      result = {
+        run: {
+          run_key: runKey,
+          sync_mode: "historical_archive_backfill",
+          status: "skipped_already_completed",
+          date_from: args.dateFrom,
+          date_to: args.dateTo,
+          request_count: 0,
+          price_row_count: 0,
+          started_at: args.actualStartedAt,
+          finished_at: new Date().toISOString(),
+        },
+        summary: { dates: 0, skipped_dates: requestedDates },
+        artifacts: [],
+      };
+    } else {
+      result = args.mode === "current"
+        ? await runCurrentSync(args, runKey, artifactRoot)
+        : await runHistoricalSync(args, runKey, artifactRoot);
+    }
   } catch (error) {
     if (error?.code === "REQUEST_CEILING") {
       result = {
@@ -1405,9 +1532,25 @@ async function main() {
           await client.end().catch(() => {});
         }
       }
+    } else if (error?.code === "HISTORICAL_WORKER_LOCKED") {
+      result = {
+        run: {
+          run_key: runKey,
+          sync_mode: "historical_archive_backfill",
+          status: "skipped_worker_locked",
+          error: error.message,
+          started_at: args.actualStartedAt,
+          finished_at: new Date().toISOString(),
+        },
+        summary: { error: error.message },
+        artifacts: [],
+      };
     } else {
+      await recordHistoricalFailure(args, runKey, error);
       throw error;
     }
+  } finally {
+    await releaseHistoricalGuard(historicalGuard);
   }
 
   const summaryPath = await writeSummary(artifactRoot, runKey, {

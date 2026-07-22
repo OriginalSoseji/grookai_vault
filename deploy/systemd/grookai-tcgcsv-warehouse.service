@@ -12,7 +12,9 @@ Environment=TCGCSV_FULL_SYNC_REQUEST_CEILING=10000
 Environment=TCGCSV_REQUEST_DELAY_MS=100
 Environment=TCGCSV_DIMENSION_BATCH_SIZE=1000
 Environment=TCGCSV_ARTIFACT_BATCH_SIZE=1000
-Environment=TCGCSV_PRICE_OBSERVATION_BATCH_SIZE=500
+Environment=TCGCSV_PRICE_OBSERVATION_BATCH_SIZE=2000
+Environment=TCGCSV_PRICE_BATCH_DELAY_MS=25
+ExecCondition=/usr/bin/env node scripts/workers/tcgcsv_historical_load_guard_v1.mjs
 ExecStart=/usr/bin/flock -n /tmp/grookai-tcgcsv-warehouse.lock /usr/bin/env bash -lc 'node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=current --apply --out-dir=docs/audits/market_evidence_engine_v1/tcgcsv_full_source_warehouse_v1'
 TimeoutStartSec=4h
 Nice=8

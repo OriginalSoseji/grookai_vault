@@ -406,12 +406,13 @@ class AppShell extends StatefulWidget {
 enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
-  // BOTTOM_NAV_LUXURY_PASS_V1
-  // Primary app navigation is behavior-first: Search, Pulse, Scan, Wall, Vault.
-  search(navIndex: 0, stackIndex: 0, title: 'Search'),
-  feed(navIndex: 1, stackIndex: 1, title: 'Pulse'),
-  wall(navIndex: 3, stackIndex: 2, title: 'Wall'),
-  vault(navIndex: 4, stackIndex: 3, title: 'Vault');
+  // PULSE_WALL_VAULT_SHELL_V1
+  // The three product pillars lead the shell. Scan and Search remain global
+  // acquisition/discovery actions without competing with those pillars.
+  feed(navIndex: 0, stackIndex: 0, title: 'Pulse'),
+  wall(navIndex: 1, stackIndex: 1, title: 'Wall'),
+  vault(navIndex: 2, stackIndex: 2, title: 'Vault'),
+  search(navIndex: 4, stackIndex: 3, title: 'Search');
 
   const _ShellDestination({
     required this.navIndex,
@@ -466,15 +467,9 @@ class _AppShellState extends State<AppShell> {
       AppBootTiming.markOnce('app_shell_first_post_frame');
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
-      if (!kScannerConstructionPlaceholderEnabled &&
-          !kFixedSlotCaptureScannerV1Enabled &&
-          kNativeScannerPhase0Enabled) {
-        unawaited(NativeScannerPhase0Bridge.startSession());
-      }
-      if (!kScannerConstructionPlaceholderEnabled &&
-          !kFixedSlotCaptureScannerV1Enabled) {
-        unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
-      }
+      // APP_STARTUP_NO_CAMERA_CONTENTION_V1
+      // Camera startup competes with the first network surface for CPU, memory,
+      // and platform-channel time. Scan initializes on demand when tapped.
       unawaited(_maybeShowOnboardingForLanding());
     });
     AppBootTiming.mark('app_shell_init_state_complete');
@@ -1262,7 +1257,10 @@ class _AppShellState extends State<AppShell> {
     final bottomSafeInset = MediaQuery.viewPaddingOf(context).bottom;
     final shellChildren = List<Widget>.generate(
       _ShellDestination.values.length,
-      (index) => _shellPages[index] ?? const SizedBox.shrink(),
+      (index) => TickerMode(
+        enabled: index == _destination.stackIndex,
+        child: _shellPages[index] ?? const SizedBox.shrink(),
+      ),
       growable: false,
     );
     final shellBody = IndexedStack(
@@ -1404,17 +1402,6 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 0,
-                        label: 'Search',
-                        icon: Icons.search_rounded,
-                        collapsed: collapsed,
-                        onPressed: () =>
-                            _selectDestination(_ShellDestination.search),
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildDockButton(
-                        colorScheme: colorScheme,
-                        navIndex: 1,
                         label: 'Pulse',
                         icon: Icons.dynamic_feed_rounded,
                         collapsed: collapsed,
@@ -1426,18 +1413,7 @@ class _AppShellState extends State<AppShell> {
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
-                        navIndex: 2,
-                        label: 'Scan',
-                        icon: Icons.center_focus_strong_rounded,
-                        collapsed: collapsed,
-                        isPrimaryAction: true,
-                        onPressed: _startScanFlow,
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildDockButton(
-                        colorScheme: colorScheme,
-                        navIndex: 3,
+                        navIndex: 1,
                         label: 'Wall',
                         icon: Icons.collections_bookmark_rounded,
                         collapsed: collapsed,
@@ -1448,12 +1424,34 @@ class _AppShellState extends State<AppShell> {
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
-                        navIndex: 4,
+                        navIndex: 2,
                         label: 'Vault',
                         icon: Icons.inventory_2_rounded,
                         collapsed: collapsed,
                         onPressed: () =>
                             _selectDestination(_ShellDestination.vault),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 3,
+                        label: 'Scan',
+                        icon: Icons.center_focus_strong_rounded,
+                        collapsed: collapsed,
+                        isPrimaryAction: true,
+                        onPressed: _startScanFlow,
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildDockButton(
+                        colorScheme: colorScheme,
+                        navIndex: 4,
+                        label: 'Search',
+                        icon: Icons.search_rounded,
+                        collapsed: collapsed,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.search),
                       ),
                     ),
                   ],
@@ -1663,21 +1661,10 @@ class _GrookaiDesktopRail extends StatelessWidget {
               ),
             ),
             _GrookaiRailTile(
-              icon: Icons.search_rounded,
-              label: 'Search',
-              selected: currentDestination == _ShellDestination.search,
-              onTap: onOpenSearch,
-            ),
-            _GrookaiRailTile(
               icon: Icons.dynamic_feed_rounded,
               label: 'Pulse',
               selected: currentDestination == _ShellDestination.feed,
               onTap: onOpenFeed,
-            ),
-            _GrookaiRailTile(
-              icon: Icons.center_focus_strong_rounded,
-              label: 'Scan',
-              onTap: onOpenScan,
             ),
             _GrookaiRailTile(
               icon: Icons.collections_bookmark_rounded,
@@ -1690,6 +1677,17 @@ class _GrookaiDesktopRail extends StatelessWidget {
               label: 'Vault',
               selected: currentDestination == _ShellDestination.vault,
               onTap: onOpenVault,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.center_focus_strong_rounded,
+              label: 'Scan',
+              onTap: onOpenScan,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.search_rounded,
+              label: 'Search',
+              selected: currentDestination == _ShellDestination.search,
+              onTap: onOpenSearch,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),

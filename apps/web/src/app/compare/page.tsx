@@ -5,6 +5,7 @@ import PageSection from "@/components/layout/PageSection";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
 import { getPublicCardsByGvIds } from "@/lib/cards/getPublicCardsByGvIds";
 import { buildCompareHref, buildPathWithCompareCards, MIN_COMPARE_CARDS, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const revalidate = 120;
 
@@ -68,8 +69,14 @@ export default async function ComparePage({
   searchParams?: { cards?: string };
 }) {
   const requestedCards = normalizeCompareCardsParam(searchParams?.cards);
-  const cards = await getPublicCardsByGvIds(requestedCards);
-  const canViewPricing = false;
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const canViewPricing = Boolean(user);
+  const cards = await getPublicCardsByGvIds(requestedCards, {
+    includePricing: canViewPricing,
+  });
   const pricingSignInHref = `/login?next=${encodeURIComponent(buildCompareHref(requestedCards))}`;
 
   if (cards.length < MIN_COMPARE_CARDS) {

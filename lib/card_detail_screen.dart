@@ -3857,6 +3857,7 @@ class _JourneyAvatar extends StatelessWidget {
         ? Image.network(
             imageUrl.trim(),
             fit: BoxFit.cover,
+            cacheWidth: 900,
             errorBuilder: (_, _, _) => _fallback(theme),
           )
         : _fallback(theme);

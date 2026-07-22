@@ -2,6 +2,11 @@ import 'dart:convert';
 
 import '../secrets.dart';
 
+const List<String> _warehouseImagePathPrefixes = <String>[
+  'warehouse-derived/self-hosted-images-v1/',
+  'warehouse-derived/image-truth-v1/',
+];
+
 // LOCK: displayImageUrl is the primary product image contract.
 // LOCK: Do not regress to imageUrl-only rendering.
 String? normalizeDisplayImageUrl(
@@ -14,10 +19,17 @@ String? normalizeDisplayImageUrl(
     return null;
   }
 
-  final resolved = _resolveGrookaiRelativeUrl(normalized);
+  final resolved = _unwrapGrookaiOptimizedImageUrl(
+    _resolveGrookaiRelativeUrl(normalized),
+  );
   final parsed = Uri.tryParse(resolved);
   if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
     return null;
+  }
+
+  final privateCatalogImagePath = _warehouseImagePathFromStorageUrl(parsed);
+  if (privateCatalogImagePath != null) {
+    return normalizeWarehouseDisplayImagePath(privateCatalogImagePath);
   }
 
   if (_isBrokenPublicUserCardImageUrl(parsed)) {
@@ -54,6 +66,23 @@ String _resolveGrookaiRelativeUrl(String value) {
   }
 
   return Uri.parse(grookaiWebBaseUrl).resolve(value).toString();
+}
+
+String _unwrapGrookaiOptimizedImageUrl(String value) {
+  var current = value;
+  for (var depth = 0; depth < 3; depth += 1) {
+    final parsed = Uri.tryParse(current);
+    if (parsed == null || !_isGrookaiOptimizedImage(parsed)) {
+      return current;
+    }
+
+    final innerUrl = (parsed.queryParameters['url'] ?? '').trim();
+    if (innerUrl.isEmpty || innerUrl == current) {
+      return current;
+    }
+    current = _resolveGrookaiRelativeUrl(innerUrl);
+  }
+  return current;
 }
 
 String _nativeSafeCardImageUrl(
@@ -138,6 +167,37 @@ bool _isBrokenPublicUserCardImageUrl(Uri parsed) {
       path.startsWith('/storage/v1/object/public/user-card-images/');
 }
 
+String? _warehouseImagePathFromStorageUrl(Uri parsed) {
+  final host = parsed.host.toLowerCase();
+  if (!host.endsWith('.supabase.co')) {
+    return null;
+  }
+
+  const storagePrefixes = <String>[
+    '/storage/v1/object/public/user-card-images/',
+    '/storage/v1/object/sign/user-card-images/',
+  ];
+  final lowerPath = parsed.path.toLowerCase();
+  String? storagePrefix;
+  for (final candidate in storagePrefixes) {
+    if (lowerPath.startsWith(candidate)) {
+      storagePrefix = candidate;
+      break;
+    }
+  }
+  if (storagePrefix == null) {
+    return null;
+  }
+
+  try {
+    return _normalizeWarehouseImagePath(
+      Uri.decodeComponent(parsed.path.substring(storagePrefix.length)),
+    );
+  } catch (_) {
+    return null;
+  }
+}
+
 bool _isExpiredSupabaseSignedStorageUrl(Uri parsed) {
   final host = parsed.host.toLowerCase();
   final path = parsed.path.toLowerCase();
@@ -220,7 +280,7 @@ String? _normalizeWarehouseImagePath(dynamic value) {
   if (normalized.isEmpty ||
       normalized.length > 512 ||
       normalized.contains('..') ||
-      !normalized.startsWith('warehouse-derived/self-hosted-images-v1/')) {
+      !_warehouseImagePathPrefixes.any(normalized.startsWith)) {
     return null;
   }
   return normalized;

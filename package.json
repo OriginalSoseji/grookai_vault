@@ -32,6 +32,7 @@
     "tcgdex:import-cards": "node backend/pokemon/tcgdex_import_cards_worker.mjs --mode=full",
     "tcgdex:normalize": "node backend/pokemon/tcgdex_normalize_worker.mjs --mode=backfill",
     "pokemon:new-sets:ingest": "node scripts/ingest/new_set_release_ingest_v1.mjs",
+    "public-sets:counts:refresh": "node scripts/generate_public_set_card_counts.mjs",
     "pokemon:enrich": "node backend/pokemon/pokemon_enrichment_worker.mjs --mode=backfill",
     "pokemon:backfill-mappings": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs",
     "pokemon:backfill-mappings:dry": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs --dry-run --limit=200",

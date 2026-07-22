@@ -37,6 +37,11 @@ if [[ ! -f "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs" ]]; then
   exit 1
 fi
 
+if [[ ! -f "scripts/workers/tcgcsv_historical_load_guard_v1.mjs" ]]; then
+  echo "Missing production load guard script. Set REPO_DIR to the Grookai repo path." >&2
+  exit 1
+fi
+
 if [[ ! -f "${ENV_FILE}" ]]; then
   echo "Missing ${ENV_FILE}. Create it from deploy/env/mee-nightly.env.example and fill database credentials first." >&2
   exit 1
@@ -45,6 +50,7 @@ fi
 require_env_value "SUPABASE_DB_URL"
 
 node --check scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs
+node --check scripts/workers/tcgcsv_historical_load_guard_v1.mjs
 node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs \
   --mode=current \
   --dry-run \

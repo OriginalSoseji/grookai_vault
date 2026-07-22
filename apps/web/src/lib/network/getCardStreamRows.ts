@@ -340,60 +340,91 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     rows.map((row) => buildGroupKey(row.ownerUserId, row.cardPrintId)),
   );
   const ownerUserIds = Array.from(new Set(rows.map((row) => row.ownerUserId)));
+  const cardPrintIds = Array.from(new Set(rows.map((row) => row.cardPrintId)));
 
-  if (ownerUserIds.length === 0 || requestedGroupKeys.size === 0) {
+  if (
+    ownerUserIds.length === 0 ||
+    cardPrintIds.length === 0 ||
+    requestedGroupKeys.size === 0
+  ) {
     return new Map<string, CardStreamCopy[]>();
   }
 
-  const { data: instances, error: instancesError } = await admin
-    .from("vault_item_instances")
-    .select(
-      "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
-    )
-    .in("user_id", ownerUserIds)
-    .is("archived_at", null)
-    .in("intent", ["trade", "sell", "showcase"])
-    .order("created_at", { ascending: false })
-    .order("id", { ascending: false });
+  // Scope both copy lanes to the visible cards. The former owner-only query
+  // loaded every active instance belonging to every owner in the feed.
+  const [directInstancesResult, slabCertsResult] = await Promise.all([
+    admin
+      .from("vault_item_instances")
+      .select(
+        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      )
+      .in("user_id", ownerUserIds)
+      .in("card_print_id", cardPrintIds)
+      .is("archived_at", null)
+      .in("intent", ["trade", "sell", "showcase"])
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false }),
+    admin
+      .from("slab_certs")
+      .select("id,card_print_id,grader,cert_number,grade")
+      .in("card_print_id", cardPrintIds),
+  ]);
 
-  if (instancesError) {
+  if (directInstancesResult.error) {
     throw new Error(
-      `[network:stream] copy drilldown query failed: ${instancesError.message}`,
+      `[network:stream] direct copy drilldown query failed: ${directInstancesResult.error.message}`,
+    );
+  }
+  if (slabCertsResult.error) {
+    throw new Error(
+      `[network:stream] slab cert metadata query failed: ${slabCertsResult.error.message}`,
     );
   }
 
-  const slabCertIds = Array.from(
-    new Set(
-      ((instances ?? []) as CardStreamCopySourceRow[])
-        .map((row) => normalizeOptionalText(row.slab_cert_id))
-        .filter((value): value is string => Boolean(value)),
-    ),
-  );
+  const slabCertRows = (slabCertsResult.data ?? []) as SlabCertMetadataRow[];
   const slabCertById = new Map<string, SlabCertMetadataRow>();
-
-  if (slabCertIds.length > 0) {
-    const { data: slabCerts, error: slabCertsError } = await admin
-      .from("slab_certs")
-      .select("id,card_print_id,grader,cert_number,grade")
-      .in("id", slabCertIds);
-
-    if (slabCertsError) {
-      throw new Error(
-        `[network:stream] slab cert metadata query failed: ${slabCertsError.message}`,
-      );
-    }
-
-    for (const row of (slabCerts ?? []) as SlabCertMetadataRow[]) {
-      const slabCertId = normalizeOptionalText(row.id);
-      if (slabCertId) {
-        slabCertById.set(slabCertId, row);
-      }
+  for (const row of slabCertRows) {
+    const slabCertId = normalizeOptionalText(row.id);
+    if (slabCertId) {
+      slabCertById.set(slabCertId, row);
     }
   }
 
+  const slabInstances: CardStreamCopySourceRow[] = [];
+  const slabCertIds = Array.from(slabCertById.keys());
+  for (let index = 0; index < slabCertIds.length; index += 200) {
+    const { data, error } = await admin
+      .from("vault_item_instances")
+      .select(
+        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      )
+      .in("user_id", ownerUserIds)
+      .in("slab_cert_id", slabCertIds.slice(index, index + 200))
+      .is("archived_at", null)
+      .in("intent", ["trade", "sell", "showcase"])
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false });
+
+    if (error) {
+      throw new Error(
+        `[network:stream] slab copy drilldown query failed: ${error.message}`,
+      );
+    }
+    slabInstances.push(...((data ?? []) as CardStreamCopySourceRow[]));
+  }
+
+  const instances = Array.from(
+    new Map(
+      [
+        ...((directInstancesResult.data ?? []) as CardStreamCopySourceRow[]),
+        ...slabInstances,
+      ].map((row) => [row.id, row]),
+    ).values(),
+  );
+
   const copiesByGroupKey = new Map<string, CardStreamCopy[]>();
 
-  for (const row of (instances ?? []) as CardStreamCopySourceRow[]) {
+  for (const row of instances) {
     const ownerUserId = normalizeOptionalText(row.user_id);
     const vaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
     const slabCert = normalizeOptionalText(row.slab_cert_id)

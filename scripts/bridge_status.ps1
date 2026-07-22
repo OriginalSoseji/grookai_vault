@@ -55,31 +55,27 @@ function Invoke-GVImportPricesProbe {
   Set-StrictMode -Version Latest
   $ErrorActionPreference = "Stop"
 
-  if (-not $env:SUPABASE_URL -or -not $env:SUPABASE_PUBLISHABLE_KEY -or -not $env:BRIDGE_IMPORT_TOKEN) {
+  if (-not $env:SUPABASE_URL -or -not $env:SUPABASE_PUBLISHABLE_KEY) {
     return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=-1; Ok=$false; Note='Missing required env' }
   }
 
   $url = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
-  $body = @{ ping = 'ok' } | ConvertTo-Json -Depth 5
+  $body = @{ mode = 'health'; source = 'bridge-status-health' } | ConvertTo-Json -Depth 5
 
-  # Variant A: apikey only (preferred)
   $headers = @{
-    "apikey"         = $env:SUPABASE_PUBLISHABLE_KEY
-    "x-bridge-token" = $env:BRIDGE_IMPORT_TOKEN
-    "Content-Type"   = "application/json"
+    "apikey"       = $env:SUPABASE_PUBLISHABLE_KEY
+    "Content-Type" = "application/json"
   }
 
   try {
     $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 8
-    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='A' }
+    $json = $r.Content | ConvertFrom-Json
+    $ok = ([int]$r.StatusCode -eq 200 -and $json.ok -eq $true -and $json.mode -eq 'health' -and $json.pipeline -eq 'retired')
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=$ok; Note='retired-health' }
   } catch {
     $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
-    if ($code -ne 401) {
-      return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$code; Ok=$false; Note='A' }
-    }
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$code; Ok=$false; Note='retired-health' }
   }
-
-  # Variant B removed: functions are JWT-free; use apikey + bridge only
 }
 
 $probe = Invoke-GVImportPricesProbe
