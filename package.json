@@ -57,6 +57,7 @@
     "card-visual:search-projection": "node scripts/audits/card_visual_search_projection_v1.mjs",
     "card-visual:search-evaluation-bootstrap": "node scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
     "card-visual:search-judgment-packet": "node scripts/audits/card_visual_search_judgment_packet_v1.mjs",
+    "card-visual:search-review-portal-bundle": "node scripts/audits/build_card_visual_search_review_portal_bundle_v1.mjs",
     "card-visual:search-calibration-evaluator": "node scripts/audits/card_visual_search_calibration_evaluator_v1.mjs",
     "card-visual:search-lab": "node backend/card_descriptions/card_visual_search_lab_v1.mjs",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
