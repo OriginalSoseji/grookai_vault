@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
+import {
+  redactBinderSecretPath,
+} from "@/lib/binders/safePath";
+import { getSafePostAuthPath } from "@/lib/auth/routeAccess";
 
 const AUTH_NEXT_COOKIE = "grookai-auth-next";
 
 function getSafeNextPath(nextParam?: string | null) {
-  return nextParam && nextParam.startsWith("/") ? nextParam : "/vault";
+  return getSafePostAuthPath(nextParam);
 }
 
 function clearNextCookie(response: NextResponse) {
@@ -47,7 +51,7 @@ export async function GET(request: NextRequest) {
     await trackServerEvent({
       eventName: "account_created",
       userId: user.id,
-      path: nextPath,
+      path: redactBinderSecretPath(nextPath),
       metadata: {
         auth_method: "google_oauth",
       },

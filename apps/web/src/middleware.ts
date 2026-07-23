@@ -7,6 +7,10 @@ import {
   normalizeNextPath,
 } from "./lib/auth/routeAccess";
 import { getSupabaseServerConfig } from "./lib/supabase/config";
+import {
+  isBinderSecretPath,
+  redactBinderSecretPath,
+} from "./lib/binders/safePath";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const CARD_WALK_WINDOW_MS = 10 * 60_000;
@@ -276,7 +280,7 @@ function emitAbuseEvent(
       },
       body: JSON.stringify({
         eventName,
-        path: request.nextUrl.pathname,
+        path: redactBinderSecretPath(request.nextUrl.pathname),
         gvId: getCardIdFromPath(request.nextUrl.pathname),
         metadata,
       }),
@@ -284,10 +288,25 @@ function emitAbuseEvent(
   );
 }
 
-function addSecurityHeaders(response: NextResponse) {
+function addSecurityHeaders(response: NextResponse, request: NextRequest) {
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
+  if (
+    request.nextUrl.pathname === "/binders" ||
+    request.nextUrl.pathname.startsWith("/binders/") ||
+    isBinderSecretPath(request.nextUrl.pathname)
+  ) {
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    response.headers.append("Vary", "Cookie");
+  }
+
+  if (isBinderSecretPath(request.nextUrl.pathname)) {
+    response.headers.set("Referrer-Policy", "no-referrer");
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
+
   return response;
 }
 
@@ -329,7 +348,7 @@ async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent)
       ip_hint: getActorIp(request),
     });
 
-    return addSecurityHeaders(response);
+    return addSecurityHeaders(response, request);
   }
 
   if (isRetiredRegistryHit || isApiProbe || isSearchBurst || isMissingUserAgent || isCardWalking) {
@@ -412,10 +431,10 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
   }
 
   if (isProtectedRoute(request.nextUrl.pathname)) {
-    return addSecurityHeaders(await applyProtectedRouteAuth(request));
+    return addSecurityHeaders(await applyProtectedRouteAuth(request), request);
   }
 
-  return addSecurityHeaders(NextResponse.next());
+  return addSecurityHeaders(NextResponse.next(), request);
 }
 
 export const config = {

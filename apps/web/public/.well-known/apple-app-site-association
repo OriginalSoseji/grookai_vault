@@ -14,7 +14,12 @@
           "/dex",
           "/dex/*",
           "/network*",
-          "/feed*"
+          "/feed*",
+          "/binders",
+          "/binders/*",
+          "/b/*",
+          "/binder-invites/*",
+          "/binder-templates/*"
         ]
       }
     ]

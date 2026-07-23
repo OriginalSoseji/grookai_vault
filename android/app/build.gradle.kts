@@ -17,6 +17,38 @@ val releaseSigningRequested = gradle.startParameter.taskNames.any {
     it.lowercase().contains("release")
 }
 
+fun explicitBooleanFlag(name: String, value: String?): Boolean =
+    when (value?.trim()?.lowercase()) {
+        null, "", "false" -> false
+        "true" -> true
+        else -> throw GradleException("$name must be exactly true or false.")
+    }
+
+val lockedAcceptanceProperty =
+    providers.gradleProperty("grookaiLockedAcceptance").orNull
+val lockedAcceptanceEnvironment =
+    providers.environmentVariable("GROOKAI_LOCKED_ACCEPTANCE").orNull
+val lockedAcceptanceFromProperty =
+    explicitBooleanFlag("grookaiLockedAcceptance", lockedAcceptanceProperty)
+val lockedAcceptanceFromEnvironment =
+    explicitBooleanFlag(
+        "GROOKAI_LOCKED_ACCEPTANCE",
+        lockedAcceptanceEnvironment,
+    )
+
+if (
+    lockedAcceptanceProperty != null &&
+    lockedAcceptanceEnvironment != null &&
+    lockedAcceptanceFromProperty != lockedAcceptanceFromEnvironment
+) {
+    throw GradleException(
+        "grookaiLockedAcceptance and GROOKAI_LOCKED_ACCEPTANCE disagree.",
+    )
+}
+
+val lockedAcceptanceRequested =
+    lockedAcceptanceFromProperty || lockedAcceptanceFromEnvironment
+
 fun signingValue(name: String): String? {
     val fromProperty = keystoreProperties.getProperty(name)?.trim()
     if (!fromProperty.isNullOrEmpty()) return fromProperty
@@ -50,6 +82,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        buildConfigField("boolean", "LOCKED_ACCEPTANCE_ENABLED", "false")
     }
 
     signingConfigs {
@@ -73,6 +106,22 @@ android {
     }
 
     buildTypes {
+        debug {
+            if (lockedAcceptanceRequested) {
+                applicationIdSuffix = ".lockedacceptance"
+                versionNameSuffix = "-locked-acceptance"
+                buildConfigField(
+                    "boolean",
+                    "LOCKED_ACCEPTANCE_ENABLED",
+                    "true",
+                )
+                resValue(
+                    "string",
+                    "app_name",
+                    "Grookai Vault Locked Acceptance",
+                )
+            }
+        }
         release {
             signingConfig = signingConfigs.getByName("release")
         }

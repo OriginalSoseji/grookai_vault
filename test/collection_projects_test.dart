@@ -270,7 +270,7 @@ void main() {
 
       expect(find.text('Wanted Cards'), findsOneWidget);
       expect(find.text('0 wanted cards · Only visible to you'), findsOneWidget);
-      expect(find.text('No collection projects yet'), findsOneWidget);
+      expect(find.text('No Binders yet'), findsOneWidget);
     });
 
     testWidgets('confirms stop and reloads after deleting a manual project', (
@@ -300,13 +300,13 @@ void main() {
 
       await tester.tap(find.byTooltip('Stop tracking Base Set'));
       await tester.pumpAndSettle();
-      expect(find.text('Stop tracking this project?'), findsOneWidget);
+      expect(find.text('Stop tracking this Binder?'), findsOneWidget);
 
       await tester.tap(find.widgetWithText(FilledButton, 'Stop tracking'));
       await tester.pumpAndSettle();
 
       expect(service.stoppedSubjectIds, <String>['set-1']);
-      expect(find.text('No collection projects yet'), findsOneWidget);
+      expect(find.text('No Binders yet'), findsOneWidget);
     });
   });
 }

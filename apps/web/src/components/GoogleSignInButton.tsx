@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { getSafePostAuthPath } from "@/lib/auth/routeAccess";
 
 const AUTH_NEXT_COOKIE = "grookai-auth-next";
 
 function getSafeNextPath(nextPath?: string) {
-  return nextPath && nextPath.startsWith("/") ? nextPath : "/vault";
+  return getSafePostAuthPath(nextPath);
 }
 
 type GoogleSignInButtonProps = {
@@ -29,7 +30,6 @@ export default function GoogleSignInButton({ className, label, nextPath, onError
     const secure = window.location.protocol === "https:" ? "; Secure" : "";
     document.cookie = `${AUTH_NEXT_COOKIE}=${encodeURIComponent(safeNextPath)}; Path=/; Max-Age=${60 * 10}; SameSite=Lax${secure}`;
     const redirectTo = new URL("/auth/callback", window.location.origin);
-    redirectTo.searchParams.set("next", safeNextPath);
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",

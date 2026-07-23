@@ -587,6 +587,7 @@ class VaultPageState extends State<VaultPage> {
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
   final Set<String> _selectedLotCardPrintIds = <String>{};
+  bool _showBinderWhatsNew = false;
 
   @override
   void initState() {
@@ -594,6 +595,9 @@ class VaultPageState extends State<VaultPage> {
     _searchController = TextEditingController();
     _searchController.addListener(_handleSearchChanged);
     _uid = supabase.auth.currentUser?.id;
+    if (BinderFeatureFlags.production.personalAvailable) {
+      unawaited(_loadBinderWhatsNewState());
+    }
     reload();
   }
 
@@ -1106,6 +1110,16 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<void> _openCollectionProjects() async {
+    if (BinderFeatureFlags.production.personalAvailable) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => const BinderLibraryScreen(
+            featureFlags: BinderFeatureFlags.production,
+          ),
+        ),
+      );
+      return;
+    }
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CollectionProjectsScreen(
@@ -1136,6 +1150,29 @@ class VaultPageState extends State<VaultPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _loadBinderWhatsNewState() async {
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      final dismissed =
+          preferences.getBool('binders_whats_new_dismissed_v1') ?? false;
+      if (mounted && !dismissed) {
+        setState(() => _showBinderWhatsNew = true);
+      }
+    } catch (_) {
+      // A missing preference store should not block the Vault.
+    }
+  }
+
+  Future<void> _dismissBinderWhatsNew() async {
+    setState(() => _showBinderWhatsNew = false);
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.setBool('binders_whats_new_dismissed_v1', true);
+    } catch (_) {
+      // Dismissal still applies for this session.
+    }
   }
 
   String get _vaultSellerHandle {
@@ -1395,6 +1432,12 @@ class VaultPageState extends State<VaultPage> {
           label: 'Set intent',
           onPressed: canOpen ? () => _openManageCardRow(row) : null,
         ),
+        if (BinderFeatureFlags.production.personalAvailable)
+          VaultQuickAction(
+            icon: Icons.collections_bookmark_outlined,
+            label: 'Add to Binder',
+            onPressed: () => _addVaultRowToBinder(row),
+          ),
         VaultQuickAction(
           icon: Icons.ios_share_outlined,
           label: 'Share link',
@@ -1409,6 +1452,33 @@ class VaultPageState extends State<VaultPage> {
           },
         ),
       ],
+    );
+  }
+
+  Future<void> _addVaultRowToBinder(Map<String, dynamic> row) async {
+    final cardPrintId = (row['card_id'] ?? '').toString().trim();
+    if (cardPrintId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('This copy needs canonical card identity first.'),
+        ),
+      );
+      return;
+    }
+    final binder = await Navigator.of(context).push<BinderSummary>(
+      MaterialPageRoute<BinderSummary>(
+        builder: (_) => const BinderDestinationPickerScreen(),
+      ),
+    );
+    if (!mounted || binder == null) return;
+    await Navigator.of(context).push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => BinderExactCopyPickerScreen(
+          publicId: binder.publicId,
+          cardPrintId: cardPrintId,
+          contextLabel: (row['name'] ?? 'this copy').toString(),
+        ),
+      ),
     );
   }
 
@@ -2085,6 +2155,66 @@ class VaultPageState extends State<VaultPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (BinderFeatureFlags.production.personalAvailable) ...[
+                    if (_showBinderWhatsNew)
+                      Card(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.auto_awesome_rounded),
+                              const SizedBox(width: 10),
+                              const Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'What’s new: Binders',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    SizedBox(height: 3),
+                                    Text(
+                                      'Build collection goals by yourself or '
+                                      'with people you invite. Cards stay in '
+                                      'each collector’s Vault.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                tooltip: 'Dismiss Binder introduction',
+                                onPressed: _dismissBinderWhatsNew,
+                                icon: const Icon(Icons.close_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    Card(
+                      key: const ValueKey<String>('vault-binders-entry'),
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 4,
+                        ),
+                        leading: const CircleAvatar(
+                          child: Icon(Icons.collections_bookmark_outlined),
+                        ),
+                        title: const Text(
+                          'Binders',
+                          style: TextStyle(fontWeight: FontWeight.w800),
+                        ),
+                        subtitle: const Text('What you’re building'),
+                        trailing: const Icon(Icons.chevron_right_rounded),
+                        onTap: _openCollectionProjects,
+                      ),
+                    ),
+                  ],
                   Text(
                     derivedData.estimatedValue == null
                         ? 'Grookai Value'
@@ -2150,9 +2280,13 @@ class VaultPageState extends State<VaultPage> {
                         ],
                       ),
                       IconButton(
-                        tooltip: 'Collection Projects',
+                        tooltip: 'Binders',
                         onPressed: _openCollectionProjects,
-                        icon: const Icon(Icons.flag_outlined),
+                        icon: Icon(
+                          BinderFeatureFlags.production.personalAvailable
+                              ? Icons.collections_bookmark_outlined
+                              : Icons.flag_outlined,
+                        ),
                       ),
                       IconButton(
                         tooltip: 'Memories',

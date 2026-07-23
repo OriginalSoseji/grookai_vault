@@ -10,6 +10,12 @@ enum GrookaiCanonicalRouteKind {
   gvvi,
   dex,
   feed,
+  binderLibrary,
+  binder,
+  binderViewLink,
+  binderInvitation,
+  binderExplore,
+  binderTemplate,
 }
 
 class GrookaiCanonicalRoute {
@@ -93,6 +99,58 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.binderLibrary() {
+    return const GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binderLibrary,
+      path: '/binders',
+      value: '',
+    );
+  }
+
+  factory GrookaiCanonicalRoute.binder(String publicId) {
+    final normalized = publicId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binder,
+      path: '/binders/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.binderViewLink(String token) {
+    final normalized = token.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binderViewLink,
+      path: '/b/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.binderInvitation(String token) {
+    final normalized = token.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binderInvitation,
+      path: '/binder-invites/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.binderExplore() {
+    return const GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binderExplore,
+      path: '/binders/explore',
+      value: '',
+    );
+  }
+
+  factory GrookaiCanonicalRoute.binderTemplate(String templateId) {
+    final normalized = templateId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.binderTemplate,
+      path: '/binder-templates/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
   final GrookaiCanonicalRouteKind kind;
   final String path;
   final String value;
@@ -100,6 +158,39 @@ class GrookaiCanonicalRoute {
 }
 
 class GrookaiWebRouteService {
+  /// Produces a diagnostics-only URI description without ever exposing
+  /// invitation or view-link bearer tokens, query values, or fragment values.
+  static String redactedDiagnosticUri(Uri? uri) {
+    if (uri == null) {
+      return 'null';
+    }
+
+    final pathSegments = uri.pathSegments
+        .map((segment) => segment.trim())
+        .where((segment) => segment.isNotEmpty)
+        .toList(growable: false);
+    final scheme = uri.scheme.toLowerCase();
+    final routeHead =
+        (scheme == 'grookai' || scheme == 'grookaivault') &&
+            uri.host.trim().isNotEmpty
+        ? uri.host.trim().toLowerCase()
+        : pathSegments.isEmpty
+        ? ''
+        : pathSegments.first.toLowerCase();
+    final safePath = routeHead == 'b' || routeHead == 'binder-invites'
+        ? '/$routeHead/[redacted]'
+        : uri.path;
+    final queryKeys = uri.queryParameters.keys.toList(growable: false);
+    final fragmentKeys = uri.fragment
+        .split('&')
+        .map((part) => part.split('=').first.trim())
+        .where((part) => part.isNotEmpty)
+        .toList(growable: false);
+
+    return '${uri.scheme}://${uri.host}$safePath'
+        ' queryKeys=$queryKeys fragmentKeys=$fragmentKeys';
+  }
+
   static String normalizePath(String path) {
     return path.trim().isEmpty
         ? '/'
@@ -160,6 +251,15 @@ class GrookaiWebRouteService {
         speciesSlug: segments.length >= 2 ? segments[1] : '',
       );
     }
+    if (head == 'binders') {
+      if (segments.length == 1) {
+        return GrookaiCanonicalRoute.binderLibrary();
+      }
+      if (segments[1].toLowerCase() == 'explore') {
+        return GrookaiCanonicalRoute.binderExplore();
+      }
+      return GrookaiCanonicalRoute.binder(segments[1]);
+    }
     if (segments.length < 2) {
       return null;
     }
@@ -193,6 +293,12 @@ class GrookaiWebRouteService {
         return GrookaiCanonicalRoute.set(value);
       case 'gvvi':
         return GrookaiCanonicalRoute.gvvi(value);
+      case 'b':
+        return GrookaiCanonicalRoute.binderViewLink(value);
+      case 'binder-invites':
+        return GrookaiCanonicalRoute.binderInvitation(value);
+      case 'binder-templates':
+        return GrookaiCanonicalRoute.binderTemplate(value);
       default:
         return null;
     }
@@ -232,6 +338,24 @@ class GrookaiWebRouteService {
     }
     if (host == 'gvvi' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.gvvi(segments.first);
+    }
+    if (host == 'binders') {
+      if (segments.isEmpty) {
+        return GrookaiCanonicalRoute.binderLibrary();
+      }
+      if (segments.first.toLowerCase() == 'explore') {
+        return GrookaiCanonicalRoute.binderExplore();
+      }
+      return GrookaiCanonicalRoute.binder(segments.first);
+    }
+    if (host == 'b' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.binderViewLink(segments.first);
+    }
+    if (host == 'binder-invites' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.binderInvitation(segments.first);
+    }
+    if (host == 'binder-templates' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.binderTemplate(segments.first);
     }
 
     // Also accept slash-style app links such as grookai:///card/GV-PK-...

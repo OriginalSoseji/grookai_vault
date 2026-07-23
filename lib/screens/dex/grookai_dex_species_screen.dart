@@ -6,6 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/vault/collection_project.dart';
+import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_feature_flags.dart';
+import '../../services/binders/binder_repository.dart';
 import '../../services/grookai_dex/grookai_dex_service.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
@@ -21,6 +24,9 @@ import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../account/account_screen.dart';
 import '../compare/compare_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
+import '../binders/binder_collaboration_screens.dart';
+import '../binders/binder_create_screen.dart';
+import '../binders/binder_detail_screen.dart';
 import 'dex_wall_showcase_screen.dart';
 
 enum _DexSpeciesView { collection, owned, missing, additional, cameos }
@@ -104,6 +110,9 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
   final CollectionProjectService _projectService = CollectionProjectService();
   bool _projectLoading = false;
   bool _trackingProject = false;
+  final BinderRepository _binderRepository = SupabaseBinderRepository();
+  List<BinderSummary> _speciesBinders = const <BinderSummary>[];
+  bool _binderStateLoading = false;
 
   @override
   void initState() {
@@ -132,7 +141,11 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
         }
       });
       if (detail != null) {
-        unawaited(_loadProjectState(detail));
+        if (BinderFeatureFlags.production.personalAvailable) {
+          unawaited(_loadBinderState(detail));
+        } else {
+          unawaited(_loadProjectState(detail));
+        }
       }
     } catch (error) {
       if (!mounted) {
@@ -148,6 +161,131 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
         });
       }
     }
+  }
+
+  Future<void> _loadBinderState(GrookaiDexSpeciesDetail detail) async {
+    if (_client.auth.currentUser == null) return;
+    setState(() => _binderStateLoading = true);
+    try {
+      final binders = await loadBinderMembershipsBounded(_binderRepository);
+      final matching = binders
+          .where(
+            (binder) =>
+                binder.targetKind == BinderTargetKind.species &&
+                (binder.targetId == detail.speciesId ||
+                    binder.targetKey == detail.slug),
+          )
+          .toList(growable: false);
+      if (mounted) setState(() => _speciesBinders = matching);
+    } on BinderException {
+      // The visible action stays available so the server can recheck on tap.
+    } finally {
+      if (mounted) setState(() => _binderStateLoading = false);
+    }
+  }
+
+  Future<void> _startSpeciesBinder(GrookaiDexSpeciesDetail detail) async {
+    if (_client.auth.currentUser == null) {
+      _showMessage('Sign in to create a Binder.');
+      return;
+    }
+    final publicId = await Navigator.of(context).push<String>(
+      MaterialPageRoute<String>(
+        builder: (_) => BinderCreateScreen(
+          repository: _binderRepository,
+          featureFlags: BinderFeatureFlags.production,
+          initialTarget: BinderTargetSuggestion(
+            id: detail.speciesId,
+            routeKey: detail.slug,
+            title: detail.displayName,
+            kind: BinderTargetKind.species,
+            slotCount: detail.totalPrintCount,
+          ),
+        ),
+      ),
+    );
+    if (!mounted || publicId == null) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => BinderDetailScreen(
+          publicId: publicId,
+          repository: _binderRepository,
+          featureFlags: BinderFeatureFlags.production,
+        ),
+      ),
+    );
+    if (mounted) unawaited(_loadBinderState(detail));
+  }
+
+  Future<BinderSummary?> _chooseSpeciesBinder(
+    GrookaiDexSpeciesDetail detail,
+  ) async {
+    if (_speciesBinders.isEmpty) {
+      await _startSpeciesBinder(detail);
+      return null;
+    }
+    if (_speciesBinders.length == 1) return _speciesBinders.single;
+    return showModalBottomSheet<BinderSummary>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        top: false,
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 18),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                'Choose a Binder',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            for (final binder in _speciesBinders)
+              ListTile(
+                leading: const Icon(Icons.collections_bookmark_outlined),
+                title: Text(binder.title),
+                subtitle: Text(binder.progressLabel),
+                onTap: () => Navigator.pop(context, binder),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openSpeciesBinder(GrookaiDexSpeciesDetail detail) async {
+    final binder = await _chooseSpeciesBinder(detail);
+    if (!mounted || binder == null) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => BinderDetailScreen(
+          publicId: binder.publicId,
+          repository: _binderRepository,
+          featureFlags: BinderFeatureFlags.production,
+        ),
+      ),
+    );
+    if (mounted) unawaited(_loadBinderState(detail));
+  }
+
+  Future<void> _addCardToSpeciesBinder(
+    GrookaiDexSpeciesDetail detail,
+    GrookaiDexCardPrint card,
+  ) async {
+    final binder = await _chooseSpeciesBinder(detail);
+    if (!mounted || binder == null) return;
+    final changed = await Navigator.of(context).push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => BinderExactCopyPickerScreen(
+          publicId: binder.publicId,
+          repository: _binderRepository,
+          cardPrintId: card.cardPrintId,
+          contextLabel: card.name,
+        ),
+      ),
+    );
+    if (changed == true && mounted) unawaited(_loadBinderState(detail));
   }
 
   Future<void> _loadProjectState(GrookaiDexSpeciesDetail detail) async {
@@ -190,7 +328,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       return;
     }
     if (_client.auth.currentUser == null) {
-      _showMessage('Sign in to track private collection projects.');
+      _showMessage('Sign in to track a private Binder.');
       return;
     }
 
@@ -198,9 +336,9 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       final shouldStop = await showDialog<bool>(
         context: context,
         builder: (dialogContext) => AlertDialog(
-          title: const Text('Stop tracking this project?'),
+          title: const Text('Stop tracking this Binder?'),
           content: Text(
-            '${detail.displayName} will leave Collection Projects. '
+            '${detail.displayName} will leave Binders. '
             'Your Vault and Wall will not change.',
           ),
           actions: [
@@ -247,7 +385,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
             : 'Stopped tracking ${detail.displayName}.',
       );
     } catch (_) {
-      _showMessage('Unable to update this project right now.');
+      _showMessage('Unable to update this Binder right now.');
     } finally {
       if (mounted) {
         setState(() {
@@ -612,6 +750,12 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
           label: compareSelected ? 'Remove from Compare' : 'Compare',
           onPressed: () => unawaited(_compareCard(card)),
         ),
+        if (BinderFeatureFlags.production.personalAvailable && _detail != null)
+          VaultQuickAction(
+            icon: Icons.collections_bookmark_outlined,
+            label: 'Add to Binder',
+            onPressed: () => unawaited(_addCardToSpeciesBinder(_detail!, card)),
+          ),
         VaultQuickAction(
           icon: Icons.document_scanner_outlined,
           label: 'Scan a card',
@@ -725,24 +869,27 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       appBar: AppBar(
         title: Text(title),
         actions: [
-          IconButton(
-            tooltip: _client.auth.currentUser == null
-                ? 'Sign in to track project'
-                : _trackingProject
-                ? 'Stop tracking project'
-                : 'Track private project',
-            onPressed: _loading || detail == null || _projectLoading
-                ? null
-                : _toggleProject,
-            icon: _projectLoading
-                ? const SizedBox.square(
-                    dimension: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : Icon(
-                    _trackingProject ? Icons.flag_rounded : Icons.flag_outlined,
-                  ),
-          ),
+          if (!BinderFeatureFlags.production.personalAvailable)
+            IconButton(
+              tooltip: _client.auth.currentUser == null
+                  ? 'Sign in to use Binders'
+                  : _trackingProject
+                  ? 'Stop tracking Binder'
+                  : 'Track in Binder',
+              onPressed: _loading || detail == null || _projectLoading
+                  ? null
+                  : _toggleProject,
+              icon: _projectLoading
+                  ? const SizedBox.square(
+                      dimension: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Icon(
+                      _trackingProject
+                          ? Icons.flag_rounded
+                          : Icons.flag_outlined,
+                    ),
+            ),
           IconButton(
             tooltip: 'View exact species in Vault',
             onPressed: _loading || widget.onOpenVaultSpecies == null
@@ -815,6 +962,60 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                       : Column(
                           children: [
                             _DexSpeciesHeader(detail: detail),
+                            if (BinderFeatureFlags
+                                .production
+                                .personalAvailable) ...[
+                              const SizedBox(height: 12),
+                              _DexDetailSurfaceCard(
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.collections_bookmark_outlined,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            _speciesBinders.isEmpty
+                                                ? 'Start ${detail.displayName} Binder'
+                                                : _speciesBinders.length == 1
+                                                ? 'Open Binder'
+                                                : 'In ${_speciesBinders.length} Binders',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.w900,
+                                                ),
+                                          ),
+                                          const SizedBox(height: 2),
+                                          const Text(
+                                            'Track this collection goal alone '
+                                            'or with people you invite.',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    FilledButton(
+                                      onPressed:
+                                          _binderStateLoading ||
+                                              _client.auth.currentUser == null
+                                          ? null
+                                          : () => _openSpeciesBinder(detail),
+                                      child: Text(
+                                        _speciesBinders.isEmpty
+                                            ? 'Start'
+                                            : 'Open',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                             const SizedBox(height: 12),
                             _DexSpeciesViewPicker(
                               value: _view,

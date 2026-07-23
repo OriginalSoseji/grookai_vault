@@ -15,6 +15,7 @@ type SiteHeaderProps = {
   profileHref: string | null;
   networkUnreadCount: number;
   dexEnabled: boolean;
+  bindersEnabled: boolean;
 };
 
 function NetworkLabel({ unreadCount }: { unreadCount: number }) {
@@ -30,7 +31,13 @@ function NetworkLabel({ unreadCount }: { unreadCount: number }) {
   );
 }
 
-export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, dexEnabled }: SiteHeaderProps) {
+export function SiteHeader({
+  isAuthenticated,
+  profileHref,
+  networkUnreadCount,
+  dexEnabled,
+  bindersEnabled,
+}: SiteHeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
@@ -56,7 +63,9 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
     pathname.startsWith("/account/") ||
     pathname === "/wall" ||
     pathname.startsWith("/wall/") ||
-    pathname.startsWith("/u/");
+    pathname.startsWith("/u/") ||
+    pathname === "/binders" ||
+    pathname.startsWith("/binders/");
   const accountHref = isAuthenticated ? "/account" : "/login";
   const accountLabel = isAuthenticated ? "Account" : "Login";
   const primaryNav = [
@@ -65,6 +74,9 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
     { href: "/vault/import", label: "Scan", matchHref: "/vault/import" },
     { href: "/wall", label: "Wall", matchHref: "/wall" },
     { href: "/vault", label: "Vault", matchHref: "/vault" },
+    ...(isAuthenticated && bindersEnabled
+      ? [{ href: "/binders", label: "Binders", matchHref: "/binders" }]
+      : []),
   ];
   const utilityNav = [
     { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
@@ -78,6 +90,8 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
         : "Vault"
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
+        : pathname === "/binders" || pathname.startsWith("/binders/")
+          ? "Binders"
         : pathname === "/network" || pathname.startsWith("/network/")
           ? "Pulse"
           : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
@@ -134,6 +148,18 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                   className="shrink-0 rounded-full bg-white/68 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/60 transition hover:bg-white"
                 >
                   {accountLabel}
+                </Link>
+              ) : null}
+              {isAuthenticated && bindersEnabled ? (
+                <Link
+                  href="/binders"
+                  className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
+                    pathname === "/binders" || pathname.startsWith("/binders/")
+                      ? "bg-emerald-100 text-emerald-950 ring-1 ring-emerald-200"
+                      : "bg-white/60 text-slate-600 ring-1 ring-slate-200/60 hover:bg-white hover:text-slate-950"
+                  }`}
+                >
+                  Binders
                 </Link>
               ) : null}
             </div>

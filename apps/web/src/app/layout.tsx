@@ -5,10 +5,11 @@ import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
+import { isBinderLibraryEnabled } from "@/lib/binders/featureFlags";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { GROOKAI_VAULT_ORIGIN } from "@/lib/getSiteOrigin";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
+import { SafeAnalytics } from "@/components/analytics/SafeAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(GROOKAI_VAULT_ORIGIN),
@@ -123,6 +124,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const dexEnabled = isGrookaiDexEnabled();
+  const bindersEnabled = isBinderLibraryEnabled();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -131,7 +133,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
-          <AppChrome dexEnabled={dexEnabled} />
+          <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
         </Suspense>
         <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip md:pb-12">
           <PageContainer>{children}</PageContainer>
@@ -157,7 +159,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
           </PageContainer>
         </footer>
-        <Analytics />
+        <SafeAnalytics />
       </body>
     </html>
   );
