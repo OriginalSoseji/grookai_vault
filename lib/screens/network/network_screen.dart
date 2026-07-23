@@ -175,6 +175,19 @@ class NetworkScreenState extends State<NetworkScreen> {
     unawaited(_setSegment(_NetworkHomeSegment.pulse));
   }
 
+  void openCanonicalSegment(String segment) {
+    final normalized = segment.trim().toLowerCase();
+    final target = switch (normalized) {
+      'discover' => _NetworkHomeSegment.discover,
+      'following' => _NetworkHomeSegment.following,
+      _ => _NetworkHomeSegment.pulse,
+    };
+    if (target == _NetworkHomeSegment.pulse && !kPulseSurfaceEnabled) {
+      return;
+    }
+    unawaited(_setSegment(target));
+  }
+
   void _handleScroll() {
     if (_segment == _NetworkHomeSegment.pulse) {
       return;

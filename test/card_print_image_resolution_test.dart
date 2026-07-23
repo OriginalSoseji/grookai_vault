@@ -118,6 +118,20 @@ void main() {
     },
   );
 
+  test('immutable warehouse thumbnails also use Grookai derivatives', () {
+    const hosted =
+        'https://grookaivault.com/api/canon/image?'
+        'path=warehouse-derived%2Fself-hosted-images-v1%2Fcard_prints%2F'
+        'mcd14%2Fgv-pk-mcd-2014-1%2Ff55b1308c350fab96b27bdcd.png';
+
+    expect(normalizeDisplayImageUrl(hosted), hosted);
+
+    final thumbnail = normalizeDisplayImageUrl(hosted, width: 220);
+    expect(thumbnail, startsWith('https://grookaivault.com/_next/image?'));
+    expect(thumbnail, contains('url=%2Fapi%2Fcanon%2Fimage%3Fpath%3D'));
+    expect(thumbnail, contains('w=220'));
+  });
+
   test('invalid and missing image fields resolve to null', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-4',

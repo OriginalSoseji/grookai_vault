@@ -148,7 +148,7 @@ String _nativeSafeCardImageUrl(
   int? width,
   int quality = 85,
 }) {
-  if (_isGrookaiCanonCardImage(parsed) && width != null) {
+  if (_isGrookaiCanonImage(parsed) && width != null) {
     final relativeUrl = Uri(
       path: parsed.path,
       query: parsed.hasQuery ? parsed.query : null,
@@ -175,9 +175,17 @@ String _nativeSafeCardImageUrl(
   return _grookaiOptimizedImageUrl(originalUrl, width: width, quality: quality);
 }
 
-bool _isGrookaiCanonCardImage(Uri parsed) {
-  return parsed.host.toLowerCase() == 'grookaivault.com' &&
-      RegExp(r'^/api/canon/cards/GV-[A-Z0-9-]+/image$').hasMatch(parsed.path);
+bool _isGrookaiCanonImage(Uri parsed) {
+  if (parsed.host.toLowerCase() != 'grookaivault.com') {
+    return false;
+  }
+
+  if (RegExp(r'^/api/canon/cards/GV-[A-Z0-9-]+/image$').hasMatch(parsed.path)) {
+    return true;
+  }
+
+  return parsed.path == '/api/canon/image' &&
+      _normalizeWarehouseImagePath(parsed.queryParameters['path']) != null;
 }
 
 String _grookaiOptimizedImageUrl(

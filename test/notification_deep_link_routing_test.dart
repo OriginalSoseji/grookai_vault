@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/navigation/grookai_web_route_service.dart';
 
@@ -77,6 +80,24 @@ void main() {
     }
   });
 
+  test('network links retain discover and following segment intent', () {
+    for (final entry in <(String, String)>[
+      ('grookai://network?segment=discover', 'discover'),
+      ('grookaivault://feed?segment=following', 'following'),
+      ('https://grookaivault.com/network?segment=discover', 'discover'),
+      ('https://grookaivault.com/feed?segment=following', 'following'),
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(
+        Uri.parse(entry.$1),
+      );
+
+      expect(route, isNotNull, reason: entry.$1);
+      expect(route!.kind, GrookaiCanonicalRouteKind.feed);
+      expect(route.value, entry.$2);
+      expect(route.path, '/network?segment=${entry.$2}');
+    }
+  });
+
   test('shared GVVI links parse for web and custom app schemes', () {
     for (final link in <String>[
       'grookai://gvvi/GVVI-065CAB28-001318',
@@ -92,6 +113,38 @@ void main() {
       expect(route.path, '/gvvi/GVVI-065CAB28-001318');
     }
   });
+
+  test(
+    'iOS universal-link association covers every canonical public route',
+    () {
+      final association =
+          jsonDecode(
+                File(
+                  'apps/web/public/.well-known/apple-app-site-association',
+                ).readAsStringSync(),
+              )
+              as Map<String, dynamic>;
+      final applinks = association['applinks'] as Map<String, dynamic>;
+      final details = applinks['details'] as List<dynamic>;
+      final app = details.single as Map<String, dynamic>;
+      final paths = (app['paths'] as List<dynamic>).cast<String>();
+
+      expect(app['appID'], 'DUADT25J5V.com.cesar.grookaivault');
+      expect(
+        paths,
+        containsAll(<String>[
+          '/card/*',
+          '/u/*',
+          '/collector/*',
+          '/set/*',
+          '/sets/*',
+          '/gvvi/*',
+          '/network*',
+          '/feed*',
+        ]),
+      );
+    },
+  );
 
   test('unsupported notification app links are ignored', () {
     expect(

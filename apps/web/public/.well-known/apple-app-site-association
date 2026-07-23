@@ -7,8 +7,12 @@
         "paths": [
           "/card/*",
           "/u/*",
+          "/collector/*",
           "/set/*",
-          "/sets/*"
+          "/sets/*",
+          "/gvvi/*",
+          "/network*",
+          "/feed*"
         ]
       }
     ]

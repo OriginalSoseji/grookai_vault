@@ -433,6 +433,21 @@ class VaultCardService {
       params: {'p_card_print_ids': normalizedIds},
     );
 
+    return _parseOwnedCounts(response);
+  }
+
+  static Future<Map<String, int>> getAllOwnedCounts({
+    required SupabaseClient client,
+  }) async {
+    final response = await client.rpc(
+      'vault_owned_counts_v1',
+      params: const {'p_card_print_ids': null},
+    );
+
+    return _parseOwnedCounts(response);
+  }
+
+  static Map<String, int> _parseOwnedCounts(dynamic response) {
     final counts = <String, int>{};
     if (response is! List) {
       return counts;

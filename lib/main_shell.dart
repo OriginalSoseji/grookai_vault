@@ -657,13 +657,11 @@ class _AppShellState extends State<AppShell> {
       case GrookaiCanonicalRouteKind.feed:
         revealAppShellRoot(context);
         _selectDestination(_ShellDestination.feed);
-        if (route.value == 'pulse') {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) {
-              _networkKey.currentState?.openPulse();
-            }
-          });
-        }
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            _networkKey.currentState?.openCanonicalSegment(route.value);
+          }
+        });
         break;
     }
   }
@@ -1011,7 +1009,23 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _startScanFlow() async {
     if (kScannerV5Enabled) {
-      await _pushPage<void>(const ScanCaptureV5Screen());
+      final action = await _pushPage<ScanCaptureV5Exit>(
+        const ScanCaptureV5Screen(),
+      );
+      if (!mounted || action == null) {
+        return;
+      }
+      switch (action) {
+        case ScanCaptureV5Exit.vault:
+          _selectDestination(_ShellDestination.vault);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) {
+              return;
+            }
+            _vaultKey.currentState?.reload();
+          });
+          break;
+      }
       return;
     }
 

@@ -1,7 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
-import '../identity/canon_image_url_service.dart';
 import '../vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
 
@@ -49,6 +48,7 @@ class PublicSetCard {
     this.imageUrl,
     this.providerImageUrl,
     this.representativeImageUrl,
+    this.hostedImagePath,
     this.imageStatus,
     this.imageNote,
     this.displayImageUrl,
@@ -69,6 +69,7 @@ class PublicSetCard {
   final String? imageUrl;
   final String? providerImageUrl;
   final String? representativeImageUrl;
+  final String? hostedImagePath;
   final String? imageStatus;
   final String? imageNote;
   final String? displayImageUrl;
@@ -76,7 +77,9 @@ class PublicSetCard {
   final List<PublicSetPrintingOption> printings;
   final CardSurfacePricingData? pricing;
 
-  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+  String? get hostedImageUrl =>
+      normalizeWarehouseDisplayImagePath(hostedImagePath) ??
+      buildCanonicalCardImageUrl(gvId);
 
   String? get providerFallbackImageUrl {
     final fallback =
@@ -453,11 +456,14 @@ class PublicSetsService {
         .order('number', ascending: true)
         .range(offset, offset + limit - 1);
 
-    final rawRows = await CanonImageUrlService.enrichRows(
-      (rows as List<dynamic>).map(
-        (row) => Map<String, dynamic>.from(row as Map),
-      ),
-    );
+    // The set query already returns the immutable Grookai warehouse path.
+    // Rendering through that first-party path avoids a blocking
+    // /api/canon/images round trip and lets the image CDN keep derivatives
+    // warm for their full immutable lifetime. The provider URL remains an
+    // error-only fallback on the artwork widget.
+    final rawRows = (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
     final cardPrintIds = rawRows
         .map((row) => _cleanText(row['id']))
         .where((value) => value.isNotEmpty)
@@ -531,7 +537,15 @@ class PublicSetsService {
           final representativeImageUrl = _normalizeHttpUrl(
             row['representative_image_url'],
           );
-          final displayImageUrl = exactImageUrl ?? representativeImageUrl;
+          final hostedImagePath =
+              _cleanText(row['image_source']).toLowerCase() == 'identity'
+              ? _normalizeOptionalText(row['image_path'])
+              : null;
+          final hostedDisplayImageUrl = normalizeWarehouseDisplayImagePath(
+            hostedImagePath,
+          );
+          final displayImageUrl =
+              hostedDisplayImageUrl ?? exactImageUrl ?? representativeImageUrl;
 
           return PublicSetCard(
             cardPrintId: cardPrintId,
@@ -552,10 +566,12 @@ class PublicSetsService {
             imageUrl: providerImageUrl,
             providerImageUrl: providerImageUrl,
             representativeImageUrl: representativeImageUrl,
+            hostedImagePath: hostedImagePath,
             imageStatus: _normalizeOptionalText(row['image_status']),
             imageNote: _normalizeOptionalText(row['image_note']),
             displayImageUrl: displayImageUrl,
-            displayImageKind: exactImageUrl != null
+            displayImageKind:
+                hostedDisplayImageUrl != null || exactImageUrl != null
                 ? 'exact'
                 : representativeImageUrl != null
                 ? 'representative'

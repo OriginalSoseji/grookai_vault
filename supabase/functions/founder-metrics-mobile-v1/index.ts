@@ -1,5 +1,8 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { requireAuthUser } from "../_shared/auth.ts";
+import {
+  createServiceRoleClient,
+  requireAuthUser,
+} from "../_shared/auth.ts";
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import { loadFounderMetrics } from "../_shared/founder_metrics.ts";
 
@@ -39,7 +42,11 @@ serve(async (req) => {
       return corsJson(403, { error: "forbidden" });
     }
 
-    const bundle = await loadFounderMetrics(auth.sb);
+    // Authentication and founder authorization use the caller's JWT above.
+    // The aggregate tables are deliberately service-role-only, so the read
+    // must not reuse auth.sb (which evaluates PostgREST as the caller).
+    const admin = createServiceRoleClient();
+    const bundle = await loadFounderMetrics(admin);
     return corsJson(200, bundle);
   } catch (_err) {
     return corsJson(500, { error: "internal_error" });

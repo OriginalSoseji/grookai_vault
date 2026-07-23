@@ -44,7 +44,28 @@ void main() {
     expect(mainShell, contains('onPulseUnreadChanged'));
     expect(mainShell, contains('_DockUnreadBadge'));
     expect(mainShell, contains('GrookaiCanonicalRouteKind.feed'));
-    expect(mainShell, contains('openPulse'));
+    expect(mainShell, contains('openCanonicalSegment(route.value)'));
+  });
+
+  test('canonical network links dispatch supported segments to Network', () {
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+    final mainShell = File('lib/main_shell.dart').readAsStringSync();
+
+    expect(
+      mainShell,
+      contains('_networkKey.currentState?.openCanonicalSegment(route.value);'),
+    );
+    expect(
+      networkScreen,
+      contains("'discover' => _NetworkHomeSegment.discover"),
+    );
+    expect(
+      networkScreen,
+      contains("'following' => _NetworkHomeSegment.following"),
+    );
+    expect(networkScreen, contains('_ => _NetworkHomeSegment.pulse'));
   });
 
   test('Pulse navigation copy does not regress to Feed labels', () {

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 export type PublicWallSectionSummary = Readonly<{
@@ -14,7 +15,6 @@ type PublicWallSectionRow = {
   id: string | null;
   name: string | null;
   position: number | null;
-  item_count: number | null;
   is_active: boolean | null;
 };
 
@@ -31,7 +31,9 @@ function toPublicWallSectionSummary(row: PublicWallSectionRow): PublicWallSectio
     id: row.id,
     name: row.name,
     position: row.position ?? 0,
-    item_count: row.item_count ?? 0,
+    // The public rail only needs section identity. Card-loading callers replace
+    // this lazy count with the selected section's public card count.
+    item_count: 0,
   });
 }
 
@@ -41,13 +43,21 @@ export const getPublicWallSectionsBySlug = cache(async (slug: string): Promise<P
     return [];
   }
 
+  const profile = await getPublicProfileBySlug(normalizedSlug);
+  if (!profile || !profile.vault_sharing_enabled) {
+    return [];
+  }
+
   const client = createPublicServerClient();
   const { data, error } = await client
-    .from("v_wall_sections_v1")
+    .from("wall_sections")
+    // LOCK: Read the RLS-protected base table instead of the aggregate view.
+    // The security-invoker view also touches private vault_item_instances and
+    // therefore cannot be queried by the anonymous public role.
     // LOCK: Custom sections surface automatically when active; is_public is not a product visibility gate.
     // LOCK: Do not leak inactive or unrelated sections through public section navigation.
-    .select("id,name,position,item_count,is_active")
-    .eq("owner_slug", normalizedSlug)
+    .select("id,name,position,is_active")
+    .eq("user_id", profile.user_id)
     .eq("is_active", true)
     .order("position", { ascending: true })
     .limit(20);

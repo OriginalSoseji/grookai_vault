@@ -22,7 +22,6 @@ type PublicSectionRow = {
   id: string | null;
   name: string | null;
   position: number | null;
-  item_count: number | null;
   is_active: boolean | null;
 };
 
@@ -35,7 +34,7 @@ function toPublicSection(row: PublicSectionRow): PublicSectionShareModel["sectio
     id: row.id,
     name: row.name,
     position: row.position ?? 0,
-    item_count: row.item_count ?? 0,
+    item_count: 0,
   });
 }
 
@@ -51,11 +50,15 @@ export const getPublicSectionBySlugAndId = cache(async (
 
   const client = createPublicServerClient();
   const { data, error } = await client
-    .from("v_wall_sections_v1")
+    .from("wall_sections")
+    // LOCK: The public profile proof above and wall_sections RLS both fail
+    // closed. Do not bypass either gate with a server-admin client.
+    // LOCK: The security-invoker aggregate view cannot be queried anonymously
+    // because its count joins private vault_item_instances.
     // LOCK: Section share routes expose active custom sections automatically.
     // LOCK: Do not leak inactive or unrelated sections through share rendering.
-    .select("id,name,position,item_count,is_active")
-    .eq("owner_slug", profile.slug)
+    .select("id,name,position,is_active")
+    .eq("user_id", profile.user_id)
     .eq("id", normalizedSectionId)
     .eq("is_active", true)
     .maybeSingle();
@@ -73,7 +76,10 @@ export const getPublicSectionBySlugAndId = cache(async (
 
   return Object.freeze({
     collector: profile,
-    section,
+    section: Object.freeze({
+      ...section,
+      item_count: cards.length,
+    }),
     cards,
   });
 });

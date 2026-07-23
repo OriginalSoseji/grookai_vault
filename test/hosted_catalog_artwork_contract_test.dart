@@ -105,6 +105,39 @@ void main() {
     expect(set.providerHeroFallbackImageUrl, isNot(contains('high.webp')));
   });
 
+  test(
+    'set cards use the immutable Grookai warehouse proxy before provider art',
+    () {
+      const card = PublicSetCard(
+        cardPrintId: 'card-mcd14-1',
+        gvId: 'GV-PK-MCD-2014-1',
+        name: 'Weedle',
+        number: '1',
+        hostedImagePath:
+            'warehouse-derived/self-hosted-images-v1/card_prints/mcd14/'
+            'gv-pk-mcd-2014-1/f55b1308c350fab96b27bdcd.png',
+        providerImageUrl: 'https://images.pokemontcg.io/mcd14/1_hires.png',
+      );
+
+      expect(card.hostedImageUrl, contains('/api/canon/image?path='));
+      expect(
+        card.hostedImageUrl,
+        contains('warehouse-derived%2Fself-hosted-images-v1%2Fcard_prints'),
+      );
+      expect(card.catalogImageUrl, card.hostedImageUrl);
+      expect(card.providerFallbackImageUrl, contains('images.pokemontcg.io'));
+
+      final service = File(
+        'lib/services/public/public_sets_service.dart',
+      ).readAsStringSync();
+      expect(service, isNot(contains('CanonImageUrlService.enrichRows')));
+      expect(
+        service,
+        contains('normalizeWarehouseDisplayImagePath(hostedImagePath)'),
+      );
+    },
+  );
+
   test('zoom gallery keeps provider art dormant behind hosted primary', () {
     const item = CardZoomGalleryItem(
       label: 'AZ’s Tranquility',
