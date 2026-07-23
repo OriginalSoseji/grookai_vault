@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:grookai_vault/main.dart';
 
 void main() {
   test(
@@ -122,5 +124,56 @@ void main() {
         ),
       ),
     );
+  });
+
+  testWidgets('warm Card and GVVI routes yield to a Network root link', (
+    tester,
+  ) async {
+    late BuildContext shellContext;
+    final navigatorKey = GlobalKey<NavigatorState>();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        navigatorKey: navigatorKey,
+        home: Builder(
+          builder: (context) {
+            shellContext = context;
+            return const Scaffold(body: Text('Pulse root'));
+          },
+        ),
+      ),
+    );
+
+    for (final pushedPage in <String>['Card detail', 'GVVI detail']) {
+      navigatorKey.currentState!.push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => Scaffold(body: Text(pushedPage)),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text(pushedPage), findsOneWidget);
+
+      revealAppShellRoot(shellContext);
+      await tester.pumpAndSettle();
+
+      expect(find.text(pushedPage), findsNothing);
+      expect(find.text('Pulse root'), findsOneWidget);
+    }
+  });
+
+  test('feed dispatch reveals the shell before selecting Network', () {
+    final source = File('lib/main_shell.dart').readAsStringSync();
+    final feedCaseStart = source.indexOf(
+      'case GrookaiCanonicalRouteKind.feed:',
+    );
+    final feedCaseEnd = source.indexOf('\n        break;', feedCaseStart);
+    final feedCase = source.substring(feedCaseStart, feedCaseEnd);
+
+    final revealIndex = feedCase.indexOf('revealAppShellRoot(context);');
+    final selectIndex = feedCase.indexOf(
+      '_selectDestination(_ShellDestination.feed);',
+    );
+    expect(revealIndex, greaterThanOrEqualTo(0));
+    expect(selectIndex, greaterThan(revealIndex));
   });
 }

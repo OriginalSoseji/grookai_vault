@@ -1,5 +1,9 @@
 part of 'main.dart';
 
+void revealAppShellRoot(BuildContext context) {
+  Navigator.of(context).popUntil((route) => route.isFirst);
+}
+
 class RequiredProfileSetupGate extends StatefulWidget {
   const RequiredProfileSetupGate({super.key, required this.child});
 
@@ -651,6 +655,7 @@ class _AppShellState extends State<AppShell> {
         unawaited(_pushPage<void>(PublicGvviScreen(gvviId: route.value)));
         break;
       case GrookaiCanonicalRouteKind.feed:
+        revealAppShellRoot(context);
         _selectDestination(_ShellDestination.feed);
         if (route.value == 'pulse') {
           WidgetsBinding.instance.addPostFrameCallback((_) {

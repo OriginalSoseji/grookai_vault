@@ -7,7 +7,6 @@ import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
-import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
@@ -26,10 +25,6 @@ class PublicSetDetailScreen extends StatefulWidget {
 
 class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   final SupabaseClient _client = Supabase.instance.client;
-  final OwnershipResolverAdapter _ownershipAdapter =
-      OwnershipResolverAdapter.instance;
-  Map<String, OwnershipState> _ownershipByCardPrintId =
-      <String, OwnershipState>{};
   bool _loading = true;
   String? _error;
   PublicSetDetail? _detail;
@@ -55,9 +50,6 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         client: _client,
         setCode: widget.setCode,
       );
-      final ownershipByCardPrintId = await _primeOwnership(
-        detail?.cards.map((card) => card.cardPrintId) ?? const <String>[],
-      );
 
       if (!mounted) {
         return;
@@ -67,12 +59,10 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         setState(() {
           _error = 'This set could not be found.';
           _detail = null;
-          _ownershipByCardPrintId = <String, OwnershipState>{};
         });
       } else {
         setState(() {
           _detail = detail;
-          _ownershipByCardPrintId = ownershipByCardPrintId;
         });
       }
     } catch (error) {
@@ -82,7 +72,6 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
 
       setState(() {
         _error = error is Error ? error.toString() : 'Unable to load set.';
-        _ownershipByCardPrintId = <String, OwnershipState>{};
       });
     } finally {
       if (mounted) {
@@ -93,42 +82,11 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     }
   }
 
-  Future<Map<String, OwnershipState>> _primeOwnership(
-    Iterable<String> cardPrintIds,
-  ) async {
-    if (!_hasSignedInViewer) {
-      return <String, OwnershipState>{};
-    }
-
-    final normalizedIds = cardPrintIds
-        .map((value) => value.trim())
-        .where((value) => value.isNotEmpty)
-        .toSet()
-        .toList();
-    if (normalizedIds.isEmpty) {
-      return <String, OwnershipState>{};
-    }
-
-    // PERFORMANCE_P4_SET_DETAIL_SYNC_OWNERSHIP
-    // Set detail tiles render ownership from precomputed snapshot state.
-    try {
-      await _ownershipAdapter.primeBatch(normalizedIds);
-    } catch (error) {
-      debugPrint('Set detail ownership prime failed: $error');
-    }
-    return _ownershipAdapter.snapshotForIds(normalizedIds);
-  }
-
   OwnershipState? _ownershipStateForCard(PublicSetCard card) {
-    if (!_hasSignedInViewer) {
-      return null;
-    }
-    final cardPrintId = card.cardPrintId.trim();
-    if (cardPrintId.isEmpty) {
-      return null;
-    }
-    return _ownershipByCardPrintId[cardPrintId] ??
-        _ownershipAdapter.peek(cardPrintId);
+    return buildSetCardOwnershipSignalState(
+      hasSignedInViewer: _hasSignedInViewer,
+      ownedCount: card.ownedCount,
+    );
   }
 
   void _openCardDetails(PublicSetCard card) {
@@ -381,6 +339,33 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     );
     return slivers;
   }
+}
+
+OwnershipState? buildSetCardOwnershipSignalState({
+  required bool hasSignedInViewer,
+  required int ownedCount,
+}) {
+  if (!hasSignedInViewer) {
+    return null;
+  }
+  if (ownedCount <= 0) {
+    return const OwnershipState.empty(isSelfContext: true);
+  }
+
+  // Set cards already receive their exact owned count in the batched set
+  // query. The tile only renders that count, so resolving per-copy GVVI,
+  // Wall, intent, and action state here would duplicate work and block paint.
+  return OwnershipState(
+    owned: true,
+    ownedCount: ownedCount,
+    primaryVaultItemId: null,
+    primaryGvviId: null,
+    hasExactCopy: false,
+    onWall: false,
+    inPlay: false,
+    isSelfContext: true,
+    bestAction: OwnershipAction.none,
+  );
 }
 
 ResolvedDisplayIdentity _setCardDisplayIdentity(PublicSetCard card) {
