@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/main.dart';
+import 'package:grookai_vault/screens/dex/grookai_dex_species_screen.dart';
+import 'package:grookai_vault/screens/network/network_screen.dart';
 
 void main() {
   test(
@@ -68,10 +70,57 @@ void main() {
     expect(fieldFallback, greaterThan(routeDispatch));
     expect(source, contains('item.primaryActionRoute.trim()'));
     expect(source, contains('case GrookaiCanonicalRouteKind.gvvi:'));
+    expect(source, contains('case GrookaiCanonicalRouteKind.dex:'));
+    expect(source, contains('buildCanonicalDexPage('));
+    expect(source, contains('onOpenScanner: onOpenScanner'));
+    expect(source, contains('onOpenVaultSpecies: onOpenVaultSpecies'));
     expect(
       source,
       contains('case GrookaiCanonicalRouteKind.collectorSection:'),
     );
+  });
+
+  test('Pulse preserves shell actions through its canonical Dex route', () {
+    final shell = File('lib/main_shell.dart').readAsStringSync();
+    final network = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+
+    final networkPageStart = shell.indexOf('return NetworkScreen(');
+    final networkPageEnd = shell.indexOf('\n        );', networkPageStart);
+    final networkPage = shell.substring(networkPageStart, networkPageEnd);
+    expect(networkPage, contains('onOpenScanner: _startScanFlow'));
+    expect(networkPage, contains('onOpenVaultSpecies: _openVaultForSpecies'));
+
+    expect(network, contains('onOpenScanner: widget.onOpenScanner'));
+    expect(network, contains('onOpenVaultSpecies: widget.onOpenVaultSpecies'));
+    expect(network, contains('onOpenScanner: onOpenScanner'));
+    expect(network, contains('onOpenVaultSpecies: onOpenVaultSpecies'));
+  });
+
+  test('Pulse and canonical Dex species widgets retain supplied actions', () {
+    Future<void> openScanner() async {}
+    Future<void> openVaultSpecies({
+      required String speciesSlug,
+      required String displayName,
+    }) async {}
+
+    final network = NetworkScreen(
+      onOpenScanner: openScanner,
+      onOpenVaultSpecies: openVaultSpecies,
+    );
+    final page = buildCanonicalDexPage(
+      'pikachu',
+      onOpenScanner: openScanner,
+      onOpenVaultSpecies: openVaultSpecies,
+    );
+
+    expect(network.onOpenScanner, same(openScanner));
+    expect(network.onOpenVaultSpecies, same(openVaultSpecies));
+    expect(page, isA<GrookaiDexSpeciesScreen>());
+    final species = page as GrookaiDexSpeciesScreen;
+    expect(species.onOpenScanner, same(openScanner));
+    expect(species.onOpenVaultSpecies, same(openVaultSpecies));
   });
 
   test('Android delivers every supported custom-scheme route to Flutter', () {
@@ -89,6 +138,7 @@ void main() {
       'set',
       'sets',
       'gvvi',
+      'dex',
       'network',
       'feed',
     ]) {
@@ -102,6 +152,19 @@ void main() {
     expect(source, contains('case GrookaiCanonicalRouteKind.gvvi:'));
     expect(source, contains('PublicGvviScreen(gvviId: route.value)'));
   });
+
+  test(
+    'root deep-link dispatch opens the exact Dex destination in the app',
+    () {
+      final source = File('lib/main_shell.dart').readAsStringSync();
+
+      expect(source, contains('case GrookaiCanonicalRouteKind.dex:'));
+      expect(source, contains('buildCanonicalDexPage('));
+      expect(source, contains('onOpenScanner: _startScanFlow'));
+      expect(source, contains('onOpenVaultSpecies: _openVaultForSpecies'));
+      expect(source, contains('vaultState.openSpeciesFilter('));
+    },
+  );
 
   test('back-to-back deep links do not wait for an earlier page to pop', () {
     final source = File('lib/main_shell.dart').readAsStringSync();

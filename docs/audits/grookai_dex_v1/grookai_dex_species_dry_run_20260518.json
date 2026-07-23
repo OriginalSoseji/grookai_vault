@@ -1,6 +1,6 @@
 {
   "contract": "GROOKAI_DEX_V1",
-  "generated_at": "2026-05-18T09:54:22.655Z",
+  "generated_at": "2026-07-23T16:57:55.285Z",
   "mode": "apply",
   "status": "PASS",
   "apply_allowed": true,
@@ -9,7 +9,9 @@
     "rows_written": 1025,
     "expected_species_count": 1025,
     "source": "pokeapi",
-    "source_url": "https://pokeapi.co/api/v2/pokemon-species?limit=2000&offset=0",
+    "source_url": "https://pokeapi.co/api/v2/generation/",
+    "species_with_generation_count": 1025,
+    "species_with_types_count": 1025,
     "first_national_dex_number": 1,
     "last_national_dex_number": 1025
   },
@@ -21,49 +23,72 @@
       "slug": "bulbasaur",
       "canonicalName": "bulbasaur",
       "displayName": "Bulbasaur",
+      "generation": 1,
+      "types": [
+        "grass",
+        "poison"
+      ],
       "searchTokens": [
         "bulbasaur",
         "bulbasaur"
       ]
     },
     {
-      "nationalDexNumber": 675,
-      "slug": "pangoro",
-      "canonicalName": "pangoro",
-      "displayName": "Pangoro",
+      "nationalDexNumber": 2,
+      "slug": "ivysaur",
+      "canonicalName": "ivysaur",
+      "displayName": "Ivysaur",
+      "generation": 1,
+      "types": [
+        "grass",
+        "poison"
+      ],
       "searchTokens": [
-        "pangoro",
-        "pangoro"
+        "ivysaur",
+        "ivysaur"
       ]
     },
     {
-      "nationalDexNumber": 676,
-      "slug": "furfrou",
-      "canonicalName": "furfrou",
-      "displayName": "Furfrou",
+      "nationalDexNumber": 3,
+      "slug": "venusaur",
+      "canonicalName": "venusaur",
+      "displayName": "Venusaur",
+      "generation": 1,
+      "types": [
+        "grass",
+        "poison"
+      ],
       "searchTokens": [
-        "furfrou",
-        "furfrou"
+        "venusaur",
+        "venusaur"
       ]
     },
     {
-      "nationalDexNumber": 677,
-      "slug": "espurr",
-      "canonicalName": "espurr",
-      "displayName": "Espurr",
+      "nationalDexNumber": 4,
+      "slug": "charmander",
+      "canonicalName": "charmander",
+      "displayName": "Charmander",
+      "generation": 1,
+      "types": [
+        "fire"
+      ],
       "searchTokens": [
-        "espurr",
-        "espurr"
+        "charmander",
+        "charmander"
       ]
     },
     {
-      "nationalDexNumber": 678,
-      "slug": "meowstic",
-      "canonicalName": "meowstic",
-      "displayName": "Meowstic",
+      "nationalDexNumber": 5,
+      "slug": "charmeleon",
+      "canonicalName": "charmeleon",
+      "displayName": "Charmeleon",
+      "generation": 1,
+      "types": [
+        "fire"
+      ],
       "searchTokens": [
-        "meowstic",
-        "meowstic"
+        "charmeleon",
+        "charmeleon"
       ]
     }
   ]

@@ -28,7 +28,7 @@ const PAGE_SIZE = 100;
 function parsePage(value: string | string[] | undefined) {
   const raw = Array.isArray(value) ? value[0] : value;
   const parsed = Number.parseInt(raw ?? "1", 10);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : 1;
 }
 
 function parseSearchQuery(value: string | string[] | undefined) {
@@ -138,12 +138,7 @@ export default async function GrookaiDexPage({
     searchQuery,
   });
   const species = speciesPage.species;
-  const incompleteCount = species.filter((row) => row.totalPrintCount > 0 && row.ownedPrintCount < row.totalPrintCount).length;
-  const ownedSpeciesCount = species.filter((row) => row.ownedPrintCount > 0).length;
-  const completeSpeciesCount = species.filter((row) => row.totalPrintCount > 0 && row.ownedPrintCount >= row.totalPrintCount).length;
-  const pageTotalPrints = species.reduce((sum, row) => sum + row.totalPrintCount, 0);
-  const pageOwnedPrints = species.reduce((sum, row) => sum + row.ownedPrintCount, 0);
-  const pageCompletionPercent = pageTotalPrints > 0 ? clampPercent(Math.round((pageOwnedPrints / pageTotalPrints) * 100)) : 0;
+  const overview = speciesPage.overview;
   const startRow = species.length === 0 ? 0 : (speciesPage.page - 1) * speciesPage.pageSize + 1;
   const endRow = Math.min(speciesPage.totalSpeciesCount, startRow + species.length - 1);
 
@@ -217,30 +212,31 @@ export default async function GrookaiDexPage({
               </div>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="gv-eyebrow">Current view</p>
-                  <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">{pageCompletionPercent}%</p>
+                  <p className="gv-eyebrow">Full Dex</p>
+                  <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">{overview.completionPercent}%</p>
                 </div>
                 <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200">
-                  {pageOwnedPrints}/{pageTotalPrints}
+                  {overview.ownedPrintCount}/{overview.totalPrintCount}
                 </span>
               </div>
               <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]">
-                <div className="h-full rounded-full bg-emerald-500" style={{ width: `${pageCompletionPercent}%` }} />
+                <div className="h-full rounded-full bg-emerald-500" style={{ width: `${overview.completionPercent}%` }} />
               </div>
               <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
-                Showing {startRow}-{endRow} of {speciesPage.totalSpeciesCount} species. Completion reflects the visible page.
+                Full-Dex completion across {overview.totalSpeciesCount} species. Showing {startRow}-{endRow} of{" "}
+                {speciesPage.totalSpeciesCount}{searchQuery ? " matching" : ""}.
               </p>
               <div className="mt-5 grid grid-cols-3 gap-2">
                 <div className="gv-dex-mini-stat">
-                  <p>{species.length}</p>
-                  <span>Shown</span>
+                  <p>{overview.totalSpeciesCount}</p>
+                  <span>Species</span>
                 </div>
                 <div className="gv-dex-mini-stat">
-                  <p>{ownedSpeciesCount}</p>
+                  <p>{overview.startedSpeciesCount}</p>
                   <span>Started</span>
                 </div>
                 <div className="gv-dex-mini-stat">
-                  <p>{completeSpeciesCount}</p>
+                  <p>{overview.completeSpeciesCount}</p>
                   <span>Complete</span>
                 </div>
               </div>
@@ -306,6 +302,9 @@ export default async function GrookaiDexPage({
                     </p>
                     <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
                       Every known mapped printing for this Pokemon.
+                      {row.ownedCopyCount > row.ownedPrintCount
+                        ? ` ${row.ownedCopyCount} total copies in Vault.`
+                        : ""}
                     </p>
                   </div>
 

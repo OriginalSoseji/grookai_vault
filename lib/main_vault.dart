@@ -554,7 +554,14 @@ class _VaultLotSelectionBar extends StatelessWidget {
 
 /// ---------------------- VAULT PAGE (uses view + catalog picker) ----------------------
 class VaultPage extends StatefulWidget {
-  const VaultPage({super.key});
+  const VaultPage({this.onOpenScanner, this.onOpenVaultSpecies, super.key});
+
+  final Future<void> Function()? onOpenScanner;
+  final Future<void> Function({
+    required String speciesSlug,
+    required String displayName,
+  })?
+  onOpenVaultSpecies;
 
   @override
   VaultPageState createState() => VaultPageState();
@@ -571,6 +578,10 @@ class VaultPageState extends State<VaultPage> {
       const <String, VaultSharedCardState>{};
   String _search = '';
   String _pokemonSearch = '';
+  Set<String> _canonicalSpeciesCardPrintIds = const <String>{};
+  String? _canonicalSpeciesSlug;
+  String? _canonicalSpeciesLabel;
+  bool _canonicalSpeciesLoading = false;
   _SortBy _sortBy = _SortBy.newest;
   _VaultStructuralView _view = _VaultStructuralView.all;
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
@@ -643,6 +654,68 @@ class VaultPageState extends State<VaultPage> {
         setState(() => _loading = false);
       }
     }
+  }
+
+  Future<void> openSpeciesFilter({
+    required String speciesSlug,
+    required String displayName,
+  }) async {
+    final slug = speciesSlug.trim().toLowerCase();
+    if (slug.isEmpty) {
+      return;
+    }
+    _replaceSearchControllerText('');
+    setState(() {
+      _view = _VaultStructuralView.pokemon;
+      _canonicalSpeciesSlug = slug;
+      _canonicalSpeciesLabel = displayName.trim().isEmpty
+          ? slug
+          : displayName.trim();
+      _canonicalSpeciesCardPrintIds = const <String>{};
+      _canonicalSpeciesLoading = true;
+      _pokemonSearch = '';
+      _search = '';
+      _recomputeDerivedData();
+    });
+
+    try {
+      final cardPrintIds = await GrookaiDexService.fetchCardPrintIdsForSpecies(
+        client: supabase,
+        speciesSlug: slug,
+      );
+      if (!mounted || _canonicalSpeciesSlug != slug) {
+        return;
+      }
+      setState(() {
+        _canonicalSpeciesCardPrintIds = cardPrintIds;
+        _canonicalSpeciesLoading = false;
+        _recomputeDerivedData();
+      });
+    } catch (_) {
+      if (!mounted || _canonicalSpeciesSlug != slug) {
+        return;
+      }
+      setState(() {
+        _canonicalSpeciesLoading = false;
+        _recomputeDerivedData();
+      });
+      _showVaultMutationError(
+        'Unable to open the exact species filter. Try again.',
+      );
+    }
+  }
+
+  void _clearCanonicalSpeciesFilter() {
+    if (_canonicalSpeciesSlug == null) {
+      return;
+    }
+    setState(() {
+      _canonicalSpeciesSlug = null;
+      _canonicalSpeciesLabel = null;
+      _canonicalSpeciesCardPrintIds = const <String>{};
+      _canonicalSpeciesLoading = false;
+      _recomputeDerivedData();
+    });
   }
 
   void _recomputeDerivedData() {
@@ -1032,6 +1105,39 @@ class VaultPageState extends State<VaultPage> {
     ).push(MaterialPageRoute<void>(builder: (_) => CollectorMemoriesScreen()));
   }
 
+  Future<void> _openCollectionProjects() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CollectionProjectsScreen(
+          onOpenProject: (project) async {
+            switch (project.subjectType) {
+              case CollectionProjectSubjectType.set:
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) =>
+                        PublicSetDetailScreen(setCode: project.routeKey),
+                  ),
+                );
+                break;
+              case CollectionProjectSubjectType.species:
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => GrookaiDexSpeciesScreen(
+                      speciesSlug: project.routeKey,
+                      initialDisplayName: project.title,
+                      onOpenScanner: widget.onOpenScanner,
+                      onOpenVaultSpecies: widget.onOpenVaultSpecies,
+                    ),
+                  ),
+                );
+                break;
+            }
+          },
+        ),
+      ),
+    );
+  }
+
   String get _vaultSellerHandle {
     final metadata = supabase.auth.currentUser?.userMetadata ?? const {};
     for (final key in const ['display_name', 'full_name', 'name', 'username']) {
@@ -1128,6 +1234,11 @@ class VaultPageState extends State<VaultPage> {
   ) {
     final query = _pokemonSearch.trim().toLowerCase();
     final filteredRows = rows.where((row) {
+      final cardPrintId = (row['card_id'] ?? '').toString().trim();
+      if (_canonicalSpeciesSlug != null &&
+          !_canonicalSpeciesCardPrintIds.contains(cardPrintId)) {
+        return false;
+      }
       if (query.isEmpty) {
         return true;
       }
@@ -1166,6 +1277,9 @@ class VaultPageState extends State<VaultPage> {
   }
 
   List<String> _pokemonSuggestions(List<Map<String, dynamic>> rows) {
+    if (_canonicalSpeciesSlug != null) {
+      return const <String>[];
+    }
     final query = _pokemonSearch.trim().toLowerCase();
     if (query.isEmpty) {
       return const <String>[];
@@ -1864,6 +1978,31 @@ class VaultPageState extends State<VaultPage> {
             ),
           );
         } else {
+          if (_canonicalSpeciesSlug != null) {
+            vaultContentSlivers.add(
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  child: InputChip(
+                    avatar: _canonicalSpeciesLoading
+                        ? const SizedBox.square(
+                            dimension: 16,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.catching_pokemon_rounded, size: 18),
+                    label: Text(
+                      '${_canonicalSpeciesLabel ?? _canonicalSpeciesSlug} · Exact species',
+                    ),
+                    onDeleted: _clearCanonicalSpeciesFilter,
+                    deleteButtonTooltipMessage: 'Clear exact species filter',
+                  ),
+                ),
+              ),
+            );
+            vaultContentSlivers.add(
+              const SliverToBoxAdapter(child: SizedBox(height: 8)),
+            );
+          }
           if (pokemonSuggestions.isNotEmpty) {
             vaultContentSlivers.add(
               SliverToBoxAdapter(
@@ -1906,10 +2045,18 @@ class VaultPageState extends State<VaultPage> {
             vaultContentSlivers.add(
               SliverToBoxAdapter(
                 child: _buildVaultMessage(
-                  _pokemonSearch.trim().isNotEmpty
+                  _canonicalSpeciesLoading
+                      ? 'Loading exact species'
+                      : _canonicalSpeciesSlug != null
+                      ? 'No owned cards for this species'
+                      : _pokemonSearch.trim().isNotEmpty
                       ? 'No matching cards'
                       : 'Your vault is empty',
-                  _pokemonSearch.trim().isNotEmpty
+                  _canonicalSpeciesLoading
+                      ? 'Matching your Vault against canonical Dex mappings.'
+                      : _canonicalSpeciesSlug != null
+                      ? 'Cards appear here only when their canonical species mapping matches.'
+                      : _pokemonSearch.trim().isNotEmpty
                       ? 'Try a different Pokemon name.'
                       : 'Add cards to start browsing by Pokemon name.',
                 ),
@@ -2001,6 +2148,11 @@ class VaultPageState extends State<VaultPage> {
                             child: Text('Qty (low-high)'),
                           ),
                         ],
+                      ),
+                      IconButton(
+                        tooltip: 'Collection Projects',
+                        onPressed: _openCollectionProjects,
+                        icon: const Icon(Icons.flag_outlined),
                       ),
                       IconButton(
                         tooltip: 'Memories',

@@ -8,7 +8,7 @@ const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'grookai_dex_v1');
 const OUT_JSON = path.join(OUT_DIR, 'grookai_dex_v1_checkpoint_20260518.json');
 const OUT_MD = path.join(OUT_DIR, 'grookai_dex_v1_checkpoint_20260518.md');
-const SAMPLE_USER_ID = process.env.GROOKAI_DEX_SMOKE_USER_ID ?? '03e80d15-a2bb-4d3c-abd1-2de03e55787b';
+const SAMPLE_USER_ID = (process.env.GROOKAI_DEX_SMOKE_USER_ID ?? '').trim();
 const SAMPLE_SPECIES = ['pikachu', 'charizard'];
 
 function createClient() {
@@ -37,6 +37,32 @@ async function main() {
     const counts = await queryOne(client, `
       select
         (select count(*)::int from public.pokemon_species) as species_count,
+        (
+          select count(*)::int
+          from public.pokemon_species
+          where generation between 1 and 9
+        ) as species_generation_count,
+        (
+          select count(*)::int
+          from public.pokemon_species
+          where cardinality(types) between 1 and 2
+            and types <@ array[
+              'normal', 'fire', 'water', 'electric', 'grass', 'ice',
+              'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug',
+              'rock', 'ghost', 'dragon', 'dark', 'steel', 'fairy'
+            ]::text[]
+        ) as species_types_count,
+        (
+          select count(*)::int
+          from public.pokemon_species
+          where generation between 1 and 9
+            and cardinality(types) between 1 and 2
+            and types <@ array[
+              'normal', 'fire', 'water', 'electric', 'grass', 'ice',
+              'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug',
+              'rock', 'ghost', 'dragon', 'dark', 'steel', 'fairy'
+            ]::text[]
+        ) as species_metadata_count,
         (select count(*)::int from public.card_print_species) as mapping_count,
         (select count(*)::int from public.card_print_species where active and counts_for_completion) as completion_mapping_count,
         (select count(*)::int from public.v_grookai_dex_species_v1) as species_view_count,
@@ -53,15 +79,16 @@ async function main() {
       [SAMPLE_SPECIES],
     );
 
-    const userRows = await client.query(
-      `
+    const userRows = SAMPLE_USER_ID
+      ? await client.query(
+          `
         with target_species as (
           select id, slug, display_name
           from public.pokemon_species
           where slug = any($2::text[])
         ),
         denominator as (
-          select ts.slug, cps.card_print_id
+          select distinct ts.slug, cps.card_print_id
           from target_species ts
           join public.card_print_species cps
             on cps.species_id = ts.id
@@ -69,19 +96,20 @@ async function main() {
             and cps.counts_for_completion = true
         ),
         owned as (
-          select d.slug, vii.card_print_id, count(vii.id)::int as copy_count
-          from denominator d
-          join public.vault_item_instances vii
-            on vii.card_print_id = d.card_print_id
-           and vii.user_id = $1::uuid
-           and vii.archived_at is null
-          group by d.slug, vii.card_print_id
+          select d.slug, d.card_print_id, vii.id as vault_item_instance_id
+          from public.vault_item_instances vii
+          left join public.slab_certs slab
+            on slab.id = vii.slab_cert_id
+          join denominator d
+            on d.card_print_id = coalesce(vii.card_print_id, slab.card_print_id)
+          where vii.user_id = $1::uuid
+            and vii.archived_at is null
         )
         select
           d.slug,
           count(distinct d.card_print_id)::int as total_print_count,
           count(distinct owned.card_print_id)::int as owned_print_count,
-          coalesce(sum(owned.copy_count), 0)::int as owned_copy_count,
+          count(owned.vault_item_instance_id)::int as owned_copy_count,
           (count(distinct d.card_print_id) - count(distinct owned.card_print_id))::int as missing_print_count
         from denominator d
         left join owned
@@ -90,19 +118,28 @@ async function main() {
         group by d.slug
         order by d.slug
       `,
-      [SAMPLE_USER_ID, SAMPLE_SPECIES],
-    );
+          [SAMPLE_USER_ID, SAMPLE_SPECIES],
+        )
+      : { rows: [] };
 
     const report = {
       contract: 'GROOKAI_DEX_V1',
       generated_at: new Date().toISOString(),
-      sample_user_id: SAMPLE_USER_ID,
       counts,
       species_samples: speciesRows.rows,
-      user_progress_samples: userRows.rows,
-      status: counts.species_count === 1025 && counts.mapping_count > 0 ? 'CHECKPOINT_CREATED' : 'CHECKPOINT_INCOMPLETE',
+      ...(userRows.rows.length > 0
+        ? { anonymized_user_progress_samples: userRows.rows }
+        : {}),
+      status:
+        counts.species_count === 1025 &&
+        counts.species_generation_count === counts.species_count &&
+        counts.species_types_count === counts.species_count &&
+        counts.species_metadata_count === counts.species_count &&
+        counts.mapping_count > 0
+          ? 'CHECKPOINT_CREATED'
+          : 'CHECKPOINT_INCOMPLETE',
       notes: [
-        'Feature flag remains off by default.',
+        'Routes are enabled by default and retain explicit emergency-disable flags.',
         'No scanner, pricing, or DB remediation changes are part of this checkpoint.',
       ],
     };
@@ -116,6 +153,9 @@ async function main() {
       '## Remote Counts',
       '',
       `- Species rows: ${counts.species_count}`,
+      `- Species with generation: ${counts.species_generation_count}`,
+      `- Species with canonical types: ${counts.species_types_count}`,
+      `- Species metadata-complete: ${counts.species_metadata_count}`,
       `- Mapping rows: ${counts.mapping_count}`,
       `- Completion mapping rows: ${counts.completion_mapping_count}`,
       `- Species view rows: ${counts.species_view_count}`,
@@ -124,20 +164,23 @@ async function main() {
       '## Species Samples',
       '',
       ...speciesRows.rows.map((row) => `- ${row.display_name} (${row.slug}): ${row.total_print_count}`),
-      '',
-      '## Known User Progress Samples',
-      '',
-      `Sample user: ${SAMPLE_USER_ID}`,
-      '',
-      ...userRows.rows.map(
-        (row) =>
-          `- ${row.slug}: ${row.owned_print_count}/${row.total_print_count} unique prints, ${row.owned_copy_count} copies, ${row.missing_print_count} missing`,
-      ),
+      ...(userRows.rows.length > 0
+        ? [
+            '',
+            '## Anonymized Known-User Progress Samples',
+            '',
+            ...userRows.rows.map(
+              (row) =>
+                `- ${row.slug}: ${row.owned_print_count}/${row.total_print_count} unique prints, ${row.owned_copy_count} copies, ${row.missing_print_count} missing`,
+            ),
+          ]
+        : []),
       '',
       '## Flag State',
       '',
-      '- Public flag is not enabled by this checkpoint.',
-      '- Routes remain guarded by `GROOKAI_DEX_V1_ENABLED` / `NEXT_PUBLIC_GROOKAI_DEX_V1_ENABLED`.',
+      '- This checkpoint does not change route availability.',
+      '- Routes are enabled by default for production.',
+      '- Emergency rollback uses `GROOKAI_DEX_V1_DISABLED=true` or `NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED=true`.',
     ];
 
     await fs.mkdir(OUT_DIR, { recursive: true });

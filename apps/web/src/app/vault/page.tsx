@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import Link from "next/link";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@/lib/cards/childDisplayImageFallbacks";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
+import { getGrookaiDexSpeciesVaultFilter } from "@/lib/grookaiDex/getGrookaiDexSpeciesVaultFilter";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import {
   buildVaultValueSummary,
@@ -141,8 +143,24 @@ async function normalizeRecentItems(
   return resolvedRows;
 }
 
-export default async function VaultPage() {
+function parseSpeciesFilter(value: string | string[] | undefined) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return (raw ?? "").trim().toLowerCase().slice(0, 80);
+}
+
+export default async function VaultPage({
+  searchParams,
+}: {
+  searchParams?: { species?: string | string[] };
+}) {
   const { supabase, user } = await requireServerUser("/vault");
+  const requestedSpeciesSlug = parseSpeciesFilter(searchParams?.species);
+  const speciesFilter = requestedSpeciesSlug
+    ? await getGrookaiDexSpeciesVaultFilter(requestedSpeciesSlug)
+    : null;
+  const exactCardPrintIds = requestedSpeciesSlug
+    ? speciesFilter?.cardPrintIds ?? []
+    : undefined;
 
   const [
     { data: recentData, error: recentError },
@@ -154,7 +172,7 @@ export default async function VaultPage() {
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(10),
-    getOwnerVaultItems(user.id),
+    getOwnerVaultItems(user.id, { cardPrintIds: exactCardPrintIds }),
   ]);
 
   const recentIdentityByGvId = await getRecentIdentityByGvId(
@@ -164,6 +182,10 @@ export default async function VaultPage() {
       .filter((value): value is string => typeof value === "string" && value.length > 0),
   );
   const recent = await normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null, recentIdentityByGvId, supabase);
+  const filteredGvIds = new Set(items.map((item) => item.gv_id));
+  const visibleRecent = requestedSpeciesSlug
+    ? recent.filter((item) => filteredGvIds.has(item.gv_id))
+    : recent;
   const setLogoPathByCode = Object.fromEntries(
     (await getSetLogoAssetPathMap(items.map((item) => item.set_code))).entries(),
   );
@@ -172,9 +194,39 @@ export default async function VaultPage() {
   return (
     <>
       <TrackPageEvent eventName="vault_opened" path="/vault" />
+      {requestedSpeciesSlug ? (
+        <section className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sky-950 dark:border-sky-400/20 dark:bg-sky-400/10 dark:text-sky-100">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.14em]">
+              Exact Dex species filter
+            </p>
+            <p className="mt-1 text-sm font-semibold">
+              {speciesFilter
+                ? `${speciesFilter.displayName} · canonical mappings only`
+                : `No active Dex species matches “${requestedSpeciesSlug}”.`}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            {speciesFilter ? (
+              <Link
+                href={`/dex/${encodeURIComponent(speciesFilter.slug)}`}
+                className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
+              >
+                Back to Dex
+              </Link>
+            ) : null}
+            <Link
+              href="/vault"
+              className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
+            >
+              Clear filter
+            </Link>
+          </div>
+        </section>
+      ) : null}
       <VaultCollectionView
         initialItems={items}
-        recent={recent}
+        recent={visibleRecent}
         itemsError={itemsError}
         recentError={recentError?.message}
         valueSummary={valueSummary}

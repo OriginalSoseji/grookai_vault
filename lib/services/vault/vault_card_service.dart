@@ -9,12 +9,184 @@ class _InterestGraphCompletionSnapshot {
   const _InterestGraphCompletionSnapshot({
     required this.subjectType,
     required this.subjectId,
-    required this.completionPercent,
+    required this.totalCount,
+    required this.completedCount,
+    required this.directAddCompletionDelta,
   });
 
   final String subjectType;
   final String subjectId;
-  final int completionPercent;
+  final int totalCount;
+  final int completedCount;
+  final int directAddCompletionDelta;
+
+  int get completionPercent => totalCount <= 0
+      ? 0
+      : ((completedCount / totalCount) * 100).round().clamp(0, 100);
+
+  _InterestGraphCompletionSnapshot afterDirectAdd() {
+    return _InterestGraphCompletionSnapshot(
+      subjectType: subjectType,
+      subjectId: subjectId,
+      totalCount: totalCount,
+      completedCount: (completedCount + directAddCompletionDelta).clamp(
+        0,
+        totalCount,
+      ),
+      directAddCompletionDelta: 0,
+    );
+  }
+}
+
+/// A finish-aware master-set completion total calculated from exact owned
+/// instances. A directly anchored instance always wins over a slab anchor so
+/// dual-anchored rows cannot count twice.
+class VaultSetCompletionSnapshot {
+  const VaultSetCompletionSnapshot({
+    required this.variantOptionCount,
+    required this.ownedVariantOptionCount,
+    this.optionKeys = const <String>{},
+    this.ownedOptionKeys = const <String>{},
+  });
+
+  final int variantOptionCount;
+  final int ownedVariantOptionCount;
+  final Set<String> optionKeys;
+  final Set<String> ownedOptionKeys;
+
+  int get completionPercent => variantOptionCount <= 0
+      ? 0
+      : ((ownedVariantOptionCount / variantOptionCount) * 100).round().clamp(
+          0,
+          100,
+        );
+
+  /// Returns whether one newly created direct instance can add one completion
+  /// option. A finish is only a completion when it is an exact option for the
+  /// card; cards without printing rows use their parent fallback option.
+  int directAddCompletionDelta({
+    required String cardPrintId,
+    String? cardPrintingId,
+  }) {
+    final normalizedCardPrintId = cardPrintId.trim();
+    if (normalizedCardPrintId.isEmpty) {
+      return 0;
+    }
+    final normalizedPrintingId = cardPrintingId?.trim();
+    final exactKey =
+        normalizedPrintingId == null || normalizedPrintingId.isEmpty
+        ? null
+        : '$normalizedCardPrintId:$normalizedPrintingId';
+    final fallbackKey = '$normalizedCardPrintId:_';
+    final optionKey = exactKey != null && optionKeys.contains(exactKey)
+        ? exactKey
+        : optionKeys.contains(fallbackKey)
+        ? fallbackKey
+        : null;
+    return optionKey != null && !ownedOptionKeys.contains(optionKey) ? 1 : 0;
+  }
+}
+
+/// Owner-scoped exact-copy truth for a bounded canonical card-print set.
+/// Slab-only rows are resolved through their certificate; dual anchors are
+/// represented only by the direct card_print_id row.
+class VaultOwnedCardTruth {
+  const VaultOwnedCardTruth({
+    this.countsByCardPrintId = const <String, int>{},
+    this.countsByPrintingId = const <String, int>{},
+    this.unassignedByCardPrintId = const <String, int>{},
+  });
+
+  final Map<String, int> countsByCardPrintId;
+  final Map<String, int> countsByPrintingId;
+  final Map<String, int> unassignedByCardPrintId;
+}
+
+@visibleForTesting
+class VaultSetCompletionOption {
+  const VaultSetCompletionOption({
+    required this.cardPrintId,
+    this.cardPrintingId,
+  });
+
+  final String cardPrintId;
+  final String? cardPrintingId;
+}
+
+class VaultSetCompletionCopy {
+  const VaultSetCompletionCopy({
+    required this.instanceId,
+    this.directCardPrintId,
+    this.slabCardPrintId,
+    this.cardPrintingId,
+  });
+
+  final String instanceId;
+  final String? directCardPrintId;
+  final String? slabCardPrintId;
+  final String? cardPrintingId;
+}
+
+@visibleForTesting
+VaultSetCompletionSnapshot calculateVaultSetCompletionSnapshot({
+  required Iterable<VaultSetCompletionOption> options,
+  required Iterable<VaultSetCompletionCopy> copies,
+}) {
+  final optionsByCardPrintId = <String, List<VaultSetCompletionOption>>{};
+  final optionKeys = <String>{};
+  for (final option in options) {
+    final cardPrintId = option.cardPrintId.trim();
+    if (cardPrintId.isEmpty) {
+      continue;
+    }
+    final printingId = option.cardPrintingId?.trim();
+    final key =
+        '$cardPrintId:${printingId?.isNotEmpty == true ? printingId : '_'}';
+    if (!optionKeys.add(key)) {
+      continue;
+    }
+    (optionsByCardPrintId[cardPrintId] ??= <VaultSetCompletionOption>[]).add(
+      VaultSetCompletionOption(
+        cardPrintId: cardPrintId,
+        cardPrintingId: printingId?.isEmpty == true ? null : printingId,
+      ),
+    );
+  }
+
+  final ownedOptionKeys = <String>{};
+  final seenInstanceIds = <String>{};
+  for (final copy in copies) {
+    final instanceId = copy.instanceId.trim();
+    if (instanceId.isEmpty || !seenInstanceIds.add(instanceId)) {
+      continue;
+    }
+    final cardPrintId = (copy.directCardPrintId ?? '').trim().isNotEmpty
+        ? copy.directCardPrintId!.trim()
+        : (copy.slabCardPrintId ?? '').trim();
+    final cardOptions = optionsByCardPrintId[cardPrintId];
+    if (cardOptions == null || cardOptions.isEmpty) {
+      continue;
+    }
+    final hasPrintingOptions = cardOptions.any(
+      (option) => (option.cardPrintingId ?? '').trim().isNotEmpty,
+    );
+    if (!hasPrintingOptions) {
+      ownedOptionKeys.add('$cardPrintId:_');
+      continue;
+    }
+    final printingId = (copy.cardPrintingId ?? '').trim();
+    if (printingId.isNotEmpty &&
+        cardOptions.any((option) => option.cardPrintingId == printingId)) {
+      ownedOptionKeys.add('$cardPrintId:$printingId');
+    }
+  }
+
+  return VaultSetCompletionSnapshot(
+    variantOptionCount: optionKeys.length,
+    ownedVariantOptionCount: ownedOptionKeys.length,
+    optionKeys: Set.unmodifiable(optionKeys),
+    ownedOptionKeys: Set.unmodifiable(ownedOptionKeys),
+  );
 }
 
 class VaultCardIdentity {
@@ -439,12 +611,412 @@ class VaultCardService {
   static Future<Map<String, int>> getAllOwnedCounts({
     required SupabaseClient client,
   }) async {
-    final response = await client.rpc(
-      'vault_owned_counts_v1',
-      params: const {'p_card_print_ids': null},
+    const pageSize = 1000;
+    final counts = <String, int>{};
+    for (var offset = 0; ; offset += pageSize) {
+      final response = await client
+          .rpc(
+            'vault_owned_counts_v1',
+            params: const {'p_card_print_ids': null},
+          )
+          .order('card_print_id', ascending: true)
+          .range(offset, offset + pageSize - 1);
+      final page = _parseOwnedCounts(response);
+      counts.addAll(page);
+      if (page.length < pageSize) {
+        break;
+      }
+    }
+    return counts;
+  }
+
+  /// Counts active owner instances by canonical card print, including slab-only
+  /// instances. A row with both anchors is counted through its direct card
+  /// anchor only.
+  static Future<Map<String, int>> getOwnedCountsIncludingSlabs({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final normalizedIds = cardPrintIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    final userId = (client.auth.currentUser?.id ?? '').trim();
+    if (normalizedIds.isEmpty || userId.isEmpty) {
+      return const <String, int>{};
+    }
+
+    final counts = <String, int>{};
+    for (final chunk in _idChunks(normalizedIds)) {
+      for (var offset = 0; ; offset += 1000) {
+        final direct = await client
+            .from('vault_item_instances')
+            .select('card_print_id')
+            .eq('user_id', userId)
+            .filter('archived_at', 'is', null)
+            .inFilter('card_print_id', chunk)
+            .order('id', ascending: true)
+            .range(offset, offset + 999);
+        final rows = direct as List<dynamic>;
+        for (final raw in rows) {
+          final cardPrintId = _trimmedOrNull((raw as Map)['card_print_id']);
+          if (cardPrintId != null) {
+            counts[cardPrintId] = (counts[cardPrintId] ?? 0) + 1;
+          }
+        }
+        if (rows.length < 1000) {
+          break;
+        }
+      }
+    }
+
+    // Read the owner's slab-only anchors first. Looking up certificates by
+    // card print would scan a potentially unbounded public certificate set.
+    final slabInstanceCounts = <String, int>{};
+    for (var offset = 0; ; offset += 1000) {
+      final slabOnly = await client
+          .from('vault_item_instances')
+          .select('slab_cert_id')
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .filter('card_print_id', 'is', null)
+          .order('id', ascending: true)
+          .range(offset, offset + 999);
+      final rows = slabOnly as List<dynamic>;
+      for (final raw in rows) {
+        final certId = _trimmedOrNull((raw as Map)['slab_cert_id']);
+        if (certId != null) {
+          slabInstanceCounts[certId] = (slabInstanceCounts[certId] ?? 0) + 1;
+        }
+      }
+      if (rows.length < 1000) {
+        break;
+      }
+    }
+    for (final chunk in _idChunks(slabInstanceCounts.keys)) {
+      final slabCerts = await client
+          .from('slab_certs')
+          .select('id,card_print_id')
+          .inFilter('id', chunk);
+      for (final raw in slabCerts as List<dynamic>) {
+        final row = raw as Map;
+        final certId = _trimmedOrNull(row['id']);
+        final cardPrintId = _trimmedOrNull(row['card_print_id']);
+        if (certId != null &&
+            cardPrintId != null &&
+            normalizedIds.contains(cardPrintId)) {
+          counts[cardPrintId] =
+              (counts[cardPrintId] ?? 0) + (slabInstanceCounts[certId] ?? 0);
+        }
+      }
+    }
+    return counts;
+  }
+
+  static Future<VaultOwnedCardTruth> getOwnedCardTruthIncludingSlabs({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final normalizedIds = cardPrintIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    final userId = (client.auth.currentUser?.id ?? '').trim();
+    if (normalizedIds.isEmpty || userId.isEmpty) {
+      return const VaultOwnedCardTruth();
+    }
+
+    final countsByCardPrintId = <String, int>{};
+    final countsByPrintingId = <String, int>{};
+    final unassignedByCardPrintId = <String, int>{};
+    void recordCopy({
+      required String? cardPrintId,
+      required String? cardPrintingId,
+    }) {
+      final normalizedCardPrintId = (cardPrintId ?? '').trim();
+      if (!normalizedIds.contains(normalizedCardPrintId)) {
+        return;
+      }
+      countsByCardPrintId[normalizedCardPrintId] =
+          (countsByCardPrintId[normalizedCardPrintId] ?? 0) + 1;
+      final normalizedCardPrintingId = (cardPrintingId ?? '').trim();
+      if (normalizedCardPrintingId.isEmpty) {
+        unassignedByCardPrintId[normalizedCardPrintId] =
+            (unassignedByCardPrintId[normalizedCardPrintId] ?? 0) + 1;
+      } else {
+        countsByPrintingId[normalizedCardPrintingId] =
+            (countsByPrintingId[normalizedCardPrintingId] ?? 0) + 1;
+      }
+    }
+
+    for (final chunk in _idChunks(normalizedIds)) {
+      for (var offset = 0; ; offset += 1000) {
+        final directRows = await client
+            .from('vault_item_instances')
+            .select('card_print_id,card_printing_id')
+            .eq('user_id', userId)
+            .filter('archived_at', 'is', null)
+            .inFilter('card_print_id', chunk)
+            .order('id', ascending: true)
+            .range(offset, offset + 999);
+        final rows = directRows as List<dynamic>;
+        for (final raw in rows) {
+          final row = raw as Map;
+          recordCopy(
+            cardPrintId: _trimmedOrNull(row['card_print_id']),
+            cardPrintingId: _trimmedOrNull(row['card_printing_id']),
+          );
+        }
+        if (rows.length < 1000) {
+          break;
+        }
+      }
+    }
+
+    final slabRows = <Map<String, dynamic>>[];
+    for (var offset = 0; ; offset += 1000) {
+      final response = await client
+          .from('vault_item_instances')
+          .select('slab_cert_id,card_printing_id')
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .filter('card_print_id', 'is', null)
+          .order('id', ascending: true)
+          .range(offset, offset + 999);
+      final rows = response as List<dynamic>;
+      slabRows.addAll(rows.map((raw) => Map<String, dynamic>.from(raw as Map)));
+      if (rows.length < 1000) {
+        break;
+      }
+    }
+
+    final cardPrintIdBySlabCertId = <String, String>{};
+    for (final chunk in _idChunks(
+      slabRows
+          .map((row) => _trimmedOrNull(row['slab_cert_id']))
+          .whereType<String>(),
+    )) {
+      final slabCerts = await client
+          .from('slab_certs')
+          .select('id,card_print_id')
+          .inFilter('id', chunk);
+      for (final raw in slabCerts as List<dynamic>) {
+        final row = raw as Map;
+        final certId = _trimmedOrNull(row['id']);
+        final cardPrintId = _trimmedOrNull(row['card_print_id']);
+        if (certId != null && cardPrintId != null) {
+          cardPrintIdBySlabCertId[certId] = cardPrintId;
+        }
+      }
+    }
+    for (final row in slabRows) {
+      final slabCertId = _trimmedOrNull(row['slab_cert_id']);
+      recordCopy(
+        cardPrintId: slabCertId == null
+            ? null
+            : cardPrintIdBySlabCertId[slabCertId],
+        cardPrintingId: _trimmedOrNull(row['card_printing_id']),
+      );
+    }
+
+    return VaultOwnedCardTruth(
+      countsByCardPrintId: Map.unmodifiable(countsByCardPrintId),
+      countsByPrintingId: Map.unmodifiable(countsByPrintingId),
+      unassignedByCardPrintId: Map.unmodifiable(unassignedByCardPrintId),
+    );
+  }
+
+  /// Reads slab-only completion copies once for callers that need to evaluate
+  /// several sets in one dashboard pass. The owner-first certificate lookup
+  /// stays bounded and dual-anchored rows remain excluded.
+  static Future<List<VaultSetCompletionCopy>>
+  fetchOwnedSlabOnlyCompletionCopies({
+    required SupabaseClient client,
+    required String userId,
+  }) async {
+    const pageSize = 1000;
+    final normalizedUserId = userId.trim();
+    if (normalizedUserId.isEmpty) {
+      return const <VaultSetCompletionCopy>[];
+    }
+    final slabRows = <Map<String, dynamic>>[];
+    for (var offset = 0; ; offset += pageSize) {
+      final response = await client
+          .from('vault_item_instances')
+          .select('id,slab_cert_id,card_printing_id')
+          .eq('user_id', normalizedUserId)
+          .filter('archived_at', 'is', null)
+          .filter('card_print_id', 'is', null)
+          .order('id', ascending: true)
+          .range(offset, offset + pageSize - 1);
+      final rows = response as List<dynamic>;
+      slabRows.addAll(rows.map((raw) => Map<String, dynamic>.from(raw as Map)));
+      if (rows.length < pageSize) {
+        break;
+      }
+    }
+    final cardPrintIdByCertId = <String, String>{};
+    for (final chunk in _idChunks(
+      slabRows
+          .map((row) => _trimmedOrNull(row['slab_cert_id']))
+          .whereType<String>(),
+    )) {
+      final certRows = await client
+          .from('slab_certs')
+          .select('id,card_print_id')
+          .inFilter('id', chunk);
+      for (final raw in certRows as List<dynamic>) {
+        final row = raw as Map;
+        final certId = _trimmedOrNull(row['id']);
+        final cardPrintId = _trimmedOrNull(row['card_print_id']);
+        if (certId != null && cardPrintId != null) {
+          cardPrintIdByCertId[certId] = cardPrintId;
+        }
+      }
+    }
+    return List.unmodifiable(
+      slabRows
+          .map((row) {
+            final certId = _trimmedOrNull(row['slab_cert_id']);
+            return VaultSetCompletionCopy(
+              instanceId: (row['id'] ?? '').toString(),
+              slabCardPrintId: certId == null
+                  ? null
+                  : cardPrintIdByCertId[certId],
+              cardPrintingId: _trimmedOrNull(row['card_printing_id']),
+            );
+          })
+          .where((copy) => (copy.slabCardPrintId ?? '').isNotEmpty),
+    );
+  }
+
+  static Future<VaultSetCompletionSnapshot> fetchSetCompletionSnapshot({
+    required SupabaseClient client,
+    required String userId,
+    required String setId,
+    Iterable<VaultSetCompletionCopy>? ownerSlabOnlyCopies,
+  }) async {
+    final normalizedUserId = userId.trim();
+    final normalizedSetId = setId.trim();
+    if (normalizedUserId.isEmpty || normalizedSetId.isEmpty) {
+      return const VaultSetCompletionSnapshot(
+        variantOptionCount: 0,
+        ownedVariantOptionCount: 0,
+      );
+    }
+
+    const pageSize = 1000;
+    final cardPrintIds = <String>{};
+    for (var offset = 0; ; offset += pageSize) {
+      final parentRows = await client
+          .from('card_prints')
+          .select('id')
+          .eq('set_id', normalizedSetId)
+          .order('id', ascending: true)
+          .range(offset, offset + pageSize - 1);
+      final rows = parentRows as List<dynamic>;
+      cardPrintIds.addAll(
+        rows
+            .map((raw) => _trimmedOrNull((raw as Map)['id']))
+            .whereType<String>(),
+      );
+      if (rows.length < pageSize) {
+        break;
+      }
+    }
+    if (cardPrintIds.isEmpty) {
+      return const VaultSetCompletionSnapshot(
+        variantOptionCount: 0,
+        ownedVariantOptionCount: 0,
+      );
+    }
+
+    final options = <VaultSetCompletionOption>[];
+    final printingIdsByCardPrintId = <String, Set<String>>{};
+    for (final chunk in _idChunks(cardPrintIds)) {
+      for (var offset = 0; ; offset += pageSize) {
+        final printingRows = await client
+            .from('card_printings')
+            .select('id,card_print_id')
+            .inFilter('card_print_id', chunk)
+            .order('id', ascending: true)
+            .range(offset, offset + pageSize - 1);
+        final rows = printingRows as List<dynamic>;
+        for (final raw in rows) {
+          final row = raw as Map;
+          final printingId = _trimmedOrNull(row['id']);
+          final cardPrintId = _trimmedOrNull(row['card_print_id']);
+          if (printingId == null || cardPrintId == null) {
+            continue;
+          }
+          (printingIdsByCardPrintId[cardPrintId] ??= <String>{}).add(
+            printingId,
+          );
+        }
+        if (rows.length < pageSize) {
+          break;
+        }
+      }
+    }
+    for (final cardPrintId in cardPrintIds) {
+      final printingIds = printingIdsByCardPrintId[cardPrintId];
+      if (printingIds == null || printingIds.isEmpty) {
+        options.add(VaultSetCompletionOption(cardPrintId: cardPrintId));
+      } else {
+        options.addAll(
+          printingIds.map(
+            (printingId) => VaultSetCompletionOption(
+              cardPrintId: cardPrintId,
+              cardPrintingId: printingId,
+            ),
+          ),
+        );
+      }
+    }
+
+    final copies = <VaultSetCompletionCopy>[];
+    for (final chunk in _idChunks(cardPrintIds)) {
+      for (var offset = 0; ; offset += pageSize) {
+        final directRows = await client
+            .from('vault_item_instances')
+            .select('id,card_print_id,card_printing_id')
+            .eq('user_id', normalizedUserId)
+            .filter('archived_at', 'is', null)
+            .inFilter('card_print_id', chunk)
+            .order('id', ascending: true)
+            .range(offset, offset + pageSize - 1);
+        final rows = directRows as List<dynamic>;
+        copies.addAll(
+          rows.map((raw) {
+            final row = raw as Map;
+            return VaultSetCompletionCopy(
+              instanceId: (row['id'] ?? '').toString(),
+              directCardPrintId: _trimmedOrNull(row['card_print_id']),
+              cardPrintingId: _trimmedOrNull(row['card_printing_id']),
+            );
+          }),
+        );
+        if (rows.length < pageSize) {
+          break;
+        }
+      }
+    }
+
+    final slabCopies =
+        ownerSlabOnlyCopies ??
+        await fetchOwnedSlabOnlyCompletionCopies(
+          client: client,
+          userId: normalizedUserId,
+        );
+    copies.addAll(
+      slabCopies.where((copy) => cardPrintIds.contains(copy.slabCardPrintId)),
     );
 
-    return _parseOwnedCounts(response);
+    return calculateVaultSetCompletionSnapshot(
+      options: options,
+      copies: copies,
+    );
   }
 
   static Map<String, int> _parseOwnedCounts(dynamic response) {
@@ -472,6 +1044,24 @@ class VaultCardService {
     }
 
     return counts;
+  }
+
+  static Iterable<List<String>> _idChunks(
+    Iterable<String> source, {
+    int size = 250,
+  }) sync* {
+    var chunk = <String>[];
+    for (final value
+        in source.map((id) => id.trim()).where((id) => id.isNotEmpty).toSet()) {
+      chunk.add(value);
+      if (chunk.length == size) {
+        yield chunk;
+        chunk = <String>[];
+      }
+    }
+    if (chunk.isNotEmpty) {
+      yield chunk;
+    }
   }
 
   static Future<List<Map<String, dynamic>>> getCanonicalCollectorRows({
@@ -557,6 +1147,7 @@ class VaultCardService {
       client: client,
       userId: userId,
       cardPrintId: cardId,
+      cardPrintingId: cardPrintingId,
     );
 
     final response = await client.functions.invoke(
@@ -595,6 +1186,7 @@ class VaultCardService {
           client: client,
           userId: userId,
           cardPrintId: cardId,
+          cardPrintingId: cardPrintingId,
           previous: completionBefore,
         );
         return gvviId;
@@ -605,6 +1197,7 @@ class VaultCardService {
       client: client,
       userId: userId,
       cardPrintId: cardId,
+      cardPrintingId: cardPrintingId,
       previous: completionBefore,
     );
     return '';
@@ -615,35 +1208,62 @@ class VaultCardService {
     required SupabaseClient client,
     required String userId,
     required String cardPrintId,
+    String? cardPrintingId,
   }) async {
     try {
-      final raw = await client.rpc(
-        'interest_graph_completion_snapshot_for_card_v1',
-        params: {'p_user_id': userId, 'p_card_print_id': cardPrintId},
-      );
-      if (raw is! List) {
-        return const <String, _InterestGraphCompletionSnapshot>{};
-      }
-
       final snapshots = <String, _InterestGraphCompletionSnapshot>{};
-      for (final item in raw) {
-        if (item is! Map) continue;
-        final row = Map<String, dynamic>.from(item);
-        final subjectType = _trimmedOrNull(row['subject_type']);
-        final subjectId = _trimmedOrNull(row['subject_id']);
-        final percentRaw = row['completion_percent'];
-        final percent = percentRaw is num
-            ? percentRaw.toInt()
-            : int.tryParse(percentRaw?.toString() ?? '');
-        if (subjectType == null || subjectId == null || percent == null) {
-          continue;
-        }
-        snapshots['$subjectType:$subjectId'] = _InterestGraphCompletionSnapshot(
-          subjectType: subjectType,
-          subjectId: subjectId,
-          completionPercent: percent.clamp(0, 100),
+      final lookupResults = await Future.wait<dynamic>([
+        client
+            .from('card_prints')
+            .select('set_id')
+            .eq('id', cardPrintId)
+            .maybeSingle(),
+        client
+            .from('v_grookai_dex_card_prints_v1')
+            .select('species_id')
+            .eq('card_print_id', cardPrintId)
+            .eq('mapping_active', true)
+            .eq('counts_for_completion', true),
+      ]);
+      final cardRow = lookupResults[0] as Map<String, dynamic>?;
+      final setId = _trimmedOrNull(cardRow?['set_id']);
+      final touchedRows = lookupResults[1] as List<dynamic>;
+      final speciesIds = touchedRows
+          .map((raw) => _trimmedOrNull((raw as Map)['species_id']))
+          .whereType<String>()
+          .toSet()
+          .toList(growable: false);
+      final futures = await Future.wait<dynamic>([
+        if (setId != null)
+          fetchSetCompletionSnapshot(
+            client: client,
+            userId: userId,
+            setId: setId,
+          )
+        else
+          Future<VaultSetCompletionSnapshot?>.value(null),
+        _fetchInterestGraphSpeciesSnapshots(
+          client: client,
+          cardPrintId: cardPrintId,
+          speciesIds: speciesIds,
+        ),
+      ]);
+      final setProgress = futures[0] as VaultSetCompletionSnapshot?;
+      if (setId != null && setProgress != null) {
+        snapshots['set:$setId'] = _InterestGraphCompletionSnapshot(
+          subjectType: 'set',
+          subjectId: setId,
+          totalCount: setProgress.variantOptionCount,
+          completedCount: setProgress.ownedVariantOptionCount,
+          directAddCompletionDelta: setProgress.directAddCompletionDelta(
+            cardPrintId: cardPrintId,
+            cardPrintingId: cardPrintingId,
+          ),
         );
       }
+      snapshots.addAll(
+        futures[1] as Map<String, _InterestGraphCompletionSnapshot>,
+      );
       return snapshots;
     } catch (error) {
       debugPrint('interest_graph.completion_snapshot.failed: $error');
@@ -651,22 +1271,117 @@ class VaultCardService {
     }
   }
 
+  static Future<Map<String, _InterestGraphCompletionSnapshot>>
+  _fetchInterestGraphSpeciesSnapshots({
+    required SupabaseClient client,
+    required String cardPrintId,
+    required Iterable<String> speciesIds,
+  }) async {
+    final normalizedSpeciesIds = speciesIds.toSet();
+    if (normalizedSpeciesIds.isEmpty) {
+      return const <String, _InterestGraphCompletionSnapshot>{};
+    }
+    final cardPrintIdsBySpeciesId = <String, Set<String>>{};
+    for (final chunk in _idChunks(normalizedSpeciesIds)) {
+      for (var offset = 0; ; offset += 1000) {
+        final mappingRows = await client
+            .from('v_grookai_dex_card_prints_v1')
+            .select('species_id,card_print_id')
+            .eq('mapping_active', true)
+            .eq('counts_for_completion', true)
+            .inFilter('species_id', chunk)
+            .order('species_id', ascending: true)
+            .order('card_print_id', ascending: true)
+            .range(offset, offset + 999);
+        final rows = mappingRows as List<dynamic>;
+        for (final raw in rows) {
+          final row = raw as Map;
+          final speciesId = _trimmedOrNull(row['species_id']);
+          final mappedCardPrintId = _trimmedOrNull(row['card_print_id']);
+          if (speciesId != null && mappedCardPrintId != null) {
+            (cardPrintIdsBySpeciesId[speciesId] ??= <String>{}).add(
+              mappedCardPrintId,
+            );
+          }
+        }
+        if (rows.length < 1000) {
+          break;
+        }
+      }
+    }
+    final ownedCounts = await getOwnedCountsIncludingSlabs(
+      client: client,
+      cardPrintIds: cardPrintIdsBySpeciesId.values.expand((ids) => ids),
+    );
+    return Map.unmodifiable({
+      for (final entry in cardPrintIdsBySpeciesId.entries)
+        'character:${entry.key}': _InterestGraphCompletionSnapshot(
+          subjectType: 'character',
+          subjectId: entry.key,
+          totalCount: entry.value.length,
+          completedCount: entry.value
+              .where((id) => (ownedCounts[id] ?? 0) > 0)
+              .length,
+          directAddCompletionDelta:
+              (ownedCounts[cardPrintId] ?? 0) > 0 ||
+                  !entry.value.contains(cardPrintId)
+              ? 0
+              : 1,
+        ),
+    });
+  }
+
   static Future<void> _emitInterestGraphCompletionCrossings({
     required SupabaseClient client,
     required String userId,
     required String cardPrintId,
+    String? cardPrintingId,
     required Map<String, _InterestGraphCompletionSnapshot> previous,
   }) async {
     try {
-      final next = await _fetchInterestGraphCompletionSnapshot(
-        client: client,
-        userId: userId,
-        cardPrintId: cardPrintId,
-      );
-      for (final entry in next.entries) {
+      // The add endpoint always creates a direct instance for this exact card.
+      // The pre-snapshot retains the target's completion delta, so a second
+      // full owner/slab scan after the write is unnecessary.
+      final next = <String, _InterestGraphCompletionSnapshot>{
+        for (final entry in previous.entries)
+          entry.key: entry.value.afterDirectAdd(),
+      };
+      final crossedEntries = next.entries
+          .where(
+            (entry) =>
+                entry.value.completionPercent >
+                (previous[entry.key]?.completionPercent ?? 0),
+          )
+          .toList(growable: false);
+      if (crossedEntries.isEmpty) {
+        return;
+      }
+
+      final metadataResults =
+          await Future.wait<Map<String, Map<String, dynamic>>>([
+            _loadInterestGraphCompletionMetadata(
+              client: client,
+              table: 'pokemon_species',
+              columns: 'id,slug,display_name',
+              subjectIds: crossedEntries
+                  .where((entry) => entry.value.subjectType == 'character')
+                  .map((entry) => entry.value.subjectId),
+            ),
+            _loadInterestGraphCompletionMetadata(
+              client: client,
+              table: 'sets',
+              columns: 'id,code,name',
+              subjectIds: crossedEntries
+                  .where((entry) => entry.value.subjectType == 'set')
+                  .map((entry) => entry.value.subjectId),
+            ),
+          ]);
+      final speciesById = metadataResults[0];
+      final setsById = metadataResults[1];
+
+      for (final entry in crossedEntries) {
         final priorPercent = previous[entry.key]?.completionPercent ?? 0;
         final nextSnapshot = entry.value;
-        if (nextSnapshot.completionPercent <= priorPercent) continue;
         await client.rpc(
           'card_events_emit_completion_crossings_v1',
           params: {
@@ -675,13 +1390,99 @@ class VaultCardService {
             'p_subject_id': nextSnapshot.subjectId,
             'p_previous_percent': priorPercent,
             'p_next_percent': nextSnapshot.completionPercent,
-            'p_payload': {'card_print_id': cardPrintId, 'source': 'vault_add'},
+            'p_payload': _interestGraphCompletionPayload(
+              snapshot: nextSnapshot,
+              cardPrintId: cardPrintId,
+              speciesById: speciesById,
+              setsById: setsById,
+            ),
           },
         );
       }
     } catch (error) {
       debugPrint('interest_graph.completion_crossing.failed: $error');
     }
+  }
+
+  static Future<Map<String, Map<String, dynamic>>>
+  _loadInterestGraphCompletionMetadata({
+    required SupabaseClient client,
+    required String table,
+    required String columns,
+    required Iterable<String> subjectIds,
+  }) async {
+    final ids = subjectIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (ids.isEmpty) {
+      return const <String, Map<String, dynamic>>{};
+    }
+
+    try {
+      final response = await client
+          .from(table)
+          .select(columns)
+          .inFilter('id', ids);
+      final byId = <String, Map<String, dynamic>>{};
+      for (final value in response) {
+        final row = Map<String, dynamic>.from(value);
+        final id = _trimmedOrNull(row['id']);
+        if (id != null) {
+          byId[id] = row;
+        }
+      }
+      return byId;
+    } catch (error) {
+      debugPrint('interest_graph.completion_metadata.failed: $error');
+      return const <String, Map<String, dynamic>>{};
+    }
+  }
+
+  static Map<String, dynamic> _interestGraphCompletionPayload({
+    required _InterestGraphCompletionSnapshot snapshot,
+    required String cardPrintId,
+    required Map<String, Map<String, dynamic>> speciesById,
+    required Map<String, Map<String, dynamic>> setsById,
+  }) {
+    final payload = <String, dynamic>{
+      'card_print_id': cardPrintId,
+      'source': 'vault_add',
+    };
+
+    if (snapshot.subjectType == 'character') {
+      final species = speciesById[snapshot.subjectId];
+      final slug = _trimmedOrNull(species?['slug'])?.toLowerCase();
+      final displayName = _trimmedOrNull(species?['display_name']);
+      payload['species_id'] = snapshot.subjectId;
+      payload['character_id'] = snapshot.subjectId;
+      if (displayName != null) {
+        payload['character_name'] = displayName;
+        payload['subject_label'] = displayName;
+      }
+      if (slug != null) {
+        payload['species_slug'] = slug;
+        payload['completion_route'] = '/dex/${Uri.encodeComponent(slug)}';
+      }
+      return payload;
+    }
+
+    if (snapshot.subjectType == 'set') {
+      final set = setsById[snapshot.subjectId];
+      final code = _trimmedOrNull(set?['code']);
+      final name = _trimmedOrNull(set?['name']);
+      payload['set_id'] = snapshot.subjectId;
+      if (code != null) {
+        payload['set_code'] = code;
+        payload['completion_route'] = '/set/${Uri.encodeComponent(code)}';
+      }
+      if (name != null) {
+        payload['set_name'] = name;
+        payload['subject_label'] = name;
+      }
+    }
+    return payload;
   }
 
   static Future<VaultOwnedCopyTarget?> resolveLatestOwnedCopyTarget({

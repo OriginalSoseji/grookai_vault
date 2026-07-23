@@ -15,6 +15,11 @@ type SlabOwnedInstanceRow = {
   slab_cert_id: string | null;
 };
 
+type AllOwnedInstanceRow = {
+  card_print_id: string | null;
+  slab_cert_id: string | null;
+};
+
 type SupabaseReadError = {
   message: string;
   code?: string | null;
@@ -89,6 +94,7 @@ export async function getOwnedCountsByCardPrintIds(
 
   const adminClient = createServerAdminClient();
   const counts = new Map<string, number>();
+  const requestedCardPrintIds = new Set(normalizedIds);
 
   for (const chunk of chunkArray(normalizedIds, 500)) {
     const rows = await fetchAllOwnershipPages<DirectOwnedInstanceRow>(
@@ -109,66 +115,69 @@ export async function getOwnedCountsByCardPrintIds(
     }
   }
 
+  const slabOnlyRows = await fetchAllOwnershipPages<SlabOwnedInstanceRow>(
+    (from, to) =>
+      adminClient
+        .from("vault_item_instances")
+        .select("id,slab_cert_id")
+        .eq("user_id", normalizedUserId)
+        .is("archived_at", null)
+        .is("card_print_id", null)
+        .not("slab_cert_id", "is", null)
+        .order("id", { ascending: true })
+        .range(from, to),
+    "[vault_item_instances.read-owned-count-slab-only-instances]",
+  );
+  const ownedSlabCertIds = Array.from(
+    new Set(
+      slabOnlyRows
+        .map((row) => row.slab_cert_id?.trim() ?? "")
+        .filter(Boolean),
+    ),
+  );
   const slabCertCardPrintIdById = new Map<string, string>();
-  for (const chunk of chunkArray(normalizedIds, 500)) {
-    const rows = await fetchAllOwnershipPages<SlabCertOwnershipRow>(
-      (from, to) =>
-        adminClient
-          .from("slab_certs")
-          .select("id,card_print_id")
-          .in("card_print_id", chunk)
-          .order("id", { ascending: true })
-          .range(from, to),
-      "[slab_certs.read-owned-count-card-print-anchors]",
-    );
-
-    for (const row of rows) {
-      const slabCertId = typeof row.id === "string" ? row.id.trim() : "";
-      const cardPrintId = typeof row.card_print_id === "string" ? row.card_print_id.trim() : "";
-      if (slabCertId && cardPrintId) {
+  for (const chunk of chunkArray(ownedSlabCertIds, 500)) {
+    const { data, error } = await adminClient
+      .from("slab_certs")
+      .select("id,card_print_id")
+      .in("id", chunk);
+    if (error) {
+      throw new Error(
+        formatReadError("[slab_certs.read-owned-count-anchors]", error),
+      );
+    }
+    for (const row of (data ?? []) as SlabCertOwnershipRow[]) {
+      const slabCertId = row.id?.trim() ?? "";
+      const cardPrintId = row.card_print_id?.trim() ?? "";
+      if (slabCertId && requestedCardPrintIds.has(cardPrintId)) {
         slabCertCardPrintIdById.set(slabCertId, cardPrintId);
       }
     }
   }
-
-  const slabCertIds = Array.from(slabCertCardPrintIdById.keys());
-  for (const chunk of chunkArray(slabCertIds, 500)) {
-    const rows = await fetchAllOwnershipPages<SlabOwnedInstanceRow>(
-      (from, to) =>
-        adminClient
-          .from("vault_item_instances")
-          .select("id,slab_cert_id")
-          .eq("user_id", normalizedUserId)
-          .is("archived_at", null)
-          .in("slab_cert_id", chunk)
-          .order("id", { ascending: true })
-          .range(from, to),
-      "[vault_item_instances.read-owned-count-slab-instances]",
-    );
-
-    for (const row of rows) {
-      const slabCertId = typeof row.slab_cert_id === "string" ? row.slab_cert_id.trim() : "";
-      addCount(counts, slabCertCardPrintIdById.get(slabCertId));
-    }
+  for (const row of slabOnlyRows) {
+    const slabCertId = row.slab_cert_id?.trim() ?? "";
+    addCount(counts, slabCertCardPrintIdById.get(slabCertId));
   }
 
   return counts;
 }
 
 export async function getOwnedCardPrintIdsForUser(userId: string): Promise<string[]> {
+  const counts = await getAllOwnedCountsForUser(userId);
+  return Array.from(counts.keys());
+}
+
+export async function getAllOwnedCountsForUser(
+  userId: string,
+): Promise<Map<string, number>> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
-    return [];
+    return new Map<string, number>();
   }
 
   const adminClient = createServerAdminClient();
-  const ownedCardPrintIds = new Set<string>();
-  const slabCertIds = new Set<string>();
-
-  const directRows = await fetchAllOwnershipPages<{
-    card_print_id: string | null;
-    slab_cert_id: string | null;
-  }>(
+  const counts = new Map<string, number>();
+  const ownedRows = await fetchAllOwnershipPages<AllOwnedInstanceRow>(
     (from, to) =>
       adminClient
         .from("vault_item_instances")
@@ -180,10 +189,12 @@ export async function getOwnedCardPrintIdsForUser(userId: string): Promise<strin
     "[vault_item_instances.read-owned-card-print-ids]",
   );
 
-  for (const row of directRows) {
+  const slabCertIds = new Set<string>();
+  for (const row of ownedRows) {
     const cardPrintId = row.card_print_id?.trim() ?? "";
     if (cardPrintId) {
-      ownedCardPrintIds.add(cardPrintId);
+      addCount(counts, cardPrintId);
+      continue;
     }
 
     const slabCertId = row.slab_cert_id?.trim() ?? "";
@@ -192,8 +203,8 @@ export async function getOwnedCardPrintIdsForUser(userId: string): Promise<strin
     }
   }
 
-  const slabCertIdList = Array.from(slabCertIds);
-  for (const chunk of chunkArray(slabCertIdList, 500)) {
+  const cardPrintIdBySlabCertId = new Map<string, string>();
+  for (const chunk of chunkArray(Array.from(slabCertIds), 500)) {
     const { data: slabRows, error: slabError } = await adminClient
       .from("slab_certs")
       .select("id,card_print_id")
@@ -201,7 +212,7 @@ export async function getOwnedCardPrintIdsForUser(userId: string): Promise<strin
 
     if (slabError) {
       throw new Error(
-        `[slab_certs.read-owned-card-print-ids] ${slabError.message}${
+        `[slab_certs.read-all-owned-counts] ${slabError.message}${
           slabError.code ? ` | code=${slabError.code}` : ""
         }${slabError.details ? ` | details=${slabError.details}` : ""}${
           slabError.hint ? ` | hint=${slabError.hint}` : ""
@@ -210,12 +221,21 @@ export async function getOwnedCardPrintIdsForUser(userId: string): Promise<strin
     }
 
     for (const row of (slabRows ?? []) as SlabCertOwnershipRow[]) {
+      const slabCertId = row.id?.trim() ?? "";
       const cardPrintId = row.card_print_id?.trim() ?? "";
-      if (cardPrintId) {
-        ownedCardPrintIds.add(cardPrintId);
+      if (slabCertId && cardPrintId) {
+        cardPrintIdBySlabCertId.set(slabCertId, cardPrintId);
       }
     }
   }
 
-  return Array.from(ownedCardPrintIds);
+  for (const row of ownedRows) {
+    if (row.card_print_id?.trim()) {
+      continue;
+    }
+    const slabCertId = row.slab_cert_id?.trim() ?? "";
+    addCount(counts, cardPrintIdBySlabCertId.get(slabCertId));
+  }
+
+  return counts;
 }

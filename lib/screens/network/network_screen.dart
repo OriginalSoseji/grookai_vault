@@ -24,10 +24,34 @@ import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
 import '../../widgets/provisional/provisional_card_section.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
+import '../dex/grookai_dex_screen.dart';
+import '../dex/grookai_dex_species_screen.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../sets/public_set_detail_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
+
+Widget buildCanonicalDexPage(
+  String speciesSlug, {
+  Future<void> Function()? onOpenScanner,
+  Future<void> Function({
+    required String speciesSlug,
+    required String displayName,
+  })?
+  onOpenVaultSpecies,
+}) {
+  final normalized = speciesSlug.trim().toLowerCase();
+  return normalized.isEmpty
+      ? GrookaiDexScreen(
+          onOpenScanner: onOpenScanner,
+          onOpenVaultSpecies: onOpenVaultSpecies,
+        )
+      : GrookaiDexSpeciesScreen(
+          speciesSlug: normalized,
+          onOpenScanner: onOpenScanner,
+          onOpenVaultSpecies: onOpenVaultSpecies,
+        );
+}
 
 ResolvedDisplayIdentity _networkDisplayIdentity(NetworkStreamRow row) {
   return resolveDisplayIdentityFromFields(
@@ -90,9 +114,20 @@ String _relativeTime(DateTime? value) {
 enum _NetworkHomeSegment { pulse, discover, following }
 
 class NetworkScreen extends StatefulWidget {
-  const NetworkScreen({this.onPulseUnreadChanged, super.key});
+  const NetworkScreen({
+    this.onPulseUnreadChanged,
+    this.onOpenScanner,
+    this.onOpenVaultSpecies,
+    super.key,
+  });
 
   final ValueChanged<int>? onPulseUnreadChanged;
+  final Future<void> Function()? onOpenScanner;
+  final Future<void> Function({
+    required String speciesSlug,
+    required String displayName,
+  })?
+  onOpenVaultSpecies;
 
   @override
   State<NetworkScreen> createState() => NetworkScreenState();
@@ -700,6 +735,8 @@ class NetworkScreenState extends State<NetworkScreen> {
                       (_pulseNextCursorEventId ?? '').trim().isNotEmpty,
                   onRetry: () => _loadPulse(reset: true),
                   onShowOlder: () => _loadPulse(reset: false, older: true),
+                  onOpenScanner: widget.onOpenScanner,
+                  onOpenVaultSpecies: widget.onOpenVaultSpecies,
                 )
               else
                 _NetworkContentSliver(
@@ -910,6 +947,8 @@ class _PulseContentSliver extends StatelessWidget {
     required this.hasOlder,
     required this.onRetry,
     required this.onShowOlder,
+    this.onOpenScanner,
+    this.onOpenVaultSpecies,
   });
 
   final List<PulseItem> items;
@@ -920,6 +959,12 @@ class _PulseContentSliver extends StatelessWidget {
   final bool hasOlder;
   final Future<void> Function() onRetry;
   final Future<void> Function() onShowOlder;
+  final Future<void> Function()? onOpenScanner;
+  final Future<void> Function({
+    required String speciesSlug,
+    required String displayName,
+  })?
+  onOpenVaultSpecies;
 
   @override
   Widget build(BuildContext context) {
@@ -993,7 +1038,11 @@ class _PulseContentSliver extends StatelessWidget {
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               if (index.isOdd) return const SizedBox(height: 9);
-              return _PulseItemRow(item: items[index ~/ 2]);
+              return _PulseItemRow(
+                item: items[index ~/ 2],
+                onOpenScanner: onOpenScanner,
+                onOpenVaultSpecies: onOpenVaultSpecies,
+              );
             }, childCount: childCount),
           ),
         ),
@@ -1013,9 +1062,19 @@ class _PulseContentSliver extends StatelessWidget {
 }
 
 class _PulseItemRow extends StatelessWidget {
-  const _PulseItemRow({required this.item});
+  const _PulseItemRow({
+    required this.item,
+    this.onOpenScanner,
+    this.onOpenVaultSpecies,
+  });
 
   final PulseItem item;
+  final Future<void> Function()? onOpenScanner;
+  final Future<void> Function({
+    required String speciesSlug,
+    required String displayName,
+  })?
+  onOpenVaultSpecies;
 
   @override
   Widget build(BuildContext context) {
@@ -1272,6 +1331,17 @@ class _PulseItemRow extends StatelessWidget {
         await navigator.push(
           MaterialPageRoute<void>(
             builder: (_) => PublicGvviScreen(gvviId: route.value),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.dex:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => buildCanonicalDexPage(
+              route.value,
+              onOpenScanner: onOpenScanner,
+              onOpenVaultSpecies: onOpenVaultSpecies,
+            ),
           ),
         );
         return true;

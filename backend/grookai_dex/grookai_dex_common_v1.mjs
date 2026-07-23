@@ -13,6 +13,26 @@ export const MAPPING_AUDIT_JSON_PATH = path.join(AUDIT_DIR, 'grookai_dex_mapping
 export const MAPPING_AUDIT_MD_PATH = path.join(AUDIT_DIR, 'grookai_dex_mapping_dry_run_20260518.md');
 export const SPECIES_AUDIT_JSON_PATH = path.join(AUDIT_DIR, 'grookai_dex_species_dry_run_20260518.json');
 export const SPECIES_AUDIT_MD_PATH = path.join(AUDIT_DIR, 'grookai_dex_species_dry_run_20260518.md');
+export const GROOKAI_DEX_CANONICAL_TYPES = Object.freeze([
+  'normal',
+  'fire',
+  'water',
+  'electric',
+  'grass',
+  'ice',
+  'fighting',
+  'poison',
+  'ground',
+  'flying',
+  'psychic',
+  'bug',
+  'rock',
+  'ghost',
+  'dragon',
+  'dark',
+  'steel',
+  'fairy',
+]);
 
 export async function readJson(filePath) {
   const body = await fs.readFile(filePath, 'utf8');
@@ -44,6 +64,28 @@ export function normalizeText(value) {
 
 export function slugToSearchToken(slug) {
   return normalizeText(slug.replace(/-/g, ' '));
+}
+
+export function normalizeSpeciesGeneration(value) {
+  const raw = String(value ?? '').trim();
+  if (raw.length === 0) {
+    return null;
+  }
+  const parsed = typeof value === 'number' ? value : Number(raw);
+  return Number.isInteger(parsed) ? parsed : null;
+}
+
+export function normalizeSpeciesTypes(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return [
+    ...new Set(
+      value
+        .map((type) => String(type ?? '').trim().toLowerCase())
+        .filter(Boolean),
+    ),
+  ];
 }
 
 export function parseArgs(argv) {
@@ -89,6 +131,8 @@ export async function loadSpeciesSeed() {
     slug: row.slug,
     canonicalName: row.canonicalName,
     displayName: displayOverrides[row.slug] ?? row.displayName,
+    generation: normalizeSpeciesGeneration(row.generation),
+    types: normalizeSpeciesTypes(row.types),
     searchTokens: [
       slugToSearchToken(row.slug),
       normalizeText(displayOverrides[row.slug] ?? row.displayName),
@@ -118,6 +162,17 @@ export function validateSpeciesSeed(seedBundle) {
     }
     if (!row.displayName || normalizeText(row.displayName).length === 0) {
       errors.push(`invalid_display_name:${JSON.stringify(row)}`);
+    }
+    if (!Number.isInteger(row.generation) || row.generation < 1 || row.generation > 9) {
+      errors.push(`invalid_generation:${JSON.stringify(row)}`);
+    }
+    if (!Array.isArray(row.types) || row.types.length < 1 || row.types.length > 2) {
+      errors.push(`invalid_types_cardinality:${JSON.stringify(row)}`);
+    } else {
+      const invalidTypes = row.types.filter((type) => !GROOKAI_DEX_CANONICAL_TYPES.includes(type));
+      if (invalidTypes.length > 0) {
+        errors.push(`invalid_types:${row.slug}:${invalidTypes.join(',')}`);
+      }
     }
     if (seenDexNumbers.has(row.nationalDexNumber)) {
       errors.push(`duplicate_national_dex_number:${row.nationalDexNumber}`);

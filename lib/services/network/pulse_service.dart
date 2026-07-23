@@ -110,6 +110,25 @@ class PulseItem {
   bool get isWantMatch => rankBucket == 'want_match';
   bool get isCompletion => rankBucket == 'completion';
   bool get isCollectorActivity => rankBucket == 'collector_activity';
+  bool get isDexCompletion =>
+      eventType == 'dex_completion_crossed' ||
+      (isCompletion && completionSubjectType == 'character');
+
+  String get completionSubjectId {
+    for (final key in <String>['species_id', 'character_id', 'subject_id']) {
+      final value = _text(payload[key]);
+      if (value.isNotEmpty) return value;
+    }
+    return '';
+  }
+
+  String get completionSpeciesSlug {
+    for (final key in <String>['species_slug', 'character_slug']) {
+      final value = _text(payload[key]).toLowerCase();
+      if (value.isNotEmpty) return value;
+    }
+    return '';
+  }
 
   String get displayCardName {
     final payloadName = _text(payload['card_name']);
@@ -133,6 +152,42 @@ class PulseItem {
     return ownershipContext;
   }
 
+  PulseItem copyWithCompletionDestination({
+    required String route,
+    String? subjectLabel,
+    Map<String, dynamic>? enrichedPayload,
+  }) {
+    return PulseItem(
+      pulseItemId: pulseItemId,
+      cardEventId: cardEventId,
+      eventType: eventType,
+      rankBucket: rankBucket,
+      createdAt: createdAt,
+      actorUserId: actorUserId,
+      actorSlug: actorSlug,
+      actorDisplayName: actorDisplayName,
+      cardPrintId: cardPrintId,
+      gvId: gvId,
+      cardName: cardName,
+      setCode: setCode,
+      setName: setName,
+      cardNumber: cardNumber,
+      displayImageUrl: displayImageUrl,
+      fallbackImageUrl: fallbackImageUrl,
+      ownershipContext: ownershipContext,
+      distanceBucket: distanceBucket,
+      localityLabel: localityLabel,
+      completionSubjectType: completionSubjectType,
+      completionSubjectLabel: subjectLabel ?? completionSubjectLabel,
+      completionThreshold: completionThreshold,
+      primaryActionLabel: primaryActionLabel,
+      primaryActionRoute: route,
+      payload: enrichedPayload ?? payload,
+      nextCursorCreatedAt: nextCursorCreatedAt,
+      nextCursorEventId: nextCursorEventId,
+    );
+  }
+
   static PulseItem? fromJson(Map<String, dynamic> json) {
     final pulseItemId = _text(json['pulse_item_id']);
     final cardEventId = _text(json['card_event_id']);
@@ -147,12 +202,20 @@ class PulseItem {
 
     final fallbackImageUrl = _pulseDisplayImageUrl(json, payload);
     final hostedImageUrl = buildCanonicalCardImageUrl(json['gv_id']);
+    final eventType = _text(json['event_type']);
+    final rankBucket = _text(json['rank_bucket']);
+    final completionSubjectType = _text(json['completion_subject_type']);
+    final payloadCompletionRoute = _text(payload['completion_route']);
+    final isCompletionEvent =
+        rankBucket == 'completion' ||
+        eventType == 'set_completion_crossed' ||
+        eventType == 'dex_completion_crossed';
 
     return PulseItem(
       pulseItemId: pulseItemId,
       cardEventId: cardEventId,
-      eventType: _text(json['event_type']),
-      rankBucket: _text(json['rank_bucket']),
+      eventType: eventType,
+      rankBucket: rankBucket,
       createdAt: _date(json['created_at']),
       actorUserId: _text(json['actor_user_id']),
       actorSlug: _text(json['actor_slug']).toLowerCase(),
@@ -168,11 +231,13 @@ class PulseItem {
       ownershipContext: _text(json['ownership_context']),
       distanceBucket: _text(json['distance_bucket']),
       localityLabel: _text(json['locality_label']),
-      completionSubjectType: _text(json['completion_subject_type']),
+      completionSubjectType: completionSubjectType,
       completionSubjectLabel: _text(json['completion_subject_label']),
       completionThreshold: _double(json['completion_threshold']),
       primaryActionLabel: _text(json['primary_action_label']),
-      primaryActionRoute: _text(json['primary_action_route']),
+      primaryActionRoute: isCompletionEvent && payloadCompletionRoute.isNotEmpty
+          ? payloadCompletionRoute
+          : _text(json['primary_action_route']),
       payload: payload,
       nextCursorCreatedAt: _date(json['next_cursor_created_at']),
       nextCursorEventId: _text(json['next_cursor_event_id']),
@@ -223,9 +288,10 @@ class PulseService {
         .map((row) => PulseItem.fromJson(Map<String, dynamic>.from(row)))
         .whereType<PulseItem>()
         .toList(growable: false);
-    final tail = items.isEmpty ? null : items.last;
+    final resolvedItems = await _resolveDexCompletionRoutes(items);
+    final tail = resolvedItems.isEmpty ? null : resolvedItems.last;
     return PulsePage(
-      items: items,
+      items: resolvedItems,
       nextCursorCreatedAt: tail?.nextCursorCreatedAt,
       nextCursorEventId: tail?.nextCursorEventId,
     );
@@ -246,6 +312,84 @@ class PulseService {
       },
     );
   }
+
+  Future<List<PulseItem>> _resolveDexCompletionRoutes(
+    List<PulseItem> items,
+  ) async {
+    final unresolvedSubjectIds = items
+        .where((item) => item.isDexCompletion)
+        .where((item) => item.completionSpeciesSlug.isEmpty)
+        .map((item) => item.completionSubjectId)
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+
+    if (unresolvedSubjectIds.isEmpty) {
+      return resolvePulseDexCompletionRoutes(items);
+    }
+
+    try {
+      final response = await _client
+          .from('pokemon_species')
+          .select('id,slug,display_name')
+          .inFilter('id', unresolvedSubjectIds);
+      final speciesRows = response
+          .whereType<Map>()
+          .map((row) => Map<String, dynamic>.from(row))
+          .toList(growable: false);
+      return resolvePulseDexCompletionRoutes(items, speciesRows: speciesRows);
+    } catch (_) {
+      // Pulse still renders if species metadata is temporarily unavailable.
+      return resolvePulseDexCompletionRoutes(items);
+    }
+  }
+}
+
+List<PulseItem> resolvePulseDexCompletionRoutes(
+  Iterable<PulseItem> items, {
+  Iterable<Map<String, dynamic>> speciesRows = const <Map<String, dynamic>>[],
+}) {
+  final speciesById = <String, Map<String, dynamic>>{};
+  for (final row in speciesRows) {
+    final id = _text(row['id']);
+    if (id.isNotEmpty) {
+      speciesById[id] = row;
+    }
+  }
+
+  return items
+      .map((item) {
+        if (!item.isDexCompletion) {
+          return item;
+        }
+
+        final speciesRow = speciesById[item.completionSubjectId];
+        final slug = item.completionSpeciesSlug.isNotEmpty
+            ? item.completionSpeciesSlug
+            : _text(speciesRow?['slug']).toLowerCase();
+        if (slug.isEmpty) {
+          return item;
+        }
+
+        final route = '/dex/${Uri.encodeComponent(slug)}';
+        final displayName = _text(speciesRow?['display_name']);
+        final payload = Map<String, dynamic>.from(item.payload)
+          ..['species_slug'] = slug
+          ..['completion_route'] = route;
+        if (item.completionSubjectId.isNotEmpty) {
+          payload['species_id'] = item.completionSubjectId;
+        }
+
+        return item.copyWithCompletionDestination(
+          route: route,
+          subjectLabel:
+              item.completionSubjectLabel.isEmpty && displayName.isNotEmpty
+              ? displayName
+              : item.completionSubjectLabel,
+          enrichedPayload: payload,
+        );
+      })
+      .toList(growable: false);
 }
 
 Map<String, dynamic>? _firstMap(dynamic response) {

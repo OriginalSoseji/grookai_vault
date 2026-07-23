@@ -473,32 +473,29 @@ class PublicSetsService {
       client: client,
       cardPrintIds: cardPrintIds,
     );
-    final ownedCountsFuture = _cleanText(client.auth.currentUser?.id).isEmpty
-        ? Future<Map<String, int>>.value(const <String, int>{})
-        : VaultCardService.getOwnedCountsByCardPrintIds(
+    final ownershipTruthFuture = _cleanText(client.auth.currentUser?.id).isEmpty
+        ? Future<VaultOwnedCardTruth>.value(const VaultOwnedCardTruth())
+        : VaultCardService.getOwnedCardTruthIncludingSlabs(
             client: client,
             cardPrintIds: cardPrintIds,
           );
-    final printingsFuture =
-        _fetchOwnedPrintingCounts(
-          client: client,
-          cardPrintIds: cardPrintIds,
-        ).then(
-          (ownedPrintingCounts) => _fetchPrintingOptions(
-            client: client,
-            cardPrintIds: cardPrintIds,
-            ownedCountsByPrintingId: ownedPrintingCounts,
-          ),
-        );
+    final printingsFuture = ownershipTruthFuture.then(
+      (truth) => _fetchPrintingOptions(
+        client: client,
+        cardPrintIds: cardPrintIds,
+        ownedCountsByPrintingId: truth.countsByPrintingId,
+      ),
+    );
 
     final enrichmentResults = await Future.wait<Object>([
       pricingFuture,
-      ownedCountsFuture,
+      ownershipTruthFuture,
       printingsFuture,
     ]);
     final pricingById =
         enrichmentResults[0] as Map<String, CardSurfacePricingData>;
-    final ownedCountsById = enrichmentResults[1] as Map<String, int>;
+    final ownershipTruth = enrichmentResults[1] as VaultOwnedCardTruth;
+    final ownedCountsById = ownershipTruth.countsByCardPrintId;
     final printingsByCardPrintId =
         enrichmentResults[2] as Map<String, List<PublicSetPrintingOption>>;
 
@@ -945,104 +942,78 @@ class PublicSetsService {
     );
   }
 
-  static Future<Map<String, int>> _fetchOwnedPrintingCounts({
-    required SupabaseClient client,
-    required Iterable<String> cardPrintIds,
-  }) async {
-    final userId = _cleanText(client.auth.currentUser?.id);
-    if (userId.isEmpty) {
-      return const <String, int>{};
-    }
-
-    final counts = <String, int>{};
-    for (final chunk in _chunks(cardPrintIds, 250)) {
-      late final List<dynamic> data;
-      try {
-        data =
-            await client
-                    .from('vault_item_instances')
-                    .select('card_printing_id')
-                    .eq('user_id', userId)
-                    .filter('archived_at', 'is', null)
-                    .inFilter('card_print_id', chunk)
-                as List<dynamic>;
-      } catch (_) {
-        return counts;
-      }
-      for (final raw in data) {
-        final row = Map<String, dynamic>.from(raw as Map);
-        final printingId = _cleanText(row['card_printing_id']);
-        if (printingId.isNotEmpty) {
-          counts[printingId] = (counts[printingId] ?? 0) + 1;
-        }
-      }
-    }
-
-    return counts;
-  }
-
   static Future<Map<String, List<PublicSetPrintingOption>>>
   _fetchPrintingOptions({
     required SupabaseClient client,
     required Iterable<String> cardPrintIds,
     required Map<String, int> ownedCountsByPrintingId,
   }) async {
+    const pageSize = 1000;
     final values = <String, List<_SortablePublicSetPrintingOption>>{};
     for (final chunk in _chunks(cardPrintIds, 250)) {
-      late final List<dynamic> data;
-      try {
-        data =
-            await client
-                    .from('card_printings')
-                    .select(
-                      'id,card_print_id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
-                    )
-                    .inFilter('card_print_id', chunk)
-                as List<dynamic>;
-      } catch (_) {
+      for (var offset = 0; ; offset += pageSize) {
+        late final List<dynamic> data;
         try {
           data =
               await client
                       .from('card_printings')
-                      .select('id,card_print_id,printing_gv_id,finish_key')
+                      .select(
+                        'id,card_print_id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
+                      )
                       .inFilter('card_print_id', chunk)
+                      .order('id', ascending: true)
+                      .range(offset, offset + pageSize - 1)
                   as List<dynamic>;
         } catch (_) {
-          return values.map((cardPrintId, options) {
-            return MapEntry(
-              cardPrintId,
-              options.map((value) => value.option).toList(growable: false),
-            );
-          });
+          try {
+            data =
+                await client
+                        .from('card_printings')
+                        .select('id,card_print_id,printing_gv_id,finish_key')
+                        .inFilter('card_print_id', chunk)
+                        .order('id', ascending: true)
+                        .range(offset, offset + pageSize - 1)
+                    as List<dynamic>;
+          } catch (_) {
+            return values.map((cardPrintId, options) {
+              return MapEntry(
+                cardPrintId,
+                options.map((value) => value.option).toList(growable: false),
+              );
+            });
+          }
         }
-      }
-      for (final raw in data) {
-        final row = Map<String, dynamic>.from(raw as Map);
-        final id = _cleanText(row['id']);
-        final cardPrintId = _cleanText(row['card_print_id']);
-        if (id.isEmpty || cardPrintId.isEmpty) {
-          continue;
-        }
+        for (final raw in data) {
+          final row = Map<String, dynamic>.from(raw as Map);
+          final id = _cleanText(row['id']);
+          final cardPrintId = _cleanText(row['card_print_id']);
+          if (id.isEmpty || cardPrintId.isEmpty) {
+            continue;
+          }
 
-        final finishRecord = _firstNestedRecord(row['finish_keys']);
-        final finishName =
-            _finishLabel(
-              finishKey: _normalizeOptionalText(row['finish_key']),
-              finishLabel: _normalizeOptionalText(finishRecord?['label']),
-            ) ??
-            'Standard';
-        (values[cardPrintId] ??= <_SortablePublicSetPrintingOption>[]).add(
-          _SortablePublicSetPrintingOption(
-            option: PublicSetPrintingOption(
-              id: id,
-              printingGvId: _normalizeOptionalText(row['printing_gv_id']),
-              finishKey: _normalizeOptionalText(row['finish_key']),
-              finishName: finishName,
-              ownedCount: ownedCountsByPrintingId[id] ?? 0,
+          final finishRecord = _firstNestedRecord(row['finish_keys']);
+          final finishName =
+              _finishLabel(
+                finishKey: _normalizeOptionalText(row['finish_key']),
+                finishLabel: _normalizeOptionalText(finishRecord?['label']),
+              ) ??
+              'Standard';
+          (values[cardPrintId] ??= <_SortablePublicSetPrintingOption>[]).add(
+            _SortablePublicSetPrintingOption(
+              option: PublicSetPrintingOption(
+                id: id,
+                printingGvId: _normalizeOptionalText(row['printing_gv_id']),
+                finishKey: _normalizeOptionalText(row['finish_key']),
+                finishName: finishName,
+                ownedCount: ownedCountsByPrintingId[id] ?? 0,
+              ),
+              sortOrder: _intValue(finishRecord?['sort_order'], fallback: 9999),
             ),
-            sortOrder: _intValue(finishRecord?['sort_order'], fallback: 9999),
-          ),
-        );
+          );
+        }
+        if (data.length < pageSize) {
+          break;
+        }
       }
     }
 

@@ -10,7 +10,7 @@ import {
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
-import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
+import { getOwnedPrintingOwnershipByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { chunkValues, mapWithBoundedConcurrency } from "@/lib/pagination";
 
 type DexCardPrintViewRow = {
@@ -53,6 +53,7 @@ export type GrookaiDexCardPrintRow = {
   role: string;
   countsForCompletion: boolean;
   ownedCount: number;
+  unassignedPrintingCount: number;
   isOwned: boolean;
   printings: GrookaiDexCardPrintingOption[];
 };
@@ -100,6 +101,7 @@ export type GrookaiDexSpeciesDetail = {
   totalPrintCount: number;
   ownedPrintCount: number;
   ownedCopyCount: number;
+  unassignedPrintingCount: number;
   completionPercent: number;
   variantOptionCount: number;
   ownedVariantOptionCount: number;
@@ -276,12 +278,19 @@ export async function getGrookaiDexSpeciesDetail(
         ] => Boolean(entry[0]),
       ),
   );
-  const [ownedCounts, ownedPrintingCounts]: [Map<string, number>, Map<string, Map<string, number>>] = userId
+  const [ownedCounts, ownedPrintingOwnership] = userId
     ? await Promise.all([
         getOwnedCountsByCardPrintIds(userId, cardPrintIds),
-        getOwnedPrintingCountsByCardPrintIds(userId, cardPrintIds),
+        getOwnedPrintingOwnershipByCardPrintIds(userId, cardPrintIds),
       ])
-    : [new Map<string, number>(), new Map()];
+    : [
+        new Map<string, number>(),
+        {
+          countsByCardPrintId: new Map<string, Map<string, number>>(),
+          unassignedCountsByCardPrintId: new Map<string, number>(),
+        },
+      ];
+  const ownedPrintingCounts = ownedPrintingOwnership.countsByCardPrintId;
   const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(admin);
   const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
   const printingRowGroups = await mapWithBoundedConcurrency(
@@ -385,10 +394,6 @@ export async function getGrookaiDexSpeciesDetail(
       const [imageUrl = null, ...imageFallbackUrls] = imageSources;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
       const printings = (printingOptionsByCardPrintId.get(cardPrintId) ?? []).map(({ sortOrder: _sortOrder, ...printing }) => printing);
-      const resolvedPrintings =
-        ownedCount > 0 && printings.length === 1 && printings[0]?.ownedCount === 0
-          ? [{ ...printings[0], ownedCount }]
-          : printings;
 
       return {
         cardPrintId,
@@ -407,22 +412,33 @@ export async function getGrookaiDexSpeciesDetail(
         role: clean(row.role) ?? "primary",
         countsForCompletion: row.counts_for_completion === true,
         ownedCount,
+        unassignedPrintingCount:
+          printings.length > 0
+            ? ownedPrintingOwnership.unassignedCountsByCardPrintId.get(
+                cardPrintId,
+              ) ?? 0
+            : 0,
         isOwned: ownedCount > 0,
-        printings: resolvedPrintings,
+        printings,
       };
     }),
+  );
+  const collectionCards = resolvedCards.filter(
+    (card) =>
+      card.countsForCompletion ||
+      card.role.trim().toLowerCase() !== "cameo",
   );
   const duplicateCounts = new Map<string, number>();
   const duplicateIndexes = new Map<string, number>();
   const duplicateOrdinalByCardPrintId = new Map<string, number>();
-  for (const card of resolvedCards) {
+  for (const card of collectionCards) {
     const key = duplicateCaptionKey(card);
     duplicateCounts.set(key, (duplicateCounts.get(key) ?? 0) + 1);
     const nextIndex = duplicateIndexes.get(key) ?? 0;
     duplicateOrdinalByCardPrintId.set(card.cardPrintId, nextIndex);
     duplicateIndexes.set(key, nextIndex + 1);
   }
-  const cards = resolvedCards.map((card) => {
+  const cards = collectionCards.map((card) => {
     const hasDuplicateCaption = (duplicateCounts.get(duplicateCaptionKey(card)) ?? 0) > 1;
     const discriminator = getCardPrintDisplayDiscriminator({
       variantKey: card.variantKey,
@@ -440,6 +456,10 @@ export async function getGrookaiDexSpeciesDetail(
   const completionCards = cards.filter((row) => row.countsForCompletion);
   const ownedPrintCount = completionCards.filter((row) => row.isOwned).length;
   const ownedCopyCount = completionCards.reduce((sum, row) => sum + row.ownedCount, 0);
+  const unassignedPrintingCount = completionCards.reduce(
+    (sum, row) => sum + row.unassignedPrintingCount,
+    0,
+  );
   const totalPrintCount = completionCards.length;
   const variantOptionCount = completionCards.reduce(
     (sum, row) => sum + Math.max(1, row.printings.length),
@@ -511,6 +531,7 @@ export async function getGrookaiDexSpeciesDetail(
     totalPrintCount,
     ownedPrintCount,
     ownedCopyCount,
+    unassignedPrintingCount,
     completionPercent: totalPrintCount > 0 ? Math.round((ownedPrintCount / totalPrintCount) * 100) : 0,
     variantOptionCount,
     ownedVariantOptionCount,

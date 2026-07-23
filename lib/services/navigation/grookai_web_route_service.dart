@@ -8,6 +8,7 @@ enum GrookaiCanonicalRouteKind {
   collectorSection,
   set,
   gvvi,
+  dex,
   feed,
 }
 
@@ -65,6 +66,17 @@ class GrookaiCanonicalRoute {
     return GrookaiCanonicalRoute._(
       kind: GrookaiCanonicalRouteKind.gvvi,
       path: '/gvvi/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.dex({String speciesSlug = ''}) {
+    final normalized = speciesSlug.trim().toLowerCase();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.dex,
+      path: normalized.isEmpty
+          ? '/dex'
+          : '/dex/${Uri.encodeComponent(normalized)}',
       value: normalized,
     );
   }
@@ -143,6 +155,11 @@ class GrookaiWebRouteService {
         segment: uri.queryParameters['segment'] ?? 'pulse',
       );
     }
+    if (head == 'dex') {
+      return GrookaiCanonicalRoute.dex(
+        speciesSlug: segments.length >= 2 ? segments[1] : '',
+      );
+    }
     if (segments.length < 2) {
       return null;
     }
@@ -197,6 +214,11 @@ class GrookaiWebRouteService {
     if (host == 'feed' || host == 'network') {
       return GrookaiCanonicalRoute.feed(
         segment: uri.queryParameters['segment'] ?? 'pulse',
+      );
+    }
+    if (host == 'dex') {
+      return GrookaiCanonicalRoute.dex(
+        speciesSlug: segments.isEmpty ? '' : segments.first,
       );
     }
     if ((host == 'u' || host == 'collector') && segments.isNotEmpty) {

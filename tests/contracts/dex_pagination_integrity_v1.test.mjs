@@ -59,9 +59,11 @@ test("Dex and child-image reads apply stable paging to every unbounded row set",
   assert.match(overviewSource, /mapWithBoundedConcurrency/);
   assert.match(overviewSource, /\.from\("v_grookai_dex_species_v1"\)/);
   assert.match(overviewSource, /total_print_count/);
-  assert.ok(
-    overviewSource.indexOf("if (!userId || publicPage.species.length === 0)") <
-      overviewSource.indexOf("const mappings = await getCachedGrookaiDexMappings"),
-  );
+  assert.match(overviewSource, /getAllOwnedCountsForUser/);
+  assert.match(overviewSource, /getOwnedCompletionMappings/);
+  assert.match(overviewSource, /\.in\("card_print_id", chunk\)/);
+  assert.doesNotMatch(overviewSource, /\.in\("species_id", chunk\)/);
+  assert.match(overviewSource, /getCachedGrookaiDexOverviewBase/);
+  assert.match(overviewSource, /overview:\s*buildGrookaiDexOverview/);
   assert.match(fallbackSource, /\.order\("id", \{ ascending: true \}\)\s*\.range\(from, to\)/);
 });

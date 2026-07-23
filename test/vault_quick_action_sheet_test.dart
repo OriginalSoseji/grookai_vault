@@ -60,6 +60,58 @@ void main() {
     expect(find.text('Pikachu'), findsNothing);
   });
 
+  testWidgets('vault quick-action sheet scrolls on a short viewport', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(390, 520));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  showVaultQuickActionSheet(
+                    context: context,
+                    title: 'Pikachu',
+                    subtitle: '11th Movie Commemoration Set · #003',
+                    actions: [
+                      for (var index = 1; index <= 8; index += 1)
+                        VaultQuickAction(
+                          icon: Icons.bolt_outlined,
+                          label: 'Action $index',
+                          onPressed: () {},
+                        ),
+                    ],
+                  );
+                },
+                child: const Text('Open'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Open'));
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+    expect(find.byType(SingleChildScrollView), findsOneWidget);
+    expect(find.text('Action 1'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text('Action 8'),
+      180,
+      scrollable: find.byType(Scrollable).last,
+    );
+
+    expect(find.text('Action 8'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   test('vault quick-action sheet is wired to both ownership call sites', () {
     final vault = File('lib/main_vault.dart').readAsStringSync();
     final manage = File(

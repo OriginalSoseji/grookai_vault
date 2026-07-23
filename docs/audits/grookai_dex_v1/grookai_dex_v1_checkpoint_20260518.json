@@ -1,45 +1,47 @@
 {
   "contract": "GROOKAI_DEX_V1",
-  "generated_at": "2026-05-18T12:34:46.678Z",
-  "sample_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+  "generated_at": "2026-07-23T17:10:28.847Z",
   "counts": {
     "species_count": 1025,
-    "mapping_count": 21763,
-    "completion_mapping_count": 21706,
+    "species_generation_count": 1025,
+    "species_types_count": 1025,
+    "species_metadata_count": 1025,
+    "mapping_count": 40883,
+    "completion_mapping_count": 40829,
     "species_view_count": 1025,
-    "card_print_view_count": 21763
+    "card_print_view_count": 40883
   },
   "species_samples": [
     {
       "slug": "charizard",
       "display_name": "Charizard",
-      "total_print_count": 133
+      "total_print_count": 233
     },
     {
       "slug": "pikachu",
       "display_name": "Pikachu",
-      "total_print_count": 223
+      "total_print_count": 611
     }
   ],
-  "user_progress_samples": [
+  "anonymized_user_progress_samples": [
     {
       "slug": "charizard",
-      "total_print_count": 133,
-      "owned_print_count": 4,
-      "owned_copy_count": 6,
-      "missing_print_count": 129
+      "total_print_count": 233,
+      "owned_print_count": 7,
+      "owned_copy_count": 106,
+      "missing_print_count": 226
     },
     {
       "slug": "pikachu",
-      "total_print_count": 223,
-      "owned_print_count": 42,
-      "owned_copy_count": 88,
-      "missing_print_count": 181
+      "total_print_count": 611,
+      "owned_print_count": 59,
+      "owned_copy_count": 638,
+      "missing_print_count": 552
     }
   ],
   "status": "CHECKPOINT_CREATED",
   "notes": [
-    "Feature flag remains off by default.",
+    "Routes are enabled by default and retain explicit emergency-disable flags.",
     "No scanner, pricing, or DB remediation changes are part of this checkpoint."
   ]
 }
