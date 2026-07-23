@@ -56,6 +56,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           <PublicCardImage
             src={card.display_image_url ?? card.image_url}
             fallbackSrc={card.display_image_fallback_url}
+            fallbackSources={[card.external_image_fallback_url]}
             alt={getCardImageAltText(displayIdentity.display_name, card)}
             imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"

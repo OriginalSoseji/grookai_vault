@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
 import '../../theme/gv_grid_constants.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/gv_chip.dart';
 import 'public_set_detail_screen.dart';
 
@@ -591,8 +592,9 @@ class _SetTile extends StatelessWidget {
       if (setInfo.releaseYear != null) '${setInfo.releaseYear}',
       '${setInfo.cardCount} cards',
     ];
-    final heroImageUrl = setInfo.heroImageUrl?.trim();
-    final hasHeroImage = heroImageUrl != null && heroImageUrl.isNotEmpty;
+    final heroImageUrl = setInfo.hostedHeroImageUrl;
+    final fallbackHeroImageUrl = setInfo.providerHeroFallbackImageUrl;
+    final hasHeroImage = heroImageUrl != null || fallbackHeroImageUrl != null;
 
     return Material(
       color: Colors.transparent,
@@ -611,13 +613,15 @@ class _SetTile extends StatelessWidget {
                     GvGridConstants.imageRadius,
                   ),
                   child: hasHeroImage
-                      ? Image.network(
-                          heroImageUrl,
-                          fit: BoxFit.cover,
-                          cacheWidth: 640,
-                          errorBuilder: (context, error, stackTrace) {
-                            return _SetHeroPlaceholder(setInfo: setInfo);
-                          },
+                      ? CardSurfaceArtwork(
+                          label: setInfo.name,
+                          imageUrl: heroImageUrl,
+                          fallbackImageUrl: fallbackHeroImageUrl,
+                          borderRadius: GvGridConstants.imageRadius,
+                          padding: const EdgeInsets.all(10),
+                          enableTapToZoom: false,
+                          showShadow: false,
+                          filterQuality: FilterQuality.medium,
                         )
                       : _SetHeroPlaceholder(setInfo: setInfo),
                 ),

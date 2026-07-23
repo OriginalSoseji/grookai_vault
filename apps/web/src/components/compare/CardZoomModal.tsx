@@ -7,6 +7,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 type CardZoomModalProps = {
   src?: string;
   fallbackSrc?: string;
+  fallbackSources?: Array<string | null | undefined>;
   alt: string;
   imageClassName: string;
   fallbackClassName: string;
@@ -18,6 +19,7 @@ type CardZoomModalProps = {
 export default function CardZoomModal({
   src,
   fallbackSrc,
+  fallbackSources = [],
   alt,
   imageClassName,
   fallbackClassName,
@@ -29,7 +31,11 @@ export default function CardZoomModal({
   const [mounted, setMounted] = useState(false);
   const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const hasImage = Boolean(src?.trim() || fallbackSrc?.trim());
+  const hasImage = Boolean(
+    src?.trim() ||
+      fallbackSrc?.trim() ||
+      fallbackSources.some((candidate) => candidate?.trim()),
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -64,6 +70,7 @@ export default function CardZoomModal({
       <PublicCardImage
         src={src}
         fallbackSrc={fallbackSrc}
+        fallbackSources={fallbackSources}
         alt={alt}
         imageClassName={imageClassName}
         fallbackClassName={fallbackClassName}
@@ -100,6 +107,7 @@ export default function CardZoomModal({
               <PublicCardImage
                 src={src}
                 fallbackSrc={fallbackSrc}
+                fallbackSources={fallbackSources}
                 alt={alt}
                 imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[18px] bg-white object-contain shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
                 fallbackClassName="flex aspect-[3/4] max-h-[90dvh] w-[min(90vw,34rem)] items-center justify-center rounded-[18px] bg-white px-6 text-center text-sm text-slate-500 shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
@@ -124,6 +132,7 @@ export default function CardZoomModal({
         <PublicCardImage
           src={src}
           fallbackSrc={fallbackSrc}
+          fallbackSources={fallbackSources}
           alt={alt}
           imageClassName={`${imageClassName} transition duration-150 hover:scale-[1.02]`}
           fallbackClassName={fallbackClassName}

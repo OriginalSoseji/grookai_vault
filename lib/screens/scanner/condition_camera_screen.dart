@@ -2116,6 +2116,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       name: candidate?.name ?? existing?.name,
       setCode: candidate?.setCode ?? existing?.setCode,
       number: candidate?.number ?? existing?.number,
+      gvId: candidate?.gvId ?? existing?.gvId,
       imageUrl: candidate?.imageUrl ?? existing?.imageUrl,
       count: (existing?.count ?? 0) + 1,
     );

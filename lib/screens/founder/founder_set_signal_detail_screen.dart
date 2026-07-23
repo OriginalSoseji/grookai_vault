@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 import 'founder_card_signal_detail_screen.dart';
 
 class FounderSetSignalDetailScreen extends StatefulWidget {
@@ -524,7 +524,6 @@ class _FounderSetTopCardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final preferredImageUrl = normalizeDisplayImageUrl(row.preferredImageUrl);
     final displayName = resolveDisplayIdentityFromFields(
       name: row.name,
       variantKey: row.variantKey,
@@ -548,28 +547,16 @@ class _FounderSetTopCardRow extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Container(
+              CardSurfaceArtwork(
+                label: displayName,
+                imageUrl: row.catalogImageUrl,
+                fallbackImageUrl: row.providerFallbackImageUrl,
                 width: 46,
                 height: 64,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  color: colorScheme.surface,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: preferredImageUrl == null
-                    ? Icon(
-                        Icons.image_not_supported_outlined,
-                        color: colorScheme.onSurface.withValues(alpha: 0.4),
-                      )
-                    : Image.network(
-                        preferredImageUrl,
-                        fit: BoxFit.cover,
-                        cacheWidth: 180,
-                        errorBuilder: (context, error, stackTrace) => Icon(
-                          Icons.image_not_supported_outlined,
-                          color: colorScheme.onSurface.withValues(alpha: 0.4),
-                        ),
-                      ),
+                borderRadius: 12,
+                padding: EdgeInsets.zero,
+                enableTapToZoom: false,
+                showShadow: false,
               ),
               const SizedBox(width: 10),
               Expanded(

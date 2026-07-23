@@ -114,6 +114,7 @@ class OnboardingSearchCard {
   const OnboardingSearchCard({
     required this.cardPrintId,
     required this.name,
+    this.gvId,
     this.setCode,
     this.number,
     this.imageUrl,
@@ -121,6 +122,7 @@ class OnboardingSearchCard {
 
   final String cardPrintId;
   final String name;
+  final String? gvId;
   final String? setCode;
   final String? number;
   final String? imageUrl;
@@ -137,6 +139,7 @@ class OnboardingSearchCard {
     return OnboardingSearchCard(
       cardPrintId: _text(json['id']),
       name: _text(json['name']).isEmpty ? 'Pokemon card' : _text(json['name']),
+      gvId: _optionalText(json['gv_id']),
       setCode: _optionalText(json['set_code']),
       number:
           _optionalText(json['number']) ?? _optionalText(json['number_plain']),
@@ -232,7 +235,7 @@ class OnboardingLadderService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
+          'id,gv_id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
         )
         .ilike('name', '%$normalized%')
         .limit(6);
@@ -258,7 +261,7 @@ class OnboardingLadderService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
+          'id,gv_id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
         )
         .inFilter('id', ids);
     final cards = <String, OnboardingSearchCard>{};

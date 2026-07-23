@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../utils/display_image_contract.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
+import '../card_surface_artwork.dart';
 
 class IdentityScannerBottomPanel extends StatelessWidget {
   final String eyebrow;
@@ -10,6 +11,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
   final String? subtitle;
   final String? supportingText;
   final String? imageUrl;
+  final String? gvId;
   final String? primaryActionLabel;
   final VoidCallback? onPrimaryAction;
   final Color accentColor;
@@ -23,6 +25,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
     this.subtitle,
     this.supportingText,
     this.imageUrl,
+    this.gvId,
     this.primaryActionLabel,
     this.onPrimaryAction,
     this.showSpinner = false,
@@ -31,8 +34,11 @@ class IdentityScannerBottomPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final normalizedImageUrl = normalizeDisplayImageUrl(imageUrl);
-    final hasImage = normalizedImageUrl != null;
+    final artwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: imageUrl,
+    );
+    final hasImage = artwork.primaryImageUrl != null;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(28),
@@ -59,7 +65,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
                 if (hasImage)
                   Padding(
                     padding: const EdgeInsets.only(right: 14),
-                    child: _ScannerThumbnail(imageUrl: normalizedImageUrl),
+                    child: _ScannerThumbnail(label: title, artwork: artwork),
                   ),
                 Expanded(
                   child: Column(
@@ -164,26 +170,26 @@ class IdentityScannerBottomPanel extends StatelessWidget {
 }
 
 class _ScannerThumbnail extends StatelessWidget {
-  final String imageUrl;
+  final String label;
+  final CatalogArtworkResolution artwork;
 
-  const _ScannerThumbnail({required this.imageUrl});
+  const _ScannerThumbnail({required this.label, required this.artwork});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
-      child: Container(
+      child: CardSurfaceArtwork(
+        label: label,
+        imageUrl: artwork.primaryImageUrl,
+        fallbackImageUrl: artwork.fallbackImageUrl,
         width: 58,
         height: 80,
-        color: Colors.white.withValues(alpha: 0.06),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) => Icon(
-            Icons.style_rounded,
-            color: Colors.white.withValues(alpha: 0.72),
-          ),
-        ),
+        borderRadius: 18,
+        padding: EdgeInsets.zero,
+        backgroundColor: Colors.white.withValues(alpha: 0.06),
+        enableTapToZoom: false,
+        showShadow: false,
       ),
     );
   }

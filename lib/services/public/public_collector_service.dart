@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
+import '../identity/catalog_artwork_resolution.dart';
 import 'card_surface_pricing_service.dart';
 
 enum PublicCollectorSurfaceState { notFound, unavailable, empty, success }
@@ -72,9 +73,11 @@ class PublicCollectorCard {
     this.setCode,
     this.rarity,
     this.imageUrl,
+    this.providerImageUrl,
     this.imageStatus,
     this.imageNote,
     this.displayImageKind,
+    this.imageDisplayMode,
     this.conditionLabel,
     this.intent,
     this.variantKey,
@@ -98,9 +101,11 @@ class PublicCollectorCard {
   final String? setCode;
   final String? rarity;
   final String? imageUrl;
+  final String? providerImageUrl;
   final String? imageStatus;
   final String? imageNote;
   final String? displayImageKind;
+  final String? imageDisplayMode;
   final String? conditionLabel;
   final String? intent;
   final String? variantKey;
@@ -112,6 +117,24 @@ class PublicCollectorCard {
   final String? askingPriceCurrency;
   final String? publicNote;
   final List<PublicCollectorCopy> inPlayCopies;
+
+  bool get usesUploadedCopyImage =>
+      (imageDisplayMode ?? '').trim().toLowerCase() == 'uploaded' &&
+      (imageUrl ?? '').trim().isNotEmpty;
+
+  CatalogArtworkResolution get catalogArtwork => resolveCatalogArtwork(
+    gvId: gvId,
+    providerImageUrl: usesUploadedCopyImage
+        ? null
+        : providerImageUrl ?? imageUrl,
+  );
+
+  String? get primaryImageUrl =>
+      usesUploadedCopyImage ? imageUrl : catalogArtwork.primaryImageUrl;
+
+  String? get fallbackImageUrl => usesUploadedCopyImage
+      ? catalogArtwork.primaryImageUrl
+      : catalogArtwork.fallbackImageUrl;
 }
 
 class PublicCollectorSectionSummary {
@@ -569,7 +592,7 @@ class PublicCollectorService {
         .from('v_wall_cards_v1')
         // LOCK: Wall cards use public-safe instance rows and display_image_url first.
         .select(
-          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,public_note',
+          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .order('created_at', ascending: false);
@@ -602,7 +625,7 @@ class PublicCollectorService {
         .from('v_section_cards_v1')
         // LOCK: Section cards are exact-copy public rows and load on demand.
         .select(
-          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,public_note',
+          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .eq('section_id', normalizedSectionId)
@@ -956,9 +979,11 @@ class PublicCollectorService {
           ? _cleanText(row['number'])
           : '—',
       imageUrl: _displayImageUrl(row),
+      providerImageUrl: _providerImageUrlFromWallRow(row),
       imageStatus: _normalizeOptionalText(row['image_status']),
       imageNote: _normalizeOptionalText(row['image_note']),
       displayImageKind: _normalizeOptionalText(row['display_image_kind']),
+      imageDisplayMode: _normalizeOptionalText(row['image_display_mode']),
       conditionLabel: _normalizeOptionalText(row['condition_label']),
       intent: intent,
       pricing: pricing,
@@ -1003,10 +1028,13 @@ class PublicCollectorService {
       'set_code': card.setCode,
       'set_name': card.setName,
       'number': card.number,
-      'image_url': card.imageUrl,
+      'display_image_url': card.imageUrl,
+      'image_url': card.providerImageUrl,
+      'provider_image_url': card.providerImageUrl,
       'image_status': card.imageStatus,
       'image_note': card.imageNote,
       'display_image_kind': card.displayImageKind,
+      'image_display_mode': card.imageDisplayMode,
       'condition_label': card.conditionLabel,
       'intent': card.intent,
       'vault_item_id': card.vaultItemId,
@@ -1108,6 +1136,12 @@ class PublicCollectorService {
               ? null
               : manualPriceByGvviId[primaryGvviId];
 
+          final providerImageUrl = resolveDisplayImageUrl(
+            imageUrl: cardPrint['image_url'],
+            imageAltUrl: cardPrint['image_alt_url'],
+            representativeImageUrl: cardPrint['representative_image_url'],
+          );
+
           return PublicCollectorCard(
             cardPrintId: row.cardPrintId,
             gvId: gvId,
@@ -1130,7 +1164,8 @@ class PublicCollectorService {
             setIdentityModel: _normalizeOptionalText(
               (cardPrint['set'] as Map?)?['identity_model'],
             ),
-            imageUrl: _displayImageUrl(cardPrint),
+            imageUrl: providerImageUrl,
+            providerImageUrl: providerImageUrl,
             imageStatus: _normalizeOptionalText(cardPrint['image_status']),
             imageNote: _normalizeOptionalText(cardPrint['image_note']),
             displayImageKind: _normalizeOptionalText(
@@ -1251,6 +1286,11 @@ class PublicCollectorService {
       final manualPrice = primaryGvviId == null
           ? null
           : manualPriceByGvviId[primaryGvviId];
+      final providerImageUrl = resolveDisplayImageUrl(
+        imageUrl: cardPrint?['image_url'],
+        imageAltUrl: cardPrint?['image_alt_url'],
+        representativeImageUrl: cardPrint?['representative_image_url'],
+      );
 
       return PublicCollectorCard(
         cardPrintId: cardPrintId,
@@ -1279,6 +1319,7 @@ class PublicCollectorService {
           imageAltUrl: cardPrint?['image_alt_url'],
           representativeImageUrl: cardPrint?['representative_image_url'],
         ),
+        providerImageUrl: providerImageUrl,
         imageStatus:
             _normalizeOptionalText(row['image_status']) ??
             _normalizeOptionalText(cardPrint?['image_status']),
@@ -1693,6 +1734,23 @@ class PublicCollectorService {
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
     return resolveDisplayImageUrlFromRow(row);
+  }
+
+  static String? _providerImageUrlFromWallRow(Map<String, dynamic> row) {
+    final explicitProviderImageUrl = normalizeDisplayImageUrl(
+      row['provider_image_url'],
+    );
+    if (explicitProviderImageUrl != null) {
+      return explicitProviderImageUrl;
+    }
+
+    final usesUploadedCopyImage =
+        _cleanText(row['image_display_mode']).toLowerCase() == 'uploaded';
+    return resolveDisplayImageUrl(
+      imageUrl: usesUploadedCopyImage ? null : row['image_url'],
+      imageAltUrl: row['image_alt_url'],
+      representativeImageUrl: row['representative_image_url'],
+    );
   }
 
   static Future<List<Map<String, dynamic>>> _withSignedVaultInstanceMediaRows({

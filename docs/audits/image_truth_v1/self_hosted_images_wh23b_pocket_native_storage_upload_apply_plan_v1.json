@@ -1,0 +1,61 @@
+{
+  "package_id": "IMG-HOST-WH-23B-POCKET-NATIVE-STORAGE-UPLOAD-APPLY",
+  "generated_at": "2026-07-22T22:41:29.365Z",
+  "mode": "guarded_apply",
+  "fingerprint": "3f97ca99808af6ce8d73325a93546a8489e313157907a0ffc918e00c004f3084",
+  "storage_plan_hash": "12517e4b8b1be4fdc031c23877a25f6b936ec553ce69c433fd604363b2c044a2",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "code_bundle_hash": "3137f9188489065ccacd292b2e4ac7e5d3048a658060ca2b5c8bd1a7c69a47be",
+  "unique_assets": 27,
+  "exact_native_source_bytes": true,
+  "staged_before_first_upload": true,
+  "overwrite_allowed": false,
+  "storage_upload_option": {
+    "upsert": false
+  },
+  "post_upload_download_verification_required": true,
+  "stop_findings": [],
+  "semantic_validation_errors": [],
+  "ready_for_apply": true,
+  "storage_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false
+}

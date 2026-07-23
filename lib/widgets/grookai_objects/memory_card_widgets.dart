@@ -34,6 +34,7 @@ class MemoryCardFront extends StatelessWidget {
               child: data.card.cardImageUrl != null
                   ? GrookaiObjectNetworkImage(
                       imageUrl: data.card.cardImageUrl!,
+                      fallbackImageUrl: data.card.cardImageFallbackUrl,
                       width: 200,
                     )
                   : const CardArtPlaceholder(width: 200, height: 280),

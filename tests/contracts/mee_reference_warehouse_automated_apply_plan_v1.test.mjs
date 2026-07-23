@@ -39,6 +39,7 @@ test("MEE reference warehouse automated apply plan is plan-only and non-public",
   assert.equal(plan.boundary.public_pricing_views, false);
   assert.equal(plan.boundary.app_visible_pricing, false);
   assert.equal(plan.boundary.identity_table_writes, false);
+  assert.equal(plan.boundary.card_printings_writes, false);
   assert.equal(plan.boundary.deletes, false);
   assert.equal(plan.boundary.upserts, false);
   assert.equal(plan.boundary.merges, false);

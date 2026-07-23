@@ -15,7 +15,7 @@ type ShellAuthState = {
 const DEFAULT_SHELL_AUTH_STATE: ShellAuthState = {
   isAuthenticated: false,
   profileHref: null,
-  wallHref: null,
+  wallHref: "/wall",
   networkUnreadCount: 0,
 };
 
@@ -24,13 +24,19 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
 
   useEffect(() => {
     let cancelled = false;
+    let requestVersion = 0;
 
     async function loadAuthenticatedShell() {
+      const currentRequestVersion = ++requestVersion;
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
-      if (cancelled || !session?.user) {
+      if (cancelled || currentRequestVersion !== requestVersion) {
+        return;
+      }
+
+      if (!session?.user) {
         setAuthState(DEFAULT_SHELL_AUTH_STATE);
         return;
       }
@@ -38,10 +44,18 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
       try {
         // LOCK: Public routes must not depend on global auth/session reads in the root chrome.
         // LOCK: Auth-aware navigation belongs in authenticated/private surfaces only.
-        const response = await fetch("/api/navigation/shell", { cache: "no-store" });
-        const payload = (await response.json()) as Partial<ShellAuthState>;
+        const response = await fetch("/api/navigation/shell", {
+          cache: "no-store",
+          credentials: "same-origin",
+        });
+        const payload = (await response.json().catch(() => null)) as Partial<ShellAuthState> | null;
 
-        if (!cancelled && response.ok && payload.isAuthenticated) {
+        if (
+          !cancelled &&
+          currentRequestVersion === requestVersion &&
+          response.ok &&
+          payload?.isAuthenticated
+        ) {
           setAuthState({
             isAuthenticated: true,
             profileHref: typeof payload.profileHref === "string" ? payload.profileHref : null,
@@ -49,9 +63,11 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
             networkUnreadCount:
               typeof payload.networkUnreadCount === "number" ? payload.networkUnreadCount : 0,
           });
+        } else if (!cancelled && currentRequestVersion === requestVersion) {
+          setAuthState(DEFAULT_SHELL_AUTH_STATE);
         }
       } catch {
-        if (!cancelled) {
+        if (!cancelled && currentRequestVersion === requestVersion) {
           setAuthState(DEFAULT_SHELL_AUTH_STATE);
         }
       }
@@ -61,6 +77,7 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
 
     const { data: subscription } = supabase.auth.onAuthStateChange((_, session) => {
       if (!session?.user) {
+        requestVersion += 1;
         setAuthState(DEFAULT_SHELL_AUTH_STATE);
         return;
       }

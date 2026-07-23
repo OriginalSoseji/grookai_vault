@@ -6,7 +6,7 @@ import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
 ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
@@ -580,8 +580,6 @@ class _CompareCardPreviewGrid extends StatelessWidget {
         final isReference = card.gvId == referenceGvId;
         final ownershipState = ownershipStateForCard(card);
         final displayIdentity = _compareDisplayIdentity(card);
-        final imageUrl = normalizeDisplayImageUrl(card.imageUrl);
-
         return _CompareSurfaceCard(
           padding: const EdgeInsets.all(14),
           child: Column(
@@ -601,7 +599,8 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           setCode: card.setCode,
                           number: card.number,
                           rarity: card.rarity,
-                          imageUrl: imageUrl,
+                          imageUrl: card.hostedImageUrl,
+                          fallbackImageUrl: card.providerFallbackImageUrl,
                         ),
                       ),
                     );
@@ -615,29 +614,16 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           .withValues(alpha: 0.45),
                     ),
                     clipBehavior: Clip.antiAlias,
-                    child: imageUrl == null
-                        ? Center(
-                            child: Icon(
-                              Icons.style_outlined,
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurface.withValues(alpha: 0.36),
-                            ),
-                          )
-                        : Image.network(
-                            imageUrl,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Center(
-                                  child: Icon(
-                                    Icons.style_outlined,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurface
-                                        .withValues(alpha: 0.36),
-                                  ),
-                                ),
-                          ),
+                    child: CardSurfaceArtwork(
+                      label: displayIdentity.displayName,
+                      imageUrl: card.hostedImageUrl,
+                      fallbackImageUrl: card.providerFallbackImageUrl,
+                      borderRadius: 18,
+                      padding: const EdgeInsets.all(1.5),
+                      enableTapToZoom: false,
+                      showShadow: false,
+                      filterQuality: FilterQuality.medium,
+                    ),
                   ),
                 ),
               ),

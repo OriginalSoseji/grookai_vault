@@ -419,6 +419,7 @@ class CardArtPlaceholder extends StatelessWidget {
 
 class GrookaiObjectNetworkImage extends StatelessWidget {
   final String imageUrl;
+  final String? fallbackImageUrl;
   final double width;
   final double? height;
   final BoxFit fit;
@@ -427,6 +428,7 @@ class GrookaiObjectNetworkImage extends StatelessWidget {
   const GrookaiObjectNetworkImage({
     super.key,
     required this.imageUrl,
+    this.fallbackImageUrl,
     required this.width,
     this.height,
     this.fit = BoxFit.contain,
@@ -436,6 +438,15 @@ class GrookaiObjectNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resolvedHeight = height;
+    final normalizedPrimary = imageUrl.trim();
+    final normalizedFallback = fallbackImageUrl?.trim();
+    final hasUsableFallback =
+        normalizedFallback != null &&
+        normalizedFallback.isNotEmpty &&
+        normalizedFallback != normalizedPrimary;
+    Widget placeholder() =>
+        CardArtPlaceholder(width: width, height: resolvedHeight ?? width * 1.4);
+
     return ClipRRect(
       borderRadius: borderRadius,
       child: CachedNetworkImage(
@@ -443,14 +454,17 @@ class GrookaiObjectNetworkImage extends StatelessWidget {
         width: width,
         height: resolvedHeight,
         fit: fit,
-        placeholder: (context, url) => CardArtPlaceholder(
-          width: width,
-          height: resolvedHeight ?? width * 1.4,
-        ),
-        errorWidget: (context, url, error) => CardArtPlaceholder(
-          width: width,
-          height: resolvedHeight ?? width * 1.4,
-        ),
+        placeholder: (context, url) => placeholder(),
+        errorWidget: (context, url, error) => hasUsableFallback
+            ? CachedNetworkImage(
+                imageUrl: normalizedFallback,
+                width: width,
+                height: resolvedHeight,
+                fit: fit,
+                placeholder: (context, url) => placeholder(),
+                errorWidget: (context, url, error) => placeholder(),
+              )
+            : placeholder(),
       ),
     );
   }

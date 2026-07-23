@@ -6,6 +6,7 @@ import {
   reportTrustSafetySurfaceAction,
   type TrustSafetySurface,
 } from "@/lib/trustSafety/trustSafetyActions";
+import { dispatchCollectorBlocked } from "@/components/network/ContactEligibilityProvider";
 
 type TrustSafetyControlsProps = {
   reportedUserId?: string | null;
@@ -43,15 +44,17 @@ export function TrustSafetyControls({
     setMessage(null);
     setPendingAction("report");
     startTransition(async () => {
-      finish(
-        await reportTrustSafetySurfaceAction({
+      try {
+        finish(await reportTrustSafetySurfaceAction({
           reportedUserId,
           surface,
           surfaceId,
           reason: "other",
           returnPath,
-        }),
-      );
+        }));
+      } catch {
+        finish({ ok: false, message: "Report could not be submitted." });
+      }
     });
   }
 
@@ -68,13 +71,19 @@ export function TrustSafetyControls({
     setMessage(null);
     setPendingAction("block");
     startTransition(async () => {
-      finish(
-        await blockTrustSafetyUserAction({
+      try {
+        const result = await blockTrustSafetyUserAction({
           blockedUserId: reportedUserId,
           cardPrintId,
           returnPath,
-        }),
-      );
+        });
+        finish(result);
+        if (result.ok) {
+          dispatchCollectorBlocked(reportedUserId);
+        }
+      } catch {
+        finish({ ok: false, message: "Collector could not be blocked." });
+      }
     });
   }
 
@@ -105,7 +114,11 @@ export function TrustSafetyControls({
         ) : null}
       </div>
       {message ? (
-        <p className={`text-xs ${tone === "success" ? "text-emerald-700" : "text-rose-700"}`}>
+        <p
+          role={tone === "error" ? "alert" : "status"}
+          aria-live={tone === "error" ? "assertive" : "polite"}
+          className={`text-xs ${tone === "success" ? "text-emerald-700" : "text-rose-700"}`}
+        >
           {message}
         </p>
       ) : null}

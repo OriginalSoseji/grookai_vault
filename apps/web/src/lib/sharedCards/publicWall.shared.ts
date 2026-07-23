@@ -31,6 +31,8 @@ export type PublicWallCard = {
   rarity?: string;
   image_url?: string;
   canonical_image_url?: string;
+  image_fallback_urls?: string[];
+  image_display_mode?: VaultInstanceImageDisplayMode;
   back_image_url?: string;
   representative_image_url?: string;
   image_status?: string;

@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 
 import {
@@ -95,9 +96,20 @@ function parseBlueprintName(name) {
   };
 }
 
-function finishFromBlueprint(row) {
+function explicitFinishDescriptor(row) {
+  const decoded = decodeHtml(row?.n);
+  const [nameAndVariant = '', ...pipeParts] = decoded.split(/\s+\|\s+/);
+  const [, ...variantParts] = nameAndVariant.split(/\s+-\s+/);
+  return comparable([
+    variantParts.join(' - '),
+    ...pipeParts,
+  ].join(' '));
+}
+
+export function finishFromBlueprint(row) {
   const parsed = parseBlueprintName(row.n);
   const label = comparable(`${parsed?.variant_label ?? ''} ${row.x ?? ''} ${row.id ?? ''}`);
+  const finishDescriptor = explicitFinishDescriptor(row);
   if (label.includes('jumbo') || label.includes('oversized')) return null;
   if (label.includes('rocket reverse holo') || label.includes('rocket reverse')) return 'rocket_reverse';
   if (label.includes('master ball reverse holo') || label.includes('masterball reverse holo')) return 'masterball';
@@ -107,8 +119,9 @@ function finishFromBlueprint(row) {
   if (label.includes('cosmos holo')) return 'cosmos';
   if (label.includes('cracked ice holo')) return 'cracked_ice';
   if (label.includes('reverse holo')) return 'reverse';
+  if (/\bnon holo\b/.test(finishDescriptor)) return 'normal';
+  if (/\bnormal\b/.test(finishDescriptor) && !/\b(?:1st|first) edition normal\b/.test(finishDescriptor)) return 'normal';
   if (label.includes('holo rare') || label === 'holo' || /\bholo\b/.test(label)) return 'holo';
-  if (!/\bholo\b|\breverse\b|\bstamp\b|\bcosmos\b|\bcracked\b|\bmaster\b|\bpoke ball\b|\bpokeball\b/.test(label)) return 'normal';
   return null;
 }
 
@@ -129,7 +142,7 @@ function factKey(row) {
   ].join('|');
 }
 
-function blueprintKey(row) {
+export function blueprintKey(row) {
   const parsed = parseBlueprintName(row.n);
   const finish = finishFromBlueprint(row);
   if (!parsed || !finish || !row.cn) return null;
@@ -208,7 +221,7 @@ async function fetchBlueprints(options) {
   return rows;
 }
 
-function findMatches(facts, blueprints) {
+export function findMatches(facts, blueprints) {
   const bySet = new Map();
   for (const row of blueprints) {
     if (row.g !== 5 || !row.cn || !row.n || !row.x) continue;
@@ -383,7 +396,9 @@ async function main() {
   console.log(`[cardtrader] fixtures ${report.summary.fixture_files_written}`);
 }
 
-main().catch((error) => {
-  console.error('[cardtrader] failed:', error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error('[cardtrader] failed:', error);
+    process.exitCode = 1;
+  });
+}

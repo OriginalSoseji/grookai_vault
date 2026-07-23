@@ -613,6 +613,7 @@ class _InboxThreadTile extends StatelessWidget {
               CardSurfaceArtwork(
                 label: group.cardName,
                 imageUrl: group.imageUrl,
+                fallbackImageUrl: group.fallbackImageUrl,
                 width: 58,
                 height: 80,
                 borderRadius: 12,

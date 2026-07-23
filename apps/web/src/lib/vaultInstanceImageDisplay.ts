@@ -1,3 +1,5 @@
+import { orderCatalogImageSourcesV1 } from "@/lib/canon/catalogImageSourceOrderV1";
+
 export type VaultInstanceImageDisplayMode = "canonical" | "uploaded";
 
 function normalizeOptionalText(value: string | null | undefined) {
@@ -31,27 +33,25 @@ export function getVaultInstancePresentationImageSources({
   imageDisplayMode,
   uploadedImageUrl,
   canonicalImageUrl,
+  providerImageUrl,
 }: {
   imageDisplayMode: string | null | undefined;
   uploadedImageUrl: string | null | undefined;
   canonicalImageUrl: string | null | undefined;
+  providerImageUrl?: string | null;
 }) {
   const mode = normalizeVaultInstanceImageDisplayMode(imageDisplayMode) ?? "canonical";
-  const normalizedUploadedImageUrl = normalizeOptionalText(uploadedImageUrl);
-  const normalizedCanonicalImageUrl = normalizeOptionalText(canonicalImageUrl);
-
-  if (mode === "uploaded") {
-    return {
-      primaryImageUrl: normalizedUploadedImageUrl ?? normalizedCanonicalImageUrl,
-      fallbackImageUrl:
-        normalizedUploadedImageUrl && normalizedCanonicalImageUrl && normalizedUploadedImageUrl !== normalizedCanonicalImageUrl
-          ? normalizedCanonicalImageUrl
-          : null,
-    };
-  }
+  const imageSources = orderCatalogImageSourcesV1({
+    imageDisplayMode: mode,
+    uploadedImageUrl,
+    hostedImageUrl: canonicalImageUrl,
+    providerImageUrl,
+  });
+  const [primaryImageUrl = null, ...fallbackImageUrls] = imageSources;
 
   return {
-    primaryImageUrl: normalizedCanonicalImageUrl,
-    fallbackImageUrl: null,
+    primaryImageUrl,
+    fallbackImageUrl: fallbackImageUrls[0] ?? null,
+    fallbackImageUrls,
   };
 }

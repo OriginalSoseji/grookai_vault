@@ -67,6 +67,20 @@ function validateFinishProfileEvidence(file, setConfig, record, finishKey) {
   }
 }
 
+function hasExplicitCardTraderNormalDescriptor(value) {
+  return /(?:\s-\s|\s\|\s)(?:normal|non[- ]holo)(?=\s*\||\s*$)/i.test(String(value ?? ''));
+}
+
+export function isUnqualifiedCardTraderNormalFixtureV1(record, fixture = {}) {
+  const sourceKey = record?.source_key ?? fixture?.source_key;
+  const isCardTraderFixture = sourceKey === 'cardtrader_blueprint_index'
+    || String(fixture?.source_key ?? '').startsWith('cardtrader_finish_');
+  if (!isCardTraderFixture) return false;
+  if (normalizeFinishKey(record?.finish_key) !== 'normal') return false;
+  const evidenceLabel = record?.evidence_text_or_label ?? record?.evidence_label ?? '';
+  return !hasExplicitCardTraderNormalDescriptor(evidenceLabel);
+}
+
 export async function collectHumanFixtureEvidence(setConfigs, options) {
   const files = await listJsonFilesRecursive(options.fixtureDir);
   const allowedSetKeys = new Set(setConfigs.flatMap((set) => [set.key, set.tcgdex, set.pokemontcg]));
@@ -90,11 +104,15 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
       throw new Error(`Human source fixture ${file} has unsupported source_kind=${fixture?.source_kind}.`);
     }
     for (const record of fixture.records ?? []) {
+      // Older generated CardTrader fixtures inferred Normal from the absence of a
+      // finish token. Preserve their exact card/source evidence, but downgrade the
+      // finish to unknown so it cannot re-enter working printing truth.
+      const unqualifiedCardTraderNormal = isUnqualifiedCardTraderNormalFixtureV1(record, fixture);
       const recordSetKey = record.set_key ?? fixture.set_key;
       if (!allowedSetKeys.has(recordSetKey)) continue;
       const setConfig = setConfigByKey.get(recordSetKey);
       const sourceUrl = record.source_url ?? fixture.source_url;
-      const finishKey = normalizeFinishKey(record.finish_key);
+      const finishKey = unqualifiedCardTraderNormal ? null : normalizeFinishKey(record.finish_key);
       assertSourceUrl(file, sourceUrl);
       validateFinishProfileEvidence(file, setConfig, record, finishKey);
 
@@ -109,12 +127,19 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
         finish_key: finishKey,
         finish_key_raw: record.finish_key ?? null,
         rarity: record.rarity ?? null,
-        evidence_type: record.evidence_type,
+        evidence_type: unqualifiedCardTraderNormal
+          ? 'finish_unknown_unqualified_provider'
+          : record.evidence_type,
         evidence_label: record.evidence_text_or_label ?? record.evidence_label,
         language: 'en',
         retrieved_at: fixture.retrieved_at ?? options.retrievedAt,
         raw_snapshot_ref: fixture.raw_snapshot_ref ?? `fixture:${file}`,
-        notes: record.notes ?? null,
+        notes: unqualifiedCardTraderNormal
+          ? [
+            'Legacy CardTrader Normal inference downgraded to unknown because the source label has no explicit Normal/Non-Holo descriptor.',
+            record.notes,
+          ].filter(Boolean).join(' ')
+          : record.notes ?? null,
       });
     }
   }

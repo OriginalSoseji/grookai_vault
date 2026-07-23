@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../identity/catalog_artwork_resolution.dart';
 import '../../utils/display_image_contract.dart';
 
 const bool kLocalCommunityFeedV1Enabled = bool.fromEnvironment(
@@ -63,6 +64,17 @@ class LocalCommunityFeedRow {
   final String matchReason;
   final DateTime? createdAt;
   final String routeTarget;
+
+  CatalogArtworkResolution get artwork {
+    final sourceImageUrl = normalizeDisplayImageUrl(imageUrl);
+    if (isCollectorUploadedCardImage(sourceImageUrl)) {
+      return CatalogArtworkResolution(
+        primaryImageUrl: sourceImageUrl,
+        fallbackImageUrl: buildCanonicalCardImageUrl(gvId),
+      );
+    }
+    return resolveCatalogArtwork(gvId: gvId, providerImageUrl: sourceImageUrl);
+  }
 
   String get sourceLabel {
     switch (sourceType.toLowerCase()) {

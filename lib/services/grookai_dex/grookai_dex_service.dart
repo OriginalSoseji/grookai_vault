@@ -102,6 +102,13 @@ class GrookaiDexCardPrint {
   final int ownedCount;
   final List<GrookaiDexPrintingOption> printings;
 
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+
+  String? get providerFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(imageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
   bool get isOwned => ownedCount > 0;
   int get totalOptionCount => printings.isEmpty ? 1 : printings.length;
   int get ownedOptionCount => printings.isEmpty

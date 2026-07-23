@@ -15,9 +15,14 @@ import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 
 class PublicGvviScreen extends StatefulWidget {
-  const PublicGvviScreen({required this.gvviId, super.key});
+  const PublicGvviScreen({
+    required this.gvviId,
+    this.openedFromCardDetail = false,
+    super.key,
+  });
 
   final String gvviId;
+  final bool openedFromCardDetail;
 
   @override
   State<PublicGvviScreen> createState() => _PublicGvviScreenState();
@@ -245,6 +250,11 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
   }
 
   Future<void> _openCard(PublicGvviData data) async {
+    if (widget.openedFromCardDetail && Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+      return;
+    }
+
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CardDetailScreen(
@@ -254,13 +264,15 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           setName: data.setName,
           setCode: data.setCode,
           number: data.number,
-          imageUrl: data.imageUrl,
+          imageUrl: data.primaryImageUrl,
+          fallbackImageUrl: data.fallbackImageUrl,
           contactVaultItemId: data.vaultItemId,
           contactOwnerDisplayName: data.ownerDisplayName,
           contactOwnerUserId: data.ownerUserId,
           contactIntent: data.intent,
           exactCopyGvviId: data.gvviId,
           exactCopyOwnerUserId: data.ownerUserId,
+          openedFromCopyDetail: true,
         ),
       ),
     );
@@ -545,7 +557,8 @@ class _PublicGvviHero extends StatelessWidget {
               aspectRatio: 3 / 4,
               child: CardSurfaceArtwork(
                 label: data.cardName,
-                imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
+                imageUrl: data.primaryImageUrl,
+                fallbackImageUrl: data.fallbackImageUrl,
                 borderRadius: 22,
                 padding: const EdgeInsets.all(8),
                 showZoomAffordance:

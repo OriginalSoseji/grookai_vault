@@ -516,7 +516,8 @@ export function PublicCollectorProfileContent({
                     key={`${card.card_print_id}-${card.gv_vi_id ?? card.vault_item_id ?? card.gv_id}`}
                     density={density}
                     imageSrc={card.image_url}
-                    imageFallbackSrc={card.canonical_image_url}
+                    imageFallbackSrc={card.image_fallback_urls?.[0] ?? card.canonical_image_url}
+                    imageFallbackSources={card.image_fallback_urls?.slice(1)}
                     imageAlt={displayIdentity.display_name}
                     imageHref={exactCopyHref}
                     imageFallbackLabel={displayIdentity.display_name}

@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../identity/catalog_artwork_resolution.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 enum CardInteractionInboxView { inbox, unread, sent, closed }
@@ -66,6 +67,7 @@ class CardInteractionThreadSummary {
     this.vaultItemId,
     this.counterpartSlug,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.latestCreatedAt,
   });
 
@@ -86,6 +88,7 @@ class CardInteractionThreadSummary {
   final String? vaultItemId;
   final String? counterpartSlug;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final DateTime? latestCreatedAt;
 
   CardInteractionThreadSummary copyWith({
@@ -115,6 +118,7 @@ class CardInteractionThreadSummary {
       vaultItemId: vaultItemId,
       counterpartSlug: counterpartSlug,
       imageUrl: imageUrl,
+      fallbackImageUrl: fallbackImageUrl,
       latestCreatedAt: latestCreatedAt ?? this.latestCreatedAt,
     );
   }
@@ -494,6 +498,13 @@ class CardInteractionService {
       final key = '$cardPrintId:$counterpartUserId';
       final stateRow = stateByKey[key];
       final counterpartProfile = profileById[counterpartUserId];
+      final gvId = _clean(card['gv_id']).isEmpty
+          ? cardPrintId
+          : _clean(card['gv_id']);
+      final catalogArtwork = resolveCatalogArtwork(
+        gvId: gvId,
+        providerImageUrl: _displayImageUrl(card),
+      );
       final setRecord = switch (card['sets']) {
         List<dynamic> rows when rows.isNotEmpty => Map<String, dynamic>.from(
           rows.first as Map,
@@ -507,9 +518,7 @@ class CardInteractionService {
         () => _ThreadAccumulator(
           groupKey: key,
           cardPrintId: cardPrintId,
-          gvId: _clean(card['gv_id']).isEmpty
-              ? cardPrintId
-              : _clean(card['gv_id']),
+          gvId: gvId,
           cardName: _clean(card['name']).isEmpty
               ? 'Unknown card'
               : _clean(card['name']),
@@ -519,7 +528,8 @@ class CardInteractionService {
                     : _clean(card['set_code']))
               : _clean(setRecord?['name']),
           number: _clean(card['number']).isEmpty ? '—' : _clean(card['number']),
-          imageUrl: _displayImageUrl(card),
+          imageUrl: catalogArtwork.primaryImageUrl,
+          fallbackImageUrl: catalogArtwork.fallbackImageUrl,
           vaultItemId: vaultItemId,
           counterpartDisplayName:
               _clean(counterpartProfile?['display_name']).isEmpty
@@ -873,6 +883,7 @@ class _ThreadAccumulator {
     this.vaultItemId,
     this.counterpartSlug,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.latestCreatedAt,
   });
 
@@ -893,6 +904,7 @@ class _ThreadAccumulator {
   final String? vaultItemId;
   final String? counterpartSlug;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final DateTime? latestCreatedAt;
 
   CardInteractionThreadSummary build() {
@@ -914,6 +926,7 @@ class _ThreadAccumulator {
       vaultItemId: vaultItemId,
       counterpartSlug: counterpartSlug,
       imageUrl: imageUrl,
+      fallbackImageUrl: fallbackImageUrl,
       latestCreatedAt: latestCreatedAt,
     );
   }

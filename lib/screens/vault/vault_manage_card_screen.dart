@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
@@ -14,6 +15,7 @@ import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
@@ -71,6 +73,7 @@ class VaultManageCardScreen extends StatefulWidget {
     this.number,
     this.imageUrl,
     this.condition,
+    this.openedFromCardDetail = false,
   });
 
   final String vaultItemId;
@@ -83,6 +86,7 @@ class VaultManageCardScreen extends StatefulWidget {
   final String? number;
   final String? imageUrl;
   final String? condition;
+  final bool openedFromCardDetail;
 
   @override
   State<VaultManageCardScreen> createState() => _VaultManageCardScreenState();
@@ -105,6 +109,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   String? _copySectionSavingKey;
   String? _error;
   String? _statusMessage;
+  String? _preferredExactCopyImageUrl;
 
   void _dismissKeyboard() {
     final focusScope = FocusScope.of(context);
@@ -140,6 +145,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     try {
       final bootstrap = await _loadBootstrapContext();
+      final preferredExactCopyImageUrl =
+          isCollectorUploadedCardImage(bootstrap.imageUrl)
+          ? normalizeDisplayImageUrl(bootstrap.imageUrl)
+          : null;
       final data = await VaultCardService.loadManageCard(
         client: _client,
         vaultItemId: bootstrap.vaultItemId,
@@ -175,6 +184,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       setState(() {
         _data = data;
         _pricing = pricing;
+        _preferredExactCopyImageUrl = preferredExactCopyImageUrl;
         _copySectionMemberships = copySectionMemberships;
         _selectedCopyIds = const <String>{};
         _bulkSectionId = _firstBulkSectionId(copySectionMemberships);
@@ -1003,7 +1013,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           gvId: gvId,
           cardName: data.name,
           setName: data.setName,
-          imageUrl: data.imageUrl,
+          imageUrl:
+              _preferredExactCopyImageUrl ?? _manageCardProviderImageUrl(data),
         ),
       ),
     );
@@ -1018,6 +1029,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   Future<void> _openCardDetail() async {
     final data = _data;
     if (data == null) {
+      return;
+    }
+    if (widget.openedFromCardDetail && Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
       return;
     }
 
@@ -1040,6 +1055,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               ? data.copies.first.gvviId
               : null,
           exactCopyOwnerUserId: _client.auth.currentUser?.id,
+          openedFromCopyDetail: true,
         ),
       ),
     );
@@ -1291,6 +1307,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     ];
     final displayIdentity = _manageCardDisplayIdentity(data);
     final imagePresentation = _manageCardImagePresentation(data);
+    final artwork = _manageCardArtwork(
+      data,
+      exactCopyImageUrl: _preferredExactCopyImageUrl,
+    );
     final heroPrice = _pricing?.visibleValue == null
         ? null
         : CardSurfacePriceText(
@@ -1308,7 +1328,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             alignment: Alignment.center,
             child: Stack(
               children: [
-                _CardThumb(imageUrl: data.imageUrl, size: 176),
+                _CardThumb(
+                  label: displayIdentity.displayName,
+                  imageUrl: artwork.primaryImageUrl,
+                  fallbackImageUrl: artwork.fallbackImageUrl,
+                  size: 176,
+                ),
                 if (imagePresentation.compactBadgeLabel != null)
                   Positioned(
                     left: 8,
@@ -2002,53 +2027,71 @@ ResolvedImagePresentation _manageCardImagePresentation(
   );
 }
 
-class _CardThumb extends StatelessWidget {
-  const _CardThumb({required this.imageUrl, required this.size});
+String? _manageCardProviderImageUrl(VaultManageCardData data) {
+  for (final candidate in <String?>[
+    data.canonicalImageUrl,
+    data.representativeImageUrl,
+    data.imageUrl,
+  ]) {
+    final normalized = (candidate ?? '').trim();
+    if (normalizeDisplayImageUrl(normalized) != null) {
+      return normalized;
+    }
+  }
+  return null;
+}
 
+CatalogArtworkResolution _manageCardArtwork(
+  VaultManageCardData data, {
+  String? exactCopyImageUrl,
+}) {
+  final catalogArtwork = resolveCatalogArtwork(
+    gvId: data.gvId,
+    providerImageUrl: _manageCardProviderImageUrl(data),
+  );
+  final uploadedImageUrl = isCollectorUploadedCardImage(exactCopyImageUrl)
+      ? normalizeDisplayImageUrl(exactCopyImageUrl)
+      : isCollectorUploadedCardImage(data.imageUrl)
+      ? normalizeDisplayImageUrl(data.imageUrl)
+      : null;
+
+  if (uploadedImageUrl == null) {
+    return catalogArtwork;
+  }
+
+  return CatalogArtworkResolution(
+    primaryImageUrl: uploadedImageUrl,
+    fallbackImageUrl: catalogArtwork.primaryImageUrl,
+  );
+}
+
+class _CardThumb extends StatelessWidget {
+  const _CardThumb({
+    required this.label,
+    required this.imageUrl,
+    required this.fallbackImageUrl,
+    required this.size,
+  });
+
+  final String label;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final double size;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final normalized = normalizeDisplayImageUrl(imageUrl) ?? '';
     final cardHeight = size * 1.395;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.12),
-            blurRadius: 16,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: SizedBox(
-        width: size,
-        height: cardHeight,
-        child: normalized.isEmpty
-            ? DecoratedBox(
-                decoration: BoxDecoration(
-                  color: colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: const Center(child: Icon(Icons.style)),
-              )
-            : Image.network(
-                normalized,
-                fit: BoxFit.contain,
-                cacheWidth: 720,
-                filterQuality: FilterQuality.high,
-                errorBuilder: (context, error, stackTrace) => DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: const Center(child: Icon(Icons.broken_image)),
-                ),
-              ),
-      ),
+    return CardSurfaceArtwork(
+      label: label,
+      imageUrl: imageUrl,
+      fallbackImageUrl: fallbackImageUrl,
+      width: size,
+      height: cardHeight,
+      borderRadius: 4,
+      padding: EdgeInsets.zero,
+      filterQuality: FilterQuality.high,
+      showZoomAffordance: true,
     );
   }
 }

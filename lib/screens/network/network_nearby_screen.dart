@@ -5,7 +5,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/network/local_community_feed_service.dart';
-import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../public_collector/public_collector_screen.dart';
 
@@ -162,6 +161,7 @@ class _NetworkNearbyScreenState extends State<NetworkNearbyScreen> {
     final displayNumber = _text(resolvedCard['number']).isNotEmpty
         ? _text(resolvedCard['number'])
         : _text(resolvedCard['number_plain']);
+    final artwork = row.artwork;
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -181,7 +181,8 @@ class _NetworkNearbyScreenState extends State<NetworkNearbyScreen> {
           rarity: _text(resolvedCard['rarity']).isEmpty
               ? null
               : _text(resolvedCard['rarity']),
-          imageUrl: resolveDisplayImageUrlFromRow(resolvedCard) ?? row.imageUrl,
+          imageUrl: artwork.primaryImageUrl,
+          fallbackImageUrl: artwork.fallbackImageUrl,
           entrySurface: 'local_community_feed',
         ),
       ),
@@ -270,6 +271,7 @@ class _NearbyCardRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final artwork = row.artwork;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -291,7 +293,8 @@ class _NearbyCardRow extends StatelessWidget {
           children: [
             CardSurfaceArtwork(
               label: row.cardName,
-              imageUrl: row.imageUrl,
+              imageUrl: artwork.primaryImageUrl,
+              fallbackImageUrl: artwork.fallbackImageUrl,
               width: 82,
               height: 118,
               borderRadius: 16,

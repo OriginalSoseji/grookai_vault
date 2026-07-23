@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_publishable_manifest_v1",
-  "generated_at": "2026-06-12T08:59:00.440Z",
+  "generated_at": "2026-07-22T23:49:47.077Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -14,7 +14,7 @@
     "publishable_complete_sets": 189,
     "not_publishable_sets": 12,
     "publishable_card_facts": 19254,
-    "publishable_printing_facts": 34732,
+    "publishable_printing_facts": 34687,
     "by_publishability_status": {
       "non_standard_not_double_verified": 2,
       "not_publishable_finish_gaps": 10,
@@ -2750,14 +2750,14 @@
         "gap_count": 0
       },
       "printings": {
-        "master_admissible": 247,
-        "total": 247,
+        "master_admissible": 202,
+        "total": 202,
         "gap_count": 0
       },
       "finish_counts": {
-        "normal": 113,
-        "reverse": 76,
-        "holo": 58
+        "normal": 68,
+        "holo": 58,
+        "reverse": 76
       },
       "verification_level": "normal_double_source_required",
       "non_standard_policy": null,

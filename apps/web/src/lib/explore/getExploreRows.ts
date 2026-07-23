@@ -859,6 +859,8 @@ async function buildExploreRows(
         image_source: imageFields.image_source ?? undefined,
         display_image_url: displayImageUrl ?? undefined,
         display_image_fallback_url: childDisplayImageFallback?.display_image_url ?? undefined,
+        external_image_fallback_url:
+          imageFields.external_image_fallback_url ?? undefined,
         display_image_kind: fallbackDisplayImage
           ? fallbackDisplayImage.display_image_kind
           : imageFields.display_image_kind,

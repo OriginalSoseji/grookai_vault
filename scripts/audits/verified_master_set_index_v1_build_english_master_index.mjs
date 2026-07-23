@@ -19,6 +19,7 @@ import {
 } from './verified_master_set_index_v1/shared.mjs';
 import { classifyEvidence } from './verified_master_set_index_v1/agreement_engine/classifier.mjs';
 import { collectHumanFixtureEvidence } from './verified_master_set_index_v1/source_adapters/human_fixtures.mjs';
+import { assertMe04FinishTruthV1 } from './me04_finish_truth_v1.mjs';
 
 const require = createRequire(import.meta.url);
 const dotenv = require('dotenv');
@@ -2182,6 +2183,8 @@ async function loadExplicitFixtureSuppressionRules(fixtureDir) {
       }
       rules.push({
         ...rule,
+        reason: rule.reason ?? fixture.suppression_reason,
+        evidence_urls: rule.evidence_urls ?? fixture.suppression_evidence_urls ?? [],
         fixture_file: path.relative(fixtureDir, filePath),
       });
     }
@@ -3677,7 +3680,7 @@ function buildSuppressedStructuredFinishCandidatesMarkdown(payload) {
     '',
     'Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.',
     '',
-    'These rows are single structured-source finish claims excluded from the working Master Index because exact human/checklist variant evidence exists for the same card and does not list that finish.',
+    'These rows are either single structured-source finish claims contradicted by exact human/checklist variants, or claims excluded by an explicit reviewed suppression fixture with preserved evidence.',
     '',
     'This is not deletion authority for Grookai. It is a source-quality control report for Master Index construction.',
     '',
@@ -3762,7 +3765,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     generated_at: generatedAt,
     audit_only: true,
     db_writes: false,
-    rule: 'Single structured-source finish claims are excluded when exact human/checklist variant evidence exists for the same card and does not list that finish.',
+    rule: 'Single structured-source finish claims contradicted by exact checklist variants, plus exact claims governed by explicit reviewed suppression fixtures, are excluded from working printing truth while their evidence remains preserved.',
     suppressed: index.structured_suppression?.suppressed ?? [],
   };
   await writeJson(outputDir, 'english_master_index_suppressed_structured_finish_candidates_v1.json', suppressedStructuredFinishCandidates);
@@ -3897,6 +3900,9 @@ async function main() {
 
   const classified = classifyEvidence(records);
   const index = indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt, structuredSuppression });
+  if (setConfigs.some((set) => ['me04', 'me4'].includes(normalizeText(set.key)))) {
+    assertMe04FinishTruthV1(index.printings, 'English Master Index ME04 printings');
+  }
   const agreement = agreementPayload({ records, classified, generatedAt });
   const setAudit = setInventoryPayload({ setConfigs, records, classified, sourceAvailability, generatedAt });
 

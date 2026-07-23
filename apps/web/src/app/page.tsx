@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
@@ -15,6 +16,11 @@ import { createPublicServerClient } from "@/lib/supabase/publicServer";
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
 
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 type FeaturedCardRow = {
   id: string | null;

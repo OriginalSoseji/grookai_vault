@@ -92,6 +92,32 @@ void main() {
     );
   });
 
+  test('canonical GV-ID image URLs use the Grookai hosted image boundary', () {
+    expect(
+      buildCanonicalCardImageUrl(' gv-pk-cri-120 '),
+      'https://grookaivault.com/api/canon/cards/GV-PK-CRI-120/image',
+    );
+    expect(buildCanonicalCardImageUrl('not-a-gv-id'), isNull);
+  });
+
+  test(
+    'hosted card thumbnails use Grookai derivatives while full art stays raw',
+    () {
+      const hosted =
+          'https://grookaivault.com/api/canon/cards/GV-PK-CRI-120/image';
+
+      expect(normalizeDisplayImageUrl(hosted), hosted);
+
+      final thumbnail = normalizeDisplayImageUrl(hosted, width: 220);
+      expect(thumbnail, startsWith('https://grookaivault.com/_next/image?'));
+      expect(
+        thumbnail,
+        contains('url=%2Fapi%2Fcanon%2Fcards%2FGV-PK-CRI-120%2Fimage'),
+      );
+      expect(thumbnail, contains('w=220'));
+    },
+  );
+
   test('invalid and missing image fields resolve to null', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-4',
@@ -131,6 +157,44 @@ void main() {
     expect(large, contains('w=828'));
     expect(thumbnail, contains('w=320'));
     expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
+  });
+
+  test('TCGdex base image URLs resolve to the high WebP asset', () {
+    const original = 'https://assets.tcgdex.net/en/me/me04/120';
+    final resolved = normalizeDisplayImageUrl(original);
+
+    expect(resolved, startsWith('https://grookaivault.com/_next/image?'));
+    expect(
+      resolved,
+      contains(
+        Uri.encodeQueryComponent(
+          'https://assets.tcgdex.net/en/me/me04/120/high.webp',
+        ),
+      ),
+    );
+  });
+
+  test('TCGdex high image suffix is not duplicated', () {
+    const original = 'https://assets.tcgdex.net/en/me/me04/120/high.webp';
+    final resolved = normalizeDisplayImageUrl(original);
+
+    expect(resolved, isNot(contains('high.webp/high.webp')));
+  });
+
+  test('TCGdex set logos are not rewritten as card artwork', () {
+    const original = 'https://assets.tcgdex.net/en/me/me04/logo.png';
+    final resolved = normalizeDisplayImageUrl(original);
+
+    expect(resolved, contains(Uri.encodeQueryComponent(original)));
+    expect(resolved, isNot(contains('logo.png%2Fhigh.webp')));
+  });
+
+  test('set logo URLs use Grookai static hosting', () {
+    expect(
+      buildHostedSetLogoUrl(' ME04 '),
+      'https://grookaivault.com/set-logos/me04.png',
+    );
+    expect(buildHostedSetLogoUrl('../me04'), isNull);
   });
 
   test('private catalog public URLs use the secure Grookai proxy', () {

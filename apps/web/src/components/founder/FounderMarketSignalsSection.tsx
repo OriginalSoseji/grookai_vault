@@ -8,7 +8,6 @@ import type {
   FounderInsightSetSection,
 } from "@/lib/founder/getFounderMarketSignals";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 export default function FounderMarketSignalsSection({
   insights,
@@ -129,10 +128,6 @@ function FounderSignalRow({
   index: number;
   scoreLabel: string;
 }) {
-  const imageUrl = getBestPublicCardImageUrl(
-    row.card.imageUrl,
-    row.card.imageAltUrl,
-  );
   const displayIdentity = resolveDisplayIdentity({
     name: row.card.name,
     variant_key: row.card.variant_key,
@@ -153,7 +148,8 @@ function FounderSignalRow({
         {index + 1}
       </div>
       <PublicCardImage
-        src={imageUrl}
+        src={row.card.imageUrl ?? undefined}
+        fallbackSources={row.card.imageFallbackUrls}
         alt={displayIdentity.display_name}
         imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
         fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"

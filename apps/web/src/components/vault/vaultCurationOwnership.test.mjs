@@ -55,7 +55,9 @@ test("grouped card copy rows render exact-copy curation controls", () => {
   const bulkCopies = readSource("components", "vault", "VaultManageCardCopiesBulkSection.tsx");
   const copyControls = readSource("components", "vault", "VaultManageCopyCurationControls.tsx");
 
-  assert.match(groupedPage, /getOwnerWallSectionMemberships\(user\.id, copy\.instance_id\)/);
+  assert.match(groupedPage, /getOwnerWallSectionMembershipsBatch\(/);
+  assert.match(groupedPage, /item\.copy_items\.map\(\(copy\) => copy\.instance_id\)/);
+  assert.match(groupedPage, /sectionMembershipByInstanceId\.get\(copy\.instance_id\)/);
   assert.match(groupedPage, /VaultManageCardCopiesBulkSection/);
   assert.match(groupedPage, /membershipModels=\{item\.copy_items\.map/);
   assert.match(bulkCopies, /VaultManageCopyCurationControls/);

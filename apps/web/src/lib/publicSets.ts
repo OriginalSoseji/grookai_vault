@@ -200,6 +200,8 @@ async function mapPublicSetCardPrintings(
           image_note: imageFields.image_note ?? undefined,
           image_source: imageFields.image_source ?? undefined,
           display_image_url: imageFields.display_image_url ?? undefined,
+          external_image_fallback_url:
+            imageFields.external_image_fallback_url ?? undefined,
           display_image_kind: imageFields.display_image_kind,
           finish_sort_order:
             typeof finishRecord?.sort_order === "number"
@@ -422,7 +424,8 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
         .eq("set_code", normalizedCode)
         .not("gv_id", "is", null)
         .order("number_plain", { ascending: true, nullsFirst: false })
-        .order("number", { ascending: true }),
+        .order("number", { ascending: true })
+        .order("id", { ascending: true }),
       supabase
         .from("card_prints")
         .select(selectClause)
@@ -430,7 +433,8 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
         .in("variant_key", specialVariantKeys)
         .not("gv_id", "is", null)
         .order("number_plain", { ascending: true, nullsFirst: false })
-        .order("variant_key", { ascending: true }),
+        .order("variant_key", { ascending: true })
+        .order("id", { ascending: true }),
     ]);
 
     if (primaryResult.error) {
@@ -460,6 +464,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
     .order("number", { ascending: true })
+    .order("id", { ascending: true })
     .range(offset, offset + limit - 1);
 
   if (error) {
@@ -560,6 +565,7 @@ function comparePublicSetCardRows(left: PublicSetCardRow, right: PublicSetCardRo
     (left.name ?? "").localeCompare(right.name ?? ""),
     (left.variant_key ?? "").localeCompare(right.variant_key ?? ""),
     (left.gv_id ?? "").localeCompare(right.gv_id ?? ""),
+    (left.id ?? "").localeCompare(right.id ?? ""),
   ].find((value) => value !== 0) ?? 0;
 }
 
@@ -587,6 +593,8 @@ async function mapPublicSetCardRows(rows: Array<PublicSetCardRow & { gv_id: stri
         image_note: imageFields.image_note ?? undefined,
         image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
+        external_image_fallback_url:
+          imageFields.external_image_fallback_url ?? undefined,
         display_image_kind: imageFields.display_image_kind,
         printings: await mapPublicSetCardPrintings(row.card_printings),
       };

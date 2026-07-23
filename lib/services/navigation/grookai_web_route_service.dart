@@ -2,7 +2,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../secrets.dart';
 
-enum GrookaiCanonicalRouteKind { card, collector, collectorSection, set, feed }
+enum GrookaiCanonicalRouteKind {
+  card,
+  collector,
+  collectorSection,
+  set,
+  gvvi,
+  feed,
+}
 
 class GrookaiCanonicalRoute {
   const GrookaiCanonicalRoute._({
@@ -53,12 +60,23 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.gvvi(String gvviId) {
+    final normalized = gvviId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.gvvi,
+      path: '/gvvi/${Uri.encodeComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
   factory GrookaiCanonicalRoute.feed({String segment = 'pulse'}) {
     final normalized = segment.trim().toLowerCase();
     final resolvedSegment = normalized.isEmpty ? 'pulse' : normalized;
     return GrookaiCanonicalRoute._(
       kind: GrookaiCanonicalRouteKind.feed,
-      path: '/feed?segment=$resolvedSegment',
+      path: resolvedSegment == 'pulse'
+          ? '/network'
+          : '/network?segment=${Uri.encodeQueryComponent(resolvedSegment)}',
       value: resolvedSegment,
     );
   }
@@ -120,7 +138,7 @@ class GrookaiWebRouteService {
       return null;
     }
     final head = segments.first.toLowerCase();
-    if (head == 'feed') {
+    if (head == 'feed' || head == 'network') {
       return GrookaiCanonicalRoute.feed(
         segment: uri.queryParameters['segment'] ?? 'pulse',
       );
@@ -141,6 +159,7 @@ class GrookaiWebRouteService {
       case 'card':
         return GrookaiCanonicalRoute.card(value);
       case 'u':
+      case 'collector':
         if (segments.length >= 4 && segments[2].toLowerCase() == 'section') {
           final sectionId = segments[3].trim();
           if (sectionId.isEmpty) {
@@ -155,6 +174,8 @@ class GrookaiWebRouteService {
       case 'set':
       case 'sets':
         return GrookaiCanonicalRoute.set(value);
+      case 'gvvi':
+        return GrookaiCanonicalRoute.gvvi(value);
       default:
         return null;
     }
@@ -173,12 +194,12 @@ class GrookaiWebRouteService {
     if ((host == 'set' || host == 'sets') && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.set(segments.first);
     }
-    if (host == 'feed') {
+    if (host == 'feed' || host == 'network') {
       return GrookaiCanonicalRoute.feed(
         segment: uri.queryParameters['segment'] ?? 'pulse',
       );
     }
-    if (host == 'u' && segments.isNotEmpty) {
+    if ((host == 'u' || host == 'collector') && segments.isNotEmpty) {
       if (segments.length >= 3 && segments[1].toLowerCase() == 'section') {
         return GrookaiCanonicalRoute.collectorSection(
           slug: segments.first.toLowerCase(),
@@ -186,6 +207,9 @@ class GrookaiWebRouteService {
         );
       }
       return GrookaiCanonicalRoute.collector(segments.first.toLowerCase());
+    }
+    if (host == 'gvvi' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.gvvi(segments.first);
     }
 
     // Also accept slash-style app links such as grookai:///card/GV-PK-...

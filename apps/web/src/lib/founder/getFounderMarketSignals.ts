@@ -1,5 +1,10 @@
 import "server-only";
 
+import {
+  getCatalogImageSourcesFromResolvedFieldsV1,
+  orderCatalogImageSourcesV1,
+} from "@/lib/canon/catalogImageSourcesV1";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 const PAGE_SIZE = 1000;
@@ -38,6 +43,11 @@ type CardMetadataRow = {
   printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         name: string | null;
@@ -101,7 +111,7 @@ export type FounderInsightCard = {
   printed_identity_modifier: string | null;
   set_identity_model: string | null;
   imageUrl: string | null;
-  imageAltUrl: string | null;
+  imageFallbackUrls: string[];
 };
 
 export type FounderInsightCardRow = {
@@ -566,7 +576,7 @@ async function fetchCardMetadataByIds(
     const { data, error } = await admin
       .from("card_prints")
       .select(
-        "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+        "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
       )
       .in("id", batch);
 
@@ -579,6 +589,15 @@ async function fetchCardMetadataByIds(
       if (!id) {
         continue;
       }
+      const catalogImageSources = getCatalogImageSourcesFromResolvedFieldsV1(
+        row,
+        await resolveCardImageFieldsV1(row),
+      );
+      const imageSources = orderCatalogImageSourcesV1({
+        imageDisplayMode: "canonical",
+        hostedImageUrl: catalogImageSources.hostedImageUrl,
+        providerImageUrl: catalogImageSources.providerImageUrl,
+      });
       cardMetadataById.set(id, {
         id,
         gvId: row.gv_id?.trim() || null,
@@ -589,8 +608,8 @@ async function fetchCardMetadataByIds(
         variant_key: row.variant_key?.trim() || null,
         printed_identity_modifier: row.printed_identity_modifier?.trim() || null,
         set_identity_model: getSetIdentityModel(row.sets),
-        imageUrl: row.image_url?.trim() || null,
-        imageAltUrl: row.image_alt_url?.trim() || null,
+        imageUrl: imageSources[0] ?? null,
+        imageFallbackUrls: imageSources.slice(1),
       });
     }
   }

@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
@@ -305,7 +306,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           name: data.cardName,
           setName: data.setName,
           number: data.number,
-          imageUrl: data.imageUrl,
+          imageUrl: data.primaryImageUrl,
           condition: data.conditionLabel,
         ),
       ),
@@ -358,7 +359,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           gvId: data.gvId,
           cardName: data.cardName,
           setName: data.setName,
-          imageUrl: data.primaryImageUrl ?? data.imageUrl,
+          imageUrl: data.primaryImageUrl,
+          fallbackImageUrl: data.fallbackImageUrl,
         ),
       ),
     );
@@ -382,6 +384,10 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   }
 
   Future<void> _openRelatedPrint(_GvviRelatedPrint print) async {
+    final artwork = resolveCatalogArtwork(
+      gvId: print.gvId,
+      providerImageUrl: print.imageUrl,
+    );
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CardDetailScreen(
@@ -392,7 +398,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           setCode: print.setCode,
           number: print.number,
           rarity: print.rarity,
-          imageUrl: print.imageUrl,
+          imageUrl: artwork.primaryImageUrl,
+          fallbackImageUrl: artwork.fallbackImageUrl,
         ),
       ),
     );
@@ -1533,7 +1540,8 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
                   Positioned.fill(
                     child: CardSurfaceArtwork(
                       label: displayIdentity.displayName,
-                      imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
+                      imageUrl: data.primaryImageUrl,
+                      fallbackImageUrl: data.fallbackImageUrl,
                       borderRadius: 24,
                       padding: const EdgeInsets.all(6),
                       showZoomAffordance:
@@ -3709,6 +3717,10 @@ class _VaultRelatedPrintTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = _gvviRelatedDisplayIdentity(print);
+    final artwork = resolveCatalogArtwork(
+      gvId: print.gvId,
+      providerImageUrl: print.imageUrl,
+    );
     final secondaryLabel = [
       if (print.setCode.isNotEmpty) print.setCode,
       if (print.number.isNotEmpty) '#${print.number}',
@@ -3728,7 +3740,8 @@ class _VaultRelatedPrintTile extends StatelessWidget {
                 aspectRatio: 3 / 4,
                 child: CardSurfaceArtwork(
                   label: displayIdentity.displayName,
-                  imageUrl: print.imageUrl,
+                  imageUrl: artwork.primaryImageUrl,
+                  fallbackImageUrl: artwork.fallbackImageUrl,
                   borderRadius: 16,
                   padding: const EdgeInsets.all(4),
                   showZoomAffordance: false,

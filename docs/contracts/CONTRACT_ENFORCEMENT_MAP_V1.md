@@ -34,10 +34,10 @@ Only contracts that are actually in runtime scope are listed below.
 | `REPRINT_ANTHOLOGY_SET_CONTRACT_V1` | Active | Identity / Frozen Canon | Identity | Yes | worker: promotion stage / executor; checkpoint: `reprint_anthology_identity_model_v1` | Partially enforced | Runtime trusts upstream identity package | Add richer anthology assertions when more lanes go live |
 | `PRINTED_IDENTITY_CONTRACT_V1` | Frozen | Identity / Frozen Canon | Identity | Yes | worker: bridge + stage; audit: printed identity drift | Partially enforced | Missing identity rows prevent blind DB escalation | Keep validation/audit-first |
 | `STABILIZATION_CONTRACT_V1` | Active | Stabilization / Checkpoint | System | Yes | worker: backend env + runtime validator; view: compatibility surfaces; audit: view existence + leakage checks | Enforced | Legacy aliases remain for compatibility | Keep new code on canonical env/surfaces only |
-| `INGESTION_PIPELINE_CONTRACT_V1` | Active | Ingestion | Ingestion | Yes | worker: bridge + classification; audit: warehouse proof checks | Partially enforced | Raw staging lane intentionally outside scope | Keep raw staging non-canonical |
+| `INGESTION_PIPELINE_CONTRACT_V1` | Active | Ingestion | Ingestion | Yes | worker: bridge + Master Index/printing gates + TCGdex evidence normalizer; audit: exact set/finish/suppression guards | Partially enforced | Historical one-off child writers predate the shared manifest | Require the shared truth gate before any legacy writer is reused |
 | `EXTERNAL_SOURCE_INGESTION_MODEL_V1` | Active | Ingestion | Ingestion | Yes | worker: bridge + source-backed mapping writer; audit: mapping drift queries | Partially enforced | Historical source/card duplicates remain | Repair duplicates before tightening DB rules |
 | `EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1` | Active | Ingestion | Ingestion | Yes | worker: bridge; audit: quarantine/public leak checks | Enforced | No formal repair playbook | Add one if malformed bridge rows become common |
-| `TCGDEX_SOURCE_CONTRACT_V1` | Active | Ingestion | Source | Yes | worker: source image enrichment | Enforced | V1 limited to one audited set lane | Expand only after another audited source lane |
+| `TCGDEX_SOURCE_CONTRACT_V1` | Active | Ingestion | Source | Yes | worker: source image enrichment + review-only pricing normalizer; audit: resolver truth table + no-canon mutation guards | Enforced | Image lane remains one-set bounded | Preserve exact-map and no-canon boundaries during expansion |
 | `SOURCE_IMAGE_ENRICHMENT_V1` | Active | Enrichment | Image | Yes | worker: source image enrichment; audit: image drift checks | Enforced | No dedicated repair tooling | Add repair tooling when enrichment widens |
 | `REPRESENTATIVE_IMAGE_CONTRACT_V1` | Active | Enrichment | Image | Yes | worker: representative image writer; audit: exact/representative separation checks | Enforced | No DB-level exact-vs-representative guard | Keep worker-level guard until safe DB rule exists |
 | `REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1` | Active | Enrichment | Image | Yes | worker: sibling-base fallback logic; audit: fallback drift checks | Enforced | Proof remains worker-scoped | Revisit only after more fallback lanes exist |
@@ -161,12 +161,12 @@ Only contracts that are actually in runtime scope are listed below.
 ### `INGESTION_PIPELINE_CONTRACT_V1`
 
 - DB: warehouse candidate + staging tables
-- worker: bridge, classification, promotion stage
+- worker: bridge, classification, fail-closed CardTrader finish adapter, Master Index builders, publishable builder, completion/child-insertion planner, new-set runner, and TCGdex pricing evidence normalizer
 - API: none in this slice
-- audit: warehouse candidate/staging drift checks
-- checkpoint: `CONTRACT_RUNTIME_LAYER_V1`
-- quarantine behavior: malformed staging/candidate payloads block canon flow
-- post-write proof query: candidate/event/staging round-trip proofs
+- audit: warehouse drift plus executable exact-count, by-finish, duplicate, suppression, protected-fact, legacy CardTrader Normal containment, and pricing-no-canon guards
+- checkpoint: `docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md`
+- quarantine behavior: ambiguous source semantics remain non-canonical; count/suppression drift hard-fails before child writes
+- post-write proof query: exact per-set parent/printing/finish counts, zero forbidden facts, all protected facts, and pinned plan/contract hashes
 
 ### `EXTERNAL_SOURCE_INGESTION_MODEL_V1`
 
@@ -191,12 +191,12 @@ Only contracts that are actually in runtime scope are listed below.
 ### `TCGDEX_SOURCE_CONTRACT_V1`
 
 - DB: none directly
-- worker: `source_image_enrichment_worker_v1`
+- worker: `source_image_enrichment_worker_v1`, `market_reference_tcgdex_pricing_audit_v1`, and bounded reference-warehouse backfill apply
 - API: none in this slice
-- audit: image drift checks
-- checkpoint: `CONTRACT_RUNTIME_LAYER_V1`
-- quarantine behavior: ambiguous source matches block enrichment
-- post-write proof query: representative image round-trip proof
+- audit: image drift, Cardmarket resolver truth-table, and pricing apply/variant-assignment no-canon mutation checks
+- checkpoint: `docs/contracts/TCGDEX_SOURCE_CONTRACT_V1.md`
+- quarantine behavior: ambiguous source matches block enrichment; ambiguous finish metadata remains review-only evidence
+- post-write proof query: representative image round-trip plus explicit `card_prints`/`card_printings` no-write boundary
 
 ### `SOURCE_IMAGE_ENRICHMENT_V1`
 

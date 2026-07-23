@@ -1,12 +1,35 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { GROOKAI_VAULT_ORIGIN } from "@/lib/getSiteOrigin";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(GROOKAI_VAULT_ORIGIN),
+  applicationName: "Grookai Vault",
+  title: "Grookai Vault",
+  description:
+    "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+  openGraph: {
+    title: "Grookai Vault",
+    description:
+      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+    siteName: "Grookai Vault",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Grookai Vault",
+    description:
+      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+  },
+};
 
 const themeBootstrapScript = `
 (() => {

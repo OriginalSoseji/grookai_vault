@@ -5,6 +5,10 @@ import {
   type CardDisplayImageKind,
 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
+  getCatalogImageSourcesFromResolvedFieldsV1,
+  orderCatalogImageSourcesV1,
+} from "@/lib/canon/catalogImageSourcesV1";
+import {
   applyChildDisplayImageFallback,
   getChildDisplayImageFallbacks,
 } from "@/lib/cards/childDisplayImageFallbacks";
@@ -12,7 +16,14 @@ import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
-import { isVaultInstanceMediaStoragePath } from "@/lib/vaultInstanceMedia";
+import {
+  isVaultInstanceMediaReference,
+  isVaultInstanceMediaStoragePath,
+} from "@/lib/vaultInstanceMedia";
+import {
+  normalizeVaultInstanceImageDisplayMode,
+  type VaultInstanceImageDisplayMode,
+} from "@/lib/vaultInstanceImageDisplay";
 import {
   normalizeDiscoverableVaultIntent,
   type DiscoverableVaultIntent,
@@ -50,6 +61,7 @@ type CardStreamSourceRow = {
 
 type CardStreamIdentityRow = {
   id: string | null;
+  gv_id: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
   image_url: string | null;
@@ -59,6 +71,8 @@ type CardStreamIdentityRow = {
   representative_image_url: string | null;
   image_status: string | null;
   image_note: string | null;
+  hosted_image_url?: string | null;
+  provider_image_url?: string | null;
   display_image_url?: string | null;
   display_image_kind?: CardDisplayImageKind | null;
   sets:
@@ -85,6 +99,9 @@ type CardStreamCopySourceRow = {
   grade_value: string | null;
   grade_label: string | null;
   created_at: string | null;
+  photo_url: string | null;
+  image_url: string | null;
+  image_display_mode: string | null;
 };
 
 type SlabCertMetadataRow = {
@@ -107,6 +124,11 @@ export type CardStreamCopy = {
   gradeLabel: string | null;
   certNumber: string | null;
   createdAt: string | null;
+};
+
+type CardStreamCopyWithImage = CardStreamCopy & {
+  imageDisplayMode: VaultInstanceImageDisplayMode;
+  uploadedImageReference: string | null;
 };
 
 export type CardStreamRow = {
@@ -138,6 +160,9 @@ export type CardStreamRow = {
   printedIdentityModifier: string | null;
   setIdentityModel: string | null;
   imageUrl: string | null;
+  imageFallbackUrls: string[];
+  hostedImageUrl: string | null;
+  providerImageUrl: string | null;
   displayImageKind: CardDisplayImageKind | null;
   imageStatus: string | null;
   imageNote: string | null;
@@ -219,14 +244,33 @@ async function normalizeRow(
   const setRecord = Array.isArray(identityRow?.sets)
     ? identityRow.sets[0]
     : identityRow?.sets;
-  const displayImageUrl = resolveDisplayImageUrl({
-    display_image_url:
-      (await resolvePublicImageValue(row.display_image_url)) ??
-      identityRow?.display_image_url,
-    image_url:
-      (await resolvePublicImageValue(row.image_url)) ?? identityRow?.image_url,
-    image_alt_url: identityRow?.image_alt_url,
-    representative_image_url: identityRow?.representative_image_url,
+  const rawRowDisplayImageUrl =
+    normalizeOptionalText(row.display_image_url) ??
+    normalizeOptionalText(row.image_url);
+  const rowUsesUploadedImage = isVaultInstanceMediaReference(
+    rawRowDisplayImageUrl,
+  );
+  const resolvedRowDisplayImageUrl = await resolvePublicImageValue(
+    rawRowDisplayImageUrl,
+  );
+  const hostedImageUrl = identityRow?.hosted_image_url ?? null;
+  const providerImageUrl =
+    identityRow?.provider_image_url ??
+    (rowUsesUploadedImage
+      ? null
+      : resolveDisplayImageUrl({
+          display_image_url: resolvedRowDisplayImageUrl,
+          image_url: identityRow?.image_url,
+          image_alt_url: identityRow?.image_alt_url,
+          representative_image_url: identityRow?.representative_image_url,
+        }));
+  const imageSources = orderCatalogImageSourcesV1({
+    imageDisplayMode: rowUsesUploadedImage ? "uploaded" : "canonical",
+    uploadedImageUrl: rowUsesUploadedImage
+      ? resolvedRowDisplayImageUrl
+      : null,
+    hostedImageUrl,
+    providerImageUrl,
   });
 
   return {
@@ -262,7 +306,10 @@ async function normalizeRow(
       identityRow?.printed_identity_modifier,
     ),
     setIdentityModel: normalizeOptionalText(setRecord?.identity_model),
-    imageUrl: displayImageUrl,
+    imageUrl: imageSources[0] ?? null,
+    imageFallbackUrls: imageSources.slice(1),
+    hostedImageUrl,
+    providerImageUrl,
     displayImageKind:
       row.display_image_kind ?? identityRow?.display_image_kind ?? null,
     imageStatus: normalizeOptionalText(identityRow?.image_status),
@@ -287,7 +334,7 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
     const { data, error } = await client
       .from("card_prints")
       .select(
-        "id,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
+        "id,gv_id,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
       )
       .in("id", batch);
 
@@ -309,6 +356,8 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
           rawImageFields,
           row.id ? childDisplayImageFallbacks.get(row.id) : null,
         );
+        const catalogImageSources =
+          getCatalogImageSourcesFromResolvedFieldsV1(row, imageFields);
         return {
           ...row,
           image_url: imageFields.image_url,
@@ -319,6 +368,8 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
           image_path: imageFields.image_path,
           display_image_url: imageFields.display_image_url,
           display_image_kind: imageFields.display_image_kind,
+          hosted_image_url: catalogImageSources.hostedImageUrl,
+          provider_image_url: catalogImageSources.providerImageUrl,
         } satisfies CardStreamIdentityRow;
       }),
     );
@@ -347,7 +398,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     cardPrintIds.length === 0 ||
     requestedGroupKeys.size === 0
   ) {
-    return new Map<string, CardStreamCopy[]>();
+    return new Map<string, CardStreamCopyWithImage[]>();
   }
 
   // Scope both copy lanes to the visible cards. The former owner-only query
@@ -356,7 +407,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     admin
       .from("vault_item_instances")
       .select(
-        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,photo_url,image_url,image_display_mode",
       )
       .in("user_id", ownerUserIds)
       .in("card_print_id", cardPrintIds)
@@ -396,7 +447,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     const { data, error } = await admin
       .from("vault_item_instances")
       .select(
-        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+        "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,photo_url,image_url,image_display_mode",
       )
       .in("user_id", ownerUserIds)
       .in("slab_cert_id", slabCertIds.slice(index, index + 200))
@@ -422,7 +473,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     ).values(),
   );
 
-  const copiesByGroupKey = new Map<string, CardStreamCopy[]>();
+  const copiesByGroupKey = new Map<string, CardStreamCopyWithImage[]>();
 
   for (const row of instances) {
     const ownerUserId = normalizeOptionalText(row.user_id);
@@ -434,6 +485,14 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
       normalizeOptionalText(row.card_print_id) ??
       normalizeOptionalText(slabCert?.card_print_id);
     const intent = normalizeDiscoverableVaultIntent(row.intent);
+    const imageDisplayMode =
+      normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ??
+      "canonical";
+    const uploadedImageReference =
+      imageDisplayMode === "uploaded"
+        ? normalizeOptionalText(row.photo_url) ??
+          normalizeOptionalText(row.image_url)
+        : null;
 
     if (!ownerUserId || !vaultItemId || !cardPrintId || !intent) {
       continue;
@@ -461,6 +520,8 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
       gradeLabel: normalizeOptionalText(row.grade_label),
       certNumber: normalizeOptionalText(slabCert?.cert_number),
       createdAt: row.created_at ?? null,
+      imageDisplayMode,
+      uploadedImageReference,
     });
     copiesByGroupKey.set(groupKey, copies);
   }
@@ -534,10 +595,45 @@ export async function getCardStreamRows({
   ).filter((row): row is CardStreamRow => row !== null);
   const copiesByGroupKey = await fetchInPlayCopies(rows);
 
-  return rows.map((row) => ({
-    ...row,
-    inPlayCopies:
-      copiesByGroupKey.get(buildGroupKey(row.ownerUserId, row.cardPrintId)) ??
-      [],
-  }));
+  return Promise.all(
+    rows.map(async (row) => {
+      const copiesWithImage =
+        copiesByGroupKey.get(
+          buildGroupKey(row.ownerUserId, row.cardPrintId),
+        ) ?? [];
+      const presentationCopy =
+        copiesWithImage.find(
+          (copy) => copy.vaultItemId === row.vaultItemId,
+        ) ?? copiesWithImage[0];
+      const uploadedImageUrl =
+        presentationCopy?.imageDisplayMode === "uploaded"
+          ? await resolveVaultInstanceMediaUrl(
+              presentationCopy.uploadedImageReference,
+            )
+          : null;
+      const imageSources = orderCatalogImageSourcesV1({
+        imageDisplayMode: presentationCopy?.imageDisplayMode,
+        uploadedImageUrl,
+        hostedImageUrl: row.hostedImageUrl,
+        providerImageUrl: row.providerImageUrl,
+      });
+      const inPlayCopies: CardStreamCopy[] = copiesWithImage.map(
+        ({
+          imageDisplayMode: _imageDisplayMode,
+          uploadedImageReference: _uploadedImageReference,
+          ...copy
+        }) => copy,
+      );
+
+      return {
+        ...row,
+        imageUrl: imageSources[0] ?? row.imageUrl,
+        imageFallbackUrls:
+          imageSources.length > 0
+            ? imageSources.slice(1)
+            : row.imageFallbackUrls,
+        inPlayCopies,
+      };
+    }),
+  );
 }

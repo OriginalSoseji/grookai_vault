@@ -188,7 +188,9 @@ void main() {
   test('vault grid uses normalized images and shows variant line', () {
     final vault = File('lib/main_vault.dart').readAsStringSync();
 
-    expect(vault, contains('final imageUrl = _vaultDisplayImageUrl(row);'));
+    expect(vault, contains('final artwork = _vaultArtwork(row);'));
+    expect(vault, contains('imageUrl: artwork.primaryImageUrl'));
+    expect(vault, contains('fallbackImageUrl: artwork.fallbackImageUrl'));
     expect(
       vault,
       contains("if ((displayIdentity.suffix ?? '').trim().isNotEmpty)"),

@@ -7,6 +7,36 @@ String? _vaultDisplayImageUrl(Map<String, dynamic> row) {
       resolveDisplayImageUrlFromRow(row);
 }
 
+String? _vaultProviderImageUrl(Map<String, dynamic> row) {
+  return resolveDisplayImageUrl(
+    imageUrl: row['image_url'],
+    imageAltUrl: row['image_alt_url'],
+    representativeImageUrl: row['representative_image_url'],
+  );
+}
+
+CatalogArtworkResolution _vaultArtwork(Map<String, dynamic> row) {
+  final sourceImageUrl = _vaultDisplayImageUrl(row);
+  final hostedImageUrl = buildCanonicalCardImageUrl(row['gv_id']);
+  if (isCollectorUploadedCardImage(sourceImageUrl)) {
+    return CatalogArtworkResolution(
+      primaryImageUrl: sourceImageUrl,
+      fallbackImageUrl: hostedImageUrl,
+    );
+  }
+  final catalogArtwork = resolveCatalogArtwork(
+    gvId: row['gv_id'],
+    providerImageUrl: _vaultProviderImageUrl(row),
+  );
+  if (catalogArtwork.primaryImageUrl == null && sourceImageUrl != null) {
+    return CatalogArtworkResolution(
+      primaryImageUrl: sourceImageUrl,
+      fallbackImageUrl: null,
+    );
+  }
+  return catalogArtwork;
+}
+
 class _VaultItemTile extends StatelessWidget {
   final Map<String, dynamic> row;
   final CardSurfacePricingData? pricing;
@@ -49,7 +79,7 @@ class _VaultItemTile extends StatelessWidget {
     final gvId = (row['gv_id'] ?? '').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final number = (row['number'] ?? '').toString();
-    final imgUrl = _vaultDisplayImageUrl(row);
+    final artwork = _vaultArtwork(row);
 
     final subtitleParts = <String>[];
     if ((displayIdentity.suffix ?? '').trim().isNotEmpty) {
@@ -66,7 +96,8 @@ class _VaultItemTile extends StatelessWidget {
     Widget thumb() {
       return CardSurfaceArtwork(
         label: displayIdentity.baseName,
-        imageUrl: imgUrl,
+        imageUrl: artwork.primaryImageUrl,
+        fallbackImageUrl: artwork.fallbackImageUrl,
         width: compact ? 40 : 46,
         height: compact ? 56 : 64,
         borderRadius: compact ? 10 : 12,
@@ -270,7 +301,7 @@ class _VaultGridTile extends StatelessWidget {
         .toString()
         .trim();
     final number = (row['number'] ?? '').toString().trim();
-    final imageUrl = _vaultDisplayImageUrl(row);
+    final artwork = _vaultArtwork(row);
     final quantity = _ownedCountForRow(row);
     final condition = (row['condition_label'] ?? 'NM').toString();
     final metaParts = <String>[
@@ -299,7 +330,8 @@ class _VaultGridTile extends StatelessWidget {
                   AspectRatio(
                     aspectRatio: GvGridConstants.artworkAspectRatio,
                     child: _VaultGridArtwork(
-                      imageUrl: imageUrl,
+                      imageUrl: artwork.primaryImageUrl,
+                      fallbackImageUrl: artwork.fallbackImageUrl,
                       name: displayIdentity.baseName,
                       onViewDetails: onTap,
                     ),
@@ -417,11 +449,13 @@ class _VaultGridTile extends StatelessWidget {
 class _VaultGridArtwork extends StatelessWidget {
   const _VaultGridArtwork({
     required this.imageUrl,
+    this.fallbackImageUrl,
     required this.name,
     this.onViewDetails,
   });
 
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final String name;
   final VoidCallback? onViewDetails;
 
@@ -430,6 +464,7 @@ class _VaultGridArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: name,
       imageUrl: imageUrl,
+      fallbackImageUrl: fallbackImageUrl,
       borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.0),
       onViewDetails: onViewDetails,
@@ -1313,7 +1348,7 @@ class VaultPageState extends State<VaultPage> {
           final setName = ((row['set_name'] ?? row['set_code']) ?? '')
               .toString()
               .trim();
-          final imageUrl = _vaultDisplayImageUrl(row);
+          final artwork = _vaultArtwork(row);
           final pricing = _pricingByCardPrintId[cardPrintId];
 
           return SizedBox(
@@ -1339,7 +1374,8 @@ class VaultPageState extends State<VaultPage> {
                         child: Center(
                           child: CardSurfaceArtwork(
                             label: displayIdentity.baseName,
-                            imageUrl: imageUrl,
+                            imageUrl: artwork.primaryImageUrl,
+                            fallbackImageUrl: artwork.fallbackImageUrl,
                             width: 88,
                             height: 118,
                             borderRadius: GvGridConstants.imageRadius,

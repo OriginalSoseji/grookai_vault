@@ -57,7 +57,8 @@ export function PublicCollectionGrid({
                 key={cardKey}
                 density={density}
                 imageSrc={card.image_url}
-                imageFallbackSrc={card.canonical_image_url}
+                imageFallbackSrc={card.image_fallback_urls?.[0] ?? card.canonical_image_url}
+                imageFallbackSources={card.image_fallback_urls?.slice(1)}
                 imageAlt={displayIdentity.display_name}
                 imageHref={cardHref}
                 imageFallbackLabel={displayIdentity.display_name}

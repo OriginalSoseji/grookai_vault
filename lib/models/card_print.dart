@@ -130,6 +130,29 @@ class CardPrint {
         representativeImageUrl: representativeImageUrl,
       );
 
+  /// Stable Grookai-owned artwork endpoint for this catalog identity.
+  ///
+  /// A selected printing is preferred when search resolved an exact variant;
+  /// otherwise the parent card identity remains the canonical boundary.
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(
+    _firstNonEmpty(<String?>[selectedPrintingGvId, printingGvId, gvId]),
+  );
+
+  /// Provider or legacy artwork retained strictly for an image-load failure.
+  String? get providerFallbackImageUrl {
+    final fallback = resolveDisplayImageUrl(
+      imageUrl: imageUrl,
+      imageAltUrl: imageAltUrl,
+      representativeImageUrl: representativeImageUrl,
+    );
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
+  /// Primary catalog artwork. Surfaces that support error fallbacks should
+  /// also pass [providerFallbackImageUrl] to `CardSurfaceArtwork`.
+  String? get catalogImageUrl =>
+      hostedImageUrl ?? displayImage ?? providerFallbackImageUrl;
+
   CardPrint copyWith({
     String? imageUrl,
     String? imageAltUrl,
@@ -241,6 +264,16 @@ class CardPrint {
       routeQuery: json['route_query']?.toString(),
     );
   }
+}
+
+String? _firstNonEmpty(Iterable<String?> values) {
+  for (final value in values) {
+    final normalized = (value ?? '').trim();
+    if (normalized.isNotEmpty) {
+      return normalized;
+    }
+  }
+  return null;
 }
 
 String? _jsonText(Map<String, dynamic> json, String snakeKey, String camelKey) {

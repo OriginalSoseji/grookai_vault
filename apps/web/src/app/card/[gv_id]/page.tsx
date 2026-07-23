@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { Suspense, type ComponentProps } from "react";
 import Link from "next/link";
 import CardZoomModal from "@/components/compare/CardZoomModal";
+import CardRouteLoading from "./CardRouteLoading";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
 import CompareTray from "@/components/compare/CompareTray";
 import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
@@ -20,7 +21,10 @@ import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CardPagePerformanceProbe from "@/components/performance/CardPagePerformanceProbe";
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
-import { normalizeCanonCardImageProxyUrl } from "@/lib/canon/canonImageProxy";
+import {
+  buildCanonCardImageProxyUrl,
+  normalizeCanonCardImageProxyUrl,
+} from "@/lib/canon/canonImageProxy";
 import {
   formatPublicJourneyCountsLine,
   getPublicCardJourneyCounts,
@@ -135,9 +139,23 @@ function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string
   return `https://images.pokemontcg.io/${encodeURIComponent(setCode)}/${encodeURIComponent(normalizedNumber)}_hires.png`;
 }
 
-function buildExactExternalImageFallback(primaryImageUrl: string | null | undefined, tcgdexExternalId?: string) {
-  if (primaryImageUrl?.trim()) return null;
+function buildExactExternalImageFallback(tcgdexExternalId?: string) {
   return buildTcgDexImageUrl(tcgdexExternalId);
+}
+
+function orderCardImageSources(
+  ...candidates: Array<string | null | undefined>
+) {
+  const sources: string[] = [];
+
+  for (const candidate of candidates) {
+    const normalized = normalizeCardImageUrl(candidate);
+    if (normalized && !sources.includes(normalized)) {
+      sources.push(normalized);
+    }
+  }
+
+  return sources;
 }
 
 function isCanonImageProxyUrl(value: string | null | undefined) {
@@ -297,7 +315,9 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
     includeCameos: false,
   });
   const siteOrigin = getSiteOrigin();
-  if (!card) return { title: "Card not found | Grookai Vault" };
+  if (!card) {
+    notFound();
+  }
   const displayIdentity = getDisplayPrintedIdentity(card);
   const displayName = resolveDisplayIdentity(card).display_name;
   const metadataImageUrl =
@@ -461,13 +481,15 @@ function RelatedPrintsSection({
           });
           const relatedVariantLabels = getVariantLabels(relatedCard, 2);
           const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
-          const relatedCardImageSrc =
-            normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
-          const relatedCardImageFallback =
-            normalizeCardImageUrl(relatedCard.display_image_fallback_url) ??
-            (relatedCard.display_image_kind === "exact"
-              ? buildExactExternalImageFallback(relatedCardImageSrc, relatedCard.tcgdex_external_id)
-              : null);
+          const [relatedCardImageSrc, ...relatedCardImageFallbacks] =
+            orderCardImageSources(
+              relatedCard.display_image_url ?? relatedCard.image_url,
+              relatedCard.display_image_fallback_url,
+              relatedCard.external_image_fallback_url,
+              relatedCard.display_image_kind === "exact"
+                ? buildExactExternalImageFallback(relatedCard.tcgdex_external_id)
+                : null,
+            );
           return (
             <Link
               key={relatedCard.gv_id}
@@ -478,7 +500,8 @@ function RelatedPrintsSection({
                 <div className="space-y-2">
                   <PublicCardImage
                     src={relatedCardImageSrc}
-                    fallbackSrc={relatedCardImageFallback ?? undefined}
+                    fallbackSrc={relatedCardImageFallbacks[0]}
+                    fallbackSources={relatedCardImageFallbacks.slice(1)}
                     alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
                     imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
                     fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
@@ -547,31 +570,24 @@ async function StreamedRelatedPrintsSection({
   return <RelatedPrintsSection relatedPrints={relatedPrints ?? []} compareCards={compareCards} />;
 }
 
-export default async function CardPage({
+async function CardPageContent({
   params,
   searchParams,
+  card,
+  cardLookupMs,
+  pageStartedAt,
 }: {
   params: { gv_id: string };
   searchParams?: CardPageSearchParams;
+  card: CardDetail;
+  cardLookupMs: number;
+  pageStartedAt: number;
 }) {
   const perfEnabled = isCardPagePerfEnabled(searchParams);
-  const pageStartedAt = performance.now();
-  const cardLookupStartedAt = performance.now();
-  const card = await getPublicCardByGvId(params.gv_id, {
-    includePricing: false,
-    includeRelatedPrints: false,
-    includeCameos: false,
-  });
-  const cardLookupMs = roundPerfMs(performance.now() - cardLookupStartedAt);
-  if (!card) notFound();
-
   const resolvedCard = card;
   const resolvedDisplayIdentity = resolveDisplayIdentity(resolvedCard);
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
-  if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
-    permanentRedirect(buildCardHref(card.gv_id, compareCardsParam, searchParams?.printing));
-  }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
   const siteOrigin = getSiteOrigin();
   const canonicalCardUrl = siteOrigin ? `${siteOrigin}/card/${resolvedCard.gv_id}` : undefined;
@@ -586,11 +602,21 @@ export default async function CardPage({
     .find((printing) => normalizeCardImageUrl(printing.display_image_url ?? printing.image_url));
   const defaultDisplayPrintingImageUrl =
     defaultDisplayPrintingWithImage?.display_image_url ?? defaultDisplayPrintingWithImage?.image_url ?? null;
+  const defaultDisplayPrintingHostedImageUrl = buildCanonCardImageProxyUrl(
+    defaultDisplayPrintingWithImage?.printing_gv_id,
+  );
   const selectedRoutePrintingImageUrl =
     selectedRoutePrinting?.display_image_url ?? selectedRoutePrinting?.image_url ?? null;
+  const selectedRoutePrintingHostedImageUrl = buildCanonCardImageProxyUrl(
+    selectedRoutePrinting?.printing_gv_id,
+  );
   const resolvedCardFallbackImageUrl = resolvedCard.display_image_url ?? resolvedCard.image_url ?? null;
   const selectedRoutePrintingUsesBaseImage = Boolean(
-    selectedRoutePrinting && !selectedRoutePrintingImageUrl && resolvedCardFallbackImageUrl,
+    selectedRoutePrinting &&
+      resolvedCardFallbackImageUrl &&
+      (selectedRoutePrintingHostedImageUrl
+        ? selectedRoutePrintingHostedImageUrl !== selectedRoutePrintingImageUrl
+        : !selectedRoutePrintingImageUrl),
   );
   const displayedImageTruthSource = selectedRoutePrintingUsesBaseImage
     ? {
@@ -606,22 +632,21 @@ export default async function CardPage({
       : resolvedCard;
   const resolvedCardImagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
   const pokemonTcgHiresImageUrl = buildPokemonTcgHiresImageUrl(resolvedCard);
-  const resolvedCardImageSrc =
-    normalizeCardImageUrl(
-      selectedRoutePrintingImageUrl ??
-        resolvedCardFallbackImageUrl ??
-        defaultDisplayPrintingImageUrl ??
-        pokemonTcgHiresImageUrl,
-    ) ??
-    undefined;
-  const resolvedCardImageFallback =
-    normalizeCardImageUrl(
-      defaultDisplayPrintingImageUrl ??
-        resolvedCardFallbackImageUrl,
-    ) ??
-    (resolvedCardImagePresentation.displayImageKind === "exact"
-      ? buildExactExternalImageFallback(resolvedCardImageSrc, resolvedCard.tcgdex_external_id)
-      : null);
+  const [resolvedCardImageSrc, ...resolvedCardImageFallbacks] =
+    orderCardImageSources(
+      selectedRoutePrintingHostedImageUrl,
+      resolvedCardFallbackImageUrl,
+      defaultDisplayPrintingHostedImageUrl,
+      selectedRoutePrintingImageUrl,
+      defaultDisplayPrintingImageUrl,
+      selectedRoutePrinting?.external_image_fallback_url,
+      resolvedCard.external_image_fallback_url,
+      defaultDisplayPrintingWithImage?.external_image_fallback_url,
+      pokemonTcgHiresImageUrl,
+      resolvedCardImagePresentation.displayImageKind === "exact"
+        ? buildExactExternalImageFallback(resolvedCard.tcgdex_external_id)
+        : null,
+    );
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -909,7 +934,7 @@ export default async function CardPage({
     collectorNumber: collectorNumberLine,
     displayName: resolvedDisplayIdentity.display_name,
     finishLabels,
-    imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallback, siteOrigin),
+    imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallbacks[0], siteOrigin),
     illustratorName,
     languageLabel: getCardLanguageLabel(resolvedCard.gv_id),
     printedName: resolvedDisplayIdentity.printed_name ?? undefined,
@@ -954,7 +979,8 @@ export default async function CardPage({
             <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
               <CardZoomModal
                 src={resolvedCardImageSrc}
-                fallbackSrc={resolvedCardImageFallback ?? undefined}
+                fallbackSrc={resolvedCardImageFallbacks[0]}
+                fallbackSources={resolvedCardImageFallbacks.slice(1)}
                 alt={getCardImageAltText(
                   resolvedDisplayIdentity.display_name,
                   displayedImageTruthSource,
@@ -1546,11 +1572,14 @@ function NearbyCardLink({
   compareCards: string[];
 }) {
   const imagePresentation = resolveCardImagePresentation(card);
-  const cardImageSrc = normalizeCardImageUrl(card.display_image_url ?? card.image_url) ?? undefined;
-  const cardImageFallback =
+  const [cardImageSrc, ...cardImageFallbacks] = orderCardImageSources(
+    card.display_image_url ?? card.image_url,
+    card.display_image_fallback_url,
+    card.external_image_fallback_url,
     card.display_image_kind === "exact"
-      ? buildExactExternalImageFallback(cardImageSrc, card.tcgdex_external_id)
-      : null;
+      ? buildExactExternalImageFallback(card.tcgdex_external_id)
+      : null,
+  );
   const displayIdentity = resolveDisplayIdentity(card);
   const directionLabel = direction === "previous" ? "Previous" : "Next";
   const directionArrow = direction === "previous" ? "←" : "→";
@@ -1563,7 +1592,8 @@ function NearbyCardLink({
       <div className="space-y-2">
         <PublicCardImage
           src={cardImageSrc}
-          fallbackSrc={cardImageFallback ?? undefined}
+          fallbackSrc={cardImageFallbacks[0]}
+          fallbackSources={cardImageFallbacks.slice(1)}
           alt={getCardImageAltText(displayIdentity.display_name, card)}
           imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
           fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -1626,5 +1656,43 @@ async function NearbyCardsSection({
         )}
       </div>
     </section>
+  );
+}
+
+export default async function CardPage({
+  params,
+  searchParams,
+}: {
+  params: { gv_id: string };
+  searchParams?: CardPageSearchParams;
+}) {
+  const pageStartedAt = performance.now();
+  const cardLookupStartedAt = performance.now();
+  const card = await getPublicCardByGvId(params.gv_id, {
+    includePricing: false,
+    includeRelatedPrints: false,
+    includeCameos: false,
+  });
+  const cardLookupMs = roundPerfMs(performance.now() - cardLookupStartedAt);
+  if (!card) {
+    notFound();
+  }
+
+  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
+  const compareCardsParam = buildCompareCardsParam(compareCards);
+  if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
+    permanentRedirect(buildCardHref(card.gv_id, compareCardsParam, searchParams?.printing));
+  }
+
+  return (
+    <Suspense fallback={<CardRouteLoading />}>
+      <CardPageContent
+        params={params}
+        searchParams={searchParams}
+        card={card}
+        cardLookupMs={cardLookupMs}
+        pageStartedAt={pageStartedAt}
+      />
+    </Suspense>
   );
 }

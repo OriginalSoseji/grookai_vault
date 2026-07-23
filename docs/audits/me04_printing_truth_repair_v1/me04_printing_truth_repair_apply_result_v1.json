@@ -1,0 +1,207 @@
+{
+  "package_id": "ME04-PRINTING-TRUTH-REPAIR-V1",
+  "mode": "guarded_apply_committed",
+  "started_at": "2026-07-22T23:44:29.589Z",
+  "ended_at": "2026-07-22T23:44:46.733Z",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "code_bundle": {
+    "files": [
+      {
+        "relative_path": "scripts/audits/me04_printing_truth_repair_v1.mjs",
+        "sha256": "53f13e16f1ab13a56aefd5609b53aefde0f690893559cae8c35e6b0b8afa5541"
+      },
+      {
+        "relative_path": "scripts/audits/me04_finish_truth_v1.mjs",
+        "sha256": "e76c5f9cf2ca9fb4b962fdc624fe34b635e54961e4f733148634365fee23bb84"
+      },
+      {
+        "relative_path": "scripts/audits/self_hosted_images_wh22_common.mjs",
+        "sha256": "8f8a0d126e8fb959fd88476c357d4703e736c480ca1656f539a505c77ea1a959"
+      }
+    ],
+    "hash": "911f1982fd618d333e8dbdeedf9f6498c6f970fd2d731c5b99272e9b3f7cc3b0"
+  },
+  "fingerprint": "fedb8bbde6ba39b5e0fa6054ca81c704daf3401d8c554650bbba622d86c8befb",
+  "plan_hash": "bf9cb5c785a643e540abb58b032bcf36f1520a34a387ad7ce64a9f6be467f9d8",
+  "mutation_contract_hash": "2bef60f54959e2edc43270150402eb5800a0ce71513d8c90dd4e4ece9932ae2b",
+  "dry_run_generated_at": "2026-07-22T23:44:08.667Z",
+  "execution": {
+    "started_at": "2026-07-22T23:44:29.589Z",
+    "ended_at": "2026-07-22T23:44:46.658Z",
+    "committed": true,
+    "before_state": {
+      "parent_count": 122,
+      "printing_count": 247,
+      "normal_count": 113,
+      "reverse_count": 76,
+      "holo_count": 58,
+      "other_finish_count": 0
+    },
+    "inside_transaction_after_state": {
+      "parent_count": 122,
+      "printing_count": 202,
+      "normal_count": 68,
+      "reverse_count": 76,
+      "holo_count": 58,
+      "other_finish_count": 0
+    },
+    "before_dependencies": {
+      "vault_item_instances": 0,
+      "external_printing_mappings": 0,
+      "card_printing_truth_reviews": 0,
+      "canon_warehouse_candidates": 0,
+      "market_assignment_fk_refs": 270,
+      "market_assignment_text_refs": 270
+    },
+    "inside_transaction_after_dependencies": {
+      "vault_item_instances": 0,
+      "external_printing_mappings": 0,
+      "card_printing_truth_reviews": 0,
+      "canon_warehouse_candidates": 0,
+      "market_assignment_fk_refs": 0,
+      "market_assignment_text_refs": 0
+    },
+    "assignments_updated": 270,
+    "children_deleted": 45,
+    "preserved_finish_states": {
+      "build_battle": [
+        {
+          "card_print_id": "6d75f988-1c09-4781-9731-af6c2e66f026",
+          "gv_id": "GV-PK-CRI-013",
+          "number": "013",
+          "name": "Delphox",
+          "finish_keys": [
+            "holo",
+            "normal",
+            "reverse"
+          ]
+        },
+        {
+          "card_print_id": "26844eb8-507f-477f-904f-baae6ec3bb68",
+          "gv_id": "GV-PK-CRI-029",
+          "number": "029",
+          "name": "Ampharos",
+          "finish_keys": [
+            "holo",
+            "normal",
+            "reverse"
+          ]
+        },
+        {
+          "card_print_id": "b4432089-42de-49f9-b37c-ce99a0025403",
+          "gv_id": "GV-PK-CRI-051",
+          "number": "051",
+          "name": "Crobat",
+          "finish_keys": [
+            "holo",
+            "normal",
+            "reverse"
+          ]
+        },
+        {
+          "card_print_id": "c379a507-1c03-4773-a4ee-b835e8ab8a11",
+          "gv_id": "GV-PK-CRI-068",
+          "number": "068",
+          "name": "Goodra",
+          "finish_keys": [
+            "holo",
+            "normal",
+            "reverse"
+          ]
+        }
+      ],
+      "representatives": [
+        {
+          "card_print_id": "5632ebcd-9237-4c27-8197-a49beb74f4ff",
+          "gv_id": "GV-PK-CRI-001",
+          "number": "001",
+          "name": "Weedle",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ]
+        },
+        {
+          "card_print_id": "69b72912-bd78-49d8-9993-aa9b22f8d8cf",
+          "gv_id": "GV-PK-CRI-003",
+          "number": "003",
+          "name": "Beedrill ex",
+          "finish_keys": [
+            "holo"
+          ]
+        },
+        {
+          "card_print_id": "8b2e2e93-daa0-49e6-ba81-4a4c8ad06c3b",
+          "gv_id": "GV-PK-CRI-109",
+          "number": "109",
+          "name": "Jumbo Ice Cream",
+          "finish_keys": [
+            "holo"
+          ]
+        },
+        {
+          "card_print_id": "4a055191-0338-4731-8a18-6bc0ef6209be",
+          "gv_id": "GV-PK-CRI-120",
+          "number": "120",
+          "name": "AZ's Tranquility",
+          "finish_keys": [
+            "holo"
+          ]
+        }
+      ]
+    }
+  },
+  "final_state": {
+    "parent_count": 122,
+    "printing_count": 202,
+    "normal_count": 68,
+    "reverse_count": 76,
+    "holo_count": 58,
+    "other_finish_count": 0
+  },
+  "child_backup_hash": "ae85f2254ca3e918408c936f858fa3493f496aa9e324b1e513ac5a176116a9e3",
+  "holo_sibling_hash": "7c465e56f7e84735118bd8f93c0f69906e731d109bf5870cb899064528437883",
+  "assignment_backup_hash": "34c87d50cb8fa96d71092266b41dcb4eb5f7c2ac093912eb2e7013a9ce9b17b2",
+  "batch_atomic": true,
+  "database_writes_performed": true,
+  "migrations_created": false,
+  "proof_hash": "038ddd4be5c07a02bbbea41049a2b8b276ad53f302b2fdfe9fc557d116b74c80"
+}

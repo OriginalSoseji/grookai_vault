@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/vault/slab_upgrade_service.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
 
 class SlabUpgradeScreen extends StatefulWidget {
@@ -14,6 +16,7 @@ class SlabUpgradeScreen extends StatefulWidget {
     required this.cardName,
     required this.setName,
     this.imageUrl,
+    this.fallbackImageUrl,
   });
 
   final String sourceInstanceId;
@@ -22,6 +25,7 @@ class SlabUpgradeScreen extends StatefulWidget {
   final String cardName;
   final String setName;
   final String? imageUrl;
+  final String? fallbackImageUrl;
 
   @override
   State<SlabUpgradeScreen> createState() => _SlabUpgradeScreenState();
@@ -191,6 +195,11 @@ class _SlabUpgradeScreenState extends State<SlabUpgradeScreen> {
     final colorScheme = theme.colorScheme;
     final verification = _verification;
     final gradeMismatch = _gradeMismatchMessage(verification);
+    final artwork = _slabUpgradeArtwork(
+      gvId: widget.gvId,
+      sourceImageUrl: widget.imageUrl,
+      providerFallbackImageUrl: widget.fallbackImageUrl,
+    );
     final canSubmit =
         !_verifying &&
         !_submitting &&
@@ -217,7 +226,8 @@ class _SlabUpgradeScreenState extends State<SlabUpgradeScreen> {
                 _HeroCard(
                   cardName: widget.cardName,
                   setName: widget.setName,
-                  imageUrl: widget.imageUrl,
+                  imageUrl: artwork.primaryImageUrl,
+                  fallbackImageUrl: artwork.fallbackImageUrl,
                 ),
                 const SizedBox(height: 16),
                 _SectionCard(
@@ -437,11 +447,13 @@ class _HeroCard extends StatelessWidget {
     required this.cardName,
     required this.setName,
     this.imageUrl,
+    this.fallbackImageUrl,
   });
 
   final String cardName;
   final String setName;
   final String? imageUrl;
+  final String? fallbackImageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -455,6 +467,7 @@ class _HeroCard extends StatelessWidget {
           CardSurfaceArtwork(
             label: cardName,
             imageUrl: imageUrl,
+            fallbackImageUrl: fallbackImageUrl,
             width: 96,
             height: 136,
             borderRadius: 14,
@@ -587,6 +600,38 @@ class _VerificationCard extends StatelessWidget {
       ),
     );
   }
+}
+
+CatalogArtworkResolution _slabUpgradeArtwork({
+  required String gvId,
+  required String? sourceImageUrl,
+  String? providerFallbackImageUrl,
+}) {
+  final normalizedSourceImageUrl = normalizeDisplayImageUrl(sourceImageUrl);
+  final normalizedProviderFallback = normalizeDisplayImageUrl(
+    providerFallbackImageUrl,
+  );
+  final catalogArtwork = resolveCatalogArtwork(
+    gvId: gvId,
+    providerImageUrl:
+        normalizedProviderFallback ??
+        (isCollectorUploadedCardImage(normalizedSourceImageUrl)
+            ? null
+            : normalizedSourceImageUrl),
+  );
+  final uploadedImageUrl =
+      isCollectorUploadedCardImage(normalizedSourceImageUrl)
+      ? normalizedSourceImageUrl
+      : null;
+
+  if (uploadedImageUrl == null) {
+    return catalogArtwork;
+  }
+
+  return CatalogArtworkResolution(
+    primaryImageUrl: uploadedImageUrl,
+    fallbackImageUrl: catalogArtwork.primaryImageUrl,
+  );
 }
 
 class _SectionCard extends StatelessWidget {

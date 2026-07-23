@@ -119,6 +119,25 @@ Required future-set statuses:
 
 Future sets may exist as incomplete working evidence, but they must not be presented as complete public Master Index sets until the completion gate passes.
 
+## Locked Set-Profile Gate
+
+Every staging, completion, publishable, action-plan, and write-readiness build must load and assert the applicable locked set profile before emitting output.
+
+A locked profile includes:
+
+- exact parent count;
+- exact total child-printing count;
+- exact counts by finish;
+- exact suppressed and forbidden facts;
+- exact protected facts and exceptions;
+- source evidence references and contract version.
+
+Count-only equality is insufficient: exact printing identities must also match. A failed profile produces a review artifact only. It must not emit a partial plan, invent a compensating finish, weaken the profile, or produce a downstream write package.
+
+Any separately approved executor must assert the same profile against its pinned plan and current live target rows immediately before the first mutation, then prove it again by post-commit readback. Drift requires rollback.
+
+The permanent ME04 profile is `122` parents, `202` printings, `68` Normal, `76` Reverse Holo, and `58` Holo, with the governed 45 false Normal facts excluded, four valid Build & Battle Normals preserved, and Normal forbidden for Holo-only `109 Jumbo Ice Cream`.
+
 ## Monthly Drift Detection
 
 Run a monthly Master Index drift pass.
@@ -301,6 +320,7 @@ Stop immediately if:
 - a source reset drops preserved evidence
 - API-only finish facts become master truth
 - exact finish truth is inferred from a general rule
+- a locked set profile is missing or fails exact identity, finish-count, suppression, or protected-fact assertions
 - conflicts appear
 - source gap queue increases without explanation
 - publishable count changes without checkpoint

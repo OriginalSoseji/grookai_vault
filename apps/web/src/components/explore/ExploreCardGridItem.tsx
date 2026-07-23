@@ -54,6 +54,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       utility={<CompareCardButton gvId={card.gv_id} variant="floating" />}
       imageSrc={card.display_image_url ?? card.image_url}
       imageFallbackSrc={card.display_image_fallback_url}
+      imageFallbackSources={[card.external_image_fallback_url]}
       imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
       imageHref={href}
       imagePrefetch={false}

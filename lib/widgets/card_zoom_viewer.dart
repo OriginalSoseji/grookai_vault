@@ -7,22 +7,29 @@ class CardZoomGalleryItem {
   const CardZoomGalleryItem({
     required this.label,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.onViewDetails,
     this.detailsLabel = 'View details',
   });
 
   final String label;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final VoidCallback? onViewDetails;
   final String detailsLabel;
 
   String get resolvedImageUrl => normalizeDisplayImageUrl(imageUrl) ?? '';
+  String get resolvedFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(fallbackImageUrl) ?? '';
+    return fallback == resolvedImageUrl ? '' : fallback;
+  }
 }
 
 Future<void> showCardImageZoom(
   BuildContext context, {
   required String label,
   String? imageUrl,
+  String? fallbackImageUrl,
   VoidCallback? onViewDetails,
   String detailsLabel = 'View details',
 }) async {
@@ -37,6 +44,7 @@ Future<void> showCardImageZoom(
       CardZoomGalleryItem(
         label: label,
         imageUrl: resolvedUrl,
+        fallbackImageUrl: fallbackImageUrl,
         onViewDetails: onViewDetails,
         detailsLabel: detailsLabel,
       ),
@@ -100,6 +108,7 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
   }
 
   void _precacheAround(int index) {
+    final cacheWidth = _zoomDecodeWidth(context);
     for (final targetIndex in <int>[index - 1, index, index + 1]) {
       if (targetIndex < 0 || targetIndex >= widget.items.length) {
         continue;
@@ -108,7 +117,14 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
       if (imageUrl.isEmpty) {
         continue;
       }
-      precacheImage(CachedNetworkImageProvider(imageUrl), context);
+      precacheImage(
+        ResizeImage.resizeIfNeeded(
+          cacheWidth,
+          null,
+          CachedNetworkImageProvider(imageUrl),
+        ),
+        context,
+      );
     }
   }
 
@@ -268,6 +284,8 @@ class _CardZoomPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final imageUrl = item.resolvedImageUrl;
+    final fallbackImageUrl = item.resolvedFallbackImageUrl;
+    final cacheWidth = _zoomDecodeWidth(context);
 
     return InteractiveViewer(
       minScale: 1,
@@ -311,25 +329,10 @@ class _CardZoomPage extends StatelessWidget {
                               ),
                         ),
                       )
-                    : CachedNetworkImage(
+                    : _CardZoomNetworkImage(
                         imageUrl: imageUrl,
-                        fit: BoxFit.contain,
-                        fadeInDuration: Duration.zero,
-                        fadeOutDuration: Duration.zero,
-                        filterQuality: FilterQuality.medium,
-                        placeholder: (context, url) => Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: colorScheme.primary.withValues(alpha: 0.5),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => Center(
-                          child: Icon(
-                            Icons.broken_image_outlined,
-                            size: 44,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                        ),
+                        fallbackImageUrl: fallbackImageUrl,
+                        cacheWidth: cacheWidth,
                       ),
               ),
             ),
@@ -338,6 +341,66 @@ class _CardZoomPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class _CardZoomNetworkImage extends StatelessWidget {
+  const _CardZoomNetworkImage({
+    required this.imageUrl,
+    required this.fallbackImageUrl,
+    required this.cacheWidth,
+  });
+
+  final String imageUrl;
+  final String fallbackImageUrl;
+  final int cacheWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget brokenImage() => Center(
+      child: Icon(
+        Icons.broken_image_outlined,
+        size: 44,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
+    );
+
+    Widget loading() => Center(
+      child: CircularProgressIndicator(
+        strokeWidth: 2,
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+      ),
+    );
+
+    CachedNetworkImage networkImage(
+      String url, {
+      required Widget Function() onError,
+    }) {
+      return CachedNetworkImage(
+        imageUrl: url,
+        fit: BoxFit.contain,
+        memCacheWidth: cacheWidth,
+        maxWidthDiskCache: cacheWidth,
+        fadeInDuration: Duration.zero,
+        fadeOutDuration: Duration.zero,
+        filterQuality: FilterQuality.medium,
+        placeholder: (context, url) => loading(),
+        errorWidget: (context, url, error) => onError(),
+      );
+    }
+
+    return networkImage(
+      imageUrl,
+      onError: () => fallbackImageUrl.isEmpty
+          ? brokenImage()
+          : networkImage(fallbackImageUrl, onError: brokenImage),
+    );
+  }
+}
+
+int _zoomDecodeWidth(BuildContext context) {
+  final mediaQuery = MediaQuery.of(context);
+  final logicalWidth = mediaQuery.size.width.clamp(1.0, 480.0);
+  return (logicalWidth * mediaQuery.devicePixelRatio).round().clamp(640, 1600);
 }
 
 class _GalleryArrowButton extends StatelessWidget {

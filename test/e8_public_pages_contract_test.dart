@@ -134,17 +134,14 @@ void main() {
     );
   });
 
-  test('Wall Open Graph image uses public Wall data only', () {
-    expect(wallOpenGraphImage, contains('ImageResponse'));
+  test('Wall Open Graph image validates the public profile and serves stable local artwork', () {
     expect(wallOpenGraphImage, contains('getPublicProfileBySlug'));
     expect(wallOpenGraphImage, contains('profile.vault_sharing_enabled'));
     expect(wallOpenGraphImage, contains('notFound();'));
-    expect(wallOpenGraphImage, contains('getPublicCollectorWallViewBySlug'));
-    expect(wallOpenGraphImage, contains('PUBLIC_WALL_SECTION_ID'));
-    expect(
-      wallOpenGraphImage,
-      contains('Public collector Wall on Grookai Vault'),
-    );
+    expect(wallOpenGraphImage, contains('grookai-logo-512.png'));
+    expect(wallOpenGraphImage, contains('new Response(new Uint8Array(image)'));
+    expect(wallOpenGraphImage, isNot(contains('from "next/og"')));
+    expect(wallOpenGraphImage, isNot(contains('getPublicCollectorWallViewBySlug')));
     expect(wallOpenGraphImage, isNot(contains('card_journey_collectors_v1')));
     expect(wallOpenGraphImage, isNot(contains('card_journey_moments_v1')));
   });

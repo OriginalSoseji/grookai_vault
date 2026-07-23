@@ -29,6 +29,13 @@ const smokeFetch = readFileSync(
   "utf8",
 );
 
+function stripSqlComments(sql) {
+  return sql
+    .split("\n")
+    .map((line) => line.replace(/--.*$/, ""))
+    .join("\n");
+}
+
 test("variant assignment schema is internal-only and source agnostic", () => {
   assert.match(assignmentMigration, /create table if not exists public\.market_evidence_variant_assignments/);
   assert.match(assignmentMigration, /source_family in \('market_reference', 'market_listing'\)/);
@@ -57,6 +64,19 @@ test("backfill assigns reference and listing evidence without public leakage", (
   assert.match(assignmentBackfill, /true,\s+false,\s+false,\s+false/);
   assert.match(assignmentBackfill, /source_rows\.normalized_finish_key = 'cosmos'/);
   assert.match(assignmentBackfill, /child\.finish_key = 'cracked_ice'/);
+});
+
+test("variant assignment backfill treats card_printings as read-only identity truth", () => {
+  const sql = stripSqlComments(assignmentBackfill);
+
+  assert.match(sql, /\bfrom\s+public\.card_printings\b/i);
+  assert.doesNotMatch(
+    sql,
+    /\b(?:insert\s+into|update|delete\s+from|merge\s+into|truncate(?:\s+table)?|alter\s+table|drop\s+table)\s+(?:only\s+)?(?:public\.)?card_printings\b/i,
+  );
+
+  const insertTargets = [...sql.matchAll(/\binsert\s+into\s+public\.([a-z0-9_]+)/gi)].map((match) => match[1]);
+  assert.deepEqual([...new Set(insertTargets)], ["market_evidence_variant_assignments"]);
 });
 
 test("cosmos alias repair only maps to cracked ice when no true cosmos child exists", () => {

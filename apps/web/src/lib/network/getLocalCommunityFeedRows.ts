@@ -1,7 +1,14 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import {
+  getCatalogImageSourcesByGvIdsV1,
+  orderCatalogImageSourcesV1,
+  type CatalogImageSourcesV1,
+} from "@/lib/canon/catalogImageSourcesV1";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
+import { isVaultInstanceMediaReference } from "@/lib/vaultInstanceMedia";
 
 type LocalDiscoverySettingRow = {
   local_discovery_enabled: boolean | null;
@@ -46,6 +53,7 @@ export type LocalCommunityFeedRow = {
   cardNumber: string;
   intent: string | null;
   imageUrl: string | null;
+  imageFallbackUrls: string[];
   displayImageKind: string;
   localityLabel: string;
   distanceBucket: "nearby" | "same_region";
@@ -54,6 +62,15 @@ export type LocalCommunityFeedRow = {
   matchReason: "viewer_wishlist" | null;
   createdAt: string | null;
   routeTarget: string;
+};
+
+type NearbyImageSourceRow = {
+  owner_slug: string | null;
+  gv_id: string | null;
+  intent: string | null;
+  display_image_url: string | null;
+  image_url: string | null;
+  image_display_mode?: string | null;
 };
 
 export type LocalCommunityFeedState =
@@ -119,21 +136,171 @@ function normalizeMatchReason(value: string | null | undefined): LocalCommunityF
   return normalizeText(value) === "viewer_wishlist" ? "viewer_wishlist" : null;
 }
 
-function normalizeRow(row: LocalCommunityFeedRpcRow): LocalCommunityFeedRow | null {
+function buildNearbyImageKey({
+  sourceType,
+  ownerSlug,
+  gvId,
+  intent,
+}: {
+  sourceType: "wall" | "stream";
+  ownerSlug: string;
+  gvId: string;
+  intent: string | null;
+}) {
+  return [
+    sourceType,
+    ownerSlug.trim().toLowerCase(),
+    gvId.trim(),
+    intent?.trim().toLowerCase() ?? "",
+  ].join("|");
+}
+
+async function getNearbyUploadedImageMap(
+  supabase: SupabaseClient,
+  rows: LocalCommunityFeedRpcRow[],
+) {
+  const ownerSlugs = Array.from(
+    new Set(
+      rows
+        .map((row) => normalizeText(row.owner_slug)?.toLowerCase())
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
+  const gvIds = Array.from(
+    new Set(
+      rows
+        .map((row) => normalizeText(row.gv_id))
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
+  const uploadedImageByKey = new Map<string, string>();
+  const requestedKeys = new Set(
+    rows.flatMap((row) => {
+      const ownerSlug = normalizeText(row.owner_slug);
+      const gvId = normalizeText(row.gv_id);
+      if (!ownerSlug || !gvId) {
+        return [];
+      }
+
+      return [
+        buildNearbyImageKey({
+          sourceType:
+            normalizeSourceType(row.source_type) === "wall_card"
+              ? "wall"
+              : "stream",
+          ownerSlug,
+          gvId,
+          intent: normalizeText(row.intent),
+        }),
+      ];
+    }),
+  );
+  if (ownerSlugs.length === 0 || gvIds.length === 0) {
+    return uploadedImageByKey;
+  }
+
+  const [wallResult, streamResult] = await Promise.all([
+    supabase
+      .from("v_wall_cards_v1")
+      .select(
+        "owner_slug,gv_id,intent,display_image_url,image_url,image_display_mode,created_at",
+      )
+      .in("owner_slug", ownerSlugs)
+      .in("gv_id", gvIds)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("v_card_stream_v1")
+      .select("owner_slug,gv_id,intent,display_image_url,image_url,created_at")
+      .in("owner_slug", ownerSlugs)
+      .in("gv_id", gvIds)
+      .order("created_at", { ascending: false }),
+  ]);
+
+  const candidates = [
+    ...((wallResult.error ? [] : wallResult.data ?? []) as NearbyImageSourceRow[]).map(
+      (row) => ({ sourceType: "wall" as const, row }),
+    ),
+    ...((streamResult.error ? [] : streamResult.data ?? []) as NearbyImageSourceRow[]).map(
+      (row) => ({ sourceType: "stream" as const, row }),
+    ),
+  ];
+
+  const uploadedReferenceByKey = new Map<string, string>();
+  for (const { sourceType, row } of candidates) {
+    const ownerSlug = normalizeText(row.owner_slug);
+    const gvId = normalizeText(row.gv_id);
+    const rawImageUrl =
+      normalizeText(row.display_image_url) ?? normalizeText(row.image_url);
+    const isUploaded =
+      sourceType === "wall"
+        ? normalizeText(row.image_display_mode)?.toLowerCase() === "uploaded" &&
+          isVaultInstanceMediaReference(rawImageUrl)
+        : isVaultInstanceMediaReference(rawImageUrl);
+    if (!ownerSlug || !gvId || !rawImageUrl || !isUploaded) {
+      continue;
+    }
+
+    const key = buildNearbyImageKey({
+      sourceType,
+      ownerSlug,
+      gvId,
+      intent: normalizeText(row.intent),
+    });
+    if (requestedKeys.has(key) && !uploadedReferenceByKey.has(key)) {
+      uploadedReferenceByKey.set(key, rawImageUrl);
+    }
+  }
+
+  await Promise.all(
+    [...uploadedReferenceByKey.entries()].map(async ([key, imageReference]) => {
+      const resolvedImageUrl = await resolveVaultInstanceMediaUrl(imageReference);
+      if (resolvedImageUrl) {
+        uploadedImageByKey.set(key, resolvedImageUrl);
+      }
+    }),
+  );
+
+  return uploadedImageByKey;
+}
+
+function normalizeRow(
+  row: LocalCommunityFeedRpcRow,
+  catalogImageSourcesByGvId: Map<string, CatalogImageSourcesV1>,
+  uploadedImageByKey: Map<string, string>,
+): LocalCommunityFeedRow | null {
   const feedItemId = normalizeText(row.feed_item_id);
   const ownerSlug = normalizeText(row.owner_slug);
   const ownerDisplayName = normalizeText(row.owner_display_name);
   const gvId = normalizeText(row.gv_id);
   const routeTarget = normalizeText(row.route_target);
   const distanceBucket = normalizeDistanceBucket(row.distance_bucket);
+  const sourceType = normalizeSourceType(row.source_type);
 
   if (!feedItemId || !ownerSlug || !ownerDisplayName || !gvId || !routeTarget || !distanceBucket) {
     return null;
   }
 
+  const uploadedImageUrl = uploadedImageByKey.get(
+    buildNearbyImageKey({
+      sourceType: sourceType === "wall_card" ? "wall" : "stream",
+      ownerSlug,
+      gvId,
+      intent: normalizeText(row.intent),
+    }),
+  );
+  const catalogImageSources = catalogImageSourcesByGvId.get(gvId);
+  const imageSources = orderCatalogImageSourcesV1({
+    imageDisplayMode: uploadedImageUrl ? "uploaded" : "canonical",
+    uploadedImageUrl,
+    hostedImageUrl: catalogImageSources?.hostedImageUrl,
+    providerImageUrl:
+      catalogImageSources?.providerImageUrl ??
+      (uploadedImageUrl ? null : normalizeText(row.image_url)),
+  });
+
   return {
     feedItemId,
-    sourceType: normalizeSourceType(row.source_type),
+    sourceType,
     ownerSlug,
     ownerDisplayName,
     ownerAvatarPath: normalizeText(row.owner_avatar_path),
@@ -143,7 +310,8 @@ function normalizeRow(row: LocalCommunityFeedRpcRow): LocalCommunityFeedRow | nu
     setName: normalizeText(row.set_name) ?? normalizeText(row.set_code) ?? "Unknown set",
     cardNumber: normalizeText(row.card_number) ?? "—",
     intent: normalizeText(row.intent),
-    imageUrl: normalizeText(row.image_url),
+    imageUrl: imageSources[0] ?? null,
+    imageFallbackUrls: imageSources.slice(1),
     displayImageKind: normalizeText(row.display_image_kind) ?? "missing",
     localityLabel: normalizeText(row.locality_label) ?? (distanceBucket === "nearby" ? "Nearby" : "Same region"),
     distanceBucket,
@@ -195,8 +363,24 @@ export async function getLocalCommunityFeedRows({
       throw new Error(error.message);
     }
 
-    const rows = ((data ?? []) as LocalCommunityFeedRpcRow[])
-      .map(normalizeRow)
+    const sourceRows = (data ?? []) as LocalCommunityFeedRpcRow[];
+    const [catalogImageSourcesByGvId, uploadedImageByKey] = await Promise.all([
+      getCatalogImageSourcesByGvIdsV1(
+        supabase,
+        sourceRows
+          .map((row) => row.gv_id)
+          .filter((value): value is string => Boolean(value?.trim())),
+      ),
+      getNearbyUploadedImageMap(supabase, sourceRows),
+    ]);
+    const rows = sourceRows
+      .map((row) =>
+        normalizeRow(
+          row,
+          catalogImageSourcesByGvId,
+          uploadedImageByKey,
+        ),
+      )
       .filter((row): row is LocalCommunityFeedRow => row !== null);
 
     return { status: "ready", rows, setting };

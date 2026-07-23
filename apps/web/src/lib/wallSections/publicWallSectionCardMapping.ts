@@ -2,6 +2,10 @@ import {
   normalizeDiscoverableVaultIntent,
   type DiscoverableVaultIntent,
 } from "@/lib/network/intent";
+import {
+  orderCatalogImageSourcesV1,
+  type CatalogImageSourcesV1,
+} from "@/lib/canon/catalogImageSourcesV1";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import type {
   PublicInPlayCopy,
@@ -9,6 +13,7 @@ import type {
 } from "@/lib/sharedCards/publicWall.shared";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { isVaultInstanceMediaStoragePath } from "@/lib/vaultInstanceMedia";
+import { normalizeVaultInstanceImageDisplayMode } from "@/lib/vaultInstanceImageDisplay";
 
 export type PublicWallCardViewRow = {
   instance_id?: string | null;
@@ -104,6 +109,9 @@ function toPublicInPlayCopy(
     gv_vi_id: normalizeOptionalText(row.gv_vi_id) ?? undefined,
     vault_item_id: normalizeOptionalText(row.vault_item_id) ?? "",
     intent,
+    image_display_mode:
+      normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ??
+      undefined,
     condition_label: normalizeOptionalText(row.condition_label) ?? undefined,
     is_graded: normalizeBoolean(row.is_graded),
     grade_company: normalizeOptionalText(row.grade_company) ?? undefined,
@@ -115,6 +123,7 @@ function toPublicInPlayCopy(
 
 async function toBasePublicWallCard(
   row: PublicWallCardViewRow,
+  catalogImageSourcesByCardPrintId: Map<string, CatalogImageSourcesV1>,
 ): Promise<PublicWallCard | null> {
   const cardPrintId = normalizeOptionalText(row.card_print_id);
   const gvId = normalizeOptionalText(row.gv_id);
@@ -122,7 +131,21 @@ async function toBasePublicWallCard(
     return null;
   }
 
-  const displayImageUrl = await getDisplayImageUrl(row);
+  const viewDisplayImageUrl = await getDisplayImageUrl(row);
+  const imageDisplayMode =
+    normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ??
+    "canonical";
+  const catalogImageSources = catalogImageSourcesByCardPrintId.get(cardPrintId);
+  const imageSources = orderCatalogImageSourcesV1({
+    imageDisplayMode,
+    uploadedImageUrl:
+      imageDisplayMode === "uploaded" ? viewDisplayImageUrl : null,
+    hostedImageUrl: catalogImageSources?.hostedImageUrl,
+    providerImageUrl:
+      catalogImageSources?.providerImageUrl ??
+      (imageDisplayMode === "canonical" ? viewDisplayImageUrl : null),
+  });
+  const displayImageUrl = imageSources[0];
 
   return {
     card_print_id: cardPrintId,
@@ -136,13 +159,14 @@ async function toBasePublicWallCard(
       undefined,
     number: normalizeOptionalText(row.number) ?? "—",
     image_url: displayImageUrl,
-    canonical_image_url: displayImageUrl,
+    canonical_image_url: catalogImageSources?.hostedImageUrl ?? undefined,
+    image_fallback_urls: imageSources.slice(1),
+    image_display_mode: imageDisplayMode,
     representative_image_url:
       normalizeOptionalText(row.representative_image_url) ?? undefined,
     image_status: normalizeOptionalText(row.image_status) ?? undefined,
     image_note: normalizeOptionalText(row.image_note) ?? undefined,
-    display_image_url:
-      (await resolvePublicImageValue(row.display_image_url)) ?? displayImageUrl,
+    display_image_url: displayImageUrl,
     display_image_kind: normalizeOptionalText(row.display_image_kind),
     back_image_url:
       (await resolvePublicImageValue(row.image_back_url)) ?? undefined,
@@ -154,11 +178,18 @@ async function toBasePublicWallCard(
 
 export async function mapSectionCardRowsToPublicWallCards(
   rows: PublicWallCardViewRow[],
+  catalogImageSourcesByCardPrintId = new Map<
+    string,
+    CatalogImageSourcesV1
+  >(),
 ): Promise<PublicWallCard[]> {
   const cards: PublicWallCard[] = [];
 
   for (const row of rows) {
-    const card = await toBasePublicWallCard(row);
+    const card = await toBasePublicWallCard(
+      row,
+      catalogImageSourcesByCardPrintId,
+    );
     if (!card) {
       continue;
     }
@@ -201,11 +232,18 @@ export async function mapSectionCardRowsToPublicWallCards(
 
 export async function mapWallCardRowsToPublicWallCards(
   rows: PublicWallCardViewRow[],
+  catalogImageSourcesByCardPrintId = new Map<
+    string,
+    CatalogImageSourcesV1
+  >(),
 ): Promise<PublicWallCard[]> {
   const grouped = new Map<string, PublicWallCard>();
 
   for (const row of rows) {
-    const card = await toBasePublicWallCard(row);
+    const card = await toBasePublicWallCard(
+      row,
+      catalogImageSourcesByCardPrintId,
+    );
     const intent = normalizeDiscoverableVaultIntent(row.intent);
     if (!card || !intent) {
       continue;
@@ -281,6 +319,8 @@ export async function mapWallCardRowsToPublicWallCards(
       existing.vault_item_id = card.vault_item_id;
       existing.image_url = card.image_url;
       existing.canonical_image_url = card.canonical_image_url;
+      existing.image_fallback_urls = card.image_fallback_urls;
+      existing.image_display_mode = card.image_display_mode;
       existing.representative_image_url = card.representative_image_url;
       existing.image_status = card.image_status;
       existing.image_note = card.image_note;

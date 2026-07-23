@@ -135,6 +135,14 @@ stamped
 
 Unknown marketplace variants, signatures, jumbo rows, or product-specific labels must not become canonical finish truth by default. They must be ignored or held for manual review until a governed finish mapping exists.
 
+### CardTrader Fail-Closed Rule
+
+CardTrader blueprint rows may emit `normal` only when an explicit governed variant descriptor says `Normal` or `Non-Holo`. An unqualified rarity or product row, including `Ultra Rare`, is unknown finish evidence and emits no printing fact. Absence of Holo, Reverse, stamp, or other tokens is never proof of Normal.
+
+Explicit governed Holo, Reverse Holo, stamped, parallel, and edition descriptors may continue through their exact adapters. Unknown or conflicting labels remain manual-review evidence.
+
+Legacy generated CardTrader fixtures remain immutable audit evidence, but the fixture loader must downgrade any CardTrader `normal` record whose evidence label lacks an explicit Normal/Non-Holo descriptor to exact card/source evidence with unknown finish. It emits no printing fact. A historical derived label cannot bypass the repaired source adapter during rebuild.
+
 ### Promo Family Fail-Closed Rule
 
 Black Star Promo finish truth is product-specific. A structured source may support card identity for promo families, but a single structured `normal` claim must not create canonical promo finish truth.
@@ -161,7 +169,9 @@ retain the excluded row in an audit report
 avoid treating the exclusion as Grookai deletion authority
 ```
 
-This rule applies only to single-source structured finish claims. Multi-source structured agreement, human/checklist-supported finishes, conflicts, and product-specific variants must remain visible for review.
+This rule normally applies to single-source structured finish claims. Multi-source structured agreement, human/checklist-supported finishes, conflicts, and product-specific variants must remain visible for review unless an explicit reviewed-suppression fixture proves that the agreeing sources expose taxonomy or transport metadata rather than physical finish truth and exact card-level checklists contradict the claimed finish.
+
+An explicit reviewed suppression must preserve every source claim, the contradicting exact checklist evidence, the reviewer rationale, retrieval timestamp, and stable fixture reference. It excludes the claim from working Master Index truth; it does not erase evidence or authorize a Grookai deletion.
 
 ### Marketplace Bridge Rule
 
@@ -258,6 +268,27 @@ masterball
 ```
 
 as not applicable.
+
+### Locked Chaos Rising / ME04 Finish Profile
+
+The aliases `me04` and `me4` resolve to one locked Chaos Rising profile:
+
+```text
+expected_parent_count = 122
+expected_printing_count = 202
+normal = 68
+reverse = 76
+holo = 58
+```
+
+The profile additionally requires:
+
+- exclusion of the exact 45 historical false Normal facts declared by `docs/audits/verified_master_set_index_v1/source_fixtures/generated_me04_finish_governance_v1/me04.json`;
+- preservation of valid Build & Battle Normal printings `013 Delphox`, `029 Ampharos`, `051 Crobat`, and `068 Goodra`;
+- Holo-only treatment for `109 Jumbo Ice Cream`; a Normal fact is forbidden;
+- exact identity equality, not only aggregate-count equality.
+
+The executable authority is `scripts/audits/me04_finish_truth_v1.mjs`. Any ME04 source, staging, completion, or publishable build that drifts from this profile is `conflict_blocked` or incomplete and must emit no publishable replacement.
 
 ## Candidate And Conflict Rule
 

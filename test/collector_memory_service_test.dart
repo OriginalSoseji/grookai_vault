@@ -81,6 +81,69 @@ void main() {
     },
   );
 
+  test(
+    'owner memory feed batch-enriches GV-ID and raw provider fallback',
+    () async {
+      const cardPrintId = '44444444-4444-4444-4444-444444444444';
+      var catalogLookupCalls = 0;
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memories_for_owner_v1');
+          return <Map<String, dynamic>>[
+            <String, dynamic>{
+              'id': memoryId,
+              'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+              'gv_vi_id': gvviId,
+              'card_print_id': cardPrintId,
+              'card_name': 'Pikachu',
+              'set_name': 'Promo',
+              'card_image_url': 'https://legacy.example.test/pikachu.webp',
+              'memory_type': 'note',
+            },
+            <String, dynamic>{
+              'id': '55555555-5555-5555-5555-555555555555',
+              'vault_item_instance_id': '66666666-6666-6666-6666-666666666666',
+              'gv_vi_id': 'GVVI-456',
+              'card_print_id': cardPrintId,
+              'card_name': 'Pikachu',
+              'set_name': 'Promo',
+              'memory_type': 'first',
+            },
+          ];
+        },
+        catalogLookup: (cardPrintIds) async {
+          catalogLookupCalls += 1;
+          expect(cardPrintIds, <String>[cardPrintId]);
+          return <Map<String, dynamic>>[
+            <String, dynamic>{
+              'id': cardPrintId,
+              'gv_id': 'GV-PK-TEST-001',
+              'image_url': 'https://images.pokemontcg.io/test/001_hires.png',
+              'image_alt_url': 'https://assets.tcgdex.net/test/001/high.webp',
+            },
+          ];
+        },
+      );
+
+      final memories = await service.loadOwnerMemories();
+
+      expect(catalogLookupCalls, 1);
+      expect(memories, hasLength(2));
+      for (final memory in memories) {
+        expect(memory.gvId, 'GV-PK-TEST-001');
+        expect(
+          memory.cardImageUrl,
+          'https://images.pokemontcg.io/test/001_hires.png',
+        );
+        expect(
+          Uri.parse(memory.catalogArtwork.primaryImageUrl!).path,
+          '/api/canon/cards/GV-PK-TEST-001/image',
+        );
+        expect(memory.catalogArtwork.fallbackImageUrl, isNotNull);
+      }
+    },
+  );
+
   test('create memory calls the owner-only RPC and parses the row', () async {
     final service = CollectorMemoryService(
       rpc: (functionName, {params}) async {

@@ -8,6 +8,10 @@ import {
   normalizeNumber,
   normalizeText,
 } from './verified_master_set_index_v1/shared.mjs';
+import {
+  applyMe04FinishTruthV1,
+  assertMe04FinishTruthV1,
+} from './me04_finish_truth_v1.mjs';
 
 const SET_KEY = 'me04';
 const SET_NAME = 'Chaos Rising';
@@ -42,8 +46,10 @@ function mdEscape(value) {
 
 async function readMasterPrintings() {
   const artifact = await readJson(path.join(MASTER_DIR, 'english_master_index_printings_v1.json'));
-  return (artifact.printings ?? [])
-    .filter((row) => row.set_key === SET_KEY)
+  const rawRows = (artifact.printings ?? []).filter((row) => row.set_key === SET_KEY);
+  const { retained } = applyMe04FinishTruthV1(rawRows);
+  assertMe04FinishTruthV1(retained, 'Chaos Rising child-printing input');
+  return retained
     .sort((left, right) => (
       normalizeNumber(left.card_number).localeCompare(normalizeNumber(right.card_number), undefined, { numeric: true }) ||
       normalizeText(left.card_name).localeCompare(normalizeText(right.card_name)) ||

@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
 
@@ -453,22 +454,23 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     final name = (c['name'] ?? '').toString();
                     final setCode = (c['set_code'] ?? '').toString();
                     final number = (c['number'] ?? '').toString();
-                    final image = normalizeDisplayImageUrl(c['image_url']) ?? '';
+                    final artwork = resolveCatalogArtwork(
+                      gvId: c['gv_id'] ?? c['gvid'],
+                      providerImageUrl: c['image_url'] ?? c['image_best'],
+                    );
                     final selected = _selectedIndex == index;
                     return ListTile(
-                      leading: image.isNotEmpty
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(6),
-                              child: Image.network(
-                                image,
-                                width: 44,
-                                height: 60,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    const Icon(Icons.style),
-                              ),
-                            )
-                          : const Icon(Icons.style),
+                      leading: CardSurfaceArtwork(
+                        label: name.isEmpty ? 'Candidate' : name,
+                        imageUrl: artwork.primaryImageUrl,
+                        fallbackImageUrl: artwork.fallbackImageUrl,
+                        width: 44,
+                        height: 60,
+                        borderRadius: 6,
+                        padding: EdgeInsets.zero,
+                        enableTapToZoom: false,
+                        showShadow: false,
+                      ),
                       title: Text(name.isEmpty ? 'Candidate' : name),
                       subtitle: Text(
                         [

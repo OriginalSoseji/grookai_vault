@@ -57,6 +57,7 @@ export type FeaturedExploreCard = {
   image_source?: string;
   display_image_url?: string;
   display_image_fallback_url?: string;
+  external_image_fallback_url?: string;
   display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
 };
 
@@ -122,6 +123,8 @@ async function normalizeFeaturedExploreCard(
       undefined,
     display_image_fallback_url:
       childDisplayImageFallback?.display_image_url ?? undefined,
+    external_image_fallback_url:
+      imageFields.external_image_fallback_url ?? undefined,
     display_image_kind: fallbackDisplayImage
       ? fallbackDisplayImage.display_image_kind
       : imageFields.display_image_kind,

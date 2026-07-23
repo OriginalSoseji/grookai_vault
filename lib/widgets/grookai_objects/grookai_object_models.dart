@@ -8,10 +8,12 @@ class CardObjectRef {
   final String cardName;
   final String setLine; // e.g. "Evolving Skies · Secret Rare"
   final String? cardImageUrl;
+  final String? cardImageFallbackUrl;
   const CardObjectRef({
     required this.cardName,
     required this.setLine,
     this.cardImageUrl,
+    this.cardImageFallbackUrl,
   });
 }
 
@@ -53,6 +55,7 @@ class MemoryCardData {
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
         cardImageUrl: f['cardImageUrl'] as String?,
+        cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
       listingNo: f['listingNo'] as String,
       date: DateTime.parse(f['date'] as String),
@@ -67,6 +70,7 @@ class MemoryCardData {
     'cardName': card.cardName,
     'setLine': card.setLine,
     'cardImageUrl': card.cardImageUrl,
+    'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
     'date': date.toIso8601String(),
     'location': location,
@@ -117,6 +121,7 @@ class SaleListingData {
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
         cardImageUrl: f['cardImageUrl'] as String?,
+        cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
       listingNo: f['listingNo'] as String,
       price: (f['price'] as num).toDouble(),
@@ -134,6 +139,7 @@ class SaleListingData {
     'cardName': card.cardName,
     'setLine': card.setLine,
     'cardImageUrl': card.cardImageUrl,
+    'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
     'price': price,
     'firm': firm,
@@ -152,11 +158,13 @@ class LotItem {
   final String condition;
   final double price;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   const LotItem({
     required this.cardName,
     required this.condition,
     required this.price,
     this.imageUrl,
+    this.fallbackImageUrl,
   });
 
   factory LotItem.fromFields(Map<String, dynamic> f) => LotItem(
@@ -164,6 +172,7 @@ class LotItem {
     condition: f['condition'] as String,
     price: (f['price'] as num).toDouble(),
     imageUrl: f['imageUrl'] as String?,
+    fallbackImageUrl: f['fallbackImageUrl'] as String?,
   );
 
   Map<String, dynamic> toFields() => {
@@ -171,6 +180,7 @@ class LotItem {
     'condition': condition,
     'price': price,
     'imageUrl': imageUrl,
+    'fallbackImageUrl': fallbackImageUrl,
   };
 }
 

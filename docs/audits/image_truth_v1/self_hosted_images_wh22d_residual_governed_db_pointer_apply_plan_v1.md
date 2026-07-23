@@ -1,0 +1,23 @@
+# IMG-HOST-WH-22D-RESIDUAL-GOVERNED-DB-POINTER-APPLY
+
+- Generated: 2026-07-22T22:22:12.534Z
+- Mode: plan_only
+- Approval fingerprint: `ba3fc47ec7c3e18fadcd84b51d921fce270d32c12fda4913b92e7fc67fa4753f`
+- Pointer plan hash: `3e96ea174e2c11659c356893654185bf6d0a844f3d2fe71b25e6097a4e294efd`
+- Mutation contract hash: `cab3fa77e4dff8fad5475752488a2135092d7b9f432c813bd55b18f51f4fa679`
+- Code bundle hash: `3a75a1ef88bf1c87d148758328ef7b7055a7bb8cb8d4e3ebac658768a411e668`
+- Supabase project: `ycdxbpibncqcchqiihfz`
+- Parent-row mappings: 24
+- Unique assets: 21
+- Guarded pointer updates planned: 0
+- Already-applied no-ops: 24
+- Transport: postgres_tls_pre_auth_leaf_and_spki_pin
+- Batch atomic: true
+- Atomicity limitation: none
+- Failure recovery: database_transaction_rollback
+- Planned columns: card_prints.image_source, card_prints.image_path, card_prints.image_status, card_prints.image_url, card_prints.representative_image_url
+- Ready for apply: true
+- Stop findings: none
+- Database writes performed: false
+- Storage writes performed: false
+- Migrations created: false

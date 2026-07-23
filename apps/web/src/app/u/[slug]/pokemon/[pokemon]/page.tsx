@@ -29,28 +29,30 @@ export async function generateMetadata({
   const pokemonLabel = formatPokemonSlugLabel(params.pokemon);
 
   if (!profile || !profile.vault_sharing_enabled || !normalizePokemonSlug(params.pokemon)) {
-    return {
-      title: "Collection not found | Grookai Vault",
-    };
+    notFound();
+  }
+
+  const sharedCards = await getSharedCardsBySlug(profile.slug);
+  const matchingCards = filterSharedCardsByPokemonSlug(sharedCards, params.pokemon);
+  if (matchingCards.length === 0) {
+    notFound();
   }
 
   const siteOrigin = getSiteOrigin();
+  const canonicalPokemonSlug = normalizePokemonSlug(params.pokemon).replace(/\s+/g, "-");
+  const canonicalUrl = `${siteOrigin}/u/${profile.slug}/pokemon/${encodeURIComponent(canonicalPokemonSlug)}`;
   const title = `${profile.display_name}'s ${pokemonLabel} Collection | Grookai Vault`;
   const description = `${profile.display_name}'s ${pokemonLabel} collection on Grookai.`;
 
   return {
     title,
     description,
-    alternates: siteOrigin
-      ? {
-          canonical: `${siteOrigin}/u/${profile.slug}/pokemon/${params.pokemon}`,
-        }
-      : undefined,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
       description,
       type: "website",
-      url: siteOrigin ? `${siteOrigin}/u/${profile.slug}/pokemon/${params.pokemon}` : undefined,
+      url: canonicalUrl,
     },
     twitter: {
       card: "summary",
@@ -79,6 +81,10 @@ export default async function PublicPokemonCollectionPage({
   ]);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const matchingCards = filterSharedCardsByPokemonSlug(sharedCards, params.pokemon);
+  if (matchingCards.length === 0) {
+    notFound();
+  }
+
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
     matchingCards.length > 0

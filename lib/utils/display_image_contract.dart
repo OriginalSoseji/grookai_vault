@@ -19,8 +19,8 @@ String? normalizeDisplayImageUrl(
     return null;
   }
 
-  final resolved = _unwrapGrookaiOptimizedImageUrl(
-    _resolveGrookaiRelativeUrl(normalized),
+  final resolved = _normalizeTcgdexAssetUrl(
+    _unwrapGrookaiOptimizedImageUrl(_resolveGrookaiRelativeUrl(normalized)),
   );
   final parsed = Uri.tryParse(resolved);
   if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
@@ -60,6 +60,32 @@ String? normalizeWarehouseDisplayImagePath(dynamic value) {
       .toString();
 }
 
+String? buildCanonicalCardImageUrl(dynamic gvId) {
+  final normalized = (gvId ?? '').toString().trim().toUpperCase();
+  if (normalized.isEmpty ||
+      normalized.length > 96 ||
+      !RegExp(r'^GV-[A-Z0-9-]+$').hasMatch(normalized)) {
+    return null;
+  }
+
+  return Uri.parse(grookaiWebBaseUrl)
+      .resolve('/api/canon/cards/${Uri.encodeComponent(normalized)}/image')
+      .toString();
+}
+
+String? buildHostedSetLogoUrl(dynamic setCode) {
+  final normalized = (setCode ?? '').toString().trim().toLowerCase();
+  if (normalized.isEmpty ||
+      normalized.length > 64 ||
+      !RegExp(r'^[a-z0-9.-]+$').hasMatch(normalized)) {
+    return null;
+  }
+
+  return Uri.parse(
+    grookaiWebBaseUrl,
+  ).resolve('/set-logos/${Uri.encodeComponent(normalized)}.png').toString();
+}
+
 String _resolveGrookaiRelativeUrl(String value) {
   if (!value.startsWith('/')) {
     return value;
@@ -85,12 +111,55 @@ String _unwrapGrookaiOptimizedImageUrl(String value) {
   return current;
 }
 
+String _normalizeTcgdexAssetUrl(String value) {
+  final parsed = Uri.tryParse(value);
+  if (parsed == null ||
+      parsed.host.toLowerCase() != 'assets.tcgdex.net' ||
+      !parsed.path.startsWith('/en/')) {
+    return value;
+  }
+
+  final isSizedCardAsset = RegExp(
+    r'/(?:low|high)\.(?:webp|png|jpe?g)$',
+    caseSensitive: false,
+  ).hasMatch(parsed.path);
+  final isExplicitNonSizedAsset =
+      !isSizedCardAsset &&
+      RegExp(
+        r'\.(?:webp|png|jpe?g|gif|svg)$',
+        caseSensitive: false,
+      ).hasMatch(parsed.path);
+  if (isExplicitNonSizedAsset) {
+    return value;
+  }
+
+  final basePath = parsed.path
+      .replaceFirst(
+        RegExp(r'/(?:low|high)\.(?:webp|png|jpe?g)$', caseSensitive: false),
+        '',
+      )
+      .replaceFirst(RegExp(r'/+$'), '');
+  return parsed.replace(path: '$basePath/high.webp').toString();
+}
+
 String _nativeSafeCardImageUrl(
   Uri parsed,
   String originalUrl, {
   int? width,
   int quality = 85,
 }) {
+  if (_isGrookaiCanonCardImage(parsed) && width != null) {
+    final relativeUrl = Uri(
+      path: parsed.path,
+      query: parsed.hasQuery ? parsed.query : null,
+    ).toString();
+    return _grookaiOptimizedImageUrl(
+      relativeUrl,
+      width: width,
+      quality: quality,
+    );
+  }
+
   if (_isGrookaiOptimizedImage(parsed)) {
     return _grookaiOptimizedImageUrl(
       parsed.queryParameters['url'] ?? originalUrl,
@@ -104,6 +173,11 @@ String _nativeSafeCardImageUrl(
   }
 
   return _grookaiOptimizedImageUrl(originalUrl, width: width, quality: quality);
+}
+
+bool _isGrookaiCanonCardImage(Uri parsed) {
+  return parsed.host.toLowerCase() == 'grookaivault.com' &&
+      RegExp(r'^/api/canon/cards/GV-[A-Z0-9-]+/image$').hasMatch(parsed.path);
 }
 
 String _grookaiOptimizedImageUrl(

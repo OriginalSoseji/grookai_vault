@@ -19,6 +19,9 @@ void main() {
     expect(networkScreen, contains("You're caught up"));
     expect(networkScreen, contains('openPulse()'));
     expect(networkScreen, contains('_PulseArtworkTile(item: item)'));
+    expect(networkScreen, contains('width: 58'));
+    expect(networkScreen, contains('height: 84'));
+    expect(networkScreen, isNot(contains('height: 106')));
     expect(networkScreen, isNot(contains('_PulseProgressTile')));
     expect(networkScreen, contains('Icons.swap_horiz_rounded'));
     expect(networkScreen, contains("parts.join(' · ')"));

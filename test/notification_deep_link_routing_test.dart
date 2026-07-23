@@ -28,6 +28,20 @@ void main() {
       expect(collector, isNotNull);
       expect(collector!.kind, GrookaiCanonicalRouteKind.collector);
       expect(collector.value, 'collector-one');
+      expect(collector.path, '/u/collector-one');
+
+      final legacyCollector = GrookaiWebRouteService.parseCanonicalUri(
+        Uri.parse('/collector/collector-one'),
+      );
+      expect(legacyCollector, isNotNull);
+      expect(legacyCollector!.kind, GrookaiCanonicalRouteKind.collector);
+      expect(legacyCollector.path, '/u/collector-one');
+
+      final legacyCollectorAppLink = GrookaiWebRouteService.parseCanonicalUri(
+        Uri.parse('grookaivault://collector/collector-one'),
+      );
+      expect(legacyCollectorAppLink, isNotNull);
+      expect(legacyCollectorAppLink!.path, '/u/collector-one');
 
       final section = GrookaiWebRouteService.parseCanonicalUri(
         Uri.parse('grookai://u/collector-one/section/abc123'),
@@ -46,18 +60,36 @@ void main() {
     },
   );
 
-  test('notification pulse app links parse to canonical feed routes', () {
+  test('notification pulse links canonicalize to the live network route', () {
     for (final link in <String>[
       'grookai://feed?segment=pulse',
+      'grookai://network',
       'grookaivault://feed?segment=pulse',
       'https://grookaivault.com/feed?segment=pulse',
+      'https://grookaivault.com/network',
     ]) {
       final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
 
       expect(route, isNotNull, reason: link);
       expect(route!.kind, GrookaiCanonicalRouteKind.feed);
       expect(route.value, 'pulse');
-      expect(route.path, '/feed?segment=pulse');
+      expect(route.path, '/network');
+    }
+  });
+
+  test('shared GVVI links parse for web and custom app schemes', () {
+    for (final link in <String>[
+      'grookai://gvvi/GVVI-065CAB28-001318',
+      'grookaivault://gvvi/GVVI-065CAB28-001318',
+      'grookai:///gvvi/GVVI-065CAB28-001318',
+      'https://grookaivault.com/gvvi/GVVI-065CAB28-001318',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.gvvi);
+      expect(route.value, 'GVVI-065CAB28-001318');
+      expect(route.path, '/gvvi/GVVI-065CAB28-001318');
     }
   });
 

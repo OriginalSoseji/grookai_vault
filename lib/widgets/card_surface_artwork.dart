@@ -13,6 +13,7 @@ class CardSurfaceArtwork extends StatelessWidget {
   const CardSurfaceArtwork({
     required this.label,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.width,
     this.height,
     this.borderRadius = 16,
@@ -33,6 +34,7 @@ class CardSurfaceArtwork extends StatelessWidget {
 
   final String label;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final double? width;
   final double? height;
   final double borderRadius;
@@ -49,7 +51,18 @@ class CardSurfaceArtwork extends StatelessWidget {
   final String? imageTruthLabel;
   final bool imageTruthStrong;
 
-  String? get _zoomImageUrl => normalizeDisplayImageUrl(imageUrl);
+  String? get _zoomImageUrl =>
+      normalizeDisplayImageUrl(imageUrl) ??
+      normalizeDisplayImageUrl(fallbackImageUrl);
+  String? get _zoomFallbackImageUrl {
+    final primary = normalizeDisplayImageUrl(imageUrl);
+    final fallback = normalizeDisplayImageUrl(fallbackImageUrl);
+    if (primary == null || fallback == null || fallback == primary) {
+      return null;
+    }
+    return fallback;
+  }
+
   bool get _hasImage => (_zoomImageUrl ?? '').isNotEmpty;
 
   @override
@@ -89,33 +102,35 @@ class CardSurfaceArtwork extends StatelessWidget {
                 // Applies decode-size hints for card artwork on scroll-heavy
                 // surfaces so thumbnails do not decode at source resolution.
                 final cacheWidth = _resolvedCacheWidth(context, constraints);
-                final cacheHeight = _resolvedCacheHeight(context, constraints);
                 final resolvedImageUrl = normalizeDisplayImageUrl(
                   imageUrl,
                   width: _optimizedImageWidth(cacheWidth),
                 );
+                final resolvedFallbackImageUrl = normalizeDisplayImageUrl(
+                  fallbackImageUrl,
+                  width: _optimizedImageWidth(cacheWidth),
+                );
+                final primaryImageUrl =
+                    resolvedImageUrl ?? resolvedFallbackImageUrl;
+                final secondaryImageUrl =
+                    resolvedImageUrl != null &&
+                        resolvedFallbackImageUrl != resolvedImageUrl
+                    ? resolvedFallbackImageUrl
+                    : null;
                 final compact =
                     (height != null && height! <= 80) ||
                     (constraints.hasBoundedHeight &&
                         constraints.maxHeight <= 80);
                 return Padding(
                   padding: padding,
-                  child: resolvedImageUrl != null
-                      ? CachedNetworkImage(
-                          imageUrl: resolvedImageUrl,
-                          fit: BoxFit.contain,
-                          alignment: Alignment.center,
-                          fadeInDuration: Duration.zero,
-                          fadeOutDuration: Duration.zero,
-                          memCacheWidth: cacheWidth,
-                          memCacheHeight: cacheHeight,
-                          maxWidthDiskCache: cacheWidth,
-                          maxHeightDiskCache: cacheHeight,
+                  child: primaryImageUrl != null
+                      ? _ArtworkNetworkImage(
+                          imageUrl: primaryImageUrl,
+                          fallbackImageUrl: secondaryImageUrl,
+                          label: label,
+                          compact: compact,
+                          cacheWidth: cacheWidth,
                           filterQuality: filterQuality,
-                          placeholder: (context, url) =>
-                              _ArtworkSkeleton(compact: compact),
-                          errorWidget: (context, url, error) =>
-                              _ArtworkFallback(label: label, compact: compact),
                         )
                       : _ArtworkFallback(label: label, compact: compact),
                 );
@@ -182,6 +197,7 @@ class CardSurfaceArtwork extends StatelessWidget {
               context,
               label: label,
               imageUrl: _zoomImageUrl,
+              fallbackImageUrl: _zoomFallbackImageUrl,
               onViewDetails: onViewDetails,
               detailsLabel: detailsLabel,
             ),
@@ -201,18 +217,6 @@ class CardSurfaceArtwork extends StatelessWidget {
         .toInt();
   }
 
-  int? _resolvedCacheHeight(BuildContext context, BoxConstraints constraints) {
-    final logicalHeight = _resolvedLogicalHeight(constraints);
-    if (logicalHeight == null ||
-        !logicalHeight.isFinite ||
-        logicalHeight <= 0) {
-      return null;
-    }
-    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-    return ((logicalHeight * devicePixelRatio).round().clamp(1, 4096) as num)
-        .toInt();
-  }
-
   double? _resolvedLogicalWidth(BoxConstraints constraints) {
     if (width != null && width! > 0) {
       return width;
@@ -229,22 +233,6 @@ class CardSurfaceArtwork extends StatelessWidget {
     return null;
   }
 
-  double? _resolvedLogicalHeight(BoxConstraints constraints) {
-    if (height != null && height! > 0) {
-      return height;
-    }
-    if (constraints.hasBoundedHeight && constraints.maxHeight > 0) {
-      return constraints.maxHeight;
-    }
-    if (width != null && width! > 0) {
-      return width! / _kCardSurfaceArtworkAspectRatio;
-    }
-    if (constraints.hasBoundedWidth && constraints.maxWidth > 0) {
-      return constraints.maxWidth / _kCardSurfaceArtworkAspectRatio;
-    }
-    return null;
-  }
-
   int? _optimizedImageWidth(int? cacheWidth) {
     if (cacheWidth == null || cacheWidth <= 0) {
       return null;
@@ -254,6 +242,58 @@ class CardSurfaceArtwork extends StatelessWidget {
     if (cacheWidth <= 320) return 320;
     if (cacheWidth <= 480) return 640;
     return 828;
+  }
+}
+
+class _ArtworkNetworkImage extends StatelessWidget {
+  const _ArtworkNetworkImage({
+    required this.imageUrl,
+    required this.label,
+    required this.compact,
+    required this.cacheWidth,
+    required this.filterQuality,
+    this.fallbackImageUrl,
+  });
+
+  final String imageUrl;
+  final String? fallbackImageUrl;
+  final String label;
+  final bool compact;
+  final int? cacheWidth;
+  final FilterQuality filterQuality;
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      fit: BoxFit.contain,
+      alignment: Alignment.center,
+      fadeInDuration: Duration.zero,
+      fadeOutDuration: Duration.zero,
+      memCacheWidth: cacheWidth,
+      maxWidthDiskCache: cacheWidth,
+      filterQuality: filterQuality,
+      placeholder: (context, url) => _ArtworkSkeleton(compact: compact),
+      errorWidget: (context, url, error) {
+        final fallback = (fallbackImageUrl ?? '').trim();
+        if (fallback.isEmpty || fallback == imageUrl) {
+          return _ArtworkFallback(label: label, compact: compact);
+        }
+        return CachedNetworkImage(
+          imageUrl: fallback,
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          fadeInDuration: Duration.zero,
+          fadeOutDuration: Duration.zero,
+          memCacheWidth: cacheWidth,
+          maxWidthDiskCache: cacheWidth,
+          filterQuality: filterQuality,
+          placeholder: (context, url) => _ArtworkSkeleton(compact: compact),
+          errorWidget: (context, url, error) =>
+              _ArtworkFallback(label: label, compact: compact),
+        );
+      },
+    );
   }
 }
 

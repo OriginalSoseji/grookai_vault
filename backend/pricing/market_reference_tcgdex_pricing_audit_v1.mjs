@@ -85,7 +85,20 @@ function sourceUrl(cardId) {
   return `https://api.tcgdex.net/v2/en/cards/${encodeURIComponent(cardId)}`;
 }
 
-function makeCandidate({ raw, card, mapped, source, provider, finish, metric, price, currency, observedAt }) {
+function makeCandidate({
+  raw,
+  card,
+  mapped,
+  source,
+  provider,
+  finish,
+  metric,
+  rawMetric = metric,
+  finishResolutionRule = 'explicit_provider_finish',
+  price,
+  currency,
+  observedAt,
+}) {
   const metricKey = normalizeMetricKey(metric);
   const rawPrice = asNumber(price);
   const candidate = {
@@ -110,8 +123,14 @@ function makeCandidate({ raw, card, mapped, source, provider, finish, metric, pr
       provider,
       source_card_id: card?.id ?? raw?.payload?._external_id ?? null,
       metric,
+      raw_metric: rawMetric,
       metric_key: metricKey,
       finish,
+      finish_resolution_rule: finishResolutionRule,
+      tcgdex_variants: {
+        holo: card?.variants?.holo ?? null,
+        normal: card?.variants?.normal ?? null,
+      },
       source_raw_import_id: raw?.id ?? null,
       tcgdex_updated_at: card?.updated ?? null,
     },
@@ -172,6 +191,9 @@ function normalizeCandidate(candidate, candidateOrdinal) {
       condition_hint: candidate.condition_hint,
       finish_hint: candidate.finish_hint,
       observed_at: candidate.observed_at,
+      raw_metric: candidate.raw_payload?.raw_metric ?? candidate.raw_payload?.metric ?? null,
+      finish_resolution_rule: candidate.raw_payload?.finish_resolution_rule ?? null,
+      tcgdex_variants: candidate.raw_payload?.tcgdex_variants ?? { holo: null, normal: null },
       source_raw_import_id: candidate.raw_payload?.source_raw_import_id ?? null,
       tcgdex_updated_at: candidate.raw_payload?.tcgdex_updated_at ?? null,
     },
@@ -213,10 +235,21 @@ function splitCardmarketKey(key) {
   if (!normalized) return null;
   if (["unit", "updated", "idProduct"].includes(normalized)) return null;
   const parts = normalized.split("-");
-  if (parts.length === 1) return { metric: parts[0], finish: "normal" };
+  if (parts.length === 1) return { metric: parts[0], finish: "normal", unsuffixed: true };
   const metric = parts[0];
   const finish = parts.slice(1).join("_");
-  return { metric, finish };
+  return { metric, finish, unsuffixed: false };
+}
+
+function resolveCardmarketFinish(card, parsed) {
+  if (
+    parsed.unsuffixed
+    && card?.variants?.holo === true
+    && card?.variants?.normal === false
+  ) {
+    return "holo";
+  }
+  return parsed.finish;
 }
 
 function cardmarketCandidates({ raw, card, mapped }) {
@@ -230,14 +263,21 @@ function cardmarketCandidates({ raw, card, mapped }) {
     if (!parsed) continue;
     const price = asNumber(value);
     if (price === null) continue;
+    const finish = resolveCardmarketFinish(card, parsed);
     candidates.push(makeCandidate({
       raw,
       card,
       mapped,
       source: TCGDEX_CARDMARKET_SOURCE,
       provider: "cardmarket",
-      finish: parsed.finish,
+      finish,
       metric: parsed.metric,
+      rawMetric,
+      finishResolutionRule: parsed.unsuffixed
+        ? (finish === 'holo'
+          ? 'unsuffixed_holo_only_source_variants'
+          : 'unsuffixed_legacy_normal_review_only')
+        : 'explicit_metric_finish_suffix',
       price,
       currency,
       observedAt,
@@ -348,6 +388,8 @@ export function buildTcgdexReferencePricingAuditV1({
       app_visible_pricing: false,
       public_price_rollups: false,
       identity_writes: false,
+      card_print_writes: false,
+      card_printing_writes: false,
       vault_writes: false,
       image_writes: false,
       deletes: false,
@@ -388,6 +430,8 @@ export function buildTcgdexReferencePricingAuditV1({
       all_candidates_have_gv_id: projectedCandidates.every((row) => Boolean(row.gv_id)),
       all_candidate_hashes_unique: duplicateCount(candidateHashes) === 0,
       all_normalized_rows_review_only: projectedNormalizedEvidence.every((row) => row.model_eligible === true || row.weight_hint === 0),
+      finish_resolution_is_evidence_only: true,
+      no_card_printing_write_authority: true,
       no_public_boundary_leak: true,
     },
     hashes: {

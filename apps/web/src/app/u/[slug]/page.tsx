@@ -57,8 +57,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         ? [
             {
               url: `${siteOrigin}/u/${profile.slug}/opengraph-image`,
-              width: 1200,
-              height: 630,
+              width: 512,
+              height: 512,
               alt: `${profile.display_name}'s Wall on Grookai`,
             },
           ]

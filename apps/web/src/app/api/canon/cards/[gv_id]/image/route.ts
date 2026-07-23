@@ -33,11 +33,22 @@ export async function GET(
   }
 
   const admin = createServerAdminClient();
-  const { data: cardPrint, error: cardPrintError } = await admin
+  let cardPrintResult = await admin
     .from("card_prints")
     .select("gv_id,image_source,image_path")
     .eq("gv_id", gvId)
     .maybeSingle();
+  if (!cardPrintResult.error && !cardPrintResult.data) {
+    // Cached pages may still contain the formerly uppercased proxy URL. Keep
+    // the indexed exact lookup as the hot path and pay for ILIKE only while
+    // recovering those stale URLs during the cache transition.
+    cardPrintResult = await admin
+      .from("card_prints")
+      .select("gv_id,image_source,image_path")
+      .ilike("gv_id", gvId)
+      .maybeSingle();
+  }
+  const { data: cardPrint, error: cardPrintError } = cardPrintResult;
 
   if (cardPrintError) {
     return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
@@ -45,20 +56,48 @@ export async function GET(
 
   let imagePath = normalizeWarehouseCanonImagePath(cardPrint?.image_path);
   if (!cardPrint || !isIdentityCardImageSource(cardPrint.image_source) || !imagePath) {
-    const { data: cardPrinting, error: cardPrintingError } = await admin
+    let cardPrintingResult = await admin
       .from("card_printings")
-      .select("printing_gv_id,image_source,image_path")
+      .select("card_print_id,printing_gv_id,image_source,image_path")
       .eq("printing_gv_id", gvId)
       .maybeSingle();
+    if (!cardPrintingResult.error && !cardPrintingResult.data) {
+      cardPrintingResult = await admin
+        .from("card_printings")
+        .select("card_print_id,printing_gv_id,image_source,image_path")
+        .ilike("printing_gv_id", gvId)
+        .maybeSingle();
+    }
+    const { data: cardPrinting, error: cardPrintingError } = cardPrintingResult;
 
-    imagePath = normalizeWarehouseCanonImagePath(cardPrinting?.image_path);
-    if (
-      cardPrintingError ||
-      !cardPrinting ||
-      !isIdentityCardImageSource(cardPrinting.image_source) ||
-      !imagePath
-    ) {
+    if (cardPrintingError || !cardPrinting) {
       return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
+    }
+
+    imagePath = normalizeWarehouseCanonImagePath(cardPrinting.image_path);
+    if (!isIdentityCardImageSource(cardPrinting.image_source) || !imagePath) {
+      // Most finish/stamp child identities intentionally inherit their
+      // parent's visual instead of storing a duplicate object. Keep that
+      // inheritance inside Grookai's canonical image boundary.
+      const parentResult = await admin
+        .from("card_prints")
+        .select("image_source,image_path")
+        .eq("id", cardPrinting.card_print_id)
+        .maybeSingle();
+      const parentImagePath = normalizeWarehouseCanonImagePath(
+        parentResult.data?.image_path,
+      );
+      if (
+        parentResult.error ||
+        !isIdentityCardImageSource(parentResult.data?.image_source) ||
+        !parentImagePath
+      ) {
+        return NextResponse.json(
+          { error: "Image unavailable." },
+          { status: 404 },
+        );
+      }
+      imagePath = parentImagePath;
     }
   }
 

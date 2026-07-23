@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/identity/catalog_artwork_resolution.dart';
 import '../../../services/scanner_v5/scanner_v5_identity_service.dart';
+import '../../../widgets/card_surface_artwork.dart';
 import 'scanner_v5_palette.dart';
 
 class ScannerCandidateRow extends StatelessWidget {
@@ -19,7 +21,10 @@ class ScannerCandidateRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = candidate.imageUrl;
+    final artwork = resolveCatalogArtwork(
+      gvId: candidate.gvId,
+      providerImageUrl: candidate.imageUrl,
+    );
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -41,15 +46,17 @@ class ScannerCandidateRow extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
-                  child: SizedBox(
-                    width: 54,
-                    height: 76,
-                    child: imageUrl == null
-                        ? const ColoredBox(color: ScannerV5Palette.sheet)
-                        : Image.network(imageUrl, fit: BoxFit.cover),
-                  ),
+                CardSurfaceArtwork(
+                  label: candidate.name,
+                  imageUrl: artwork.primaryImageUrl,
+                  fallbackImageUrl: artwork.fallbackImageUrl,
+                  width: 54,
+                  height: 76,
+                  borderRadius: 9,
+                  padding: EdgeInsets.zero,
+                  backgroundColor: ScannerV5Palette.sheet,
+                  enableTapToZoom: false,
+                  showShadow: false,
                 ),
                 const SizedBox(width: 12),
                 Expanded(

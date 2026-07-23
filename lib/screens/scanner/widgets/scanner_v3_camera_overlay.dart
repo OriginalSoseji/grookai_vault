@@ -2,10 +2,11 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import '../../../services/identity/catalog_artwork_resolution.dart';
 import '../../../services/scanner_v3/convergence_state_v1.dart';
 import '../../../services/scanner_v4/scanner_live_behavior_v1.dart';
 import '../../../services/scanner_v4/scanner_v4_diagnostic_test_runner_v1.dart';
-import '../../../utils/display_image_contract.dart';
+import '../../../widgets/card_surface_artwork.dart';
 import 'scanner_actions_bar.dart';
 import 'scanner_confidence_rail.dart';
 import 'scanner_debug_panel.dart';
@@ -21,6 +22,7 @@ class ScannerV3ScanMemoryEntry {
     this.name,
     this.setCode,
     this.number,
+    this.gvId,
     this.imageUrl,
   });
 
@@ -29,6 +31,7 @@ class ScannerV3ScanMemoryEntry {
   final String? name;
   final String? setCode;
   final String? number;
+  final String? gvId;
   final String? imageUrl;
 
   String get displayName {
@@ -775,6 +778,7 @@ class _ScannerBottomPanel extends StatelessWidget {
                               candidateName: candidate?.name,
                               setCode: candidate?.setCode,
                               number: candidate?.number,
+                              gvId: candidate?.gvId,
                               imageUrl: candidate?.imageUrl,
                               locked: tone.locked,
                               accent: tone.accent,
@@ -1017,22 +1021,20 @@ class _ScanMemoryImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = normalizeDisplayImageUrl(entry.imageUrl) ?? '';
-    if (imageUrl.isEmpty) return _fallback(context);
-    return Image.network(
-      imageUrl,
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-      cacheWidth: 96,
-      cacheHeight: 132,
+    final artwork = resolveCatalogArtwork(
+      gvId: entry.gvId,
+      providerImageUrl: entry.imageUrl,
+    );
+    if (artwork.primaryImageUrl == null) return _fallback(context);
+    return CardSurfaceArtwork(
+      label: entry.displayName,
+      imageUrl: artwork.primaryImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
+      borderRadius: 7,
+      padding: EdgeInsets.zero,
+      enableTapToZoom: false,
+      showShadow: false,
       filterQuality: FilterQuality.low,
-      gaplessPlayback: true,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return _fallback(context);
-      },
-      errorBuilder: (context, error, stackTrace) => _fallback(context),
     );
   }
 

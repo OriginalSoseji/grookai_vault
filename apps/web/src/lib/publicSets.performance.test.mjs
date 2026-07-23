@@ -32,6 +32,10 @@ const detailFunctionSource = source.slice(
   source.indexOf("export const getPublicSetByCode"),
   source.indexOf("export const getPublicSetCards"),
 );
+const cardsFunctionSource = source.slice(
+  source.indexOf("export const getPublicSetCards"),
+  source.indexOf("export const getPublicWorldChampionshipDecklist"),
+);
 
 test("set discovery uses bounded database-side counts instead of transferring every card", () => {
   assert.doesNotMatch(source, /fetchAllCanonicalSetCodes/);
@@ -99,4 +103,12 @@ test("checked-in count manifest has a valid bounded snapshot", () => {
 test("full card loading is scoped to one selected set", () => {
   assert.match(source, /getAllPublicSetCards\(setInfo\.code\)/);
   assert.match(source, /const pageSize = 500/);
+});
+
+test("set card pages use the stable card-print id as the final database order", () => {
+  assert.equal(
+    [...cardsFunctionSource.matchAll(/\.order\("id", \{ ascending: true \}\)/g)].length,
+    3,
+  );
+  assert.match(source, /\(left\.id \?\? ""\)\.localeCompare\(right\.id \?\? ""\)/);
 });

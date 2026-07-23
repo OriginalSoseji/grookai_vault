@@ -10,6 +10,7 @@ class GrookaiSaleListingSource {
     required this.cardName,
     required this.setLine,
     this.cardImageUrl,
+    this.cardImageFallbackUrl,
     this.sellerHandle = 'Collector',
     this.sellerRating = 0,
     this.sellerTradeCount = 0,
@@ -18,6 +19,7 @@ class GrookaiSaleListingSource {
   final String cardName;
   final String setLine;
   final String? cardImageUrl;
+  final String? cardImageFallbackUrl;
   final String sellerHandle;
   final double sellerRating;
   final int sellerTradeCount;
@@ -43,6 +45,7 @@ class GrookaiSaleListingAdapter {
         cardName: _fallback(source.cardName, 'Card listing'),
         setLine: source.setLine,
         cardImageUrl: _blankToNull(source.cardImageUrl),
+        cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),
       ),
       listingNo: listingNo ?? 'DRAFT',
       price: _normalizePrice(price),
@@ -111,12 +114,14 @@ class GrookaiLotListingItemSource {
     required this.condition,
     required this.price,
     this.imageUrl,
+    this.fallbackImageUrl,
   });
 
   final String cardName;
   final String condition;
   final double price;
   final String? imageUrl;
+  final String? fallbackImageUrl;
 }
 
 class GrookaiLotListingSource {
@@ -153,6 +158,7 @@ class GrookaiLotListingAdapter {
             condition: _fallback(item.condition, 'Raw NM'),
             price: _normalizePrice(item.price),
             imageUrl: _blankToNull(item.imageUrl),
+            fallbackImageUrl: _blankToNull(item.fallbackImageUrl),
           ),
         )
         .toList(growable: false);

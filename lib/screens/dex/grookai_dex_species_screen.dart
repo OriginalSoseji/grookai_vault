@@ -99,7 +99,8 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
           setName: card.setName,
           number: card.number,
           rarity: card.rarity,
-          imageUrl: card.imageUrl,
+          imageUrl: card.hostedImageUrl,
+          fallbackImageUrl: card.providerFallbackImageUrl,
         ),
       ),
     );
@@ -510,11 +511,13 @@ class _DexCardTile extends StatelessWidget {
             children: [
               CardSurfaceArtwork(
                 label: identity.displayName,
-                imageUrl: card.imageUrl,
+                imageUrl: card.hostedImageUrl,
+                fallbackImageUrl: card.providerFallbackImageUrl,
                 width: 78,
                 height: 108,
                 borderRadius: 16,
                 padding: const EdgeInsets.all(1.5),
+                filterQuality: FilterQuality.medium,
                 imageTruthLabel: imagePresentation.compactBadgeLabel,
                 imageTruthStrong: imagePresentation.isCollisionRepresentative,
                 onViewDetails: onTap,

@@ -77,6 +77,8 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
         <Link href={singleCopyHref} className="relative flex w-full justify-center sm:w-[140px] sm:shrink-0">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
+            fallbackSrc={row.imageFallbackUrls[0]}
+            fallbackSources={row.imageFallbackUrls.slice(1)}
             alt={displayIdentity.display_name}
             imageClassName="aspect-[3/4] w-[140px] rounded-[1rem] border border-slate-200 bg-slate-50 object-contain p-2"
             fallbackClassName="flex aspect-[3/4] w-[140px] items-center justify-center rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"

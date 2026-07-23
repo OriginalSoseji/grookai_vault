@@ -1,0 +1,90 @@
+{
+  "package_id": "IMG-HOST-WH-23C-POCKET-NATIVE-DB-POINTER-DRY-RUN",
+  "generated_at": "2026-07-22T22:43:07.195Z",
+  "mode": "dry_run_no_write",
+  "fingerprint": "3f97ca99808af6ce8d73325a93546a8489e313157907a0ffc918e00c004f3084",
+  "pointer_plan_hash": "edece6dd35aafe5ee04551e58eeec8797b0b6dfcd0f7b970cfb621e4e32bfb39",
+  "mutation_contract_hash": "619f25b0f53e160a2c60c3afd6f5b64c2ea295d7285c586b1963c0fd76fa15f3",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "code_bundle_hash": "3137f9188489065ccacd292b2e4ac7e5d3048a658060ca2b5c8bd1a7c69a47be",
+  "parent_row_mappings": 27,
+  "unique_assets": 27,
+  "complete_row_cas_updates": 0,
+  "already_applied_no_ops": 27,
+  "complete_row_snapshot_drift": 0,
+  "verified_storage_assets_now": 27,
+  "pending_storage_assets": 0,
+  "invalid_storage_collisions": 0,
+  "storage_sequence_note": "Pending objects are expected before WH23B; WH23D revalidates all 27 exact objects before BEGIN.",
+  "mutation_contract": {
+    "transport": "postgres_tls_pre_auth_leaf_and_spki_pin",
+    "target_table": "card_prints",
+    "exact_row_scope": 27,
+    "allowed_apply_columns": [
+      "image_path",
+      "image_source",
+      "image_status",
+      "image_url"
+    ],
+    "compare_and_swap": "complete_to_jsonb_card_prints_row",
+    "locking": "all_27_rows_for_update_before_first_mutation",
+    "atomicity": "single_27_row_transaction",
+    "failure_recovery": "database_transaction_rollback",
+    "storage_precondition": "all_27_objects_sha256_and_dimensions_reverified_before_begin",
+    "postcondition": "complete_row_readback_hash_for_all_27_rows_before_commit"
+  },
+  "planned_columns": [
+    "card_prints.image_path",
+    "card_prints.image_source",
+    "card_prints.image_status",
+    "card_prints.image_url"
+  ],
+  "preserved_columns": [
+    "all card_prints columns outside the four proposed fields"
+  ],
+  "stop_findings": [],
+  "semantic_validation_errors": [],
+  "ready_for_db_apply_after_storage_phase": true,
+  "ready_for_db_apply_now": true,
+  "storage_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false
+}

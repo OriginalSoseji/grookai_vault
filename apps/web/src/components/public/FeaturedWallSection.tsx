@@ -54,7 +54,8 @@ function FeaturedWallCard({
             <div className="relative">
               <PublicCardImage
                 src={card.image_url}
-                fallbackSrc={card.canonical_image_url}
+                fallbackSrc={card.image_fallback_urls?.[0] ?? card.canonical_image_url}
+                fallbackSources={card.image_fallback_urls?.slice(1)}
                 alt={displayIdentity.display_name}
                 imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"

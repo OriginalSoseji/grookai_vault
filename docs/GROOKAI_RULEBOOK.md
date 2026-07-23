@@ -107,7 +107,9 @@ Before any L2/L3 audit or implementation:
 - All external data flows: `raw_imports → normalization → mapping_conflicts → external_mappings → card_prints`.
 - No direct writes to canonical tables; raw_imports is the only staging ingress.
 - Mapping resolves to card_prints before downstream use.
-- Sources: `docs/ingestion/RAW_IMPORTS_AUDIT.md`, `docs/audits/AUDIT_EBAY_MAPPING_L2.md`, `docs/audits/AUDIT_MAPPING_ENFORCEMENT_L2.md`.
+- Canonical child-printing changes additionally require a checked-in per-set truth manifest, exact parent/printing/finish counts, explicit suppression and protected-fact checks, then the same assertion at plan time, immediately before commit, and after commit.
+- Provider transport fields and price keys are evidence hints, not physical printing truth. Pricing evidence may select an existing verified child but may never create or restore `card_printings`.
+- Sources: `docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md`, `docs/contracts/PRINTING_TRUTH_CONTRACT_V1.md`, `docs/ingestion/RAW_IMPORTS_AUDIT.md`, `docs/audits/AUDIT_EBAY_MAPPING_L2.md`, `docs/audits/AUDIT_MAPPING_ENFORCEMENT_L2.md`.
 
 ## 8. Enrichment Contract
 - Enrichment is non-destructive: traits/metadata JSONB fields only; never mutate canonical identity.

@@ -5,9 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/ownership_state.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
 class ScanIdentifyScreen extends StatefulWidget {
@@ -283,7 +284,10 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         final confidence = (cand['confidence'] ?? '').toString();
         final name = (cand['name'] ?? 'Card').toString();
         final setName = (cand['set'] ?? '').toString();
-        final imageUrl = normalizeDisplayImageUrl(cand['image_url']) ?? '';
+        final artwork = resolveCatalogArtwork(
+          gvId: cand['gv_id'] ?? cand['gvid'],
+          providerImageUrl: cand['image_url'] ?? cand['image_best'],
+        );
         final ownershipState = _ownershipStateForCandidate(cand);
 
         return Card(
@@ -293,19 +297,17 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
                   alpha: 0.7,
                 ),
           child: ListTile(
-            leading: imageUrl.isEmpty
-                ? const CircleAvatar(child: Icon(Icons.style))
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      imageUrl,
-                      width: 48,
-                      height: 48,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const CircleAvatar(child: Icon(Icons.broken_image)),
-                    ),
-                  ),
+            leading: CardSurfaceArtwork(
+              label: name,
+              imageUrl: artwork.primaryImageUrl,
+              fallbackImageUrl: artwork.fallbackImageUrl,
+              width: 48,
+              height: 48,
+              borderRadius: 8,
+              padding: EdgeInsets.zero,
+              enableTapToZoom: false,
+              showShadow: false,
+            ),
             title: Text(name),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

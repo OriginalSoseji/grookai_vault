@@ -1,0 +1,67 @@
+{
+  "package_id": "IMG-HOST-WH-22D-RESIDUAL-GOVERNED-DB-POINTER-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-07-22T22:21:55.805Z",
+  "ended_at": "2026-07-22T22:21:58.223Z",
+  "fingerprint": "ba3fc47ec7c3e18fadcd84b51d921fce270d32c12fda4913b92e7fc67fa4753f",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "code_bundle_hash": "3a75a1ef88bf1c87d148758328ef7b7055a7bb8cb8d4e3ebac658768a411e668",
+  "pointer_plan_hash": "3e96ea174e2c11659c356893654185bf6d0a844f3d2fe71b25e6097a4e294efd",
+  "mutation_contract_hash": "cab3fa77e4dff8fad5475752488a2135092d7b9f432c813bd55b18f51f4fa679",
+  "parent_rows_verified": 24,
+  "updated_count": 24,
+  "already_applied_no_op_count": 0,
+  "storage_assets_reverified": 21,
+  "planned_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path",
+    "card_prints.image_status",
+    "card_prints.image_url",
+    "card_prints.representative_image_url"
+  ],
+  "transport": "postgres_tls_pre_auth_leaf_and_spki_pin",
+  "batch_atomic": true,
+  "failure_recovery": "database_transaction_rollback",
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "f77066a27653c15edb890c99d60b54647973c47cefb4f117f8726dc47c512224"
+}

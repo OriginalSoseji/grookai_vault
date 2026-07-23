@@ -1,0 +1,14 @@
+{
+  "package_id": "IMG-HOST-WH-23B-POCKET-NATIVE-STORAGE-UPLOAD-APPLY",
+  "ended_at": "2026-07-22T22:41:51.813Z",
+  "fingerprint": "3f97ca99808af6ce8d73325a93546a8489e313157907a0ffc918e00c004f3084",
+  "storage_plan_hash": "12517e4b8b1be4fdc031c23877a25f6b936ec553ce69c433fd604363b2c044a2",
+  "uploaded_and_verified": 27,
+  "verified_existing_exact": 0,
+  "failures": 0,
+  "failure_rows": [],
+  "storage_writes_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "6ff29b2a70a732884473cc700829de7fe6d9e42cfa4ddd207858f9e9d7f4b4e6"
+}

@@ -224,6 +224,8 @@ type CardAggregate = {
   primarySlab: CanonicalVaultCollectorSlabItem | null;
 };
 
+const SUPABASE_INSTANCE_PAGE_SIZE = 1_000;
+
 function chunkArray<T>(items: T[], size: number) {
   const chunks: T[][] = [];
   for (let index = 0; index < items.length; index += size) {
@@ -295,23 +297,34 @@ function buildCopyItem(
 
 async function fetchActiveInstances(userId: string) {
   const adminClient = createServerAdminClient();
-  const { data, error } = await adminClient
-    .from("vault_item_instances")
-    .select(
-      "id,card_print_id,card_printing_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes,image_display_mode",
-    )
-    .eq("user_id", userId)
-    .is("archived_at", null)
-    .order("created_at", { ascending: false })
-    .order("id", { ascending: false });
+  const rows: ActiveInstanceRow[] = [];
+  for (let instanceFrom = 0; ; instanceFrom += SUPABASE_INSTANCE_PAGE_SIZE) {
+    const instanceTo = instanceFrom + SUPABASE_INSTANCE_PAGE_SIZE - 1;
+    const { data, error } = await adminClient
+      .from("vault_item_instances")
+      .select(
+        "id,card_print_id,card_printing_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes,image_display_mode",
+      )
+      .eq("user_id", userId)
+      .is("archived_at", null)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(instanceFrom, instanceTo);
 
-  if (error) {
-    throw new Error(
-      `[vault:read-model] active instance query failed: ${error.message}${error.code ? ` | code=${error.code}` : ""}`,
-    );
+    if (error) {
+      throw new Error(
+        `[vault:read-model] active instance query failed: ${error.message}${error.code ? ` | code=${error.code}` : ""}`,
+      );
+    }
+
+    const page = (data ?? []) as ActiveInstanceRow[];
+    rows.push(...page);
+    if (page.length < SUPABASE_INSTANCE_PAGE_SIZE) {
+      break;
+    }
   }
 
-  return (data ?? []) as ActiveInstanceRow[];
+  return rows;
 }
 
 async function fetchSlabCertMetadataById(slabCertIds: string[]) {

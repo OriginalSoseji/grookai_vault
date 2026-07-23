@@ -481,9 +481,7 @@ class _AppShellState extends State<AppShell> {
     final nextId = widget.pendingCanonicalLink?.id;
     final previousId = oldWidget.pendingCanonicalLink?.id;
     if (nextId != null && nextId != previousId) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        unawaited(_maybeHandlePendingCanonicalLink());
-      });
+      _schedulePendingCanonicalLinkDrain();
     }
     final nextDebugId = widget.pendingDebugAction?.id;
     final previousDebugId = oldWidget.pendingDebugAction?.id;
@@ -584,7 +582,20 @@ class _AppShellState extends State<AppShell> {
     } finally {
       _handlingCanonicalLink = false;
       widget.onCanonicalLinkHandled?.call(pendingLink.id);
+      // A second app link can arrive while an async card lookup is still in
+      // flight. didUpdateWidget observes it while this handler is busy, so
+      // schedule one more drain after releasing the guard instead of leaving
+      // the newer request stranded until another rebuild.
+      _schedulePendingCanonicalLinkDrain();
     }
+  }
+
+  void _schedulePendingCanonicalLinkDrain() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        unawaited(_maybeHandlePendingCanonicalLink());
+      }
+    });
   }
 
   Future<void> _maybeHandlePendingDebugAction() async {
@@ -628,12 +639,16 @@ class _AppShellState extends State<AppShell> {
         await _openCardDetailFromCanonicalGvId(route.value);
         break;
       case GrookaiCanonicalRouteKind.collector:
-        await _pushPage<void>(PublicCollectorScreen(slug: route.value));
+        unawaited(_pushPage<void>(PublicCollectorScreen(slug: route.value)));
         break;
       case GrookaiCanonicalRouteKind.collectorSection:
-        return _buildCollectorSection(route);
+        _openCollectorSection(route);
+        break;
       case GrookaiCanonicalRouteKind.set:
-        await _pushPage<void>(PublicSetDetailScreen(setCode: route.value));
+        unawaited(_pushPage<void>(PublicSetDetailScreen(setCode: route.value)));
+        break;
+      case GrookaiCanonicalRouteKind.gvvi:
+        unawaited(_pushPage<void>(PublicGvviScreen(gvviId: route.value)));
         break;
       case GrookaiCanonicalRouteKind.feed:
         _selectDestination(_ShellDestination.feed);
@@ -656,11 +671,13 @@ class _AppShellState extends State<AppShell> {
     setState(() => _pulseUnreadCount = normalized);
   }
 
-  Future<void> _buildCollectorSection(GrookaiCanonicalRoute route) async {
-    await _pushPage<void>(
-      PublicCollectorScreen(
-        slug: route.value,
-        initialSectionId: route.sectionId,
+  void _openCollectorSection(GrookaiCanonicalRoute route) {
+    unawaited(
+      _pushPage<void>(
+        PublicCollectorScreen(
+          slug: route.value,
+          initialSectionId: route.sectionId,
+        ),
       ),
     );
   }
@@ -707,14 +724,6 @@ class _AppShellState extends State<AppShell> {
       return;
     }
 
-    if (cardRow != null) {
-      final enriched = await CanonImageUrlService.enrichRows([cardRow]);
-      if (!mounted) {
-        return;
-      }
-      cardRow = enriched.first;
-    }
-
     final cardPrintId = _routeText(cardRow?['id']);
     if (cardRow == null || cardPrintId.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -725,57 +734,42 @@ class _AppShellState extends State<AppShell> {
 
     final setData = cardRow['sets'];
     final setName = setData is Map ? _routeText(setData['name']) : '';
-    final imageUrl = _routeDisplayImageUrl(cardRow);
+    final resolvedGvId = _routeText(cardRow['gv_id']).isEmpty
+        ? normalizedGvId
+        : _routeText(cardRow['gv_id']);
+    final artwork = resolveCatalogArtwork(
+      gvId: resolvedGvId,
+      providerImageUrl: resolveDisplayImageUrl(
+        imageUrl: cardRow['image_url'],
+        imageAltUrl: cardRow['image_alt_url'],
+        representativeImageUrl: cardRow['representative_image_url'],
+      ),
+    );
     final displayNumber = _routeText(cardRow['number']).isNotEmpty
         ? _routeText(cardRow['number'])
         : _routeText(cardRow['number_plain']);
 
-    await _pushPage<void>(
-      CardDetailScreen(
-        cardPrintId: cardPrintId,
-        gvId: _routeText(cardRow['gv_id']).isEmpty
-            ? normalizedGvId
-            : _routeText(cardRow['gv_id']),
-        name: _routeText(cardRow['name']).isEmpty
-            ? null
-            : _routeText(cardRow['name']),
-        setCode: _routeText(cardRow['set_code']).isEmpty
-            ? null
-            : _routeText(cardRow['set_code']),
-        setName: setName.isEmpty ? null : setName,
-        number: displayNumber.isEmpty ? null : displayNumber,
-        rarity: _routeText(cardRow['rarity']).isEmpty
-            ? null
-            : _routeText(cardRow['rarity']),
-        imageUrl: imageUrl,
+    unawaited(
+      _pushPage<void>(
+        CardDetailScreen(
+          cardPrintId: cardPrintId,
+          gvId: resolvedGvId,
+          name: _routeText(cardRow['name']).isEmpty
+              ? null
+              : _routeText(cardRow['name']),
+          setCode: _routeText(cardRow['set_code']).isEmpty
+              ? null
+              : _routeText(cardRow['set_code']),
+          setName: setName.isEmpty ? null : setName,
+          number: displayNumber.isEmpty ? null : displayNumber,
+          rarity: _routeText(cardRow['rarity']).isEmpty
+              ? null
+              : _routeText(cardRow['rarity']),
+          imageUrl: artwork.primaryImageUrl,
+          fallbackImageUrl: artwork.fallbackImageUrl,
+        ),
       ),
     );
-  }
-
-  String? _routeDisplayImageUrl(Map<String, dynamic>? row) {
-    if (row == null) {
-      return null;
-    }
-
-    return CanonImageUrlService.displayImageUrlFromRow(row) ??
-        _routeHttpImageUrl(row['display_image_url']) ??
-        _routeHttpImageUrl(row['image_url']) ??
-        _routeHttpImageUrl(row['image_alt_url']) ??
-        _routeHttpImageUrl(row['representative_image_url']);
-  }
-
-  String? _routeHttpImageUrl(dynamic value) {
-    final normalized = _routeText(value);
-    if (normalized.isEmpty) {
-      return null;
-    }
-
-    final uri = Uri.tryParse(normalized);
-    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
-      return null;
-    }
-
-    return normalized;
   }
 
   static String _routeText(dynamic value) => (value ?? '').toString().trim();
