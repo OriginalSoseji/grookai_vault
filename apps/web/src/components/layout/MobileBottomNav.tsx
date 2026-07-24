@@ -2,17 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  MOBILE_PRIMARY_DOCK,
+  shouldSuppressMobileChrome,
+  type MobilePrimaryDockItem,
+  type MobilePrimaryDockKey,
+} from "@/lib/mobileParity/shellManifest";
 
 type MobileBottomNavProps = {
   wallHref: string | null;
-  dexEnabled: boolean;
 };
 
-type MobileNavKey = "search" | "feed" | "scan" | "dex" | "wall" | "vault";
-
-type MobileNavItem = {
-  key: MobileNavKey;
-  label: string;
+type ResolvedMobileNavItem = Omit<MobilePrimaryDockItem, "href"> & {
   href: string | null;
 };
 
@@ -31,21 +32,13 @@ function isSearchPath(pathname: string) {
   );
 }
 
-function getActiveMobileNavKey(pathname: string): MobileNavKey | null {
-  if (pathname === "/dex" || pathname.startsWith("/dex/")) {
-    return "dex";
-  }
-
+function getActiveMobileNavKey(pathname: string): MobilePrimaryDockKey | null {
   if (isSearchPath(pathname)) {
     return "search";
   }
 
   if (pathname === "/network" || pathname.startsWith("/network/")) {
-    return "feed";
-  }
-
-  if (pathname === "/vault/import" || pathname.startsWith("/vault/import/")) {
-    return "scan";
+    return "pulse";
   }
 
   if (pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")) {
@@ -59,7 +52,13 @@ function getActiveMobileNavKey(pathname: string): MobileNavKey | null {
   return null;
 }
 
-function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
+function NavIcon({
+  name,
+  active,
+}: {
+  name: MobilePrimaryDockKey;
+  active: boolean;
+}) {
   const className =
     name === "scan"
       ? "h-[18px] w-[18px] text-white dark:text-slate-950"
@@ -81,7 +80,7 @@ function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
           <circle cx="12" cy="12" r="8.25" />
         </svg>
       );
-    case "feed":
+    case "pulse":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 7.25h14" />
@@ -103,16 +102,6 @@ function NavIcon({ name, active }: { name: MobileNavKey; active: boolean }) {
           <path d="M9.5 16.25h5" />
         </svg>
       );
-    case "dex":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="8.25" />
-          <path d="M3.75 12h16.5" />
-          <path d="M12 3.75c2.3 2.14 3.45 4.9 3.45 8.25S14.3 18.1 12 20.25" />
-          <path d="M12 3.75C9.7 5.89 8.55 8.65 8.55 12S9.7 18.1 12 20.25" />
-          <circle cx="12" cy="12" r="1.65" fill="currentColor" stroke="none" />
-        </svg>
-      );
     case "wall":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -128,7 +117,7 @@ function MobileBottomNavLink({
   item,
   active,
 }: {
-  item: MobileNavItem;
+  item: ResolvedMobileNavItem;
   active: boolean;
 }) {
   const content = (
@@ -175,31 +164,73 @@ function MobileBottomNavLink({
   );
 }
 
-export function MobileBottomNav({ wallHref, dexEnabled }: MobileBottomNavProps) {
-  const pathname = usePathname();
-  const activeKey = getActiveMobileNavKey(pathname);
-  const currentWallHref =
-    pathname.startsWith("/u/") || pathname === "/wall" || pathname.startsWith("/wall/") ? pathname : wallHref;
-
-  const items: MobileNavItem[] = [
-    { key: "search", label: "Search", href: "/explore" },
-    { key: "feed", label: "Pulse", href: "/network" },
-    { key: "scan", label: "Scan", href: "/vault/import" },
-    ...(dexEnabled ? [{ key: "dex" as const, label: "Dex", href: "/dex" }] : []),
-    { key: "wall", label: "Wall", href: currentWallHref },
-    { key: "vault", label: "Vault", href: "/vault" },
-  ];
-
+function MobileDockPresentation({
+  items,
+  activeKey,
+}: {
+  items: readonly ResolvedMobileNavItem[];
+  activeKey: MobilePrimaryDockKey | null;
+}) {
   return (
     <nav
       aria-label="Mobile navigation"
+      data-mobile-primary-dock
       className="fixed inset-x-0 bottom-0 z-50 bg-transparent px-3 pb-[calc(0.45rem+env(safe-area-inset-bottom))] pt-2 md:hidden"
     >
       <div className="gv-control-surface mx-auto flex max-w-2xl items-center gap-1.5 rounded-[22px] p-1.5 backdrop-blur">
         {items.map((item) => (
-          <MobileBottomNavLink key={item.key} item={item} active={activeKey === item.key} />
+          <MobileBottomNavLink
+            key={item.key}
+            item={item}
+            active={item.kind === "root" && activeKey === item.key}
+          />
         ))}
       </div>
     </nav>
+  );
+}
+
+function resolveMobileDockItems(
+  wallHref: string | null,
+): ResolvedMobileNavItem[] {
+  return MOBILE_PRIMARY_DOCK.map((item) =>
+    item.key === "wall" ? { ...item, href: wallHref } : item,
+  );
+}
+
+export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
+  const pathname = usePathname();
+
+  if (shouldSuppressMobileChrome(pathname)) {
+    return null;
+  }
+
+  const currentWallHref =
+    pathname.startsWith("/u/") ||
+    pathname === "/wall" ||
+    pathname.startsWith("/wall/")
+      ? pathname
+      : wallHref;
+
+  return (
+    <MobileDockPresentation
+      items={resolveMobileDockItems(currentWallHref)}
+      activeKey={getActiveMobileNavKey(pathname)}
+    />
+  );
+}
+
+export function MobileBottomNavFallback() {
+  const pathname = usePathname();
+
+  if (shouldSuppressMobileChrome(pathname)) {
+    return null;
+  }
+
+  return (
+    <MobileDockPresentation
+      items={resolveMobileDockItems("/wall")}
+      activeKey={getActiveMobileNavKey(pathname)}
+    />
   );
 }

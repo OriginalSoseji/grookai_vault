@@ -6,7 +6,7 @@ function readSource(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
 }
 
-const expectedOrder = ["Pulse", "Wall", "Vault", "Scan", "Search"];
+const expectedOrder = ["Pulse", "Wall", "Scan", "Vault", "Search"];
 
 function assertOrdered(source, labels) {
   let cursor = -1;
@@ -19,12 +19,18 @@ function assertOrdered(source, labels) {
   }
 }
 
-test("Flutter mobile dock leads with Pulse, Wall, and Vault", () => {
+test("Flutter mobile dock keeps Scan central and Vault in position four", () => {
   const shell = readSource("lib/main_shell.dart");
   const dock = shell.match(/Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton/)?.[0];
   assert.ok(dock, "mobile dock source must be present");
   assertOrdered(dock, expectedOrder);
   assert.doesNotMatch(dock, /label: 'Dex'/);
+  assert.match(shell, /vault\(navIndex: 3,/);
+  assert.doesNotMatch(shell, /scan\(navIndex:/i);
+  assert.match(
+    dock,
+    /navIndex: 2,[\s\S]*?label: 'Scan'[\s\S]*?isPrimaryAction: true[\s\S]*?onPressed: _startScanFlow/,
+  );
 });
 
 test("architecture contract preserves distinct pillar responsibilities", () => {

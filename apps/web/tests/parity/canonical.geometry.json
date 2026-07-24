@@ -1,0 +1,39 @@
+{
+  "viewport": {
+    "width": 384,
+    "height": 824
+  },
+  "breakpoint": {
+    "mobile_max_exclusive": 900
+  },
+  "app_bar": {
+    "height": 46
+  },
+  "dock": {
+    "max_width": 390,
+    "radius": 34,
+    "item_min_height": 54,
+    "order": [
+      "Pulse",
+      "Wall",
+      "Scan",
+      "Vault",
+      "Search"
+    ]
+  },
+  "card_art": {
+    "aspect_ratio": 0.7142857143,
+    "radius": 22
+  },
+  "binder_action_panel": {
+    "min_height": 78,
+    "radius": 28,
+    "icon_size": 44
+  },
+  "tolerances": {
+    "anchor_p95_px": 4,
+    "anchor_max_px": 8,
+    "dimension_px": 4,
+    "dimension_ratio": 0.02
+  }
+}

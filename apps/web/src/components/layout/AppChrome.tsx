@@ -106,7 +106,7 @@ export function AppChrome({
         dexEnabled={dexEnabled}
         bindersEnabled={bindersEnabled}
       />
-      <MobileBottomNav wallHref={authState.wallHref} dexEnabled={dexEnabled} />
+      <MobileBottomNav wallHref={authState.wallHref} />
     </>
   );
 }

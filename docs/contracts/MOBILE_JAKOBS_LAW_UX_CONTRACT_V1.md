@@ -2,7 +2,14 @@
 
 ## STATUS
 
-DEFINED
+SUPERSEDED FOR MOBILE SHELL AND NAVIGATION
+
+The `Vault | Explore | Wall | Profile` navigation guidance below is historical.
+It was superseded on 2026-07-24 by
+`MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1`, whose owner-approved primary
+dock is `Pulse | Wall | Scan | Vault | Search`. The presentation principles in
+this document remain non-authoritative background where they do not conflict
+with the newer contract.
 
 ## SOURCE OF TRUTH
 

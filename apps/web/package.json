@@ -9,7 +9,12 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
-    "rls:probe": "node scripts/rls_probe.mjs"
+    "rls:probe": "node scripts/rls_probe.mjs",
+    "test:parity": "playwright test",
+    "test:parity:visual": "playwright test tests/parity/mobile.visual.spec.ts",
+    "test:parity:a11y": "playwright test tests/parity/mobile.a11y.spec.ts",
+    "test:parity:update": "playwright test tests/parity/mobile.visual.spec.ts --update-snapshots",
+    "test:parity:report": "playwright show-report"
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^14.2.35",
@@ -23,6 +28,8 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",

@@ -10,14 +10,20 @@ test("web shell uses Pulse as the visible network surface label", () => {
   const siteHeader = readSource("apps/web/src/components/layout/SiteHeader.tsx");
   const mobileBottomNav = readSource("apps/web/src/components/layout/MobileBottomNav.tsx");
   const layoutFallback = readSource("apps/web/src/app/layout.tsx");
+  const shellManifest = readSource("apps/web/src/lib/mobileParity/shellManifest.ts");
 
   assert.match(siteHeader, /<span>Pulse<\/span>/);
   assert.match(siteHeader, /label: "Pulse", matchHref: "\/network"/);
   assert.match(siteHeader, /\? "Pulse"/);
-  assert.match(mobileBottomNav, /key: "feed", label: "Pulse", href: "\/network"/);
-  assert.match(layoutFallback, /href: "\/network", label: "Pulse"/);
+  assert.match(
+    shellManifest,
+    /key: "pulse",\s+label: "Pulse",\s+href: "\/network",\s+kind: "root"/,
+  );
+  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK/);
+  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK\.map/);
+  assert.match(layoutFallback, /<MobileBottomNavFallback \/>/);
 
-  for (const source of [siteHeader, mobileBottomNav, layoutFallback]) {
+  for (const source of [siteHeader, mobileBottomNav, layoutFallback, shellManifest]) {
     assert.doesNotMatch(source, /label: "Feed"/);
     assert.doesNotMatch(source, />Feed</);
     assert.doesNotMatch(source, /\? "Feed"/);

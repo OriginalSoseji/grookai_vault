@@ -9,6 +9,7 @@ import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/P
 import { PageContainer } from "@/components/layout/PageContainer";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { shouldSuppressMobileChrome } from "@/lib/mobileParity/shellManifest";
 
 type SiteHeaderProps = {
   isAuthenticated: boolean;
@@ -31,6 +32,72 @@ function NetworkLabel({ unreadCount }: { unreadCount: number }) {
   );
 }
 
+export function SiteHeaderFallback({
+  dexEnabled,
+}: {
+  dexEnabled: boolean;
+}) {
+  const pathname = usePathname();
+  const suppressMobileChrome = shouldSuppressMobileChrome(pathname);
+  const desktopNavItems = [
+    { href: "/explore", label: "Search" },
+    { href: "/network", label: "Pulse" },
+    { href: "/scan", label: "Scan" },
+    { href: "/wall", label: "Wall" },
+    { href: "/vault", label: "Vault" },
+    { href: "/sets", label: "Sets" },
+    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
+    { href: "/compare", label: "Compare" },
+  ];
+
+  return (
+    <header
+      className={`gv-site-header sticky top-0 z-50 ${
+        suppressMobileChrome ? "hidden md:block" : ""
+      }`}
+    >
+      <PageContainer className="py-2.5 md:py-4">
+        <div className="md:hidden">
+          <div className="flex min-h-[46px] items-center justify-between gap-3">
+            <Link
+              href="/"
+              className="flex min-w-0 items-center gap-2 text-[15px] font-semibold text-slate-950"
+            >
+              <span className="truncate">Grookai Vault</span>
+            </Link>
+            <Link
+              href="/login"
+              className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/70"
+            >
+              Login
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+        <div className="hidden min-h-[64px] items-center justify-between gap-4 md:flex">
+          <Link href="/" className="text-lg font-semibold text-slate-950">
+            Grookai Vault
+          </Link>
+          <nav className="flex flex-wrap items-center gap-2 text-sm">
+            {desktopNavItems.map((item) => (
+              <Link key={item.href} href={item.href} className="gv-nav-link">
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/login"
+              className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
+            >
+              Login
+            </Link>
+            <ThemeToggle />
+          </nav>
+        </div>
+      </PageContainer>
+    </header>
+  );
+}
+
 export function SiteHeader({
   isAuthenticated,
   profileHref,
@@ -40,6 +107,7 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const suppressMobileChrome = shouldSuppressMobileChrome(pathname);
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCount = compareCards.length;
   const showTopSearch =
@@ -71,7 +139,7 @@ export function SiteHeader({
   const primaryNav = [
     { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Search", matchHref: "/explore" },
     { href: "/network", label: "Pulse", matchHref: "/network" },
-    { href: "/vault/import", label: "Scan", matchHref: "/vault/import" },
+    { href: "/scan", label: "Scan", matchHref: "/scan" },
     { href: "/wall", label: "Wall", matchHref: "/wall" },
     { href: "/vault", label: "Vault", matchHref: "/vault" },
     ...(isAuthenticated && bindersEnabled
@@ -84,7 +152,9 @@ export function SiteHeader({
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
   ];
   const mobileSectionLabel =
-    pathname === "/vault" || pathname.startsWith("/vault/")
+    pathname === "/scan" || pathname.startsWith("/scan/")
+      ? "Scan"
+      : pathname === "/vault" || pathname.startsWith("/vault/")
       ? pathname === "/vault/import" || pathname.startsWith("/vault/import/")
         ? "Scan"
         : "Vault"
@@ -103,7 +173,11 @@ export function SiteHeader({
             : "Grookai Vault";
 
   return (
-    <header className="gv-site-header sticky top-0 z-50">
+    <header
+      className={`gv-site-header sticky top-0 z-50 ${
+        suppressMobileChrome ? "hidden md:block" : ""
+      }`}
+    >
       <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5 md:space-y-4 md:py-4" : "py-2.5 md:py-4"}>
         <div className="md:hidden">
           <div className="flex min-h-[46px] items-center justify-between gap-3">

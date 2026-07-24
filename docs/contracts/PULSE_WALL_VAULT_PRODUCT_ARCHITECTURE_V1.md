@@ -8,12 +8,14 @@ The primary product order is:
 
 1. Pulse
 2. Wall
-3. Vault
-4. Scan
+3. Scan
+4. Vault
 5. Search
 
-Pulse, Wall, and Vault are equal product pillars. Scan and Search are global
-acquisition and discovery actions that support all three pillars.
+Pulse, Wall, Vault, and Search are stateful roots. Scan is the central global
+acquisition action and is not retained as a selected destination. This order is
+the owner-approved 2026-07-24 navigation amendment recorded by
+`MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1`.
 
 ## Responsibilities
 

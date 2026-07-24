@@ -411,11 +411,11 @@ enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
   // PULSE_WALL_VAULT_SHELL_V1
-  // The three product pillars lead the shell. Scan and Search remain global
-  // acquisition/discovery actions without competing with those pillars.
+  // MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1
+  // Scan is the center global action. It is not a retained destination.
   feed(navIndex: 0, stackIndex: 0, title: 'Pulse'),
   wall(navIndex: 1, stackIndex: 1, title: 'Wall'),
-  vault(navIndex: 2, stackIndex: 2, title: 'Vault'),
+  vault(navIndex: 3, stackIndex: 2, title: 'Vault'),
   search(navIndex: 4, stackIndex: 3, title: 'Search');
 
   const _ShellDestination({
@@ -1554,22 +1554,22 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 2,
-                        label: 'Vault',
-                        icon: Icons.inventory_2_rounded,
+                        label: 'Scan',
+                        icon: Icons.center_focus_strong_rounded,
                         collapsed: collapsed,
-                        onPressed: () =>
-                            _selectDestination(_ShellDestination.vault),
+                        isPrimaryAction: true,
+                        onPressed: _startScanFlow,
                       ),
                     ),
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 3,
-                        label: 'Scan',
-                        icon: Icons.center_focus_strong_rounded,
+                        label: 'Vault',
+                        icon: Icons.inventory_2_rounded,
                         collapsed: collapsed,
-                        isPrimaryAction: true,
-                        onPressed: _startScanFlow,
+                        onPressed: () =>
+                            _selectDestination(_ShellDestination.vault),
                       ),
                     ),
                     Expanded(
