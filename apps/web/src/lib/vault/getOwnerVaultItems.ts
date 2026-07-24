@@ -185,12 +185,27 @@ async function getOwnerPublicProfileHrefs(userId: string) {
   };
 }
 
-export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItemsResult> {
+type OwnerVaultItemsOptions = {
+  cardPrintIds?: string[];
+};
+
+export async function getOwnerVaultItems(
+  userId: string,
+  options: OwnerVaultItemsOptions = {},
+): Promise<OwnerVaultItemsResult> {
   let canonicalRows: CanonicalVaultCollectorRow[] = [];
   let itemsError: string | null = null;
 
   try {
-    canonicalRows = await getCanonicalVaultCollectorRows(userId);
+    const requestedCardPrintIds = options.cardPrintIds?.map((value) =>
+      value.trim(),
+    ).filter(Boolean);
+    canonicalRows =
+      requestedCardPrintIds != null && requestedCardPrintIds.length === 0
+        ? []
+        : await getCanonicalVaultCollectorRows(userId, {
+            cardPrintIds: requestedCardPrintIds,
+          });
   } catch (error) {
     itemsError = error instanceof Error ? error.message : "Unknown canonical vault read error";
   }

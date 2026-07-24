@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
+import '../../models/vault/collection_project.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
+import '../../services/vault/collection_project_service.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
@@ -15,9 +19,14 @@ import '../../widgets/card_view_mode.dart';
 import '../../widgets/card_zoom_viewer.dart';
 
 class PublicSetDetailScreen extends StatefulWidget {
-  const PublicSetDetailScreen({required this.setCode, super.key});
+  const PublicSetDetailScreen({
+    required this.setCode,
+    this.collectionProjectService,
+    super.key,
+  });
 
   final String setCode;
+  final CollectionProjectService? collectionProjectService;
 
   @override
   State<PublicSetDetailScreen> createState() => _PublicSetDetailScreenState();
@@ -25,10 +34,17 @@ class PublicSetDetailScreen extends StatefulWidget {
 
 class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   final SupabaseClient _client = Supabase.instance.client;
+  late final CollectionProjectService _collectionProjectService;
   bool _loading = true;
   String? _error;
   PublicSetDetail? _detail;
   AppCardViewMode _viewMode = AppCardViewMode.grid;
+  bool _projectStateLoading = false;
+  bool _projectMutationBusy = false;
+  bool? _isTrackingProject;
+  String? _projectSubjectId;
+  String? _projectStateError;
+  int _projectLoadGeneration = 0;
 
   bool get _hasSignedInViewer =>
       (_client.auth.currentUser?.id ?? '').trim().isNotEmpty;
@@ -36,6 +52,8 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   @override
   void initState() {
     super.initState();
+    _collectionProjectService =
+        widget.collectionProjectService ?? CollectionProjectService();
     _load();
   }
 
@@ -64,6 +82,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         setState(() {
           _detail = detail;
         });
+        unawaited(_loadProjectTracking(detail.summary.code));
       }
     } catch (error) {
       if (!mounted) {
@@ -80,6 +99,209 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         });
       }
     }
+  }
+
+  Future<void> _loadProjectTracking(String canonicalSetCode) async {
+    final generation = ++_projectLoadGeneration;
+    if (!_hasSignedInViewer) {
+      if (mounted) {
+        setState(() {
+          _projectStateLoading = false;
+          _projectMutationBusy = false;
+          _isTrackingProject = null;
+          _projectSubjectId = null;
+          _projectStateError = null;
+        });
+      }
+      return;
+    }
+
+    setState(() {
+      _projectStateLoading = true;
+      _projectStateError = null;
+    });
+
+    try {
+      final row = await _client
+          .from('sets')
+          .select('id')
+          .eq('code', canonicalSetCode)
+          .limit(1)
+          .maybeSingle();
+      final subjectId = (row?['id'] ?? '').toString().trim();
+      if (subjectId.isEmpty) {
+        throw CollectionProjectTargetNotFoundException(
+          subjectType: CollectionProjectSubjectType.set,
+          subjectId: subjectId,
+        );
+      }
+
+      final isTracking = await _collectionProjectService.isTracking(
+        subjectType: CollectionProjectSubjectType.set,
+        subjectId: subjectId,
+      );
+      if (!mounted || generation != _projectLoadGeneration) {
+        return;
+      }
+      setState(() {
+        _projectSubjectId = subjectId;
+        _isTrackingProject = isTracking;
+      });
+    } on CollectionProjectAuthenticationException {
+      if (!mounted || generation != _projectLoadGeneration) {
+        return;
+      }
+      setState(() {
+        _projectSubjectId = null;
+        _isTrackingProject = null;
+        _projectStateError = null;
+      });
+    } catch (error) {
+      if (!mounted || generation != _projectLoadGeneration) {
+        return;
+      }
+      setState(() {
+        _projectSubjectId = null;
+        _isTrackingProject = null;
+        _projectStateError = error is CollectionProjectTargetNotFoundException
+            ? 'This set cannot be tracked yet.'
+            : 'Tracking is temporarily unavailable.';
+      });
+    } finally {
+      if (mounted && generation == _projectLoadGeneration) {
+        setState(() {
+          _projectStateLoading = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _startProject() async {
+    final subjectId = _projectSubjectId;
+    if (!_hasSignedInViewer || subjectId == null || _projectMutationBusy) {
+      return;
+    }
+
+    setState(() {
+      _projectMutationBusy = true;
+      _projectStateError = null;
+    });
+    try {
+      await _collectionProjectService.startProject(
+        subjectType: CollectionProjectSubjectType.set,
+        subjectId: subjectId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _isTrackingProject = true;
+      });
+      _showProjectMessage(
+        'Private project started. Track this set from your Vault.',
+      );
+    } on CollectionProjectAuthenticationException {
+      if (mounted) {
+        _showProjectMessage('Sign in to track a private collection project.');
+      }
+    } on CollectionProjectTargetNotFoundException {
+      if (mounted) {
+        setState(() {
+          _projectStateError = 'This set cannot be tracked yet.';
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _projectStateError = 'Unable to start this project right now.';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _projectMutationBusy = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _confirmStopProject() async {
+    if (_projectMutationBusy || _isTrackingProject != true) {
+      return;
+    }
+    final shouldStop = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Stop tracking this set?'),
+        content: const Text(
+          'This only stops the private project. Your collection and '
+          'completion progress stay unchanged.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Keep tracking'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('Stop tracking'),
+          ),
+        ],
+      ),
+    );
+    if (shouldStop != true || !mounted) {
+      return;
+    }
+    await _stopProject();
+  }
+
+  Future<void> _stopProject() async {
+    final subjectId = _projectSubjectId;
+    if (!_hasSignedInViewer || subjectId == null || _projectMutationBusy) {
+      return;
+    }
+
+    setState(() {
+      _projectMutationBusy = true;
+      _projectStateError = null;
+    });
+    try {
+      await _collectionProjectService.stopProject(
+        subjectType: CollectionProjectSubjectType.set,
+        subjectId: subjectId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _isTrackingProject = false;
+      });
+      _showProjectMessage(
+        'Private project stopped. Your collection is unchanged.',
+      );
+    } on CollectionProjectAuthenticationException {
+      if (mounted) {
+        _showProjectMessage('Sign in to manage collection projects.');
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _projectStateError = 'Unable to stop this project right now.';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _projectMutationBusy = false;
+        });
+      }
+    }
+  }
+
+  void _showProjectMessage(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 
   OwnershipState? _ownershipStateForCard(PublicSetCard card) {
@@ -230,6 +452,17 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       ),
       const SizedBox(height: 10),
       _SetDetailMasterSetPanel(stats: detail.masterSetStats),
+      const SizedBox(height: 10),
+      _PrivateSetProjectControl(
+        signedIn: _hasSignedInViewer,
+        loading: _projectStateLoading,
+        mutating: _projectMutationBusy,
+        isTracking: _isTrackingProject,
+        errorMessage: _projectStateError,
+        onStart: _startProject,
+        onStop: _confirmStopProject,
+        onRetry: () => _loadProjectTracking(detail.summary.code),
+      ),
       const SizedBox(height: 10),
       if (detail.worldChampionshipDecklist != null) ...[
         _WorldChampionshipDecklistPanel(
@@ -414,6 +647,146 @@ ResolvedImagePresentation _setCardImagePresentation(PublicSetCard card) {
     imageStatus: card.imageStatus,
     imageNote: card.imageNote,
   );
+}
+
+class _PrivateSetProjectControl extends StatelessWidget {
+  const _PrivateSetProjectControl({
+    required this.signedIn,
+    required this.loading,
+    required this.mutating,
+    required this.isTracking,
+    required this.errorMessage,
+    required this.onStart,
+    required this.onStop,
+    required this.onRetry,
+  });
+
+  final bool signedIn;
+  final bool loading;
+  final bool mutating;
+  final bool? isTracking;
+  final String? errorMessage;
+  final VoidCallback onStart;
+  final VoidCallback onStop;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final busy = loading || mutating;
+
+    return _SetDetailSurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(Icons.flag_outlined, size: 19, color: colorScheme.primary),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Collection project',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      signedIn
+                          ? 'Private to you. Track this master set without '
+                                'changing your collection.'
+                          : 'Sign in to track this master set privately.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.66),
+                        height: 1.35,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 11),
+          if (!signedIn)
+            OutlinedButton.icon(
+              onPressed: null,
+              icon: const Icon(Icons.lock_outline_rounded),
+              label: const Text('Sign in to track'),
+            )
+          else if (busy)
+            OutlinedButton.icon(
+              onPressed: null,
+              icon: SizedBox.square(
+                dimension: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: colorScheme.primary,
+                ),
+              ),
+              label: Text(mutating ? 'Saving…' : 'Checking…'),
+            )
+          else if (errorMessage != null)
+            OutlinedButton.icon(
+              onPressed: onRetry,
+              icon: const Icon(Icons.refresh_rounded),
+              label: const Text('Retry tracking'),
+            )
+          else if (isTracking == true)
+            Wrap(
+              spacing: 8,
+              runSpacing: 6,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Chip(
+                  avatar: Icon(
+                    Icons.check_circle_rounded,
+                    size: 17,
+                    color: colorScheme.primary,
+                  ),
+                  label: const Text('Tracking'),
+                ),
+                TextButton(
+                  onPressed: onStop,
+                  child: const Text('Stop tracking'),
+                ),
+              ],
+            )
+          else
+            FilledButton.tonalIcon(
+              onPressed: onStart,
+              icon: const Icon(Icons.flag_rounded),
+              label: const Text('Track project'),
+            ),
+          if (errorMessage != null) ...[
+            const SizedBox(height: 7),
+            Text(
+              errorMessage!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ] else if (signedIn && isTracking != true && !busy) ...[
+            const SizedBox(height: 7),
+            Text(
+              'Track project starts a new private goal or resumes one you '
+              'stopped earlier.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.58),
+                height: 1.3,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
 }
 
 class _SetDetailMasterSetPanel extends StatelessWidget {

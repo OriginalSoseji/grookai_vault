@@ -509,6 +509,8 @@ class _AppShellState extends State<AppShell> {
         return NetworkScreen(
           key: _networkKey,
           onPulseUnreadChanged: _handlePulseUnreadChanged,
+          onOpenScanner: _startScanFlow,
+          onOpenVaultSpecies: _openVaultForSpecies,
         );
       case _ShellDestination.wall:
         return _MyWallTab(
@@ -517,7 +519,11 @@ class _AppShellState extends State<AppShell> {
           onOpenAccount: _openAccountHub,
         );
       case _ShellDestination.vault:
-        return VaultPage(key: _vaultKey);
+        return VaultPage(
+          key: _vaultKey,
+          onOpenScanner: _startScanFlow,
+          onOpenVaultSpecies: _openVaultForSpecies,
+        );
     }
   }
 
@@ -653,6 +659,17 @@ class _AppShellState extends State<AppShell> {
         break;
       case GrookaiCanonicalRouteKind.gvvi:
         unawaited(_pushPage<void>(PublicGvviScreen(gvviId: route.value)));
+        break;
+      case GrookaiCanonicalRouteKind.dex:
+        unawaited(
+          _pushPage<void>(
+            buildCanonicalDexPage(
+              route.value,
+              onOpenScanner: _startScanFlow,
+              onOpenVaultSpecies: _openVaultForSpecies,
+            ),
+          ),
+        );
         break;
       case GrookaiCanonicalRouteKind.feed:
         revealAppShellRoot(context);
@@ -839,7 +856,40 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openDex() async {
-    await _pushPage<void>(const GrookaiDexScreen());
+    await _pushPage<void>(
+      GrookaiDexScreen(
+        onOpenScanner: _startScanFlow,
+        onOpenVaultSpecies: _openVaultForSpecies,
+      ),
+    );
+  }
+
+  Future<void> _openVaultForSpecies({
+    required String speciesSlug,
+    required String displayName,
+  }) {
+    final normalizedSlug = speciesSlug.trim().toLowerCase();
+    if (normalizedSlug.isEmpty) {
+      return Future<void>.value();
+    }
+
+    revealAppShellRoot(context);
+    _selectDestination(_ShellDestination.vault);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      final vaultState = _vaultKey.currentState;
+      if (vaultState != null) {
+        unawaited(
+          vaultState.openSpeciesFilter(
+            speciesSlug: normalizedSlug,
+            displayName: displayName,
+          ),
+        );
+      }
+    });
+    return Future<void>.value();
   }
 
   Future<void> _openCompare() async {

@@ -22,4 +22,16 @@ test("species detail deduplicates card mappings and cameo rows", () => {
   assert.match(source, /printingPageRows|pageRows\.length < SUPABASE_DETAIL_PAGE_SIZE/);
   assert.match(source, /\.range\(cameoFrom, cameoTo\)/);
   assert.match(source, /cameoRawPage\.length < CAMEO_PAGE_SIZE/);
+  assert.match(source, /getOwnedPrintingOwnershipByCardPrintIds/);
+  assert.match(source, /unassignedCountsByCardPrintId\.get/);
+  assert.match(source, /unassignedPrintingCount/);
+  assert.match(source, /printings\.length > 0\s*\?\s*ownedPrintingOwnership/);
+  assert.doesNotMatch(
+    source,
+    /printings\.length === 1 && printings\[0\]\?\.ownedCount === 0/,
+  );
+  assert.match(
+    source,
+    /card\.countsForCompletion \|\|\s*card\.role\.trim\(\)\.toLowerCase\(\) !== "cameo"/,
+  );
 });

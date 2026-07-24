@@ -114,6 +114,39 @@ void main() {
     }
   });
 
+  test('Dex species links parse for web and custom app schemes', () {
+    for (final link in <String>[
+      'grookai://dex/pikachu',
+      'grookaivault://dex/pikachu',
+      'grookai:///dex/pikachu',
+      'https://grookaivault.com/dex/pikachu',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.dex);
+      expect(route.value, 'pikachu');
+      expect(route.path, '/dex/pikachu');
+    }
+  });
+
+  test('Dex root links retain the canonical Dex index destination', () {
+    for (final link in <String>[
+      'grookai://dex',
+      'grookaivault://dex',
+      'grookai:///dex',
+      'https://grookaivault.com/dex',
+      '/dex',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.dex);
+      expect(route.value, isEmpty);
+      expect(route.path, '/dex');
+    }
+  });
+
   test(
     'iOS universal-link association covers every canonical public route',
     () {
@@ -139,6 +172,8 @@ void main() {
           '/set/*',
           '/sets/*',
           '/gvvi/*',
+          '/dex',
+          '/dex/*',
           '/network*',
           '/feed*',
         ]),

@@ -61,6 +61,7 @@
                 <data android:host="set" />
                 <data android:host="sets" />
                 <data android:host="gvvi" />
+                <data android:host="dex" />
                 <data android:host="network" />
                 <data android:host="feed" />
             </intent-filter>

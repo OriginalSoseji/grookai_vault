@@ -11,6 +11,8 @@
           "/set/*",
           "/sets/*",
           "/gvvi/*",
+          "/dex",
+          "/dex/*",
           "/network*",
           "/feed*"
         ]

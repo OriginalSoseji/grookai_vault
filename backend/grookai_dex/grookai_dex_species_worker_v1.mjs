@@ -41,16 +41,20 @@ async function applySpecies(seedBundle) {
             canonical_name,
             display_name,
             slug,
+            generation,
+            types,
             source,
             source_ref,
             active
           )
-          values ($1, $2, $3, $4, 'grookai_dex_seed_v1', $5::jsonb, true)
+          values ($1, $2, $3, $4, $5, $6::text[], 'grookai_dex_seed_v1', $7::jsonb, true)
           on conflict (slug) do update
           set
             national_dex_number = excluded.national_dex_number,
             canonical_name = excluded.canonical_name,
             display_name = excluded.display_name,
+            generation = excluded.generation,
+            types = excluded.types,
             source = excluded.source,
             source_ref = excluded.source_ref,
             active = true,
@@ -61,9 +65,13 @@ async function applySpecies(seedBundle) {
           row.canonicalName,
           row.displayName,
           row.slug,
+          row.generation,
+          row.types,
           JSON.stringify({
             source: seedBundle.metadata.source ?? null,
             sourceUrl: seedBundle.metadata.sourceUrl ?? null,
+            typeSourceUrl: seedBundle.metadata.typeSourceUrl ?? null,
+            metadataSourceReadCount: seedBundle.metadata.metadataSourceReadCount ?? null,
           }),
         ],
       );
@@ -92,6 +100,8 @@ function buildMarkdown(report) {
   lines.push('');
   lines.push(`- Species rows: ${report.summary.species_count}`);
   lines.push(`- Expected species rows: ${report.summary.expected_species_count}`);
+  lines.push(`- Species with generation: ${report.summary.species_with_generation_count}`);
+  lines.push(`- Species with canonical types: ${report.summary.species_with_types_count}`);
   lines.push(`- First National Dex number: ${report.summary.first_national_dex_number}`);
   lines.push(`- Last National Dex number: ${report.summary.last_national_dex_number}`);
   lines.push(`- Errors: ${report.errors.length}`);
@@ -148,6 +158,12 @@ async function main() {
       expected_species_count: seedBundle.metadata.expectedSpeciesCount ?? null,
       source: seedBundle.metadata.source ?? null,
       source_url: seedBundle.metadata.sourceUrl ?? null,
+      species_with_generation_count: seedBundle.species.filter(
+        (row) => Number.isInteger(row.generation),
+      ).length,
+      species_with_types_count: seedBundle.species.filter(
+        (row) => Array.isArray(row.types) && row.types.length >= 1 && row.types.length <= 2,
+      ).length,
       first_national_dex_number: Math.min(...dexNumbers),
       last_national_dex_number: Math.max(...dexNumbers),
     },
