@@ -91,13 +91,50 @@ exit 7
   -TimeoutSeconds 10 \`
   -SanitizeDatabaseEnvironment
 
-$timeout = Invoke-LocalContained \`
-  -Script @'
-[Console]::Out.WriteLine('before-timeout-out')
-[Console]::Error.WriteLine('before-timeout-err')
-Start-Sleep -Seconds 30
-'@ \`
-  -TimeoutSeconds 1
+$timeoutReadyName = (
+  'Local\GrookaiBinderTimeoutReadyV1-' +
+  [guid]::NewGuid().ToString('N')
+)
+$timeoutReadyCreated = $false
+$timeoutReady = [Threading.EventWaitHandle]::new(
+  $false,
+  [Threading.EventResetMode]::ManualReset,
+  $timeoutReadyName,
+  [ref]$timeoutReadyCreated
+)
+if (-not $timeoutReadyCreated) {
+  throw 'A unique timeout-readiness event could not be created.'
+}
+$timeoutReadySignaled = $false
+try {
+  $timeoutTarget = @'
+$ready = [Threading.EventWaitHandle]::OpenExisting(
+  '__TIMEOUT_READY_EVENT__'
+)
+try {
+  [Console]::Out.WriteLine('before-timeout-out')
+  [Console]::Error.WriteLine('before-timeout-err')
+  [Console]::Out.Flush()
+  [Console]::Error.Flush()
+  if (-not $ready.Set()) {
+    throw 'The timeout-readiness event could not be signaled.'
+  }
+  Start-Sleep -Seconds 60
+} finally {
+  $ready.Dispose()
+}
+'@
+  $timeoutTarget = $timeoutTarget.Replace(
+    '__TIMEOUT_READY_EVENT__',
+    $timeoutReadyName
+  )
+  $timeout = Invoke-LocalContained \`
+    -Script $timeoutTarget \`
+    -TimeoutSeconds 10
+  $timeoutReadySignaled = $timeoutReady.WaitOne(0)
+} finally {
+  $timeoutReady.Dispose()
+}
 
 $descendant = Invoke-LocalContained \`
   -Script @'
@@ -202,6 +239,7 @@ $handleCountAfterSetupFailures = (
   }
   timeout = [ordered]@{
     exit_code = $timeout.ExitCode
+    ready_signaled = $timeoutReadySignaled
     timed_out = $timeout.TimedOut
     kill_attempted = $timeout.KillAttempted
     kill_request_succeeded = $timeout.KillRequestSucceeded
@@ -261,7 +299,7 @@ $handleCountAfterSetupFailures = (
       cwd: REPO_ROOT,
       encoding: "utf8",
       maxBuffer: 5 * 1024 * 1024,
-      timeout: 45_000,
+      timeout: 90_000,
       windowsHide: true,
     },
   );
@@ -299,6 +337,7 @@ test(
     await context.test(
       "terminates and confirms an ordinary timeout",
       () => {
+        assert.equal(report.timeout.ready_signaled, true);
         assert.equal(report.timeout.timed_out, true);
         assert.equal(report.timeout.kill_attempted, true);
         assert.equal(report.timeout.kill_request_succeeded, true);

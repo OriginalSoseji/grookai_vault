@@ -1949,6 +1949,7 @@ function Test-BinderRoutingEnvironmentNameForSupervisorV1 {
       'SUPABASE_.*|' +
       'XDG_CONFIG_HOME|' +
       'GIT_.*|' +
+      'GCM_.*|' +
       'MSYS.*|CYGWIN.*|CHERE_INVOKING|BASH_ENV|ENV|' +
       'NODE_OPTIONS|' +
       'PSMODULEPATH|' +

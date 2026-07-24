@@ -606,7 +606,7 @@ function Test-BinderGitForWindowsInjectionEnvironmentNameV1 {
 
   return [regex]::IsMatch(
     $Name,
-    '^(?:MSYS.*|CYGWIN.*|CHERE_INVOKING|BASH_ENV|ENV)$',
+    '^(?:GCM_.*|MSYS.*|CYGWIN.*|CHERE_INVOKING|BASH_ENV|ENV)$',
     [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
   )
 }
@@ -1596,6 +1596,10 @@ function Invoke-BinderProcessV1 {
           $SanitizeDatabaseEnvironment -and
           (
             (Test-BinderRoutingEnvironmentNameV1 -Name $name) -or
+            (
+              Test-BinderGitForWindowsInjectionEnvironmentNameV1 `
+                -Name $name
+            ) -or
             (
               $name.StartsWith(
                 'SUPABASE_',

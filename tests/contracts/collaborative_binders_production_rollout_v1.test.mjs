@@ -960,53 +960,70 @@ try {
   [void][IO.Directory]::CreateDirectory((Join-Path $fixture 'supabase/migrations'))
   $migration = Join-Path $fixture 'supabase/migrations/20260723100000_fixture.sql'
   [IO.File]::WriteAllText($migration, 'select 1;')
-  $savedGitEnvironment = [ordered]@{}
-  foreach ($entry in Get-ChildItem Env:) {
-    if ($entry.Name.StartsWith(
-      'GIT_',
-      [StringComparison]::OrdinalIgnoreCase
-    )) {
-      $savedGitEnvironment[$entry.Name] = [string]$entry.Value
-      Remove-Item -LiteralPath ("Env:" + $entry.Name)
-    }
-  }
-  try {
-    $null = & git -C $fixture init --quiet 2>&1
-    if ($LASTEXITCODE -ne 0) { throw 'fixture git init failed' }
-    $null = & git -C $fixture add -- 'supabase/migrations/20260723100000_fixture.sql' 2>&1
-    if ($LASTEXITCODE -ne 0) { throw 'fixture git add failed' }
-  } finally {
-    foreach ($entry in $savedGitEnvironment.GetEnumerator()) {
-      [Environment]::SetEnvironmentVariable(
-        [string]$entry.Key,
-        [string]$entry.Value,
-        [EnvironmentVariableTarget]::Process
-      )
-    }
-  }
   $module = Get-Module CollaborativeBindersProductionRolloutV1
-  $exact = & $module {
+  $result = & $module {
     param($root)
-    Get-BinderTrackedMigrationSetV1 -RepoRoot $root
+    $gitProbe = [pscustomobject]@{
+      Count = 0
+      RepoRoot = [IO.Path]::GetFullPath($root)
+    }
+    function Invoke-BinderGitV1 {
+      param(
+        [string[]]$Arguments,
+        [string]$RepoRoot,
+        [int]$TimeoutSeconds = 60
+      )
+      $expectedArguments = @(
+        'ls-files',
+        '--stage',
+        '--',
+        ':(top,glob)supabase/migrations/*.sql'
+      )
+      if (
+        @($Arguments).Count -ne $expectedArguments.Count -or
+        (@($Arguments) -join [char]0) -cne
+          ($expectedArguments -join [char]0)
+      ) {
+        throw 'fixture received an unexpected Git command'
+      }
+      if (
+        [IO.Path]::GetFullPath($RepoRoot) -cne $gitProbe.RepoRoot
+      ) {
+        throw 'fixture received an unexpected Git repository root'
+      }
+      $gitProbe.Count += 1
+      [pscustomobject]@{
+        ExitCode = 0
+        TimedOut = $false
+        TerminationConfirmed = $true
+        OutputCaptureCompleted = $true
+        StdOut = (
+          '100644 ' + ('a' * 40) + ' 0' + [char]9 +
+          'supabase/migrations/20260723100000_fixture.sql'
+        )
+        StdErr = ''
+      }
+    }
+
+    $exact = Get-BinderTrackedMigrationSetV1 -RepoRoot $root
+    [IO.File]::WriteAllText(
+      (Join-Path $root 'supabase/migrations/20260723100001_injected.sql'),
+      'select 2;'
+    )
+    $failure = ''
+    try {
+      [void](Get-BinderTrackedMigrationSetV1 -RepoRoot $root)
+    } catch {
+      $failure = $_.Exception.Message
+    }
+    [pscustomobject]@{
+      ExactCount = $exact.Count
+      ExactFingerprint = $exact.Sha256
+      Failure = $failure
+      GitCallCount = $gitProbe.Count
+    }
   } $fixture
-  [IO.File]::WriteAllText(
-    (Join-Path $fixture 'supabase/migrations/20260723100001_injected.sql'),
-    'select 2;'
-  )
-  $failure = ''
-  try {
-    [void](& $module {
-      param($root)
-      Get-BinderTrackedMigrationSetV1 -RepoRoot $root
-    } $fixture)
-  } catch {
-    $failure = $_.Exception.Message
-  }
-  [pscustomobject]@{
-    ExactCount = $exact.Count
-    ExactFingerprint = $exact.Sha256
-    Failure = $failure
-  } | ConvertTo-Json -Compress
+  $result | ConvertTo-Json -Compress
 } finally {
   if (
     (Test-Path -LiteralPath $fixture) -and
@@ -1031,6 +1048,7 @@ try {
   );
   assert.equal(result.ExactCount, 1);
   assert.match(result.ExactFingerprint, /^[0-9a-f]{64}$/);
+  assert.equal(result.GitCallCount, 2);
   assert.match(
     result.Failure,
     /does not exactly match the tracked top-level SQL set/i,

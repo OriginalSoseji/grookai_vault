@@ -5,6 +5,7 @@ import {
   copyFileSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -260,7 +261,14 @@ test(
       path.join(os.tmpdir(), "binder-supervisor-auth-"),
     );
     try {
-      const authorizationPath = path.join(tempRoot, "authorization.json");
+      const canonicalTempRoot = realpathSync.native(tempRoot).replace(
+        /^[a-z](?=:)/,
+        (drive) => drive.toUpperCase(),
+      );
+      const authorizationPath = path.join(
+        canonicalTempRoot,
+        "authorization.json",
+      );
       const bytes = Buffer.from("{}", "utf8");
       writeFileSync(authorizationPath, bytes);
 
@@ -990,6 +998,10 @@ test(
       $env:DB_URL = 'postgresql://user:pass@malicious.invalid/db'
       $env:GIT_CONFIG_COUNT = '99'
       $env:GIT_ASKPASS = 'C:\\malicious-askpass.exe'
+      $env:GCM_INTERACTIVE = 'Always'
+      $env:GCM_TRACE = '1'
+      $env:MSYS2_ARG_CONV_EXCL = 'malicious'
+      $env:MSYS_NO_PATHCONV = 'malicious'
       $env:AWS_SECRET_ACCESS_KEY = 'LOCAL_TEST_AWS_SECRET'
       $env:GROOKAI_BINDER_PROD_MUTATION_NOT_AFTER_UTC =
         '2099-01-01T00:00:00Z'
@@ -1010,6 +1022,7 @@ $names = @(
   'GIT_TERMINAL_PROMPT',
   'GIT_OPTIONAL_LOCKS',
   'GCM_INTERACTIVE',
+  'GCM_TRACE',
   'MSYS2_ARG_CONV_EXCL',
   'MSYS_NO_PATHCONV'
 )
@@ -1103,6 +1116,7 @@ foreach ($name in $names) {
       "GIT_TERMINAL_PROMPT",
       "GIT_OPTIONAL_LOCKS",
       "GCM_INTERACTIVE",
+      "GCM_TRACE",
       "MSYS2_ARG_CONV_EXCL",
       "MSYS_NO_PATHCONV",
     ]) {
@@ -1121,6 +1135,7 @@ foreach ($name in $names) {
       "AWS_SECRET_ACCESS_KEY",
       "GROOKAI_BINDER_PROD_MUTATION_NOT_AFTER_UTC",
       "GROOKAI_BINDER_SUPERVISOR_PAYLOAD_V1",
+      "GCM_TRACE",
     ]) {
       assert.ok(
         value.git[name] === null || value.git[name] === "",
