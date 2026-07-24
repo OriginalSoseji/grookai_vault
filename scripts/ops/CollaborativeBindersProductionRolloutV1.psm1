@@ -101,6 +101,36 @@ function ConvertTo-BinderUtcDateTimeV1 {
   return $parsed.UtcDateTime
 }
 
+function ConvertTo-BinderStrictUtcDeadlineV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Value,
+    [Parameter(Mandatory = $true)]
+    [string]$Label
+  )
+
+  Assert-BinderConditionV1 (
+    $Value -cmatch
+      '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,7})?Z$'
+  ) "$Label must be an exact UTC Z timestamp."
+  $parsed = [datetimeoffset]::MinValue
+  $valid = [datetimeoffset]::TryParseExact(
+    $Value,
+    [string[]]@(
+      "yyyy-MM-dd'T'HH:mm:ss'Z'",
+      "yyyy-MM-dd'T'HH:mm:ss.FFFFFFF'Z'"
+    ),
+    [cultureinfo]::InvariantCulture,
+    (
+      [System.Globalization.DateTimeStyles]::AssumeUniversal -bor
+      [System.Globalization.DateTimeStyles]::AdjustToUniversal
+    ),
+    [ref]$parsed
+  )
+  Assert-BinderConditionV1 $valid "$Label is invalid."
+  return $parsed
+}
+
 function Get-BinderRolloutPolicyV1 {
   [CmdletBinding()]
   param()
@@ -111,7 +141,20 @@ function Get-BinderRolloutPolicyV1 {
     PackageFingerprintSha256 = $script:PackageFingerprintV1
     ProjectRef = 'ycdxbpibncqcchqiihfz'
     CanonicalRepository = 'OriginalSoseji/grookai_vault'
+    CanonicalRemoteUrl =
+      'https://github.com/OriginalSoseji/grookai_vault.git'
     RequiredAncestorSha = '34caa07324587815040957f9adde1f771ebfc85a'
+    GitExecutablePath =
+      'C:\Program Files\Git\mingw64\bin\git.exe'
+    GitExecutableSha256 =
+      '755d4896d35663d0ff08924f84507f35236b83d240635b512c519bf43cc71a87'
+    GitVersion = 'git version 2.51.0.windows.1'
+    GitExecPath =
+      'C:\Program Files\Git\mingw64\libexec\git-core'
+    GitHttpsHelperPath =
+      'C:\Program Files\Git\mingw64\libexec\git-core\git-remote-https.exe'
+    GitHttpsHelperSha256 =
+      '0a5b9d55a338d202f88044c36fe0feb76cb57b68a4176798a80edacc706a34b8'
     SupportedSupabaseCliVersion = '2.90.0'
     SupabaseCliLauncherSha256 = '140e3801d8adeda639a21b14e62b93a4c7d26b7a758421f43c82be59753be49b'
     SupabaseCliBinarySha256 = '31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c'
@@ -121,6 +164,19 @@ function Get-BinderRolloutPolicyV1 {
     PostApplySqlRelativePath = 'scripts/ops/sql/collaborative_binders_production_post_apply_v1.sql'
     PreflightSqlSha256 = '268458ed8a4a16dc513b55b6d0e5b3b03c301320e55a9ab4887a135c7652800d'
     PostApplySqlSha256 = '5125b0d89f5b3d36c66f98863f0b69b9c6df55561dfb54303437d47d8731f1a1'
+    SupabaseConfigSha256 =
+      'd7ed1face7c1d1fbc70d35393ae3a42268e27886bd0e15d0b96bc1af439b1567'
+    LinkedProjectRefSha256 =
+      'caf1b086f20f10f60aa27783311afb3466ef31390aba80a00206730ff233d40f'
+    LinkedPoolerUrl =
+      'postgresql://postgres.ycdxbpibncqcchqiihfz@aws-1-us-east-2.pooler.supabase.com:5432/postgres'
+    LinkedPoolerUrlSha256 =
+      'd3609ad1cb525989b2fdbe7f0f25b7fff26fac19c72e2759893de1998a5295c1'
+    LinkedProjectMetadataSha256 =
+      'f86521274b66370ec59227b2a5906f8bcb4499658b54306b50427196ff60e8ed'
+    LinkedProjectName = "OriginalSoseji's Project"
+    LinkedProjectOrganizationId = 'rksadomjkuoxvrbhsmxu'
+    LinkedProjectOrganizationSlug = 'rksadomjkuoxvrbhsmxu'
     MigrationVersions = @(
       '20260723100000',
       '20260723101000',
@@ -300,6 +356,27 @@ function Read-BinderPackageManifestV1 {
     ($actualManifestProperties -join "`n") -ceq
       ($expectedManifestProperties -join "`n")
   ) 'Package manifest fields are missing or unexpected.'
+  Assert-BinderConditionV1 (
+    $manifest.schema_version -is [long] -and
+    $manifest.package_id -is [string] -and
+    $manifest.package_fingerprint_sha256 -is [string] -and
+    $manifest.required_ancestor_sha -is [string] -and
+    $manifest.production_project_ref -is [string] -and
+    $manifest.canonical_git_repository -is [string] -and
+    $manifest.migrations -is [object[]] -and
+    $manifest.readback_sql -is [object[]] -and
+    $manifest.final_expected_shape -is [pscustomobject] -and
+    $manifest.feature_flags_must_remain_disabled -is [object[]] -and
+    $manifest.excluded_from_rollout -is [object[]]
+  ) 'Package manifest primitive types are not exact JSON types.'
+  foreach ($flag in @(
+    @($manifest.feature_flags_must_remain_disabled) +
+    @($manifest.excluded_from_rollout)
+  )) {
+    Assert-BinderConditionV1 (
+      $flag -is [string]
+    ) 'Package manifest flag arrays may contain only strings.'
+  }
 
   Assert-BinderConditionV1 ($manifest.schema_version -eq $policy.SchemaVersion) 'Package manifest schema version mismatch.'
   Assert-BinderConditionV1 ($manifest.package_id -ceq $policy.PackageId) 'Package ID mismatch.'
@@ -334,6 +411,15 @@ function Read-BinderPackageManifestV1 {
       ($actualMigrationProperties -join "`n") -ceq
         ($expectedMigrationProperties -join "`n")
     ) 'Migration manifest fields are missing or unexpected.'
+    Assert-BinderConditionV1 (
+      $migration.version -is [string] -and
+      $migration.file -is [string] -and
+      $migration.sha256 -is [string] -and
+      $migration.cumulative_tables -is [long] -and
+      $migration.cumulative_functions -is [long] -and
+      $migration.cumulative_indexes -is [long] -and
+      $migration.cumulative_rls_policies -is [long]
+    ) 'Migration manifest primitive types are invalid.'
   }
 
   $expectedReadbackProperties = @('phase', 'file', 'sha256') | Sort-Object
@@ -345,6 +431,43 @@ function Read-BinderPackageManifestV1 {
       ($actualReadbackProperties -join "`n") -ceq
         ($expectedReadbackProperties -join "`n")
     ) 'Readback SQL manifest fields are missing or unexpected.'
+    Assert-BinderConditionV1 (
+      $readback.phase -is [string] -and
+      $readback.file -is [string] -and
+      $readback.sha256 -is [string]
+    ) 'Readback SQL manifest primitive types are invalid.'
+  }
+  foreach ($name in @(
+    'tables',
+    'functions',
+    'indexes',
+    'rls_policies',
+    'feature_flags',
+    'enabled_feature_flags',
+    'public_execute_functions',
+    'anonymous_raw_privileges',
+    'anonymous_raw_sequence_privileges',
+    'authenticated_raw_mutations',
+    'authenticated_raw_sequence_privileges'
+  )) {
+    Assert-BinderConditionV1 (
+      $manifest.final_expected_shape.PSObject.Properties[$name].Value -is
+        [long]
+    ) "Package final_expected_shape.$name must be an integer."
+  }
+  foreach ($name in @(
+    'authenticated_raw_select_tables',
+    'realtime_tables'
+  )) {
+    $values = $manifest.final_expected_shape.PSObject.Properties[$name].Value
+    Assert-BinderConditionV1 (
+      $values -is [object[]]
+    ) "Package final_expected_shape.$name must be an array."
+    foreach ($value in @($values)) {
+      Assert-BinderConditionV1 (
+        $value -is [string]
+      ) "Package final_expected_shape.$name may contain only strings."
+    }
   }
 
   return [pscustomobject]@{
@@ -425,6 +548,66 @@ function Test-BinderRoutingEnvironmentNameV1 {
     'SUPABASE_PROJECT_(?:ID|REF)|' +
     'SUPABASE_CA_SKIP_VERIFY' +
     ')$'
+  )
+}
+
+function Test-BinderRuntimeInjectionEnvironmentNameV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Name
+  )
+
+  return [regex]::IsMatch(
+    $Name,
+    '^(?:DOTNET_|CORECLR_|COR_|COMPLUS_).*$',
+    [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
+  )
+}
+
+function Test-BinderTraceOrRoutingEnvironmentNameV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Name
+  )
+
+  return [regex]::IsMatch(
+    $Name,
+    (
+      '^(?:' +
+      'HTTP_PROXY|HTTPS_PROXY|ALL_PROXY|NO_PROXY|' +
+      'SSL_CERT_FILE|SSL_CERT_DIR|SSLKEYLOGFILE|' +
+      'CURL_CA_BUNDLE|REQUESTS_CA_BUNDLE|NODE_EXTRA_CA_CERTS|' +
+      'GODEBUG|GOTRACEBACK|GOCOVERDIR|GRPC_.*' +
+      ')$'
+    ),
+    [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
+  )
+}
+
+function Test-BinderCredentialEnvironmentNameV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Name
+  )
+
+  return (
+    $Name -match
+      '(?i)(?:^|_)(?:SECRET|PASSWORD|TOKEN|KEY)(?:_|$)' -or
+    $Name -match
+      '(?i)^(?:GH_|GITHUB_|AWS_|AZURE_|GOOGLE_|GCP_)'
+  )
+}
+
+function Test-BinderGitForWindowsInjectionEnvironmentNameV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Name
+  )
+
+  return [regex]::IsMatch(
+    $Name,
+    '^(?:MSYS.*|CYGWIN.*|CHERE_INVOKING|BASH_ENV|ENV)$',
+    [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
   )
 }
 
@@ -886,6 +1069,7 @@ $ErrorActionPreference = 'Stop'
 $payloadName = 'GROOKAI_BINDER_SUPERVISOR_PAYLOAD_V1'
 $gate = $null
 $child = $null
+$payloadDocument = $null
 $exitCode = 250
 try {
   $encodedPayload = [Environment]::GetEnvironmentVariable(
@@ -903,12 +1087,54 @@ try {
   $payloadJson = [Text.Encoding]::UTF8.GetString(
     [Convert]::FromBase64String($encodedPayload)
   )
+  $payloadDocument = [System.Text.Json.JsonDocument]::Parse(
+    $payloadJson
+  )
+  if (
+    $payloadDocument.RootElement.ValueKind -ne
+      [System.Text.Json.JsonValueKind]::Object
+  ) {
+    throw 'Supervisor payload root is invalid.'
+  }
+  $notAfterElement = [System.Text.Json.JsonElement]::new()
+  if (
+    -not $payloadDocument.RootElement.TryGetProperty(
+      'NotAfterUtc',
+      [ref]$notAfterElement
+    ) -or
+    $notAfterElement.ValueKind -ne
+      [System.Text.Json.JsonValueKind]::String
+  ) {
+    throw 'Supervisor payload deadline is not a string.'
+  }
+  $notAfterText = $notAfterElement.GetString()
   $payload = $payloadJson | ConvertFrom-Json
   $gate = [Threading.EventWaitHandle]::OpenExisting(
     [string]$payload.GateName
   )
   if (-not $gate.WaitOne(600000)) {
     throw 'Supervisor gate was not released within ten minutes.'
+  }
+  if (-not [string]::IsNullOrWhiteSpace($notAfterText)) {
+    if ($notAfterText -cnotmatch
+      '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,7})?Z$') {
+      throw 'Contained mutation deadline is invalid.'
+    }
+    $notAfter = [datetimeoffset]::ParseExact(
+      $notAfterText,
+      [string[]]@(
+        "yyyy-MM-dd'T'HH:mm:ss'Z'",
+        "yyyy-MM-dd'T'HH:mm:ss.FFFFFFF'Z'"
+      ),
+      [cultureinfo]::InvariantCulture,
+      (
+        [Globalization.DateTimeStyles]::AssumeUniversal -bor
+        [Globalization.DateTimeStyles]::AdjustToUniversal
+      )
+    )
+    if ([datetimeoffset]::UtcNow -ge $notAfter) {
+      throw 'Contained mutation authority expired before child start.'
+    }
   }
 
   $start = [Diagnostics.ProcessStartInfo]::new()
@@ -924,6 +1150,12 @@ try {
 
   $child = [Diagnostics.Process]::new()
   $child.StartInfo = $start
+  if (
+    -not [string]::IsNullOrWhiteSpace($notAfterText) -and
+    [datetimeoffset]::UtcNow -ge $notAfter
+  ) {
+    throw 'Contained mutation authority expired at the child-start gate.'
+  }
   if (-not $child.Start()) {
     throw 'Supervisor could not start the reviewed executable.'
   }
@@ -947,6 +1179,9 @@ try {
 } finally {
   if ($null -ne $child) {
     $child.Dispose()
+  }
+  if ($null -ne $payloadDocument) {
+    $payloadDocument.Dispose()
   }
   if ($null -ne $gate) {
     $gate.Dispose()
@@ -1205,12 +1440,35 @@ function Invoke-BinderProcessV1 {
 
     [switch]$SanitizeDatabaseEnvironment,
 
+    [switch]$SanitizeGitEnvironment,
+
+    [string]$TrustedGitExecPath = '',
+
+    [string]$NotAfterUtc = '',
+
     [object]$ProcessLifecycle
   )
 
   Assert-BinderConditionV1 (
     $TimeoutSeconds -gt 0
   ) 'Process timeout must be positive.'
+  if (-not [string]::IsNullOrWhiteSpace($NotAfterUtc)) {
+    $parsedNotAfter = ConvertTo-BinderStrictUtcDeadlineV1 `
+      -Value $NotAfterUtc -Label 'Contained process not-after time'
+    Assert-BinderConditionV1 (
+      [datetimeoffset]::UtcNow -lt $parsedNotAfter
+    ) 'Contained process mutation authority has expired.'
+  }
+  if ($SanitizeGitEnvironment) {
+    Assert-BinderConditionV1 (
+      -not [string]::IsNullOrWhiteSpace($TrustedGitExecPath) -and
+      [System.IO.Path]::IsPathFullyQualified($TrustedGitExecPath)
+    ) 'Contained Git execution path is not fixed.'
+  } else {
+    Assert-BinderConditionV1 (
+      [string]::IsNullOrWhiteSpace($TrustedGitExecPath)
+    ) 'A trusted Git execution path was supplied to a non-Git process.'
+  }
   Initialize-BinderProcessContainmentTypesV1
 
   $maximumOutputCharacters = 262144
@@ -1286,6 +1544,7 @@ function Invoke-BinderProcessV1 {
       FilePath = $resolvedFilePath
       WorkingDirectory = $resolvedWorkingDirectory
       Arguments = @($Arguments)
+      NotAfterUtc = $NotAfterUtc
     }
     $payloadJson = $payload | ConvertTo-Json -Depth 4 -Compress
     $payloadBase64 = [Convert]::ToBase64String(
@@ -1312,12 +1571,76 @@ function Invoke-BinderProcessV1 {
     )) {
       [void]$start.ArgumentList.Add($argument)
     }
-    if ($SanitizeDatabaseEnvironment) {
-      foreach ($name in @($start.Environment.Keys)) {
-        if (Test-BinderRoutingEnvironmentNameV1 -Name $name) {
-          [void]$start.Environment.Remove($name)
-        }
+    foreach ($name in @($start.Environment.Keys)) {
+      $allowSupabaseAccessToken = (
+        $SanitizeDatabaseEnvironment -and
+        $name.Equals(
+          'SUPABASE_ACCESS_TOKEN',
+          [System.StringComparison]::OrdinalIgnoreCase
+        )
+      )
+      if (
+        (Test-BinderRuntimeInjectionEnvironmentNameV1 -Name $name) -or
+        (Test-BinderTraceOrRoutingEnvironmentNameV1 -Name $name) -or
+        (
+          (Test-BinderCredentialEnvironmentNameV1 -Name $name) -and
+          -not $allowSupabaseAccessToken
+        ) -or
+        (
+          $name.StartsWith(
+            'GROOKAI_BINDER_PROD_',
+            [System.StringComparison]::OrdinalIgnoreCase
+          )
+        ) -or
+        (
+          $SanitizeDatabaseEnvironment -and
+          (
+            (Test-BinderRoutingEnvironmentNameV1 -Name $name) -or
+            (
+              $name.StartsWith(
+                'SUPABASE_',
+                [System.StringComparison]::OrdinalIgnoreCase
+              ) -and
+              -not $allowSupabaseAccessToken
+            ) -or
+            $name.StartsWith(
+              'GIT_',
+              [System.StringComparison]::OrdinalIgnoreCase
+            )
+          )
+        ) -or
+        (
+          $SanitizeGitEnvironment -and
+          (
+            $name.StartsWith(
+              'GIT_',
+              [System.StringComparison]::OrdinalIgnoreCase
+            ) -or
+            $name.StartsWith(
+              'SUPABASE_',
+              [System.StringComparison]::OrdinalIgnoreCase
+            ) -or
+            (
+              Test-BinderGitForWindowsInjectionEnvironmentNameV1 `
+                -Name $name
+            ) -or
+            (Test-BinderRoutingEnvironmentNameV1 -Name $name)
+          )
+        )
+      ) {
+        [void]$start.Environment.Remove($name)
       }
+    }
+    if ($SanitizeGitEnvironment) {
+      $start.Environment['GIT_CONFIG_NOSYSTEM'] = '1'
+      $start.Environment['GIT_CONFIG_GLOBAL'] = 'NUL'
+      $start.Environment['GIT_EXEC_PATH'] =
+        [System.IO.Path]::GetFullPath($TrustedGitExecPath)
+      $start.Environment['GIT_TERMINAL_PROMPT'] = '0'
+      $start.Environment['GIT_OPTIONAL_LOCKS'] = '0'
+      $start.Environment['GCM_INTERACTIVE'] = 'Never'
+      $start.Environment['MSYS2_ARG_CONV_EXCL'] = '*'
+      $start.Environment['MSYS_NO_PATHCONV'] = '1'
     }
     $start.Environment[
       'GROOKAI_BINDER_SUPERVISOR_PAYLOAD_V1'
@@ -1530,13 +1853,162 @@ function Get-BinderCommandPathV1 {
     [string]$Name
   )
 
-  $command = Get-Command $Name -ErrorAction SilentlyContinue
-  Assert-BinderConditionV1 ($null -ne $command) "Required command is unavailable: $Name"
-  return $command.Source
+  $commands = @(
+    Get-Command $Name -CommandType Application `
+      -ErrorAction SilentlyContinue
+  )
+  Assert-BinderConditionV1 (
+    $commands.Count -gt 0
+  ) "Required application is unavailable: $Name"
+  $source = [string]$commands[0].Source
+  Assert-BinderConditionV1 (
+    -not [string]::IsNullOrWhiteSpace($source) -and
+    [System.IO.Path]::IsPathFullyQualified($source)
+  ) "Resolved application path is not absolute: $Name"
+  return [System.IO.Path]::GetFullPath($source)
+}
+
+function Assert-BinderPinnedProgramFilesFileV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path,
+    [Parameter(Mandatory = $true)]
+    [string]$ExpectedPath,
+    [Parameter(Mandatory = $true)]
+    [string]$ExpectedSha256,
+    [Parameter(Mandatory = $true)]
+    [string]$Label
+  )
+
+  $fullPath = [System.IO.Path]::GetFullPath($Path)
+  $programFilesRoot = 'C:\Program Files'
+  Assert-BinderConditionV1 (
+    $fullPath -ceq $ExpectedPath -and
+    $fullPath.StartsWith(
+      "$programFilesRoot\",
+      [System.StringComparison]::OrdinalIgnoreCase
+    ) -and
+    (Test-Path -LiteralPath $fullPath -PathType Leaf)
+  ) "$Label is not the exact fixed Program Files executable."
+  $lowTrustSids = @(
+    'S-1-1-0',
+    'S-1-5-11',
+    'S-1-5-32-545',
+    [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+  )
+  $trustedOwnerSids = @(
+    'S-1-5-18',
+    'S-1-5-32-544',
+    (
+      [System.Security.Principal.NTAccount]::new(
+        'NT SERVICE',
+        'TrustedInstaller'
+      ).Translate(
+        [System.Security.Principal.SecurityIdentifier]
+      ).Value
+    )
+  )
+  $unsafeRights = (
+    [System.Security.AccessControl.FileSystemRights]::WriteData -bor
+    [System.Security.AccessControl.FileSystemRights]::AppendData -bor
+    [System.Security.AccessControl.FileSystemRights]::WriteExtendedAttributes -bor
+    [System.Security.AccessControl.FileSystemRights]::WriteAttributes -bor
+    [System.Security.AccessControl.FileSystemRights]::Delete -bor
+    [System.Security.AccessControl.FileSystemRights]::
+      DeleteSubdirectoriesAndFiles -bor
+    [System.Security.AccessControl.FileSystemRights]::ChangePermissions -bor
+    [System.Security.AccessControl.FileSystemRights]::TakeOwnership
+  )
+  $cursor = $fullPath
+  while ($cursor) {
+    $item = Get-Item -LiteralPath $cursor -Force
+    Assert-BinderConditionV1 (
+      -not $item.Attributes.HasFlag(
+        [System.IO.FileAttributes]::ReparsePoint
+      )
+    ) "$Label path contains a reparse point: $cursor"
+    $acl = Get-Acl -LiteralPath $cursor
+    $ownerSid = (
+      [System.Security.Principal.NTAccount]$acl.Owner
+    ).Translate(
+      [System.Security.Principal.SecurityIdentifier]
+    ).Value
+    Assert-BinderConditionV1 (
+      $trustedOwnerSids -ccontains $ownerSid
+    ) "$Label has an untrusted owner: $cursor"
+    foreach ($rule in $acl.GetAccessRules(
+      $true,
+      $true,
+      [System.Security.Principal.SecurityIdentifier]
+    )) {
+      if (
+        $rule.AccessControlType -eq
+          [System.Security.AccessControl.AccessControlType]::Allow -and
+        $lowTrustSids -ccontains $rule.IdentityReference.Value -and
+        (
+          $rule.FileSystemRights -band $unsafeRights
+        ) -ne 0
+      ) {
+        throw "$Label grants write-capable access to a low-trust identity."
+      }
+    }
+    if ($cursor.Equals(
+      $programFilesRoot,
+      [System.StringComparison]::OrdinalIgnoreCase
+    )) {
+      break
+    }
+    $parent = Split-Path -Parent $cursor
+    Assert-BinderConditionV1 (
+      -not [string]::IsNullOrWhiteSpace($parent) -and
+      -not $parent.Equals(
+        $cursor,
+        [System.StringComparison]::OrdinalIgnoreCase
+      )
+    ) "$Label escaped its fixed Program Files parent."
+    $cursor = $parent
+  }
+  Assert-BinderConditionV1 (
+    (Get-BinderSha256FileV1 -Path $fullPath) -ceq $ExpectedSha256
+  ) "$Label hash differs from the reviewed identity."
+  return $fullPath
+}
+
+function Get-BinderGitExecutableV1 {
+  $policy = Get-BinderRolloutPolicyV1
+  $gitPath = Assert-BinderPinnedProgramFilesFileV1 `
+    -Path $policy.GitExecutablePath `
+    -ExpectedPath $policy.GitExecutablePath `
+    -ExpectedSha256 $policy.GitExecutableSha256 `
+    -Label 'Git executable'
+  $helperPath = Assert-BinderPinnedProgramFilesFileV1 `
+    -Path $policy.GitHttpsHelperPath `
+    -ExpectedPath $policy.GitHttpsHelperPath `
+    -ExpectedSha256 $policy.GitHttpsHelperSha256 `
+    -Label 'Git HTTPS helper'
+  $execPath = [System.IO.Path]::GetFullPath($policy.GitExecPath)
+  Assert-BinderConditionV1 (
+    $execPath -ceq (Split-Path -Parent $helperPath)
+  ) 'Git HTTPS helper is outside the fixed execution directory.'
+  return [pscustomobject][ordered]@{
+    ExecutablePath = $gitPath
+    ExecutableSha256 = $policy.GitExecutableSha256
+    Version = $policy.GitVersion
+    ExecPath = $execPath
+    HttpsHelperPath = $helperPath
+    HttpsHelperSha256 = $policy.GitHttpsHelperSha256
+  }
 }
 
 function Get-BinderSupabaseExecutableV1 {
+  $policy = Get-BinderRolloutPolicyV1
   $launcherPath = Get-BinderCommandPathV1 -Name 'supabase'
+  $launcherItem = Get-Item -LiteralPath $launcherPath -Force
+  Assert-BinderConditionV1 (
+    -not $launcherItem.Attributes.HasFlag(
+      [System.IO.FileAttributes]::ReparsePoint
+    )
+  ) 'Supabase launcher must not be a reparse point.'
   $binaryPath = $launcherPath
   $shimDescriptorPath = $null
   $shimDescriptor = [System.IO.Path]::ChangeExtension(
@@ -1576,6 +2048,27 @@ function Get-BinderSupabaseExecutableV1 {
     Assert-BinderConditionV1 (Test-Path -LiteralPath $candidate -PathType Leaf) 'Resolved Supabase binary does not exist.'
     $binaryPath = $candidate
   }
+  Assert-BinderConditionV1 (
+    -not [string]::IsNullOrWhiteSpace($shimDescriptorPath)
+  ) 'The reviewed Supabase Scoop shim descriptor is missing.'
+  $binaryItem = Get-Item -LiteralPath $binaryPath -Force
+  Assert-BinderConditionV1 (
+    -not $binaryItem.Attributes.HasFlag(
+      [System.IO.FileAttributes]::ReparsePoint
+    )
+  ) 'Resolved Supabase binary must not be a reparse point.'
+  Assert-BinderConditionV1 (
+    (Get-BinderSha256FileV1 -Path $launcherPath) -ceq
+      $policy.SupabaseCliLauncherSha256
+  ) 'Supabase CLI launcher is not the reviewed binary.'
+  Assert-BinderConditionV1 (
+    (Get-BinderSha256FileV1 -Path $shimDescriptorPath) -ceq
+      $policy.SupabaseCliShimDescriptorSha256
+  ) 'Supabase CLI shim descriptor is not the reviewed descriptor.'
+  Assert-BinderConditionV1 (
+    (Get-BinderSha256FileV1 -Path $binaryPath) -ceq
+      $policy.SupabaseCliBinarySha256
+  ) 'Supabase CLI binary is not the reviewed binary.'
 
   return [pscustomobject]@{
     LauncherPath = $launcherPath
@@ -1595,11 +2088,449 @@ function Invoke-BinderGitV1 {
     [int]$TimeoutSeconds = 60
   )
 
+  $git = Get-BinderGitExecutableV1
+  $hardenedArguments = @(
+    '-c', 'extensions.worktreeConfig=false',
+    '-c', 'core.fsmonitor=false',
+    '-c', 'core.hooksPath=NUL',
+    '-c', 'core.askPass=',
+    '-c', 'core.sshCommand=',
+    '-c', 'core.gitProxy=',
+    '-c', 'credential.helper=',
+    '-c', 'credential.interactive=false',
+    '-c', 'credential.username=',
+    '-c', 'http.proxy=',
+    '-c', 'http.sslVerify=true',
+    '-c', 'http.sslCAInfo=',
+    '-c', 'http.sslCAPath=',
+    '-c', 'http.sslCert=',
+    '-c', 'http.sslKey=',
+    '-c', 'http.sslCertPasswordProtected=false',
+    '-c', 'http.extraHeader=',
+    '-c', 'remote.origin.proxy='
+  ) + @($Arguments)
   return Invoke-BinderProcessV1 `
-    -FilePath (Get-BinderCommandPathV1 -Name 'git') `
-    -Arguments $Arguments `
+    -FilePath $git.ExecutablePath `
+    -Arguments $hardenedArguments `
     -WorkingDirectory $RepoRoot `
-    -TimeoutSeconds $TimeoutSeconds
+    -TimeoutSeconds $TimeoutSeconds `
+    -SanitizeGitEnvironment `
+    -TrustedGitExecPath $git.ExecPath
+}
+
+function Get-BinderGitTopologyV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot
+  )
+
+  $resolvedRepoRoot = [System.IO.Path]::GetFullPath(
+    $RepoRoot
+  ).TrimEnd('\', '/')
+  $result = Invoke-BinderGitV1 `
+    -Arguments @(
+      'rev-parse',
+      '--path-format=absolute',
+      '--show-toplevel',
+      '--absolute-git-dir',
+      '--git-common-dir'
+    ) `
+    -RepoRoot $resolvedRepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $result `
+    -Label 'fixed Git repository topology'
+  $lines = @(
+    $result.StdOut -split "`r?`n" |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+  )
+  Assert-BinderConditionV1 (
+    $lines.Count -eq 3
+  ) 'Git repository topology did not return exactly three paths.'
+  foreach ($line in $lines) {
+    Assert-BinderConditionV1 (
+      $line -cnotmatch '[\x00-\x1f\x7f]'
+    ) 'Git repository topology contains a control character.'
+  }
+
+  $topLevel = [System.IO.Path]::GetFullPath(
+    [string]$lines[0]
+  ).TrimEnd('\', '/')
+  $gitDirectory = [System.IO.Path]::GetFullPath(
+    [string]$lines[1]
+  ).TrimEnd('\', '/')
+  $commonDirectory = [System.IO.Path]::GetFullPath(
+    [string]$lines[2]
+  ).TrimEnd('\', '/')
+  Assert-BinderConditionV1 (
+    $topLevel.Equals(
+      $resolvedRepoRoot,
+      [System.StringComparison]::OrdinalIgnoreCase
+    )
+  ) 'Git top-level directory is not the exact rollout repository.'
+  Assert-BinderConditionV1 (
+    Test-Path -LiteralPath $gitDirectory -PathType Container
+  ) 'Git directory is missing.'
+  Assert-BinderConditionV1 (
+    Test-Path -LiteralPath $commonDirectory -PathType Container
+  ) 'Git common directory is missing.'
+  $gitIsCommon = $gitDirectory.Equals(
+    $commonDirectory,
+    [System.StringComparison]::OrdinalIgnoreCase
+  )
+  Assert-BinderConditionV1 (
+    $gitIsCommon -or
+    $gitDirectory.StartsWith(
+      "$commonDirectory\worktrees\",
+      [System.StringComparison]::OrdinalIgnoreCase
+    )
+  ) 'Git directory is outside the reviewed common worktree registry.'
+
+  $dotGitPath = Join-Path $resolvedRepoRoot '.git'
+  Assert-BinderConditionV1 (
+    Test-Path -LiteralPath $dotGitPath
+  ) 'The worktree .git marker is missing.'
+  $dotGitItem = Get-Item -LiteralPath $dotGitPath -Force
+  Assert-BinderConditionV1 (
+    -not $dotGitItem.Attributes.HasFlag(
+      [System.IO.FileAttributes]::ReparsePoint
+    )
+  ) 'The worktree .git marker must not be a reparse point.'
+  $dotGitPointerPath = $null
+  if ($dotGitItem.PSIsContainer) {
+    Assert-BinderConditionV1 (
+      $gitIsCommon -and
+      $gitDirectory.Equals(
+        [System.IO.Path]::GetFullPath($dotGitPath),
+        [System.StringComparison]::OrdinalIgnoreCase
+      )
+    ) 'A directory .git marker does not match the reported Git directory.'
+  } else {
+    $dotGitPointerPath = [System.IO.Path]::GetFullPath($dotGitPath)
+    $pointerText = Get-Content -LiteralPath $dotGitPointerPath -Raw
+    $pointerMatch = [regex]::Match(
+      $pointerText,
+      '^gitdir: (?<path>[^\r\n\x00-\x1f\x7f]+)\r?\n?$'
+    )
+    Assert-BinderConditionV1 (
+      $pointerMatch.Success
+    ) 'The linked-worktree .git pointer is malformed.'
+    $pointerValue = [string]$pointerMatch.Groups['path'].Value
+    $resolvedPointer = if (
+      [System.IO.Path]::IsPathFullyQualified($pointerValue)
+    ) {
+      [System.IO.Path]::GetFullPath($pointerValue)
+    } else {
+      [System.IO.Path]::GetFullPath(
+        (Join-Path $resolvedRepoRoot $pointerValue)
+      )
+    }
+    Assert-BinderConditionV1 (
+      $resolvedPointer.Equals(
+        $gitDirectory,
+        [System.StringComparison]::OrdinalIgnoreCase
+      )
+    ) 'The linked-worktree .git pointer does not match Git topology.'
+  }
+
+  $headPath = Join-Path $gitDirectory 'HEAD'
+  $indexPath = Join-Path $gitDirectory 'index'
+  $commonConfigPath = Join-Path $commonDirectory 'config'
+  foreach ($requiredPath in @(
+    $headPath,
+    $indexPath,
+    $commonConfigPath
+  )) {
+    Assert-BinderConditionV1 (
+      Test-Path -LiteralPath $requiredPath -PathType Leaf
+    ) "Required Git metadata is missing: $requiredPath"
+  }
+
+  $metadata = [System.Collections.Generic.List[object]]::new()
+  function Add-BinderGitMetadataPathLocalV1 {
+    param(
+      [Parameter(Mandatory = $true)]
+      [string]$Label,
+      [Parameter(Mandatory = $true)]
+      [string]$Path,
+      [bool]$Required = $false
+    )
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+      Assert-BinderConditionV1 (
+        -not $Required
+      ) "Required Git metadata is missing: $Path"
+      return
+    }
+    $item = Get-Item -LiteralPath $Path -Force
+    Assert-BinderConditionV1 (
+      -not $item.Attributes.HasFlag(
+        [System.IO.FileAttributes]::ReparsePoint
+      )
+    ) "Git metadata must not be a reparse point: $Path"
+    $metadata.Add([pscustomobject][ordered]@{
+      Label = $Label
+      Path = [System.IO.Path]::GetFullPath($Path)
+      Sha256 = Get-BinderSha256FileV1 -Path $Path
+    })
+  }
+
+  Add-BinderGitMetadataPathLocalV1 `
+    -Label 'worktree_head' -Path $headPath -Required $true
+  Add-BinderGitMetadataPathLocalV1 `
+    -Label 'worktree_index' -Path $indexPath -Required $true
+  Add-BinderGitMetadataPathLocalV1 `
+    -Label 'common_config' -Path $commonConfigPath -Required $true
+  if ($null -ne $dotGitPointerPath) {
+    Add-BinderGitMetadataPathLocalV1 `
+      -Label 'worktree_dot_git_pointer' `
+      -Path $dotGitPointerPath `
+      -Required $true
+  }
+
+  $commondirPath = Join-Path $gitDirectory 'commondir'
+  $gitdirPath = Join-Path $gitDirectory 'gitdir'
+  if (-not $gitIsCommon) {
+    foreach ($requiredLinkedPath in @($commondirPath, $gitdirPath)) {
+      Assert-BinderConditionV1 (
+        Test-Path -LiteralPath $requiredLinkedPath -PathType Leaf
+      ) "Linked-worktree metadata is missing: $requiredLinkedPath"
+    }
+    $commondirText = (
+      Get-Content -LiteralPath $commondirPath -Raw
+    ).TrimEnd("`r", "`n")
+    Assert-BinderConditionV1 (
+      $commondirText -cnotmatch '[\x00-\x1f\x7f]' -and
+      -not [string]::IsNullOrWhiteSpace($commondirText)
+    ) 'Linked-worktree commondir metadata is malformed.'
+    $resolvedCommondir = [System.IO.Path]::GetFullPath(
+      (Join-Path $gitDirectory $commondirText)
+    ).TrimEnd('\', '/')
+    Assert-BinderConditionV1 (
+      $resolvedCommondir.Equals(
+        $commonDirectory,
+        [System.StringComparison]::OrdinalIgnoreCase
+      )
+    ) 'Linked-worktree commondir does not match Git topology.'
+    $gitdirText = (
+      Get-Content -LiteralPath $gitdirPath -Raw
+    ).TrimEnd("`r", "`n")
+    Assert-BinderConditionV1 (
+      $gitdirText -cnotmatch '[\x00-\x1f\x7f]' -and
+      [System.IO.Path]::IsPathFullyQualified($gitdirText)
+    ) 'Linked-worktree gitdir metadata is malformed.'
+    Assert-BinderConditionV1 (
+      [System.IO.Path]::GetFullPath($gitdirText).Equals(
+        [System.IO.Path]::GetFullPath($dotGitPath),
+        [System.StringComparison]::OrdinalIgnoreCase
+      )
+    ) 'Linked-worktree gitdir does not point back to the worktree.'
+    Add-BinderGitMetadataPathLocalV1 `
+      -Label 'worktree_commondir' `
+      -Path $commondirPath `
+      -Required $true
+    Add-BinderGitMetadataPathLocalV1 `
+      -Label 'worktree_gitdir' `
+      -Path $gitdirPath `
+      -Required $true
+  }
+
+  Add-BinderGitMetadataPathLocalV1 `
+    -Label 'common_config_worktree' `
+    -Path (Join-Path $commonDirectory 'config.worktree')
+  if (-not $gitIsCommon) {
+    Add-BinderGitMetadataPathLocalV1 `
+      -Label 'git_config_worktree' `
+      -Path (Join-Path $gitDirectory 'config.worktree')
+  }
+  Add-BinderGitMetadataPathLocalV1 `
+    -Label 'common_packed_refs' `
+    -Path (Join-Path $commonDirectory 'packed-refs')
+
+  $headText = (
+    Get-Content -LiteralPath $headPath -Raw
+  ).TrimEnd("`r", "`n")
+  $headRef = ''
+  if ($headText -cmatch '^ref: (?<ref>refs/heads/[A-Za-z0-9._/-]+)$') {
+    $headRef = [string]$Matches['ref']
+    Assert-BinderConditionV1 (
+      $headRef -cnotmatch '(?:^|/)\.\.(?:/|$)' -and
+      $headRef -cnotmatch '//' -and
+      $headRef -cnotmatch '\.lock$' -and
+      -not $headRef.EndsWith('/')
+    ) 'Git HEAD names an unsafe branch reference.'
+    $headRefPath = Join-Path $commonDirectory (
+      $headRef.Replace('/', '\')
+    )
+    if (Test-Path -LiteralPath $headRefPath -PathType Leaf) {
+      Add-BinderGitMetadataPathLocalV1 `
+        -Label 'current_head_ref' `
+        -Path $headRefPath `
+        -Required $true
+    } else {
+      Assert-BinderConditionV1 (
+        Test-Path -LiteralPath (
+          Join-Path $commonDirectory 'packed-refs'
+        ) -PathType Leaf
+      ) 'Git HEAD reference is neither loose nor packed.'
+    }
+  } else {
+    Assert-BinderConditionV1 (
+      $headText -cmatch '^[0-9a-f]{40}$'
+    ) 'Git HEAD metadata is neither a safe branch ref nor a commit SHA.'
+  }
+
+  $metadataRows = @(
+    $metadata |
+      Sort-Object -Property Label -CaseSensitive
+  )
+  $metadataFingerprint = Get-BinderSha256StringV1 -Value (
+    @(
+      $metadataRows | ForEach-Object {
+        "$($_.Label)|$($_.Sha256)"
+      }
+    ) -join "`n"
+  )
+  return [pscustomobject][ordered]@{
+    TopLevel = $topLevel
+    GitDirectory = $gitDirectory
+    CommonDirectory = $commonDirectory
+    DotGitPath = [System.IO.Path]::GetFullPath($dotGitPath)
+    HeadRef = $headRef
+    CommonConfigPath = $commonConfigPath
+    CommonConfigSha256 =
+      Get-BinderSha256FileV1 -Path $commonConfigPath
+    MetadataCount = $metadataRows.Count
+    MetadataSha256 = $metadataFingerprint
+    Metadata = $metadataRows
+  }
+}
+
+function Assert-BinderGitLocalConfigurationV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot
+  )
+
+  $topology = Get-BinderGitTopologyV1 -RepoRoot $RepoRoot
+  $forbiddenPattern = (
+    '^(include\.|includeif\.|' +
+    'alias\.|' +
+    'core\.(askpass|editor|pager|fsmonitor|hookspath|' +
+    'sshcommand|gitproxy|attributesfile|excludesfile)|' +
+    'filter\.|credential\.|http\.|https\.|url\.|' +
+    'diff\.|merge\.|protocol\.|' +
+    'remote\..*\.(proxy|proxyauthmethod|vcs|promisor|' +
+    'partialclonefilter|uploadpack|receivepack)|' +
+    'remote\.origin\.pushurl)'
+  )
+  $forbidden = Invoke-BinderGitV1 `
+    -Arguments @(
+      'config',
+      '--local',
+      '--no-includes',
+      '--get-regexp',
+      $forbiddenPattern
+    ) `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $forbidden.ExitCode -eq 1 -and
+    -not $forbidden.TimedOut -and
+    $forbidden.TerminationConfirmed -eq $true -and
+    $forbidden.OutputCaptureCompleted -eq $true -and
+    $forbidden.OutputTruncated -eq $false -and
+    [string]::IsNullOrWhiteSpace([string]$forbidden.StdOut) -and
+    [string]::IsNullOrWhiteSpace([string]$forbidden.StdErr)
+  ) 'Raw local Git config contains an execution or routing override.'
+
+  $origin = Invoke-BinderGitV1 `
+    -Arguments @(
+      'config',
+      '--local',
+      '--no-includes',
+      '--get-regexp',
+      '^remote\.origin\.'
+    ) `
+    -RepoRoot $RepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $origin `
+    -Label 'raw local origin configuration'
+  $originLines = @(
+    $origin.StdOut -split "`r?`n" |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+  )
+  $expectedOriginLines = @(
+    'remote.origin.url https://github.com/OriginalSoseji/grookai_vault.git',
+    'remote.origin.fetch +refs/heads/*:refs/remotes/origin/*'
+  )
+  Assert-BinderConditionV1 (
+    $originLines.Count -eq $expectedOriginLines.Count
+  ) 'Raw local origin configuration contains unexpected keys.'
+  foreach ($expectedLine in $expectedOriginLines) {
+    Assert-BinderConditionV1 (
+      @($originLines | Where-Object { $_ -ceq $expectedLine }).Count -eq 1
+    ) 'Raw local origin URL/fetch configuration is not exact.'
+  }
+
+  $git = Get-BinderGitExecutableV1
+  $version = Invoke-BinderGitV1 `
+    -Arguments @('--version') `
+    -RepoRoot $RepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $version `
+    -Label 'fixed Git version'
+  Assert-BinderConditionV1 (
+    $version.StdOut.TrimEnd("`r", "`n") -ceq $git.Version
+  ) 'Git version differs from the reviewed identity.'
+  return [pscustomobject][ordered]@{
+    Topology = $topology
+    ExecutablePath = $git.ExecutablePath
+    ExecutableSha256 = $git.ExecutableSha256
+    Version = $git.Version
+    ExecPath = $git.ExecPath
+    HttpsHelperPath = $git.HttpsHelperPath
+    HttpsHelperSha256 = $git.HttpsHelperSha256
+    CommonConfigSha256 = $topology.CommonConfigSha256
+    MetadataCount = $topology.MetadataCount
+    MetadataSha256 = $topology.MetadataSha256
+  }
+}
+
+function Open-BinderGitMetadataSealV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot
+  )
+
+  $guard = Assert-BinderGitLocalConfigurationV1 -RepoRoot $RepoRoot
+  $streams = [System.Collections.Generic.List[System.IO.FileStream]]::new()
+  try {
+    foreach ($entry in @($guard.Topology.Metadata)) {
+      Assert-BinderConditionV1 (
+        (Get-BinderSha256FileV1 -Path $entry.Path) -ceq
+          [string]$entry.Sha256
+      ) "Git metadata changed while opening its retained seal: $($entry.Label)"
+      $streams.Add([System.IO.File]::Open(
+        [string]$entry.Path,
+        [System.IO.FileMode]::Open,
+        [System.IO.FileAccess]::Read,
+        [System.IO.FileShare]::Read
+      ))
+    }
+    $fresh = Assert-BinderGitLocalConfigurationV1 -RepoRoot $RepoRoot
+    Assert-BinderConditionV1 (
+      $fresh.MetadataCount -eq $guard.MetadataCount -and
+      $fresh.MetadataSha256 -ceq $guard.MetadataSha256
+    ) 'Git metadata changed after retained seals were opened.'
+    return [pscustomobject][ordered]@{
+      Streams = @($streams)
+      Guard = $fresh
+    }
+  } catch {
+    foreach ($stream in $streams) {
+      $stream.Dispose()
+    }
+    throw
+  }
 }
 
 function Invoke-BinderSupabaseV1 {
@@ -1614,7 +2545,9 @@ function Invoke-BinderSupabaseV1 {
 
     [object]$ProcessLifecycle,
 
-    [string]$ExecutablePath
+    [string]$ExecutablePath,
+
+    [string]$NotAfterUtc = ''
   )
 
   $resolvedExecutablePath = if (
@@ -1633,7 +2566,8 @@ function Invoke-BinderSupabaseV1 {
     -WorkingDirectory $RepoRoot `
     -TimeoutSeconds $TimeoutSeconds `
     -SanitizeDatabaseEnvironment `
-    -ProcessLifecycle $ProcessLifecycle
+    -ProcessLifecycle $ProcessLifecycle `
+    -NotAfterUtc $NotAfterUtc
 }
 
 function Assert-BinderCommandSucceededV1 {
@@ -2008,6 +2942,8 @@ function Test-BinderSourceV1 {
   )
 
   $policy = Get-BinderRolloutPolicyV1
+  $gitGuard = Assert-BinderGitLocalConfigurationV1 `
+    -RepoRoot $RepoRoot
   $package = Read-BinderPackageManifestV1 -RepoRoot $RepoRoot
   $trackedMigrationSet = Get-BinderTrackedMigrationSetV1 -RepoRoot $RepoRoot
 
@@ -2049,6 +2985,16 @@ function Test-BinderSourceV1 {
   Assert-BinderSqlReadOnlyV1 -Path $postApplySql
 
   $configPath = Join-Path $RepoRoot 'supabase/config.toml'
+  $configItem = Get-Item -LiteralPath $configPath -Force
+  Assert-BinderConditionV1 (
+    -not $configItem.Attributes.HasFlag(
+      [System.IO.FileAttributes]::ReparsePoint
+    )
+  ) 'supabase/config.toml must not be a reparse point.'
+  $configSha256 = Get-BinderSha256FileV1 -Path $configPath
+  Assert-BinderConditionV1 (
+    $configSha256 -ceq $policy.SupabaseConfigSha256
+  ) 'supabase/config.toml bytes differ from the reviewed source.'
   $config = Get-Content -LiteralPath $configPath -Raw
   $projectMatch = [regex]::Match(
     $config,
@@ -2060,6 +3006,9 @@ function Test-BinderSourceV1 {
   $originResult = Invoke-BinderGitV1 -Arguments @('remote', 'get-url', 'origin') -RepoRoot $RepoRoot
   Assert-BinderCommandSucceededV1 -Result $originResult -Label 'git remote get-url origin'
   $origin = $originResult.StdOut.Trim()
+  Assert-BinderConditionV1 (
+    $origin -ceq $policy.CanonicalRemoteUrl
+  ) 'Git origin URL is not the exact canonical HTTPS remote.'
   $normalizedOrigin = $origin `
     -replace '^https://github\.com/', '' `
     -replace '^git@github\.com:', '' `
@@ -2106,6 +3055,16 @@ function Test-BinderSourceV1 {
     PackageFingerprintSha256 = $package.FingerprintSha256
     PackageManifestFileSha256 = $package.FileSha256
     ProjectRef = $policy.ProjectRef
+    SupabaseConfigSha256 = $configSha256
+    GitExecutablePath = $gitGuard.ExecutablePath
+    GitExecutableSha256 = $gitGuard.ExecutableSha256
+    GitVersion = $gitGuard.Version
+    GitExecPath = $gitGuard.ExecPath
+    GitHttpsHelperPath = $gitGuard.HttpsHelperPath
+    GitHttpsHelperSha256 = $gitGuard.HttpsHelperSha256
+    GitCommonConfigSha256 = $gitGuard.CommonConfigSha256
+    GitMetadataCount = $gitGuard.MetadataCount
+    GitMetadataSha256 = $gitGuard.MetadataSha256
     SupabaseCliVersion = $version
     SupabaseCliLauncherSha256 = $launcherSha256
     SupabaseCliBinarySha256 = $binarySha256
@@ -2134,6 +3093,8 @@ function Assert-BinderRepositoryStateV1 {
   )
 
   $policy = Get-BinderRolloutPolicyV1
+  $gitGuard = Assert-BinderGitLocalConfigurationV1 `
+    -RepoRoot $RepoRoot
   Assert-BinderConditionV1 ($ExpectedHeadSha -cmatch '^[0-9a-f]{40}$') 'ExpectedHeadSha must be a lowercase 40-character commit SHA.'
 
   $status = Invoke-BinderGitV1 `
@@ -2149,6 +3110,69 @@ function Assert-BinderRepositoryStateV1 {
   $branch = Invoke-BinderGitV1 -Arguments @('branch', '--show-current') -RepoRoot $RepoRoot
   Assert-BinderCommandSucceededV1 -Result $branch -Label 'git branch --show-current'
   Assert-BinderConditionV1 ($branch.StdOut.Trim() -ceq 'main') 'Production rollout must run from the main branch.'
+
+  $rawOrigin = Invoke-BinderGitV1 `
+    -Arguments @('config', '--local', '--get-all', 'remote.origin.url') `
+    -RepoRoot $RepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $rawOrigin `
+    -Label 'git raw origin URL'
+  $rawOriginUrls = @(
+    $rawOrigin.StdOut -split "`r?`n" |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+  )
+  Assert-BinderConditionV1 (
+    $rawOriginUrls.Count -eq 1 -and
+    $rawOriginUrls[0] -ceq $policy.CanonicalRemoteUrl
+  ) 'Git origin must contain exactly the canonical raw HTTPS URL.'
+
+  $pushUrl = Invoke-BinderGitV1 `
+    -Arguments @(
+      'config',
+      '--local',
+      '--get-all',
+      'remote.origin.pushurl'
+    ) `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $pushUrl.ExitCode -eq 1 -and
+    -not $pushUrl.TimedOut -and
+    $pushUrl.TerminationConfirmed -and
+    $pushUrl.OutputCaptureCompleted -and
+    -not $pushUrl.OutputTruncated -and
+    [string]::IsNullOrWhiteSpace($pushUrl.StdOut) -and
+    [string]::IsNullOrWhiteSpace($pushUrl.StdErr)
+  ) 'Git origin must not define a distinct or explicit push URL.'
+
+  $effectiveOrigin = Invoke-BinderGitV1 `
+    -Arguments @('remote', 'get-url', '--all', 'origin') `
+    -RepoRoot $RepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $effectiveOrigin `
+    -Label 'git effective origin URL'
+  $effectiveOriginUrls = @(
+    $effectiveOrigin.StdOut -split "`r?`n" |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+  )
+  Assert-BinderConditionV1 (
+    $effectiveOriginUrls.Count -eq 1 -and
+    $effectiveOriginUrls[0] -ceq $policy.CanonicalRemoteUrl
+  ) 'Git URL rewrite or multiple-origin ambiguity was detected.'
+
+  $effectivePush = Invoke-BinderGitV1 `
+    -Arguments @('remote', 'get-url', '--push', '--all', 'origin') `
+    -RepoRoot $RepoRoot
+  Assert-BinderCommandSucceededV1 `
+    -Result $effectivePush `
+    -Label 'git effective origin push URL'
+  $effectivePushUrls = @(
+    $effectivePush.StdOut -split "`r?`n" |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+  )
+  Assert-BinderConditionV1 (
+    $effectivePushUrls.Count -eq 1 -and
+    $effectivePushUrls[0] -ceq $policy.CanonicalRemoteUrl
+  ) 'Git push URL rewrite or multiple-push ambiguity was detected.'
 
   $remote = Invoke-BinderGitV1 `
     -Arguments @('ls-remote', 'origin', 'refs/heads/main') `
@@ -2168,6 +3192,9 @@ function Assert-BinderRepositoryStateV1 {
     OriginMainSha = $remoteSha
     Branch = 'main'
     Clean = $true
+    GitCommonConfigSha256 = $gitGuard.CommonConfigSha256
+    GitMetadataCount = $gitGuard.MetadataCount
+    GitMetadataSha256 = $gitGuard.MetadataSha256
   }
 }
 
@@ -2182,6 +3209,112 @@ function Assert-BinderNoRoutingOverridesV1 {
   Assert-BinderConditionV1 ($present.Count -eq 0) "Database routing overrides are forbidden for this rollout: $($present -join ', ')"
 }
 
+function Get-BinderLinkedSupabaseIdentityV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot
+  )
+
+  $policy = Get-BinderRolloutPolicyV1
+  $linkedRefPath = Join-Path $RepoRoot 'supabase/.temp/project-ref'
+  $poolerPath = Join-Path $RepoRoot 'supabase/.temp/pooler-url'
+  $metadataPath = Join-Path (
+    $RepoRoot
+  ) 'supabase/.temp/linked-project.json'
+  foreach ($path in @($linkedRefPath, $poolerPath, $metadataPath)) {
+    Assert-BinderConditionV1 (
+      Test-Path -LiteralPath $path -PathType Leaf
+    ) "Required linked Supabase identity file is missing: $path"
+    $item = Get-Item -LiteralPath $path -Force
+    Assert-BinderConditionV1 (
+      -not $item.Attributes.HasFlag(
+        [System.IO.FileAttributes]::ReparsePoint
+      )
+    ) "Linked Supabase identity must not be a reparse point: $path"
+  }
+
+  $linkedRefSha256 = Get-BinderSha256FileV1 -Path $linkedRefPath
+  $poolerSha256 = Get-BinderSha256FileV1 -Path $poolerPath
+  $metadataSha256 = Get-BinderSha256FileV1 -Path $metadataPath
+  Assert-BinderConditionV1 (
+    $linkedRefSha256 -ceq $policy.LinkedProjectRefSha256
+  ) 'Linked Supabase project-ref bytes differ from the reviewed identity.'
+  Assert-BinderConditionV1 (
+    $poolerSha256 -ceq $policy.LinkedPoolerUrlSha256
+  ) 'Linked Supabase pooler route bytes differ from the reviewed identity.'
+  Assert-BinderConditionV1 (
+    $metadataSha256 -ceq $policy.LinkedProjectMetadataSha256
+  ) 'Linked Supabase project metadata bytes differ from the reviewed identity.'
+
+  $linkedRef = Get-Content -LiteralPath $linkedRefPath -Raw
+  Assert-BinderConditionV1 (
+    $linkedRef -ceq $policy.ProjectRef
+  ) 'Linked Supabase project-ref content is not exact.'
+  $poolerText = Get-Content -LiteralPath $poolerPath -Raw
+  Assert-BinderConditionV1 (
+    $poolerText -ceq $policy.LinkedPoolerUrl -and
+    $poolerText -cnotmatch '[\x00-\x20\x7f]'
+  ) 'Linked Supabase pooler route is not the exact reviewed value.'
+  try {
+    $poolerUri = [uri]$poolerText
+  } catch {
+    throw 'Linked Supabase pooler route is not an absolute URI.'
+  }
+  Assert-BinderConditionV1 (
+    $poolerUri.IsAbsoluteUri -and
+    $poolerUri.Scheme -ceq 'postgresql' -and
+    $poolerUri.Host -ceq 'aws-1-us-east-2.pooler.supabase.com' -and
+    $poolerUri.Port -eq 5432 -and
+    $poolerUri.UserInfo -ceq "postgres.$($policy.ProjectRef)" -and
+    $poolerUri.AbsolutePath -ceq '/postgres' -and
+    [string]::IsNullOrWhiteSpace($poolerUri.Query) -and
+    [string]::IsNullOrWhiteSpace($poolerUri.Fragment)
+  ) 'Linked Supabase pooler route components are not exact.'
+
+  $metadata = ConvertFrom-BinderJsonWithExactStringPropertiesV1 `
+    -Json (Get-Content -LiteralPath $metadataPath -Raw) `
+    -StringProperties @(
+      'ref',
+      'name',
+      'organization_id',
+      'organization_slug'
+    )
+  $metadataProperties = @(
+    $metadata.PSObject.Properties.Name |
+      Sort-Object
+  )
+  $expectedMetadataProperties = @(
+    'name',
+    'organization_id',
+    'organization_slug',
+    'ref'
+  )
+  Assert-BinderConditionV1 (
+    ($metadataProperties -join "`n") -ceq
+      ($expectedMetadataProperties -join "`n")
+  ) 'Linked Supabase project metadata fields are not closed and exact.'
+  Assert-BinderConditionV1 (
+    $metadata.ref -ceq $policy.ProjectRef -and
+    $metadata.name -ceq $policy.LinkedProjectName -and
+    $metadata.organization_id -ceq
+      $policy.LinkedProjectOrganizationId -and
+    $metadata.organization_slug -ceq
+      $policy.LinkedProjectOrganizationSlug
+  ) 'Linked Supabase project metadata does not identify production.'
+
+  return [pscustomobject][ordered]@{
+    ProjectRef = $policy.ProjectRef
+    ProjectRefPath = [System.IO.Path]::GetFullPath($linkedRefPath)
+    ProjectRefSha256 = $linkedRefSha256
+    PoolerPath = [System.IO.Path]::GetFullPath($poolerPath)
+    PoolerSha256 = $poolerSha256
+    ProjectMetadataPath = [System.IO.Path]::GetFullPath($metadataPath)
+    ProjectMetadataSha256 = $metadataSha256
+    PoolerHost = $poolerUri.Host
+    PoolerPort = $poolerUri.Port
+  }
+}
+
 function Assert-ProjectBindingV1 {
   [CmdletBinding()]
   param(
@@ -2192,10 +3325,8 @@ function Assert-ProjectBindingV1 {
   $policy = Get-BinderRolloutPolicyV1
   Assert-BinderNoRoutingOverridesV1
 
-  $linkedRefPath = Join-Path $RepoRoot 'supabase/.temp/project-ref'
-  Assert-BinderConditionV1 (Test-Path -LiteralPath $linkedRefPath -PathType Leaf) 'This worktree is not explicitly linked; refusing to link automatically.'
-  $linkedRef = (Get-Content -LiteralPath $linkedRefPath -Raw).Trim()
-  Assert-BinderConditionV1 ($linkedRef -ceq $policy.ProjectRef) 'Linked Supabase project ref is not production.'
+  $linkedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+    -RepoRoot $RepoRoot
 
   Assert-BinderConditionV1 (-not [string]::IsNullOrWhiteSpace($env:SUPABASE_URL)) 'SUPABASE_URL is required for independent project binding.'
   try {
@@ -2230,6 +3361,10 @@ function Assert-ProjectBindingV1 {
     ApiHost = $supabaseUri.Host
     DatabaseHost = $databaseHost
     Status = [string]$matches[0].status
+    LinkedProjectRefSha256 = $linkedIdentity.ProjectRefSha256
+    LinkedPoolerUrlSha256 = $linkedIdentity.PoolerSha256
+    LinkedProjectMetadataSha256 =
+      $linkedIdentity.ProjectMetadataSha256
   }
 }
 
@@ -2267,6 +3402,16 @@ function Test-BackupEvidenceV1 {
   $actualProperties = @($evidence.PSObject.Properties.Name | Sort-Object)
   $expectedProperties = @($allowedProperties | Sort-Object)
   Assert-BinderConditionV1 (($actualProperties -join "`n") -ceq ($expectedProperties -join "`n")) 'Backup evidence fields are missing or unexpected.'
+  Assert-BinderConditionV1 (
+    $evidence.schema_version -is [long] -and
+    $evidence.project_ref -is [string] -and
+    $evidence.backup_kind -is [string] -and
+    $evidence.verified_at_utc -is [string] -and
+    $evidence.recoverable_through_utc -is [string] -and
+    $evidence.evidence_reference -is [string] -and
+    $evidence.restore_path_reviewed -is [bool] -and
+    $evidence.operator -is [string]
+  ) 'Backup evidence primitive types are not exact JSON types.'
   Assert-BinderConditionV1 ($evidence.schema_version -eq 1) 'Backup evidence schema version mismatch.'
   Assert-BinderConditionV1 ($evidence.project_ref -ceq $policy.ProjectRef) 'Backup evidence project mismatch.'
   Assert-BinderConditionV1 (@('supabase_pitr', 'supabase_platform_backup', 'verified_logical_backup') -ccontains $evidence.backup_kind) 'Unsupported backup evidence kind.'
@@ -2303,13 +3448,30 @@ function Get-BinderWorktreePathsV1 {
     [string]$RepoRoot
   )
 
-  $result = Invoke-BinderGitV1 -Arguments @('worktree', 'list', '--porcelain') -RepoRoot $RepoRoot
+  [void](Assert-BinderGitLocalConfigurationV1 -RepoRoot $RepoRoot)
+  $result = Invoke-BinderGitV1 `
+    -Arguments @('worktree', 'list', '--porcelain', '-z') `
+    -RepoRoot $RepoRoot
   Assert-BinderCommandSucceededV1 -Result $result -Label 'git worktree list'
   return @(
-    foreach ($line in ($result.StdOut -split "`r?`n")) {
-      if ($line.StartsWith('worktree ')) {
-        [System.IO.Path]::GetFullPath($line.Substring(9).Trim()).TrimEnd('\', '/')
+    foreach ($record in ($result.StdOut -split "`0`0")) {
+      if ([string]::IsNullOrEmpty($record)) {
+        continue
       }
+      $fields = @($record -split "`0")
+      Assert-BinderConditionV1 (
+        $fields.Count -gt 0 -and
+        $fields[0].StartsWith(
+          'worktree ',
+          [System.StringComparison]::Ordinal
+        )
+      ) 'Git worktree porcelain record is malformed.'
+      $path = $fields[0].Substring(9)
+      Assert-BinderConditionV1 (
+        -not [string]::IsNullOrWhiteSpace($path) -and
+        $path -cnotmatch '[\x00-\x1f\x7f]'
+      ) 'Git worktree path contains a control character.'
+      [System.IO.Path]::GetFullPath($path).TrimEnd('\', '/')
     }
   )
 }
@@ -2683,11 +3845,18 @@ function Get-BinderSealedStageManifestV1 {
   ) 'Sealed staged Supabase config hash mismatch.'
   $projectRef = (
     Get-Content -LiteralPath $Stage.ProjectRefPath -Raw
-  ).Trim()
+  )
   $policy = Get-BinderRolloutPolicyV1
   Assert-BinderConditionV1 (
     $projectRef -ceq $policy.ProjectRef
   ) 'Sealed staged project ref changed.'
+  $linkedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+    -RepoRoot $Stage.Root
+  $preflightSqlSha256 = Get-BinderSha256FileV1 `
+    -Path $Stage.PreflightSqlPath
+  Assert-BinderConditionV1 (
+    $preflightSqlSha256 -ceq $policy.PreflightSqlSha256
+  ) 'Sealed staged preflight SQL changed.'
 
   return [pscustomobject][ordered]@{
     schema_version = 1
@@ -2695,6 +3864,11 @@ function Get-BinderSealedStageManifestV1 {
     migration_set_sha256 = $setFingerprint
     config_sha256 = $configHash
     project_ref = $projectRef
+    project_ref_sha256 = $linkedIdentity.ProjectRefSha256
+    pooler_url_sha256 = $linkedIdentity.PoolerSha256
+    linked_project_metadata_sha256 =
+      $linkedIdentity.ProjectMetadataSha256
+    preflight_sql_sha256 = $preflightSqlSha256
     migrations = $sealedEntries
   }
 }
@@ -2802,6 +3976,9 @@ function New-BinderSupabaseStageV1 {
     MigrationEntries = @()
     ConfigPath = ''
     ProjectRefPath = ''
+    PoolerPath = ''
+    ProjectMetadataPath = ''
+    PreflightSqlPath = ''
     ExpectedConfigSha256 = ''
     SealedManifest = $null
   }
@@ -2815,10 +3992,19 @@ function New-BinderSupabaseStageV1 {
   try {
     [void][System.IO.Directory]::CreateDirectory($migrationDirectory)
     [void][System.IO.Directory]::CreateDirectory($tempDirectory)
+    $stagedSqlDirectory = Join-Path $stageRoot 'scripts/ops/sql'
+    [void][System.IO.Directory]::CreateDirectory($stagedSqlDirectory)
     [void](Assert-BinderSafeStageRootV1 -Path $stageRoot -MustExist $true)
 
     $sourceConfig = Join-Path $RepoRoot 'supabase/config.toml'
-    $sourceProjectRef = Join-Path $RepoRoot 'supabase/.temp/project-ref'
+    $sourceIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+      -RepoRoot $RepoRoot
+    $sourceProjectRef = $sourceIdentity.ProjectRefPath
+    $sourcePooler = $sourceIdentity.PoolerPath
+    $sourceProjectMetadata = $sourceIdentity.ProjectMetadataPath
+    $sourcePreflightSql = Join-Path (
+      $RepoRoot
+    ) $policy.PreflightSqlRelativePath
     Assert-BinderConditionV1 (
       Test-Path -LiteralPath $sourceConfig -PathType Leaf
     ) 'Supabase config is missing while staging.'
@@ -2827,17 +4013,50 @@ function New-BinderSupabaseStageV1 {
     ) 'Linked project ref is missing while staging.'
     $stagedConfig = Join-Path $stageRoot 'supabase/config.toml'
     $stagedProjectRef = Join-Path $tempDirectory 'project-ref'
+    $stagedPooler = Join-Path $tempDirectory 'pooler-url'
+    $stagedProjectMetadata = Join-Path (
+      $tempDirectory
+    ) 'linked-project.json'
+    $stagedPreflightSql = Join-Path (
+      $stageRoot
+    ) $policy.PreflightSqlRelativePath
     [System.IO.File]::Copy($sourceConfig, $stagedConfig, $false)
     [System.IO.File]::Copy($sourceProjectRef, $stagedProjectRef, $false)
+    [System.IO.File]::Copy($sourcePooler, $stagedPooler, $false)
+    [System.IO.File]::Copy(
+      $sourceProjectMetadata,
+      $stagedProjectMetadata,
+      $false
+    )
+    [System.IO.File]::Copy(
+      $sourcePreflightSql,
+      $stagedPreflightSql,
+      $false
+    )
     $sourceConfigHash = Get-BinderSha256FileV1 -Path $sourceConfig
     Assert-BinderConditionV1 (
       (Get-BinderSha256FileV1 -Path $stagedConfig) -ceq
         $sourceConfigHash
     ) 'Staged Supabase config hash mismatch.'
     Assert-BinderConditionV1 (
-      (Get-Content -LiteralPath $stagedProjectRef -Raw).Trim() -ceq
+      (Get-Content -LiteralPath $stagedProjectRef -Raw) -ceq
         $policy.ProjectRef
     ) 'Staged project ref is not production.'
+    $stagedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+      -RepoRoot $stageRoot
+    Assert-BinderConditionV1 (
+      $stagedIdentity.ProjectRefSha256 -ceq
+        $sourceIdentity.ProjectRefSha256 -and
+      $stagedIdentity.PoolerSha256 -ceq
+        $sourceIdentity.PoolerSha256 -and
+      $stagedIdentity.ProjectMetadataSha256 -ceq
+        $sourceIdentity.ProjectMetadataSha256
+    ) 'Staged linked Supabase identity differs from its sealed source.'
+    Assert-BinderConditionV1 (
+      (Get-BinderSha256FileV1 -Path $stagedPreflightSql) -ceq
+        $policy.PreflightSqlSha256
+    ) 'Staged preflight readback SQL differs from reviewed bytes.'
+    Assert-BinderSqlReadOnlyV1 -Path $stagedPreflightSql
 
     $stagedEntries = [System.Collections.Generic.List[object]]::new()
     foreach ($entry in @($TrackedMigrationSet.Entries)) {
@@ -2897,7 +4116,13 @@ function New-BinderSupabaseStageV1 {
     $stage.Streams = $streams
     foreach ($path in @(
       @($stagedEntries | ForEach-Object FullPath) +
-      @($stagedConfig, $stagedProjectRef)
+      @(
+        $stagedConfig,
+        $stagedProjectRef,
+        $stagedPooler,
+        $stagedProjectMetadata,
+        $stagedPreflightSql
+      )
     )) {
       $item = Get-Item -LiteralPath $path
       Assert-BinderConditionV1 (
@@ -2918,6 +4143,9 @@ function New-BinderSupabaseStageV1 {
     $stage.MigrationEntries = $stagedEntries
     $stage.ConfigPath = $stagedConfig
     $stage.ProjectRefPath = $stagedProjectRef
+    $stage.PoolerPath = $stagedPooler
+    $stage.ProjectMetadataPath = $stagedProjectMetadata
+    $stage.PreflightSqlPath = $stagedPreflightSql
     $stage.ExpectedConfigSha256 = $sourceConfigHash
     $stage.SealedManifest = Get-BinderSealedStageManifestV1 -Stage $stage
     return $stage
@@ -3028,6 +4256,13 @@ function Invoke-BinderReadbackV1 {
     Assert-BinderConditionV1 ($rows.Count -eq 1) "$ExpectedState readback must return exactly one row."
     Assert-BinderConditionV1 ($null -ne $rows[0].rollout_readback) "$ExpectedState readback payload is missing."
     $report = $rows[0].rollout_readback
+    Assert-BinderConditionV1 (
+      $report.package_id -is [string] -and
+      $report.phase -is [string] -and
+      $report.read_only -is [bool] -and
+      $report.ok -is [bool] -and
+      $report.checks -is [pscustomobject]
+    ) "$ExpectedState readback header primitive types are invalid."
     Assert-BinderConditionV1 ($report.read_only -eq $true) "$ExpectedState readback did not identify itself as read-only."
     Assert-BinderConditionV1 ($report.ok -eq $true) "$ExpectedState readback failed its catalog contract."
 
@@ -3044,13 +4279,16 @@ function Invoke-BinderReadbackV1 {
 function Get-BinderDryRunV1 {
   param(
     [Parameter(Mandatory = $true)]
-    [string]$RepoRoot
+    [string]$RepoRoot,
+
+    [string]$ExecutablePath
   )
 
   $result = Invoke-BinderSupabaseV1 `
     -Arguments @('db', 'push', '--dry-run', '--linked', '--agent', 'no') `
     -RepoRoot $RepoRoot `
-    -TimeoutSeconds 120
+    -TimeoutSeconds 120 `
+    -ExecutablePath $ExecutablePath
   Assert-BinderCommandSucceededV1 -Result $result -Label 'linked migration dry-run'
   $parsed = ConvertFrom-SupabaseDryRunV1 -Text ($result.StdOut + "`n" + $result.StdErr)
   return [pscustomobject]@{
@@ -3107,6 +4345,13 @@ function Invoke-BinderProductionPreflightV1 {
   $policy = Get-BinderRolloutPolicyV1
   $source = Test-BinderSourceV1 -RepoRoot $RepoRoot
   $repository = Assert-BinderRepositoryStateV1 -RepoRoot $RepoRoot -ExpectedHeadSha $ExpectedHeadSha
+  Assert-BinderConditionV1 (
+    $source.GitCommonConfigSha256 -ceq
+      $repository.GitCommonConfigSha256 -and
+    $source.GitMetadataCount -eq $repository.GitMetadataCount -and
+    $source.GitMetadataSha256 -ceq
+      $repository.GitMetadataSha256
+  ) 'Git metadata changed during production preflight.'
   $project = Assert-ProjectBindingV1 -RepoRoot $RepoRoot
   $backup = Test-BackupEvidenceV1 -Path $BackupEvidencePath -RepoRoot $RepoRoot
   $evidenceRoot = New-BinderArtifactRootV1 -Path $ArtifactRoot -RepoRoot $RepoRoot
@@ -3139,6 +4384,23 @@ function Invoke-BinderProductionPreflightV1 {
       package_manifest_file_sha256 = $source.PackageManifestFileSha256
       head_sha = $repository.HeadSha
       origin_main_sha = $repository.OriginMainSha
+      supabase_config_sha256 = $source.SupabaseConfigSha256
+      linked_project_ref_sha256 =
+        $project.LinkedProjectRefSha256
+      linked_pooler_url_sha256 =
+        $project.LinkedPoolerUrlSha256
+      linked_project_metadata_sha256 =
+        $project.LinkedProjectMetadataSha256
+      git_executable_path = $source.GitExecutablePath
+      git_executable_sha256 = $source.GitExecutableSha256
+      git_version = $source.GitVersion
+      git_exec_path = $source.GitExecPath
+      git_https_helper_path = $source.GitHttpsHelperPath
+      git_https_helper_sha256 = $source.GitHttpsHelperSha256
+      git_common_config_sha256 =
+        $repository.GitCommonConfigSha256
+      git_metadata_count = $repository.GitMetadataCount
+      git_metadata_sha256 = $repository.GitMetadataSha256
       supabase_cli_version = $source.SupabaseCliVersion
       supabase_cli_launcher_sha256 = $source.SupabaseCliLauncherSha256
       supabase_cli_binary_sha256 = $source.SupabaseCliBinarySha256
@@ -3243,6 +4505,134 @@ function Test-PreflightManifestV1 {
   $manifest = Read-BinderPreflightManifestV1 -Path $Path
   $data = $manifest.Data
 
+  $expectedProperties = @(
+    'apply_argv',
+    'backup_evidence_path',
+    'backup_evidence_sha256',
+    'created_at_utc',
+    'dry_run_files',
+    'expires_at_utc',
+    'git_common_config_sha256',
+    'git_exec_path',
+    'git_executable_path',
+    'git_executable_sha256',
+    'git_https_helper_path',
+    'git_https_helper_sha256',
+    'git_metadata_count',
+    'git_metadata_sha256',
+    'git_version',
+    'head_sha',
+    'linked_pooler_url_sha256',
+    'linked_project_metadata_sha256',
+    'linked_project_ref_sha256',
+    'manifest_fingerprint_sha256',
+    'migration_files',
+    'origin_main_sha',
+    'package_fingerprint_sha256',
+    'package_id',
+    'package_manifest_file_sha256',
+    'pending_versions',
+    'preapply_readback_sha256',
+    'project_ref',
+    'schema_version',
+    'stable_catalog_fingerprint_sha256',
+    'status',
+    'supabase_cli_binary_sha256',
+    'supabase_cli_launcher_sha256',
+    'supabase_cli_shim_descriptor_sha256',
+    'supabase_cli_version',
+    'supabase_config_sha256',
+    'tracked_migration_count',
+    'tracked_migration_set_sha256'
+  )
+  $actualProperties = @(
+    $data.PSObject.Properties.Name |
+      Sort-Object
+  )
+  Assert-BinderConditionV1 (
+    ($actualProperties -join "`n") -ceq
+      (($expectedProperties | Sort-Object) -join "`n")
+  ) 'Preflight manifest fields are missing or unexpected.'
+  Assert-BinderConditionV1 (
+    $data.schema_version -is [long]
+  ) 'Preflight manifest schema_version must be an integer.'
+  Assert-BinderConditionV1 (
+    $data.tracked_migration_count -is [long]
+  ) 'Preflight tracked_migration_count must be an integer.'
+  Assert-BinderConditionV1 (
+    $data.git_metadata_count -is [long]
+  ) 'Preflight git_metadata_count must be an integer.'
+  foreach ($name in @(
+    'backup_evidence_path',
+    'backup_evidence_sha256',
+    'created_at_utc',
+    'expires_at_utc',
+    'git_common_config_sha256',
+    'git_exec_path',
+    'git_executable_path',
+    'git_executable_sha256',
+    'git_https_helper_path',
+    'git_https_helper_sha256',
+    'git_metadata_sha256',
+    'git_version',
+    'head_sha',
+    'linked_pooler_url_sha256',
+    'linked_project_metadata_sha256',
+    'linked_project_ref_sha256',
+    'manifest_fingerprint_sha256',
+    'origin_main_sha',
+    'package_fingerprint_sha256',
+    'package_id',
+    'package_manifest_file_sha256',
+    'preapply_readback_sha256',
+    'project_ref',
+    'stable_catalog_fingerprint_sha256',
+    'status',
+    'supabase_cli_binary_sha256',
+    'supabase_cli_launcher_sha256',
+    'supabase_cli_shim_descriptor_sha256',
+    'supabase_cli_version',
+    'supabase_config_sha256',
+    'tracked_migration_set_sha256'
+  )) {
+    Assert-BinderConditionV1 (
+      $data.PSObject.Properties[$name].Value -is [string]
+    ) "Preflight manifest property must be a string: $name"
+  }
+  foreach ($name in @(
+    'apply_argv',
+    'dry_run_files',
+    'migration_files',
+    'pending_versions'
+  )) {
+    Assert-BinderConditionV1 (
+      $data.PSObject.Properties[$name].Value -is [object[]]
+    ) "Preflight manifest property must be an array: $name"
+  }
+  foreach ($value in @(
+    @($data.apply_argv) +
+    @($data.dry_run_files) +
+    @($data.pending_versions)
+  )) {
+    Assert-BinderConditionV1 (
+      $value -is [string]
+    ) 'Preflight command/version arrays may contain only strings.'
+  }
+  foreach ($migration in @($data.migration_files)) {
+    Assert-BinderConditionV1 (
+      $migration -is [pscustomobject]
+    ) 'Preflight migration entries must be JSON objects.'
+    Assert-BinderConditionV1 (
+      (
+        @($migration.PSObject.Properties.Name | Sort-Object) -join "`n"
+      ) -ceq "file`nsha256`nversion"
+    ) 'Preflight migration fields are not exact.'
+    foreach ($name in @('file', 'sha256', 'version')) {
+      Assert-BinderConditionV1 (
+        $migration.PSObject.Properties[$name].Value -is [string]
+      ) "Preflight migration property must be a string: $name"
+    }
+  }
   Assert-BinderConditionV1 ($data.schema_version -eq 1) 'Preflight manifest schema mismatch.'
   Assert-BinderConditionV1 ($data.package_id -ceq $policy.PackageId) 'Preflight package mismatch.'
   Assert-BinderConditionV1 ($data.status -ceq 'pass') 'Preflight status is not pass.'
@@ -3254,6 +4644,38 @@ function Test-PreflightManifestV1 {
   Assert-BinderConditionV1 ($data.supabase_cli_launcher_sha256 -ceq $policy.SupabaseCliLauncherSha256) 'Preflight CLI launcher hash mismatch.'
   Assert-BinderConditionV1 ($data.supabase_cli_binary_sha256 -ceq $policy.SupabaseCliBinarySha256) 'Preflight CLI binary hash mismatch.'
   Assert-BinderConditionV1 ($data.supabase_cli_shim_descriptor_sha256 -ceq $policy.SupabaseCliShimDescriptorSha256) 'Preflight CLI shim descriptor hash mismatch.'
+  Assert-BinderConditionV1 (
+    $data.supabase_config_sha256 -ceq
+      $policy.SupabaseConfigSha256
+  ) 'Preflight Supabase config hash mismatch.'
+  Assert-BinderConditionV1 (
+    $data.linked_project_ref_sha256 -ceq
+      $policy.LinkedProjectRefSha256
+  ) 'Preflight linked project-ref hash mismatch.'
+  Assert-BinderConditionV1 (
+    $data.linked_pooler_url_sha256 -ceq
+      $policy.LinkedPoolerUrlSha256
+  ) 'Preflight linked pooler-route hash mismatch.'
+  Assert-BinderConditionV1 (
+    $data.linked_project_metadata_sha256 -ceq
+      $policy.LinkedProjectMetadataSha256
+  ) 'Preflight linked project metadata hash mismatch.'
+  Assert-BinderConditionV1 (
+    $data.git_executable_path -ceq $policy.GitExecutablePath -and
+    $data.git_executable_sha256 -ceq
+      $policy.GitExecutableSha256 -and
+    $data.git_version -ceq $policy.GitVersion -and
+    $data.git_exec_path -ceq $policy.GitExecPath -and
+    $data.git_https_helper_path -ceq
+      $policy.GitHttpsHelperPath -and
+    $data.git_https_helper_sha256 -ceq
+      $policy.GitHttpsHelperSha256
+  ) 'Preflight Git executable identity mismatch.'
+  Assert-BinderConditionV1 (
+    $data.git_common_config_sha256 -cmatch '^[0-9a-f]{64}$' -and
+    $data.git_metadata_count -gt 0 -and
+    $data.git_metadata_sha256 -cmatch '^[0-9a-f]{64}$'
+  ) 'Preflight Git config/metadata identity is invalid.'
   Assert-BinderConditionV1 ((@($data.apply_argv) -join "`n") -ceq ($policy.ApplyArguments -join "`n")) 'Preflight apply argv drifted.'
   Assert-BinderConditionV1 ($data.stable_catalog_fingerprint_sha256 -cmatch '^[0-9a-f]{64}$') 'Stable catalog fingerprint is missing or invalid.'
   Assert-BinderConditionV1 ($data.tracked_migration_count -gt 0) 'Tracked migration count is invalid.'
@@ -3310,6 +4732,32 @@ function Open-BinderApplySealV1 {
   )
 
   $policy = Get-BinderRolloutPolicyV1
+  $gitGuard = Assert-BinderGitLocalConfigurationV1 `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $gitGuard.ExecutableSha256 -ceq
+      [string]$PreflightManifest.git_executable_sha256 -and
+    $gitGuard.Version -ceq
+      [string]$PreflightManifest.git_version -and
+    $gitGuard.HttpsHelperSha256 -ceq
+      [string]$PreflightManifest.git_https_helper_sha256 -and
+    $gitGuard.CommonConfigSha256 -ceq
+      [string]$PreflightManifest.git_common_config_sha256 -and
+    $gitGuard.MetadataCount -eq
+      [long]$PreflightManifest.git_metadata_count -and
+    $gitGuard.MetadataSha256 -ceq
+      [string]$PreflightManifest.git_metadata_sha256
+  ) 'Git identity changed before the apply seal.'
+  $linkedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $linkedIdentity.ProjectRefSha256 -ceq
+      [string]$PreflightManifest.linked_project_ref_sha256 -and
+    $linkedIdentity.PoolerSha256 -ceq
+      [string]$PreflightManifest.linked_pooler_url_sha256 -and
+    $linkedIdentity.ProjectMetadataSha256 -ceq
+      [string]$PreflightManifest.linked_project_metadata_sha256
+  ) 'Linked Supabase identity changed before the apply seal.'
   $paths = [System.Collections.Generic.List[string]]::new()
   Assert-BinderConditionV1 (
     $TrackedMigrationSet.Count -eq $PreflightManifest.tracked_migration_count
@@ -3321,14 +4769,21 @@ function Open-BinderApplySealV1 {
   foreach ($migration in @($TrackedMigrationSet.Entries)) {
     $paths.Add([string]$migration.FullPath)
   }
+  foreach ($entry in @($gitGuard.Topology.Metadata)) {
+    $paths.Add([string]$entry.Path)
+  }
   foreach ($path in @(
     (Join-Path $RepoRoot 'supabase/config.toml'),
     (Join-Path $RepoRoot 'supabase/.temp/project-ref'),
+    (Join-Path $RepoRoot 'supabase/.temp/pooler-url'),
+    (Join-Path $RepoRoot 'supabase/.temp/linked-project.json'),
     (Join-Path $RepoRoot $policy.ManifestRelativePath),
     (Join-Path $RepoRoot $policy.PreflightSqlRelativePath),
     (Join-Path $RepoRoot $policy.PostApplySqlRelativePath),
     $SupabaseExecutable.LauncherPath,
     $SupabaseExecutable.BinaryPath,
+    $gitGuard.ExecutablePath,
+    $gitGuard.HttpsHelperPath,
     $PreflightManifestEnvelope.Path,
     (Join-Path (
       Split-Path -Parent $PreflightManifestEnvelope.Path
@@ -3365,6 +4820,25 @@ function Open-BinderApplySealV1 {
       )
       $streams.Add($stream)
     }
+    $freshGitGuard = Assert-BinderGitLocalConfigurationV1 `
+      -RepoRoot $RepoRoot
+    Assert-BinderConditionV1 (
+      $freshGitGuard.CommonConfigSha256 -ceq
+        $gitGuard.CommonConfigSha256 -and
+      $freshGitGuard.MetadataCount -eq $gitGuard.MetadataCount -and
+      $freshGitGuard.MetadataSha256 -ceq
+        $gitGuard.MetadataSha256
+    ) 'Git metadata changed after apply seals were retained.'
+    $freshLinkedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+      -RepoRoot $RepoRoot
+    Assert-BinderConditionV1 (
+      $freshLinkedIdentity.ProjectRefSha256 -ceq
+        $linkedIdentity.ProjectRefSha256 -and
+      $freshLinkedIdentity.PoolerSha256 -ceq
+        $linkedIdentity.PoolerSha256 -and
+      $freshLinkedIdentity.ProjectMetadataSha256 -ceq
+        $linkedIdentity.ProjectMetadataSha256
+    ) 'Linked Supabase identity changed after apply seals were retained.'
     return @($streams)
   } catch {
     foreach ($stream in $streams) {
@@ -3398,6 +4872,13 @@ function Assert-BinderFinalLocalSealV1 {
   $policy = Get-BinderRolloutPolicyV1
   $source = Test-BinderSourceV1 -RepoRoot $RepoRoot
   Assert-BinderConditionV1 ($source.PackageManifestFileSha256 -ceq $PreflightManifest.package_manifest_file_sha256) 'Package manifest changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.SupabaseConfigSha256 -ceq $PreflightManifest.supabase_config_sha256) 'Supabase config changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitExecutableSha256 -ceq $PreflightManifest.git_executable_sha256) 'Git executable changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitVersion -ceq $PreflightManifest.git_version) 'Git version changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitHttpsHelperSha256 -ceq $PreflightManifest.git_https_helper_sha256) 'Git HTTPS helper changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitCommonConfigSha256 -ceq $PreflightManifest.git_common_config_sha256) 'Git common config changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitMetadataCount -eq $PreflightManifest.git_metadata_count) 'Git metadata count changed at the final apply seal.'
+  Assert-BinderConditionV1 ($source.GitMetadataSha256 -ceq $PreflightManifest.git_metadata_sha256) 'Git metadata fingerprint changed at the final apply seal.'
   Assert-BinderConditionV1 ($source.SupabaseCliLauncherSha256 -ceq $PreflightManifest.supabase_cli_launcher_sha256) 'Supabase launcher changed at the final apply seal.'
   Assert-BinderConditionV1 ($source.SupabaseCliBinarySha256 -ceq $PreflightManifest.supabase_cli_binary_sha256) 'Supabase binary changed at the final apply seal.'
   Assert-BinderConditionV1 ($source.SupabaseCliShimDescriptorSha256 -ceq $PreflightManifest.supabase_cli_shim_descriptor_sha256) 'Supabase shim descriptor changed at the final apply seal.'
@@ -3414,15 +4895,150 @@ function Assert-BinderFinalLocalSealV1 {
   Assert-BinderCommandSucceededV1 -Result $head -Label 'final sealed HEAD'
   Assert-BinderConditionV1 ($head.StdOut.Trim() -ceq $PreflightManifest.head_sha) 'HEAD changed before the production push.'
 
-  $linkedRef = (
-    Get-Content -LiteralPath (
-      Join-Path $RepoRoot 'supabase/.temp/project-ref'
-    ) -Raw
-  ).Trim()
-  Assert-BinderConditionV1 ($linkedRef -ceq $policy.ProjectRef) 'Linked project changed before the production push.'
+  $linkedIdentity = Get-BinderLinkedSupabaseIdentityV1 `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $linkedIdentity.ProjectRefSha256 -ceq
+      [string]$PreflightManifest.linked_project_ref_sha256 -and
+    $linkedIdentity.PoolerSha256 -ceq
+      [string]$PreflightManifest.linked_pooler_url_sha256 -and
+    $linkedIdentity.ProjectMetadataSha256 -ceq
+      [string]$PreflightManifest.linked_project_metadata_sha256
+  ) 'Linked Supabase identity changed before the production push.'
 
   $manifestFileHash = Get-BinderSha256FileV1 -Path $PreflightManifest.backup_evidence_path
   Assert-BinderConditionV1 ($manifestFileHash -ceq $PreflightManifest.backup_evidence_sha256) 'Backup evidence changed before the production push.'
+}
+
+function Assert-BinderFinalRemoteGateV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot,
+
+    [Parameter(Mandatory = $true)]
+    [string]$FinalRemoteRepoRoot,
+
+    [Parameter(Mandatory = $true)]
+    [string]$SupabaseExecutablePath,
+
+    [Parameter(Mandatory = $true)]
+    [object]$PreflightManifestEnvelope,
+
+    [Parameter(Mandatory = $true)]
+    [object]$PreflightManifest,
+
+    [Parameter(Mandatory = $true)]
+    [bool]$ConfirmProduction,
+
+    [string]$MutationDeadlineUtc = '',
+
+    [string]$AuthorizationExpiresAtUtc = ''
+  )
+
+  $hasMutationDeadline = -not [string]::IsNullOrWhiteSpace(
+    $MutationDeadlineUtc
+  )
+  $hasAuthorizationExpiry = -not [string]::IsNullOrWhiteSpace(
+    $AuthorizationExpiresAtUtc
+  )
+  Assert-BinderConditionV1 (
+    $hasMutationDeadline -eq $hasAuthorizationExpiry
+  ) 'Mutation deadline and authorization expiry must be supplied together.'
+  $policy = Get-BinderRolloutPolicyV1
+  $freshEnvelope = Test-PreflightManifestV1 `
+    -Path $PreflightManifestEnvelope.Path
+  Assert-BinderConditionV1 (
+    $freshEnvelope.FingerprintSha256 -ceq
+      $PreflightManifestEnvelope.FingerprintSha256
+  ) 'Preflight manifest changed before the final remote gate.'
+  Assert-BinderConditionV1 (
+    [string]$freshEnvelope.Data.manifest_fingerprint_sha256 -ceq
+      [string]$PreflightManifest.manifest_fingerprint_sha256
+  ) 'Preflight authorization changed before the final remote gate.'
+
+  [void](Assert-BinderApplyAuthorizationV1 `
+    -PreflightManifest $freshEnvelope.Data `
+    -ConfirmProduction $ConfirmProduction)
+  [void](Assert-BinderRepositoryStateV1 `
+    -RepoRoot $RepoRoot `
+    -ExpectedHeadSha $freshEnvelope.Data.head_sha)
+  [void](Assert-ProjectBindingV1 -RepoRoot $RepoRoot)
+
+  $freshBackup = Test-BackupEvidenceV1 `
+    -Path $freshEnvelope.Data.backup_evidence_path `
+    -RepoRoot $RepoRoot
+  Assert-BinderConditionV1 (
+    $freshBackup.Sha256 -ceq
+      [string]$freshEnvelope.Data.backup_evidence_sha256
+  ) 'Backup evidence changed before the final remote gate.'
+
+  $freshDryRun = Get-BinderDryRunV1 `
+    -RepoRoot $FinalRemoteRepoRoot `
+    -ExecutablePath $SupabaseExecutablePath
+  Assert-BinderConditionV1 (
+    (
+      @($freshDryRun.Parsed.MigrationFiles) -join "`n"
+    ) -ceq
+      (@($freshEnvelope.Data.dry_run_files) -join "`n")
+  ) 'Final dry-run no longer identifies the exact five migrations.'
+  $freshLedger = Get-BinderLedgerV1 `
+    -RepoRoot $FinalRemoteRepoRoot `
+    -ExpectedState PreApply `
+    -ExecutablePath $SupabaseExecutablePath
+  Assert-BinderConditionV1 (
+    (
+      @($freshLedger.Ledger.LocalOnly | ForEach-Object Local) -join "`n"
+    ) -ceq
+      (@($freshEnvelope.Data.pending_versions) -join "`n")
+  ) 'Final migration ledger no longer has the exact five pending versions.'
+  $freshReadback = Invoke-BinderReadbackV1 `
+    -RepoRoot $FinalRemoteRepoRoot `
+    -ExpectedState PreApply `
+    -ExecutablePath $SupabaseExecutablePath
+  Assert-BinderConditionV1 (
+    $freshReadback.ReportSha256 -ceq
+      [string]$freshEnvelope.Data.preapply_readback_sha256 -and
+    [string]$freshReadback.Report.checks.stable_catalog_fingerprint_sha256 -ceq
+      [string]$freshEnvelope.Data.stable_catalog_fingerprint_sha256
+  ) 'Final pre-apply catalog/readback identity changed.'
+  $backupRecoverableThrough = ConvertTo-BinderUtcDateTimeV1 `
+    -Value $freshBackup.RecoverableThroughUtc `
+    -Label 'Fresh backup recovery horizon'
+  $effectiveNotAfter = [datetimeoffset](
+    $backupRecoverableThrough.AddMinutes(
+      $policy.BackupRecoveryLagMinutes
+    )
+  )
+  if ($hasMutationDeadline) {
+    $parsedMutationDeadline = ConvertTo-BinderStrictUtcDeadlineV1 `
+      -Value $MutationDeadlineUtc `
+      -Label 'Signed mutation deadline'
+    $parsedAuthorizationExpiry = ConvertTo-BinderStrictUtcDeadlineV1 `
+      -Value $AuthorizationExpiresAtUtc `
+      -Label 'Signed authorization expiry'
+    if ($parsedMutationDeadline -lt $effectiveNotAfter) {
+      $effectiveNotAfter = $parsedMutationDeadline
+    }
+    if ($parsedAuthorizationExpiry -lt $effectiveNotAfter) {
+      $effectiveNotAfter = $parsedAuthorizationExpiry
+    }
+  }
+  Assert-BinderConditionV1 (
+    [datetimeoffset]::UtcNow -lt $effectiveNotAfter
+  ) 'Production mutation authority expired at the final remote gate.'
+  $effectiveNotAfterText = $effectiveNotAfter.UtcDateTime.ToString(
+    "yyyy-MM-dd'T'HH:mm:ss.fffffff'Z'",
+    [cultureinfo]::InvariantCulture
+  )
+  return [pscustomobject][ordered]@{
+    PreflightManifestFingerprintSha256 =
+      $freshEnvelope.FingerprintSha256
+    BackupEvidenceSha256 = $freshBackup.Sha256
+    PreApplyReadbackSha256 = $freshReadback.ReportSha256
+    DryRunFileCount = @($freshDryRun.Parsed.MigrationFiles).Count
+    NotAfterUtc = $effectiveNotAfterText
+    CheckedAtUtc = [datetime]::UtcNow.ToString('o')
+  }
 }
 
 function Invoke-BinderProductionApplyV1 {
@@ -3434,10 +5050,35 @@ function Invoke-BinderProductionApplyV1 {
     [Parameter(Mandatory = $true)]
     [bool]$ConfirmProduction,
 
+    [string]$MutationDeadlineUtc = '',
+
+    [string]$AuthorizationExpiresAtUtc = '',
+
     [string]$RepoRoot = (Get-BinderRepoRootV1)
   )
 
   $policy = Get-BinderRolloutPolicyV1
+  $hasMutationDeadline = -not [string]::IsNullOrWhiteSpace(
+    $MutationDeadlineUtc
+  )
+  $hasAuthorizationExpiry = -not [string]::IsNullOrWhiteSpace(
+    $AuthorizationExpiresAtUtc
+  )
+  Assert-BinderConditionV1 (
+    $hasMutationDeadline -eq $hasAuthorizationExpiry
+  ) 'Mutation deadline and authorization expiry must be supplied together.'
+  if ($hasMutationDeadline) {
+    $parsedMutationDeadline = ConvertTo-BinderStrictUtcDeadlineV1 `
+      -Value $MutationDeadlineUtc `
+      -Label 'Signed mutation deadline'
+    $parsedAuthorizationExpiry = ConvertTo-BinderStrictUtcDeadlineV1 `
+      -Value $AuthorizationExpiresAtUtc `
+      -Label 'Signed authorization expiry'
+    Assert-BinderConditionV1 (
+      [datetimeoffset]::UtcNow -lt $parsedMutationDeadline -and
+      [datetimeoffset]::UtcNow -lt $parsedAuthorizationExpiry
+    ) 'Signed production mutation authority has expired.'
+  }
   $manifestEnvelope = Test-PreflightManifestV1 -Path $ManifestPath
   $manifest = $manifestEnvelope.Data
   if (-not $PSCmdlet.ShouldProcess(
@@ -3503,13 +5144,28 @@ function Invoke-BinderProductionApplyV1 {
   try {
     $source = Test-BinderSourceV1 -RepoRoot $RepoRoot
     Assert-BinderConditionV1 ($source.PackageManifestFileSha256 -ceq $manifest.package_manifest_file_sha256) 'Package manifest bytes changed after preflight.'
+    Assert-BinderConditionV1 ($source.SupabaseConfigSha256 -ceq $manifest.supabase_config_sha256) 'Supabase config changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitExecutableSha256 -ceq $manifest.git_executable_sha256) 'Git executable changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitVersion -ceq $manifest.git_version) 'Git version changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitHttpsHelperSha256 -ceq $manifest.git_https_helper_sha256) 'Git HTTPS helper changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitCommonConfigSha256 -ceq $manifest.git_common_config_sha256) 'Git common config changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitMetadataCount -eq $manifest.git_metadata_count) 'Git metadata count changed after preflight.'
+    Assert-BinderConditionV1 ($source.GitMetadataSha256 -ceq $manifest.git_metadata_sha256) 'Git metadata changed after preflight.'
     Assert-BinderConditionV1 ($source.SupabaseCliLauncherSha256 -ceq $manifest.supabase_cli_launcher_sha256) 'Supabase CLI launcher changed after preflight.'
     Assert-BinderConditionV1 ($source.SupabaseCliBinarySha256 -ceq $manifest.supabase_cli_binary_sha256) 'Supabase CLI binary changed after preflight.'
     Assert-BinderConditionV1 ($source.SupabaseCliShimDescriptorSha256 -ceq $manifest.supabase_cli_shim_descriptor_sha256) 'Supabase CLI shim descriptor changed after preflight.'
     Assert-BinderConditionV1 ($source.TrackedMigrationCount -eq $manifest.tracked_migration_count) 'Tracked migration count changed after preflight.'
     Assert-BinderConditionV1 ($source.TrackedMigrationSetSha256 -ceq $manifest.tracked_migration_set_sha256) 'Tracked migration-set fingerprint changed after preflight.'
     [void](Assert-BinderRepositoryStateV1 -RepoRoot $RepoRoot -ExpectedHeadSha $manifest.head_sha)
-    [void](Assert-ProjectBindingV1 -RepoRoot $RepoRoot)
+    $projectBinding = Assert-ProjectBindingV1 -RepoRoot $RepoRoot
+    Assert-BinderConditionV1 (
+      $projectBinding.LinkedProjectRefSha256 -ceq
+        [string]$manifest.linked_project_ref_sha256 -and
+      $projectBinding.LinkedPoolerUrlSha256 -ceq
+        [string]$manifest.linked_pooler_url_sha256 -and
+      $projectBinding.LinkedProjectMetadataSha256 -ceq
+        [string]$manifest.linked_project_metadata_sha256
+    ) 'Linked Supabase identity changed after preflight.'
 
     $backup = Test-BackupEvidenceV1 -Path $manifest.backup_evidence_path -RepoRoot $RepoRoot
     Assert-BinderConditionV1 ($backup.Sha256 -ceq $manifest.backup_evidence_sha256) 'Backup evidence changed after preflight.'
@@ -3557,13 +5213,32 @@ function Invoke-BinderProductionApplyV1 {
       Write-BinderJsonV1 `
         -Path (Join-Path $applyRoot 'sealed-source-manifest.json') `
         -Value $stage.SealedManifest
+      $finalRemoteGate = Assert-BinderFinalRemoteGateV1 `
+        -RepoRoot $RepoRoot `
+        -FinalRemoteRepoRoot $stage.Root `
+        -SupabaseExecutablePath $supabaseExecutable.BinaryPath `
+        -PreflightManifestEnvelope $manifestEnvelope `
+        -PreflightManifest $manifest `
+        -ConfirmProduction $ConfirmProduction `
+        -MutationDeadlineUtc $MutationDeadlineUtc `
+        -AuthorizationExpiresAtUtc $AuthorizationExpiresAtUtc
+      Write-BinderJsonV1 `
+        -Path (Join-Path $applyRoot 'final-remote-gate.json') `
+        -Value $finalRemoteGate
+      $pushNotAfter = ConvertTo-BinderStrictUtcDeadlineV1 `
+        -Value ([string]$finalRemoteGate.NotAfterUtc) `
+        -Label 'Final production child-start deadline'
+      Assert-BinderConditionV1 (
+        [datetimeoffset]::UtcNow -lt $pushNotAfter
+      ) 'Production mutation authority expired after final-gate evidence.'
       $pushAttempted = $true
       $push = Invoke-BinderSupabaseV1 `
         -Arguments @($plan[0].Arguments) `
         -RepoRoot $stage.Root `
         -TimeoutSeconds 900 `
         -ProcessLifecycle $pushLifecycle `
-        -ExecutablePath $supabaseExecutable.BinaryPath
+        -ExecutablePath $supabaseExecutable.BinaryPath `
+        -NotAfterUtc ([string]$finalRemoteGate.NotAfterUtc)
       $pushSucceeded = (
         $push.Started -eq $true -and
         $push.TerminationConfirmed -eq $true -and
@@ -3811,6 +5486,43 @@ function Invoke-BinderProductionApplyV1 {
   }
 }
 
+function Invoke-BinderPhysicalBackupListV1 {
+  [CmdletBinding()]
+  param(
+    [string]$RepoRoot = (Get-BinderRepoRootV1)
+  )
+
+  $policy = Get-BinderRolloutPolicyV1
+  $supabaseExecutable = Get-BinderSupabaseExecutableV1
+  $result = Invoke-BinderSupabaseV1 `
+    -Arguments @(
+      'backups',
+      'list',
+      '--project-ref',
+      $policy.ProjectRef,
+      '--output',
+      'json',
+      '--agent',
+      'no'
+    ) `
+    -RepoRoot $RepoRoot `
+    -TimeoutSeconds 60 `
+    -ExecutablePath $supabaseExecutable.BinaryPath
+  Assert-BinderCommandSucceededV1 `
+    -Result $result `
+    -Label 'Supabase physical-backup listing'
+  return [pscustomobject][ordered]@{
+    Status = 'pass'
+    ProjectRef = $policy.ProjectRef
+    StdOut = $result.StdOut
+    StdErr = $result.StdErr
+    ExitCode = $result.ExitCode
+    TimedOut = $result.TimedOut
+    ProcessTreeTerminationConfirmed = $result.TerminationConfirmed
+    OutputTruncated = $result.OutputTruncated
+  }
+}
+
 Export-ModuleMember -Function @(
   'Get-BinderRolloutPolicyV1',
   'Get-CanonicalSha256V1',
@@ -3818,12 +5530,16 @@ Export-ModuleMember -Function @(
   'ConvertFrom-SupabaseMigrationListV1',
   'ConvertFrom-SupabaseDryRunV1',
   'Assert-ExactBinderPendingSetV1',
+  'Assert-BinderRepositoryStateV1',
   'Assert-ProjectBindingV1',
   'Test-BackupEvidenceV1',
   'Test-PreflightManifestV1',
   'Assert-BinderApplyAuthorizationV1',
   'Test-BinderSourceV1',
+  'Open-BinderGitMetadataSealV1',
   'Invoke-BinderReadbackV1',
+  'Get-BinderWorktreePathsV1',
+  'Invoke-BinderPhysicalBackupListV1',
   'Invoke-BinderProductionPreflightV1',
   'Invoke-BinderProductionApplyV1'
 )

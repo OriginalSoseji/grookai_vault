@@ -472,15 +472,35 @@ function Write-ManifestFixture {
     expires_at_utc = $ExpiresAtUtc
     project_ref = $policy.ProjectRef
     package_fingerprint_sha256 = $policy.PackageFingerprintSha256
+    package_manifest_file_sha256 = ('d' * 64)
     head_sha = ('a' * 40)
     origin_main_sha = ('a' * 40)
+    supabase_config_sha256 = $policy.SupabaseConfigSha256
+    linked_project_ref_sha256 = $policy.LinkedProjectRefSha256
+    linked_pooler_url_sha256 = $policy.LinkedPoolerUrlSha256
+    linked_project_metadata_sha256 = $policy.LinkedProjectMetadataSha256
+    git_executable_path = $policy.GitExecutablePath
+    git_executable_sha256 = $policy.GitExecutableSha256
+    git_version = $policy.GitVersion
+    git_exec_path = $policy.GitExecPath
+    git_https_helper_path = $policy.GitHttpsHelperPath
+    git_https_helper_sha256 = $policy.GitHttpsHelperSha256
+    git_common_config_sha256 = ('e' * 64)
+    git_metadata_count = 1
+    git_metadata_sha256 = ('f' * 64)
     supabase_cli_version = $policy.SupportedSupabaseCliVersion
     supabase_cli_launcher_sha256 = $policy.SupabaseCliLauncherSha256
     supabase_cli_binary_sha256 = $policy.SupabaseCliBinarySha256
     supabase_cli_shim_descriptor_sha256 = $policy.SupabaseCliShimDescriptorSha256
     tracked_migration_count = 1
     tracked_migration_set_sha256 = ('b' * 64)
+    migration_files = @()
+    pending_versions = @()
+    dry_run_files = @()
+    preapply_readback_sha256 = ('9' * 64)
     stable_catalog_fingerprint_sha256 = ('c' * 64)
+    backup_evidence_path = 'C:\\binder-backup-evidence.json'
+    backup_evidence_sha256 = ('8' * 64)
     apply_argv = @($policy.ApplyArguments)
   }
   $fingerprint = & $module {
@@ -940,10 +960,30 @@ try {
   [void][IO.Directory]::CreateDirectory((Join-Path $fixture 'supabase/migrations'))
   $migration = Join-Path $fixture 'supabase/migrations/20260723100000_fixture.sql'
   [IO.File]::WriteAllText($migration, 'select 1;')
-  $null = & git -C $fixture init --quiet 2>&1
-  if ($LASTEXITCODE -ne 0) { throw 'fixture git init failed' }
-  $null = & git -C $fixture add -- 'supabase/migrations/20260723100000_fixture.sql' 2>&1
-  if ($LASTEXITCODE -ne 0) { throw 'fixture git add failed' }
+  $savedGitEnvironment = [ordered]@{}
+  foreach ($entry in Get-ChildItem Env:) {
+    if ($entry.Name.StartsWith(
+      'GIT_',
+      [StringComparison]::OrdinalIgnoreCase
+    )) {
+      $savedGitEnvironment[$entry.Name] = [string]$entry.Value
+      Remove-Item -LiteralPath ("Env:" + $entry.Name)
+    }
+  }
+  try {
+    $null = & git -C $fixture init --quiet 2>&1
+    if ($LASTEXITCODE -ne 0) { throw 'fixture git init failed' }
+    $null = & git -C $fixture add -- 'supabase/migrations/20260723100000_fixture.sql' 2>&1
+    if ($LASTEXITCODE -ne 0) { throw 'fixture git add failed' }
+  } finally {
+    foreach ($entry in $savedGitEnvironment.GetEnumerator()) {
+      [Environment]::SetEnvironmentVariable(
+        [string]$entry.Key,
+        [string]$entry.Value,
+        [EnvironmentVariableTarget]::Process
+      )
+    }
+  }
   $module = Get-Module CollaborativeBindersProductionRolloutV1
   $exact = & $module {
     param($root)
@@ -1010,18 +1050,40 @@ $stage = $null
 try {
   [void][IO.Directory]::CreateDirectory((Join-Path $fixture 'supabase/migrations'))
   [void][IO.Directory]::CreateDirectory((Join-Path $fixture 'supabase/.temp'))
-  [IO.File]::WriteAllText(
-    (Join-Path $fixture 'supabase/config.toml'),
-    'project_id = "${PRODUCTION_PROJECT_REF}"'
+  $module = Get-Module CollaborativeBindersProductionRolloutV1
+  $policy = Get-BinderRolloutPolicyV1
+  $sourceRoot = & $module { Get-BinderRepoRootV1 }
+  [IO.File]::Copy(
+    (Join-Path $sourceRoot 'supabase/config.toml'),
+    (Join-Path $fixture 'supabase/config.toml')
   )
   [IO.File]::WriteAllText(
     (Join-Path $fixture 'supabase/.temp/project-ref'),
     '${PRODUCTION_PROJECT_REF}'
   )
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'supabase/.temp/pooler-url'),
+    $policy.LinkedPoolerUrl
+  )
+  $linkedProject = [ordered]@{
+    ref = $policy.ProjectRef
+    name = $policy.LinkedProjectName
+    organization_id = $policy.LinkedProjectOrganizationId
+    organization_slug = $policy.LinkedProjectOrganizationSlug
+  } | ConvertTo-Json -Compress
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'supabase/.temp/linked-project.json'),
+    $linkedProject
+  )
+  $fixtureSqlDirectory = Join-Path $fixture 'scripts/ops/sql'
+  [void][IO.Directory]::CreateDirectory($fixtureSqlDirectory)
+  [IO.File]::Copy(
+    (Join-Path $sourceRoot $policy.PreflightSqlRelativePath),
+    (Join-Path $fixture $policy.PreflightSqlRelativePath)
+  )
   $migration = Join-Path $fixture 'supabase/migrations/20260723100000_fixture.sql'
   [IO.File]::WriteAllText($migration, 'select 1;')
   $hash = (Get-FileHash -LiteralPath $migration -Algorithm SHA256).Hash.ToLowerInvariant()
-  $module = Get-Module CollaborativeBindersProductionRolloutV1
   $setHash = & $module {
     param($line)
     Get-BinderSha256StringV1 -Value $line
@@ -1139,6 +1201,13 @@ try {
   assert.equal(result.SealedManifest.migration_set_sha256.length, 64);
   assert.equal(result.SealedManifest.config_sha256.length, 64);
   assert.equal(result.SealedManifest.project_ref, PRODUCTION_PROJECT_REF);
+  assert.equal(result.SealedManifest.project_ref_sha256.length, 64);
+  assert.equal(result.SealedManifest.pooler_url_sha256.length, 64);
+  assert.equal(
+    result.SealedManifest.linked_project_metadata_sha256.length,
+    64,
+  );
+  assert.equal(result.SealedManifest.preflight_sql_sha256.length, 64);
   assert.deepEqual(result.SealedManifest.migrations, [
     {
       file: "20260723100000_fixture.sql",
@@ -1326,6 +1395,7 @@ test("apply implementation revalidates every source guard before its sole push",
     "Assert-BinderFinalLocalSealV1",
     "New-BinderApplyCommandPlanV1",
     "New-BinderSupabaseStageV1",
+    "Assert-BinderFinalRemoteGateV1",
     "-Arguments @($plan[0].Arguments)",
     "-RepoRoot $stage.Root",
   ];
@@ -1362,7 +1432,7 @@ test("apply implementation revalidates every source guard before its sole push",
   );
   assert.match(
     applySource,
-    /New-BinderSupabaseStageV1[\s\S]*?sealed-source-manifest\.json[\s\S]*?\$pushAttempted = \$true/,
+    /New-BinderSupabaseStageV1[\s\S]*?sealed-source-manifest\.json[\s\S]*?Assert-BinderFinalRemoteGateV1[\s\S]*?final-remote-gate\.json[\s\S]*?\$pushAttempted = \$true/,
   );
   assert.match(
     applySource,
@@ -1381,6 +1451,49 @@ test("apply implementation revalidates every source guard before its sole push",
   assert.match(
     applySource,
     /mutation_possible = \[bool\]\$pushLifecycle\.Started/,
+  );
+});
+
+test("final remote gate closes expiry, backup, project, and origin TOCTOU", () => {
+  const moduleSource = source(MODULE_PATH);
+  const gateStart = moduleSource.indexOf(
+    "function Assert-BinderFinalRemoteGateV1",
+  );
+  const gateEnd = moduleSource.indexOf(
+    "\nfunction Invoke-BinderProductionApplyV1",
+    gateStart,
+  );
+  assert.ok(gateStart >= 0 && gateEnd > gateStart);
+  const gateSource = moduleSource.slice(gateStart, gateEnd);
+
+  const orderedMarkers = [
+    "Test-PreflightManifestV1",
+    "Assert-BinderApplyAuthorizationV1",
+    "Assert-BinderRepositoryStateV1",
+    "Assert-ProjectBindingV1",
+    "Test-BackupEvidenceV1",
+  ];
+  let previous = -1;
+  for (const marker of orderedMarkers) {
+    const index = gateSource.indexOf(marker);
+    assert.ok(
+      index > previous,
+      `missing or out-of-order final remote guard: ${marker}`,
+    );
+    previous = index;
+  }
+
+  assert.match(
+    gateSource,
+    /ExpectedHeadSha \$freshEnvelope\.Data\.head_sha/,
+  );
+  assert.match(
+    gateSource,
+    /freshBackup\.Sha256[\s\S]*?backup_evidence_sha256/,
+  );
+  assert.doesNotMatch(
+    gateSource,
+    /Invoke-BinderSupabaseV1|db['"`]?\s*,?\s*['"`]?push/i,
   );
 });
 

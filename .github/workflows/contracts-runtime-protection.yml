@@ -76,3 +76,4 @@ jobs:
           node --test
           tests/contracts/collaborative_binders_process_containment_v1.test.mjs
           tests/contracts/collaborative_binders_production_rollout_v1.test.mjs
+          tests/contracts/collaborative_binders_unattended_supervisor_v1.test.mjs
