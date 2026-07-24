@@ -169,75 +169,79 @@ export function BinderDashboardView({
         title="Continue building"
         description="Pick up the collection goals you are actively building."
         items={dashboard.continueBuilding}
-        empty="No Binders yet. Start with a Pokémon or set."
+        empty="No Binders yet. Start with a Pokémon Binder."
       />
-      <DashboardSection
-        title="Shared with me"
-        description="Binders where another collector invited you to build or view."
-        items={dashboard.sharedWithMe}
-        empty="Build together—invite family or friends."
-      />
-      <PageSection spacing="loose">
-        <div>
-          <h2 className="gv-section-title">Invitations</h2>
-          <p className="mt-1 text-sm text-slate-600">Invitations are different from view-only links.</p>
-        </div>
-        {dashboard.invitations.length > 0 ? (
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {dashboard.invitations.map((invitation) => (
-              <li
-                key={invitation.invitationPublicId}
-                className="rounded-2xl border border-slate-200 bg-white p-4"
-              >
-                <p className="font-semibold text-slate-950">{invitation.binderTitle}</p>
-                <p className="mt-1 text-sm capitalize text-slate-600">
-                  Invited as {invitation.role}
-                </p>
-                <p className="mt-2 text-xs text-slate-500">
-                  Respond here without re-exposing the private invitation token.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {sharedEnabled ? (
+      {sharedEnabled || dashboard.sharedWithMe.length > 0 ? (
+        <DashboardSection
+          title="Shared with me"
+          description="Binders where another collector invited you to build or view."
+          items={dashboard.sharedWithMe}
+          empty="Build together—invite family or friends."
+        />
+      ) : null}
+      {sharedEnabled || dashboard.invitations.length > 0 ? (
+        <PageSection spacing="loose">
+          <div>
+            <h2 className="gv-section-title">Invitations</h2>
+            <p className="mt-1 text-sm text-slate-600">Invitations are different from view-only links.</p>
+          </div>
+          {dashboard.invitations.length > 0 ? (
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {dashboard.invitations.map((invitation) => (
+                <li
+                  key={invitation.invitationPublicId}
+                  className="rounded-2xl border border-slate-200 bg-white p-4"
+                >
+                  <p className="font-semibold text-slate-950">{invitation.binderTitle}</p>
+                  <p className="mt-1 text-sm capitalize text-slate-600">
+                    Invited as {invitation.role}
+                  </p>
+                  <p className="mt-2 text-xs text-slate-500">
+                    Respond here without re-exposing the private invitation token.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {sharedEnabled ? (
+                      <SimpleBinderAction
+                        publicId={invitation.binderPublicId}
+                        actionName="invite_respond"
+                        label="Accept"
+                        tone="primary"
+                        fields={{
+                          invitationId: invitation.invitationPublicId,
+                          decision: "accept",
+                        }}
+                      />
+                    ) : null}
                     <SimpleBinderAction
                       publicId={invitation.binderPublicId}
                       actionName="invite_respond"
-                      label="Accept"
-                      tone="primary"
+                      label="Decline"
                       fields={{
                         invitationId: invitation.invitationPublicId,
-                        decision: "accept",
+                        decision: "decline",
                       }}
                     />
-                  ) : null}
-                  <SimpleBinderAction
-                    publicId={invitation.binderPublicId}
-                    actionName="invite_respond"
-                    label="Decline"
-                    fields={{
-                      invitationId: invitation.invitationPublicId,
-                      decision: "decline",
-                    }}
-                  />
-                </div>
-                <div className="mt-3">
-                  <BinderInvitationReportForm
-                    invitationPublicId={invitation.invitationPublicId}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 px-5 py-8 text-sm text-slate-600">
-            You have no pending Binder invitations.
-          </div>
-        )}
-        {dashboard.invitationsNextCursor && invitationPageHref ? (
-          <Link href={invitationPageHref} className="gv-secondary-button">
-            More invitations
-          </Link>
-        ) : null}
-      </PageSection>
+                  </div>
+                  <div className="mt-3">
+                    <BinderInvitationReportForm
+                      invitationPublicId={invitation.invitationPublicId}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 px-5 py-8 text-sm text-slate-600">
+              You have no pending Binder invitations.
+            </div>
+          )}
+          {dashboard.invitationsNextCursor && invitationPageHref ? (
+            <Link href={invitationPageHref} className="gv-secondary-button">
+              More invitations
+            </Link>
+          ) : null}
+        </PageSection>
+      ) : null}
       {dashboard.suspended.length > 0 ? (
         <PageSection spacing="loose">
           <div>
@@ -292,8 +296,8 @@ export function BinderDashboardView({
           <div>
             <h2 className="gv-section-title">Collection goals you already track</h2>
             <p className="mt-1 text-sm text-slate-600">
-              Turn an existing tracked Pokémon or set into a Binder, or dismiss
-              the suggestion. Your original watch remains unchanged.
+              Turn an existing tracked goal into a Binder, or dismiss the
+              suggestion. Your original watch remains unchanged.
             </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">

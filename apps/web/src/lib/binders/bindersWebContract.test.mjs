@@ -859,3 +859,69 @@ test("Binder UI uses collector language and does not change the mobile dock", ()
   assert.match(views, /aria-valuenow=\{accessibleCompleted\}/);
   assert.match(workspace, /aria-label="Binder sections"/);
 });
+
+test("personal-only Binder UI does not promise sharing or Set Binders", () => {
+  const views = read("components/binders/BinderViews.tsx");
+  const forms = read("components/binders/BinderForms.tsx");
+  const workspace = read("components/binders/BinderWorkspace.tsx");
+  const createPage = read("app/binders/new/page.tsx");
+
+  assert.match(
+    views,
+    /sharedEnabled \|\| dashboard\.sharedWithMe\.length > 0/,
+    "existing shared Binders remain visible during a sharing kill switch",
+  );
+  assert.match(
+    views,
+    /sharedEnabled \|\| dashboard\.invitations\.length > 0/,
+    "existing invitations retain decline and report access during a sharing kill switch",
+  );
+  assert.doesNotMatch(views, /Start with a Pokémon or set/);
+  assert.doesNotMatch(views, /Turn an existing tracked Pokémon or set/);
+  assert.doesNotMatch(forms, /What are you collecting together/);
+  assert.match(forms, /What are you hoping to complete/);
+
+  assert.match(
+    workspace,
+    /flags\.shared \|\| flags\.viewLinks \|\| flags\.publicBinders/,
+  );
+  assert.match(
+    workspace,
+    /\(binder\.canShare && sharingAvailable\)[\s\S]*\(binder\.canInvite && flags\.shared\)/,
+  );
+
+  assert.match(
+    createPage,
+    /flags\.setBinders \? "Find a Pokémon or set" : "Find a Pokémon"/,
+  );
+  assert.match(
+    createPage,
+    /flags\.setBinders \? "Pikachu or Base Set" : "Pikachu"/,
+  );
+});
+
+test("Vault exposes Binders only through the server-evaluated library gate", () => {
+  const vaultPage = read("app/vault/page.tsx");
+  const vaultView = read("components/vault/VaultCollectionView.tsx");
+
+  assert.match(
+    vaultPage,
+    /import \{ isBinderLibraryEnabled \} from "@\/lib\/binders\/featureFlags";/,
+  );
+  assert.match(
+    vaultPage,
+    /const bindersEnabled = isBinderLibraryEnabled\(\);/,
+  );
+  assert.match(
+    vaultPage,
+    /<VaultCollectionView[\s\S]*?bindersEnabled=\{bindersEnabled\}/,
+  );
+  assert.match(vaultView, /bindersEnabled: boolean;/);
+
+  const gatedCard = vaultView.match(
+    /\{bindersEnabled \? \([\s\S]*?<Link[\s\S]*?href="\/binders"[\s\S]*?<\/Link>\s*\) : null\}/,
+  )?.[0];
+  assert.ok(gatedCard, "Vault Binder discovery must remain feature-gated");
+  assert.match(gatedCard, />\s*Binders\s*</);
+  assert.match(gatedCard, />\s*What you’re building\s*</);
+});

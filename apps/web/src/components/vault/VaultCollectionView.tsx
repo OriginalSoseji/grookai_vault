@@ -218,6 +218,7 @@ function renderVaultGrid(
 }
 
 type VaultCollectionViewProps = {
+  bindersEnabled: boolean;
   initialItems: VaultCardData[];
   recent: RecentCardData[];
   itemsError?: string | null;
@@ -229,6 +230,7 @@ type VaultCollectionViewProps = {
 };
 
 export function VaultCollectionView({
+  bindersEnabled,
   initialItems,
   recent,
   itemsError,
@@ -643,6 +645,49 @@ export function VaultCollectionView({
             </div>
           }
         />
+        {bindersEnabled ? (
+          <Link
+            href="/binders"
+            className="gv-action-panel group mt-6 flex min-h-[78px] items-center gap-4 px-4 py-4 text-left transition hover:border-sky-200 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:hover:border-sky-400/30 dark:hover:bg-white/[0.06] sm:px-5"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/[0.10] text-sky-700 ring-1 ring-sky-200/70 transition group-hover:bg-sky-500/[0.15] dark:bg-sky-400/[0.12] dark:text-sky-300 dark:ring-sky-300/20">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-5 w-5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5.25 4.75h10.5A2.25 2.25 0 0 1 18 7v12.25H7.5A2.5 2.5 0 0 1 5 16.75V5a.25.25 0 0 1 .25-.25Z" />
+                <path d="M7.5 19.25A2.5 2.5 0 0 1 10 16.75h8" />
+                <path d="M9 8.5h5" />
+              </svg>
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-base font-semibold text-slate-950 dark:text-slate-100">
+                Binders
+              </span>
+              <span className="mt-0.5 block text-sm text-slate-500 dark:text-slate-400">
+                What you’re building
+              </span>
+            </span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-slate-600 dark:group-hover:text-slate-200"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m9 5 7 7-7 7" />
+            </svg>
+          </Link>
+        ) : null}
         {valueSummary.totalGroupedCount > 0 ? (
           <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

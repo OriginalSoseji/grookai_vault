@@ -6,6 +6,7 @@ import {
   VaultCollectionView,
   type RecentCardData,
 } from "@/components/vault/VaultCollectionView";
+import { isBinderLibraryEnabled } from "@/lib/binders/featureFlags";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   applyChildDisplayImageFallback,
@@ -153,6 +154,7 @@ export default async function VaultPage({
 }: {
   searchParams?: { species?: string | string[] };
 }) {
+  const bindersEnabled = isBinderLibraryEnabled();
   const { supabase, user } = await requireServerUser("/vault");
   const requestedSpeciesSlug = parseSpeciesFilter(searchParams?.species);
   const speciesFilter = requestedSpeciesSlug
@@ -225,6 +227,7 @@ export default async function VaultPage({
         </section>
       ) : null}
       <VaultCollectionView
+        bindersEnabled={bindersEnabled}
         initialItems={items}
         recent={visibleRecent}
         itemsError={itemsError}

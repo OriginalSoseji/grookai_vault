@@ -97,4 +97,19 @@ void main() {
     expect(species, isNot(contains("from('wall_sections')")));
     expect(species, isNot(contains("from('watches')")));
   });
+
+  test(
+    'personal Binder entry copy does not promise disabled collaboration',
+    () {
+      final vault = File('lib/main_vault.dart').readAsStringSync();
+      final species = File(
+        'lib/screens/dex/grookai_dex_species_screen.dart',
+      ).readAsStringSync();
+
+      expect(vault, contains('exact copies in your Vault.'));
+      expect(species, contains('exact copies from your Vault.'));
+      expect(vault, isNot(contains('with people you invite')));
+      expect(species, isNot(contains('with people you invite')));
+    },
+  );
 }

@@ -402,7 +402,7 @@ class _BinderCreateScreenState extends State<BinderCreateScreen> {
               textCapitalization: TextCapitalization.words,
               decoration: const InputDecoration(
                 labelText: 'Binder title',
-                hintText: 'Pikachu Family Binder',
+                hintText: 'My Pikachu Binder',
               ),
             ),
             const SizedBox(height: 10),

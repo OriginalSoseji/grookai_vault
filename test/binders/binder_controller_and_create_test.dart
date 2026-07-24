@@ -13,6 +13,20 @@ import 'package:grookai_vault/services/binders/binder_private_cache.dart';
 import 'package:grookai_vault/services/binders/binder_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+const _personalOnlyFlags = BinderFeatureFlags(
+  schema: true,
+  personal: true,
+  shared: false,
+  viewLinks: false,
+  publicBinders: false,
+  community: false,
+  templates: false,
+  notifications: false,
+  pulseSharing: false,
+  setBinders: false,
+  customBinders: false,
+);
+
 BinderSummary _summary({
   String role = 'owner',
   String publicId = 'binder-public-1',
@@ -562,6 +576,129 @@ void main() {
       expect(repository.lastInboxAccepted, isFalse);
     },
   );
+
+  testWidgets(
+    'personal-only library avoids collaboration and Set Binder promises',
+    (tester) async {
+      final repository = _FlowRepository(
+        libraryPage: BinderLibraryPage(binders: <BinderSummary>[_summary()]),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BinderLibraryScreen(
+            repository: repository,
+            featureFlags: _personalOnlyFlags,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Continue building'), findsOneWidget);
+      expect(find.text('Shared with me'), findsNothing);
+      expect(
+        find.text('Build together—invite family or friends.'),
+        findsNothing,
+      );
+    },
+  );
+
+  testWidgets(
+    'personal-only invitation keeps safety actions but hides acceptance',
+    (tester) async {
+      final repository = _FlowRepository(
+        libraryPage: BinderLibraryPage(
+          binders: <BinderSummary>[_summary()],
+          invitations: const <BinderInvitation>[
+            BinderInvitation(
+              id: 'invitation-kill-switch',
+              state: BinderInvitationState.pending,
+              maximumRole: BinderRole.contributor,
+              binderTitle: 'Existing invitation',
+            ),
+          ],
+        ),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BinderLibraryScreen(
+            repository: repository,
+            featureFlags: _personalOnlyFlags,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Existing invitation'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Report'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Decline'), findsOneWidget);
+      expect(find.widgetWithText(FilledButton, 'Accept'), findsNothing);
+    },
+  );
+
+  testWidgets('personal-only empty and create copy stays truthful', (
+    tester,
+  ) async {
+    final libraryRepository = _FlowRepository(
+      libraryPage: const BinderLibraryPage(binders: <BinderSummary>[]),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BinderLibraryScreen(
+          repository: libraryRepository,
+          featureFlags: _personalOnlyFlags,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Start with a Pokémon Binder.'), findsOneWidget);
+    expect(find.textContaining('or set'), findsNothing);
+
+    final createRepository = _FlowRepository();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BinderCreateScreen(
+          repository: createRepository,
+          featureFlags: _personalOnlyFlags,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is TextField &&
+            widget.decoration?.hintText == 'My Pikachu Binder',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Family or friends'), findsNothing);
+    expect(find.text('Set'), findsNothing);
+  });
+
+  testWidgets('personal-only detail hides unavailable sharing', (tester) async {
+    final repository = _FlowRepository(
+      detailValue: _detail(
+        permissions: const BinderPermissions(canShare: true),
+      ),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BinderDetailScreen(
+          publicId: 'binder-public-1',
+          repository: repository,
+          featureFlags: _personalOnlyFlags,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byTooltip('Share or invite'), findsNothing);
+    expect(find.byTooltip('Share Binder'), findsNothing);
+  });
 
   testWidgets('personal create uses canonical target and stays private', (
     tester,

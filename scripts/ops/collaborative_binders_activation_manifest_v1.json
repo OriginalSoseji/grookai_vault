@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "package_id": "COLLABORATIVE-BINDERS-ACTIVATION-V1",
+  "package_fingerprint_sha256": "f84fa4078f9ed1d727857770f71291d4fc21c04139164f9ec16f687f36fbc4c1",
+  "rollout_model": "clients_dark_empty_domain",
+  "clients_dark_through_phase_sequence": 8,
+  "binder_domain_must_remain_empty": true,
+  "backup_chain_required": true,
+  "backup_max_activation_recovery_lag_minutes": 60,
+  "prior_evidence_ttl_hours": 2,
+  "clients_dark_evidence_required": true,
+  "clients_dark_evidence_ttl_hours": 2,
+  "clients_dark_evidence_package_id": "COLLABORATIVE-BINDERS-CLIENTS-DARK-V1",
+  "clients_dark_web_origin": "https://grookaivault.com",
+  "clients_dark_mobile_application_id": "com.grookai.vault",
+  "clients_dark_web_flag_keys": [
+    "GROOKAI_BINDERS_SCHEMA_RPC_V1_ENABLED",
+    "GROOKAI_BINDERS_PERSONAL_V1_ENABLED",
+    "GROOKAI_BINDERS_SHARED_V1_ENABLED",
+    "GROOKAI_BINDERS_VIEW_LINKS_V1_ENABLED",
+    "GROOKAI_BINDERS_PUBLIC_V1_ENABLED",
+    "GROOKAI_BINDERS_COMMUNITY_V1_ENABLED",
+    "GROOKAI_BINDERS_TEMPLATES_V1_ENABLED",
+    "GROOKAI_BINDERS_NOTIFICATIONS_V1_ENABLED",
+    "GROOKAI_BINDERS_PULSE_SHARING_V1_ENABLED",
+    "GROOKAI_BINDERS_SET_V1_ENABLED",
+    "GROOKAI_BINDERS_CUSTOM_V1_ENABLED"
+  ],
+  "clients_dark_samsung_compile_flag_keys": [
+    "BINDERS_SCHEMA_V1",
+    "BINDERS_PERSONAL_V1",
+    "BINDERS_SHARED_V1",
+    "BINDERS_VIEW_LINKS_V1",
+    "BINDERS_PUBLIC_V1",
+    "BINDERS_COMMUNITY_V1",
+    "BINDERS_TEMPLATES_V1",
+    "BINDERS_NOTIFICATIONS_V1",
+    "BINDERS_PULSE_SHARING_V1",
+    "BINDERS_SET_TARGET_V1",
+    "BINDERS_CUSTOM_TARGET_V1"
+  ],
+  "activation_module": {
+    "file": "scripts/ops/CollaborativeBindersActivationV1.psm1",
+    "sha256": "f805b21d3d31360829b95488fb0d9d4f72b0ff0811cfdcb434acecc2495580d3"
+  },
+  "activation_wrappers": [
+    {
+      "role": "source_validate",
+      "file": "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
+      "sha256": "c6f8dacf4d68fc8204a0214029896820ebd24017966de1781117df3dfbd0b3b1"
+    },
+    {
+      "role": "preflight",
+      "file": "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
+      "sha256": "6dc4416ff9793eb01e398d7d6bafc78ba3d5b4183df32128dbf988443a7cab84"
+    },
+    {
+      "role": "apply",
+      "file": "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
+      "sha256": "adfa4c42893262a8b6759722b216a758ced9b01e69ca9a569dbaef3824b8feb5"
+    },
+    {
+      "role": "recovery",
+      "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+      "sha256": "8b33e5953f686c22fc7ce12176d1a817ac79932c3d43ac8a7c86306672711338"
+    },
+    {
+      "role": "kill_switch",
+      "file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+      "sha256": "2c1ede4056cddeac6cd188ff077d3c6dd835afb1f22901678ce05031bb21c1a3"
+    }
+  ],
+  "activation_sources": [
+    {
+      "file": "scripts/ops/CollaborativeBindersActivationV1.psm1",
+      "sha256": "f805b21d3d31360829b95488fb0d9d4f72b0ff0811cfdcb434acecc2495580d3"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
+      "sha256": "adfa4c42893262a8b6759722b216a758ced9b01e69ca9a569dbaef3824b8feb5"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+      "sha256": "2c1ede4056cddeac6cd188ff077d3c6dd835afb1f22901678ce05031bb21c1a3"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
+      "sha256": "6dc4416ff9793eb01e398d7d6bafc78ba3d5b4183df32128dbf988443a7cab84"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+      "sha256": "8b33e5953f686c22fc7ce12176d1a817ac79932c3d43ac8a7c86306672711338"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
+      "sha256": "c6f8dacf4d68fc8204a0214029896820ebd24017966de1781117df3dfbd0b3b1"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_backup_watch_v1.ps1",
+      "sha256": "44ab5ef9545fa4ff96bc015199e5eab2a65cbb0caa316916c300f08c5cc2f272"
+    },
+    {
+      "file": "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
+      "sha256": "f48f6d085b2be098d84be55d51993526542bd94f8b07d87ed95a7d66d3c1c2af"
+    }
+  ],
+  "recovery_entrypoint": {
+    "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+    "sha256": "8b33e5953f686c22fc7ce12176d1a817ac79932c3d43ac8a7c86306672711338"
+  },
+  "recovery_policy": {
+    "accepted_evidence_statuses": [
+      "pass",
+      "stop"
+    ],
+    "classifications": [
+      "before",
+      "after",
+      "unexpected"
+    ],
+    "recovered_prior_evidence_classification": "after",
+    "before_action": "stop",
+    "unexpected_action": "stop",
+    "state_neutral_readback": true,
+    "automatic_retry_permitted": false,
+    "automatic_rollback_permitted": false
+  },
+  "kill_switch": {
+    "file": "scripts/ops/sql/collaborative_binders_activation_kill_switch_v1.sql",
+    "sha256": "bf67c17722f7942ee4e02b855be3cb8ae6ff1d1fe380f214050c6aff8a9f737b",
+    "entrypoint_file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+    "entrypoint_sha256": "2c1ede4056cddeac6cd188ff077d3c6dd835afb1f22901678ce05031bb21c1a3",
+    "target_flag": "schema_internal",
+    "set_enabled": false,
+    "effective_enabled_flags_after": [],
+    "excluded_flags_must_remain_disabled": [
+      "notifications",
+      "pulse_milestones",
+      "set_binders"
+    ],
+    "automatic_retry_permitted": false,
+    "automatic_rollback_permitted": false
+  },
+  "production_project_ref": "ycdxbpibncqcchqiihfz",
+  "canonical_git_repository": "OriginalSoseji/grookai_vault",
+  "required_installation_package_id": "COLLABORATIVE-BINDERS-DB-V1",
+  "required_installation_package_fingerprint_sha256": "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9",
+  "supported_supabase_cli_version": "2.90.0",
+  "supabase_cli_launcher_sha256": "140e3801d8adeda639a21b14e62b93a4c7d26b7a758421f43c82be59753be49b",
+  "supabase_cli_binary_sha256": "31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c",
+  "supabase_cli_shim_descriptor_sha256": "0c68f69a367b2b76e61f3e71fb98c9a867143628a361a2e715dd30f33c4b2c3f",
+  "production_rollout_module": {
+    "file": "scripts/ops/CollaborativeBindersProductionRolloutV1.psm1",
+    "sha256": "be131d5434bf475d90cb26d4b257b369c45931569340e8303a9cd5a6915650d8"
+  },
+  "production_manifest": {
+    "file": "scripts/ops/collaborative_binders_production_manifest_v1.json",
+    "sha256": "2e5458ba2d8161d963f561066f1e745586ebfb9e1296e695f1fbf60c6cc03a90"
+  },
+  "installation_readback": {
+    "file": "scripts/ops/sql/collaborative_binders_production_post_apply_v1.sql",
+    "sha256": "5125b0d89f5b3d36c66f98863f0b69b9c6df55561dfb54303437d47d8731f1a1"
+  },
+  "activation_readback": {
+    "file": "scripts/ops/sql/collaborative_binders_activation_readback_v1.sql",
+    "sha256": "c289c7d4fa3dd802859ca291129c70fe4d04d78fa1f8a44976e4487d5c3559fe"
+  },
+  "phases": [
+    {
+      "sequence": 1,
+      "flag_key": "schema_internal",
+      "file": "scripts/ops/sql/collaborative_binders_activation_01_schema_internal_v1.sql",
+      "sha256": "957eaf94a1b988b3563af5183aa5928f23566c58506ff26de7d9e1447b21bcc8",
+      "enabled_before": [],
+      "enabled_after": [
+        "schema_internal"
+      ]
+    },
+    {
+      "sequence": 2,
+      "flag_key": "personal",
+      "file": "scripts/ops/sql/collaborative_binders_activation_02_personal_v1.sql",
+      "sha256": "dcda58cde5a01414eff85feecdd90e50f89a8a9fd8aa4478a3c2130ae0a93330",
+      "enabled_before": [
+        "schema_internal"
+      ],
+      "enabled_after": [
+        "personal",
+        "schema_internal"
+      ]
+    },
+    {
+      "sequence": 3,
+      "flag_key": "shared",
+      "file": "scripts/ops/sql/collaborative_binders_activation_03_shared_v1.sql",
+      "sha256": "794a339bb934586f3c9014b4ce8e18a705b4528e962984c8723f14617f1c5fce",
+      "enabled_before": [
+        "personal",
+        "schema_internal"
+      ],
+      "enabled_after": [
+        "personal",
+        "schema_internal",
+        "shared"
+      ]
+    },
+    {
+      "sequence": 4,
+      "flag_key": "view_links",
+      "file": "scripts/ops/sql/collaborative_binders_activation_04_view_links_v1.sql",
+      "sha256": "509d680e88e5ffb17d5cdb37d00bba1e4759fce553a32c1f6a0aba1790205fe6",
+      "enabled_before": [
+        "personal",
+        "schema_internal",
+        "shared"
+      ],
+      "enabled_after": [
+        "personal",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ]
+    },
+    {
+      "sequence": 5,
+      "flag_key": "public",
+      "file": "scripts/ops/sql/collaborative_binders_activation_05_public_v1.sql",
+      "sha256": "b05933ab916f9c87c59858da8784fe9b41ba2edaeeabf53bd53d9beac61bc70d",
+      "enabled_before": [
+        "personal",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ],
+      "enabled_after": [
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ]
+    },
+    {
+      "sequence": 6,
+      "flag_key": "community",
+      "file": "scripts/ops/sql/collaborative_binders_activation_06_community_v1.sql",
+      "sha256": "b744019a8af97990ca2b4ef1424536c6c5d966277b03d40ccdc2b7367615c015",
+      "enabled_before": [
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ],
+      "enabled_after": [
+        "community",
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ]
+    },
+    {
+      "sequence": 7,
+      "flag_key": "custom",
+      "file": "scripts/ops/sql/collaborative_binders_activation_07_custom_v1.sql",
+      "sha256": "4e97476b8a215012ea7848d3e418bdb4286a0042e2bc1e46f41a21c04ca46e93",
+      "enabled_before": [
+        "community",
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ],
+      "enabled_after": [
+        "community",
+        "custom",
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ]
+    },
+    {
+      "sequence": 8,
+      "flag_key": "templates",
+      "file": "scripts/ops/sql/collaborative_binders_activation_08_templates_v1.sql",
+      "sha256": "cae2d7c5a7462f630925865e503e41a904b676073324c125335c4af02013fc42",
+      "enabled_before": [
+        "community",
+        "custom",
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "view_links"
+      ],
+      "enabled_after": [
+        "community",
+        "custom",
+        "personal",
+        "public",
+        "schema_internal",
+        "shared",
+        "templates",
+        "view_links"
+      ]
+    }
+  ],
+  "canonical_flags": [
+    "community",
+    "custom",
+    "notifications",
+    "personal",
+    "public",
+    "pulse_milestones",
+    "schema_internal",
+    "set_binders",
+    "shared",
+    "templates",
+    "view_links"
+  ],
+  "final_enabled_flags": [
+    "community",
+    "custom",
+    "personal",
+    "public",
+    "schema_internal",
+    "shared",
+    "templates",
+    "view_links"
+  ],
+  "excluded_flags": [
+    "notifications",
+    "pulse_milestones",
+    "set_binders"
+  ],
+  "excluded_project_phase": "P8"
+}

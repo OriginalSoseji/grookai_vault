@@ -322,12 +322,10 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       setState(() {
         _isTrackingProject = true;
       });
-      _showProjectMessage(
-        'Private Binder started. Continue it from your Vault.',
-      );
+      _showProjectMessage('Private set goal started.');
     } on CollectionProjectAuthenticationException {
       if (mounted) {
-        _showProjectMessage('Sign in to track a private Binder.');
+        _showProjectMessage('Sign in to track a private set goal.');
       }
     } on CollectionProjectTargetNotFoundException {
       if (mounted) {
@@ -338,7 +336,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     } catch (_) {
       if (mounted) {
         setState(() {
-          _projectStateError = 'Unable to start this Binder right now.';
+          _projectStateError = 'Unable to start this set goal right now.';
         });
       }
     } finally {
@@ -359,7 +357,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       builder: (dialogContext) => AlertDialog(
         title: const Text('Stop tracking this set?'),
         content: const Text(
-          'This only stops the private Binder. Your collection and '
+          'This only stops the private set goal. Your collection and '
           'completion progress stay unchanged.',
         ),
         actions: [
@@ -402,16 +400,16 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         _isTrackingProject = false;
       });
       _showProjectMessage(
-        'Private Binder stopped. Your collection is unchanged.',
+        'Private set goal stopped. Your collection is unchanged.',
       );
     } on CollectionProjectAuthenticationException {
       if (mounted) {
-        _showProjectMessage('Sign in to manage Binders.');
+        _showProjectMessage('Sign in to manage tracked set goals.');
       }
     } catch (_) {
       if (mounted) {
         setState(() {
-          _projectStateError = 'Unable to stop this Binder right now.';
+          _projectStateError = 'Unable to stop this set goal right now.';
         });
       }
     } finally {
@@ -851,7 +849,7 @@ class _PrivateSetProjectControl extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Private Binder',
+                      'Private set goal',
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
@@ -922,7 +920,7 @@ class _PrivateSetProjectControl extends StatelessWidget {
             FilledButton.tonalIcon(
               onPressed: onStart,
               icon: const Icon(Icons.flag_rounded),
-              label: const Text('Track in Binder'),
+              label: const Text('Track set goal'),
             ),
           if (errorMessage != null) ...[
             const SizedBox(height: 7),
@@ -936,8 +934,8 @@ class _PrivateSetProjectControl extends StatelessWidget {
           ] else if (signedIn && isTracking != true && !busy) ...[
             const SizedBox(height: 7),
             Text(
-              'Track in Binder starts a private goal or resumes one you '
-              'stopped earlier.',
+              'This saves a private tracked goal. It does not create a '
+              'Binder.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.58),
                 height: 1.3,

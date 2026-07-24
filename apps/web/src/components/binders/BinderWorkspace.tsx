@@ -641,6 +641,8 @@ export function BinderWorkspace({
   showBulkPreview: boolean;
   showCustomEditor: boolean;
 }) {
+  const sharingAvailable =
+    flags.shared || flags.viewLinks || flags.publicBinders;
   return (
     <div className="space-y-8">
       <BinderLiveRefresh
@@ -677,12 +679,13 @@ export function BinderWorkspace({
             ) : null}
           </div>
           <div className="flex flex-wrap gap-2">
-            {binder.canShare || binder.canInvite ? (
+            {(binder.canShare && sharingAvailable) ||
+            (binder.canInvite && flags.shared) ? (
               <Link
                 href={`/binders/${encodeURIComponent(binder.publicId)}?tab=settings`}
                 className="gv-primary-button"
               >
-                Share / Invite
+                {flags.shared ? "Share / Invite" : "Share"}
               </Link>
             ) : null}
             <Link href="/binders" className="gv-secondary-button">

@@ -345,6 +345,7 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
       if (page.invitations.isNotEmpty)
         _BinderInvitationSection(
           invitations: page.invitations,
+          acceptEnabled: widget.featureFlags.sharedAvailable,
           onRespond: _respondInvitation,
           onReport: _reportInvitation,
           hasMore: page.invitationsHaveMore,
@@ -366,7 +367,7 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
           child: BinderStateMessage(
             icon: Icons.collections_bookmark_outlined,
             title: 'No Binders yet',
-            body: 'Start with a Pokémon or set.',
+            body: 'Start with a Pokémon Binder.',
             action: FilledButton.icon(
               onPressed: _createBinder,
               icon: const Icon(Icons.add_rounded),
@@ -381,12 +382,13 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
           binders: page.continueBuilding,
           onOpen: _openBinder,
         ),
-        _BinderLibrarySection(
-          title: 'Shared with me',
-          emptyText: 'Build together—invite family or friends.',
-          binders: page.sharedWithMe,
-          onOpen: _openBinder,
-        ),
+        if (widget.featureFlags.sharedAvailable || page.sharedWithMe.isNotEmpty)
+          _BinderLibrarySection(
+            title: 'Shared with me',
+            emptyText: 'Build together—invite family or friends.',
+            binders: page.sharedWithMe,
+            onOpen: _openBinder,
+          ),
         _BinderLibrarySection(
           title: 'Completed',
           emptyText: 'Completed Binders will appear here.',
@@ -495,6 +497,7 @@ class _BinderLibrarySection extends StatelessWidget {
 class _BinderInvitationSection extends StatelessWidget {
   const _BinderInvitationSection({
     required this.invitations,
+    required this.acceptEnabled,
     required this.onRespond,
     required this.onReport,
     required this.hasMore,
@@ -503,6 +506,7 @@ class _BinderInvitationSection extends StatelessWidget {
   });
 
   final List<BinderInvitation> invitations;
+  final bool acceptEnabled;
   final Future<void> Function(BinderInvitation invitation, bool accept)
   onRespond;
   final Future<void> Function(BinderInvitation invitation) onReport;
@@ -556,11 +560,13 @@ class _BinderInvitationSection extends StatelessWidget {
                           onPressed: () => onRespond(invitation, false),
                           child: const Text('Decline'),
                         ),
-                        const SizedBox(width: 8),
-                        FilledButton(
-                          onPressed: () => onRespond(invitation, true),
-                          child: const Text('Accept'),
-                        ),
+                        if (acceptEnabled) ...[
+                          const SizedBox(width: 8),
+                          FilledButton(
+                            onPressed: () => onRespond(invitation, true),
+                            child: const Text('Accept'),
+                          ),
+                        ],
                       ],
                     ),
                   ],

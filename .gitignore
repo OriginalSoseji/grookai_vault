@@ -126,6 +126,10 @@ apps/web/src/app/api/follows/*
 apps/web/src/app/api/navigation/*
 !apps/web/src/app/api/navigation/shell/
 !apps/web/src/app/api/navigation/shell/route.ts
+!apps/web/src/app/api/health/
+apps/web/src/app/api/health/*
+!apps/web/src/app/api/health/binders-client-state/
+!apps/web/src/app/api/health/binders-client-state/route.ts
 !apps/web/src/app/api/network/
 apps/web/src/app/api/network/*
 !apps/web/src/app/api/network/contact-eligibility/

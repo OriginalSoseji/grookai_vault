@@ -57,13 +57,13 @@ export default async function NewBinderPage({
       <PageSection surface="subtle">
         <form method="get" action="/binders/new" className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="block flex-1 text-sm font-medium text-slate-700">
-            Find a Pokémon or set
+            {flags.setBinders ? "Find a Pokémon or set" : "Find a Pokémon"}
             <input
               type="search"
               name="q"
               maxLength={60}
               defaultValue={speciesSearch}
-              placeholder="Pikachu or Base Set"
+              placeholder={flags.setBinders ? "Pikachu or Base Set" : "Pikachu"}
               className="mt-1.5 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-emerald-300"
             />
           </label>

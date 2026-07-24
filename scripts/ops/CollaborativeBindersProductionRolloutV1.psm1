@@ -1653,9 +1653,14 @@ function Assert-BinderCommandSucceededV1 {
     $null -ne $Result.PSObject.Properties['OutputCaptureCompleted'] -and
     $Result.OutputCaptureCompleted -eq $true
   )
+  $outputNotTruncated = (
+    $null -ne $Result.PSObject.Properties['OutputTruncated'] -and
+    $Result.OutputTruncated -eq $false
+  )
   if (
     -not $terminationConfirmed -or
     -not $outputCaptureCompleted -or
+    -not $outputNotTruncated -or
     $Result.TimedOut -or
     $Result.ExitCode -ne 0
   ) {
@@ -1665,6 +1670,9 @@ function Assert-BinderCommandSucceededV1 {
     }
     if (-not $outputCaptureCompleted) {
       throw "$Label output capture did not complete. $detail"
+    }
+    if (-not $outputNotTruncated) {
+      throw "$Label output was truncated or did not report truncation state. $detail"
     }
     if ($Result.TimedOut) {
       throw "$Label timed out; exit code $($Result.ExitCode). $detail"
@@ -2282,7 +2290,7 @@ function Test-BackupEvidenceV1 {
     -Label 'Backup recovery horizon'
   Assert-BinderConditionV1 ($verifiedAt -le $NowUtc.AddMinutes(5)) 'Backup verification time is in the future.'
   Assert-BinderConditionV1 ($verifiedAt -ge $NowUtc.AddHours(-$policy.BackupMaxAgeHours)) 'Backup verification is stale.'
-  Assert-BinderConditionV1 ($recoverableThrough -le $NowUtc.AddMinutes(5)) 'Backup recovery horizon is in the future.'
+  Assert-BinderConditionV1 ($recoverableThrough -le $NowUtc) 'Backup recovery horizon is in the future.'
   Assert-BinderConditionV1 ($recoverableThrough -ge $NowUtc.AddMinutes(-$policy.BackupRecoveryLagMinutes)) 'Backup recovery horizon is too old.'
 
   return [pscustomobject][ordered]@{
@@ -2314,6 +2322,138 @@ function Get-BinderWorktreePathsV1 {
   )
 }
 
+function Test-BinderSecureOpsPathV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path
+  )
+
+  $secureOpsRoot = [System.IO.Path]::GetFullPath(
+    'C:\secure-ops'
+  ).TrimEnd('\', '/')
+  $candidate = [System.IO.Path]::GetFullPath(
+    $Path
+  ).TrimEnd('\', '/')
+  return $candidate.StartsWith(
+    "$secureOpsRoot\",
+    [System.StringComparison]::OrdinalIgnoreCase
+  )
+}
+
+function Assert-BinderProtectedArtifactAclV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path
+  )
+
+  $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+  $currentSid = $identity.User
+  Assert-BinderConditionV1 (
+    $null -ne $currentSid
+  ) 'Current Windows SID is unavailable.'
+  $acl = Get-Acl -LiteralPath $Path
+  Assert-BinderConditionV1 (
+    $acl.AreAccessRulesProtected
+  ) 'Production evidence ACL inheritance must be disabled.'
+  Assert-BinderConditionV1 (
+    $acl.AreAccessRulesCanonical
+  ) 'Production evidence ACL rules are not canonical.'
+  $ownerSid = (
+    [System.Security.Principal.NTAccount]$acl.Owner
+  ).Translate(
+    [System.Security.Principal.SecurityIdentifier]
+  ).Value
+  Assert-BinderConditionV1 (
+    $ownerSid -ceq $currentSid.Value
+  ) 'Production evidence owner is not the current operator.'
+  $inheritance = (
+    [System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor
+    [System.Security.AccessControl.InheritanceFlags]::ObjectInherit
+  )
+  $propagation =
+    [System.Security.AccessControl.PropagationFlags]::None
+  $allow = [System.Security.AccessControl.AccessControlType]::Allow
+  $rules = @($acl.Access)
+  Assert-BinderConditionV1 (
+    $rules.Count -eq 3
+  ) 'Production evidence ACL must contain exactly three rules.'
+  Assert-BinderConditionV1 (
+    @(
+      $rules |
+        Where-Object {
+          $_.AccessControlType -ne $allow -or
+          $_.IsInherited -or
+          $_.InheritanceFlags -ne $inheritance -or
+          $_.PropagationFlags -ne $propagation -or
+          (
+            $_.FileSystemRights -band
+            [System.Security.AccessControl.FileSystemRights]::FullControl
+          ) -ne
+            [System.Security.AccessControl.FileSystemRights]::FullControl
+        }
+    ).Count -eq 0
+  ) 'Production evidence ACL contains an unsafe rule.'
+  $actualSids = @(
+    $rules |
+      ForEach-Object {
+        $_.IdentityReference.Translate(
+          [System.Security.Principal.SecurityIdentifier]
+        ).Value
+      } |
+      Sort-Object -Unique
+  )
+  $expectedSids = @(
+    $currentSid.Value,
+    'S-1-5-18',
+    'S-1-5-32-544'
+  ) | Sort-Object -Unique
+  Assert-BinderConditionV1 (
+    @(Compare-Object $expectedSids $actualSids).Count -eq 0
+  ) 'Production evidence ACL contains an unexpected identity.'
+  return $true
+}
+
+function Protect-BinderArtifactAclV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path
+  )
+
+  $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+  $currentSid = $identity.User
+  Assert-BinderConditionV1 (
+    $null -ne $currentSid
+  ) 'Current Windows SID is unavailable.'
+  $security =
+    [System.Security.AccessControl.DirectorySecurity]::new()
+  $security.SetAccessRuleProtection($true, $false)
+  $security.SetOwner($currentSid)
+  $inheritance = (
+    [System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor
+    [System.Security.AccessControl.InheritanceFlags]::ObjectInherit
+  )
+  $propagation =
+    [System.Security.AccessControl.PropagationFlags]::None
+  $allow = [System.Security.AccessControl.AccessControlType]::Allow
+  foreach ($sidText in @(
+    $currentSid.Value,
+    'S-1-5-18',
+    'S-1-5-32-544'
+  )) {
+    $sid = [System.Security.Principal.SecurityIdentifier]::new($sidText)
+    $rule = [System.Security.AccessControl.FileSystemAccessRule]::new(
+      $sid,
+      [System.Security.AccessControl.FileSystemRights]::FullControl,
+      $inheritance,
+      $propagation,
+      $allow
+    )
+    [void]$security.AddAccessRule($rule)
+  }
+  Set-Acl -LiteralPath $Path -AclObject $security
+  [void](Assert-BinderProtectedArtifactAclV1 -Path $Path)
+}
+
 function Assert-BinderArtifactRootV1 {
   param(
     [Parameter(Mandatory = $true)]
@@ -2327,6 +2467,9 @@ function Assert-BinderArtifactRootV1 {
 
   Assert-BinderConditionV1 ([System.IO.Path]::IsPathFullyQualified($Path)) 'ArtifactRoot must be an absolute path.'
   $fullPath = [System.IO.Path]::GetFullPath($Path).TrimEnd('\', '/')
+  Assert-BinderConditionV1 (
+    Test-BinderSecureOpsPathV1 -Path $fullPath
+  ) 'ArtifactRoot must be a child of C:\secure-ops.'
   if ($MustExist) {
     Assert-BinderConditionV1 (Test-Path -LiteralPath $fullPath -PathType Container) 'ArtifactRoot does not exist.'
   } else {
@@ -2372,6 +2515,9 @@ function Assert-BinderArtifactRootV1 {
     }
     $cursor = $parent
   }
+  if ($MustExist) {
+    [void](Assert-BinderProtectedArtifactAclV1 -Path $fullPath)
+  }
 
   return $fullPath
 }
@@ -2390,6 +2536,7 @@ function New-BinderArtifactRootV1 {
     -RepoRoot $RepoRoot `
     -MustExist $false
   [void][System.IO.Directory]::CreateDirectory($fullPath)
+  Protect-BinderArtifactAclV1 -Path $fullPath
   [void](Assert-BinderArtifactRootV1 `
     -Path $fullPath `
     -RepoRoot $RepoRoot `
@@ -3460,6 +3607,11 @@ function Invoke-BinderProductionApplyV1 {
   )
   Assert-BinderConditionV1 (-not (Test-Path -LiteralPath $applyRoot)) 'Apply evidence directory already exists.'
   [void][System.IO.Directory]::CreateDirectory($applyRoot)
+  Protect-BinderArtifactAclV1 -Path $applyRoot
+  [void](Assert-BinderArtifactRootV1 `
+    -Path $applyRoot `
+    -RepoRoot $RepoRoot `
+    -MustExist $true)
   $pushAttempted = $false
   $push = $null
   $pushLifecycle = [pscustomobject][ordered]@{
@@ -3567,6 +3719,8 @@ function Invoke-BinderProductionApplyV1 {
       $pushSucceeded = (
         $push.Started -eq $true -and
         $push.TerminationConfirmed -eq $true -and
+        $push.OutputCaptureCompleted -eq $true -and
+        $push.OutputTruncated -eq $false -and
         -not $push.TimedOut -and
         $push.ExitCode -eq 0
       )
@@ -3758,7 +3912,11 @@ function Invoke-BinderProductionApplyV1 {
           -TimeoutSeconds 90 `
           -ExecutablePath $supabaseExecutable.BinaryPath
         Write-BinderTextV1 -Path (Join-Path $applyRoot 'diagnostic-ledger.txt') -Value $diagnosticLedger.StdOut
-        if ($diagnosticLedger.ExitCode -eq 0 -and -not $diagnosticLedger.TimedOut) {
+        if (
+          $diagnosticLedger.ExitCode -eq 0 -and
+          -not $diagnosticLedger.TimedOut -and
+          $diagnosticLedger.OutputTruncated -eq $false
+        ) {
           $parsedDiagnosticLedger = ConvertFrom-SupabaseMigrationListV1 -Text $diagnosticLedger.StdOut
           Write-BinderJsonV1 -Path (Join-Path $applyRoot 'diagnostic-ledger.json') -Value $parsedDiagnosticLedger
         }

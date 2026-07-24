@@ -183,13 +183,19 @@ class _BinderDetailScreenState extends State<BinderDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final detail = _controller.detail;
+    final sharingAvailable =
+        widget.featureFlags.sharedAvailable ||
+        widget.featureFlags.viewLinksAvailable ||
+        widget.featureFlags.publicAvailable;
     return Scaffold(
       appBar: AppBar(
         title: Text(detail?.summary.title ?? 'Binder'),
         actions: [
-          if (detail?.permissions.canShare ?? false)
+          if ((detail?.permissions.canShare ?? false) && sharingAvailable)
             IconButton(
-              tooltip: 'Share or invite',
+              tooltip: widget.featureFlags.sharedAvailable
+                  ? 'Share or invite'
+                  : 'Share Binder',
               onPressed: _openShare,
               icon: const Icon(Icons.ios_share_rounded),
             ),

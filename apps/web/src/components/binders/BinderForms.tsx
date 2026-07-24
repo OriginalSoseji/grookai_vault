@@ -159,7 +159,7 @@ export function CreateBinderForm({
           className={`${inputClass} min-h-28 resize-y`}
           name="description"
           maxLength={1000}
-          placeholder="What are you collecting together?"
+          placeholder="What are you hoping to complete?"
         />
       </label>
       <fieldset className="space-y-3">

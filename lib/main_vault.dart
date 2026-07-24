@@ -2178,9 +2178,8 @@ class VaultPageState extends State<VaultPage> {
                                     ),
                                     SizedBox(height: 3),
                                     Text(
-                                      'Build collection goals by yourself or '
-                                      'with people you invite. Cards stay in '
-                                      'each collector’s Vault.',
+                                      'Build collection goals powered by '
+                                      'exact copies in your Vault.',
                                     ),
                                   ],
                                 ),

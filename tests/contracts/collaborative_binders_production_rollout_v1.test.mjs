@@ -258,6 +258,14 @@ function stripSqlCommentsAndStrings(sql) {
     .replace(/'(?:''|[^'])*'/g, "''");
 }
 
+function powerShellFunctionBody(powerShell, functionName) {
+  const marker = `function ${functionName}`;
+  const start = powerShell.indexOf(marker);
+  assert.notEqual(start, -1, `Missing PowerShell function ${functionName}.`);
+  const next = powerShell.indexOf("\nfunction ", start + marker.length);
+  return powerShell.slice(start, next === -1 ? undefined : next);
+}
+
 test("Binder rollout manifest is the exact reviewed content-addressed package", () => {
   const manifest = JSON.parse(source(MANIFEST_PATH));
 
@@ -729,10 +737,47 @@ test("catalog readbacks cover prerequisites and exact post-apply security shape"
     "binder_policy_fingerprint_sha256",
     "binder_trigger_fingerprint_sha256",
     "binder_table_acl_fingerprint_sha256",
+    "flag_count = 11",
     "enabled_flag_count = 0",
+    "missing_flags = '[]'::jsonb",
+    "unexpected_flags = '[]'::jsonb",
+    "nonempty_domain_tables = '[]'::jsonb",
+    "not binder_card_event_data_exists",
+    "not binder_trust_report_data_exists",
     "server_major_version_ok",
   ]) {
     assert.ok(postApply.includes(marker), `post-apply missing ${marker}`);
+  }
+  for (const table of [
+    "binders",
+    "binder_members",
+    "binder_progress_state",
+    "binder_custom_revisions",
+    "binder_custom_slots",
+    "binder_invitations",
+    "binder_view_links",
+    "binder_join_requests",
+    "binder_owner_transfer_offers",
+    "binder_contributions",
+    "binder_activity_events",
+    "binder_progress_crossings",
+    "binder_legacy_watch_decisions",
+    "binder_templates",
+    "binder_template_versions",
+    "binder_template_adoptions",
+    "binder_idempotency_keys",
+    "binder_rate_limit_events",
+    "binder_template_version_reviews",
+    "binder_refresh_signals",
+  ]) {
+    assert.match(
+      postApply,
+      new RegExp(
+        String.raw`select\s+'${table}'\s*,\s*count\(\*\)\s+from\s+public\.${table}\b`,
+        "i",
+      ),
+      `post-apply dark-domain evidence omits ${table}`,
+    );
   }
   for (const [label, sql] of [
     ["preflight", preflight],
@@ -1557,6 +1602,244 @@ test("rollout executables expose no repair, force, routing, or flag-enable path"
   assert.match(moduleSource, /Close-BinderSupabaseStageV1/);
   assert.match(moduleSource, /Write-BinderAtomicTextV1/);
   assert.match(moduleSource, /Write-BinderChecksumsV1/);
+});
+
+test("production evidence roots are confined to secure-ops with one exact protected ACL", () => {
+  const moduleSource = source(MODULE_PATH);
+  const securePathBody = powerShellFunctionBody(
+    moduleSource,
+    "Test-BinderSecureOpsPathV1",
+  );
+  const aclBody = powerShellFunctionBody(
+    moduleSource,
+    "Assert-BinderProtectedArtifactAclV1",
+  );
+  const protectBody = powerShellFunctionBody(
+    moduleSource,
+    "Protect-BinderArtifactAclV1",
+  );
+  const assertRootBody = powerShellFunctionBody(
+    moduleSource,
+    "Assert-BinderArtifactRootV1",
+  );
+  const createRootBody = powerShellFunctionBody(
+    moduleSource,
+    "New-BinderArtifactRootV1",
+  );
+  const applyBody = powerShellFunctionBody(
+    moduleSource,
+    "Invoke-BinderProductionApplyV1",
+  );
+
+  assert.match(securePathBody, /C:\\secure-ops/i);
+  assert.match(
+    assertRootBody,
+    /Assert-BinderConditionV1\s*\(\s*Test-BinderSecureOpsPathV1\s+-Path\s+\$fullPath\s*\)/i,
+    "Every production evidence root must be under C:\\secure-ops.",
+  );
+  assert.match(assertRootBody, /FileAttributes\]::ReparsePoint/i);
+  assert.match(
+    assertRootBody,
+    /Assert-BinderProtectedArtifactAclV1\s+-Path\s+\$fullPath/i,
+  );
+  assert.match(
+    createRootBody,
+    /Protect-BinderArtifactAclV1\s+-Path\s+\$fullPath/i,
+  );
+  assert.doesNotMatch(
+    createRootBody,
+    /if\s*\(\s*Test-BinderSecureOpsPathV1[\s\S]*?Protect-BinderArtifactAclV1/i,
+    "ACL protection must not be optional for production evidence.",
+  );
+  assert.match(applyBody, /Protect-BinderArtifactAclV1\s+-Path\s+\$applyRoot/i);
+
+  assert.match(protectBody, /SetAccessRuleProtection\(\$true,\s*\$false\)/i);
+  assert.match(protectBody, /SetOwner\(\$currentSid\)/i);
+  assert.match(protectBody, /Set-Acl\s+-LiteralPath\s+\$Path/i);
+  assert.match(aclBody, /AreAccessRulesProtected/i);
+  assert.match(aclBody, /AreAccessRulesCanonical/i);
+  assert.match(aclBody, /\$rules\.Count\s*-eq\s*3/i);
+  assert.match(aclBody, /AccessControlType\s*-ne\s*\$allow/i);
+  assert.match(aclBody, /IsInherited/i);
+  assert.match(aclBody, /FileSystemRights\]::FullControl/i);
+  assert.match(aclBody, /S-1-5-18/i);
+  assert.match(aclBody, /S-1-5-32-544/i);
+  assert.match(aclBody, /Compare-Object\s+\$expectedSids\s+\$actualSids/i);
+
+  const pathProbe = parsePowerShellJson(
+    runPowerShell(
+      [
+        "$module = Get-Module CollaborativeBindersProductionRolloutV1",
+        "$values = & $module {",
+        "  [pscustomobject]@{",
+        "    Root = Test-BinderSecureOpsPathV1 -Path 'C:\\secure-ops'",
+        "    Child = Test-BinderSecureOpsPathV1 -Path 'C:\\secure-ops\\contract-child'",
+        "    PrefixCollision = Test-BinderSecureOpsPathV1 -Path 'C:\\secure-ops-evil\\contract-child'",
+        "  }",
+        "}",
+        "$values | ConvertTo-Json -Compress",
+      ].join("\n"),
+    ),
+    "secure-ops path boundary",
+  );
+  assert.equal(pathProbe.Root, false);
+  assert.equal(pathProbe.Child, true);
+  assert.equal(pathProbe.PrefixCollision, false);
+});
+
+test("command success rejects true or missing OutputTruncated state", () => {
+  const moduleSource = source(MODULE_PATH);
+  const successBody = powerShellFunctionBody(
+    moduleSource,
+    "Assert-BinderCommandSucceededV1",
+  );
+  assert.match(successBody, /PSObject\.Properties\['OutputTruncated'\]/i);
+  assert.match(successBody, /OutputTruncated\s*-eq\s*\$false/i);
+  const applyBody = powerShellFunctionBody(
+    moduleSource,
+    "Invoke-BinderProductionApplyV1",
+  );
+  const pushSuccessStart = applyBody.indexOf("$pushSucceeded = (");
+  const pushSuccessEnd = applyBody.indexOf(")", pushSuccessStart);
+  assert.notEqual(pushSuccessStart, -1);
+  assert.match(
+    applyBody.slice(pushSuccessStart, pushSuccessEnd + 1),
+    /OutputTruncated\s*-eq\s*\$false/i,
+    "A truncated push must never be recorded as successful.",
+  );
+  assert.match(
+    applyBody,
+    /if\s*\([^)]*\$diagnosticLedger\.OutputTruncated\s*-eq\s*\$false[^)]*\)\s*{[\s\S]*?ConvertFrom-SupabaseMigrationListV1/i,
+    "Truncated diagnostic output must never be parsed.",
+  );
+
+  const script = `
+$module = Get-Module CollaborativeBindersProductionRolloutV1
+$base = [ordered]@{
+  TerminationConfirmed = $true
+  OutputCaptureCompleted = $true
+  TimedOut = $false
+  ExitCode = 0
+  StdErr = ''
+  StdOut = ''
+}
+$truncated = [pscustomobject]($base + @{ OutputTruncated = $true })
+$missing = [pscustomobject]$base
+$truncatedFailure = ''
+$missingFailure = ''
+try {
+  & $module {
+    param($value)
+    Assert-BinderCommandSucceededV1 -Result $value -Label 'truncated'
+  } $truncated
+  $truncatedFailure = 'accepted'
+} catch {
+  $truncatedFailure = $_.Exception.Message
+}
+try {
+  & $module {
+    param($value)
+    Assert-BinderCommandSucceededV1 -Result $value -Label 'missing'
+  } $missing
+  $missingFailure = 'accepted'
+} catch {
+  $missingFailure = $_.Exception.Message
+}
+[pscustomobject]@{
+  TruncatedFailure = $truncatedFailure
+  MissingFailure = $missingFailure
+} | ConvertTo-Json -Compress
+`;
+  const result = parsePowerShellJson(
+    runPowerShell(
+      `& ([scriptblock]::Create(${powerShellTextFromBase64(script)}))`,
+    ),
+    "OutputTruncated command contract",
+  );
+  assert.match(result.TruncatedFailure, /truncat/i);
+  assert.match(result.MissingFailure, /truncat/i);
+});
+
+test("backup recovery horizon is never future and never more than 60 minutes old", () => {
+  const moduleSource = source(MODULE_PATH);
+  const policyBody = powerShellFunctionBody(
+    moduleSource,
+    "Get-BinderRolloutPolicyV1",
+  );
+  const backupBody = powerShellFunctionBody(
+    moduleSource,
+    "Test-BackupEvidenceV1",
+  );
+  const lagMatch = policyBody.match(
+    /BackupRecoveryLagMinutes\s*=\s*(\d+)/i,
+  );
+  assert.ok(lagMatch, "Backup recovery lag policy is missing.");
+  assert.ok(
+    Number(lagMatch[1]) > 0 && Number(lagMatch[1]) <= 60,
+    "Backup recovery lag policy exceeds 60 minutes.",
+  );
+  assert.match(
+    backupBody,
+    /\$recoverableThrough\s*-le\s*\$NowUtc(?!\.AddMinutes)/i,
+    "A future recovery horizon must not receive clock-skew allowance.",
+  );
+  assert.match(
+    backupBody,
+    /\$recoverableThrough\s*-ge\s*\$NowUtc\.AddMinutes\(-\$policy\.BackupRecoveryLagMinutes\)/i,
+  );
+
+  const script = `
+$osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\\', '/')
+$fixture = Join-Path $osTemp ('binder-backup-window-' + [guid]::NewGuid().ToString('N') + '.json')
+if ((Split-Path -Parent $fixture) -cne $osTemp) { throw 'unsafe fixture path' }
+$now = [datetime]::Parse('2031-02-03T12:35:00.0000000Z').ToUniversalTime()
+function Test-Case([string]$recoverable) {
+  $evidence = [ordered]@{
+    schema_version = 1
+    project_ref = '${PRODUCTION_PROJECT_REF}'
+    backup_kind = 'verified_logical_backup'
+    verified_at_utc = '2031-02-03T12:34:59.0000000Z'
+    recoverable_through_utc = $recoverable
+    evidence_reference = 'test-only fixture'
+    restore_path_reviewed = $true
+    operator = 'contract test'
+  }
+  [IO.File]::WriteAllText(
+    $fixture,
+    ($evidence | ConvertTo-Json -Depth 4),
+    [Text.UTF8Encoding]::new($false)
+  )
+  try {
+    [void](Test-BackupEvidenceV1 -Path $fixture -RepoRoot ${psLiteral(REPO_ROOT)} -NowUtc $now)
+    return 'accepted'
+  } catch {
+    return $_.Exception.Message
+  }
+}
+try {
+  [pscustomobject]@{
+    ExactNow = Test-Case '2031-02-03T12:35:00.0000000Z'
+    Future = Test-Case '2031-02-03T12:35:01.0000000Z'
+    TooOld = Test-Case '2031-02-03T11:33:59.0000000Z'
+  } | ConvertTo-Json -Compress
+} finally {
+  if (
+    (Test-Path -LiteralPath $fixture) -and
+    (Split-Path -Parent ([IO.Path]::GetFullPath($fixture))) -ceq $osTemp
+  ) {
+    [IO.File]::Delete($fixture)
+  }
+}
+`;
+  const result = parsePowerShellJson(
+    runPowerShell(
+      `& ([scriptblock]::Create(${powerShellTextFromBase64(script)}))`,
+    ),
+    "backup recovery window",
+  );
+  assert.equal(result.ExactNow, "accepted");
+  assert.match(result.Future, /future/i);
+  assert.match(result.TooOld, /too old/i);
 });
 
 test("runbook keeps installation, activation, Set Binders, and P8 separate", () => {

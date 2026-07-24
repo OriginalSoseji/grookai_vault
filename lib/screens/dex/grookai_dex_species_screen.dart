@@ -993,8 +993,8 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                                           ),
                                           const SizedBox(height: 2),
                                           const Text(
-                                            'Track this collection goal alone '
-                                            'or with people you invite.',
+                                            'Track this collection goal with '
+                                            'exact copies from your Vault.',
                                           ),
                                         ],
                                       ),
