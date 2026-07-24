@@ -1472,6 +1472,8 @@ class _PublicCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = _publicCollectorDisplayIdentity(card);
+    final primaryImageUrl = card.primaryImageUrl;
+    final fallbackImageUrl = card.fallbackImageUrl;
     final metaParts = [
       card.setName ?? card.setCode,
       card.number != '—' ? '#${card.number}' : null,
@@ -1493,7 +1495,8 @@ class _PublicCardTile extends StatelessWidget {
                   setCode: card.setCode,
                   number: card.number,
                   rarity: card.rarity,
-                  imageUrl: card.imageUrl,
+                  imageUrl: primaryImageUrl,
+                  fallbackImageUrl: fallbackImageUrl,
                 ),
         ),
       );
@@ -1589,7 +1592,8 @@ class _PublicCardTile extends StatelessWidget {
                   Positioned.fill(
                     child: CardSurfaceArtwork(
                       label: displayIdentity.displayName,
-                      imageUrl: card.imageUrl,
+                      imageUrl: primaryImageUrl,
+                      fallbackImageUrl: fallbackImageUrl,
                       borderRadius: GvGridConstants.imageRadius,
                       padding: EdgeInsets.zero,
                       onViewDetails: openCardDetails,

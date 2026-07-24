@@ -1,0 +1,21 @@
+# IMG-HOST-WH-22B-RESIDUAL-GOVERNED-STORAGE-UPLOAD-APPLY
+
+- Generated: 2026-07-22T22:21:14.931Z
+- Mode: guarded_apply
+- Approval fingerprint: `ba3fc47ec7c3e18fadcd84b51d921fce270d32c12fda4913b92e7fc67fa4753f`
+- Storage plan hash: `44d3911371c1d1ee67bdf764f970379c794121c4a36747b05478da4f66df74a3`
+- Code bundle hash: `3a75a1ef88bf1c87d148758328ef7b7055a7bb8cb8d4e3ebac658768a411e668`
+- Supabase project: `ycdxbpibncqcchqiihfz`
+- Parent-row mappings: 24
+- Unique assets: 21
+- New uploads planned: 19
+- Existing first-party assets reused: 2
+- Overwrite allowed: false
+- Upload uses `upsert: false`: true
+- All payloads staged before first upload: true
+- Post-upload download verification required: true
+- Ready for apply: true
+- Stop findings: none
+- Database writes performed: false
+- Storage writes performed: false
+- Migrations created: false

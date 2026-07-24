@@ -7,7 +7,6 @@ import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
-import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
@@ -26,10 +25,6 @@ class PublicSetDetailScreen extends StatefulWidget {
 
 class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   final SupabaseClient _client = Supabase.instance.client;
-  final OwnershipResolverAdapter _ownershipAdapter =
-      OwnershipResolverAdapter.instance;
-  Map<String, OwnershipState> _ownershipByCardPrintId =
-      <String, OwnershipState>{};
   bool _loading = true;
   String? _error;
   PublicSetDetail? _detail;
@@ -55,9 +50,6 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         client: _client,
         setCode: widget.setCode,
       );
-      final ownershipByCardPrintId = await _primeOwnership(
-        detail?.cards.map((card) => card.cardPrintId) ?? const <String>[],
-      );
 
       if (!mounted) {
         return;
@@ -67,12 +59,10 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         setState(() {
           _error = 'This set could not be found.';
           _detail = null;
-          _ownershipByCardPrintId = <String, OwnershipState>{};
         });
       } else {
         setState(() {
           _detail = detail;
-          _ownershipByCardPrintId = ownershipByCardPrintId;
         });
       }
     } catch (error) {
@@ -82,7 +72,6 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
 
       setState(() {
         _error = error is Error ? error.toString() : 'Unable to load set.';
-        _ownershipByCardPrintId = <String, OwnershipState>{};
       });
     } finally {
       if (mounted) {
@@ -93,42 +82,11 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     }
   }
 
-  Future<Map<String, OwnershipState>> _primeOwnership(
-    Iterable<String> cardPrintIds,
-  ) async {
-    if (!_hasSignedInViewer) {
-      return <String, OwnershipState>{};
-    }
-
-    final normalizedIds = cardPrintIds
-        .map((value) => value.trim())
-        .where((value) => value.isNotEmpty)
-        .toSet()
-        .toList();
-    if (normalizedIds.isEmpty) {
-      return <String, OwnershipState>{};
-    }
-
-    // PERFORMANCE_P4_SET_DETAIL_SYNC_OWNERSHIP
-    // Set detail tiles render ownership from precomputed snapshot state.
-    try {
-      await _ownershipAdapter.primeBatch(normalizedIds);
-    } catch (error) {
-      debugPrint('Set detail ownership prime failed: $error');
-    }
-    return _ownershipAdapter.snapshotForIds(normalizedIds);
-  }
-
   OwnershipState? _ownershipStateForCard(PublicSetCard card) {
-    if (!_hasSignedInViewer) {
-      return null;
-    }
-    final cardPrintId = card.cardPrintId.trim();
-    if (cardPrintId.isEmpty) {
-      return null;
-    }
-    return _ownershipByCardPrintId[cardPrintId] ??
-        _ownershipAdapter.peek(cardPrintId);
+    return buildSetCardOwnershipSignalState(
+      hasSignedInViewer: _hasSignedInViewer,
+      ownedCount: card.ownedCount,
+    );
   }
 
   void _openCardDetails(PublicSetCard card) {
@@ -140,7 +98,8 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
           name: card.name,
           number: card.number,
           rarity: card.rarity,
-          imageUrl: card.displayImageUrl,
+          imageUrl: card.catalogImageUrl,
+          fallbackImageUrl: card.providerFallbackImageUrl,
         ),
       ),
     );
@@ -156,7 +115,8 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         .map(
           (card) => CardZoomGalleryItem(
             label: '#${card.number} • ${_setCardGalleryLabel(card)}',
-            imageUrl: card.displayImageUrl,
+            imageUrl: card.catalogImageUrl,
+            fallbackImageUrl: card.providerFallbackImageUrl,
             onViewDetails: () => _openCardDetails(card),
           ),
         )
@@ -187,140 +147,225 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: _load,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 22),
-            children: [
-              if (_loading)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 36),
-                  child: Center(child: CircularProgressIndicator()),
-                )
-              else if (_error != null)
-                _SetDetailSurfaceCard(
-                  child: _SetDetailEmptyState(
-                    title: 'Unable to load set',
-                    body: _error!,
-                  ),
-                )
-              else if (detail != null) ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        detail.summary.name,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 0,
-                            ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        [
-                          detail.summary.code.toUpperCase(),
-                          if (detail.summary.releaseYear != null)
-                            '${detail.summary.releaseYear}',
-                          if (detail.summary.printedTotal != null)
-                            '${detail.summary.printedTotal} cards',
-                        ].join(' • '),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.66),
-                          height: 1.3,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _SetDetailMasterSetPanel(stats: detail.masterSetStats),
-                const SizedBox(height: 10),
-                if (detail.worldChampionshipDecklist != null) ...[
-                  _WorldChampionshipDecklistPanel(
-                    decklist: detail.worldChampionshipDecklist!,
-                  ),
-                  const SizedBox(height: 10),
-                ],
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '${detail.summary.cardCount} cards',
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.72),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    SharedCardViewModeButton(
-                      value: _viewMode,
-                      onChanged: (mode) {
-                        setState(() {
-                          _viewMode = mode;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                if (detail.cards.isEmpty)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: _SetDetailEmptyState(
-                      title: 'No cards yet',
-                      body: 'No public cards were returned for this set.',
-                    ),
-                  )
-                else if (_viewMode == AppCardViewMode.grid)
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: detail.cards.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: MediaQuery.sizeOf(context).width >= 860
-                          ? 4
-                          : MediaQuery.sizeOf(context).width >= 620
-                          ? 3
-                          : 2,
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 6,
-                      childAspectRatio: 0.69,
-                    ),
-                    itemBuilder: (context, index) => _SetCardGridTile(
-                      card: detail.cards[index],
-                      ownershipState: _ownershipStateForCard(
-                        detail.cards[index],
-                      ),
-                      onOpenViewer: () => _openSetGallery(index),
-                    ),
-                  )
-                else ...[
-                  for (var index = 0; index < detail.cards.length; index += 1)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: _SetCardTile(
-                        card: detail.cards[index],
-                        compact: _viewMode == AppCardViewMode.compactList,
-                        ownershipState: _ownershipStateForCard(
-                          detail.cards[index],
-                        ),
-                        onOpenViewer: () => _openSetGallery(index),
-                      ),
-                    ),
-                ],
-              ],
-            ],
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            cacheExtent: 320,
+            slivers: _buildBodySlivers(context, detail),
           ),
         ),
       ),
     );
   }
+
+  List<Widget> _buildBodySlivers(
+    BuildContext context,
+    PublicSetDetail? detail,
+  ) {
+    if (_loading) {
+      return const <Widget>[
+        SliverPadding(
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 22),
+          sliver: SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 36),
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          ),
+        ),
+      ];
+    }
+
+    if (_error != null) {
+      return <Widget>[
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 22),
+          sliver: SliverToBoxAdapter(
+            child: _SetDetailSurfaceCard(
+              child: _SetDetailEmptyState(
+                title: 'Unable to load set',
+                body: _error!,
+              ),
+            ),
+          ),
+        ),
+      ];
+    }
+
+    if (detail == null) {
+      return const <Widget>[SliverToBoxAdapter(child: SizedBox.shrink())];
+    }
+
+    final headerChildren = <Widget>[
+      Padding(
+        padding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              detail.summary.name,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              [
+                detail.summary.code.toUpperCase(),
+                if (detail.summary.releaseYear != null)
+                  '${detail.summary.releaseYear}',
+                if (detail.summary.printedTotal != null)
+                  '${detail.summary.printedTotal} cards',
+              ].join(' • '),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.66),
+                height: 1.3,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 10),
+      _SetDetailMasterSetPanel(stats: detail.masterSetStats),
+      const SizedBox(height: 10),
+      if (detail.worldChampionshipDecklist != null) ...[
+        _WorldChampionshipDecklistPanel(
+          decklist: detail.worldChampionshipDecklist!,
+        ),
+        const SizedBox(height: 10),
+      ],
+      Row(
+        children: [
+          Expanded(
+            child: Text(
+              '${detail.summary.cardCount} cards',
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.72),
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          SharedCardViewModeButton(
+            value: _viewMode,
+            onChanged: (mode) {
+              setState(() {
+                _viewMode = mode;
+              });
+            },
+          ),
+        ],
+      ),
+      const SizedBox(height: 10),
+      if (detail.cards.isEmpty)
+        const Padding(
+          padding: EdgeInsets.only(top: 8, bottom: 22),
+          child: _SetDetailEmptyState(
+            title: 'No cards yet',
+            body: 'No public cards were returned for this set.',
+          ),
+        ),
+    ];
+
+    final slivers = <Widget>[
+      SliverPadding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        sliver: SliverList(delegate: SliverChildListDelegate(headerChildren)),
+      ),
+    ];
+    if (detail.cards.isEmpty) {
+      return slivers;
+    }
+
+    if (_viewMode == AppCardViewMode.grid) {
+      slivers.add(
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 22),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.sizeOf(context).width >= 860
+                  ? 4
+                  : MediaQuery.sizeOf(context).width >= 620
+                  ? 3
+                  : 2,
+              mainAxisSpacing: 6,
+              crossAxisSpacing: 6,
+              childAspectRatio: 0.69,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final card = detail.cards[index];
+                return _SetCardGridTile(
+                  card: card,
+                  ownershipState: _ownershipStateForCard(card),
+                  onOpenViewer: () => _openSetGallery(index),
+                );
+              },
+              childCount: detail.cards.length,
+              addAutomaticKeepAlives: false,
+            ),
+          ),
+        ),
+      );
+      return slivers;
+    }
+
+    slivers.add(
+      SliverPadding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 14),
+        sliver: SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final card = detail.cards[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: _SetCardTile(
+                  card: card,
+                  compact: _viewMode == AppCardViewMode.compactList,
+                  ownershipState: _ownershipStateForCard(card),
+                  onOpenViewer: () => _openSetGallery(index),
+                ),
+              );
+            },
+            childCount: detail.cards.length,
+            addAutomaticKeepAlives: false,
+          ),
+        ),
+      ),
+    );
+    return slivers;
+  }
+}
+
+OwnershipState? buildSetCardOwnershipSignalState({
+  required bool hasSignedInViewer,
+  required int ownedCount,
+}) {
+  if (!hasSignedInViewer) {
+    return null;
+  }
+  if (ownedCount <= 0) {
+    return const OwnershipState.empty(isSelfContext: true);
+  }
+
+  // Set cards already receive their exact owned count in the batched set
+  // query. The tile only renders that count, so resolving per-copy GVVI,
+  // Wall, intent, and action state here would duplicate work and block paint.
+  return OwnershipState(
+    owned: true,
+    ownedCount: ownedCount,
+    primaryVaultItemId: null,
+    primaryGvviId: null,
+    hasExactCopy: false,
+    onWall: false,
+    inPlay: false,
+    isSelfContext: true,
+    bestAction: OwnershipAction.none,
+  );
 }
 
 ResolvedDisplayIdentity _setCardDisplayIdentity(PublicSetCard card) {
@@ -854,7 +899,8 @@ class _SetCardTile extends StatelessWidget {
                 name: card.name,
                 number: card.number,
                 rarity: card.rarity,
-                imageUrl: card.displayImageUrl,
+                imageUrl: card.catalogImageUrl,
+                fallbackImageUrl: card.providerFallbackImageUrl,
               ),
             ),
           );
@@ -1027,7 +1073,8 @@ class _SetCardArtwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardSurfaceArtwork(
       label: _setCardArtworkLabel(card),
-      imageUrl: card.displayImageUrl,
+      imageUrl: card.catalogImageUrl,
+      fallbackImageUrl: card.providerFallbackImageUrl,
       width: compact ? 68 : 86,
       height: compact ? 94 : 118,
       borderRadius: GvGridConstants.imageRadius,
@@ -1068,7 +1115,8 @@ class _SetCardGridTile extends StatelessWidget {
               name: card.name,
               number: card.number,
               rarity: card.rarity,
-              imageUrl: card.displayImageUrl,
+              imageUrl: card.catalogImageUrl,
+              fallbackImageUrl: card.providerFallbackImageUrl,
             ),
           ),
         ),
@@ -1084,7 +1132,8 @@ class _SetCardGridTile extends StatelessWidget {
                       // Fullscreen set viewer now preserves current browse
                       // ordering and supports previous/next swipe navigation.
                       label: _setCardArtworkLabel(card),
-                      imageUrl: card.displayImageUrl,
+                      imageUrl: card.catalogImageUrl,
+                      fallbackImageUrl: card.providerFallbackImageUrl,
                       borderRadius: GvGridConstants.imageRadius,
                       padding: const EdgeInsets.all(1.5),
                       backgroundColor: colorScheme.surfaceContainerLow

@@ -141,7 +141,15 @@ class _OwnerMemoryTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final item = model.memory;
     final memory = item.memory;
-    final thumbnailUrl = model.signedPhotoUrl ?? item.cardImageUrl;
+    final catalogArtwork = item.catalogArtwork;
+    final signedPhotoUrl = (model.signedPhotoUrl ?? '').trim();
+    final hasSignedPhoto = signedPhotoUrl.isNotEmpty;
+    final thumbnailUrl = hasSignedPhoto
+        ? signedPhotoUrl
+        : catalogArtwork.primaryImageUrl;
+    final thumbnailFallbackUrl = hasSignedPhoto
+        ? catalogArtwork.primaryImageUrl
+        : catalogArtwork.fallbackImageUrl;
     final meta = _memoryMeta(memory);
     final subtitle = _cardSubtitle(item);
 
@@ -159,6 +167,7 @@ class _OwnerMemoryTile extends StatelessWidget {
               CardSurfaceArtwork(
                 label: item.cardName,
                 imageUrl: thumbnailUrl,
+                fallbackImageUrl: thumbnailFallbackUrl,
                 width: 64,
                 height: 88,
                 borderRadius: 8,

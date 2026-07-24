@@ -56,6 +56,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
           <PublicCardImage
             src={card.display_image_url ?? card.image_url}
             fallbackSrc={card.display_image_fallback_url}
+            fallbackSources={[card.external_image_fallback_url]}
             alt={getCardImageAltText(displayIdentity.display_name, card)}
             imageClassName="h-14 w-10 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-14 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 
 class FounderCardSignalDetailScreen extends StatefulWidget {
   const FounderCardSignalDetailScreen({super.key, required this.previewRow});
@@ -89,8 +89,11 @@ class _FounderCardSignalDetailScreenState
             children: [
               _FounderCardHero(
                 imageUrl:
-                    identity?.preferredImageUrl ??
-                    widget.previewRow.preferredImageUrl,
+                    identity?.catalogImageUrl ??
+                    widget.previewRow.catalogImageUrl,
+                fallbackImageUrl:
+                    identity?.providerFallbackImageUrl ??
+                    widget.previewRow.providerFallbackImageUrl,
                 name: title,
                 setName: identity?.setName ?? widget.previewRow.setName,
                 setCode: identity?.setCode ?? widget.previewRow.setCode,
@@ -288,6 +291,7 @@ class _FounderCardSignalDetailScreenState
 class _FounderCardHero extends StatelessWidget {
   const _FounderCardHero({
     required this.imageUrl,
+    required this.fallbackImageUrl,
     required this.name,
     required this.setName,
     required this.setCode,
@@ -295,6 +299,7 @@ class _FounderCardHero extends StatelessWidget {
   });
 
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final String name;
   final String? setName;
   final String? setCode;
@@ -304,7 +309,6 @@ class _FounderCardHero extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final normalizedImageUrl = normalizeDisplayImageUrl(imageUrl);
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -316,30 +320,15 @@ class _FounderCardHero extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          CardSurfaceArtwork(
+            label: name,
+            imageUrl: imageUrl,
+            fallbackImageUrl: fallbackImageUrl,
             width: 88,
             height: 122,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.48,
-              ),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: normalizedImageUrl == null
-                ? Icon(
-                    Icons.image_not_supported_outlined,
-                    color: colorScheme.onSurface.withValues(alpha: 0.38),
-                  )
-                : Image.network(
-                    normalizedImageUrl,
-                    fit: BoxFit.cover,
-                    cacheWidth: 260,
-                    errorBuilder: (context, error, stackTrace) => Icon(
-                      Icons.image_not_supported_outlined,
-                      color: colorScheme.onSurface.withValues(alpha: 0.38),
-                    ),
-                  ),
+            borderRadius: 14,
+            padding: EdgeInsets.zero,
+            showShadow: false,
           ),
           const SizedBox(width: 14),
           Expanded(

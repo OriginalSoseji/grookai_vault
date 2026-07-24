@@ -4,6 +4,9 @@ import PageSection from "@/components/layout/PageSection";
 import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 import SectionHeader from "@/components/layout/SectionHeader";
 import NetworkStreamCard from "@/components/network/NetworkStreamCard";
+import ContactEligibilityProvider, {
+  type ContactEligibilityTarget,
+} from "@/components/network/ContactEligibilityProvider";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
 import {
@@ -36,6 +39,16 @@ export default async function NetworkPage({
     intent,
     excludeUserId: null,
     limit: NETWORK_STREAM_PAGE_LIMIT,
+  });
+  const contactEligibilityTargets: ContactEligibilityTarget[] = rows.flatMap((row) => {
+    const copyTargets = row.inPlayCopies.map((copy) => ({
+      vaultItemId: copy.vaultItemId,
+      cardPrintId: row.cardPrintId,
+    }));
+
+    return copyTargets.length > 0
+      ? copyTargets
+      : [{ vaultItemId: row.vaultItemId, cardPrintId: row.cardPrintId }];
   });
 
   return (
@@ -101,17 +114,19 @@ export default async function NetworkPage({
             body="Cards appear here when collectors mark them Trade, Sell, or Showcase."
           />
         ) : (
-          <div className="space-y-4">
-            {rows.map((row) => (
-              <NetworkStreamCard
-                key={row.vaultItemId}
-                row={row}
-                isAuthenticated={false}
-                viewerUserId={null}
-                currentPath={currentPath}
-              />
-            ))}
-          </div>
+          <ContactEligibilityProvider targets={contactEligibilityTargets}>
+            <div className="space-y-4">
+              {rows.map((row) => (
+                <NetworkStreamCard
+                  key={row.vaultItemId}
+                  row={row}
+                  isAuthenticated={false}
+                  viewerUserId={null}
+                  currentPath={currentPath}
+                />
+              ))}
+            </div>
+          </ContactEligibilityProvider>
         )}
       </PageSection>
     </div>

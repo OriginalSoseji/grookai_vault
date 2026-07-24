@@ -26,6 +26,8 @@ jobs:
         run: npm ci
 
       - name: Collect founder ops reports
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: npm run founder:ops:collect
 
       - name: Verify founder ops dashboard contract

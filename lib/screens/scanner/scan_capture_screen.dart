@@ -7,8 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/scanner/condition_scan_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_artwork.dart';
 import 'condition_camera_screen.dart';
 import 'quad_adjust_screen.dart';
 
@@ -755,11 +756,13 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     final cardPrintId =
         _matchCardRow?['best_candidate_card_print_id']?.toString() ?? '';
     final cardName = _matchCardRow?['best_candidate_name']?.toString() ?? '';
+    final gvId = _matchCardRow?['best_candidate_gv_id']?.toString() ?? '';
     final setCode = _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
     final number = _matchCardRow?['best_candidate_number']?.toString() ?? '';
-    final imageUrl =
-        normalizeDisplayImageUrl(_matchCardRow?['best_candidate_image_best']) ??
-        '';
+    final artwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: _matchCardRow?['best_candidate_image_best'],
+    );
 
     if (_matchCardLoading) {
       return const Card(
@@ -809,19 +812,17 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
     return Card(
       child: ListTile(
-        leading: imageUrl.isNotEmpty
-            ? ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: Image.network(
-                  imageUrl,
-                  width: 48,
-                  height: 64,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.image),
-                ),
-              )
-            : const Icon(Icons.image),
+        leading: CardSurfaceArtwork(
+          label: cardName.isNotEmpty ? cardName : 'Matched card',
+          imageUrl: artwork.primaryImageUrl,
+          fallbackImageUrl: artwork.fallbackImageUrl,
+          width: 48,
+          height: 64,
+          borderRadius: 6,
+          padding: EdgeInsets.zero,
+          enableTapToZoom: false,
+          showShadow: false,
+        ),
         title: Text(cardName.isNotEmpty ? cardName : 'Matched card'),
         subtitle: Text(
           [setCode, number].where((p) => p.isNotEmpty).join(' • '),
@@ -832,9 +833,11 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
             MaterialPageRoute(
               builder: (_) => CardDetailScreen(
                 cardPrintId: cardPrintId,
+                gvId: gvId.isEmpty ? null : gvId,
                 name: cardName.isNotEmpty ? cardName : null,
                 number: number.isNotEmpty ? number : null,
-                imageUrl: imageUrl.isNotEmpty ? imageUrl : null,
+                imageUrl: artwork.primaryImageUrl,
+                fallbackImageUrl: artwork.fallbackImageUrl,
               ),
             ),
           );

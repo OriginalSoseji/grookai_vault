@@ -23,8 +23,16 @@ import {
   type FounderOpsReportRegistry,
   type FounderOpsReportStatus,
 } from "@/lib/founder/getFounderOpsReportRegistry";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import {
+  getCatalogImageSourcesFromResolvedFieldsV1,
+  orderCatalogImageSourcesV1,
+} from "@/lib/canon/catalogImageSourcesV1";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  normalizeVaultInstanceImageDisplayMode,
+} from "@/lib/vaultInstanceImageDisplay";
+import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -35,7 +43,9 @@ type VaultAnalyticsRow = {
   card_print_id: string | null;
   slab_cert_id: string | null;
   condition_label: string | null;
+  photo_url: string | null;
   image_url: string | null;
+  image_display_mode: string | null;
   created_at: string | null;
 };
 
@@ -52,6 +62,11 @@ type CardPrintMetadataRow = {
   number: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
 };
 
 type NormalizedVaultRow = {
@@ -66,6 +81,7 @@ type NormalizedVaultRow = {
   condition_label: string;
   created_at: string | null;
   image_url?: string;
+  image_fallback_urls: string[];
 };
 
 type CardAggregate = {
@@ -76,6 +92,7 @@ type CardAggregate = {
   total_qty: number;
   distinct_owners: number;
   image_url?: string;
+  image_fallback_urls: string[];
 };
 
 type SetAggregate = {
@@ -98,13 +115,7 @@ type WebEventRow = {
   metadata: Record<string, unknown> | null;
 };
 
-type TopViewedCardMetadataRow = {
-  gv_id: string | null;
-  name: string | null;
-  number: string | null;
-  set_code: string | null;
-  image_url: string | null;
-  image_alt_url: string | null;
+type TopViewedCardMetadataRow = CardPrintMetadataRow & {
   sets:
     | {
         name: string | null;
@@ -122,6 +133,7 @@ type FounderTopViewedCard = {
   set_code?: string;
   set_name?: string;
   image_url?: string;
+  image_fallback_urls: string[];
   view_count: number;
 };
 
@@ -428,37 +440,55 @@ function aggregateAbuseProtectionMetrics(events: WebEventRow[]): AbuseProtection
   };
 }
 
-function mapTopViewedCards(
+async function getFounderCatalogImageSources(row: CardPrintMetadataRow) {
+  const catalogImageSources = getCatalogImageSourcesFromResolvedFieldsV1(
+    row,
+    await resolveCardImageFieldsV1(row),
+  );
+
+  return {
+    ...catalogImageSources,
+    orderedImageUrls: orderCatalogImageSourcesV1({
+      imageDisplayMode: "canonical",
+      hostedImageUrl: catalogImageSources.hostedImageUrl,
+      providerImageUrl: catalogImageSources.providerImageUrl,
+    }),
+  };
+}
+
+async function mapTopViewedCards(
   rows: TopViewedCardMetadataRow[],
   counts: Array<[string, number]>,
-): FounderTopViewedCard[] {
+): Promise<FounderTopViewedCard[]> {
   const rowsByGvId = new Map(
     rows
       .filter((row): row is TopViewedCardMetadataRow & { gv_id: string } => Boolean(row.gv_id))
       .map((row) => [row.gv_id, row]),
   );
 
-  const mapped: FounderTopViewedCard[] = [];
-
-  for (const [gvId, viewCount] of counts) {
+  const mapped = await Promise.all(
+    counts.map(async ([gvId, viewCount]): Promise<FounderTopViewedCard | null> => {
       const row = rowsByGvId.get(gvId);
       if (!row) {
-        continue;
+        return null;
       }
 
       const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-      mapped.push({
+      const { orderedImageUrls } = await getFounderCatalogImageSources(row);
+      return {
         gv_id: gvId,
         name: row.name?.trim() || "Unknown card",
         number: row.number?.trim() || "—",
         set_code: row.set_code?.trim() || undefined,
         set_name: setRecord?.name?.trim() || undefined,
-        image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+        image_url: orderedImageUrls[0],
+        image_fallback_urls: orderedImageUrls.slice(1),
         view_count: viewCount,
-      });
-    }
+      } satisfies FounderTopViewedCard;
+    }),
+  );
 
-  return mapped;
+  return mapped.filter((row): row is FounderTopViewedCard => row !== null);
 }
 
 function chunkArray<T>(items: T[], chunkSize: number): T[][] {
@@ -478,7 +508,7 @@ async function fetchAllActiveVaultInstanceRows(admin: ReturnType<typeof createSe
     const to = from + pageSize - 1;
     const { data, error } = await admin
       .from("vault_item_instances")
-      .select("id,user_id,card_print_id,slab_cert_id,condition_label,image_url,created_at")
+      .select("id,user_id,card_print_id,slab_cert_id,condition_label,photo_url,image_url,image_display_mode,created_at")
       .is("archived_at", null)
       .order("created_at", { ascending: false })
       .order("id", { ascending: false })
@@ -539,7 +569,9 @@ async function fetchCardPrintMetadataMap(
   for (const ids of chunkArray(cardPrintIds, 500)) {
     const { data, error } = await admin
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,image_url,image_alt_url")
+      .select(
+        "id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note",
+      )
       .in("id", ids);
 
     if (error) {
@@ -556,28 +588,55 @@ async function fetchCardPrintMetadataMap(
   return out;
 }
 
-function normalizeVaultRows(
+async function normalizeVaultRows(
   rows: VaultAnalyticsRow[],
   slabCardPrintIdBySlabCertId: Map<string, string>,
   cardPrintMetadataById: Map<string, CardPrintMetadataRow>,
-): NormalizedVaultRow[] {
-  const normalized: NormalizedVaultRow[] = [];
+): Promise<NormalizedVaultRow[]> {
+  const catalogImageSourcesByCardPrintId = new Map(
+    await Promise.all(
+      Array.from(cardPrintMetadataById.entries()).map(async ([id, metadata]) => [
+        id,
+        await getFounderCatalogImageSources(metadata),
+      ] as const),
+    ),
+  );
 
-  for (const row of rows) {
+  const normalized = await Promise.all(rows.map(async (row): Promise<NormalizedVaultRow | null> => {
     const effectiveCardPrintId =
       row.card_print_id ??
       (row.slab_cert_id ? slabCardPrintIdBySlabCertId.get(row.slab_cert_id) : undefined);
     if (!row.user_id || !effectiveCardPrintId) {
-      continue;
+      return null;
     }
 
     const metadata = cardPrintMetadataById.get(effectiveCardPrintId);
     const gvId = metadata?.gv_id?.trim();
     if (!gvId) {
-      continue;
+      return null;
     }
 
-    normalized.push({
+    const imageDisplayMode =
+      normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ??
+      "canonical";
+    const uploadedImageReference =
+      imageDisplayMode === "uploaded"
+        ? row.photo_url?.trim() || row.image_url?.trim() || null
+        : null;
+    const uploadedImageUrl =
+      uploadedImageReference
+        ? await resolveVaultInstanceMediaUrl(uploadedImageReference)
+        : null;
+    const catalogImageSources =
+      catalogImageSourcesByCardPrintId.get(effectiveCardPrintId);
+    const imageSources = orderCatalogImageSourcesV1({
+      imageDisplayMode,
+      uploadedImageUrl,
+      hostedImageUrl: catalogImageSources?.hostedImageUrl,
+      providerImageUrl: catalogImageSources?.providerImageUrl,
+    });
+
+    return {
       id: row.id,
       user_id: row.user_id,
       gv_id: gvId,
@@ -588,11 +647,12 @@ function normalizeVaultRows(
       quantity: 1,
       condition_label: row.condition_label?.trim() || "Unknown",
       created_at: row.created_at,
-      image_url: getBestPublicCardImageUrl(row.image_url ?? metadata?.image_url, metadata?.image_alt_url),
-    });
-  }
+      image_url: imageSources[0],
+      image_fallback_urls: imageSources.slice(1),
+    } satisfies NormalizedVaultRow;
+  }));
 
-  return normalized;
+  return normalized.filter((row): row is NormalizedVaultRow => row !== null);
 }
 
 function formatTimeAgo(value: string | null) {
@@ -1073,6 +1133,7 @@ function aggregateCards(rows: NormalizedVaultRow[]): CardAggregate[] {
       total_qty: number;
       owners: Set<string>;
       image_url?: string;
+      image_fallback_urls: string[];
     }
   >();
 
@@ -1085,12 +1146,19 @@ function aggregateCards(rows: NormalizedVaultRow[]): CardAggregate[] {
       total_qty: 0,
       owners: new Set<string>(),
       image_url: row.image_url,
+      image_fallback_urls: row.image_fallback_urls,
     };
 
     current.total_qty += row.quantity;
     current.owners.add(row.user_id);
     if (!current.image_url && row.image_url) {
       current.image_url = row.image_url;
+      current.image_fallback_urls = row.image_fallback_urls;
+    } else if (
+      current.image_fallback_urls.length === 0 &&
+      row.image_fallback_urls.length > 0
+    ) {
+      current.image_fallback_urls = row.image_fallback_urls;
     }
     byCard.set(row.gv_id, current);
   }
@@ -1103,6 +1171,7 @@ function aggregateCards(rows: NormalizedVaultRow[]): CardAggregate[] {
     total_qty: entry.total_qty,
     distinct_owners: entry.owners.size,
     image_url: entry.image_url,
+    image_fallback_urls: entry.image_fallback_urls,
   }));
 }
 
@@ -1255,7 +1324,11 @@ export default async function FounderPage() {
       ),
     );
 
-    vaultRows = normalizeVaultRows(activeInstanceRows, slabCardPrintIdBySlabCertId, cardPrintMetadataById);
+    vaultRows = await normalizeVaultRows(
+      activeInstanceRows,
+      slabCardPrintIdBySlabCertId,
+      cardPrintMetadataById,
+    );
   } catch (error) {
     vaultAnalyticsError = error instanceof Error ? error.message : "Unknown founder analytics error";
   }
@@ -1299,14 +1372,16 @@ export default async function FounderPage() {
   const topViewedCardsResponse = topViewedCardCounts.length > 0
     ? await admin
         .from("card_prints")
-        .select("gv_id,name,number,set_code,image_url,image_alt_url,sets(name)")
+        .select(
+          "id,gv_id,name,number,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)",
+        )
         .in(
           "gv_id",
           topViewedCardCounts.map(([gvId]) => gvId),
         )
     : { data: [], error: null };
   const topViewedCardsError = topViewedCardsResponse.error?.message ?? null;
-  const topViewedCards = mapTopViewedCards(
+  const topViewedCards = await mapTopViewedCards(
     ((topViewedCardsResponse.data ?? []) as TopViewedCardMetadataRow[]) ?? [],
     topViewedCardCounts,
   );
@@ -1560,6 +1635,7 @@ export default async function FounderPage() {
                   >
                     <PublicCardImage
                       src={item.image_url}
+                      fallbackSources={item.image_fallback_urls}
                       alt={item.name}
                       imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
                       fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -1625,6 +1701,7 @@ export default async function FounderPage() {
                   >
                     <PublicCardImage
                       src={item.image_url}
+                      fallbackSources={item.image_fallback_urls}
                       alt={item.name}
                       imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
                       fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
@@ -1713,6 +1790,7 @@ export default async function FounderPage() {
                     >
                       <PublicCardImage
                         src={item.image_url}
+                        fallbackSources={item.image_fallback_urls}
                         alt={item.name}
                         imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
                         fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -1754,6 +1832,7 @@ export default async function FounderPage() {
                   >
                     <PublicCardImage
                       src={item.image_url}
+                      fallbackSources={item.image_fallback_urls}
                       alt={item.name}
                       imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
                       fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"

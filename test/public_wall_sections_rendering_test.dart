@@ -74,18 +74,29 @@ void main() {
 
   test('public helpers read only the new Wall and selected Section views', () {
     expect(wallCardsSource, contains('.from("v_wall_cards_v1")'));
-    expect(sectionsSource, contains('.from("v_wall_sections_v1")'));
+    expect(sectionsSource, contains('.from("wall_sections")'));
+    expect(sectionsSource, contains('getPublicProfileBySlug(normalizedSlug)'));
+    expect(sectionsSource, contains('.eq("user_id", profile.user_id)'));
+    expect(sectionsSource, isNot(contains('v_wall_sections_v1')));
+    expect(sectionsSource, isNot(contains('createServerAdminClient')));
     expect(sectionCardsSource, contains('.from("v_section_cards_v1")'));
+    expect(sectionCardsSource, contains('.eq("section_id", proof.sectionId)'));
+    expect(sectionCardsSource, contains('.eq("owner_slug", proof.ownerSlug)'));
     expect(
       sectionCardsSource,
-      contains('.eq("section_id", normalizedSectionId)'),
+      contains('.eq("owner_user_id", proof.ownerUserId)'),
     );
-    expect(sectionCardsSource, contains('.eq("owner_slug", normalizedSlug)'));
-    expect(sectionShareModelSource, contains('.from("v_wall_sections_v1")'));
+    expect(
+      sectionCardsSource,
+      contains('const proof = await provePublicSectionRead(slug, sectionId)'),
+    );
+    expect(sectionShareModelSource, contains('.from("wall_sections")'));
     expect(
       sectionShareModelSource,
-      contains('.eq("owner_slug", profile.slug)'),
+      contains('.eq("user_id", profile.user_id)'),
     );
+    expect(sectionShareModelSource, isNot(contains('v_wall_sections_v1')));
+    expect(sectionShareModelSource, isNot(contains('createServerAdminClient')));
     expect(sectionShareModelSource, contains('.eq("id", normalizedSectionId)'));
     expect(
       sectionShareModelSource,
@@ -120,7 +131,8 @@ void main() {
   test('inactive and private sections fail closed through public views', () {
     expect(migrationSource, contains('where ws.is_active = true'));
     expect(migrationSource, contains('and ws.is_public = true'));
-    expect(sectionsSource, contains('.from("v_wall_sections_v1")'));
+    expect(sectionsSource, contains('.from("wall_sections")'));
+    expect(sectionsSource, contains('!profile.vault_sharing_enabled'));
     expect(sectionShareModelSource, contains('!profile.vault_sharing_enabled'));
     expect(
       sectionShareModelSource,

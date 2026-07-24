@@ -8,6 +8,7 @@ type PokemonCardGridTileProps = {
   utility?: ReactNode;
   imageSrc?: string;
   imageFallbackSrc?: string;
+  imageFallbackSources?: Array<string | null | undefined>;
   imageAlt: string;
   imageHref?: string;
   imagePrefetch?: boolean;
@@ -86,6 +87,7 @@ function renderImage({
   density,
   imageSrc,
   imageFallbackSrc,
+  imageFallbackSources,
   imageAlt,
   imageLoading,
   imagePriority,
@@ -97,6 +99,7 @@ function renderImage({
   density: ViewDensity;
   imageSrc?: string;
   imageFallbackSrc?: string;
+  imageFallbackSources?: Array<string | null | undefined>;
   imageAlt: string;
   imageLoading?: "eager" | "lazy";
   imagePriority?: boolean;
@@ -112,6 +115,7 @@ function renderImage({
       <PublicCardImage
         src={imageSrc}
         fallbackSrc={imageFallbackSrc}
+        fallbackSources={imageFallbackSources}
         alt={imageAlt}
         loading={imageLoading}
         priority={imagePriority}
@@ -162,6 +166,7 @@ export default function PokemonCardGridTile({
   utility,
   imageSrc,
   imageFallbackSrc,
+  imageFallbackSources,
   imageAlt,
   imageHref,
   imagePrefetch,
@@ -184,6 +189,7 @@ export default function PokemonCardGridTile({
     density,
     imageSrc,
     imageFallbackSrc,
+    imageFallbackSources,
     imageAlt,
     imageLoading,
     imagePriority,

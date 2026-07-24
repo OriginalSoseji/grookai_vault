@@ -18,9 +18,11 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
+import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
+import 'services/navigation/copy_detail_navigation_policy.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
@@ -29,6 +31,7 @@ import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
+import 'utils/display_image_contract.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/contact_owner_button.dart';
 import 'widgets/gv_surface.dart';
@@ -43,6 +46,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? number;
   final String? rarity;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final int? quantity;
   final String? condition;
   final String? contactVaultItemId;
@@ -54,6 +58,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? entrySurface;
   final String? selectedPrintingGvId;
   final String? selectedFinishLabel;
+  final bool openedFromCopyDetail;
 
   const CardDetailScreen({
     super.key,
@@ -65,6 +70,7 @@ class CardDetailScreen extends StatefulWidget {
     this.number,
     this.rarity,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.quantity,
     this.condition,
     this.contactVaultItemId,
@@ -76,6 +82,7 @@ class CardDetailScreen extends StatefulWidget {
     this.entrySurface,
     this.selectedPrintingGvId,
     this.selectedFinishLabel,
+    this.openedFromCopyDetail = false,
   });
 
   @override
@@ -89,6 +96,8 @@ class _CardDetailPrintingOption {
     required this.sortOrder,
     this.printingGvId,
     this.finishKey,
+    this.imageUrl,
+    this.imageAltUrl,
   });
 
   final String id;
@@ -96,6 +105,8 @@ class _CardDetailPrintingOption {
   final int sortOrder;
   final String? printingGvId;
   final String? finishKey;
+  final String? imageUrl;
+  final String? imageAltUrl;
 }
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
@@ -341,7 +352,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           await supabase
                   .from('card_printings')
                   .select(
-                    'id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
+                    'id,printing_gv_id,finish_key,image_url,image_alt_url,finish_keys(label,sort_order)',
                   )
                   .eq('card_print_id', normalizedCardPrintId)
               as List<dynamic>;
@@ -350,7 +361,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         rows =
             await supabase
                     .from('card_printings')
-                    .select('id,printing_gv_id,finish_key')
+                    .select(
+                      'id,printing_gv_id,finish_key,image_url,image_alt_url',
+                    )
                     .eq('card_print_id', normalizedCardPrintId)
                 as List<dynamic>;
       } catch (_) {
@@ -389,6 +402,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ? null
               : _cleanText(row['printing_gv_id']),
           finishKey: finishKey.isEmpty ? null : finishKey,
+          imageUrl: _cleanText(row['image_url']).isEmpty
+              ? null
+              : _cleanText(row['image_url']),
+          imageAltUrl: _cleanText(row['image_alt_url']).isEmpty
+              ? null
+              : _cleanText(row['image_alt_url']),
           finishName: finishName,
           sortOrder: sortOrder,
         ),
@@ -733,6 +752,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (gvviId.isEmpty) {
       return;
     }
+    if (_returnToSourceCopyDetail(gvviId)) {
+      return;
+    }
 
     final currentUserId = supabase.auth.currentUser?.id;
     final isOwner =
@@ -742,10 +764,24 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => isOwner
-            ? VaultManageCardScreen(gvviId: gvviId)
-            : PublicGvviScreen(gvviId: gvviId),
+            ? VaultManageCardScreen(gvviId: gvviId, openedFromCardDetail: true)
+            : PublicGvviScreen(gvviId: gvviId, openedFromCardDetail: true),
       ),
     );
+  }
+
+  bool _returnToSourceCopyDetail(String targetGvviId) {
+    if (!Navigator.of(context).canPop() ||
+        !CopyDetailNavigationPolicy.shouldReturnToSource(
+          openedFromCopyDetail: widget.openedFromCopyDetail,
+          sourceGvviId: widget.exactCopyGvviId,
+          targetGvviId: targetGvviId,
+        )) {
+      return false;
+    }
+
+    Navigator.of(context).pop();
+    return true;
   }
 
   Future<void> _openManageCard() async {
@@ -761,9 +797,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           ? _cleanText(widget.exactCopyGvviId)
           : '';
       if (gvviId.isNotEmpty) {
+        if (_returnToSourceCopyDetail(gvviId)) {
+          return;
+        }
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+            builder: (_) => VaultManageCardScreen(
+              gvviId: gvviId,
+              openedFromCardDetail: true,
+            ),
           ),
         );
         if (mounted) {
@@ -778,6 +820,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _managedOwnedCount ??
         widget.quantity ??
         1;
+    final targetGvviId = _cleanText(_ownershipState?.primaryGvviId).isNotEmpty
+        ? _cleanText(_ownershipState?.primaryGvviId)
+        : _hasExactCopyContext
+        ? _cleanText(widget.exactCopyGvviId)
+        : '';
+    if (_returnToSourceCopyDetail(targetGvviId)) {
+      return;
+    }
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -785,11 +835,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           vaultItemId: vaultItemId,
           cardPrintId: widget.cardPrintId,
           ownedCount: ownedCount,
-          gvviId: _cleanText(_ownershipState?.primaryGvviId).isNotEmpty
-              ? _ownershipState!.primaryGvviId
-              : _hasExactCopyContext
-              ? _cleanText(widget.exactCopyGvviId)
-              : null,
+          gvviId: targetGvviId.isEmpty ? null : targetGvviId,
           gvId: _cleanText(widget.gvId).isEmpty ? null : widget.gvId,
           name: _displayName,
           setName: _resolvedSetName,
@@ -804,6 +850,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           condition: _cleanText(widget.condition).isEmpty
               ? null
               : widget.condition,
+          openedFromCardDetail: true,
         ),
       ),
     );
@@ -815,9 +862,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Future<void> _openResolvedOwnedCopy() async {
     final gvviId = _cleanText(_ownershipState?.primaryGvviId);
     if (gvviId.isNotEmpty) {
+      if (_returnToSourceCopyDetail(gvviId)) {
+        return;
+      }
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+          builder: (_) =>
+              VaultManageCardScreen(gvviId: gvviId, openedFromCardDetail: true),
         ),
       );
       if (mounted) {
@@ -834,9 +885,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (gvviId.isEmpty) {
       return;
     }
+    if (_returnToSourceCopyDetail(gvviId)) {
+      return;
+    }
 
     await Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => PublicGvviScreen(gvviId: gvviId)),
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            PublicGvviScreen(gvviId: gvviId, openedFromCardDetail: true),
+      ),
     );
   }
 
@@ -1280,6 +1337,77 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  String? _providerImageUrlFromRecord(Map<String, dynamic>? row) {
+    if (row == null) {
+      return null;
+    }
+    return resolveDisplayImageUrl(
+      imageUrl: row['image_url'],
+      imageAltUrl: row['image_alt_url'],
+      representativeImageUrl: row['representative_image_url'],
+    );
+  }
+
+  String? _providerImageUrlForPrinting(_CardDetailPrintingOption? printing) {
+    if (printing == null) {
+      return null;
+    }
+    return resolveDisplayImageUrl(
+      imageUrl: printing.imageUrl,
+      imageAltUrl: printing.imageAltUrl,
+    );
+  }
+
+  CatalogArtworkResolution get _cardArtworkResolution {
+    final selectedPrinting = _selectedPrintingForDisplay;
+    final selectedPrintingGvId = _cleanText(selectedPrinting?.printingGvId);
+    final contextGvId = _cleanText(_cardContextData?['gv_id']);
+    final gvId = selectedPrintingGvId.isNotEmpty
+        ? selectedPrintingGvId
+        : contextGvId.isNotEmpty
+        ? contextGvId
+        : _cleanText(widget.gvId);
+    final selectedProviderImageUrl = selectedPrintingGvId.isNotEmpty
+        ? _providerImageUrlForPrinting(selectedPrinting)
+        : null;
+    var catalogArtwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: selectedPrintingGvId.isNotEmpty
+          ? selectedProviderImageUrl
+          : _providerImageUrlFromRecord(_cardContextData) ??
+                normalizeDisplayImageUrl(widget.fallbackImageUrl) ??
+                normalizeDisplayImageUrl(widget.imageUrl),
+    );
+    if (selectedPrintingGvId.isNotEmpty &&
+        catalogArtwork.fallbackImageUrl == null) {
+      final parentGvId = contextGvId.isNotEmpty
+          ? contextGvId
+          : _cleanText(widget.gvId);
+      if (parentGvId.isNotEmpty && parentGvId != selectedPrintingGvId) {
+        final parentArtwork = resolveCatalogArtwork(
+          gvId: parentGvId,
+          providerImageUrl:
+              _providerImageUrlFromRecord(_cardContextData) ??
+              normalizeDisplayImageUrl(widget.fallbackImageUrl),
+        );
+        catalogArtwork = CatalogArtworkResolution(
+          primaryImageUrl: catalogArtwork.primaryImageUrl,
+          fallbackImageUrl:
+              parentArtwork.primaryImageUrl ?? parentArtwork.fallbackImageUrl,
+        );
+      }
+    }
+    final suppliedImageUrl = normalizeDisplayImageUrl(widget.imageUrl);
+    if (isCollectorUploadedCardImage(suppliedImageUrl)) {
+      return CatalogArtworkResolution(
+        primaryImageUrl: suppliedImageUrl,
+        fallbackImageUrl:
+            catalogArtwork.primaryImageUrl ?? catalogArtwork.fallbackImageUrl,
+      );
+    }
+    return catalogArtwork;
+  }
+
   String get _resolvedSetName {
     final contextSet = _extractRecord(_cardContextData?['sets']);
     final fromContext = _cleanText(contextSet?['name']);
@@ -1488,7 +1616,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       final rarity = _formatRarity(row['rarity']?.toString());
                       final imagePresentation =
                           _resolveImagePresentationFromRecord(row);
-                      final imageUrl = imagePresentation.displayImageUrl ?? '';
+                      final artwork = resolveCatalogArtwork(
+                        gvId: row['gv_id'],
+                        providerImageUrl: _providerImageUrlFromRecord(row),
+                      );
                       final ownershipState = _relatedVersionOwnershipState(
                         cardPrintId,
                       );
@@ -1510,7 +1641,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                   setCode: setCode,
                                   number: number,
                                   rarity: rarity,
-                                  imageUrl: imageUrl,
+                                  imageUrl: artwork.primaryImageUrl,
+                                  fallbackImageUrl: artwork.fallbackImageUrl,
                                 ),
                               ),
                             );
@@ -1534,10 +1666,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                     aspectRatio: 3 / 4,
                                     child: CardSurfaceArtwork(
                                       label: displayIdentity.displayName,
-                                      imageUrl: imageUrl,
+                                      imageUrl: artwork.primaryImageUrl,
+                                      fallbackImageUrl:
+                                          artwork.fallbackImageUrl,
                                       borderRadius: 12,
                                       padding: const EdgeInsets.all(4),
-                                      showZoomAffordance: imageUrl.isNotEmpty,
+                                      showZoomAffordance:
+                                          artwork.primaryImageUrl != null,
                                       onViewDetails: openRelatedVersion,
                                       detailsLabel: 'View version',
                                     ),
@@ -1762,7 +1897,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Widget _buildHeroImage() {
-    final url = _cardImagePresentation.displayImageUrl ?? '';
+    final artwork = _cardArtworkResolution;
+    final url = artwork.primaryImageUrl ?? '';
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -1777,6 +1913,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               child: CardSurfaceArtwork(
                 label: _displayTitle,
                 imageUrl: url,
+                fallbackImageUrl: artwork.fallbackImageUrl,
                 borderRadius: 20,
                 padding: EdgeInsets.zero,
                 frame: CardArtworkFrame.none,

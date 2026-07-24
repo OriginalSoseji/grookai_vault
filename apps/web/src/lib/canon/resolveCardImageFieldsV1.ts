@@ -4,6 +4,7 @@ import {
   resolveCanonImageV1,
   type CanonImageLike,
 } from "@/lib/canon/resolveCanonImageV1";
+import { selectCatalogProviderFallbackV1 } from "@/lib/canon/catalogProviderFallbackV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 export type CardDisplayImageKind =
@@ -29,6 +30,7 @@ export type CardImageLike = CanonImageLike & {
 
 export type ResolvedCardImageFieldsV1 = {
   image_url: string | null;
+  external_image_fallback_url: string | null;
   representative_image_url: string | null;
   image_status: string | null;
   image_note: string | null;
@@ -374,6 +376,7 @@ function buildSourceBackedReplacementFields(
   if (replacementImage.image_status === "exact") {
     return {
       image_url: replacementImage.url,
+      external_image_fallback_url: null,
       representative_image_url: null,
       image_status: replacementImage.image_status,
       image_note: replacementImage.image_note,
@@ -387,6 +390,7 @@ function buildSourceBackedReplacementFields(
 
   return {
     image_url: null,
+    external_image_fallback_url: null,
     representative_image_url: replacementImage.url,
     image_status: replacementImage.image_status,
     image_note: replacementImage.image_note,
@@ -466,6 +470,7 @@ export async function resolveCardImageFieldsV1(
   if (isKnownWrongLegendaryTreasuresRc5Image(cardPrint)) {
     return {
       image_url: null,
+      external_image_fallback_url: null,
       representative_image_url: null,
       image_status: "blocked",
       image_note:
@@ -487,6 +492,7 @@ export async function resolveCardImageFieldsV1(
 
     return {
       image_url: null,
+      external_image_fallback_url: null,
       representative_image_url: null,
       image_status: "blocked",
       image_note:
@@ -501,6 +507,10 @@ export async function resolveCardImageFieldsV1(
   }
 
   const exactImageUrl = exactImage.url ?? null;
+  const rawExternalImageUrl = getBestPublicCardImageUrl(
+    cardPrint?.image_url,
+    cardPrint?.image_alt_url,
+  ) ?? null;
   const representativeImageUrl = normalizeRepresentativeImageUrl(
     cardPrint?.representative_image_url,
   );
@@ -511,6 +521,20 @@ export async function resolveCardImageFieldsV1(
   );
   const imageNote = normalizeTextOrNull(cardPrint?.image_note);
   const imageSource = normalizeTextOrNull(cardPrint?.image_source);
+  const providerFallbackCandidate = selectCatalogProviderFallbackV1({
+    imageStatus,
+    externalImageUrl: rawExternalImageUrl,
+    representativeImageUrl,
+  });
+  const externalImageFallbackUrl =
+    exactImage.source === "identity" &&
+    Boolean(exactImage.image_path) &&
+    providerFallbackCandidate &&
+    providerFallbackCandidate !== exactImageUrl &&
+    !STATUSES_THAT_BLOCK_EXACT_URL.has(imageStatus ?? "") &&
+    !hasKnownBrokenTcgdexImageReference(cardPrint)
+      ? providerFallbackCandidate
+      : null;
   const exactDisplayKind = getDisplayKindFromStatus(imageStatus, "exact");
   const exactImageUrlIsUsable =
     Boolean(exactImageUrl) &&
@@ -519,6 +543,7 @@ export async function resolveCardImageFieldsV1(
   if (exactImageUrlIsUsable) {
     return {
       image_url: exactImageUrl,
+      external_image_fallback_url: externalImageFallbackUrl,
       representative_image_url: representativeImageUrl,
       image_status: imageStatus,
       image_note: imageNote,
@@ -533,6 +558,7 @@ export async function resolveCardImageFieldsV1(
   if (representativeImageUrl) {
     return {
       image_url: null,
+      external_image_fallback_url: externalImageFallbackUrl,
       representative_image_url: representativeImageUrl,
       image_status: imageStatus,
       image_note: imageNote,
@@ -551,6 +577,7 @@ export async function resolveCardImageFieldsV1(
 
   return {
     image_url: null,
+    external_image_fallback_url: externalImageFallbackUrl,
     representative_image_url: null,
     image_status: imageStatus,
     image_note: imageNote,

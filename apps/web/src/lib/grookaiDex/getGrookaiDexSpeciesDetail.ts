@@ -11,6 +11,7 @@ import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminat
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
+import { chunkValues, mapWithBoundedConcurrency } from "@/lib/pagination";
 
 type DexCardPrintViewRow = {
   species_id: string | null;
@@ -48,6 +49,7 @@ export type GrookaiDexCardPrintRow = {
   printLabel: string | null;
   printLabelSource: "parent_variant" | "child_finish" | "printed_identity_modifier" | "fallback" | "none";
   imageUrl: string | null;
+  imageFallbackUrls: string[];
   role: string;
   countsForCompletion: boolean;
   ownedCount: number;
@@ -84,6 +86,12 @@ type CameoViewRow = {
   cameo_qualifiers: string[] | null;
 };
 
+const SUPABASE_DETAIL_PAGE_SIZE = 1_000;
+const SUPABASE_IN_FILTER_CHUNK_SIZE = 250;
+const SUPABASE_QUERY_CONCURRENCY = 4;
+const CAMEO_RESULT_LIMIT = 60;
+const CAMEO_PAGE_SIZE = 100;
+
 export type GrookaiDexSpeciesDetail = {
   speciesId: string;
   slug: string;
@@ -118,6 +126,62 @@ function duplicateCaptionKey(card: Pick<GrookaiDexCardPrintRow, "name" | "setCod
   return [card.name, card.setCode ?? "", card.number ?? ""].join("\u001f").toLowerCase();
 }
 
+const SPECIES_ROLE_PRIORITY = new Map([
+  ["primary", 0],
+  ["form_subject", 1],
+  ["tag_team", 2],
+  ["multi_subject", 3],
+  ["trainer_owned", 4],
+  ["manual_override", 5],
+  ["cameo", 6],
+]);
+
+function dedupeDexCardPrintRows(rows: DexCardPrintViewRow[]) {
+  const byCardPrintId = new Map<string, DexCardPrintViewRow>();
+  for (const row of rows) {
+    const cardPrintId = clean(row.card_print_id);
+    if (!cardPrintId) continue;
+
+    const current = byCardPrintId.get(cardPrintId);
+    if (!current) {
+      byCardPrintId.set(cardPrintId, row);
+      continue;
+    }
+
+    const currentCompletion = current.counts_for_completion === true;
+    const candidateCompletion = row.counts_for_completion === true;
+    const currentPriority =
+      SPECIES_ROLE_PRIORITY.get(clean(current.role) ?? "") ?? Number.MAX_SAFE_INTEGER;
+    const candidatePriority =
+      SPECIES_ROLE_PRIORITY.get(clean(row.role) ?? "") ?? Number.MAX_SAFE_INTEGER;
+    if (
+      (candidateCompletion && !currentCompletion) ||
+      (candidateCompletion === currentCompletion && candidatePriority < currentPriority)
+    ) {
+      byCardPrintId.set(cardPrintId, row);
+    }
+  }
+  return Array.from(byCardPrintId.values());
+}
+
+function dedupeCameoAppearances(rows: GrookaiDexCameoAppearance[]) {
+  const byGvId = new Map<string, GrookaiDexCameoAppearance>();
+  for (const row of rows) {
+    const current = byGvId.get(row.gvId);
+    if (!current) {
+      byGvId.set(row.gvId, row);
+      continue;
+    }
+
+    byGvId.set(row.gvId, {
+      ...current,
+      notes: current.notes ?? row.notes,
+      qualifiers: Array.from(new Set([...current.qualifiers, ...row.qualifiers])),
+    });
+  }
+  return Array.from(byGvId.values());
+}
+
 export async function getGrookaiDexSpeciesDetail(
   speciesSlug: string,
   userId: string | null,
@@ -128,34 +192,61 @@ export async function getGrookaiDexSpeciesDetail(
   }
 
   const admin = createServerAdminClient();
-  const { data, error } = await admin
-    .from("v_grookai_dex_card_prints_v1")
-    .select(
-      "species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,image_source,image_path,representative_image_url,role,counts_for_completion",
-    )
-    .eq("species_slug", slug)
-    .eq("mapping_active", true)
-    .order("set_name", { ascending: true })
-    .order("number", { ascending: true });
+  const detailRows: DexCardPrintViewRow[] = [];
+  for (let detailFrom = 0; ; detailFrom += SUPABASE_DETAIL_PAGE_SIZE) {
+    const detailTo = detailFrom + SUPABASE_DETAIL_PAGE_SIZE - 1;
+    const { data, error } = await admin
+      .from("v_grookai_dex_card_prints_v1")
+      .select(
+        "species_id,species_slug,species_display_name,national_dex_number,card_print_id,gv_id,name,set_code,set_name,number,rarity,variant_key,image_url,image_alt_url,image_source,image_path,representative_image_url,role,counts_for_completion",
+      )
+      .eq("species_slug", slug)
+      .eq("mapping_active", true)
+      .order("card_print_id", { ascending: true })
+      .order("role", { ascending: true })
+      .range(detailFrom, detailTo);
 
-  if (error) {
-    throw new Error(`[grookai-dex:species-detail] ${error.message}`);
+    if (error) {
+      throw new Error(`[grookai-dex:species-detail] ${error.message}`);
+    }
+
+    const detailPage = (data ?? []) as DexCardPrintViewRow[];
+    detailRows.push(...detailPage);
+    if (detailPage.length < SUPABASE_DETAIL_PAGE_SIZE) {
+      break;
+    }
   }
 
-  const rows = ((data ?? []) as DexCardPrintViewRow[]).filter((row) => clean(row.card_print_id));
+  const rows = dedupeDexCardPrintRows(detailRows).sort((left, right) => {
+    const setComparison = (clean(left.set_name) ?? "").localeCompare(clean(right.set_name) ?? "");
+    if (setComparison !== 0) return setComparison;
+    return (clean(left.number) ?? "").localeCompare(clean(right.number) ?? "", undefined, {
+      numeric: true,
+    });
+  });
   if (rows.length === 0) {
     return null;
   }
 
   const cardPrintIds = rows.map((row) => clean(row.card_print_id)).filter((value): value is string => Boolean(value));
-  const { data: identityRows, error: identityError } = await admin
-    .from("card_prints")
-    .select("id,printed_identity_modifier,image_status,image_note")
-    .in("id", cardPrintIds);
+  const cardPrintIdChunks = chunkValues(cardPrintIds, SUPABASE_IN_FILTER_CHUNK_SIZE);
+  const identityRowGroups = await mapWithBoundedConcurrency(
+    cardPrintIdChunks,
+    SUPABASE_QUERY_CONCURRENCY,
+    async (cardPrintIdChunk) => {
+      const { data, error } = await admin
+        .from("card_prints")
+        .select("id,printed_identity_modifier,image_status,image_note")
+        .in("id", cardPrintIdChunk)
+        .order("id", { ascending: true });
 
-  if (identityError) {
-    throw new Error(`[grookai-dex:species-detail-identity] ${identityError.message}`);
-  }
+      if (error) {
+        throw new Error(`[grookai-dex:species-detail-identity] ${error.message}`);
+      }
+      return data ?? [];
+    },
+  );
+  const identityRows = identityRowGroups.flat();
 
   const cardPrintMetadataByCardPrintId = new Map(
     ((identityRows ?? []) as Array<{
@@ -193,14 +284,34 @@ export async function getGrookaiDexSpeciesDetail(
     : [new Map<string, number>(), new Map()];
   const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(admin);
   const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
-  const { data: printingRows, error: printingError } = await admin
-    .from("card_printings")
-    .select(printingSelect)
-    .in("card_print_id", cardPrintIds);
+  const printingRowGroups = await mapWithBoundedConcurrency(
+    cardPrintIdChunks,
+    SUPABASE_QUERY_CONCURRENCY,
+    async (cardPrintIdChunk) => {
+      const chunkRows: CardPrintingRow[] = [];
+      for (let printingFrom = 0; ; printingFrom += SUPABASE_DETAIL_PAGE_SIZE) {
+        const printingTo = printingFrom + SUPABASE_DETAIL_PAGE_SIZE - 1;
+        const { data, error } = await admin
+          .from("card_printings")
+          .select(printingSelect)
+          .in("card_print_id", cardPrintIdChunk)
+          .order("id", { ascending: true })
+          .range(printingFrom, printingTo);
 
-  if (printingError) {
-    throw new Error(`[grookai-dex:species-detail-printings] ${printingError.message}`);
-  }
+        if (error) {
+          throw new Error(`[grookai-dex:species-detail-printings] ${error.message}`);
+        }
+
+        const pageRows = (data ?? []) as unknown as CardPrintingRow[];
+        chunkRows.push(...pageRows);
+        if (pageRows.length < SUPABASE_DETAIL_PAGE_SIZE) {
+          break;
+        }
+      }
+      return chunkRows;
+    },
+  );
+  const printingRows = printingRowGroups.flat();
 
   const printingOptionsByCardPrintId = new Map<string, Array<GrookaiDexCardPrintingOption & { sortOrder: number }>>();
   for (const row of (printingRows ?? []) as unknown as CardPrintingRow[]) {
@@ -257,10 +368,21 @@ export async function getGrookaiDexSpeciesDetail(
       const fallbackDisplayImage = !imageFields.display_image_url
         ? childDisplayImageFallback
         : undefined;
-      const imageUrl =
+      const primaryImageUrl =
         imageFields.display_image_url ??
         fallbackDisplayImage?.display_image_url ??
         null;
+      const imageSources = [
+        primaryImageUrl,
+        imageFields.display_image_url
+          ? childDisplayImageFallback?.display_image_url
+          : null,
+        imageFields.external_image_fallback_url,
+      ].filter(
+        (candidate, candidateIndex, candidates): candidate is string =>
+          Boolean(candidate?.trim()) && candidates.indexOf(candidate) === candidateIndex,
+      );
+      const [imageUrl = null, ...imageFallbackUrls] = imageSources;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
       const printings = (printingOptionsByCardPrintId.get(cardPrintId) ?? []).map(({ sortOrder: _sortOrder, ...printing }) => printing);
       const resolvedPrintings =
@@ -281,6 +403,7 @@ export async function getGrookaiDexSpeciesDetail(
         printLabel: null,
         printLabelSource: "none",
         imageUrl,
+        imageFallbackUrls,
         role: clean(row.role) ?? "primary",
         countsForCompletion: row.counts_for_completion === true,
         ownedCount,
@@ -329,38 +452,56 @@ export async function getGrookaiDexSpeciesDetail(
 
     return sum + row.printings.filter((printing) => printing.ownedCount > 0).length;
   }, 0);
-  const { data: cameoRows, error: cameoError } = await admin
-    .from("v_card_print_cameos_public_v1")
-    .select("gv_id,card_name,set_code,set_name,number,notes_raw,cameo_qualifiers")
-    .eq("cameo_subject_type", "pokemon")
-    .eq("pokemon_ndex", String(rows[0]?.national_dex_number ?? ""))
-    .order("set_name", { ascending: true })
-    .order("number", { ascending: true })
-    .limit(60);
+  const cameoAppearances: GrookaiDexCameoAppearance[] = [];
+  for (let cameoFrom = 0; ; cameoFrom += CAMEO_PAGE_SIZE) {
+    const cameoTo = cameoFrom + CAMEO_PAGE_SIZE - 1;
+    const { data, error } = await admin
+      .from("v_card_print_cameos_public_v1")
+      .select("gv_id,card_name,set_code,set_name,number,notes_raw,cameo_qualifiers")
+      .eq("cameo_subject_type", "pokemon")
+      .eq("pokemon_ndex", String(rows[0]?.national_dex_number ?? ""))
+      .order("set_name", { ascending: true })
+      .order("number", { ascending: true })
+      .order("gv_id", { ascending: true })
+      .range(cameoFrom, cameoTo);
 
-  if (cameoError) {
-    throw new Error(`[grookai-dex:species-detail-cameos] ${cameoError.message}`);
+    if (error) {
+      throw new Error(`[grookai-dex:species-detail-cameos] ${error.message}`);
+    }
+
+    const cameoRawPage = (data ?? []) as CameoViewRow[];
+    const cameoPage = cameoRawPage
+      .map((row) => {
+        const gvId = clean(row.gv_id);
+        if (!gvId) {
+          return null;
+        }
+        return {
+          gvId,
+          cardName: clean(row.card_name) ?? "Unknown card",
+          setCode: clean(row.set_code),
+          setName: clean(row.set_name),
+          number: clean(row.number),
+          notes: clean(row.notes_raw),
+          qualifiers: Array.isArray(row.cameo_qualifiers)
+            ? row.cameo_qualifiers.filter(
+                (value): value is string =>
+                  typeof value === "string" && value.trim().length > 0,
+              )
+            : [],
+        } satisfies GrookaiDexCameoAppearance;
+      })
+      .filter((row): row is GrookaiDexCameoAppearance => row !== null);
+    cameoAppearances.splice(
+      0,
+      cameoAppearances.length,
+      ...dedupeCameoAppearances([...cameoAppearances, ...cameoPage]),
+    );
+    if (cameoAppearances.length >= CAMEO_RESULT_LIMIT || cameoRawPage.length < CAMEO_PAGE_SIZE) {
+      break;
+    }
   }
-
-  const cameoAppearances = ((cameoRows ?? []) as CameoViewRow[])
-    .map((row) => {
-      const gvId = clean(row.gv_id);
-      if (!gvId) {
-        return null;
-      }
-      return {
-        gvId,
-        cardName: clean(row.card_name) ?? "Unknown card",
-        setCode: clean(row.set_code),
-        setName: clean(row.set_name),
-        number: clean(row.number),
-        notes: clean(row.notes_raw),
-        qualifiers: Array.isArray(row.cameo_qualifiers)
-          ? row.cameo_qualifiers.filter((value): value is string => typeof value === "string" && value.trim().length > 0)
-          : [],
-      } satisfies GrookaiDexCameoAppearance;
-    })
-    .filter((row): row is GrookaiDexCameoAppearance => row !== null);
+  cameoAppearances.splice(CAMEO_RESULT_LIMIT);
 
   return {
     speciesId: clean(rows[0]?.species_id) ?? "",

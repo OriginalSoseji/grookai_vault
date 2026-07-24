@@ -115,6 +115,13 @@ class ComparePublicCard {
   final String? printedIdentityModifier;
   final String? setIdentityModel;
 
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+
+  String? get providerFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(imageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
   String? get variantLabel {
     final key = (variantKey ?? '').trim();
     if (key.isEmpty) {

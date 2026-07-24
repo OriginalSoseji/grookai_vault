@@ -155,6 +155,21 @@ A set is complete only when all expected English physical card identities and al
 
 If any finish fact remains API-only, single-source, ambiguous, or generally described but not card-level proven, the set is incomplete.
 
+### Locked Set-Profile Completion Gate
+
+When a set has a locked finish profile, completion also requires exact agreement with its:
+
+- parent count;
+- total child-printing count;
+- count for every finish;
+- exact suppression set;
+- protected printing facts and exceptions;
+- zero-conflict requirement.
+
+Aggregate equality cannot compensate for a wrong identity or finish. Every staging, completion, and publishable build must load and assert the same locked profile.
+
+ME04 Chaos Rising is complete only at `122` parents and `202` child printings, with exactly `68` Normal, `76` Reverse Holo, and `58` Holo rows; none of the 45 governed false Normal identities; all four valid Build & Battle Normal printings `013`, `029`, `051`, and `068`; and no Normal printing for Holo-only `109 Jumbo Ice Cream`. Any deviation is `conflict_blocked` or incomplete and cannot produce a publishable export or downstream write package.
+
 ## Audit-Only Rule
 
 This contract is audit-only.

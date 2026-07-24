@@ -26,6 +26,12 @@ dotenv.config({ path: path.join(REPO_ROOT, ".env.local") });
 dotenv.config({ path: path.join(REPO_ROOT, ".env") });
 
 const force = process.argv.includes("--force");
+const requestedSetCodes = new Set(
+  process.argv
+    .filter((argument) => argument.startsWith("--code="))
+    .map((argument) => argument.slice("--code=".length).trim().toLowerCase())
+    .filter(Boolean),
+);
 
 function createServerSupabase() {
   const url = process.env.SUPABASE_URL;
@@ -381,7 +387,13 @@ async function fillRemainingExactAssets(allSetsWithCards, tcgdexClient, summary)
 async function main() {
   const supabase = createServerSupabase();
   const tcgdexClient = createTcgdexClient();
-  const { canonicalSets: sets, allSetsWithCards } = await getCanonicalSets(supabase);
+  const { canonicalSets, allSetsWithCards: everySetWithCards } = await getCanonicalSets(supabase);
+  const sets = requestedSetCodes.size > 0
+    ? canonicalSets.filter((setInfo) => requestedSetCodes.has(setInfo.code))
+    : canonicalSets;
+  const allSetsWithCards = requestedSetCodes.size > 0
+    ? everySetWithCards.filter((setInfo) => requestedSetCodes.has(setInfo.code))
+    : everySetWithCards;
 
   await fs.mkdir(OUTPUT_DIRECTORY, { recursive: true });
 

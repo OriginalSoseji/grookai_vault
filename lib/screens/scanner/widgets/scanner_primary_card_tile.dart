@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/display_image_contract.dart';
+import '../../../services/identity/catalog_artwork_resolution.dart';
+import '../../../widgets/card_surface_artwork.dart';
 
 class ScannerPrimaryCardTile extends StatelessWidget {
   const ScannerPrimaryCardTile({
@@ -12,6 +13,7 @@ class ScannerPrimaryCardTile extends StatelessWidget {
     required this.imageUrl,
     required this.locked,
     required this.accent,
+    this.gvId,
     this.onScanAgain,
   });
 
@@ -20,6 +22,7 @@ class ScannerPrimaryCardTile extends StatelessWidget {
   final String? setCode;
   final String? number;
   final String? imageUrl;
+  final String? gvId;
   final bool locked;
   final Color accent;
   final VoidCallback? onScanAgain;
@@ -55,6 +58,8 @@ class ScannerPrimaryCardTile extends StatelessWidget {
               ),
               clipBehavior: Clip.antiAlias,
               child: _CardThumbnail(
+                label: title,
+                gvId: gvId,
                 imageUrl: imageUrl,
                 fallbackIcon: locked
                     ? Icons.verified_rounded
@@ -161,33 +166,36 @@ class _LockedCardAction extends StatelessWidget {
 
 class _CardThumbnail extends StatelessWidget {
   const _CardThumbnail({
+    required this.label,
+    required this.gvId,
     required this.imageUrl,
     required this.fallbackIcon,
     required this.accent,
   });
 
+  final String label;
+  final String? gvId;
   final String? imageUrl;
   final IconData fallbackIcon;
   final Color accent;
 
   @override
   Widget build(BuildContext context) {
-    final url = normalizeDisplayImageUrl(imageUrl) ?? '';
-    if (url.isEmpty) return _fallback();
-    return Image.network(
-      url,
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-      cacheWidth: 160,
-      cacheHeight: 224,
+    final artwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: imageUrl,
+    );
+    if (artwork.primaryImageUrl == null) return _fallback();
+    return CardSurfaceArtwork(
+      label: label,
+      imageUrl: artwork.primaryImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
+      borderRadius: 7,
+      padding: EdgeInsets.zero,
+      backgroundColor: accent.withValues(alpha: 0.12),
+      enableTapToZoom: false,
+      showShadow: false,
       filterQuality: FilterQuality.medium,
-      gaplessPlayback: true,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return _fallback();
-      },
-      errorBuilder: (context, error, stackTrace) => _fallback(),
     );
   }
 

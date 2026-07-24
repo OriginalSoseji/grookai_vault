@@ -19,7 +19,7 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 - publishable_complete_sets: 189
 - not_publishable_sets: 12
 - publishable_card_facts: 19254
-- publishable_printing_facts: 34732
+- publishable_printing_facts: 34687
 
 | publishability_status | sets |
 | --- | --- |
@@ -107,7 +107,7 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | me01 | Mega Evolution | 188/188 | 351/351 |
 | me02 | Phantasmal Flames | 130/130 | 221/221 |
 | me03 | Perfect Order | 124/124 | 204/204 |
-| me04 | Chaos Rising | 122/122 | 247/247 |
+| me04 | Chaos Rising | 122/122 | 202/202 |
 | mep | MEP Black Star Promos | 60/60 | 85/85 |
 | neo1 | Neo Genesis | 111/111 | 224/224 |
 | neo2 | Neo Discovery | 75/75 | 150/150 |

@@ -290,6 +290,7 @@ export default function CompareWorkspace({
                   <CardZoomModal
                     src={card.display_image_url ?? card.image_url}
                     fallbackSrc={card.display_image_fallback_url ?? card.representative_image_url}
+                    fallbackSources={[card.external_image_fallback_url]}
                     alt={displayIdentity.display_name}
                     imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain"
                     fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"

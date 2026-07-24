@@ -114,6 +114,8 @@ Normalization is interpretive and comparison-oriented.
 
 Normalization is not canonical truth by itself.
 
+Finish normalization must fail closed. Absence of a finish token, an unqualified rarity, a generic product classification, `raw`, or `ungraded` must not normalize to physical `normal` printing truth. Only an explicit governed Normal/non-holo source signal may propose `normal`, and that proposal still requires the downstream printing-truth gate.
+
 ---
 
 ## 7. Comparison / Match Rules

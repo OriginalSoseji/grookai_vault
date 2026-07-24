@@ -625,7 +625,7 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     final best = matches.single;
     final cardRow = await Supabase.instance.client
         .from('card_prints')
-        .select('id,name,set_code,number,number_plain,image_url')
+        .select('id,gv_id,name,set_code,number,number_plain,image_url')
         .eq('id', best.cardPrintId)
         .maybeSingle();
     if (cardRow == null) {
@@ -640,6 +640,7 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     return _RealScanFastPathMatch(
       candidate: <String, dynamic>{
         'card_print_id': id,
+        'gv_id': (card['gv_id'] ?? '').toString(),
         'name': (card['name'] ?? '').toString(),
         'set_code': (card['set_code'] ?? '').toString(),
         'number': (card['number'] ?? '').toString(),

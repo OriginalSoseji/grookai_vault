@@ -44,3 +44,22 @@ export function isVaultInstanceMediaStoragePath(value?: string | null) {
     /(^|\/)vault-instances\/[^/]+\/(?:front|back)\/current$/i.test(normalized),
   );
 }
+
+export function isVaultInstanceMediaReference(value?: string | null) {
+  if (isVaultInstanceMediaStoragePath(value)) {
+    return true;
+  }
+
+  if (typeof value !== "string") {
+    return false;
+  }
+
+  try {
+    const url = new URL(value.trim());
+    return /(^|\/)vault-instances\/[^/]+\/(?:front|back)\/current$/i.test(
+      url.pathname,
+    );
+  } catch {
+    return false;
+  }
+}

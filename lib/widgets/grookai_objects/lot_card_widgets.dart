@@ -115,6 +115,7 @@ class _GridTile extends StatelessWidget {
                   ? CardArtPlaceholder(width: width, height: height)
                   : GrookaiObjectNetworkImage(
                       imageUrl: item.imageUrl!,
+                      fallbackImageUrl: item.fallbackImageUrl,
                       width: width,
                       height: height,
                       fit: BoxFit.contain,

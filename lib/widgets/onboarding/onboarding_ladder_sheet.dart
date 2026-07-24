@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../card_surface_artwork.dart';
 
 class OnboardingLadderOverlay extends StatefulWidget {
   const OnboardingLadderOverlay({
@@ -822,25 +824,23 @@ class _CardThumb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = card?.imageUrl;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        width: width,
-        height: height,
-        color: Theme.of(
-          context,
-        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
-        child: imageUrl == null
-            ? Icon(
-                Icons.style_rounded,
-                size: 20,
-                color: Theme.of(
-                  context,
-                ).colorScheme.onSurface.withValues(alpha: 0.38),
-              )
-            : Image.network(imageUrl, fit: BoxFit.cover),
-      ),
+    final artwork = resolveCatalogArtwork(
+      gvId: card?.gvId,
+      providerImageUrl: card?.imageUrl,
+    );
+    return CardSurfaceArtwork(
+      label: card?.name ?? 'Card',
+      imageUrl: artwork.primaryImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
+      width: width,
+      height: height,
+      borderRadius: 8,
+      padding: EdgeInsets.zero,
+      backgroundColor: Theme.of(
+        context,
+      ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
+      enableTapToZoom: false,
+      showShadow: false,
     );
   }
 }

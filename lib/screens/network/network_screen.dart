@@ -11,6 +11,8 @@ import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/diagnostics/app_boot_timing.dart';
 import '../../services/identity/canon_image_url_service.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
 import '../../services/provisional/provisional_service.dart';
@@ -24,6 +26,7 @@ import '../../widgets/provisional/provisional_card_section.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
+import '../sets/public_set_detail_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 
 ResolvedDisplayIdentity _networkDisplayIdentity(NetworkStreamRow row) {
@@ -170,6 +173,19 @@ class NetworkScreenState extends State<NetworkScreen> {
       return;
     }
     unawaited(_setSegment(_NetworkHomeSegment.pulse));
+  }
+
+  void openCanonicalSegment(String segment) {
+    final normalized = segment.trim().toLowerCase();
+    final target = switch (normalized) {
+      'discover' => _NetworkHomeSegment.discover,
+      'following' => _NetworkHomeSegment.following,
+      _ => _NetworkHomeSegment.pulse,
+    };
+    if (target == _NetworkHomeSegment.pulse && !kPulseSurfaceEnabled) {
+      return;
+    }
+    unawaited(_setSegment(target));
   }
 
   void _handleScroll() {
@@ -757,6 +773,8 @@ Map<String, dynamic> _networkStreamRowToCache(NetworkStreamRow row) {
     'sourceLabel': row.sourceLabel,
     'rarity': row.rarity,
     'imageUrl': row.imageUrl,
+    'fallbackImageUrl': row.fallbackImageUrl,
+    'hasCollectorUploadedImage': row.hasCollectorUploadedImage,
     'listingCount': row.listingCount,
     'rankingScore': row.rankingScore,
     'inPlayCopies': row.inPlayCopies
@@ -824,6 +842,17 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
             )
             .toList(growable: false)
       : const <NetworkStreamCopy>[];
+  final cachedImageUrl = normalizeDisplayImageUrl(json['imageUrl']);
+  final cachedFallbackImageUrl = normalizeDisplayImageUrl(
+    json['fallbackImageUrl'],
+  );
+  final hasCollectorUploadedImage =
+      boolValue('hasCollectorUploadedImage') ||
+      isCollectorUploadedCardImage(json['imageUrl']);
+  final catalogArtwork = resolveCatalogArtwork(
+    gvId: stringValue('gvId'),
+    providerImageUrl: cachedFallbackImageUrl ?? cachedImageUrl,
+  );
 
   return NetworkStreamRow(
     sourceType: sourceType,
@@ -856,7 +885,13 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
     gradeValue: json['gradeValue'] as String?,
     gradeLabel: json['gradeLabel'] as String?,
     createdAt: json['createdAt'] as String?,
-    imageUrl: normalizeDisplayImageUrl(json['imageUrl']),
+    imageUrl: hasCollectorUploadedImage
+        ? cachedImageUrl
+        : catalogArtwork.primaryImageUrl,
+    fallbackImageUrl: hasCollectorUploadedImage
+        ? cachedFallbackImageUrl
+        : catalogArtwork.fallbackImageUrl,
+    hasCollectorUploadedImage: hasCollectorUploadedImage,
     inPlayCopies: copies,
     listingCount: json['listingCount'] is int
         ? json['listingCount'] as int
@@ -1175,58 +1210,21 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   Future<void> _openPrimary(BuildContext context) async {
+    if (await _openPrimaryActionRoute(context)) {
+      return;
+    }
+    if (!context.mounted) {
+      return;
+    }
+
     if (item.gvId.isNotEmpty || item.cardPrintId.isNotEmpty) {
-      final navigator = Navigator.of(context, rootNavigator: true);
-      final resolved = await _resolveCardDetailRow();
-      final row = resolved ?? const <String, dynamic>{};
-      final setData = row['sets'];
-      final setName = setData is Map ? _pulseText(setData['name']) : '';
-      final imageUrl =
-          CanonImageUrlService.displayImageUrlFromRow(row) ??
-          _pulseHttpImageUrl(row['image_url']) ??
-          _pulseHttpImageUrl(row['image_alt_url']) ??
-          _pulseHttpImageUrl(row['representative_image_url']) ??
-          item.displayImageUrl;
-      final displayNumber = _pulseText(row['number']).isNotEmpty
-          ? _pulseText(row['number'])
-          : _pulseText(row['number_plain']);
-      await navigator.push(
-        MaterialPageRoute<void>(
-          builder: (_) => CardDetailScreen(
-            cardPrintId: _pulseText(row['id']).isNotEmpty
-                ? _pulseText(row['id'])
-                : item.cardPrintId,
-            entrySurface: 'pulse',
-            gvId: _pulseText(row['gv_id']).isNotEmpty
-                ? _pulseText(row['gv_id'])
-                : item.gvId,
-            name: _pulseText(row['name']).isNotEmpty
-                ? _pulseText(row['name'])
-                : item.displayCardName,
-            setName: setName.isNotEmpty ? setName : item.setName,
-            setCode: _pulseText(row['set_code']).isNotEmpty
-                ? _pulseText(row['set_code'])
-                : item.setCode,
-            number: displayNumber.isNotEmpty ? displayNumber : item.cardNumber,
-            rarity: _pulseText(row['rarity']).isNotEmpty
-                ? _pulseText(row['rarity'])
-                : null,
-            imageUrl: imageUrl,
-            contactOwnerDisplayName: item.displayActorName,
-            contactOwnerUserId: item.actorUserId,
-            contactIntent: item.intent,
-            contactVaultItemId: item.contactVaultItemId.isEmpty
-                ? null
-                : item.contactVaultItemId,
-          ),
-        ),
-      );
+      await _openCardDetail(context);
       return;
     }
 
     final slug = item.actorSlug.trim().toLowerCase();
     if (slug.isNotEmpty) {
-      Navigator.of(context).push(
+      await Navigator.of(context, rootNavigator: true).push(
         MaterialPageRoute<void>(
           builder: (_) => PublicCollectorScreen(slug: slug),
         ),
@@ -1234,7 +1232,123 @@ class _PulseItemRow extends StatelessWidget {
     }
   }
 
-  Future<Map<String, dynamic>?> _resolveCardDetailRow() async {
+  Future<bool> _openPrimaryActionRoute(BuildContext context) async {
+    final rawRoute = item.primaryActionRoute.trim();
+    final uri = rawRoute.isEmpty ? null : Uri.tryParse(rawRoute);
+    final route = GrookaiWebRouteService.parseCanonicalUri(uri);
+    if (route == null) {
+      return false;
+    }
+
+    final navigator = Navigator.of(context, rootNavigator: true);
+    switch (route.kind) {
+      case GrookaiCanonicalRouteKind.card:
+        return _openCardDetail(context, preferredGvId: route.value);
+      case GrookaiCanonicalRouteKind.collector:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => PublicCollectorScreen(slug: route.value),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.collectorSection:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => PublicCollectorScreen(
+              slug: route.value,
+              initialSectionId: route.sectionId,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.set:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => PublicSetDetailScreen(setCode: route.value),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.gvvi:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => PublicGvviScreen(gvviId: route.value),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.feed:
+        // Pulse is already rendered inside the Network destination.
+        return true;
+    }
+  }
+
+  Future<bool> _openCardDetail(
+    BuildContext context, {
+    String preferredGvId = '',
+  }) async {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    final resolved = await _resolveCardDetailRow(preferredGvId: preferredGvId);
+    final row = resolved ?? const <String, dynamic>{};
+    final cardPrintId = _pulseText(row['id']).isNotEmpty
+        ? _pulseText(row['id'])
+        : item.cardPrintId;
+    if (cardPrintId.isEmpty) {
+      return false;
+    }
+    final setData = row['sets'];
+    final setName = setData is Map ? _pulseText(setData['name']) : '';
+    final resolvedGvId = _pulseText(row['gv_id']).isNotEmpty
+        ? _pulseText(row['gv_id'])
+        : preferredGvId.trim().isNotEmpty
+        ? preferredGvId.trim()
+        : item.gvId;
+    final providerImageUrl =
+        resolveDisplayImageUrl(
+          imageUrl: row['image_url'],
+          imageAltUrl: row['image_alt_url'],
+          representativeImageUrl: row['representative_image_url'],
+        ) ??
+        item.fallbackImageUrl;
+    final artwork = resolveCatalogArtwork(
+      gvId: resolvedGvId,
+      providerImageUrl: providerImageUrl,
+    );
+    final displayNumber = _pulseText(row['number']).isNotEmpty
+        ? _pulseText(row['number'])
+        : _pulseText(row['number_plain']);
+    await navigator.push(
+      MaterialPageRoute<void>(
+        builder: (_) => CardDetailScreen(
+          cardPrintId: cardPrintId,
+          entrySurface: 'pulse',
+          gvId: resolvedGvId,
+          name: _pulseText(row['name']).isNotEmpty
+              ? _pulseText(row['name'])
+              : item.displayCardName,
+          setName: setName.isNotEmpty ? setName : item.setName,
+          setCode: _pulseText(row['set_code']).isNotEmpty
+              ? _pulseText(row['set_code'])
+              : item.setCode,
+          number: displayNumber.isNotEmpty ? displayNumber : item.cardNumber,
+          rarity: _pulseText(row['rarity']).isNotEmpty
+              ? _pulseText(row['rarity'])
+              : null,
+          imageUrl: artwork.primaryImageUrl,
+          fallbackImageUrl: artwork.fallbackImageUrl,
+          contactOwnerDisplayName: item.displayActorName,
+          contactOwnerUserId: item.actorUserId,
+          contactIntent: item.intent,
+          contactVaultItemId: item.contactVaultItemId.isEmpty
+              ? null
+              : item.contactVaultItemId,
+        ),
+      ),
+    );
+    return true;
+  }
+
+  Future<Map<String, dynamic>?> _resolveCardDetailRow({
+    String preferredGvId = '',
+  }) async {
     try {
       final client = Supabase.instance.client;
       final query = client
@@ -1242,7 +1356,10 @@ class _PulseItemRow extends StatelessWidget {
           .select(
             'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)',
           );
-      final raw = item.cardPrintId.isNotEmpty
+      final normalizedPreferredGvId = preferredGvId.trim();
+      final raw = normalizedPreferredGvId.isNotEmpty
+          ? await query.eq('gv_id', normalizedPreferredGvId).maybeSingle()
+          : item.cardPrintId.isNotEmpty
           ? await query.eq('id', item.cardPrintId).maybeSingle()
           : await query.eq('gv_id', item.gvId).maybeSingle();
       if (raw == null) {
@@ -1258,14 +1375,6 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   String _pulseText(dynamic value) => value?.toString().trim() ?? '';
-
-  String? _pulseHttpImageUrl(dynamic value) {
-    final normalized = _pulseText(value);
-    if (normalized.isEmpty || !normalized.startsWith('http')) {
-      return null;
-    }
-    return normalized;
-  }
 }
 
 class _PulseTone {
@@ -1348,38 +1457,33 @@ class _PulseArtworkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 76,
-      height: 81,
-      child: Center(
-        child: SizedBox(
-          width: 76,
-          height: 106,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.shadow.withValues(alpha: 0.14),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+      width: 58,
+      height: 84,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(
+                context,
+              ).colorScheme.shadow.withValues(alpha: 0.14),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: CardSurfaceArtwork(
-                label: item.displayCardName,
-                imageUrl: item.displayImageUrl,
-                borderRadius: 8,
-                padding: EdgeInsets.zero,
-                frame: CardArtworkFrame.none,
-                enableTapToZoom: false,
-                showShadow: false,
-                filterQuality: FilterQuality.low,
-              ),
-            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CardSurfaceArtwork(
+            label: item.displayCardName,
+            imageUrl: item.displayImageUrl,
+            fallbackImageUrl: item.fallbackImageUrl,
+            borderRadius: 8,
+            padding: EdgeInsets.zero,
+            frame: CardArtworkFrame.none,
+            enableTapToZoom: false,
+            showShadow: false,
+            filterQuality: FilterQuality.low,
           ),
         ),
       ),
@@ -1878,6 +1982,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
       title: displayName,
       imageLabel: displayName,
       imageUrl: row.imageUrl,
+      fallbackImageUrl: row.fallbackImageUrl,
       metadata: metadata,
       layout: layout,
       onPressed: () =>
@@ -2612,6 +2717,7 @@ void _openCardDetail(
         setCode: row.setCode,
         number: row.number,
         imageUrl: row.imageUrl,
+        fallbackImageUrl: row.fallbackImageUrl,
         contactVaultItemId: directContact?.vaultItemId,
         contactOwnerDisplayName: row.ownerDisplayName,
         contactOwnerUserId: row.ownerUserId,

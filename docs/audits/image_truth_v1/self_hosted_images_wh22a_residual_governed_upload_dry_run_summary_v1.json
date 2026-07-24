@@ -1,0 +1,133 @@
+{
+  "manifest_schema": "grookai.self_hosted_images.wh22.residual_governed.v1",
+  "package_id": "IMG-HOST-WH-22A-RESIDUAL-GOVERNED-UPLOAD-DRY-RUN",
+  "generated_at": "2026-07-22T22:20:10.801Z",
+  "mode": "dry_run_no_write",
+  "source_tls_verification": "enabled_with_node_bundled_plus_windows_system_ca_roots",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "code_bundle_hash": "3a75a1ef88bf1c87d148758328ef7b7055a7bb8cb8d4e3ebac658768a411e668",
+  "code_bundle_files": [
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22_common.mjs",
+      "sha256": "8f8a0d126e8fb959fd88476c357d4703e736c480ca1656f539a505c77ea1a959"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22a_residual_governed_upload_dry_run.mjs",
+      "sha256": "8687117cf464182f8b2d169fa6ef3a1ff3d9752a38646f6c4c7db6852e87b73f"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22b_residual_governed_storage_upload_apply.mjs",
+      "sha256": "8f6f1b9b9c2dd122c109382b5b3744633eafcbcd59c19a50f4dd8c0f61a5c469"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22c_residual_governed_db_pointer_dry_run.mjs",
+      "sha256": "cb737d6de0f045f974e1b9ec8d85617dab101711a320fe0abf3fc4d8c460b2f8"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22d_residual_governed_db_pointer_apply.mjs",
+      "sha256": "32009425469b75bb150e250a4197ca755b3a234e15f528a408bd0e939ce83c95"
+    }
+  ],
+  "fingerprint": "ba3fc47ec7c3e18fadcd84b51d921fce270d32c12fda4913b92e7fc67fa4753f",
+  "asset_manifest_hash": "c29f061a3c75a692df74133d79510310e74f4f260b84852b04171c6271c9a701",
+  "row_manifest_hash": "80a52168fcdf3079251357e82e8291774caba834cefe675b557a36c943bcfcb9",
+  "asset_manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh22a_residual_governed_asset_manifest_v1.jsonl",
+  "row_manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh22a_residual_governed_row_manifest_v1.jsonl",
+  "parent_row_mappings": 24,
+  "effective_pointer_updates_now": 24,
+  "unique_verified_assets": 21,
+  "new_uploads_required_now": 19,
+  "existing_first_party_assets_reused": 2,
+  "representative_shared_rows": 3,
+  "rows_with_functional_current_fallback": 0,
+  "rows_with_guarded_fallback_repair_planned": 24,
+  "image_status_promotions_planned": 19,
+  "fallback_column_write_in_wh22": true,
+  "wh22_planned_db_columns": [
+    "card_prints.image_source",
+    "card_prints.image_path",
+    "card_prints.image_status",
+    "card_prints.image_url",
+    "card_prints.representative_image_url"
+  ],
+  "wh22_preserved_columns": [
+    "card_prints.image_note",
+    "card_prints.image_alt_url"
+  ],
+  "by_source_provider": {
+    "pkmncards": 17,
+    "pokemontcg": 2,
+    "tcgplayer": 2
+  },
+  "by_storage_state": {
+    "missing_upload_target": 19,
+    "verified_existing_object": 2
+  },
+  "by_image_claim_role": {
+    "exact_parent": 21,
+    "representative_shared_stamp": 3
+  },
+  "inventory": {
+    "total_gvid_rows": 53374,
+    "pocket_rows": 2012,
+    "fixture_rows": 3,
+    "governed_physical_rows": 51359,
+    "all_gvid_canon_hosted_before": 53320,
+    "pocket_canon_hosted_before": 1985,
+    "fixture_canon_hosted_before": 0,
+    "governed_physical_canon_hosted_before": 51335,
+    "target_unhosted_rows_before": 24,
+    "governed_physical_canon_hosted_after_projection": 51359,
+    "all_gvid_canon_hosted_after_projection": 53344,
+    "all_gvid_unhosted_after_projection": 30,
+    "governed_scope_formula": "total_gvid_rows - pocket_rows - fixture_rows",
+    "projected_broad_count_note": "Includes already-hosted Pocket rows; it is not the governed English physical denominator."
+  },
+  "stop_findings": [],
+  "ready_for_storage_apply": true,
+  "storage_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "deletes_or_merges_performed": false,
+  "source_failures": [],
+  "row_failures": [],
+  "semantic_validation_errors": []
+}

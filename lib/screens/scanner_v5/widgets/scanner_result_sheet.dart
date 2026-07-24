@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/identity/catalog_artwork_resolution.dart';
 import '../../../services/scanner_v5/scanner_v5_identity_service.dart';
+import '../../../widgets/card_surface_artwork.dart';
 import 'scanner_candidate_row.dart';
 import 'scanner_v5_palette.dart';
 
@@ -114,7 +116,10 @@ class _ExactMatchSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = candidate.imageUrl;
+    final artwork = resolveCatalogArtwork(
+      gvId: candidate.gvId,
+      providerImageUrl: candidate.imageUrl,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -142,15 +147,17 @@ class _ExactMatchSheet extends StatelessWidget {
         const SizedBox(height: 18),
         Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: SizedBox(
-                width: 92,
-                height: 129,
-                child: imageUrl == null
-                    ? const ColoredBox(color: ScannerV5Palette.row)
-                    : Image.network(imageUrl, fit: BoxFit.cover),
-              ),
+            CardSurfaceArtwork(
+              label: candidate.name,
+              imageUrl: artwork.primaryImageUrl,
+              fallbackImageUrl: artwork.fallbackImageUrl,
+              width: 92,
+              height: 129,
+              borderRadius: 12,
+              padding: EdgeInsets.zero,
+              backgroundColor: ScannerV5Palette.row,
+              enableTapToZoom: false,
+              showShadow: false,
             ),
             const SizedBox(width: 16),
             Expanded(

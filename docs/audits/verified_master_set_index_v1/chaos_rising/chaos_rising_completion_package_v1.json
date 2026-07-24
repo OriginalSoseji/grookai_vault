@@ -1,6 +1,6 @@
 {
   "version": "CHAOS_RISING_COMPLETION_PACKAGE_V1",
-  "generated_at": "2026-06-09T21:18:22.238Z",
+  "generated_at": "2026-07-22T23:48:24.220Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -20,37 +20,36 @@
     "set_key": "me04",
     "set_name": "Chaos Rising",
     "master_index_cards": 122,
-    "master_index_printings": 247,
+    "master_index_printings": 202,
     "master_index_printings_by_finish": {
-      "normal": 113,
+      "normal": 68,
       "reverse": 76,
       "holo": 58
     },
     "master_index_printing_sources": {
-      "tcgdex": 113,
+      "tcgdex": 68,
       "thepricedex_price_list": 198,
       "reverseholo_set_checklist": 122,
       "tcgcollector_card_variants": 134,
-      "cardtrader_blueprint_index": 45,
       "bulbapedia_build_battle_product": 4,
       "bulbapedia_set_list": 4
     },
     "grookai_audit_status": {
-      "missing_from_grookai": 247
+      "master_verified_by_index": 247
     },
     "live_set_rows": 1,
     "live_card_print_rows": 122,
-    "live_card_printing_rows": 247,
+    "live_card_printing_rows": 202,
     "tcgdex_raw_import_rows": 123,
     "required_finish_keys_present": true,
     "write_ready_now": 0
   },
   "live_master_index_comparison": {
-    "verified_by_index": 247,
+    "verified_by_index": 202,
     "missing_from_grookai": 0,
     "unsupported_by_current_index": 0,
-    "expected_printings": 247,
-    "live_printings": 247,
+    "expected_printings": 202,
+    "live_printings": 202,
     "missing_rows": [],
     "unsupported_rows": []
   },
@@ -66,7 +65,7 @@
       "TCGdex normalize dry-run scoped to imported raw rows",
       "Strict preflight and operator approval",
       "Standard ingestion apply through maintenance boundary",
-      "Post-apply Master Index comparison for me04 must reach 247/247 verified_by_index"
+      "Post-apply Master Index comparison for me04 must reach 202/202 verified_by_index"
     ],
     "no_bespoke_writer_recommended": true
   },
@@ -868,9 +867,9 @@
         "number": "001",
         "number_plain": "001",
         "name": "Weedle",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-001",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -880,9 +879,9 @@
         "number": "002",
         "number_plain": "002",
         "name": "Kakuna",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-002",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -892,9 +891,9 @@
         "number": "003",
         "number_plain": "003",
         "name": "Beedrill ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-003",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -904,9 +903,9 @@
         "number": "004",
         "number_plain": "004",
         "name": "Carnivine",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-004",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -916,9 +915,9 @@
         "number": "005",
         "number_plain": "005",
         "name": "Chespin",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-005",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -928,9 +927,9 @@
         "number": "006",
         "number_plain": "006",
         "name": "Quilladin",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-006",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -940,9 +939,9 @@
         "number": "007",
         "number_plain": "007",
         "name": "Chesnaught",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-007",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -952,9 +951,9 @@
         "number": "008",
         "number_plain": "008",
         "name": "Vulpix",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-008",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -964,9 +963,9 @@
         "number": "009",
         "number_plain": "009",
         "name": "Ninetales",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-009",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -976,9 +975,9 @@
         "number": "010",
         "number_plain": "010",
         "name": "Ho-Oh",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-010",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -988,9 +987,9 @@
         "number": "011",
         "number_plain": "011",
         "name": "Fennekin",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-011",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1000,9 +999,9 @@
         "number": "012",
         "number_plain": "012",
         "name": "Braixen",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-012",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1012,9 +1011,9 @@
         "number": "013",
         "number_plain": "013",
         "name": "Delphox",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-013",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1024,9 +1023,9 @@
         "number": "014",
         "number_plain": "014",
         "name": "Litleo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-014",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1036,9 +1035,9 @@
         "number": "015",
         "number_plain": "015",
         "name": "Mega Pyroar ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-015",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1048,9 +1047,9 @@
         "number": "016",
         "number_plain": "016",
         "name": "Remoraid",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-016",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1060,9 +1059,9 @@
         "number": "017",
         "number_plain": "017",
         "name": "Octillery",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-017",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1072,9 +1071,9 @@
         "number": "018",
         "number_plain": "018",
         "name": "Delibird",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-018",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1084,9 +1083,9 @@
         "number": "019",
         "number_plain": "019",
         "name": "Keldeo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-019",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1096,9 +1095,9 @@
         "number": "020",
         "number_plain": "020",
         "name": "Froakie",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-020",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1108,9 +1107,9 @@
         "number": "021",
         "number_plain": "021",
         "name": "Frogadier",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-021",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1120,9 +1119,9 @@
         "number": "022",
         "number_plain": "022",
         "name": "Mega Greninja ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-022",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1132,9 +1131,9 @@
         "number": "023",
         "number_plain": "023",
         "name": "Bergmite",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-023",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1144,9 +1143,9 @@
         "number": "024",
         "number_plain": "024",
         "name": "Avalugg",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-024",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1156,9 +1155,9 @@
         "number": "025",
         "number_plain": "025",
         "name": "Wimpod",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-025",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1168,9 +1167,9 @@
         "number": "026",
         "number_plain": "026",
         "name": "Golisopod",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-026",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1180,9 +1179,9 @@
         "number": "027",
         "number_plain": "027",
         "name": "Mareep",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-027",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1192,9 +1191,9 @@
         "number": "028",
         "number_plain": "028",
         "name": "Flaaffy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-028",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1204,9 +1203,9 @@
         "number": "029",
         "number_plain": "029",
         "name": "Ampharos",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-029",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1216,9 +1215,9 @@
         "number": "030",
         "number_plain": "030",
         "name": "Emolga",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-030",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1228,9 +1227,9 @@
         "number": "031",
         "number_plain": "031",
         "name": "Deoxys",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-031",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1240,9 +1239,9 @@
         "number": "032",
         "number_plain": "032",
         "name": "Deoxys",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-032",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1252,9 +1251,9 @@
         "number": "033",
         "number_plain": "033",
         "name": "Deoxys",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-033",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1264,9 +1263,9 @@
         "number": "034",
         "number_plain": "034",
         "name": "Deoxys",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-034",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1276,9 +1275,9 @@
         "number": "035",
         "number_plain": "035",
         "name": "Mega Floette ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-035",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1288,9 +1287,9 @@
         "number": "036",
         "number_plain": "036",
         "name": "Espurr",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-036",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1300,9 +1299,9 @@
         "number": "037",
         "number_plain": "037",
         "name": "Meowstic",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-037",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1312,9 +1311,9 @@
         "number": "038",
         "number_plain": "038",
         "name": "Phantump",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-038",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1324,9 +1323,9 @@
         "number": "039",
         "number_plain": "039",
         "name": "Trevenant",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-039",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1336,9 +1335,9 @@
         "number": "040",
         "number_plain": "040",
         "name": "Pumpkaboo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-040",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1348,9 +1347,9 @@
         "number": "041",
         "number_plain": "041",
         "name": "Gourgeist ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-041",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1360,9 +1359,9 @@
         "number": "042",
         "number_plain": "042",
         "name": "Xerneas",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-042",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1372,9 +1371,9 @@
         "number": "043",
         "number_plain": "043",
         "name": "Sudowoodo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-043",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1384,9 +1383,9 @@
         "number": "044",
         "number_plain": "044",
         "name": "Phanpy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-044",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1396,9 +1395,9 @@
         "number": "045",
         "number_plain": "045",
         "name": "Donphan",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-045",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1408,9 +1407,9 @@
         "number": "046",
         "number_plain": "046",
         "name": "Baltoy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-046",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1420,9 +1419,9 @@
         "number": "047",
         "number_plain": "047",
         "name": "Claydol",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-047",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1432,9 +1431,9 @@
         "number": "048",
         "number_plain": "048",
         "name": "Mega Gallade ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-048",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1444,9 +1443,9 @@
         "number": "049",
         "number_plain": "049",
         "name": "Zubat",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-049",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1456,9 +1455,9 @@
         "number": "050",
         "number_plain": "050",
         "name": "Golbat",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-050",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1468,9 +1467,9 @@
         "number": "051",
         "number_plain": "051",
         "name": "Crobat",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-051",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1480,9 +1479,9 @@
         "number": "052",
         "number_plain": "052",
         "name": "Qwilfish",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-052",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1492,9 +1491,9 @@
         "number": "053",
         "number_plain": "053",
         "name": "Stunky",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-053",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1504,9 +1503,9 @@
         "number": "054",
         "number_plain": "054",
         "name": "Skuntank",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-054",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1516,9 +1515,9 @@
         "number": "055",
         "number_plain": "055",
         "name": "Krookodile ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-055",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1528,9 +1527,9 @@
         "number": "056",
         "number_plain": "056",
         "name": "Trubbish",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-056",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1540,9 +1539,9 @@
         "number": "057",
         "number_plain": "057",
         "name": "Garbodor",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-057",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1552,9 +1551,9 @@
         "number": "058",
         "number_plain": "058",
         "name": "Skrelp",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-058",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1564,9 +1563,9 @@
         "number": "059",
         "number_plain": "059",
         "name": "Beldum",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-059",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1576,9 +1575,9 @@
         "number": "060",
         "number_plain": "060",
         "name": "Metang",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-060",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1588,9 +1587,9 @@
         "number": "061",
         "number_plain": "061",
         "name": "Metagross",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-061",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1600,9 +1599,9 @@
         "number": "062",
         "number_plain": "062",
         "name": "Ferroseed",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-062",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1612,9 +1611,9 @@
         "number": "063",
         "number_plain": "063",
         "name": "Ferrothorn",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-063",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1624,9 +1623,9 @@
         "number": "064",
         "number_plain": "064",
         "name": "Cobalion ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-064",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1636,9 +1635,9 @@
         "number": "065",
         "number_plain": "065",
         "name": "Mega Dragalge ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-065",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1648,9 +1647,9 @@
         "number": "066",
         "number_plain": "066",
         "name": "Goomy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-066",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1660,9 +1659,9 @@
         "number": "067",
         "number_plain": "067",
         "name": "Sliggoo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-067",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1672,9 +1671,9 @@
         "number": "068",
         "number_plain": "068",
         "name": "Goodra",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-068",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1684,9 +1683,9 @@
         "number": "069",
         "number_plain": "069",
         "name": "Tauros",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-069",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1696,9 +1695,9 @@
         "number": "070",
         "number_plain": "070",
         "name": "Patrat",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-070",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1708,9 +1707,9 @@
         "number": "071",
         "number_plain": "071",
         "name": "Watchog",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-071",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1720,9 +1719,9 @@
         "number": "072",
         "number_plain": "072",
         "name": "Minccino",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-072",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1732,9 +1731,9 @@
         "number": "073",
         "number_plain": "073",
         "name": "Cinccino ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-073",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1744,9 +1743,9 @@
         "number": "074",
         "number_plain": "074",
         "name": "Adversity Policy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-074",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1756,9 +1755,9 @@
         "number": "075",
         "number_plain": "075",
         "name": "Ange Floette",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-075",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1768,9 +1767,9 @@
         "number": "076",
         "number_plain": "076",
         "name": "AZ's Tranquility",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-076",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1780,9 +1779,9 @@
         "number": "077",
         "number_plain": "077",
         "name": "Emma",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-077",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1792,9 +1791,9 @@
         "number": "078",
         "number_plain": "078",
         "name": "Great Haul Net",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-078",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1804,9 +1803,9 @@
         "number": "079",
         "number_plain": "079",
         "name": "Philippe",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-079",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1816,9 +1815,9 @@
         "number": "080",
         "number_plain": "080",
         "name": "Prism Tower",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-080",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1828,9 +1827,9 @@
         "number": "081",
         "number_plain": "081",
         "name": "Roxie's Performance",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-081",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1840,9 +1839,9 @@
         "number": "082",
         "number_plain": "082",
         "name": "Special Red Card",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-082",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1852,9 +1851,9 @@
         "number": "083",
         "number_plain": "083",
         "name": "Transformation Tome",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-083",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1864,9 +1863,9 @@
         "number": "084",
         "number_plain": "084",
         "name": "Bubbly Water Energy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-084",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1876,9 +1875,9 @@
         "number": "085",
         "number_plain": "085",
         "name": "Magnetic Metal Energy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-085",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1888,9 +1887,9 @@
         "number": "086",
         "number_plain": "086",
         "name": "Nitro Fire Energy",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-086",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1900,9 +1899,9 @@
         "number": "087",
         "number_plain": "087",
         "name": "Chespin",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-087",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1912,9 +1911,9 @@
         "number": "088",
         "number_plain": "088",
         "name": "Froakie",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-088",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1924,9 +1923,9 @@
         "number": "089",
         "number_plain": "089",
         "name": "Frogadier",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-089",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1936,9 +1935,9 @@
         "number": "090",
         "number_plain": "090",
         "name": "Ampharos",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-090",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1948,9 +1947,9 @@
         "number": "091",
         "number_plain": "091",
         "name": "Xerneas",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-091",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1960,9 +1959,9 @@
         "number": "092",
         "number_plain": "092",
         "name": "Claydol",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-092",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1972,9 +1971,9 @@
         "number": "093",
         "number_plain": "093",
         "name": "Crobat",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-093",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1984,9 +1983,9 @@
         "number": "094",
         "number_plain": "094",
         "name": "Metang",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-094",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -1996,9 +1995,9 @@
         "number": "095",
         "number_plain": "095",
         "name": "Sliggoo",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-095",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2008,9 +2007,9 @@
         "number": "096",
         "number_plain": "096",
         "name": "Tauros",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-096",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2020,9 +2019,9 @@
         "number": "097",
         "number_plain": "097",
         "name": "Watchog",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-097",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2032,9 +2031,9 @@
         "number": "098",
         "number_plain": "098",
         "name": "Beedrill ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-098",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2044,9 +2043,9 @@
         "number": "099",
         "number_plain": "099",
         "name": "Mega Pyroar ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-099",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2056,9 +2055,9 @@
         "number": "100",
         "number_plain": "100",
         "name": "Mega Greninja ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-100",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2068,9 +2067,9 @@
         "number": "101",
         "number_plain": "101",
         "name": "Mega Floette ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-101",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2080,9 +2079,9 @@
         "number": "102",
         "number_plain": "102",
         "name": "Gourgeist ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-102",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2092,9 +2091,9 @@
         "number": "103",
         "number_plain": "103",
         "name": "Cobalion ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-103",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2104,9 +2103,9 @@
         "number": "104",
         "number_plain": "104",
         "name": "Mega Dragalge ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-104",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2116,9 +2115,9 @@
         "number": "105",
         "number_plain": "105",
         "name": "Cinccino ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-105",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2128,9 +2127,9 @@
         "number": "106",
         "number_plain": "106",
         "name": "AZ's Tranquility",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-106",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2140,9 +2139,9 @@
         "number": "107",
         "number_plain": "107",
         "name": "Emma",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-107",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2152,9 +2151,9 @@
         "number": "108",
         "number_plain": "108",
         "name": "Energy Retrieval",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-108",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2164,9 +2163,9 @@
         "number": "109",
         "number_plain": "109",
         "name": "Jumbo Ice Cream",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-109",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2176,9 +2175,9 @@
         "number": "110",
         "number_plain": "110",
         "name": "Philippe",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-110",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2188,9 +2187,9 @@
         "number": "111",
         "number_plain": "111",
         "name": "Prism Tower",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-111",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2200,9 +2199,9 @@
         "number": "112",
         "number_plain": "112",
         "name": "Roxie's Performance",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-112",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2212,9 +2211,9 @@
         "number": "113",
         "number_plain": "113",
         "name": "Special Red Card",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-113",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2224,9 +2223,9 @@
         "number": "114",
         "number_plain": "114",
         "name": "Surfing Beach",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-114",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2236,9 +2235,9 @@
         "number": "115",
         "number_plain": "115",
         "name": "Tool Scrapper",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-115",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2248,9 +2247,9 @@
         "number": "116",
         "number_plain": "116",
         "name": "Mega Greninja ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-116",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2260,9 +2259,9 @@
         "number": "117",
         "number_plain": "117",
         "name": "Mega Floette ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-117",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2272,9 +2271,9 @@
         "number": "118",
         "number_plain": "118",
         "name": "Mega Dragalge ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-118",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2284,9 +2283,9 @@
         "number": "119",
         "number_plain": "119",
         "name": "Cinccino ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-119",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2296,9 +2295,9 @@
         "number": "120",
         "number_plain": "120",
         "name": "AZ's Tranquility",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-120",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2308,9 +2307,9 @@
         "number": "121",
         "number_plain": "121",
         "name": "Roxie's Performance",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-121",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       },
       {
@@ -2320,9 +2319,9 @@
         "number": "122",
         "number_plain": "122",
         "name": "Mega Greninja ex",
-        "gv_id": null,
+        "gv_id": "GV-PK-CRI-122",
         "print_identity_key": null,
-        "identity_domain": null,
+        "identity_domain": "pokemon_eng_standard",
         "set_identity_model": "standard"
       }
     ],
@@ -2335,7 +2334,7 @@
         "number_plain": "001",
         "name": "Weedle",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-001-STD"
       },
       {
         "id": "f239d42b-51b1-44eb-863f-565e79024eff",
@@ -2345,7 +2344,7 @@
         "number_plain": "001",
         "name": "Weedle",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-001-RH"
       },
       {
         "id": "a3fa07e9-86ba-4bed-a49d-14b0f1f6bdcd",
@@ -2355,7 +2354,7 @@
         "number_plain": "002",
         "name": "Kakuna",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-002-STD"
       },
       {
         "id": "8a73a6e1-e5bb-4445-9ffa-1d36fa560356",
@@ -2365,7 +2364,7 @@
         "number_plain": "002",
         "name": "Kakuna",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-002-RH"
       },
       {
         "id": "932c0b8a-b84d-4ab1-905b-02170d5fef95",
@@ -2375,17 +2374,7 @@
         "number_plain": "003",
         "name": "Beedrill ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "65d154b6-1459-41a4-bbd3-5a29fcdba491",
-        "card_print_id": "69b72912-bd78-49d8-9993-aa9b22f8d8cf",
-        "set_code": "me04",
-        "number": "003",
-        "number_plain": "003",
-        "name": "Beedrill ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-003-HOLO"
       },
       {
         "id": "11437475-521f-4592-a672-339bb513b76b",
@@ -2395,7 +2384,7 @@
         "number_plain": "004",
         "name": "Carnivine",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-004-STD"
       },
       {
         "id": "f1eda12a-63cc-4959-a2c4-463b4306d9b2",
@@ -2405,7 +2394,7 @@
         "number_plain": "004",
         "name": "Carnivine",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-004-RH"
       },
       {
         "id": "4577dc8a-4b3e-4cb1-b38c-38d1c597c825",
@@ -2415,7 +2404,7 @@
         "number_plain": "005",
         "name": "Chespin",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-005-STD"
       },
       {
         "id": "4c1f4a91-f499-4845-8bd5-223fa9f57d4c",
@@ -2425,7 +2414,7 @@
         "number_plain": "005",
         "name": "Chespin",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-005-RH"
       },
       {
         "id": "5142ef75-a7b8-4dd6-b6b5-1f4bf325df70",
@@ -2435,7 +2424,7 @@
         "number_plain": "006",
         "name": "Quilladin",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-006-STD"
       },
       {
         "id": "ea62c12f-8727-4961-84c9-e4aeada300e2",
@@ -2445,7 +2434,7 @@
         "number_plain": "006",
         "name": "Quilladin",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-006-RH"
       },
       {
         "id": "b42630a1-cfe9-468d-b3a5-2fe3d657fe0e",
@@ -2455,7 +2444,7 @@
         "number_plain": "007",
         "name": "Chesnaught",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-007-HOLO"
       },
       {
         "id": "cc30ed5d-4175-4932-b632-b7e09b6bad56",
@@ -2465,7 +2454,7 @@
         "number_plain": "007",
         "name": "Chesnaught",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-007-RH"
       },
       {
         "id": "a6f83815-ab96-49ef-8876-c1dfd23cdf20",
@@ -2475,7 +2464,7 @@
         "number_plain": "008",
         "name": "Vulpix",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-008-STD"
       },
       {
         "id": "36c7fcdb-0dd1-4dbe-8ead-30196354c0c7",
@@ -2485,7 +2474,7 @@
         "number_plain": "008",
         "name": "Vulpix",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-008-RH"
       },
       {
         "id": "8a18a54e-5475-4a52-90ff-032b9f0fbb48",
@@ -2495,7 +2484,7 @@
         "number_plain": "009",
         "name": "Ninetales",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-009-STD"
       },
       {
         "id": "6ec4a0cf-63d4-4026-ab1e-5dc61cc714f0",
@@ -2505,7 +2494,7 @@
         "number_plain": "009",
         "name": "Ninetales",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-009-RH"
       },
       {
         "id": "68799e65-71e7-4d23-a964-ead02b9d6a9c",
@@ -2515,7 +2504,7 @@
         "number_plain": "010",
         "name": "Ho-Oh",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-010-HOLO"
       },
       {
         "id": "f3dc94d3-6b76-4014-bb4d-7295504d0126",
@@ -2525,7 +2514,7 @@
         "number_plain": "010",
         "name": "Ho-Oh",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-010-RH"
       },
       {
         "id": "b1e04ed4-f27e-4bc9-9587-70d062205cc6",
@@ -2535,7 +2524,7 @@
         "number_plain": "011",
         "name": "Fennekin",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-011-STD"
       },
       {
         "id": "6caba719-84aa-4210-b388-04f98a1234f1",
@@ -2545,7 +2534,7 @@
         "number_plain": "011",
         "name": "Fennekin",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-011-RH"
       },
       {
         "id": "f1b2ece3-8836-4984-ad0c-3c15ca52b135",
@@ -2555,7 +2544,7 @@
         "number_plain": "012",
         "name": "Braixen",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-012-STD"
       },
       {
         "id": "3ccca53d-0876-48a4-a77e-344e4a31a522",
@@ -2565,7 +2554,7 @@
         "number_plain": "012",
         "name": "Braixen",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-012-RH"
       },
       {
         "id": "6646844d-5efd-4ad1-b9a3-ea691bed5b0a",
@@ -2575,7 +2564,7 @@
         "number_plain": "013",
         "name": "Delphox",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-013-HOLO"
       },
       {
         "id": "167eafc0-5154-4cf4-a132-acb0e4b03055",
@@ -2585,7 +2574,7 @@
         "number_plain": "013",
         "name": "Delphox",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-013-STD"
       },
       {
         "id": "f32de015-1cbd-44de-9613-1bb42be55c4f",
@@ -2595,7 +2584,7 @@
         "number_plain": "013",
         "name": "Delphox",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-013-RH"
       },
       {
         "id": "0204ee8d-1d62-4044-acf5-3da12078ca54",
@@ -2605,7 +2594,7 @@
         "number_plain": "014",
         "name": "Litleo",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-014-STD"
       },
       {
         "id": "ab88083e-0875-46e2-bd4b-3f886d2da78f",
@@ -2615,7 +2604,7 @@
         "number_plain": "014",
         "name": "Litleo",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-014-RH"
       },
       {
         "id": "9b9a747f-16f5-4ce5-a86c-f0985b3d2741",
@@ -2625,17 +2614,7 @@
         "number_plain": "015",
         "name": "Mega Pyroar ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "6e15d69d-8742-410a-bd78-bbdbda4a2f5c",
-        "card_print_id": "418f5189-cc68-4bf6-9ae1-119139e04802",
-        "set_code": "me04",
-        "number": "015",
-        "number_plain": "015",
-        "name": "Mega Pyroar ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-015-HOLO"
       },
       {
         "id": "1c279394-fd34-4820-b5cb-41e14b94e0ef",
@@ -2645,7 +2624,7 @@
         "number_plain": "016",
         "name": "Remoraid",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-016-STD"
       },
       {
         "id": "e0808b12-6364-4bca-a211-b47623a6ba7a",
@@ -2655,7 +2634,7 @@
         "number_plain": "016",
         "name": "Remoraid",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-016-RH"
       },
       {
         "id": "02a94581-ed07-4560-b343-208bd21f94fc",
@@ -2665,7 +2644,7 @@
         "number_plain": "017",
         "name": "Octillery",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-017-STD"
       },
       {
         "id": "e79c8d00-831d-4211-8a54-c018ea1c6a32",
@@ -2675,7 +2654,7 @@
         "number_plain": "017",
         "name": "Octillery",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-017-RH"
       },
       {
         "id": "0885d82c-3e98-4b20-91d1-3d295895c800",
@@ -2685,7 +2664,7 @@
         "number_plain": "018",
         "name": "Delibird",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-018-STD"
       },
       {
         "id": "db3a26fc-2a83-44b9-b574-169daa91985c",
@@ -2695,7 +2674,7 @@
         "number_plain": "018",
         "name": "Delibird",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-018-RH"
       },
       {
         "id": "cb4bc44a-1782-4620-8651-cb74aaab5816",
@@ -2705,7 +2684,7 @@
         "number_plain": "019",
         "name": "Keldeo",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-019-HOLO"
       },
       {
         "id": "79920961-b092-4635-ae1e-cff6857bd2e8",
@@ -2715,7 +2694,7 @@
         "number_plain": "019",
         "name": "Keldeo",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-019-RH"
       },
       {
         "id": "c02a083e-b3d1-476f-a475-524ce579ef0f",
@@ -2725,7 +2704,7 @@
         "number_plain": "020",
         "name": "Froakie",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-020-STD"
       },
       {
         "id": "406a1113-fd94-4af6-9d7d-1d9d6ae21977",
@@ -2735,7 +2714,7 @@
         "number_plain": "020",
         "name": "Froakie",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-020-RH"
       },
       {
         "id": "fdca1043-8e21-4284-9f43-0df395eb259d",
@@ -2745,7 +2724,7 @@
         "number_plain": "021",
         "name": "Frogadier",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-021-STD"
       },
       {
         "id": "1a0f8607-c796-4342-a57b-f8f497cea881",
@@ -2755,7 +2734,7 @@
         "number_plain": "021",
         "name": "Frogadier",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-021-RH"
       },
       {
         "id": "73e29f1d-2561-4e26-bf33-c3625c14f483",
@@ -2765,17 +2744,7 @@
         "number_plain": "022",
         "name": "Mega Greninja ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "83a385fc-9cb8-4f82-a220-b41600a3ac8f",
-        "card_print_id": "a80defe9-f814-4b04-a17c-89edea092694",
-        "set_code": "me04",
-        "number": "022",
-        "number_plain": "022",
-        "name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-022-HOLO"
       },
       {
         "id": "1e331cca-d6cd-4903-a628-0f617a33159c",
@@ -2785,7 +2754,7 @@
         "number_plain": "023",
         "name": "Bergmite",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-023-STD"
       },
       {
         "id": "e6c08f5c-863f-4ebe-bb6d-b4633ffe0c20",
@@ -2795,7 +2764,7 @@
         "number_plain": "023",
         "name": "Bergmite",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-023-RH"
       },
       {
         "id": "189111b0-f27e-4f82-b9e0-0bca1548b434",
@@ -2805,7 +2774,7 @@
         "number_plain": "024",
         "name": "Avalugg",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-024-STD"
       },
       {
         "id": "69b3d681-6fff-41c5-9e61-7692a2dac815",
@@ -2815,7 +2784,7 @@
         "number_plain": "024",
         "name": "Avalugg",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-024-RH"
       },
       {
         "id": "0378e280-a0de-4bbf-9b73-ee9cadc8d9ee",
@@ -2825,7 +2794,7 @@
         "number_plain": "025",
         "name": "Wimpod",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-025-STD"
       },
       {
         "id": "267b60da-e243-48f8-8e1f-f45acc2f2c86",
@@ -2835,7 +2804,7 @@
         "number_plain": "025",
         "name": "Wimpod",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-025-RH"
       },
       {
         "id": "8d082728-551e-4eec-918c-bfe312b5205f",
@@ -2845,7 +2814,7 @@
         "number_plain": "026",
         "name": "Golisopod",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-026-STD"
       },
       {
         "id": "88a9d127-9c95-494d-adc1-074143d0f36f",
@@ -2855,7 +2824,7 @@
         "number_plain": "026",
         "name": "Golisopod",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-026-RH"
       },
       {
         "id": "ab918345-e8d3-4ac5-91ff-1504c524df2d",
@@ -2865,7 +2834,7 @@
         "number_plain": "027",
         "name": "Mareep",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-027-STD"
       },
       {
         "id": "e263de2a-285f-40ff-9db9-d278c1a262b6",
@@ -2875,7 +2844,7 @@
         "number_plain": "027",
         "name": "Mareep",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-027-RH"
       },
       {
         "id": "8ba6da8c-1e83-43ad-b43e-35f2f4afd22b",
@@ -2885,7 +2854,7 @@
         "number_plain": "028",
         "name": "Flaaffy",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-028-STD"
       },
       {
         "id": "f446a2a5-39af-4b6e-83cb-38d873d6a0c6",
@@ -2895,7 +2864,7 @@
         "number_plain": "028",
         "name": "Flaaffy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-028-RH"
       },
       {
         "id": "10b5a927-458f-433d-95a6-1b6e8e50b3cc",
@@ -2905,7 +2874,7 @@
         "number_plain": "029",
         "name": "Ampharos",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-029-HOLO"
       },
       {
         "id": "3d4f6c01-3f4c-473f-be30-0a4efa85a086",
@@ -2915,7 +2884,7 @@
         "number_plain": "029",
         "name": "Ampharos",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-029-STD"
       },
       {
         "id": "940ac887-ad01-4a22-87eb-8fef8f2c3695",
@@ -2925,7 +2894,7 @@
         "number_plain": "029",
         "name": "Ampharos",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-029-RH"
       },
       {
         "id": "af3f9f0d-942e-4f46-a05d-c0ea9df411dc",
@@ -2935,7 +2904,7 @@
         "number_plain": "030",
         "name": "Emolga",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-030-STD"
       },
       {
         "id": "4ef118b7-9c7d-474b-b1ce-ac7283d4a52a",
@@ -2945,7 +2914,7 @@
         "number_plain": "030",
         "name": "Emolga",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-030-RH"
       },
       {
         "id": "92b13479-40f3-402b-b06b-0bb0c6234c57",
@@ -2955,7 +2924,7 @@
         "number_plain": "031",
         "name": "Deoxys",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-031-STD"
       },
       {
         "id": "5145d3a5-cbbc-4f27-bbc5-68b394e8983e",
@@ -2965,7 +2934,7 @@
         "number_plain": "031",
         "name": "Deoxys",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-031-RH"
       },
       {
         "id": "8bfecbe6-0e6f-4f60-ac5c-ad2e382b297a",
@@ -2975,7 +2944,7 @@
         "number_plain": "032",
         "name": "Deoxys",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-032-STD"
       },
       {
         "id": "73d8e89d-7000-4b37-b179-0cd950a58db9",
@@ -2985,7 +2954,7 @@
         "number_plain": "032",
         "name": "Deoxys",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-032-RH"
       },
       {
         "id": "59008e09-f269-4691-96eb-255cc6ef3555",
@@ -2995,7 +2964,7 @@
         "number_plain": "033",
         "name": "Deoxys",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-033-STD"
       },
       {
         "id": "4b3a4489-22e9-45f5-bdcf-ce15b88e4838",
@@ -3005,7 +2974,7 @@
         "number_plain": "033",
         "name": "Deoxys",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-033-RH"
       },
       {
         "id": "123ed5de-359c-4a76-bfed-eeba9f916030",
@@ -3015,7 +2984,7 @@
         "number_plain": "034",
         "name": "Deoxys",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-034-STD"
       },
       {
         "id": "9618bd37-0d84-4743-bd4f-28a2e046e868",
@@ -3025,7 +2994,7 @@
         "number_plain": "034",
         "name": "Deoxys",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-034-RH"
       },
       {
         "id": "79b14637-873a-4589-861c-0ae1f1c15e1a",
@@ -3035,17 +3004,7 @@
         "number_plain": "035",
         "name": "Mega Floette ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "2c0f74a3-097a-4ac0-b000-1a5521a1bba1",
-        "card_print_id": "3ab9fff0-56a7-459b-85bc-abafa4ba05de",
-        "set_code": "me04",
-        "number": "035",
-        "number_plain": "035",
-        "name": "Mega Floette ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-035-HOLO"
       },
       {
         "id": "0ea90d6f-20ed-4954-9237-1ecdbf941bec",
@@ -3055,7 +3014,7 @@
         "number_plain": "036",
         "name": "Espurr",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-036-STD"
       },
       {
         "id": "9925c495-3e4e-4a40-8037-6dd4d8117b5a",
@@ -3065,7 +3024,7 @@
         "number_plain": "036",
         "name": "Espurr",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-036-RH"
       },
       {
         "id": "449dd06b-7b8b-4512-83b0-64d14c23f168",
@@ -3075,7 +3034,7 @@
         "number_plain": "037",
         "name": "Meowstic",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-037-STD"
       },
       {
         "id": "78af3521-36bb-4bd6-85ab-08bce8c5ac01",
@@ -3085,7 +3044,7 @@
         "number_plain": "037",
         "name": "Meowstic",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-037-RH"
       },
       {
         "id": "a7e538ca-dcae-4952-a607-489f9a77fb12",
@@ -3095,7 +3054,7 @@
         "number_plain": "038",
         "name": "Phantump",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-038-STD"
       },
       {
         "id": "07918d0f-8f99-469e-9b8b-0ab1d852beed",
@@ -3105,7 +3064,7 @@
         "number_plain": "038",
         "name": "Phantump",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-038-RH"
       },
       {
         "id": "438974e3-47d5-45e6-a330-7b42216a9d2b",
@@ -3115,7 +3074,7 @@
         "number_plain": "039",
         "name": "Trevenant",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-039-HOLO"
       },
       {
         "id": "54adcb4b-f91c-44eb-98b0-f1902e905834",
@@ -3125,7 +3084,7 @@
         "number_plain": "039",
         "name": "Trevenant",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-039-RH"
       },
       {
         "id": "31dd54de-a349-4ea5-8612-cfd2181e97eb",
@@ -3135,7 +3094,7 @@
         "number_plain": "040",
         "name": "Pumpkaboo",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-040-STD"
       },
       {
         "id": "4f555198-0745-476f-9ee4-a0bf98646991",
@@ -3145,7 +3104,7 @@
         "number_plain": "040",
         "name": "Pumpkaboo",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-040-RH"
       },
       {
         "id": "cf20deb4-19d5-4c6d-aad2-056df8382c32",
@@ -3155,17 +3114,7 @@
         "number_plain": "041",
         "name": "Gourgeist ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "fa298e66-8c5c-4601-a97e-99b10da555f8",
-        "card_print_id": "65f1e889-376e-436c-9a16-1114a7fb98b9",
-        "set_code": "me04",
-        "number": "041",
-        "number_plain": "041",
-        "name": "Gourgeist ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-041-HOLO"
       },
       {
         "id": "f2e73e07-1a6f-482f-aa73-5649b961778a",
@@ -3175,7 +3124,7 @@
         "number_plain": "042",
         "name": "Xerneas",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-042-HOLO"
       },
       {
         "id": "d6ce73e1-a5ab-4c6d-8ae2-7b953152db89",
@@ -3185,7 +3134,7 @@
         "number_plain": "042",
         "name": "Xerneas",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-042-RH"
       },
       {
         "id": "8a3c6b7f-87c0-4250-8f4e-4c382596e11f",
@@ -3195,7 +3144,7 @@
         "number_plain": "043",
         "name": "Sudowoodo",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-043-STD"
       },
       {
         "id": "50377a90-d564-4fae-9f8c-28b1e784b90a",
@@ -3205,7 +3154,7 @@
         "number_plain": "043",
         "name": "Sudowoodo",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-043-RH"
       },
       {
         "id": "477ab0a5-21dd-4048-bd3a-97d94668e279",
@@ -3215,7 +3164,7 @@
         "number_plain": "044",
         "name": "Phanpy",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-044-STD"
       },
       {
         "id": "b60f77ba-f275-40b8-936c-c642be1cc87f",
@@ -3225,7 +3174,7 @@
         "number_plain": "044",
         "name": "Phanpy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-044-RH"
       },
       {
         "id": "1d7407f4-a3b6-471f-bdbe-c4077ab4a62b",
@@ -3235,7 +3184,7 @@
         "number_plain": "045",
         "name": "Donphan",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-045-STD"
       },
       {
         "id": "8a864e08-7517-4d94-8035-cc20dcf57040",
@@ -3245,7 +3194,7 @@
         "number_plain": "045",
         "name": "Donphan",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-045-RH"
       },
       {
         "id": "832738a2-eeea-4291-acae-891b7035ab4b",
@@ -3255,7 +3204,7 @@
         "number_plain": "046",
         "name": "Baltoy",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-046-STD"
       },
       {
         "id": "e8648578-4e27-4530-80f9-db746b3fd9d5",
@@ -3265,7 +3214,7 @@
         "number_plain": "046",
         "name": "Baltoy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-046-RH"
       },
       {
         "id": "03ebc100-1bf0-4599-97b3-1f77b3c0d5a0",
@@ -3275,7 +3224,7 @@
         "number_plain": "047",
         "name": "Claydol",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-047-STD"
       },
       {
         "id": "cdf241a8-e96e-414d-996a-a8d2a6415096",
@@ -3285,7 +3234,7 @@
         "number_plain": "047",
         "name": "Claydol",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-047-RH"
       },
       {
         "id": "ab0677e6-4f6f-4099-8fed-2661b9afcd1c",
@@ -3295,17 +3244,7 @@
         "number_plain": "048",
         "name": "Mega Gallade ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "3594b957-776a-4fb2-8413-71fda4cb7e03",
-        "card_print_id": "e42e7db3-f8f9-4d3a-90e0-e3b19575f8dc",
-        "set_code": "me04",
-        "number": "048",
-        "number_plain": "048",
-        "name": "Mega Gallade ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-048-HOLO"
       },
       {
         "id": "49ba95e1-7554-4229-ad9e-6c4621e87d11",
@@ -3315,7 +3254,7 @@
         "number_plain": "049",
         "name": "Zubat",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-049-STD"
       },
       {
         "id": "3fd9330e-d98b-447c-9b58-aa74e4c548b5",
@@ -3325,7 +3264,7 @@
         "number_plain": "049",
         "name": "Zubat",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-049-RH"
       },
       {
         "id": "df361444-9b6b-4f26-8e3f-e7964978035c",
@@ -3335,7 +3274,7 @@
         "number_plain": "050",
         "name": "Golbat",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-050-STD"
       },
       {
         "id": "424e25e0-3e70-41a0-9307-ebfc6b22ff67",
@@ -3345,7 +3284,7 @@
         "number_plain": "050",
         "name": "Golbat",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-050-RH"
       },
       {
         "id": "5626cac0-5e78-478c-b708-96fd63118f0d",
@@ -3355,7 +3294,7 @@
         "number_plain": "051",
         "name": "Crobat",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-051-HOLO"
       },
       {
         "id": "c080b51f-7d6f-4639-97ad-23a2fd91912f",
@@ -3365,7 +3304,7 @@
         "number_plain": "051",
         "name": "Crobat",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-051-STD"
       },
       {
         "id": "d9e15fa1-768d-4da5-b00b-8382eee6a6d7",
@@ -3375,7 +3314,7 @@
         "number_plain": "051",
         "name": "Crobat",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-051-RH"
       },
       {
         "id": "e9bc1b28-ff55-42b9-92be-405ade328c39",
@@ -3385,7 +3324,7 @@
         "number_plain": "052",
         "name": "Qwilfish",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-052-STD"
       },
       {
         "id": "a6f8d95b-2310-4b74-ab77-9fcb862c16e8",
@@ -3395,7 +3334,7 @@
         "number_plain": "052",
         "name": "Qwilfish",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-052-RH"
       },
       {
         "id": "f68159ba-5cbb-440b-a31b-f9f4e119fd9d",
@@ -3405,7 +3344,7 @@
         "number_plain": "053",
         "name": "Stunky",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-053-STD"
       },
       {
         "id": "ab55a5d1-fdc4-48dc-8c8a-b32f5d306923",
@@ -3415,7 +3354,7 @@
         "number_plain": "053",
         "name": "Stunky",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-053-RH"
       },
       {
         "id": "164f7108-c493-4676-86ce-8d7c4b881234",
@@ -3425,7 +3364,7 @@
         "number_plain": "054",
         "name": "Skuntank",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-054-STD"
       },
       {
         "id": "733fca95-015c-429d-b7ce-3e9a22f3b57f",
@@ -3435,7 +3374,7 @@
         "number_plain": "054",
         "name": "Skuntank",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-054-RH"
       },
       {
         "id": "5a83bed8-629b-4c19-a59c-fe4bd0363a4b",
@@ -3445,17 +3384,7 @@
         "number_plain": "055",
         "name": "Krookodile ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "e999e0e3-f666-440c-8978-114b45e919c3",
-        "card_print_id": "f5da839a-ff04-40f8-9118-61c0bf4d2abc",
-        "set_code": "me04",
-        "number": "055",
-        "number_plain": "055",
-        "name": "Krookodile ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-055-HOLO"
       },
       {
         "id": "ec25f38b-a815-4912-95c8-d784c76a1f42",
@@ -3465,7 +3394,7 @@
         "number_plain": "056",
         "name": "Trubbish",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-056-STD"
       },
       {
         "id": "2f492ddc-eec3-4bcd-a3f3-5c299261e136",
@@ -3475,7 +3404,7 @@
         "number_plain": "056",
         "name": "Trubbish",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-056-RH"
       },
       {
         "id": "efec55f3-dede-42b8-96ab-a6199873cc2c",
@@ -3485,7 +3414,7 @@
         "number_plain": "057",
         "name": "Garbodor",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-057-STD"
       },
       {
         "id": "2b162d90-71ec-4127-9e35-98aa441c58aa",
@@ -3495,7 +3424,7 @@
         "number_plain": "057",
         "name": "Garbodor",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-057-RH"
       },
       {
         "id": "0db199c5-a666-4dd1-a85e-b2da998b5440",
@@ -3505,7 +3434,7 @@
         "number_plain": "058",
         "name": "Skrelp",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-058-STD"
       },
       {
         "id": "d2f98982-acc1-4f65-a5cf-90757776eb5f",
@@ -3515,7 +3444,7 @@
         "number_plain": "058",
         "name": "Skrelp",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-058-RH"
       },
       {
         "id": "d242bf09-2274-4ab4-bb2c-213d54b3ab21",
@@ -3525,7 +3454,7 @@
         "number_plain": "059",
         "name": "Beldum",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-059-STD"
       },
       {
         "id": "47444bf5-202d-4ee3-a4d5-f5bb79cb6c1a",
@@ -3535,7 +3464,7 @@
         "number_plain": "059",
         "name": "Beldum",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-059-RH"
       },
       {
         "id": "7c732e7e-1733-4044-b38c-345bdeb59e44",
@@ -3545,7 +3474,7 @@
         "number_plain": "060",
         "name": "Metang",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-060-STD"
       },
       {
         "id": "c9f5e4af-5f1a-47e1-9069-792749c8208c",
@@ -3555,7 +3484,7 @@
         "number_plain": "060",
         "name": "Metang",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-060-RH"
       },
       {
         "id": "5f4c8d4d-b110-4bca-9a1e-0fd47cd3e505",
@@ -3565,7 +3494,7 @@
         "number_plain": "061",
         "name": "Metagross",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-061-STD"
       },
       {
         "id": "9314d9d0-66b1-497f-b5cb-f04292aa7aa5",
@@ -3575,7 +3504,7 @@
         "number_plain": "061",
         "name": "Metagross",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-061-RH"
       },
       {
         "id": "66eefeaa-cc8d-4bae-be21-00b6defe0a2a",
@@ -3585,7 +3514,7 @@
         "number_plain": "062",
         "name": "Ferroseed",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-062-STD"
       },
       {
         "id": "7d08cacb-e955-446d-b373-dabb67942241",
@@ -3595,7 +3524,7 @@
         "number_plain": "062",
         "name": "Ferroseed",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-062-RH"
       },
       {
         "id": "ae7dd3ec-3828-45de-9b62-1125d59d0a47",
@@ -3605,7 +3534,7 @@
         "number_plain": "063",
         "name": "Ferrothorn",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-063-STD"
       },
       {
         "id": "79df4286-6d99-43f2-a6a5-db42ee3b398f",
@@ -3615,7 +3544,7 @@
         "number_plain": "063",
         "name": "Ferrothorn",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-063-RH"
       },
       {
         "id": "11799cd7-e215-46fa-af0f-febcae8abab1",
@@ -3625,17 +3554,7 @@
         "number_plain": "064",
         "name": "Cobalion ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "3f45a4bc-9de9-4bf3-b80a-8c8782340447",
-        "card_print_id": "c7079543-5f1a-475c-ac71-5098d60211e7",
-        "set_code": "me04",
-        "number": "064",
-        "number_plain": "064",
-        "name": "Cobalion ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-064-HOLO"
       },
       {
         "id": "368ceebf-f827-4ddc-93c5-143d67110751",
@@ -3645,17 +3564,7 @@
         "number_plain": "065",
         "name": "Mega Dragalge ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "88e1a4ac-df38-4c75-8846-69081b4d80aa",
-        "card_print_id": "42b85360-f4d3-489d-b01f-88476cab5201",
-        "set_code": "me04",
-        "number": "065",
-        "number_plain": "065",
-        "name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-065-HOLO"
       },
       {
         "id": "3f021820-7191-4102-bc24-0f1067c3fec8",
@@ -3665,7 +3574,7 @@
         "number_plain": "066",
         "name": "Goomy",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-066-STD"
       },
       {
         "id": "f476dac1-2a47-4408-b306-1847f63e0ac9",
@@ -3675,7 +3584,7 @@
         "number_plain": "066",
         "name": "Goomy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-066-RH"
       },
       {
         "id": "d0593047-4aba-4e95-9c3a-045ac3ab8678",
@@ -3685,7 +3594,7 @@
         "number_plain": "067",
         "name": "Sliggoo",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-067-STD"
       },
       {
         "id": "51429a45-51bb-49fd-a9b4-6fd6a6d4f53e",
@@ -3695,7 +3604,7 @@
         "number_plain": "067",
         "name": "Sliggoo",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-067-RH"
       },
       {
         "id": "0299cf75-9125-4086-bcc0-6bb06e87ddb0",
@@ -3705,7 +3614,7 @@
         "number_plain": "068",
         "name": "Goodra",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-068-HOLO"
       },
       {
         "id": "f1c439ea-41b5-408e-8638-eace796e486b",
@@ -3715,7 +3624,7 @@
         "number_plain": "068",
         "name": "Goodra",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-068-STD"
       },
       {
         "id": "8115c7fa-d516-437a-a14d-e48cbdd405e8",
@@ -3725,7 +3634,7 @@
         "number_plain": "068",
         "name": "Goodra",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-068-RH"
       },
       {
         "id": "ae47fac5-d73d-4f68-840b-9b37ff38bdaf",
@@ -3735,7 +3644,7 @@
         "number_plain": "069",
         "name": "Tauros",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-069-STD"
       },
       {
         "id": "58d018a5-3dd2-4224-8869-7c64106db736",
@@ -3745,7 +3654,7 @@
         "number_plain": "069",
         "name": "Tauros",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-069-RH"
       },
       {
         "id": "5b604798-70e3-4893-9193-58c64aaefb6b",
@@ -3755,7 +3664,7 @@
         "number_plain": "070",
         "name": "Patrat",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-070-STD"
       },
       {
         "id": "5b50469d-b316-4444-80ba-d06741bd0957",
@@ -3765,7 +3674,7 @@
         "number_plain": "070",
         "name": "Patrat",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-070-RH"
       },
       {
         "id": "861f83c3-17a2-4ce6-8e8a-3d2418e2ab7c",
@@ -3775,7 +3684,7 @@
         "number_plain": "071",
         "name": "Watchog",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-071-STD"
       },
       {
         "id": "6758bbb1-5e06-48a9-8f39-cca8edd22df2",
@@ -3785,7 +3694,7 @@
         "number_plain": "071",
         "name": "Watchog",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-071-RH"
       },
       {
         "id": "92bc71c8-b560-40dd-92dd-165bf41b9397",
@@ -3795,7 +3704,7 @@
         "number_plain": "072",
         "name": "Minccino",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-072-STD"
       },
       {
         "id": "07de74bc-bfa2-4237-b2f8-1ff4e3b8c274",
@@ -3805,7 +3714,7 @@
         "number_plain": "072",
         "name": "Minccino",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-072-RH"
       },
       {
         "id": "38f304cc-748f-49ba-878d-d1441599adff",
@@ -3815,17 +3724,7 @@
         "number_plain": "073",
         "name": "Cinccino ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "93999421-0283-4199-9f50-5c7b126f8573",
-        "card_print_id": "7d202491-3e3b-4c4b-a7b2-a6e112c2ed73",
-        "set_code": "me04",
-        "number": "073",
-        "number_plain": "073",
-        "name": "Cinccino ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-073-HOLO"
       },
       {
         "id": "e62de1f3-e569-4da2-a838-4715a7382aac",
@@ -3835,7 +3734,7 @@
         "number_plain": "074",
         "name": "Adversity Policy",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-074-STD"
       },
       {
         "id": "41813adc-51fd-4fb6-b6f0-72cccda95fb4",
@@ -3845,7 +3744,7 @@
         "number_plain": "074",
         "name": "Adversity Policy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-074-RH"
       },
       {
         "id": "a1cc254c-5978-49c3-9111-261097da4993",
@@ -3855,7 +3754,7 @@
         "number_plain": "075",
         "name": "Ange Floette",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-075-STD"
       },
       {
         "id": "a6f8bd40-8770-40b8-a920-1164fd614037",
@@ -3865,7 +3764,7 @@
         "number_plain": "075",
         "name": "Ange Floette",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-075-RH"
       },
       {
         "id": "9cd5c1f8-f198-468b-8f09-c1f9ebfb408d",
@@ -3875,7 +3774,7 @@
         "number_plain": "076",
         "name": "AZ's Tranquility",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-076-STD"
       },
       {
         "id": "4d5fdb59-0ef8-43f4-9372-d20455dc28b3",
@@ -3885,7 +3784,7 @@
         "number_plain": "076",
         "name": "AZ's Tranquility",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-076-RH"
       },
       {
         "id": "2438d55b-96a0-4389-9ab6-6f5509679ff1",
@@ -3895,7 +3794,7 @@
         "number_plain": "077",
         "name": "Emma",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-077-STD"
       },
       {
         "id": "5ae40423-d787-4a70-9858-f26a65ae7f7f",
@@ -3905,7 +3804,7 @@
         "number_plain": "077",
         "name": "Emma",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-077-RH"
       },
       {
         "id": "039ad7ce-6850-4a5a-96fa-04cfb4125b6e",
@@ -3915,7 +3814,7 @@
         "number_plain": "078",
         "name": "Great Haul Net",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-078-STD"
       },
       {
         "id": "c0d6f7e0-86e0-4823-8d69-1508289f9b0e",
@@ -3925,7 +3824,7 @@
         "number_plain": "078",
         "name": "Great Haul Net",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-078-RH"
       },
       {
         "id": "373c700d-3091-48ca-87d9-5df0038e7d7f",
@@ -3935,7 +3834,7 @@
         "number_plain": "079",
         "name": "Philippe",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-079-STD"
       },
       {
         "id": "1da2e34c-e159-4310-934e-26f24e42b87a",
@@ -3945,7 +3844,7 @@
         "number_plain": "079",
         "name": "Philippe",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-079-RH"
       },
       {
         "id": "f5393121-b3b0-4321-8df3-e914d16d7779",
@@ -3955,7 +3854,7 @@
         "number_plain": "080",
         "name": "Prism Tower",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-080-STD"
       },
       {
         "id": "17687f6b-40e8-40b7-af3a-518225b21688",
@@ -3965,7 +3864,7 @@
         "number_plain": "080",
         "name": "Prism Tower",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-080-RH"
       },
       {
         "id": "aa6d343b-054b-4127-830e-eafeb85229fc",
@@ -3975,7 +3874,7 @@
         "number_plain": "081",
         "name": "Roxie's Performance",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-081-STD"
       },
       {
         "id": "eb0227b9-4239-4b59-a2a4-a903e5122eab",
@@ -3985,7 +3884,7 @@
         "number_plain": "081",
         "name": "Roxie's Performance",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-081-RH"
       },
       {
         "id": "35563588-c382-4185-87a9-d6308b6e4b2a",
@@ -3995,7 +3894,7 @@
         "number_plain": "082",
         "name": "Special Red Card",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-082-STD"
       },
       {
         "id": "37a17e13-73f3-4162-94a2-2cb0f4107b8a",
@@ -4005,7 +3904,7 @@
         "number_plain": "082",
         "name": "Special Red Card",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-082-RH"
       },
       {
         "id": "ba35dc58-2426-43c0-b395-950c509841f5",
@@ -4015,7 +3914,7 @@
         "number_plain": "083",
         "name": "Transformation Tome",
         "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-083-STD"
       },
       {
         "id": "8a4b1b19-b7b4-472e-888b-a9f1bcbe8793",
@@ -4025,7 +3924,7 @@
         "number_plain": "083",
         "name": "Transformation Tome",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-083-RH"
       },
       {
         "id": "430431c1-fac7-4f9c-bb6e-0e76629adc2f",
@@ -4035,7 +3934,7 @@
         "number_plain": "084",
         "name": "Bubbly Water Energy",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-084-HOLO"
       },
       {
         "id": "9f3b2cc7-6b08-421a-aaba-15c69ab35327",
@@ -4045,7 +3944,7 @@
         "number_plain": "084",
         "name": "Bubbly Water Energy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-084-RH"
       },
       {
         "id": "4eaf875c-2837-4736-9aee-0fc972f3762e",
@@ -4055,7 +3954,7 @@
         "number_plain": "085",
         "name": "Magnetic Metal Energy",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-085-HOLO"
       },
       {
         "id": "19d5deab-5578-4a7c-a23d-5e92046c53cc",
@@ -4065,7 +3964,7 @@
         "number_plain": "085",
         "name": "Magnetic Metal Energy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-085-RH"
       },
       {
         "id": "df33b094-e085-4332-93e9-94a9ebc17d2a",
@@ -4075,7 +3974,7 @@
         "number_plain": "086",
         "name": "Nitro Fire Energy",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-086-HOLO"
       },
       {
         "id": "f9eb0a64-d846-4618-8484-f1d9148abb14",
@@ -4085,7 +3984,7 @@
         "number_plain": "086",
         "name": "Nitro Fire Energy",
         "finish_key": "reverse",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-086-RH"
       },
       {
         "id": "7bc25110-9e19-4640-9cfe-e366e57e073f",
@@ -4095,17 +3994,7 @@
         "number_plain": "087",
         "name": "Chespin",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "6501814e-88e3-4ce4-a347-db2ebbdc8d41",
-        "card_print_id": "55c9715d-eaca-4fc4-bb2e-d5b7cc955b6f",
-        "set_code": "me04",
-        "number": "087",
-        "number_plain": "087",
-        "name": "Chespin",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-087-HOLO"
       },
       {
         "id": "d0f3d3d8-c2dc-47e7-a896-321febee099d",
@@ -4115,17 +4004,7 @@
         "number_plain": "088",
         "name": "Froakie",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "da13e28e-a479-4384-b4af-3734000f805b",
-        "card_print_id": "1b029576-98b7-40b7-a191-7ca9a8cce059",
-        "set_code": "me04",
-        "number": "088",
-        "number_plain": "088",
-        "name": "Froakie",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-088-HOLO"
       },
       {
         "id": "6ba5ff75-4d5a-4419-94ae-596f68471102",
@@ -4135,17 +4014,7 @@
         "number_plain": "089",
         "name": "Frogadier",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "3ddc3630-2f78-4c66-aeca-e7d7a75f8fbb",
-        "card_print_id": "7fed39f9-ab04-40cc-8193-0ab73c14e9b0",
-        "set_code": "me04",
-        "number": "089",
-        "number_plain": "089",
-        "name": "Frogadier",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-089-HOLO"
       },
       {
         "id": "3efa7f38-6091-4a39-a013-e4777606854f",
@@ -4155,17 +4024,7 @@
         "number_plain": "090",
         "name": "Ampharos",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "4783eaa3-e4ac-4fed-a636-5596479b99e0",
-        "card_print_id": "806a5994-3933-49c9-a001-1ed5d1b36e3e",
-        "set_code": "me04",
-        "number": "090",
-        "number_plain": "090",
-        "name": "Ampharos",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-090-HOLO"
       },
       {
         "id": "d7db5f4f-011e-4a15-a4bb-cbd7979dca30",
@@ -4175,17 +4034,7 @@
         "number_plain": "091",
         "name": "Xerneas",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "afdfcf81-759d-4103-890a-cb22eeeb9b25",
-        "card_print_id": "20175b77-73bc-4ab9-a23b-d1c8b231b80f",
-        "set_code": "me04",
-        "number": "091",
-        "number_plain": "091",
-        "name": "Xerneas",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-091-HOLO"
       },
       {
         "id": "595de647-108a-4bb2-8471-ab4511388de1",
@@ -4195,17 +4044,7 @@
         "number_plain": "092",
         "name": "Claydol",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "b88a37b1-1191-46e0-abf9-c6dd5a481b8e",
-        "card_print_id": "71fdfdb1-0af3-471f-8a56-9cd247790872",
-        "set_code": "me04",
-        "number": "092",
-        "number_plain": "092",
-        "name": "Claydol",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-092-HOLO"
       },
       {
         "id": "4e506ec7-dc49-4652-8282-1fff74d885ce",
@@ -4215,17 +4054,7 @@
         "number_plain": "093",
         "name": "Crobat",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "bd91a438-a66f-4c7b-8cc5-7801fc84a2e1",
-        "card_print_id": "0ff5e630-499f-4ede-9151-60da2438293a",
-        "set_code": "me04",
-        "number": "093",
-        "number_plain": "093",
-        "name": "Crobat",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-093-HOLO"
       },
       {
         "id": "51ec21e1-3398-4bc7-9c87-bdc5529ae3b7",
@@ -4235,17 +4064,7 @@
         "number_plain": "094",
         "name": "Metang",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "bdd78c35-ea71-45e9-9f29-4883208edb4f",
-        "card_print_id": "3e173afd-76da-483b-a88e-8e45bf6b1eae",
-        "set_code": "me04",
-        "number": "094",
-        "number_plain": "094",
-        "name": "Metang",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-094-HOLO"
       },
       {
         "id": "c3b80adf-6139-4089-aab4-527e58e3c14b",
@@ -4255,17 +4074,7 @@
         "number_plain": "095",
         "name": "Sliggoo",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "93f68150-bdad-4dba-b8f8-a46ec74fa796",
-        "card_print_id": "16c0a1ea-ecb7-46bf-865f-bde448632d98",
-        "set_code": "me04",
-        "number": "095",
-        "number_plain": "095",
-        "name": "Sliggoo",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-095-HOLO"
       },
       {
         "id": "e1f3a03b-5df6-4254-a107-a438a2a8295b",
@@ -4275,17 +4084,7 @@
         "number_plain": "096",
         "name": "Tauros",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "1959ab57-f5b3-4fd1-b01c-80aebb403e0b",
-        "card_print_id": "9b770e4c-3a55-4dc1-ae6e-7b67873a3157",
-        "set_code": "me04",
-        "number": "096",
-        "number_plain": "096",
-        "name": "Tauros",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-096-HOLO"
       },
       {
         "id": "61d2766d-342c-45cf-be9b-c17b24bfb18c",
@@ -4295,17 +4094,7 @@
         "number_plain": "097",
         "name": "Watchog",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "16a0ce8e-fb64-4444-9efd-0ca9bec00f46",
-        "card_print_id": "8d74ee7b-085a-4e06-8d6b-b835a4abab3f",
-        "set_code": "me04",
-        "number": "097",
-        "number_plain": "097",
-        "name": "Watchog",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-097-HOLO"
       },
       {
         "id": "1b5a8d8b-66aa-44e2-8c2b-deb5b4c500d9",
@@ -4315,17 +4104,7 @@
         "number_plain": "098",
         "name": "Beedrill ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "2619a8e0-7ad4-4c18-806a-4e0a6e1bf74c",
-        "card_print_id": "19d6094b-4e29-4b9a-8379-64edcf20c54a",
-        "set_code": "me04",
-        "number": "098",
-        "number_plain": "098",
-        "name": "Beedrill ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-098-HOLO"
       },
       {
         "id": "b26f0b4d-6d6a-495c-81dd-b7a5c4721217",
@@ -4335,17 +4114,7 @@
         "number_plain": "099",
         "name": "Mega Pyroar ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "f2ea93f1-869b-4154-828f-1932d0672022",
-        "card_print_id": "e3412012-751f-4f27-8c4b-de817c4b6bcd",
-        "set_code": "me04",
-        "number": "099",
-        "number_plain": "099",
-        "name": "Mega Pyroar ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-099-HOLO"
       },
       {
         "id": "65cf1df6-3b50-49ba-86cd-68d1441e9cd9",
@@ -4355,17 +4124,7 @@
         "number_plain": "100",
         "name": "Mega Greninja ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "ac0d55a3-5c60-4211-bec3-fc9f13a2e4cd",
-        "card_print_id": "8bd79b10-1e61-497a-9802-7c56c259602a",
-        "set_code": "me04",
-        "number": "100",
-        "number_plain": "100",
-        "name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-100-HOLO"
       },
       {
         "id": "7cba19ff-c966-4d9b-8b54-1b1397c557d1",
@@ -4375,17 +4134,7 @@
         "number_plain": "101",
         "name": "Mega Floette ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "93f1546a-b90e-4058-8f5c-ba49e4de954a",
-        "card_print_id": "3e350284-9d94-489c-84c1-72f24a399f33",
-        "set_code": "me04",
-        "number": "101",
-        "number_plain": "101",
-        "name": "Mega Floette ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-101-HOLO"
       },
       {
         "id": "d617531b-7acf-4177-a234-91ad78e1b017",
@@ -4395,17 +4144,7 @@
         "number_plain": "102",
         "name": "Gourgeist ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "d121412f-f541-4a25-b8d7-94d6549d12c5",
-        "card_print_id": "f9869bba-9768-42d3-94b1-9e6858fd9e2e",
-        "set_code": "me04",
-        "number": "102",
-        "number_plain": "102",
-        "name": "Gourgeist ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-102-HOLO"
       },
       {
         "id": "ed30349a-46cf-45d2-b2ce-ee8673e43ad7",
@@ -4415,17 +4154,7 @@
         "number_plain": "103",
         "name": "Cobalion ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "1173f6c7-c989-4052-b7cb-f92aeb9f1213",
-        "card_print_id": "284bf182-b625-4c88-8154-851f8da55240",
-        "set_code": "me04",
-        "number": "103",
-        "number_plain": "103",
-        "name": "Cobalion ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-103-HOLO"
       },
       {
         "id": "8badb5c1-3fb4-4495-b031-aa87e6dacd9b",
@@ -4435,17 +4164,7 @@
         "number_plain": "104",
         "name": "Mega Dragalge ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "f1e119ea-1793-45ae-aece-4c78386f91ca",
-        "card_print_id": "86c7c7ca-6b46-4ea4-977b-013d8949af11",
-        "set_code": "me04",
-        "number": "104",
-        "number_plain": "104",
-        "name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-104-HOLO"
       },
       {
         "id": "3ff2dbd4-66c5-42a5-8263-f3f9c0012241",
@@ -4455,17 +4174,7 @@
         "number_plain": "105",
         "name": "Cinccino ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "c5ccca54-6377-4490-8312-35e2fb2192db",
-        "card_print_id": "0793b910-d4e4-41d8-9e6c-ab93bca06644",
-        "set_code": "me04",
-        "number": "105",
-        "number_plain": "105",
-        "name": "Cinccino ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-105-HOLO"
       },
       {
         "id": "3c4c28c7-5607-4e4c-af4a-84e72844da0e",
@@ -4475,17 +4184,7 @@
         "number_plain": "106",
         "name": "AZ's Tranquility",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "d67a9f07-b202-4e0d-a70e-0183ed72b0f8",
-        "card_print_id": "6bf04af6-e680-4e79-9c6f-a64af96a5443",
-        "set_code": "me04",
-        "number": "106",
-        "number_plain": "106",
-        "name": "AZ's Tranquility",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-106-HOLO"
       },
       {
         "id": "5de675c0-1490-45bf-8cd5-a5cc69c4a5df",
@@ -4495,17 +4194,7 @@
         "number_plain": "107",
         "name": "Emma",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "a5dacdb3-b5fe-447d-b69a-3dd93abc4e91",
-        "card_print_id": "78da1683-b7a6-4172-8f1c-66b0ca21c052",
-        "set_code": "me04",
-        "number": "107",
-        "number_plain": "107",
-        "name": "Emma",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-107-HOLO"
       },
       {
         "id": "604e6509-ca5e-47de-ad08-d8541e1a1226",
@@ -4515,17 +4204,7 @@
         "number_plain": "108",
         "name": "Energy Retrieval",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "21d07515-d31a-42f1-ad0c-1f984f55212e",
-        "card_print_id": "58824837-674e-46a2-9828-cbe16f3f0c35",
-        "set_code": "me04",
-        "number": "108",
-        "number_plain": "108",
-        "name": "Energy Retrieval",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-108-HOLO"
       },
       {
         "id": "ec414d33-4bb7-4580-b8e0-2f64d7f4e54e",
@@ -4535,7 +4214,7 @@
         "number_plain": "109",
         "name": "Jumbo Ice Cream",
         "finish_key": "holo",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-109-HOLO"
       },
       {
         "id": "2fb246ac-7d73-4711-a84c-bed5742801ea",
@@ -4545,17 +4224,7 @@
         "number_plain": "110",
         "name": "Philippe",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "184e3e43-bd7b-4b54-8750-75f85da5e27c",
-        "card_print_id": "2c505075-7776-449c-8d26-dfb0f8e0c7e1",
-        "set_code": "me04",
-        "number": "110",
-        "number_plain": "110",
-        "name": "Philippe",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-110-HOLO"
       },
       {
         "id": "09799dc4-7f93-4730-8388-382197633d9c",
@@ -4565,17 +4234,7 @@
         "number_plain": "111",
         "name": "Prism Tower",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "baa9a003-bd07-46c6-ac06-713127229d5e",
-        "card_print_id": "45712cf9-885d-4240-ba07-6a31dd18acf8",
-        "set_code": "me04",
-        "number": "111",
-        "number_plain": "111",
-        "name": "Prism Tower",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-111-HOLO"
       },
       {
         "id": "ecd612a4-1892-4a48-923a-d27c58e53650",
@@ -4585,17 +4244,7 @@
         "number_plain": "112",
         "name": "Roxie's Performance",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "44d33516-194d-41a4-9cea-ca6056432f8b",
-        "card_print_id": "4eb74445-6a7f-422b-9ce4-202cfaace0d8",
-        "set_code": "me04",
-        "number": "112",
-        "number_plain": "112",
-        "name": "Roxie's Performance",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-112-HOLO"
       },
       {
         "id": "4c3b3f89-604a-4597-b19e-e7d863aeb52e",
@@ -4605,17 +4254,7 @@
         "number_plain": "113",
         "name": "Special Red Card",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "ba793786-b7af-4ea1-8942-b87aa72f11de",
-        "card_print_id": "33ee7d1b-9610-4c47-ac39-ee01827b28f7",
-        "set_code": "me04",
-        "number": "113",
-        "number_plain": "113",
-        "name": "Special Red Card",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-113-HOLO"
       },
       {
         "id": "809a0612-c7f9-40c2-be03-ed35c00e8fed",
@@ -4625,17 +4264,7 @@
         "number_plain": "114",
         "name": "Surfing Beach",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "f60a34eb-4d0a-4123-a77c-8a0fc603d572",
-        "card_print_id": "3bd01ad7-4478-4360-bf1c-bb50e74ee151",
-        "set_code": "me04",
-        "number": "114",
-        "number_plain": "114",
-        "name": "Surfing Beach",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-114-HOLO"
       },
       {
         "id": "a10947ba-ebbf-4262-b088-c701b647fe9e",
@@ -4645,17 +4274,7 @@
         "number_plain": "115",
         "name": "Tool Scrapper",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "9e044fa0-3a6a-4f17-81d6-235bcf169aa8",
-        "card_print_id": "f288f5a8-1527-4969-98bc-fca5e934d8e4",
-        "set_code": "me04",
-        "number": "115",
-        "number_plain": "115",
-        "name": "Tool Scrapper",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-115-HOLO"
       },
       {
         "id": "ba3c47c2-d198-4e3c-a7dc-e795324d6e18",
@@ -4665,17 +4284,7 @@
         "number_plain": "116",
         "name": "Mega Greninja ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "7e5ab6f4-be9f-4b49-8311-175bb1e502da",
-        "card_print_id": "f4a99179-8978-4498-a4a9-504fdb1e3d9d",
-        "set_code": "me04",
-        "number": "116",
-        "number_plain": "116",
-        "name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-116-HOLO"
       },
       {
         "id": "fd3dd9e4-da4b-410d-a160-725cdf4cebba",
@@ -4685,17 +4294,7 @@
         "number_plain": "117",
         "name": "Mega Floette ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "00797d2b-67f3-4048-a602-f663df55b6fd",
-        "card_print_id": "390d0ece-2848-4e97-adbd-5782e57af18d",
-        "set_code": "me04",
-        "number": "117",
-        "number_plain": "117",
-        "name": "Mega Floette ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-117-HOLO"
       },
       {
         "id": "2f2920d2-2f15-4b01-9021-80899904d891",
@@ -4705,17 +4304,7 @@
         "number_plain": "118",
         "name": "Mega Dragalge ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "6052a4c3-67d2-4f3b-b24c-c99bbdecf2dc",
-        "card_print_id": "8a2548d3-845a-478b-8d12-286a780ac020",
-        "set_code": "me04",
-        "number": "118",
-        "number_plain": "118",
-        "name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-118-HOLO"
       },
       {
         "id": "0843f42d-1fcc-415b-a711-4599225bbb40",
@@ -4725,17 +4314,7 @@
         "number_plain": "119",
         "name": "Cinccino ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "26240ab0-7fcd-4f9c-840b-f4a903d7418b",
-        "card_print_id": "a11894e4-2423-4950-8733-8f30188c4b7a",
-        "set_code": "me04",
-        "number": "119",
-        "number_plain": "119",
-        "name": "Cinccino ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-119-HOLO"
       },
       {
         "id": "30020c91-74f1-472f-ba89-e361c9f4469e",
@@ -4745,17 +4324,7 @@
         "number_plain": "120",
         "name": "AZ's Tranquility",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "5089580d-21a6-4461-9bad-473a92b8e21d",
-        "card_print_id": "4a055191-0338-4731-8a18-6bc0ef6209be",
-        "set_code": "me04",
-        "number": "120",
-        "number_plain": "120",
-        "name": "AZ's Tranquility",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-120-HOLO"
       },
       {
         "id": "edcd6a8e-d547-4d69-b1de-cd00773a292b",
@@ -4765,17 +4334,7 @@
         "number_plain": "121",
         "name": "Roxie's Performance",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "cb4bda00-f5c8-4511-b085-807821aac512",
-        "card_print_id": "dc0fbf2c-c105-4cfb-8cbc-c346f5365a9a",
-        "set_code": "me04",
-        "number": "121",
-        "number_plain": "121",
-        "name": "Roxie's Performance",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-121-HOLO"
       },
       {
         "id": "d59cf810-83a2-4eb3-8386-bb0ad25ff3ee",
@@ -4785,17 +4344,7 @@
         "number_plain": "122",
         "name": "Mega Greninja ex",
         "finish_key": "holo",
-        "printing_gv_id": null
-      },
-      {
-        "id": "ca72483e-fffa-4683-8bba-6dbdd03132af",
-        "card_print_id": "cdba556b-f250-4ac7-a8ad-8b6c89dbdc14",
-        "set_code": "me04",
-        "number": "122",
-        "number_plain": "122",
-        "name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "printing_gv_id": null
+        "printing_gv_id": "GV-PK-CRI-122-HOLO"
       }
     ],
     "raw_imports": [
@@ -7265,27 +6814,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "003",
-        "card_name": "Beedrill ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-003",
-          "https://www.cardtrader.com/en/cards/389944-beedrill-ex-ultra-rare-003-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "004",
         "card_name": "Carnivine",
         "finish_key": "normal",
@@ -7821,27 +7349,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "015",
-        "card_name": "Mega Pyroar ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-015",
-          "https://www.cardtrader.com/en/cards/389956-mega-pyroar-ex-ultra-rare-015-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "016",
         "card_name": "Remoraid",
         "finish_key": "normal",
@@ -8125,27 +7632,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/65985/mega-greninja-ex-chaos-rising-022-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "022",
-        "card_name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-022",
-          "https://www.cardtrader.com/en/cards/389963-mega-greninja-ex-ultra-rare-022-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -8727,27 +8213,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "035",
-        "card_name": "Mega Floette ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-035",
-          "https://www.cardtrader.com/en/cards/389976-mega-floette-ex-ultra-rare-035-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "036",
         "card_name": "Espurr",
         "finish_key": "normal",
@@ -8987,27 +8452,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66004/gourgeist-ex-chaos-rising-041-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "041",
-        "card_name": "Gourgeist ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-041",
-          "https://www.cardtrader.com/en/cards/389982-gourgeist-ex-ultra-rare-041-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -9297,27 +8741,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66085/mega-gallade-ex-chaos-rising-048-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "048",
-        "card_name": "Mega Gallade ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-048",
-          "https://www.cardtrader.com/en/cards/389989-mega-gallade-ex-ultra-rare-048-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -9629,27 +9052,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66010/krookodile-ex-chaos-rising-055-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "055",
-        "card_name": "Krookodile ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-055",
-          "https://www.cardtrader.com/en/cards/389996-krookodile-ex-ultra-rare-055-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -10031,27 +9433,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "064",
-        "card_name": "Cobalion ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-064",
-          "https://www.cardtrader.com/en/cards/390005-cobalion-ex-ultra-rare-064-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "65",
         "card_name": "Mega Dragalge ex",
         "finish_key": "holo",
@@ -10069,27 +9450,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66028/mega-dragalge-ex-chaos-rising-065-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "065",
-        "card_name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-065",
-          "https://www.cardtrader.com/en/cards/390006-mega-dragalge-ex-ultra-rare-065-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -10445,27 +9805,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66037/cinccino-ex-chaos-rising-073-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "073",
-        "card_name": "Cinccino ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-073",
-          "https://www.cardtrader.com/en/cards/390014-cinccino-ex-ultra-rare-073-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11057,27 +10396,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "087",
-        "card_name": "Chespin",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-087",
-          "https://www.cardtrader.com/en/cards/390028-chespin-illustration-rare-087-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "88",
         "card_name": "Froakie",
         "finish_key": "holo",
@@ -11095,27 +10413,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66051/froakie-chaos-rising-088-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "088",
-        "card_name": "Froakie",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-088",
-          "https://www.cardtrader.com/en/cards/390029-froakie-illustration-rare-088-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11145,27 +10442,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "089",
-        "card_name": "Frogadier",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-089",
-          "https://www.cardtrader.com/en/cards/390030-frogadier-illustration-rare-089-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "90",
         "card_name": "Ampharos",
         "finish_key": "holo",
@@ -11183,27 +10459,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66053/ampharos-chaos-rising-090-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "090",
-        "card_name": "Ampharos",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-090",
-          "https://www.cardtrader.com/en/cards/390031-ampharos-illustration-rare-090-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11233,27 +10488,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "091",
-        "card_name": "Xerneas",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-091",
-          "https://www.cardtrader.com/en/cards/390032-xerneas-illustration-rare-091-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "92",
         "card_name": "Claydol",
         "finish_key": "holo",
@@ -11271,27 +10505,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66055/claydol-chaos-rising-092-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "092",
-        "card_name": "Claydol",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-092",
-          "https://www.cardtrader.com/en/cards/390033-claydol-illustration-rare-092-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11321,27 +10534,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "093",
-        "card_name": "Crobat",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-093",
-          "https://www.cardtrader.com/en/cards/390034-crobat-illustration-rare-093-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "94",
         "card_name": "Metang",
         "finish_key": "holo",
@@ -11359,27 +10551,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66057/metang-chaos-rising-094-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "094",
-        "card_name": "Metang",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-094",
-          "https://www.cardtrader.com/en/cards/390036-metang-illustration-rare-094-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11409,27 +10580,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "095",
-        "card_name": "Sliggoo",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-095",
-          "https://www.cardtrader.com/en/cards/390035-sliggoo-illustration-rare-095-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "96",
         "card_name": "Tauros",
         "finish_key": "holo",
@@ -11447,27 +10597,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66059/tauros-chaos-rising-096-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "096",
-        "card_name": "Tauros",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-096",
-          "https://www.cardtrader.com/en/cards/390037-tauros-illustration-rare-096-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11497,27 +10626,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "097",
-        "card_name": "Watchog",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-097",
-          "https://www.cardtrader.com/en/cards/390038-watchog-illustration-rare-097-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "98",
         "card_name": "Beedrill ex",
         "finish_key": "holo",
@@ -11535,27 +10643,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66061/beedrill-ex-chaos-rising-098-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "098",
-        "card_name": "Beedrill ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-098",
-          "https://www.cardtrader.com/en/cards/390039-beedrill-ex-full-art-098-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11585,27 +10672,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "099",
-        "card_name": "Mega Pyroar ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-099",
-          "https://www.cardtrader.com/en/cards/390040-mega-pyroar-ex-full-art-099-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "100",
         "card_name": "Mega Greninja ex",
         "finish_key": "holo",
@@ -11623,27 +10689,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66063/mega-greninja-ex-chaos-rising-100-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "100",
-        "card_name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-100",
-          "https://www.cardtrader.com/en/cards/390041-mega-greninja-ex-full-art-100-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11673,27 +10718,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "101",
-        "card_name": "Mega Floette ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-101",
-          "https://www.cardtrader.com/en/cards/390042-mega-floette-ex-full-art-101-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "102",
         "card_name": "Gourgeist ex",
         "finish_key": "holo",
@@ -11711,27 +10735,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66065/gourgeist-ex-chaos-rising-102-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "102",
-        "card_name": "Gourgeist ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-102",
-          "https://www.cardtrader.com/en/cards/390043-gourgeist-ex-full-art-102-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11761,27 +10764,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "103",
-        "card_name": "Cobalion ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-103",
-          "https://www.cardtrader.com/en/cards/390044-cobalion-ex-full-art-103-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "104",
         "card_name": "Mega Dragalge ex",
         "finish_key": "holo",
@@ -11799,27 +10781,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66067/mega-dragalge-ex-chaos-rising-104-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "104",
-        "card_name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-104",
-          "https://www.cardtrader.com/en/cards/390045-mega-dragalge-ex-full-art-104-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11849,27 +10810,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "105",
-        "card_name": "Cinccino ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-105",
-          "https://www.cardtrader.com/en/cards/390046-cinccino-ex-full-art-105-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "106",
         "card_name": "AZ's Tranquility",
         "finish_key": "holo",
@@ -11885,27 +10825,6 @@
         "evidence_urls": [
           "https://www.tcgcollector.com/cards/66073/azs-tranquility-chaos-rising-106-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "106",
-        "card_name": "AZ's Tranquility",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-106",
-          "https://www.cardtrader.com/en/cards/390048-az-s-tranquility-ultra-rare-106-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -11935,27 +10854,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "107",
-        "card_name": "Emma",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-107",
-          "https://www.cardtrader.com/en/cards/390049-emma-ultra-rare-107-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "108",
         "card_name": "Energy Retrieval",
         "finish_key": "holo",
@@ -11973,27 +10871,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66069/energy-retrieval-chaos-rising-108-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "108",
-        "card_name": "Energy Retrieval",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-108",
-          "https://www.cardtrader.com/en/cards/390047-energy-retrieval-ultra-rare-108-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12046,27 +10923,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "110",
-        "card_name": "Philippe",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-110",
-          "https://www.cardtrader.com/en/cards/390051-philippe-ultra-rare-110-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "111",
         "card_name": "Prism Tower",
         "finish_key": "holo",
@@ -12090,27 +10946,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "111",
-        "card_name": "Prism Tower",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-111",
-          "https://www.cardtrader.com/en/cards/390052-prism-tower-ultra-rare-111-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "112",
         "card_name": "Roxie's Performance",
         "finish_key": "holo",
@@ -12126,27 +10961,6 @@
         "evidence_urls": [
           "https://www.tcgcollector.com/cards/66075/roxies-performance-chaos-rising-112-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "112",
-        "card_name": "Roxie's Performance",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-112",
-          "https://www.cardtrader.com/en/cards/390053-roxie-s-performance-ultra-rare-112-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12176,27 +10990,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "113",
-        "card_name": "Special Red Card",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-113",
-          "https://www.cardtrader.com/en/cards/390054-special-red-card-ultra-rare-113-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "114",
         "card_name": "Surfing Beach",
         "finish_key": "holo",
@@ -12214,27 +11007,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66077/surfing-beach-chaos-rising-114-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "114",
-        "card_name": "Surfing Beach",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-114",
-          "https://www.cardtrader.com/en/cards/390055-surfing-beach-ultra-rare-114-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12264,27 +11036,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "115",
-        "card_name": "Tool Scrapper",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-115",
-          "https://www.cardtrader.com/en/cards/390056-tool-scrapper-ultra-rare-115-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "116",
         "card_name": "Mega Greninja ex",
         "finish_key": "holo",
@@ -12302,27 +11053,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66079/mega-greninja-ex-chaos-rising-116-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "116",
-        "card_name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-116",
-          "https://www.cardtrader.com/en/cards/389941-mega-greninja-ex-special-illustration-rare-116-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12352,27 +11082,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "117",
-        "card_name": "Mega Floette ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-117",
-          "https://www.cardtrader.com/en/cards/390057-mega-floette-ex-special-illustration-rare-117-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "118",
         "card_name": "Mega Dragalge ex",
         "finish_key": "holo",
@@ -12390,27 +11099,6 @@
           "https://reverseholo.app/sets/me04",
           "https://www.tcgcollector.com/cards/66081/mega-dragalge-ex-chaos-rising-118-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "118",
-        "card_name": "Mega Dragalge ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-118",
-          "https://www.cardtrader.com/en/cards/390058-mega-dragalge-ex-special-illustration-rare-118-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12440,27 +11128,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "119",
-        "card_name": "Cinccino ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-119",
-          "https://www.cardtrader.com/en/cards/390059-cinccino-ex-special-illustration-rare-119-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "120",
         "card_name": "AZ's Tranquility",
         "finish_key": "holo",
@@ -12476,27 +11143,6 @@
         "evidence_urls": [
           "https://www.tcgcollector.com/cards/66083/azs-tranquility-chaos-rising-120-086",
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "120",
-        "card_name": "AZ's Tranquility",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-120",
-          "https://www.cardtrader.com/en/cards/390060-az-s-tranquility-special-illustration-rare-120-086-chaos-rising"
         ],
         "parent_card_master_verified": true
       },
@@ -12524,27 +11170,6 @@
       {
         "set_key": "me04",
         "set_name": "Chaos Rising",
-        "card_number": "121",
-        "card_name": "Roxie's Performance",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-121",
-          "https://www.cardtrader.com/en/cards/390061-roxie-s-performance-special-illustration-rare-121-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
         "card_number": "122",
         "card_name": "Mega Greninja ex",
         "finish_key": "holo",
@@ -12564,36 +11189,15 @@
           "https://www.thepricedex.com/set/me4/chaos-rising/price-list"
         ],
         "parent_card_master_verified": true
-      },
-      {
-        "set_key": "me04",
-        "set_name": "Chaos Rising",
-        "card_number": "122",
-        "card_name": "Mega Greninja ex",
-        "finish_key": "normal",
-        "source_count": 2,
-        "sources": [
-          "cardtrader_blueprint_index",
-          "tcgdex"
-        ],
-        "source_kinds": [
-          "marketplace_checklist",
-          "structured_api"
-        ],
-        "evidence_urls": [
-          "https://api.tcgdex.net/v2/en/cards/me04-122",
-          "https://www.cardtrader.com/en/cards/390062-mega-greninja-ex-gold-secret-rare-122-086-chaos-rising"
-        ],
-        "parent_card_master_verified": true
       }
     ]
   },
   "post_apply_verification_requirements": [
-    "Grookai comparison for me04 has 247 verified_by_index rows.",
+    "Grookai comparison for me04 has 202 verified_by_index rows.",
     "Grookai comparison for me04 has 0 missing_from_grookai rows.",
     "Grookai comparison for me04 has 0 unsupported_by_current_index rows.",
     "Grookai comparison for me04 has 0 name_mismatch_needs_review rows.",
     "card_prints for set_code me04 or me4 resolve to 122 parent rows.",
-    "card_printings joined through those parent rows resolve to 247 child printing rows."
+    "card_printings joined through those parent rows resolve to 202 child printing rows."
   ]
 }

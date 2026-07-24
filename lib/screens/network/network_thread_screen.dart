@@ -228,9 +228,9 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
     if (!mounted) {
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(result.message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(result.message)));
   }
 
   Future<void> _blockCounterpart() async {
@@ -270,9 +270,9 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
         _thread = _thread.copyWith(isArchived: true, hasUnread: false);
       });
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(result.message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(result.message)));
   }
 
   @override
@@ -345,6 +345,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                     CardSurfaceArtwork(
                       label: _thread.cardName,
                       imageUrl: _thread.imageUrl,
+                      fallbackImageUrl: _thread.fallbackImageUrl,
                       width: 60,
                       height: 84,
                       borderRadius: 12,
@@ -359,6 +360,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                               setName: _thread.setName,
                               number: _thread.number,
                               imageUrl: _thread.imageUrl,
+                              fallbackImageUrl: _thread.fallbackImageUrl,
                               contactVaultItemId: _thread.vaultItemId,
                               contactOwnerDisplayName:
                                   _thread.counterpartDisplayName,
@@ -467,6 +469,8 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                                         setName: _thread.setName,
                                         number: _thread.number,
                                         imageUrl: _thread.imageUrl,
+                                        fallbackImageUrl:
+                                            _thread.fallbackImageUrl,
                                         contactVaultItemId: _thread.vaultItemId,
                                         contactOwnerDisplayName:
                                             _thread.counterpartDisplayName,

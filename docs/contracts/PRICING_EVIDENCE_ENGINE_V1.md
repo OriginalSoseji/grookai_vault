@@ -176,6 +176,19 @@ Mappings must not mutate:
 - image truth
 - ownership/vault state
 
+### Provider Finish Normalization Boundary
+
+A provider price field may classify evidence or select an existing governed child printing. It may never prove, create, restore, delete, or rename canonical printing identity.
+
+For TCGdex Cardmarket evidence:
+
+- an explicit `-<finish>` key suffix is preserved as the evidence finish hint;
+- an unsuffixed key resolves to Holo only when the raw card payload explicitly has `variants.holo === true` and `variants.normal === false`;
+- missing, partial, both-true, both-false, or contradictory variant metadata retains the legacy Normal evidence hint and remains review-gated;
+- every normalized row preserves the raw metric key, both source variant flags, raw import/snapshot lineage, and resolver version.
+
+The Normal fallback exists only for market-evidence compatibility. It is not Normal-printing truth. If the corresponding governed child printing does not exist, the evidence remains unmatched or review-only.
+
 ## Identity Match Requirements
 
 Pricing evidence may attach to a Grookai row only when the match is sufficient for the intended lane.

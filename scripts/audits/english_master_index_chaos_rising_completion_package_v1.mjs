@@ -10,6 +10,12 @@ import {
   normalizeText,
   uniqueSorted,
 } from './verified_master_set_index_v1/shared.mjs';
+import {
+  applyMe04FinishTruthV1,
+  assertMe04FinishTruthV1,
+  ME04_EXPECTED_PARENT_COUNT_V1,
+  ME04_EXPECTED_PRINTING_COUNT_V1,
+} from './me04_finish_truth_v1.mjs';
 
 const MASTER_DIR = 'docs/audits/verified_master_set_index_v1/english_master_index_v1';
 const OUTPUT_DIR = 'docs/audits/verified_master_set_index_v1/chaos_rising';
@@ -60,8 +66,11 @@ function buildIndexRows({ cardsArtifact, printingsArtifact, grookaiAudit }) {
   const cards = (cardsArtifact.cards ?? [])
     .filter((row) => row.set_key === SET_KEY)
     .sort((left, right) => normalizeNumber(left.card_number).localeCompare(normalizeNumber(right.card_number), undefined, { numeric: true }));
-  const printings = (printingsArtifact.printings ?? [])
-    .filter((row) => row.set_key === SET_KEY)
+  const rawPrintings = (printingsArtifact.printings ?? [])
+    .filter((row) => row.set_key === SET_KEY);
+  const { retained: governedPrintings } = applyMe04FinishTruthV1(rawPrintings);
+  assertMe04FinishTruthV1(governedPrintings, 'Chaos Rising completion-package Master Index');
+  const printings = governedPrintings
     .sort((left, right) => (
       normalizeNumber(left.card_number).localeCompare(normalizeNumber(right.card_number), undefined, { numeric: true })
       || String(left.finish_key).localeCompare(String(right.finish_key))
@@ -271,7 +280,10 @@ function buildReport({ indexRows, live }) {
   const summary = summarize({ indexRows, live });
   const comparison = exactLiveComparison({ indexRows, live });
   const blockerRows = blockers(summary, live);
-  const masterIndexComplete = summary.master_index_cards === 122 && summary.master_index_printings === 247;
+  const masterIndexComplete = (
+    summary.master_index_cards === ME04_EXPECTED_PARENT_COUNT_V1
+    && summary.master_index_printings === ME04_EXPECTED_PRINTING_COUNT_V1
+  );
   const liveMatchesMasterIndex = (
     summary.live_set_rows === 1
     && summary.live_card_print_rows === summary.master_index_cards
@@ -304,7 +316,7 @@ function buildReport({ indexRows, live }) {
         'TCGdex normalize dry-run scoped to imported raw rows',
         'Strict preflight and operator approval',
         'Standard ingestion apply through maintenance boundary',
-        'Post-apply Master Index comparison for me04 must reach 247/247 verified_by_index',
+        `Post-apply Master Index comparison for me04 must reach ${ME04_EXPECTED_PRINTING_COUNT_V1}/${ME04_EXPECTED_PRINTING_COUNT_V1} verified_by_index`,
       ],
       no_bespoke_writer_recommended: true,
     },
@@ -315,12 +327,12 @@ function buildReport({ indexRows, live }) {
       printings: indexRows.plannedPrintings,
     },
     post_apply_verification_requirements: [
-      'Grookai comparison for me04 has 247 verified_by_index rows.',
+      `Grookai comparison for me04 has ${ME04_EXPECTED_PRINTING_COUNT_V1} verified_by_index rows.`,
       'Grookai comparison for me04 has 0 missing_from_grookai rows.',
       'Grookai comparison for me04 has 0 unsupported_by_current_index rows.',
       'Grookai comparison for me04 has 0 name_mismatch_needs_review rows.',
-      'card_prints for set_code me04 or me4 resolve to 122 parent rows.',
-      'card_printings joined through those parent rows resolve to 247 child printing rows.',
+      `card_prints for set_code me04 or me4 resolve to ${ME04_EXPECTED_PARENT_COUNT_V1} parent rows.`,
+      `card_printings joined through those parent rows resolve to ${ME04_EXPECTED_PRINTING_COUNT_V1} child printing rows.`,
     ],
   };
 }

@@ -70,6 +70,7 @@ test('founder ops dashboard has a report registry for launch, catalog, ingestion
   );
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /17 13 \* \* \*/);
+  assert.match(workflow, /SUPABASE_DB_URL:\s*\${{\s*secrets\.SUPABASE_DB_URL\s*}}/);
   assert.match(workflow, /npm run founder:ops:collect/);
   assert.match(workflow, /docs\/audits\/founder_ops_dashboard_v1/);
 });

@@ -67,7 +67,16 @@ The manifest must contain one entry per target set:
       "expected_counts": {
         "official": null,
         "secret": null,
-        "total": null
+        "total": null,
+        "parents": null,
+        "printings": null,
+        "by_finish": {}
+      },
+      "printing_truth": {
+        "materializes_child_printings": false,
+        "suppressed_printing_facts": [],
+        "protected_printing_facts": [],
+        "source_evidence_refs": []
       },
       "notes": []
     }
@@ -89,6 +98,13 @@ Required fields:
 
 Null source IDs are allowed during discovery. Null expected counts are not
 allowed for apply.
+
+`official`, `secret`, and `total` describe parent/card-list coverage. Any run
+that can mutate `card_printings` must additionally provide exact `parents`,
+`printings`, and `by_finish` counts plus explicit suppression, protected-fact,
+and evidence lists under `printing_truth`. A run that declares
+`materializes_child_printings: false` must prove its write allowlist excludes
+`card_printings`.
 
 ## Source Identity Rule
 
@@ -136,6 +152,30 @@ The update must preserve:
 
 The master index update is evidence. It is not deletion authority for older
 canon rows.
+
+## Printing Truth Gate
+
+Any route that proposes canonical child-printing changes must obey
+`INGESTION_PIPELINE_CONTRACT_V1` and `PRINTING_TRUTH_CONTRACT_V1`.
+
+Before producing a write plan, it must assert:
+
+- exact parent and printing counts;
+- exact counts by finish;
+- zero duplicate exact printing identities;
+- zero suppressed or forbidden printing facts;
+- all protected printing facts remain present;
+- zero unresolved conflicts.
+
+The same assertion must run inside the transaction immediately before commit.
+The final readback must prove the same values. Provider price keys, price
+buckets, listing titles, and unsuffixed provider metrics cannot supply printing
+truth or create a child row.
+
+The permanent ME04 regression profile is `122` parents, `202` printings, `68`
+Normal, `76` Reverse Holo, and `58` Holo. It also preserves the four valid Build
+& Battle Normal printings, rejects the checked-in 45 historical false Normal
+facts, and forbids Normal for Holo-only `109 Jumbo Ice Cream`.
 
 ## Ingestion Routes
 
@@ -254,6 +294,9 @@ The runner must stop before writes when:
 - set identity maps to a known unrelated release
 - expected counts are missing
 - source card count does not match expected count
+- child-printing apply is requested without exact parent, printing, and by-finish counts
+- a finish count, suppression list, or protected printing fact does not match the governed manifest
+- a price or market-evidence field is the only support for a proposed child printing
 - duplicate source IDs map to different cards
 - card numbers are missing
 - card names are missing
@@ -274,6 +317,8 @@ A release is not complete until readbacks prove:
 - target sets exist in DB
 - target set rows have source provenance
 - target card print count equals source count
+- any child-printing target has exact parent, total printing, and by-finish counts matching its truth manifest
+- suppressed and forbidden printing facts have zero rows, and protected printing facts remain present
 - target external mappings exist
 - no unresolved mapping conflicts exist for target source IDs
 - target master index entries exist
@@ -313,6 +358,7 @@ The report must include:
 - source URLs
 - expected counts
 - DB counts
+- exact printing counts by finish, suppressed-fact count, and protected-fact count when child printings are in scope
 - mapping counts
 - image upload counts
 - skipped image count and reason

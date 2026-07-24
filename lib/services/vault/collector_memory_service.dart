@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../identity/catalog_artwork_resolution.dart';
+
 const bool kCollectorMemoriesEnabled = bool.fromEnvironment(
   'COLLECTOR_MEMORIES_ENABLED',
   defaultValue: true,
@@ -34,6 +36,9 @@ typedef CollectorMemoryStorageSign =
       required String path,
       required int expiresIn,
     });
+
+typedef CollectorMemoryCatalogLookup =
+    Future<List<Map<String, dynamic>>> Function(List<String> cardPrintIds);
 
 class CollectorMemoryServiceException implements Exception {
   const CollectorMemoryServiceException(this.operation, this.cause);
@@ -119,6 +124,7 @@ class OwnerCollectorMemory {
     required this.cardPrintId,
     required this.cardName,
     required this.setName,
+    this.gvId,
     this.cardImageUrl,
   });
 
@@ -126,7 +132,25 @@ class OwnerCollectorMemory {
   final String cardPrintId;
   final String cardName;
   final String setName;
+  final String? gvId;
   final String? cardImageUrl;
+
+  CatalogArtworkResolution get catalogArtwork =>
+      resolveCatalogArtwork(gvId: gvId, providerImageUrl: cardImageUrl);
+
+  OwnerCollectorMemory withCatalogIdentity({
+    String? gvId,
+    String? providerImageUrl,
+  }) {
+    return OwnerCollectorMemory(
+      memory: memory,
+      cardPrintId: cardPrintId,
+      cardName: cardName,
+      setName: setName,
+      gvId: _optionalText(gvId) ?? this.gvId,
+      cardImageUrl: _optionalText(providerImageUrl) ?? cardImageUrl,
+    );
+  }
 
   static OwnerCollectorMemory? fromJson(Map<String, dynamic> json) {
     final memory = CollectorMemory.fromJson(json);
@@ -138,6 +162,7 @@ class OwnerCollectorMemory {
       cardPrintId: cardPrintId,
       cardName: cardName.isEmpty ? 'Card memory' : cardName,
       setName: _text(json['set_name']),
+      gvId: _optionalText(json['gv_id']),
       cardImageUrl: _optionalText(json['card_image_url']),
     );
   }
@@ -190,11 +215,13 @@ class CollectorMemoryService {
     CollectorMemoryStorageUpload? upload,
     CollectorMemoryStorageRemove? remove,
     CollectorMemoryStorageSign? sign,
+    CollectorMemoryCatalogLookup? catalogLookup,
   }) : _client = client ?? (rpc == null ? Supabase.instance.client : null),
        _rpc = rpc,
        _upload = upload,
        _remove = remove,
-       _sign = sign;
+       _sign = sign,
+       _catalogLookup = catalogLookup;
 
   static const String memoryBucket = 'collector-memory-images';
   static const int photoMaxBytes = 10 * 1024 * 1024;
@@ -204,6 +231,7 @@ class CollectorMemoryService {
   final CollectorMemoryStorageUpload? _upload;
   final CollectorMemoryStorageRemove? _remove;
   final CollectorMemoryStorageSign? _sign;
+  final CollectorMemoryCatalogLookup? _catalogLookup;
 
   bool get isFeatureEnabled => kCollectorMemoriesEnabled;
 
@@ -243,9 +271,66 @@ class CollectorMemoryService {
       }),
     );
 
-    return _maps(response)
+    final memories = _maps(response)
         .map(OwnerCollectorMemory.fromJson)
         .whereType<OwnerCollectorMemory>()
+        .toList(growable: false);
+    if (memories.isEmpty) {
+      return memories;
+    }
+
+    final cardPrintIds = memories
+        .map((memory) => memory.cardPrintId.trim())
+        .where((cardPrintId) => cardPrintId.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (cardPrintIds.isEmpty) {
+      return memories;
+    }
+
+    try {
+      final catalogRows = await _loadCatalogRows(cardPrintIds);
+      final catalogByCardPrintId = <String, Map<String, dynamic>>{
+        for (final row in catalogRows)
+          if (_text(row['id']).isNotEmpty) _text(row['id']): row,
+      };
+      return memories
+          .map((memory) {
+            final row = catalogByCardPrintId[memory.cardPrintId];
+            if (row == null) {
+              return memory;
+            }
+            return memory.withCatalogIdentity(
+              gvId: _optionalText(row['gv_id']),
+              providerImageUrl:
+                  _optionalText(row['image_url']) ??
+                  _optionalText(row['image_alt_url']) ??
+                  _optionalText(row['representative_image_url']),
+            );
+          })
+          .toList(growable: false);
+    } catch (_) {
+      // Catalog enrichment is best-effort. A transient lookup failure must not
+      // hide the owner's private memories or their signed photos.
+      return memories;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> _loadCatalogRows(
+    List<String> cardPrintIds,
+  ) async {
+    final injected = _catalogLookup;
+    if (injected != null) {
+      return injected(cardPrintIds);
+    }
+
+    final response = await _requiredClient()
+        .from('card_prints')
+        .select('id,gv_id,image_url,image_alt_url,representative_image_url')
+        .inFilter('id', cardPrintIds);
+    return (response as List<dynamic>)
+        .whereType<Map>()
+        .map((row) => Map<String, dynamic>.from(row))
         .toList(growable: false);
   }
 

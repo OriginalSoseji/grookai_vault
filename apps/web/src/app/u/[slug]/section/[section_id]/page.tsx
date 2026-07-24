@@ -95,7 +95,7 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
       kind: "custom" as const,
       name: section.name,
       position: section.position,
-      item_count: section.item_count,
+      item_count: section.id === model.section.id ? model.cards.length : section.item_count,
       cards: section.id === model.section.id ? model.cards : [],
     })),
   ];

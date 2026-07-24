@@ -1,6 +1,6 @@
 import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton";
 
-export default function SetLoading() {
+export default function SetRouteLoading() {
   return (
     <div className="space-y-6 animate-fade py-2">
       <div className="space-y-3">

@@ -46,6 +46,9 @@ const nextConfig = {
     cpus: 1,
     outputFileTracingRoot: repoRoot,
     outputFileTracingIncludes: {
+      "/u/[slug]/opengraph-image": [
+        "./public/grookai-logo-512.png",
+      ],
       "/founder": [
         "../../docs/audits/founder_ops_dashboard_v1/*.json",
         "../../docs/audits/image_truth_v1/canon_image_full_db_playbook_scan_v1.json",

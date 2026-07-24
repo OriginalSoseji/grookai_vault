@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
+import '../identity/catalog_artwork_resolution.dart';
 import '../public/card_surface_pricing_service.dart';
 import '../public/following_service.dart';
-import '../../utils/display_image_contract.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 const List<String> kDiscoverableVaultIntents = <String>[
@@ -84,6 +85,8 @@ class NetworkStreamRow {
     this.gradeLabel,
     this.createdAt,
     this.imageUrl,
+    this.fallbackImageUrl,
+    this.hasCollectorUploadedImage = false,
     this.inPlayCopies = const <NetworkStreamCopy>[],
     this.pricing,
     this.listingCount,
@@ -121,6 +124,8 @@ class NetworkStreamRow {
   final String? sourceLabel;
   final String? rarity;
   final String? imageUrl;
+  final String? fallbackImageUrl;
+  final bool hasCollectorUploadedImage;
   final List<NetworkStreamCopy> inPlayCopies;
   final CardSurfacePricingData? pricing;
   final int? listingCount;
@@ -143,6 +148,9 @@ class NetworkStreamRow {
     String? setIdentityModel,
     String? imageUrl,
     bool clearImageUrl = false,
+    String? fallbackImageUrl,
+    bool clearFallbackImageUrl = false,
+    bool? hasCollectorUploadedImage,
     List<NetworkStreamCopy>? inPlayCopies,
     CardSurfacePricingData? pricing,
     int? listingCount,
@@ -181,6 +189,11 @@ class NetworkStreamRow {
       sourceLabel: sourceLabel ?? this.sourceLabel,
       rarity: rarity ?? this.rarity,
       imageUrl: clearImageUrl ? null : imageUrl ?? this.imageUrl,
+      fallbackImageUrl: clearFallbackImageUrl
+          ? null
+          : fallbackImageUrl ?? this.fallbackImageUrl,
+      hasCollectorUploadedImage:
+          hasCollectorUploadedImage ?? this.hasCollectorUploadedImage,
       inPlayCopies: inPlayCopies ?? this.inPlayCopies,
       pricing: pricing ?? this.pricing,
       listingCount: listingCount ?? this.listingCount,
@@ -1112,6 +1125,13 @@ class NetworkStreamService {
         _positiveCount(row['in_play_count']) ??
         _positiveCount(row['quantity']) ??
         1;
+    final sourceImageUrl = _displayImageUrl(row);
+    final hasCollectorUploadedImage =
+        sourceImageUrl != null && isCollectorUploadedCardImage(sourceImageUrl);
+    final catalogArtwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: hasCollectorUploadedImage ? null : sourceImageUrl,
+    );
 
     return NetworkStreamRow(
       sourceType: inPlayCount > 0
@@ -1147,7 +1167,11 @@ class NetworkStreamService {
       variantKey: null,
       printedIdentityModifier: null,
       setIdentityModel: null,
-      imageUrl: _displayImageUrl(row),
+      imageUrl: hasCollectorUploadedImage
+          ? sourceImageUrl
+          : catalogArtwork.primaryImageUrl,
+      fallbackImageUrl: catalogArtwork.fallbackImageUrl,
+      hasCollectorUploadedImage: hasCollectorUploadedImage,
     );
   }
 
@@ -1240,11 +1264,16 @@ class NetworkStreamService {
 
     return rows.map((row) {
       final identity = identityByCardPrintId[row.cardPrintId];
+      final providerImageUrl = _preferredImageUrl(
+        row.fallbackImageUrl,
+        identity?.displayImageUrl,
+      );
       return row.copyWith(
         variantKey: identity?.variantKey,
         printedIdentityModifier: identity?.printedIdentityModifier,
         setIdentityModel: identity?.setIdentityModel,
-        imageUrl: _preferredImageUrl(row.imageUrl, identity?.displayImageUrl),
+        fallbackImageUrl: providerImageUrl,
+        clearFallbackImageUrl: providerImageUrl == null,
         inPlayCopies:
             copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
             const <NetworkStreamCopy>[],
@@ -1485,6 +1514,10 @@ class NetworkStreamService {
     final setRecord = _recordFrom(cardRow['sets']);
     final resolvedPricing =
         pricing ?? (pricingRow == null ? null : _pricingFromRow(pricingRow));
+    final catalogArtwork = resolveCatalogArtwork(
+      gvId: gvId,
+      providerImageUrl: _displayImageUrl(cardRow),
+    );
 
     return NetworkStreamRow(
       sourceType: sourceType,
@@ -1513,7 +1546,8 @@ class NetworkStreamService {
       printedIdentityModifier: _nullable(cardRow['printed_identity_modifier']),
       setIdentityModel: _nullable(setRecord?['identity_model']),
       rarity: _nullable(cardRow['rarity']),
-      imageUrl: _displayImageUrl(cardRow),
+      imageUrl: catalogArtwork.primaryImageUrl,
+      fallbackImageUrl: catalogArtwork.fallbackImageUrl,
       pricing: resolvedPricing,
       listingCount: _positiveCount(pricingRow?['ebay_listing_count']),
     );

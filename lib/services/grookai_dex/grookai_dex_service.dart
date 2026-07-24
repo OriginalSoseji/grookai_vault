@@ -1,7 +1,27 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
 import '../vault/vault_card_service.dart';
+
+@visibleForTesting
+Future<List<T>> retryNonEmptyDexCatalogRead<T>({
+  required Future<List<T>> Function() read,
+  int maxAttempts = 2,
+  Duration retryDelay = const Duration(milliseconds: 250),
+}) async {
+  final attempts = maxAttempts < 1 ? 1 : maxAttempts;
+  for (var attempt = 0; attempt < attempts; attempt += 1) {
+    final rows = await read();
+    if (rows.isNotEmpty) {
+      return rows;
+    }
+    if (attempt + 1 < attempts && retryDelay > Duration.zero) {
+      await Future<void>.delayed(retryDelay);
+    }
+  }
+  throw StateError('Grookai Dex species catalog returned no rows.');
+}
 
 class GrookaiDexSpeciesSummary {
   const GrookaiDexSpeciesSummary({
@@ -102,6 +122,13 @@ class GrookaiDexCardPrint {
   final int ownedCount;
   final List<GrookaiDexPrintingOption> printings;
 
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+
+  String? get providerFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(imageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
   bool get isOwned => ownedCount > 0;
   int get totalOptionCount => printings.isEmpty ? 1 : printings.length;
   int get ownedOptionCount => printings.isEmpty
@@ -185,15 +212,15 @@ class GrookaiDexService {
       );
     }
 
-    final completionRows = await _fetchDexCompletionRows(client);
-    final mappedCardPrintIds = completionRows
-        .map((row) => _clean(row['card_print_id']))
-        .where((id) => id.isNotEmpty)
-        .toSet()
-        .toList(growable: false);
-    final ownedCounts = await _fetchOwnedCountsByCardPrintIds(
+    // The species view already owns the full-Dex denominator. Start from the
+    // collector's small owned set, then fetch only mappings that can affect
+    // their progress instead of scanning every completion mapping on entry.
+    final ownedCounts = await VaultCardService.getAllOwnedCounts(
       client: client,
-      cardPrintIds: mappedCardPrintIds,
+    );
+    final completionRows = await _fetchDexCompletionRows(
+      client,
+      cardPrintIds: ownedCounts.keys,
     );
     final ownedPrintsBySpecies = <String, Set<String>>{};
     final ownedCopiesBySpecies = <String, int>{};
@@ -253,6 +280,14 @@ class GrookaiDexService {
   }
 
   static Future<List<Map<String, dynamic>>> _fetchAllSpeciesRows(
+    SupabaseClient client,
+  ) {
+    return retryNonEmptyDexCatalogRead(
+      read: () => _fetchAllSpeciesRowsOnce(client),
+    );
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchAllSpeciesRowsOnce(
     SupabaseClient client,
   ) async {
     const chunkSize = 1000;
@@ -427,25 +462,31 @@ class GrookaiDexService {
   }
 
   static Future<List<Map<String, dynamic>>> _fetchDexCompletionRows(
-    SupabaseClient client,
-  ) async {
+    SupabaseClient client, {
+    required Iterable<String> cardPrintIds,
+  }) async {
     const chunkSize = 1000;
     final rows = <Map<String, dynamic>>[];
-    for (var offset = 0; ; offset += chunkSize) {
-      final data = await client
-          .from('v_grookai_dex_card_prints_v1')
-          .select(
-            'species_id,card_print_id,counts_for_completion,mapping_active',
-          )
-          .eq('mapping_active', true)
-          .eq('counts_for_completion', true)
-          .range(offset, offset + chunkSize - 1);
-      final chunk = (data as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .toList(growable: false);
-      rows.addAll(chunk);
-      if (chunk.length < chunkSize) {
-        break;
+    for (final cardPrintIdChunk in _chunks(cardPrintIds, 250)) {
+      for (var offset = 0; ; offset += chunkSize) {
+        final data = await client
+            .from('v_grookai_dex_card_prints_v1')
+            .select(
+              'species_id,card_print_id,counts_for_completion,mapping_active',
+            )
+            .eq('mapping_active', true)
+            .eq('counts_for_completion', true)
+            .inFilter('card_print_id', cardPrintIdChunk)
+            .order('card_print_id', ascending: true)
+            .order('species_id', ascending: true)
+            .range(offset, offset + chunkSize - 1);
+        final chunk = (data as List<dynamic>)
+            .map((row) => Map<String, dynamic>.from(row as Map))
+            .toList(growable: false);
+        rows.addAll(chunk);
+        if (chunk.length < chunkSize) {
+          break;
+        }
       }
     }
     return rows;

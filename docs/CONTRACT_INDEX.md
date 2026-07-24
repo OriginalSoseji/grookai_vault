@@ -47,12 +47,12 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
-| INGESTION_PIPELINE_CONTRACT_V1 | Active | Contract-first staged ingestion via raw_imports |
+| INGESTION_PIPELINE_CONTRACT_V1 | Active | docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md — Raw-first staged ingestion plus mandatory source-precedence, exact per-set finish manifests, suppression checks, and plan/pre-commit/readback gates before canonical printing mutation |
 | EXTERNAL_SOURCE_INGESTION_MODEL_V1 | Active | Shared raw-first canon-bound ingestion model for external catalog and discovery rows before comparison, canon gate, and staged promotion |
 | EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1 | Active | Non-canon staging boundary for external discovery candidates before review and any later canon decision |
 | EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CONTRACT_V1 | Active | docs/contracts/EXTERNAL_MAPPING_ALIAS_GOVERNANCE_CONTRACT_V1.md — Source-card duplicate external mappings must preserve useful product/deck/prize-pack/suffix/text alias intelligence before any deactivation; only proven formatting duplicates may proceed directly to guarded cleanup |
 | BATTLE_ACADEMY_CANON_CONTRACT_V1 | Frozen | docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md — Active BA identity-law authority used by the final rollout; Battle Academy is a curated-product overlay domain whose lawful identity is `(ba_set_code, printed_number, normalized_printed_name, source_name_raw)` and whose promotion gate is strict and fail-closed |
-| TCGDEX_SOURCE_CONTRACT_V1 | Active | Deterministic tcgdex ingestion and mapping rules |
+| TCGDEX_SOURCE_CONTRACT_V1 | Active | docs/contracts/TCGDEX_SOURCE_CONTRACT_V1.md — Deterministic TCGdex raw, mapping, image, variant, and pricing normalization rules; TCGdex evidence cannot manufacture canonical printings |
 | POKEMONAPI_SOURCE_CONTRACT_V1 | Active | PokémonAPI ingestion and normalization rules |
 | TCGDEX_MAPPING_WORKER_V2_CONTRACT | Frozen | 100% certainty tcgdex → canonical mapping |
 | PRINTED_IDENTITY_CONTRACT_V1 | Frozen | Printed set abbreviation and printed_total rules |

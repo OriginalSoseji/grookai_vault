@@ -237,6 +237,8 @@ async function mapCardPrintings(
           image_note: imageFields.image_note ?? undefined,
           image_source: imageFields.image_source ?? undefined,
           display_image_url: imageFields.display_image_url ?? undefined,
+          external_image_fallback_url:
+            imageFields.external_image_fallback_url ?? undefined,
           display_image_kind: imageFields.display_image_kind,
           is_display_fallback: imageFields.display_image_kind !== "exact",
           finish_sort_order:
@@ -359,6 +361,8 @@ async function mapRelatedPrints(
         undefined,
       display_image_fallback_url:
         childDisplayImageFallback?.display_image_url ?? undefined,
+      external_image_fallback_url:
+        imageFields.external_image_fallback_url ?? undefined,
       display_image_kind: fallbackDisplayImage
         ? fallbackDisplayImage.display_image_kind
         : imageFields.display_image_kind,
@@ -760,6 +764,8 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     image_note: imageFields.image_note ?? undefined,
     image_source: imageFields.image_source ?? undefined,
     display_image_url: imageFields.display_image_url ?? undefined,
+    external_image_fallback_url:
+      imageFields.external_image_fallback_url ?? undefined,
     display_image_kind: imageFields.display_image_kind,
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
     artist: row.artist ?? undefined,

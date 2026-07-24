@@ -16,7 +16,12 @@ test("public profile rail renders Wall first and active custom sections after it
 
   assert.match(profileContent, /return \[wall, \.\.\.customSections\]/);
   assert.match(profileContent, /Public profile rail must render Wall first, then active custom sections only/);
+  assert.match(publicSectionsQuery, /\.from\("wall_sections"\)/);
+  assert.match(publicSectionsQuery, /getPublicProfileBySlug\(normalizedSlug\)/);
+  assert.match(publicSectionsQuery, /!profile\.vault_sharing_enabled/);
+  assert.match(publicSectionsQuery, /\.eq\("user_id", profile\.user_id\)/);
   assert.match(publicSectionsQuery, /\.eq\("is_active", true\)/);
+  assert.doesNotMatch(publicSectionsQuery, /v_wall_sections_v1|createServerAdminClient/);
   assert.doesNotMatch(publicSectionsQuery, /\.eq\("is_public"/);
   assert.match(publicSectionsQuery, /is_public is not a product visibility gate/);
 });
@@ -29,11 +34,41 @@ test("inactive public sections fail closed and is_public does not gate normal vi
 
   assert.match(publicSectionsQuery, /row\.is_active !== true/);
   assert.doesNotMatch(publicSectionsQuery, /row\.is_public|eq\("is_public"/);
+  assert.match(sectionShareQuery, /\.from\("wall_sections"\)/);
+  assert.match(sectionShareQuery, /\.eq\("user_id", profile\.user_id\)/);
   assert.match(sectionShareQuery, /\.eq\("is_active", true\)/);
+  assert.match(sectionShareQuery, /item_count: cards\.length/);
+  assert.doesNotMatch(sectionShareQuery, /v_wall_sections_v1|createServerAdminClient/);
   assert.doesNotMatch(sectionShareQuery, /is_public/);
   assert.doesNotMatch(migration, /ws\.is_public = true/);
   assert.match(profileContent, /section\.kind === "custom"/);
   assert.match(profileContent, /section\.id !== PUBLIC_WALL_SECTION_ID/);
+});
+
+test("public section cards elevate only after an RLS-backed slug and section proof", () => {
+  const sectionCardsQuery = readSource("lib", "wallSections", "getPublicSectionCardsBySlug.ts");
+  const profileProofIndex = sectionCardsQuery.indexOf("getPublicProfileBySlug(normalizedSlug)");
+  const sharingGateIndex = sectionCardsQuery.indexOf("!profile || !profile.vault_sharing_enabled");
+  const sectionProofIndex = sectionCardsQuery.indexOf('.from("wall_sections")');
+  const proofFailureIndex = sectionCardsQuery.indexOf("if (error || !data?.id)");
+  const proofUseIndex = sectionCardsQuery.indexOf("const proof = await provePublicSectionRead");
+  const failClosedIndex = sectionCardsQuery.indexOf("if (!proof)");
+  const adminReadIndex = sectionCardsQuery.indexOf("const admin = createServerAdminClient()");
+
+  assert.match(sectionCardsQuery, /^import "server-only";/);
+  assert.ok(profileProofIndex >= 0);
+  assert.ok(sharingGateIndex > profileProofIndex);
+  assert.ok(sectionProofIndex > sharingGateIndex);
+  assert.ok(proofFailureIndex > sectionProofIndex);
+  assert.ok(proofUseIndex > proofFailureIndex);
+  assert.ok(failClosedIndex > proofUseIndex);
+  assert.ok(adminReadIndex > failClosedIndex);
+  assert.match(sectionCardsQuery, /\.eq\("user_id", profile\.user_id\)/);
+  assert.match(sectionCardsQuery, /\.eq\("id", normalizedSectionId\)/);
+  assert.match(sectionCardsQuery, /\.eq\("is_active", true\)/);
+  assert.match(sectionCardsQuery, /\.eq\("owner_slug", proof\.ownerSlug\)/);
+  assert.match(sectionCardsQuery, /\.eq\("owner_user_id", proof\.ownerUserId\)/);
+  assert.match(sectionCardsQuery, /\.eq\("section_id", proof\.sectionId\)/);
 });
 
 test("created custom sections default to surfaced compatibility state", () => {

@@ -51,16 +51,18 @@ test("web image components pass fallback display URLs through product surfaces",
   }
 });
 
-test("card detail suppresses external exact fallbacks when a primary image exists", () => {
+test("card detail retains vetted external art as an error-only fallback", () => {
   const cardPage = source("apps/web/src/app/card/[gv_id]/page.tsx");
+  const cardLoader = source("apps/web/src/lib/getPublicCardByGvId.ts");
+  const zoomModal = source("apps/web/src/components/compare/CardZoomModal.tsx");
 
   assert.match(cardPage, /function buildExactExternalImageFallback/);
-  assert.match(cardPage, /if \(primaryImageUrl\?\.trim\(\)\) return null;/);
-  assert.doesNotMatch(
-    cardPage,
-    /fallbackSrc=\{buildTcgDexImageUrl/,
-    "card detail must not pass direct TCGdex fallbacks behind already-resolved image URLs",
-  );
+  assert.doesNotMatch(cardPage, /if \(primaryImageUrl\?\.trim\(\)\) return null;/);
+  assert.match(cardLoader, /external_image_fallback_url:/);
+  assert.match(cardPage, /resolvedCard\.external_image_fallback_url/);
+  assert.match(cardPage, /fallbackSources=\{resolvedCardImageFallbacks\.slice\(1\)\}/);
+  assert.match(zoomModal, /fallbackSources\?: Array<string \| null \| undefined>/);
+  assert.match(zoomModal, /fallbackSources=\{fallbackSources\}/);
 });
 
 test("canon identity images prefer stable card image routes over raw signed URLs", () => {
@@ -79,7 +81,9 @@ test("canon identity images prefer stable card image routes over raw signed URLs
   assert.match(route, /\.from\("card_prints"\)/);
   assert.match(route, /\.select\("gv_id,image_source,image_path"\)/);
   assert.match(route, /\.from\("card_printings"\)/);
-  assert.match(route, /\.select\("printing_gv_id,image_source,image_path"\)/);
+  assert.match(route, /\.select\("card_print_id,printing_gv_id,image_source,image_path"\)/);
+  assert.match(route, /\.eq\("id", cardPrinting\.card_print_id\)/);
+  assert.match(route, /parentImagePath/);
   assert.match(route, /\.download\(imagePath\)/);
   assert.match(route, /"Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=600"/);
   assert.match(route, /"CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"/);

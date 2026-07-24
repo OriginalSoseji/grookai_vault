@@ -65,6 +65,7 @@ class PulseItem {
     required this.setName,
     required this.cardNumber,
     required this.displayImageUrl,
+    required this.fallbackImageUrl,
     required this.ownershipContext,
     required this.distanceBucket,
     required this.localityLabel,
@@ -93,6 +94,7 @@ class PulseItem {
   final String setName;
   final String cardNumber;
   final String? displayImageUrl;
+  final String? fallbackImageUrl;
   final String ownershipContext;
   final String distanceBucket;
   final String localityLabel;
@@ -143,6 +145,9 @@ class PulseItem {
         ? Map<String, dynamic>.from(payloadValue)
         : const <String, dynamic>{};
 
+    final fallbackImageUrl = _pulseDisplayImageUrl(json, payload);
+    final hostedImageUrl = buildCanonicalCardImageUrl(json['gv_id']);
+
     return PulseItem(
       pulseItemId: pulseItemId,
       cardEventId: cardEventId,
@@ -158,7 +163,8 @@ class PulseItem {
       setCode: _text(json['set_code']),
       setName: _text(json['set_name']),
       cardNumber: _text(json['card_number']),
-      displayImageUrl: _pulseDisplayImageUrl(json, payload),
+      displayImageUrl: hostedImageUrl ?? fallbackImageUrl,
+      fallbackImageUrl: hostedImageUrl == null ? null : fallbackImageUrl,
       ownershipContext: _text(json['ownership_context']),
       distanceBucket: _text(json['distance_bucket']),
       localityLabel: _text(json['locality_label']),

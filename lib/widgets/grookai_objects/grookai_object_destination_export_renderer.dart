@@ -213,6 +213,7 @@ class _EbayListingExport extends StatelessWidget {
       return _EbayLotListingExport(object: object);
     }
     final imageUrl = _imageUrlFor(object);
+    final fallbackImageUrl = _fallbackImageUrlFor(object);
     final condition = _conditionFor(object);
     return ColoredBox(
       color: const Color(0xFFF5F5F2),
@@ -223,6 +224,7 @@ class _EbayListingExport extends StatelessWidget {
                 ? const CardArtPlaceholder(width: 238, height: 334)
                 : GrookaiObjectNetworkImage(
                     imageUrl: imageUrl,
+                    fallbackImageUrl: fallbackImageUrl,
                     width: 248,
                     height: 334,
                     fit: BoxFit.contain,
@@ -285,7 +287,10 @@ class _EbayLotListingExport extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 for (final item in visibleItems)
-                  _EbayLotImageTile(imageUrl: _imageUrlForItem(item)),
+                  _EbayLotImageTile(
+                    imageUrl: _imageUrlForItem(item),
+                    fallbackImageUrl: _fallbackImageUrlForItem(item),
+                  ),
               ],
             ),
           ),
@@ -322,9 +327,13 @@ class _EbayLotListingExport extends StatelessWidget {
 }
 
 class _EbayLotImageTile extends StatelessWidget {
-  const _EbayLotImageTile({required this.imageUrl});
+  const _EbayLotImageTile({
+    required this.imageUrl,
+    required this.fallbackImageUrl,
+  });
 
   final String? imageUrl;
+  final String? fallbackImageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -340,6 +349,7 @@ class _EbayLotImageTile extends StatelessWidget {
             ? const CardArtPlaceholder(width: 82, height: 119)
             : GrookaiObjectNetworkImage(
                 imageUrl: imageUrl!,
+                fallbackImageUrl: fallbackImageUrl,
                 width: 82,
                 height: 119,
                 fit: BoxFit.contain,
@@ -421,6 +431,22 @@ String? _imageUrlFor(GrookaiObject object) {
   return null;
 }
 
+String? _fallbackImageUrlFor(GrookaiObject object) {
+  final fields = object.fields;
+  final direct = fields['cardImageFallbackUrl'];
+  if (direct is String && direct.trim().isNotEmpty) {
+    return direct.trim();
+  }
+  final items = fields['items'];
+  if (items is List && items.isNotEmpty) {
+    final first = items.first;
+    if (first is Map) {
+      return _fallbackImageUrlForItem(Map<String, dynamic>.from(first));
+    }
+  }
+  return null;
+}
+
 List<Map<String, dynamic>> _itemMapsFor(GrookaiObject object) {
   final items = object.fields['items'];
   if (items is! List) {
@@ -434,6 +460,15 @@ List<Map<String, dynamic>> _itemMapsFor(GrookaiObject object) {
 
 String? _imageUrlForItem(Map<String, dynamic> item) {
   final imageUrl = item['imageUrl'];
+  if (imageUrl is! String) {
+    return null;
+  }
+  final normalized = imageUrl.trim();
+  return normalized.isEmpty ? null : normalized;
+}
+
+String? _fallbackImageUrlForItem(Map<String, dynamic> item) {
+  final imageUrl = item['fallbackImageUrl'];
   if (imageUrl is! String) {
     return null;
   }

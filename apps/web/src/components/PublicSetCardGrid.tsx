@@ -10,6 +10,7 @@ import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCa
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import ShareCardButton from "@/components/ShareCardButton";
+import { buildCanonCardImageProxyUrl } from "@/lib/canon/canonImageProxy";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getPrintingPublicReference } from "@/lib/cards/printingSelection";
 import {
@@ -18,6 +19,10 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
+import {
+  dedupePublicSetCards,
+  mergePublicSetCardPage,
+} from "@/lib/publicSetCardPagination";
 import type { PublicSetCard } from "@/lib/publicSets.shared";
 
 type PublicSetCardGridProps = {
@@ -46,12 +51,14 @@ export default function PublicSetCardGrid({
 }: PublicSetCardGridProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [cards, setCards] = useState(initialCards);
+  const [cards, setCards] = useState(() => dedupePublicSetCards(initialCards));
+  const [nextOffset, setNextOffset] = useState(initialCards.length);
   const [selectedPrintingByGvId, setSelectedPrintingByGvId] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [hasReachedEnd, setHasReachedEnd] = useState(initialCards.length >= totalCount);
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
-  const canLoadMore = cards.length < totalCount;
+  const canLoadMore = nextOffset < totalCount && !hasReachedEnd;
 
   function buildCardHref(gvId: string, printingId?: string | null) {
     const params = new URLSearchParams();
@@ -72,7 +79,7 @@ export default function PublicSetCardGrid({
 
     try {
       const response = await fetch(
-        `/api/public-set-cards?set_code=${encodeURIComponent(setCode)}&offset=${cards.length}&limit=${chunkSize}`,
+        `/api/public-set-cards?set_code=${encodeURIComponent(setCode)}&offset=${nextOffset}&limit=${chunkSize}`,
       );
 
       if (!response.ok) {
@@ -81,20 +88,17 @@ export default function PublicSetCardGrid({
 
       const payload = (await response.json()) as { items?: PublicSetCard[] };
       const nextCards = Array.isArray(payload.items) ? payload.items : [];
-
-      setCards((current) => {
-        const seen = new Set(current.map((card) => card.gv_id));
-        const merged = [...current];
-
-        for (const card of nextCards) {
-          if (!seen.has(card.gv_id)) {
-            merged.push(card);
-            seen.add(card.gv_id);
-          }
-        }
-
-        return merged;
+      const nextState = mergePublicSetCardPage({
+        currentCards: cards,
+        pageItems: nextCards,
+        rawOffset: nextOffset,
+        pageSize: chunkSize,
+        totalCount,
       });
+
+      setCards(nextState.cards);
+      setNextOffset(nextState.nextOffset);
+      setHasReachedEnd(nextState.hasReachedEnd);
     } catch (error) {
       setLoadError(error instanceof Error ? error.message : "Failed to load more cards.");
     } finally {
@@ -124,9 +128,26 @@ export default function PublicSetCardGrid({
           const variantLabels = getVariantLabels(card, 2);
           const selectedPrintingId = selectedPrintingByGvId[card.gv_id] ?? getDefaultPrintingId(card);
           const selectedPrinting = (card.printings ?? []).find((printing) => printing.id === selectedPrintingId) ?? null;
+          const selectedHostedImageUrl = buildCanonCardImageProxyUrl(selectedPrinting?.printing_gv_id);
           const selectedImageUrl = selectedPrinting?.display_image_url ?? selectedPrinting?.image_url ?? null;
           const cardFallbackImageUrl = card.display_image_url ?? card.image_url ?? null;
-          const selectedPrintingUsesBaseImage = Boolean(selectedPrinting && !selectedImageUrl && cardFallbackImageUrl);
+          const imageSources = [
+            selectedHostedImageUrl,
+            cardFallbackImageUrl,
+            selectedImageUrl,
+            selectedPrinting?.external_image_fallback_url,
+            card.external_image_fallback_url,
+          ].filter(
+            (candidate, candidateIndex, candidates): candidate is string =>
+              Boolean(candidate?.trim()) && candidates.indexOf(candidate) === candidateIndex,
+          );
+          const selectedPrintingUsesBaseImage = Boolean(
+            selectedPrinting &&
+              cardFallbackImageUrl &&
+              (selectedHostedImageUrl
+                ? selectedHostedImageUrl !== selectedImageUrl
+                : !selectedImageUrl),
+          );
           const displayedImageTruthSource = selectedPrintingUsesBaseImage
             ? {
                 ...selectedPrinting,
@@ -148,7 +169,9 @@ export default function PublicSetCardGrid({
             <PokemonCardGridTile
               key={card.gv_id}
               utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-              imageSrc={selectedImageUrl ?? cardFallbackImageUrl ?? undefined}
+              imageSrc={imageSources[0]}
+              imageFallbackSrc={imageSources[1]}
+              imageFallbackSources={imageSources.slice(2)}
               imageAlt={getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)}
               imageHref={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
               imageSizes="(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
@@ -238,6 +261,12 @@ export default function PublicSetCardGrid({
       </div>
 
       {loadError ? <p className="text-sm text-rose-600">{loadError}</p> : null}
+
+      {hasReachedEnd && cards.length < totalCount ? (
+        <p role="status" className="text-sm text-amber-700 dark:text-amber-300">
+          No additional cards are available for this set yet.
+        </p>
+      ) : null}
 
       {canLoadMore ? (
         <div className="flex justify-center pt-2">

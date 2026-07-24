@@ -12,6 +12,7 @@ class NetworkInteractionCard extends StatelessWidget {
     required this.imageLabel,
     required this.onPressed,
     this.imageUrl,
+    this.fallbackImageUrl,
     this.metadata,
     this.topContext,
     this.onTopContextPressed,
@@ -25,6 +26,7 @@ class NetworkInteractionCard extends StatelessWidget {
   final String imageLabel;
   final VoidCallback onPressed;
   final String? imageUrl;
+  final String? fallbackImageUrl;
   final String? metadata;
   final Widget? topContext;
   final VoidCallback? onTopContextPressed;
@@ -75,6 +77,7 @@ class NetworkInteractionCard extends StatelessWidget {
                         child: _NetworkPosterArtwork(
                           label: imageLabel,
                           imageUrl: imageUrl,
+                          fallbackImageUrl: fallbackImageUrl,
                         ),
                       ),
                     ),
@@ -167,15 +170,23 @@ class NetworkInteractionCard extends StatelessWidget {
 }
 
 class _NetworkPosterArtwork extends StatelessWidget {
-  const _NetworkPosterArtwork({required this.label, required this.imageUrl});
+  const _NetworkPosterArtwork({
+    required this.label,
+    required this.imageUrl,
+    required this.fallbackImageUrl,
+  });
 
   final String label;
   final String? imageUrl;
+  final String? fallbackImageUrl;
 
   @override
   Widget build(BuildContext context) {
     final resolvedImageUrl = normalizeDisplayImageUrl(imageUrl);
-    final hasImage = (resolvedImageUrl ?? '').isNotEmpty;
+    final resolvedFallbackImageUrl = normalizeDisplayImageUrl(fallbackImageUrl);
+    final hasImage =
+        (resolvedImageUrl ?? '').isNotEmpty ||
+        (resolvedFallbackImageUrl ?? '').isNotEmpty;
     if (!hasImage) {
       return _NetworkPosterFallback(label: label);
     }
@@ -183,6 +194,7 @@ class _NetworkPosterArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: label,
       imageUrl: resolvedImageUrl,
+      fallbackImageUrl: resolvedFallbackImageUrl,
       borderRadius: 0,
       padding: EdgeInsets.zero,
       frame: CardArtworkFrame.none,

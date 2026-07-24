@@ -4,6 +4,7 @@ import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
 export type ExploreResultCard = CardSummary & {
   id: string;
+  external_image_fallback_url?: string;
   artist?: string;
   set_code?: string;
   printed_set_abbrev?: string;

@@ -1,0 +1,282 @@
+{
+  "manifest_schema": "grookai.self_hosted_images.wh23.pocket_native_max.v1",
+  "package_id": "IMG-HOST-WH-23A-POCKET-NATIVE-UPLOAD-DRY-RUN",
+  "generated_at": "2026-07-22T22:41:15.870Z",
+  "mode": "dry_run_no_write",
+  "package_scope": "GV-TCGP-P-A-74..GV-TCGP-P-A-100",
+  "target_binding": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "database": {
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "database_name": "postgres",
+      "username": "postgres",
+      "tls_verification": "bootstrap_no_credentials_then_verified_ca_reconnect",
+      "approved_chain": [
+        {
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "spki_sha256": "e325ec30899f57e25b84e68ebac9ff61cab22b759738c1f9934d0a6883dce6ae",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co",
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "valid_from": "Aug 18 13:31:50 2025 GMT",
+          "valid_to": "Aug 17 13:31:50 2030 GMT"
+        },
+        {
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "spki_sha256": "823ae9abc5b2e047777d0989b8900926c4d48f4418789cfdf1b7e28c961e642a",
+          "subject_cn": "Supabase Intermediate 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Oct 24 07:53:45 2023 GMT",
+          "valid_to": "Oct 21 07:53:45 2033 GMT"
+        },
+        {
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "spki_sha256": "ba332649230ce9a764e4eaf70368f1a9de9ce64bd38424769e24c3fbf8e57acb",
+          "subject_cn": "Supabase Root 2021 CA",
+          "issuer_cn": "Supabase Root 2021 CA",
+          "valid_from": "Apr 28 10:56:53 2021 GMT",
+          "valid_to": "Apr 26 10:56:53 2031 GMT"
+        }
+      ]
+    }
+  },
+  "tls_verification": "enabled_with_node_bundled_plus_windows_system_ca_roots",
+  "code_bundle_hash": "3137f9188489065ccacd292b2e4ac7e5d3048a658060ca2b5c8bd1a7c69a47be",
+  "code_bundle_files": [
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh22_common.mjs",
+      "sha256": "8f8a0d126e8fb959fd88476c357d4703e736c480ca1656f539a505c77ea1a959"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh23_common.mjs",
+      "sha256": "77dc8cef6b8d6092add38b48f65e4793fafd072801865900ef45020a92b0a3fc"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh23a_pocket_native_upload_dry_run.mjs",
+      "sha256": "97fb94ca1309da9c877462a9f64e8b2d2ca1b4b669ef2812b3b712ee043e7345"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh23b_pocket_native_storage_upload_apply.mjs",
+      "sha256": "16fdae4e1f03b329241c2d0938510a260026ea823a4f1b1f0c53ec8d779a6c48"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh23c_pocket_native_db_pointer_dry_run.mjs",
+      "sha256": "050dfa120d0b8a9af49c2d534844a93aac9f4bc6a5d8aa253edf1418d3f161bc"
+    },
+    {
+      "relative_path": "scripts/audits/self_hosted_images_wh23d_pocket_native_db_pointer_apply.mjs",
+      "sha256": "70312fe96b5fbe9cceb6ac417a6226d7b1760d99e9e60edca640fa616818d441"
+    },
+    {
+      "relative_path": "tests/contracts/self_hosted_images_wh23_guardrails_v1.test.mjs",
+      "sha256": "f43e256059f6c8c4dfddc168cd8b3dcc5eca6762b7c6ac264a8e58a46cfa19f4"
+    }
+  ],
+  "fingerprint": "3f97ca99808af6ce8d73325a93546a8489e313157907a0ffc918e00c004f3084",
+  "asset_manifest_hash": "af1f82f1ace98ca3c05b3da77fa54421cf365cb89b434d5e1d5187ae5ed644e4",
+  "row_manifest_hash": "697f39cfdb26bee3d6bddf71b73819fa0142a1c3bced857e0294de14223fe273",
+  "asset_manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh23a_pocket_native_asset_manifest_v1.jsonl",
+  "row_manifest_jsonl": "docs\\audits\\image_truth_v1\\self_hosted_images_wh23a_pocket_native_row_manifest_v1.jsonl",
+  "target_rows": 27,
+  "unique_assets": 27,
+  "verified_primary_assets": 27,
+  "verified_fallback_assets": 27,
+  "highest_verified_untransformed_source": "367x512 across Pokemon Zone and Serebii for every scoped card at acquisition time",
+  "source_bytes_preserved_without_upscale": true,
+  "hosted_convention": {
+    "path_template": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/{gv-id-lower}/{sha256-prefix-24}.webp",
+    "image_source": "identity",
+    "image_status": "exact",
+    "historical_sample_dimensions": "600x825 exact TCGdex payload bytes",
+    "scoped_dimension_exception": "367x512 exact current untransformed full-card payload bytes; no upscale",
+    "sample_rows": [
+      {
+        "gv_id": "GV-TCGP-P-A-1",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-1/638b4fe4003c31ca3a249a84.webp",
+        "provider_provenance": "https://assets.tcgdex.net/en/tcgp/P-A/001/high.webp",
+        "image_source": "identity",
+        "image_status": "exact",
+        "identity_domain": "tcg_pocket_excluded",
+        "storage_observation": {
+          "ok": true,
+          "status": 200,
+          "storage_bucket": "user-card-images",
+          "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-1/638b4fe4003c31ca3a249a84.webp",
+          "content_type": "image/webp",
+          "size_bytes": 34156,
+          "sha256": "638b4fe4003c31ca3a249a8412625e6326c596578ed2c05a39078e7456ccd990",
+          "width": 600,
+          "height": 825,
+          "format": "webp"
+        },
+        "verified": true,
+        "validation_errors": []
+      },
+      {
+        "gv_id": "GV-TCGP-P-A-37",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-37/2339d850535fb00370ddb6dc.webp",
+        "provider_provenance": "https://assets.tcgdex.net/en/tcgp/P-A/037/high.webp",
+        "image_source": "identity",
+        "image_status": "exact",
+        "identity_domain": "tcg_pocket_excluded",
+        "storage_observation": {
+          "ok": true,
+          "status": 200,
+          "storage_bucket": "user-card-images",
+          "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-37/2339d850535fb00370ddb6dc.webp",
+          "content_type": "image/webp",
+          "size_bytes": 51746,
+          "sha256": "2339d850535fb00370ddb6dc5ea5bbb0fdba65c8fee055956d023a280220395b",
+          "width": 600,
+          "height": 825,
+          "format": "webp"
+        },
+        "verified": true,
+        "validation_errors": []
+      },
+      {
+        "gv_id": "GV-TCGP-P-A-50",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-50/b0546533c5b0c9af336f819b.webp",
+        "provider_provenance": "https://assets.tcgdex.net/en/tcgp/P-A/050/high.webp",
+        "image_source": "identity",
+        "image_status": "exact",
+        "identity_domain": "tcg_pocket_excluded",
+        "storage_observation": {
+          "ok": true,
+          "status": 200,
+          "storage_bucket": "user-card-images",
+          "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-50/b0546533c5b0c9af336f819b.webp",
+          "content_type": "image/webp",
+          "size_bytes": 52456,
+          "sha256": "b0546533c5b0c9af336f819b34ac03c23afcdfe4b9aba160d4f795e43c100cf0",
+          "width": 600,
+          "height": 825,
+          "format": "webp"
+        },
+        "verified": true,
+        "validation_errors": []
+      },
+      {
+        "gv_id": "GV-TCGP-P-A-73",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-73/b6a75b61466fd4898b46264d.webp",
+        "provider_provenance": "https://assets.tcgdex.net/en/tcgp/P-A/073/high.webp",
+        "image_source": "identity",
+        "image_status": "exact",
+        "identity_domain": "tcg_pocket_excluded",
+        "storage_observation": {
+          "ok": true,
+          "status": 200,
+          "storage_bucket": "user-card-images",
+          "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/unknown/gv-tcgp-p-a-73/b6a75b61466fd4898b46264d.webp",
+          "content_type": "image/webp",
+          "size_bytes": 41158,
+          "sha256": "b6a75b61466fd4898b46264d485c90f01a6de2fdfb31cf07d799be5d57dfdc5f",
+          "width": 600,
+          "height": 825,
+          "format": "webp"
+        },
+        "verified": true,
+        "validation_errors": []
+      }
+    ]
+  },
+  "hosted_convention_samples_verified": 4,
+  "new_uploads_required": 27,
+  "already_hosted_exact_assets": 0,
+  "inventory": {
+    "pocket_parent_rows": 2012,
+    "hosted_pocket_parent_rows": 1985,
+    "unhosted_pocket_parent_rows": 27,
+    "exact_gap_gv_ids": [
+      "GV-TCGP-P-A-74",
+      "GV-TCGP-P-A-75",
+      "GV-TCGP-P-A-76",
+      "GV-TCGP-P-A-77",
+      "GV-TCGP-P-A-78",
+      "GV-TCGP-P-A-79",
+      "GV-TCGP-P-A-80",
+      "GV-TCGP-P-A-81",
+      "GV-TCGP-P-A-82",
+      "GV-TCGP-P-A-83",
+      "GV-TCGP-P-A-84",
+      "GV-TCGP-P-A-85",
+      "GV-TCGP-P-A-86",
+      "GV-TCGP-P-A-87",
+      "GV-TCGP-P-A-88",
+      "GV-TCGP-P-A-89",
+      "GV-TCGP-P-A-90",
+      "GV-TCGP-P-A-91",
+      "GV-TCGP-P-A-92",
+      "GV-TCGP-P-A-93",
+      "GV-TCGP-P-A-94",
+      "GV-TCGP-P-A-95",
+      "GV-TCGP-P-A-96",
+      "GV-TCGP-P-A-97",
+      "GV-TCGP-P-A-98",
+      "GV-TCGP-P-A-99",
+      "GV-TCGP-P-A-100"
+    ],
+    "target_set": {
+      "id": "9d42f9e7-972c-458f-b770-aba7e6cb4111",
+      "game": "pokemon",
+      "code": "P-A",
+      "name": "Promos-A",
+      "release_date": null,
+      "source": {
+        "domain": "tcg_pocket",
+        "tcgdex": {
+          "id": "P-A",
+          "raw": {
+            "id": "P-A",
+            "logo": "https://assets.tcgdex.net/en/tcgp/P-A/logo",
+            "name": "Promos-A",
+            "cardCount": {
+              "total": 100,
+              "official": 0
+            }
+          },
+          "name": "Promos-A",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2026-03-26T22:06:02.746261+00:00",
+      "updated_at": "2026-03-26T22:06:02.746261+00:00",
+      "last_synced_at": null,
+      "printed_total": null,
+      "printed_set_abbrev": null,
+      "set_role": null,
+      "identity_domain_default": "tcg_pocket_excluded",
+      "hero_image_url": null,
+      "hero_image_source": null,
+      "identity_model": "standard"
+    }
+  },
+  "planned_columns": [
+    "card_prints.image_path",
+    "card_prints.image_source",
+    "card_prints.image_status",
+    "card_prints.image_url"
+  ],
+  "fallback_policy": "Grookai image_path primary; verified Serebii image_url only as failure fallback",
+  "stop_findings": [],
+  "source_failures": [],
+  "row_failures": [],
+  "convention_failures": [],
+  "set_errors": [],
+  "inventory_errors": [],
+  "semantic_validation_errors": [],
+  "ready_for_storage_apply": true,
+  "storage_writes_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false
+}

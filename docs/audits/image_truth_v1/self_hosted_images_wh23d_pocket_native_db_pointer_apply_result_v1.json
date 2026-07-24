@@ -1,0 +1,16 @@
+{
+  "package_id": "IMG-HOST-WH-23D-POCKET-NATIVE-DB-POINTER-APPLY",
+  "ended_at": "2026-07-22T22:42:13.907Z",
+  "fingerprint": "3f97ca99808af6ce8d73325a93546a8489e313157907a0ffc918e00c004f3084",
+  "pointer_plan_hash": "edece6dd35aafe5ee04551e58eeec8797b0b6dfcd0f7b970cfb621e4e32bfb39",
+  "mutation_contract_hash": "619f25b0f53e160a2c60c3afd6f5b64c2ea295d7285c586b1963c0fd76fa15f3",
+  "storage_assets_reverified_before_transaction": 27,
+  "updated_count": 27,
+  "already_applied_no_op_count": 0,
+  "batch_atomic": true,
+  "rollback_on_any_failure": true,
+  "db_writes_performed": true,
+  "storage_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "acfab3aa77b829a8fa540b535ade4c8c418b1773ea1d91ac819fd854e8647a05"
+}

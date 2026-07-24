@@ -27,6 +27,7 @@ import 'screens/network/network_nearby_screen.dart';
 import 'screens/network/network_screen.dart';
 import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
+import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
 import 'screens/grookai_objects/grookai_objects_hub_screen.dart';
 import 'screens/grookai_objects/lot_pricing_screen.dart';
@@ -59,8 +60,8 @@ import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'services/identity/display_identity.dart';
-import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/image_presentation.dart';
+import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/identity_search.dart';
 import 'theme/gv_grid_constants.dart';
 import 'utils/display_image_contract.dart';
@@ -974,7 +975,10 @@ class _CatalogCardTile extends StatelessWidget {
     final imagePresentation = _cardPrintImagePresentation(card);
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
-      imageUrl: url,
+      imageUrl: card.hostedImageUrl ?? url,
+      fallbackImageUrl: card.hostedImageUrl == null
+          ? null
+          : card.providerFallbackImageUrl,
       width: width,
       height: height,
       borderRadius: 10,
@@ -1338,7 +1342,10 @@ class _CatalogGridArtwork extends StatelessWidget {
 
     return CardSurfaceArtwork(
       label: displayIdentity.displayName,
-      imageUrl: card.displayImage,
+      imageUrl: card.catalogImageUrl,
+      fallbackImageUrl: card.hostedImageUrl == null
+          ? null
+          : card.providerFallbackImageUrl,
       borderRadius: GvGridConstants.imageRadius,
       padding: EdgeInsets.zero,
       enableTapToZoom: false,
@@ -1723,7 +1730,10 @@ class _SearchResultActionSheet extends StatelessWidget {
                   aspectRatio: 3 / 4,
                   child: CardSurfaceArtwork(
                     label: displayIdentity.displayName,
-                    imageUrl: card.displayImage,
+                    imageUrl: card.catalogImageUrl,
+                    fallbackImageUrl: card.hostedImageUrl == null
+                        ? null
+                        : card.providerFallbackImageUrl,
                     borderRadius: 24,
                     padding: const EdgeInsets.all(6),
                     imageTruthLabel: imagePresentation.compactBadgeLabel,
@@ -4133,7 +4143,8 @@ class HomePageState extends State<HomePage> {
           setCode: card.setCode.isEmpty ? null : card.setCode,
           number: card.displayNumber,
           rarity: (card.rarity ?? '').isEmpty ? null : card.rarity,
-          imageUrl: card.displayImage,
+          imageUrl: card.catalogImageUrl,
+          fallbackImageUrl: card.providerFallbackImageUrl,
           selectedPrintingGvId:
               (card.selectedPrintingGvId ?? card.printingGvId ?? '')
                   .trim()

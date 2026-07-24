@@ -1,8 +1,8 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
-import '../identity/canon_image_url_service.dart';
 import '../vault/vault_card_service.dart';
+import '../../utils/display_image_contract.dart';
 
 class PublicSetSummary {
   const PublicSetSummary({
@@ -26,6 +26,12 @@ class PublicSetSummary {
   final String? releaseDate;
   final String? sortDate;
   final int? releaseYear;
+
+  String? get hostedHeroImageUrl => buildHostedSetLogoUrl(code);
+  String? get providerHeroFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(heroImageUrl);
+    return fallback == hostedHeroImageUrl ? null : fallback;
+  }
 }
 
 class PublicSetCard {
@@ -40,7 +46,9 @@ class PublicSetCard {
     this.setIdentityModel,
     this.rarity,
     this.imageUrl,
+    this.providerImageUrl,
     this.representativeImageUrl,
+    this.hostedImagePath,
     this.imageStatus,
     this.imageNote,
     this.displayImageUrl,
@@ -59,13 +67,28 @@ class PublicSetCard {
   final String? setIdentityModel;
   final String? rarity;
   final String? imageUrl;
+  final String? providerImageUrl;
   final String? representativeImageUrl;
+  final String? hostedImagePath;
   final String? imageStatus;
   final String? imageNote;
   final String? displayImageUrl;
   final String? displayImageKind;
   final List<PublicSetPrintingOption> printings;
   final CardSurfacePricingData? pricing;
+
+  String? get hostedImageUrl =>
+      normalizeWarehouseDisplayImagePath(hostedImagePath) ??
+      buildCanonicalCardImageUrl(gvId);
+
+  String? get providerFallbackImageUrl {
+    final fallback =
+        normalizeDisplayImageUrl(providerImageUrl) ??
+        normalizeDisplayImageUrl(representativeImageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
+  String? get catalogImageUrl => hostedImageUrl ?? providerFallbackImageUrl;
 }
 
 class PublicSetPrintingOption {
@@ -199,6 +222,50 @@ class PublicSetLaneOption {
 }
 
 class PublicSetsService {
+  static const _publicSetRouteAliases = <String, String>{
+    'shiny vault': 'sma',
+    'shiny-vault': 'sma',
+    '2021swsh': 'mcd21',
+    'base set shadowless': 'base1-shadowless',
+    'base-set-shadowless': 'base1-shadowless',
+    'base shadowless': 'base1-shadowless',
+    'base1 shadowless': 'base1-shadowless',
+    'shadowless base set': 'base1-shadowless',
+    'shadowless base': 'base1-shadowless',
+    'no shadow base set': 'base1-shadowless',
+    'base set no shadow': 'base1-shadowless',
+    'base set first edition': 'base1-first-edition',
+    'base-set-first-edition': 'base1-first-edition',
+    'base first edition': 'base1-first-edition',
+    'base first ed': 'base1-first-edition',
+    'base 1st edition': 'base1-first-edition',
+    'base 1st ed': 'base1-first-edition',
+    'first edition base set': 'base1-first-edition',
+    'first edition base': 'base1-first-edition',
+    'base set 1st edition': 'base1-first-edition',
+    '1st edition base set': 'base1-first-edition',
+    '1st edition base': 'base1-first-edition',
+    'base1 first edition': 'base1-first-edition',
+    'base1 1st edition': 'base1-first-edition',
+    'base set 1999-2000': 'base1-1999-2000',
+    'base-set-1999-2000': 'base1-1999-2000',
+    'base set 1999 2000': 'base1-1999-2000',
+    'base 1999-2000': 'base1-1999-2000',
+    'base1 1999-2000': 'base1-1999-2000',
+    '1999-2000 base set': 'base1-1999-2000',
+    '1999-2000 base': 'base1-1999-2000',
+    'base set 2000': 'base1-1999-2000',
+    'base set fourth print': 'base1-1999-2000',
+    'base set 4th print': 'base1-1999-2000',
+    'base fourth print': 'base1-1999-2000',
+    'base 4th print': 'base1-1999-2000',
+    'uk base set': 'base1-1999-2000',
+    'base set uk print': 'base1-1999-2000',
+    'rm': 'ru1',
+    'sv3pt5': 'sv03.5',
+    'sm35': 'sm3.5',
+  };
+
   static const eraOptions = <PublicSetEraOption>[
     PublicSetEraOption(
       value: PublicSetEra.all,
@@ -260,29 +327,16 @@ class PublicSetsService {
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
   }) async {
-    final results = await Future.wait<dynamic>([
-      client
-          .from('sets')
-          .select(
-            'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
-          ),
-      _fetchAllCanonicalSetCodes(client),
-    ]);
-
-    final setRows = (results[0] as List<dynamic>)
+    final rawRows = await client
+        .from('sets')
+        .select(
+          'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
+        )
+        .not('card_prints.gv_id', 'is', null)
+        .not('card_prints.set_code', 'is', null);
+    final setRows = (rawRows as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
-    final setCodeRows = (results[1] as List<Map<String, dynamic>>);
-
-    final cardCountByCode = <String, int>{};
-    for (final row in setCodeRows) {
-      final setCode = _normalizeCode(row['set_code']);
-      if (setCode.isEmpty) {
-        continue;
-      }
-
-      cardCountByCode[setCode] = (cardCountByCode[setCode] ?? 0) + 1;
-    }
 
     final canonicalByName = <String, PublicSetSummary>{};
     for (final row in setRows) {
@@ -292,21 +346,13 @@ class PublicSetsService {
         continue;
       }
 
-      final candidate = PublicSetSummary(
-        code: code,
-        name: name,
-        heroImageUrl: _normalizeHttpUrl(row['hero_image_url']),
-        printedSetAbbrev: _normalizeOptionalText(
-          row['printed_set_abbrev'],
-        )?.toUpperCase(),
-        printedTotal: row['printed_total'] is num
-            ? (row['printed_total'] as num).toInt()
-            : null,
-        releaseDate: _normalizeOptionalText(row['release_date']),
-        sortDate: _setSortDate(row),
-        releaseYear: _parseReleaseYear(row['release_date']),
-        cardCount: cardCountByCode[code] ?? 0,
+      final candidate = _mapSetRowToSummary(
+        row,
+        cardCount: _embeddedCount(row['card_prints']),
       );
+      if (candidate == null) {
+        continue;
+      }
 
       final key = _normalizeName(name);
       final existing = canonicalByName[key];
@@ -353,19 +399,39 @@ class PublicSetsService {
     required SupabaseClient client,
     required String setCode,
   }) async {
-    final normalizedCode = _normalizeCode(setCode);
+    final normalizedCode = resolveSetRouteCode(setCode);
     if (normalizedCode.isEmpty) {
       return null;
     }
 
-    final sets = await fetchSets(client: client);
-    for (final setInfo in sets) {
-      if (setInfo.code == normalizedCode) {
-        return setInfo;
-      }
+    final rawRow = await client
+        .from('sets')
+        .select(
+          'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
+        )
+        .eq('code', normalizedCode)
+        .not('card_prints.gv_id', 'is', null)
+        .not('card_prints.set_code', 'is', null)
+        .limit(1)
+        .maybeSingle();
+    if (rawRow == null) {
+      return null;
     }
 
-    return null;
+    final row = Map<String, dynamic>.from(rawRow);
+    final cardCount = _embeddedCount(row['card_prints']);
+    if (cardCount <= 0) {
+      return null;
+    }
+
+    return _mapSetRowToSummary(row, cardCount: cardCount);
+  }
+
+  static String resolveSetRouteCode(String? value) {
+    final normalized = _cleanText(
+      value,
+    ).toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+    return _publicSetRouteAliases[normalized] ?? normalized;
   }
 
   static Future<List<PublicSetCard>> fetchSetCards({
@@ -390,35 +456,51 @@ class PublicSetsService {
         .order('number', ascending: true)
         .range(offset, offset + limit - 1);
 
-    final rawRows = await CanonImageUrlService.enrichRows(
-      (rows as List<dynamic>).map(
-        (row) => Map<String, dynamic>.from(row as Map),
-      ),
-    );
+    // The set query already returns the immutable Grookai warehouse path.
+    // Rendering through that first-party path avoids a blocking
+    // /api/canon/images round trip and lets the image CDN keep derivatives
+    // warm for their full immutable lifetime. The provider URL remains an
+    // error-only fallback on the artwork widget.
+    final rawRows = (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
     final cardPrintIds = rawRows
         .map((row) => _cleanText(row['id']))
         .where((value) => value.isNotEmpty)
         .toSet()
         .toList();
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+    final pricingFuture = CardSurfacePricingService.fetchByCardPrintIds(
       client: client,
       cardPrintIds: cardPrintIds,
     );
-    final ownedCountsById = _cleanText(client.auth.currentUser?.id).isEmpty
-        ? const <String, int>{}
-        : await VaultCardService.getOwnedCountsByCardPrintIds(
+    final ownedCountsFuture = _cleanText(client.auth.currentUser?.id).isEmpty
+        ? Future<Map<String, int>>.value(const <String, int>{})
+        : VaultCardService.getOwnedCountsByCardPrintIds(
             client: client,
             cardPrintIds: cardPrintIds,
           );
-    final ownedPrintingCounts = await _fetchOwnedPrintingCounts(
-      client: client,
-      cardPrintIds: cardPrintIds,
-    );
-    final printingsByCardPrintId = await _fetchPrintingOptions(
-      client: client,
-      cardPrintIds: cardPrintIds,
-      ownedCountsByPrintingId: ownedPrintingCounts,
-    );
+    final printingsFuture =
+        _fetchOwnedPrintingCounts(
+          client: client,
+          cardPrintIds: cardPrintIds,
+        ).then(
+          (ownedPrintingCounts) => _fetchPrintingOptions(
+            client: client,
+            cardPrintIds: cardPrintIds,
+            ownedCountsByPrintingId: ownedPrintingCounts,
+          ),
+        );
+
+    final enrichmentResults = await Future.wait<Object>([
+      pricingFuture,
+      ownedCountsFuture,
+      printingsFuture,
+    ]);
+    final pricingById =
+        enrichmentResults[0] as Map<String, CardSurfacePricingData>;
+    final ownedCountsById = enrichmentResults[1] as Map<String, int>;
+    final printingsByCardPrintId =
+        enrichmentResults[2] as Map<String, List<PublicSetPrintingOption>>;
 
     return rawRows
         .map((row) {
@@ -440,6 +522,12 @@ class PublicSetsService {
               : row['sets'] is Map
               ? Map<String, dynamic>.from(row['sets'] as Map)
               : null;
+          final providerImageUrl =
+              _bestImageUrl(
+                primary: row['image_url'],
+                fallback: row['image_alt_url'],
+              ) ??
+              _normalizeHttpUrl(row['representative_image_url']);
           final exactImageUrl =
               _bestImageUrl(
                 primary: row['display_image_url'],
@@ -449,7 +537,15 @@ class PublicSetsService {
           final representativeImageUrl = _normalizeHttpUrl(
             row['representative_image_url'],
           );
-          final displayImageUrl = exactImageUrl ?? representativeImageUrl;
+          final hostedImagePath =
+              _cleanText(row['image_source']).toLowerCase() == 'identity'
+              ? _normalizeOptionalText(row['image_path'])
+              : null;
+          final hostedDisplayImageUrl = normalizeWarehouseDisplayImagePath(
+            hostedImagePath,
+          );
+          final displayImageUrl =
+              hostedDisplayImageUrl ?? exactImageUrl ?? representativeImageUrl;
 
           return PublicSetCard(
             cardPrintId: cardPrintId,
@@ -467,12 +563,15 @@ class PublicSetsService {
               setRecord?['identity_model'],
             ),
             rarity: _normalizeOptionalText(row['rarity']),
-            imageUrl: exactImageUrl,
+            imageUrl: providerImageUrl,
+            providerImageUrl: providerImageUrl,
             representativeImageUrl: representativeImageUrl,
+            hostedImagePath: hostedImagePath,
             imageStatus: _normalizeOptionalText(row['image_status']),
             imageNote: _normalizeOptionalText(row['image_note']),
             displayImageUrl: displayImageUrl,
-            displayImageKind: exactImageUrl != null
+            displayImageKind:
+                hostedDisplayImageUrl != null || exactImageUrl != null
                 ? 'exact'
                 : representativeImageUrl != null
                 ? 'representative'
@@ -807,35 +906,6 @@ class PublicSetsService {
     return cards;
   }
 
-  static Future<List<Map<String, dynamic>>> _fetchAllCanonicalSetCodes(
-    SupabaseClient client,
-  ) async {
-    final rows = <Map<String, dynamic>>[];
-    const pageSize = 1000;
-    var offset = 0;
-
-    while (true) {
-      final page = await client
-          .from('card_prints')
-          .select('set_code')
-          .not('gv_id', 'is', null)
-          .range(offset, offset + pageSize - 1);
-
-      final batch = (page as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .toList();
-      rows.addAll(batch);
-
-      if (batch.length < pageSize) {
-        break;
-      }
-
-      offset += pageSize;
-    }
-
-    return rows;
-  }
-
   static PublicSetMasterSetStats _buildMasterSetStats({
     required List<PublicSetCard> cards,
     required bool signedIn,
@@ -1074,6 +1144,42 @@ class PublicSetsService {
     }
 
     return candidate.code.length < existing.code.length ? candidate : existing;
+  }
+
+  static PublicSetSummary? _mapSetRowToSummary(
+    Map<String, dynamic> row, {
+    required int cardCount,
+  }) {
+    final code = _normalizeCode(row['code']);
+    final name = _cleanText(row['name']);
+    if (code.isEmpty || name.isEmpty) {
+      return null;
+    }
+
+    return PublicSetSummary(
+      code: code,
+      name: name,
+      heroImageUrl: _normalizeHttpUrl(row['hero_image_url']),
+      printedSetAbbrev: _normalizeOptionalText(
+        row['printed_set_abbrev'],
+      )?.toUpperCase(),
+      printedTotal: row['printed_total'] is num
+          ? (row['printed_total'] as num).toInt()
+          : null,
+      releaseDate: _normalizeOptionalText(row['release_date']),
+      sortDate: _setSortDate(row),
+      releaseYear: _parseReleaseYear(row['release_date']),
+      cardCount: cardCount,
+    );
+  }
+
+  static int _embeddedCount(dynamic value) {
+    if (value is num) {
+      return value.toInt();
+    }
+
+    final record = _firstNestedRecord(value);
+    return _intValue(record?['count']);
   }
 
   static String _normalizeCode(dynamic value) {

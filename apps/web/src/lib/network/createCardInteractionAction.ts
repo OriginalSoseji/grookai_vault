@@ -6,6 +6,7 @@ import {
   createInteractionExistsProofV1,
   createInteractionSignalProofV1,
 } from "@/lib/contracts/owner_write_proofs_v1";
+import { insertCardInteraction } from "@/lib/network/insertCardInteraction";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type StreamTargetRow = {
@@ -25,6 +26,8 @@ type InsertedInteractionRow = {
 type ExistingInteractionRow = {
   id: string;
 };
+
+const CONTACTABLE_INTENTS = new Set(["trade", "sell", "showcase"]);
 
 export type CreateCardInteractionActionResult =
   | {
@@ -48,6 +51,27 @@ function normalizeOptionalText(value: FormDataEntryValue | string | null | undef
 
   const normalized = value.trim();
   return normalized.length > 0 ? normalized : null;
+}
+
+function normalizeReturnPath(value: FormDataEntryValue | string | null | undefined) {
+  const normalized = normalizeOptionalText(value);
+  if (!normalized || !normalized.startsWith("/") || normalized.startsWith("//") || normalized.includes("\\")) {
+    return "/network";
+  }
+
+  try {
+    const parsed = new URL(normalized, "http://internal.local");
+    return parsed.origin === "http://internal.local" && parsed.pathname.startsWith("/")
+      ? parsed.pathname
+      : "/network";
+  } catch {
+    return "/network";
+  }
+}
+
+function revalidateInteractionPaths(returnPath: string) {
+  revalidatePath(returnPath);
+  revalidatePath("/network/inbox");
 }
 
 function buildSuccessResult(
@@ -86,7 +110,7 @@ export async function createCardInteractionAction(
   const vaultItemId = normalizeOptionalText(formData.get("vault_item_id"));
   const cardPrintId = normalizeOptionalText(formData.get("card_print_id"));
   const message = normalizeOptionalText(formData.get("message"));
-  const returnPath = normalizeOptionalText(formData.get("return_path")) ?? "/network";
+  const returnPath = normalizeReturnPath(formData.get("return_path"));
 
   if (!vaultItemId || !cardPrintId || !message) {
     return {
@@ -127,7 +151,13 @@ export async function createCardInteractionAction(
   const target = (streamTarget ?? null) as StreamTargetRow | null;
   const receiverUserId = normalizeOptionalText(target?.owner_user_id);
 
-  if (!target?.vault_item_id || !target.card_print_id || !receiverUserId) {
+  if (
+    !target?.vault_item_id ||
+    !target.card_print_id ||
+    !receiverUserId ||
+    !target.intent ||
+    !CONTACTABLE_INTENTS.has(target.intent)
+  ) {
     return {
       ok: false,
       status: "unavailable",
@@ -145,14 +175,17 @@ export async function createCardInteractionAction(
     };
   }
 
+  const targetVaultItemId = target.vault_item_id;
+  const targetCardPrintId = target.card_print_id;
+
   const duplicateWindowStart = new Date(Date.now() - 15_000).toISOString();
   const { data: existingInteraction, error: existingInteractionError } = await client
     .from("card_interactions")
     .select("id")
     .eq("sender_user_id", user.id)
     .eq("receiver_user_id", receiverUserId)
-    .eq("vault_item_id", target.vault_item_id)
-    .eq("card_print_id", target.card_print_id)
+    .eq("vault_item_id", targetVaultItemId)
+    .eq("card_print_id", targetCardPrintId)
     .eq("message", message)
     .gte("created_at", duplicateWindowStart)
     .order("created_at", { ascending: false })
@@ -170,30 +203,31 @@ export async function createCardInteractionAction(
 
   const duplicate = (existingInteraction ?? null) as ExistingInteractionRow | null;
   if (duplicate?.id) {
-    revalidatePath(returnPath);
-    revalidatePath("/network");
-    revalidatePath("/network/inbox");
-    revalidatePath("/", "layout");
+    revalidateInteractionPaths(returnPath);
 
     return buildSuccessResult(submissionKey, duplicate.id, target.owner_display_name);
   }
+
+  let committedInteractionId: string | null = null;
 
   try {
     const ownerWriteResult = await executeOwnerWriteV1<CreateCardInteractionActionResult>({
       execution_name: "create_card_interaction",
       actor_id: user.id,
       write: async (context) => {
-        const { data: insertedRow, error: insertError } = await client
-          .from("card_interactions")
-          .insert({
-            card_print_id: target.card_print_id,
-            vault_item_id: target.vault_item_id,
-            sender_user_id: user.id,
-            receiver_user_id: receiverUserId,
-            message,
-          })
-          .select("id")
-          .single();
+        const { data: insertedRow, error: insertError, usedCanonicalFallback } =
+          await insertCardInteraction({
+            client,
+            adminClient: context.adminClient,
+            input: {
+              cardPrintId: targetCardPrintId,
+              vaultItemId: targetVaultItemId,
+              senderUserId: user.id,
+              receiverUserId,
+              message,
+            },
+            authorization: { kind: "public-target" },
+          });
 
         if (insertError) {
           return {
@@ -204,22 +238,42 @@ export async function createCardInteractionAction(
           } satisfies CreateCardInteractionActionResult;
         }
 
-        await client.from("card_signals").insert({
+        const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
+        if (!inserted?.id) {
+          return {
+            ok: false,
+            status: "error",
+            submissionKey,
+            message: "Message could not be confirmed.",
+          } satisfies CreateCardInteractionActionResult;
+        }
+
+        committedInteractionId = inserted.id;
+        const { error: signalError } = await client.from("card_signals").insert({
           user_id: user.id,
-          card_print_id: target.card_print_id,
+          card_print_id: targetCardPrintId,
           signal_type: "interaction",
         });
 
-        const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
-        context.setMetadata("interaction_id", inserted?.id ?? "");
+        if (signalError) {
+          console.error("[network:interaction] secondary signal write failed", {
+            interactionId: inserted.id,
+            cardPrintId: targetCardPrintId,
+            error: signalError.message,
+          });
+        }
+
+        context.setMetadata("interaction_id", inserted.id);
         context.setMetadata("interaction_receiver_user_id", receiverUserId);
-        context.setMetadata("interaction_vault_item_id", target.vault_item_id);
-        context.setMetadata("interaction_card_print_id", target.card_print_id);
+        context.setMetadata("interaction_vault_item_id", targetVaultItemId);
+        context.setMetadata("interaction_card_print_id", targetCardPrintId);
         context.setMetadata("interaction_message", message);
+        context.setMetadata("interaction_signal_written", !signalError);
+        context.setMetadata("interaction_used_canonical_fallback", usedCanonicalFallback);
 
         return buildSuccessResult(
           submissionKey,
-          inserted?.id ?? "",
+          inserted.id,
           target.owner_display_name,
         );
       },
@@ -243,7 +297,7 @@ export async function createCardInteractionAction(
           };
         }),
         createInteractionSignalProofV1<CreateCardInteractionActionResult>(({ result, getMetadata }) => {
-          if (!result.ok) {
+          if (!result.ok || !getMetadata<boolean>("interaction_signal_written")) {
             return null;
           }
 
@@ -259,13 +313,30 @@ export async function createCardInteractionAction(
       ],
     });
 
-    revalidatePath(returnPath);
-    revalidatePath("/network");
-    revalidatePath("/network/inbox");
-    revalidatePath("/", "layout");
+    if (ownerWriteResult.ok) {
+      revalidateInteractionPaths(returnPath);
+    }
 
     return ownerWriteResult;
-  } catch {
+  } catch (error) {
+    if (committedInteractionId) {
+      const { data: committedInteraction, error: committedInteractionError } = await client
+        .from("card_interactions")
+        .select("id")
+        .eq("id", committedInteractionId)
+        .eq("sender_user_id", user.id)
+        .maybeSingle();
+
+      if (!committedInteractionError && committedInteraction?.id === committedInteractionId) {
+        console.error("[network:interaction] post-write verification failed after commit", {
+          interactionId: committedInteractionId,
+          error: error instanceof Error ? error.message : String(error),
+        });
+        revalidateInteractionPaths(returnPath);
+        return buildSuccessResult(submissionKey, committedInteractionId, target.owner_display_name);
+      }
+    }
+
     return {
       ok: false,
       status: "error",

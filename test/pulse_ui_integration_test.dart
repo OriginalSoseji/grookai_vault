@@ -19,6 +19,9 @@ void main() {
     expect(networkScreen, contains("You're caught up"));
     expect(networkScreen, contains('openPulse()'));
     expect(networkScreen, contains('_PulseArtworkTile(item: item)'));
+    expect(networkScreen, contains('width: 58'));
+    expect(networkScreen, contains('height: 84'));
+    expect(networkScreen, isNot(contains('height: 106')));
     expect(networkScreen, isNot(contains('_PulseProgressTile')));
     expect(networkScreen, contains('Icons.swap_horiz_rounded'));
     expect(networkScreen, contains("parts.join(' · ')"));
@@ -41,7 +44,28 @@ void main() {
     expect(mainShell, contains('onPulseUnreadChanged'));
     expect(mainShell, contains('_DockUnreadBadge'));
     expect(mainShell, contains('GrookaiCanonicalRouteKind.feed'));
-    expect(mainShell, contains('openPulse'));
+    expect(mainShell, contains('openCanonicalSegment(route.value)'));
+  });
+
+  test('canonical network links dispatch supported segments to Network', () {
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+    final mainShell = File('lib/main_shell.dart').readAsStringSync();
+
+    expect(
+      mainShell,
+      contains('_networkKey.currentState?.openCanonicalSegment(route.value);'),
+    );
+    expect(
+      networkScreen,
+      contains("'discover' => _NetworkHomeSegment.discover"),
+    );
+    expect(
+      networkScreen,
+      contains("'following' => _NetworkHomeSegment.following"),
+    );
+    expect(networkScreen, contains('_ => _NetworkHomeSegment.pulse'));
   });
 
   test('Pulse navigation copy does not regress to Feed labels', () {

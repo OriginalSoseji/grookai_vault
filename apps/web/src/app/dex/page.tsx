@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { getGrookaiDexSpeciesPage } from "@/lib/grookaiDex/getGrookaiDexSpecies";
@@ -8,6 +9,19 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Grookai Dex | Grookai Vault",
+  description:
+    "Track Pokemon character completion across every mapped card print in Grookai Vault.",
+  alternates: { canonical: "/dex" },
+  openGraph: {
+    title: "Grookai Dex | Grookai Vault",
+    description:
+      "Track Pokemon character completion across every mapped card print in Grookai Vault.",
+    url: "/dex",
+  },
+};
 
 const PAGE_SIZE = 100;
 

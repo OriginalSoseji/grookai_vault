@@ -18,6 +18,8 @@ import 'widgets/scanner_result_sheet.dart';
 import 'widgets/scanner_v5_palette.dart';
 import 'widgets/scanner_viewfinder_chrome.dart';
 
+enum ScanCaptureV5Exit { vault }
+
 class ScanCaptureV5Screen extends StatefulWidget {
   const ScanCaptureV5Screen({super.key});
 
@@ -586,7 +588,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   }
 
   void _popToVault() {
-    Navigator.of(context).maybePop();
+    Navigator.of(context).pop(ScanCaptureV5Exit.vault);
   }
 
   @override

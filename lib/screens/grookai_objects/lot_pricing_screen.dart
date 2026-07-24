@@ -81,6 +81,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
           condition: item.condition,
           price: _parseMoney(_itemPriceControllers[index].text) ?? item.price,
           imageUrl: item.imageUrl,
+          fallbackImageUrl: item.fallbackImageUrl,
         ),
       );
     }
@@ -335,6 +336,7 @@ class _LotItemPriceRow extends StatelessWidget {
           CardSurfaceArtwork(
             label: item.cardName,
             imageUrl: item.imageUrl,
+            fallbackImageUrl: item.fallbackImageUrl,
             width: 52,
             height: 72,
             borderRadius: 8,

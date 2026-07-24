@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/grookai_memory_card.dart';
 import '../../models/grookai_sale_listing.dart';
+import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -169,6 +170,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     if (!_ensureUsableExactCopy(row)) {
       return;
     }
+    final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => MemoryCardCaptureScreen(
@@ -177,7 +179,8 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
           source: GrookaiMemoryCardSource(
             cardName: _cardNameForRow(row),
             setLine: _setLineForRow(row),
-            cardImageUrl: _displayImageUrlForRow(row),
+            cardImageUrl: artwork.primaryImageUrl,
+            cardImageFallbackUrl: artwork.fallbackImageUrl,
             authorName: _sellerHandle,
           ),
         ),
@@ -189,6 +192,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     if (!_ensureUsableExactCopy(row)) {
       return;
     }
+    final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => ForSaleTermsScreen(
@@ -196,7 +200,8 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
           source: GrookaiSaleListingSource(
             cardName: _cardNameForRow(row),
             setLine: _setLineForRow(row),
-            cardImageUrl: _displayImageUrlForRow(row),
+            cardImageUrl: artwork.primaryImageUrl,
+            cardImageFallbackUrl: artwork.fallbackImageUrl,
             sellerHandle: _sellerHandle,
           ),
         ),
@@ -442,11 +447,13 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
 
   GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
     final cardPrintId = _cardPrintIdForRow(row);
+    final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
     return GrookaiLotListingItemSource(
       cardName: _cardNameForRow(row),
       condition: _conditionForRow(row),
       price: _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0,
-      imageUrl: _displayImageUrlForRow(row),
+      imageUrl: artwork.primaryImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
     );
   }
 
@@ -494,6 +501,7 @@ class _ObjectCardPickerRow extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final hasError = (error ?? '').isNotEmpty;
+    final hostedArtwork = _objectRowArtwork(row, imageUrl);
 
     return Material(
       color: selected
@@ -512,7 +520,8 @@ class _ObjectCardPickerRow extends StatelessWidget {
                 children: [
                   CardSurfaceArtwork(
                     label: title,
-                    imageUrl: imageUrl,
+                    imageUrl: hostedArtwork.primaryImageUrl,
+                    fallbackImageUrl: hostedArtwork.fallbackImageUrl,
                     width: 58,
                     height: 80,
                     borderRadius: 8,
@@ -775,4 +784,33 @@ String _conditionForRow(Map<String, dynamic> row) {
 String? _displayImageUrlForRow(Map<String, dynamic> row) {
   return normalizeDisplayImageUrl(row['photo_url']) ??
       resolveDisplayImageUrlFromRow(row);
+}
+
+CatalogArtworkResolution _objectRowArtwork(
+  Map<String, dynamic> row,
+  String? sourceImageUrl,
+) {
+  final hostedImageUrl = buildCanonicalCardImageUrl(row['gv_id']);
+  final normalizedSourceImageUrl = normalizeDisplayImageUrl(sourceImageUrl);
+  if (isCollectorUploadedCardImage(normalizedSourceImageUrl)) {
+    return CatalogArtworkResolution(
+      primaryImageUrl: normalizedSourceImageUrl,
+      fallbackImageUrl: hostedImageUrl,
+    );
+  }
+  final artwork = resolveCatalogArtwork(
+    gvId: row['gv_id'],
+    providerImageUrl: resolveDisplayImageUrl(
+      imageUrl: row['image_url'],
+      imageAltUrl: row['image_alt_url'],
+      representativeImageUrl: row['representative_image_url'],
+    ),
+  );
+  if (artwork.primaryImageUrl == null && normalizedSourceImageUrl != null) {
+    return CatalogArtworkResolution(
+      primaryImageUrl: normalizedSourceImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
+    );
+  }
+  return artwork;
 }

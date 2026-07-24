@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PublicCardImage from "@/components/PublicCardImage";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { getGrookaiDexSpeciesDetail } from "@/lib/grookaiDex/getGrookaiDexSpeciesDetail";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -9,13 +10,29 @@ export const revalidate = 0;
 
 type DexCardView = "all" | "owned" | "missing";
 
+const DEX_CARD_PAGE_SIZE = 48;
+
 function parseView(value: string | string[] | undefined): DexCardView {
   const raw = Array.isArray(value) ? value[0] : value;
   return raw === "owned" || raw === "missing" ? raw : "all";
 }
 
-function viewHref(speciesSlug: string, view: DexCardView) {
-  return view === "all" ? `/dex/${speciesSlug}` : `/dex/${speciesSlug}?view=${view}`;
+function parsePage(value: string | string[] | undefined) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  const parsed = Number.parseInt(raw ?? "1", 10);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function viewHref(speciesSlug: string, view: DexCardView, page = 1) {
+  const query = new URLSearchParams();
+  if (view !== "all") {
+    query.set("view", view);
+  }
+  if (page > 1) {
+    query.set("page", String(page));
+  }
+  const suffix = query.toString();
+  return suffix ? `/dex/${speciesSlug}?${suffix}` : `/dex/${speciesSlug}`;
 }
 
 function formatPercent(owned: number, total: number) {
@@ -31,7 +48,7 @@ export default async function GrookaiDexSpeciesPage({
   searchParams,
 }: {
   params: { speciesSlug: string };
-  searchParams?: { view?: string | string[] };
+  searchParams?: { view?: string | string[]; page?: string | string[] };
 }) {
   if (!isGrookaiDexEnabled()) {
     notFound();
@@ -52,6 +69,10 @@ export default async function GrookaiDexSpeciesPage({
   const activeView = parseView(searchParams?.view);
   const visibleCards =
     activeView === "owned" ? ownedCards : activeView === "missing" ? missingCards : detail.cards;
+  const pageCount = Math.max(1, Math.ceil(visibleCards.length / DEX_CARD_PAGE_SIZE));
+  const activePage = Math.min(parsePage(searchParams?.page), pageCount);
+  const pageStart = (activePage - 1) * DEX_CARD_PAGE_SIZE;
+  const pageCards = visibleCards.slice(pageStart, pageStart + DEX_CARD_PAGE_SIZE);
   const viewOptions: Array<{ view: DexCardView; label: string; count: number }> = [
     { view: "all", label: "All", count: detail.cards.length },
     { view: "owned", label: "Owned", count: ownedCards.length },
@@ -199,12 +220,14 @@ export default async function GrookaiDexSpeciesPage({
         })}
         </div>
         <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
-          {visibleCards.length} shown
+          {visibleCards.length > 0
+            ? `${pageStart + 1}-${Math.min(pageStart + pageCards.length, visibleCards.length)} of ${visibleCards.length}`
+            : "0 shown"}
         </p>
       </nav>
 
       <section className="space-y-3">
-        {visibleCards.map((card) => {
+        {pageCards.map((card) => {
           const totalOptions = Math.max(1, card.printings.length);
           const ownedOptions = card.printings.length > 0
             ? card.printings.filter((printing) => printing.ownedCount > 0).length
@@ -219,10 +242,18 @@ export default async function GrookaiDexSpeciesPage({
                 href={card.gvId ? `/card/${card.gvId}` : "#"}
                 className="block aspect-[3/4] overflow-hidden rounded-md border border-slate-100 bg-slate-100"
               >
-                {card.imageUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={card.imageUrl} alt={card.name} className="h-full w-full object-contain" />
-                ) : null}
+                <PublicCardImage
+                  src={card.imageUrl ?? undefined}
+                  fallbackSrc={card.imageFallbackUrls[0]}
+                  fallbackSources={card.imageFallbackUrls.slice(1)}
+                  alt={card.name}
+                  loading="lazy"
+                  decoding="async"
+                  imageClassName="h-full w-full object-contain"
+                  fallbackClassName="flex h-full w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
+                  fallbackLabel={card.name}
+                  sizes="92px"
+                />
               </Link>
 
               <div className="min-w-0 space-y-3">
@@ -314,6 +345,38 @@ export default async function GrookaiDexSpeciesPage({
           </div>
         ) : null}
       </section>
+
+      {pageCount > 1 ? (
+        <nav aria-label="Card result pages" className="flex items-center justify-between gap-3 border-t border-slate-200 pt-4 text-sm">
+          {activePage > 1 ? (
+            <Link
+              href={viewHref(detail.slug, activeView, activePage - 1)}
+              className="rounded-md border border-slate-200 bg-white px-3 py-2 font-medium text-slate-700 hover:border-slate-300 hover:text-slate-950"
+            >
+              Previous
+            </Link>
+          ) : (
+            <span className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2 text-slate-400" aria-disabled="true">
+              Previous
+            </span>
+          )}
+          <span className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+            Page {activePage} of {pageCount}
+          </span>
+          {activePage < pageCount ? (
+            <Link
+              href={viewHref(detail.slug, activeView, activePage + 1)}
+              className="rounded-md border border-slate-200 bg-white px-3 py-2 font-medium text-slate-700 hover:border-slate-300 hover:text-slate-950"
+            >
+              Next
+            </Link>
+          ) : (
+            <span className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2 text-slate-400" aria-disabled="true">
+              Next
+            </span>
+          )}
+        </nav>
+      ) : null}
     </main>
   );
 }

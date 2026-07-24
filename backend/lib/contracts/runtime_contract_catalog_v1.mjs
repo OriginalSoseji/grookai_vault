@@ -201,21 +201,37 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     authority_class: 'ingestion',
     domain: 'ingestion',
     canon_affecting: true,
-    conflict_behavior: 'Raw-first staging wins over direct canon mutation.',
+    conflict_behavior:
+      'Governed exact printing truth and per-set count/suppression invariants win over provider transport fields, pricing taxonomy, and direct canon mutation.',
     enforcement_points: {
       worker: [
         'backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs',
         'backend/warehouse/classification_worker_v1.mjs',
+        'backend/pricing/market_reference_tcgdex_pricing_audit_v1.mjs',
+        'scripts/audits/english_master_index_cardtrader_finish_acquisition_v1.mjs',
+        'scripts/audits/verified_master_set_index_v1/source_adapters/human_fixtures.mjs',
+        'scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs',
+        'scripts/audits/english_master_index_publishable_v1_build.mjs',
+        'scripts/audits/english_master_index_chaos_rising_completion_package_v1.mjs',
+        'scripts/audits/english_master_index_pkg04a_chaos_rising_child_printing_completion_v1.mjs',
+        'scripts/ingest/new_set_release_ingest_v1.mjs',
       ],
-      audit: ['scripts/contracts/drift_audit_v1.sql'],
-      checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
-      quarantine_behavior: 'Ambiguous discovery payloads are preserved outside canon.',
+      audit: [
+        'scripts/contracts/drift_audit_v1.sql',
+        'tests/contracts/ingestion_finish_truth_guard_v1.test.mjs',
+        'tests/contracts/english_master_index_cardtrader_finish_acquisition_v1.test.mjs',
+        'tests/contracts/english_master_index_cardtrader_normal_containment_v1.test.mjs',
+        'tests/contracts/me04_finish_truth_v1.test.mjs',
+      ],
+      checkpoint: ['docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md'],
+      quarantine_behavior:
+        'Ambiguous source semantics and price-only finish hints remain evidence outside canon; count or suppression drift hard-fails before a child-printing write.',
       post_write_proof_query:
-        'Warehouse candidate and staging proof queries validate one owner row and one active staging row.',
+        'Per-set readback must reproduce exact parent, printing, and by-finish counts; zero suppressed/forbidden facts; all protected facts; and the pinned plan/contract hashes.',
     },
     current_enforcement_status: 'partially_enforced',
-    gaps: 'Controlled-growth raw staging remains outside runtime scope because it is non-canonical.',
-    next_action: 'Keep raw discovery staging non-canonical until a later explicit scope is needed.',
+    gaps: 'Active Master Index and ME04 paths are guarded; older one-off historical child-printing scripts predate the shared manifest rule.',
+    next_action: 'Require an equivalent truth-manifest and pre-commit assertion before any historical one-off path is reused.',
   },
   EXTERNAL_SOURCE_INGESTION_MODEL_V1: {
     status: 'Active',
@@ -261,18 +277,28 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     authority_class: 'ingestion',
     domain: 'source',
     canon_affecting: true,
-    conflict_behavior: 'Only deterministic source-backed TCGdex enrichments may write image surfaces.',
+    conflict_behavior:
+      'Deterministic TCGdex semantics may classify evidence, but governed printing truth wins and no TCGdex pricing field may create canonical identity.',
     enforcement_points: {
-      worker: ['backend/images/source_image_enrichment_worker_v1.mjs'],
-      audit: ['scripts/contracts/drift_audit_v1.sql'],
-      checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
-      quarantine_behavior: 'Source ambiguity blocks enrichment instead of writing guessed images.',
+      worker: [
+        'backend/images/source_image_enrichment_worker_v1.mjs',
+        'backend/pricing/market_reference_tcgdex_pricing_audit_v1.mjs',
+        'scripts/audits/market_reference_tcgdex_pricing_backfill_apply_v1.mjs',
+      ],
+      audit: [
+        'scripts/contracts/drift_audit_v1.sql',
+        'tests/contracts/market_reference_tcgdex_pricing_audit_v1.test.mjs',
+        'tests/contracts/market_reference_tcgdex_pricing_backfill_apply_v1.test.mjs',
+      ],
+      checkpoint: ['docs/contracts/TCGDEX_SOURCE_CONTRACT_V1.md'],
+      quarantine_behavior:
+        'Missing/ambiguous mappings block enrichment; ambiguous finish metadata remains review-only market evidence and cannot write card_printings.',
       post_write_proof_query:
-        'Representative image proof queries require updated rows to hold the selected representative image URL.',
+        'Image readbacks prove the selected representative URL; pricing proofs declare no card_print/card_printing writes and retain raw resolver lineage.',
     },
     current_enforcement_status: 'enforced',
-    gaps: 'V1 still targets one set at a time.',
-    next_action: 'Keep the one-set safety gate until source-backed coverage is audited for expansion.',
+    gaps: 'Image enrichment remains one-set bounded; ambiguous Cardmarket finish hints intentionally remain review-only.',
+    next_action: 'Keep exact-map and no-canon pricing boundaries as TCGdex coverage expands.',
   },
   PRINTED_IDENTITY_CONTRACT_V1: {
     status: 'Frozen',

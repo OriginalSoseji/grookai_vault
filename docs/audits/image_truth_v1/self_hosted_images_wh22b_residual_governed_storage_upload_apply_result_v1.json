@@ -1,0 +1,18 @@
+{
+  "package_id": "IMG-HOST-WH-22B-RESIDUAL-GOVERNED-STORAGE-UPLOAD-APPLY",
+  "mode": "guarded_apply_result",
+  "started_at": "2026-07-22T22:21:14.943Z",
+  "ended_at": "2026-07-22T22:21:35.182Z",
+  "fingerprint": "ba3fc47ec7c3e18fadcd84b51d921fce270d32c12fda4913b92e7fc67fa4753f",
+  "storage_plan_hash": "44d3911371c1d1ee67bdf764f970379c794121c4a36747b05478da4f66df74a3",
+  "unique_assets": 21,
+  "new_uploads_planned": 19,
+  "uploaded_and_verified": 19,
+  "verified_existing_objects": 2,
+  "failures": 0,
+  "failure_rows": [],
+  "storage_writes_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "proof_hash": "42786b9347b84758bc798e6487d05700bba73842e9596af212919ba1a25373ff"
+}

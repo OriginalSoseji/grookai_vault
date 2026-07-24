@@ -38,6 +38,9 @@ export type ChildDisplayImageFallback = {
 const CHILD_FALLBACK_STATUS = "representative_missing_variant_visual";
 const CHILD_FALLBACK_NOTE =
   "Correct card identity. Displaying the best reviewed child printing image until the parent identity image is available.";
+const CHILD_LOOKUP_ID_CHUNK_SIZE = 250;
+const CHILD_LOOKUP_PAGE_SIZE = 1_000;
+const CHILD_LOOKUP_CONCURRENCY = 4;
 
 export function applyChildDisplayImageFallback(
   imageFields: ResolvedCardImageFieldsV1,
@@ -90,26 +93,55 @@ export async function getChildDisplayImageFallbacks(
     return fallbackByCardPrintId;
   }
 
-  const { data, error } = await supabase
-    .from("card_printings")
-    .select(
-      "id,card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note",
-    )
-    .in("card_print_id", cardPrintIds);
+  const idChunks: string[][] = [];
+  for (let index = 0; index < cardPrintIds.length; index += CHILD_LOOKUP_ID_CHUNK_SIZE) {
+    idChunks.push(cardPrintIds.slice(index, index + CHILD_LOOKUP_ID_CHUNK_SIZE));
+  }
 
-  if (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn("[image-fallback] child image lookup failed closed", {
-        message: error.message,
-      });
+  const childRows: CardPrintingImageLookupRow[] = [];
+  for (let index = 0; index < idChunks.length; index += CHILD_LOOKUP_CONCURRENCY) {
+    const batchResults = await Promise.all(
+      idChunks.slice(index, index + CHILD_LOOKUP_CONCURRENCY).map(async (idChunk) => {
+        const rows: CardPrintingImageLookupRow[] = [];
+        for (let from = 0; ; from += CHILD_LOOKUP_PAGE_SIZE) {
+          const to = from + CHILD_LOOKUP_PAGE_SIZE - 1;
+          const { data, error } = await supabase
+            .from("card_printings")
+            .select(
+              "id,card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note",
+            )
+            .in("card_print_id", idChunk)
+            .order("id", { ascending: true })
+            .range(from, to);
+
+          if (error) {
+            return { rows: [] as CardPrintingImageLookupRow[], error };
+          }
+
+          const pageRows = (data ?? []) as CardPrintingImageLookupRow[];
+          rows.push(...pageRows);
+          if (pageRows.length < CHILD_LOOKUP_PAGE_SIZE) {
+            break;
+          }
+        }
+        return { rows, error: null };
+      }),
+    );
+
+    const failed = batchResults.find((result) => result.error);
+    if (failed?.error) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[image-fallback] child image lookup failed closed", {
+          message: failed.error.message,
+        });
+      }
+      return fallbackByCardPrintId;
     }
-    return fallbackByCardPrintId;
+    childRows.push(...batchResults.flatMap((result) => result.rows));
   }
 
   const childrenByParentId = new Map<string, CardPrintingImageLookupRow[]>();
-  for (const child of ((data ?? []) as CardPrintingImageLookupRow[]).filter(
-    hasChildImageEvidence,
-  )) {
+  for (const child of childRows.filter(hasChildImageEvidence)) {
     if (!child.card_print_id) continue;
     const existing = childrenByParentId.get(child.card_print_id) ?? [];
     existing.push(child);

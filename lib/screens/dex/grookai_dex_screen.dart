@@ -129,6 +129,10 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final speciesPage = _speciesPage;
+    final initialLoading = _loading && speciesPage == null;
+    final initialUnavailable =
+        !_loading && _error != null && speciesPage == null;
+    final hasDexData = speciesPage != null;
     final filteredSpecies = _filteredSpecies();
     final query = _searchController.text.trim();
     final isSearching = query.isNotEmpty;
@@ -220,14 +224,22 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '$pageCompletionPercent%',
+                                initialLoading
+                                    ? '—'
+                                    : initialUnavailable
+                                    ? 'Unavailable'
+                                    : '$pageCompletionPercent%',
                                 style: theme.textTheme.displaySmall?.copyWith(
                                   fontWeight: FontWeight.w900,
                                   letterSpacing: 0,
                                 ),
                               ),
                               Text(
-                                '$pageOwnedPrints / $pageTotalPrints printings collected',
+                                initialLoading
+                                    ? 'Loading Dex printings…'
+                                    : initialUnavailable
+                                    ? 'Dex metrics are temporarily unavailable.'
+                                    : '$pageOwnedPrints / $pageTotalPrints printings collected',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: colorScheme.onSurface.withValues(
                                     alpha: 0.58,
@@ -239,35 +251,58 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                           ),
                         ),
                         _DexPill(
-                          label: isSearching
+                          label: initialLoading
+                              ? 'Loading'
+                              : initialUnavailable
+                              ? 'Unavailable'
+                              : isSearching
                               ? 'Search'
                               : '${filteredSpecies.length} shown',
                         ),
                       ],
                     ),
                     const SizedBox(height: 12),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(
-                        minHeight: 8,
-                        value: pageCompletionPercent / 100,
-                        backgroundColor: colorScheme.surfaceContainerHighest
-                            .withValues(alpha: 0.62),
+                    if (initialUnavailable)
+                      Container(
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: colorScheme.surfaceContainerHighest.withValues(
+                            alpha: 0.62,
+                          ),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      )
+                    else
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: LinearProgressIndicator(
+                          minHeight: 8,
+                          value: initialLoading
+                              ? null
+                              : pageCompletionPercent / 100,
+                          backgroundColor: colorScheme.surfaceContainerHighest
+                              .withValues(alpha: 0.62),
+                        ),
                       ),
-                    ),
                     const SizedBox(height: 18),
                     Row(
                       children: [
                         _DexMetric(
                           label: 'Species',
-                          value: '${metricSpecies.length}',
+                          value: hasDexData ? '${metricSpecies.length}' : '—',
                         ),
                         _DexMetric(
                           label: 'Started',
-                          value: '$ownedStartedCount',
+                          value: hasDexData ? '$ownedStartedCount' : '—',
                         ),
-                        _DexMetric(label: 'Complete', value: '$completeCount'),
-                        _DexMetric(label: 'Missing', value: '$incompleteCount'),
+                        _DexMetric(
+                          label: 'Complete',
+                          value: hasDexData ? '$completeCount' : '—',
+                        ),
+                        _DexMetric(
+                          label: 'Missing',
+                          value: hasDexData ? '$incompleteCount' : '—',
+                        ),
                       ],
                     ),
                   ],

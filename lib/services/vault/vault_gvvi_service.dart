@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
+import '../identity/catalog_artwork_resolution.dart';
 import '../public/card_surface_pricing_service.dart';
 
 enum GvviImageSide { front, back }
@@ -86,21 +87,21 @@ class PublicGvviData {
   final String? marketReferenceSource;
   final String? publicNote;
 
-  String? get primaryImageUrl {
-    if (imageDisplayMode == GvviImageDisplayMode.uploaded) {
-      return frontImageUrl ?? imageUrl;
-    }
-    return imageUrl;
-  }
+  CatalogArtworkResolution get catalogArtwork =>
+      resolveCatalogArtwork(gvId: gvId, providerImageUrl: imageUrl);
+
+  bool get usesUploadedFrontImage =>
+      imageDisplayMode == GvviImageDisplayMode.uploaded &&
+      (frontImageUrl ?? '').trim().isNotEmpty;
+
+  String? get primaryImageUrl =>
+      usesUploadedFrontImage ? frontImageUrl : catalogArtwork.primaryImageUrl;
 
   String? get fallbackImageUrl {
-    if (imageDisplayMode == GvviImageDisplayMode.uploaded &&
-        (frontImageUrl ?? '').trim().isNotEmpty &&
-        (imageUrl ?? '').trim().isNotEmpty &&
-        frontImageUrl != imageUrl) {
-      return imageUrl;
+    if (usesUploadedFrontImage) {
+      return catalogArtwork.primaryImageUrl;
     }
-    return null;
+    return catalogArtwork.fallbackImageUrl;
   }
 
   bool get hasExactMedia =>
@@ -248,21 +249,21 @@ class VaultGvviData {
 
   bool get canOpenPublicPage => !isArchived && intent != 'hold';
 
-  String? get primaryImageUrl {
-    if (imageDisplayMode == GvviImageDisplayMode.uploaded) {
-      return frontImageUrl ?? imageUrl;
-    }
-    return imageUrl;
-  }
+  CatalogArtworkResolution get catalogArtwork =>
+      resolveCatalogArtwork(gvId: gvId, providerImageUrl: imageUrl);
+
+  bool get usesUploadedFrontImage =>
+      imageDisplayMode == GvviImageDisplayMode.uploaded &&
+      (frontImageUrl ?? '').trim().isNotEmpty;
+
+  String? get primaryImageUrl =>
+      usesUploadedFrontImage ? frontImageUrl : catalogArtwork.primaryImageUrl;
 
   String? get fallbackImageUrl {
-    if (imageDisplayMode == GvviImageDisplayMode.uploaded &&
-        (frontImageUrl ?? '').trim().isNotEmpty &&
-        (imageUrl ?? '').trim().isNotEmpty &&
-        frontImageUrl != imageUrl) {
-      return imageUrl;
+    if (usesUploadedFrontImage) {
+      return catalogArtwork.primaryImageUrl;
     }
-    return null;
+    return catalogArtwork.fallbackImageUrl;
   }
 
   VaultGvviData copyWith({

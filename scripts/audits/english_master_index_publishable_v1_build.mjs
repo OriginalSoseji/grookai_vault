@@ -2,6 +2,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { markdownTable } from './verified_master_set_index_v1/shared.mjs';
+import {
+  applyMe04FinishTruthV1,
+  assertMe04FinishTruthV1,
+  ME04_EXPECTED_FINISH_COUNTS_V1,
+  ME04_EXPECTED_PRINTING_COUNT_V1,
+} from './me04_finish_truth_v1.mjs';
 
 const COMPLETION_DIR = 'docs/audits/english_master_index_completion_v1';
 const OUTPUT_DIR = 'docs/audits/english_master_index_publishable_v1';
@@ -53,7 +59,7 @@ function publishabilityStatus(set) {
 }
 
 function setManifestRow(set) {
-  return {
+  const row = {
     set_key: set.set_key,
     set_name: set.set_name,
     publishability_status: publishabilityStatus(set),
@@ -82,6 +88,15 @@ function setManifestRow(set) {
       }
       : null,
   };
+  if (row.set_key === 'me04' && row.publishability_status === 'publishable_complete') {
+    row.printings = {
+      master_admissible: ME04_EXPECTED_PRINTING_COUNT_V1,
+      total: ME04_EXPECTED_PRINTING_COUNT_V1,
+      gap_count: 0,
+    };
+    row.finish_counts = { ...ME04_EXPECTED_FINISH_COUNTS_V1 };
+  }
+  return row;
 }
 
 function evidenceRows(cards, printings) {
@@ -186,8 +201,17 @@ async function main() {
     (exportArtifact.cards ?? []).filter((row) => publishableSetKeys.has(row.set_key)),
     (row) => row.set_key,
   );
-  const printingsBySet = Map.groupBy(
+  const { retained: governedPrintings } = applyMe04FinishTruthV1(
     (exportArtifact.printings ?? []).filter((row) => publishableSetKeys.has(row.set_key)),
+  );
+  if (publishableSetKeys.has('me04')) {
+    assertMe04FinishTruthV1(
+      governedPrintings.filter((row) => row.set_key === 'me04'),
+      'Publishable Master Index ME04 shard',
+    );
+  }
+  const printingsBySet = Map.groupBy(
+    governedPrintings,
     (row) => row.set_key,
   );
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
@@ -13,6 +14,53 @@ import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstance
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 
 export const revalidate = 60;
+
+function asAbsoluteUrl(origin: string, value: string | null | undefined) {
+  const normalized = value?.trim();
+  if (!normalized) return undefined;
+
+  try {
+    return new URL(normalized).toString();
+  } catch {
+    return normalized.startsWith("/") ? `${origin}${normalized}` : undefined;
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { gvvi_id: string };
+}): Promise<Metadata> {
+  const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
+  if (!detail) {
+    notFound();
+  }
+
+  const siteOrigin = getSiteOrigin();
+  const canonicalUrl = `${siteOrigin}/gvvi/${encodeURIComponent(detail.gvviId)}`;
+  const imageUrl = asAbsoluteUrl(siteOrigin, detail.imageUrl);
+  const title = `${detail.cardName} • ${detail.ownerDisplayName}'s copy | Grookai Vault`;
+  const description = `View ${detail.ownerDisplayName}'s ${detail.cardName} exact copy on Grookai Vault.`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: canonicalUrl,
+      images: imageUrl ? [{ url: imageUrl, alt: detail.cardName }] : undefined,
+    },
+    twitter: {
+      card: imageUrl ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+}
 
 function formatTimestamp(value: string | null) {
   if (!value) {
@@ -54,6 +102,7 @@ export default async function PublicVaultInstancePage({
     imageDisplayMode: detail.imageDisplayMode,
     uploadedImageUrl: detail.frontImageUrl,
     canonicalImageUrl: detail.imageUrl,
+    providerImageUrl: detail.providerImageUrl,
   });
 
   return (
@@ -98,6 +147,7 @@ export default async function PublicVaultInstancePage({
                 <PublicCardImage
                   src={heroImage.primaryImageUrl ?? undefined}
                   fallbackSrc={heroImage.fallbackImageUrl ?? undefined}
+                  fallbackSources={heroImage.fallbackImageUrls.slice(1)}
                   alt={detail.cardName}
                   imageClassName="aspect-[3/4] w-full object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
@@ -266,8 +316,16 @@ export default async function PublicVaultInstancePage({
             <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
               <p className="break-all text-sm text-slate-600">{shareUrl}</p>
               <div className="flex flex-wrap gap-2">
-                <CopyButton text={shareUrl} />
-                <CopyButton text={detail.gvviId} />
+                <CopyButton
+                  text={shareUrl}
+                  label="Copy public link"
+                  copiedLabel="Link copied!"
+                />
+                <CopyButton
+                  text={detail.gvviId}
+                  label="Copy GVVI ID"
+                  copiedLabel="GVVI ID copied!"
+                />
               </div>
             </div>
           </PageSection>

@@ -162,6 +162,7 @@ export type VaultInstanceDetail = {
   setName: string;
   number: string;
   imageUrl: string | null;
+  providerImageUrl: string | null;
   conditionLabel: string | null;
   intent: VaultIntent;
   isGraded: boolean;
@@ -300,6 +301,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
     imageUrl: cardImageFields.display_image_url,
+    providerImageUrl: cardImageFields.external_image_fallback_url,
     conditionLabel: normalizeOptionalText(instance.condition_label),
     intent: normalizeVaultIntent(instance.intent) ?? "hold",
     isGraded: Boolean(instance.slab_cert_id),

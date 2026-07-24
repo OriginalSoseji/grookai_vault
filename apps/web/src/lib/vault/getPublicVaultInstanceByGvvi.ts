@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import {
@@ -137,6 +138,7 @@ export type PublicVaultInstanceDetail = {
   setName: string;
   number: string;
   imageUrl: string | null;
+  providerImageUrl: string | null;
   frontImageUrl: string | null;
   backImageUrl: string | null;
   imageDisplayMode: VaultInstanceImageDisplayMode;
@@ -157,7 +159,7 @@ export type PublicVaultInstanceDetail = {
   marketReferenceUpdatedAt: string | null;
 };
 
-export async function getPublicVaultInstanceByGvvi(
+export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultInstanceByGvvi(
   gvviId: string,
 ): Promise<PublicVaultInstanceDetail | null> {
   const normalizedGvviId = gvviId.trim();
@@ -287,6 +289,7 @@ export async function getPublicVaultInstanceByGvvi(
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
     imageUrl: cardImageFields.display_image_url,
+    providerImageUrl: cardImageFields.external_image_fallback_url,
     frontImageUrl,
     backImageUrl,
     imageDisplayMode: normalizeVaultInstanceImageDisplayMode(instance.image_display_mode) ?? "canonical",
@@ -316,4 +319,4 @@ export async function getPublicVaultInstanceByGvvi(
         ? pricingRecord.raw_price_ts
         : null,
   };
-}
+});

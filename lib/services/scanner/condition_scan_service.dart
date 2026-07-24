@@ -278,7 +278,31 @@ class ConditionScanService {
         .limit(1)
         .maybeSingle();
 
-    return _mapOrNull(row);
+    final match = _mapOrNull(row);
+    if (match == null) return null;
+
+    final cardPrintId = (match['best_candidate_card_print_id'] ?? '')
+        .toString()
+        .trim();
+    if (cardPrintId.isEmpty) return match;
+
+    try {
+      final cardRow = await _client
+          .from('card_prints')
+          .select('gv_id')
+          .eq('id', cardPrintId)
+          .maybeSingle();
+      final gvId = (cardRow?['gv_id'] ?? '').toString().trim();
+      if (gvId.isNotEmpty) {
+        match['best_candidate_gv_id'] = gvId;
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[condition_scan] match GV-ID lookup skipped: $error');
+      }
+    }
+
+    return match;
   }
 
   Future<void> saveQuadOverride({

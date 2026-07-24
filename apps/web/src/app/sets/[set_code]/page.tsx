@@ -1,19 +1,58 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { cache, Suspense } from "react";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
+import SetRouteLoading from "./SetRouteLoading";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSetByCode, getPublicSetCards, getPublicWorldChampionshipDecklist } from "@/lib/publicSets";
 import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
 import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { PublicWorldChampionshipDecklist } from "@/lib/publicSets.shared";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 const INITIAL_CARD_CHUNK = 24;
+const getCachedPublicSetByCode = cache(getPublicSetByCode);
+type PublicSetDetail = NonNullable<Awaited<ReturnType<typeof getPublicSetByCode>>>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { set_code: string };
+}): Promise<Metadata> {
+  const setDetail = await getCachedPublicSetByCode(params.set_code);
+  if (!setDetail) {
+    notFound();
+  }
+
+  const siteOrigin = getSiteOrigin();
+  const canonicalUrl = `${siteOrigin}/sets/${encodeURIComponent(setDetail.code)}`;
+  const title = `${setDetail.name} Pokemon Card Set | Grookai Vault`;
+  const description = `Browse ${setDetail.card_count.toLocaleString()} reconciled card identities from ${setDetail.name} on Grookai Vault.`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 function formatReleaseDate(value?: string) {
   if (!value) {
@@ -40,23 +79,19 @@ function buildWorldChampionshipDecklistBlurb(decklist: PublicWorldChampionshipDe
   return `${yearLabel} decks preserve tournament lists from that year's top players. This ${deckLabel} is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.${playerLine}`;
 }
 
-export default async function SetPage({
+async function SetPageContent({
   params,
+  setDetail,
 }: {
   params: { set_code: string };
+  setDetail: PublicSetDetail;
 }) {
   const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const [setDetail, initialCards] = await Promise.all([
-    getPublicSetByCode(params.set_code),
+  const [authResponse, initialCards] = await Promise.all([
+    supabase.auth.getUser(),
     getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
   ]);
-
-  if (!setDetail) {
-    notFound();
-  }
+  const user = authResponse.data.user;
 
   const masterSetStats = await getPublicSetMasterSetStats(setDetail.code, user?.id ?? null);
   const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
@@ -263,5 +298,22 @@ export default async function SetPage({
       </section>
       </div>
     </main>
+  );
+}
+
+export default async function SetPage({
+  params,
+}: {
+  params: { set_code: string };
+}) {
+  const setDetail = await getCachedPublicSetByCode(params.set_code);
+  if (!setDetail) {
+    notFound();
+  }
+
+  return (
+    <Suspense fallback={<SetRouteLoading />}>
+      <SetPageContent params={params} setDetail={setDetail} />
+    </Suspense>
   );
 }

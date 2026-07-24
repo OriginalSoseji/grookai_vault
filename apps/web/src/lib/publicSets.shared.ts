@@ -170,6 +170,7 @@ export type PublicSetCard = {
   image_note?: string;
   image_source?: string;
   display_image_url?: string;
+  external_image_fallback_url?: string;
   display_image_kind?:
     | "exact"
     | "representative"
@@ -186,6 +187,7 @@ export type PublicSetCard = {
     image_note?: string;
     image_source?: string;
     display_image_url?: string;
+    external_image_fallback_url?: string;
     display_image_kind?:
       | "exact"
       | "representative"

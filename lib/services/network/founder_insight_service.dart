@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
+
 const String _kFounderEmail = 'ccabrl@gmail.com';
 const String _kFounderSignalsFunction = 'founder-market-signals-mobile-v1';
 const String _kFounderSignalDrilldownFunction =
@@ -133,6 +135,13 @@ class FounderInsightCardRow {
   final String? recommendation;
 
   String? get preferredImageUrl => imageUrl ?? imageAltUrl;
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+  String? get providerFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(preferredImageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
+  String? get catalogImageUrl => hostedImageUrl ?? providerFallbackImageUrl;
 
   factory FounderInsightCardRow.fromJson(Map<String, dynamic> json) {
     return FounderInsightCardRow(
@@ -218,6 +227,13 @@ class FounderSignalCardIdentity {
   final String? imageAltUrl;
 
   String? get preferredImageUrl => imageUrl ?? imageAltUrl;
+  String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
+  String? get providerFallbackImageUrl {
+    final fallback = normalizeDisplayImageUrl(preferredImageUrl);
+    return fallback == hostedImageUrl ? null : fallback;
+  }
+
+  String? get catalogImageUrl => hostedImageUrl ?? providerFallbackImageUrl;
 
   factory FounderSignalCardIdentity.fromJson(Map<String, dynamic> json) {
     return FounderSignalCardIdentity(
@@ -539,8 +555,7 @@ class FounderInsightService {
 
     if (response.status < 200 || response.status >= 300) {
       throw Exception(
-        _extractError(data) ??
-            'Vendor tools are unavailable right now.',
+        _extractError(data) ?? 'Vendor tools are unavailable right now.',
       );
     }
     if (data.isEmpty) {

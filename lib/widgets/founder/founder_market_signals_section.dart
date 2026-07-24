@@ -4,7 +4,7 @@ import '../../screens/founder/founder_card_signal_detail_screen.dart';
 import '../../screens/founder/founder_set_signal_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
-import '../../utils/display_image_contract.dart';
+import '../card_surface_artwork.dart';
 
 class FounderMarketSignalsSection extends StatelessWidget {
   const FounderMarketSignalsSection({super.key, required this.bundle});
@@ -193,7 +193,7 @@ class _FounderCardRowCard extends StatelessWidget {
             children: [
               _RankBadge(rank: rank),
               const SizedBox(width: 10),
-              _CardArtwork(url: row.preferredImageUrl),
+              _CardArtwork(row: row),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -368,39 +368,22 @@ class _FounderSetRowCard extends StatelessWidget {
 }
 
 class _CardArtwork extends StatelessWidget {
-  const _CardArtwork({required this.url});
+  const _CardArtwork({required this.row});
 
-  final String? url;
+  final FounderInsightCardRow row;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final imageUrl = normalizeDisplayImageUrl(url);
-
-    return Container(
+    return CardSurfaceArtwork(
+      label: row.name,
+      imageUrl: row.catalogImageUrl,
+      fallbackImageUrl: row.providerFallbackImageUrl,
       width: 52,
       height: 72,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.46),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: imageUrl == null
-          ? Icon(
-              Icons.image_not_supported_outlined,
-              color: colorScheme.onSurface.withValues(alpha: 0.42),
-              size: 20,
-            )
-          : Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              cacheWidth: 160,
-              errorBuilder: (context, error, stackTrace) => Icon(
-                Icons.image_not_supported_outlined,
-                color: colorScheme.onSurface.withValues(alpha: 0.42),
-                size: 20,
-              ),
-            ),
+      borderRadius: 12,
+      padding: EdgeInsets.zero,
+      enableTapToZoom: false,
+      showShadow: false,
     );
   }
 }

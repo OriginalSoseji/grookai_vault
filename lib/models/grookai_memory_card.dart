@@ -8,12 +8,14 @@ class GrookaiMemoryCardSource {
     required this.cardName,
     required this.setLine,
     this.cardImageUrl,
+    this.cardImageFallbackUrl,
     this.authorName = 'You',
   });
 
   final String cardName;
   final String setLine;
   final String? cardImageUrl;
+  final String? cardImageFallbackUrl;
   final String authorName;
 }
 
@@ -91,6 +93,7 @@ class GrookaiMemoryCardAdapter {
         cardName: _fallback(source.cardName, 'Card memory'),
         setLine: source.setLine,
         cardImageUrl: _blankToNull(source.cardImageUrl),
+        cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),
       ),
       listingNo: listingNo,
       date: date,
