@@ -54,3 +54,21 @@ jobs:
 
       - name: Run focused contracts test suite
         run: npm run contracts:test
+
+  binder-rollout-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Binder rollout and process-containment contracts
+        run: >-
+          node --test
+          tests/contracts/collaborative_binders_process_containment_v1.test.mjs
+          tests/contracts/collaborative_binders_production_rollout_v1.test.mjs

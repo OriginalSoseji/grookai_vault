@@ -18,6 +18,7 @@ const PACKAGE_FINGERPRINT =
 const PRODUCTION_PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const REQUIRED_ANCESTOR_SHA =
   "34caa07324587815040957f9adde1f771ebfc85a";
+const WINDOWS_ONLY = process.platform === "win32";
 
 const MANIFEST_PATH =
   "scripts/ops/collaborative_binders_production_manifest_v1.json";
@@ -629,7 +630,10 @@ test("dry-run parser accepts only the five exact filenames in order", () => {
   );
 });
 
-test("tracked migration inventory rejects an untracked top-level SQL file", () => {
+test(
+  "tracked migration inventory rejects an untracked top-level SQL file",
+  { skip: !WINDOWS_ONLY },
+  () => {
   const script = `
 $osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\\', '/')
 $fixture = Join-Path $osTemp ('binder-migration-set-fixture-' + [guid]::NewGuid().ToString('N'))
@@ -693,9 +697,13 @@ try {
     result.Failure,
     /does not exactly match the tracked top-level SQL set/i,
   );
-});
+  },
+);
 
-test("staged Supabase source denies migration writes and cleans safely", () => {
+test(
+  "staged Supabase source denies migration writes and cleans safely",
+  { skip: !WINDOWS_ONLY },
+  () => {
   const script = `
 $osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\\', '/')
 $fixture = Join-Path $osTemp ('binder-stage-fixture-' + [guid]::NewGuid().ToString('N'))
@@ -843,9 +851,13 @@ try {
     JSON.stringify(result.SealedManifest).includes("binder-stage-fixture-"),
     false,
   );
-});
+  },
+);
 
-test("process lifecycle marks started only after a successful process start", () => {
+test(
+  "process lifecycle marks started only after a successful process start",
+  { skip: !WINDOWS_ONLY },
+  () => {
   const body = [
     "$module = Get-Module CollaborativeBindersProductionRolloutV1",
     "$successLifecycle = [pscustomobject]@{ Started = $false; StartedAtUtc = $null }",
@@ -884,7 +896,8 @@ test("process lifecycle marks started only after a successful process start", ()
   assert.equal(result.SuccessExitCode, 0);
   assert.equal(result.FailedStarted, false);
   assert.match(result.StartFailure, /unable to start|cannot find|no such/i);
-});
+  },
+);
 
 test("apply command plan is private, gated, and contains one exact mutating argv", () => {
   const externalCall = runPowerShell(
