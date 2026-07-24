@@ -37,6 +37,54 @@ select ok(
   'authenticated cannot read raw Binder activity'
 );
 select ok(
+  not has_sequence_privilege(
+    'anon',
+    'public.binder_rate_limit_events_id_seq',
+    'select'
+  )
+  and not has_sequence_privilege(
+    'anon',
+    'public.binder_rate_limit_events_id_seq',
+    'update'
+  )
+  and not has_sequence_privilege(
+    'anon',
+    'public.binder_rate_limit_events_id_seq',
+    'usage'
+  )
+  and not has_sequence_privilege(
+    'authenticated',
+    'public.binder_rate_limit_events_id_seq',
+    'select'
+  )
+  and not has_sequence_privilege(
+    'authenticated',
+    'public.binder_rate_limit_events_id_seq',
+    'update'
+  )
+  and not has_sequence_privilege(
+    'authenticated',
+    'public.binder_rate_limit_events_id_seq',
+    'usage'
+  )
+  and has_sequence_privilege(
+    'service_role',
+    'public.binder_rate_limit_events_id_seq',
+    'select'
+  )
+  and has_sequence_privilege(
+    'service_role',
+    'public.binder_rate_limit_events_id_seq',
+    'update'
+  )
+  and has_sequence_privilege(
+    'service_role',
+    'public.binder_rate_limit_events_id_seq',
+    'usage'
+  ),
+  'Binder identity sequence is service-only'
+);
+select ok(
   not has_function_privilege(
     'authenticated',
     'public.interest_graph_emit_event_v1(text,text,uuid,uuid,uuid,jsonb,text,text)',
