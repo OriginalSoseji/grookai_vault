@@ -8,6 +8,7 @@ import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { isBinderLibraryEnabled } from "@/lib/binders/featureFlags";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { GROOKAI_VAULT_ORIGIN } from "@/lib/getSiteOrigin";
+import { isLocalVisualParityFixtureMode } from "@/lib/visualParity/fixtureMode";
 import "./globals.css";
 import { SafeAnalytics } from "@/components/analytics/SafeAnalytics";
 
@@ -125,6 +126,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const dexEnabled = isGrookaiDexEnabled();
   const bindersEnabled = isBinderLibraryEnabled();
+  const visualParityFixtureMode = isLocalVisualParityFixtureMode();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -132,34 +134,40 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
       <body>
-        <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
-          <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
-        </Suspense>
-        <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip md:pb-12">
-          <PageContainer>{children}</PageContainer>
-        </main>
-        <footer className="border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur md:pb-0">
-          <PageContainer className="py-4 text-center text-sm text-slate-600">
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-              <Link href="/early-access" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Early Access
-              </Link>
-              <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Terms
-              </Link>
-              <Link href="/privacy" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Privacy
-              </Link>
-              <Link href="/support" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Support
-              </Link>
-              <Link href="/account/delete" className="underline-offset-4 hover:text-slate-900 hover:underline">
-                Account Deletion
-              </Link>
-            </div>
-          </PageContainer>
-        </footer>
-        <SafeAnalytics />
+        {visualParityFixtureMode ? (
+          children
+        ) : (
+          <>
+            <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
+              <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
+            </Suspense>
+            <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip md:pb-12">
+              <PageContainer>{children}</PageContainer>
+            </main>
+            <footer className="border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur md:pb-0">
+              <PageContainer className="py-4 text-center text-sm text-slate-600">
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                  <Link href="/early-access" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                    Early Access
+                  </Link>
+                  <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                    Terms
+                  </Link>
+                  <Link href="/privacy" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                    Privacy
+                  </Link>
+                  <Link href="/support" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                    Support
+                  </Link>
+                  <Link href="/account/delete" className="underline-offset-4 hover:text-slate-900 hover:underline">
+                    Account Deletion
+                  </Link>
+                </div>
+              </PageContainer>
+            </footer>
+            <SafeAnalytics />
+          </>
+        )}
       </body>
     </html>
   );

@@ -1,0 +1,73 @@
+name: Mobile web native parity
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/mobile-web-parity.yml"
+      - "apps/web/package-lock.json"
+      - "apps/web/package.json"
+      - "apps/web/playwright.config.ts"
+      - "apps/web/src/app/**"
+      - "apps/web/src/components/**"
+      - "apps/web/src/lib/mobileParity/**"
+      - "apps/web/src/lib/visualParity/**"
+      - "apps/web/tests/parity/**"
+      - "docs/audits/mobile_web_native_parity_v1/**"
+      - "docs/checkpoints/MOBILE_WEB_NATIVE_PARITY_FOUNDATION_V1.md"
+      - "docs/contracts/COLLABORATIVE_BINDERS_SYSTEM_CONTRACT_V1.md"
+      - "docs/contracts/MOBILE_JAKOBS_LAW_UX_CONTRACT_V1.md"
+      - "docs/contracts/MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1.md"
+      - "docs/contracts/PULSE_WALL_VAULT_PRODUCT_ARCHITECTURE_V1.md"
+      - "lib/main_shell.dart"
+      - "tests/contracts/mobile_web_native_visual_parity_v1.test.mjs"
+      - "tests/contracts/pulse_wall_vault_shell_v1.test.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    name: Canonical Samsung visual and accessibility gates
+    runs-on: windows-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install pinned web dependencies
+        run: npm ci --prefix apps/web --no-audit --no-fund
+
+      - name: Install pinned Chromium
+        run: npm --prefix apps/web exec -- playwright install chromium
+
+      - name: Typecheck fixture and parity harness
+        run: npm --prefix apps/web run typecheck
+
+      - name: Run native parity contract guards
+        run: >-
+          node --test
+          tests/contracts/mobile_web_native_visual_parity_v1.test.mjs
+          tests/contracts/pulse_wall_vault_shell_v1.test.mjs
+
+      - name: Run visual and accessibility gates
+        run: npm --prefix apps/web run test:parity
+
+      - name: Upload parity diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-web-parity-diagnostics
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            apps/web/playwright-report/
+            apps/web/test-results/

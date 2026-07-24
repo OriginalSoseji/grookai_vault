@@ -45,7 +45,7 @@ Rule applied here: if authority is unclear, classify the doc as `non_authoritati
 | `JUSTTCG_DOMAIN_SCHEMA_SPEC_V1` | archive | Schema/spec doc, not contract authority. |
 | `JUSTTCG_REMAINING_MAPPING_CONTRACT_V1` | merge | Source mapping backlog doc. |
 | `MARKET_ANALYSIS_FOUNDATION_CONTRACT_V1` | merge | Market analysis planning doc. |
-| `MOBILE_JAKOBS_LAW_UX_CONTRACT_V1` | merge | UX guidance, not runtime canon authority. |
+| `MOBILE_JAKOBS_LAW_UX_CONTRACT_V1` | archive | Historical UX guidance superseded for mobile shell/navigation by `MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1`. |
 | `MOBILE_RESOLVER_PARITY_CONTRACT_V1` | merge | Mobile parity planning doc. |
 | `MULTI_SOURCE_ARCHITECTURE_INVARIANTS_V1` | merge | Architecture invariants doc; current runtime authority remains the indexed contract set. |
 | `NORMALIZATION_CONTRACT_V1` | merge | Normalization implementation doc; not current runtime authority. |

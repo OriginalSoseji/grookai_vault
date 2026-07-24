@@ -1,0 +1,131 @@
+{
+  "schema_version": "mobile_web_native_app_canon_manifest_v1",
+  "contract": "MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1",
+  "captured_at": "2026-07-24T09:00:18.6403274-06:00",
+  "source_baseline": {
+    "commit": "abb42bddb170fe2ac71a21cc7036269c83c8b9dd",
+    "description": "Merge PR #103: fix Binder rollout UTC timestamp guards",
+    "contains_collaborative_binders": true
+  },
+  "installed_app": {
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21,
+    "target_sdk": 36,
+    "first_install_time": "2026-07-15T10:34:44-06:00",
+    "last_update_time": "2026-07-23T11:00:55-06:00",
+    "apk_sha256": "810ae9964618f364abe1b7da548376867ff913e751edb3ca34f3e87850c2e892"
+  },
+  "device": {
+    "manufacturer_family": "Samsung",
+    "model": "SM-S908U",
+    "android_release": "16",
+    "android_sdk": 36,
+    "physical_viewport_px": {
+      "width": 1440,
+      "height": 3088
+    },
+    "physical_density_dpi": 600,
+    "density_scale": 3.75,
+    "logical_viewport_css_px": {
+      "width": 384,
+      "height_approx": 824
+    },
+    "font_scale": 0.8,
+    "locale": "en-US",
+    "timezone": "America/Denver",
+    "system_night_mode": false,
+    "captured_app_theme": "dark"
+  },
+  "visual_authority": {
+    "mode": "installed_apk_plus_explicit_owner_amendment",
+    "observed_dock_order": [
+      "Pulse",
+      "Wall",
+      "Vault",
+      "Scan",
+      "Search"
+    ],
+    "approved_dock_order": [
+      "Pulse",
+      "Wall",
+      "Scan",
+      "Vault",
+      "Search"
+    ],
+    "dock_amendment": {
+      "approved_on": "2026-07-24",
+      "description": "Swap Vault and Scan. Scan is position 3; Vault is position 4."
+    },
+    "excluded_from_canon": [
+      "debug overlays",
+      "Android status and navigation bars",
+      "private owner content",
+      "dynamic timestamps and unread counts"
+    ]
+  },
+  "canonical_geometry": {
+    "mobile_desktop_boundary_css_px": 900,
+    "app_bar_height_css_px": 46,
+    "dock_max_width_css_px": 390,
+    "dock_radius_css_px": 34,
+    "dock_height_css_px": 58,
+    "dock_collapsed_height_css_px": 54,
+    "dock_content_gap_css_px": 104,
+    "radii_css_px": {
+      "control": 10,
+      "surface": 16,
+      "artwork": 22,
+      "floating": 26,
+      "pill": 999
+    },
+    "spacing_css_px": [
+      4,
+      8,
+      12,
+      16,
+      22
+    ],
+    "grid": {
+      "outer_padding_css_px": 10,
+      "gap_css_px": 6,
+      "artwork_aspect_ratio": 0.7142857143
+    }
+  },
+  "private_local_references": [
+    {
+      "state": "vault_populated",
+      "sha256": "54c8bee1d707574f3da5fd263e9d74237eb42f815cc3d2ee2c020b25d26f7b5b"
+    },
+    {
+      "state": "pulse_empty",
+      "sha256": "ecbc9440b2e6a89d395ba35aa07988558857b81e4213cadd72ad6cfa74032933"
+    },
+    {
+      "state": "wall_populated",
+      "sha256": "d1613b5cc489470c040cf20fbdae5c5f1ab53562940ecb7abf9b245f4cab4b14"
+    },
+    {
+      "state": "search_discovery",
+      "sha256": "360179101c1f306ff04266468192f8801e41c2499c8faa9ac4ef5332e66a9818"
+    },
+    {
+      "state": "account",
+      "sha256": "c9240a86efd7c29293ecb2392b7261d287c64e30e21c363ec5af93dad5af5984"
+    },
+    {
+      "state": "menu_open",
+      "sha256": "4644320f3bfadefabc83b7c9de6cf4484ac5d3b18908c349fb08440f399db058"
+    }
+  ],
+  "private_reference_policy": {
+    "commit_raw_captures": false,
+    "ci_uses_sanitized_fixtures": true,
+    "allowed_committed_metadata": [
+      "state name",
+      "content-free hash",
+      "device geometry",
+      "token measurements"
+    ]
+  }
+}

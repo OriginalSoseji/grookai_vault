@@ -806,10 +806,11 @@ Required:
 - Contextual post-scan/post-Vault suggestion, never automatic.
 - A one-time, dismissible “What's new” introduction.
 
-The parent branch's experimental Pulse/Wall/Vault architecture contract defines
-the five-item dock as Pulse, Wall, Vault, Scan, and Search. This Binder contract
-does not authorize changing it. Binders must not displace Search or another
-dock item without a separately approved navigation-contract amendment.
+`MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1` defines the owner-approved
+five-item dock as Pulse, Wall, Scan, Vault, and Search. This Binder contract
+does not independently authorize changing it. Binders must not displace Search
+or another dock item without a separately approved navigation-contract
+amendment.
 
 ### Web
 

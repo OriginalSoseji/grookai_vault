@@ -1,0 +1,368 @@
+{
+  "schema_version": "mobile_web_native_route_state_matrix_v1",
+  "contract": "MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1",
+  "mobile_max_width_exclusive_css_px": 900,
+  "primary_dock_order": [
+    "Pulse",
+    "Wall",
+    "Scan",
+    "Vault",
+    "Search"
+  ],
+  "surfaces": [
+    {
+      "surface": "Pulse",
+      "routes": [
+        "/network",
+        "/network?segment=pulse",
+        "/network?segment=discover",
+        "/network?segment=following",
+        "/network/discover",
+        "/following"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:pulse",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "unread"
+      ]
+    },
+    {
+      "surface": "Messages",
+      "routes": [
+        "/network/inbox"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "threads",
+        "empty",
+        "send_error",
+        "blocked",
+        "reported"
+      ]
+    },
+    {
+      "surface": "Nearby",
+      "routes": [
+        "/network/nearby"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "permission_prompt",
+        "permission_denied",
+        "populated",
+        "empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Wall",
+      "routes": [
+        "/wall"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:wall",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "owner_actions",
+        "share",
+        "error",
+        "offline"
+      ]
+    },
+    {
+      "surface": "Public collector",
+      "routes": [
+        "/u/[slug]",
+        "/u/[slug]/collection",
+        "/u/[slug]/section/[section_id]",
+        "/u/[slug]/pokemon/[pokemon]",
+        "/u/[slug]/followers",
+        "/u/[slug]/following"
+      ],
+      "shell_mode": "standalone",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ]
+    },
+    {
+      "surface": "Scan",
+      "routes": [
+        "/scan"
+      ],
+      "shell_mode": "fullscreen",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "camera_prompt",
+        "camera_denied",
+        "ready",
+        "detecting",
+        "match",
+        "ambiguous",
+        "no_match",
+        "error"
+      ]
+    },
+    {
+      "surface": "Import and photos",
+      "routes": [
+        "/vault/import"
+      ],
+      "shell_mode": "fullscreen",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "choose_method",
+        "csv",
+        "photos",
+        "uploading",
+        "validation_error",
+        "complete"
+      ]
+    },
+    {
+      "surface": "Vault",
+      "routes": [
+        "/vault"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:vault",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "filtered_empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "hosted_image",
+        "fallback_image",
+        "missing_image"
+      ]
+    },
+    {
+      "surface": "Owned copy",
+      "routes": [
+        "/vault/card/[cardId]",
+        "/vault/gvvi/[gvvi_id]",
+        "/gvvi/[gvvi_id]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "owned",
+        "public",
+        "not_found",
+        "actions",
+        "share",
+        "error"
+      ]
+    },
+    {
+      "surface": "Search",
+      "routes": [
+        "/explore"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:search",
+      "auth": "mixed",
+      "required_states": [
+        "discovery",
+        "typing",
+        "loading",
+        "results",
+        "empty",
+        "error",
+        "long_query"
+      ]
+    },
+    {
+      "surface": "Card detail",
+      "routes": [
+        "/card/[gv_id]",
+        "/card/[gv_id]/market",
+        "/provisional/[candidate_id]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "canonical",
+        "provisional",
+        "owned",
+        "not_owned",
+        "zoom",
+        "share",
+        "error"
+      ]
+    },
+    {
+      "surface": "Dex",
+      "routes": [
+        "/dex",
+        "/dex/[speciesSlug]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "root",
+        "species",
+        "owned_filter",
+        "empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Sets",
+      "routes": [
+        "/sets",
+        "/set/[set_code]",
+        "/sets/[set_code]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "list",
+        "detail",
+        "filtered_empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Compare",
+      "routes": [
+        "/compare"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "empty",
+        "populated",
+        "partial",
+        "error"
+      ]
+    },
+    {
+      "surface": "Binders",
+      "routes": [
+        "/binders",
+        "/binders/new",
+        "/binders/explore",
+        "/binders/[publicId]",
+        "/binder-templates/[templateId]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ]
+    },
+    {
+      "surface": "Binder share and invitation",
+      "routes": [
+        "/b/[viewToken]",
+        "/binder-invites/[inviteToken]",
+        "/binder-invites/review",
+        "/binder-invites/respond"
+      ],
+      "shell_mode": "standalone_secret",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "preview",
+        "accept",
+        "decline",
+        "report",
+        "block",
+        "expired",
+        "revoked",
+        "not_found",
+        "error"
+      ]
+    },
+    {
+      "surface": "Account",
+      "routes": [
+        "/account"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "profile",
+        "vendor_tools",
+        "saving",
+        "saved",
+        "error"
+      ]
+    },
+    {
+      "surface": "Authentication and support",
+      "routes": [
+        "/login",
+        "/early-access",
+        "/legal",
+        "/privacy",
+        "/support",
+        "/account/delete"
+      ],
+      "shell_mode": "standalone",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ]
+    }
+  ]
+}
