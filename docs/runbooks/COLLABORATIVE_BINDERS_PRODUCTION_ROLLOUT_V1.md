@@ -112,6 +112,60 @@ does not create or claim a backup.
 `verified_logical_backup`. Verification must be no more than 24 hours old, and
 the recoverable horizon must be within 15 minutes of the preflight.
 
+## Reviewed one-shot unattended path
+
+The manual preflight and apply path remains the default. A one-shot unattended
+path may be used only when its supervisor source has merged to `main` and a
+separate compact authorization envelope has been reviewed. The envelope must
+be outside every Git worktree, use the closed V1 schema, and match a
+caller-supplied SHA-256 over its exact UTF-8 bytes.
+
+That authorization binds all of the following:
+
+- the exact `origin/main` commit and canonical repository/remote
+- the production project ref and URL
+- package, manifest, tracked-migration-set, migration-file, readback, rollout,
+  supervisor, entrypoint, restore-procedure, and pinned CLI hashes
+- the old completed-backup floor and a short polling/mutation deadline
+- the fixed protected state and artifact roots under Windows Local AppData
+- exact pre-apply absence/fingerprint assertions
+- all 11 Binder flags disabled, the three excluded flags, P8 excluded, and no
+  activation, deployment, repair, rollback, arbitrary command, or retry
+- named operator and reviewer confirmation that the hash-bound restore
+  procedure was reviewed
+
+The supervisor may only poll the fixed Supabase physical-backup-list command.
+It requires exactly one completed physical backup strictly newer than the
+approved floor and no more than five minutes old, then confirms the same
+candidate in a second poll. Ambiguous, malformed, stale, future, or changed
+backup evidence stops the run.
+
+After selecting a backup, the supervisor durably creates
+`UNATTENDED_ATTEMPT_CLAIMED`; that package/project can never be relaunched
+automatically. It runs the linked preflight exactly once, independently seals
+and reviews every artifact and acknowledgement, and requires at least five
+minutes of recovery-horizon reserve. Immediately before mutation it rechecks
+the source bundle, live `origin/main`, project binding, preflight, backup, and
+authorization. The backup recheck is a final contained live listing that must
+return the same completed backup key, full response fingerprint, region, and
+reviewed PITR/WAL-G mode. It then durably creates
+`MUTATION_LAUNCH_COMMITTED` and invokes the existing guarded apply exactly
+once. Any failure after the mutation claim is classified as mutation possible.
+The supervisor never retries, repairs, restores, deploys, or enables a flag.
+
+Only the two-parameter entrypoint is allowed:
+
+```powershell
+pwsh -NoProfile -File scripts/ops/collaborative_binders_unattended_supervisor_v1.ps1 `
+  -AuthorizationPath "<absolute-reviewed-envelope-path>" `
+  -ExpectedAuthorizationSha256 "<independently-reviewed-envelope-sha256>"
+```
+
+Do not launch from a broad approval or a draft envelope. The exact post-merge
+envelope bytes, their SHA-256, and the bound restore procedure must be reviewed
+before the one-shot process starts. If a claim or artifact root already exists
+or its state is uncertain, do not delete it and do not relaunch.
+
 ## Source-only validation
 
 This mode is local-only. It verifies the package fingerprint, exact migration
@@ -202,13 +256,15 @@ diagnostic reads. It never claims that flags or migration state are unchanged
 after a timed-out or failed push.
 
 After process-tree termination is confirmed, the sealed temporary source is
-deleted. It contains no copied pooler URL or database password. A sanitized
-manifest of staged filenames and hashes is retained in the external apply
-evidence directory. If ordinary cleanup cannot safely unseal and remove the
-temporary source, the guard stops. In the exceptional fail-fast containment
-path, ordinary cleanup deliberately does not run; treat any matching sealed
-temporary directory as incident evidence until the process tree is confirmed
-absent and recovery is directed.
+deleted. It may contain the exact hash-pinned, passwordless Supabase pooler
+route and linked-project identity files so final read-only gates and the sole
+push consume the same sealed route. It never copies a database password or
+other credential. A sanitized manifest of staged filenames and hashes is
+retained in the external apply evidence directory. If ordinary cleanup cannot
+safely unseal and remove the temporary source, the guard stops. In the
+exceptional fail-fast containment path, ordinary cleanup deliberately does not
+run; treat any matching sealed temporary directory as incident evidence until
+the process tree is confirmed absent and recovery is directed.
 
 ## Mandatory post-apply readback
 
