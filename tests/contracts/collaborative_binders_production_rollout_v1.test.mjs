@@ -368,6 +368,304 @@ test("PowerShell policy agrees exactly with the immutable manifest", () => {
   ]);
 });
 
+test("rollout UTC timestamps survive PowerShell JSON date materialization", () => {
+  const script = `
+$module = Get-Module CollaborativeBindersProductionRolloutV1
+$preservedJson = & $module {
+  ConvertFrom-BinderJsonWithExactStringPropertiesV1 -Json '{"value":"2031-02-03T12:34:56.7890000Z"}' -StringProperties @('value')
+}
+$jsonValue = ('{"value":"2031-02-03T12:34:56.7890000Z"}' | ConvertFrom-Json).value
+$fromJson = & $module {
+  param($value)
+  ConvertTo-BinderUtcDateTimeV1 -Value $value -Label 'JSON fixture'
+} $jsonValue
+$fromOffset = & $module {
+  ConvertTo-BinderUtcDateTimeV1 -Value '2031-02-03T06:34:56.7890000-06:00' -Label 'Offset fixture'
+}
+$fromUnspecified = & $module {
+  $value = [datetime]::SpecifyKind(
+    [datetime]'2031-02-03T12:34:56.789',
+    [System.DateTimeKind]::Unspecified
+  )
+  ConvertTo-BinderUtcDateTimeV1 -Value $value -Label 'Unspecified fixture'
+}
+$failure = ''
+try {
+  [void](& $module {
+    ConvertTo-BinderUtcDateTimeV1 -Value 'not-a-date' -Label 'Invalid fixture'
+  })
+} catch {
+  $failure = $_.Exception.Message
+}
+[pscustomobject]@{
+  PowerShellVersion = $PSVersionTable.PSVersion.ToString()
+  PreservedInputType = $preservedJson.value.GetType().FullName
+  PreservedInputValue = $preservedJson.value
+  JsonInputType = $jsonValue.GetType().FullName
+  JsonUtc = $fromJson.ToString('o')
+  OffsetUtc = $fromOffset.ToString('o')
+  UnspecifiedUtc = $fromUnspecified.ToString('o')
+  InvalidFailure = $failure
+} | ConvertTo-Json -Compress
+`;
+  const result = parsePowerShellJson(
+    runPowerShell(
+      `& ([scriptblock]::Create(${powerShellTextFromBase64(script)}))`,
+    ),
+    "rollout UTC timestamp normalization",
+  );
+
+  assert.equal(result.PreservedInputType, "System.String");
+  assert.equal(
+    result.PreservedInputValue,
+    "2031-02-03T12:34:56.7890000Z",
+  );
+  assert.equal(result.JsonUtc, "2031-02-03T12:34:56.7890000Z");
+  assert.equal(result.OffsetUtc, "2031-02-03T12:34:56.7890000Z");
+  assert.equal(result.UnspecifiedUtc, "2031-02-03T12:34:56.7890000Z");
+  assert.match(result.InvalidFailure, /not a valid UTC timestamp/i);
+
+  const moduleSource = source(MODULE_PATH);
+  assert.match(
+    moduleSource,
+    /\$evidence = ConvertFrom-BinderJsonWithExactStringPropertiesV1[\s\S]*?-StringProperties @\('verified_at_utc', 'recoverable_through_utc'\)/,
+  );
+  assert.match(
+    moduleSource,
+    /\$manifest = ConvertFrom-BinderJsonWithExactStringPropertiesV1[\s\S]*?-StringProperties @\('created_at_utc', 'expires_at_utc'\)/,
+  );
+  assert.match(
+    moduleSource,
+    /\$created = ConvertTo-BinderUtcDateTimeV1[\s\S]*?-Value \$data\.created_at_utc/,
+  );
+  assert.match(
+    moduleSource,
+    /\$expires = ConvertTo-BinderUtcDateTimeV1[\s\S]*?-Value \$data\.expires_at_utc/,
+  );
+  assert.doesNotMatch(
+    moduleSource,
+    /\[datetime\]::Parse\(\[string\]\$data\.(?:created_at_utc|expires_at_utc)\)\.ToUniversalTime\(\)/,
+  );
+});
+
+test("preflight timestamps retain lexical precision and enforce time bounds", () => {
+  const script = `
+$module = Get-Module CollaborativeBindersProductionRolloutV1
+$osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\\', '/')
+$fixture = Join-Path $osTemp ('binder-time-fixture-' + [guid]::NewGuid().ToString('N'))
+if ((Split-Path -Parent $fixture) -cne $osTemp) { throw 'unsafe fixture path' }
+
+function Write-ManifestFixture {
+  param(
+    [string]$Directory,
+    [string]$CreatedAtUtc,
+    [string]$ExpiresAtUtc
+  )
+
+  [void][IO.Directory]::CreateDirectory($Directory)
+  $policy = Get-BinderRolloutPolicyV1
+  $core = [ordered]@{
+    schema_version = 1
+    package_id = $policy.PackageId
+    status = 'pass'
+    created_at_utc = $CreatedAtUtc
+    expires_at_utc = $ExpiresAtUtc
+    project_ref = $policy.ProjectRef
+    package_fingerprint_sha256 = $policy.PackageFingerprintSha256
+    head_sha = ('a' * 40)
+    origin_main_sha = ('a' * 40)
+    supabase_cli_version = $policy.SupportedSupabaseCliVersion
+    supabase_cli_launcher_sha256 = $policy.SupabaseCliLauncherSha256
+    supabase_cli_binary_sha256 = $policy.SupabaseCliBinarySha256
+    supabase_cli_shim_descriptor_sha256 = $policy.SupabaseCliShimDescriptorSha256
+    tracked_migration_count = 1
+    tracked_migration_set_sha256 = ('b' * 64)
+    stable_catalog_fingerprint_sha256 = ('c' * 64)
+    apply_argv = @($policy.ApplyArguments)
+  }
+  $fingerprint = & $module {
+    param($value)
+    Get-CanonicalSha256V1 -Value $value
+  } $core
+  $manifest = [ordered]@{}
+  foreach ($entry in $core.GetEnumerator()) {
+    $manifest[$entry.Key] = $entry.Value
+  }
+  $manifest.manifest_fingerprint_sha256 = $fingerprint
+
+  $manifestPath = Join-Path $Directory 'preflight-manifest.json'
+  $json = $manifest | ConvertTo-Json -Depth 12
+  [IO.File]::WriteAllText(
+    $manifestPath,
+    $json,
+    [Text.UTF8Encoding]::new($false)
+  )
+  $fileHash = (
+    Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256
+  ).Hash.ToLowerInvariant()
+  [IO.File]::WriteAllText(
+    (Join-Path $Directory 'preflight-manifest.sha256'),
+    $fileHash,
+    [Text.UTF8Encoding]::new($false)
+  )
+  return $manifestPath
+}
+
+try {
+  [void][IO.Directory]::CreateDirectory($fixture)
+  $now = [datetime]::Parse(
+    '2031-02-03T12:35:00.0000000Z'
+  ).ToUniversalTime()
+
+  $validPath = Write-ManifestFixture -Directory (
+    Join-Path $fixture 'valid'
+  ) -CreatedAtUtc '2031-02-03T12:34:56.7890000Z' -ExpiresAtUtc '2031-02-03T13:34:56.1000000Z'
+  $valid = Test-PreflightManifestV1 -Path $validPath -NowUtc $now
+
+  $futurePath = Write-ManifestFixture -Directory (
+    Join-Path $fixture 'future'
+  ) -CreatedAtUtc '2031-02-03T12:41:00.0000000Z' -ExpiresAtUtc '2031-02-03T13:41:00.0000000Z'
+  $futureFailure = ''
+  try {
+    [void](Test-PreflightManifestV1 -Path $futurePath -NowUtc $now)
+  } catch {
+    $futureFailure = $_.Exception.Message
+  }
+
+  $expiredPath = Write-ManifestFixture -Directory (
+    Join-Path $fixture 'expired'
+  ) -CreatedAtUtc '2031-02-03T11:35:00.0000000Z' -ExpiresAtUtc '2031-02-03T12:34:59.0000000Z'
+  $expiredFailure = ''
+  try {
+    [void](Test-PreflightManifestV1 -Path $expiredPath -NowUtc $now)
+  } catch {
+    $expiredFailure = $_.Exception.Message
+  }
+
+  $tamperedJson = (
+    Get-Content -LiteralPath $validPath -Raw
+  ).Replace(
+    '2031-02-03T12:34:56.7890000Z',
+    '2031-02-03T12:34:56.789Z'
+  )
+  [IO.File]::WriteAllText(
+    $validPath,
+    $tamperedJson,
+    [Text.UTF8Encoding]::new($false)
+  )
+  $tamperedFileHash = (
+    Get-FileHash -LiteralPath $validPath -Algorithm SHA256
+  ).Hash.ToLowerInvariant()
+  [IO.File]::WriteAllText(
+    (Join-Path (Split-Path -Parent $validPath) 'preflight-manifest.sha256'),
+    $tamperedFileHash,
+    [Text.UTF8Encoding]::new($false)
+  )
+  $fingerprintFailure = ''
+  try {
+    [void](Test-PreflightManifestV1 -Path $validPath -NowUtc $now)
+  } catch {
+    $fingerprintFailure = $_.Exception.Message
+  }
+
+  [pscustomobject]@{
+    ValidCreatedType = $valid.Data.created_at_utc.GetType().FullName
+    ValidExpiresType = $valid.Data.expires_at_utc.GetType().FullName
+    ValidCreatedValue = $valid.Data.created_at_utc
+    ValidExpiresValue = $valid.Data.expires_at_utc
+    FutureFailure = $futureFailure
+    ExpiredFailure = $expiredFailure
+    FingerprintFailure = $fingerprintFailure
+  } | ConvertTo-Json -Compress
+} finally {
+  if (
+    (Test-Path -LiteralPath $fixture) -and
+    (Split-Path -Parent ([IO.Path]::GetFullPath($fixture))) -ceq $osTemp
+  ) {
+    [IO.Directory]::Delete($fixture, $true)
+  }
+}
+`;
+  const result = parsePowerShellJson(
+    runPowerShell(
+      `& ([scriptblock]::Create(${powerShellTextFromBase64(script)}))`,
+    ),
+    "preflight timestamp bounds",
+  );
+
+  assert.equal(result.ValidCreatedType, "System.String");
+  assert.equal(result.ValidExpiresType, "System.String");
+  assert.equal(
+    result.ValidCreatedValue,
+    "2031-02-03T12:34:56.7890000Z",
+  );
+  assert.equal(
+    result.ValidExpiresValue,
+    "2031-02-03T13:34:56.1000000Z",
+  );
+  assert.match(result.FutureFailure, /creation time is in the future/i);
+  assert.match(result.ExpiredFailure, /manifest has expired/i);
+  assert.match(
+    result.FingerprintFailure,
+    /manifest fingerprint mismatch/i,
+  );
+});
+
+test("backup evidence retains UTC precision and normalizes explicit offsets", () => {
+  const script = `
+$osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\\', '/')
+$fixture = Join-Path $osTemp ('binder-backup-time-' + [guid]::NewGuid().ToString('N') + '.json')
+if ((Split-Path -Parent $fixture) -cne $osTemp) { throw 'unsafe fixture path' }
+try {
+  $evidence = [ordered]@{
+    schema_version = 1
+    project_ref = '${PRODUCTION_PROJECT_REF}'
+    backup_kind = 'verified_logical_backup'
+    verified_at_utc = '2031-02-03T12:34:59.1234567Z'
+    recoverable_through_utc = '2031-02-03T06:34:58.7654321-06:00'
+    evidence_reference = 'test-only fixture'
+    restore_path_reviewed = $true
+    operator = 'contract test'
+  }
+  [IO.File]::WriteAllText(
+    $fixture,
+    ($evidence | ConvertTo-Json -Depth 4),
+    [Text.UTF8Encoding]::new($false)
+  )
+  $now = [datetime]::Parse(
+    '2031-02-03T12:35:00.0000000Z'
+  ).ToUniversalTime()
+  $result = Test-BackupEvidenceV1 -Path $fixture -RepoRoot ${psLiteral(REPO_ROOT)} -NowUtc $now
+  [pscustomobject]@{
+    VerifiedAtUtc = $result.VerifiedAtUtc
+    RecoverableThroughUtc = $result.RecoverableThroughUtc
+  } | ConvertTo-Json -Compress
+} finally {
+  if (
+    (Test-Path -LiteralPath $fixture) -and
+    (Split-Path -Parent ([IO.Path]::GetFullPath($fixture))) -ceq $osTemp
+  ) {
+    [IO.File]::Delete($fixture)
+  }
+}
+`;
+  const result = parsePowerShellJson(
+    runPowerShell(
+      `& ([scriptblock]::Create(${powerShellTextFromBase64(script)}))`,
+    ),
+    "backup timestamp precision",
+  );
+
+  assert.equal(
+    result.VerifiedAtUtc,
+    "2031-02-03T12:34:59.1234567Z",
+  );
+  assert.equal(
+    result.RecoverableThroughUtc,
+    "2031-02-03T12:34:58.7654321Z",
+  );
+});
+
 test("both catalog readbacks are immutable single-statement read-only SQL", () => {
   const forbiddenKeywords =
     /\b(insert|update|delete|merge|create|alter|drop|truncate|grant|revoke|copy|call|do|vacuum|analyze|refresh|lock|set|reset|listen|notify|unlisten|discard|prepare|execute|deallocate|cluster|reindex|checkpoint|into)\b/i;
