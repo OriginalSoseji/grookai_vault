@@ -684,9 +684,9 @@ export function isAllowedHostedPath(value) {
 
 export function createStorageClient() {
   const url = clean(process.env.SUPABASE_URL);
-  const key = clean(process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY);
+  const key = clean(process.env.SUPABASE_SECRET_KEY);
   if (!url) throw new Error('Missing SUPABASE_URL.');
-  if (!key) throw new Error('Missing SUPABASE_SECRET_KEY/SUPABASE_SERVICE_ROLE_KEY.');
+  if (!key) throw new Error('Missing SUPABASE_SECRET_KEY.');
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
