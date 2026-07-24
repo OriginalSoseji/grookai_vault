@@ -17,6 +17,90 @@ function Assert-BinderConditionV1 {
   }
 }
 
+function ConvertFrom-BinderJsonWithExactStringPropertiesV1 {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Json,
+
+    [Parameter(Mandatory = $true)]
+    [string[]]$StringProperties
+  )
+
+  $value = $Json | ConvertFrom-Json
+  $document = [System.Text.Json.JsonDocument]::Parse($Json)
+  try {
+    Assert-BinderConditionV1 (
+      $document.RootElement.ValueKind -eq
+        [System.Text.Json.JsonValueKind]::Object
+    ) 'JSON root must be an object.'
+
+    foreach ($name in $StringProperties) {
+      $element = [System.Text.Json.JsonElement]::new()
+      $found = $document.RootElement.TryGetProperty($name, [ref]$element)
+      Assert-BinderConditionV1 $found "JSON property is missing: $name"
+      Assert-BinderConditionV1 (
+        $element.ValueKind -eq [System.Text.Json.JsonValueKind]::String
+      ) "JSON property must be a string: $name"
+
+      $property = $value.PSObject.Properties[$name]
+      Assert-BinderConditionV1 (
+        $null -ne $property
+      ) "Parsed property is missing: $name"
+      $property.Value = $element.GetString()
+    }
+  } finally {
+    $document.Dispose()
+  }
+
+  return $value
+}
+
+function ConvertTo-BinderUtcDateTimeV1 {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory = $true)]
+    [AllowNull()]
+    [object]$Value,
+
+    [Parameter(Mandatory = $true)]
+    [string]$Label
+  )
+
+  Assert-BinderConditionV1 ($null -ne $Value) "$Label is missing."
+
+  if ($Value -is [datetimeoffset]) {
+    return $Value.UtcDateTime
+  }
+
+  if ($Value -is [datetime]) {
+    if ($Value.Kind -eq [System.DateTimeKind]::Utc) {
+      return $Value
+    }
+    if ($Value.Kind -eq [System.DateTimeKind]::Local) {
+      return $Value.ToUniversalTime()
+    }
+    return [datetime]::SpecifyKind($Value, [System.DateTimeKind]::Utc)
+  }
+
+  $text = [string]$Value
+  Assert-BinderConditionV1 (-not [string]::IsNullOrWhiteSpace($text)) "$Label is blank."
+  $parsed = [datetimeoffset]::MinValue
+  $styles = (
+    [System.Globalization.DateTimeStyles]::AllowWhiteSpaces -bor
+    [System.Globalization.DateTimeStyles]::AssumeUniversal -bor
+    [System.Globalization.DateTimeStyles]::AdjustToUniversal
+  )
+  $valid = [datetimeoffset]::TryParse(
+    $text,
+    [cultureinfo]::InvariantCulture,
+    $styles,
+    [ref]$parsed
+  )
+  Assert-BinderConditionV1 $valid "$Label is not a valid UTC timestamp."
+  return $parsed.UtcDateTime
+}
+
 function Get-BinderRolloutPolicyV1 {
   [CmdletBinding()]
   param()
@@ -2167,7 +2251,9 @@ function Test-BackupEvidenceV1 {
   Assert-BinderConditionV1 (-not $fullPath.StartsWith("$rootPath\", [System.StringComparison]::OrdinalIgnoreCase)) 'Backup evidence must be outside the repository.'
   Assert-BinderConditionV1 (Test-Path -LiteralPath $fullPath -PathType Leaf) 'Backup evidence file does not exist.'
 
-  $evidence = Get-Content -LiteralPath $fullPath -Raw | ConvertFrom-Json
+  $evidence = ConvertFrom-BinderJsonWithExactStringPropertiesV1 `
+    -Json (Get-Content -LiteralPath $fullPath -Raw) `
+    -StringProperties @('verified_at_utc', 'recoverable_through_utc')
   $allowedProperties = @(
     'schema_version',
     'project_ref',
@@ -2188,16 +2274,12 @@ function Test-BackupEvidenceV1 {
   Assert-BinderConditionV1 (-not [string]::IsNullOrWhiteSpace($evidence.evidence_reference)) 'Backup evidence reference is blank.'
   Assert-BinderConditionV1 (-not [string]::IsNullOrWhiteSpace($evidence.operator)) 'Backup evidence operator is blank.'
 
-  $verifiedAt = [datetime]::Parse(
-    [string]$evidence.verified_at_utc,
-    [cultureinfo]::InvariantCulture,
-    [System.Globalization.DateTimeStyles]::AdjustToUniversal
-  )
-  $recoverableThrough = [datetime]::Parse(
-    [string]$evidence.recoverable_through_utc,
-    [cultureinfo]::InvariantCulture,
-    [System.Globalization.DateTimeStyles]::AdjustToUniversal
-  )
+  $verifiedAt = ConvertTo-BinderUtcDateTimeV1 `
+    -Value $evidence.verified_at_utc `
+    -Label 'Backup verification time'
+  $recoverableThrough = ConvertTo-BinderUtcDateTimeV1 `
+    -Value $evidence.recoverable_through_utc `
+    -Label 'Backup recovery horizon'
   Assert-BinderConditionV1 ($verifiedAt -le $NowUtc.AddMinutes(5)) 'Backup verification time is in the future.'
   Assert-BinderConditionV1 ($verifiedAt -ge $NowUtc.AddHours(-$policy.BackupMaxAgeHours)) 'Backup verification is stale.'
   Assert-BinderConditionV1 ($recoverableThrough -le $NowUtc.AddMinutes(5)) 'Backup recovery horizon is in the future.'
@@ -3129,7 +3211,9 @@ function Read-BinderPreflightManifestV1 {
   Assert-BinderConditionV1 ($expectedFileHash -cmatch '^[0-9a-f]{64}$') 'Preflight manifest hash sidecar is invalid.'
   Assert-BinderConditionV1 ((Get-BinderSha256FileV1 -Path $fullPath) -ceq $expectedFileHash) 'Preflight manifest file hash mismatch.'
 
-  $manifest = Get-Content -LiteralPath $fullPath -Raw | ConvertFrom-Json
+  $manifest = ConvertFrom-BinderJsonWithExactStringPropertiesV1 `
+    -Json (Get-Content -LiteralPath $fullPath -Raw) `
+    -StringProperties @('created_at_utc', 'expires_at_utc')
   $core = [ordered]@{}
   foreach ($property in $manifest.PSObject.Properties) {
     if ($property.Name -cne 'manifest_fingerprint_sha256') {
@@ -3175,8 +3259,12 @@ function Test-PreflightManifestV1 {
   Assert-BinderConditionV1 ($data.tracked_migration_count -gt 0) 'Tracked migration count is invalid.'
   Assert-BinderConditionV1 ($data.tracked_migration_set_sha256 -cmatch '^[0-9a-f]{64}$') 'Tracked migration-set fingerprint is invalid.'
 
-  $created = [datetime]::Parse([string]$data.created_at_utc).ToUniversalTime()
-  $expires = [datetime]::Parse([string]$data.expires_at_utc).ToUniversalTime()
+  $created = ConvertTo-BinderUtcDateTimeV1 `
+    -Value $data.created_at_utc `
+    -Label 'Preflight creation time'
+  $expires = ConvertTo-BinderUtcDateTimeV1 `
+    -Value $data.expires_at_utc `
+    -Label 'Preflight expiry time'
   Assert-BinderConditionV1 ($created -le $NowUtc.AddMinutes(5)) 'Preflight creation time is in the future.'
   Assert-BinderConditionV1 ($expires -gt $NowUtc) 'Preflight manifest has expired.'
   Assert-BinderConditionV1 ($expires -le $created.AddHours($policy.PreflightTtlHours)) 'Preflight validity exceeds four hours.'
