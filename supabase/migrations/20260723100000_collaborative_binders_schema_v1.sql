@@ -789,6 +789,13 @@ begin
 end;
 $$;
 
+-- Identity sequences inherit the platform's public-schema defaults separately
+-- from their owning tables. Keep the rate-limit counter service-only too.
+revoke all on sequence public.binder_rate_limit_events_id_seq
+from public, anon, authenticated;
+grant all on sequence public.binder_rate_limit_events_id_seq
+to service_role;
+
 -- Existing report authority is extended, not replaced. Direct authenticated
 -- insertion remains available only for the pre-existing surfaces; Binder
 -- surfaces must pass binder_report_v1.

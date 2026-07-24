@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "package_id": "COLLABORATIVE-BINDERS-DB-V1",
+  "package_fingerprint_sha256": "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9",
+  "required_ancestor_sha": "34caa07324587815040957f9adde1f771ebfc85a",
+  "production_project_ref": "ycdxbpibncqcchqiihfz",
+  "canonical_git_repository": "OriginalSoseji/grookai_vault",
+  "migrations": [
+    {
+      "version": "20260723100000",
+      "file": "20260723100000_collaborative_binders_schema_v1.sql",
+      "sha256": "7e83ab8bb83e5b938fbec758b21f8cae2b4a71427a6600c54c5f773c974bae33",
+      "cumulative_tables": 19,
+      "cumulative_functions": 17,
+      "cumulative_indexes": 61,
+      "cumulative_rls_policies": 19
+    },
+    {
+      "version": "20260723101000",
+      "file": "20260723101000_collaborative_binders_core_rpcs_v1.sql",
+      "sha256": "eb9ca9898bca12b127f4b79aff9df81259efe74fa1029487ea133e94e8a67a7d",
+      "cumulative_tables": 19,
+      "cumulative_functions": 44,
+      "cumulative_indexes": 61,
+      "cumulative_rls_policies": 19
+    },
+    {
+      "version": "20260723102000",
+      "file": "20260723102000_collaborative_binders_collaboration_rpcs_v1.sql",
+      "sha256": "680580044161936c8a382e5209e2cc54369943e13f1a3ae2ed41c299532cf3bf",
+      "cumulative_tables": 19,
+      "cumulative_functions": 65,
+      "cumulative_indexes": 61,
+      "cumulative_rls_policies": 19
+    },
+    {
+      "version": "20260723103000",
+      "file": "20260723103000_collaborative_binders_read_rpcs_v1.sql",
+      "sha256": "73dab7009f059267dcc571fcb6ec79cffdb23b728fc5bf04cd81397a06bcd6fb",
+      "cumulative_tables": 19,
+      "cumulative_functions": 99,
+      "cumulative_indexes": 61,
+      "cumulative_rls_policies": 19
+    },
+    {
+      "version": "20260723104000",
+      "file": "20260723104000_collaborative_binders_service_rpcs_v1.sql",
+      "sha256": "2edbef712d6b228c73b504498a6aa09f5bac440cfef96319d5c75f65e12d2997",
+      "cumulative_tables": 21,
+      "cumulative_functions": 124,
+      "cumulative_indexes": 65,
+      "cumulative_rls_policies": 22
+    }
+  ],
+  "readback_sql": [
+    {
+      "phase": "pre_apply",
+      "file": "scripts/ops/sql/collaborative_binders_production_preflight_v1.sql",
+      "sha256": "268458ed8a4a16dc513b55b6d0e5b3b03c301320e55a9ab4887a135c7652800d"
+    },
+    {
+      "phase": "post_apply",
+      "file": "scripts/ops/sql/collaborative_binders_production_post_apply_v1.sql",
+      "sha256": "5125b0d89f5b3d36c66f98863f0b69b9c6df55561dfb54303437d47d8731f1a1"
+    }
+  ],
+  "final_expected_shape": {
+    "tables": 21,
+    "functions": 124,
+    "indexes": 65,
+    "rls_policies": 22,
+    "feature_flags": 11,
+    "enabled_feature_flags": 0,
+    "public_execute_functions": 0,
+    "anonymous_raw_privileges": 0,
+    "anonymous_raw_sequence_privileges": 0,
+    "authenticated_raw_mutations": 0,
+    "authenticated_raw_sequence_privileges": 0,
+    "authenticated_raw_select_tables": [
+      "binder_refresh_signals"
+    ],
+    "realtime_tables": [
+      "binder_refresh_signals"
+    ]
+  },
+  "feature_flags_must_remain_disabled": [
+    "schema_internal",
+    "personal",
+    "set_binders",
+    "custom",
+    "shared",
+    "view_links",
+    "public",
+    "community",
+    "templates",
+    "notifications",
+    "pulse_milestones"
+  ],
+  "excluded_from_rollout": [
+    "set_binders",
+    "notifications",
+    "pulse_milestones"
+  ]
+}
