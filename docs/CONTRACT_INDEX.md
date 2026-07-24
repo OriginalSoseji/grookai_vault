@@ -103,6 +103,7 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | GV_VAULT_INSTANCE_CONTRACT_V1 | Active | `GV-VI` is the universal ownership, trade, sale, and sharing anchor for every owned vault instance |
 | WALL_SECTIONS_SYSTEM_CONTRACT_V1 | Active | docs/contracts/WALL_SECTIONS_SYSTEM_CONTRACT_V1.md — Defines Wall as the universal public collector surface, Custom Sections as durable instance-level curated views, entitlement-governed active section limits, share routing, and strict separation from intent, canonical identity, pricing, provenance, and provisional authority |
+| COLLABORATIVE_BINDERS_SYSTEM_CONTRACT_V1 | Active | docs/contracts/COLLABORATIVE_BINDERS_SYSTEM_CONTRACT_V1.md — Governs personal, shared, family, public, and Community Binders as exact-copy collection goals with bounded roles, consent, privacy, moderation, performance, and strict Vault/Wall/Pulse separation |
 
 ---
 

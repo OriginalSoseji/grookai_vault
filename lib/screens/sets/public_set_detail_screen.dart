@@ -6,6 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../models/vault/collection_project.dart';
+import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_feature_flags.dart';
+import '../../services/binders/binder_repository.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
@@ -17,6 +20,8 @@ import '../../widgets/ownership/ownership_signal.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/card_view_mode.dart';
 import '../../widgets/card_zoom_viewer.dart';
+import '../binders/binder_create_screen.dart';
+import '../binders/binder_detail_screen.dart';
 
 class PublicSetDetailScreen extends StatefulWidget {
   const PublicSetDetailScreen({
@@ -45,6 +50,9 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   String? _projectSubjectId;
   String? _projectStateError;
   int _projectLoadGeneration = 0;
+  final BinderRepository _binderRepository = SupabaseBinderRepository();
+  List<BinderSummary> _setBinders = const <BinderSummary>[];
+  bool _binderStateLoading = false;
 
   bool get _hasSignedInViewer =>
       (_client.auth.currentUser?.id ?? '').trim().isNotEmpty;
@@ -82,7 +90,11 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         setState(() {
           _detail = detail;
         });
-        unawaited(_loadProjectTracking(detail.summary.code));
+        if (BinderFeatureFlags.production.setBindersAvailable) {
+          unawaited(_loadSetBinders(detail.summary.code));
+        } else {
+          unawaited(_loadProjectTracking(detail.summary.code));
+        }
       }
     } catch (error) {
       if (!mounted) {
@@ -99,6 +111,119 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         });
       }
     }
+  }
+
+  Future<void> _loadSetBinders(String canonicalSetCode) async {
+    if (!_hasSignedInViewer) return;
+    setState(() => _binderStateLoading = true);
+    try {
+      final row = await _client
+          .from('sets')
+          .select('id')
+          .eq('code', canonicalSetCode)
+          .limit(1)
+          .maybeSingle();
+      final setId = (row?['id'] ?? '').toString().trim();
+      if (setId.isEmpty) return;
+      final binders = await loadBinderMembershipsBounded(_binderRepository);
+      final matching = binders
+          .where(
+            (binder) =>
+                binder.targetKind == BinderTargetKind.set &&
+                (binder.targetId == setId ||
+                    binder.targetKey?.toLowerCase() ==
+                        canonicalSetCode.toLowerCase()),
+          )
+          .toList(growable: false);
+      if (!mounted) return;
+      setState(() {
+        _projectSubjectId = setId;
+        _setBinders = matching;
+      });
+    } on BinderException {
+      // The action remains available; the create/detail call rechecks truth.
+    } finally {
+      if (mounted) setState(() => _binderStateLoading = false);
+    }
+  }
+
+  Future<void> _openSetBinder(PublicSetDetail detail) async {
+    if (!_hasSignedInViewer) {
+      _showProjectMessage('Sign in to create a Binder.');
+      return;
+    }
+    if (_setBinders.isEmpty) {
+      final setId = _projectSubjectId;
+      if (setId == null || setId.isEmpty) {
+        _showProjectMessage('This set cannot start a Binder yet.');
+        return;
+      }
+      final publicId = await Navigator.of(context).push<String>(
+        MaterialPageRoute<String>(
+          builder: (_) => BinderCreateScreen(
+            repository: _binderRepository,
+            featureFlags: BinderFeatureFlags.production,
+            initialTarget: BinderTargetSuggestion(
+              id: setId,
+              routeKey: detail.summary.code,
+              title: detail.summary.name,
+              kind: BinderTargetKind.set,
+              slotCount: detail.masterSetStats.variantOptionCount,
+            ),
+          ),
+        ),
+      );
+      if (!mounted || publicId == null) return;
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => BinderDetailScreen(
+            publicId: publicId,
+            repository: _binderRepository,
+            featureFlags: BinderFeatureFlags.production,
+          ),
+        ),
+      );
+    } else if (_setBinders.length == 1) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => BinderDetailScreen(
+            publicId: _setBinders.single.publicId,
+            repository: _binderRepository,
+            featureFlags: BinderFeatureFlags.production,
+          ),
+        ),
+      );
+    } else {
+      final selected = await showModalBottomSheet<BinderSummary>(
+        context: context,
+        showDragHandle: true,
+        builder: (context) => SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            children: [
+              for (final binder in _setBinders)
+                ListTile(
+                  title: Text(binder.title),
+                  subtitle: Text(binder.progressLabel),
+                  onTap: () => Navigator.pop(context, binder),
+                ),
+            ],
+          ),
+        ),
+      );
+      if (selected != null && mounted) {
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => BinderDetailScreen(
+              publicId: selected.publicId,
+              repository: _binderRepository,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+      }
+    }
+    if (mounted) unawaited(_loadSetBinders(detail.summary.code));
   }
 
   Future<void> _loadProjectTracking(String canonicalSetCode) async {
@@ -198,11 +323,11 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         _isTrackingProject = true;
       });
       _showProjectMessage(
-        'Private project started. Track this set from your Vault.',
+        'Private Binder started. Continue it from your Vault.',
       );
     } on CollectionProjectAuthenticationException {
       if (mounted) {
-        _showProjectMessage('Sign in to track a private collection project.');
+        _showProjectMessage('Sign in to track a private Binder.');
       }
     } on CollectionProjectTargetNotFoundException {
       if (mounted) {
@@ -213,7 +338,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     } catch (_) {
       if (mounted) {
         setState(() {
-          _projectStateError = 'Unable to start this project right now.';
+          _projectStateError = 'Unable to start this Binder right now.';
         });
       }
     } finally {
@@ -234,7 +359,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       builder: (dialogContext) => AlertDialog(
         title: const Text('Stop tracking this set?'),
         content: const Text(
-          'This only stops the private project. Your collection and '
+          'This only stops the private Binder. Your collection and '
           'completion progress stay unchanged.',
         ),
         actions: [
@@ -277,16 +402,16 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         _isTrackingProject = false;
       });
       _showProjectMessage(
-        'Private project stopped. Your collection is unchanged.',
+        'Private Binder stopped. Your collection is unchanged.',
       );
     } on CollectionProjectAuthenticationException {
       if (mounted) {
-        _showProjectMessage('Sign in to manage collection projects.');
+        _showProjectMessage('Sign in to manage Binders.');
       }
     } catch (_) {
       if (mounted) {
         setState(() {
-          _projectStateError = 'Unable to stop this project right now.';
+          _projectStateError = 'Unable to stop this Binder right now.';
         });
       }
     } finally {
@@ -453,16 +578,52 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       const SizedBox(height: 10),
       _SetDetailMasterSetPanel(stats: detail.masterSetStats),
       const SizedBox(height: 10),
-      _PrivateSetProjectControl(
-        signedIn: _hasSignedInViewer,
-        loading: _projectStateLoading,
-        mutating: _projectMutationBusy,
-        isTracking: _isTrackingProject,
-        errorMessage: _projectStateError,
-        onStart: _startProject,
-        onStop: _confirmStopProject,
-        onRetry: () => _loadProjectTracking(detail.summary.code),
-      ),
+      if (BinderFeatureFlags.production.setBindersAvailable)
+        _SetDetailSurfaceCard(
+          child: Row(
+            children: [
+              const Icon(Icons.collections_bookmark_outlined),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _setBinders.isEmpty
+                          ? 'Start ${detail.summary.name} Binder'
+                          : _setBinders.length == 1
+                          ? 'Open Binder'
+                          : 'In ${_setBinders.length} Binders',
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const Text(
+                      'Master Set progress uses governed finish options.',
+                    ),
+                  ],
+                ),
+              ),
+              FilledButton(
+                onPressed: _binderStateLoading
+                    ? null
+                    : () => _openSetBinder(detail),
+                child: Text(_setBinders.isEmpty ? 'Start' : 'Open'),
+              ),
+            ],
+          ),
+        )
+      else
+        _PrivateSetProjectControl(
+          signedIn: _hasSignedInViewer,
+          loading: _projectStateLoading,
+          mutating: _projectMutationBusy,
+          isTracking: _isTrackingProject,
+          errorMessage: _projectStateError,
+          onStart: _startProject,
+          onStop: _confirmStopProject,
+          onRetry: () => _loadProjectTracking(detail.summary.code),
+        ),
       const SizedBox(height: 10),
       if (detail.worldChampionshipDecklist != null) ...[
         _WorldChampionshipDecklistPanel(
@@ -690,7 +851,7 @@ class _PrivateSetProjectControl extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Collection project',
+                      'Private Binder',
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
@@ -761,7 +922,7 @@ class _PrivateSetProjectControl extends StatelessWidget {
             FilledButton.tonalIcon(
               onPressed: onStart,
               icon: const Icon(Icons.flag_rounded),
-              label: const Text('Track project'),
+              label: const Text('Track in Binder'),
             ),
           if (errorMessage != null) ...[
             const SizedBox(height: 7),
@@ -775,7 +936,7 @@ class _PrivateSetProjectControl extends StatelessWidget {
           ] else if (signedIn && isTracking != true && !busy) ...[
             const SizedBox(height: 7),
             Text(
-              'Track project starts a new private goal or resumes one you '
+              'Track in Binder starts a private goal or resumes one you '
               'stopped earlier.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.58),

@@ -33,7 +33,7 @@ void main() {
     });
 
     test('offers explicit start, tracked, and confirmed stop states', () {
-      expect(source, contains("label: const Text('Track project')"));
+      expect(source, contains("label: const Text('Track in Binder')"));
       expect(source, contains("label: const Text('Tracking')"));
       expect(source, contains("title: const Text('Stop tracking this set?')"));
       expect(source, contains('await _collectionProjectService.startProject('));
@@ -51,7 +51,7 @@ void main() {
       expect(source, contains('Private to you.'));
       expect(source, contains("label: const Text('Sign in to track')"));
       expect(source, contains("label: const Text('Retry tracking')"));
-      expect(source, contains('This only stops the private project.'));
+      expect(source, contains('This only stops the private Binder.'));
       expect(source, contains('completion progress stay unchanged.'));
 
       expect(source, isNot(contains("from('wall_sections')")));

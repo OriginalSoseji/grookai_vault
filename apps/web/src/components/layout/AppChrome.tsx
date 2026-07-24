@@ -19,7 +19,13 @@ const DEFAULT_SHELL_AUTH_STATE: ShellAuthState = {
   networkUnreadCount: 0,
 };
 
-export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
+export function AppChrome({
+  dexEnabled,
+  bindersEnabled,
+}: {
+  dexEnabled: boolean;
+  bindersEnabled: boolean;
+}) {
   const [authState, setAuthState] = useState<ShellAuthState>(DEFAULT_SHELL_AUTH_STATE);
 
   useEffect(() => {
@@ -98,6 +104,7 @@ export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
         profileHref={authState.profileHref}
         networkUnreadCount={authState.networkUnreadCount}
         dexEnabled={dexEnabled}
+        bindersEnabled={bindersEnabled}
       />
       <MobileBottomNav wallHref={authState.wallHref} dexEnabled={dexEnabled} />
     </>

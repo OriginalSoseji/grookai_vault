@@ -8,7 +8,7 @@ class CollectionProjectAuthenticationException implements Exception {
   const CollectionProjectAuthenticationException();
 
   @override
-  String toString() => 'Sign in to manage collection projects.';
+  String toString() => 'Sign in to manage Binders.';
 }
 
 class CollectionProjectTargetNotFoundException implements Exception {
@@ -22,7 +22,7 @@ class CollectionProjectTargetNotFoundException implements Exception {
 
   @override
   String toString() =>
-      'The ${subjectType.label.toLowerCase()} project target was not found.';
+      'The ${subjectType.label.toLowerCase()} Binder target was not found.';
 }
 
 class CollectionProjectServiceException implements Exception {

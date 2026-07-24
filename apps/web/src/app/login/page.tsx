@@ -7,9 +7,13 @@ import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useState } from "react";
+import {
+  redactBinderSecretPath,
+} from "@/lib/binders/safePath";
+import { getSafePostAuthPath } from "@/lib/auth/routeAccess";
 
 function getSafeNextPath(nextParam?: string | null) {
-  return nextParam && nextParam.startsWith("/") ? nextParam : "/vault";
+  return getSafePostAuthPath(nextParam);
 }
 
 function LoginPageContent() {
@@ -39,7 +43,7 @@ function LoginPageContent() {
         if (signUpData.user?.id) {
           sendTelemetryEvent({
             eventName: "account_created",
-            path: nextPath,
+            path: redactBinderSecretPath(nextPath),
             userId: signUpData.user.id,
             metadata: {
               auth_method: "email_password",

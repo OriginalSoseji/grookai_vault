@@ -30,6 +30,10 @@ import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../sets/public_set_detail_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
+import '../binders/binder_collaboration_screens.dart';
+import '../binders/binder_discovery_screens.dart';
+import '../binders/binder_library_screen.dart';
+import '../../services/binders/binder_feature_flags.dart';
 
 Widget buildCanonicalDexPage(
   String speciesSlug, {
@@ -1347,6 +1351,71 @@ class _PulseItemRow extends StatelessWidget {
         return true;
       case GrookaiCanonicalRouteKind.feed:
         // Pulse is already rendered inside the Network destination.
+        return true;
+      case GrookaiCanonicalRouteKind.binderLibrary:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => const BinderLibraryScreen(
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.binder:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => BinderCanonicalRouteScreen(
+              publicId: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.binderViewLink:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => BinderExternalProjectionScreen.viewLink(
+              token: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.binderInvitation:
+        final publicId = await navigator.push<String>(
+          MaterialPageRoute<String>(
+            builder: (_) => BinderInvitationRouteScreen(token: route.value),
+          ),
+        );
+        if (publicId != null && publicId.trim().isNotEmpty) {
+          await navigator.push(
+            MaterialPageRoute<void>(
+              builder: (_) => BinderCanonicalRouteScreen(
+                publicId: publicId,
+                featureFlags: BinderFeatureFlags.production,
+              ),
+            ),
+          );
+        }
+        return true;
+      case GrookaiCanonicalRouteKind.binderExplore:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => const BinderExploreScreen(
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.binderTemplate:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => BinderTemplatesScreen(
+              initialTemplateId: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
         return true;
     }
   }

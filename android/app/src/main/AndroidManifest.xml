@@ -64,6 +64,10 @@
                 <data android:host="dex" />
                 <data android:host="network" />
                 <data android:host="feed" />
+                <data android:host="binders" />
+                <data android:host="b" />
+                <data android:host="binder-invites" />
+                <data android:host="binder-templates" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

@@ -4,6 +4,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/main.dart';
 
 void main() {
+  test('legacy fallback surfaces use Binder collector language', () {
+    final sources = <String>[
+      File('lib/main_vault.dart').readAsStringSync(),
+      File(
+        'lib/screens/vault/collection_projects_screen.dart',
+      ).readAsStringSync(),
+      File(
+        'lib/screens/dex/grookai_dex_species_screen.dart',
+      ).readAsStringSync(),
+      File('lib/screens/sets/public_set_detail_screen.dart').readAsStringSync(),
+      File(
+        'lib/services/vault/collection_project_service.dart',
+      ).readAsStringSync(),
+    ].join('\n');
+
+    for (final legacyCopy in <String>[
+      'Collection Projects',
+      'Track project',
+      'Track private project',
+      'Stop tracking project',
+      'Stop tracking this project',
+      'Private project',
+      'Projects track',
+      'No collection projects',
+    ]) {
+      expect(sources.toLowerCase(), isNot(contains(legacyCopy.toLowerCase())));
+    }
+  });
+
   test('Vault exposes private projects without changing Wall state', () {
     final main = File('lib/main.dart').readAsStringSync();
     final vault = File('lib/main_vault.dart').readAsStringSync();
@@ -11,7 +40,7 @@ void main() {
     expect(main, contains("models/vault/collection_project.dart"));
     expect(main, contains("screens/vault/collection_projects_screen.dart"));
     expect(vault, contains('CollectionProjectsScreen('));
-    expect(vault, contains("tooltip: 'Collection Projects'"));
+    expect(vault, contains("tooltip: 'Binders'"));
     expect(vault, contains('CollectionProjectSubjectType.set'));
     expect(vault, contains('CollectionProjectSubjectType.species'));
     expect(vault, contains('onOpenScanner: widget.onOpenScanner'));
@@ -63,7 +92,7 @@ void main() {
     expect(species, contains('_projectService.isTracking('));
     expect(species, contains('_projectService.startProject('));
     expect(species, contains('_projectService.stopProject('));
-    expect(species, contains("'Track private project'"));
+    expect(species, contains("'Track in Binder'"));
     expect(species, contains('Your Vault and Wall will not change.'));
     expect(species, isNot(contains("from('wall_sections')")));
     expect(species, isNot(contains("from('watches')")));

@@ -15,6 +15,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'models/vault/collection_project.dart';
+import 'models/binders/binder_models.dart';
 import 'models/ownership_state.dart';
 import 'models/provisional_card.dart';
 import 'models/grookai_sale_listing.dart';
@@ -37,6 +38,9 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/collection_projects_screen.dart';
+import 'screens/binders/binder_collaboration_screens.dart';
+import 'screens/binders/binder_discovery_screens.dart';
+import 'screens/binders/binder_library_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
@@ -60,6 +64,8 @@ import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
+import 'services/binders/binder_feature_flags.dart';
+import 'services/binders/binder_private_cache.dart';
 import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
@@ -2279,6 +2285,13 @@ bool _isInvalidRefreshTokenRecoveryError(Object error) {
 
 Future<void> _clearInvalidPersistedSession() async {
   try {
+    await BinderPrivateCache.purgeCurrent();
+  } catch (_) {
+    // Cache removal is best-effort during auth recovery. Never preserve a
+    // Binder dashboard intentionally, but do not block session repair if the
+    // platform preferences store is temporarily unavailable.
+  }
+  try {
     await Supabase.instance.client.auth.signOut();
   } catch (_) {
     // The auth client is already in a failed recovery path. Best effort is
@@ -2661,20 +2674,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   String _describeUri(Uri? uri) {
-    if (uri == null) {
-      return 'null';
-    }
-
-    final queryKeys = uri.queryParameters.keys.toList(growable: false);
-    final fragment = uri.fragment;
-    final fragmentKeys = fragment
-        .split('&')
-        .map((part) => part.split('=').first.trim())
-        .where((part) => part.isNotEmpty)
-        .toList(growable: false);
-
-    return '${uri.scheme}://${uri.host}${uri.path}'
-        ' queryKeys=$queryKeys fragmentKeys=$fragmentKeys';
+    return GrookaiWebRouteService.redactedDiagnosticUri(uri);
   }
 
   void _debugGoogleOAuth(String message) {
@@ -2797,6 +2797,58 @@ class _MyAppState extends State<MyApp> {
                   );
                 }()
               : () {
+                  final pendingRoute = _pendingCanonicalLink?.route;
+                  if (pendingRoute != null) {
+                    switch (pendingRoute.kind) {
+                      case GrookaiCanonicalRouteKind.binder:
+                        if (BinderFeatureFlags.production.publicAvailable) {
+                          AppBootTiming.markOnce(
+                            'first_route_public_binder_link',
+                          );
+                          return BinderExternalProjectionScreen.public(
+                            publicId: pendingRoute.value,
+                            featureFlags: BinderFeatureFlags.production,
+                          );
+                        }
+                        break;
+                      case GrookaiCanonicalRouteKind.binderViewLink:
+                        if (BinderFeatureFlags.production.viewLinksAvailable) {
+                          AppBootTiming.markOnce(
+                            'first_route_binder_view_link',
+                          );
+                          return BinderExternalProjectionScreen.viewLink(
+                            token: pendingRoute.value,
+                            featureFlags: BinderFeatureFlags.production,
+                          );
+                        }
+                        break;
+                      case GrookaiCanonicalRouteKind.binderExplore:
+                        if (BinderFeatureFlags.production.communityAvailable) {
+                          return const BinderExploreScreen(
+                            featureFlags: BinderFeatureFlags.production,
+                          );
+                        }
+                        break;
+                      case GrookaiCanonicalRouteKind.binderTemplate:
+                        if (BinderFeatureFlags.production.templatesAvailable) {
+                          return BinderTemplatesScreen(
+                            initialTemplateId: pendingRoute.value,
+                            featureFlags: BinderFeatureFlags.production,
+                          );
+                        }
+                        break;
+                      case GrookaiCanonicalRouteKind.card:
+                      case GrookaiCanonicalRouteKind.collector:
+                      case GrookaiCanonicalRouteKind.collectorSection:
+                      case GrookaiCanonicalRouteKind.set:
+                      case GrookaiCanonicalRouteKind.gvvi:
+                      case GrookaiCanonicalRouteKind.dex:
+                      case GrookaiCanonicalRouteKind.feed:
+                      case GrookaiCanonicalRouteKind.binderLibrary:
+                      case GrookaiCanonicalRouteKind.binderInvitation:
+                        break;
+                    }
+                  }
                   AppBootTiming.markOnce('first_route_login');
                   return const LoginPage();
                 }();

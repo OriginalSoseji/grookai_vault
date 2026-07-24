@@ -344,6 +344,11 @@ void main() {
     expect(bottomNavBlock, contains('isPrimaryAction: true'));
     expect(dockButtonBlock, isNot(contains('selected ? 86 : 52')));
     expect(dockButtonBlock, isNot(contains('if (!collapsed && selected)')));
+    expect(
+      dockButtonBlock,
+      contains('constraints: BoxConstraints(minHeight: collapsed ? 50 : 54)'),
+    );
+    expect(dockButtonBlock, isNot(contains('height: collapsed ? 50 : 54')));
     expect(dockButtonBlock, contains('BoxShape.circle'));
     expect(dockButtonBlock, contains('Text('));
   });

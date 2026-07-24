@@ -17,7 +17,10 @@ test("root chrome does not perform server auth reads during public render", () =
   assert.match(appChrome, /Public routes must not depend on global auth\/session reads/);
   assert.doesNotMatch(appChrome, /createServerComponentClient|getUnreadCardInteractionGroupCount/);
   assert.match(appChrome, /supabase\.auth\.getSession/);
-  assert.match(layout, /<AppChrome dexEnabled=\{dexEnabled\} \/>/);
+  assert.match(
+    layout,
+    /<AppChrome dexEnabled=\{dexEnabled\} bindersEnabled=\{bindersEnabled\} \/>/,
+  );
 });
 
 test("primary public routes use bounded revalidation instead of force-dynamic", () => {

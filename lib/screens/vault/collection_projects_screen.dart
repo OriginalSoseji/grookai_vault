@@ -74,9 +74,9 @@ class _CollectionProjectsScreenState extends State<CollectionProjectsScreen> {
     final shouldStop = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Stop tracking this project?'),
+        title: const Text('Stop tracking this Binder?'),
         content: Text(
-          '${project.title} will leave your active Projects list. '
+          '${project.title} will leave your active Binders list. '
           'Your Vault cards and Wall will not change.',
         ),
         actions: [
@@ -140,7 +140,7 @@ class _CollectionProjectsScreenState extends State<CollectionProjectsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Collection Projects')),
+      appBar: AppBar(title: const Text('Binders')),
       body: SafeArea(
         child: FutureBuilder<CollectionProjectsSnapshot>(
           future: _dashboard,
@@ -155,10 +155,10 @@ class _CollectionProjectsScreenState extends State<CollectionProjectsScreen> {
                     : Icons.error_outline_rounded,
                 title:
                     snapshot.error is CollectionProjectAuthenticationException
-                    ? 'Sign in to view Projects'
-                    : 'Unable to load Projects',
+                    ? 'Sign in to view Binders'
+                    : 'Unable to load Binders',
                 body: snapshot.error is CollectionProjectAuthenticationException
-                    ? 'Collection Projects are private and tied to your Grookai Vault account.'
+                    ? 'Binders are private and tied to your Grookai Vault account.'
                     : 'Pull to refresh or try again. Your Vault has not changed.',
                 action: TextButton.icon(
                   onPressed: _reload,
@@ -268,7 +268,7 @@ class _PrivateProjectsIntro extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    'Projects track your set and Pokémon progress without posting to Pulse or Wall.',
+                    'Binders track your set and Pokémon progress without posting to Pulse or Wall.',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colors.onSurfaceVariant,
                     ),
@@ -347,7 +347,7 @@ class _EmptyProjectsCard extends StatelessWidget {
             Icon(Icons.flag_outlined, size: 34, color: colors.primary),
             const SizedBox(height: 10),
             Text(
-              'No collection projects yet',
+              'No Binders yet',
               textAlign: TextAlign.center,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w800,

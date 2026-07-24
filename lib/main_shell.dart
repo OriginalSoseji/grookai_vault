@@ -530,6 +530,11 @@ class _AppShellState extends State<AppShell> {
   Future<void> _signOut() async {
     await GrookaiPushNotificationService.instance
         .disableCurrentTokenBeforeSignOut();
+    try {
+      await BinderPrivateCache.purgeCurrent();
+    } catch (_) {
+      // Sign-out must continue even if platform preferences are unavailable.
+    }
     await _supabase.auth.signOut();
   }
 
@@ -679,6 +684,67 @@ class _AppShellState extends State<AppShell> {
             _networkKey.currentState?.openCanonicalSegment(route.value);
           }
         });
+        break;
+      case GrookaiCanonicalRouteKind.binderLibrary:
+        unawaited(
+          _pushPage<void>(
+            const BinderLibraryScreen(
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        break;
+      case GrookaiCanonicalRouteKind.binder:
+        unawaited(
+          _pushPage<void>(
+            BinderCanonicalRouteScreen(
+              publicId: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        break;
+      case GrookaiCanonicalRouteKind.binderViewLink:
+        unawaited(
+          _pushPage<void>(
+            BinderExternalProjectionScreen.viewLink(
+              token: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        break;
+      case GrookaiCanonicalRouteKind.binderInvitation:
+        final publicId = await _pushPage<String>(
+          BinderInvitationRouteScreen(token: route.value),
+        );
+        if (publicId != null && publicId.trim().isNotEmpty) {
+          await _pushPage<void>(
+            BinderCanonicalRouteScreen(
+              publicId: publicId,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          );
+        }
+        break;
+      case GrookaiCanonicalRouteKind.binderExplore:
+        unawaited(
+          _pushPage<void>(
+            const BinderExploreScreen(
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        break;
+      case GrookaiCanonicalRouteKind.binderTemplate:
+        unawaited(
+          _pushPage<void>(
+            BinderTemplatesScreen(
+              initialTemplateId: route.value,
+              featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
         break;
     }
   }
@@ -1554,7 +1620,11 @@ class _AppShellState extends State<AppShell> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
             curve: Curves.easeOutCubic,
-            height: collapsed ? 50 : 54,
+            // Android font metrics can be a couple of logical pixels taller
+            // across OS versions even at the default text scale. Keep the
+            // visual target height while allowing the one-line label to claim
+            // its measured height instead of overflowing a fixed box.
+            constraints: BoxConstraints(minHeight: collapsed ? 50 : 54),
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: background,

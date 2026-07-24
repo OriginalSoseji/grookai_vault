@@ -9,6 +9,7 @@
 			<string>com.cesar.grookaivault.auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>grookai</string>
 				<string>grookaivault</string>
 			</array>
 		</dict>
