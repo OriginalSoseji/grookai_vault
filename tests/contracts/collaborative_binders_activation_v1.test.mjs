@@ -1,10 +1,7 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import {
-  existsSync,
-  readFileSync,
-  readdirSync,
-} from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -17,23 +14,22 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "f84fa4078f9ed1d727857770f71291d4fc21c04139164f9ec16f687f36fbc4c1";
+  "5990da41b756646097f0ab13947e5b6a1b4b7e42f04f9e056de89428c8d63bd9";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
 const PRODUCTION_PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const CANONICAL_REPOSITORY = "OriginalSoseji/grookai_vault";
+const WINDOWS_ONLY = process.platform === "win32";
 
 const MANIFEST_PATH =
   "scripts/ops/collaborative_binders_activation_manifest_v1.json";
-const MODULE_PATH =
-  "scripts/ops/CollaborativeBindersActivationV1.psm1";
+const MODULE_PATH = "scripts/ops/CollaborativeBindersActivationV1.psm1";
 const SOURCE_VALIDATOR_PATH =
   "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1";
 const PREFLIGHT_PATH =
   "scripts/ops/collaborative_binders_activation_preflight_v1.ps1";
-const APPLY_PATH =
-  "scripts/ops/collaborative_binders_activation_apply_v1.ps1";
+const APPLY_PATH = "scripts/ops/collaborative_binders_activation_apply_v1.ps1";
 const BACKUP_WATCH_PATH =
   "scripts/ops/collaborative_binders_backup_watch_v1.ps1";
 const CLIENTS_DARK_EVIDENCE_PATH =
@@ -100,12 +96,9 @@ const SAMSUNG_CLIENT_FLAGS = [
 
 const EXPECTED_CLI = {
   version: "2.90.0",
-  launcher:
-    "140e3801d8adeda639a21b14e62b93a4c7d26b7a758421f43c82be59753be49b",
-  binary:
-    "31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c",
-  shim:
-    "0c68f69a367b2b76e61f3e71fb98c9a867143628a361a2e715dd30f33c4b2c3f",
+  launcher: "140e3801d8adeda639a21b14e62b93a4c7d26b7a758421f43c82be59753be49b",
+  binary: "31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c",
+  shim: "0c68f69a367b2b76e61f3e71fb98c9a867143628a361a2e715dd30f33c4b2c3f",
 };
 
 const CANONICAL_FLAGS = [
@@ -122,11 +115,7 @@ const CANONICAL_FLAGS = [
   "view_links",
 ];
 
-const EXCLUDED_FLAGS = [
-  "notifications",
-  "pulse_milestones",
-  "set_binders",
-];
+const EXCLUDED_FLAGS = ["notifications", "pulse_milestones", "set_binders"];
 
 const FINAL_ENABLED_FLAGS = [
   "community",
@@ -143,61 +132,41 @@ const EXPECTED_PHASES = [
   {
     sequence: 1,
     flag_key: "schema_internal",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_01_schema_internal_v1.sql",
-    sha256:
-      "957eaf94a1b988b3563af5183aa5928f23566c58506ff26de7d9e1447b21bcc8",
+    file: "scripts/ops/sql/collaborative_binders_activation_01_schema_internal_v1.sql",
+    sha256: "957eaf94a1b988b3563af5183aa5928f23566c58506ff26de7d9e1447b21bcc8",
     enabled_before: [],
     enabled_after: ["schema_internal"],
   },
   {
     sequence: 2,
     flag_key: "personal",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_02_personal_v1.sql",
-    sha256:
-      "dcda58cde5a01414eff85feecdd90e50f89a8a9fd8aa4478a3c2130ae0a93330",
+    file: "scripts/ops/sql/collaborative_binders_activation_02_personal_v1.sql",
+    sha256: "dcda58cde5a01414eff85feecdd90e50f89a8a9fd8aa4478a3c2130ae0a93330",
     enabled_before: ["schema_internal"],
     enabled_after: ["personal", "schema_internal"],
   },
   {
     sequence: 3,
     flag_key: "shared",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_03_shared_v1.sql",
-    sha256:
-      "794a339bb934586f3c9014b4ce8e18a705b4528e962984c8723f14617f1c5fce",
+    file: "scripts/ops/sql/collaborative_binders_activation_03_shared_v1.sql",
+    sha256: "794a339bb934586f3c9014b4ce8e18a705b4528e962984c8723f14617f1c5fce",
     enabled_before: ["personal", "schema_internal"],
     enabled_after: ["personal", "schema_internal", "shared"],
   },
   {
     sequence: 4,
     flag_key: "view_links",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_04_view_links_v1.sql",
-    sha256:
-      "509d680e88e5ffb17d5cdb37d00bba1e4759fce553a32c1f6a0aba1790205fe6",
+    file: "scripts/ops/sql/collaborative_binders_activation_04_view_links_v1.sql",
+    sha256: "509d680e88e5ffb17d5cdb37d00bba1e4759fce553a32c1f6a0aba1790205fe6",
     enabled_before: ["personal", "schema_internal", "shared"],
-    enabled_after: [
-      "personal",
-      "schema_internal",
-      "shared",
-      "view_links",
-    ],
+    enabled_after: ["personal", "schema_internal", "shared", "view_links"],
   },
   {
     sequence: 5,
     flag_key: "public",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_05_public_v1.sql",
-    sha256:
-      "b05933ab916f9c87c59858da8784fe9b41ba2edaeeabf53bd53d9beac61bc70d",
-    enabled_before: [
-      "personal",
-      "schema_internal",
-      "shared",
-      "view_links",
-    ],
+    file: "scripts/ops/sql/collaborative_binders_activation_05_public_v1.sql",
+    sha256: "b05933ab916f9c87c59858da8784fe9b41ba2edaeeabf53bd53d9beac61bc70d",
+    enabled_before: ["personal", "schema_internal", "shared", "view_links"],
     enabled_after: [
       "personal",
       "public",
@@ -209,10 +178,8 @@ const EXPECTED_PHASES = [
   {
     sequence: 6,
     flag_key: "community",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_06_community_v1.sql",
-    sha256:
-      "b744019a8af97990ca2b4ef1424536c6c5d966277b03d40ccdc2b7367615c015",
+    file: "scripts/ops/sql/collaborative_binders_activation_06_community_v1.sql",
+    sha256: "b744019a8af97990ca2b4ef1424536c6c5d966277b03d40ccdc2b7367615c015",
     enabled_before: [
       "personal",
       "public",
@@ -232,10 +199,8 @@ const EXPECTED_PHASES = [
   {
     sequence: 7,
     flag_key: "custom",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_07_custom_v1.sql",
-    sha256:
-      "4e97476b8a215012ea7848d3e418bdb4286a0042e2bc1e46f41a21c04ca46e93",
+    file: "scripts/ops/sql/collaborative_binders_activation_07_custom_v1.sql",
+    sha256: "4e97476b8a215012ea7848d3e418bdb4286a0042e2bc1e46f41a21c04ca46e93",
     enabled_before: [
       "community",
       "personal",
@@ -257,10 +222,8 @@ const EXPECTED_PHASES = [
   {
     sequence: 8,
     flag_key: "templates",
-    file:
-      "scripts/ops/sql/collaborative_binders_activation_08_templates_v1.sql",
-    sha256:
-      "cae2d7c5a7462f630925865e503e41a904b676073324c125335c4af02013fc42",
+    file: "scripts/ops/sql/collaborative_binders_activation_08_templates_v1.sql",
+    sha256: "cae2d7c5a7462f630925865e503e41a904b676073324c125335c4af02013fc42",
     enabled_before: [
       "community",
       "custom",
@@ -280,6 +243,33 @@ function absolute(relativePath) {
 
 function source(relativePath) {
   return readFileSync(absolute(relativePath), "utf8");
+}
+
+function psLiteral(value) {
+  return `'${String(value).replaceAll("'", "''")}'`;
+}
+
+function runActivationPowerShell(script) {
+  const encoded = Buffer.from(script, "utf8").toString("base64");
+  const command = [
+    "$ErrorActionPreference = 'Stop'",
+    `$activationModule = Import-Module ${psLiteral(
+      absolute(MODULE_PATH),
+    )} -Force -PassThru`,
+    "$scriptText = [Text.Encoding]::UTF8.GetString(" +
+      `[Convert]::FromBase64String('${encoded}'))`,
+    "& ([scriptblock]::Create($scriptText)) $activationModule",
+  ].join("; ");
+
+  return spawnSync(
+    "pwsh",
+    ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", command],
+    {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      windowsHide: true,
+    },
+  );
 }
 
 function bytes(relativePath) {
@@ -368,10 +358,7 @@ function assertToolchainAndProjectSealSet(powerShell, label) {
     ["activation readback", /\$[A-Za-z0-9_]*readback[A-Za-z0-9_]*path/i],
     ["continuity evidence", /\$[A-Za-z0-9_]*evidence[A-Za-z0-9_]*/i],
   ]) {
-    assert.ok(
-      pattern.test(sealBlock),
-      `${label} does not seal ${name}.`,
-    );
+    assert.ok(pattern.test(sealBlock), `${label} does not seal ${name}.`);
   }
   return sealBlock;
 }
@@ -397,22 +384,10 @@ test("activation manifest is one exact content-addressed package", () => {
     manifest.required_installation_package_fingerprint_sha256,
     INSTALLATION_PACKAGE_FINGERPRINT,
   );
-  assert.equal(
-    manifest.supported_supabase_cli_version,
-    EXPECTED_CLI.version,
-  );
-  assert.equal(
-    manifest.supabase_cli_launcher_sha256,
-    EXPECTED_CLI.launcher,
-  );
-  assert.equal(
-    manifest.supabase_cli_binary_sha256,
-    EXPECTED_CLI.binary,
-  );
-  assert.equal(
-    manifest.supabase_cli_shim_descriptor_sha256,
-    EXPECTED_CLI.shim,
-  );
+  assert.equal(manifest.supported_supabase_cli_version, EXPECTED_CLI.version);
+  assert.equal(manifest.supabase_cli_launcher_sha256, EXPECTED_CLI.launcher);
+  assert.equal(manifest.supabase_cli_binary_sha256, EXPECTED_CLI.binary);
+  assert.equal(manifest.supabase_cli_shim_descriptor_sha256, EXPECTED_CLI.shim);
 
   const hashedEntries = [
     manifest.production_rollout_module,
@@ -497,10 +472,7 @@ test("every activation phase is a one-statement one-target compare-and-set", () 
     assert.match(stripped, /\bset\s+enabled\s*=\s*true\b/i);
     assert.match(
       stripped,
-      new RegExp(
-        String.raw`\bwhere\s+target\.flag_key\s*=\s*''`,
-        "i",
-      ),
+      new RegExp(String.raw`\bwhere\s+target\.flag_key\s*=\s*''`, "i"),
     );
     assert.match(
       sql,
@@ -525,8 +497,10 @@ test("every activation phase is a one-statement one-target compare-and-set", () 
     assert.match(
       sql,
       new RegExp(
-        `'enabled_after'\\s*,\\s*'${JSON.stringify(phase.enabled_after)
-          .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'::jsonb`,
+        `'enabled_after'\\s*,\\s*'${JSON.stringify(phase.enabled_after).replace(
+          /[.*+?^${}()|[\]\\]/g,
+          "\\$&",
+        )}'::jsonb`,
         "i",
       ),
     );
@@ -551,10 +525,7 @@ test("activation readback is immutable, read-only, and proves raw/effective vect
   );
   assert.match(sql, /as\s+enabled_flags/i);
   assert.match(sql, /as\s+effective_enabled_flags/i);
-  assert.match(
-    sql,
-    /effective_enabled_flags\s*=\s*enabled_flags/i,
-  );
+  assert.match(sql, /effective_enabled_flags\s*=\s*enabled_flags/i);
   assert.match(sql, /enabled_flag_count\s+between\s+0\s+and\s+8/i);
   assert.match(sql, /enabled_flags\s*<@\s*'\[/i);
   assert.match(
@@ -615,9 +586,7 @@ test("source validation and final apply seals cover project binding and exact CL
   assert.ok(/supabase[\\/]+\.temp[\\/]+project-ref/i.test(moduleSource));
   assert.ok(/\$[A-Za-z0-9_]*config[A-Za-z0-9_]*path/i.test(sealBlock));
   assert.ok(
-    /\$[A-Za-z0-9_]*project[A-Za-z0-9_]*ref[A-Za-z0-9_]*path/i.test(
-      sealBlock,
-    ),
+    /\$[A-Za-z0-9_]*project[A-Za-z0-9_]*ref[A-Za-z0-9_]*path/i.test(sealBlock),
   );
   assert.ok(/\$[A-Za-z0-9_]*binary[A-Za-z0-9_]*path/i.test(sealBlock));
   assert.ok(/\$[A-Za-z0-9_]*launcher[A-Za-z0-9_]*path/i.test(sealBlock));
@@ -660,9 +629,11 @@ test("prior sibling apply evidence enforces exact phase and catalog continuity",
   assert.ok(
     /Test-BinderActivationChecksumsV1\s+-Root\s+\$root/i.test(priorBody),
   );
-  assert.ok(
-    /\$result\.head_sha\s*-ceq\s*\$ExpectedHeadSha/i.test(priorBody),
+  assert.match(
+    priorBody,
+    /\[int\]\$Phase\.sequence\s*-eq\s*1[\s\S]*?Assert-BinderInstallationEvidenceRootV1[\s\S]*?else\s*{[\s\S]*?Assert-BinderActivationArtifactRootV1/i,
   );
+  assert.ok(/\$result\.head_sha\s*-ceq\s*\$ExpectedHeadSha/i.test(priorBody));
   assert.ok(/\$result\.project_ref\s*-ceq/i.test(priorBody));
   assert.ok(/\$result\.package_fingerprint_sha256/i.test(priorBody));
   assert.ok(
@@ -677,16 +648,12 @@ test("prior sibling apply evidence enforces exact phase and catalog continuity",
   assert.ok(/AddHours\(-2\)/i.test(priorBody));
   assert.ok(/mutation_termination_confirmed/i.test(priorBody));
 
-  assert.ok(
-    /Join-Path\s+\$applyRoot\s+'apply-result\.json'/i.test(applyBody),
-  );
+  assert.ok(/Join-Path\s+\$applyRoot\s+'apply-result\.json'/i.test(applyBody));
   assert.ok(
     /Join-Path\s+\$applyRoot\s+'readback\.after\.json'/i.test(applyBody),
   );
   assert.ok(
-    /Write-BinderActivationChecksumsV1\s+-Root\s+\$applyRoot/i.test(
-      applyBody,
-    ),
+    /Write-BinderActivationChecksumsV1\s+-Root\s+\$applyRoot/i.test(applyBody),
   );
 });
 
@@ -766,12 +733,8 @@ test("stopped activation performs state-neutral diagnostics and forbids retry", 
   assert.ok(/phase\.enabled_before/i.test(incidentBody));
   assert.ok(/phase\.enabled_after/i.test(incidentBody));
   assert.ok(/diagnostic_state/i.test(incidentBody));
-  assert.ok(
-    /automatic_retry_permitted\s*=\s*\$false/i.test(incidentBody),
-  );
-  assert.ok(
-    /automatic_rollback_permitted\s*=\s*\$false/i.test(incidentBody),
-  );
+  assert.ok(/automatic_retry_permitted\s*=\s*\$false/i.test(incidentBody));
+  assert.ok(/automatic_rollback_permitted\s*=\s*\$false/i.test(incidentBody));
   assert.ok(
     /\$lifecycle\.Started\s*-and\s*\$lifecycle\.TerminationConfirmed/i.test(
       incidentBody,
@@ -811,11 +774,8 @@ test("activation is explicitly clients-dark and empty-domain through phase eight
     assert.match(sql, /binder_card_events_empty/i);
     assert.match(sql, /binder_trust_reports_empty/i);
     assert.equal(
-      (
-        stripSqlCommentsAndStrings(sql).match(
-          /(?:^|\r?\n)\s*update\b/gi,
-        ) ?? []
-      ).length,
+      (stripSqlCommentsAndStrings(sql).match(/(?:^|\r?\n)\s*update\b/gi) ?? [])
+        .length,
       1,
     );
   }
@@ -862,10 +822,7 @@ test("activation exposes no arbitrary phase, repair, or routing escape hatch", (
     entrypoints,
     /(?:\bmigration\s+repair\b|\bdb\s+(?:reset|push)\b|--db-url\b|\bdatabase_url\b|\bsupabase_db_url\b|--force\b)/i,
   );
-  assert.match(
-    moduleSource,
-    /'db',\s*'query',\s*'--linked',\s*'--file'/i,
-  );
+  assert.match(moduleSource, /'db',\s*'query',\s*'--linked',\s*'--file'/i);
 });
 
 test("manifest content-addresses the activation module and every wrapper", () => {
@@ -878,10 +835,7 @@ test("manifest content-addresses the activation module and every wrapper", () =>
     Array.isArray(manifest.activation_wrappers),
     "Activation wrapper inventory is missing.",
   );
-  assert.equal(
-    manifest.activation_wrappers.length,
-    ACTIVATION_WRAPPERS.length,
-  );
+  assert.equal(manifest.activation_wrappers.length, ACTIVATION_WRAPPERS.length);
   assert.deepEqual(
     manifest.activation_wrappers.map(({ role, file }) => ({ role, file })),
     ACTIVATION_WRAPPERS,
@@ -909,7 +863,11 @@ test("every activation wrapper hashes and seals both trusted modules before impo
   for (const wrapper of ACTIVATION_WRAPPERS) {
     const powerShell = source(wrapper.file);
     const firstImport = powerShell.indexOf("Import-Module");
-    assert.notEqual(firstImport, -1, `${wrapper.file} does not import its module.`);
+    assert.notEqual(
+      firstImport,
+      -1,
+      `${wrapper.file} does not import its module.`,
+    );
     const bootstrap = powerShell.slice(0, firstImport);
     const afterImport = powerShell.slice(firstImport);
 
@@ -994,9 +952,7 @@ test("clients-dark evidence creation seals both trusted modules for its lifetime
     (bootstrap.match(/FileAttributes\]::ReparsePoint/gi) ?? []).length >= 2,
   );
   assert.ok((bootstrap.match(/\[IO\.File\]::Open\(/gi) ?? []).length >= 2);
-  assert.ok(
-    (bootstrap.match(/\[IO\.FileShare\]::Read/gi) ?? []).length >= 2,
-  );
+  assert.ok((bootstrap.match(/\[IO\.FileShare\]::Read/gi) ?? []).length >= 2);
   assert.match(
     afterImport,
     /finally\s*{[\s\S]*?\.Dispose\(\)[\s\S]*?\.Dispose\(\)/i,
@@ -1045,6 +1001,168 @@ test("activation evidence roots stay directly under secure-ops with exact protec
   assert.match(aclBody, /Compare-Object\s+\$expectedSids\s+\$actualSids/i);
 });
 
+test("phase one accepts only the production installer's exact nested apply evidence", () => {
+  const installationBody = functionBody(
+    moduleSource,
+    "Assert-BinderInstallationEvidenceRootV1",
+  );
+
+  assert.match(installationBody, /C:\\secure-ops/i);
+  assert.match(
+    installationBody,
+    /Split-Path\s+-Parent\s+\$preflightRoot[\s\S]*?-ceq\s+\$secureOpsRoot/i,
+  );
+  assert.match(installationBody, /\^apply-\\d\{8\}T\\d\{6\}Z\$/);
+  assert.ok(
+    (installationBody.match(/Assert-BinderArtifactRootV1/gi) ?? []).length >= 2,
+  );
+  assert.ok(
+    (installationBody.match(/Assert-BinderActivationArtifactAclV1/gi) ?? [])
+      .length >= 2,
+  );
+  assert.match(installationBody, /FileAttributes\]::ReparsePoint/i);
+  assert.match(
+    installationBody,
+    /Split-Path\s+-Parent\s+\$resolvedApplyRoot[\s\S]*?-ceq[\s\S]*?\$resolvedPreflightRoot/i,
+  );
+
+  const preflightEvidenceBody = functionBody(
+    moduleSource,
+    "Test-BinderInstallationPreflightEvidenceV1",
+  );
+  for (const required of [
+    "preflight-manifest.json",
+    "preflight-manifest.sha256",
+    "backup-evidence.digest.json",
+    "checksums.sha256",
+  ]) {
+    assert.ok(preflightEvidenceBody.includes(`'${required}'`));
+  }
+  assert.match(
+    preflightEvidenceBody,
+    /Get-ChildItem[\s\S]*?-Directory[\s\S]*?-Force/i,
+  );
+  assert.match(
+    preflightEvidenceBody,
+    /Get-ChildItem[\s\S]*?-File[\s\S]*?-Force/i,
+  );
+  assert.match(preflightEvidenceBody, /FileAttributes\]::ReparsePoint/i);
+  assert.match(preflightEvidenceBody, /Get-BinderActivationSha256V1/i);
+  assert.match(
+    functionBody(moduleSource, "Test-BinderActivationPriorEvidenceV1"),
+    /Test-BinderInstallationPreflightEvidenceV1/i,
+  );
+});
+
+test(
+  "phase-one parent preflight evidence rejects digest tampering and extra files",
+  { skip: !WINDOWS_ONLY },
+  () => {
+    const script = String.raw`
+param($activationModule)
+$osTemp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
+$fixture = Join-Path $osTemp (
+  'binder-installation-evidence-fixture-' + [guid]::NewGuid().ToString('N')
+)
+if ((Split-Path -Parent $fixture) -cne $osTemp) {
+  throw 'unsafe fixture path'
+}
+try {
+  [void][IO.Directory]::CreateDirectory($fixture)
+  $originals = [ordered]@{
+    'approval.txt' = 'approved'
+    'backup-evidence.digest.json' = '{"Sha256":"' + ('1' * 64) + '"}'
+    'preflight-manifest.json' = '{"status":"pass"}'
+    'preflight-manifest.sha256' = ('2' * 64)
+  }
+  foreach ($entry in $originals.GetEnumerator()) {
+    [IO.File]::WriteAllText(
+      (Join-Path $fixture $entry.Key),
+      $entry.Value
+    )
+  }
+  $checksumLines = @(
+    foreach ($name in @($originals.Keys | Sort-Object)) {
+      $hash = (
+        Get-FileHash -LiteralPath (
+          Join-Path $fixture $name
+        ) -Algorithm SHA256
+      ).Hash.ToLowerInvariant()
+      "$hash  $name"
+    }
+  )
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'checksums.sha256'),
+    (($checksumLines -join [Environment]::NewLine) +
+      [Environment]::NewLine)
+  )
+  $applyRoot = Join-Path $fixture 'apply-20260724T230000Z'
+  [void][IO.Directory]::CreateDirectory($applyRoot)
+
+  $baseline = & $activationModule {
+    param($preflight, $apply)
+    Test-BinderInstallationPreflightEvidenceV1 -PreflightRoot $preflight -ApplyRoot $apply
+  } $fixture $applyRoot
+
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'backup-evidence.digest.json'),
+    '{"tampered":true}'
+  )
+  $tamperFailure = ''
+  try {
+    [void](& $activationModule {
+      param($preflight, $apply)
+      Test-BinderInstallationPreflightEvidenceV1 -PreflightRoot $preflight -ApplyRoot $apply
+    } $fixture $applyRoot)
+  } catch {
+    $tamperFailure = $_.Exception.Message
+  }
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'backup-evidence.digest.json'),
+    $originals['backup-evidence.digest.json']
+  )
+  [IO.File]::WriteAllText(
+    (Join-Path $fixture 'injected.txt'),
+    'unexpected'
+  )
+  $extraFileFailure = ''
+  try {
+    [void](& $activationModule {
+      param($preflight, $apply)
+      Test-BinderInstallationPreflightEvidenceV1 -PreflightRoot $preflight -ApplyRoot $apply
+    } $fixture $applyRoot)
+  } catch {
+    $extraFileFailure = $_.Exception.Message
+  }
+
+  [pscustomobject]@{
+    BaselineFileCount = $baseline.FileCount
+    TamperFailure = $tamperFailure
+    ExtraFileFailure = $extraFileFailure
+  } | ConvertTo-Json -Compress
+} finally {
+  if (
+    (Test-Path -LiteralPath $fixture) -and
+    (Split-Path -Parent ([IO.Path]::GetFullPath($fixture))) -ceq $osTemp
+  ) {
+    [IO.Directory]::Delete($fixture, $true)
+  }
+}
+`;
+    const result = runActivationPowerShell(script);
+    assert.equal(
+      result.error,
+      undefined,
+      `could not launch pwsh: ${result.error?.message ?? ""}`,
+    );
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const report = JSON.parse(result.stdout.trim());
+    assert.equal(report.BaselineFileCount, 4);
+    assert.match(report.TamperFailure, /checksum mismatch/i);
+    assert.match(report.ExtraFileFailure, /file set changed/i);
+  },
+);
+
 test("activation command success is fail-closed on OutputTruncated", () => {
   const successBody = functionBody(
     moduleSource,
@@ -1066,10 +1184,7 @@ test("clients-dark evidence policy fixes both client identities and every false 
     manifest.clients_dark_evidence_package_id,
     "COLLABORATIVE-BINDERS-CLIENTS-DARK-V1",
   );
-  assert.equal(
-    manifest.clients_dark_web_origin,
-    "https://grookaivault.com",
-  );
+  assert.equal(manifest.clients_dark_web_origin, "https://grookaivault.com");
   assert.equal(
     manifest.clients_dark_mobile_application_id,
     "com.grookai.vault",
@@ -1080,18 +1195,14 @@ test("clients-dark evidence policy fixes both client identities and every false 
     SAMSUNG_CLIENT_FLAGS,
   );
   assert.ok(
-    Number.isInteger(
-      manifest.backup_max_activation_recovery_lag_minutes,
-    ) &&
+    Number.isInteger(manifest.backup_max_activation_recovery_lag_minutes) &&
       manifest.backup_max_activation_recovery_lag_minutes > 0 &&
       manifest.backup_max_activation_recovery_lag_minutes <= 60,
     "Activation backup recovery lag must be bounded to at most 60 minutes.",
   );
 
   assert.ok(
-    /function Test-BinderActivationClientsDarkEvidenceV1/i.test(
-      moduleSource,
-    ),
+    /function Test-BinderActivationClientsDarkEvidenceV1/i.test(moduleSource),
     "Activation module is missing its clients-dark evidence validator.",
   );
   const evidenceBody = functionBody(
@@ -1158,10 +1269,7 @@ test("clients-dark evidence policy fixes both client identities and every false 
     evidenceBody,
     /production_origin\s*-ceq\s*'https:\/\/grookaivault\.com'/i,
   );
-  assert.match(
-    evidenceBody,
-    /application_id\s*-ceq\s*'com\.grookai\.vault'/i,
-  );
+  assert.match(evidenceBody, /application_id\s*-ceq\s*'com\.grookai\.vault'/i);
   assert.match(
     evidenceBody,
     /deployment_id\s*-ceq\s*\$ExpectedWebDeploymentId/i,
@@ -1174,10 +1282,7 @@ test("clients-dark evidence policy fixes both client identities and every false 
     evidenceBody,
     /\[int\][^\r\n]*version_code\s*-eq\s*\$ExpectedMobileVersionCode/i,
   );
-  assert.match(
-    evidenceBody,
-    /apk_sha256\s*-ceq\s*\$ExpectedMobileApkSha256/i,
-  );
+  assert.match(evidenceBody, /apk_sha256\s*-ceq\s*\$ExpectedMobileApkSha256/i);
   assert.match(
     disabledFlagBody,
     /(?:\.Value|\$FlagMap\[\$key\])\s*-eq\s*\$false/i,
@@ -1193,9 +1298,7 @@ test("clients-dark evidence policy fixes both client identities and every false 
     /\$expires\s*-le\s*\$created\.AddHours\(\$[A-Za-z0-9_.]*clients_dark_evidence_ttl_hours\)/i,
   );
   assert.match(evidenceBody, /ReportSha256/i);
-  const evidenceSealStart = evidenceBody.indexOf(
-    "Open-BinderActivationSealV1",
-  );
+  const evidenceSealStart = evidenceBody.indexOf("Open-BinderActivationSealV1");
   const evidenceChecksum = evidenceBody.indexOf(
     "Test-BinderActivationChecksumsV1",
   );
@@ -1247,10 +1350,7 @@ test("every phase chains sealed clients-dark evidence through preflight, apply, 
     assert.match(preflightEntry, pattern);
     assert.match(preflightBody, pattern);
   }
-  assert.match(
-    preflightBody,
-    /Test-BinderActivationClientsDarkEvidenceV1/i,
-  );
+  assert.match(preflightBody, /Test-BinderActivationClientsDarkEvidenceV1/i);
 
   const continuityFields = [
     "clients_dark_evidence_root",
@@ -1279,14 +1379,8 @@ test("every phase chains sealed clients-dark evidence through preflight, apply, 
       );
     }
   }
-  assert.match(
-    applyBody,
-    /Test-BinderActivationClientsDarkEvidenceV1/i,
-  );
-  assert.match(
-    recoveryBody,
-    /Test-BinderActivationClientsDarkEvidenceV1/i,
-  );
+  assert.match(applyBody, /Test-BinderActivationClientsDarkEvidenceV1/i);
+  assert.match(recoveryBody, /Test-BinderActivationClientsDarkEvidenceV1/i);
   assert.match(applyBody, /Open-BinderActivationSealV1\s+-Paths/i);
   assert.match(recoveryBody, /Open-BinderActivationSealV1\s+-Paths/i);
   assert.match(
@@ -1447,52 +1541,32 @@ test("recovery consumes exactly one sealed success or failure evidence set", () 
   assert.match(recoveryBody, /Assert-BinderActivationRepositoryV1/i);
   assert.match(recoveryBody, /Assert-ProjectBindingV1/i);
   assert.match(recoveryBody, /Resolve-BinderSupabaseExecutableV1/i);
-  assert.match(
-    recoveryBody,
-    /Invoke-BinderActivationDiagnosticReadbackV1/i,
-  );
+  assert.match(recoveryBody, /Invoke-BinderActivationDiagnosticReadbackV1/i);
   assert.match(recoveryBody, /-EnabledBefore\b/i);
   assert.match(recoveryBody, /-EnabledAfter\b/i);
   assert.match(recoveryBody, /EnabledFlags/i);
   assert.match(recoveryBody, /EffectiveEnabledFlags/i);
   assert.match(recoveryBody, /DiagnosticState/i);
-  assert.match(
-    recoveryBody,
-    /GROOKAI_BINDER_ACTIVATION_RECOVERY_ACK/i,
-  );
-  assert.match(
-    recoveryBody,
-    /RECOVER-COLLABORATIVE-BINDERS-V1::/i,
-  );
+  assert.match(recoveryBody, /GROOKAI_BINDER_ACTIVATION_RECOVERY_ACK/i);
+  assert.match(recoveryBody, /RECOVER-COLLABORATIVE-BINDERS-V1::/i);
   assert.match(
     recoveryBody,
     /package_fingerprint_sha256\s*-ceq\s*\$[A-Za-z0-9_.]*PackageFingerprintSha256/i,
   );
-  assert.match(
-    recoveryBody,
-    /project_ref\s*-ceq\s*'ycdxbpibncqcchqiihfz'/i,
-  );
-  assert.match(
-    recoveryBody,
-    /head_sha\s*-ceq\s*\$ExpectedHeadSha/i,
-  );
+  assert.match(recoveryBody, /project_ref\s*-ceq\s*'ycdxbpibncqcchqiihfz'/i);
+  assert.match(recoveryBody, /head_sha\s*-ceq\s*\$ExpectedHeadSha/i);
   assert.match(
     recoveryBody,
     /rollout_model\s*-ceq\s*'clients_dark_empty_domain'/i,
   );
-  assert.match(
-    recoveryBody,
-    /binder_domain_must_remain_empty\s*-eq\s*\$true/i,
-  );
+  assert.match(recoveryBody, /binder_domain_must_remain_empty\s*-eq\s*\$true/i);
   assertToolchainAndProjectSealSet(recoveryBody, "Recovery");
 
   const sealStart = recoveryBody.indexOf("Open-BinderActivationSealV1");
   const diagnosticStart = recoveryBody.indexOf(
     "Invoke-BinderActivationDiagnosticReadbackV1",
   );
-  const sealEnd = recoveryBody.lastIndexOf(
-    "Close-BinderActivationSealV1",
-  );
+  const sealEnd = recoveryBody.lastIndexOf("Close-BinderActivationSealV1");
   assert.ok(
     sealStart !== -1 &&
       diagnosticStart > sealStart &&
@@ -1512,30 +1586,15 @@ test("recovery emits prior evidence only for exact after; before and unexpected 
   assert.match(recoveryBody, /'unexpected'/i);
   assert.match(recoveryBody, /recovery_classification/i);
   assert.match(recoveryBody, /recovered_prior_evidence/i);
-  assert.match(
-    recoveryBody,
-    /recovered_from_evidence_checksum_sha256/i,
-  );
+  assert.match(recoveryBody, /recovered_from_evidence_checksum_sha256/i);
   assert.match(recoveryBody, /apply-result\.json/i);
   assert.match(recoveryBody, /readback\.after\.json/i);
   assert.match(recoveryBody, /STOP-recovery\.json/i);
-  assert.match(
-    recoveryBody,
-    /Write-BinderActivationChecksumsV1\s+-Root/i,
-  );
+  assert.match(recoveryBody, /Write-BinderActivationChecksumsV1\s+-Root/i);
   assert.match(recoveryBody, /mutation_succeeded\s*=\s*\$true/i);
-  assert.match(
-    recoveryBody,
-    /mutation_termination_confirmed\s*=\s*\$true/i,
-  );
-  assert.match(
-    recoveryBody,
-    /automatic_retry_permitted\s*=\s*\$false/i,
-  );
-  assert.match(
-    recoveryBody,
-    /automatic_rollback_permitted\s*=\s*\$false/i,
-  );
+  assert.match(recoveryBody, /mutation_termination_confirmed\s*=\s*\$true/i);
+  assert.match(recoveryBody, /automatic_retry_permitted\s*=\s*\$false/i);
+  assert.match(recoveryBody, /automatic_rollback_permitted\s*=\s*\$false/i);
   assert.doesNotMatch(
     recoveryBody,
     /automatic_(?:retry|rollback)_permitted\s*=\s*\$true/i,
@@ -1561,9 +1620,7 @@ test("recovery emits prior evidence only for exact after; before and unexpected 
     "Only exact-after recovery may emit prior-success evidence.",
   );
 
-  const afterGuard = recoveryBody.search(
-    /DiagnosticState\s*-ceq\s*'after'/i,
-  );
+  const afterGuard = recoveryBody.search(/DiagnosticState\s*-ceq\s*'after'/i);
   const priorEvidenceWrite = recoveryBody.search(/apply-result\.json/i);
   assert.ok(
     afterGuard !== -1 && priorEvidenceWrite > afterGuard,
@@ -1574,7 +1631,9 @@ test("recovery emits prior evidence only for exact after; before and unexpected 
 test("the emergency kill switch is fixed and content-addressed", () => {
   const sqlDirectory = absolute("scripts/ops/sql");
   const unmanifestedKillFiles = readdirSync(sqlDirectory)
-    .filter((name) => /collaborative_binders_activation.*kill.*\.sql$/i.test(name))
+    .filter((name) =>
+      /collaborative_binders_activation.*kill.*\.sql$/i.test(name),
+    )
     .map((name) => `scripts/ops/sql/${name}`);
   const killSwitch = manifest.kill_switch;
 
@@ -1613,10 +1672,7 @@ test("kill-switch SQL only disables schema_internal from an exact phase vector",
   );
   const sql = source(KILL_SWITCH_SQL_PATH);
   const stripped = assertOnePreparedStatement(sql, KILL_SWITCH_SQL_PATH);
-  assert.equal(
-    (stripped.match(/(?:^|\r?\n)\s*update\b/gi) ?? []).length,
-    1,
-  );
+  assert.equal((stripped.match(/(?:^|\r?\n)\s*update\b/gi) ?? []).length, 1);
   assert.equal(
     (
       stripped.match(
@@ -1629,15 +1685,9 @@ test("kill-switch SQL only disables schema_internal from an exact phase vector",
     stripped,
     /\b(?:insert|delete|merge|call|do|execute|alter|create|drop|truncate|copy|grant|revoke)\b/i,
   );
-  assert.match(
-    stripped,
-    /\bupdate\s+public\.binder_feature_flags\s+target\b/i,
-  );
+  assert.match(stripped, /\bupdate\s+public\.binder_feature_flags\s+target\b/i);
   assert.match(sql, /\bset\s+enabled\s*=\s*false\b/i);
-  assert.match(
-    sql,
-    /where\s+target\.flag_key\s*=\s*'schema_internal'/i,
-  );
+  assert.match(sql, /where\s+target\.flag_key\s*=\s*'schema_internal'/i);
   assert.match(sql, /target\.enabled\s*=\s*true/i);
   assert.match(sql, /pg_try_advisory_xact_lock/i);
   assert.match(sql, /for\s+update\s+of\s+f\s+nowait/i);
@@ -1744,50 +1794,26 @@ test("kill-switch orchestration preserves production, evidence, and seal gates",
   assert.match(killBody, /Resolve-BinderSupabaseExecutableV1/i);
   assert.match(killBody, /Open-BinderActivationSealV1\s+-Paths/i);
   assert.match(killBody, /Close-BinderActivationSealV1\s+-Streams/i);
-  assert.match(
-    killBody,
-    /Invoke-BinderActivationDiagnosticReadbackV1/i,
-  );
+  assert.match(killBody, /Invoke-BinderActivationDiagnosticReadbackV1/i);
   assert.match(killBody, /GROOKAI_BINDER_ACTIVATION_KILL_ACK/i);
-  assert.match(
-    killBody,
-    /DISABLE-COLLABORATIVE-BINDERS-V1::/i,
-  );
+  assert.match(killBody, /DISABLE-COLLABORATIVE-BINDERS-V1::/i);
   assert.match(
     killBody,
     /package_fingerprint_sha256\s*-ceq\s*\$[A-Za-z0-9_.]*PackageFingerprintSha256/i,
   );
-  assert.match(
-    killBody,
-    /project_ref\s*-ceq\s*'ycdxbpibncqcchqiihfz'/i,
-  );
+  assert.match(killBody, /project_ref\s*-ceq\s*'ycdxbpibncqcchqiihfz'/i);
   assert.match(killBody, /head_sha\s*-ceq\s*\$ExpectedHeadSha/i);
+  assert.match(killBody, /rollout_model\s*-ceq\s*'clients_dark_empty_domain'/i);
+  assert.match(killBody, /binder_domain_must_remain_empty\s*-eq\s*\$true/i);
+  assert.match(killBody, /'db',\s*'query',\s*'--linked',\s*'--file'/i);
   assert.match(
     killBody,
-    /rollout_model\s*-ceq\s*'clients_dark_empty_domain'/i,
+    /collaborative_binders_activation_kill_switch_v1\.sql/i,
   );
-  assert.match(
-    killBody,
-    /binder_domain_must_remain_empty\s*-eq\s*\$true/i,
-  );
-  assert.match(
-    killBody,
-    /'db',\s*'query',\s*'--linked',\s*'--file'/i,
-  );
-  assert.match(killBody, /collaborative_binders_activation_kill_switch_v1\.sql/i);
   assert.match(killBody, /kill-switch-result\.json/i);
-  assert.match(
-    killBody,
-    /Write-BinderActivationChecksumsV1\s+-Root/i,
-  );
-  assert.match(
-    killBody,
-    /automatic_retry_permitted\s*=\s*\$false/i,
-  );
-  assert.match(
-    killBody,
-    /automatic_rollback_permitted\s*=\s*\$false/i,
-  );
+  assert.match(killBody, /Write-BinderActivationChecksumsV1\s+-Root/i);
+  assert.match(killBody, /automatic_retry_permitted\s*=\s*\$false/i);
+  assert.match(killBody, /automatic_rollback_permitted\s*=\s*\$false/i);
   assert.doesNotMatch(
     killBody,
     /automatic_(?:retry|rollback)_permitted\s*=\s*\$true/i,

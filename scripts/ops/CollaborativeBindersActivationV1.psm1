@@ -338,6 +338,214 @@ function Assert-BinderActivationArtifactRootV1 {
   return $resolved
 }
 
+function Assert-BinderInstallationEvidenceRootV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path,
+
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot
+  )
+
+  $secureOpsRoot = [IO.Path]::GetFullPath(
+    'C:\secure-ops'
+  ).TrimEnd('\', '/')
+  $candidate = [IO.Path]::GetFullPath($Path).TrimEnd('\', '/')
+  $preflightRoot = Split-Path -Parent $candidate
+  Assert-BinderActivationConditionV1 (
+    Test-Path -LiteralPath $secureOpsRoot -PathType Container
+  ) 'C:\secure-ops is not a directory.'
+  $secureOpsItem = Get-Item -LiteralPath $secureOpsRoot
+  Assert-BinderActivationConditionV1 (
+    -not $secureOpsItem.Attributes.HasFlag(
+      [IO.FileAttributes]::ReparsePoint
+    )
+  ) 'C:\secure-ops must not be a reparse point.'
+  Assert-BinderActivationConditionV1 (
+    (Split-Path -Parent $preflightRoot) -ceq $secureOpsRoot
+  ) (
+    'Binder installation evidence must be an exact child of a ' +
+    'production preflight root directly under C:\secure-ops.'
+  )
+  Assert-BinderActivationConditionV1 (
+    (Split-Path -Leaf $candidate) -cmatch
+      '^apply-\d{8}T\d{6}Z$'
+  ) 'Binder installation evidence directory name is invalid.'
+
+  foreach ($root in @($preflightRoot, $candidate)) {
+    Assert-BinderActivationConditionV1 (
+      Test-Path -LiteralPath $root -PathType Container
+    ) 'Binder installation evidence chain is missing.'
+    $rootItem = Get-Item -LiteralPath $root
+    Assert-BinderActivationConditionV1 (
+      -not $rootItem.Attributes.HasFlag(
+        [IO.FileAttributes]::ReparsePoint
+      )
+    ) 'Binder installation evidence chain must not use reparse points.'
+  }
+
+  $resolvedPreflightRoot = & $script:RolloutModule {
+    param($TargetPath, $TargetRepoRoot)
+    Assert-BinderArtifactRootV1 `
+      -Path $TargetPath `
+      -RepoRoot $TargetRepoRoot `
+      -MustExist $true
+  } $preflightRoot $RepoRoot
+  $resolvedApplyRoot = & $script:RolloutModule {
+    param($TargetPath, $TargetRepoRoot)
+    Assert-BinderArtifactRootV1 `
+      -Path $TargetPath `
+      -RepoRoot $TargetRepoRoot `
+      -MustExist $true
+  } $candidate $RepoRoot
+  Assert-BinderActivationConditionV1 (
+    (Split-Path -Parent $resolvedApplyRoot) -ceq
+      $resolvedPreflightRoot
+  ) 'Binder installation evidence chain changed during validation.'
+  [void](Assert-BinderActivationArtifactAclV1 -Path $resolvedPreflightRoot)
+  [void](Assert-BinderActivationArtifactAclV1 -Path $resolvedApplyRoot)
+  return $resolvedApplyRoot
+}
+
+function Test-BinderInstallationPreflightEvidenceV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$PreflightRoot,
+
+    [Parameter(Mandatory = $true)]
+    [string]$ApplyRoot
+  )
+
+  $resolvedPreflightRoot = [IO.Path]::GetFullPath(
+    $PreflightRoot
+  ).TrimEnd('\', '/')
+  $resolvedApplyRoot = [IO.Path]::GetFullPath(
+    $ApplyRoot
+  ).TrimEnd('\', '/')
+  Assert-BinderActivationConditionV1 (
+    (Split-Path -Parent $resolvedApplyRoot) -ceq
+      $resolvedPreflightRoot
+  ) 'Installation apply evidence is not inside its preflight root.'
+
+  $directories = @(
+    Get-ChildItem `
+      -LiteralPath $resolvedPreflightRoot `
+      -Directory `
+      -Force
+  )
+  Assert-BinderActivationConditionV1 (
+    $directories.Count -eq 1 -and
+    $directories[0].FullName -ceq $resolvedApplyRoot -and
+    -not $directories[0].Attributes.HasFlag(
+      [IO.FileAttributes]::ReparsePoint
+    )
+  ) (
+    'Installation preflight evidence must contain only its one exact ' +
+    'non-reparse apply directory.'
+  )
+
+  $checksumPath = Join-Path (
+    $resolvedPreflightRoot
+  ) 'checksums.sha256'
+  Assert-BinderActivationConditionV1 (
+    Test-Path -LiteralPath $checksumPath -PathType Leaf
+  ) 'Installation preflight checksum bundle is missing.'
+  $checksumItem = Get-Item -LiteralPath $checksumPath -Force
+  Assert-BinderActivationConditionV1 (
+    -not $checksumItem.Attributes.HasFlag(
+      [IO.FileAttributes]::ReparsePoint
+    )
+  ) 'Installation preflight checksum bundle must not be a reparse point.'
+
+  $expected = [ordered]@{}
+  foreach ($line in Get-Content -LiteralPath $checksumPath) {
+    if ([string]::IsNullOrWhiteSpace($line)) {
+      continue
+    }
+    $match = [regex]::Match(
+      $line,
+      '^(?<hash>[0-9a-f]{64})  (?<path>[^\r\n]+)$'
+    )
+    Assert-BinderActivationConditionV1 (
+      $match.Success
+    ) 'Installation preflight checksum bundle contains an invalid line.'
+    $relative = $match.Groups['path'].Value
+    Assert-BinderActivationConditionV1 (
+      -not [IO.Path]::IsPathFullyQualified($relative) -and
+      -not $relative.Contains('..') -and
+      -not $relative.Contains(':') -and
+      -not $relative.Contains('/') -and
+      -not $relative.Contains('\')
+    ) (
+      'Installation preflight checksum bundle contains an unsafe ' +
+      'top-level path.'
+    )
+    Assert-BinderActivationConditionV1 (
+      -not $expected.Contains($relative)
+    ) (
+      'Installation preflight checksum bundle contains a duplicate ' +
+      "path: $relative"
+    )
+    $expected[$relative] = $match.Groups['hash'].Value
+  }
+
+  $actual = @(
+    Get-ChildItem `
+      -LiteralPath $resolvedPreflightRoot `
+      -File `
+      -Force |
+      Where-Object { $_.FullName -cne $checksumPath } |
+      Sort-Object FullName
+  )
+  Assert-BinderActivationConditionV1 (
+    $actual.Count -eq $expected.Count
+  ) 'Installation preflight file set changed after its checksum seal.'
+  foreach ($file in $actual) {
+    Assert-BinderActivationConditionV1 (
+      -not $file.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint)
+    ) (
+      'Installation preflight file must not be a reparse point: ' +
+      $file.FullName
+    )
+    $relative = $file.Name
+    Assert-BinderActivationConditionV1 (
+      $expected.Contains($relative)
+    ) "Installation preflight checksum is missing: $relative"
+    Assert-BinderActivationConditionV1 (
+      (Get-BinderActivationSha256V1 -Path $file.FullName) -ceq
+        $expected[$relative]
+    ) "Installation preflight checksum mismatch: $relative"
+  }
+
+  $required = @(
+    'preflight-manifest.json',
+    'preflight-manifest.sha256',
+    'backup-evidence.digest.json'
+  )
+  foreach ($relative in $required) {
+    Assert-BinderActivationConditionV1 (
+      $expected.Contains($relative)
+    ) "Installation preflight checksum is missing: $relative"
+  }
+
+  return [pscustomobject][ordered]@{
+    Root = $resolvedPreflightRoot
+    ApplyRoot = $resolvedApplyRoot
+    ChecksumPath = $checksumPath
+    ChecksumSha256 = Get-BinderActivationSha256V1 -Path $checksumPath
+    ManifestPath = Join-Path (
+      $resolvedPreflightRoot
+    ) 'preflight-manifest.json'
+    ManifestSidecarPath = Join-Path (
+      $resolvedPreflightRoot
+    ) 'preflight-manifest.sha256'
+    BackupDigestPath = Join-Path (
+      $resolvedPreflightRoot
+    ) 'backup-evidence.digest.json'
+    FileCount = $actual.Count
+  }
+}
+
 function Test-BinderActivationChecksumsV1 {
   param(
     [Parameter(Mandatory = $true)]
@@ -1503,9 +1711,22 @@ function Test-BinderActivationPriorEvidenceV1 {
   )
 
   $policy = Get-BinderActivationPolicyV1 -RepoRoot $RepoRoot
-  $root = Assert-BinderActivationArtifactRootV1 `
-    -Path $Path `
-    -RepoRoot $RepoRoot
+  $root = if ([int]$Phase.sequence -eq 1) {
+    Assert-BinderInstallationEvidenceRootV1 `
+      -Path $Path `
+      -RepoRoot $RepoRoot
+  } else {
+    Assert-BinderActivationArtifactRootV1 `
+      -Path $Path `
+      -RepoRoot $RepoRoot
+  }
+  $installationPreflight = if ([int]$Phase.sequence -eq 1) {
+    Test-BinderInstallationPreflightEvidenceV1 `
+      -PreflightRoot (Split-Path -Parent $root) `
+      -ApplyRoot $root
+  } else {
+    $null
+  }
   $checksums = Test-BinderActivationChecksumsV1 -Root $root
   $resultPath = Join-Path $root 'apply-result.json'
   $readbackPath = Join-Path $root 'readback.after.json'
@@ -1546,19 +1767,8 @@ function Test-BinderActivationPriorEvidenceV1 {
       @($readback.checks.enabled_flags).Count -eq 0
     ) 'Installation evidence readback is invalid.'
 
-    $installationPreflightRoot = Split-Path -Parent $root
-    $installationManifestPath = Join-Path (
-      $installationPreflightRoot
-    ) 'preflight-manifest.json'
-    $backupDigestPath = Join-Path (
-      $installationPreflightRoot
-    ) 'backup-evidence.digest.json'
-    Assert-BinderActivationConditionV1 (
-      Test-Path -LiteralPath $installationManifestPath -PathType Leaf
-    ) 'Installation preflight manifest is missing beside apply evidence.'
-    Assert-BinderActivationConditionV1 (
-      Test-Path -LiteralPath $backupDigestPath -PathType Leaf
-    ) 'Installation backup digest is missing beside apply evidence.'
+    $installationManifestPath = $installationPreflight.ManifestPath
+    $backupDigestPath = $installationPreflight.BackupDigestPath
     $installationManifest = & $script:RolloutModule {
       param($TargetPath, $TargetCompletedAtUtc)
       Test-PreflightManifestV1 `
