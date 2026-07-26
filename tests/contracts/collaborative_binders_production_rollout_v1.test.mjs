@@ -1760,7 +1760,7 @@ try {
   assert.match(result.MissingFailure, /truncat/i);
 });
 
-test("backup recovery horizon is never future and never more than 60 minutes old", () => {
+test("backup recovery horizon is never future and never more than 24 hours old", () => {
   const moduleSource = source(MODULE_PATH);
   const policyBody = powerShellFunctionBody(
     moduleSource,
@@ -1774,9 +1774,10 @@ test("backup recovery horizon is never future and never more than 60 minutes old
     /BackupRecoveryLagMinutes\s*=\s*(\d+)/i,
   );
   assert.ok(lagMatch, "Backup recovery lag policy is missing.");
-  assert.ok(
-    Number(lagMatch[1]) > 0 && Number(lagMatch[1]) <= 60,
-    "Backup recovery lag policy exceeds 60 minutes.",
+  assert.equal(
+    Number(lagMatch[1]),
+    1440,
+    "Backup recovery lag policy must match the reviewed daily-backup window.",
   );
   assert.match(
     backupBody,
@@ -1820,7 +1821,8 @@ try {
   [pscustomobject]@{
     ExactNow = Test-Case '2031-02-03T12:35:00.0000000Z'
     Future = Test-Case '2031-02-03T12:35:01.0000000Z'
-    TooOld = Test-Case '2031-02-03T11:33:59.0000000Z'
+    ExactBoundary = Test-Case '2031-02-02T12:35:00.0000000Z'
+    TooOld = Test-Case '2031-02-02T12:34:59.0000000Z'
   } | ConvertTo-Json -Compress
 } finally {
   if (
@@ -1839,6 +1841,7 @@ try {
   );
   assert.equal(result.ExactNow, "accepted");
   assert.match(result.Future, /future/i);
+  assert.equal(result.ExactBoundary, "accepted");
   assert.match(result.TooOld, /too old/i);
 });
 

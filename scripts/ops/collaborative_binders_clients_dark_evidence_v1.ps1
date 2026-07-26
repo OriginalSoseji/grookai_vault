@@ -43,9 +43,9 @@ $activationModulePath =
 $productionModulePath =
   Join-Path $PSScriptRoot 'CollaborativeBindersProductionRolloutV1.psm1'
 $expectedActivationModuleSha256 =
-  'c0666dc317cc74bc4b6f0619c48a0ef26d60b29a3eb0f589f704c9385fa52fa1'
+  'e83d0f699f9c25e43d9e7992fe21b0ec924adb6e54315ffa366de4f7643e9ce7'
 $expectedProductionModuleSha256 =
-  'be131d5434bf475d90cb26d4b257b369c45931569340e8303a9cd5a6915650d8'
+  '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
 
 $activationModuleItem = Get-Item -LiteralPath $activationModulePath
 if ($activationModuleItem.Attributes.HasFlag(

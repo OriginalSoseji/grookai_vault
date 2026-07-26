@@ -14,7 +14,7 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "5990da41b756646097f0ab13947e5b6a1b4b7e42f04f9e056de89428c8d63bd9";
+  "5a18aeb749e8a4fc1da74949228c5e0d519c48935e5315baea679ca3b398df19";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
@@ -1194,11 +1194,10 @@ test("clients-dark evidence policy fixes both client identities and every false 
     manifest.clients_dark_samsung_compile_flag_keys,
     SAMSUNG_CLIENT_FLAGS,
   );
-  assert.ok(
-    Number.isInteger(manifest.backup_max_activation_recovery_lag_minutes) &&
-      manifest.backup_max_activation_recovery_lag_minutes > 0 &&
-      manifest.backup_max_activation_recovery_lag_minutes <= 60,
-    "Activation backup recovery lag must be bounded to at most 60 minutes.",
+  assert.equal(
+    manifest.backup_max_activation_recovery_lag_minutes,
+    1440,
+    "Activation backup recovery lag must match the reviewed daily-backup window.",
   );
 
   assert.ok(
@@ -1431,9 +1430,10 @@ test("phase backup recovery horizon is never future and at most policy minutes o
   const watcher = source(BACKUP_WATCH_PATH);
   const watcherLag = watcher.match(/\$recoveryLagMinutes\s*=\s*(\d+)/i);
   assert.ok(watcherLag, "Backup watcher recovery lag is missing.");
-  assert.ok(
-    Number(watcherLag[1]) > 0 && Number(watcherLag[1]) <= 60,
-    "Backup watcher recovery lag exceeds 60 minutes.",
+  assert.equal(
+    Number(watcherLag[1]),
+    manifest.backup_max_activation_recovery_lag_minutes,
+    "Backup watcher and activation recovery windows must match.",
   );
   assert.match(
     watcher,

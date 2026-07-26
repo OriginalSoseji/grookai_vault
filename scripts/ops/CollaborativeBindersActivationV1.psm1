@@ -13,7 +13,7 @@ $script:RolloutModulePath = Join-Path (
   $script:ActivationRepoRoot
 ) 'scripts/ops/CollaborativeBindersProductionRolloutV1.psm1'
 $script:ExpectedRolloutModuleSha256 =
-  'be131d5434bf475d90cb26d4b257b369c45931569340e8303a9cd5a6915650d8'
+  '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
 $rolloutModuleItem = Get-Item -LiteralPath $script:RolloutModulePath
 if ($rolloutModuleItem.Attributes.HasFlag(
   [IO.FileAttributes]::ReparsePoint
@@ -1186,7 +1186,7 @@ function Get-BinderActivationPolicyV1 {
     $manifest.binder_domain_must_remain_empty -eq $true -and
     $manifest.backup_chain_required -eq $true -and
     [int]$manifest.prior_evidence_ttl_hours -eq 2 -and
-    [int]$manifest.backup_max_activation_recovery_lag_minutes -eq 60 -and
+    [int]$manifest.backup_max_activation_recovery_lag_minutes -eq 1440 -and
     $manifest.clients_dark_evidence_required -eq $true -and
     [int]$manifest.clients_dark_evidence_ttl_hours -eq 2 -and
     [string]$manifest.clients_dark_evidence_package_id -ceq

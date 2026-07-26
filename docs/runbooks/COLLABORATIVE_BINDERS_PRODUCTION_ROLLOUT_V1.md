@@ -110,7 +110,7 @@ does not create or claim a backup.
 
 `backup_kind` may be `supabase_pitr`, `supabase_platform_backup`, or
 `verified_logical_backup`. Verification must be no more than 24 hours old, and
-the recoverable horizon must be within 15 minutes of the preflight.
+the recoverable horizon must be no more than 24 hours old at preflight.
 
 ## Source-only validation
 
