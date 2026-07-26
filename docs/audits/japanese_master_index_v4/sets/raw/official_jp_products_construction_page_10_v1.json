@@ -1,0 +1,74 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 10,
+    "maxPage": 10,
+    "hitCnt": 185,
+    "products": [
+        {
+            "productTitle": "ポケモンジム第2弾「タマムシシティジム　エリカ」",
+            "productType": "構築デッキ",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-7.jpg",
+            "releaseDate": "1998年 7月25日（土）",
+            "priceTxt": "1,400円（税抜き）",
+            "description": "デッキ(カード60枚)／1個\n拡張カード／4枚\nポケモンコイン／1枚\nルールブック／1冊\nポケモンジムの使いかた【エリカ篇】／1冊",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ポケモンジム第2弾「クチバシティジム　マチス」",
+            "productType": "構築デッキ",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-6.jpg",
+            "releaseDate": "1998年 7月25日（土）",
+            "priceTxt": "1,400円（税抜き）",
+            "description": "デッキ(カード60枚)／1個\n拡張カード／4枚\nポケモンコイン／1枚\nルールブック／1冊\nポケモンジムの使いかた【マチス篇】／1冊",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ポケモンジム第1弾「ハナダシティジム　カスミ」",
+            "productType": "構築デッキ",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-5.jpg",
+            "releaseDate": "1998年 4月26日（日）",
+            "priceTxt": "1,400円（税抜き）",
+            "description": "デッキ(カード60枚)／1個\n拡張カード／4枚\nポケモンコイン／1枚\nルールブック／1冊\nポケモンジムの使いかた【カスミ篇】／1冊",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ポケモンジム第1弾「ニビシティジム　タケシ」",
+            "productType": "構築デッキ",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-4.jpg",
+            "releaseDate": "1998年 4月26日（日）",
+            "priceTxt": "1,400円（税抜き）",
+            "description": "デッキ(カード60枚)／1個\n拡張カード／4枚\nポケモンコイン／1枚\nルールブック／1冊\nポケモンジムの使いかた【タケシ篇】／1冊",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "第1弾 スターターパック",
+            "productType": "構築デッキ",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-1.jpg",
+            "releaseDate": "1996年10月20日（日）",
+            "priceTxt": "1,300円（税抜き）",
+            "description": "カード／60枚\nポケモンコイン／1枚\n遊びかた説明書／1冊\n※デッキの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        }
+    ]
+}

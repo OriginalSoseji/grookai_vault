@@ -1,0 +1,318 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "assertion_counts_by_official_container": [
+      {
+        "count": 267,
+        "key": "others"
+      },
+      {
+        "count": 188,
+        "key": "expansion"
+      },
+      {
+        "count": 185,
+        "key": "construction"
+      }
+    ],
+    "assertion_counts_by_release_kind": [
+      {
+        "count": 267,
+        "key": "その他の商品"
+      },
+      {
+        "count": 188,
+        "key": "拡張パック"
+      },
+      {
+        "count": 185,
+        "key": "構築デッキ"
+      }
+    ],
+    "assertion_counts_by_scope_hint": [
+      {
+        "count": 503,
+        "key": "requires_product_scope_review"
+      },
+      {
+        "count": 137,
+        "key": "card_list_linked"
+      }
+    ],
+    "assertion_counts_by_source": [
+      {
+        "count": 640,
+        "key": "official_jp_products"
+      },
+      {
+        "count": 453,
+        "key": "tcgcollector_jp_sets"
+      },
+      {
+        "count": 419,
+        "key": "artofpkm_jp_sets"
+      },
+      {
+        "count": 262,
+        "key": "limitless_jp_sets"
+      },
+      {
+        "count": 177,
+        "key": "tcgdex_ja_sets"
+      }
+    ],
+    "conflict_counts_by_type": [
+      {
+        "count": 497,
+        "key": "official_product_scope_review"
+      },
+      {
+        "count": 122,
+        "key": "expected_card_count_disagreement"
+      },
+      {
+        "count": 23,
+        "key": "source_name_reused_within_source"
+      },
+      {
+        "count": 4,
+        "key": "native_code_maps_to_multiple_releases"
+      }
+    ],
+    "gate": {
+      "card_level_promotion_allowed": false,
+      "every_assertion_represented": true,
+      "reason": "phase_2_registry_review_is_still_active",
+      "source_placeholders_remaining": 0,
+      "unexplained_alias_collisions": 0
+    },
+    "placeholder_counts_by_evidence_status": [
+      {
+        "count": 32,
+        "key": "cross_source_corroborated"
+      },
+      {
+        "count": 13,
+        "key": "single_source_direct"
+      }
+    ],
+    "registry_counts_by_entry_kind": [
+      {
+        "count": 744,
+        "key": "japanese_card_release"
+      },
+      {
+        "count": 631,
+        "key": "official_product"
+      }
+    ],
+    "registry_counts_by_era_label": [
+      {
+        "count": 84,
+        "key": "Sword & Shield"
+      },
+      {
+        "count": 77,
+        "key": "Sun & Moon"
+      },
+      {
+        "count": 72,
+        "key": "Scarlet & Violet"
+      },
+      {
+        "count": 64,
+        "key": "Sword & Shield Era"
+      },
+      {
+        "count": 59,
+        "key": "Black & White"
+      },
+      {
+        "count": 54,
+        "key": "Sun & Moon Era"
+      },
+      {
+        "count": 53,
+        "key": "Scarlet & Violet Era"
+      },
+      {
+        "count": 43,
+        "key": "PCG Era"
+      },
+      {
+        "count": 42,
+        "key": "Original Era"
+      },
+      {
+        "count": 42,
+        "key": "PCG"
+      },
+      {
+        "count": 41,
+        "key": "Black & White Era"
+      },
+      {
+        "count": 39,
+        "key": "XY"
+      },
+      {
+        "count": 39,
+        "key": "XY Era"
+      },
+      {
+        "count": 23,
+        "key": "Diamond & Pearl Era"
+      },
+      {
+        "count": 22,
+        "key": "X&Y"
+      },
+      {
+        "count": 21,
+        "key": "DP"
+      },
+      {
+        "count": 21,
+        "key": "Platinum Era"
+      },
+      {
+        "count": 21,
+        "key": "PMCG"
+      },
+      {
+        "count": 19,
+        "key": "MEGA"
+      },
+      {
+        "count": 19,
+        "key": "Mega Evolution Era"
+      },
+      {
+        "count": 17,
+        "key": "ADV"
+      },
+      {
+        "count": 17,
+        "key": "DPt"
+      },
+      {
+        "count": 17,
+        "key": "Mega"
+      },
+      {
+        "count": 17,
+        "key": "X&Y BREAK"
+      },
+      {
+        "count": 16,
+        "key": "ADV Era"
+      },
+      {
+        "count": 14,
+        "key": "LEGEND"
+      },
+      {
+        "count": 12,
+        "key": "e-Card"
+      },
+      {
+        "count": 12,
+        "key": "LEGEND Era"
+      },
+      {
+        "count": 9,
+        "key": "Neo"
+      },
+      {
+        "count": 9,
+        "key": "Neo Era"
+      },
+      {
+        "count": 8,
+        "key": "e-Card Era"
+      },
+      {
+        "count": 2,
+        "key": "VS & Web"
+      },
+      {
+        "count": 2,
+        "key": "VS Era"
+      },
+      {
+        "count": 1,
+        "key": "Web Era"
+      }
+    ],
+    "registry_counts_by_scope_status": [
+      {
+        "count": 713,
+        "key": "admitted_set_assertion"
+      },
+      {
+        "count": 497,
+        "key": "requires_product_scope_review"
+      },
+      {
+        "count": 134,
+        "key": "admitted_official_card_product"
+      },
+      {
+        "count": 31,
+        "key": "baseline_only"
+      }
+    ],
+    "registry_counts_by_source_depth": [
+      {
+        "count": 1018,
+        "key": "1"
+      },
+      {
+        "count": 154,
+        "key": "2"
+      },
+      {
+        "count": 97,
+        "key": "4"
+      },
+      {
+        "count": 74,
+        "key": "3"
+      },
+      {
+        "count": 31,
+        "key": "0"
+      },
+      {
+        "count": 1,
+        "key": "5"
+      }
+    ],
+    "summary": {
+      "alias_count": 2854,
+      "baseline_only_entry_count": 31,
+      "blocking_code_conflict_count": 4,
+      "case_only_alias_group_count": 116,
+      "conflict_count": 646,
+      "japanese_release_entry_count": 744,
+      "official_product_entry_count": 631,
+      "product_scope_review_count": 497,
+      "registry_entry_count": 1375,
+      "represented_source_assertion_count": 1951,
+      "source_assertion_count": 1951,
+      "source_placeholder_count": 45,
+      "unresolved_source_placeholder_count": 0
+    }
+  },
+  "content_fingerprint_sha256": "ee4a8924b07c78867acce2a356a8a26dc6bf33fc49b63c7469ced5750001c119",
+  "generated_at": "2026-07-26T16:49:56.766Z",
+  "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+  "retrieval": {
+    "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+    "baseline_path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
+    "mode": "offline_registry_resolution",
+    "resolver_version": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+    "source_assertions_fingerprint_sha256": "0dfb26d50fec70b7775c8263108dc976698e417fdefa5873156e63f879110e48",
+    "source_assertions_path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json"
+  }
+}

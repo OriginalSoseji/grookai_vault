@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_05_v1.json",
+  "body_sha256": "a86cdcc6f39b3e4015029703794c6f94d9a0b1e6956262d5bd2db8b5e63a7068",
+  "byte_size": 19735,
+  "fetched_at": "2026-07-26T16:32:24.705Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/products/resultAPI.php?productType=construction&dateLowerY=1996&dateLowerM=1&dateLowerD=1&dateUpperY=2099&dateUpperM=12&dateUpperD=31&page=5",
+  "response_headers": {
+    "cache-control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content-type": "application/json; charset=UTF-8",
+    "date": "Sun, 26 Jul 2026 16:32:25 GMT",
+    "expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+    "last-modified": "Sun, 26 Jul 2026 16:32:25 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "official_jp_products_construction_page_05",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

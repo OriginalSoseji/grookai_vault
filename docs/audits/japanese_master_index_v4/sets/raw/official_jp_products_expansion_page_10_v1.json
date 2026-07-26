@@ -1,0 +1,113 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 10,
+    "maxPage": 10,
+    "hitCnt": 188,
+    "products": [
+        {
+            "productTitle": "拡張パック 第2弾「遺跡をこえて...」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/neo/extend-item-neo-2.jpg",
+            "releaseDate": "2000年 7月 7日（金）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "拡張パック 第1弾「金、銀、新世界へ...」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/neo/extend-item-neo-1.jpg",
+            "releaseDate": "2000年 2月 4日（金）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ポケモンジム ジム拡張第2弾「闇からの挑戦」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-6.jpg",
+            "releaseDate": "1999年 6月25日（金）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ジム拡張第1弾「リーダーズスタジアム」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-5.jpg",
+            "releaseDate": "1998年10月24日（土）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "第4弾 拡張パック「ロケット団」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-4.jpg",
+            "releaseDate": "1997年11月21日（金）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "第3弾 拡張パック「化石の秘密」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-3.jpg",
+            "releaseDate": "1997年 6月21日（土）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "第2弾 拡張パック「ポケモンジャングル」",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-2.jpg",
+            "releaseDate": "1997年 3月 5日（水）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "第1弾 拡張パック",
+            "productType": "拡張パック",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/extend-item-poketMonsterCardGame-1.jpg",
+            "releaseDate": "1996年10月20日（日）",
+            "priceTxt": "300円（税抜き）",
+            "description": "カード／10枚\n※カードの内容はパックごとに異なります。",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        }
+    ]
+}

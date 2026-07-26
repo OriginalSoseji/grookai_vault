@@ -1,0 +1,758 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "resolutions": [
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:171",
+        "direct_source_name": "Cries of Secrecy",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 104,
+        "live_public_rows": 104,
+        "observed_expected_card_counts": [],
+        "placeholder_set_code": "jpn-artofpkm:171",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-488c725e7db2ee01"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:172",
+        "direct_source_name": "Temple of Wrath",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 96,
+        "live_public_rows": 96,
+        "observed_expected_card_counts": [],
+        "placeholder_set_code": "jpn-artofpkm:172",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-b9f77b3d8d360c71"
+      },
+      {
+        "corroborating_sources": [
+          "tcgcollector_jp_sets"
+        ],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:207",
+        "direct_source_name": "Battle Starter Deck Torterra",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 10,
+        "live_public_rows": 10,
+        "observed_expected_card_counts": [
+          10
+        ],
+        "placeholder_set_code": "jpn-artofpkm:207",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-3f35f60ef4a563ae"
+      },
+      {
+        "corroborating_sources": [
+          "tcgcollector_jp_sets"
+        ],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:208",
+        "direct_source_name": "Battle Starter Deck Magmortar",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 10,
+        "live_public_rows": 10,
+        "observed_expected_card_counts": [
+          9
+        ],
+        "placeholder_set_code": "jpn-artofpkm:208",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-8bc02c883a42e500"
+      },
+      {
+        "corroborating_sources": [
+          "tcgcollector_jp_sets"
+        ],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:209",
+        "direct_source_name": "Battle Starter Deck Blastoise",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 8,
+        "live_public_rows": 8,
+        "observed_expected_card_counts": [
+          10
+        ],
+        "placeholder_set_code": "jpn-artofpkm:209",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-d54606e0501452a2"
+      },
+      {
+        "corroborating_sources": [
+          "tcgcollector_jp_sets"
+        ],
+        "direct_source_expected_card_count": null,
+        "direct_source_key": "artofpkm_jp_sets:210",
+        "direct_source_name": "Battle Starter Deck Raichu",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 8,
+        "live_public_rows": 8,
+        "observed_expected_card_counts": [
+          11
+        ],
+        "placeholder_set_code": "jpn-artofpkm:210",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-e6bd41a4e8f3b1af"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 55,
+        "direct_source_key": "tcgcollector_jp_sets:11165",
+        "direct_source_name": "ADV Expansion Pack",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 165,
+        "live_public_rows": 165,
+        "observed_expected_card_counts": [
+          55
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11165",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-482756808099183d"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 48,
+        "direct_source_key": "tcgcollector_jp_sets:11168",
+        "direct_source_name": "Pokémon Web",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 187,
+        "live_public_rows": 187,
+        "observed_expected_card_counts": [
+          48
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11168",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-beb0c548298419ac"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 18,
+        "direct_source_key": "tcgcollector_jp_sets:11187",
+        "direct_source_name": "Southern Islands",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 36,
+        "live_public_rows": 36,
+        "observed_expected_card_counts": [
+          18
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11187",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-44b83fb3ad00862d"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 154,
+        "direct_source_key": "tcgcollector_jp_sets:11194",
+        "direct_source_name": "PCG Promos",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 238,
+        "live_public_rows": 238,
+        "observed_expected_card_counts": [
+          154
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11194",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-763166ec0fc5306a"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 48,
+        "direct_source_key": "tcgcollector_jp_sets:11201",
+        "direct_source_name": "Pokémon Jungle",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 96,
+        "live_public_rows": 96,
+        "observed_expected_card_counts": [
+          48
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11201",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-9200a69b8d9f3556"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 53,
+        "direct_source_key": "tcgcollector_jp_sets:11222",
+        "direct_source_name": "Miracle of the Desert",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 159,
+        "live_public_rows": 159,
+        "observed_expected_card_counts": [
+          53
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11222",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-f3edc7c4482495e6"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 80,
+        "direct_source_key": "tcgcollector_jp_sets:11233",
+        "direct_source_name": "Magma vs Aqua: Two Ambitions",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 160,
+        "live_public_rows": 160,
+        "observed_expected_card_counts": [
+          80
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11233",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-f74744ba0b0564be"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 24,
+        "direct_source_key": "tcgcollector_jp_sets:11238",
+        "direct_source_name": "McDonald's Pokémon-e Minimum Pack",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 36,
+        "live_public_rows": 36,
+        "observed_expected_card_counts": [
+          24
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11238",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-7fdf02069a9ea80a"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 83,
+        "direct_source_key": "tcgcollector_jp_sets:11248",
+        "direct_source_name": "Undone Seal",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 246,
+        "live_public_rows": 246,
+        "observed_expected_card_counts": [
+          83
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11248",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-b4c58ad14d37c38f"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 113,
+        "direct_source_key": "tcgcollector_jp_sets:11252",
+        "direct_source_name": "Darkness, and to Light...",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 2,
+        "live_public_rows": 2,
+        "observed_expected_card_counts": [
+          113
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11252",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-4f74998f8efd8c8b"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 54,
+        "direct_source_key": "tcgcollector_jp_sets:11281",
+        "direct_source_name": "Rulers of the Heavens",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 162,
+        "live_public_rows": 162,
+        "observed_expected_card_counts": [
+          54
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11281",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-6fbc82703daa225b"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 151,
+        "direct_source_key": "tcgcollector_jp_sets:11283",
+        "direct_source_name": "Pokémon VS",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 562,
+        "live_public_rows": 562,
+        "observed_expected_card_counts": [
+          151
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11283",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-fd414e710698524a"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 11,
+        "direct_source_key": "tcgcollector_jp_sets:11327",
+        "direct_source_name": "10th Movie Commemoration Set",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 2,
+        "live_public_rows": 2,
+        "observed_expected_card_counts": [
+          11
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11327",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-6fb9989e28ee4907"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 9,
+        "direct_source_key": "tcgcollector_jp_sets:11328",
+        "direct_source_name": "11th Movie Commemoration Set",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 14,
+        "live_public_rows": 14,
+        "observed_expected_card_counts": [
+          9
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11328",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-d86b3c409b90b7c5"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 16,
+        "direct_source_key": "tcgcollector_jp_sets:11418",
+        "direct_source_name": "Mirage's Mew Constructed Starter Deck",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 32,
+        "live_public_rows": 32,
+        "observed_expected_card_counts": [
+          16
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11418",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-61b69bafddc94cfb"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 20,
+        "direct_source_key": "tcgcollector_jp_sets:11438",
+        "direct_source_name": "Black Deck Kit",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 40,
+        "live_public_rows": 40,
+        "observed_expected_card_counts": [
+          20
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11438",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-8b21d280b4521d57"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 20,
+        "direct_source_key": "tcgcollector_jp_sets:11483",
+        "direct_source_name": "Movie Commemoration VS Pack: Sky-Splitting Deoxys",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 12,
+        "live_public_rows": 12,
+        "observed_expected_card_counts": [
+          20
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11483",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-d76370453dd0e64b"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11513",
+        "direct_source_name": "Movie Commemoration VS Pack",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 10,
+        "live_public_rows": 10,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11513",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-1a45a5860b285416"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 18,
+        "direct_source_key": "tcgcollector_jp_sets:11514",
+        "direct_source_name": "Theater Limited VS Pack",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 8,
+        "live_public_rows": 8,
+        "observed_expected_card_counts": [
+          18
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11514",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-cade029942d2d7d1"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 20,
+        "direct_source_key": "tcgcollector_jp_sets:11515",
+        "direct_source_name": "Movie Commemoration VS Pack: Aura's Lucario",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 12,
+        "live_public_rows": 12,
+        "observed_expected_card_counts": [
+          20
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11515",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-3fe8631720825ae0"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11516",
+        "direct_source_name": "Movie Commemoration VS Pack: Sea's Manaphy",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 12,
+        "live_public_rows": 12,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11516",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-c0fcf06ddc0362c3"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11521",
+        "direct_source_name": "Treecko Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 36,
+        "live_public_rows": 36,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11521",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-0264415a342c7714"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11522",
+        "direct_source_name": "Torchic Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 38,
+        "live_public_rows": 38,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11522",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-e629ac036ce0bcf4"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11523",
+        "direct_source_name": "Mudkip Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 38,
+        "live_public_rows": 38,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11523",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-89e7f81860a2a125"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11524",
+        "direct_source_name": "Flygon Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 38,
+        "live_public_rows": 38,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11524",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-8382db70c6403a67"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11525",
+        "direct_source_name": "Salamence Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 38,
+        "live_public_rows": 38,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11525",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-53d9ccc601f95ed3"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 19,
+        "direct_source_key": "tcgcollector_jp_sets:11526",
+        "direct_source_name": "Metagross Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 38,
+        "live_public_rows": 38,
+        "observed_expected_card_counts": [
+          19
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11526",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-1adc8fa737ea5eb5"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 33,
+        "direct_source_key": "tcgcollector_jp_sets:11529",
+        "direct_source_name": "Magma Deck Kit",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 66,
+        "live_public_rows": 66,
+        "observed_expected_card_counts": [
+          33
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11529",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-eb083b8d70a448f1"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 33,
+        "direct_source_key": "tcgcollector_jp_sets:11530",
+        "direct_source_name": "Aqua Deck Kit",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 66,
+        "live_public_rows": 66,
+        "observed_expected_card_counts": [
+          33
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11530",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-f73159730545d483"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 52,
+        "direct_source_key": "tcgcollector_jp_sets:11531",
+        "direct_source_name": "Venusaur, Charizard & Blastoise Random Constructed Starter Decks",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 104,
+        "live_public_rows": 104,
+        "observed_expected_card_counts": [
+          52
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11531",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-cf672b6b3077f0e5"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 15,
+        "direct_source_key": "tcgcollector_jp_sets:11532",
+        "direct_source_name": "Deoxys Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 30,
+        "live_public_rows": 30,
+        "observed_expected_card_counts": [
+          15
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11532",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-69ba8eb8e4be6d67"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 15,
+        "direct_source_key": "tcgcollector_jp_sets:11533",
+        "direct_source_name": "Rayquaza Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 30,
+        "live_public_rows": 30,
+        "observed_expected_card_counts": [
+          15
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11533",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-c76b4864a552d595"
+      },
+      {
+        "corroborating_sources": [],
+        "direct_source_expected_card_count": 15,
+        "direct_source_key": "tcgcollector_jp_sets:11541",
+        "direct_source_name": "Psychic Quick Construction Pack",
+        "evidence_status": "single_source_direct",
+        "live_parent_rows": 30,
+        "live_public_rows": 30,
+        "observed_expected_card_counts": [
+          15
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11541",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-6d13fe1f92acc327"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 16,
+        "direct_source_key": "tcgcollector_jp_sets:11543",
+        "direct_source_name": "Meganium Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 32,
+        "live_public_rows": 32,
+        "observed_expected_card_counts": [
+          16
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11543",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-6965282435781977"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 16,
+        "direct_source_key": "tcgcollector_jp_sets:11544",
+        "direct_source_name": "Typhlosion Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 30,
+        "live_public_rows": 30,
+        "observed_expected_card_counts": [
+          16
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11544",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-a9819e8a38433bd9"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 16,
+        "direct_source_key": "tcgcollector_jp_sets:11545",
+        "direct_source_name": "Feraligatr Constructed Starter Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 32,
+        "live_public_rows": 32,
+        "observed_expected_card_counts": [
+          16
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11545",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-b0c038029a4efc25"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 24,
+        "direct_source_key": "tcgcollector_jp_sets:11558",
+        "direct_source_name": "Shockwave! Tyranitar ex Constructed Standard Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 48,
+        "live_public_rows": 48,
+        "observed_expected_card_counts": [
+          24
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11558",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-8dbde501dfbebbd0"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 24,
+        "direct_source_key": "tcgcollector_jp_sets:11559",
+        "direct_source_name": "Imprison! Gardevoir ex Constructed Standard Deck",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 48,
+        "live_public_rows": 48,
+        "observed_expected_card_counts": [
+          24
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11559",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-991a1544378827ba"
+      },
+      {
+        "corroborating_sources": [
+          "artofpkm_jp_sets"
+        ],
+        "direct_source_expected_card_count": 48,
+        "direct_source_key": "tcgcollector_jp_sets:11659",
+        "direct_source_name": "Extra Regulation Box",
+        "evidence_status": "cross_source_corroborated",
+        "live_parent_rows": 96,
+        "live_public_rows": 96,
+        "observed_expected_card_counts": [
+          48
+        ],
+        "placeholder_set_code": "jpn-tcgcollector:11659",
+        "resolution_status": "resolved_to_internal_release_identity",
+        "resolved_registry_key": "jpn-release-667f0640239efaff"
+      }
+    ],
+    "summary": {
+      "resolution_fingerprint_sha256": "8a13d16f2df462845ceea559f9d3bc452fb9704aca5aa5206f079a1d147ae989",
+      "source_placeholder_count": 45,
+      "unresolved_source_placeholder_count": 0
+    }
+  },
+  "content_fingerprint_sha256": "979c3673ed4fd123e15e87736fd79beeb96af55ef5c50ad61c66363574720dd7",
+  "generated_at": "2026-07-26T16:49:56.766Z",
+  "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+  "retrieval": {
+    "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+    "baseline_path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
+    "mode": "offline_registry_resolution",
+    "resolver_version": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+    "source_assertions_fingerprint_sha256": "0dfb26d50fec70b7775c8263108dc976698e417fdefa5873156e63f879110e48",
+    "source_assertions_path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json"
+  }
+}

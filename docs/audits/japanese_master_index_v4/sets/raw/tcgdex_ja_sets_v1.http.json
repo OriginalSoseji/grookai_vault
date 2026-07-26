@@ -1,0 +1,20 @@
+{
+  "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.json",
+  "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
+  "byte_size": 15659,
+  "fetched_at": "2026-07-26T16:26:13.530Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://api.tcgdex.net/v2/ja/sets",
+  "response_headers": {
+    "cache-control": "no-cache, no-store, must-revalidate",
+    "content-length": "15659",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Sun, 26 Jul 2026 16:26:13 GMT",
+    "etag": "W/\"3d2b-RwL370DpcMVc+yRoAiDgXaPWrEI\""
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "tcgdex_ja_sets",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

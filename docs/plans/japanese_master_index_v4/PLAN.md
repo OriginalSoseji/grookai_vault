@@ -11,7 +11,7 @@ Date: 2026-07-26
 |---|---|---|
 | 0 - Workspace and no-write guard | Complete | Guard contract tests pass; session and transaction both prove read-only |
 | 1 - Reproducible baseline export | Complete | Production export and independent replay have matching content fingerprints |
-| 2 - Japanese set/product registry | Active | Set-code and placeholder inventories frozen; source acquisition next |
+| 2 - Japanese set/product registry | Active | Five primary set/product lanes captured; first governed registry and placeholder resolution pass complete |
 | 3 - Source acquisition engine | Pending | Starts after the set/product registry gate |
 | 4-8 | Pending | Candidate union through final admissible index |
 
@@ -26,6 +26,23 @@ Phase 1 completion evidence:
   active English species relationships;
 - artifact hashes and credential-exclusion tests pass;
 - no database or Storage mutation occurred.
+
+Phase 2 checkpoint evidence:
+
+- 1,951 source-native assertions preserved from Official Pokemon Card Japan,
+  TCGCollector JP, Art of Pokemon, Limitless JP, and TCGdex JA;
+- all raw responses are hash-addressed and replay offline;
+- all 1,951 assertions are represented in the governed registry;
+- all 45 live source-placeholder keys resolve to deterministic non-placeholder
+  registry identities;
+- all 116 case-only alias groups resolve without deleting exact source labels;
+- the official `pg` card-search identifier remains a source ID and is not
+  misrepresented as a set code;
+- four reused native codes are blocked from promotion as ambiguous;
+- 497 official products without card-list evidence remain in explicit scope
+  review rather than being silently admitted;
+- Japanese name normalization preserves kana/kanji and dakuten;
+- 20 Japanese Master Index contract tests pass.
 
 ## Objective
 

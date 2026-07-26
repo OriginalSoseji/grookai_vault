@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_12_v1.json",
+  "body_sha256": "42284e5d73de0419f4929aeb59e9d6507f9ce0c6dc7ab8f9faf68ade0bf609bd",
+  "byte_size": 16692,
+  "fetched_at": "2026-07-26T16:32:45.341Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/products/resultAPI.php?productType=others&dateLowerY=1996&dateLowerM=1&dateLowerD=1&dateUpperY=2099&dateUpperM=12&dateUpperD=31&page=12",
+  "response_headers": {
+    "cache-control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content-type": "application/json; charset=UTF-8",
+    "date": "Sun, 26 Jul 2026 16:32:45 GMT",
+    "expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+    "last-modified": "Sun, 26 Jul 2026 16:32:45 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "official_jp_products_others_page_12",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

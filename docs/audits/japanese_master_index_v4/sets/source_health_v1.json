@@ -1,0 +1,139 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "all_sources_healthy": true,
+    "sources": [
+      {
+        "assertion_count": 640,
+        "assertion_fingerprint_sha256": "ac6ed741a6c7ad2ea79fb8a9663fa48de7119ad36a16591ce8153bb822c5a7f4",
+        "body_sha256": "e5d9d122c1012e937d691d93fcbfcd7763eb90facdb5cbb167b1ab6b54745fbd",
+        "byte_size": 547619,
+        "fetched_at": "2026-07-26T16:32:08.644Z",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/products/",
+        "response_headers": {},
+        "source_id": "official_jp_products"
+      },
+      {
+        "assertion_count": 177,
+        "assertion_fingerprint_sha256": "b1f574dff19e83693264db9ac81499989492f29b44db86008baa7419067031cd",
+        "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
+        "byte_size": 15659,
+        "fetched_at": "2026-07-26T16:26:13.530Z",
+        "http_status": 200,
+        "request_url": "https://api.tcgdex.net/v2/ja/sets",
+        "response_headers": {
+          "cache-control": "no-cache, no-store, must-revalidate",
+          "content-length": "15659",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 26 Jul 2026 16:26:13 GMT",
+          "etag": "W/\"3d2b-RwL370DpcMVc+yRoAiDgXaPWrEI\""
+        },
+        "source_id": "tcgdex_ja_sets"
+      },
+      {
+        "assertion_count": 262,
+        "assertion_fingerprint_sha256": "4b8859e8703f6f7ddce791d38a4b46b2140ffb65720d1b9afa3741b4a6d91d93",
+        "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
+        "byte_size": 157221,
+        "fetched_at": "2026-07-26T16:26:13.884Z",
+        "http_status": 200,
+        "request_url": "https://limitlesstcg.com/cards/jp",
+        "response_headers": {
+          "cache-control": "no-cache, private",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 16:26:14 GMT",
+          "server": "nginx/1.30.3"
+        },
+        "source_id": "limitless_jp_sets"
+      },
+      {
+        "assertion_count": 419,
+        "assertion_fingerprint_sha256": "3feb403e3d41201f6b7babbc6fbc18bb35cbd8c5bd6fbd6c2a4aca0ee1afaab5",
+        "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
+        "byte_size": 669625,
+        "fetched_at": "2026-07-26T16:33:16.580Z",
+        "http_status": 200,
+        "request_url": "https://www.artofpkm.com/sets",
+        "response_headers": {
+          "cache-control": "max-age=0, private, must-revalidate",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=utf-8",
+          "date": "Sun, 26 Jul 2026 16:33:18 GMT",
+          "server": "cloudflare",
+          "vary": "Accept-Encoding"
+        },
+        "source_id": "artofpkm_jp_sets"
+      },
+      {
+        "assertion_count": 453,
+        "assertion_fingerprint_sha256": "24ab3b9558625cde8b7b5cd61a5ce5d4bd8b73c48afbcf5970e32135f51e59f6",
+        "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
+        "byte_size": 1854365,
+        "fetched_at": "2026-07-26T16:26:14.419Z",
+        "http_status": 200,
+        "request_url": "https://www.tcgcollector.com/sets/jp",
+        "response_headers": {
+          "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 16:26:15 GMT",
+          "expires": "Sun, 26 Jul 2026 16:26:14 GMT",
+          "server": "cloudflare",
+          "vary": "Accept-Encoding"
+        },
+        "source_id": "tcgcollector_jp_sets"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "f57bc3398362b52c5f173fc54a6affdf18bb2c84a0b8545ffe9c0ff31cd48244",
+  "generated_at": "2026-07-26T16:49:56.766Z",
+  "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
+  "retrieval": {
+    "mode": "offline_replay",
+    "parser_version": "JPN-MASTER-INDEX-SET-SOURCE-PARSERS-V1",
+    "sources": [
+      {
+        "body_sha256": "e5d9d122c1012e937d691d93fcbfcd7763eb90facdb5cbb167b1ab6b54745fbd",
+        "byte_size": 547619,
+        "fetched_at": "2026-07-26T16:32:08.644Z",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/products/",
+        "source_id": "official_jp_products"
+      },
+      {
+        "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
+        "byte_size": 15659,
+        "fetched_at": "2026-07-26T16:26:13.530Z",
+        "http_status": 200,
+        "request_url": "https://api.tcgdex.net/v2/ja/sets",
+        "source_id": "tcgdex_ja_sets"
+      },
+      {
+        "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
+        "byte_size": 157221,
+        "fetched_at": "2026-07-26T16:26:13.884Z",
+        "http_status": 200,
+        "request_url": "https://limitlesstcg.com/cards/jp",
+        "source_id": "limitless_jp_sets"
+      },
+      {
+        "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
+        "byte_size": 669625,
+        "fetched_at": "2026-07-26T16:33:16.580Z",
+        "http_status": 200,
+        "request_url": "https://www.artofpkm.com/sets",
+        "source_id": "artofpkm_jp_sets"
+      },
+      {
+        "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
+        "byte_size": 1854365,
+        "fetched_at": "2026-07-26T16:26:14.419Z",
+        "http_status": 200,
+        "request_url": "https://www.tcgcollector.com/sets/jp",
+        "source_id": "tcgcollector_jp_sets"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/artofpkm_jp_sets_v1.html",
+  "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
+  "byte_size": 669625,
+  "fetched_at": "2026-07-26T16:33:16.580Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.artofpkm.com/sets",
+  "response_headers": {
+    "cache-control": "max-age=0, private, must-revalidate",
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Sun, 26 Jul 2026 16:33:18 GMT",
+    "server": "cloudflare",
+    "vary": "Accept-Encoding"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "artofpkm_jp_sets",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}
