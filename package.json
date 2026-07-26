@@ -10,6 +10,7 @@
     "jpn-master-index:baseline": "node scripts/audits/japanese_master_index_v4/baseline_export_v1.mjs",
     "jpn-master-index:sets": "node scripts/audits/japanese_master_index_v4/set_registry_harvest_v1.mjs",
     "jpn-master-index:sets:resolve": "node scripts/audits/japanese_master_index_v4/set_registry_build_v1.mjs",
+    "jpn-master-index:cards:plan": "node scripts/audits/japanese_master_index_v4/card_acquisition_plan_v1.mjs",
     "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",
     "web:build:strict": "node scripts/ci/run_next_build_strict.mjs",
