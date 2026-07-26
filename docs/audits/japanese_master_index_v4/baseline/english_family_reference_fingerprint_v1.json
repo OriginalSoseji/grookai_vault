@@ -1,0 +1,21 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "active_english_species_link_count": 19346,
+    "active_english_species_link_fingerprint_sha256": "5f6eaaaefdef52ce1987358ec7bfe8537729d935734bac7b97c165c8e77b4f2b",
+    "active_species_count": 1025,
+    "active_species_fingerprint_sha256": "d2abcbb435bda99a9441d4d4997a4fa20c8f708cfdd1d9167245e8c003487ab0",
+    "combined_fingerprint_sha256": "7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db"
+  },
+  "content_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+  "generated_at": "2026-07-26T16:13:34.989Z",
+  "package_id": "ENGLISH-FAMILY-REFERENCE-FINGERPRINT-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}

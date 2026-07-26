@@ -1,0 +1,69 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "artifacts": [
+      {
+        "bytes": 4140,
+        "content_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_parent_summary_v1.json",
+        "sha256": "a7e5f32dfe25635e40263f6f86d8252e90813e3f7dd4453af479c11311a51062"
+      },
+      {
+        "bytes": 3192,
+        "content_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_source_coverage_v1.json",
+        "sha256": "2b7a7fe48c13943ba321ed20142252c08946e18a16d89ff2ec4442e2ddc4aa74"
+      },
+      {
+        "bytes": 201992,
+        "content_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
+        "sha256": "51cdd2c4e113cec615a0f08fe945c180953aa6a8c09febc19f6491ca7bce60e8"
+      },
+      {
+        "bytes": 82786,
+        "content_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_identity_gap_queue_v1.json",
+        "sha256": "6f8223ed1a436de2a553376ffeb459a4989402c652ea041357d1af4921a546f8"
+      },
+      {
+        "bytes": 1104,
+        "content_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+        "path": "docs/audits/japanese_master_index_v4/baseline/english_family_reference_fingerprint_v1.json",
+        "sha256": "5945d4b353fa93def41927d5ab6a9b9345642296ff1f8a579494b75bd9ad9482"
+      },
+      {
+        "bytes": 3538,
+        "content_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_source_manifest_v1.json",
+        "sha256": "311e2cad80f80f32dbeb2c05ebdd72fd8a131d9f37d418f1517274b6e369195c"
+      },
+      {
+        "bytes": 3347,
+        "content_fingerprint_sha256": null,
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_baseline_summary_v1.md",
+        "sha256": "972a543fd5b4e7894a3f3704b6bdee3bbf521d51e6e388c9acd033bea957c5cc"
+      }
+    ],
+    "generator_version": "JPN-MASTER-INDEX-BASELINE-EXPORT-V1",
+    "no_write_boundary": {
+      "database_writes": false,
+      "family_promotion_writes": false,
+      "identity_writes": false,
+      "pricing_writes": false,
+      "storage_writes": false
+    },
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065"
+  },
+  "content_fingerprint_sha256": "c93a151111049db4f8b838722ca270ca9a6c8a505f1b629f1a34f87def6a65f8",
+  "generated_at": "2026-07-26T16:13:34.989Z",
+  "package_id": "LIVE-JPN-BASELINE-MANIFEST-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}
