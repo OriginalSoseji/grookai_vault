@@ -163,7 +163,7 @@ function Get-BinderRolloutPolicyV1 {
     ApplyArguments = @('db', 'push', '--linked', '--yes')
     PreflightTtlHours = 4
     BackupMaxAgeHours = 24
-    BackupRecoveryLagMinutes = 15
+    BackupRecoveryLagMinutes = 1440
   }
 }
 

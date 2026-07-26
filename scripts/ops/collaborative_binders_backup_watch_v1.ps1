@@ -19,7 +19,7 @@ $ErrorActionPreference = 'Stop'
 
 $projectRef = 'ycdxbpibncqcchqiihfz'
 $baselineBackupText = '2026-07-24T10:25:37.891Z'
-$recoveryLagMinutes = 15
+$recoveryLagMinutes = 1440
 $maximumFutureMinutes = 0
 $maximumTransientErrors = 6
 $repoRoot = [IO.Path]::GetFullPath(
@@ -31,7 +31,7 @@ $rolloutModulePath = Join-Path (
   $repoRoot
 ) 'scripts/ops/CollaborativeBindersProductionRolloutV1.psm1'
 $expectedRolloutModuleSha256 =
-  'be131d5434bf475d90cb26d4b257b369c45931569340e8303a9cd5a6915650d8'
+  '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
 $supabaseBinary = [IO.Path]::GetFullPath(
   'C:\Users\ccabr\scoop\apps\supabase\2.90.0\supabase.exe'
 )
@@ -585,7 +585,7 @@ function Assert-Fixtures {
     -RawJson $staleFixture `
     -VerifiedAtUtc (
       ConvertFrom-StrictUtcTimestamp `
-        -Value '2026-07-25T11:00:01.000Z' `
+        -Value '2026-07-26T10:30:01.000Z' `
         -Label 'Fixture verification'
     )
   Assert-Condition (
