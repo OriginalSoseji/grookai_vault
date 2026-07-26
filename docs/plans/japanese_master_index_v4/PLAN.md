@@ -1,19 +1,19 @@
 # Japanese Master Index V4 Build Plan
 
-Status: In progress - Phases 0-1 complete; Phase 2 active
+Status: In progress - Phases 0-2 complete; Phase 3 active
 Branch: `catalog/jpn-master-index-v4`
 Baseline commit: `b95f291ef1ffcdd46fa7eeb361e293d2c0616bf3`
 Date: 2026-07-26
 
 ## Progress
 
-| Phase | Status | Evidence |
-|---|---|---|
-| 0 - Workspace and no-write guard | Complete | Guard contract tests pass; session and transaction both prove read-only |
-| 1 - Reproducible baseline export | Complete | Production export and independent replay have matching content fingerprints |
-| 2 - Japanese set/product registry | Active | Five primary set/product lanes captured; first governed registry and placeholder resolution pass complete |
-| 3 - Source acquisition engine | Pending | Starts after the set/product registry gate |
-| 4-8 | Pending | Candidate union through final admissible index |
+| Phase                             | Status   | Evidence                                                                                                    |
+| --------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| 0 - Workspace and no-write guard  | Complete | Guard contract tests pass; session and transaction both prove read-only                                     |
+| 1 - Reproducible baseline export  | Complete | Production export and independent replay have matching content fingerprints                                 |
+| 2 - Japanese set/product registry | Complete | Eight admitted lanes, source-policy gate, full official product disposition, and governed registry complete |
+| 3 - Source acquisition engine     | Active   | Card-level adapters and preserved assertion union are next                                                  |
+| 4-8                               | Pending  | Candidate union through final admissible index                                                              |
 
 Phase 1 completion evidence:
 
@@ -27,22 +27,30 @@ Phase 1 completion evidence:
 - artifact hashes and credential-exclusion tests pass;
 - no database or Storage mutation occurred.
 
-Phase 2 checkpoint evidence:
+Phase 2 completion evidence:
 
-- 1,951 source-native assertions preserved from Official Pokemon Card Japan,
-  TCGCollector JP, Art of Pokemon, Limitless JP, and TCGdex JA;
+- 2,335 source-native assertions preserved from Official Pokemon Card Japan,
+  TCGCollector JP, Art of Pokemon, Limitless JP, TCGdex JA, Serebii,
+  Bulbapedia, and all three server-rendered pages of PokeGuardian's Japanese
+  set-list index;
 - all raw responses are hash-addressed and replay offline;
-- all 1,951 assertions are represented in the governed registry;
+- all 2,335 assertions are represented in the governed registry;
 - all 45 live source-placeholder keys resolve to deterministic non-placeholder
   registry identities;
 - all 116 case-only alias groups resolve without deleting exact source labels;
 - the official `pg` card-search identifier remains a source ID and is not
   misrepresented as a set code;
 - four reused native codes are blocked from promotion as ambiguous;
-- 497 official products without card-list evidence remain in explicit scope
-  review rather than being silently admitted;
+- all 640 official products have an explicit disposition as a card-list-linked
+  product, expansion release, constructed-deck product, or card-distribution
+  product; zero generic product-scope reviews remain;
+- 152 card-count disagreements and 23 source-local repeated names remain
+  preserved in the review queue rather than being forced into false equality;
+- Pokellector is explicitly blocked from automated acquisition because its
+  published Terms require written permission for automated access; it remains
+  a manual-review lane and is not silently omitted;
 - Japanese name normalization preserves kana/kanji and dakuten;
-- 20 Japanese Master Index contract tests pass.
+- 24 Japanese Master Index contract tests pass.
 
 ## Objective
 
@@ -64,44 +72,44 @@ docs/contracts/JAPANESE_MASTER_INDEX_COMPLETION_V1.md
 
 A read-only production audit on 2026-07-26 found:
 
-| Measure | Current value |
-|---|---:|
-| Japanese parent rows | 26,047 |
-| Public Japanese GV IDs | 25,985 |
-| Active Japanese identities | 25,953 |
-| Japanese child printings | 25,953 |
-| Raw Japanese set codes | 504 |
-| Case-folded set codes | 388 |
-| Case-only alias groups | 116 |
-| Source-placeholder sets | 45 |
-| Cards under source-placeholder sets | 1,297 |
-| Rows with no public GV ID/image | 62 |
-| Rows with no active identity/evidence lane | 94 |
+| Measure                                    | Current value |
+| ------------------------------------------ | ------------: |
+| Japanese parent rows                       |        26,047 |
+| Public Japanese GV IDs                     |        25,985 |
+| Active Japanese identities                 |        25,953 |
+| Japanese child printings                   |        25,953 |
+| Raw Japanese set codes                     |           504 |
+| Case-folded set codes                      |           388 |
+| Case-only alias groups                     |           116 |
+| Source-placeholder sets                    |            45 |
+| Cards under source-placeholder sets        |         1,297 |
+| Rows with no public GV ID/image            |            62 |
+| Rows with no active identity/evidence lane |            94 |
 
 Current active evidence coverage:
 
-| Source lane | Evidence rows/cards |
-|---|---:|
-| TCGCollector JP | 25,059 |
-| Art of Pokemon JP | 23,868 |
-| Official Pokemon Card JP | 21,294 evidence rows / 21,235 cards |
-| Limitless JP | 18,462 |
-| Pokellector JP | 17,734 |
-| TCGdex JA | 6,061 |
-| Bulbapedia JP card lists | 3,977 |
-| Bulbapedia Pikachu corroboration | 134 |
+| Source lane                      |                 Evidence rows/cards |
+| -------------------------------- | ----------------------------------: |
+| TCGCollector JP                  |                              25,059 |
+| Art of Pokemon JP                |                              23,868 |
+| Official Pokemon Card JP         | 21,294 evidence rows / 21,235 cards |
+| Limitless JP                     |                              18,462 |
+| Pokellector JP                   |                              17,734 |
+| TCGdex JA                        |                               6,061 |
+| Bulbapedia JP card lists         |                               3,977 |
+| Bulbapedia Pikachu corroboration |                                 134 |
 
 Active evidence-lane distribution:
 
 | Independent stored lanes | Parent rows |
-|---:|---:|
-| 0 | 94 |
-| 1 | 90 |
-| 2 | 2,443 |
-| 3 | 3,337 |
-| 4 | 4,449 |
-| 5 | 10,057 |
-| 6 | 5,577 |
+| -----------------------: | ----------: |
+|                        0 |          94 |
+|                        1 |          90 |
+|                        2 |       2,443 |
+|                        3 |       3,337 |
+|                        4 |       4,449 |
+|                        5 |      10,057 |
+|                        6 |       5,577 |
 
 TCGCollector's live Japanese surface reported 27,491 cards and 453 sets at
 plan time. Those totals are discovery floors, not automatic Master Index

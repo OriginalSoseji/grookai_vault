@@ -37,10 +37,13 @@ function assertion({
   sourceSetId,
   code,
   name,
+  nativeJapaneseName = null,
   releaseDate,
   expectedCardCount,
+  reportedCardCounts = [],
   era,
   sourceUrl,
+  relatedUrls = [],
   imageUrl = null,
   sourceOrdinal,
   releaseKind = null,
@@ -53,10 +56,19 @@ function assertion({
     source_set_id: String(sourceSetId),
     source_native_code: code?.trim() || null,
     source_native_name: name?.trim() || null,
+    source_native_japanese_name: nativeJapaneseName?.trim() || null,
     source_release_date: releaseDate?.trim() || null,
     source_expected_card_count: nullableInteger(expectedCardCount),
+    source_reported_card_counts: [
+      ...new Set(
+        reportedCardCounts
+          .map(nullableInteger)
+          .filter((value) => value !== null),
+      ),
+    ],
     source_era_label: era?.trim() || null,
     source_url: sourceUrl,
+    source_related_urls: [...new Set(relatedUrls.filter(Boolean))].sort(),
     source_image_url: imageUrl?.trim() || null,
     source_ordinal: sourceOrdinal,
     source_release_kind: releaseKind?.trim() || null,
@@ -66,7 +78,9 @@ function assertion({
 }
 
 export function parseTcgdexJapaneseSets(body) {
-  const payload = JSON.parse(Buffer.isBuffer(body) ? body.toString('utf8') : body);
+  const payload = JSON.parse(
+    Buffer.isBuffer(body) ? body.toString('utf8') : body,
+  );
   if (!Array.isArray(payload)) {
     throw new Error('TCGdex Japanese sets response is not an array.');
   }
@@ -133,7 +147,9 @@ export function parseTcgCollectorJapaneseSets(body) {
     const dateMatch = block.match(
       /class="set-logo-grid-item-release-date">(?<date>[\s\S]*?)<\/div>/i,
     );
-    const countMatch = stripHtml(block).match(/\b\d[\d,]*\/(?<total>\d[\d,]*)\b/);
+    const countMatch = stripHtml(block).match(
+      /\b\d[\d,]*\/(?<total>\d[\d,]*)\b/,
+    );
     const imageMatches = [
       ...block.matchAll(
         /<img\b[^>]*\bsrc="(?<src>https:\/\/static\.tcgcollector\.com\/[^"]+)"[^>]*\bclass="(?<class>[^"]+)"/gi,
@@ -272,6 +288,317 @@ export function parseArtOfPkmJapaneseSets(body) {
   });
 }
 
+function absoluteUrl(value, baseUrl) {
+  return new URL(decodeHtml(value), baseUrl).toString();
+}
+
+export function parseSerebiiJapaneseSets(body) {
+  const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
+  const rows = [...html.matchAll(/<tr\b[^>]*>(?<body>[\s\S]*?)<\/tr>/gi)];
+  const assertions = [];
+
+  for (const row of rows) {
+    const cells = [
+      ...row.groups.body.matchAll(/<td\b[^>]*>(?<value>[\s\S]*?)<\/td>/gi),
+    ];
+    if (cells.length < 4) continue;
+    const setLink = cells[0].groups.value.match(
+      /<a\b[^>]*\bhref="(?<href>\/card\/(?<id>[^"/?#]+)\/?)"[^>]*>/i,
+    );
+    if (!setLink?.groups?.id) continue;
+    const name = stripHtml(cells[1].groups.value);
+    const countMatch = stripHtml(cells[2].groups.value).match(/\b(\d[\d,]*)\b/);
+    const releaseDate = stripHtml(cells[3].groups.value);
+    const imageMatch = cells[0].groups.value.match(
+      /<img\b[^>]*\bsrc="(?<src>[^"]+)"/i,
+    );
+    if (!name) {
+      throw new Error(
+        `Serebii Japanese set ${setLink.groups.id} lacks a name.`,
+      );
+    }
+
+    assertions.push(
+      assertion({
+        sourceId: 'serebii_jp_sets',
+        sourceSetId: setLink.groups.id,
+        code: null,
+        name,
+        releaseDate,
+        expectedCardCount: countMatch?.[1]?.replaceAll(',', ''),
+        reportedCardCounts: countMatch
+          ? [countMatch[1].replaceAll(',', '')]
+          : [],
+        era: null,
+        sourceUrl: absoluteUrl(setLink.groups.href, 'https://www.serebii.net'),
+        imageUrl: imageMatch?.groups?.src
+          ? absoluteUrl(imageMatch.groups.src, 'https://www.serebii.net')
+          : null,
+        sourceOrdinal: assertions.length + 1,
+        releaseKind: 'japanese_set_index',
+        sourceContainerKind: 'set_index',
+      }),
+    );
+  }
+
+  if (assertions.length === 0) {
+    throw new Error('Serebii Japanese set page yielded zero set rows.');
+  }
+  return assertions;
+}
+
+function headingRanges(html) {
+  return [
+    ...html.matchAll(
+      /<h(?<level>[234])\b[^>]*>\s*<span\b[^>]*\bclass="mw-headline"[^>]*\bid="(?<id>[^"]+)"[^>]*>(?<label>[\s\S]*?)<\/span>\s*<\/h\k<level>>/gi,
+    ),
+  ].map((match) => ({
+    offset: match.index,
+    level: Number(match.groups.level),
+    id: decodeHtml(match.groups.id),
+    label: stripHtml(match.groups.label),
+  }));
+}
+
+function headingContextAtOffset(ranges, offset) {
+  const context = { section: null, era: null };
+  for (const range of ranges) {
+    if (range.offset > offset) break;
+    if (range.level === 2) {
+      context.section = range.label;
+      context.era = null;
+    } else if (range.level === 3) {
+      context.era = range.label;
+    }
+  }
+  return context;
+}
+
+function bulbapediaTranslatedLinks(nameCell) {
+  return [
+    ...nameCell.matchAll(
+      /<a\b[^>]*\bhref="(?<href>\/wiki\/(?!File:)[^"]+)"[^>]*\btitle="(?<title>[^"]+\(TCG\))"[^>]*>(?<label>[\s\S]*?)<\/a>/gi,
+    ),
+  ].map((match) => ({
+    href: match.groups.href,
+    title: decodeHtml(match.groups.title),
+    label: stripHtml(match.groups.label),
+  }));
+}
+
+function reportedCountsFromCell(countCell) {
+  const segments = String(countCell)
+    .replace(/<br\s*\/?>/gi, '|')
+    .split('|')
+    .map(stripHtml)
+    .filter(Boolean);
+  return [
+    ...new Set(
+      segments
+        .map((segment) => segment.match(/^(\d[\d,]*)\b/)?.[1])
+        .filter(Boolean)
+        .map((value) => Number(value.replaceAll(',', ''))),
+    ),
+  ];
+}
+
+export function parseBulbapediaJapaneseExpansions(body) {
+  const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
+  const ranges = headingRanges(html);
+  const tables = [
+    ...html.matchAll(/<table\b[^>]*>(?<body>[\s\S]*?)<\/table>/gi),
+  ];
+  const assertions = [];
+
+  for (const table of tables) {
+    const headerText = stripHtml(
+      [...table.groups.body.matchAll(/<th\b[^>]*>(?<value>[\s\S]*?)<\/th>/gi)]
+        .map((match) => match.groups.value)
+        .join(' '),
+    );
+    if (
+      !/Japanese name/i.test(headerText) ||
+      !/No\. of cards/i.test(headerText) ||
+      !/Release date/i.test(headerText)
+    ) {
+      continue;
+    }
+
+    const context = headingContextAtOffset(ranges, table.index);
+    const rows = [
+      ...table.groups.body.matchAll(/<tr\b[^>]*>(?<body>[\s\S]*?)<\/tr>/gi),
+    ];
+    for (const row of rows) {
+      if (/<th\b/i.test(row.groups.body)) continue;
+      const cells = [
+        ...row.groups.body.matchAll(/<td\b[^>]*>(?<value>[\s\S]*?)<\/td>/gi),
+      ].map((match) => match.groups.value);
+      if (cells.length < 4) continue;
+
+      const [nameCell, , countCell, releaseDateCell] = cells.slice(-4);
+      const links = bulbapediaTranslatedLinks(nameCell);
+      if (links.length === 0) continue;
+      const names = [
+        ...new Set(links.map((link) => link.label).filter(Boolean)),
+      ];
+      const relatedUrls = [
+        ...new Set(
+          links.map((link) =>
+            absoluteUrl(link.href, 'https://bulbapedia.bulbagarden.net'),
+          ),
+        ),
+      ];
+      const japaneseName = stripHtml(
+        nameCell.replace(/<br\s*\/?>[\s\S]*/i, ''),
+      );
+      const reportedCounts = reportedCountsFromCell(countCell);
+      const sourceSetId = links
+        .map((link) => decodeURIComponent(link.href.replace(/^\/wiki\//i, '')))
+        .join('|');
+
+      assertions.push(
+        assertion({
+          sourceId: 'bulbapedia_jp_expansions',
+          sourceSetId,
+          code: null,
+          name: names.join(' • '),
+          nativeJapaneseName: japaneseName,
+          releaseDate: stripHtml(releaseDateCell),
+          expectedCardCount:
+            reportedCounts.length === 1 ? reportedCounts[0] : null,
+          reportedCardCounts: reportedCounts,
+          era: context.era,
+          sourceUrl: relatedUrls[0],
+          relatedUrls,
+          imageUrl: null,
+          sourceOrdinal: assertions.length + 1,
+          releaseKind: context.section,
+          sourceContainerKind: context.section
+            ?.normalize('NFKC')
+            .toLocaleLowerCase('en-US')
+            .replace(/[^\p{L}\p{N}]+/gu, '_')
+            .replace(/^_+|_+$/g, ''),
+        }),
+      );
+    }
+  }
+
+  if (assertions.length === 0) {
+    throw new Error(
+      'Bulbapedia Japanese expansion page yielded zero release rows.',
+    );
+  }
+  return assertions;
+}
+
+function parseReleaseDateFromText(value) {
+  const text = stripHtml(value);
+  return (
+    text.match(
+      /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b/i,
+    )?.[0] ?? null
+  );
+}
+
+function pokeGuardianCoreTitle(value) {
+  return stripHtml(value)
+    .replace(/\s+Main Set List\s*$/i, '')
+    .replace(/\s+All\b[\s\S]*?\bCards\s*$/i, '')
+    .trim();
+}
+
+function pokeGuardianCodes(value) {
+  return [
+    ...new Set(
+      [...value.matchAll(/\b(?:SV|SM|S|XY|BW|M)\d+[A-Z]?\b/gi)].map((match) =>
+        match[0].toLocaleUpperCase('en-US'),
+      ),
+    ),
+  ];
+}
+
+export function parsePokeGuardianJapaneseSetIndex(body) {
+  const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
+  const articles = [
+    ...html.matchAll(
+      /<article\b[^>]*\bclass="[^"]*\bjw-news-post\b[^"]*"[^>]*>(?<body>[\s\S]*?)<\/article>/gi,
+    ),
+  ];
+  const grouped = new Map();
+
+  for (const article of articles) {
+    const link = article.groups.body.match(
+      /<h2\b[^>]*\bclass="[^"]*\bjw-news-post__title\b[^"]*"[^>]*>[\s\S]*?<a\b[^>]*\bdata-segment-id="(?<id>\d+)"[^>]*\bhref="(?<href>[^"]+)"[^>]*>(?<title>[\s\S]*?)<\/a>[\s\S]*?<\/h2>/i,
+    );
+    if (!link?.groups?.id) continue;
+    const title = stripHtml(link.groups.title);
+    const coreTitle = pokeGuardianCoreTitle(title);
+    const codes = pokeGuardianCodes(coreTitle);
+    const key =
+      codes.length > 0
+        ? codes.join('+')
+        : coreTitle
+            .normalize('NFKC')
+            .toLocaleLowerCase('en-US')
+            .replace(/[^\p{L}\p{N}]+/gu, '-')
+            .replace(/^-+|-+$/g, '');
+    const imageMatch = article.groups.body.match(
+      /background-image:\s*url\((?<url>[^)]+)\)/i,
+    );
+    const leadMatch = article.groups.body.match(
+      /<div\b[^>]*\bclass="[^"]*\bjw-news-post__lead\b[^"]*"[^>]*>(?<lead>[\s\S]*?)<\/div>/i,
+    );
+    const record = {
+      id: link.groups.id,
+      title,
+      coreTitle,
+      codes,
+      url: absoluteUrl(link.groups.href, 'https://www.pokeguardian.com'),
+      imageUrl: imageMatch?.groups?.url?.trim() || null,
+      releaseDate: parseReleaseDateFromText(leadMatch?.groups?.lead),
+      isMainList: /Main Set List\s*$/i.test(title),
+      ordinal: article.index,
+    };
+    const group = grouped.get(key) ?? [];
+    group.push(record);
+    grouped.set(key, group);
+  }
+
+  const assertions = [...grouped.entries()]
+    .map(([key, records]) => {
+      records.sort(
+        (left, right) =>
+          Number(right.isMainList) - Number(left.isMainList) ||
+          left.ordinal - right.ordinal,
+      );
+      const preferred = records[0];
+      return assertion({
+        sourceId: 'pokeguardian_jp_sets',
+        sourceSetId: key || preferred.id,
+        code: preferred.codes.length > 0 ? preferred.codes.join(' / ') : null,
+        name: preferred.coreTitle,
+        releaseDate:
+          records.map((record) => record.releaseDate).find(Boolean) ?? null,
+        expectedCardCount: null,
+        era: null,
+        sourceUrl: preferred.url,
+        relatedUrls: records.map((record) => record.url),
+        imageUrl:
+          records.map((record) => record.imageUrl).find(Boolean) ?? null,
+        sourceOrdinal: Math.min(...records.map((record) => record.ordinal)) + 1,
+        releaseKind: 'set_list_article_cluster',
+        sourceContainerKind: 'japanese_set_list_index',
+      });
+    })
+    .sort((left, right) => left.source_ordinal - right.source_ordinal)
+    .map((row, index) => ({ ...row, source_ordinal: index + 1 }));
+
+  if (assertions.length === 0) {
+    throw new Error('PokeGuardian Japanese set index yielded zero releases.');
+  }
+  return assertions;
+}
+
 function officialProductIdentity(product, productType) {
   const cardListUrl = String(product?.link_cardList ?? '');
   const pgMatch = cardListUrl.match(/[?&]pg=([^&]+)/i);
@@ -287,17 +614,33 @@ function officialProductIdentity(product, productType) {
   ].join(':');
 }
 
-export function parseOfficialJapaneseProducts(body, {
-  productType,
-  sourceOrdinalOffset = 0,
-} = {}) {
-  const payload = JSON.parse(Buffer.isBuffer(body) ? body.toString('utf8') : body);
+function officialProductScopeHint({ hasCardList, productType }) {
+  if (hasCardList) return 'card_list_linked';
+  if (productType === 'expansion') return 'official_expansion_release';
+  if (productType === 'construction') {
+    return 'official_constructed_deck_product';
+  }
+  if (productType === 'others') {
+    return 'official_card_distribution_product';
+  }
+  return 'requires_product_scope_review';
+}
+
+export function parseOfficialJapaneseProducts(
+  body,
+  { productType, sourceOrdinalOffset = 0 } = {},
+) {
+  const payload = JSON.parse(
+    Buffer.isBuffer(body) ? body.toString('utf8') : body,
+  );
   if (
     payload?.result !== 1 ||
     !Array.isArray(payload?.products) ||
     !Number.isSafeInteger(Number(payload?.thisPage))
   ) {
-    throw new Error('Official Japanese product response has an unexpected shape.');
+    throw new Error(
+      'Official Japanese product response has an unexpected shape.',
+    );
   }
 
   return payload.products.map((product, index) => {
@@ -319,7 +662,7 @@ export function parseOfficialJapaneseProducts(body, {
         : null,
       sourceOrdinal: sourceOrdinalOffset + index + 1,
       releaseKind: product?.productType || productType,
-      scopeHint: hasCardList ? 'card_list_linked' : 'requires_product_scope_review',
+      scopeHint: officialProductScopeHint({ hasCardList, productType }),
       sourceContainerKind: productType,
     });
   });

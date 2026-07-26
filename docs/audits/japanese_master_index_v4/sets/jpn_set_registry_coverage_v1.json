@@ -27,16 +27,40 @@
       {
         "count": 185,
         "key": "構築デッキ"
+      },
+      {
+        "count": 165,
+        "key": "japanese_set_index"
+      },
+      {
+        "count": 106,
+        "key": "Main Sets"
+      },
+      {
+        "count": 59,
+        "key": "set_list_article_cluster"
+      },
+      {
+        "count": 54,
+        "key": "Subsets"
       }
     ],
     "assertion_counts_by_scope_hint": [
       {
-        "count": 503,
-        "key": "requires_product_scope_review"
+        "count": 260,
+        "key": "official_card_distribution_product"
       },
       {
         "count": 137,
         "key": "card_list_linked"
+      },
+      {
+        "count": 122,
+        "key": "official_expansion_release"
+      },
+      {
+        "count": 121,
+        "key": "official_constructed_deck_product"
       }
     ],
     "assertion_counts_by_source": [
@@ -59,15 +83,23 @@
       {
         "count": 177,
         "key": "tcgdex_ja_sets"
+      },
+      {
+        "count": 165,
+        "key": "serebii_jp_sets"
+      },
+      {
+        "count": 160,
+        "key": "bulbapedia_jp_expansions"
+      },
+      {
+        "count": 59,
+        "key": "pokeguardian_jp_sets"
       }
     ],
     "conflict_counts_by_type": [
       {
-        "count": 497,
-        "key": "official_product_scope_review"
-      },
-      {
-        "count": 122,
+        "count": 152,
         "key": "expected_card_count_disagreement"
       },
       {
@@ -82,23 +114,24 @@
     "gate": {
       "card_level_promotion_allowed": false,
       "every_assertion_represented": true,
-      "reason": "phase_2_registry_review_is_still_active",
+      "official_product_scope_reviews_remaining": 0,
+      "reason": "phase_2_registry_complete_card_level_work_remains_separately_gated",
       "source_placeholders_remaining": 0,
       "unexplained_alias_collisions": 0
     },
     "placeholder_counts_by_evidence_status": [
       {
-        "count": 32,
+        "count": 34,
         "key": "cross_source_corroborated"
       },
       {
-        "count": 13,
+        "count": 11,
         "key": "single_source_direct"
       }
     ],
     "registry_counts_by_entry_kind": [
       {
-        "count": 744,
+        "count": 828,
         "key": "japanese_card_release"
       },
       {
@@ -107,6 +140,10 @@
       }
     ],
     "registry_counts_by_era_label": [
+      {
+        "count": 85,
+        "key": "XY BREAK Era"
+      },
       {
         "count": 84,
         "key": "Sword & Shield"
@@ -136,16 +173,20 @@
         "key": "Scarlet & Violet Era"
       },
       {
-        "count": 43,
+        "count": 44,
         "key": "PCG Era"
       },
       {
-        "count": 42,
+        "count": 43,
         "key": "Original Era"
       },
       {
         "count": 42,
         "key": "PCG"
+      },
+      {
+        "count": 42,
+        "key": "XY Era"
       },
       {
         "count": 41,
@@ -154,10 +195,6 @@
       {
         "count": 39,
         "key": "XY"
-      },
-      {
-        "count": 39,
-        "key": "XY Era"
       },
       {
         "count": 23,
@@ -212,12 +249,16 @@
         "key": "LEGEND"
       },
       {
-        "count": 12,
-        "key": "e-Card"
+        "count": 13,
+        "key": "LEGEND Era"
       },
       {
         "count": 12,
-        "key": "LEGEND Era"
+        "key": "BW Era"
+      },
+      {
+        "count": 12,
+        "key": "e-Card"
       },
       {
         "count": 9,
@@ -232,12 +273,32 @@
         "key": "e-Card Era"
       },
       {
+        "count": 8,
+        "key": "MEGA Series"
+      },
+      {
+        "count": 6,
+        "key": "DP Era"
+      },
+      {
+        "count": 4,
+        "key": "DPt Era"
+      },
+      {
+        "count": 4,
+        "key": "neo Era"
+      },
+      {
+        "count": 3,
+        "key": "VS Era"
+      },
+      {
         "count": 2,
         "key": "VS & Web"
       },
       {
-        "count": 2,
-        "key": "VS Era"
+        "count": 1,
+        "key": "web Era"
       },
       {
         "count": 1,
@@ -246,16 +307,24 @@
     ],
     "registry_counts_by_scope_status": [
       {
-        "count": 713,
+        "count": 797,
         "key": "admitted_set_assertion"
       },
       {
-        "count": 497,
-        "key": "requires_product_scope_review"
+        "count": 257,
+        "key": "admitted_official_card_distribution_product"
       },
       {
         "count": 134,
         "key": "admitted_official_card_product"
+      },
+      {
+        "count": 120,
+        "key": "admitted_official_constructed_deck_product"
+      },
+      {
+        "count": 120,
+        "key": "admitted_official_expansion_release"
       },
       {
         "count": 31,
@@ -264,55 +333,63 @@
     ],
     "registry_counts_by_source_depth": [
       {
-        "count": 1018,
+        "count": 1076,
         "key": "1"
       },
       {
-        "count": 154,
+        "count": 144,
         "key": "2"
       },
       {
-        "count": 97,
-        "key": "4"
+        "count": 72,
+        "key": "3"
       },
       {
-        "count": 74,
-        "key": "3"
+        "count": 47,
+        "key": "5"
+      },
+      {
+        "count": 32,
+        "key": "7"
       },
       {
         "count": 31,
         "key": "0"
       },
       {
-        "count": 1,
-        "key": "5"
+        "count": 29,
+        "key": "6"
+      },
+      {
+        "count": 28,
+        "key": "4"
       }
     ],
     "summary": {
-      "alias_count": 2854,
+      "alias_count": 3276,
       "baseline_only_entry_count": 31,
       "blocking_code_conflict_count": 4,
       "case_only_alias_group_count": 116,
-      "conflict_count": 646,
-      "japanese_release_entry_count": 744,
+      "conflict_count": 179,
+      "japanese_release_entry_count": 828,
       "official_product_entry_count": 631,
-      "product_scope_review_count": 497,
-      "registry_entry_count": 1375,
-      "represented_source_assertion_count": 1951,
-      "source_assertion_count": 1951,
+      "product_scope_review_count": 0,
+      "registry_entry_count": 1459,
+      "represented_source_assertion_count": 2335,
+      "source_assertion_count": 2335,
       "source_placeholder_count": 45,
       "unresolved_source_placeholder_count": 0
     }
   },
-  "content_fingerprint_sha256": "ee4a8924b07c78867acce2a356a8a26dc6bf33fc49b63c7469ced5750001c119",
-  "generated_at": "2026-07-26T16:49:56.766Z",
+  "content_fingerprint_sha256": "00777707fefad00300573b9dee562421365605147b0bf6cfbd8457d522104649",
+  "generated_at": "2026-07-26T17:09:54.034Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
   "retrieval": {
     "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
     "baseline_path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
     "mode": "offline_registry_resolution",
     "resolver_version": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
-    "source_assertions_fingerprint_sha256": "0dfb26d50fec70b7775c8263108dc976698e417fdefa5873156e63f879110e48",
+    "source_assertions_fingerprint_sha256": "ae77c19db68ac9f63126290ce5ed6c3ac658c76dfd08167d06275358710d91c3",
     "source_assertions_path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json"
   }
 }

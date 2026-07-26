@@ -3,16 +3,22 @@
   "content": {
     "normalized_artifacts": [
       {
-        "bytes": 1467409,
-        "content_fingerprint_sha256": "0dfb26d50fec70b7775c8263108dc976698e417fdefa5873156e63f879110e48",
+        "bytes": 2071062,
+        "content_fingerprint_sha256": "ae77c19db68ac9f63126290ce5ed6c3ac658c76dfd08167d06275358710d91c3",
         "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
-        "sha256": "1cdd7f4da2f0c8955325e63d3fc44bcf58c21a181e21fad0e9d89bb2cead6648"
+        "sha256": "f8c74669d2f53aa66d0648af95817c2dbb2a904ff80aeb272cf38502ce38736b"
       },
       {
-        "bytes": 5670,
-        "content_fingerprint_sha256": "f57bc3398362b52c5f173fc54a6affdf18bb2c84a0b8545ffe9c0ff31cd48244",
+        "bytes": 8825,
+        "content_fingerprint_sha256": "db8056bf51bb495432c274e8975f83c875fd687ac88460c30037dcb7a45c1a69",
         "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_health_v1.json",
-        "sha256": "a7005c403eb07187264f6eaec4bcee5a8415bf1ddf44d3cb1099fec5112cfd85"
+        "sha256": "2d56bef1c9bab57ab7cc7f0d8e2148a5529b5fbe96b962dcbcbbc8d0076fc0fe"
+      },
+      {
+        "bytes": 5810,
+        "content_fingerprint_sha256": "995306652fbfbf68cb556380752ea5ea93718cad9339b1ec6ade1b2eae504541",
+        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
+        "sha256": "549f43119599eaf2045f725452042185a09fdc4d722dea766dd3a2c92ccf3b0c"
       }
     ],
     "raw_snapshots": [
@@ -731,6 +737,72 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
+        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_01_v1.html",
+        "body_sha256": "36366345ec52ea05e6879bc3ede292e02b60513411e8e11c307abf36fd35bb9a",
+        "byte_size": 157616,
+        "fetched_at": "2026-07-26T17:04:20.944Z",
+        "http_status": 200,
+        "request_method": "GET",
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+        "response_headers": {
+          "cache-control": "no-transform",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 17:04:22 GMT",
+          "expires": "Sun, 26 Jul 2026 17:04:22 GMT",
+          "server": "nginx",
+          "vary": "Accept-Encoding"
+        },
+        "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+        "source_id": "pokeguardian_jp_sets_page_01",
+        "status_text": "OK",
+        "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+      },
+      {
+        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_02_v1.html",
+        "body_sha256": "3d0eab160408497aafe32fcc919a8dfac1e6661df39c196ab82ba3dff726c0e5",
+        "byte_size": 155695,
+        "fetched_at": "2026-07-26T17:04:22.790Z",
+        "http_status": 200,
+        "request_method": "GET",
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets?ep%5B91002362%5D%5Bpage%5D=1",
+        "response_headers": {
+          "cache-control": "no-transform",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 17:04:23 GMT",
+          "expires": "Sun, 26 Jul 2026 17:04:23 GMT",
+          "server": "nginx",
+          "vary": "Accept-Encoding"
+        },
+        "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+        "source_id": "pokeguardian_jp_sets_page_02",
+        "status_text": "OK",
+        "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+      },
+      {
+        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_03_v1.html",
+        "body_sha256": "247ed799cd72c3dd4c96554f9388d9e9fab97cab4b379b80dd1006056f996c01",
+        "byte_size": 90649,
+        "fetched_at": "2026-07-26T17:04:24.527Z",
+        "http_status": 200,
+        "request_method": "GET",
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets?ep%5B91002362%5D%5Bpage%5D=2",
+        "response_headers": {
+          "cache-control": "no-transform",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 17:04:25 GMT",
+          "expires": "Sun, 26 Jul 2026 17:04:25 GMT",
+          "server": "nginx",
+          "vary": "Accept-Encoding"
+        },
+        "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+        "source_id": "pokeguardian_jp_sets_page_03",
+        "status_text": "OK",
+        "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+      },
+      {
         "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.json",
         "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
         "byte_size": 15659,
@@ -812,11 +884,53 @@
         "source_id": "tcgcollector_jp_sets",
         "status_text": "OK",
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+      },
+      {
+        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.html",
+        "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+        "byte_size": 115670,
+        "fetched_at": "2026-07-26T17:04:26.141Z",
+        "http_status": 200,
+        "request_method": "GET",
+        "request_url": "https://www.serebii.net/card/japanese.shtml",
+        "response_headers": {
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=ISO-8859-1",
+          "date": "Sun, 26 Jul 2026 17:04:26 GMT",
+          "server": "nginx",
+          "vary": "Accept-Encoding"
+        },
+        "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+        "source_id": "serebii_jp_sets",
+        "status_text": "OK",
+        "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+      },
+      {
+        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/bulbapedia_jp_expansions_v1.html",
+        "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
+        "byte_size": 515887,
+        "fetched_at": "2026-07-26T17:04:27.155Z",
+        "http_status": 200,
+        "request_method": "GET",
+        "request_url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions",
+        "response_headers": {
+          "cache-control": "s-maxage=18000, must-revalidate, max-age=0",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 17:04:27 GMT",
+          "last-modified": "Sun, 26 Jul 2026 11:57:48 GMT",
+          "server": "cloudflare",
+          "vary": "Accept-Encoding,Cookie"
+        },
+        "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+        "source_id": "bulbapedia_jp_expansions",
+        "status_text": "OK",
+        "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       }
     ]
   },
-  "content_fingerprint_sha256": "dae82b116ffb82a22b5bc04062dcab703469dc5d208003185d5513ec7e5cb824",
-  "generated_at": "2026-07-26T16:49:56.766Z",
+  "content_fingerprint_sha256": "c18f35d89c4830d7c9d063c19a719a8e1249880848187c8571136561748a6b8d",
+  "generated_at": "2026-07-26T17:09:54.034Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
   "retrieval": {
     "mode": "offline_replay",
@@ -829,6 +943,14 @@
         "http_status": 200,
         "request_url": "https://www.pokemon-card.com/products/",
         "source_id": "official_jp_products"
+      },
+      {
+        "body_sha256": "c44e6d7db3efc35513dd121aa18ca29c704d250dcd797de1e939f1dafaaf4460",
+        "byte_size": 403960,
+        "fetched_at": "2026-07-26T17:04:20.944Z",
+        "http_status": 200,
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+        "source_id": "pokeguardian_jp_sets"
       },
       {
         "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
@@ -861,6 +983,22 @@
         "http_status": 200,
         "request_url": "https://www.tcgcollector.com/sets/jp",
         "source_id": "tcgcollector_jp_sets"
+      },
+      {
+        "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+        "byte_size": 115670,
+        "fetched_at": "2026-07-26T17:04:26.141Z",
+        "http_status": 200,
+        "request_url": "https://www.serebii.net/card/japanese.shtml",
+        "source_id": "serebii_jp_sets"
+      },
+      {
+        "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
+        "byte_size": 515887,
+        "fetched_at": "2026-07-26T17:04:27.155Z",
+        "http_status": 200,
+        "request_url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions",
+        "source_id": "bulbapedia_jp_expansions"
       }
     ]
   }

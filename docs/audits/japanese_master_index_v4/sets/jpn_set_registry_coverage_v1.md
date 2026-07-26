@@ -7,15 +7,15 @@ does not authorize database or card-level promotion.
 
 | Measure | Count |
 |---|---:|
-| Source assertions | 1,951 |
-| Registry entries | 1,375 |
-| Japanese release entries | 744 |
+| Source assertions | 2,335 |
+| Registry entries | 1,459 |
+| Japanese release entries | 828 |
 | Official product entries | 631 |
 | Source placeholders resolved | 45 |
 | Source placeholders unresolved | 0 |
 | Case-only alias groups resolved | 116 |
 | Blocking native-code collisions | 4 |
-| Official product scope reviews | 497 |
+| Official product scope reviews | 0 |
 
 ## Assertions By Source
 
@@ -26,26 +26,33 @@ does not authorize database or card-level promotion.
 | artofpkm_jp_sets | 419 |
 | limitless_jp_sets | 262 |
 | tcgdex_ja_sets | 177 |
+| serebii_jp_sets | 165 |
+| bulbapedia_jp_expansions | 160 |
+| pokeguardian_jp_sets | 59 |
 
 ## Registry Scope
 
 | Scope status | Entries |
 |---|---:|
-| admitted_set_assertion | 713 |
-| requires_product_scope_review | 497 |
+| admitted_set_assertion | 797 |
+| admitted_official_card_distribution_product | 257 |
 | admitted_official_card_product | 134 |
+| admitted_official_constructed_deck_product | 120 |
+| admitted_official_expansion_release | 120 |
 | baseline_only | 31 |
 
 ## Registry Source Depth
 
 | Independent sources | Entries |
 |---:|---:|
-| 1 | 1,018 |
-| 2 | 154 |
-| 4 | 97 |
-| 3 | 74 |
+| 1 | 1,076 |
+| 2 | 144 |
+| 3 | 72 |
+| 5 | 47 |
+| 7 | 32 |
 | 0 | 31 |
-| 5 | 1 |
+| 6 | 29 |
+| 4 | 28 |
 
 ## Era Labels
 
@@ -53,6 +60,7 @@ Era labels are source-native and are not forced into a single chronology.
 
 | Source era label | Registry entries |
 |---|---:|
+| XY BREAK Era | 85 |
 | Sword & Shield | 84 |
 | Sun & Moon | 77 |
 | Scarlet & Violet | 72 |
@@ -60,12 +68,12 @@ Era labels are source-native and are not forced into a single chronology.
 | Black & White | 59 |
 | Sun & Moon Era | 54 |
 | Scarlet & Violet Era | 53 |
-| PCG Era | 43 |
-| Original Era | 42 |
+| PCG Era | 44 |
+| Original Era | 43 |
 | PCG | 42 |
+| XY Era | 42 |
 | Black & White Era | 41 |
 | XY | 39 |
-| XY Era | 39 |
 | Diamond & Pearl Era | 23 |
 | X&Y | 22 |
 | DP | 21 |
@@ -79,13 +87,19 @@ Era labels are source-native and are not forced into a single chronology.
 | X&Y BREAK | 17 |
 | ADV Era | 16 |
 | LEGEND | 14 |
+| LEGEND Era | 13 |
+| BW Era | 12 |
 | e-Card | 12 |
-| LEGEND Era | 12 |
 | Neo | 9 |
 | Neo Era | 9 |
 | e-Card Era | 8 |
+| MEGA Series | 8 |
+| DP Era | 6 |
+| DPt Era | 4 |
+| neo Era | 4 |
+| VS Era | 3 |
 | VS & Web | 2 |
-| VS Era | 2 |
+| web Era | 1 |
 | Web Era | 1 |
 
 ## Official Product Containers
@@ -100,8 +114,7 @@ Era labels are source-native and are not forced into a single chronology.
 
 | Conflict type | Rows |
 |---|---:|
-| official_product_scope_review | 497 |
-| expected_card_count_disagreement | 122 |
+| expected_card_count_disagreement | 152 |
 | source_name_reused_within_source | 23 |
 | native_code_maps_to_multiple_releases | 4 |
 
@@ -110,6 +123,6 @@ Era labels are source-native and are not forced into a single chronology.
 - Every source assertion represented: true
 - Source placeholders remaining: 0
 - Unexplained alias collisions: 0
+- Official product scope reviews remaining: 0
 - Card-level promotion allowed: false
-- Phase 2 remains active while corroborating release archives and scope review
-  are harvested.
+- Registry completion does not authorize card-level promotion.

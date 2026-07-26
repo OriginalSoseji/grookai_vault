@@ -15,8 +15,7 @@ const DEFAULT_ASSERTIONS_PATH =
   'docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json';
 const DEFAULT_BASELINE_PATH =
   'docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json';
-const DEFAULT_OUTPUT_DIRECTORY =
-  'docs/audits/japanese_master_index_v4/sets';
+const DEFAULT_OUTPUT_DIRECTORY = 'docs/audits/japanese_master_index_v4/sets';
 const PLACEHOLDER_PATTERN =
   /^jpn-(?<source>artofpkm|tcgcollector):(?<sourceSetId>\d+)$/i;
 const SOURCE_PRECEDENCE = new Map([
@@ -24,7 +23,10 @@ const SOURCE_PRECEDENCE = new Map([
   ['limitless_jp_sets', 1],
   ['tcgcollector_jp_sets', 2],
   ['artofpkm_jp_sets', 3],
-  ['official_jp_products', 4],
+  ['serebii_jp_sets', 4],
+  ['bulbapedia_jp_expansions', 5],
+  ['pokeguardian_jp_sets', 6],
+  ['official_jp_products', 7],
 ]);
 
 function parseArgs(argv) {
@@ -89,13 +91,14 @@ function compareAssertions(left, right) {
 }
 
 function uniqueSorted(values) {
-  return [...new Set(values.filter((value) => value !== null && value !== ''))]
-    .sort((left, right) =>
-      String(left).localeCompare(String(right), undefined, {
-        numeric: true,
-        sensitivity: 'base',
-      }),
-    );
+  return [
+    ...new Set(values.filter((value) => value !== null && value !== '')),
+  ].sort((left, right) =>
+    String(left).localeCompare(String(right), undefined, {
+      numeric: true,
+      sensitivity: 'base',
+    }),
+  );
 }
 
 class UnionFind {
@@ -224,13 +227,31 @@ function clusterScopeStatus(cluster) {
   if (cluster.some((row) => row.source_scope_hint === 'card_list_linked')) {
     return 'admitted_official_card_product';
   }
+  if (
+    cluster.some(
+      (row) => row.source_scope_hint === 'official_expansion_release',
+    )
+  ) {
+    return 'admitted_official_expansion_release';
+  }
+  if (
+    cluster.some(
+      (row) => row.source_scope_hint === 'official_constructed_deck_product',
+    )
+  ) {
+    return 'admitted_official_constructed_deck_product';
+  }
+  if (
+    cluster.some(
+      (row) => row.source_scope_hint === 'official_card_distribution_product',
+    )
+  ) {
+    return 'admitted_official_card_distribution_product';
+  }
   return 'requires_product_scope_review';
 }
 
-function buildRegistry({
-  assertions,
-  baseline,
-}) {
+function buildRegistry({ assertions, baseline }) {
   const { clusters, nameGroups, codeGroups } =
     buildAssertionClusters(assertions);
   const baselineRows = baseline.set_codes;
@@ -270,7 +291,9 @@ function buildRegistry({
   for (const placeholder of baseline.source_placeholder_sets) {
     const match = placeholder.set_code.match(PLACEHOLDER_PATTERN);
     if (!match?.groups) {
-      throw new Error(`Unrecognized source placeholder: ${placeholder.set_code}`);
+      throw new Error(
+        `Unrecognized source placeholder: ${placeholder.set_code}`,
+      );
     }
     const directSourceKey = `${sourceIdForPlaceholder(match.groups.source)}:${match.groups.sourceSetId}`;
     const registryKey = assertionToRegistry.get(directSourceKey);
@@ -369,8 +392,8 @@ function buildRegistry({
           assertionsForEntry.every(
             (row) => row.source_id === 'official_jp_products',
           )
-          ? 'official_product'
-          : 'japanese_card_release',
+            ? 'official_product'
+            : 'japanese_card_release',
         scope_status:
           assertionsForEntry.length > 0
             ? clusterScopeStatus(assertionsForEntry)
@@ -453,8 +476,8 @@ function buildRegistry({
         normalized_alias_value: normalizedCode,
         registry_key: entry.registry_key,
         ambiguous:
-          uniqueSorted(nativeCodeDestinations.get(normalizedCode) ?? []).length >
-          1,
+          uniqueSorted(nativeCodeDestinations.get(normalizedCode) ?? [])
+            .length > 1,
       });
     }
   }
@@ -606,10 +629,7 @@ function countedRows(rows, keyBuilder) {
 function coverageReport({ assertions, result }) {
   return {
     summary: result.summary,
-    assertion_counts_by_source: countedRows(
-      assertions,
-      (row) => row.source_id,
-    ),
+    assertion_counts_by_source: countedRows(assertions, (row) => row.source_id),
     registry_counts_by_scope_status: countedRows(
       result.registryEntries,
       (row) => row.scope_status,
@@ -652,22 +672,27 @@ function coverageReport({ assertions, result }) {
         result.summary.represented_source_assertion_count,
       source_placeholders_remaining:
         result.summary.unresolved_source_placeholder_count,
-      unexplained_alias_collisions:
-        result.conflicts.filter(
-          (row) =>
-            row.severity === 'blocking_for_code_promotion' &&
-            !row.source_assertion_keys?.length,
-        ).length,
+      unexplained_alias_collisions: result.conflicts.filter(
+        (row) =>
+          row.severity === 'blocking_for_code_promotion' &&
+          !row.source_assertion_keys?.length,
+      ).length,
+      official_product_scope_reviews_remaining:
+        result.summary.product_scope_review_count,
       card_level_promotion_allowed: false,
-      reason: 'phase_2_registry_review_is_still_active',
+      reason:
+        result.summary.product_scope_review_count === 0
+          ? 'phase_2_registry_complete_card_level_work_remains_separately_gated'
+          : 'phase_2_registry_review_is_still_active',
     },
   };
 }
 
 function coverageMarkdown(coverage) {
   const table = (rows, label) =>
-    rows.map((row) => `| ${row.key} | ${row.count.toLocaleString('en-US')} |`).join('\n') ||
-    `| No ${label} | 0 |`;
+    rows
+      .map((row) => `| ${row.key} | ${row.count.toLocaleString('en-US')} |`)
+      .join('\n') || `| No ${label} | 0 |`;
   return `# Japanese Master Index V4 Set Registry Coverage
 
 Generated from preserved, offline-replayable source assertions. This report
@@ -730,9 +755,9 @@ ${table(coverage.conflict_counts_by_type, 'conflicts')}
 - Every source assertion represented: ${coverage.gate.every_assertion_represented}
 - Source placeholders remaining: ${coverage.gate.source_placeholders_remaining}
 - Unexplained alias collisions: ${coverage.gate.unexplained_alias_collisions}
+- Official product scope reviews remaining: ${coverage.gate.official_product_scope_reviews_remaining}
 - Card-level promotion allowed: ${coverage.gate.card_level_promotion_allowed}
-- Phase 2 remains active while corroborating release archives and scope review
-  are harvested.
+- Registry completion does not authorize card-level promotion.
 `;
 }
 
@@ -753,7 +778,9 @@ async function build(options) {
     result.summary.represented_source_assertion_count !==
     result.summary.source_assertion_count
   ) {
-    throw new Error('Not every source assertion is represented in the registry.');
+    throw new Error(
+      'Not every source assertion is represented in the registry.',
+    );
   }
   if (result.summary.unresolved_source_placeholder_count !== 0) {
     throw new Error('Source-placeholder resolution is incomplete.');
@@ -771,6 +798,25 @@ async function build(options) {
   };
   const outputDirectory = path.resolve(options.outputDirectory);
   const coverage = coverageReport({ assertions, result });
+  const registryByAssertion = new Map(
+    result.registryEntries.flatMap((entry) =>
+      entry.source_assertion_keys.map((key) => [key, entry.registry_key]),
+    ),
+  );
+  const officialScopeRows = assertions
+    .filter((row) => row.source_id === 'official_jp_products')
+    .map((row) => ({
+      source_assertion_key: `${row.source_id}:${row.source_set_id}`,
+      source_set_id: row.source_set_id,
+      source_native_name: row.source_native_name,
+      source_release_date: row.source_release_date,
+      source_container_kind: row.source_container_kind,
+      source_scope_disposition: row.source_scope_hint,
+      source_url: row.source_url,
+      registry_key: registryByAssertion.get(
+        `${row.source_id}:${row.source_set_id}`,
+      ),
+    }));
   const conflictTypeCounts = new Map();
   for (const conflict of result.conflicts) {
     conflictTypeCounts.set(
@@ -828,6 +874,23 @@ async function build(options) {
         resolutions: result.placeholderResolutions,
       },
     ],
+    [
+      'jpn_official_product_scope_v1.json',
+      {
+        summary: {
+          official_product_count: officialScopeRows.length,
+          disposition_counts: countedRows(
+            officialScopeRows,
+            (row) => row.source_scope_disposition,
+          ),
+          unresolved_scope_review_count: officialScopeRows.filter(
+            (row) =>
+              row.source_scope_disposition === 'requires_product_scope_review',
+          ).length,
+        },
+        products: officialScopeRows,
+      },
+    ],
     ['jpn_set_registry_coverage_v1.json', coverage],
   ];
 
@@ -868,7 +931,8 @@ export {
 
 const isEntrypoint =
   process.argv[1] &&
-  path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+  path.resolve(process.argv[1]) ===
+    path.resolve(fileURLToPath(import.meta.url));
 if (isEntrypoint) {
   build(parseArgs(process.argv.slice(2))).catch((error) => {
     console.error('[jpn-master-index][registry] fatal:', error);

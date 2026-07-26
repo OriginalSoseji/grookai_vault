@@ -5,7 +5,7 @@
     "sources": [
       {
         "assertion_count": 640,
-        "assertion_fingerprint_sha256": "ac6ed741a6c7ad2ea79fb8a9663fa48de7119ad36a16591ce8153bb822c5a7f4",
+        "assertion_fingerprint_sha256": "5a0a5c0d1080464d71a70903ee2324bd845a9a32ebea986575fff6821e22bf8e",
         "body_sha256": "e5d9d122c1012e937d691d93fcbfcd7763eb90facdb5cbb167b1ab6b54745fbd",
         "byte_size": 547619,
         "fetched_at": "2026-07-26T16:32:08.644Z",
@@ -15,8 +15,19 @@
         "source_id": "official_jp_products"
       },
       {
+        "assertion_count": 59,
+        "assertion_fingerprint_sha256": "8a2230f923d91d217e3d90ee7ec95a8a5ab16fb46f24340ef23430b5c6ff226e",
+        "body_sha256": "c44e6d7db3efc35513dd121aa18ca29c704d250dcd797de1e939f1dafaaf4460",
+        "byte_size": 403960,
+        "fetched_at": "2026-07-26T17:04:20.944Z",
+        "http_status": 200,
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+        "response_headers": {},
+        "source_id": "pokeguardian_jp_sets"
+      },
+      {
         "assertion_count": 177,
-        "assertion_fingerprint_sha256": "b1f574dff19e83693264db9ac81499989492f29b44db86008baa7419067031cd",
+        "assertion_fingerprint_sha256": "d1466116ce02bec4c7e863863a20dff970b9bdd4e002d359b41e4c726c449934",
         "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
         "byte_size": 15659,
         "fetched_at": "2026-07-26T16:26:13.530Z",
@@ -33,7 +44,7 @@
       },
       {
         "assertion_count": 262,
-        "assertion_fingerprint_sha256": "4b8859e8703f6f7ddce791d38a4b46b2140ffb65720d1b9afa3741b4a6d91d93",
+        "assertion_fingerprint_sha256": "bb6fade2db314f6c8d39d147cd28e18fa782e4637c90d932aa0e7f601f1d96fa",
         "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
         "byte_size": 157221,
         "fetched_at": "2026-07-26T16:26:13.884Z",
@@ -50,7 +61,7 @@
       },
       {
         "assertion_count": 419,
-        "assertion_fingerprint_sha256": "3feb403e3d41201f6b7babbc6fbc18bb35cbd8c5bd6fbd6c2a4aca0ee1afaab5",
+        "assertion_fingerprint_sha256": "f61c07af02707c9037e67634c76c79b4b690c6264f20ae8f2b5e9ed347363e50",
         "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
         "byte_size": 669625,
         "fetched_at": "2026-07-26T16:33:16.580Z",
@@ -68,7 +79,7 @@
       },
       {
         "assertion_count": 453,
-        "assertion_fingerprint_sha256": "24ab3b9558625cde8b7b5cd61a5ce5d4bd8b73c48afbcf5970e32135f51e59f6",
+        "assertion_fingerprint_sha256": "a65c694a46f2ae324314d7bf68692696e9e4e98eb33c2a1bdd18354123d13030",
         "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
         "byte_size": 1854365,
         "fetched_at": "2026-07-26T16:26:14.419Z",
@@ -84,11 +95,47 @@
           "vary": "Accept-Encoding"
         },
         "source_id": "tcgcollector_jp_sets"
+      },
+      {
+        "assertion_count": 165,
+        "assertion_fingerprint_sha256": "81e97b2939836b7c518846f30512556daad607a07e66ceebffb000392d5d6fb3",
+        "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+        "byte_size": 115670,
+        "fetched_at": "2026-07-26T17:04:26.141Z",
+        "http_status": 200,
+        "request_url": "https://www.serebii.net/card/japanese.shtml",
+        "response_headers": {
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=ISO-8859-1",
+          "date": "Sun, 26 Jul 2026 17:04:26 GMT",
+          "server": "nginx",
+          "vary": "Accept-Encoding"
+        },
+        "source_id": "serebii_jp_sets"
+      },
+      {
+        "assertion_count": 160,
+        "assertion_fingerprint_sha256": "cd7f7e4d9d13572a1e3661dc082d25a4aff4b8df3730335f8f271170621d1e88",
+        "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
+        "byte_size": 515887,
+        "fetched_at": "2026-07-26T17:04:27.155Z",
+        "http_status": 200,
+        "request_url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions",
+        "response_headers": {
+          "cache-control": "s-maxage=18000, must-revalidate, max-age=0",
+          "content-encoding": "gzip",
+          "content-type": "text/html; charset=UTF-8",
+          "date": "Sun, 26 Jul 2026 17:04:27 GMT",
+          "last-modified": "Sun, 26 Jul 2026 11:57:48 GMT",
+          "server": "cloudflare",
+          "vary": "Accept-Encoding,Cookie"
+        },
+        "source_id": "bulbapedia_jp_expansions"
       }
     ]
   },
-  "content_fingerprint_sha256": "f57bc3398362b52c5f173fc54a6affdf18bb2c84a0b8545ffe9c0ff31cd48244",
-  "generated_at": "2026-07-26T16:49:56.766Z",
+  "content_fingerprint_sha256": "db8056bf51bb495432c274e8975f83c875fd687ac88460c30037dcb7a45c1a69",
+  "generated_at": "2026-07-26T17:09:54.034Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
   "retrieval": {
     "mode": "offline_replay",
@@ -101,6 +148,14 @@
         "http_status": 200,
         "request_url": "https://www.pokemon-card.com/products/",
         "source_id": "official_jp_products"
+      },
+      {
+        "body_sha256": "c44e6d7db3efc35513dd121aa18ca29c704d250dcd797de1e939f1dafaaf4460",
+        "byte_size": 403960,
+        "fetched_at": "2026-07-26T17:04:20.944Z",
+        "http_status": 200,
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+        "source_id": "pokeguardian_jp_sets"
       },
       {
         "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
@@ -133,6 +188,22 @@
         "http_status": 200,
         "request_url": "https://www.tcgcollector.com/sets/jp",
         "source_id": "tcgcollector_jp_sets"
+      },
+      {
+        "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+        "byte_size": 115670,
+        "fetched_at": "2026-07-26T17:04:26.141Z",
+        "http_status": 200,
+        "request_url": "https://www.serebii.net/card/japanese.shtml",
+        "source_id": "serebii_jp_sets"
+      },
+      {
+        "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
+        "byte_size": 515887,
+        "fetched_at": "2026-07-26T17:04:27.155Z",
+        "http_status": 200,
+        "request_url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions",
+        "source_id": "bulbapedia_jp_expansions"
       }
     ]
   }

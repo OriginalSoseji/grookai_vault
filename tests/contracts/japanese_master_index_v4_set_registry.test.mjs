@@ -9,8 +9,11 @@ import {
 } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
 import {
   parseArtOfPkmJapaneseSets,
+  parseBulbapediaJapaneseExpansions,
   parseLimitlessJapaneseSets,
   parseOfficialJapaneseProducts,
+  parsePokeGuardianJapaneseSetIndex,
+  parseSerebiiJapaneseSets,
   parseTcgCollectorJapaneseSets,
   parseTcgdexJapaneseSets,
 } from '../../scripts/audits/japanese_master_index_v4/set_source_parsers_v1.mjs';
@@ -105,6 +108,83 @@ test('Art of Pokémon parser preserves set id, name, and era', () => {
   assert.equal(rows[0].source_image_url, 'https://www.artofpkm.com/logo.png');
 });
 
+test('Serebii parser preserves source slug, name, count, date, and image', () => {
+  const rows = parseSerebiiJapaneseSets(`
+    <table>
+      <tr>
+        <td class="cen"><a href="/card/abysseye"><img src="/card/logo/abysseye.png"></a></td>
+        <td class="cen"><a href="/card/abysseye">Abyss Eye</a></td>
+        <td class="cen">124</td>
+        <td class="cen"><a href="/card/abysseye">May 22nd 2026</a></td>
+      </tr>
+    </table>
+  `);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].source_set_id, 'abysseye');
+  assert.equal(rows[0].source_native_name, 'Abyss Eye');
+  assert.equal(rows[0].source_expected_card_count, 124);
+  assert.equal(rows[0].source_release_date, 'May 22nd 2026');
+  assert.equal(
+    rows[0].source_image_url,
+    'https://www.serebii.net/card/logo/abysseye.png',
+  );
+});
+
+test('Bulbapedia parser preserves translated and Japanese names without inventing a code', () => {
+  const rows = parseBulbapediaJapaneseExpansions(`
+    <h2><span class="mw-headline" id="Main_Sets">Main Sets</span></h2>
+    <h3><span class="mw-headline" id="Original_Era">Original Era</span></h3>
+    <table>
+      <tr>
+        <th>Set no.</th><th>Symbol</th><th>Logo</th>
+        <th>Japanese name<br>Translated name</th>
+        <th>English equivalent</th><th>No. of cards</th><th>Release date</th>
+      </tr>
+      <tr>
+        <td>1</td><td>-</td><td>-</td>
+        <td>拡張パック<br><a href="/wiki/Expansion_Pack_(TCG)" title="Expansion Pack (TCG)">Expansion Pack</a></td>
+        <td>Base Set</td><td>102</td><td>October 20, 1996</td>
+      </tr>
+    </table>
+  `);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].source_set_id, 'Expansion_Pack_(TCG)');
+  assert.equal(rows[0].source_native_code, null);
+  assert.equal(rows[0].source_native_name, 'Expansion Pack');
+  assert.equal(rows[0].source_native_japanese_name, '拡張パック');
+  assert.equal(rows[0].source_expected_card_count, 102);
+  assert.equal(rows[0].source_era_label, 'Original Era');
+  assert.equal(rows[0].source_release_kind, 'Main Sets');
+});
+
+test('PokeGuardian parser clusters main and rarity articles into one release assertion', () => {
+  const rows = parsePokeGuardianJapaneseSetIndex(`
+    <article class="jw-news-post">
+      <h2 class="jw-news-post__title">
+        <a data-segment-id="10" href="/sets/10_m5-abyss-eye-all-sr-ar-sar-cards">
+          M5 Abyss Eye All SR/AR/SAR Cards
+        </a>
+      </h2>
+      <div class="jw-news-post__lead"><p>Releases May 22, 2026.</p></div>
+    </article>
+    <article class="jw-news-post">
+      <h2 class="jw-news-post__title">
+        <a data-segment-id="11" href="/sets/11_m5-abyss-eye-main-set-list">
+          M5 Abyss Eye Main Set List
+        </a>
+      </h2>
+      <div class="jw-news-post__lead"><p>Releases May 22, 2026.</p></div>
+    </article>
+  `);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].source_set_id, 'M5');
+  assert.equal(rows[0].source_native_code, 'M5');
+  assert.equal(rows[0].source_native_name, 'M5 Abyss Eye');
+  assert.equal(rows[0].source_release_date, 'May 22, 2026');
+  assert.equal(rows[0].source_related_urls.length, 2);
+  assert.match(rows[0].source_url, /main-set-list$/);
+});
+
 test('official Japanese product parser preserves pg identity and scope hint', () => {
   const rows = parseOfficialJapaneseProducts(
     JSON.stringify({
@@ -133,10 +213,37 @@ test('official Japanese product parser preserves pg identity and scope hint', ()
   assert.equal(rows[0].source_container_kind, 'expansion');
 });
 
+test('official Japanese products receive explicit no-card-list scope dispositions', () => {
+  const basePayload = {
+    result: 1,
+    thisPage: 1,
+    maxPage: 1,
+    hitCnt: 1,
+    products: [
+      {
+        productTitle: 'Example',
+        releaseDate: '2026年 1月1日（木）',
+        link_detailPage: '/products/example',
+      },
+    ],
+  };
+  const expectations = new Map([
+    ['expansion', 'official_expansion_release'],
+    ['construction', 'official_constructed_deck_product'],
+    ['others', 'official_card_distribution_product'],
+  ]);
+  for (const [productType, expected] of expectations) {
+    const [row] = parseOfficialJapaneseProducts(JSON.stringify(basePayload), {
+      productType,
+    });
+    assert.equal(row.source_scope_hint, expected);
+  }
+});
+
 test('registry normalizers preserve Japanese text while folding punctuation and codes', () => {
   assert.equal(normalizeName('ポケモンカード151'), 'ポケモンカード151');
   assert.equal(
-    normalizeName("Magma VS Aqua: Two Ambitions"),
+    normalizeName('Magma VS Aqua: Two Ambitions'),
     normalizeName('Magma vs Aqua — Two Ambitions'),
   );
   assert.equal(normalizeCode('JPN-SV8a'), 'sv8a');
@@ -213,7 +320,13 @@ test('preserved live set artifacts are healthy, unique, and replayable', () => {
   const assertionsPath = path.join(ROOT, 'source_set_assertions_v1.json');
   const healthPath = path.join(ROOT, 'source_health_v1.json');
   const manifestPath = path.join(ROOT, 'source_manifest_v1.json');
-  for (const artifactPath of [assertionsPath, healthPath, manifestPath]) {
+  const policyPath = path.join(ROOT, 'source_policy_v1.json');
+  for (const artifactPath of [
+    assertionsPath,
+    healthPath,
+    manifestPath,
+    policyPath,
+  ]) {
     assert.ok(fs.existsSync(artifactPath), artifactPath);
   }
 
@@ -233,6 +346,9 @@ test('preserved live set artifacts are healthy, unique, and replayable', () => {
   assert.ok(counts.tcgcollector_jp_sets >= 440);
   assert.ok(counts.artofpkm_jp_sets >= 400);
   assert.ok(counts.official_jp_products >= 600);
+  assert.ok(counts.serebii_jp_sets >= 150);
+  assert.ok(counts.bulbapedia_jp_expansions >= 100);
+  assert.ok(counts.pokeguardian_jp_sets >= 50);
 
   const keys = artifact.content.assertions.map(
     (row) => `${row.source_id}:${row.source_set_id}`,
@@ -246,15 +362,18 @@ test('preserved live set artifacts are healthy, unique, and replayable', () => {
     assert.equal(sha256(body), raw.body_sha256);
     assert.equal(raw.http_status, 200);
   }
+
+  const policy = JSON.parse(fs.readFileSync(policyPath, 'utf8'));
+  assert.ok(
+    policy.content.blocked_automated_sources.includes('pokellector_jp_sets'),
+  );
 });
 
 test('governed registry covers every assertion and resolves every live placeholder', () => {
   const assertionsArtifact = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'source_set_assertions_v1.json'), 'utf8'),
   );
-  const baselineArtifact = JSON.parse(
-    fs.readFileSync(BASELINE_PATH, 'utf8'),
-  );
+  const baselineArtifact = JSON.parse(fs.readFileSync(BASELINE_PATH, 'utf8'));
   const registryArtifact = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'jpn_set_registry_v1.json'), 'utf8'),
   );
@@ -271,7 +390,16 @@ test('governed registry covers every assertion and resolves every live placehold
     fs.readFileSync(path.join(ROOT, 'jpn_set_conflict_queue_v1.json'), 'utf8'),
   );
   const coverageArtifact = JSON.parse(
-    fs.readFileSync(path.join(ROOT, 'jpn_set_registry_coverage_v1.json'), 'utf8'),
+    fs.readFileSync(
+      path.join(ROOT, 'jpn_set_registry_coverage_v1.json'),
+      'utf8',
+    ),
+  );
+  const officialScopeArtifact = JSON.parse(
+    fs.readFileSync(
+      path.join(ROOT, 'jpn_official_product_scope_v1.json'),
+      'utf8',
+    ),
   );
 
   for (const artifact of [
@@ -280,6 +408,7 @@ test('governed registry covers every assertion and resolves every live placehold
     placeholderArtifact,
     conflictArtifact,
     coverageArtifact,
+    officialScopeArtifact,
   ]) {
     assert.equal(
       artifact.content_fingerprint_sha256,
@@ -311,7 +440,8 @@ test('governed registry covers every assertion and resolves every live placehold
   );
   assert.ok(
     placeholderArtifact.content.resolutions.every(
-      (row) => !/^jpn-(artofpkm|tcgcollector):/i.test(row.resolved_registry_key),
+      (row) =>
+        !/^jpn-(artofpkm|tcgcollector):/i.test(row.resolved_registry_key),
     ),
   );
   assert.equal(
@@ -323,16 +453,14 @@ test('governed registry covers every assertion and resolves every live placehold
       (row) => row.severity === 'blocking_for_code_promotion',
     ),
   );
-  assert.equal(
-    coverageArtifact.content.gate.every_assertion_represented,
-    true,
-  );
-  assert.equal(
-    coverageArtifact.content.gate.source_placeholders_remaining,
-    0,
-  );
+  assert.equal(coverageArtifact.content.gate.every_assertion_represented, true);
+  assert.equal(coverageArtifact.content.gate.source_placeholders_remaining, 0);
   assert.equal(
     coverageArtifact.content.gate.card_level_promotion_allowed,
     false,
+  );
+  assert.equal(
+    officialScopeArtifact.content.summary.unresolved_scope_review_count,
+    0,
   );
 });

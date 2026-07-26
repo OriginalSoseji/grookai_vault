@@ -4337,6 +4337,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "M1L / M1S",
+        "ambiguous": false,
+        "normalized_alias_value": "m1l / m1s",
+        "registry_key": "jpn-release-fd8c429aaffd5bd1"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "M1S",
         "ambiguous": false,
         "normalized_alias_value": "m1s",
@@ -4352,6 +4359,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "M2a",
+        "ambiguous": false,
+        "normalized_alias_value": "m2a",
+        "registry_key": "jpn-m2a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "M2A",
         "ambiguous": false,
         "normalized_alias_value": "m2a",
         "registry_key": "jpn-m2a"
@@ -4736,6 +4750,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S1A",
+        "ambiguous": false,
+        "normalized_alias_value": "s1a",
+        "registry_key": "jpn-s1a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S1H",
         "ambiguous": false,
         "normalized_alias_value": "s1h",
@@ -4743,10 +4764,24 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S1H / S1W",
+        "ambiguous": false,
+        "normalized_alias_value": "s1h / s1w",
+        "registry_key": "jpn-release-5e3ae5afe377bd90"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S1W",
         "ambiguous": false,
         "normalized_alias_value": "s1w",
         "registry_key": "jpn-s1w"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S1W / S1H",
+        "ambiguous": false,
+        "normalized_alias_value": "s1w / s1h",
+        "registry_key": "jpn-release-4e493e53b96b09fb"
       },
       {
         "alias_type": "source_native_code",
@@ -4758,6 +4793,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "S2a",
+        "ambiguous": false,
+        "normalized_alias_value": "s2a",
+        "registry_key": "jpn-s2a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S2A",
         "ambiguous": false,
         "normalized_alias_value": "s2a",
         "registry_key": "jpn-s2a"
@@ -4778,6 +4820,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S3A",
+        "ambiguous": false,
+        "normalized_alias_value": "s3a",
+        "registry_key": "jpn-s3a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S4",
         "ambiguous": false,
         "normalized_alias_value": "s4",
@@ -4792,7 +4841,21 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S4A",
+        "ambiguous": false,
+        "normalized_alias_value": "s4a",
+        "registry_key": "jpn-s4a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S5a",
+        "ambiguous": false,
+        "normalized_alias_value": "s5a",
+        "registry_key": "jpn-s5a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S5A",
         "ambiguous": false,
         "normalized_alias_value": "s5a",
         "registry_key": "jpn-s5a"
@@ -4803,6 +4866,13 @@
         "ambiguous": false,
         "normalized_alias_value": "s5i",
         "registry_key": "jpn-s5i"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S5I / S5R",
+        "ambiguous": false,
+        "normalized_alias_value": "s5i / s5r",
+        "registry_key": "jpn-release-4e6d3639cfe39ddd"
       },
       {
         "alias_type": "source_native_code",
@@ -4820,10 +4890,24 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S6A",
+        "ambiguous": false,
+        "normalized_alias_value": "s6a",
+        "registry_key": "jpn-s6a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S6H",
         "ambiguous": false,
         "normalized_alias_value": "s6h",
         "registry_key": "jpn-s6h"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S6H / S6K",
+        "ambiguous": false,
+        "normalized_alias_value": "s6h / s6k",
+        "registry_key": "jpn-release-df57a9f5a39030ea"
       },
       {
         "alias_type": "source_native_code",
@@ -4838,6 +4922,13 @@
         "ambiguous": false,
         "normalized_alias_value": "s7d",
         "registry_key": "jpn-s7d"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S7D / S7R",
+        "ambiguous": false,
+        "normalized_alias_value": "s7d / s7r",
+        "registry_key": "jpn-release-aa1334c887012ddc"
       },
       {
         "alias_type": "source_native_code",
@@ -4856,6 +4947,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "S8a",
+        "ambiguous": false,
+        "normalized_alias_value": "s8a",
+        "registry_key": "jpn-s8a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S8A",
         "ambiguous": false,
         "normalized_alias_value": "s8a",
         "registry_key": "jpn-s8a"
@@ -4883,6 +4981,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S8B",
+        "ambiguous": false,
+        "normalized_alias_value": "s8b",
+        "registry_key": "jpn-s8b"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S9",
         "ambiguous": false,
         "normalized_alias_value": "s9",
@@ -4897,7 +5002,21 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S9A",
+        "ambiguous": false,
+        "normalized_alias_value": "s9a",
+        "registry_key": "jpn-s9a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S10a",
+        "ambiguous": false,
+        "normalized_alias_value": "s10a",
+        "registry_key": "jpn-s10a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S10A",
         "ambiguous": false,
         "normalized_alias_value": "s10a",
         "registry_key": "jpn-s10a"
@@ -4911,10 +5030,24 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S10B",
+        "ambiguous": false,
+        "normalized_alias_value": "s10b",
+        "registry_key": "jpn-s10b"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S10D",
         "ambiguous": false,
         "normalized_alias_value": "s10d",
         "registry_key": "jpn-s10d"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S10D / S10P",
+        "ambiguous": false,
+        "normalized_alias_value": "s10d / s10p",
+        "registry_key": "jpn-release-f648f9e0063e2424"
       },
       {
         "alias_type": "source_native_code",
@@ -4939,6 +5072,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "S11A",
+        "ambiguous": false,
+        "normalized_alias_value": "s11a",
+        "registry_key": "jpn-s11a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "S12",
         "ambiguous": false,
         "normalized_alias_value": "s12",
@@ -4947,6 +5087,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "S12a",
+        "ambiguous": false,
+        "normalized_alias_value": "s12a",
+        "registry_key": "jpn-s12a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "S12A",
         "ambiguous": false,
         "normalized_alias_value": "s12a",
         "registry_key": "jpn-s12a"
@@ -5415,7 +5562,21 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SM11A",
+        "ambiguous": false,
+        "normalized_alias_value": "sm11a",
+        "registry_key": "jpn-sm11a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SM11b",
+        "ambiguous": false,
+        "normalized_alias_value": "sm11b",
+        "registry_key": "jpn-sm11b"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SM11B",
         "ambiguous": false,
         "normalized_alias_value": "sm11b",
         "registry_key": "jpn-sm11b"
@@ -5430,6 +5591,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "SM12a",
+        "ambiguous": false,
+        "normalized_alias_value": "sm12a",
+        "registry_key": "jpn-sm12a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SM12A",
         "ambiguous": false,
         "normalized_alias_value": "sm12a",
         "registry_key": "jpn-sm12a"
@@ -5667,10 +5835,24 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV1A",
+        "ambiguous": false,
+        "normalized_alias_value": "sv1a",
+        "registry_key": "jpn-sv1a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV1S",
         "ambiguous": false,
         "normalized_alias_value": "sv1s",
         "registry_key": "jpn-sv1s"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV1S / SV1V",
+        "ambiguous": false,
+        "normalized_alias_value": "sv1s / sv1v",
+        "registry_key": "jpn-release-780ba54b355b66be"
       },
       {
         "alias_type": "source_native_code",
@@ -5682,6 +5864,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "SV2a",
+        "ambiguous": false,
+        "normalized_alias_value": "sv2a",
+        "registry_key": "jpn-sv2a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV2A",
         "ambiguous": false,
         "normalized_alias_value": "sv2a",
         "registry_key": "jpn-sv2a"
@@ -5702,6 +5891,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV2P / SV2D",
+        "ambiguous": false,
+        "normalized_alias_value": "sv2p / sv2d",
+        "registry_key": "jpn-release-8e3aa7d5f13dba92"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV3",
         "ambiguous": false,
         "normalized_alias_value": "sv3",
@@ -5716,7 +5912,21 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV3A",
+        "ambiguous": false,
+        "normalized_alias_value": "sv3a",
+        "registry_key": "jpn-sv3a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV4a",
+        "ambiguous": false,
+        "normalized_alias_value": "sv4a",
+        "registry_key": "jpn-sv4a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV4A",
         "ambiguous": false,
         "normalized_alias_value": "sv4a",
         "registry_key": "jpn-sv4a"
@@ -5727,6 +5937,13 @@
         "ambiguous": false,
         "normalized_alias_value": "sv4k",
         "registry_key": "jpn-sv4k"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV4K / SV4M",
+        "ambiguous": false,
+        "normalized_alias_value": "sv4k / sv4m",
+        "registry_key": "jpn-release-15714477e8909d2c"
       },
       {
         "alias_type": "source_native_code",
@@ -5744,10 +5961,24 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV5A",
+        "ambiguous": false,
+        "normalized_alias_value": "sv5a",
+        "registry_key": "jpn-sv5a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV5K",
         "ambiguous": false,
         "normalized_alias_value": "sv5k",
         "registry_key": "jpn-sv5k"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV5K / SV5M",
+        "ambiguous": false,
+        "normalized_alias_value": "sv5k / sv5m",
+        "registry_key": "jpn-release-12f6f9cddea41841"
       },
       {
         "alias_type": "source_native_code",
@@ -5772,6 +6003,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV6A",
+        "ambiguous": false,
+        "normalized_alias_value": "sv6a",
+        "registry_key": "jpn-sv6a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV7",
         "ambiguous": false,
         "normalized_alias_value": "sv7",
@@ -5780,6 +6018,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "SV7a",
+        "ambiguous": false,
+        "normalized_alias_value": "sv7a",
+        "registry_key": "jpn-sv7a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV7A",
         "ambiguous": false,
         "normalized_alias_value": "sv7a",
         "registry_key": "jpn-sv7a"
@@ -5800,6 +6045,13 @@
       },
       {
         "alias_type": "source_native_code",
+        "alias_value": "SV8A",
+        "ambiguous": false,
+        "normalized_alias_value": "sv8a",
+        "registry_key": "jpn-sv8a"
+      },
+      {
+        "alias_type": "source_native_code",
         "alias_value": "SV9",
         "ambiguous": false,
         "normalized_alias_value": "sv9",
@@ -5808,6 +6060,13 @@
       {
         "alias_type": "source_native_code",
         "alias_value": "SV9a",
+        "ambiguous": false,
+        "normalized_alias_value": "sv9a",
+        "registry_key": "jpn-sv9a"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV9A",
         "ambiguous": false,
         "normalized_alias_value": "sv9a",
         "registry_key": "jpn-sv9a"
@@ -5825,6 +6084,13 @@
         "ambiguous": false,
         "normalized_alias_value": "sv11b",
         "registry_key": "jpn-sv11b"
+      },
+      {
+        "alias_type": "source_native_code",
+        "alias_value": "SV11B / SV11W",
+        "ambiguous": false,
+        "normalized_alias_value": "sv11b / sv11w",
+        "registry_key": "jpn-release-858c32e0a9fba49a"
       },
       {
         "alias_type": "source_native_code",
@@ -9255,6 +9521,1126 @@
         "ambiguous": false,
         "normalized_alias_value": "artofpkm_jp_sets:598",
         "registry_key": "jpn-release-9290e30fd7e684a3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:25th_Anniversary_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:25th_anniversary_collection_(tcg)",
+        "registry_key": "jpn-s8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:30th_Celebration_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:30th_celebration_(tcg)",
+        "registry_key": "jpn-release-f11a1b74a50dc563"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Abyss_Eye_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:abyss_eye_(tcg)",
+        "registry_key": "jpn-m5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:ADV_Expansion_Pack_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:adv_expansion_pack_(tcg)",
+        "registry_key": "jpn-release-482756808099183d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Advent_of_Arceus_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:advent_of_arceus_(tcg)",
+        "registry_key": "jpn-dpt4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Alter_Genesis_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:alter_genesis_(tcg)",
+        "registry_key": "jpn-sm12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Amazing_Volt_Tackle_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:amazing_volt_tackle_(tcg)",
+        "registry_key": "jpn-s4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Ancient_Roar/Future_Flash_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ancient_roar/future_flash_(tcg)",
+        "registry_key": "jpn-release-91b289c0def54d1c"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Awakened_Heroes/Ultradimensional_Beasts_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:awakened_heroes/ultradimensional_beasts_(tcg)",
+        "registry_key": "jpn-release-b0587b7a52002691"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Awakening_Legends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:awakening_legends_(tcg)",
+        "registry_key": "jpn-release-a66fd47c97974224"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Awakening_Psychic_King_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:awakening_psychic_king_(tcg)",
+        "registry_key": "jpn-xy10"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Bandit_Ring_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:bandit_ring_(tcg)",
+        "registry_key": "jpn-xy7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Base_Expansion_Pack_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:base_expansion_pack_(tcg)",
+        "registry_key": "jpn-release-62268dbd70a1c1be"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Battle_Partners_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:battle_partners_(tcg)",
+        "registry_key": "jpn-sv9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Battle_Region_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:battle_region_(tcg)",
+        "registry_key": "jpn-s9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Beat_of_the_Frontier_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:beat_of_the_frontier_(tcg)",
+        "registry_key": "jpn-dpt3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Black_Bolt/White_Flare_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:black_bolt/white_flare_(tcg)",
+        "registry_key": "jpn-release-77b6754eb77e9131"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Black_Collection/White_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:black_collection/white_collection_(tcg)",
+        "registry_key": "jpn-release-6d66ec10e77f9ece"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Blue_Shock/Red_Flash_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:blue_shock/red_flash_(tcg)",
+        "registry_key": "jpn-release-75b36820ac1b92e3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Bonds_to_the_End_of_Time_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:bonds_to_the_end_of_time_(tcg)",
+        "registry_key": "jpn-dpt2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Challenge_from_the_Darkness_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:challenge_from_the_darkness_(tcg)",
+        "registry_key": "jpn-release-d4793b8ee109bd84"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Champion_Road_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:champion_road_(tcg)",
+        "registry_key": "jpn-sm6b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Clash_at_the_Summit_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:clash_at_the_summit_(tcg)",
+        "registry_key": "jpn-l3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Clash_of_the_Blue_Sky_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:clash_of_the_blue_sky_(tcg)",
+        "registry_key": "jpn-release-93a156ccac7153f1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Collection_Sun/Collection_Moon_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:collection_sun/collection_moon_(tcg)",
+        "registry_key": "jpn-release-0a0f7299d0620e8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Collection_X/Collection_Y_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:collection_x/collection_y_(tcg)",
+        "registry_key": "jpn-release-c7e55295b23d7e01"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Crimson_Haze_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:crimson_haze_(tcg)",
+        "registry_key": "jpn-sv5a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Crossing_the_Ruins..._(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:crossing_the_ruins..._(tcg)",
+        "registry_key": "jpn-release-f327c885c3280ad7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Cry_from_the_Mysterious/Temple_of_Anger_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:cry_from_the_mysterious/temple_of_anger_(tcg)",
+        "registry_key": "jpn-release-a2115788042a547c"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dark_Order_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dark_order_(tcg)",
+        "registry_key": "jpn-sm8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dark_Phantasma_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dark_phantasma_(tcg)",
+        "registry_key": "jpn-s10a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dark_Rush_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dark_rush_(tcg)",
+        "registry_key": "jpn-bw4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Darkness,_and_to_Light..._(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:darkness,_and_to_light..._(tcg)",
+        "registry_key": "jpn-release-4f74998f8efd8c8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Double_Blaze_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:double_blaze_(tcg)",
+        "registry_key": "jpn-sm10"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dragon_Blast/Dragon_Blade_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dragon_blast/dragon_blade_(tcg)",
+        "registry_key": "jpn-release-22e118eb83888511"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dragon_Selection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dragon_selection_(tcg)",
+        "registry_key": "jpn-ds"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dragon_Storm_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dragon_storm_(tcg)",
+        "registry_key": "jpn-sm6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Dream_League_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:dream_league_(tcg)",
+        "registry_key": "jpn-sm11b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Eevee_Heroes_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:eevee_heroes_(tcg)",
+        "registry_key": "jpn-s6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Emerald_Break_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:emerald_break_(tcg)",
+        "registry_key": "jpn-xy6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Enhanced_Expansion_Pack_Sun_&_Moon_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:enhanced_expansion_pack_sun_&_moon_(tcg)",
+        "registry_key": "jpn-release-9532032d6c6f34ed"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:EX_Battle_Boost_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ex_battle_boost_(tcg)",
+        "registry_key": "jpn-ebb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Expansion_Pack_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:expansion_pack_(tcg)",
+        "registry_key": "jpn-release-40012e8d7b8404ad"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Expansion_Pack_20th_Anniversary_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:expansion_pack_20th_anniversary_(tcg)",
+        "registry_key": "jpn-cp6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Explosive_Walker_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:explosive_walker_(tcg)",
+        "registry_key": "jpn-s2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Facing_a_New_Trial_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:facing_a_new_trial_(tcg)",
+        "registry_key": "jpn-sm2+"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Fairy_Rise_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:fairy_rise_(tcg)",
+        "registry_key": "jpn-sm7b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Fever-Burst_Fighter/Cruel_Traitor_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:fever-burst_fighter/cruel_traitor_(tcg)",
+        "registry_key": "jpn-release-4caa8e1ebbf62b37"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Flight_of_Legends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:flight_of_legends_(tcg)",
+        "registry_key": "jpn-release-d2cb57b99ecf5a6c"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Forbidden_Light_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:forbidden_light_(tcg)",
+        "registry_key": "jpn-sm6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Freeze_Bolt/Cold_Flare_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:freeze_bolt/cold_flare_(tcg)",
+        "registry_key": "jpn-release-45c3edcc6955b648"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Full_Metal_Wall_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:full_metal_wall_(tcg)",
+        "registry_key": "jpn-sm9b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Fusion_Arts_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:fusion_arts_(tcg)",
+        "registry_key": "jpn-s8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Gaia_Volcano/Tidal_Storm_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:gaia_volcano/tidal_storm_(tcg)",
+        "registry_key": "jpn-release-942688b28cee28fb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Galactic's_Conquest_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:galactic's_conquest_(tcg)",
+        "registry_key": "jpn-dpt1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:GG_End_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:gg_end_(tcg)",
+        "registry_key": "jpn-sm10a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Glory_of_the_Rocket_Gang_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:glory_of_the_rocket_gang_(tcg)",
+        "registry_key": "jpn-release-be3aa08966286bbd"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Gold,_Silver,_to_a_New_World..._(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:gold,_silver,_to_a_new_world..._(tcg)",
+        "registry_key": "jpn-release-468a341483d6e016"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Golden_Sky,_Silvery_Ocean_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:golden_sky,_silvery_ocean_(tcg)",
+        "registry_key": "jpn-release-bfd93655709431d0"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:GX_Battle_Boost_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:gx_battle_boost_(tcg)",
+        "registry_key": "jpn-release-b88f934d137634ed"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:GX_Ultra_Shiny_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:gx_ultra_shiny_(tcg)",
+        "registry_key": "jpn-sm8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:HeartGold_Collection/SoulSilver_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:heartgold_collection/soulsilver_collection_(tcg)",
+        "registry_key": "jpn-release-5ecedebcb0768660"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Holon_Phantom_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:holon_phantom_(tcg)",
+        "registry_key": "jpn-release-6d6df3485e89d3da"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Holon_Research_Tower_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:holon_research_tower_(tcg)",
+        "registry_key": "jpn-release-27c74e7178fd9898"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Hot_Wind_Arena_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:hot_wind_arena_(tcg)",
+        "registry_key": "jpn-release-f8f1b4d8a91b1e95"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Incandescent_Arcana_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:incandescent_arcana_(tcg)",
+        "registry_key": "jpn-s11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Inferno_X_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:inferno_x_(tcg)",
+        "registry_key": "jpn-m2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Infinity_Zone_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:infinity_zone_(tcg)",
+        "registry_key": "jpn-s3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Intense_Fight_in_the_Destroyed_Sky_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:intense_fight_in_the_destroyed_sky_(tcg)",
+        "registry_key": "jpn-dps"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Islands_Await_You/Alolan_Moonlight_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:islands_await_you/alolan_moonlight_(tcg)",
+        "registry_key": "jpn-release-b8d0fc24d116e09a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Leaders'_Stadium_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:leaders'_stadium_(tcg)",
+        "registry_key": "jpn-release-5bdc3107c3d84789"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Legendary_Heartbeat_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:legendary_heartbeat_(tcg)",
+        "registry_key": "jpn-s3a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Legendary_Shine_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:legendary_shine_collection_(tcg)",
+        "registry_key": "jpn-cp2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Lost_Abyss_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:lost_abyss_(tcg)",
+        "registry_key": "jpn-s11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Lost_Link_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:lost_link_(tcg)",
+        "registry_key": "jpn-ll"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Magma_Gang_VS_Aqua_Gang:_Double_Crisis_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:magma_gang_vs_aqua_gang:_double_crisis_(tcg)",
+        "registry_key": "jpn-release-55be839b074c1f02"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Magma_VS_Aqua:_Two_Ambitions_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:magma_vs_aqua:_two_ambitions_(tcg)",
+        "registry_key": "jpn-release-f74744ba0b0564be"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Mega_Brave/Mega_Symphonia_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mega_brave/mega_symphonia_(tcg)",
+        "registry_key": "jpn-release-05d7a6df83837b1e"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:MEGA_Dream_ex_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mega_dream_ex_(tcg)",
+        "registry_key": "jpn-m2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Megalo_Cannon_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:megalo_cannon_(tcg)",
+        "registry_key": "jpn-bw9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Miracle_Crystal_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:miracle_crystal_(tcg)",
+        "registry_key": "jpn-release-d22a9dd357f27197"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Miracle_of_the_Desert_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:miracle_of_the_desert_(tcg)",
+        "registry_key": "jpn-release-f3edc7c4482495e6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Miracle_Twin_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:miracle_twin_(tcg)",
+        "registry_key": "jpn-sm11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Mirage_Forest_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mirage_forest_(tcg)",
+        "registry_key": "jpn-release-426829a8906c7ca0"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Moonlit_Pursuit/Dawn_Dash_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:moonlit_pursuit/dawn_dash_(tcg)",
+        "registry_key": "jpn-release-a756e4c7cb880ab7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Mysterious_Mountains_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mysterious_mountains_(tcg)",
+        "registry_key": "jpn-release-c876aa483a727649"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Mystery_of_the_Fossils_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mystery_of_the_fossils_(tcg)",
+        "registry_key": "jpn-release-426e7f4f11967d68"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Mythical_&_Legendary_Dream_Shine_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:mythical_&_legendary_dream_shine_collection_(tcg)",
+        "registry_key": "jpn-cp5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Night_Unison_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:night_unison_(tcg)",
+        "registry_key": "jpn-sm9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Night_Wanderer_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:night_wanderer_(tcg)",
+        "registry_key": "jpn-sv6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Nihil_Zero_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:nihil_zero_(tcg)",
+        "registry_key": "jpn-m3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Ninja_Spinner_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ninja_spinner_(tcg)",
+        "registry_key": "jpn-m4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Offense_and_Defense_of_the_Furthest_Ends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:offense_and_defense_of_the_furthest_ends_(tcg)",
+        "registry_key": "jpn-release-322c110f169e1ce2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Paradigm_Trigger_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:paradigm_trigger_(tcg)",
+        "registry_key": "jpn-s12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Paradise_Dragona_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:paradise_dragona_(tcg)",
+        "registry_key": "jpn-sv7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Peerless_Fighters_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:peerless_fighters_(tcg)",
+        "registry_key": "jpn-release-58035b6ea2d6563e"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Phantom_Gate_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:phantom_gate_(tcg)",
+        "registry_key": "jpn-xy4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pikachu's_New_Friends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pikachu's_new_friends_(tcg)",
+        "registry_key": "jpn-sm0"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Plasma_Gale_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:plasma_gale_(tcg)",
+        "registry_key": "jpn-bw7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:PokéKyun_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokékyun_collection_(tcg)",
+        "registry_key": "jpn-cp3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pokémon_Card_151_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokémon_card_151_(tcg)",
+        "registry_key": "jpn-sv2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pokémon_GO_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokémon_go_(tcg)",
+        "registry_key": "jpn-s10b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pokémon_Jungle_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokémon_jungle_(tcg)",
+        "registry_key": "jpn-release-9200a69b8d9f3556"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pokémon_VS_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokémon_vs_(tcg)",
+        "registry_key": "jpn-release-596daaa8c64fca1f"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Pokémon_Web_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:pokémon_web_(tcg)",
+        "registry_key": "jpn-release-9ed4d3a8f0440a07"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Premium_Champion_Pack_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:premium_champion_pack_(tcg)",
+        "registry_key": "jpn-release-67228633adae2d5a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Psycho_Drive/Hail_Blizzard_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:psycho_drive/hail_blizzard_(tcg)",
+        "registry_key": "jpn-release-fd9d9060d2b4f301"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rage_of_the_Broken_Heavens_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rage_of_the_broken_heavens_(tcg)",
+        "registry_key": "jpn-xy9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Raging_Surf_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:raging_surf_(tcg)",
+        "registry_key": "jpn-sv3a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rebellion_Crash_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rebellion_crash_(tcg)",
+        "registry_key": "jpn-s2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Red_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:red_collection_(tcg)",
+        "registry_key": "jpn-bw2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Remix_Bout_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:remix_bout_(tcg)",
+        "registry_key": "jpn-sm11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Reviving_Legends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:reviving_legends_(tcg)",
+        "registry_key": "jpn-l2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rising_Fist_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rising_fist_(tcg)",
+        "registry_key": "jpn-xy3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rocket_Gang_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rocket_gang_(tcg)",
+        "registry_key": "jpn-release-d6d824dc67a05835"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rocket_Gang_Strikes_Back_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rocket_gang_strikes_back_(tcg)",
+        "registry_key": "jpn-release-4fd17b78ef9b1d7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Ruler_of_the_Black_Flame_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ruler_of_the_black_flame_(tcg)",
+        "registry_key": "jpn-sv3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Rulers_of_the_Heavens_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:rulers_of_the_heavens_(tcg)",
+        "registry_key": "jpn-release-6fbc82703daa225b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Scarlet_ex/Violet_ex_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:scarlet_ex/violet_ex_(tcg)",
+        "registry_key": "jpn-release-f8352fc7cb2b9a7e"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Secret_of_the_Lakes_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:secret_of_the_lakes_(tcg)",
+        "registry_key": "jpn-dp2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Shining_Darkness_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:shining_darkness_(tcg)",
+        "registry_key": "jpn-dp3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Shining_Legends_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:shining_legends_(tcg)",
+        "registry_key": "jpn-release-8e24fccc62c9b3e2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Shiny_Collection_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:shiny_collection_(tcg)",
+        "registry_key": "jpn-sc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Shiny_Star_V_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:shiny_star_v_(tcg)",
+        "registry_key": "jpn-s4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Shiny_Treasure_ex_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:shiny_treasure_ex_(tcg)",
+        "registry_key": "jpn-sv4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Silver_Lance/Jet-Black_Spirit_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:silver_lance/jet-black_spirit_(tcg)",
+        "registry_key": "jpn-release-a11d2df4ea04478f"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Single_Strike_Master/Rapid_Strike_Master_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:single_strike_master/rapid_strike_master_(tcg)",
+        "registry_key": "jpn-release-7c602dbcb79df670"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Sky_Legend_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:sky_legend_(tcg)",
+        "registry_key": "jpn-sm10b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Sky-Splitting_Charisma_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:sky-splitting_charisma_(tcg)",
+        "registry_key": "jpn-sm7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Skyscraping_Perfection/Blue_Sky_Stream_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:skyscraping_perfection/blue_sky_stream_(tcg)",
+        "registry_key": "jpn-release-d9abf30aaf4ac54e"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Snow_Hazard/Clay_Burst_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:snow_hazard/clay_burst_(tcg)",
+        "registry_key": "jpn-release-0595d0ea48f8324a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Space-Time_Creation_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:space-time_creation_(tcg)",
+        "registry_key": "jpn-release-cb010e8c5c9c28af"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Spiral_Force/Thunder_Knuckle_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:spiral_force/thunder_knuckle_(tcg)",
+        "registry_key": "jpn-release-b9f3d92422109a83"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Split_Earth_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:split_earth_(tcg)",
+        "registry_key": "jpn-release-4961b9d8bce74e89"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Star_Birth_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:star_birth_(tcg)",
+        "registry_key": "jpn-s9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Stellar_Miracle_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:stellar_miracle_(tcg)",
+        "registry_key": "jpn-sv7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Storm_Emeralda_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:storm_emeralda_(tcg)",
+        "registry_key": "jpn-release-10ce4ad24f2df6f7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Super_Electric_Breaker_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:super_electric_breaker_(tcg)",
+        "registry_key": "jpn-sv8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Super-Burst_Impact_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:super-burst_impact_(tcg)",
+        "registry_key": "jpn-sm8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Sword/Shield_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:sword/shield_(tcg)",
+        "registry_key": "jpn-release-468ec0745ef5a70d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Tag_All_Stars_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:tag_all_stars_(tcg)",
+        "registry_key": "jpn-release-478f10d1d4a22fc5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Tag_Bolt_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:tag_bolt_(tcg)",
+        "registry_key": "jpn-sm9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Terastal_Fest_ex_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:terastal_fest_ex_(tcg)",
+        "registry_key": "jpn-sv8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:The_Best_of_XY_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:the_best_of_xy_(tcg)",
+        "registry_key": "jpn-xy"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:The_Town_on_No_Map_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:the_town_on_no_map_(tcg)",
+        "registry_key": "jpn-release-256e78c79c550e0c"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Thunderclap_Spark_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:thunderclap_spark_(tcg)",
+        "registry_key": "jpn-sm7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Time_Gazer/Space_Juggler_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:time_gazer/space_juggler_(tcg)",
+        "registry_key": "jpn-release-4b1ad16327f8e8f2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:To_Have_Seen_the_Battle_Rainbow/Darkness_that_Consumes_Light_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:to_have_seen_the_battle_rainbow/darkness_that_consumes_light_(tcg)",
+        "registry_key": "jpn-release-73ee14a6a81b74ea"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Transformation_Mask_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:transformation_mask_(tcg)",
+        "registry_key": "jpn-release-9709297dbc69c7b1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Triplet_Beat_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:triplet_beat_(tcg)",
+        "registry_key": "jpn-sv1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Ultra_Force_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ultra_force_(tcg)",
+        "registry_key": "jpn-release-d92055e3cb31ee94"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Ultra_Sun/Ultra_Moon_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:ultra_sun/ultra_moon_(tcg)",
+        "registry_key": "jpn-release-e8f4cce34c4c9a73"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Undone_Seal_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:undone_seal_(tcg)",
+        "registry_key": "jpn-release-b4c58ad14d37c38f"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:VMAX_Climax_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:vmax_climax_(tcg)",
+        "registry_key": "jpn-s8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:VMAX_Rising_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:vmax_rising_(tcg)",
+        "registry_key": "jpn-s1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:VSTAR_Universe_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:vstar_universe_(tcg)",
+        "registry_key": "jpn-s12a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Wild_Blaze_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:wild_blaze_(tcg)",
+        "registry_key": "jpn-xy2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Wild_Force/Cyber_Judge_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:wild_force/cyber_judge_(tcg)",
+        "registry_key": "jpn-release-b28e1db89442b023"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:Wind_from_the_Sea_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:wind_from_the_sea_(tcg)",
+        "registry_key": "jpn-release-5a2606476652e721"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "bulbapedia_jp_expansions:World_Champions_Pack_(TCG)",
+        "ambiguous": false,
+        "normalized_alias_value": "bulbapedia_jp_expansions:world_champions_pack_(tcg)",
+        "registry_key": "jpn-release-a6e2ccd9c6ce3008"
       },
       {
         "alias_type": "source_set_id",
@@ -15572,6 +16958,1574 @@
       },
       {
         "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M1L+M1S",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m1l+m1s",
+        "registry_key": "jpn-release-fd8c429aaffd5bd1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M2",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m2",
+        "registry_key": "jpn-m2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M2A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m2a",
+        "registry_key": "jpn-m2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M3",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m3",
+        "registry_key": "jpn-m3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M4",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m4",
+        "registry_key": "jpn-m4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M5",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m5",
+        "registry_key": "jpn-m5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:M6",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:m6",
+        "registry_key": "jpn-release-10ce4ad24f2df6f7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S1A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s1a",
+        "registry_key": "jpn-s1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S1H+S1W",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s1h+s1w",
+        "registry_key": "jpn-release-5e3ae5afe377bd90"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S1W+S1H",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s1w+s1h",
+        "registry_key": "jpn-release-4e493e53b96b09fb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S2",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s2",
+        "registry_key": "jpn-s2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S2A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s2a",
+        "registry_key": "jpn-s2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S3",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s3",
+        "registry_key": "jpn-s3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S3A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s3a",
+        "registry_key": "jpn-s3a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S4",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s4",
+        "registry_key": "jpn-s4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S4A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s4a",
+        "registry_key": "jpn-s4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S5A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s5a",
+        "registry_key": "jpn-s5a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S5I+S5R",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s5i+s5r",
+        "registry_key": "jpn-release-4e6d3639cfe39ddd"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S6A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s6a",
+        "registry_key": "jpn-s6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S6H+S6K",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s6h+s6k",
+        "registry_key": "jpn-release-df57a9f5a39030ea"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S7D+S7R",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s7d+s7r",
+        "registry_key": "jpn-release-aa1334c887012ddc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S8",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s8",
+        "registry_key": "jpn-s8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S8A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s8a",
+        "registry_key": "jpn-s8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S8B",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s8b",
+        "registry_key": "jpn-s8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S9",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s9",
+        "registry_key": "jpn-s9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S9A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s9a",
+        "registry_key": "jpn-s9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S10A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s10a",
+        "registry_key": "jpn-s10a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S10B",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s10b",
+        "registry_key": "jpn-s10b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S10D+S10P",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s10d+s10p",
+        "registry_key": "jpn-release-f648f9e0063e2424"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S11",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s11",
+        "registry_key": "jpn-s11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S11A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s11a",
+        "registry_key": "jpn-s11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S12",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s12",
+        "registry_key": "jpn-s12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:S12A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:s12a",
+        "registry_key": "jpn-s12a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SM11",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sm11",
+        "registry_key": "jpn-sm11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SM11A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sm11a",
+        "registry_key": "jpn-sm11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SM11B",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sm11b",
+        "registry_key": "jpn-sm11b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SM12",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sm12",
+        "registry_key": "jpn-sm12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SM12A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sm12a",
+        "registry_key": "jpn-sm12a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:start-deck-100-battle-collection",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:start-deck-100-battle-collection",
+        "registry_key": "jpn-mc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV1A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv1a",
+        "registry_key": "jpn-sv1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV1S+SV1V",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv1s+sv1v",
+        "registry_key": "jpn-release-780ba54b355b66be"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV2A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv2a",
+        "registry_key": "jpn-sv2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV2P+SV2D",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv2p+sv2d",
+        "registry_key": "jpn-release-8e3aa7d5f13dba92"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV3",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv3",
+        "registry_key": "jpn-sv3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV3A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv3a",
+        "registry_key": "jpn-sv3a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV4A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv4a",
+        "registry_key": "jpn-sv4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV4K+SV4M",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv4k+sv4m",
+        "registry_key": "jpn-release-15714477e8909d2c"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV5A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv5a",
+        "registry_key": "jpn-sv5a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV5K+SV5M",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv5k+sv5m",
+        "registry_key": "jpn-release-12f6f9cddea41841"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV6",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv6",
+        "registry_key": "jpn-sv6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV6A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv6a",
+        "registry_key": "jpn-sv6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV7",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv7",
+        "registry_key": "jpn-sv7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV7A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv7a",
+        "registry_key": "jpn-sv7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV8",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv8",
+        "registry_key": "jpn-sv8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV8A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv8a",
+        "registry_key": "jpn-sv8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV9",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv9",
+        "registry_key": "jpn-sv9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV9A",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv9a",
+        "registry_key": "jpn-sv9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV10",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv10",
+        "registry_key": "jpn-sv10"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "pokeguardian_jp_sets:SV11B+SV11W",
+        "ambiguous": false,
+        "normalized_alias_value": "pokeguardian_jp_sets:sv11b+sv11w",
+        "registry_key": "jpn-release-858c32e0a9fba49a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:20thanniversary",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:20thanniversary",
+        "registry_key": "jpn-release-1a6b2f7995357d4d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:25thanniversarycollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:25thanniversarycollection",
+        "registry_key": "jpn-s8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:30thcelebrationjapan",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:30thcelebrationjapan",
+        "registry_key": "jpn-release-092086b106771722"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:abysseye",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:abysseye",
+        "registry_key": "jpn-m5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:adventofarceus",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:adventofarceus",
+        "registry_key": "jpn-dpt4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:alolanmoonlight",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:alolanmoonlight",
+        "registry_key": "jpn-sm2l"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:altergenesis",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:altergenesis",
+        "registry_key": "jpn-sm12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ancientroar",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ancientroar",
+        "registry_key": "jpn-sv4k"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:arceuslvxgrassandfire",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:arceuslvxgrassandfire",
+        "registry_key": "jpn-release-1baeb40318b32c60"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:arceuslvxlightningandpsychic",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:arceuslvxlightningandpsychic",
+        "registry_key": "jpn-release-1313cbecea2b4c34"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:astonishingvolttackle",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:astonishingvolttackle",
+        "registry_key": "jpn-release-190938dd27bbb3f3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:awakeninghero",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:awakeninghero",
+        "registry_key": "jpn-release-097fdd952ab91d34"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:awakeningpsychicchampion",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:awakeningpsychicchampion",
+        "registry_key": "jpn-release-dd3b66bc40667a9b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:bandedring",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:bandedring",
+        "registry_key": "jpn-release-3f6de5e6eb37bd19"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:battlepartners",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:battlepartners",
+        "registry_key": "jpn-sv9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:battleregion",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:battleregion",
+        "registry_key": "jpn-s9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:beyondanewchallenge",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:beyondanewchallenge",
+        "registry_key": "jpn-release-153356f345184dbe"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:bigsummitclash",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:bigsummitclash",
+        "registry_key": "jpn-release-67a9f1aff719d987"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:blackbolt-jp",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:blackbolt-jp",
+        "registry_key": "jpn-release-0759199b252b09cb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:blackcollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:blackcollection",
+        "registry_key": "jpn-bw1-bb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:blueshock",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:blueshock",
+        "registry_key": "jpn-xy8-bb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:blueskystream",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:blueskystream",
+        "registry_key": "jpn-s7r"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:breakcombodeckgolduckbreakpalkiaex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:breakcombodeckgolduckbreakpalkiaex",
+        "registry_key": "jpn-release-76a16ab0d43549c1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:breakevolutionpacknoivernbreak",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:breakevolutionpacknoivernbreak",
+        "registry_key": "jpn-release-3fe502406f54c8fc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:breakevolutionpackraichubreak",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:breakevolutionpackraichubreak",
+        "registry_key": "jpn-release-9a468e84f111f2f9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:championroad",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:championroad",
+        "registry_key": "jpn-sm6b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:charismaofthewreckedsky",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:charismaofthewreckedsky",
+        "registry_key": "jpn-release-57a66532723ddde7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:charizardhalfdeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:charizardhalfdeck",
+        "registry_key": "jpn-release-640cac1d495b5667"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:clayburst",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:clayburst",
+        "registry_key": "jpn-sv2d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:collectionmoon",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:collectionmoon",
+        "registry_key": "jpn-sm1m"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:collectionsun",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:collectionsun",
+        "registry_key": "jpn-sm1s"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:collectionx",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:collectionx",
+        "registry_key": "jpn-xy1-bx"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:collectiony",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:collectiony",
+        "registry_key": "jpn-xy1-by"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:crimsonhaze",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:crimsonhaze",
+        "registry_key": "jpn-sv5a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:crueltraitor",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:crueltraitor",
+        "registry_key": "jpn-xy11-br"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:cyberjudge",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:cyberjudge",
+        "registry_key": "jpn-sv5m"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:darkorder",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:darkorder",
+        "registry_key": "jpn-sm8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:darkphantasma",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:darkphantasma",
+        "registry_key": "jpn-s10a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:darkrush",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:darkrush",
+        "registry_key": "jpn-bw4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:didyouseethefightingrainbow",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:didyouseethefightingrainbow",
+        "registry_key": "jpn-sm3h"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:doubleblaze",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:doubleblaze",
+        "registry_key": "jpn-sm10"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:dragonblade",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:dragonblade",
+        "registry_key": "jpn-bw5-brn"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:dragonblast",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:dragonblast",
+        "registry_key": "jpn-bw5-brz"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:dragonselection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:dragonselection",
+        "registry_key": "jpn-ds"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:dragonstorm",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:dragonstorm",
+        "registry_key": "jpn-sm6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:dreamleague",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:dreamleague",
+        "registry_key": "jpn-sm11b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:eeveeheroes",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:eeveeheroes",
+        "registry_key": "jpn-s6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:emeraldbreak",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:emeraldbreak",
+        "registry_key": "jpn-xy6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:exbattleboost",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:exbattleboost",
+        "registry_key": "jpn-ebb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:explosiveimpact",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:explosiveimpact",
+        "registry_key": "jpn-release-d4e6bac36a5a317f"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:explosivewalker",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:explosivewalker",
+        "registry_key": "jpn-s2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:fairyrise",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:fairyrise",
+        "registry_key": "jpn-sm7b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:feverburstfighter",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:feverburstfighter",
+        "registry_key": "jpn-xy11-bb"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:forbiddenlightjp",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:forbiddenlightjp",
+        "registry_key": "jpn-release-2221ac564a4bb575"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:freezeshock",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:freezeshock",
+        "registry_key": "jpn-release-c4700ceb7b388dae"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:fullmetalwall",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:fullmetalwall",
+        "registry_key": "jpn-sm9b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:fusionarts",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:fusionarts",
+        "registry_key": "jpn-s8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:futureflash",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:futureflash",
+        "registry_key": "jpn-sv4m"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:gaiavolcano",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:gaiavolcano",
+        "registry_key": "jpn-xy5-bg"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:garchompdeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:garchompdeck",
+        "registry_key": "jpn-release-f55cbae50018e735"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:garchomphalfdeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:garchomphalfdeck",
+        "registry_key": "jpn-gbr"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ggend",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ggend",
+        "registry_key": "jpn-sm10a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:gloryofteamrocket",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:gloryofteamrocket",
+        "registry_key": "jpn-sv10"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:greatdetectivepikachu",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:greatdetectivepikachu",
+        "registry_key": "jpn-smp2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:gxbattleboost",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:gxbattleboost",
+        "registry_key": "jpn-release-b88f934d137634ed"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:gxultrashiny",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:gxultrashiny",
+        "registry_key": "jpn-sm8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:hailblizzard",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:hailblizzard",
+        "registry_key": "jpn-bw3-bh"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:heartgoldcollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:heartgoldcollection",
+        "registry_key": "jpn-l1-bhg"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:hotairarena",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:hotairarena",
+        "registry_key": "jpn-sv9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:hydreigondeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:hydreigondeck",
+        "registry_key": "jpn-release-eef69dcb28cf560d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:hypermetalchaindeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:hypermetalchaindeck",
+        "registry_key": "jpn-release-456f62490788ea2b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:iceburn",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:iceburn",
+        "registry_key": "jpn-release-8e797fb6ff7638c9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:incandescentarcana",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:incandescentarcana",
+        "registry_key": "jpn-s11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:infernox",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:infernox",
+        "registry_key": "jpn-m2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:infinityzone",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:infinityzone",
+        "registry_key": "jpn-s3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:islandsawaityou",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:islandsawaityou",
+        "registry_key": "jpn-sm2k"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:jetblackpoltergeist",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:jetblackpoltergeist",
+        "registry_key": "jpn-release-f0dcaaadba0a5b85"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:legendarybeat",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:legendarybeat",
+        "registry_key": "jpn-release-1eaff3a1b1ad70bc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:legendaryshinycollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:legendaryshinycollection",
+        "registry_key": "jpn-release-aa1eef8e9b04d717"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:light-devouringdarkness",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:light-devouringdarkness",
+        "registry_key": "jpn-release-f1811539823935ec"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:lostabyss",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:lostabyss",
+        "registry_key": "jpn-s11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:lostlink",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:lostlink",
+        "registry_key": "jpn-ll"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:maskofchange",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:maskofchange",
+        "registry_key": "jpn-sv6"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:matchlessfighter",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:matchlessfighter",
+        "registry_key": "jpn-release-bd3bca74330393a5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megabattledeckmcharizardex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megabattledeckmcharizardex",
+        "registry_key": "jpn-release-5d21048e9d6421e8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megabattledeckmrayquazaex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megabattledeckmrayquazaex",
+        "registry_key": "jpn-release-a8e81d2aaa114571"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megabrave",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megabrave",
+        "registry_key": "jpn-m1l"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megadreamex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megadreamex",
+        "registry_key": "jpn-m2a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megalocannon",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megalocannon",
+        "registry_key": "jpn-bw9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:megasymphonia",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:megasymphonia",
+        "registry_key": "jpn-m1s"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:mewtwovsgenesect-genesect",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:mewtwovsgenesect-genesect",
+        "registry_key": "jpn-release-1836d5fa7df0cdd2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:mewtwovsgenesect-mewtwo",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:mewtwovsgenesect-mewtwo",
+        "registry_key": "jpn-release-650abaf4fa6893c4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:miracletwin",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:miracletwin",
+        "registry_key": "jpn-sm11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:nightunison",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:nightunison",
+        "registry_key": "jpn-sm9a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:nightwanderer",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:nightwanderer",
+        "registry_key": "jpn-sv6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:nihilzero",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:nihilzero",
+        "registry_key": "jpn-m3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ninjaspinner",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ninjaspinner",
+        "registry_key": "jpn-m4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:paradigmtrigger",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:paradigmtrigger",
+        "registry_key": "jpn-s12"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:paradisedragona",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:paradisedragona",
+        "registry_key": "jpn-sv7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:perfectbattledeck60megaaudinoex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:perfectbattledeck60megaaudinoex",
+        "registry_key": "jpn-release-2eb07879bf93cd0f"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:perfectbattledeck60zygardeex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:perfectbattledeck60zygardeex",
+        "registry_key": "jpn-release-44340e4b04696fd3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:phantomgate",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:phantomgate",
+        "registry_key": "jpn-xy4"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:plasmagale",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:plasmagale",
+        "registry_key": "jpn-bw7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:pokekyuncollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:pokekyuncollection",
+        "registry_key": "jpn-cp3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:pokemoncard151",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:pokemoncard151",
+        "registry_key": "jpn-release-b2c3b3fb76feed48"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:pokemongoxpokemoncardgame",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:pokemongoxpokemoncardgame",
+        "registry_key": "jpn-release-5ab03765ffde6ad9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:premiumchampionpackexmbreak",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:premiumchampionpackexmbreak",
+        "registry_key": "jpn-release-f7c6ed172535e21b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:psychodrive",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:psychodrive",
+        "registry_key": "jpn-bw3-bp"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:pulseofthefrontier",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:pulseofthefrontier",
+        "registry_key": "jpn-release-8de9a50c1dd5c404"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:rageofthetornheavens",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:rageofthetornheavens",
+        "registry_key": "jpn-release-947df16ee8da7f2d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ragingsurf",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ragingsurf",
+        "registry_key": "jpn-sv3a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:rapidstrikemaster",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:rapidstrikemaster",
+        "registry_key": "jpn-s5r"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:rebelliousclash",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:rebelliousclash",
+        "registry_key": "jpn-release-eea09ea4519afe11"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:redcollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:redcollection",
+        "registry_key": "jpn-bw2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:redflash",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:redflash",
+        "registry_key": "jpn-xy8-br"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:remixbout",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:remixbout",
+        "registry_key": "jpn-sm11a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:revivinglegends",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:revivinglegends",
+        "registry_key": "jpn-l2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:risingfist",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:risingfist",
+        "registry_key": "jpn-xy3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ruleroftheblackflame",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ruleroftheblackflame",
+        "registry_key": "jpn-sv3"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:scarletex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:scarletex",
+        "registry_key": "jpn-sv1s"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:shield",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:shield",
+        "registry_key": "jpn-s1h"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:shininglegend",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:shininglegend",
+        "registry_key": "jpn-release-516acd1b4f1f8e99"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:shinycollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:shinycollection",
+        "registry_key": "jpn-sc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:shinystarv",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:shinystarv",
+        "registry_key": "jpn-s4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:shinytreasureex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:shinytreasureex",
+        "registry_key": "jpn-sv4a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:silverlance",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:silverlance",
+        "registry_key": "jpn-s6h"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:singlestrikemaster",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:singlestrikemaster",
+        "registry_key": "jpn-s5i"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:skylegend",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:skylegend",
+        "registry_key": "jpn-sm10b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:skyscrapingperfect",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:skyscrapingperfect",
+        "registry_key": "jpn-release-05afd6f0d47125d0"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:snowhazard",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:snowhazard",
+        "registry_key": "jpn-sv2p"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:soulsilvercollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:soulsilvercollection",
+        "registry_key": "jpn-l1-bss"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:spacejuggler",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:spacejuggler",
+        "registry_key": "jpn-s10p"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:spiralforce",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:spiralforce",
+        "registry_key": "jpn-bw8-brf"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:starbirth",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:starbirth",
+        "registry_key": "jpn-s9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:startersettapubulugx",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:startersettapubulugx",
+        "registry_key": "jpn-smc"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:steelixmetal",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:steelixmetal",
+        "registry_key": "jpn-release-15fd534daba61f79"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:stellarmiracle",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:stellarmiracle",
+        "registry_key": "jpn-sv7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:stormemeralda",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:stormemeralda",
+        "registry_key": "jpn-release-10ce4ad24f2df6f7"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:sunmoonstrengtheningpack",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:sunmoonstrengtheningpack",
+        "registry_key": "jpn-release-c38bf7fa228b2d84"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:superelectricbreaker",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:superelectricbreaker",
+        "registry_key": "jpn-sv8"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:sword",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:sword",
+        "registry_key": "jpn-s1w"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:tagallstars",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:tagallstars",
+        "registry_key": "jpn-sm12a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:tagbolt",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:tagbolt",
+        "registry_key": "jpn-sm9"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:teammagmavsteamaquadoublecrisis",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:teammagmavsteamaquadoublecrisis",
+        "registry_key": "jpn-cp1"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:teamplasmapowerdeck",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:teamplasmapowerdeck",
+        "registry_key": "jpn-release-d1a1350764cdfc6a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:terastalfestivalex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:terastalfestivalex",
+        "registry_key": "jpn-sv8a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:thunderclapspark",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:thunderclapspark",
+        "registry_key": "jpn-sm7a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:thunderknuckle",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:thunderknuckle",
+        "registry_key": "jpn-bw8-brn"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:tidalstorm",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:tidalstorm",
+        "registry_key": "jpn-xy5-bt"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:timegazer",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:timegazer",
+        "registry_key": "jpn-s10d"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:tripletbeat",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:tripletbeat",
+        "registry_key": "jpn-sv1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:tyranitardarkness",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:tyranitardarkness",
+        "registry_key": "jpn-release-770bbce0d3eaced2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ultradimensionalbeast",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ultradimensionalbeast",
+        "registry_key": "jpn-release-9d02baa8146f499a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ultraforces",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ultraforces",
+        "registry_key": "jpn-release-09d37de9c6ebd909"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ultramoon",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ultramoon",
+        "registry_key": "jpn-sm5m"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:ultrasun",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:ultrasun",
+        "registry_key": "jpn-sm5s"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:violetex",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:violetex",
+        "registry_key": "jpn-sv1v"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:vmaxclimax",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:vmaxclimax",
+        "registry_key": "jpn-s8b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:vmaxrising",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:vmaxrising",
+        "registry_key": "jpn-s1a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:vs",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:vs",
+        "registry_key": "jpn-release-ebb773348d73e3e5"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:vstaruniverse",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:vstaruniverse",
+        "registry_key": "jpn-s12a"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:whitecollection",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:whitecollection",
+        "registry_key": "jpn-bw1-bw"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:whiteflare-jp",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:whiteflare-jp",
+        "registry_key": "jpn-release-82bfc19156fd474b"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:wildblaze",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:wildblaze",
+        "registry_key": "jpn-xy2"
+      },
+      {
+        "alias_type": "source_set_id",
+        "alias_value": "serebii_jp_sets:wildforce",
+        "ambiguous": false,
+        "normalized_alias_value": "serebii_jp_sets:wildforce",
+        "registry_key": "jpn-sv5k"
+      },
+      {
+        "alias_type": "source_set_id",
         "alias_value": "tcgcollector_jp_sets:11163",
         "ambiguous": false,
         "normalized_alias_value": "tcgcollector_jp_sets:11163",
@@ -21144,19 +24098,19 @@
       }
     ],
     "summary": {
-      "alias_count": 2854,
+      "alias_count": 3276,
       "case_only_alias_group_count": 116
     }
   },
-  "content_fingerprint_sha256": "538dc22e6bc5bf31eecd9fb44b5522b5393c15c494097324c27035971f7d642a",
-  "generated_at": "2026-07-26T16:49:56.766Z",
+  "content_fingerprint_sha256": "0c0897d5396972dbe82fd53f3b9cb907031d42ff111b041366131e06b434a363",
+  "generated_at": "2026-07-26T17:09:54.034Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
   "retrieval": {
     "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
     "baseline_path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
     "mode": "offline_registry_resolution",
     "resolver_version": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
-    "source_assertions_fingerprint_sha256": "0dfb26d50fec70b7775c8263108dc976698e417fdefa5873156e63f879110e48",
+    "source_assertions_fingerprint_sha256": "ae77c19db68ac9f63126290ce5ed6c3ac658c76dfd08167d06275358710d91c3",
     "source_assertions_path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json"
   }
 }

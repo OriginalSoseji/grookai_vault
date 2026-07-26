@@ -15,15 +15,17 @@ import {
 import {
   PARSER_VERSION,
   parseArtOfPkmJapaneseSets,
+  parseBulbapediaJapaneseExpansions,
   parseLimitlessJapaneseSets,
   parseOfficialJapaneseProducts,
+  parsePokeGuardianJapaneseSetIndex,
+  parseSerebiiJapaneseSets,
   parseTcgCollectorJapaneseSets,
   parseTcgdexJapaneseSets,
 } from './set_source_parsers_v1.mjs';
 
 const PACKAGE_ID = 'JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1';
-const DEFAULT_OUTPUT_DIRECTORY =
-  'docs/audits/japanese_master_index_v4/sets';
+const DEFAULT_OUTPUT_DIRECTORY = 'docs/audits/japanese_master_index_v4/sets';
 const OFFICIAL_PRODUCT_TYPES = ['expansion', 'construction', 'others'];
 const OFFICIAL_PRODUCT_QUERY = {
   dateLowerY: 1996,
@@ -34,6 +36,10 @@ const OFFICIAL_PRODUCT_QUERY = {
   dateUpperD: 31,
 };
 const SOURCE_REQUEST_INTERVAL_MS = 750;
+const SPECIAL_SOURCE_IDS = new Set([
+  'official_jp_products',
+  'pokeguardian_jp_sets',
+]);
 
 const SOURCES = [
   {
@@ -59,6 +65,88 @@ const SOURCES = [
     url: 'https://www.tcgcollector.com/sets/jp',
     extension: 'html',
     parser: parseTcgCollectorJapaneseSets,
+  },
+  {
+    id: 'serebii_jp_sets',
+    url: 'https://www.serebii.net/card/japanese.shtml',
+    extension: 'html',
+    parser: parseSerebiiJapaneseSets,
+  },
+  {
+    id: 'bulbapedia_jp_expansions',
+    url: 'https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions',
+    extension: 'html',
+    parser: parseBulbapediaJapaneseExpansions,
+  },
+];
+
+const SOURCE_POLICIES = [
+  {
+    source_id: 'official_jp_products',
+    automated_index_capture: 'admitted',
+    boundary: 'Published product result API; bounded pagination only.',
+    robots_url: 'https://www.pokemon-card.com/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'tcgdex_ja_sets',
+    automated_index_capture: 'admitted',
+    boundary: 'Published Japanese set API; one collection request.',
+    robots_url: 'https://api.tcgdex.net/robots.txt',
+    terms_url: 'https://tcgdex.dev/',
+  },
+  {
+    source_id: 'limitless_jp_sets',
+    automated_index_capture: 'admitted',
+    boundary: 'Public Japanese set index; one collection request.',
+    robots_url: 'https://limitlesstcg.com/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'artofpkm_jp_sets',
+    automated_index_capture: 'admitted',
+    boundary: 'Public set index; one collection request.',
+    robots_url: 'https://www.artofpkm.com/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'tcgcollector_jp_sets',
+    automated_index_capture: 'admitted',
+    boundary: 'Public Japanese set index; one collection request.',
+    robots_url: 'https://www.tcgcollector.com/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'serebii_jp_sets',
+    automated_index_capture: 'admitted',
+    boundary:
+      'robots.txt permits the Japanese card index; one collection request.',
+    robots_url: 'https://www.serebii.net/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'bulbapedia_jp_expansions',
+    automated_index_capture: 'admitted',
+    boundary:
+      'robots.txt allows /wiki/ with a five-second crawl delay; one article request.',
+    robots_url: 'https://bulbapedia.bulbagarden.net/robots.txt',
+    terms_url: 'https://bulbapedia.bulbagarden.net/wiki/Bulbapedia:Copyrights',
+  },
+  {
+    source_id: 'pokeguardian_jp_sets',
+    automated_index_capture: 'admitted',
+    boundary:
+      'Three server-rendered pages from one public set-list index; no article crawl.',
+    robots_url: 'https://www.pokeguardian.com/robots.txt',
+    terms_url: null,
+  },
+  {
+    source_id: 'pokellector_jp_sets',
+    automated_index_capture: 'blocked_without_written_permission',
+    boundary:
+      'Terms prohibit automated interaction with stored data; preserve as a manual-review lane only.',
+    robots_url: 'https://jp.pokellector.com/robots.txt',
+    terms_url: 'https://www.pokellector.com/terms',
   },
 ];
 
@@ -91,7 +179,7 @@ function selectedSources(sourceIds) {
   const selected = SOURCES.filter((source) => allowed.has(source.id));
   const unknown = sourceIds.filter(
     (sourceId) =>
-      sourceId !== 'official_jp_products' &&
+      !SPECIAL_SOURCE_IDS.has(sourceId) &&
       !SOURCES.some((source) => source.id === sourceId),
   );
   if (unknown.length > 0) {
@@ -104,7 +192,8 @@ function ensureUniqueSourceIds(assertions) {
   const seen = new Set();
   for (const row of assertions) {
     const key = `${row.source_id}:${row.source_set_id}`;
-    if (seen.has(key)) throw new Error(`Duplicate source set assertion: ${key}`);
+    if (seen.has(key))
+      throw new Error(`Duplicate source set assertion: ${key}`);
     seen.add(key);
   }
 }
@@ -121,9 +210,7 @@ function sortAssertions(assertions) {
 }
 
 function officialProductUrl(productType, page) {
-  const url = new URL(
-    'https://www.pokemon-card.com/products/resultAPI.php',
-  );
+  const url = new URL('https://www.pokemon-card.com/products/resultAPI.php');
   url.searchParams.set('productType', productType);
   for (const [key, value] of Object.entries(OFFICIAL_PRODUCT_QUERY)) {
     url.searchParams.set(key, String(value));
@@ -200,10 +287,7 @@ async function harvestOfficialProducts({ options, rawDirectory }) {
 
     const expectedCount = Number(firstPayload.hitCnt);
     const actualCount = assertions.length - typeStart;
-    if (
-      Number.isSafeInteger(expectedCount) &&
-      expectedCount !== actualCount
-    ) {
+    if (Number.isSafeInteger(expectedCount) && expectedCount !== actualCount) {
       throw new Error(
         `Official Japanese product count mismatch for ${productType}: expected ${expectedCount}, parsed ${actualCount}`,
       );
@@ -240,6 +324,119 @@ async function harvestOfficialProducts({ options, rawDirectory }) {
   };
 }
 
+function pokeGuardianPagination(body) {
+  const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
+  const elementMatch = html.match(
+    /<div\b[^>]*\bdata-jw-element-id="(?<id>\d+)"[^>]*\bclass="[^"]*\bjw-news\b[^"]*"/i,
+  );
+  const totalMatch = html.match(
+    /<nav\b[^>]*\bclass="jw-pagination"[^>]*\bdata-page-total="(?<total>\d+)"/i,
+  );
+  const elementId = elementMatch?.groups?.id;
+  const pageTotal = Number(totalMatch?.groups?.total ?? 1);
+  if (
+    !elementId ||
+    !Number.isSafeInteger(pageTotal) ||
+    pageTotal < 1 ||
+    pageTotal > 10
+  ) {
+    throw new Error(
+      `PokeGuardian pagination metadata is invalid: element=${elementId ?? 'missing'} pages=${totalMatch?.groups?.total ?? 'missing'}`,
+    );
+  }
+  return { elementId, pageTotal };
+}
+
+function pokeGuardianUrl(elementId, zeroBasedPage) {
+  const url = new URL(
+    'https://www.pokeguardian.com/sets/set-lists/japanese-sets',
+  );
+  if (zeroBasedPage > 0) {
+    url.searchParams.set(`ep[${elementId}][page]`, String(zeroBasedPage));
+  }
+  return url.toString();
+}
+
+async function pokeGuardianSnapshot({
+  options,
+  rawDirectory,
+  page,
+  elementId,
+}) {
+  const sourceId = `pokeguardian_jp_sets_page_${String(page + 1).padStart(2, '0')}`;
+  return options.offline
+    ? readSourceSnapshot({
+        sourceId,
+        outputDirectory: rawDirectory,
+        extension: 'html',
+      })
+    : captureSourceSnapshot({
+        sourceId,
+        url: pokeGuardianUrl(elementId, page),
+        outputDirectory: rawDirectory,
+        extension: 'html',
+      });
+}
+
+async function harvestPokeGuardian({ options, rawDirectory }) {
+  const first = await pokeGuardianSnapshot({
+    options,
+    rawDirectory,
+    page: 0,
+    elementId: null,
+  });
+  const pagination = pokeGuardianPagination(first.body);
+  const snapshots = [first];
+  for (let page = 1; page < pagination.pageTotal; page += 1) {
+    if (!options.offline) await sleep(SOURCE_REQUEST_INTERVAL_MS);
+    snapshots.push(
+      await pokeGuardianSnapshot({
+        options,
+        rawDirectory,
+        page,
+        elementId: pagination.elementId,
+      }),
+    );
+  }
+  const assertions = parsePokeGuardianJapaneseSetIndex(
+    Buffer.concat(
+      snapshots.flatMap((snapshot, index) =>
+        index === 0
+          ? [snapshot.body]
+          : [Buffer.from('\n', 'utf8'), snapshot.body],
+      ),
+    ),
+  );
+  ensureUniqueSourceIds(assertions);
+  return {
+    source: {
+      id: 'pokeguardian_jp_sets',
+      url: 'https://www.pokeguardian.com/sets/set-lists/japanese-sets',
+    },
+    metadata: {
+      snapshot_version: 'JPN-MASTER-INDEX-MULTIPAGE-SOURCE-SNAPSHOT-V1',
+      source_id: 'pokeguardian_jp_sets',
+      request_url: 'https://www.pokeguardian.com/sets/set-lists/japanese-sets',
+      fetched_at: snapshots[0].metadata.fetched_at,
+      http_status: snapshots.every(
+        (snapshot) => snapshot.metadata.http_status === 200,
+      )
+        ? 200
+        : null,
+      response_headers: {},
+      byte_size: snapshots.reduce(
+        (sum, snapshot) => sum + snapshot.metadata.byte_size,
+        0,
+      ),
+      body_sha256: contentFingerprint(
+        snapshots.map((snapshot) => snapshot.metadata.body_sha256),
+      ),
+      child_snapshots: snapshots.map((snapshot) => snapshot.metadata),
+    },
+    assertions,
+  };
+}
+
 async function harvest(options) {
   assertAuditOnlyArgs(process.argv.slice(2));
   const outputDirectory = path.resolve(options.outputDirectory);
@@ -255,6 +452,23 @@ async function harvest(options) {
     sourceResults.push(official);
     console.log(
       `[jpn-master-index][sets] official_jp_products: ${official.assertions.length} assertions (${options.offline ? 'offline replay' : 'live capture'})`,
+    );
+    if (!options.offline && sources.length > 0) {
+      await sleep(SOURCE_REQUEST_INTERVAL_MS);
+    }
+  }
+
+  if (
+    options.sourceIds.length === 0 ||
+    options.sourceIds.includes('pokeguardian_jp_sets')
+  ) {
+    const pokeGuardian = await harvestPokeGuardian({
+      options,
+      rawDirectory,
+    });
+    sourceResults.push(pokeGuardian);
+    console.log(
+      `[jpn-master-index][sets] pokeguardian_jp_sets: ${pokeGuardian.assertions.length} assertions (${options.offline ? 'offline replay' : 'live capture'})`,
     );
     if (!options.offline && sources.length > 0) {
       await sleep(SOURCE_REQUEST_INTERVAL_MS);
@@ -341,6 +555,17 @@ async function harvest(options) {
       })),
     },
   });
+  const sourcePolicyArtifact = buildArtifact({
+    packageId: PACKAGE_ID,
+    generatedAt,
+    retrieval,
+    content: {
+      policies: SOURCE_POLICIES,
+      blocked_automated_sources: SOURCE_POLICIES.filter(
+        (policy) => policy.automated_index_capture !== 'admitted',
+      ).map((policy) => policy.source_id),
+    },
+  });
 
   const assertionRecord = await writeJsonArtifact(
     path.join(outputDirectory, 'source_set_assertions_v1.json'),
@@ -350,15 +575,19 @@ async function harvest(options) {
     path.join(outputDirectory, 'source_health_v1.json'),
     healthArtifact,
   );
+  const sourcePolicyRecord = await writeJsonArtifact(
+    path.join(outputDirectory, 'source_policy_v1.json'),
+    sourcePolicyArtifact,
+  );
   const manifestArtifact = buildArtifact({
     packageId: PACKAGE_ID,
     generatedAt,
     retrieval,
     content: {
-      raw_snapshots: sourceResults.flatMap((result) =>
-        result.metadata.child_snapshots ?? [result.metadata],
+      raw_snapshots: sourceResults.flatMap(
+        (result) => result.metadata.child_snapshots ?? [result.metadata],
       ),
-      normalized_artifacts: [assertionRecord, healthRecord],
+      normalized_artifacts: [assertionRecord, healthRecord, sourcePolicyRecord],
     },
   });
   await writeJsonArtifact(
@@ -375,13 +604,15 @@ export {
   PACKAGE_ID,
   SOURCES,
   OFFICIAL_PRODUCT_TYPES,
+  SOURCE_POLICIES,
   harvest,
   parseArgs,
 };
 
 const isEntrypoint =
   process.argv[1] &&
-  path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+  path.resolve(process.argv[1]) ===
+    path.resolve(fileURLToPath(import.meta.url));
 if (isEntrypoint) {
   harvest(parseArgs(process.argv.slice(2))).catch((error) => {
     console.error('[jpn-master-index][sets] fatal:', error);
