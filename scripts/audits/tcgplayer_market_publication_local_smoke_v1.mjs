@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { randomUUID } from "node:crypto";
+import { randomInt, randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -224,7 +224,10 @@ async function seedFixture(client, fixture) {
        values (
          $1, 3, 1, 'Pricing Smoke Pikachu', 'Pricing Smoke Pikachu',
          '[{"name":"Number","value":"1"}]'::jsonb,
-         '{"productId":990001,"name":"Pricing Smoke Pikachu"}'::jsonb,
+         jsonb_build_object(
+           'productId', $1,
+           'name', 'Pricing Smoke Pikachu'
+         ),
          $2, $3, true, 'current'
        )`,
       [
@@ -316,7 +319,7 @@ async function main() {
     cardPrintingId: randomUUID(),
     gvId: `GV-PK-SMOKE-${fixtureKey}`,
     printingGvId: `GV-PK-SMOKE-${fixtureKey}-HOLO`,
-    productId: 990001,
+    productId: randomInt(900_000_000, 999_999_999),
     sourceRunId: randomUUID(),
     sourceRunKey: `LOCAL-SOURCE-${fixtureKey}`,
     sourceMarker: `LOCAL-MARKER-${fixtureKey}`,
