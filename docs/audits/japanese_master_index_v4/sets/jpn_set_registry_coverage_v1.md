@@ -8,8 +8,8 @@ does not authorize database or card-level promotion.
 | Measure | Count |
 |---|---:|
 | Source assertions | 2,335 |
-| Registry entries | 1,459 |
-| Japanese release entries | 828 |
+| Registry entries | 1,453 |
+| Japanese release entries | 822 |
 | Official product entries | 631 |
 | Source placeholders resolved | 45 |
 | Source placeholders unresolved | 0 |
@@ -39,7 +39,7 @@ does not authorize database or card-level promotion.
 | admitted_official_card_product | 134 |
 | admitted_official_constructed_deck_product | 120 |
 | admitted_official_expansion_release | 120 |
-| baseline_only | 31 |
+| baseline_only | 25 |
 
 ## Registry Source Depth
 
@@ -50,9 +50,9 @@ does not authorize database or card-level promotion.
 | 3 | 72 |
 | 5 | 47 |
 | 7 | 32 |
-| 0 | 31 |
 | 6 | 29 |
 | 4 | 28 |
+| 0 | 25 |
 
 ## Era Labels
 

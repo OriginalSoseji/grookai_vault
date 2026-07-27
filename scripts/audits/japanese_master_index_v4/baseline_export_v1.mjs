@@ -21,6 +21,7 @@ export const BASELINE_EXPORT_VERSION = 'JPN-MASTER-INDEX-BASELINE-EXPORT-V1';
 
 const DEFAULT_OUTPUT_ROOT = 'docs/audits/japanese_master_index_v4/baseline';
 const JPN_PARENT_PREDICATE = `c.identity_domain = 'pokemon_jpn'`;
+const DEFAULT_ROW_SHARD_SIZE = 5_000;
 const EXPECTED_PLAN_BASELINE = {
   jpn_parent_rows: 26_047,
   public_jpn_gv_ids: 25_985,
@@ -65,6 +66,49 @@ function sortRows(rows, keys) {
     }
     return 0;
   });
+}
+
+async function writeShardedDataset({
+  outputRoot,
+  datasetKey,
+  packageId,
+  generatedAt,
+  retrieval,
+  rows,
+  shardSize = DEFAULT_ROW_SHARD_SIZE,
+}) {
+  const shardCount = Math.max(1, Math.ceil(rows.length / shardSize));
+  const records = [];
+
+  for (let index = 0; index < shardCount; index += 1) {
+    const shardRows = rows.slice(index * shardSize, (index + 1) * shardSize);
+    const artifact = buildArtifact({
+      packageId,
+      generatedAt,
+      retrieval,
+      content: {
+        dataset_key: datasetKey,
+        shard_index: index + 1,
+        shard_count: shardCount,
+        row_count: shardRows.length,
+        rows: shardRows,
+      },
+    });
+    const filename = `${datasetKey}_${String(index + 1).padStart(4, '0')}_of_${String(shardCount).padStart(4, '0')}.json`;
+    records.push(await writeJsonArtifact(
+      path.join(outputRoot, 'rows', datasetKey, filename),
+      artifact,
+    ));
+  }
+
+  return {
+    dataset_key: datasetKey,
+    row_count: rows.length,
+    shard_size: shardSize,
+    shard_count: shardCount,
+    content_fingerprint_sha256: contentFingerprint(rows),
+    shards: records,
+  };
 }
 
 function classifyGap(row) {
@@ -386,6 +430,147 @@ export async function exportBaseline({
       note: 'Stored source keys are evidence lanes; source-family independence is adjudicated later.',
     };
 
+    const jpnParentRows = sortRows((await db.query(`
+      select
+        c.id::text as card_print_id,
+        c.set_id::text,
+        c.gv_id,
+        c.identity_domain,
+        c.set_code,
+        c.printed_set_abbrev,
+        c.name as printed_name,
+        c.number as printed_number,
+        c.number_plain,
+        c.printed_total,
+        c.variant_key,
+        c.rarity,
+        c.artist,
+        c.regulation_mark,
+        c.printed_identity_modifier,
+        c.print_identity_key,
+        c.set_identity_model,
+        c.image_url,
+        c.image_alt_url,
+        c.representative_image_url,
+        c.image_source,
+        c.image_path,
+        c.image_hash,
+        c.image_status,
+        c.image_note,
+        c.variants,
+        c.external_ids,
+        c.data_quality_flags
+      from public.card_prints c
+      where ${JPN_PARENT_PREDICATE}
+      order by c.set_code, c.number, c.name, c.id
+    `)).rows, ['set_code', 'printed_number', 'printed_name', 'card_print_id']);
+
+    const jpnIdentityRows = sortRows((await db.query(`
+      select
+        i.id::text as card_print_identity_id,
+        i.card_print_id::text,
+        i.identity_domain,
+        i.set_code_identity,
+        i.printed_number,
+        i.normalized_printed_name,
+        i.source_name_raw,
+        i.identity_payload,
+        i.identity_key_version,
+        i.identity_key_hash,
+        i.is_active,
+        i.created_at,
+        i.updated_at
+      from public.card_print_identity i
+      join public.card_prints c on c.id = i.card_print_id
+      where ${JPN_PARENT_PREDICATE}
+      order by i.card_print_id, i.is_active desc, i.id
+    `)).rows, ['card_print_id', 'card_print_identity_id']);
+
+    const jpnEvidenceRows = sortRows((await db.query(`
+      select
+        e.id::text as evidence_id,
+        e.card_print_identity_id::text,
+        e.card_print_id::text,
+        e.acquisition_key,
+        e.source_key,
+        e.evidence_key_hash,
+        e.evidence_subject,
+        e.evidence_payload,
+        e.active,
+        e.created_at,
+        e.updated_at
+      from public.card_print_identity_source_evidence e
+      join public.card_prints c on c.id = e.card_print_id
+      where ${JPN_PARENT_PREDICATE}
+      order by e.source_key, e.acquisition_key, e.evidence_key_hash, e.id
+    `)).rows, ['source_key', 'acquisition_key', 'evidence_key_hash', 'evidence_id']);
+
+    const jpnPrintingRows = sortRows((await db.query(`
+      select
+        p.id::text as card_printing_id,
+        p.card_print_id::text,
+        p.finish_key,
+        p.is_provisional,
+        p.provenance_source,
+        p.provenance_ref,
+        p.created_by,
+        p.printing_gv_id,
+        p.image_source,
+        p.image_path,
+        p.image_url,
+        p.image_alt_url,
+        p.image_status,
+        p.image_note,
+        p.created_at
+      from public.card_printings p
+      join public.card_prints c on c.id = p.card_print_id
+      where ${JPN_PARENT_PREDICATE}
+      order by p.card_print_id, p.finish_key, p.id
+    `)).rows, ['card_print_id', 'finish_key', 'card_printing_id']);
+
+    const jpnFamilyReviewRows = sortRows((await db.query(`
+      select
+        q.id::text as family_review_id,
+        q.card_print_identity_id::text,
+        q.card_print_id::text,
+        q.acquisition_key,
+        q.family_status,
+        q.family_candidate_source,
+        q.normalized_family_candidate,
+        q.review_status,
+        q.family_link_promotion_allowed,
+        q.review_key_hash,
+        q.evidence_subject,
+        q.active,
+        q.reviewed_by,
+        q.reviewed_at,
+        q.created_at,
+        q.updated_at
+      from public.card_print_family_review_queue q
+      join public.card_prints c on c.id = q.card_print_id
+      where ${JPN_PARENT_PREDICATE}
+      order by q.card_print_id, q.active desc, q.review_key_hash, q.id
+    `)).rows, ['card_print_id', 'review_key_hash', 'family_review_id']);
+
+    const jpnSpeciesLinkRows = sortRows((await db.query(`
+      select
+        s.id::text as card_print_species_id,
+        s.card_print_id::text,
+        s.species_id::text,
+        s.role,
+        s.counts_for_completion,
+        s.source,
+        coalesce(s.confidence::text, '') as confidence,
+        s.evidence,
+        s.active,
+        s.created_at,
+        s.updated_at
+      from public.card_print_species s
+      join public.card_prints c on c.id = s.card_print_id
+      where ${JPN_PARENT_PREDICATE}
+      order by s.card_print_id, s.active desc, s.role, s.species_id, s.id
+    `)).rows, ['card_print_id', 'role', 'species_id', 'card_print_species_id']);
+
     const setCodeRows = sortRows((await db.query(`
       select
         c.set_code,
@@ -519,29 +704,74 @@ export async function exportBaseline({
         canonical_name,
         slug,
         is_form,
-        coalesce(base_species_id::text, '') as base_species_id
+        coalesce(base_species_id::text, '') as base_species_id,
+        active
       from public.pokemon_species
-      where active
-      order by national_dex_number, slug, id
+      order by active desc, national_dex_number, slug, id
     `)).rows;
     const englishSpeciesLinks = (await db.query(`
       select
+        s.id::text as card_print_species_id,
         s.card_print_id::text,
         s.species_id::text,
         s.role,
         s.counts_for_completion,
         s.source,
-        coalesce(s.confidence::text, '') as confidence
+        coalesce(s.confidence::text, '') as confidence,
+        s.evidence,
+        s.active
       from public.card_print_species s
       join public.card_prints c on c.id = s.card_print_id
       where s.active
         and c.identity_domain = 'pokemon_eng_standard'
-      order by s.card_print_id, s.species_id, s.role
+      order by s.card_print_id, s.species_id, s.role, s.id
     `)).rows;
-    const speciesFingerprint = contentFingerprint(speciesRows);
-    const englishLinkFingerprint = contentFingerprint(englishSpeciesLinks);
+    const englishFamilyCardRows = sortRows((await db.query(`
+      select distinct
+        c.id::text as card_print_id,
+        c.gv_id,
+        c.set_id::text,
+        c.set_code,
+        c.name,
+        c.number,
+        c.number_plain,
+        c.printed_total,
+        c.variant_key,
+        c.rarity,
+        c.artist,
+        c.regulation_mark,
+        c.print_identity_key,
+        c.identity_domain,
+        c.image_url,
+        c.image_alt_url,
+        c.representative_image_url
+      from public.card_print_species s
+      join public.card_prints c on c.id = s.card_print_id
+      where s.active
+        and c.identity_domain = 'pokemon_eng_standard'
+      order by c.id::text
+    `)).rows, ['card_print_id']);
+    const activeSpeciesRows = speciesRows.filter((row) => row.active);
+    const speciesFingerprintRows = activeSpeciesRows.map((row) => ({
+      id: row.id,
+      national_dex_number: row.national_dex_number,
+      canonical_name: row.canonical_name,
+      slug: row.slug,
+      is_form: row.is_form,
+      base_species_id: row.base_species_id,
+    }));
+    const englishLinkFingerprintRows = englishSpeciesLinks.map((row) => ({
+      card_print_id: row.card_print_id,
+      species_id: row.species_id,
+      role: row.role,
+      counts_for_completion: row.counts_for_completion,
+      source: row.source,
+      confidence: row.confidence,
+    }));
+    const speciesFingerprint = contentFingerprint(speciesFingerprintRows);
+    const englishLinkFingerprint = contentFingerprint(englishLinkFingerprintRows);
     const englishFamilyContent = {
-      active_species_count: speciesRows.length,
+      active_species_count: activeSpeciesRows.length,
       active_species_fingerprint_sha256: speciesFingerprint,
       active_english_species_link_count: englishSpeciesLinks.length,
       active_english_species_link_fingerprint_sha256: englishLinkFingerprint,
@@ -565,6 +795,44 @@ export async function exportBaseline({
       note: 'This manifest inventories preserved live evidence only; Phase 3 adds source-owned raw artifacts.',
     };
 
+    const rowDatasets = [];
+    for (const [datasetKey, packageId, rows] of [
+      ['live_jpn_parent_rows_v1', 'LIVE-JPN-PARENT-ROWS-SHARD-V1', jpnParentRows],
+      ['live_jpn_identity_rows_v1', 'LIVE-JPN-IDENTITY-ROWS-SHARD-V1', jpnIdentityRows],
+      ['live_jpn_evidence_rows_v1', 'LIVE-JPN-EVIDENCE-ROWS-SHARD-V1', jpnEvidenceRows],
+      ['live_jpn_printing_rows_v1', 'LIVE-JPN-PRINTING-ROWS-SHARD-V1', jpnPrintingRows],
+      ['live_jpn_family_review_rows_v1', 'LIVE-JPN-FAMILY-REVIEW-ROWS-SHARD-V1', jpnFamilyReviewRows],
+      ['live_jpn_species_link_rows_v1', 'LIVE-JPN-SPECIES-LINK-ROWS-SHARD-V1', jpnSpeciesLinkRows],
+      ['language_agnostic_species_rows_v1', 'LANGUAGE-AGNOSTIC-SPECIES-ROWS-SHARD-V1', speciesRows],
+      ['english_family_card_rows_v1', 'ENGLISH-FAMILY-CARD-ROWS-SHARD-V1', englishFamilyCardRows],
+      ['english_family_species_link_rows_v1', 'ENGLISH-FAMILY-SPECIES-LINK-ROWS-SHARD-V1', englishSpeciesLinks],
+    ]) {
+      rowDatasets.push(await writeShardedDataset({
+        outputRoot,
+        datasetKey,
+        packageId,
+        generatedAt,
+        retrieval,
+        rows,
+      }));
+    }
+    const rowBaselineManifestContent = {
+      generator_version: BASELINE_EXPORT_VERSION,
+      shard_size: DEFAULT_ROW_SHARD_SIZE,
+      datasets: rowDatasets.map((dataset) => ({
+        dataset_key: dataset.dataset_key,
+        row_count: dataset.row_count,
+        shard_size: dataset.shard_size,
+        shard_count: dataset.shard_count,
+        content_fingerprint_sha256: dataset.content_fingerprint_sha256,
+        shard_paths: dataset.shards.map((record) => record.path),
+      })),
+      no_write_boundary: {
+        database_writes: false,
+        storage_writes: false,
+      },
+    };
+
     const artifactsToWrite = [
       ['live_jpn_parent_summary_v1.json', 'LIVE-JPN-PARENT-SUMMARY-V1', parentSummaryContent],
       ['live_jpn_source_coverage_v1.json', 'LIVE-JPN-SOURCE-COVERAGE-V1', sourceCoverageContent],
@@ -572,9 +840,10 @@ export async function exportBaseline({
       ['live_jpn_identity_gap_queue_v1.json', 'LIVE-JPN-IDENTITY-GAP-QUEUE-V1', gapQueueContent],
       ['english_family_reference_fingerprint_v1.json', 'ENGLISH-FAMILY-REFERENCE-FINGERPRINT-V1', englishFamilyContent],
       ['live_jpn_source_manifest_v1.json', 'LIVE-JPN-SOURCE-MANIFEST-V1', sourceManifestContent],
+      ['live_jpn_row_baseline_manifest_v1.json', 'LIVE-JPN-ROW-BASELINE-MANIFEST-V1', rowBaselineManifestContent],
     ];
 
-    const artifactRecords = [];
+    const artifactRecords = rowDatasets.flatMap((dataset) => dataset.shards);
     for (const [filename, packageId, content] of artifactsToWrite) {
       const artifact = buildArtifact({
         packageId,

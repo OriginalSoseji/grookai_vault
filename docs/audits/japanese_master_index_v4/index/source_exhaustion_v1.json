@@ -1,0 +1,257 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "source_lanes": [
+      {
+        "acquisition_tier": 1,
+        "assertion_count": 23015,
+        "automatic_status": "admitted_bounded",
+        "disposition_counts": {
+          "scheduled": 419
+        },
+        "exhaustion_status": "primary_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 419,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 419,
+        "health_finding_count": 76,
+        "lane_id": "artofpkm_jp_cards",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 23868,
+        "source_family": "artofpkm_jp",
+        "source_set_id": "artofpkm_jp_sets",
+        "source_status_counts": {
+          "complete": 343,
+          "source_count_mismatch": 76
+        }
+      },
+      {
+        "acquisition_tier": 3,
+        "assertion_count": 0,
+        "automatic_status": "gap_targeted_after_primary_harvest",
+        "disposition_counts": {
+          "gap_targeted_after_primary_harvest": 1
+        },
+        "exhaustion_status": "future_lane_without_governed_work_items",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 0,
+        "health_finding_count": 0,
+        "lane_id": "bounded_marketplace_review",
+        "preservation_rule": "Evidence is added only for deterministic residual targets and never replaces primary-source assertions.",
+        "preserved_live_evidence_rows": 0,
+        "source_family": "bounded_marketplace_review",
+        "source_set_id": null,
+        "source_status_counts": {}
+      },
+      {
+        "acquisition_tier": 2,
+        "assertion_count": 18113,
+        "automatic_status": "admitted_targeted",
+        "disposition_counts": {
+          "targeted_after_primary_delta": 160
+        },
+        "exhaustion_status": "targeted_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 160,
+        "harvested_container_count": 152,
+        "health_finding_count": 13,
+        "lane_id": "bulbapedia_jp_card_lists",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 4111,
+        "source_family": "bulbapedia_jp_card_list",
+        "source_set_id": "bulbapedia_jp_expansions",
+        "source_status_counts": {
+          "complete": 139,
+          "source_expected_count_unavailable": 1,
+          "source_numbering_unavailable": 12
+        }
+      },
+      {
+        "acquisition_tier": 3,
+        "assertion_count": 0,
+        "automatic_status": "gap_targeted_after_primary_harvest",
+        "disposition_counts": {
+          "gap_targeted_after_primary_harvest": 1
+        },
+        "exhaustion_status": "future_lane_without_governed_work_items",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 0,
+        "health_finding_count": 0,
+        "lane_id": "historical_distribution_archives",
+        "preservation_rule": "Evidence is added only for deterministic residual targets and never replaces primary-source assertions.",
+        "preserved_live_evidence_rows": 0,
+        "source_family": "historical_distribution_archives",
+        "source_set_id": null,
+        "source_status_counts": {}
+      },
+      {
+        "acquisition_tier": 1,
+        "assertion_count": 19904,
+        "automatic_status": "admitted_bounded",
+        "disposition_counts": {
+          "scheduled": 262
+        },
+        "exhaustion_status": "primary_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 262,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 262,
+        "health_finding_count": 10,
+        "lane_id": "limitless_jp_cards",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 18462,
+        "source_family": "limitless_tcg_jp",
+        "source_set_id": "limitless_jp_sets",
+        "source_status_counts": {
+          "complete": 252,
+          "source_count_mismatch": 10
+        }
+      },
+      {
+        "acquisition_tier": 1,
+        "assertion_count": 9843,
+        "automatic_status": "admitted_bounded",
+        "disposition_counts": {
+          "release_context_only": 503,
+          "scheduled": 137
+        },
+        "exhaustion_status": "primary_exhausted_clean",
+        "expected_scheduled_container_count": 137,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 137,
+        "health_finding_count": 0,
+        "lane_id": "official_jp_cards",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 21294,
+        "source_family": "pokemon_card_official_jp",
+        "source_set_id": "official_jp_products",
+        "source_status_counts": {
+          "complete": 137
+        }
+      },
+      {
+        "acquisition_tier": 2,
+        "assertion_count": 5684,
+        "automatic_status": "admitted_targeted",
+        "disposition_counts": {
+          "targeted_after_primary_delta": 59
+        },
+        "exhaustion_status": "targeted_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 59,
+        "harvested_container_count": 54,
+        "health_finding_count": 15,
+        "lane_id": "pokeguardian_release_reports",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 0,
+        "source_family": "pokeguardian_jp",
+        "source_set_id": "pokeguardian_jp_sets",
+        "source_status_counts": {
+          "complete": 39,
+          "source_count_mismatch": 1,
+          "source_partial_release_report": 14
+        }
+      },
+      {
+        "acquisition_tier": 2,
+        "assertion_count": 0,
+        "automatic_status": "blocked_without_written_permission",
+        "disposition_counts": {},
+        "exhaustion_status": "preserved_manual_only",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 0,
+        "health_finding_count": 0,
+        "lane_id": "pokellector_jp_manual",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 17734,
+        "source_family": "pokellector_jp",
+        "source_set_id": "pokellector_jp_sets",
+        "source_status_counts": {}
+      },
+      {
+        "acquisition_tier": 2,
+        "assertion_count": 14477,
+        "automatic_status": "admitted_bounded",
+        "disposition_counts": {
+          "scheduled": 165
+        },
+        "exhaustion_status": "primary_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 165,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 165,
+        "health_finding_count": 18,
+        "lane_id": "serebii_jp_cards",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 0,
+        "source_family": "serebii_jp",
+        "source_set_id": "serebii_jp_sets",
+        "source_status_counts": {
+          "complete": 147,
+          "source_count_mismatch": 18
+        }
+      },
+      {
+        "acquisition_tier": 2,
+        "assertion_count": 0,
+        "automatic_status": "blocked_without_written_permission",
+        "disposition_counts": {
+          "manual_review_only": 453
+        },
+        "exhaustion_status": "preserved_manual_only",
+        "expected_scheduled_container_count": 0,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 0,
+        "health_finding_count": 0,
+        "lane_id": "tcgcollector_jp_manual",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 25059,
+        "source_family": "tcgcollector_jp",
+        "source_set_id": "tcgcollector_jp_sets",
+        "source_status_counts": {}
+      },
+      {
+        "acquisition_tier": 1,
+        "assertion_count": 8159,
+        "automatic_status": "admitted_bounded",
+        "disposition_counts": {
+          "scheduled": 177
+        },
+        "exhaustion_status": "primary_exhausted_with_explicit_findings",
+        "expected_scheduled_container_count": 177,
+        "expected_targeted_container_count": 0,
+        "harvested_container_count": 177,
+        "health_finding_count": 109,
+        "lane_id": "tcgdex_ja_cards",
+        "preservation_rule": "Fresh acquisition is unioned with preserved evidence; source loss never resets prior evidence.",
+        "preserved_live_evidence_rows": 6061,
+        "source_family": "tcgdex_ja",
+        "source_set_id": "tcgdex_ja_sets",
+        "source_status_counts": {
+          "complete": 68,
+          "source_card_rows_absent": 107,
+          "source_count_mismatch": 2
+        }
+      }
+    ],
+    "summary": {
+      "exhaustion_status_counts": {
+        "future_lane_without_governed_work_items": 2,
+        "preserved_manual_only": 2,
+        "primary_exhausted_clean": 1,
+        "primary_exhausted_with_explicit_findings": 4,
+        "targeted_exhausted_with_explicit_findings": 2
+      },
+      "lane_count": 11
+    }
+  },
+  "content_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1",
+  "generated_at": "2026-07-27T01:00:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-SOURCE-EXHAUSTION-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

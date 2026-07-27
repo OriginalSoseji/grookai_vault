@@ -3,35 +3,35 @@
   "content": {
     "dependency_fingerprints": [
       {
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
-        "sha256": "f8c74669d2f53aa66d0648af95817c2dbb2a904ff80aeb272cf38502ce38736b"
+        "path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
+        "sha256": "1dc88590bcb51a5b59ad2179c0a043995bd6f77561361d089164ff11210919d0"
       },
       {
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/jpn_set_registry_v1.json",
-        "sha256": "81f9c547282b1b98363d2000f738ad0b0a836dc24f786448914a3572925c91b0"
+        "path": "docs/audits/japanese_master_index_v4/sets/jpn_set_registry_v1.json",
+        "sha256": "e865ec6d5c8c88b767bccc1c7a12139c3a0427cee823902c2a53f56bd755facb"
       },
       {
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
-        "sha256": "549f43119599eaf2045f725452042185a09fdc4d722dea766dd3a2c92ccf3b0c"
+        "path": "docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
+        "sha256": "f11a1a225237900b6243f61df5194dcf80158a8416fbda8afe5a2e6bf005597c"
       },
       {
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/jpn_official_product_scope_v1.json",
-        "sha256": "e22e25208b1e72924844fa829bebd2030e31a4322a5ab0b1c7a027442f50240c"
+        "path": "docs/audits/japanese_master_index_v4/sets/jpn_official_product_scope_v1.json",
+        "sha256": "a2584e76445a3dc6ef5bc2695dc5d93b0a568eefd5963bb5733bcb1fa99e5406"
       },
       {
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/baseline/live_jpn_source_manifest_v1.json",
-        "sha256": "311e2cad80f80f32dbeb2c05ebdd72fd8a131d9f37d418f1517274b6e369195c"
+        "path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_source_manifest_v1.json",
+        "sha256": "8efbe584ece2a30bfb52b2aa6b847bc53ca7dd14099652287a67e5562bf779b2"
       }
     ],
     "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-PLAN-V1",
-    "markdown_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.md",
-    "markdown_sha256": "8560d2ff427b3b9d1aab1e9cf5181eefe03cb29db5b6e1cf22ae190d7fa67cb6",
-    "plan_content_fingerprint_sha256": "d629e238aad300d88a059ca2e8014e86d9dd16b95f780428833ed43a94ac9954",
-    "plan_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.json",
-    "plan_sha256": "604125687a18977a0a52509d376e34514245a34820c3043f777e6cfa86d8f5e4"
+    "markdown_path": "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.md",
+    "markdown_sha256": "f95e9bb1217cbc98edda9989f9f438933c75c64855fa4ac07b22941a01ea9c7b",
+    "plan_content_fingerprint_sha256": "7b06e0f66b63e98e77956167ca7cc4aa440a9655c081a9aa15c6293cdf8eed10",
+    "plan_path": "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.json",
+    "plan_sha256": "0a3ddd4ee671a9af231eb8c7ec3c52f4ffc2eadae84950eb901b10dd58a510d7"
   },
-  "content_fingerprint_sha256": "d794ed6c838507d54d280789ad5289cc00ba25b703e4f1cd64d8ad3daeee7220",
-  "generated_at": "2026-07-26T17:38:21.904Z",
+  "content_fingerprint_sha256": "35ea6527166f99b62feb70ba678fe9cb7bf309726ab0d53e77a149bd69523f2d",
+  "generated_at": "2026-07-26T19:32:04.752Z",
   "package_id": "JPN-MASTER-INDEX-CARD-ACQUISITION-PLAN-V1-MANIFEST",
   "retrieval": {
     "mode": "offline_plan_manifest"

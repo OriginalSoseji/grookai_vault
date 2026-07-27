@@ -1,0 +1,3301 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "containers": [
+      {
+        "api_hit_count": 66,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 66,
+        "findings": [],
+        "parsed_card_row_count": 66,
+        "registry_key": "jpn-product-c9cc6e6ad7d80473",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:50:58.731Z",
+          "2026-07-26T18:51:00.385Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "73656e1587a8cf35ba32baedba1ddf15ce7a8cc6353cf06ba7aec6589af05d93",
+          "32de82c3ef07ee79baac54c873821113f5402ba40fe36aeaab05a8b9318b17a0"
+        ],
+        "selected_card_count": 66,
+        "source_container_id": "602",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 62,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 62,
+        "findings": [],
+        "parsed_card_row_count": 62,
+        "registry_key": "jpn-product-f2d019e21eb5c0b0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:52:23.969Z",
+          "2026-07-26T18:52:25.169Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "b69915e198fcb0ca898523e2c945233432940644c148d82ed41a9ac817e677d1",
+          "09741be022229d42a8d8efbd117ab68ff836a690f299d565e3ffb12ec8f35aca"
+        ],
+        "selected_card_count": 62,
+        "source_container_id": "645",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 210,
+        "api_page_count": 6,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 210,
+        "findings": [],
+        "parsed_card_row_count": 210,
+        "registry_key": "jpn-product-fb99e4edb3ffdc9e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:53:44.826Z",
+          "2026-07-26T18:53:46.053Z",
+          "2026-07-26T18:53:47.231Z",
+          "2026-07-26T18:53:48.440Z",
+          "2026-07-26T18:53:49.693Z",
+          "2026-07-26T18:53:50.904Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "0e0c8736ff7ce776858c2032a11e5470143cf13f5ba98de3d0f2765cdf03b2e0",
+          "8425036024495d39d85682b37af153d392bad6e2c9449dd06a2744987da2c6e6",
+          "38bed692401de03e4d3e977350fd372aeefd575a26d9a671d7a9f83a125e7cd1",
+          "0c1bf0e5c634f742a1e883771ab559d41b28010dcacb323e8acd3b858534bfec",
+          "3a3d5af0400fdf0992681cb7f3205cf741f1c2eea9904d99df7b9ecb8a8e2a79",
+          "8f3f1496b78f317ccc85001641d52d769a5ab2c29f9e5b1803633f05ce5b8491"
+        ],
+        "selected_card_count": 210,
+        "source_container_id": "656",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 68,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 68,
+        "findings": [],
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-product-a745f838bed540dd",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:58:15.236Z",
+          "2026-07-26T18:58:16.915Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "6dfe80060747dddc0cd02820f5762ee40fbd334342335637db7eb0e3c672d468",
+          "c90e7bc021e3167de0d7b8140ed19c066bde769e987edc46ae0a1696946ae2f5"
+        ],
+        "selected_card_count": 68,
+        "source_container_id": "701",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 68,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 68,
+        "findings": [],
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-product-ac450e80698fd8df",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:59:44.266Z",
+          "2026-07-26T18:59:45.855Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "56739a5987e7e2935125cf3f958bb4a32fbe82c05b6790b96850ab0dc4f97ba5",
+          "1329a634c7d6feae7260221e712e9f907205f22d093434e1da15843954598dcc"
+        ],
+        "selected_card_count": 68,
+        "source_container_id": "702",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 78,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 78,
+        "findings": [],
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-product-08dd2b5672fdbee4",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:01:13.317Z",
+          "2026-07-26T19:01:14.543Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d13e21ae301c579baa1c99baeb11eafb7d25b30fa07ffe5b6e339053a439df9c",
+          "a0403d0b0b0552e82e2f044e6d3abc4535f9db21a93a0d5bd027a881dd81e978"
+        ],
+        "selected_card_count": 78,
+        "source_container_id": "704",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 106,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 106,
+        "findings": [],
+        "parsed_card_row_count": 106,
+        "registry_key": "jpn-product-b71c3acd39d7973b",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:02:54.583Z",
+          "2026-07-26T19:02:55.811Z",
+          "2026-07-26T19:02:57.009Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "305729917ddcf6763cd14f8122f4119289b4bf2609ed34300bee7a3a5fcd2924",
+          "5686ac1f5874fa520d9906ad0177c1ff0057c39ec81ef72ff9d1e2fb60b5dd1f",
+          "ff99f908b002e0c139e2eb19d9d0947f580ffc02de16c9b204afc30be9a979fa"
+        ],
+        "selected_card_count": 106,
+        "source_container_id": "705",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 78,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 78,
+        "findings": [],
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-product-4a5160b486f3c8a9",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:05:12.114Z",
+          "2026-07-26T19:05:13.344Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "1a895b6a0b3110441afbc58ca69377af48d809167255b9106efb6004088c8c96",
+          "b53e0050a44070b535d5fbffd01ae6b8ede58be26c5eaed836d55933446007b4"
+        ],
+        "selected_card_count": 78,
+        "source_container_id": "707",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-91e6bb56425b7acf",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:06:52.106Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "7c643e1eeb2f7786f9fd97268f1be149a3af68efa6ab2ed0fc0605928b73244a"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "708",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 20,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 20,
+        "findings": [],
+        "parsed_card_row_count": 20,
+        "registry_key": "jpn-product-0f14e041f501baa1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:07:20.693Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "216ae936a08f24010085c4d9917712361179a7586eaaf2ed81c4f2fd10acddb3"
+        ],
+        "selected_card_count": 20,
+        "source_container_id": "709",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 110,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 110,
+        "findings": [],
+        "parsed_card_row_count": 110,
+        "registry_key": "jpn-product-c3774bc8e3c8459e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:07:47.103Z",
+          "2026-07-26T19:07:48.677Z",
+          "2026-07-26T19:07:49.882Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "62a7bee3e19a852254e0760db76b14b0ec8b858437f27bec4c27e9a9424c86f2",
+          "049513643c70d2bc54aad9b75e2985e82699890bbf8dedc8f2fcd1c7fb3ba628",
+          "eef82f148fc49f1fef92563f07024127b9513073a81bdfa1643082d92e00042e"
+        ],
+        "selected_card_count": 110,
+        "source_container_id": "710",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 85,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 85,
+        "findings": [],
+        "parsed_card_row_count": 85,
+        "registry_key": "jpn-product-69b67ed6584f12d3",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:10:08.263Z",
+          "2026-07-26T19:10:09.488Z",
+          "2026-07-26T19:10:11.094Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "6e83804a8c6af2306d7596d43940b34f2958ec479a880a1a623e6b9c03e3e994",
+          "8315d9a19525815720e1174c7fb8eebef9b3e3bfbef6cba4b6c6ea70a8196227",
+          "2c109de04e5fa31cef11641e8d71d16179a0ee06b9e3e1926d4835e57f5db0b9"
+        ],
+        "selected_card_count": 85,
+        "source_container_id": "720",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 111,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 111,
+        "findings": [],
+        "parsed_card_row_count": 111,
+        "registry_key": "jpn-product-9475e27e16cf8330",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:11:57.575Z",
+          "2026-07-26T19:11:58.770Z",
+          "2026-07-26T19:11:59.996Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "20f164100dc12f02ac08b6b7bbe07dab0c9bd9fe790afbdb375e7b5db3ad9d05",
+          "c0956cc22f9807b2877317a6177cb9ef1e7d402f6d4081d4a9a664616e4616bd",
+          "c206161a7034b6b5c105527d97a827b330ebe784d434b24e72280ea78c1e1aea"
+        ],
+        "selected_card_count": 111,
+        "source_container_id": "721",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 326,
+        "api_page_count": 9,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 326,
+        "findings": [],
+        "parsed_card_row_count": 326,
+        "registry_key": "jpn-product-17ad55b7839e375a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:14:19.232Z",
+          "2026-07-26T19:14:20.472Z",
+          "2026-07-26T19:14:21.685Z",
+          "2026-07-26T19:14:22.895Z",
+          "2026-07-26T19:14:24.470Z",
+          "2026-07-26T19:14:25.696Z",
+          "2026-07-26T19:14:27.281Z",
+          "2026-07-26T19:14:28.472Z",
+          "2026-07-26T19:14:29.684Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "3a34dc612dd997a42d3150f89d8116e1cbb4a0fcb747645494468654c87ff7f6",
+          "2aab3d9910e7e2613a05094e74bcab1cb5fb269cb5dbd98b4341de990bf2b902",
+          "50304a6c338431577ab8ec814593b81ba0bc2698eadfac6bacc5ad93b11eafba",
+          "e8b7b94cad73313ad7f1c59d1cdc3982a1ed1cc54d161529715b1193882cabda",
+          "6f142ca252e013172802ea94251dd38953b8327f953da3a2bebd33208ebb6b6e",
+          "78ed83a847055ce83c880108a9431cf0bc2b9f1ad1154ca49a1aab0efcba32bc",
+          "86e0d33e87bab2f389fca383135b7cbc2754d11d879cc9580ae3731c80a9b8fa",
+          "3d8d9ce8833f57cbd354c728eccf9a6f2bc2299df4335c068ce5ebe2a769f6a8",
+          "6f5c322ace77244dbeefcead5aec1e6b9928074d8414d9b32dcbc9b24f5aded6"
+        ],
+        "selected_card_count": 326,
+        "source_container_id": "723",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-85badb576bdce97c",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:21:17.383Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "ee36109a6f3a4108136b51a3a717bb95c8a2aadf41f703cef4d1fb038a2ffbb8"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "724",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 22,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 22,
+        "findings": [],
+        "parsed_card_row_count": 22,
+        "registry_key": "jpn-product-d9b3b964bc0dcf4a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:21:45.573Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "5892f4c139ba1ed34d1a01b579fcaece173f2c1e0adef5ea1e0ca333c812e594"
+        ],
+        "selected_card_count": 22,
+        "source_container_id": "725",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 81,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 81,
+        "findings": [],
+        "parsed_card_row_count": 81,
+        "registry_key": "jpn-product-c81b015d350f5961",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:22:15.476Z",
+          "2026-07-26T19:22:16.709Z",
+          "2026-07-26T19:22:18.314Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "61c096e76bf00d50b6b101fbb51c39d6fe93689cc11d5d009942868a2d9ab4a7",
+          "74ac9a48f03e70e8bf920e7cae5046c591264db5db35e4bdad0307d67bf21868",
+          "f1136ef761c4e926561dd6f4f553e1b9239fe6b03e3313151ae79dff29008164"
+        ],
+        "selected_card_count": 81,
+        "source_container_id": "727",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 81,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 81,
+        "findings": [],
+        "parsed_card_row_count": 81,
+        "registry_key": "jpn-product-300e0d4d4adf392e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:24:00.771Z",
+          "2026-07-26T19:24:01.970Z",
+          "2026-07-26T19:24:03.201Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "4171a21378f44a4c46b5703a96db7acc56e23af73b1c84ebdcc8793839ffe8e3",
+          "50ee494c630a530cfc5d4cdba671b8ceee57de6a9fd2514a59e066c9e4bbfdde",
+          "9eb59b9a93d80f88dd58490af13426417affded76667628d634609163e23dd1c"
+        ],
+        "selected_card_count": 81,
+        "source_container_id": "728",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 84,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 84,
+        "findings": [],
+        "parsed_card_row_count": 84,
+        "registry_key": "jpn-product-ff9eb55f11224c59",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:25:46.777Z",
+          "2026-07-26T19:25:47.974Z",
+          "2026-07-26T19:25:49.207Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "48c43b6635c36d99b688f327f81759388f7602a6cf53826059c69dc6d508832a",
+          "08534cf1db2dd4a368c37cdc9431ff3247ee52d71eeca36a4d0bea05d08a0afa",
+          "d26ba4fca434bcf8dfc419bb6fe1eb78ac21260a9c6377a7a25f355d7b39900e"
+        ],
+        "selected_card_count": 84,
+        "source_container_id": "730",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 83,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 83,
+        "findings": [],
+        "parsed_card_row_count": 83,
+        "registry_key": "jpn-product-e0633bd3f4d76f5f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:27:35.053Z",
+          "2026-07-26T19:27:36.255Z",
+          "2026-07-26T19:27:37.486Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "56dff25c3276c9df8c30e1939b79d94983f21df32e9182590919b83acc355e72",
+          "c9ac076935cf7253216d59f4fabc1d6b68ac944a519777ab947b4f4e3654e450",
+          "9a1805b7219f6bcef967b1af1fc55a6765714b04cc03217035b4689641caafc7"
+        ],
+        "selected_card_count": 83,
+        "source_container_id": "731",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 83,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 83,
+        "findings": [],
+        "parsed_card_row_count": 83,
+        "registry_key": "jpn-product-15f7d553a5a5f698",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:29:22.806Z",
+          "2026-07-26T19:29:24.038Z",
+          "2026-07-26T19:29:25.239Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "596d8c9c7fd4817d0f99ad2b1111dacc55031b2aaeac4c94b32dff27ac82c0ee",
+          "7d5b6493c33cc16c371ae874d37c77f2110a5791339e66e7d297e81f5fdc2fbb",
+          "27b0d8eebd059ec38ab0558baa0db464c65d5823b8fe2995f5fe27ca5810f308"
+        ],
+        "selected_card_count": 83,
+        "source_container_id": "732",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-3c674e9d43b3d1f2",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:31:10.617Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d9ebd47e35659ab3d3e197e6bde11bd85e6d5e5092833742133eabe399aace9d"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "734",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 24,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 24,
+        "findings": [],
+        "parsed_card_row_count": 24,
+        "registry_key": "jpn-product-ab2caec78a8d8a9b",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:31:38.263Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "519fc1142d115f886bc75db2e9d34a036089423fc8f2f23dc47027484c2e154e"
+        ],
+        "selected_card_count": 24,
+        "source_container_id": "735",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 87,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 87,
+        "findings": [],
+        "parsed_card_row_count": 87,
+        "registry_key": "jpn-product-5daa9ea655468500",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:32:10.437Z",
+          "2026-07-26T19:32:11.623Z",
+          "2026-07-26T19:32:13.230Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "044db32da16fbf708803cbbcb18b4dd963ab2cc6805141a549b3e8a1aeec11a3",
+          "9efcfa26b0d3adeeb31505a37f2cbdfcf02b71cf3b97276c79d3495ff5d8e0d2",
+          "65d1fde008dd166e65633b203df4aec598acc1ab752b9bf030e8058c5f7a7f2c"
+        ],
+        "selected_card_count": 87,
+        "source_container_id": "736",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 8,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 8,
+        "findings": [],
+        "parsed_card_row_count": 8,
+        "registry_key": "jpn-product-738902f3c2631a25",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:34:04.548Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "58694ec4b0ae0943b6f2a3aa5ed5376f601b511afd709614777741911b3a3fde"
+        ],
+        "selected_card_count": 8,
+        "source_container_id": "737",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 78,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 78,
+        "findings": [],
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-product-5430d61d6640258e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:34:16.246Z",
+          "2026-07-26T19:34:38.818Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "99807cbc16afc859149013b57660bfabdf67a460ec75d4080b258ad9ca5421c7",
+          "e80dc31134eb7a91097be8c634b32ea1d2b09619fde958ec2c7e257a8943a2c0"
+        ],
+        "selected_card_count": 78,
+        "source_container_id": "738",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 79,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 79,
+        "findings": [],
+        "parsed_card_row_count": 79,
+        "registry_key": "jpn-product-bf2b9c76a8d0c071",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:36:18.177Z",
+          "2026-07-26T19:36:19.390Z",
+          "2026-07-26T19:36:21.023Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "2791a17e4826bb176974b950f8b86d27215afe646b4d5e551a098e20247cbe1e",
+          "20cafe97a5e1d7f8f4d4de9f1b92d827891342cd1fc3e81a2665ee27202ff72c",
+          "a79a4d0d4fabc08cacfd3b85ed493295be24a91defd60b005418e5ff23c687bc"
+        ],
+        "selected_card_count": 79,
+        "source_container_id": "739",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 79,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 79,
+        "findings": [],
+        "parsed_card_row_count": 79,
+        "registry_key": "jpn-product-ed6d9a21b7ba0069",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:38:01.019Z",
+          "2026-07-26T19:38:02.623Z",
+          "2026-07-26T19:38:04.229Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "bdd3dc8848c2b8a8f0129ae5581c7edc0f5206256bac34f7917053e99f669060",
+          "7bf47a373d364f87440fedc207083632e5243e10124efa46d761b673d62be025",
+          "d6ee1e3dae88f8be5223ecf3f91e0bc8dafc1ea1579bf9b662375dc7c673e891"
+        ],
+        "selected_card_count": 79,
+        "source_container_id": "740",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 115,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 115,
+        "findings": [],
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-product-e2c67b4dde07797c",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:39:45.136Z",
+          "2026-07-26T19:39:46.770Z",
+          "2026-07-26T19:39:47.970Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "df8b002bca008e4eb35efcec39f4fea85f42cf48c7f7633a9d916b3342cc6f47",
+          "41c3d8bbbf0d8a4b903c2081ff9e34f9bedabc4a02300d8ae35dacb57138f040",
+          "b7ceaa1447f71397a23ec59f68a07142722164be9974517e35040f31c59ecaee"
+        ],
+        "selected_card_count": 115,
+        "source_container_id": "745",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 34,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 34,
+        "findings": [],
+        "parsed_card_row_count": 34,
+        "registry_key": "jpn-product-090cbcdaa279db78",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:42:11.919Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "f22077998a5ec30dd9219c23cd404fd80c683ebcce891c02c550fa6bc0fee7f1"
+        ],
+        "selected_card_count": 34,
+        "source_container_id": "746",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 32,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 32,
+        "findings": [],
+        "parsed_card_row_count": 32,
+        "registry_key": "jpn-product-fda40bc504096fa1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:42:56.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "774fdfccfeaa92bf110d8b41d99d1985800ac91657ad1ce00ecf50f353c7bbdb"
+        ],
+        "selected_card_count": 32,
+        "source_container_id": "747",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 279,
+        "api_page_count": 8,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 279,
+        "findings": [],
+        "parsed_card_row_count": 279,
+        "registry_key": "jpn-product-0532f10eddc470a7",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:43:37.826Z",
+          "2026-07-26T19:43:39.462Z",
+          "2026-07-26T19:43:40.662Z",
+          "2026-07-26T19:43:41.861Z",
+          "2026-07-26T19:43:43.059Z",
+          "2026-07-26T19:43:44.305Z",
+          "2026-07-26T19:43:45.506Z",
+          "2026-07-26T19:43:47.077Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "6ca06212a8a51dcec72688573687a7262c14185adb5fac424f6b86fb05313bf8",
+          "ceb9cd1c5f2131c9b861a7aca8f5e068a4efd38231ee0717a758caae1bf57f80",
+          "17978d97378bbc73dc32bbf327ef1d5e96eb2d0170acfabbfd64391c8fc0f27a",
+          "f60812713e87e9e8997cf912f7fa10d9a81c485452f38d0781189d8f12b315bf",
+          "0dafd651644f2e9358883289495a84b82cf64863997da18036abdb04d38e254e",
+          "1769b047f83ef95b183ffb8f5d719eb89bc88473934224177386930a143d4f23",
+          "e7ce107731a085a61f67ed5945b29d0eb4580545ed1802b1ae2e790666b263ac",
+          "c61bba17defebea5c60965441dd0f7e1694f6bfe858c76d3252533d5efe2f802"
+        ],
+        "selected_card_count": 279,
+        "source_container_id": "748",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 127,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 127,
+        "findings": [],
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-product-882f171cf2c745cd",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:49:36.597Z",
+          "2026-07-26T19:49:37.780Z",
+          "2026-07-26T19:49:39.387Z",
+          "2026-07-26T19:49:40.632Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d26ea5bce672745094fa62f8db11ccb9633f28290f3b6d9958fb6401afc4dd4e",
+          "ffbbb93dfe11da25917c27af5e4bfda43a59e7528bf217b827720c1938a4eb17",
+          "ff28895004a9abaccfa185a192bd024631bb314079c338a86654b60b9aec531c",
+          "4bf4b323a4431a460b8fd62ee89aa8c798f077114c84c5b2aa2e238ecfe64884"
+        ],
+        "selected_card_count": 127,
+        "source_container_id": "851",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 138,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 138,
+        "findings": [],
+        "parsed_card_row_count": 138,
+        "registry_key": "jpn-product-929009d22fc39b34",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:52:19.025Z",
+          "2026-07-26T19:52:20.254Z",
+          "2026-07-26T19:52:21.843Z",
+          "2026-07-26T19:52:23.076Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "a0f4965581a58100f1ab1df6b6555488c74784991bfe6fa4ef81281b70d28a6d",
+          "dc1c0aa8f53064ba033adf8f159a3b4f2d214a9eb6941e712605bd3da19cd4f2",
+          "b7423813b6e23f090682f17d0725247d7d163a84b226c52a741a9db3e70ea9c8",
+          "ae2fdb280ed252015267b08f5fd09883c1e3173ed95f854ddc1fd9cc34f1707b"
+        ],
+        "selected_card_count": 138,
+        "source_container_id": "853",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 88,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 88,
+        "findings": [],
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-product-c1ba7b35aa1876ea",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:55:20.136Z",
+          "2026-07-26T19:55:21.369Z",
+          "2026-07-26T19:55:22.959Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "24703573a53dc442662ea0c8c2274ec63e63274f626f702dddccc9051ec8c68d",
+          "298926e4e0555a1dba52c7112d7c94e263285c6a4f1a0fdf99ac048ad417ce49",
+          "a79d0a00bcd41b2a3e9349ebfeee7a57392979583a45be4847b4a21e3337aa8b"
+        ],
+        "selected_card_count": 88,
+        "source_container_id": "856",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 88,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 88,
+        "findings": [],
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-product-269d735e4919b1b9",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:57:13.333Z",
+          "2026-07-26T19:57:14.567Z",
+          "2026-07-26T19:57:15.782Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "fe2e6ee0596078f1b1011bf993140bf3216e02557312a449f10f1d122a1ec485",
+          "85f6af9e1035081df7d5856b8cc4893c0c81b104d36554e436cc089a70b23bc6",
+          "559bf4dc283539d7272ef91171492207e370a38534af5fe2a310a5c30ee539f2"
+        ],
+        "selected_card_count": 88,
+        "source_container_id": "857",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 148,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 148,
+        "findings": [],
+        "parsed_card_row_count": 148,
+        "registry_key": "jpn-product-d8fb9583873e0e98",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T19:59:07.339Z",
+          "2026-07-26T19:59:08.555Z",
+          "2026-07-26T19:59:10.208Z",
+          "2026-07-26T19:59:11.842Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "f62cea70018670073ff5da3b231edc74bb3a7dbc27d221c009bf503acb2d541a",
+          "bd90ecf52fd8b5f25af6b6f0fab91e4d7fc7b9f104cfaffa2df4aa0651b38d1e",
+          "30803117b1d9bdcae92f2a869d90de8e9b131064ea22068d2f4da6cb72fd5ec3",
+          "cce8b880585aa7568bfa21c8949bf153e44261781872d6ecfbd5ddf2332cb3d4"
+        ],
+        "selected_card_count": 148,
+        "source_container_id": "859",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 101,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 101,
+        "findings": [],
+        "parsed_card_row_count": 101,
+        "registry_key": "jpn-product-f60a236189ece36f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:02:17.035Z",
+          "2026-07-26T20:02:18.233Z",
+          "2026-07-26T20:02:19.853Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "8c5b0009c09951b212ae4912f067f0299b28e4b6a6e677febb7f5fbc7bb4fad3",
+          "8ff42a71962d67c28b7ef2f6966a424e46cc01ee8d7868187e6e88c7bca5bf83",
+          "eb15a1d448af481063f8645fcef1c243fb10122af3dcc64f94e16dd1f5bba43e"
+        ],
+        "selected_card_count": 101,
+        "source_container_id": "861",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 127,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 127,
+        "findings": [],
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-product-70901ac1cf877574",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:04:28.990Z",
+          "2026-07-26T20:04:30.611Z",
+          "2026-07-26T20:04:53.205Z",
+          "2026-07-26T20:04:54.858Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "555ccd46e81b8699de277508f368e38f563544c794f07ee5d53b5c64ed2b5607",
+          "aa145a81b020a1146b97436982c5be1abfecc24f054e65e834e8c62a433ddd39",
+          "b05601d60304371e61c140bc45c77983be7b1bba3f6a7349905ed62f77841c9a",
+          "ce70816ee022a8da6ca81367419ea58df8de93e639b3b7455438e18648480ec3"
+        ],
+        "selected_card_count": 127,
+        "source_container_id": "862",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 140,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 140,
+        "findings": [],
+        "parsed_card_row_count": 140,
+        "registry_key": "jpn-product-ba7928656bdd7da7",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:07:39.724Z",
+          "2026-07-26T20:07:41.327Z",
+          "2026-07-26T20:07:42.559Z",
+          "2026-07-26T20:07:43.775Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d83ad3f303dc2bbbceecf960e917b69141f95cca33d9ffef5c14af3208bc0f20",
+          "5ab76cd8175bfd11787f44ab4d2058ea8d0ce334a1d372b6487b0fb73602c587",
+          "c37a9a125ff83c49c7a842780a3846bd8e61d08a715ec9eaa12d7afb14f41ef8",
+          "242daea6247d78850607b91ac0b5abaeb8e767c59d333fdf5b1374b50430f4bd"
+        ],
+        "selected_card_count": 140,
+        "source_container_id": "866",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 125,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 125,
+        "findings": [],
+        "parsed_card_row_count": 125,
+        "registry_key": "jpn-product-03e67d0bee762005",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:10:40.949Z",
+          "2026-07-26T20:10:42.179Z",
+          "2026-07-26T20:10:43.375Z",
+          "2026-07-26T20:10:44.967Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "c8bc9e8a247b9efb3e2930461de106e5384e38d05daa522f603054046ab89a7d",
+          "2d946cda1c897a8d00649bb9df3822692cd7716faa4b7c7072d791ee5621de9f",
+          "25fe8d34a97b9ded36ece89207db9b5be6e9aea9a7f00df4a2f74496317d3053",
+          "728b59e8a72a95be0ac5a285219110836895db5c7b945a1ff755ad73d069b73d"
+        ],
+        "selected_card_count": 125,
+        "source_container_id": "867",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 351,
+        "api_page_count": 9,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 351,
+        "findings": [],
+        "parsed_card_row_count": 351,
+        "registry_key": "jpn-product-d1ba737aa9d393fd",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:13:19.869Z",
+          "2026-07-26T20:13:21.488Z",
+          "2026-07-26T20:13:23.093Z",
+          "2026-07-26T20:13:24.713Z",
+          "2026-07-26T20:13:25.974Z",
+          "2026-07-26T20:13:27.550Z",
+          "2026-07-26T20:13:29.185Z",
+          "2026-07-26T20:13:30.416Z",
+          "2026-07-26T20:13:32.009Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "5d6d7d42ba10e7289a20f08127df6202ea7dcf921a2f25e4fb7ef082e0fe48a9",
+          "3dbe9ab63dec1a0ca1435778d74d7d0cfa7ce1c9ff0df20b354a14f7f6269e30",
+          "87ed0bd9b149148c89b963a45886c26525e055a5b8e0b18219103eefd00c1e02",
+          "b5ff32dfef1c46f82d6ad97fba7e10d1439c1a83e8ed33288cf6e3b666947f4e",
+          "307fb9587bc59977bad38d95f1b8b32540f8018f4453dc98f923d96cc241e4ae",
+          "f78f78480910174211e027bef579905c35549ba8e6782659c5cca9d0253ed436",
+          "728725d800e0c4cd02b0aaa7617c00d6acd966102d4fc5259c8bf473ee3342cd",
+          "4fdb5102dfaee70cd5a1610fb92506bab4ed74c9bb1d562fb415b4393c734871",
+          "0bd04a0e53009a24449753cc5e4a641826668d2409fd041b479240ca951e2e98"
+        ],
+        "selected_card_count": 351,
+        "source_container_id": "869",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 108,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 108,
+        "findings": [],
+        "parsed_card_row_count": 108,
+        "registry_key": "jpn-product-6d83de429849f877",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:21:11.958Z",
+          "2026-07-26T20:21:13.158Z",
+          "2026-07-26T20:21:14.344Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "75f1789a1d7af0818ba105d217f8d7006ea1a7ae47a8b44bd7e6e6f23970dfb0",
+          "b57aedae3936fc125567d8f8d018a4a90d6f406dfc923400a65a655da3f1c9e1",
+          "195b9b7f988580ddc6ad75439d7c1409d5e9717a9db85b3c4806c1e3b201cf25"
+        ],
+        "selected_card_count": 108,
+        "source_container_id": "870",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 108,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 108,
+        "findings": [],
+        "parsed_card_row_count": 108,
+        "registry_key": "jpn-product-2dcf54b240cc781f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:23:30.851Z",
+          "2026-07-26T20:23:32.057Z",
+          "2026-07-26T20:23:33.631Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "13f0f9e067e11a72b5586cb51edce6451f857da0c41befbf9f08ac2685ad8fc0",
+          "3e7cc5b52bb53a52a102b078029213c35140e0e8d16e80e9ef5e13f7030168f9",
+          "e6d913bf76a468b5839a50c0020ba32c48afe6e0e8ade0118846382eed65a773"
+        ],
+        "selected_card_count": 108,
+        "source_container_id": "871",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 28,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 28,
+        "findings": [],
+        "parsed_card_row_count": 28,
+        "registry_key": "jpn-product-3378bcd84f0dd325",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:25:50.817Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "19187161aa67b852a00fe5edb75d89b74d197d9022bc7361f61686db12052b8e"
+        ],
+        "selected_card_count": 28,
+        "source_container_id": "872",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 26,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 26,
+        "findings": [],
+        "parsed_card_row_count": 26,
+        "registry_key": "jpn-product-2f216431c36fbd81",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:26:27.765Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "69ed16aab79bb71b512eec391453a9a716f17048d364f5eb19b49f419349eba8"
+        ],
+        "selected_card_count": 26,
+        "source_container_id": "873",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 28,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 28,
+        "findings": [],
+        "parsed_card_row_count": 28,
+        "registry_key": "jpn-product-23201e4eddcbf412",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:27:01.886Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "7b1f05ca38b190f5fc31c52b6c2468ceb696391afa0ae861141d44d8f0f61414"
+        ],
+        "selected_card_count": 28,
+        "source_container_id": "874",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 28,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 28,
+        "findings": [],
+        "parsed_card_row_count": 28,
+        "registry_key": "jpn-product-077c352e8cd59acb",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:27:39.360Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "0725711c649f4e45916315541b63ce53c7273eb3943c3f031c57afeef0cbfb52"
+        ],
+        "selected_card_count": 28,
+        "source_container_id": "875",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 11,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 11,
+        "findings": [],
+        "parsed_card_row_count": 11,
+        "registry_key": "jpn-product-74379423fd2c5e15",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:28:16.694Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "de7239a97e328422cca4e01e54409090c8ec4a4a1faead96b5ba6e75cea29a19"
+        ],
+        "selected_card_count": 11,
+        "source_container_id": "876",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 103,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 103,
+        "findings": [],
+        "parsed_card_row_count": 103,
+        "registry_key": "jpn-product-53cab45546f74b2c",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:28:32.878Z",
+          "2026-07-26T20:28:34.484Z",
+          "2026-07-26T20:28:36.087Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "3e13023892daa2f913ab0d8de35fcc8bdeea1b7c8ad69baffb158a20c394cec6",
+          "50c8e62b389a60ba2018f69fd6c07c1584c352034813f2b66ef09600a348b944",
+          "54066e91db49613a29383d0c9dc87c4a3666b60a11f12ba07254c55b56637c86"
+        ],
+        "selected_card_count": 103,
+        "source_container_id": "877",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 25,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 25,
+        "findings": [],
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-product-72427ea875fb9be8",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:30:45.269Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "637e9254f07617b6038f1c2c2ebb19034907f4f93a324440570d55bb2560f049"
+        ],
+        "selected_card_count": 25,
+        "source_container_id": "878",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 99,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 99,
+        "findings": [],
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-product-71c5c5667123da14",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:31:17.794Z",
+          "2026-07-26T20:31:19.034Z",
+          "2026-07-26T20:31:20.253Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "c282d584023ad5ad26472ffee42ac5b86e6aef04b3f5137ae818bc25c6597800",
+          "176a7c103e67b8e38ab8263cad481728d064cfae3f8a22b14eeba13c67b6a753",
+          "0fa6b1c6a54a7782b9a61dd2f11f1e6d06fabd5a37ea1fd45855f3dc5eb69211"
+        ],
+        "selected_card_count": 99,
+        "source_container_id": "879",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 99,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 99,
+        "findings": [],
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-product-3f3a2ef96d5d54ca",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:33:28.681Z",
+          "2026-07-26T20:33:29.892Z",
+          "2026-07-26T20:33:31.083Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "242a3b275de3f3743768f7660affee70cdc2c8a3d5393875a763c13f03af3c1e",
+          "ce3d6dfb22e9f8b23196bc860f506a6033888332514a1aca9cfb2c3454c45c2d",
+          "16753c48068f139183677188960503379920cbf8154b4ae66805cc03dda84c01"
+        ],
+        "selected_card_count": 99,
+        "source_container_id": "880",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 210,
+        "api_page_count": 6,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 210,
+        "findings": [],
+        "parsed_card_row_count": 210,
+        "registry_key": "jpn-product-6671b2f8b557630c",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:35:35.781Z",
+          "2026-07-26T20:35:37.025Z",
+          "2026-07-26T20:35:38.220Z",
+          "2026-07-26T20:35:39.431Z",
+          "2026-07-26T20:35:40.640Z",
+          "2026-07-26T20:35:41.851Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "b1ad6de6d48696f82bf602ec57159ff4b5c04660f8725c49fdafe3c441f830ba",
+          "d3b9c40b80174ed23dadbb5cf7b6f6ca9196091b3f329beda91ff25992d88905",
+          "152657dbfb0238023f38aece7911e7e2d498f6efe08126d58b3db432d9b342d7",
+          "c4ed2f5aa5e9482f034321f5656734e2ee9eec1d7c79693817152a3cefe8f169",
+          "337970e66fa5caab0a23465c7708a8fe4d1b39ef93fb8632facbfbbd32e5c4fa",
+          "12b207f7823fc374f7760fa6b552a6287c79fce7338ad2f79f2c74c2d12f6d88"
+        ],
+        "selected_card_count": 210,
+        "source_container_id": "882",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-f2376c02e53d9626",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:40:03.057Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "549b6445424019a4ecb034e0e91a47f490ad4e93d791a9b69689be8215657357"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "884",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-cfe58fe86bcc6275",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:40:33.181Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "45d4fcea65764696e0a4bd686030ea7a1c46fa2d471476a591a68315bfaf8043"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "885",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 22,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 22,
+        "findings": [],
+        "parsed_card_row_count": 22,
+        "registry_key": "jpn-product-c1ed2fb8efe71360",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:41:03.484Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "2f549d40f6d6a2fe3fb592c44b054362b1562ecadf2c36021b87b42f53078afd"
+        ],
+        "selected_card_count": 22,
+        "source_container_id": "886",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 24,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 24,
+        "findings": [],
+        "parsed_card_row_count": 24,
+        "registry_key": "jpn-product-86bbdd2fab1d3f74",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:41:32.916Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d158cd90f38898be419a7b899444a51fc8512c3f38b526e3dcc5c2f574d4ad99"
+        ],
+        "selected_card_count": 24,
+        "source_container_id": "887",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-ab6b72b859131558",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:42:05.746Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "32787ff5c94c95d95a41dfcf56926293fc79b3173b653bfb256ba38e5d7713f2"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "888",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 24,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 24,
+        "findings": [],
+        "parsed_card_row_count": 24,
+        "registry_key": "jpn-product-a0a19806f58fc77f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:42:36.702Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "867ea4ed34e2415dcb79fcef0e21b78f7af977764de88e3eb46864593d90dd34"
+        ],
+        "selected_card_count": 24,
+        "source_container_id": "889",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 24,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 24,
+        "findings": [],
+        "parsed_card_row_count": 24,
+        "registry_key": "jpn-product-fe8b32d20dac1d59",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:43:08.380Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "e9c59d600da0df2262c5cdb8716d3d773735418fe971294dce6a9522e4ffc121"
+        ],
+        "selected_card_count": 24,
+        "source_container_id": "890",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 24,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 24,
+        "findings": [],
+        "parsed_card_row_count": 24,
+        "registry_key": "jpn-product-9c83a66f6483b7d1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:43:40.471Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "f7af1bd0800d8cd5cda181cb5a73047d281385c828ee5507b47c4d62a6639743"
+        ],
+        "selected_card_count": 24,
+        "source_container_id": "891",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 26,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 26,
+        "findings": [],
+        "parsed_card_row_count": 26,
+        "registry_key": "jpn-product-ba08830db1a152c8",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:44:12.373Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "2dddad1e8110cb074825b9ab6d5fd476b663f3e796d3afa921bdde8d3c5eaf1e"
+        ],
+        "selected_card_count": 26,
+        "source_container_id": "892",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 30,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 30,
+        "findings": [],
+        "parsed_card_row_count": 30,
+        "registry_key": "jpn-product-fc4f182e15e316a1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:44:46.902Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "fc223f54a1308ab4bc2065d58167364603f7f6a81ff120d7352634c7829bc84b"
+        ],
+        "selected_card_count": 30,
+        "source_container_id": "893",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 141,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 141,
+        "findings": [],
+        "parsed_card_row_count": 141,
+        "registry_key": "jpn-product-74d8abfd3adb415b",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:45:25.878Z",
+          "2026-07-26T20:45:27.106Z",
+          "2026-07-26T20:45:28.295Z",
+          "2026-07-26T20:45:29.883Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "9be827c2a1c81a52cc997136b1bfe2464af4d98ea765d3768e5d2e798c14752b",
+          "941deae071bd77ee755cefdf0240b8a2b0fbbec3d3957b379139132e38b1cd67",
+          "ae365a3a80b14678077de5046b81efe30624866dc8b19292aec606547866c0d2",
+          "2d59c20ff90a758e4ca5b43bc002b509709d338cca19e3cee0e7df8610d51054"
+        ],
+        "selected_card_count": 141,
+        "source_container_id": "894",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 46,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 46,
+        "findings": [],
+        "parsed_card_row_count": 46,
+        "registry_key": "jpn-product-66e6a33f9ca32537",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:48:27.845Z",
+          "2026-07-26T20:48:29.070Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "5402ad7a332253fcef0af5571db55d81b105ce45713427a20e213ea7c562789c",
+          "570a9d115e9f3326fddf6f051e90cef6433ff58b41eca347bd05289e16bd372b"
+        ],
+        "selected_card_count": 46,
+        "source_container_id": "895",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 32,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 32,
+        "findings": [],
+        "parsed_card_row_count": 32,
+        "registry_key": "jpn-product-2bdc9aeacf719ded",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:49:29.919Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "2b5acb33d4098292a94666ce607c13922eb1328b98f2310f22e5c532ccba6168"
+        ],
+        "selected_card_count": 32,
+        "source_container_id": "896",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 92,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 92,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-product-2704799da6fe58be",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:50:11.093Z",
+          "2026-07-26T20:50:12.317Z",
+          "2026-07-26T20:50:13.553Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "dda9a09bc8ba59b939b0ab70f0eb72d68faf2e739e677d54b7d9edb3aeb2bd74",
+          "047abe847296658d3dfc7f7f7d16d96c59a2bb37084a8a3c981e57759c4fa58e",
+          "c0860610f0dc8bacc4cf5941992c0f77ffef2bfa05c4436e84309cd236d4881a"
+        ],
+        "selected_card_count": 92,
+        "source_container_id": "897",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-ee4b1de3623e69b0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:52:08.040Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "aefcc1ae35a9635fda74cb305b52de3574eaae99eac6f478be7d9bc2d375fd28"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "898",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-c6eb029296ed2983",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:52:37.569Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "4cc4cb5060df6e6a137155f7c100760d4591723648b1a6daf3e945920d7307d5"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "899",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 95,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 95,
+        "findings": [],
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-product-c5916846faaae7a3",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:53:07.067Z",
+          "2026-07-26T20:53:08.277Z",
+          "2026-07-26T20:53:09.560Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d9fe35dcaffd52f02e94878c2a171dddb68cf1c87ac199cfc87170e9c5f141a6",
+          "ddd243f62cb4549cf8d617f27589e810e9e6e08703d31723a1823ce1687cd879",
+          "7363ce504b965218444d847ad4ee7607d74c6bb814c7829b46e4fe2badb6359c"
+        ],
+        "selected_card_count": 95,
+        "source_container_id": "901",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 95,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 95,
+        "findings": [],
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-product-24bd8db70e1e97b2",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:55:09.198Z",
+          "2026-07-26T20:55:10.833Z",
+          "2026-07-26T20:55:12.044Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d840d2ddfeaeb6c6b94243d4e7c504b8049b14a51569363e83c2f1a5f3b282a1",
+          "78942b9413686ab3ee004a8d7e049a06b3649caa019210c6753aa4cea6f67612",
+          "43ae2aee39ac816f99b2202a989458fc954333d10c0a62f2f091f533aee5223e"
+        ],
+        "selected_card_count": 95,
+        "source_container_id": "902",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 55,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 55,
+        "findings": [],
+        "parsed_card_row_count": 55,
+        "registry_key": "jpn-product-01e6399ab3a76a59",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:57:12.005Z",
+          "2026-07-26T20:57:13.593Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "645c3ca6597af76632fccc3a27ffdafe62af39785664ca0b50bdf3d84f3830c2",
+          "2f8f65c704b209efc88ed8878bf10352c34850185d22511c79553b9b5a954bf6"
+        ],
+        "selected_card_count": 55,
+        "source_container_id": "904",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 360,
+        "api_page_count": 10,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 360,
+        "findings": [],
+        "parsed_card_row_count": 360,
+        "registry_key": "jpn-product-4a280363c186438b",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T20:58:23.876Z",
+          "2026-07-26T20:58:25.511Z",
+          "2026-07-26T20:58:26.705Z",
+          "2026-07-26T20:58:27.913Z",
+          "2026-07-26T20:58:29.522Z",
+          "2026-07-26T20:58:31.143Z",
+          "2026-07-26T20:58:32.353Z",
+          "2026-07-26T20:58:33.561Z",
+          "2026-07-26T20:58:35.149Z",
+          "2026-07-26T20:58:36.366Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "477cf6103e302898d70f73f49f87207a336b1443f7786cda79c34cfdf83c8794",
+          "87b12d2c8d4fb11cb7b2eb506f9b2dfc818e92e1f7ee276f850bf592993a1ef7",
+          "b031ae5743711563978e1db565032085ac349d2e6a1cfdabaef3a1fdbab699ca",
+          "6a70e7602841561407a5410cc7fc098a99e621a16c40039eac3eaf22247730bb",
+          "f958154b30abfb175554be298ea65245fc81520a014f4e2210b0201a1312eb27",
+          "365fcc9262697f1d94cc6d748f7e13c40a5391477aec407ccf08f27a2f9288b4",
+          "25607b67b08cbde0b4b66d504b353ac3c35a7bccf5884362ef4e0cd5bc7ca268",
+          "cdc66e49cb64a05230704a82c514b16753fe082b34b6b8bd974e7acbd3f6cae4",
+          "8551a11a92b25b364fbc2be459757ecd5e104d91abecd5296a395d7a481271b3",
+          "1717166c16c3e163238544a075e2b53ec684a1f2e01ea0b8bd55b834b514dade"
+        ],
+        "selected_card_count": 360,
+        "source_container_id": "905",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 100,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 100,
+        "findings": [],
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-product-f80a78203e2ff21a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:06:06.336Z",
+          "2026-07-26T21:06:07.944Z",
+          "2026-07-26T21:06:09.213Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d59e14582910a65c3765b0b024b8d8af2b14e6d33b0be36ec4c283cdf15c077e",
+          "5102a1dc77e7564926b03a51d6c52df5c60323b13f54587704b2d60b18124e80",
+          "b41317e9233cbe6eaa6b02f596c924c00da47557f89d024650159480802ba3a4"
+        ],
+        "selected_card_count": 100,
+        "source_container_id": "906",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 100,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 100,
+        "findings": [],
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-product-c1b2d25816711751",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:08:13.529Z",
+          "2026-07-26T21:08:14.757Z",
+          "2026-07-26T21:08:15.966Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "3a991e217ad73ed05b48e71495a50f7c60d5aa56b79d1786e2ac116d64fd6b7f",
+          "808756f71651fa525fbed7db98feed5f149ce5e2d6db36d59c7631a20b9a568f",
+          "4897f8bce500647ffc0d3dc48892a3e0faefcb9128a1566732795ae939fb757e"
+        ],
+        "selected_card_count": 100,
+        "source_container_id": "907",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 61,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 61,
+        "findings": [],
+        "parsed_card_row_count": 61,
+        "registry_key": "jpn-product-099d13b1f474a5c7",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:10:21.210Z",
+          "2026-07-26T21:10:22.419Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "c5525284dc2fed9a4dda3b8d7d5b213108d489559110b1474ed5df3fa777a3cc",
+          "4f2c551312b32ee0688b2b894e472376cd0b309b8e09312f9e2cbce6b5af023a"
+        ],
+        "selected_card_count": 61,
+        "source_container_id": "908",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 61,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 61,
+        "findings": [],
+        "parsed_card_row_count": 61,
+        "registry_key": "jpn-product-03c1ccf6d9c2278a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:11:40.938Z",
+          "2026-07-26T21:11:42.164Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "140d61146355384b80d1db866aea79c75036d875c44841ff5d237b574bd2c191",
+          "a94c9e6741345e2465d78eb8a892d6aa1afb927433b48de858cd339712436cb6"
+        ],
+        "selected_card_count": 61,
+        "source_container_id": "909",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 98,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 98,
+        "findings": [],
+        "parsed_card_row_count": 98,
+        "registry_key": "jpn-product-729bc1689d3de870",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:13:00.062Z",
+          "2026-07-26T21:13:01.303Z",
+          "2026-07-26T21:13:02.484Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "362c337e5a69356766a015374cda399216bf9ddac5da37fb293101d26c5a5679",
+          "ae09d5bb9a8631fedf59e7f7788a5a68c63294f62fc8f8ace8866653ae882a12",
+          "b5e30d7b69515aaff1824619e2a47d7549f5cf5886ac22dc93351a2f4cd085ce"
+        ],
+        "selected_card_count": 98,
+        "source_container_id": "911",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 49,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 49,
+        "findings": [],
+        "parsed_card_row_count": 49,
+        "registry_key": "jpn-product-297b614dcb2d7ce2",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:15:06.073Z",
+          "2026-07-26T21:15:07.312Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "633b4c60e27994807dc73ffd973e16ed3c7682a58141f7ef48189b93a86ff9bf",
+          "47c1aa6dd1c529d159d88c6af5a7a264f24367f6b1ffe21dc2daf1f8db038c59"
+        ],
+        "selected_card_count": 49,
+        "source_container_id": "912",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 96,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 96,
+        "findings": [],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-product-9b761de345c1122e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:16:06.785Z",
+          "2026-07-26T21:16:08.438Z",
+          "2026-07-26T21:16:10.036Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "5844fffd4fbbf0b872110b22a15e0e846d0ac1b9dc58f9a851b29633165e527b",
+          "914cb6890d019895e6c347c14183c407205a477eb733c9e0e44d3112a76babd1",
+          "f26be2c740a3af8ae213c9cbcf51205e8a356aed81ff8f04ca3eaded4b83ded9"
+        ],
+        "selected_card_count": 96,
+        "source_container_id": "913",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 133,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 133,
+        "findings": [],
+        "parsed_card_row_count": 133,
+        "registry_key": "jpn-product-78d0439acd6b84d7",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:18:07.493Z",
+          "2026-07-26T21:18:09.126Z",
+          "2026-07-26T21:18:10.334Z",
+          "2026-07-26T21:18:11.529Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "64d68a671d8323f6446387cdf8b7a8181a5522fae3dc6f574aa354b5ea5e3647",
+          "dd8047610c7e1bf434cb8138716eb6259353363123c10a33d170d3ece825e62b",
+          "d68df9b2479dee5e688e8d7b69ccc3e5a280a6d9790350bb9c9b054a0b8b5b7f",
+          "daa898d052d0467e29de0bd30ceef1388d2366cb6c6565a5235d23881ed28720"
+        ],
+        "selected_card_count": 133,
+        "source_container_id": "914",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 22,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 22,
+        "findings": [],
+        "parsed_card_row_count": 22,
+        "registry_key": "jpn-product-1e900440f56ad046",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:20:58.248Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "ac2aa99868150df229779cb8e788f81246dba00bdefc24b10ef031382183fba8"
+        ],
+        "selected_card_count": 22,
+        "source_container_id": "915",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 20,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 20,
+        "findings": [],
+        "parsed_card_row_count": 20,
+        "registry_key": "jpn-product-96ad59bad25d364d",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:21:26.405Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "645634b6341daa4bbd275cfdad376d2093c190622fcafce462030d753158e3db"
+        ],
+        "selected_card_count": 20,
+        "source_container_id": "916",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 94,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 94,
+        "findings": [],
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-product-a888176e7e120d7a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:21:52.630Z",
+          "2026-07-26T21:21:54.227Z",
+          "2026-07-26T21:21:55.453Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "43b4f8f207d3adfa0433e7743795a9ec86c12d73e6fc1f91a686c7f8f08349f9",
+          "6e0f5ffac9ecbab24205a18cff0e097f79ce2c20d113c5046b8bcd7d4b84a3c6",
+          "21c5f2f7a251a4b19e4577170fc7a81f3cc6a9c557d5fdbbc2eac1ffb315b430"
+        ],
+        "selected_card_count": 94,
+        "source_container_id": "917",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 135,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 135,
+        "findings": [],
+        "parsed_card_row_count": 135,
+        "registry_key": "jpn-product-434a034ec53995ba",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:23:53.744Z",
+          "2026-07-26T21:23:55.379Z",
+          "2026-07-26T21:23:56.564Z",
+          "2026-07-26T21:23:57.762Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "2f8ea49d9f047910db2db503c3c7d964a53d581aeebfae5160862ea85ab8f2fe",
+          "3a20c77393bd335f8f9be93977696303c6714e9907403f6d0987c5a8d25f8f31",
+          "469eab11b2b6639ac0a94b8c9bb79cf1a5e34772e41e844a61d2b04bff2a6c22",
+          "32fda65bac897c1918a57d46f578a4427acd654443c3c7759d2996e1d5bc3211"
+        ],
+        "selected_card_count": 135,
+        "source_container_id": "918",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 52,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 52,
+        "findings": [],
+        "parsed_card_row_count": 52,
+        "registry_key": "jpn-svk",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:26:44.300Z",
+          "2026-07-26T21:26:45.531Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "8b6603d511bc008f186e638adbc74876fb8bc9305acf1aa7d141edea8848d339",
+          "dfec843b4268fa3cbf14ed45c29964df582ee884455b73862fb2f480267814be"
+        ],
+        "selected_card_count": 52,
+        "source_container_id": "919",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 25,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 25,
+        "findings": [],
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-svls",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:27:52.576Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "0cfdd9ab696ff2f8e424a8982ebf9243bbd6a04a0a27cba2093cc7bd1e291051"
+        ],
+        "selected_card_count": 25,
+        "source_container_id": "920",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 25,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 25,
+        "findings": [],
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-svln",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:28:25.622Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "a6a09f0d90e7e582088266248cdc8936f5e80697646571f3b46ea434774b2662"
+        ],
+        "selected_card_count": 25,
+        "source_container_id": "921",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 94,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 94,
+        "findings": [],
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-product-65a935555fa002c7",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:28:57.880Z",
+          "2026-07-26T21:28:59.096Z",
+          "2026-07-26T21:29:00.298Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "963e5e6effdb617017a940e42ed96f6d6bf5445acda6721cd3c458e53b5b2257",
+          "a6115e90d0e63a6c438d754407146a1d500f1643d97681103539666ceda2af7e",
+          "a995414f40293660f53feb4161d6989a359c993445e77e0051642b1d02bff44f"
+        ],
+        "selected_card_count": 94,
+        "source_container_id": "922",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 138,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 138,
+        "findings": [],
+        "parsed_card_row_count": 138,
+        "registry_key": "jpn-product-7f2bcdeb8c4a4a52",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:31:02.242Z",
+          "2026-07-26T21:31:03.831Z",
+          "2026-07-26T21:31:05.061Z",
+          "2026-07-26T21:31:06.260Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "9d7438adc88121702dafd5723edd7f609104b3a51a6c10f594967b7470ef4efd",
+          "0b72fdc9c8ddc1ab989d09a606aac996c372967311d7f556f61a3937b5cfe695",
+          "c3c30fdc5fb1f4c9b1bb376e6b73eb36a16615d7c5de010e10e4a1514ee02ea5",
+          "ff47a85a82155c060a12f4c29f53cfc162d7f196c631fe05a06278c1932c76a3"
+        ],
+        "selected_card_count": 138,
+        "source_container_id": "923",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-ac9233a40a03cc1f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:33:58.608Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "e592f37cb432e5832dbd342f696a22c937aabf50992c936fda2121cf2d11c218"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "925",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-920ab8655501515e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:34:38.328Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "3842e0386f93c41f1df4d00bcff7beafc450db6657b2eee7b8186ae1d0320d50"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "926",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-5ad6918a8b5aee26",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:35:18.478Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "bd91d9ad768de44b33ce15b88f0ac74b74534c32fbf41acdb1db63a25098dc86"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "927",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-20258854a25ac283",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:35:55.728Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "e0581bdef9879f44f2bee79402342f3725c2f7357120dc5993d7ac3ed62d8d47"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "928",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-7cbba888c415e5e8",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:36:33.489Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "ce9fbefe21916e2d7fed3b07c03c2310af44149e1589213e799e71f82dfdca5e"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "929",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-e248c0e355e0cf5d",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:37:12.199Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "829e173399a0e23d49025846a6fe0b0fc2debc46e26e4bac81f6fad950ae5fbf"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "930",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 28,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 28,
+        "findings": [],
+        "parsed_card_row_count": 28,
+        "registry_key": "jpn-product-b08957a8930d00ae",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:37:48.965Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "335c9bf8194901eb4e2ba584e78b218763bd3335bf3c5d7d9eb23420c753c10b"
+        ],
+        "selected_card_count": 28,
+        "source_container_id": "931",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 29,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 29,
+        "findings": [],
+        "parsed_card_row_count": 29,
+        "registry_key": "jpn-product-90dd8907f07494df",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:38:24.637Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "ba49afece622a3446d88979ae1c2260260b611666aac30eb565cab66d1b5e426"
+        ],
+        "selected_card_count": 29,
+        "source_container_id": "932",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 28,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 28,
+        "findings": [],
+        "parsed_card_row_count": 28,
+        "registry_key": "jpn-product-39bbc128bcfd8955",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:39:02.831Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "c50920021bcbef4798d3d8d2b81283f5ffe81faee9324daa2076699b304d4401"
+        ],
+        "selected_card_count": 28,
+        "source_container_id": "933",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 237,
+        "api_page_count": 7,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 237,
+        "findings": [],
+        "parsed_card_row_count": 237,
+        "registry_key": "jpn-product-dda484e49b308e00",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:39:39.777Z",
+          "2026-07-26T21:39:41.010Z",
+          "2026-07-26T21:39:42.223Z",
+          "2026-07-26T21:39:43.452Z",
+          "2026-07-26T21:39:44.635Z",
+          "2026-07-26T21:39:46.243Z",
+          "2026-07-26T21:39:47.459Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "0e6c2e3ba0e5a03f2e3b4a7e3a1fc0bb2627d8e4e53eed845fd71f0fd26acd6d",
+          "4f0200225295e7fe8c7aa74618e9f304ad51c9a5521e7e638a1c2592276e7d96",
+          "6d362a3fdce945654a00b19b9a980ee4c249b2e445818b93043a889fa8f8961d",
+          "19ccab176e6db2c663a50b0b7fbd6af2365f2a9853ade5eda0f45605dd354b88",
+          "0416ef2f396674ff7a9ab683db8174813e8b7a5ee18ad7dc74c0f94f07a0ce7b",
+          "988c33b14ca25ea9a1804c3b7661b3092b40279dbc1017c3ea30814983399d79",
+          "dd5c7838dfa3755492e42e6bcabbab5d85c178145b6e1f06c452657175c42b19"
+        ],
+        "selected_card_count": 237,
+        "source_container_id": "934",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 132,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 132,
+        "findings": [],
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-product-590d814f321ef96d",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:44:41.686Z",
+          "2026-07-26T21:44:42.902Z",
+          "2026-07-26T21:44:44.104Z",
+          "2026-07-26T21:44:45.321Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "9ea23f97102dc7a8e991c07c318b12d62108d49d7434b40f2d5d25462387abb4",
+          "464eea4115e768ca91aef1095c3b8cc70ff7b871c4d38206f8e631018793b4c1",
+          "3ca5181bc068abd495e06d3181621cb28e13c13d0a6ef208ee216f7b3df6264a",
+          "1e5e99aeec0b304548f1bb3301257c09101abf9a4f41cefe143b61ec6d709d34"
+        ],
+        "selected_card_count": 132,
+        "source_container_id": "935",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-18d534d6566aa7c2",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:47:25.678Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "461611195893b0244f653232d962e483bd3ed9b15c2293f37ea4b36126345e36"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "938",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-1541017f22ac8c4e",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:47:52.616Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "7e7bb88701c4f4dc491f9820ac1c200fe2dcf3d19e59e695c511931667f00a1a"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "939",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 92,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 92,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-product-52fd23c764fd6283",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:48:20.556Z",
+          "2026-07-26T21:48:21.755Z",
+          "2026-07-26T21:48:23.377Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "0d71ade88ce2ef84c5e0d4be5360d6feda049cfa8009f591bb7a6000b328b326",
+          "cc841c3b7919246b989f63ebf0a0660c15cc60e604c8ec89c8062cb8ff21ce94",
+          "9e0da23cb529ef951b4fc28c6cf1891ee6409b4895e93d92c980c4dfd99fdc62"
+        ],
+        "selected_card_count": 92,
+        "source_container_id": "940",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 132,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 132,
+        "findings": [],
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-product-7acab9deba959e50",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:50:18.336Z",
+          "2026-07-26T21:50:19.535Z",
+          "2026-07-26T21:50:21.153Z",
+          "2026-07-26T21:50:22.459Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "9b641cca4b65150130e4c18717f1b9e0f5df75e7e8c98c5b659b340d5f31ba33",
+          "84345a312c059cbdd46a5190b43ebfe3c6d50c0e3017a79553928651f13a5121",
+          "1996a246d692ddcd2c69c4c1a7f0049735a373c794020354c85f13424db84871",
+          "e0524620910787f36d6c54ae51f2296d136cc41a56667fd6708065e0abf84165"
+        ],
+        "selected_card_count": 132,
+        "source_container_id": "941",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 174,
+        "api_page_count": 5,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 174,
+        "findings": [],
+        "parsed_card_row_count": 174,
+        "registry_key": "jpn-product-2375f33233aed6fd",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:53:08.533Z",
+          "2026-07-26T21:53:09.749Z",
+          "2026-07-26T21:53:10.946Z",
+          "2026-07-26T21:53:12.161Z",
+          "2026-07-26T21:53:13.393Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "243fde45dc16efed31e8b5fc5156cf20b0b83d6bcfc16eb0aef5d5228a72210f",
+          "5184e53b5dea02f71a40807b7609a17aca254daa5bdf240ddefc905f2298fdc6",
+          "62224ff71502624a81e63c29abaf537727d3913b4841d744bcd202c03aedde48",
+          "974d9b96a0ed199aae2b8bcf65a980f044b1465d26137725cbc17f271ab32c5c",
+          "ed57165fd5002761735accbe31c539570c9be8259f048c2ea0f2d406c7659174"
+        ],
+        "selected_card_count": 174,
+        "source_container_id": "942",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 174,
+        "api_page_count": 5,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 174,
+        "findings": [],
+        "parsed_card_row_count": 174,
+        "registry_key": "jpn-product-bfd56c8348322092",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T21:56:50.142Z",
+          "2026-07-26T21:56:51.359Z",
+          "2026-07-26T21:56:52.545Z",
+          "2026-07-26T21:56:53.745Z",
+          "2026-07-26T21:56:54.991Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "26f96522ad185897bf85cf31ce98924cdfebfb0b6986f7058cd5a52b0f16b4db",
+          "ed1210773e6e682e11264d8484afa90c70f2ca7fc87b997c6cb56a8f62ba1964",
+          "cf58a5f8c44b190d3bb992555df648e111ab3b85904c1e389883cacbe875339b",
+          "2a2ef112140ea579dc3c0e1b68deaa8a0fd870ca26e672a891e64260529f69bc",
+          "711339d13529e7958ff9cc7b7a22662fec7663d50543ef5715c3312e9e3cafb4"
+        ],
+        "selected_card_count": 174,
+        "source_container_id": "943",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 92,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 92,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-product-490267b36df3898f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:00:33.544Z",
+          "2026-07-26T22:00:34.760Z",
+          "2026-07-26T22:00:36.334Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "3fb6a6b163da738548f3f9c1e264f6ce4ee293aa4acb2b34f5b80ac0d0c9eb86",
+          "cf020c55956b9bc590d1457e417719df5840d393b090a9e97076a2df6c9c0975",
+          "1f0ba064313e0c33a7b92c3c7c28f331f64362e4477a574f7ebb4f4e548b7757"
+        ],
+        "selected_card_count": 92,
+        "source_container_id": "944",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 92,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 92,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-product-82835d62452f200a",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:02:32.064Z",
+          "2026-07-26T22:02:33.264Z",
+          "2026-07-26T22:02:34.510Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "528e298e7851eba535083125a75c741802473e9da5d19a313e5001e392e69a4b",
+          "196ae72157e9076d739f3c50e5f77c784fe5280ec2191819a923ea6bfae058be",
+          "332def9d8882b6a50da8cbb002d0ee7b3ace3747a25645cb5b761fa3bf7ff2a6"
+        ],
+        "selected_card_count": 92,
+        "source_container_id": "945",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-b4d62a1ce0c58f83",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:04:29.379Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "9beffb77d8253104057760d183ec4e82897eaeeb323e881174cd4b530d0c2092"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "947",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 23,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 23,
+        "findings": [],
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-product-4a236d925c0421e3",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:05:02.631Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "833efee869f4d5795ea24b5f1f2e083d210864435b84a5af64a6a08d912484db"
+        ],
+        "selected_card_count": 23,
+        "source_container_id": "948",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 116,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 116,
+        "findings": [],
+        "parsed_card_row_count": 116,
+        "registry_key": "jpn-product-c297b0fdc73c2bd6",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:05:32.918Z",
+          "2026-07-26T22:05:34.156Z",
+          "2026-07-26T22:05:35.730Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "8601734dde710cd2cf712214909f5a8b5a6151ae93bd52653c8ba52dea8344a7",
+          "dd7bf3b0a21e8a3b81db76fd51cb0736e264a5b198ab6861bc4a25b2b2eb202a",
+          "2703f7c3e5e4fe96498b31f101822b8181d541983010295d954b9f9f524dc4d7"
+        ],
+        "selected_card_count": 116,
+        "source_container_id": "949",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 250,
+        "api_page_count": 7,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 250,
+        "findings": [],
+        "parsed_card_row_count": 250,
+        "registry_key": "jpn-product-e497b4695739ec53",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:08:01.772Z",
+          "2026-07-26T22:08:02.986Z",
+          "2026-07-26T22:08:04.189Z",
+          "2026-07-26T22:08:05.389Z",
+          "2026-07-26T22:08:06.586Z",
+          "2026-07-26T22:08:08.191Z",
+          "2026-07-26T22:08:09.422Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "df35e12af4a582ff3a72d530d392be80fd10c789cffea124017e45d2c876f6fc",
+          "06f2bad417132f89a5d9b0e89aad4d18a4c7afdd0fac6bd91ab240710534a137",
+          "044ca79e8ded0636a79f888c1e3b29f7293bb03402c519a9601b0ee285dad626",
+          "061d8eb6af373dcc713e51520fdd05b09ff67dba4b6f5f182d9831210a1dbb3a",
+          "b87e34f99815731dc26e12464862b53bbc06b121973b6a2b676ba373e4c5879b",
+          "3e67d62ed7338ef1ba183dd3f24cd0f706e82b51b77be5b128c1c1f2fe5e28f9",
+          "13fdadb8ad996af8ea9dbea74b8f47879b015a3a93b3f950a674182a2ad6d0be"
+        ],
+        "selected_card_count": 250,
+        "source_container_id": "950",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 117,
+        "api_page_count": 3,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 117,
+        "findings": [],
+        "parsed_card_row_count": 117,
+        "registry_key": "jpn-product-9e34709fc9dbfdd1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:13:21.940Z",
+          "2026-07-26T22:13:23.154Z",
+          "2026-07-26T22:13:24.339Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "f41e8de77dd0363aae07d4f9c6ff499de85bc320270f8f03cb384563d714e537",
+          "2423b382027bf892bdb34baceee2b31b434829024608c671ab56ffe04d2c272d",
+          "20925974a6be8653bcff4dc8c2abc084fb26e26b8c543998c29dc479705e3157"
+        ],
+        "selected_card_count": 117,
+        "source_container_id": "952",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 120,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 120,
+        "findings": [],
+        "parsed_card_row_count": 120,
+        "registry_key": "jpn-product-3090050c1bdfc5ce",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:15:47.646Z",
+          "2026-07-26T22:15:48.862Z",
+          "2026-07-26T22:15:50.081Z",
+          "2026-07-26T22:15:51.300Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "fe3153299103e211c19e07c3f4ac5e81f40b0aaa6c7be8ef254d3a280eea025f",
+          "859dcd7d7fe080e942ca0f9f56f2fb56e20ed0eac8faa5442bb4ad17ea8d06ed",
+          "eae17a4223d98b9ade87314a21f501dce6905be5c75c50a388fabb56af52c959",
+          "6dc6b3f8219a4ea18761d435be23591783b22ae4b592fbd9d494ec57cf16175c"
+        ],
+        "selected_card_count": 120,
+        "source_container_id": "953",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 118,
+        "api_page_count": 4,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 118,
+        "findings": [],
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-product-48f4cc1504b3dc44",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:18:20.788Z",
+          "2026-07-26T22:18:21.988Z",
+          "2026-07-26T22:18:23.218Z",
+          "2026-07-26T22:18:24.417Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "209ca99b15e9dce73e671b5bdfc856e2eb3bdd6d33c12437d58500b1126cb534",
+          "875d81809199e0985c8328ad07189d15f630fcef10fdb46041a7c9c8701ceb12",
+          "ac476eada8d1bcc45aa4d86b47d766bd89223056803752026dad98ceaf8cb8eb",
+          "dfc1d1bc36f2d4500b91c15c9956af779022334a1bfc1372c2d23bf4106ab97a"
+        ],
+        "selected_card_count": 118,
+        "source_container_id": "954",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 73,
+        "api_page_count": 2,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 73,
+        "findings": [],
+        "parsed_card_row_count": 73,
+        "registry_key": "jpn-product-93e429bd4ffd351d",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:20:53.121Z",
+          "2026-07-26T22:20:54.320Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "439b6477cc4d32b59df2d76c968f8f39a1c50a088ca2cb07b078b29d971be22d",
+          "e96a8a7c3ad1ffb26e7fedcd8d5562c50a4b0c368890d2e0b2680fd13fc4846c"
+        ],
+        "selected_card_count": 73,
+        "source_container_id": "955",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-4b7ef0a0f96e6ef5",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:22:25.852Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "a6886a21419b90bb5caee68d11b7d471927677839bda517e677c50182ef6f4ee"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "956",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 21,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 21,
+        "findings": [],
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-product-009933fefda0f9f0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:22:53.582Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "f9a9990ad22dfd9798530bc89d87f09dbb13618f489aecb6cbba948221b3015d"
+        ],
+        "selected_card_count": 21,
+        "source_container_id": "957",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 19,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 19,
+        "findings": [],
+        "parsed_card_row_count": 19,
+        "registry_key": "jpn-product-94e8f8d9e03d3cad",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:21.226Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "8f18a6e8b5386aa2ea0231a7f7a9a8631e77222cdac3b46c52bb08a71f6a1f26"
+        ],
+        "selected_card_count": 19,
+        "source_container_id": "958",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 2,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 2,
+        "findings": [],
+        "parsed_card_row_count": 2,
+        "registry_key": "jpn-product-cde5bd8f038ef1ea",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T18:49:20.695Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "beb6a68af7ae45bd50545acda214d0763636535307bca08ca9600e3922c5ee53"
+        ],
+        "selected_card_count": 2,
+        "source_container_id": "10917",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-9252a1d1d12fdef2",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:50.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sa/:スターターセットV　水",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-aa47b403295f9472",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:50.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sa/:スターターセットV　炎",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-03b149bcbcf265d4",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:50.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sa/:スターターセットV　草",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-7bbe5a59d6228af0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:50.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sa/:スターターセットV　闘",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-6234a4aa8dfeefbe",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:50.382Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sa/:スターターセットV　雷",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-dbc8fda23b4835f1",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ悪　ガラルヤドラン",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-6a660c798c0204e0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ水　ホエルオー",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-13de9c70cf23f4e0",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ炎　ガオガエン",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-f5633e03a9341642",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ無色　イーブイ",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-28325b8c776f84ec",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ草　フシギバナ",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-3f8453ac8da07ff8",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ超　ミュウ",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-40281c386d2bb4af",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ鋼　ジュラルドン",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-674055eeb689df06",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ闘　ルカリオ",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-8adc845ea8f834c3",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:23:58.677Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/ex/sd/:Vスタートデッキ雷　ピカチュウ",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "api_hit_count": 0,
+        "api_page_count": 0,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 0,
+        "registry_key": "jpn-product-2ea70ba63e47923f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-26T22:24:13.032Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "01d435b72e89469f87e64af8ebfca008a5eae22e8a9c0e3b3e0b2ff0d0cb100c"
+        ],
+        "selected_card_count": 0,
+        "source_container_id": "detail:/info/2019/20191110_002152.html:プレミアムトレーナーボックス　ソード＆シールド",
+        "source_expected_card_count": null,
+        "status": "complete"
+      }
+    ],
+    "run": {
+      "max_cards_per_container": null,
+      "mode": "offline_replay",
+      "selected_container_count": 137,
+      "selected_container_ids": [
+        "602",
+        "645",
+        "656",
+        "701",
+        "702",
+        "704",
+        "705",
+        "707",
+        "708",
+        "709",
+        "710",
+        "720",
+        "721",
+        "723",
+        "724",
+        "725",
+        "727",
+        "728",
+        "730",
+        "731",
+        "732",
+        "734",
+        "735",
+        "736",
+        "737",
+        "738",
+        "739",
+        "740",
+        "745",
+        "746",
+        "747",
+        "748",
+        "851",
+        "853",
+        "856",
+        "857",
+        "859",
+        "861",
+        "862",
+        "866",
+        "867",
+        "869",
+        "870",
+        "871",
+        "872",
+        "873",
+        "874",
+        "875",
+        "876",
+        "877",
+        "878",
+        "879",
+        "880",
+        "882",
+        "884",
+        "885",
+        "886",
+        "887",
+        "888",
+        "889",
+        "890",
+        "891",
+        "892",
+        "893",
+        "894",
+        "895",
+        "896",
+        "897",
+        "898",
+        "899",
+        "901",
+        "902",
+        "904",
+        "905",
+        "906",
+        "907",
+        "908",
+        "909",
+        "911",
+        "912",
+        "913",
+        "914",
+        "915",
+        "916",
+        "917",
+        "918",
+        "919",
+        "920",
+        "921",
+        "922",
+        "923",
+        "925",
+        "926",
+        "927",
+        "928",
+        "929",
+        "930",
+        "931",
+        "932",
+        "933",
+        "934",
+        "935",
+        "938",
+        "939",
+        "940",
+        "941",
+        "942",
+        "943",
+        "944",
+        "945",
+        "947",
+        "948",
+        "949",
+        "950",
+        "952",
+        "953",
+        "954",
+        "955",
+        "956",
+        "957",
+        "958",
+        "10917",
+        "detail:/ex/sa/:スターターセットV　水",
+        "detail:/ex/sa/:スターターセットV　炎",
+        "detail:/ex/sa/:スターターセットV　草",
+        "detail:/ex/sa/:スターターセットV　闘",
+        "detail:/ex/sa/:スターターセットV　雷",
+        "detail:/ex/sd/:Vスタートデッキ悪　ガラルヤドラン",
+        "detail:/ex/sd/:Vスタートデッキ水　ホエルオー",
+        "detail:/ex/sd/:Vスタートデッキ炎　ガオガエン",
+        "detail:/ex/sd/:Vスタートデッキ無色　イーブイ",
+        "detail:/ex/sd/:Vスタートデッキ草　フシギバナ",
+        "detail:/ex/sd/:Vスタートデッキ超　ミュウ",
+        "detail:/ex/sd/:Vスタートデッキ鋼　ジュラルドン",
+        "detail:/ex/sd/:Vスタートデッキ闘　ルカリオ",
+        "detail:/ex/sd/:Vスタートデッキ雷　ピカチュウ",
+        "detail:/info/2019/20191110_002152.html:プレミアムトレーナーボックス　ソード＆シールド"
+      ]
+    },
+    "selected_run_healthy": true,
+    "summary": {
+      "assertion_fingerprint_sha256": "e976b023e53deb7bb710b02c0b3e504af436bc420a09f2c9330b3b8217d27150",
+      "combined_assertion_count": 9843,
+      "container_status_counts": {
+        "complete": 137
+      },
+      "failed_container_count": 0,
+      "fresh_assertion_count": 9843,
+      "prior_assertion_count": 9843,
+      "retained_prior_assertion_count": 0,
+      "selected_container_count": 137,
+      "source_request_count": 0,
+      "tracked_container_count": 137
+    }
+  },
+  "content_fingerprint_sha256": "10ac3f23ab136e51a85c241f7264d6f1c75cffae4035888fc02ea467f0b5ca5f",
+  "generated_at": "2026-07-26T22:25:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V4-CARD-ACQUISITION-HARVEST-V1",
+  "retrieval": {
+    "card_detail_requests": true,
+    "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-HARVEST-V1",
+    "image_downloads": false,
+    "image_references_only": true,
+    "mode": "offline_replay",
+    "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+    "plan_content_fingerprint_sha256": "7b06e0f66b63e98e77956167ca7cc4aa440a9655c081a9aa15c6293cdf8eed10",
+    "request_delay_ms": null,
+    "result_api_pagination": true,
+    "resume": true,
+    "source_base_url": "https://www.pokemon-card.com/card-search",
+    "source_lane": "official_jp_cards",
+    "targeted_queue_content_fingerprint_sha256": null,
+    "targeted_queue_path": null
+  }
+}

@@ -7,6 +7,9 @@ import {
   contentFingerprint,
   sha256,
 } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
+import {
+  readVerifiedArtifact,
+} from '../../scripts/audits/japanese_master_index_v4/artifact_rows_v1.mjs';
 
 const ROOT = path.resolve('docs/audits/japanese_master_index_v4/baseline');
 
@@ -70,6 +73,41 @@ test('English family freeze includes species and English relationship facts', ()
   assert.match(freeze.combined_fingerprint_sha256, /^[a-f0-9]{64}$/);
 });
 
+test('row baseline freezes every Japanese graph lane and the English family reference', async () => {
+  const artifact = readArtifact('live_jpn_row_baseline_manifest_v1.json');
+  const datasets = Object.fromEntries(
+    artifact.content.datasets.map((dataset) => [dataset.dataset_key, dataset]),
+  );
+
+  assert.equal(datasets.live_jpn_parent_rows_v1.row_count, 26_047);
+  assert.equal(datasets.live_jpn_identity_rows_v1.row_count, 26_015);
+  assert.equal(datasets.live_jpn_evidence_rows_v1.row_count, 116_589);
+  assert.equal(datasets.live_jpn_printing_rows_v1.row_count, 25_953);
+  assert.equal(datasets.live_jpn_family_review_rows_v1.row_count, 28_161);
+  assert.equal(datasets.live_jpn_species_link_rows_v1.row_count, 19_678);
+  assert.equal(datasets.language_agnostic_species_rows_v1.row_count, 1_025);
+  assert.equal(datasets.english_family_card_rows_v1.row_count, 19_194);
+  assert.equal(datasets.english_family_species_link_rows_v1.row_count, 19_346);
+
+  for (const dataset of Object.values(datasets)) {
+    assert.match(dataset.content_fingerprint_sha256, /^[a-f0-9]{64}$/);
+    assert.equal(dataset.shard_paths.length, dataset.shard_count);
+
+    let shardRows = 0;
+    for (const shardPath of dataset.shard_paths) {
+      const { artifact: shard } = await readVerifiedArtifact(shardPath);
+      assert.equal(shard.content.dataset_key, dataset.dataset_key);
+      assert.equal(
+        contentFingerprint(shard.content),
+        shard.content_fingerprint_sha256,
+        shardPath,
+      );
+      shardRows += shard.content.row_count;
+    }
+    assert.equal(shardRows, dataset.row_count, dataset.dataset_key);
+  }
+});
+
 test('every baseline artifact content fingerprint and manifest file hash verifies', () => {
   const manifest = readArtifact('live_jpn_baseline_manifest_v1.json');
 
@@ -87,6 +125,7 @@ test('every baseline artifact content fingerprint and manifest file hash verifie
     'live_jpn_identity_gap_queue_v1.json',
     'english_family_reference_fingerprint_v1.json',
     'live_jpn_source_manifest_v1.json',
+    'live_jpn_row_baseline_manifest_v1.json',
   ]) {
     const artifact = readArtifact(filename);
     assert.equal(
@@ -98,7 +137,9 @@ test('every baseline artifact content fingerprint and manifest file hash verifie
 });
 
 test('baseline artifacts contain no database credentials or mutation package', () => {
-  const files = fs.readdirSync(ROOT);
+  const files = fs.readdirSync(ROOT, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
   const combined = files
     .map((filename) => fs.readFileSync(path.join(ROOT, filename), 'utf8'))
     .join('\n');
@@ -109,4 +150,3 @@ test('baseline artifacts contain no database credentials or mutation package', (
   assert.equal(files.some((filename) => /\.(?:sql|psql)$/i.test(filename)), false);
   assert.equal(files.some((filename) => /(?:apply|migration|writer)/i.test(filename)), false);
 });
-

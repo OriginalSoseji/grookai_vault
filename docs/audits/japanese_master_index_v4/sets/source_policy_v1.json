@@ -1,6 +1,9 @@
 {
   "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
   "content": {
+    "blocked_automated_card_sources": [
+      "tcgcollector_jp_sets"
+    ],
     "blocked_automated_sources": [
       "pokellector_jp_sets"
     ],
@@ -34,11 +37,12 @@
         "terms_url": null
       },
       {
+        "automated_card_capture": "blocked_without_written_permission",
         "automated_index_capture": "admitted",
-        "boundary": "Public Japanese set index; one collection request.",
+        "boundary": "The public Japanese set index was captured once. Card/API acquisition is not automated because the API is partner-only and the published license does not authorize this commercial reuse.",
         "robots_url": "https://www.tcgcollector.com/robots.txt",
         "source_id": "tcgcollector_jp_sets",
-        "terms_url": null
+        "terms_url": "https://www.tcgcollector.com/legal/terms-of-service"
       },
       {
         "automated_index_capture": "admitted",
@@ -70,8 +74,8 @@
       }
     ]
   },
-  "content_fingerprint_sha256": "995306652fbfbf68cb556380752ea5ea93718cad9339b1ec6ade1b2eae504541",
-  "generated_at": "2026-07-26T17:09:54.034Z",
+  "content_fingerprint_sha256": "1fb02fff71b6cf2970ef85ea2c37749acba60126799d4a4322f56c2f4ae5e89c",
+  "generated_at": "2026-07-26T18:12:50.481Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
   "retrieval": {
     "mode": "offline_replay",

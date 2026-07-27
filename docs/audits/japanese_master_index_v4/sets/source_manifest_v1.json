@@ -5,25 +5,25 @@
       {
         "bytes": 2071062,
         "content_fingerprint_sha256": "ae77c19db68ac9f63126290ce5ed6c3ac658c76dfd08167d06275358710d91c3",
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
-        "sha256": "f8c74669d2f53aa66d0648af95817c2dbb2a904ff80aeb272cf38502ce38736b"
+        "path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
+        "sha256": "1dc88590bcb51a5b59ad2179c0a043995bd6f77561361d089164ff11210919d0"
       },
       {
         "bytes": 8825,
         "content_fingerprint_sha256": "db8056bf51bb495432c274e8975f83c875fd687ac88460c30037dcb7a45c1a69",
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_health_v1.json",
-        "sha256": "2d56bef1c9bab57ab7cc7f0d8e2148a5529b5fbe96b962dcbcbbc8d0076fc0fe"
+        "path": "docs/audits/japanese_master_index_v4/sets/source_health_v1.json",
+        "sha256": "ecb3c1c90233929ea72e1407ab848f80400218480cf6316c32be3d4cfb5924fa"
       },
       {
-        "bytes": 5810,
-        "content_fingerprint_sha256": "995306652fbfbf68cb556380752ea5ea93718cad9339b1ec6ade1b2eae504541",
-        "path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
-        "sha256": "549f43119599eaf2045f725452042185a09fdc4d722dea766dd3a2c92ccf3b0c"
+        "bytes": 6143,
+        "content_fingerprint_sha256": "1fb02fff71b6cf2970ef85ea2c37749acba60126799d4a4322f56c2f4ae5e89c",
+        "path": "docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
+        "sha256": "f11a1a225237900b6243f61df5194dcf80158a8416fbda8afe5a2e6bf005597c"
       }
     ],
     "raw_snapshots": [
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_01_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_01_v1.json",
         "body_sha256": "79128d7c665735db3d0a04c3b625f2e52829face960925cfaaffadf309c18262",
         "byte_size": 14713,
         "fetched_at": "2026-07-26T16:32:08.644Z",
@@ -44,7 +44,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_02_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_02_v1.json",
         "body_sha256": "189ff89b978a68cddd0f3750b26f4d79b4e85d84b1226d880a727e63082f1344",
         "byte_size": 15463,
         "fetched_at": "2026-07-26T16:32:10.230Z",
@@ -65,7 +65,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_03_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_03_v1.json",
         "body_sha256": "db3a982dc32c141827b16712f893354deebb3eccf4161b7c289b597ccb4d62b6",
         "byte_size": 15852,
         "fetched_at": "2026-07-26T16:32:11.403Z",
@@ -86,7 +86,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_04_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_04_v1.json",
         "body_sha256": "659f6b738322d64f38710123b195151adda33d913fbd0e528c40a175a95f0898",
         "byte_size": 13500,
         "fetched_at": "2026-07-26T16:32:12.547Z",
@@ -107,7 +107,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_05_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_05_v1.json",
         "body_sha256": "7c9b9cf08d787262f9180ffc661400465a132362f3e8dea79f2c77dd1716329d",
         "byte_size": 12588,
         "fetched_at": "2026-07-26T16:32:13.706Z",
@@ -128,7 +128,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_06_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_06_v1.json",
         "body_sha256": "b847d9e92ea3f76e65530f4f74ff126f926c0494ba44dc299e95761bcf2a8a19",
         "byte_size": 12641,
         "fetched_at": "2026-07-26T16:32:14.907Z",
@@ -149,7 +149,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_07_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_07_v1.json",
         "body_sha256": "0c05c6536f4309b62a7174f56eeeecd728a69388a04405fe2af038d517601146",
         "byte_size": 12331,
         "fetched_at": "2026-07-26T16:32:16.052Z",
@@ -170,7 +170,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_08_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_08_v1.json",
         "body_sha256": "dd86011ca3d0fbaf8767e20d6224db4031824b29a0fe1f24ceeff950c5edd040",
         "byte_size": 13244,
         "fetched_at": "2026-07-26T16:32:17.211Z",
@@ -191,7 +191,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_09_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_09_v1.json",
         "body_sha256": "e06d3ca4a855df084f261868ddef331cd619f9f5137c6c244bf517b02d858407",
         "byte_size": 12962,
         "fetched_at": "2026-07-26T16:32:18.430Z",
@@ -212,7 +212,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_10_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_10_v1.json",
         "body_sha256": "2122cbf5c35acaea08b0466feb7be77c8dd18d88383f1e7c0d7615d4b5a0c5e4",
         "byte_size": 5273,
         "fetched_at": "2026-07-26T16:32:19.616Z",
@@ -233,7 +233,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_01_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_01_v1.json",
         "body_sha256": "7ee8434722255e7724564d2813ded0536850efd38db097bec3eaaf2d4927dac3",
         "byte_size": 19076,
         "fetched_at": "2026-07-26T16:32:20.016Z",
@@ -254,7 +254,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_02_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_02_v1.json",
         "body_sha256": "d1709f529b98b47711b12290acb2236a264d6c19b8de29f74b61854be3acb589",
         "byte_size": 21765,
         "fetched_at": "2026-07-26T16:32:21.195Z",
@@ -275,7 +275,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_03_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_03_v1.json",
         "body_sha256": "f65da5bd775dd919eaae1a87bbcc7d49bfd4ca2945676ed85009788084ad2ff8",
         "byte_size": 19919,
         "fetched_at": "2026-07-26T16:32:22.383Z",
@@ -296,7 +296,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_04_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_04_v1.json",
         "body_sha256": "ed5e9a5d00b87b97a97c55161718b50c3b5381047eb39632eee3911916d406f0",
         "byte_size": 17445,
         "fetched_at": "2026-07-26T16:32:23.527Z",
@@ -317,7 +317,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_05_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_05_v1.json",
         "body_sha256": "a86cdcc6f39b3e4015029703794c6f94d9a0b1e6956262d5bd2db8b5e63a7068",
         "byte_size": 19735,
         "fetched_at": "2026-07-26T16:32:24.705Z",
@@ -338,7 +338,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_06_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_06_v1.json",
         "body_sha256": "a52823fb3e37e6d70e19a86c822c48484c96ed40682eeb322c3d06b4731a60c0",
         "byte_size": 19089,
         "fetched_at": "2026-07-26T16:32:25.914Z",
@@ -359,7 +359,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_07_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_07_v1.json",
         "body_sha256": "4f6f68580f50117f2c0524e6ff0bb2a9418a6c221cfc60971ee1015f9fc2f551",
         "byte_size": 18598,
         "fetched_at": "2026-07-26T16:32:27.077Z",
@@ -380,7 +380,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_08_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_08_v1.json",
         "body_sha256": "e1c405d2c4d311cef47a17ac6ee55858d4f5d8ef6b388814709cae52e2c3f413",
         "byte_size": 15566,
         "fetched_at": "2026-07-26T16:32:28.242Z",
@@ -401,7 +401,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_09_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_09_v1.json",
         "body_sha256": "bf2598500167bc7b7fc032639213c9c836bc4758ce54157a20539fbd19d79322",
         "byte_size": 14903,
         "fetched_at": "2026-07-26T16:32:30.551Z",
@@ -422,7 +422,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_10_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_10_v1.json",
         "body_sha256": "9045834051655b08d10e70ef79e458b8a123f241519637d7349c82089a461630",
         "byte_size": 3900,
         "fetched_at": "2026-07-26T16:32:31.698Z",
@@ -443,7 +443,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_01_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_01_v1.json",
         "body_sha256": "0cf77842281f0c4c9907c4f899aee9cc7e56e359cf769bb8c4afb3779bca6ae8",
         "byte_size": 20765,
         "fetched_at": "2026-07-26T16:32:32.378Z",
@@ -464,7 +464,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_02_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_02_v1.json",
         "body_sha256": "99c56aa8faf26b01dbcb9e647f912618e08ec501acc206d67af871a95097f22b",
         "byte_size": 21311,
         "fetched_at": "2026-07-26T16:32:33.533Z",
@@ -485,7 +485,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_03_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_03_v1.json",
         "body_sha256": "959da556892aa855c534803362ea095f2523017a5c7cc8dd75ca9d854b70d781",
         "byte_size": 21820,
         "fetched_at": "2026-07-26T16:32:34.729Z",
@@ -506,7 +506,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_04_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_04_v1.json",
         "body_sha256": "462bbfe42db4fe6c81baf882a7c8777fcb7ba0da40f4750f5fe5a5fb3a160a64",
         "byte_size": 20386,
         "fetched_at": "2026-07-26T16:32:35.919Z",
@@ -527,7 +527,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_05_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_05_v1.json",
         "body_sha256": "485d51cef9b053fc7a40e29cf44bb989ffe2e9b58abffb796d187b7503766625",
         "byte_size": 19853,
         "fetched_at": "2026-07-26T16:32:37.081Z",
@@ -548,7 +548,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_06_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_06_v1.json",
         "body_sha256": "8ca0dda02ecb09cfb2cdadd7d6b3489ba1898b84d80aa76744ef4e4ba133de54",
         "byte_size": 16282,
         "fetched_at": "2026-07-26T16:32:38.244Z",
@@ -569,7 +569,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_07_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_07_v1.json",
         "body_sha256": "320342bc43f0bb4922a1fb5e1f94e090b3f4f6e9b9a1cc244438246d74ac99a3",
         "byte_size": 17412,
         "fetched_at": "2026-07-26T16:32:39.454Z",
@@ -590,7 +590,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_08_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_08_v1.json",
         "body_sha256": "3ee407d454530919c07e4eceb16b1f32ba7d04c8b871b67cecfd978d960aea9f",
         "byte_size": 18174,
         "fetched_at": "2026-07-26T16:32:40.634Z",
@@ -611,7 +611,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_09_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_09_v1.json",
         "body_sha256": "b25cdd3d3221a33e0502bfe916bbbf35287673b62d10281c6cab2ee711e1db3f",
         "byte_size": 17992,
         "fetched_at": "2026-07-26T16:32:41.796Z",
@@ -632,7 +632,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_10_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_10_v1.json",
         "body_sha256": "24ba8c3e5b5f5f9e9ea63ae8f81300bb6ee201ccf5c11221a942f11172d31fa5",
         "byte_size": 20023,
         "fetched_at": "2026-07-26T16:32:42.960Z",
@@ -653,7 +653,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_11_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_11_v1.json",
         "body_sha256": "fa028702d9fb2c9779bd19a64e49cb42702f966b406ded0b1311d1be7ba62f8c",
         "byte_size": 18927,
         "fetched_at": "2026-07-26T16:32:44.163Z",
@@ -674,7 +674,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_12_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_12_v1.json",
         "body_sha256": "42284e5d73de0419f4929aeb59e9d6507f9ce0c6dc7ab8f9faf68ade0bf609bd",
         "byte_size": 16692,
         "fetched_at": "2026-07-26T16:32:45.341Z",
@@ -695,7 +695,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_13_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_13_v1.json",
         "body_sha256": "ba8e11b67f9ebb42bc4a6f2191ad04597caea4c1786c27f831490b63a38683ba",
         "byte_size": 13955,
         "fetched_at": "2026-07-26T16:32:46.543Z",
@@ -716,7 +716,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_14_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_14_v1.json",
         "body_sha256": "1c943d9677be4e56344042aafaa8ff8d5d634074999154d82519bca6c158372e",
         "byte_size": 5464,
         "fetched_at": "2026-07-26T16:32:47.702Z",
@@ -737,7 +737,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_01_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_01_v1.html",
         "body_sha256": "36366345ec52ea05e6879bc3ede292e02b60513411e8e11c307abf36fd35bb9a",
         "byte_size": 157616,
         "fetched_at": "2026-07-26T17:04:20.944Z",
@@ -759,7 +759,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_02_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_02_v1.html",
         "body_sha256": "3d0eab160408497aafe32fcc919a8dfac1e6661df39c196ab82ba3dff726c0e5",
         "byte_size": 155695,
         "fetched_at": "2026-07-26T17:04:22.790Z",
@@ -781,7 +781,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_03_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_03_v1.html",
         "body_sha256": "247ed799cd72c3dd4c96554f9388d9e9fab97cab4b379b80dd1006056f996c01",
         "byte_size": 90649,
         "fetched_at": "2026-07-26T17:04:24.527Z",
@@ -803,7 +803,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.json",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.json",
         "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
         "byte_size": 15659,
         "fetched_at": "2026-07-26T16:26:13.530Z",
@@ -823,7 +823,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/limitless_jp_sets_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/limitless_jp_sets_v1.html",
         "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
         "byte_size": 157221,
         "fetched_at": "2026-07-26T16:26:13.884Z",
@@ -843,7 +843,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/artofpkm_jp_sets_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/artofpkm_jp_sets_v1.html",
         "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
         "byte_size": 669625,
         "fetched_at": "2026-07-26T16:33:16.580Z",
@@ -864,7 +864,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/tcgcollector_jp_sets_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/tcgcollector_jp_sets_v1.html",
         "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
         "byte_size": 1854365,
         "fetched_at": "2026-07-26T16:26:14.419Z",
@@ -886,7 +886,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.html",
         "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
         "byte_size": 115670,
         "fetched_at": "2026-07-26T17:04:26.141Z",
@@ -906,7 +906,7 @@
         "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
       },
       {
-        "body_path": "C:/grookai_vault_jpn_master_index_v4/docs/audits/japanese_master_index_v4/sets/raw/bulbapedia_jp_expansions_v1.html",
+        "body_path": "docs/audits/japanese_master_index_v4/sets/raw/bulbapedia_jp_expansions_v1.html",
         "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
         "byte_size": 515887,
         "fetched_at": "2026-07-26T17:04:27.155Z",
@@ -929,8 +929,8 @@
       }
     ]
   },
-  "content_fingerprint_sha256": "c18f35d89c4830d7c9d063c19a719a8e1249880848187c8571136561748a6b8d",
-  "generated_at": "2026-07-26T17:09:54.034Z",
+  "content_fingerprint_sha256": "a25318dc8ed782e67942bab50b86b2c78c92315c11b30569cf9890dfce5060a0",
+  "generated_at": "2026-07-26T18:12:50.481Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
   "retrieval": {
     "mode": "offline_replay",

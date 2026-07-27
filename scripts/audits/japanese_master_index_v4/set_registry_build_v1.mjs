@@ -272,18 +272,47 @@ function buildRegistry({ assertions, baseline }) {
   const assertionToCluster = new Map();
   for (const cluster of clusters) {
     const targets = sourceCodeTargets(cluster, baselineByCode);
-    const registryKey =
-      targets.length === 1 ? targets[0] : internalRegistryKey(cluster);
-    for (const row of cluster) {
-      assertionToRegistry.set(sourceAssertionKey(row), registryKey);
-      assertionToCluster.set(sourceAssertionKey(row), cluster);
-    }
+    const registryKey = targets.length === 1
+      ? targets[0]
+      : internalRegistryKey(cluster);
     clusterRecords.push({
       registry_key: registryKey,
       target_conflict: targets.length > 1,
       target_candidates: targets,
       assertions: cluster,
+      baseline_alias_merge: false,
     });
+  }
+
+  const targetClaims = new Map();
+  for (const record of clusterRecords) {
+    for (const target of record.target_candidates) {
+      const claims = targetClaims.get(target) ?? [];
+      claims.push(record);
+      targetClaims.set(target, claims);
+    }
+  }
+  const baselineTargetRemap = new Map();
+  for (const record of clusterRecords) {
+    if (record.target_candidates.length < 2) continue;
+    const exclusivelyClaimed = record.target_candidates.every(
+      (target) => (targetClaims.get(target) ?? []).length === 1,
+    );
+    if (!exclusivelyClaimed) continue;
+    record.target_conflict = false;
+    record.baseline_alias_merge = true;
+    for (const target of record.target_candidates) {
+      baselineTargetRemap.set(target, record.registry_key);
+    }
+  }
+
+  for (const record of clusterRecords) {
+    const registryKey = record.registry_key;
+    const cluster = record.assertions;
+    for (const row of cluster) {
+      assertionToRegistry.set(sourceAssertionKey(row), registryKey);
+      assertionToCluster.set(sourceAssertionKey(row), cluster);
+    }
   }
 
   const placeholderResolutions = [];
@@ -357,7 +386,7 @@ function buildRegistry({ assertions, baseline }) {
     );
     const registryKey = placeholderRow
       ? placeholderToRegistry.get(placeholderRow.set_code)
-      : folded;
+      : (baselineTargetRemap.get(folded) ?? folded);
     const entry = ensureEntry(registryKey);
     entry.baseline_rows.push(...rows);
   }
@@ -579,6 +608,8 @@ function buildRegistry({ assertions, baseline }) {
       baseline_only_entry_count: registryEntries.filter(
         (entry) => entry.scope_status === 'baseline_only',
       ).length,
+      source_corroborated_baseline_alias_merge_count:
+        baselineTargetRemap.size,
       source_placeholder_count: placeholderResolutions.length,
       unresolved_source_placeholder_count: unresolvedPlaceholders.length,
       case_only_alias_group_count: caseAliasRows.length,

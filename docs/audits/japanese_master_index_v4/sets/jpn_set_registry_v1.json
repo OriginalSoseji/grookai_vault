@@ -30867,9 +30867,12 @@
       },
       {
         "independent_source_count": 4,
-        "live_parent_rows": 0,
-        "live_public_rows": 0,
-        "live_set_code_aliases": [],
+        "live_parent_rows": 252,
+        "live_public_rows": 252,
+        "live_set_code_aliases": [
+          "jpn-SM3+",
+          "jpn-SM3p"
+        ],
         "preferred_source_name": "ひかる伝説",
         "registry_entry_kind": "japanese_card_release",
         "registry_key": "jpn-release-8e24fccc62c9b3e2",
@@ -38523,9 +38526,12 @@
       },
       {
         "independent_source_count": 6,
-        "live_parent_rows": 0,
-        "live_public_rows": 0,
-        "live_set_code_aliases": [],
+        "live_parent_rows": 429,
+        "live_public_rows": 429,
+        "live_set_code_aliases": [
+          "jpn-SM4+",
+          "jpn-SM4p"
+        ],
         "preferred_source_name": "GXバトルブースト",
         "registry_entry_kind": "japanese_card_release",
         "registry_key": "jpn-release-b88f934d137634ed",
@@ -40660,9 +40666,12 @@
       },
       {
         "independent_source_count": 4,
-        "live_parent_rows": 0,
-        "live_public_rows": 0,
-        "live_set_code_aliases": [],
+        "live_parent_rows": 199,
+        "live_public_rows": 199,
+        "live_set_code_aliases": [
+          "jpn-SM5+",
+          "jpn-SM5p"
+        ],
         "preferred_source_name": "ウルトラフォース",
         "registry_entry_kind": "japanese_card_release",
         "registry_key": "jpn-release-d92055e3cb31ee94",
@@ -45982,28 +45991,6 @@
         "source_scope_hints": []
       },
       {
-        "independent_source_count": 0,
-        "live_parent_rows": 246,
-        "live_public_rows": 246,
-        "live_set_code_aliases": [
-          "jpn-SM3+"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm3+",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
-        "source_release_kinds": [],
-        "source_scope_hints": []
-      },
-      {
         "independent_source_count": 5,
         "live_parent_rows": 306,
         "live_public_rows": 306,
@@ -46108,50 +46095,6 @@
         "source_scope_hints": []
       },
       {
-        "independent_source_count": 0,
-        "live_parent_rows": 6,
-        "live_public_rows": 6,
-        "live_set_code_aliases": [
-          "jpn-SM3p"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm3p",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
-        "source_release_kinds": [],
-        "source_scope_hints": []
-      },
-      {
-        "independent_source_count": 0,
-        "live_parent_rows": 375,
-        "live_public_rows": 375,
-        "live_set_code_aliases": [
-          "jpn-SM4+"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm4+",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
-        "source_release_kinds": [],
-        "source_scope_hints": []
-      },
-      {
         "independent_source_count": 3,
         "live_parent_rows": 296,
         "live_public_rows": 296,
@@ -46199,28 +46142,6 @@
         "source_scope_hints": []
       },
       {
-        "independent_source_count": 0,
-        "live_parent_rows": 54,
-        "live_public_rows": 54,
-        "live_set_code_aliases": [
-          "jpn-SM4p"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm4p",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
-        "source_release_kinds": [],
-        "source_scope_hints": []
-      },
-      {
         "independent_source_count": 3,
         "live_parent_rows": 296,
         "live_public_rows": 296,
@@ -46263,28 +46184,6 @@
           "15 Sep 17",
           "Sep 15, 2017"
         ],
-        "source_release_kinds": [],
-        "source_scope_hints": []
-      },
-      {
-        "independent_source_count": 0,
-        "live_parent_rows": 183,
-        "live_public_rows": 183,
-        "live_set_code_aliases": [
-          "jpn-SM5+"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm5+",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
         "source_release_kinds": [],
         "source_scope_hints": []
       },
@@ -46341,28 +46240,6 @@
         "source_release_kinds": [
           "japanese_set_index"
         ],
-        "source_scope_hints": []
-      },
-      {
-        "independent_source_count": 0,
-        "live_parent_rows": 16,
-        "live_public_rows": 16,
-        "live_set_code_aliases": [
-          "jpn-SM5p"
-        ],
-        "preferred_source_name": null,
-        "registry_entry_kind": "japanese_card_release",
-        "registry_key": "jpn-sm5p",
-        "scope_status": "baseline_only",
-        "source_assertion_keys": [],
-        "source_container_kinds": [],
-        "source_era_labels": [],
-        "source_expected_card_counts": [],
-        "source_ids": [],
-        "source_native_codes": [],
-        "source_native_names": [],
-        "source_release_dates": [],
-        "source_release_kinds": [],
         "source_scope_hints": []
       },
       {
@@ -52892,22 +52769,23 @@
     ],
     "summary": {
       "alias_count": 3276,
-      "baseline_only_entry_count": 31,
+      "baseline_only_entry_count": 25,
       "blocking_code_conflict_count": 4,
       "case_only_alias_group_count": 116,
       "conflict_count": 179,
-      "japanese_release_entry_count": 828,
+      "japanese_release_entry_count": 822,
       "official_product_entry_count": 631,
       "product_scope_review_count": 0,
-      "registry_entry_count": 1459,
+      "registry_entry_count": 1453,
       "represented_source_assertion_count": 2335,
       "source_assertion_count": 2335,
+      "source_corroborated_baseline_alias_merge_count": 6,
       "source_placeholder_count": 45,
       "unresolved_source_placeholder_count": 0
     }
   },
-  "content_fingerprint_sha256": "2e19a4ad4b36b72b1c60d7ad56f932cbe7084174f3983bef21e3a8f0c4640ed8",
-  "generated_at": "2026-07-26T17:09:54.034Z",
+  "content_fingerprint_sha256": "c7e9e0b8c39b84c24ad67523fffc7ae0c47a9fa7acbfa711085c3b877e7769ba",
+  "generated_at": "2026-07-26T18:12:50.481Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
   "retrieval": {
     "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",

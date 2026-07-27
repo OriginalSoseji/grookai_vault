@@ -98,23 +98,29 @@ const SOURCE_POLICIES = [
   {
     source_id: 'limitless_jp_sets',
     automated_index_capture: 'admitted',
-    boundary: 'Public Japanese set index; one collection request.',
+    automated_card_capture: 'admitted_bounded_factual_metadata_only',
+    boundary:
+      'Public Japanese set index and server-rendered set checklists; one request per set, factual card fields and image references only, displayed prices ignored, no card-detail crawl.',
     robots_url: 'https://limitlesstcg.com/robots.txt',
     terms_url: null,
   },
   {
     source_id: 'artofpkm_jp_sets',
     automated_index_capture: 'admitted',
-    boundary: 'Public set index; one collection request.',
+    automated_card_capture: 'admitted_bounded_factual_metadata_only',
+    boundary:
+      'Public set index and server-rendered set checklists; one request per set, factual card coordinates and image references only, no image download, prose reuse, or card-detail crawl.',
     robots_url: 'https://www.artofpkm.com/robots.txt',
-    terms_url: null,
+    terms_url: 'https://www.artofpkm.com/disclaimer',
   },
   {
     source_id: 'tcgcollector_jp_sets',
     automated_index_capture: 'admitted',
-    boundary: 'Public Japanese set index; one collection request.',
+    automated_card_capture: 'blocked_without_written_permission',
+    boundary:
+      'The public Japanese set index was captured once. Card/API acquisition is not automated because the API is partner-only and the published license does not authorize this commercial reuse.',
     robots_url: 'https://www.tcgcollector.com/robots.txt',
-    terms_url: null,
+    terms_url: 'https://www.tcgcollector.com/legal/terms-of-service',
   },
   {
     source_id: 'serebii_jp_sets',
@@ -563,6 +569,11 @@ async function harvest(options) {
       policies: SOURCE_POLICIES,
       blocked_automated_sources: SOURCE_POLICIES.filter(
         (policy) => policy.automated_index_capture !== 'admitted',
+      ).map((policy) => policy.source_id),
+      blocked_automated_card_sources: SOURCE_POLICIES.filter(
+        (policy) =>
+          policy.automated_card_capture ===
+          'blocked_without_written_permission',
       ).map((policy) => policy.source_id),
     },
   });

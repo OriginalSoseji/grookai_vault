@@ -1,7 +1,18 @@
 # JAPANESE_MASTER_INDEX_COMPLETION_V1
 
-Status: Active for audit-only construction
-Date: 2026-07-26
+Status: Satisfied by Japanese Master Index V4 final package
+Date: 2026-07-27
+
+Completion evidence:
+
+- final package:
+  `docs/audits/japanese_master_index_v4/index/jpn_master_index_final_package_v1.json`;
+- final status: `complete_no_write_master_index`;
+- package content fingerprint:
+  `d2935a74683c02b3ad6e4c845b804b6fcd3694dbf30c139e4e1b0126a3136455`;
+- fresh production comparison was transaction-guarded and read-only;
+- no database, Storage, pricing, identity, image, family-promotion, cleanup,
+  quarantine, or deletion write was performed or authorized.
 
 ## Purpose
 

@@ -1,6 +1,6 @@
 # Japanese Master Index V4 Build Plan
 
-Status: In progress - Phases 0-2 complete; Phase 3 active
+Status: Complete - Phases 0-8 verified; index artifacts only
 Branch: `catalog/jpn-master-index-v4`
 Baseline commit: `b95f291ef1ffcdd46fa7eeb361e293d2c0616bf3`
 Date: 2026-07-26
@@ -9,11 +9,15 @@ Date: 2026-07-26
 
 | Phase                             | Status   | Evidence                                                                                                    |
 | --------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| 0 - Workspace and no-write guard  | Complete | Guard contract tests pass; session and transaction both prove read-only                                     |
-| 1 - Reproducible baseline export  | Complete | Production export and independent replay have matching content fingerprints                                 |
-| 2 - Japanese set/product registry | Complete | Eight admitted lanes, source-policy gate, full official product disposition, and governed registry complete |
-| 3 - Source acquisition engine     | Active   | Card-level adapters and preserved assertion union are next                                                  |
-| 4-8                               | Pending  | Candidate union through final admissible index                                                              |
+| 0 - Workspace and no-write guard  | Complete | Guard contract tests pass; session and transaction both prove read-only                                             |
+| 1 - Reproducible baseline export  | Complete | Fresh production export matches all nine frozen row datasets and six baseline proof artifacts                       |
+| 2 - Japanese set/product registry | Complete | 1,453 discovered containers adjudicated; 1,426 are master-admissible                                                |
+| 3 - Source acquisition engine     | Complete | Seven automated card lanes exhausted with zero fetch/parser failures; restricted lanes remain explicit manual-only |
+| 4 - Candidate union               | Complete | 215,784 assertions preserved; 71,992 working identities; no source row silently removed                             |
+| 5 - Identity/printing resolution  | Complete | 28,008 identities admitted; all unsupported identity/finish facts explicitly blocked or excluded                   |
+| 6 - Family relationships          | Complete | 28,008 admitted identities have explicit language-agnostic family dispositions; English remains unchanged          |
+| 7 - Coverage/source exhaustion    | Complete | Residual automated queue is zero; three future work items are explicitly deferred                                   |
+| 8 - Final admissible index        | Complete | Strict finalizer, deterministic replay, English freeze, repository scope, and fresh no-write proof all pass         |
 
 Phase 1 completion evidence:
 
@@ -51,6 +55,40 @@ Phase 2 completion evidence:
   a manual-review lane and is not silently omitted;
 - Japanese name normalization preserves kana/kanji and dakuten;
 - 24 Japanese Master Index contract tests pass.
+
+Phases 3-8 completion evidence:
+
+- 99,195 fresh source assertions were harvested from seven automated source
+  lanes with zero fetch or parser failures;
+- preserved live evidence and fresh assertions form a 215,784-row
+  non-destructive assertion union;
+- the union resolves to 71,992 working card identities, with a conservative
+  distinct lower bound of 41,825;
+- 28,008 exact card identities satisfy the official-or-two-source admission
+  rule and carry explicit language-agnostic family dispositions;
+- 43,806 working identities remain blocked and 178 are adjudicated excluded
+  rather than being forced into the admissible index;
+- all 71,900 candidate printing facts remain preserved and blocked because no
+  exact finish fact currently satisfies the independent two-source finish
+  rule; zero finish facts are inferred from era, rarity, or English;
+- all 215,784 assertions have deterministic final dispositions;
+- all 1,453 discovered set/product containers are adjudicated and all
+  source-owned placeholder keys are excluded from the admissible export;
+- automated targeted work is exhausted at zero residual items; three
+  not-yet-released source items remain explicitly deferred;
+- a complete offline rebuild reproduces every candidate-union dataset, every
+  strict-admission dataset, and every coverage artifact;
+- 39,088 preserved raw source files (319,475,374 bytes) are retained in seven
+  deterministic `ustar+gzip` archives, with member-level SHA-256 proofs in
+  `cards/raw_evidence_preservation_ledger_v1.json.gz`;
+- verified gzip row shards and source assertions reduce the durable release
+  from roughly 2.5 GB / 40,000 files to roughly 234 MB / 517 files without
+  removing any acquired source bytes or weakening offline replay;
+- a fresh production read-only export reproduces all nine frozen row-dataset
+  fingerprints and the English combined fingerprint
+  `7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db`;
+- no database, Storage, pricing, identity, image, family-promotion, cleanup,
+  quarantine, or deletion write was performed or authorized.
 
 ## Objective
 

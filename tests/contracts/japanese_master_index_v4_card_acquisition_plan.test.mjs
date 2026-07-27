@@ -165,6 +165,27 @@ test('Pokellector remains preserved but is never scheduled for automation', () =
   );
 });
 
+test('TCGCollector remains preserved but is never scheduled for card automation', () => {
+  const plan = buildFromPreservedArtifacts();
+  const lane = plan.source_inventory.find(
+    (row) => row.lane_id === 'tcgcollector_jp_manual',
+  );
+  assert.equal(lane.automatic_status, 'blocked_without_written_permission');
+  assert.equal(lane.preserved_live_evidence_rows, 25059);
+  assert.equal(
+    lane.source_policy.automated_card_capture,
+    'blocked_without_written_permission',
+  );
+  assert.equal(
+    plan.work_items.some(
+      (row) =>
+        row.lane_id === 'tcgcollector_jp_manual' &&
+        row.disposition === 'scheduled',
+    ),
+    false,
+  );
+});
+
 test('card acquisition plan is deterministic and contains no runtime credentials', () => {
   const first = buildFromPreservedArtifacts();
   const second = buildFromPreservedArtifacts();

@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 export const DETERMINISTIC_ARTIFACT_VERSION = 'JPN-MASTER-INDEX-ARTIFACT-V1';
 
@@ -48,11 +49,17 @@ export function buildArtifact({
 export async function writeJsonArtifact(outputPath, artifact) {
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   const serialized = stableJson(artifact);
-  await fs.writeFile(outputPath, serialized, 'utf8');
+  const output = outputPath.endsWith('.gz')
+    ? zlib.gzipSync(Buffer.from(serialized, 'utf8'), {
+      level: zlib.constants.Z_BEST_COMPRESSION,
+      mtime: 0,
+    })
+    : Buffer.from(serialized, 'utf8');
+  await fs.writeFile(outputPath, output);
   return {
     path: outputPath.replaceAll('\\', '/'),
-    bytes: Buffer.byteLength(serialized),
-    sha256: sha256(serialized),
+    bytes: output.byteLength,
+    sha256: sha256(output),
     content_fingerprint_sha256: artifact.content_fingerprint_sha256,
   };
 }

@@ -1,0 +1,983 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "containers": [
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:36:58.009Z",
+        "article_snapshot_sha256": "f79f37f4721ebed623f51c5fcd4c9034455a81f2c05d41a031a5af9625a00d0c",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 126,
+        "registry_key": "jpn-release-fd8c429aaffd5bd1",
+        "selected_card_count": 126,
+        "source_container_id": "M1L+M1S",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:01.308Z",
+        "article_snapshot_sha256": "1c983cc159d6cdaae65e8e11f17405923946fa09328e991a92ac86a89f79af94",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 80,
+        "registry_key": "jpn-m2",
+        "selected_card_count": 80,
+        "source_container_id": "M2",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:03.870Z",
+        "article_snapshot_sha256": "f9ab7704f9c3fff1a333998ceee58b447247352016132b74922eada54f59de8c",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 193,
+        "registry_key": "jpn-m2a",
+        "selected_card_count": 193,
+        "source_container_id": "M2A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:06.453Z",
+        "article_snapshot_sha256": "dd7bdb2e30532bf2a4ef334f2459c9c6dc2dd0d201e5079b1effcdeceffa1114",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 80,
+        "registry_key": "jpn-m3",
+        "selected_card_count": 80,
+        "source_container_id": "M3",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:09.015Z",
+        "article_snapshot_sha256": "d8af11494e3fd2dad9fc63658de828f3d694f8fce60f0cdf6e2842befb2dd469",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 83,
+        "registry_key": "jpn-m4",
+        "selected_card_count": 83,
+        "source_container_id": "M4",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:11.737Z",
+        "article_snapshot_sha256": "11504de505adf87a7c694f861f65e159463d474b6ecbd8f2fc38145dd094a9c4",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 80,
+        "registry_key": "jpn-m5",
+        "selected_card_count": 80,
+        "source_container_id": "M5",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:14.372Z",
+        "article_snapshot_sha256": "6a65820587d11f3213b7bab77cedb52ecf542225247ed3430147af0a0bc16602",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 16,
+        "registry_key": "jpn-s1a",
+        "selected_card_count": 16,
+        "source_container_id": "S1A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:16.669Z",
+        "article_snapshot_sha256": "ed53747d3cf94f27c71c681219b8b02dca3da4a5f3521218f6b99010bd166041",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 30,
+        "registry_key": "jpn-release-5e3ae5afe377bd90",
+        "selected_card_count": 30,
+        "source_container_id": "S1H+S1W",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:18.945Z",
+        "article_snapshot_sha256": "6512b11410231688c9fc4711d5b51d6be5e6f4d637234abd48b16c13ca218805",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 120,
+        "registry_key": "jpn-release-4e493e53b96b09fb",
+        "selected_card_count": 120,
+        "source_container_id": "S1W+S1H",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:21.312Z",
+        "article_snapshot_sha256": "c99d66f6ebe827e4df76c8b0c21c3c9aee07f63bb504e4e0a6d1f550e3e2fe8f",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 20,
+        "registry_key": "jpn-s2",
+        "selected_card_count": 20,
+        "source_container_id": "S2",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:23.588Z",
+        "article_snapshot_sha256": "a4fcc8b29b0d23431d46ac9bc7b64a71339cbbd043520dc5e5b75a723c6333b6",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 16,
+        "registry_key": "jpn-s2a",
+        "selected_card_count": 16,
+        "source_container_id": "S2A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:25.762Z",
+        "article_snapshot_sha256": "eb9a8f3d2b27a674782f88e145823586d4e16d6ecc4720ca3943ede04f9b40cd",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 20,
+        "registry_key": "jpn-s3",
+        "selected_card_count": 20,
+        "source_container_id": "S3",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:28.074Z",
+        "article_snapshot_sha256": "6326885a83a396feb3f41f4f770326d3a95136eb42a8a501d8ad08280e32ab09",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 18,
+        "registry_key": "jpn-s3a",
+        "selected_card_count": 18,
+        "source_container_id": "S3A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:30.329Z",
+        "article_snapshot_sha256": "a5b42ffb2de45ab11df3b9ada729b6e35352009137869507db7ba79148fa4a1d",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 190,
+        "registry_key": "jpn-s4a",
+        "selected_card_count": 190,
+        "source_container_id": "S4A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:32.717Z",
+        "article_snapshot_sha256": "5c5d9171cd6684fa89e0d78868786e1a22e61913d604e737874b01adc85f3f98",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 70,
+        "registry_key": "jpn-s5a",
+        "selected_card_count": 70,
+        "source_container_id": "S5A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:35.274Z",
+        "article_snapshot_sha256": "bed6c99b8e7032962249c48041cca6f2835ba6b522bf645ab981f9dee5fddf78",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 42,
+        "registry_key": "jpn-release-4e6d3639cfe39ddd",
+        "selected_card_count": 42,
+        "source_container_id": "S5I+S5R",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:37.581Z",
+        "article_snapshot_sha256": "8c5cff7b05ab59685cf2537ecb093c33fb97436ca5106645c8ce0941583d77b1",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 69,
+        "registry_key": "jpn-s6a",
+        "selected_card_count": 69,
+        "source_container_id": "S6A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:40.352Z",
+        "article_snapshot_sha256": "3a8d5b702af85d3da8ddf97d94f08e1bb1f3b7a5a06033f807fd6a6996118e73",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 140,
+        "registry_key": "jpn-release-df57a9f5a39030ea",
+        "selected_card_count": 140,
+        "source_container_id": "S6H+S6K",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:43.312Z",
+        "article_snapshot_sha256": "54540db26c76afd5a063858f93486d616844daa5df67797c297e2a4c1fd44242",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 134,
+        "registry_key": "jpn-release-aa1334c887012ddc",
+        "selected_card_count": 134,
+        "source_container_id": "S7D+S7R",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:46.353Z",
+        "article_snapshot_sha256": "18e21c9135f19e1bcfd4245761b2efb6a211975afcce60800ac63a04a1d6646c",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 100,
+        "registry_key": "jpn-s8",
+        "selected_card_count": 100,
+        "source_container_id": "S8",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:49.194Z",
+        "article_snapshot_sha256": "4d6b04f2e30e8c2781830f70e504f88312de4d2e87fce7f6bc9af43f79cdc8fd",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 60,
+        "registry_key": "jpn-s8a",
+        "selected_card_count": 60,
+        "source_container_id": "S8A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:51.473Z",
+        "article_snapshot_sha256": "82b1394dfe31e2404b56c0903018eacf3ec07566281414f1458c6cb8d2e4b215",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 181,
+        "registry_key": "jpn-s8b",
+        "selected_card_count": 181,
+        "source_container_id": "S8B",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:53.892Z",
+        "article_snapshot_sha256": "50e7e02d62b5c4dff185568490e57d5e947e782432d42524252951e61aad6c41",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 100,
+        "registry_key": "jpn-s9",
+        "selected_card_count": 100,
+        "source_container_id": "S9",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:56.598Z",
+        "article_snapshot_sha256": "b0d174f8cf6d577eb2649dd006fc644c6223b78d9d81d84e8a1672517c096ba5",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 112,
+        "registry_key": "jpn-s9a",
+        "selected_card_count": 112,
+        "source_container_id": "S9A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:37:59.147Z",
+        "article_snapshot_sha256": "2771588a9ea0fc636db0e7b003a8f05b64998148a977c72a4146e468ca89db1a",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 162,
+        "registry_key": "jpn-s10b",
+        "selected_card_count": 162,
+        "source_container_id": "S10B",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:01.675Z",
+        "article_snapshot_sha256": "1c23a69d1b2df431f37469f075a2c354106c81b56896349c6378ff92ed4fef02",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 134,
+        "registry_key": "jpn-release-f648f9e0063e2424",
+        "selected_card_count": 134,
+        "source_container_id": "S10D+S10P",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:04.775Z",
+        "article_snapshot_sha256": "3c4b070c984d5d7b2f147efe3b65b456ca092beb5c58ac2f1b7c3547abe82b1a",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 100,
+        "registry_key": "jpn-s11",
+        "selected_card_count": 100,
+        "source_container_id": "S11",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:07.620Z",
+        "article_snapshot_sha256": "3f81e835caf49a6a18cdecc861c47089317bca8ca48a6370e67ffad99ea9c504",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 112,
+        "registry_key": "jpn-s11a",
+        "selected_card_count": 112,
+        "source_container_id": "S11A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:10.323Z",
+        "article_snapshot_sha256": "d95e3a0884283ea483ba85f7e9d758dfa5bdf05901beb9e48902fdda7084dfef",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 98,
+        "registry_key": "jpn-s12",
+        "selected_card_count": 98,
+        "source_container_id": "S12",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:13.024Z",
+        "article_snapshot_sha256": "a92280df7bd049f4df8e4565029db0ded35614ed2f6eaf728ddbc2cc92a4e64d",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 261,
+        "registry_key": "jpn-s12a",
+        "selected_card_count": 261,
+        "source_container_id": "S12A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:15.398Z",
+        "article_snapshot_sha256": "4e64eaf0f9b936d1664db8a0226e4e932e2b9bed4783d2ef4daacaa1d772f3de",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 21,
+        "registry_key": "jpn-sm11",
+        "selected_card_count": 21,
+        "source_container_id": "SM11",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:17.698Z",
+        "article_snapshot_sha256": "b5bf4ec926d74013922233f558383517db7140fb32ac1452c174b206c61221a7",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 16,
+        "registry_key": "jpn-sm11a",
+        "selected_card_count": 16,
+        "source_container_id": "SM11A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:19.949Z",
+        "article_snapshot_sha256": "c51266eb996c7bf3d565d1cb5e3cf1a455270165562b2feaee2d37554075f2bd",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 27,
+        "registry_key": "jpn-sm11b",
+        "selected_card_count": 27,
+        "source_container_id": "SM11B",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:22.231Z",
+        "article_snapshot_sha256": "e5706b09a9282cd5e8bf0e020c6d0ad1a7bdafde7976197a5282fb44ad00221a",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 22,
+        "registry_key": "jpn-sm12",
+        "selected_card_count": 22,
+        "source_container_id": "SM12",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:24.499Z",
+        "article_snapshot_sha256": "d8a0b45edeb0ce5fa074d528673e62d66f68b20abfd1a511c9d7081ecc0fce7b",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 53,
+        "registry_key": "jpn-sm12a",
+        "selected_card_count": 53,
+        "source_container_id": "SM12A",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "partial_release_or_rarity_gallery",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:26.794Z",
+        "article_snapshot_sha256": "c2e9d1ad4288bcc497bed8075c38bf61da8d9004b61e68bc8fb388e331dbd961",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "article_is_partial_release_or_rarity_gallery"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 24,
+        "registry_key": "jpn-mc",
+        "selected_card_count": 24,
+        "source_container_id": "start-deck-100-battle-collection",
+        "source_expected_card_count": null,
+        "status": "source_partial_release_report"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:29.084Z",
+        "article_snapshot_sha256": "a6f48aa41db335f2d0bc2fec062d91d7f8a9eef1d750014ee31421bb73869e3e",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 73,
+        "registry_key": "jpn-sv1a",
+        "selected_card_count": 73,
+        "source_container_id": "SV1A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:31.660Z",
+        "article_snapshot_sha256": "6ac314efc858defb17b1beb90bdb2d165f8cbf4dea7a4d225b12b9b7ac81dff9",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 156,
+        "registry_key": "jpn-release-780ba54b355b66be",
+        "selected_card_count": 156,
+        "source_container_id": "SV1S+SV1V",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:34.485Z",
+        "article_snapshot_sha256": "96812afce1f0779c25b06438f4cdb82e8fbaea6459bc15db3108e796f67b1383",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 317,
+        "registry_key": "jpn-sv2a",
+        "selected_card_count": 317,
+        "source_container_id": "SV2A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:37.808Z",
+        "article_snapshot_sha256": "4c598d4eb1a755881e54eabfef084a50be6a63aa68613f2ca38575b25cdd9919",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 142,
+        "registry_key": "jpn-release-8e3aa7d5f13dba92",
+        "selected_card_count": 142,
+        "source_container_id": "SV2P+SV2D",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:40.671Z",
+        "article_snapshot_sha256": "4350b7dada5311f92301276d91f4323da623346fee1b92466196a6f7007cde7b",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 108,
+        "registry_key": "jpn-sv3",
+        "selected_card_count": 108,
+        "source_container_id": "SV3",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:43.434Z",
+        "article_snapshot_sha256": "cada16f28f9075f6d83575e85bf2ebb967275a84d490de7e763b5b13c17dab49",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 62,
+        "registry_key": "jpn-sv3a",
+        "selected_card_count": 62,
+        "source_container_id": "SV3A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:46.068Z",
+        "article_snapshot_sha256": "022b41f60c6f1bffda1828ec3af473ae2b68554b87613cf173991dc51ee1a20d",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 314,
+        "registry_key": "jpn-sv4a",
+        "selected_card_count": 314,
+        "source_container_id": "SV4A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:48.738Z",
+        "article_snapshot_sha256": "dbc7928075f5a115d55b53d32a44da67a7262d04e86cab88d9c084dd1a5b8a11",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 132,
+        "registry_key": "jpn-release-15714477e8909d2c",
+        "selected_card_count": 132,
+        "source_container_id": "SV4K+SV4M",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:51.730Z",
+        "article_snapshot_sha256": "2bad3236112ed52a721225e09687d95958919f2377f9f243801dbb3ab9e77ad6",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 66,
+        "registry_key": "jpn-sv5a",
+        "selected_card_count": 66,
+        "source_container_id": "SV5A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:54.308Z",
+        "article_snapshot_sha256": "ee24b62acc3d2513e927fedb815417b298e235a9ddd650f596a7bfc4c5c96d93",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 264,
+        "registry_key": "jpn-release-12f6f9cddea41841",
+        "selected_card_count": 264,
+        "source_container_id": "SV5K+SV5M",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:38:57.321Z",
+        "article_snapshot_sha256": "377fbe7a5ff51d1a9b3c22bfe2f2a6945f556e0992bdc9f35c8701133378691b",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 101,
+        "registry_key": "jpn-sv6",
+        "selected_card_count": 101,
+        "source_container_id": "SV6",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:00.322Z",
+        "article_snapshot_sha256": "ac93ceffeacd03b265cb2b25603ebaf4fde942b4ae967c56e619a5c91f9188dd",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 64,
+        "registry_key": "jpn-sv6a",
+        "selected_card_count": 64,
+        "source_container_id": "SV6A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:02.923Z",
+        "article_snapshot_sha256": "7def3ef73528e953484f4b9e9f3cda9e85cfd2b22b346fc119c786303d81b263",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article",
+          "inline_card_image_fallback"
+        ],
+        "gallery_mode": "inline_card_images",
+        "ordered_main_set_card_count": 10,
+        "registry_key": "jpn-sv7",
+        "selected_card_count": 10,
+        "source_container_id": "SV7",
+        "source_expected_card_count": null,
+        "status": "source_count_mismatch"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:05.694Z",
+        "article_snapshot_sha256": "c0719ed85599d639fb3df4ca7292c97cf3916fc3f763c340a4e2446979f51c89",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 64,
+        "registry_key": "jpn-sv7a",
+        "selected_card_count": 64,
+        "source_container_id": "SV7A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:08.298Z",
+        "article_snapshot_sha256": "4660f9a504d5a322eedc936c92d225711b89804850f511dd505d60324b14e846",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 331,
+        "registry_key": "jpn-sv8a",
+        "selected_card_count": 331,
+        "source_container_id": "SV8A",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:10.943Z",
+        "article_snapshot_sha256": "2d83e1427f92cf5209f963c026404f4c463d34a10339256a9a17179880a8ff7f",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 100,
+        "registry_key": "jpn-sv9",
+        "selected_card_count": 100,
+        "source_container_id": "SV9",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:13.842Z",
+        "article_snapshot_sha256": "88da26b26f7d6e673e458d9970b689b0d4e45b2296d87a8e5fb33adc2ee7a25b",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 98,
+        "registry_key": "jpn-sv10",
+        "selected_card_count": 98,
+        "source_container_id": "SV10",
+        "source_expected_card_count": null,
+        "status": "complete"
+      },
+      {
+        "article_kind": "main_set_list",
+        "article_snapshot_fetched_at": "2026-07-26T22:39:16.796Z",
+        "article_snapshot_sha256": "477321132831e8610f8ef3972e65c3053a60a242b9d5680c5740ebb33f4a3470",
+        "duplicate_image_count": 0,
+        "findings": [
+          "printed_card_numbers_not_exposed_by_source_article"
+        ],
+        "gallery_mode": "ordered_album",
+        "ordered_main_set_card_count": 172,
+        "registry_key": "jpn-release-858c32e0a9fba49a",
+        "selected_card_count": 172,
+        "source_container_id": "SV11B+SV11W",
+        "source_expected_card_count": null,
+        "status": "complete"
+      }
+    ],
+    "run": {
+      "max_cards_per_container": null,
+      "mode": "offline_replay",
+      "selected_container_count": 54,
+      "selected_container_ids": [
+        "M1L+M1S",
+        "M2",
+        "M2A",
+        "M3",
+        "M4",
+        "M5",
+        "S1A",
+        "S1H+S1W",
+        "S1W+S1H",
+        "S2",
+        "S2A",
+        "S3",
+        "S3A",
+        "S4A",
+        "S5A",
+        "S5I+S5R",
+        "S6A",
+        "S6H+S6K",
+        "S7D+S7R",
+        "S8",
+        "S8A",
+        "S8B",
+        "S9",
+        "S9A",
+        "S10B",
+        "S10D+S10P",
+        "S11",
+        "S11A",
+        "S12",
+        "S12A",
+        "SM11",
+        "SM11A",
+        "SM11B",
+        "SM12",
+        "SM12A",
+        "start-deck-100-battle-collection",
+        "SV1A",
+        "SV1S+SV1V",
+        "SV2A",
+        "SV2P+SV2D",
+        "SV3",
+        "SV3A",
+        "SV4A",
+        "SV4K+SV4M",
+        "SV5A",
+        "SV5K+SV5M",
+        "SV6",
+        "SV6A",
+        "SV7",
+        "SV7A",
+        "SV8A",
+        "SV9",
+        "SV10",
+        "SV11B+SV11W"
+      ]
+    },
+    "selected_run_healthy": true,
+    "summary": {
+      "assertion_fingerprint_sha256": "2a1a31373255edce1f1e7ada7c9270afd0d738a81d8e6b773dd25016a58e8142",
+      "combined_assertion_count": 5684,
+      "container_status_counts": {
+        "complete": 39,
+        "source_count_mismatch": 1,
+        "source_partial_release_report": 14
+      },
+      "failed_container_count": 0,
+      "fresh_assertion_count": 5684,
+      "prior_assertion_count": 0,
+      "retained_prior_assertion_count": 0,
+      "selected_container_count": 54,
+      "source_request_count": 0,
+      "tracked_container_count": 54
+    }
+  },
+  "content_fingerprint_sha256": "3c2c13a00887dcf54ef47af05b2a895cbf3729c97944c4be0725e5197484ad6a",
+  "generated_at": "2026-07-26T22:25:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V4-CARD-ACQUISITION-HARVEST-V1",
+  "retrieval": {
+    "card_detail_requests": false,
+    "card_number_derivation": "ordered_main_set_album_position",
+    "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-HARVEST-V1",
+    "image_downloads": false,
+    "image_references_only": true,
+    "mode": "offline_replay",
+    "parser_version": "JPN-MASTER-INDEX-POKEGUARDIAN-JP-CARD-PARSER-V2",
+    "plan_content_fingerprint_sha256": "7b06e0f66b63e98e77956167ca7cc4aa440a9655c081a9aa15c6293cdf8eed10",
+    "request_delay_ms": null,
+    "resume": true,
+    "source_base_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+    "source_lane": "pokeguardian_release_reports",
+    "targeted_queue_content_fingerprint_sha256": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e",
+    "targeted_queue_path": "docs/audits/japanese_master_index_v4/index/targeted_source_queue_v1.json"
+  }
+}

@@ -1,0 +1,1681 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "changed_paths": [
+      "docs/audits/japanese_master_index_v4/baseline/english_family_reference_fingerprint_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_baseline_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_baseline_summary_v1.md",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_identity_gap_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_parent_summary_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_row_baseline_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_source_coverage_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/live_jpn_source_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0001_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0002_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0003_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0004_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0001_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0002_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0003_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0004_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/language_agnostic_species_rows_v1/language_agnostic_species_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0001_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0002_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0003_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0004_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0005_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0006_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0007_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0008_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0009_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0010_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0011_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0012_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0013_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0014_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0015_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0016_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0017_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0018_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0019_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0020_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0021_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0022_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0023_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0024_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0001_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0002_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0003_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0004_of_0004.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/official_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/official_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/official_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/official_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/artofpkm_jp_cards_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/bulbapedia_jp_card_lists_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/limitless_jp_cards_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/official_jp_cards_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/pokeguardian_release_reports_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/serebii_jp_cards_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_archives/tcgdex_ja_cards_raw_evidence_v1.tar.gz",
+      "docs/audits/japanese_master_index_v4/cards/raw_evidence_preservation_ledger_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_assertions_v1.json.gz",
+      "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_harvest_v1.md",
+      "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_adjudicated_exclusions_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_cards_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_export_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_printings_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_sets_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_assertion_dispositions_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_blocked_facts_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_build_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_completion_report_v1.md",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_coverage_matrix_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_family_relationships_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_resolved_card_identities_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_resolved_printing_facts_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_set_adjudication_v1.json",
+      "docs/audits/japanese_master_index_v4/final/jpn_master_source_gap_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/final/rows/master_adjudicated_exclusion_rows_v1/master_adjudicated_exclusion_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_printing_rows_v1/master_admissible_printing_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_admissible_set_rows_v1/master_admissible_set_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0001_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0002_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0003_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0004_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0005_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0006_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0007_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0008_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0009_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0010_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0011_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0012_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0013_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0014_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0015_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0016_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0017_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0018_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0019_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0020_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0021_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0022_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0023_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0024_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0025_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0026_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0027_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0028_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0029_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0030_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0031_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0032_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0033_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0034_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0035_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0036_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0037_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0038_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0039_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0040_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0041_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0042_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0043_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0044_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0001_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0002_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0003_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0004_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0005_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0006_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0007_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0008_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0009_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0010_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0011_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0012_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0013_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0014_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0015_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0016_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0017_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0018_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0019_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0020_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0021_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0022_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0023_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0024_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0025_of_0025.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0001_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0002_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0003_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0004_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0005_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0006_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0007_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0008_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0009_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0010_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0011_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0012_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0013_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0014_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0015_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_coverage_matrix_rows_v1/master_coverage_matrix_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0001_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0002_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0003_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0004_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0005_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0006_of_0006.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0001_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0002_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0003_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0004_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0005_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0006_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0007_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0008_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0009_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0010_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0011_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0012_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0013_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0014_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0015_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_set_adjudication_rows_v1/master_set_adjudication_rows_v1_0001_of_0001.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0001_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0002_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0003_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0004_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0005_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0006_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0007_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0008_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0009_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0010_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0011_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0012_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0013_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0014_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0015_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0016_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0017_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0018_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0019_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0020_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0021_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0022_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0023_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0024_of_0024.json.gz",
+      "docs/audits/japanese_master_index_v4/index/candidate_union_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/index/candidate_union_summary_v1.md",
+      "docs/audits/japanese_master_index_v4/index/coverage_by_registry_v1.json",
+      "docs/audits/japanese_master_index_v4/index/coverage_gap_summary_v1.md",
+      "docs/audits/japanese_master_index_v4/index/deferred_future_targeted_source_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/index/jpn_master_index_final_package_v1.json",
+      "docs/audits/japanese_master_index_v4/index/jpn_master_index_final_summary_v1.md",
+      "docs/audits/japanese_master_index_v4/index/residual_targeted_source_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0001_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0002_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0003_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0004_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0005_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0006_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0007_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0008_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0009_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0010_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0011_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0012_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0013_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0014_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0015_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0016_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0017_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0018_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0019_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/assertion_resolution_rows_v1/assertion_resolution_rows_v1_0020_of_0020.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0001_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0002_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0003_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0004_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0005_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0006_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0007_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0008_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0009_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0010_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/candidate_conflict_rows_v1/candidate_conflict_rows_v1_0011_of_0011.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0001_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0002_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0003_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0004_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0005_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0006_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0007_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0008_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0009_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0010_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0011_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0012_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0013_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0014_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/identity_candidate_rows_v1/identity_candidate_rows_v1_0015_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0001_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0002_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0003_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0004_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0005_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0006_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0007_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0008_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0009_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0010_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0011_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0012_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0013_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0014_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0015_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0016_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0017_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0018_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_card_nodes_v1/master_family_card_nodes_v1_0019_of_0019.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0001_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0002_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0003_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0004_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0005_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0006_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0007_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0008_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0009_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0010_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0011_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/master_family_species_links_v1/master_family_species_links_v1_0012_of_0012.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0001_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0002_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0003_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0004_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0005_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0006_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0007_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0008_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0009_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/novel_family_projection_rows_v1/novel_family_projection_rows_v1_0010_of_0010.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0001_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0002_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0003_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0004_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0005_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0006_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0007_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0008_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0009_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0010_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0011_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0012_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0013_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0014_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/printing_candidate_rows_v1/printing_candidate_rows_v1_0015_of_0015.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0001_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0002_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0003_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0004_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0005_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0006_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0007_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0008_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0009_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0010_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0011_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0012_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0013_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0014_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0015_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0016_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0017_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0018_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0019_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0020_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0021_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0022_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0023_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0024_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0025_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0026_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0027_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0028_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0029_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0030_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0031_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0032_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0033_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0034_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0035_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0036_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0037_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0038_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0039_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0040_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0041_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0042_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0043_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/rows/source_assertion_union_rows_v1/source_assertion_union_rows_v1_0044_of_0044.json.gz",
+      "docs/audits/japanese_master_index_v4/index/source_exhaustion_v1.json",
+      "docs/audits/japanese_master_index_v4/index/targeted_source_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_official_product_scope_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_set_alias_map_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_set_conflict_queue_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_set_registry_coverage_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_set_registry_coverage_v1.md",
+      "docs/audits/japanese_master_index_v4/sets/jpn_set_registry_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/jpn_source_placeholder_resolution_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/artofpkm_jp_sets_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/artofpkm_jp_sets_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/bulbapedia_jp_expansions_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/bulbapedia_jp_expansions_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/limitless_jp_sets_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/limitless_jp_sets_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_01_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_01_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_02_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_02_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_03_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_03_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_04_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_04_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_05_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_05_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_06_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_06_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_07_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_07_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_08_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_08_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_09_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_09_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_10_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_construction_page_10_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_01_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_01_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_02_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_02_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_03_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_03_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_04_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_04_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_05_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_05_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_06_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_06_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_07_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_07_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_08_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_08_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_09_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_09_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_10_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_expansion_page_10_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_01_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_01_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_02_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_02_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_03_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_03_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_04_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_04_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_05_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_05_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_06_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_06_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_07_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_07_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_08_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_08_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_09_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_09_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_10_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_10_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_11_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_11_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_12_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_12_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_13_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_13_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_14_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/official_jp_products_others_page_14_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_01_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_01_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_02_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_02_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_03_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/pokeguardian_jp_sets_page_03_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/tcgcollector_jp_sets_v1.html",
+      "docs/audits/japanese_master_index_v4/sets/raw/tcgcollector_jp_sets_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.http.json",
+      "docs/audits/japanese_master_index_v4/sets/raw/tcgdex_ja_sets_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/source_health_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/source_manifest_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/source_policy_v1.json",
+      "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json",
+      "docs/contracts/JAPANESE_MASTER_INDEX_COMPLETION_V1.md",
+      "docs/plans/japanese_master_index_v4/PLAN.md",
+      "package.json",
+      "scripts/audits/japanese_master_index_v4/artifact_rows_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/baseline_export_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/candidate_resolution_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_acquisition_plan_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_assertion_contract_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/artofpkm_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/bulbapedia_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/limitless_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/official_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/pokeguardian_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/serebii_jp_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/card_source_adapters/tcgdex_ja_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/coverage_gap_report_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/final_admission_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/normalize_release_paths_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/package_preserved_evidence_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/read_only_guard_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/set_registry_build_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/set_registry_harvest_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/set_source_parsers_v1.mjs",
+      "scripts/audits/japanese_master_index_v4/source_snapshot_v1.mjs",
+      "tests/contracts/japanese_master_index_v4_baseline_artifacts.test.mjs",
+      "tests/contracts/japanese_master_index_v4_candidate_union.test.mjs",
+      "tests/contracts/japanese_master_index_v4_card_acquisition_plan.test.mjs",
+      "tests/contracts/japanese_master_index_v4_card_harvest.test.mjs",
+      "tests/contracts/japanese_master_index_v4_coverage_gap.test.mjs",
+      "tests/contracts/japanese_master_index_v4_final_admission.test.mjs",
+      "tests/contracts/japanese_master_index_v4_finalizer.test.mjs",
+      "tests/contracts/japanese_master_index_v4_packaging.test.mjs",
+      "tests/contracts/japanese_master_index_v4_read_only_guard.test.mjs",
+      "tests/contracts/japanese_master_index_v4_set_registry.test.mjs"
+    ],
+    "checks": [
+      {
+        "evidence": "complete_primary_and_targeted_source_union",
+        "name": "final_union_includes_primary_and_targeted_sources",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "missing_source_lanes": []
+        },
+        "name": "all_governed_source_lanes_present",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "incomplete_source_lanes": []
+        },
+        "name": "all_governed_source_lanes_complete",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "failed_source_lanes": []
+        },
+        "name": "zero_source_fetch_or_parser_failures",
+        "passed": true
+      },
+      {
+        "evidence": [
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 838,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "artofpkm_jp_cards"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 524,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "limitless_jp_cards"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 20312,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "official_jp_cards"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 330,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "serebii_jp_cards"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 16672,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "tcgdex_ja_cards"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 304,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "bulbapedia_jp_card_lists"
+          },
+          {
+            "archive_exists": true,
+            "archive_hash_matches": true,
+            "assertion_fingerprint_matches": true,
+            "entry_count": 108,
+            "manifest_archive_hash_matches": true,
+            "source_lane": "pokeguardian_release_reports"
+          }
+        ],
+        "name": "raw_source_evidence_archives_are_verified",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "plain_assertion_presence": [
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/official_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_assertions_v1.json",
+              "present": false
+            },
+            {
+              "path": "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_assertions_v1.json",
+              "present": false
+            }
+          ],
+          "unpacked_raw_present": false
+        },
+        "name": "release_uses_packaged_source_evidence_only",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "queue": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e",
+          "union": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e"
+        },
+        "name": "targeted_queue_fingerprint_is_pinned",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "residual_targeted_work_item_count": 0
+        },
+        "name": "zero_residual_automated_targeted_work",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "statuses": []
+        },
+        "name": "zero_incomplete_or_pending_governed_source_lanes",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "baseline": "5c1771d099050f8138c45fc169eacbd68f906d7b852efd6dbe4ce788f65a778e",
+          "union": "5c1771d099050f8138c45fc169eacbd68f906d7b852efd6dbe4ce788f65a778e"
+        },
+        "name": "baseline_manifest_is_the_frozen_union_input",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "all_static_admission_checks_pass": true,
+          "checks": {
+            "every_admissible_card_has_family_disposition": true,
+            "every_admissible_card_has_required_identity_fields": true,
+            "every_admissible_card_passes_source_admission": true,
+            "every_admissible_printing_passes_strict_rule": true,
+            "every_admissible_set_has_required_identity_fields": true,
+            "every_assertion_disposed": true,
+            "every_set_adjudicated": true,
+            "no_mutation_artifacts_emitted": true,
+            "no_placeholder_set_in_admissible_export": true,
+            "no_unresolved_exact_collision_in_admissible_export": true,
+            "required_coverage_lanes_present": true
+          },
+          "pending_finalizer_checks": [
+            "offline_replay_fingerprint_match",
+            "english_reference_fingerprint_unchanged",
+            "live_no_write_baseline_unchanged"
+          ]
+        },
+        "name": "strict_admission_checks_all_pass",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "candidate_union": "60d398779a40e363f20dc1c10387c26b701cda0f6c01645c1b99e4d166468a55",
+          "strict_admission": "60d398779a40e363f20dc1c10387c26b701cda0f6c01645c1b99e4d166468a55"
+        },
+        "name": "strict_admission_uses_final_candidate_union",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "cleanup": false,
+          "database_writes": false,
+          "deletion": false,
+          "family_promotion": false,
+          "identity_writes": false,
+          "image_writes": false,
+          "pricing_writes": false,
+          "quarantine": false,
+          "storage_writes": false
+        },
+        "name": "strict_admission_execution_boundary_has_no_mutation",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "all_match": true,
+          "artifact_comparisons": [
+            {
+              "expected_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+              "filename": "live_jpn_parent_summary_v1.json",
+              "live_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+              "matches": true
+            },
+            {
+              "expected_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+              "filename": "live_jpn_source_coverage_v1.json",
+              "live_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+              "matches": true
+            },
+            {
+              "expected_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+              "filename": "live_jpn_set_code_inventory_v1.json",
+              "live_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+              "matches": true
+            },
+            {
+              "expected_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+              "filename": "live_jpn_identity_gap_queue_v1.json",
+              "live_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+              "matches": true
+            },
+            {
+              "expected_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+              "filename": "english_family_reference_fingerprint_v1.json",
+              "live_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+              "matches": true
+            },
+            {
+              "expected_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+              "filename": "live_jpn_source_manifest_v1.json",
+              "live_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+              "matches": true
+            }
+          ],
+          "live_recheck_root": ".tmp/jpn_master_index_v4_final_live_recheck_fresh",
+          "no_write_guard_established": true,
+          "performed": true,
+          "row_dataset_comparisons": [
+            {
+              "actual_fingerprint_sha256": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+              "actual_rows": 26047,
+              "dataset_key": "live_jpn_parent_rows_v1",
+              "expected_fingerprint_sha256": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+              "expected_rows": 26047,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+              "actual_rows": 26015,
+              "dataset_key": "live_jpn_identity_rows_v1",
+              "expected_fingerprint_sha256": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+              "expected_rows": 26015,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+              "actual_rows": 116589,
+              "dataset_key": "live_jpn_evidence_rows_v1",
+              "expected_fingerprint_sha256": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+              "expected_rows": 116589,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+              "actual_rows": 25953,
+              "dataset_key": "live_jpn_printing_rows_v1",
+              "expected_fingerprint_sha256": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+              "expected_rows": 25953,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "1aa57e4b3f0b38b5cb462b315f4383cfaf484c2daf798c69290fa740de6615be",
+              "actual_rows": 28161,
+              "dataset_key": "live_jpn_family_review_rows_v1",
+              "expected_fingerprint_sha256": "1aa57e4b3f0b38b5cb462b315f4383cfaf484c2daf798c69290fa740de6615be",
+              "expected_rows": 28161,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+              "actual_rows": 19678,
+              "dataset_key": "live_jpn_species_link_rows_v1",
+              "expected_fingerprint_sha256": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+              "expected_rows": 19678,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "442e54d5adabdc6fbd869d481a7b1ab8f339330e416fce71ff63d44079c81a2b",
+              "actual_rows": 1025,
+              "dataset_key": "language_agnostic_species_rows_v1",
+              "expected_fingerprint_sha256": "442e54d5adabdc6fbd869d481a7b1ab8f339330e416fce71ff63d44079c81a2b",
+              "expected_rows": 1025,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "77d6e7d9a14f2bf87abe3b2845126066dc0c8af9b77457dae525510b3b431f05",
+              "actual_rows": 19194,
+              "dataset_key": "english_family_card_rows_v1",
+              "expected_fingerprint_sha256": "77d6e7d9a14f2bf87abe3b2845126066dc0c8af9b77457dae525510b3b431f05",
+              "expected_rows": 19194,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "b161d423d6db073f7952ad60726595e35d10bdb875f96175b96d64ddea4933da",
+              "actual_rows": 19346,
+              "dataset_key": "english_family_species_link_rows_v1",
+              "expected_fingerprint_sha256": "b161d423d6db073f7952ad60726595e35d10bdb875f96175b96d64ddea4933da",
+              "expected_rows": 19346,
+              "matches": true
+            }
+          ],
+          "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065"
+        },
+        "name": "fresh_live_read_only_baseline_matches_frozen_baseline",
+        "passed": true
+      },
+      {
+        "evidence": [
+          {
+            "expected_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+            "filename": "live_jpn_parent_summary_v1.json",
+            "live_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+            "matches": true
+          },
+          {
+            "expected_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+            "filename": "live_jpn_source_coverage_v1.json",
+            "live_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+            "matches": true
+          },
+          {
+            "expected_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+            "filename": "live_jpn_set_code_inventory_v1.json",
+            "live_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+            "matches": true
+          },
+          {
+            "expected_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+            "filename": "live_jpn_identity_gap_queue_v1.json",
+            "live_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+            "matches": true
+          },
+          {
+            "expected_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+            "filename": "english_family_reference_fingerprint_v1.json",
+            "live_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+            "matches": true
+          },
+          {
+            "expected_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+            "filename": "live_jpn_source_manifest_v1.json",
+            "live_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+            "matches": true
+          }
+        ],
+        "name": "english_family_reference_is_unchanged_live",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "canonical_id_allocation": false,
+          "database_writes": false,
+          "english_mutation": false,
+          "family_promotion": false,
+          "source_fetches": false,
+          "storage_writes": false
+        },
+        "name": "union_execution_boundary_has_no_mutation",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "changed_path_count": 555,
+          "disallowed_changed_paths": []
+        },
+        "name": "repository_change_scope_is_audit_only",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "all_match": true,
+          "candidate_union_dataset_comparisons": [
+            {
+              "actual_fingerprint_sha256": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
+              "actual_rows": 215784,
+              "dataset_key": "source_assertion_union_rows_v1",
+              "expected_fingerprint_sha256": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
+              "expected_rows": 215784,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "7248966ec08ad81d9124b2845183864d008d989ed5b1cf2500b91a6b00ed7094",
+              "actual_rows": 99195,
+              "dataset_key": "assertion_resolution_rows_v1",
+              "expected_fingerprint_sha256": "7248966ec08ad81d9124b2845183864d008d989ed5b1cf2500b91a6b00ed7094",
+              "expected_rows": 99195,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "fc314a92b510a80ecf0b7dd1cc131a6d7befe8fbea80e8c91c0750a0c184ace9",
+              "actual_rows": 71992,
+              "dataset_key": "identity_candidate_rows_v1",
+              "expected_fingerprint_sha256": "fc314a92b510a80ecf0b7dd1cc131a6d7befe8fbea80e8c91c0750a0c184ace9",
+              "expected_rows": 71992,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "ddbe02bfd89c613a16cfe3cc5a2ed5bae75d66da36a085f9a35a611e73e94802",
+              "actual_rows": 71900,
+              "dataset_key": "printing_candidate_rows_v1",
+              "expected_fingerprint_sha256": "ddbe02bfd89c613a16cfe3cc5a2ed5bae75d66da36a085f9a35a611e73e94802",
+              "expected_rows": 71900,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "11256524f62e90ab999b7b5646b2416750075a774cd0b47a1075b02e2177a37f",
+              "actual_rows": 91186,
+              "dataset_key": "master_family_card_nodes_v1",
+              "expected_fingerprint_sha256": "11256524f62e90ab999b7b5646b2416750075a774cd0b47a1075b02e2177a37f",
+              "expected_rows": 91186,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "d753238878b07622624e7f3291e5bfb649463f2d3b3bdc1b22908baa2aa65ab4",
+              "actual_rows": 55479,
+              "dataset_key": "master_family_species_links_v1",
+              "expected_fingerprint_sha256": "d753238878b07622624e7f3291e5bfb649463f2d3b3bdc1b22908baa2aa65ab4",
+              "expected_rows": 55479,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "bd47556e4bcff6a72e2f502fe6db8f2bc1fcb7587259a3338ea307f9fc09c636",
+              "actual_rows": 45945,
+              "dataset_key": "novel_family_projection_rows_v1",
+              "expected_fingerprint_sha256": "bd47556e4bcff6a72e2f502fe6db8f2bc1fcb7587259a3338ea307f9fc09c636",
+              "expected_rows": 45945,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "157a525d08cf72f62e4347ed63d909ba480d0c8ed4de7987e9bab34a36e9eb55",
+              "actual_rows": 50952,
+              "dataset_key": "candidate_conflict_rows_v1",
+              "expected_fingerprint_sha256": "157a525d08cf72f62e4347ed63d909ba480d0c8ed4de7987e9bab34a36e9eb55",
+              "expected_rows": 50952,
+              "matches": true
+            }
+          ],
+          "coverage_comparisons": [
+            {
+              "expected_fingerprint_sha256": "145c25ca7dd7aae18b04030bc587585e9b1be480f3cd64b8c91b833be931cd66",
+              "filename": "coverage_by_registry_v1.json",
+              "matches": true,
+              "replay_fingerprint_sha256": "145c25ca7dd7aae18b04030bc587585e9b1be480f3cd64b8c91b833be931cd66"
+            },
+            {
+              "expected_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1",
+              "filename": "source_exhaustion_v1.json",
+              "matches": true,
+              "replay_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1"
+            },
+            {
+              "expected_fingerprint_sha256": "af62f1eb395ae5f9f863ba287c472b0623459898f916bdd401b35400366967dd",
+              "filename": "residual_targeted_source_queue_v1.json",
+              "matches": true,
+              "replay_fingerprint_sha256": "af62f1eb395ae5f9f863ba287c472b0623459898f916bdd401b35400366967dd"
+            },
+            {
+              "expected_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56",
+              "filename": "deferred_future_targeted_source_queue_v1.json",
+              "matches": true,
+              "replay_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56"
+            }
+          ],
+          "performed": true,
+          "strict_admission_dataset_comparisons": [
+            {
+              "actual_fingerprint_sha256": "e367eb1ba0b7a4281c4e40597092fc889420ce410bf8711aa5d09fb8deb7a45a",
+              "actual_rows": 1453,
+              "dataset_key": "master_set_adjudication_rows_v1",
+              "expected_fingerprint_sha256": "e367eb1ba0b7a4281c4e40597092fc889420ce410bf8711aa5d09fb8deb7a45a",
+              "expected_rows": 1453,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+              "actual_rows": 1426,
+              "dataset_key": "master_admissible_set_rows_v1",
+              "expected_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+              "expected_rows": 1426,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "5e01eaba2630f1fb302dcd12f414894751ac7f879060cbaa6671cd9a59e8f158",
+              "actual_rows": 71992,
+              "dataset_key": "master_card_resolution_rows_v1",
+              "expected_fingerprint_sha256": "5e01eaba2630f1fb302dcd12f414894751ac7f879060cbaa6671cd9a59e8f158",
+              "expected_rows": 71992,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+              "actual_rows": 28008,
+              "dataset_key": "master_admissible_card_rows_v1",
+              "expected_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+              "expected_rows": 28008,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+              "actual_rows": 71900,
+              "dataset_key": "master_printing_fact_rows_v1",
+              "expected_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+              "expected_rows": 71900,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+              "actual_rows": 0,
+              "dataset_key": "master_admissible_printing_rows_v1",
+              "expected_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+              "expected_rows": 0,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+              "actual_rows": 28008,
+              "dataset_key": "master_family_relationship_rows_v1",
+              "expected_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+              "expected_rows": 28008,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "9514b426895fdc55ba904fd4d73e81869efa452c1864621f841d39c4650cd03d",
+              "actual_rows": 215784,
+              "dataset_key": "master_assertion_disposition_rows_v1",
+              "expected_fingerprint_sha256": "9514b426895fdc55ba904fd4d73e81869efa452c1864621f841d39c4650cd03d",
+              "expected_rows": 215784,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "65acc6ddbaec18088e737e628b9bcdb8a4834fbc1577831aa22aed99398b73cf",
+              "actual_rows": 121308,
+              "dataset_key": "master_blocked_fact_rows_v1",
+              "expected_fingerprint_sha256": "65acc6ddbaec18088e737e628b9bcdb8a4834fbc1577831aa22aed99398b73cf",
+              "expected_rows": 121308,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "173a88daba46b928c663ed6ef97d0d20d4b351a14a5cce6699522ba62192003f",
+              "actual_rows": 434,
+              "dataset_key": "master_adjudicated_exclusion_rows_v1",
+              "expected_fingerprint_sha256": "173a88daba46b928c663ed6ef97d0d20d4b351a14a5cce6699522ba62192003f",
+              "expected_rows": 434,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "47070ff23af540fc48ce36cdd4c0408d15f89bd574a13e2a2cc33ee3bdf7b173",
+              "actual_rows": 39,
+              "dataset_key": "master_coverage_matrix_rows_v1",
+              "expected_fingerprint_sha256": "47070ff23af540fc48ce36cdd4c0408d15f89bd574a13e2a2cc33ee3bdf7b173",
+              "expected_rows": 39,
+              "matches": true
+            },
+            {
+              "actual_fingerprint_sha256": "7dc57c9e2bcc616d80a4d89c28313c3ac7fb8ab81740f2589f97d058347165a5",
+              "actual_rows": 115717,
+              "dataset_key": "master_source_gap_rows_v1",
+              "expected_fingerprint_sha256": "7dc57c9e2bcc616d80a4d89c28313c3ac7fb8ab81740f2589f97d058347165a5",
+              "expected_rows": 115717,
+              "matches": true
+            }
+          ]
+        },
+        "name": "full_local_replay_is_reproducible",
+        "passed": true
+      }
+    ],
+    "deferred_future_targeted_work_item_count": 3,
+    "dependency_fingerprints": {
+      "baseline": "5c1771d099050f8138c45fc169eacbd68f906d7b852efd6dbe4ce788f65a778e",
+      "candidate_union": "60d398779a40e363f20dc1c10387c26b701cda0f6c01645c1b99e4d166468a55",
+      "coverage": "145c25ca7dd7aae18b04030bc587585e9b1be480f3cd64b8c91b833be931cd66",
+      "preserved_evidence": "d3eff4d0bf74358d0d3b373878b38e24161bc49f843386156e7732c2ee1f9c9f",
+      "source_exhaustion": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1",
+      "strict_admission": "2f17e2410a35d27373e6ff3a9f698c046278fd0d2a639a2d5b33cb7715793b4b",
+      "targeted_queue": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e"
+    },
+    "english_family_reference": {
+      "active_english_species_link_count": 19346,
+      "active_english_species_link_fingerprint_sha256": "5f6eaaaefdef52ce1987358ec7bfe8537729d935734bac7b97c165c8e77b4f2b",
+      "active_species_count": 1025,
+      "active_species_fingerprint_sha256": "d2abcbb435bda99a9441d4d4997a4fa20c8f708cfdd1d9167245e8c003487ab0",
+      "combined_fingerprint_sha256": "7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db"
+    },
+    "execution_boundary": {
+      "canonical_id_allocation": false,
+      "database_reads": true,
+      "database_reads_are_transaction_guarded_and_read_only": true,
+      "database_writes": false,
+      "english_mutation": false,
+      "family_promotion": false,
+      "source_fetches": false,
+      "storage_reads": false,
+      "storage_writes": false
+    },
+    "generated_at": "2026-07-27T01:05:00.000Z",
+    "generator_version": "JPN-MASTER-INDEX-FINALIZE-V1",
+    "live_baseline_recheck": {
+      "all_match": true,
+      "artifact_comparisons": [
+        {
+          "expected_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+          "filename": "live_jpn_parent_summary_v1.json",
+          "live_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+          "matches": true
+        },
+        {
+          "expected_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+          "filename": "live_jpn_source_coverage_v1.json",
+          "live_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+          "matches": true
+        },
+        {
+          "expected_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+          "filename": "live_jpn_set_code_inventory_v1.json",
+          "live_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+          "matches": true
+        },
+        {
+          "expected_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+          "filename": "live_jpn_identity_gap_queue_v1.json",
+          "live_fingerprint_sha256": "83a352d1b533513709bbf29a9596064ee5646ad3f7fc79c361f71faa0dd04e2c",
+          "matches": true
+        },
+        {
+          "expected_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+          "filename": "english_family_reference_fingerprint_v1.json",
+          "live_fingerprint_sha256": "848615a0bd8add62606d11481c8d581f09f60f2ffea157f7c0947fb406791d28",
+          "matches": true
+        },
+        {
+          "expected_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+          "filename": "live_jpn_source_manifest_v1.json",
+          "live_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+          "matches": true
+        }
+      ],
+      "live_recheck_root": ".tmp/jpn_master_index_v4_final_live_recheck_fresh",
+      "no_write_guard_established": true,
+      "performed": true,
+      "row_dataset_comparisons": [
+        {
+          "actual_fingerprint_sha256": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+          "actual_rows": 26047,
+          "dataset_key": "live_jpn_parent_rows_v1",
+          "expected_fingerprint_sha256": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+          "expected_rows": 26047,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+          "actual_rows": 26015,
+          "dataset_key": "live_jpn_identity_rows_v1",
+          "expected_fingerprint_sha256": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+          "expected_rows": 26015,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+          "actual_rows": 116589,
+          "dataset_key": "live_jpn_evidence_rows_v1",
+          "expected_fingerprint_sha256": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+          "expected_rows": 116589,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+          "actual_rows": 25953,
+          "dataset_key": "live_jpn_printing_rows_v1",
+          "expected_fingerprint_sha256": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+          "expected_rows": 25953,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "1aa57e4b3f0b38b5cb462b315f4383cfaf484c2daf798c69290fa740de6615be",
+          "actual_rows": 28161,
+          "dataset_key": "live_jpn_family_review_rows_v1",
+          "expected_fingerprint_sha256": "1aa57e4b3f0b38b5cb462b315f4383cfaf484c2daf798c69290fa740de6615be",
+          "expected_rows": 28161,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+          "actual_rows": 19678,
+          "dataset_key": "live_jpn_species_link_rows_v1",
+          "expected_fingerprint_sha256": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+          "expected_rows": 19678,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "442e54d5adabdc6fbd869d481a7b1ab8f339330e416fce71ff63d44079c81a2b",
+          "actual_rows": 1025,
+          "dataset_key": "language_agnostic_species_rows_v1",
+          "expected_fingerprint_sha256": "442e54d5adabdc6fbd869d481a7b1ab8f339330e416fce71ff63d44079c81a2b",
+          "expected_rows": 1025,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "77d6e7d9a14f2bf87abe3b2845126066dc0c8af9b77457dae525510b3b431f05",
+          "actual_rows": 19194,
+          "dataset_key": "english_family_card_rows_v1",
+          "expected_fingerprint_sha256": "77d6e7d9a14f2bf87abe3b2845126066dc0c8af9b77457dae525510b3b431f05",
+          "expected_rows": 19194,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "b161d423d6db073f7952ad60726595e35d10bdb875f96175b96d64ddea4933da",
+          "actual_rows": 19346,
+          "dataset_key": "english_family_species_link_rows_v1",
+          "expected_fingerprint_sha256": "b161d423d6db073f7952ad60726595e35d10bdb875f96175b96d64ddea4933da",
+          "expected_rows": 19346,
+          "matches": true
+        }
+      ],
+      "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065"
+    },
+    "replay": {
+      "all_match": true,
+      "candidate_union_dataset_comparisons": [
+        {
+          "actual_fingerprint_sha256": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
+          "actual_rows": 215784,
+          "dataset_key": "source_assertion_union_rows_v1",
+          "expected_fingerprint_sha256": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
+          "expected_rows": 215784,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "7248966ec08ad81d9124b2845183864d008d989ed5b1cf2500b91a6b00ed7094",
+          "actual_rows": 99195,
+          "dataset_key": "assertion_resolution_rows_v1",
+          "expected_fingerprint_sha256": "7248966ec08ad81d9124b2845183864d008d989ed5b1cf2500b91a6b00ed7094",
+          "expected_rows": 99195,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "fc314a92b510a80ecf0b7dd1cc131a6d7befe8fbea80e8c91c0750a0c184ace9",
+          "actual_rows": 71992,
+          "dataset_key": "identity_candidate_rows_v1",
+          "expected_fingerprint_sha256": "fc314a92b510a80ecf0b7dd1cc131a6d7befe8fbea80e8c91c0750a0c184ace9",
+          "expected_rows": 71992,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "ddbe02bfd89c613a16cfe3cc5a2ed5bae75d66da36a085f9a35a611e73e94802",
+          "actual_rows": 71900,
+          "dataset_key": "printing_candidate_rows_v1",
+          "expected_fingerprint_sha256": "ddbe02bfd89c613a16cfe3cc5a2ed5bae75d66da36a085f9a35a611e73e94802",
+          "expected_rows": 71900,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "11256524f62e90ab999b7b5646b2416750075a774cd0b47a1075b02e2177a37f",
+          "actual_rows": 91186,
+          "dataset_key": "master_family_card_nodes_v1",
+          "expected_fingerprint_sha256": "11256524f62e90ab999b7b5646b2416750075a774cd0b47a1075b02e2177a37f",
+          "expected_rows": 91186,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "d753238878b07622624e7f3291e5bfb649463f2d3b3bdc1b22908baa2aa65ab4",
+          "actual_rows": 55479,
+          "dataset_key": "master_family_species_links_v1",
+          "expected_fingerprint_sha256": "d753238878b07622624e7f3291e5bfb649463f2d3b3bdc1b22908baa2aa65ab4",
+          "expected_rows": 55479,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "bd47556e4bcff6a72e2f502fe6db8f2bc1fcb7587259a3338ea307f9fc09c636",
+          "actual_rows": 45945,
+          "dataset_key": "novel_family_projection_rows_v1",
+          "expected_fingerprint_sha256": "bd47556e4bcff6a72e2f502fe6db8f2bc1fcb7587259a3338ea307f9fc09c636",
+          "expected_rows": 45945,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "157a525d08cf72f62e4347ed63d909ba480d0c8ed4de7987e9bab34a36e9eb55",
+          "actual_rows": 50952,
+          "dataset_key": "candidate_conflict_rows_v1",
+          "expected_fingerprint_sha256": "157a525d08cf72f62e4347ed63d909ba480d0c8ed4de7987e9bab34a36e9eb55",
+          "expected_rows": 50952,
+          "matches": true
+        }
+      ],
+      "coverage_comparisons": [
+        {
+          "expected_fingerprint_sha256": "145c25ca7dd7aae18b04030bc587585e9b1be480f3cd64b8c91b833be931cd66",
+          "filename": "coverage_by_registry_v1.json",
+          "matches": true,
+          "replay_fingerprint_sha256": "145c25ca7dd7aae18b04030bc587585e9b1be480f3cd64b8c91b833be931cd66"
+        },
+        {
+          "expected_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1",
+          "filename": "source_exhaustion_v1.json",
+          "matches": true,
+          "replay_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1"
+        },
+        {
+          "expected_fingerprint_sha256": "af62f1eb395ae5f9f863ba287c472b0623459898f916bdd401b35400366967dd",
+          "filename": "residual_targeted_source_queue_v1.json",
+          "matches": true,
+          "replay_fingerprint_sha256": "af62f1eb395ae5f9f863ba287c472b0623459898f916bdd401b35400366967dd"
+        },
+        {
+          "expected_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56",
+          "filename": "deferred_future_targeted_source_queue_v1.json",
+          "matches": true,
+          "replay_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56"
+        }
+      ],
+      "performed": true,
+      "strict_admission_dataset_comparisons": [
+        {
+          "actual_fingerprint_sha256": "e367eb1ba0b7a4281c4e40597092fc889420ce410bf8711aa5d09fb8deb7a45a",
+          "actual_rows": 1453,
+          "dataset_key": "master_set_adjudication_rows_v1",
+          "expected_fingerprint_sha256": "e367eb1ba0b7a4281c4e40597092fc889420ce410bf8711aa5d09fb8deb7a45a",
+          "expected_rows": 1453,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+          "actual_rows": 1426,
+          "dataset_key": "master_admissible_set_rows_v1",
+          "expected_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+          "expected_rows": 1426,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "5e01eaba2630f1fb302dcd12f414894751ac7f879060cbaa6671cd9a59e8f158",
+          "actual_rows": 71992,
+          "dataset_key": "master_card_resolution_rows_v1",
+          "expected_fingerprint_sha256": "5e01eaba2630f1fb302dcd12f414894751ac7f879060cbaa6671cd9a59e8f158",
+          "expected_rows": 71992,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+          "actual_rows": 28008,
+          "dataset_key": "master_admissible_card_rows_v1",
+          "expected_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+          "expected_rows": 28008,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+          "actual_rows": 71900,
+          "dataset_key": "master_printing_fact_rows_v1",
+          "expected_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+          "expected_rows": 71900,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "actual_rows": 0,
+          "dataset_key": "master_admissible_printing_rows_v1",
+          "expected_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "expected_rows": 0,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+          "actual_rows": 28008,
+          "dataset_key": "master_family_relationship_rows_v1",
+          "expected_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+          "expected_rows": 28008,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "9514b426895fdc55ba904fd4d73e81869efa452c1864621f841d39c4650cd03d",
+          "actual_rows": 215784,
+          "dataset_key": "master_assertion_disposition_rows_v1",
+          "expected_fingerprint_sha256": "9514b426895fdc55ba904fd4d73e81869efa452c1864621f841d39c4650cd03d",
+          "expected_rows": 215784,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "65acc6ddbaec18088e737e628b9bcdb8a4834fbc1577831aa22aed99398b73cf",
+          "actual_rows": 121308,
+          "dataset_key": "master_blocked_fact_rows_v1",
+          "expected_fingerprint_sha256": "65acc6ddbaec18088e737e628b9bcdb8a4834fbc1577831aa22aed99398b73cf",
+          "expected_rows": 121308,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "173a88daba46b928c663ed6ef97d0d20d4b351a14a5cce6699522ba62192003f",
+          "actual_rows": 434,
+          "dataset_key": "master_adjudicated_exclusion_rows_v1",
+          "expected_fingerprint_sha256": "173a88daba46b928c663ed6ef97d0d20d4b351a14a5cce6699522ba62192003f",
+          "expected_rows": 434,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "47070ff23af540fc48ce36cdd4c0408d15f89bd574a13e2a2cc33ee3bdf7b173",
+          "actual_rows": 39,
+          "dataset_key": "master_coverage_matrix_rows_v1",
+          "expected_fingerprint_sha256": "47070ff23af540fc48ce36cdd4c0408d15f89bd574a13e2a2cc33ee3bdf7b173",
+          "expected_rows": 39,
+          "matches": true
+        },
+        {
+          "actual_fingerprint_sha256": "7dc57c9e2bcc616d80a4d89c28313c3ac7fb8ab81740f2589f97d058347165a5",
+          "actual_rows": 115717,
+          "dataset_key": "master_source_gap_rows_v1",
+          "expected_fingerprint_sha256": "7dc57c9e2bcc616d80a4d89c28313c3ac7fb8ab81740f2589f97d058347165a5",
+          "expected_rows": 115717,
+          "matches": true
+        }
+      ]
+    },
+    "residual_targeted_work_item_count": 0,
+    "source_exhaustion_status_counts": {
+      "future_lane_without_governed_work_items": 2,
+      "preserved_manual_only": 2,
+      "primary_exhausted_clean": 1,
+      "primary_exhausted_with_explicit_findings": 4,
+      "targeted_exhausted_with_explicit_findings": 2
+    },
+    "source_statuses": [
+      {
+        "assertion_count": 23015,
+        "assertion_fingerprint_sha256": "a0cf8d3707585f150b6acac152a970f86421ffbc64aac2ed0af81d583358ebf2",
+        "complete": true,
+        "expected_container_count": 419,
+        "failed_container_count": 0,
+        "harvested_container_count": 419,
+        "incomplete_reason": null,
+        "lane_id": "artofpkm_jp_cards",
+        "source_status_counts": {
+          "complete": 343,
+          "source_count_mismatch": 76
+        },
+        "source_tier": "primary",
+        "tracked_container_count": 419
+      },
+      {
+        "assertion_count": 19904,
+        "assertion_fingerprint_sha256": "531a2d73c287cbad19d956fe542ac9e032012a355513a369f6b1ee67d4ee358a",
+        "complete": true,
+        "expected_container_count": 262,
+        "failed_container_count": 0,
+        "harvested_container_count": 262,
+        "incomplete_reason": null,
+        "lane_id": "limitless_jp_cards",
+        "source_status_counts": {
+          "complete": 252,
+          "source_count_mismatch": 10
+        },
+        "source_tier": "primary",
+        "tracked_container_count": 262
+      },
+      {
+        "assertion_count": 9843,
+        "assertion_fingerprint_sha256": "1a338d4fc57c1087cccd5aa6be6efa41d055b00b6e94a0f3ad352afed1c7fa8e",
+        "complete": true,
+        "expected_container_count": 137,
+        "failed_container_count": 0,
+        "harvested_container_count": 137,
+        "incomplete_reason": null,
+        "lane_id": "official_jp_cards",
+        "source_status_counts": {
+          "complete": 137
+        },
+        "source_tier": "primary",
+        "tracked_container_count": 137
+      },
+      {
+        "assertion_count": 14477,
+        "assertion_fingerprint_sha256": "27f709e51d0e9280b1a8d36f2f87fe7bbb599cff8b861f7c1d2b736e8f4c5c99",
+        "complete": true,
+        "expected_container_count": 165,
+        "failed_container_count": 0,
+        "harvested_container_count": 165,
+        "incomplete_reason": null,
+        "lane_id": "serebii_jp_cards",
+        "source_status_counts": {
+          "complete": 147,
+          "source_count_mismatch": 18
+        },
+        "source_tier": "primary",
+        "tracked_container_count": 165
+      },
+      {
+        "assertion_count": 8159,
+        "assertion_fingerprint_sha256": "fc5ad097e132b148d202a03993775fc80de530e2a6e023aa93f8e67992e0e268",
+        "complete": true,
+        "expected_container_count": 177,
+        "failed_container_count": 0,
+        "harvested_container_count": 177,
+        "incomplete_reason": null,
+        "lane_id": "tcgdex_ja_cards",
+        "source_status_counts": {
+          "complete": 68,
+          "source_card_rows_absent": 107,
+          "source_count_mismatch": 2
+        },
+        "source_tier": "primary",
+        "tracked_container_count": 177
+      },
+      {
+        "assertion_count": 18113,
+        "assertion_fingerprint_sha256": "68469df7ebd99aa65a364af826485b429906de207de6362801c1acedb060534d",
+        "complete": true,
+        "expected_container_count": 152,
+        "failed_container_count": 0,
+        "harvested_container_count": 152,
+        "incomplete_reason": null,
+        "lane_id": "bulbapedia_jp_card_lists",
+        "source_status_counts": {
+          "complete": 139,
+          "source_expected_count_unavailable": 1,
+          "source_numbering_unavailable": 12
+        },
+        "source_tier": "targeted",
+        "tracked_container_count": 152
+      },
+      {
+        "assertion_count": 5684,
+        "assertion_fingerprint_sha256": "d59154aa39b888fb8b4d4c000b9963e0ecb182769a8e84729fe3809961174d22",
+        "complete": true,
+        "expected_container_count": 54,
+        "failed_container_count": 0,
+        "harvested_container_count": 54,
+        "incomplete_reason": null,
+        "lane_id": "pokeguardian_release_reports",
+        "source_status_counts": {
+          "complete": 39,
+          "source_count_mismatch": 1,
+          "source_partial_release_report": 14
+        },
+        "source_tier": "targeted",
+        "tracked_container_count": 54
+      }
+    ],
+    "status": "complete_no_write_master_index",
+    "strict_admission_completion": {
+      "all_static_admission_checks_pass": true,
+      "checks": {
+        "every_admissible_card_has_family_disposition": true,
+        "every_admissible_card_has_required_identity_fields": true,
+        "every_admissible_card_passes_source_admission": true,
+        "every_admissible_printing_passes_strict_rule": true,
+        "every_admissible_set_has_required_identity_fields": true,
+        "every_assertion_disposed": true,
+        "every_set_adjudicated": true,
+        "no_mutation_artifacts_emitted": true,
+        "no_placeholder_set_in_admissible_export": true,
+        "no_unresolved_exact_collision_in_admissible_export": true,
+        "required_coverage_lanes_present": true
+      },
+      "pending_finalizer_checks": [
+        "offline_replay_fingerprint_match",
+        "english_reference_fingerprint_unchanged",
+        "live_no_write_baseline_unchanged"
+      ]
+    },
+    "strict_admission_summary": {
+      "adjudicated_exclusion_count": 434,
+      "assertion_disposition_count": 215784,
+      "blocked_fact_count": 121308,
+      "blocked_identity_count": 43806,
+      "blocked_printing_fact_count": 71900,
+      "discovered_set_or_product_count": 1453,
+      "excluded_identity_count": 178,
+      "family_relationship_count": 28008,
+      "master_admissible_identity_count": 28008,
+      "master_admissible_printing_fact_count": 0,
+      "master_admissible_set_count": 1426,
+      "source_assertion_union_count": 215784,
+      "source_gap_count": 115717,
+      "working_identity_candidate_count": 71992,
+      "working_printing_fact_count": 71900
+    },
+    "summary": {
+      "conflict_count": 50952,
+      "conservative_distinct_identity_lower_bound": 41825,
+      "existing_jpn_parent_count": 26047,
+      "family_card_node_count": 91186,
+      "family_species_link_count": 55479,
+      "fresh_source_assertion_count": 99195,
+      "identity_candidate_count": 71992,
+      "novel_exact_species_projection_count": 16455,
+      "novel_index_candidate_count": 15778,
+      "preserved_evidence_row_count": 116589,
+      "printing_candidate_count": 71900,
+      "source_isolated_distinct_identity_upper_bound": 71992,
+      "source_isolated_review_candidate_count": 30167,
+      "unresolved_assertion_count": 5577,
+      "unresolved_finish_count": 45692
+    }
+  },
+  "content_fingerprint_sha256": "d2935a74683c02b3ad6e4c845b804b6fcd3694dbf30c139e4e1b0126a3136455",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-FINAL-PACKAGE-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_and_git_scope_only",
+    "live_baseline_recheck": ".tmp/jpn_master_index_v4_final_live_recheck_fresh",
+    "reproducibility_replay": true
+  }
+}

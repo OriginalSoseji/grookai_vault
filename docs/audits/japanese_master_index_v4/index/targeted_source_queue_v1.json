@@ -1,0 +1,4684 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "summary": {
+      "priority_counts": {
+        "corroboration": 2,
+        "high": 149,
+        "medium": 55
+      },
+      "queued_work_item_count": 206
+    },
+    "work_items": [
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 97,
+          "fresh_assertions": 211,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 72,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-bw2",
+        "source_container_id": "Red_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Red_Collection_(TCG)",
+        "source_expected_card_count": 66,
+        "source_native_name": "Red Collection",
+        "source_release_date": "July 15, 2011",
+        "targeted_work_item_key": "39a2b28807c8549cf1f7e0a6745c43dcbc4ccc2077899ff625f6c34e481a8697"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 117,
+          "fresh_assertions": 221,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 76,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-bw4",
+        "source_container_id": "Dark_Rush_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Rush_(TCG)",
+        "source_expected_card_count": 69,
+        "source_native_name": "Dark Rush",
+        "source_release_date": "December 16, 2011",
+        "targeted_work_item_key": "abff0c8cd778fe59506fcc480accdba7098e664cc76fa3d806d200c9b941df69"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 109,
+          "fresh_assertions": 220,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 71,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-bw7",
+        "source_container_id": "Plasma_Gale_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Plasma_Gale_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Plasma Gale",
+        "source_release_date": "September 14, 2012",
+        "targeted_work_item_key": "d29f438a6dad564eebb2c66a1a1fee346395b4fe6c73a1f4ab748321632604f7"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 108,
+          "fresh_assertions": 239,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 77,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-bw9",
+        "source_container_id": "Megalo_Cannon_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Megalo_Cannon_(TCG)",
+        "source_expected_card_count": 76,
+        "source_native_name": "Megalo Cannon",
+        "source_release_date": "March 15, 2013",
+        "targeted_work_item_key": "528ee8ef09cdb90380e2a2d1688c420a974bd127ef959cea7e7741c97390e498"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 27,
+          "fresh_assertions": 54,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 27,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-cp2",
+        "source_container_id": "Legendary_Shine_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Legendary_Shine_Collection_(TCG)",
+        "source_expected_card_count": 27,
+        "source_native_name": "Legendary Shine Collection",
+        "source_release_date": "July 18, 2015",
+        "targeted_work_item_key": "8d0c5c45357cfd3bbcea0e96603e0ac66b8d51913666c140366306c4ff962b44"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 53,
+          "fresh_assertions": 96,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 32,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-cp3",
+        "source_container_id": "PokéKyun_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9Kyun_Collection_(TCG)",
+        "source_expected_card_count": 32,
+        "source_native_name": "PokéKyun Collection",
+        "source_release_date": "January 29, 2016",
+        "targeted_work_item_key": "50ede3c3a157cd843fc0e182342ab09aa3e95b36f403e1629e0b273d5168e015"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 159,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dp3",
+        "source_container_id": "Shining_Darkness_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Shining_Darkness_(TCG)",
+        "source_expected_card_count": 119,
+        "source_native_name": "Shining Darkness",
+        "source_release_date": "July 5, 2007",
+        "targeted_work_item_key": "9d3608f0286f2dda6bcf009e67427a104d8d64566054a2410c74656838ca7c2c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dps",
+        "source_container_id": "Intense_Fight_in_the_Destroyed_Sky_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Intense_Fight_in_the_Destroyed_Sky_(TCG)",
+        "source_expected_card_count": 92,
+        "source_native_name": "Intense Fight in the Destroyed Sky",
+        "source_release_date": "July 10, 2008",
+        "targeted_work_item_key": "b2e5745b144373e4e4195a85f636ad05593df061b7d965ae00e9c76b3afaa750"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 144,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dpt1",
+        "source_container_id": "Galactic's_Conquest_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Galactic%27s_Conquest_(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Galactic's Conquest",
+        "source_release_date": "October 10, 2008",
+        "targeted_work_item_key": "c36bc7032f7a3574275368d81130046cd4013bfce9a1acc4c45eba5dc5238393"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 132,
+          "fresh_assertions": 98,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 98,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dpt2",
+        "source_container_id": "Bonds_to_the_End_of_Time_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Bonds_to_the_End_of_Time_(TCG)",
+        "source_expected_card_count": 90,
+        "source_native_name": "Bonds to the End of Time",
+        "source_release_date": "December 26, 2008",
+        "targeted_work_item_key": "9d1e7a438be20b2c5a1d59124fe712840ecf958852f14a32042d4aed30ed6de2"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 138,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dpt3",
+        "source_container_id": "Beat_of_the_Frontier_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Beat_of_the_Frontier_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Beat of the Frontier",
+        "source_release_date": "March 6, 2009",
+        "targeted_work_item_key": "1563be3ba41dc6411eb90bcab50939c75fcd4a907c5fb508bfde6530417c31b4"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 140,
+          "fresh_assertions": 188,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 98,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-dpt4",
+        "source_container_id": "Advent_of_Arceus_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Advent_of_Arceus_(TCG)",
+        "source_expected_card_count": 90,
+        "source_native_name": "Advent of Arceus",
+        "source_release_date": "July 8, 2009",
+        "targeted_work_item_key": "841746d34479262b1ce7ab8b54bfea66fbf6781b2022d3f4caa43e6492c46580"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 35,
+          "fresh_assertions": 60,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 20,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-ds",
+        "source_container_id": "Dragon_Selection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Selection_(TCG)",
+        "source_expected_card_count": 20,
+        "source_native_name": "Dragon Selection",
+        "source_release_date": "January 27, 2012",
+        "targeted_work_item_key": "30b28fe618afdbdd1909bc57724963793bd578bdc2bdf289bdfd9475c174d21c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 138,
+          "fresh_assertions": 293,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 97,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-ebb",
+        "source_container_id": "EX_Battle_Boost_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Battle_Boost_(TCG)",
+        "source_expected_card_count": 93,
+        "source_native_name": "EX Battle Boost",
+        "source_release_date": "July 13, 2013",
+        "targeted_work_item_key": "7089fed7a02ff77c89b20ed00e07355e40d993a688c5425c41178aa2647ab697"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 123,
+          "fresh_assertions": 163,
+          "novel_candidates": 2,
+          "source_isolated_candidates": 85,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-l2",
+        "source_container_id": "Reviving_Legends_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Reviving_Legends_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Reviving Legends",
+        "source_release_date": "February 11, 2010",
+        "targeted_work_item_key": "c0e47b5a305576d56e8a5ac524bdfe1695ced37f2d1853a843c851f6a6b6ac84"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 132,
+          "fresh_assertions": 85,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 85,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-l3",
+        "source_container_id": "Clash_at_the_Summit_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Clash_at_the_Summit_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Clash at the Summit",
+        "source_release_date": "July 8, 2010",
+        "targeted_work_item_key": "5f32162d02c3d47160f72ba69280918f659fd29e802515fbfc45fe9702df1343"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 61,
+          "fresh_assertions": 78,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 39,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-ll",
+        "source_container_id": "Lost_Link_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Link_(TCG)",
+        "source_expected_card_count": 40,
+        "source_native_name": "Lost Link",
+        "source_release_date": "April 16, 2010",
+        "targeted_work_item_key": "ceb9faa84e94758639e1bafea40c456bdab42945ec19d07cb907a875bc372dce"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 183,
+          "fresh_assertions": 448,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m2",
+        "source_container_id": "Inferno_X_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Inferno_X_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Inferno X",
+        "source_release_date": "September 26, 2025",
+        "targeted_work_item_key": "b52b90484131ac804a2b36dc6d8fd61089df2ce08cc35838557dc4ccf3ed7d93"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 183,
+          "fresh_assertions": 448,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m2",
+        "source_container_id": "M2",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2687384_m2-inferno-x-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M2 Inferno X",
+        "source_release_date": "September 26, 2025",
+        "targeted_work_item_key": "c98ab20d4d30c9da0c27ab427527b9ecfcd0bb46756e789d4140e3f943f6f881"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 326,
+          "fresh_assertions": 850,
+          "novel_candidates": 2,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m2a",
+        "source_container_id": "MEGA_Dream_ex_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/MEGA_Dream_ex_(TCG)",
+        "source_expected_card_count": 193,
+        "source_native_name": "MEGA Dream ex",
+        "source_release_date": "November 28, 2025",
+        "targeted_work_item_key": "b911f6f6e9982f52256e79d4ac0987efc7e23cf9765acbcbe98c945207c2016c"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 326,
+          "fresh_assertions": 850,
+          "novel_candidates": 2,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m2a",
+        "source_container_id": "M2A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2819640_m2a-mega-dream-ex-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M2a Mega Dream ex",
+        "source_release_date": "November 28, 2025",
+        "targeted_work_item_key": "4e881f30a18b03109fcd6090086097c5593e93d99c7b9b1d44af7bec6f1163b3"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 194,
+          "fresh_assertions": 451,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m3",
+        "source_container_id": "Nihil_Zero_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Nihil_Zero_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Nihil Zero",
+        "source_release_date": "January 23, 2026",
+        "targeted_work_item_key": "41975b3ad2eeec526b9f8c06877e41ab8fa3001754794628ac791c19cc28c4fe"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 194,
+          "fresh_assertions": 451,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m3",
+        "source_container_id": "M3",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2914213_m3-nihil-zero-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M3 Nihil Zero",
+        "source_release_date": "January 23, 2026",
+        "targeted_work_item_key": "c065f67d37bd8aaeea5d3ca1aaef898c0bd044625ce77cf29dc4662c63e8764e"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 201,
+          "fresh_assertions": 460,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m4",
+        "source_container_id": "Ninja_Spinner_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Ninja_Spinner_(TCG)",
+        "source_expected_card_count": 83,
+        "source_native_name": "Ninja Spinner",
+        "source_release_date": "March 13, 2026",
+        "targeted_work_item_key": "85f559cb69db66058eef6d95585b03289b7b021d949c7dc07b2798a18df07996"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 201,
+          "fresh_assertions": 460,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m4",
+        "source_container_id": "M4",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/3012129_m4-ninja-spinner-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M4 Ninja Spinner",
+        "source_release_date": "March 13, 2026",
+        "targeted_work_item_key": "211279dc8f5e590a1c24bcaaa5206dba4aa163bab8543dbb09faa7003792e781"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 193,
+          "fresh_assertions": 454,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m5",
+        "source_container_id": "Abyss_Eye_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Abyss_Eye_(TCG)",
+        "source_expected_card_count": 81,
+        "source_native_name": "Abyss Eye",
+        "source_release_date": "May 22, 2026",
+        "targeted_work_item_key": "b91c29545578dc840512d401a3224f2971436b92dc30a357d9e75e79fd542963"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 193,
+          "fresh_assertions": 454,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-m5",
+        "source_container_id": "M5",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/3132093_m5-abyss-eye-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M5 Abyss Eye",
+        "source_release_date": "May 22, 2026",
+        "targeted_work_item_key": "b242a0e586131c977938c0dc108a737a4c4ae124fdcdffc5b2b7b30cfe4bbae4"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 145,
+          "fresh_assertions": 1648,
+          "novel_candidates": 16,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-mc",
+        "source_container_id": "start-deck-100-battle-collection",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2889900_start-deck-100-battle-collection-all-ar-sr-sar-mur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "Start Deck 100 Battle Collection",
+        "source_release_date": "December 19, 2025",
+        "targeted_work_item_key": "4486a86eee25c6ac3f56c2200889b937b90205ab75b2c03804b123de57607d53"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 137,
+          "fresh_assertions": 92,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 92,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-256e78c79c550e0c",
+        "source_container_id": "The_Town_on_No_Map_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/The_Town_on_No_Map_(TCG)",
+        "source_expected_card_count": 92,
+        "source_native_name": "The Town on No Map",
+        "source_release_date": "March 8, 2002",
+        "targeted_work_item_key": "efebbf955ae3e724f9293d7b54071cbe025e01d95a0a048f251604d84ca26ab8"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 141,
+          "fresh_assertions": 84,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 84,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-27c74e7178fd9898",
+        "source_container_id": "Holon_Research_Tower_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Holon_Research_Tower_(TCG)",
+        "source_expected_card_count": 86,
+        "source_native_name": "Holon Research Tower",
+        "source_release_date": "October 28, 2005",
+        "targeted_work_item_key": "d0ba8c823084b6db853e9bef44c950dad7585c9fecac0ca73d93e5265d01ae77"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 108,
+          "fresh_assertions": 68,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 68,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-322c110f169e1ce2",
+        "source_container_id": "Offense_and_Defense_of_the_Furthest_Ends_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Offense_and_Defense_of_the_Furthest_Ends_(TCG)",
+        "source_expected_card_count": 68,
+        "source_native_name": "Offense and Defense of the Furthest Ends",
+        "source_release_date": "June 29, 2006",
+        "targeted_work_item_key": "a37197d128dc88b24850499b4745742a0f1083206c5f15a7e0509a687659470a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 110,
+          "fresh_assertions": 86,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-426829a8906c7ca0",
+        "source_container_id": "Mirage_Forest_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Mirage_Forest_(TCG)",
+        "source_expected_card_count": 86,
+        "source_native_name": "Mirage Forest",
+        "source_release_date": "June 30, 2005",
+        "targeted_work_item_key": "d82073416553c5b2cc5fe8490222394e84edd31fbe7a811f123efb7ae2449813"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 96,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 96,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-468a341483d6e016",
+        "source_container_id": "Gold,_Silver,_to_a_New_World..._(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Gold,_Silver,_to_a_New_World..._(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Gold, Silver, to a New World...",
+        "source_release_date": "February 4, 2000",
+        "targeted_work_item_key": "019aac7f9e7a05db4f4e567ef72286c97d50b6bf830ccdba39af2817ec9e0e1c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 134,
+          "fresh_assertions": 91,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 91,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-4961b9d8bce74e89",
+        "source_container_id": "Split_Earth_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Split_Earth_(TCG)",
+        "source_expected_card_count": 88,
+        "source_native_name": "Split Earth",
+        "source_release_date": "August 23, 2002",
+        "targeted_work_item_key": "c4cc989c58500e2c4192d1534854d9c6fde6134b3dcaf91304d7c5d423d77ba7"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 127,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-4f74998f8efd8c8b",
+        "source_container_id": "Darkness,_and_to_Light..._(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Darkness,_and_to_Light..._(TCG)",
+        "source_expected_card_count": 113,
+        "source_native_name": "Darkness, and to Light...",
+        "source_release_date": "April 20, 2001",
+        "targeted_work_item_key": "1f3d81cce808df27da4cdc9943073d31bee3521d54a5be9a502a7eb238414b61"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 109,
+          "fresh_assertions": 85,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 85,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-4fd17b78ef9b1d7a",
+        "source_container_id": "Rocket_Gang_Strikes_Back_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rocket_Gang_Strikes_Back_(TCG)",
+        "source_expected_card_count": 84,
+        "source_native_name": "Rocket Gang Strikes Back",
+        "source_release_date": "October 15, 2004",
+        "targeted_work_item_key": "a1076634f8518dd5c66b7207be527d00a1db3fdd52c3466cd6c1b6d21b8caa20"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 100,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-596daaa8c64fca1f",
+        "source_container_id": "Pokémon_VS_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_VS_(TCG)",
+        "source_expected_card_count": 141,
+        "source_native_name": "Pokémon Card★VS",
+        "source_release_date": "July 19, 2001",
+        "targeted_work_item_key": "6332c6ae4d550041555a3e29b70827e1d933572373a12f6af1dd571a313fe2ae"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 149,
+          "fresh_assertions": 90,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 90,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-5a2606476652e721",
+        "source_container_id": "Wind_from_the_Sea_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Wind_from_the_Sea_(TCG)",
+        "source_expected_card_count": 87,
+        "source_native_name": "Wind from the Sea",
+        "source_release_date": "May 24, 2002",
+        "targeted_work_item_key": "0bc7ea9777cd39865e15a99a95561cd9a562c5666eaafc84745616bc06cbc363"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 144,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-62268dbd70a1c1be",
+        "source_container_id": "Base_Expansion_Pack_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Base_Expansion_Pack_(TCG)",
+        "source_expected_card_count": 128,
+        "source_native_name": "Base Expansion Pack",
+        "source_release_date": "December 1, 2001",
+        "targeted_work_item_key": "ff643afacaec3b60072bfcf3338b49cff4f8fbb4775f5817af198c6f12281771"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 92,
+          "fresh_assertions": 58,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 58,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-6d6df3485e89d3da",
+        "source_container_id": "Holon_Phantom_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Holon_Phantom_(TCG)",
+        "source_expected_card_count": 52,
+        "source_native_name": "Holon Phantom",
+        "source_release_date": "January 27, 2006",
+        "targeted_work_item_key": "4e699a88a5563140370de2a2de9307ca5638a2701ee9e350ffa11052aea71f79"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 79,
+          "fresh_assertions": 54,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 54,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-6fbc82703daa225b",
+        "source_container_id": "Rulers_of_the_Heavens_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rulers_of_the_Heavens_(TCG)",
+        "source_expected_card_count": 54,
+        "source_native_name": "Rulers of the Heavens",
+        "source_release_date": "June 25, 2003",
+        "targeted_work_item_key": "a5bf49b9f090270ab6348364e64d79e459376a3947d8aa1b00cdd1a509c26763"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 90,
+          "fresh_assertions": 48,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 48,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-9200a69b8d9f3556",
+        "source_container_id": "Pokémon_Jungle_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Jungle_(TCG)",
+        "source_expected_card_count": 48,
+        "source_native_name": "Pokémon Jungle",
+        "source_release_date": "March 5, 1997",
+        "targeted_work_item_key": "7f1ac25feba5a1c7b17301287b8b4331a7adebde739026338c5174a8d34d9fd2"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 124,
+          "fresh_assertions": 82,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 82,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-93a156ccac7153f1",
+        "source_container_id": "Clash_of_the_Blue_Sky_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Clash_of_the_Blue_Sky_(TCG)",
+        "source_expected_card_count": 82,
+        "source_native_name": "Clash of the Blue Sky",
+        "source_release_date": "July 1, 2004",
+        "targeted_work_item_key": "ab10f892ba1f4ef396723baa95d08c37cb547b9d2146d296eaa5f90a63083a57"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 96,
+          "fresh_assertions": 73,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 73,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-9532032d6c6f34ed",
+        "source_container_id": "Enhanced_Expansion_Pack_Sun_&_Moon_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Enhanced_Expansion_Pack_Sun_%26_Moon_(TCG)",
+        "source_expected_card_count": 51,
+        "source_native_name": "Sun & Moon",
+        "source_release_date": "January 27, 2017",
+        "targeted_work_item_key": "8b7980f0a4d2fec306b63e29870b8f23f9f7bac1a8009d8e8b6e5fc7e9a7873c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 64,
+          "fresh_assertions": 48,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 48,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-9ed4d3a8f0440a07",
+        "source_container_id": "Pokémon_Web_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Web_(TCG)",
+        "source_expected_card_count": 48,
+        "source_native_name": "Pokémon Card★web",
+        "source_release_date": "October 20, 2001",
+        "targeted_work_item_key": "2f3983a3494d1540f871093ff2169540359f20787c26653c675ce386c8025c1b"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 87,
+          "fresh_assertions": 57,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 57,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-a66fd47c97974224",
+        "source_container_id": "Awakening_Legends_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Awakening_Legends_(TCG)",
+        "source_expected_card_count": 57,
+        "source_native_name": "Awakening Legends",
+        "source_release_date": "November 23, 2000",
+        "targeted_work_item_key": "9af00463f22b36bda3e19add23ea46ea6f91a77e93a4757bab455ebe7cce2b8a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 148,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-a6e2ccd9c6ce3008",
+        "source_container_id": "World_Champions_Pack_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/World_Champions_Pack_(TCG)",
+        "source_expected_card_count": 108,
+        "source_native_name": "World Champions Pack",
+        "source_release_date": "July 5, 2007",
+        "targeted_work_item_key": "8089f945e0ce40ca910a5d7137cc6cdd2ef7896b1b01802d8f5ef16c5a745317"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 139,
+          "fresh_assertions": 345,
+          "novel_candidates": 27,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-b88f934d137634ed",
+        "source_container_id": "GX_Battle_Boost_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/GX_Battle_Boost_(TCG)",
+        "source_expected_card_count": 114,
+        "source_native_name": "GX Battle Boost",
+        "source_release_date": "October 20, 2017",
+        "targeted_work_item_key": "38349ca2e924bec1807a6698b4f4638a71b8b23a3ef5156cadb1facaee91741d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 168,
+          "fresh_assertions": 100,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-bfd93655709431d0",
+        "source_container_id": "Golden_Sky,_Silvery_Ocean_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Golden_Sky,_Silvery_Ocean_(TCG)",
+        "source_expected_card_count": 106,
+        "source_native_name": "Golden Sky, Silvery Ocean",
+        "source_release_date": "April 8, 2005",
+        "targeted_work_item_key": "4457349c7ad16966181e37d4cea864bc07d5c9597759d15be24e70e41c0d64c3"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 129,
+          "fresh_assertions": 91,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 91,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-c876aa483a727649",
+        "source_container_id": "Mysterious_Mountains_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Mysterious_Mountains_(TCG)",
+        "source_expected_card_count": 88,
+        "source_native_name": "Mysterious Mountains",
+        "source_release_date": "October 4, 2002",
+        "targeted_work_item_key": "d8aa5760b425b26adfa797e74131846578e0dbbc104005147078211b64cbdd45"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 107,
+          "fresh_assertions": 75,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 75,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-d22a9dd357f27197",
+        "source_container_id": "Miracle_Crystal_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Miracle_Crystal_(TCG)",
+        "source_expected_card_count": 75,
+        "source_native_name": "Miracle Crystal",
+        "source_release_date": "March 10, 2006",
+        "targeted_work_item_key": "2f4cffe1ce8be926984cc7fea0b22486d5d1f6b5c75edc248ef8be930ea64b68"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 126,
+          "fresh_assertions": 82,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 82,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-d2cb57b99ecf5a6c",
+        "source_container_id": "Flight_of_Legends_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Flight_of_Legends_(TCG)",
+        "source_expected_card_count": 82,
+        "source_native_name": "Flight of Legends",
+        "source_release_date": "April 9, 2004",
+        "targeted_work_item_key": "75b5e19cd530868c751873acdd0edda7a9f7c8e94bbe6c9f529a965c8c3c5023"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 79,
+          "fresh_assertions": 65,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 65,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-d6d824dc67a05835",
+        "source_container_id": "Rocket_Gang_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rocket_Gang_(TCG)",
+        "source_expected_card_count": 65,
+        "source_native_name": "Rocket Gang",
+        "source_release_date": "November 21, 1997",
+        "targeted_work_item_key": "fdcd1e6fa9821d30a59255a6b2fc8609602776423c66aea416e182ade884af62"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 79,
+          "fresh_assertions": 57,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 57,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-f327c885c3280ad7",
+        "source_container_id": "Crossing_the_Ruins..._(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Crossing_the_Ruins..._(TCG)",
+        "source_expected_card_count": 56,
+        "source_native_name": "Crossing the Ruins...",
+        "source_release_date": "July 7, 2000",
+        "targeted_work_item_key": "4d9f111401ea5607da309c3e3545eb56a8de4087dff63c881606ca028ce27011"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 76,
+          "fresh_assertions": 53,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 53,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-f3edc7c4482495e6",
+        "source_container_id": "Miracle_of_the_Desert_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Miracle_of_the_Desert_(TCG)",
+        "source_expected_card_count": 53,
+        "source_native_name": "Miracle of the Desert",
+        "source_release_date": "April 18, 2003",
+        "targeted_work_item_key": "9bb5307eb9b4e77517f489da6aa146f6b8f25f667b62f47d706767c4ffacabec"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 118,
+          "fresh_assertions": 88,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 88,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-f74744ba0b0564be",
+        "source_container_id": "Magma_VS_Aqua:_Two_Ambitions_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Magma_VS_Aqua:_Two_Ambitions_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Magma VS Aqua: Two Ambitions",
+        "source_release_date": "October 24, 2003",
+        "targeted_work_item_key": "219c48e012036e75a924e9f70843a5078303f5ab7066ceabcf23626c886a38e0"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 106,
+          "fresh_assertions": 92,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 92,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-f8f1b4d8a91b1e95",
+        "source_container_id": "Hot_Wind_Arena_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Hot_Wind_Arena_(TCG)",
+        "source_expected_card_count": 63,
+        "source_native_name": "Hot Wind Arena",
+        "source_release_date": "March 14, 2025",
+        "targeted_work_item_key": "d79e0b4765989bf7cf3778b0e217457e98e6199fcd44598f72255e8b76484f75"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 152,
+          "fresh_assertions": 201,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s10b",
+        "source_container_id": "Pokémon_GO_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_GO_(TCG)",
+        "source_expected_card_count": 71,
+        "source_native_name": "Pokémon GO",
+        "source_release_date": "June 17, 2022",
+        "targeted_work_item_key": "5085fb57441edecac93d551914028056908affb7df19647730673b4ee048cce8"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 152,
+          "fresh_assertions": 201,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s10b",
+        "source_container_id": "S10B",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/927185_s10b-pokemon-go-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S10b Pokemon GO",
+        "source_release_date": "June 17, 2022",
+        "targeted_work_item_key": "d7023eae7225d6ea157aad6af89c212d5e48fc0b4410920f2986937bcaf5681b"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 140,
+          "fresh_assertions": 354,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s11",
+        "source_container_id": "Lost_Abyss_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Abyss_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Lost Abyss",
+        "source_release_date": "July 15, 2022",
+        "targeted_work_item_key": "4db98975fdd72edcb865f4c2ccadaf4fbda8d9a6389cc355fae727acaa29aacf"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 140,
+          "fresh_assertions": 354,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s11",
+        "source_container_id": "S11",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/945896_s11-lost-abyss-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S11 Lost Abyss",
+        "source_release_date": "July 15, 2022",
+        "targeted_work_item_key": "d9273f55a58999c10f341cce3e288f5984a15d31cf93d661582e8e63bf4b413d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 167,
+          "fresh_assertions": 288,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s11a",
+        "source_container_id": "Incandescent_Arcana_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Incandescent_Arcana_(TCG)",
+        "source_expected_card_count": 68,
+        "source_native_name": "Incandescent Arcana",
+        "source_release_date": "September 2, 2022",
+        "targeted_work_item_key": "54190d0422db32d6b7bd1550cf7b46aaf976fd41176364dc18999e337aadd224"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 167,
+          "fresh_assertions": 288,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s11a",
+        "source_container_id": "S11A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/976166_s11a-incandescent-arcana-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S11a Incandescent Arcana",
+        "source_release_date": "September 2, 2022",
+        "targeted_work_item_key": "ff5ea157f3c8341ae400d25cdacb8c5c572d2bd5b9e1c7e2c6a2bee422292930"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 148,
+          "fresh_assertions": 475,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s12",
+        "source_container_id": "Paradigm_Trigger_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Paradigm_Trigger_(TCG)",
+        "source_expected_card_count": 98,
+        "source_native_name": "Paradigm Trigger",
+        "source_release_date": "October 21, 2022",
+        "targeted_work_item_key": "bbc20d66739c5460052ae809d67d0e0d9bea109646f2fa79fee09fb3d232a54d"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 148,
+          "fresh_assertions": 475,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s12",
+        "source_container_id": "S12",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1028508_s12-paradigm-trigger-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S12 Paradigm Trigger",
+        "source_release_date": "October 21, 2022",
+        "targeted_work_item_key": "17a9c55b5054aac7008cce4f354fa41892136b6fadc94ba63b246e2b264c8569"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 153,
+          "fresh_assertions": 870,
+          "novel_candidates": 5,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 3
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions",
+          "unresolved_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s12a",
+        "source_container_id": "VSTAR_Universe_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/VSTAR_Universe_(TCG)",
+        "source_expected_card_count": 172,
+        "source_native_name": "VSTAR Universe",
+        "source_release_date": "December 2, 2022",
+        "targeted_work_item_key": "a01e3b26d2e1652e943d667393590b44d9b77b9243319d12036f9900162ceb14"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 153,
+          "fresh_assertions": 870,
+          "novel_candidates": 5,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 3
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions",
+          "unresolved_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s12a",
+        "source_container_id": "S12A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1076351_s12a-vstar-universe-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S12a VSTAR Universe",
+        "source_release_date": "December 2, 2022",
+        "targeted_work_item_key": "7b88acc52b8a661d547e191d8ee8bd36a4296ace5ff51fece5295fc69d56af4a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 131,
+          "fresh_assertions": 250,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s1a",
+        "source_container_id": "VMAX_Rising_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/VMAX_Rising_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "VMAX Rising",
+        "source_release_date": "February 7, 2020",
+        "targeted_work_item_key": "d96988b8dc8249051d732f21980d614c3360d752cd2b672f6d1c7f0d925b70bf"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 131,
+          "fresh_assertions": 250,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s1a",
+        "source_container_id": "S1A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/401783_s1a-sword-shield-vmax-rising-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S1a Sword & Shield VMAX Rising",
+        "source_release_date": null,
+        "targeted_work_item_key": "38e709221e308fda407b214b62ddc0c64c54b2d9682b6bc0165105eafac035ba"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 206,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s2",
+        "source_container_id": "Rebellion_Crash_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rebellion_Crash_(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Rebellion Crash",
+        "source_release_date": "March 6, 2020",
+        "targeted_work_item_key": "5295e8b8a8c1e82fa9bfcd77e263c6b0fa76d268341ca80eb48f94f1a12b871c"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 206,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s2",
+        "source_container_id": "S2",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/419102_s2-sword-shield-rebellion-crash-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S2 Sword & Shield Rebellion Crash",
+        "source_release_date": null,
+        "targeted_work_item_key": "cad24e7516a67acdefc79e2cee4db8dc4a829b955a9411877a4e264f2b0a2123"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 115,
+          "fresh_assertions": 250,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s2a",
+        "source_container_id": "Explosive_Walker_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Explosive_Walker_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Explosive Walker",
+        "source_release_date": "April 24, 2020",
+        "targeted_work_item_key": "8f346deef0f037f468f0bec367abf8e2a8840325f1af5201158828fa6af77ead"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 115,
+          "fresh_assertions": 250,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s2a",
+        "source_container_id": "S2A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/432986_s2a-sword-shield-explosive-walker-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S2a Sword & Shield Explosive Walker",
+        "source_release_date": null,
+        "targeted_work_item_key": "44c81d812ce5c6d5b7a0c6c0b5627d8ed4c022637df409d17a487173ad6eea77"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 141,
+          "fresh_assertions": 329,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s3",
+        "source_container_id": "Infinity_Zone_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Infinity_Zone_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Infinity Zone",
+        "source_release_date": "June 5, 2020",
+        "targeted_work_item_key": "e252e86fe1167798acd2cbad348bb179aef9da018a4f7abab1125b1bfff6dc67"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 141,
+          "fresh_assertions": 329,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s3",
+        "source_container_id": "S3",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/459381_s3-sword-shield-infinity-zone-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S3 Sword & Shield Infinity Zone",
+        "source_release_date": null,
+        "targeted_work_item_key": "5d0273ca9004832f82f724675e476a4024310e813e4795c5c076111f5ccdf6fd"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 134,
+          "fresh_assertions": 179,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s3a",
+        "source_container_id": "Legendary_Heartbeat_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Legendary_Heartbeat_(TCG)",
+        "source_expected_card_count": 76,
+        "source_native_name": "Legendary Heartbeat",
+        "source_release_date": "July 10, 2020",
+        "targeted_work_item_key": "6afbfc96979ae6b2d8a34be0d56be238fe4bcbfe72dc879789cac243b222303e"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 134,
+          "fresh_assertions": 179,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s3a",
+        "source_container_id": "S3A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/474614_s3a-sword-shield-legendary-heartbeat-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S3a Sword & Shield Legendary Heartbeat",
+        "source_release_date": null,
+        "targeted_work_item_key": "d4a5fad4be18348115b3acc25c5eb4b7543e453c1d738bdf3ee833f25fda63b4"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 157,
+          "fresh_assertions": 756,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s4a",
+        "source_container_id": "Shiny_Star_V_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Shiny_Star_V_(TCG)",
+        "source_expected_card_count": 190,
+        "source_native_name": "Shiny Star V",
+        "source_release_date": "November 20, 2020",
+        "targeted_work_item_key": "28ca580c4c572124e1a5dd2aa6467b3e673e2aaeea12ad3c8567e7556e287113"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 157,
+          "fresh_assertions": 756,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s4a",
+        "source_container_id": "S4A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/533386_s4a-shiny-star-v-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S4a Shiny Star V",
+        "source_release_date": "November 20, 2020",
+        "targeted_work_item_key": "d1e01c9fd5de59887915ab9dbd08891f62abaf47407cacdab106b0b5ed6fe1ef"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 153,
+          "fresh_assertions": 180,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 96,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s5a",
+        "source_container_id": "S5A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/624669_s5a-matchless-fighters-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S5a Matchless Fighters",
+        "source_release_date": null,
+        "targeted_work_item_key": "c277eb1aa73b27eaba923118ac1dce6e5d00b35251dd52d6d7c31e761c0ae903"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 160,
+          "fresh_assertions": 288,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s6a",
+        "source_container_id": "Eevee_Heroes_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_Heroes_(TCG)",
+        "source_expected_card_count": 69,
+        "source_native_name": "Eevee Heroes",
+        "source_release_date": "May 28, 2021",
+        "targeted_work_item_key": "e443efe9635d32c916d767b3a6396a10d32205d1ddb7b5f2689d45772b8c5697"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 160,
+          "fresh_assertions": 288,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s6a",
+        "source_container_id": "S6A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/675387_s6a-eevee-heroes-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S6a Eevee Heroes",
+        "source_release_date": null,
+        "targeted_work_item_key": "fdd9f9d62fdeab6960a8de1b1cdf518c3f4d336cd2ef6b343ff924945dc5e1aa"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 144,
+          "fresh_assertions": 344,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8",
+        "source_container_id": "Fusion_Arts_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Fusion_Arts_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Fusion Arts",
+        "source_release_date": "September 24, 2021",
+        "targeted_work_item_key": "47c6019f7fae91e8b47ad47fe247479854abb8b9a37b4de968b10cda72a91e4d"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 144,
+          "fresh_assertions": 344,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8",
+        "source_container_id": "S8",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/740592_s8-fusion-arts-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S8 Fusion Arts",
+        "source_release_date": null,
+        "targeted_work_item_key": "ee635d31bd669f2eb1336e1e14ae4a59b42610af9085c0700f7e36be3b9028e5"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 63,
+          "fresh_assertions": 96,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 34,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8a",
+        "source_container_id": "25th_Anniversary_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/25th_Anniversary_Collection_(TCG)",
+        "source_expected_card_count": 28,
+        "source_native_name": "25th Anniversary Collection",
+        "source_release_date": "October 22, 2021",
+        "targeted_work_item_key": "77ef47d962afc53454a7a8e657dc5c323b19915ce461a20919cdc0fa822b1b76"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 63,
+          "fresh_assertions": 96,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 34,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8a",
+        "source_container_id": "S8A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/753007_s8a-25th-anniversary-collection",
+        "source_expected_card_count": null,
+        "source_native_name": "S8a 25th ANNIVERSARY COLLECTION",
+        "source_release_date": null,
+        "targeted_work_item_key": "30a572d1f7ae34c29dc0455a902bbb09b275c5c6c329441953db365e1fcbd5f3"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 185,
+          "fresh_assertions": 659,
+          "novel_candidates": 12,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8b",
+        "source_container_id": "VMAX_Climax_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/VMAX_Climax_(TCG)",
+        "source_expected_card_count": 184,
+        "source_native_name": "VMAX Climax",
+        "source_release_date": "December 3, 2021",
+        "targeted_work_item_key": "236bf50b87df21e4bfadeca2f48bead16de2d64aa1cdeb80b79ef5ea1eee049b"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 185,
+          "fresh_assertions": 659,
+          "novel_candidates": 12,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s8b",
+        "source_container_id": "S8B",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/784837_s8b-vmax-climax-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S8b VMAX Climax",
+        "source_release_date": null,
+        "targeted_work_item_key": "dc8b08b7413ef298c9343536ffbec285209be04f424ba2532c58ac40bc7a25b1"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 155,
+          "fresh_assertions": 481,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s9",
+        "source_container_id": "Star_Birth_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Star_Birth_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Star Birth",
+        "source_release_date": "January 14, 2022",
+        "targeted_work_item_key": "d8611888729aea407b59850d42524fb6a2fceef8a5d7d2c25d6b4a576d6a6278"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 155,
+          "fresh_assertions": 481,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s9",
+        "source_container_id": "S9",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/808527_s9-star-birth-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S9 Star Birth",
+        "source_release_date": null,
+        "targeted_work_item_key": "6196412cd23320ab30a4e87729b7aacfb346238ca1a71d6ecbeec84f6f7a2454"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 156,
+          "fresh_assertions": 379,
+          "novel_candidates": 6,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s9a",
+        "source_container_id": "Battle_Region_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Region_(TCG)",
+        "source_expected_card_count": 67,
+        "source_native_name": "Battle Region",
+        "source_release_date": "February 25, 2022",
+        "targeted_work_item_key": "67955cef1c3695a2983a60758685b4bdb45f5248e84c9a2c90601aad0cc720fc"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 156,
+          "fresh_assertions": 379,
+          "novel_candidates": 6,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-s9a",
+        "source_container_id": "S9A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/847692_s9a-battle-region-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S9a Battle Region",
+        "source_release_date": null,
+        "targeted_work_item_key": "74eec1862e561def6838270a8bf200ad3960862293a1c9653bb7700b931ed541"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 36,
+          "fresh_assertions": 70,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 25,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sc",
+        "source_container_id": "Shiny_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Shiny_Collection_(TCG)",
+        "source_expected_card_count": 20,
+        "source_native_name": "Shiny Collection",
+        "source_release_date": "February 1, 2013",
+        "targeted_work_item_key": "588f9ea7b84fab5719f1a2a562fd73c7d96e268143e102503a3e259e029f73df"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 185,
+          "fresh_assertions": 438,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm10",
+        "source_container_id": "Double_Blaze_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Double_Blaze_(TCG)",
+        "source_expected_card_count": 95,
+        "source_native_name": "Double Blaze",
+        "source_release_date": "March 1, 2019",
+        "targeted_work_item_key": "e1fec3c18c1cc7d2253ea145349650944a5bb6dd091cedc500f396f1b1960d73"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 96,
+          "fresh_assertions": 200,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 69,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm10a",
+        "source_container_id": "GG_End_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/GG_End_(TCG)",
+        "source_expected_card_count": 54,
+        "source_native_name": "GG End",
+        "source_release_date": "April 5, 2019",
+        "targeted_work_item_key": "bb22e2713efab199dede681f33a065ced3daceea8c4b3a1f6ae07b44025ed533"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 83,
+          "fresh_assertions": 200,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 69,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm10b",
+        "source_container_id": "Sky_Legend_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Sky_Legend_(TCG)",
+        "source_expected_card_count": 54,
+        "source_native_name": "Sky Legend",
+        "source_release_date": "April 26, 2019",
+        "targeted_work_item_key": "17835c7cd64dd19e4df72c51b95ba720845f25cb7722c4e46c715bd73e9a0111"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 140,
+          "fresh_assertions": 321,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11",
+        "source_container_id": "Miracle_Twin_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Miracle_Twin_(TCG)",
+        "source_expected_card_count": 94,
+        "source_native_name": "Miracle Twin",
+        "source_release_date": "May 31, 2019",
+        "targeted_work_item_key": "cec8d2a9a3ac7785aa6856dfdf27b82892d91164e236c42e3071bbb4abc6d178"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 140,
+          "fresh_assertions": 321,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11",
+        "source_container_id": "SM11",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/358700_sm11-miracle-twin-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "SM11 Miracle Twin",
+        "source_release_date": "May 31, 2019",
+        "targeted_work_item_key": "97d6f5b4b19d951f942f33f400ad4f5c2e40ad606737d65250e4b9f7d701079b"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 105,
+          "fresh_assertions": 233,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 80,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11a",
+        "source_container_id": "Remix_Bout_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Remix_Bout_(TCG)",
+        "source_expected_card_count": 64,
+        "source_native_name": "Remix Bout",
+        "source_release_date": "July 5, 2019",
+        "targeted_work_item_key": "c3cfdcd94f0a0163d5b6f37c4c12929e2c0e8dcc4a51bacfac71667a2af6419d"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 105,
+          "fresh_assertions": 233,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 80,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11a",
+        "source_container_id": "SM11A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/358702_sm11a-remix-bout-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "SM11a Remix Bout",
+        "source_release_date": null,
+        "targeted_work_item_key": "9dbc8aafd68bf8c283879b7e6ab0f246cdf3d4f372a61aa406a7b455dd24a3f1"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 293,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 75,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11b",
+        "source_container_id": "Dream_League_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dream_League_(TCG)",
+        "source_expected_card_count": 49,
+        "source_native_name": "Dream League",
+        "source_release_date": "August 2, 2019",
+        "targeted_work_item_key": "02fcf227f18dc4b30aee322e987324cdac36fa1b4c7d616574168d49a1883534"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 293,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 75,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm11b",
+        "source_container_id": "SM11B",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/358704_sm11b-dream-league-all-sr-chr-ur-hr-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "SM11b Dream League",
+        "source_release_date": null,
+        "targeted_work_item_key": "266df23eae4895f034fcbacc8dd7bdcf297f9a3c9224fc8b616b02b9b5661392"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 179,
+          "fresh_assertions": 429,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm12",
+        "source_container_id": "Alter_Genesis_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Alter_Genesis_(TCG)",
+        "source_expected_card_count": 95,
+        "source_native_name": "Alter Genesis",
+        "source_release_date": "September 6, 2019",
+        "targeted_work_item_key": "22036ee6aa7f325b844fb607b649cab117652f1aa39e90b9e0392bd8208ca701"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 179,
+          "fresh_assertions": 429,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm12",
+        "source_container_id": "SM12",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/358709_sm12-alter-genesis-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "SM12 Alter Genesis",
+        "source_release_date": null,
+        "targeted_work_item_key": "5e380ce8d04af548855b599df22f0e655f50c76cdd71d5575345f39a16506b3f"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 92,
+          "fresh_assertions": 625,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm12a",
+        "source_container_id": "SM12A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/359769_sm12a-tag-all-stars-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "SM12a Tag",
+        "source_release_date": null,
+        "targeted_work_item_key": "49b077156b2e775f328a0dd3b6cb251bfbdea8ce21563dabfb4c2e210fa82965"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 147,
+          "fresh_assertions": 202,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm6",
+        "source_container_id": "Forbidden_Light_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)",
+        "source_expected_card_count": 94,
+        "source_native_name": "Forbidden Light",
+        "source_release_date": "March 2, 2018",
+        "targeted_work_item_key": "f362ade95df1d6a7314f3403d0d6fc50822f890bf3e29841b8f7bb3a5532f213"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 91,
+          "fresh_assertions": 191,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 66,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm6a",
+        "source_container_id": "Dragon_Storm_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Storm_(TCG)",
+        "source_expected_card_count": 53,
+        "source_native_name": "Dragon Storm",
+        "source_release_date": "April 6, 2018",
+        "targeted_work_item_key": "a631975a97f734152408511a0de8687d33c0d54eaf4db648b2dc987a698fd4d6"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 114,
+          "fresh_assertions": 249,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 86,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm6b",
+        "source_container_id": "Champion_Road_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Champion_Road_(TCG)",
+        "source_expected_card_count": 66,
+        "source_native_name": "Champion Road",
+        "source_release_date": "May 30, 2018",
+        "targeted_work_item_key": "5a0777bd99b692a2f2ad0c91a5744d5ac53216eb4c03a172cf9f39bf45905b1d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 136,
+          "fresh_assertions": 204,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm7",
+        "source_container_id": "Sky-Splitting_Charisma_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Sky-Splitting_Charisma_(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Sky-Splitting Charisma",
+        "source_release_date": "June 1, 2018",
+        "targeted_work_item_key": "36c0b04993e3e98f523c776f007278f88e0d9bffc167bf18c89d883aeedb40f4"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 95,
+          "fresh_assertions": 199,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 73,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm7a",
+        "source_container_id": "Thunderclap_Spark_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Thunderclap_Spark_(TCG)",
+        "source_expected_card_count": 60,
+        "source_native_name": "Thunderclap Spark",
+        "source_release_date": "July 6, 2018",
+        "targeted_work_item_key": "4a19f5212b51f339d61d9379757ef080618ccb45e81e89e18c5a1b92ba7ca67e"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 78,
+          "fresh_assertions": 169,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 63,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm7b",
+        "source_container_id": "Fairy_Rise_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Fairy_Rise_(TCG)",
+        "source_expected_card_count": 50,
+        "source_native_name": "Fairy Rise",
+        "source_release_date": "August 3, 2018",
+        "targeted_work_item_key": "34ca2eef4992c154a0572a0896a292622ae9b53c289482a8c97a2afe5e810596"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 145,
+          "fresh_assertions": 203,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm8",
+        "source_container_id": "Super-Burst_Impact_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Super-Burst_Impact_(TCG)",
+        "source_expected_card_count": 95,
+        "source_native_name": "Super-Burst Impact",
+        "source_release_date": "September 7, 2018",
+        "targeted_work_item_key": "8b9fd49bd27db00fe0d706acefa0725c4716728c94c1c6544d3aaa0e8ce020bd"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 88,
+          "fresh_assertions": 175,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 65,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm8a",
+        "source_container_id": "Dark_Order_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Order_(TCG)",
+        "source_expected_card_count": 52,
+        "source_native_name": "Dark Order",
+        "source_release_date": "October 5, 2018",
+        "targeted_work_item_key": "3d11ebc2aede71e34b9854b2e4600229e264988852de6002e1f4f85a67693f7b"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 137,
+          "fresh_assertions": 586,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm8b",
+        "source_container_id": "GX_Ultra_Shiny_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/GX_Ultra_Shiny_(TCG)",
+        "source_expected_card_count": 150,
+        "source_native_name": "GX Ultra Shiny",
+        "source_release_date": "November 2, 2018",
+        "targeted_work_item_key": "2dc868ff65812c49f2eb48a99586bee3774b2f8b50d187ae4e8c6b23ea45b376"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 141,
+          "fresh_assertions": 327,
+          "novel_candidates": 4,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm9",
+        "source_container_id": "Tag_Bolt_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Tag_Bolt_(TCG)",
+        "source_expected_card_count": 95,
+        "source_native_name": "Tag Bolt",
+        "source_release_date": "December 7, 2018",
+        "targeted_work_item_key": "c4f70c9cba4b4250860ccbbcd5263b712d90dec4d61295e6d52a8c1c46619f18"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 91,
+          "fresh_assertions": 203,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 70,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm9a",
+        "source_container_id": "Night_Unison_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Night_Unison_(TCG)",
+        "source_expected_card_count": 55,
+        "source_native_name": "Night Unison",
+        "source_release_date": "January 11, 2019",
+        "targeted_work_item_key": "b141c84a9e4b38f289befd20bd2abba419fe21f907cf6e5616d3a41c74d44979"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 90,
+          "fresh_assertions": 200,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 69,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sm9b",
+        "source_container_id": "Full_Metal_Wall_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Full_Metal_Wall_(TCG)",
+        "source_expected_card_count": 54,
+        "source_native_name": "Full Metal Wall",
+        "source_release_date": "February 1, 2019",
+        "targeted_work_item_key": "8faec97ae86a3811a1d2dbe26bf1495dac592cf7fd8209d5a9a9a17289d8473c"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 118,
+          "fresh_assertions": 462,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv10",
+        "source_container_id": "SV10",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2401852_sv10-glory-of-team-rocket-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV10 Glory of Team Rocket",
+        "source_release_date": "April 18, 2025",
+        "targeted_work_item_key": "f80053d0f92ac23ee52d8e1325f0e15dd475eb1044895170b5e45443f81759ec"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 125,
+          "fresh_assertions": 409,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv1a",
+        "source_container_id": "Triplet_Beat_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Triplet_Beat_(TCG)",
+        "source_expected_card_count": 73,
+        "source_native_name": "Triplet Beat",
+        "source_release_date": "March 10, 2023",
+        "targeted_work_item_key": "bec45d18c1529daf6ccbf66498a45112f490b4f809ccc53bdcb42e5d0920cd59"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 125,
+          "fresh_assertions": 409,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv1a",
+        "source_container_id": "SV1A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1194706_sv1a-triplet-beat-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV1a Triplet Beat",
+        "source_release_date": "March 10, 2023",
+        "targeted_work_item_key": "a7fc264e594300ad7a164c354398e991017fe0bffeb654c5891cac3ba36da7aa"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 167,
+          "fresh_assertions": 520,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv2a",
+        "source_container_id": "Pokémon_Card_151_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Card_151_(TCG)",
+        "source_expected_card_count": 165,
+        "source_native_name": "Pokémon Card 151",
+        "source_release_date": "June 16, 2023",
+        "targeted_work_item_key": "850ac2d4736ad298e1af5f46a4fbaa9480bf425d09d08c3ffbae66e483de9a20"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 167,
+          "fresh_assertions": 520,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv2a",
+        "source_container_id": "SV2A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1298677_sv2a-pokemon-card-151-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV2a Pokemon Card 151",
+        "source_release_date": "June 16, 2023",
+        "targeted_work_item_key": "9bc0e6106fbe5e73334c460399117bc8a434ce31aa0b5892799c52b8f0ecb442"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 138,
+          "fresh_assertions": 523,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv3",
+        "source_container_id": "Ruler_of_the_Black_Flame_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Ruler_of_the_Black_Flame_(TCG)",
+        "source_expected_card_count": 108,
+        "source_native_name": "Ruler of the Black Flame",
+        "source_release_date": "July 28, 2023",
+        "targeted_work_item_key": "749082bf3106182a1fe75a930dccc3499c55dcc6ee16eb35ce40923f78e6e4e2"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 138,
+          "fresh_assertions": 523,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv3",
+        "source_container_id": "SV3",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1355369_sv3-ruler-of-the-black-flame-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV3 Ruler of the Black Flame",
+        "source_release_date": "July 28, 2023",
+        "targeted_work_item_key": "dfefaa9a1803ae76f0264e85b6f4da2fa60891a6825d81783361a667948d6a64"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 127,
+          "fresh_assertions": 368,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 92,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv3a",
+        "source_container_id": "Raging_Surf_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Raging_Surf_(TCG)",
+        "source_expected_card_count": 62,
+        "source_native_name": "Raging Surf",
+        "source_release_date": "September 22, 2023",
+        "targeted_work_item_key": "f5ce99d9bf9a04bff47e318d439f5299686e77172170c5a55b467794ed88c851"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 127,
+          "fresh_assertions": 368,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 92,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv3a",
+        "source_container_id": "SV3A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1454314_sv3a-raging-surf-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV3a Raging Surf",
+        "source_release_date": "September 22, 2023",
+        "targeted_work_item_key": "64da30afdeac85a721964219dbd623b3c4e16061f22ce8702c6faa3f3e0c41fa"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 131,
+          "fresh_assertions": 1140,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv4a",
+        "source_container_id": "Shiny_Treasure_ex_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Shiny_Treasure_ex_(TCG)",
+        "source_expected_card_count": 190,
+        "source_native_name": "Shiny Treasure ex",
+        "source_release_date": "December 1, 2023",
+        "targeted_work_item_key": "f2349fb05584af1ccba617fe4c425d70e3f080e62934451c9d048e9400764be9"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 131,
+          "fresh_assertions": 1140,
+          "novel_candidates": 8,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv4a",
+        "source_container_id": "SV4A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1534479_sv4a-shiny-treasure-ex-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV4a Shiny Treasure ex",
+        "source_release_date": "December 1, 2023",
+        "targeted_work_item_key": "568215aada4c7e075a619755a1fe118b508022d79319c36d0f050c7ac2637bdf"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 128,
+          "fresh_assertions": 384,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 96,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv5a",
+        "source_container_id": "Crimson_Haze_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Crimson_Haze_(TCG)",
+        "source_expected_card_count": 66,
+        "source_native_name": "Crimson Haze",
+        "source_release_date": "March 22, 2024",
+        "targeted_work_item_key": "f8838d6a972e988b6da2470a0d574fefa2c32a134a5379f5e6747725afdcba60"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 128,
+          "fresh_assertions": 384,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 96,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv5a",
+        "source_container_id": "SV5A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1692672_sv5a-crimson-haze-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV5a Crimson Haze",
+        "source_release_date": "March 22, 2024",
+        "targeted_work_item_key": "242f0a720be90e714e8efec00d3a26e2348de68ecce578c5ca3538e89ac2991f"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 137,
+          "fresh_assertions": 467,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv6",
+        "source_container_id": "SV6",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1721807_sv6-mask-of-change-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV6 Mask of Change",
+        "source_release_date": "April 26, 2024",
+        "targeted_work_item_key": "ef44438e964153d4265de82e27eeee391160810d6905b03d082ff323092794c9"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 282,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv6a",
+        "source_container_id": "Night_Wanderer_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Night_Wanderer_(TCG)",
+        "source_expected_card_count": 64,
+        "source_native_name": "Night Wanderer",
+        "source_release_date": "June 7, 2024",
+        "targeted_work_item_key": "8d4fde54ffe284f10c26f16897fbd4c92e4d2a8ea14e2784dfce427895dad604"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 282,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv6a",
+        "source_container_id": "SV6A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1800509_sv6a-night-wanderer-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV6a Night Wanderer",
+        "source_release_date": "June 7, 2024",
+        "targeted_work_item_key": "4886e9561f1a4d1bdbed10020663cd6f19580a535b6b4659c42f46c5c44a7e48"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 137,
+          "fresh_assertions": 505,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv7",
+        "source_container_id": "Stellar_Miracle_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Stellar_Miracle_(TCG)",
+        "source_expected_card_count": 102,
+        "source_native_name": "Stellar Miracle",
+        "source_release_date": "July 19, 2024",
+        "targeted_work_item_key": "5506d68caee7eca4bedf8a715d0b5d585040d07b44e13f0ea2be1f0259de89a9"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 137,
+          "fresh_assertions": 505,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv7",
+        "source_container_id": "SV7",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1858675_sv7-stella-miracle-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV7 Stella Miracle",
+        "source_release_date": "July 19, 2024",
+        "targeted_work_item_key": "1f6af1316f7567ecbe2e79adb52a8be0e4ed2761d006874f2aaefbf1aedd12bd"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 128,
+          "fresh_assertions": 376,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv7a",
+        "source_container_id": "Paradise_Dragona_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Paradise_Dragona_(TCG)",
+        "source_expected_card_count": 64,
+        "source_native_name": "Paradise Dragona",
+        "source_release_date": "September 13, 2024",
+        "targeted_work_item_key": "567b7ebdbd7a0a1e36b242e69b553dc3bf4d449bf5e240768e776e31aca64cac"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 128,
+          "fresh_assertions": 376,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 94,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv7a",
+        "source_container_id": "SV7A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1992333_sv7a-paradise-dragona-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV7a Paradise Dragona",
+        "source_release_date": "September 13, 2024",
+        "targeted_work_item_key": "6b5a231d8fa610dc626bd9209fb1a3024ae97e8fbef7343f706c76c26a3de10e"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 134,
+          "fresh_assertions": 811,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv8a",
+        "source_container_id": "Terastal_Fest_ex_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Terastal_Fest_ex_(TCG)",
+        "source_expected_card_count": 187,
+        "source_native_name": "Terastal Fest ex",
+        "source_release_date": "December 6, 2024",
+        "targeted_work_item_key": "1228b1c429b831a0b934d324e5456a21ea231404b9660867a217e40444631d3c"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 134,
+          "fresh_assertions": 811,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv8a",
+        "source_container_id": "SV8A",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2122234_sv8a-terastal-festival-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV8a Terastal Festival",
+        "source_release_date": "December 6, 2024",
+        "targeted_work_item_key": "cf43783a5492725d33ccb3ee789df77b5652754ef25965e91aba03451b1fd41c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 129,
+          "fresh_assertions": 496,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv9",
+        "source_container_id": "Battle_Partners_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Partners_(TCG)",
+        "source_expected_card_count": 100,
+        "source_native_name": "Battle Partners",
+        "source_release_date": "January 24, 2025",
+        "targeted_work_item_key": "5b4472dae270a8e2691d417659748a10c5aa4700154631d0ada382a8816d172c"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 129,
+          "fresh_assertions": 496,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-sv9",
+        "source_container_id": "SV9",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2230143_sv9-battle-partners-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV9 Battle Partners",
+        "source_release_date": "January 24, 2025",
+        "targeted_work_item_key": "44b35c336a5f07405aba6c8e4359118ea033990c5bb7b9871419a70c84785599"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 178,
+          "fresh_assertions": 414,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy",
+        "source_container_id": "The_Best_of_XY_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/The_Best_of_XY_(TCG)",
+        "source_expected_card_count": 171,
+        "source_native_name": "THE BEST OF XY",
+        "source_release_date": "April 21, 2017",
+        "targeted_work_item_key": "fd1130c78ca4d78f79f35576db9bac8897c075826e88b1ac7ddcec95217ef119"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 121,
+          "fresh_assertions": 175,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 88,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy10",
+        "source_container_id": "Awakening_Psychic_King_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Awakening_Psychic_King_(TCG)",
+        "source_expected_card_count": 78,
+        "source_native_name": "Awakening Psychic King",
+        "source_release_date": "March 18, 2016",
+        "targeted_work_item_key": "b437d7ef1a35f8f232a0c9ecfd03cdd852a84f678d77aa5e93de71a1787e1d9f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 128,
+          "fresh_assertions": 264,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 87,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy2",
+        "source_container_id": "Wild_Blaze_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Wild_Blaze_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Wild Blaze",
+        "source_release_date": "March 15, 2014",
+        "targeted_work_item_key": "b0a1495734fc816ac68d5a90b19a0c9af70095ffaf40c2d8aee40b4e03387d6c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 146,
+          "fresh_assertions": 308,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 100,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy3",
+        "source_container_id": "Rising_Fist_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rising_Fist_(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Rising Fist",
+        "source_release_date": "June 14, 2014",
+        "targeted_work_item_key": "14f57495e2cc474e207266193aebd29ef36475a32a099cd0bac1aea2f35b6c7d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 138,
+          "fresh_assertions": 287,
+          "novel_candidates": 3,
+          "source_isolated_candidates": 95,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy4",
+        "source_container_id": "Phantom_Gate_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Phantom_Gate_(TCG)",
+        "source_expected_card_count": 88,
+        "source_native_name": "Phantom Gate",
+        "source_release_date": "September 13, 2014",
+        "targeted_work_item_key": "eecbec95c9647b92ea66fea46f0d7e657793683235be1ede825b3bd619415b3a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 127,
+          "fresh_assertions": 269,
+          "novel_candidates": 11,
+          "source_isolated_candidates": 89,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy6",
+        "source_container_id": "Emerald_Break_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Emerald_Break_(TCG)",
+        "source_expected_card_count": 78,
+        "source_native_name": "Emerald Break",
+        "source_release_date": "March 14, 2015",
+        "targeted_work_item_key": "147cc18facc3a4f4bdbc2591797f4f175dce2822ede029d19ff84f3b849097a1"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 139,
+          "fresh_assertions": 190,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 95,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy7",
+        "source_container_id": "Bandit_Ring_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Bandit_Ring_(TCG)",
+        "source_expected_card_count": 81,
+        "source_native_name": "Bandit Ring",
+        "source_release_date": "June 20, 2015",
+        "targeted_work_item_key": "c481410cee929b8e30de493e806bf9c2b6822976aa1c2bcf976b2b9fffd99034"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 129,
+          "fresh_assertions": 177,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 89,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-xy9",
+        "source_container_id": "Rage_of_the_Broken_Heavens_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Rage_of_the_Broken_Heavens_(TCG)",
+        "source_expected_card_count": 80,
+        "source_native_name": "Rage of the Broken Heavens",
+        "source_release_date": "December 11, 2015",
+        "targeted_work_item_key": "fe79c338d2448c730c630dc03c5a04c34980378b2860974df0f204a98c024a8d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-dp2",
+        "source_container_id": "Secret_of_the_Lakes_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_of_the_Lakes_(TCG)",
+        "source_expected_card_count": 123,
+        "source_native_name": "Secret of the Lakes",
+        "source_release_date": "March 2, 2007",
+        "targeted_work_item_key": "f0316f9b1b1f72727e17694cf3770ba063ebdaad348354e76e6cb39e580cbe4a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-0595d0ea48f8324a",
+        "source_container_id": "Snow_Hazard/Clay_Burst_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Snow_Hazard/Clay_Burst_(TCG)",
+        "source_expected_card_count": 71,
+        "source_native_name": "Snow Hazard • Clay Burst",
+        "source_release_date": "April 14, 2023",
+        "targeted_work_item_key": "0c680d13c4bcc6cddb4ea0ba0005f6dda1fe576b47ac6908a230d01d7ab1f31d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-05d7a6df83837b1e",
+        "source_container_id": "Mega_Brave/Mega_Symphonia_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Mega_Brave/Mega_Symphonia_(TCG)",
+        "source_expected_card_count": 63,
+        "source_native_name": "Mega Brave • Mega Symphonia",
+        "source_release_date": "August 1, 2025",
+        "targeted_work_item_key": "44f243b45d0a274ba92d010739985f0f0b364844f7d8c4c1cd97e0a4503ed0f5"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-0a0f7299d0620e8a",
+        "source_container_id": "Collection_Sun/Collection_Moon_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Collection_Sun/Collection_Moon_(TCG)",
+        "source_expected_card_count": 60,
+        "source_native_name": "Collection Sun • Collection Moon",
+        "source_release_date": "December 9, 2016",
+        "targeted_work_item_key": "2546e44f48bac71c3216d01822225365171341d9ca75ca193a7b601371f67323"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-12f6f9cddea41841",
+        "source_container_id": "SV5K+SV5M",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1603188_sv5k-wild-force-sv5m-cyber-judge-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV5K Wild Force / SV5M Cyber Judge",
+        "source_release_date": "January 26, 2024",
+        "targeted_work_item_key": "e9fbd169a9eefc2219b218b874a002339d9e24f69d86c5669f5713ae245cabb7"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-15714477e8909d2c",
+        "source_container_id": "SV4K+SV4M",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1465412_sv4k-ancient-roar-sv4m-future-flash-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV4K Ancient Roar / SV4M Future Flash",
+        "source_release_date": "October 27, 2023",
+        "targeted_work_item_key": "78890f1e3485e453460922b84674df9ee3ae0eb4d5e766fd7b8d0d6944f9e891"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-22e118eb83888511",
+        "source_container_id": "Dragon_Blast/Dragon_Blade_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon_Blast/Dragon_Blade_(TCG)",
+        "source_expected_card_count": 50,
+        "source_native_name": "Dragon Blast • Dragon Blade",
+        "source_release_date": "March 16, 2012",
+        "targeted_work_item_key": "026a7083ff1d704ee04d6e0825fe6f871e4f8d4a710c1a807cab1abf7c467a4f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-40012e8d7b8404ad",
+        "source_container_id": "Expansion_Pack_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Expansion_Pack_(TCG)",
+        "source_expected_card_count": 102,
+        "source_native_name": "Expansion Pack",
+        "source_release_date": "October 20, 1996",
+        "targeted_work_item_key": "2250a9b2001d8ad092845061fd0ab16936738f732112282a645099d0107ab3c7"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-426e7f4f11967d68",
+        "source_container_id": "Mystery_of_the_Fossils_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Mystery_of_the_Fossils_(TCG)",
+        "source_expected_card_count": 48,
+        "source_native_name": "Mystery of the Fossils",
+        "source_release_date": "June 21, 1997",
+        "targeted_work_item_key": "dc7c1187d74455e6d8f36f8daba28c51adb5c6fcd9fdf4affdea6223a3121c08"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-45c3edcc6955b648",
+        "source_container_id": "Freeze_Bolt/Cold_Flare_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Freeze_Bolt/Cold_Flare_(TCG)",
+        "source_expected_card_count": 59,
+        "source_native_name": "Freeze Bolt • Cold Flare",
+        "source_release_date": "July 13, 2012",
+        "targeted_work_item_key": "2b6dc54da8bdfeb2aee8f0223ed2c91120514dcbbc1a1d885a72dcb28246e501"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-468ec0745ef5a70d",
+        "source_container_id": "Sword/Shield_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Sword/Shield_(TCG)",
+        "source_expected_card_count": 60,
+        "source_native_name": "Sword • Shield",
+        "source_release_date": "December 6, 2019",
+        "targeted_work_item_key": "297b694c0bc20271c6be13a4066da19ee839c6d8dc45583f84d6aadb0325e8d9"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-478f10d1d4a22fc5",
+        "source_container_id": "Tag_All_Stars_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Tag_All_Stars_(TCG)",
+        "source_expected_card_count": 173,
+        "source_native_name": "TAG TEAM GX: Tag All Stars",
+        "source_release_date": "October 4, 2019",
+        "targeted_work_item_key": "444dc699de03f2d8c335789aa0f55c49c12f5a825188e3d0df4495b313fb2384"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-482756808099183d",
+        "source_container_id": "ADV_Expansion_Pack_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/ADV_Expansion_Pack_(TCG)",
+        "source_expected_card_count": 55,
+        "source_native_name": "ADV Expansion Pack",
+        "source_release_date": "January 31, 2003",
+        "targeted_work_item_key": "6002e4e191dc325058e5625637746d3ca293cce89fd7e8517b37d6a1b6768d8f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-4b1ad16327f8e8f2",
+        "source_container_id": "Time_Gazer/Space_Juggler_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Time_Gazer/Space_Juggler_(TCG)",
+        "source_expected_card_count": 67,
+        "source_native_name": "Time Gazer • Space Juggler",
+        "source_release_date": "April 8, 2022",
+        "targeted_work_item_key": "e2d3664b47ede3760308780735658faa9f87c57a0ee43424378a27d3ae72172d"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-4caa8e1ebbf62b37",
+        "source_container_id": "Fever-Burst_Fighter/Cruel_Traitor_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Fever-Burst_Fighter/Cruel_Traitor_(TCG)",
+        "source_expected_card_count": 54,
+        "source_native_name": "Fever-Burst Fighter • Cruel Traitor",
+        "source_release_date": "June 17, 2016",
+        "targeted_work_item_key": "15ffb45249c24504dd904a72484ee698dc70ed3c678d3f5f78ae496e57dc1738"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-4e493e53b96b09fb",
+        "source_container_id": "S1W+S1H",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/377490_s1w-s1h-sword-shield-expansion-pack-sword-shield-set-list-revealed",
+        "source_expected_card_count": null,
+        "source_native_name": "S1W / S1H Sword & Shield Expansion Pack Sword & Shield Set List Revealed",
+        "source_release_date": null,
+        "targeted_work_item_key": "fecd2e046d470b6b23573f8a3a85811944aa9b57b973d26f0d318cab057ad467"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-4e6d3639cfe39ddd",
+        "source_container_id": "S5I+S5R",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/586470_s5i-s5r-single-strike-master-rapid-strike-master-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S5I / S5R Single Strike Master / Rapid Strike Master",
+        "source_release_date": null,
+        "targeted_work_item_key": "31c523279d9a60ca28e4243cc732019c9724dad258db0ebdb15dfa0bc844b252"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-55be839b074c1f02",
+        "source_container_id": "Magma_Gang_VS_Aqua_Gang:_Double_Crisis_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Magma_Gang_VS_Aqua_Gang:_Double_Crisis_(TCG)",
+        "source_expected_card_count": 34,
+        "source_native_name": "Magma Gang VS Aqua Gang: Double Crisis",
+        "source_release_date": "January 30, 2015",
+        "targeted_work_item_key": "5143452c12d957f3ead94509cdec40873d2234a88c776be7db56254457f807d4"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-58035b6ea2d6563e",
+        "source_container_id": "Peerless_Fighters_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Peerless_Fighters_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Peerless Fighters",
+        "source_release_date": "March 19, 2021",
+        "targeted_work_item_key": "88bd255b96d060b7bd51fb2673158ec8cd86f09cd211dcba8a0658bc08a5665a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-5bdc3107c3d84789",
+        "source_container_id": "Leaders'_Stadium_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Leaders%27_Stadium_(TCG)",
+        "source_expected_card_count": 96,
+        "source_native_name": "Leaders' Stadium",
+        "source_release_date": "October 24, 1998",
+        "targeted_work_item_key": "db24da56dfc2d3d715887702ed99e7f33211085bc831a6bc5763ad7083b5bf81"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-5e3ae5afe377bd90",
+        "source_container_id": "S1H+S1W",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/377489_s1h-s1w-sword-shield-all-sr-hr-ur-cards",
+        "source_expected_card_count": null,
+        "source_native_name": "S1H / S1W Sword & Shield",
+        "source_release_date": null,
+        "targeted_work_item_key": "e007954f5ca0d111d4f0fc622b9a2df56d1ad5cf59c8b8084641e23c0b9de6a6"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-5ecedebcb0768660",
+        "source_container_id": "HeartGold_Collection/SoulSilver_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/HeartGold_Collection/SoulSilver_Collection_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "HeartGold Collection • SoulSilver Collection",
+        "source_release_date": "October 9, 2009",
+        "targeted_work_item_key": "10561464260d3b752f6b08d8e5e73237f16f470f00e81a63431ef45de386f455"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-67228633adae2d5a",
+        "source_container_id": "Premium_Champion_Pack_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Premium_Champion_Pack_(TCG)",
+        "source_expected_card_count": 131,
+        "source_native_name": "Premium Champion Pack",
+        "source_release_date": "April 16, 2016",
+        "targeted_work_item_key": "ae5e09d384ddd142a65d801e808104ff3b8149bad4e78a5106be024305f9b05e"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-6d66ec10e77f9ece",
+        "source_container_id": "Black_Collection/White_Collection_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Black_Collection/White_Collection_(TCG)",
+        "source_expected_card_count": 53,
+        "source_native_name": "Black Collection • White Collection",
+        "source_release_date": "December 17, 2010",
+        "targeted_work_item_key": "66b9407d0e9f4bd97c066537cf3ea234d392a48d316689611a255141ed34a073"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-73ee14a6a81b74ea",
+        "source_container_id": "To_Have_Seen_the_Battle_Rainbow/Darkness_that_Consumes_Light_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/To_Have_Seen_the_Battle_Rainbow/Darkness_that_Consumes_Light_(TCG)",
+        "source_expected_card_count": 51,
+        "source_native_name": "To Have Seen the Battle Rainbow • Darkness that Consumes Light",
+        "source_release_date": "June 16, 2017",
+        "targeted_work_item_key": "8de006dbeed17eae3f41c0653d09ea87cc6b1db211f2c3d8dafb7e98da699ebe"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-75b36820ac1b92e3",
+        "source_container_id": "Blue_Shock/Red_Flash_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Blue_Shock/Red_Flash_(TCG)",
+        "source_expected_card_count": 59,
+        "source_native_name": "Blue Shock • Red Flash",
+        "source_release_date": "September 26, 2015",
+        "targeted_work_item_key": "cf483ef7da17314c8ce8cab855e1b7101496f32f4c0729ca9f4294c0491b948a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-77b6754eb77e9131",
+        "source_container_id": "Black_Bolt/White_Flare_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Black_Bolt/White_Flare_(TCG)",
+        "source_expected_card_count": 86,
+        "source_native_name": "Black Bolt • White Flare",
+        "source_release_date": "June 6, 2025",
+        "targeted_work_item_key": "b4f0ca2f3180c77b9eb739a5451a3a9b181eb0135e9b1901edb90686160af61d"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-780ba54b355b66be",
+        "source_container_id": "SV1S+SV1V",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1115508_sv1s-scarlet-ex-sv1v-violet-ex-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV1S Scarlet ex / SV1V Violet ex",
+        "source_release_date": "January 20, 2023",
+        "targeted_work_item_key": "3fb34658d4c45aeb3303d991e04c501ec94315e458df26c16d679b8853d1ee85"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-7c602dbcb79df670",
+        "source_container_id": "Single_Strike_Master/Rapid_Strike_Master_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Single_Strike_Master/Rapid_Strike_Master_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Single Strike Master • Rapid Strike Master",
+        "source_release_date": "January 22, 2021",
+        "targeted_work_item_key": "16fa6d77d189928a09eb7fe980cdf01e60cbcc9a76c6887566f154a216a236db"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-858c32e0a9fba49a",
+        "source_container_id": "SV11B+SV11W",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2486766_sv11b-black-bolt-sv11w-white-flare-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV11B Black Bolt / SV11W White Flare",
+        "source_release_date": "June 6, 2025",
+        "targeted_work_item_key": "b54baf1e5d795f887e991eb2ad0e7c3e748b9181e89230db336be1a9adf23880"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-8e3aa7d5f13dba92",
+        "source_container_id": "SV2P+SV2D",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/1244908_sv2p-snow-hazard-sv2d-clay-burst-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "SV2P Snow Hazard / SV2D Clay Burst",
+        "source_release_date": "April 14, 2023",
+        "targeted_work_item_key": "cf7c5a7739e5bf9b8d46562344118470c4a08672a511d16426c3d800b9eff4a3"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-91b289c0def54d1c",
+        "source_container_id": "Ancient_Roar/Future_Flash_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Roar/Future_Flash_(TCG)",
+        "source_expected_card_count": 66,
+        "source_native_name": "Ancient Roar • Future Flash",
+        "source_release_date": "October 27, 2023",
+        "targeted_work_item_key": "31867dc4406cecf0c25c286b28badf977ae998058de0792bb17dcc249b5244da"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-942688b28cee28fb",
+        "source_container_id": "Gaia_Volcano/Tidal_Storm_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Gaia_Volcano/Tidal_Storm_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Gaia Volcano • Tidal Storm",
+        "source_release_date": "December 13, 2014",
+        "targeted_work_item_key": "dd372947f58ea7b1e24af00a2e4a7fa3483959ca57c900f3f7e2b9ce4783705f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-9709297dbc69c7b1",
+        "source_container_id": "Transformation_Mask_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Transformation_Mask_(TCG)",
+        "source_expected_card_count": 101,
+        "source_native_name": "Transformation Mask",
+        "source_release_date": "April 26, 2024",
+        "targeted_work_item_key": "26363541409b9c386857ad43c60df278dfe3a133a9920ba77bb2eef0fa3e191f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-a11d2df4ea04478f",
+        "source_container_id": "Silver_Lance/Jet-Black_Spirit_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Silver_Lance/Jet-Black_Spirit_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Silver Lance • Jet-Black Spirit",
+        "source_release_date": "April 23, 2021",
+        "targeted_work_item_key": "fa6e0abdc2590e09cbc79024c39e5e2eb28e8667c35ef083081026ecdd326aad"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-a2115788042a547c",
+        "source_container_id": "Cry_from_the_Mysterious/Temple_of_Anger_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Cry_from_the_Mysterious/Temple_of_Anger_(TCG)",
+        "source_expected_card_count": 65,
+        "source_native_name": "Cry from the Mysterious • Temple of Anger",
+        "source_release_date": "March 14, 2008",
+        "targeted_work_item_key": "40227e432aca7d00c97cc8f8cf6c135a4489951201b366467838fcea8cd13cb2"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-a756e4c7cb880ab7",
+        "source_container_id": "Moonlit_Pursuit/Dawn_Dash_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Moonlit_Pursuit/Dawn_Dash_(TCG)",
+        "source_expected_card_count": 70,
+        "source_native_name": "Moonlit Pursuit • Dawn Dash",
+        "source_release_date": "October 26, 2007",
+        "targeted_work_item_key": "929d8e2b3cafd179274c5490a66933e8363d755b2003155791579bf0d6da1c68"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-aa1334c887012ddc",
+        "source_container_id": "S7D+S7R",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/704804_s7d-skyscraping-perfect-s7r-blue-sky-stream-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S7D Skyscraping Perfect / S7R Blue Sky Stream",
+        "source_release_date": null,
+        "targeted_work_item_key": "a122b367bc65cdf905e5697c6b895226cfd49c853f8e249cd15ce63437fc6a40"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-b0587b7a52002691",
+        "source_container_id": "Awakened_Heroes/Ultradimensional_Beasts_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Awakened_Heroes/Ultradimensional_Beasts_(TCG)",
+        "source_expected_card_count": 50,
+        "source_native_name": "Awakened Heroes • Ultradimensional Beasts",
+        "source_release_date": "September 15, 2017",
+        "targeted_work_item_key": "82accc4e420f05f0c8dfe0a41e19015add3bbb0001c509c5f384dce496a380ac"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-b28e1db89442b023",
+        "source_container_id": "Wild_Force/Cyber_Judge_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Wild_Force/Cyber_Judge_(TCG)",
+        "source_expected_card_count": 71,
+        "source_native_name": "Wild Force • Cyber Judge",
+        "source_release_date": "January 26, 2024",
+        "targeted_work_item_key": "a5548574375989df89c1477431e4454e9db66d8a6d308fc0ca125de1250985b4"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-b4c58ad14d37c38f",
+        "source_container_id": "Undone_Seal_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Undone_Seal_(TCG)",
+        "source_expected_card_count": 83,
+        "source_native_name": "Undone Seal",
+        "source_release_date": "January 16, 2004",
+        "targeted_work_item_key": "51b75f26690208f42fb388067228da5e838336ecf81ccff9b9c242b18da0298a"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-b8d0fc24d116e09a",
+        "source_container_id": "Islands_Await_You/Alolan_Moonlight_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Islands_Await_You/Alolan_Moonlight_(TCG)",
+        "source_expected_card_count": 50,
+        "source_native_name": "Islands Await You • Alolan Moonlight",
+        "source_release_date": "March 17, 2017",
+        "targeted_work_item_key": "f1cfc8aa642db1dd5e57bb3d1d6a4dd48ae92260088b1060dfd7ac603b9fa113"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-b9f3d92422109a83",
+        "source_container_id": "Spiral_Force/Thunder_Knuckle_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Spiral_Force/Thunder_Knuckle_(TCG)",
+        "source_expected_card_count": 51,
+        "source_native_name": "Spiral Force • Thunder Knuckle",
+        "source_release_date": "December 14, 2012",
+        "targeted_work_item_key": "0423e47a405fa63c93865a5bf10e916578f372c3a6fb24be8f90251b446e7b0c"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-be3aa08966286bbd",
+        "source_container_id": "Glory_of_the_Rocket_Gang_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Glory_of_the_Rocket_Gang_(TCG)",
+        "source_expected_card_count": 98,
+        "source_native_name": "Glory of the Rocket Gang",
+        "source_release_date": "April 18, 2025",
+        "targeted_work_item_key": "a8514b499d78637511af1e18f9fdcbff1ecb30a1554ad707b4020cd5c9edbaf8"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-c7e55295b23d7e01",
+        "source_container_id": "Collection_X/Collection_Y_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Collection_X/Collection_Y_(TCG)",
+        "source_expected_card_count": 60,
+        "source_native_name": "Collection X • Collection Y",
+        "source_release_date": "December 13, 2013",
+        "targeted_work_item_key": "178cc36a800f187d8573fe1cadbe875f6180728ebbc3f7e81e45ab5ccc992e96"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-cb010e8c5c9c28af",
+        "source_container_id": "Space-Time_Creation_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Space-Time_Creation_(TCG)",
+        "source_expected_card_count": null,
+        "source_native_name": "Space-Time Creation: Diamond Collection • Pearl Collection",
+        "source_release_date": "November 30, 2006",
+        "targeted_work_item_key": "4db74842076e8a21114b75c74bdba53c501acae0d52a6a28cbe0631c64eb1bf8"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-d4793b8ee109bd84",
+        "source_container_id": "Challenge_from_the_Darkness_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Challenge_from_the_Darkness_(TCG)",
+        "source_expected_card_count": 98,
+        "source_native_name": "Challenge from the Darkness",
+        "source_release_date": "June 25, 1999",
+        "targeted_work_item_key": "e92a48053ab32f368fca35c0e66e7049b5b2c0c71cec721a7e4cc51e1a9efe3b"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-d9abf30aaf4ac54e",
+        "source_container_id": "Skyscraping_Perfection/Blue_Sky_Stream_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Skyscraping_Perfection/Blue_Sky_Stream_(TCG)",
+        "source_expected_card_count": 67,
+        "source_native_name": "Skyscraping Perfection • Blue Sky Stream",
+        "source_release_date": "July 9, 2021",
+        "targeted_work_item_key": "9d12da42b8fb5f754278627edd0a8d19fa6b28c32a09d37e5423d0f587771dad"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-df57a9f5a39030ea",
+        "source_container_id": "S6H+S6K",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/650705_s6h-silver-lance-s6k-jet-black-poltergeist-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S6H Silver Lance / S6K Jet-Black Poltergeist",
+        "source_release_date": null,
+        "targeted_work_item_key": "48e960ed87e83bb6ab4d3c8094f665a43830bb42d7fbc632989c75ce89e17428"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-e8f4cce34c4c9a73",
+        "source_container_id": "Ultra_Sun/Ultra_Moon_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Ultra_Sun/Ultra_Moon_(TCG)",
+        "source_expected_card_count": 66,
+        "source_native_name": "Ultra Sun • Ultra Moon",
+        "source_release_date": "December 8, 2017",
+        "targeted_work_item_key": "fd41028b899bb6a1322f8937800a370326bcb49a55a5d8e99c936524798e4ac4"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-f648f9e0063e2424",
+        "source_container_id": "S10D+S10P",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/861272_s10d-time-gazer-s10p-space-juggler-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "S10D Time Gazer / S10P Space Juggler",
+        "source_release_date": "April 8, 2022",
+        "targeted_work_item_key": "ada265b81c47c53f0e6ee395990967aa793fae1d2a6517af9fd403455f776158"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-f8352fc7cb2b9a7e",
+        "source_container_id": "Scarlet_ex/Violet_ex_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Scarlet_ex/Violet_ex_(TCG)",
+        "source_expected_card_count": 78,
+        "source_native_name": "Scarlet ex • Violet ex",
+        "source_release_date": "January 20, 2023",
+        "targeted_work_item_key": "e7fd1d8338f02b42617105b334a59029dd046f3f8da016daa3aba757268106ed"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-fd8c429aaffd5bd1",
+        "source_container_id": "M1L+M1S",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/2592533_m1l-mega-brave-m1s-mega-symphonia-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M1L Mega Brave / M1S Mega Symphonia",
+        "source_release_date": "August 1, 2025",
+        "targeted_work_item_key": "87904b3b7b994f113de3edd60d1ad74770ef49135330511b2be30921f5347000"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-release-fd9d9060d2b4f301",
+        "source_container_id": "Psycho_Drive/Hail_Blizzard_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Psycho_Drive/Hail_Blizzard_(TCG)",
+        "source_expected_card_count": 52,
+        "source_native_name": "Psycho Drive • Hail Blizzard",
+        "source_release_date": "September 16, 2011",
+        "targeted_work_item_key": "df4dbdec5f8ac3202c4c5c1c213641e6dc55a0251ece75bb0faac5b15b94283f"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 0,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "no_fresh_primary_assertion"
+        ],
+        "priority": "medium",
+        "registry_key": "jpn-sm2+",
+        "source_container_id": "Facing_a_New_Trial_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Facing_a_New_Trial_(TCG)",
+        "source_expected_card_count": 49,
+        "source_native_name": "Facing a New Trial",
+        "source_release_date": "April 21, 2017",
+        "targeted_work_item_key": "c14284937e0dfa13360b1500132909b2f0953a16581d4fd2009455ddf88bb475"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 103,
+          "novel_candidates": 1,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates"
+        ],
+        "priority": "corroboration",
+        "registry_key": "jpn-cp6",
+        "source_container_id": "Expansion_Pack_20th_Anniversary_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Expansion_Pack_20th_Anniversary_(TCG)",
+        "source_expected_card_count": 87,
+        "source_native_name": "Expansion Pack 20th Anniversary",
+        "source_release_date": "September 16, 2016",
+        "targeted_work_item_key": "29f940e3aba9a7d2e1348471598ba1264cdd7edb90b49758167ad845c7cdd648"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 0,
+          "fresh_assertions": 56,
+          "novel_candidates": 2,
+          "source_isolated_candidates": 0,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates"
+        ],
+        "priority": "corroboration",
+        "registry_key": "jpn-release-d92055e3cb31ee94",
+        "source_container_id": "Ultra_Force_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Ultra_Force_(TCG)",
+        "source_expected_card_count": 50,
+        "source_native_name": "Ultra Force",
+        "source_release_date": "January 19, 2018",
+        "targeted_work_item_key": "e268c6f4506c76bca4cb70b15ca64dc8233c053e0757137c75b11142ca83ad26"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e",
+  "generated_at": "2026-07-26T22:25:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-TARGETED-SOURCE-QUEUE-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

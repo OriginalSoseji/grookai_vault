@@ -1,0 +1,19 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "summary": {
+      "priority_counts": {},
+      "queued_work_item_count": 0
+    },
+    "work_items": []
+  },
+  "content_fingerprint_sha256": "af62f1eb395ae5f9f863ba287c472b0623459898f916bdd401b35400366967dd",
+  "generated_at": "2026-07-27T01:00:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-RESIDUAL-TARGETED-SOURCE-QUEUE-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

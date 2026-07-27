@@ -1,0 +1,93 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "summary": {
+      "as_of": "2026-07-27T01:00:00.000Z",
+      "priority_counts": {
+        "high": 3
+      },
+      "queued_work_item_count": 3
+    },
+    "work_items": [
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 152,
+          "fresh_assertions": 228,
+          "novel_candidates": 76,
+          "source_isolated_candidates": 76,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-10ce4ad24f2df6f7",
+        "source_container_id": "Storm_Emeralda_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/Storm_Emeralda_(TCG)",
+        "source_expected_card_count": null,
+        "source_native_name": "Storm Emeralda",
+        "source_release_date": "July 31, 2026",
+        "targeted_work_item_key": "9c412ddd6c09497be9ddb04cf44d159514da819794638112c27b301f39aba144"
+      },
+      {
+        "lane_id": "pokeguardian_release_reports",
+        "measured_counts": {
+          "conflicts": 152,
+          "fresh_assertions": 228,
+          "novel_candidates": 76,
+          "source_isolated_candidates": 76,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-10ce4ad24f2df6f7",
+        "source_container_id": "M6",
+        "source_container_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets/3244371_m6-storm-emeralda-main-set-list",
+        "source_expected_card_count": null,
+        "source_native_name": "M6 Storm Emeralda",
+        "source_release_date": "July 31, 2026",
+        "targeted_work_item_key": "72b1cf23ece970c1c3263d1c31d61fca2d5f8307f9cb656d935ff50f2e3a0118"
+      },
+      {
+        "lane_id": "bulbapedia_jp_card_lists",
+        "measured_counts": {
+          "conflicts": 46,
+          "fresh_assertions": 26,
+          "novel_candidates": 0,
+          "source_isolated_candidates": 26,
+          "unresolved_assertions": 0
+        },
+        "measured_gap_reasons": [
+          "candidate_conflicts",
+          "novel_candidates_need_independent_corroboration",
+          "single_source_novel_candidates",
+          "source_isolated_unnumbered_assertions"
+        ],
+        "priority": "high",
+        "registry_key": "jpn-release-f11a1b74a50dc563",
+        "source_container_id": "30th_Celebration_(TCG)",
+        "source_container_url": "https://bulbapedia.bulbagarden.net/wiki/30th_Celebration_(TCG)",
+        "source_expected_card_count": 103,
+        "source_native_name": "30th Celebration",
+        "source_release_date": "September 16, 2026",
+        "targeted_work_item_key": "35c565c51143c5af604949b161de5638a877d4752647cb334575e7cce32b4a25"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56",
+  "generated_at": "2026-07-27T01:00:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-DEFERRED-FUTURE-TARGETED-SOURCE-QUEUE-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

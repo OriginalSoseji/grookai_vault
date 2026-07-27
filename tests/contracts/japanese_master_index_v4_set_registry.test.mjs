@@ -316,6 +316,70 @@ test('registry resolver refuses ambiguous native codes and replaces source place
   );
 });
 
+test('registry consolidates source-corroborated legacy code aliases', () => {
+  const assertions = [
+    {
+      source_id: 'tcgdex_ja_sets',
+      source_set_id: 'SM4+',
+      source_native_code: 'SM4+',
+      source_native_name: 'GXバトルブースト',
+      source_release_date: '2017-10-20',
+      source_expected_card_count: 120,
+      source_era_label: 'Sun & Moon',
+      source_scope_hint: null,
+    },
+    {
+      source_id: 'limitless_jp_sets',
+      source_set_id: 'SM4p',
+      source_native_code: 'SM4p',
+      source_native_name: 'GXバトルブースト',
+      source_release_date: '20 Oct 17',
+      source_expected_card_count: 120,
+      source_era_label: 'Sun & Moon',
+      source_scope_hint: null,
+    },
+  ];
+  const baseline = {
+    set_codes: [
+      {
+        set_code: 'jpn-SM4+',
+        folded_set_code: 'jpn-sm4+',
+        parent_rows: 125,
+        public_rows: 125,
+      },
+      {
+        set_code: 'jpn-SM4p',
+        folded_set_code: 'jpn-sm4p',
+        parent_rows: 120,
+        public_rows: 120,
+      },
+    ],
+    source_placeholder_sets: [],
+    case_only_alias_groups: [],
+  };
+
+  const result = buildRegistry({ assertions, baseline });
+  const merged = result.registryEntries.find(
+    (entry) => entry.source_assertion_keys.length === 2,
+  );
+  assert.ok(merged);
+  assert.deepEqual(
+    [...merged.live_set_code_aliases].sort(),
+    ['jpn-SM4+', 'jpn-SM4p'],
+  );
+  assert.equal(merged.live_parent_rows, 245);
+  assert.equal(
+    result.summary.source_corroborated_baseline_alias_merge_count,
+    2,
+  );
+  assert.equal(
+    result.registryEntries.filter(
+      (entry) => ['jpn-sm4+', 'jpn-sm4p'].includes(entry.registry_key),
+    ).length,
+    0,
+  );
+});
+
 test('preserved live set artifacts are healthy, unique, and replayable', () => {
   const assertionsPath = path.join(ROOT, 'source_set_assertions_v1.json');
   const healthPath = path.join(ROOT, 'source_health_v1.json');

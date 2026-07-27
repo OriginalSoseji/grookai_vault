@@ -1869,7 +1869,7 @@
         "alias_value": "jpn-SM3+",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm3+",
-        "registry_key": "jpn-sm3+"
+        "registry_key": "jpn-release-8e24fccc62c9b3e2"
       },
       {
         "alias_type": "live_set_code",
@@ -1904,14 +1904,14 @@
         "alias_value": "jpn-SM3p",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm3p",
-        "registry_key": "jpn-sm3p"
+        "registry_key": "jpn-release-8e24fccc62c9b3e2"
       },
       {
         "alias_type": "live_set_code",
         "alias_value": "jpn-SM4+",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm4+",
-        "registry_key": "jpn-sm4+"
+        "registry_key": "jpn-release-b88f934d137634ed"
       },
       {
         "alias_type": "live_set_code",
@@ -1932,7 +1932,7 @@
         "alias_value": "jpn-SM4p",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm4p",
-        "registry_key": "jpn-sm4p"
+        "registry_key": "jpn-release-b88f934d137634ed"
       },
       {
         "alias_type": "live_set_code",
@@ -1953,7 +1953,7 @@
         "alias_value": "jpn-SM5+",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm5+",
-        "registry_key": "jpn-sm5+"
+        "registry_key": "jpn-release-d92055e3cb31ee94"
       },
       {
         "alias_type": "live_set_code",
@@ -1974,7 +1974,7 @@
         "alias_value": "jpn-SM5p",
         "ambiguous": false,
         "normalized_alias_value": "jpn-sm5p",
-        "registry_key": "jpn-sm5p"
+        "registry_key": "jpn-release-d92055e3cb31ee94"
       },
       {
         "alias_type": "live_set_code",
@@ -24102,8 +24102,8 @@
       "case_only_alias_group_count": 116
     }
   },
-  "content_fingerprint_sha256": "0c0897d5396972dbe82fd53f3b9cb907031d42ff111b041366131e06b434a363",
-  "generated_at": "2026-07-26T17:09:54.034Z",
+  "content_fingerprint_sha256": "81b0a8b95f908c81f61f76c40b2fb7b86783ae3c2f07dfc14b0733ba62318742",
+  "generated_at": "2026-07-26T18:12:50.481Z",
   "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
   "retrieval": {
     "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
