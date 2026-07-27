@@ -516,7 +516,12 @@ async function runPhase(client, {
   });
   await client.query(
     `update public.market_price_pipeline_runs
-        set state = 'running',
+        set state = case
+              when $2 = 'activate'
+                and reconciliation_state = 'reconciled'
+                then 'reconciled'
+              else 'running'
+            end,
             current_phase = $2,
             error_classification = null,
             error = null

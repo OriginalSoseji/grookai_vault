@@ -356,6 +356,10 @@ test("worker is dry-run by default and writes only governed pricing tables in wr
   assert.match(WORKER, /market_price_qualification_decisions/);
   assert.match(WORKER, /market_price_publication_snapshots/);
   assert.match(WORKER, /activate_market_price_publication_set_v1/);
+  assert.match(
+    WORKER,
+    /when \$2 = 'activate'[\s\S]*reconciliation_state = 'reconciled'[\s\S]*then 'reconciled'/,
+  );
   assert.match(WORKER, /published readback mismatch/);
   assert.match(WORKER, /resume refused because the frozen run provenance does not match/);
   assert.doesNotMatch(WORKER, /update\s+public\.card_prints/i);
