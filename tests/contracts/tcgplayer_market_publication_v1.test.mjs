@@ -49,6 +49,15 @@ const HEALTH = readFileSync(
   ),
   "utf8",
 );
+const LOCAL_SMOKE = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_market_publication_local_smoke_v1.mjs",
+  ),
+  "utf8",
+);
 const WEB_READ_MODEL = readFileSync(
   path.join(
     ROOT,
@@ -100,6 +109,11 @@ function validCandidate(overrides = {}) {
   return {
     source_observation_id: "10000000-0000-4000-8000-000000000001",
     source_sync_run_id: "10000000-0000-4000-8000-000000000002",
+    source_artifact_id: "10000000-0000-4000-8000-000000000003",
+    source_artifact_hash: "artifact-sha256",
+    source_artifact_byte_size: 2048,
+    source_price_row_identity: "3:12345:holofoil:2026-07-27",
+    source_row_hash: "row-sha256",
     source_payload_hash: "abc123",
     source_product_id: 12345,
     category_id: 3,
@@ -111,8 +125,12 @@ function validCandidate(overrides = {}) {
     has_printed_number_evidence: true,
     source_sync_mode: "current_full_sync",
     source_sync_status: "completed",
+    source_sync_failed_count: 0,
     source_sync_finished_at: "2026-07-27T16:00:00.000Z",
     source_observed_on: "2026-07-27",
+    source_mapping_count: 1,
+    source_mapping_id: "34567",
+    mapping_method: "deterministic_product_mapping",
     card_print_mapping_count: 1,
     card_printing_mapping_count: 1,
     identity_domain_count: 1,
@@ -122,6 +140,10 @@ function validCandidate(overrides = {}) {
     gv_id: "GV-PK-TEST-001",
     printing_gv_id: "GV-PK-TEST-001-HOLO",
     finish_key: "holo",
+    variant_assignment_id: "30000000-0000-4000-8000-000000000001",
+    variant_assignment_status: "exact_child_finish",
+    variant_assignment_version: "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1",
+    duplicate_product_row_count: 1,
     card_rarity: "Rare Holo",
     currency: "USD",
     market_price: 42.5,
@@ -170,13 +192,22 @@ test("supporting low mid high and direct-low values do not derive the market clo
   assert.equal(second.evidence.supporting_prices_do_not_set_market_close, true);
 });
 
-test("quarantines stale or non-current source observations", () => {
-  const stale = evaluateTcgplayerMarketQualificationV1(
+test("delays 36-72 hour evidence, suppresses older evidence, and quarantines non-current runs", () => {
+  const delayed = evaluateTcgplayerMarketQualificationV1(
     validCandidate({ source_sync_finished_at: "2026-07-25T00:00:00.000Z" }),
     { now: NOW },
   );
-  assert.equal(stale.eligible, false);
-  assert.ok(stale.reason_codes.includes("source_observation_stale"));
+  assert.equal(delayed.decision, "delay");
+  assert.equal(delayed.freshness_result, "delayed");
+  assert.ok(delayed.reason_codes.includes("source_observation_stale"));
+
+  const suppressed = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ source_sync_finished_at: "2026-07-23T00:00:00.000Z" }),
+    { now: NOW },
+  );
+  assert.equal(suppressed.decision, "suppress_stale");
+  assert.equal(suppressed.publication_lane, "suppressed_stale");
+  assert.ok(suppressed.reason_codes.includes("source_suppressed_stale"));
 
   const historical = evaluateTcgplayerMarketQualificationV1(
     validCandidate({ source_sync_mode: "historical_archive_backfill" }),
@@ -246,10 +277,39 @@ test("quarantines finish conflicts and non-positive market prices", () => {
 });
 
 test("migration creates append-only qualification and publication ledgers", () => {
+  assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_runs/i);
+  assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_phase_attempts/i);
+  assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_candidates/i);
+  assert.match(MIGRATION, /create table if not exists public\.market_price_publication_sets/i);
+  assert.match(MIGRATION, /create table if not exists public\.market_price_current_publication/i);
   assert.match(MIGRATION, /create table if not exists public\.market_price_qualification_decisions/i);
   assert.match(MIGRATION, /create table if not exists public\.market_price_publication_snapshots/i);
+  assert.match(MIGRATION, /market_price_pipeline_phase_attempts_append_only_guard/i);
+  assert.match(MIGRATION, /market_price_pipeline_candidates_append_only_guard/i);
   assert.match(MIGRATION, /market_price_qualification_append_only_guard/i);
   assert.match(MIGRATION, /market_price_publication_append_only_guard/i);
+});
+
+test("publication activation is atomic, reconciled, and rollback-capable", () => {
+  assert.match(MIGRATION, /activate_market_price_publication_set_v1/i);
+  assert.match(MIGRATION, /pg_advisory_xact_lock/i);
+  assert.match(MIGRATION, /current publication set changed before rollback/i);
+  assert.match(MIGRATION, /rollback_market_price_publication_set_v1/i);
+  assert.match(MIGRATION, /market price top-level counts do not reconcile/i);
+});
+
+test("current prices require the active reconciled publication generation", () => {
+  assert.match(MIGRATION, /join public\.market_price_current_publication current_state/i);
+  assert.match(MIGRATION, /pipeline_run\.reconciliation_state = 'reconciled'/i);
+  assert.match(MIGRATION, /pipeline_run\.state in \('published', 'verified'\)/i);
+  assert.match(MIGRATION, /snapshot\.source_sync_finished_at >= now\(\) - interval '36 hours'/i);
+});
+
+test("shared read model returns deterministic unavailable rows", () => {
+  assert.match(MIGRATION, /'unavailable' else 'available'/i);
+  assert.match(MIGRATION, /'no_current_qualified_market_price'/i);
+  assert.match(MIGRATION, /'source_freshness_delayed'/i);
+  assert.match(MIGRATION, /'suppressed_stale'/i);
 });
 
 test("current and history read models use source market_price", () => {
@@ -282,10 +342,18 @@ test("signed-in clients receive a shared contract while provenance stays service
   );
 });
 
-test("worker is dry-run by default and writes only governed pricing tables in apply mode", () => {
-  assert.match(WORKER, /apply: false/);
+test("worker is dry-run by default and writes only governed pricing tables in write modes", () => {
+  assert.match(WORKER, /runMode: "dry_run"/);
+  assert.match(WORKER, /WRITE_MODES = new Set\(\["shadow", "canary", "production"\]\)/);
+  assert.match(WORKER, /market_price_pipeline_runs/);
+  assert.match(WORKER, /market_price_pipeline_phase_attempts/);
+  assert.match(WORKER, /market_price_pipeline_candidates/);
+  assert.match(WORKER, /market_price_publication_sets/);
   assert.match(WORKER, /market_price_qualification_decisions/);
   assert.match(WORKER, /market_price_publication_snapshots/);
+  assert.match(WORKER, /activate_market_price_publication_set_v1/);
+  assert.match(WORKER, /published readback mismatch/);
+  assert.match(WORKER, /resume refused because the frozen run provenance does not match/);
   assert.doesNotMatch(WORKER, /update\s+public\.card_prints/i);
   assert.doesNotMatch(WORKER, /insert\s+into\s+public\.vault/i);
 });
@@ -304,7 +372,12 @@ test("pipeline freezes provenance, resumes completed phases, and keeps write bou
   assert.match(PIPELINE, /commit_sha/);
   assert.match(PIPELINE, /run_plan\.json/);
   assert.match(PIPELINE, /pipeline_state\.json/);
-  assert.match(PIPELINE, /status === "completed"/);
+  assert.match(PIPELINE, /phase_state_authority: "database"/);
+  assert.doesNotMatch(
+    PIPELINE,
+    /state\.phases\[phase\]\?\.status === "completed"/,
+  );
+  assert.match(PIPELINE, /--mode=\$\{args\.runMode\}/);
   assert.match(PIPELINE, /canonical_identity_writes:\s*false/);
   assert.match(PIPELINE, /vault_writes:\s*false/);
   assert.match(PIPELINE, /synthetic_value_calculation:\s*false/);
@@ -316,4 +389,15 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
   assert.match(HEALTH, /eligible_snapshot_reconciliation_mismatch/);
   assert.match(HEALTH, /broken_source_to_publication_trace/);
   assert.match(HEALTH, /minimum_current_prices/);
+  assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
+  assert.match(HEALTH, /current_publication_pointer_mismatch/);
+});
+
+test("local smoke proves publication, resume, rollback, append-only, and ACL boundaries", () => {
+  assert.match(LOCAL_SMOKE, /local smoke test refuses a non-local database URL/);
+  assert.match(LOCAL_SMOKE, /resuming a verified run must not repeat completed phases/);
+  assert.match(LOCAL_SMOKE, /rollback_market_price_publication_set_v1/);
+  assert.match(LOCAL_SMOKE, /append-only/i);
+  assert.match(LOCAL_SMOKE, /set local role authenticated/i);
+  assert.match(LOCAL_SMOKE, /get_market_price_trace_v1/);
 });

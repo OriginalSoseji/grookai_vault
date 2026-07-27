@@ -98,23 +98,61 @@ async function main() {
          order by finished_at desc nulls last, created_at desc
          limit 1
        ),
-       selected_decisions as (
+       selected_run as (
          select *
-         from public.market_price_qualification_decisions
+         from public.market_price_pipeline_runs
          where ($1::text is null or run_key = $1)
+         order by created_at desc, id desc
+         limit 1
+       ),
+       selected_decisions as (
+         select decision.*
+         from public.market_price_qualification_decisions decision
+         join selected_run pipeline_run
+           on pipeline_run.id = decision.run_id
        ),
        decision_totals as (
          select
            count(*)::integer as decision_count,
            count(*) filter (where eligible)::integer as eligible_count,
-           count(*) filter (where not eligible)::integer as quarantined_count
+           count(*) filter (where decision = 'delay')::integer as delayed_count,
+           count(*) filter (where decision = 'suppress_stale')::integer as suppressed_count,
+           count(*) filter (where decision = 'quarantine')::integer as quarantined_count,
+           count(*) filter (where decision = 'exclude')::integer as excluded_count
          from selected_decisions
        ),
        snapshot_totals as (
-         select count(distinct snapshot.id)::integer as snapshot_count
-         from selected_decisions decision
-         join public.market_price_publication_snapshots snapshot
-           on snapshot.qualification_decision_id = decision.id
+         select
+           count(distinct snapshot.id)::integer as snapshot_count,
+           count(distinct snapshot.id) filter (
+             where decision.id is not null
+               and decision.source_observation_id = snapshot.source_observation_id
+               and decision.card_printing_id = snapshot.card_printing_id
+               and decision.eligible = true
+           )::integer as traced_snapshot_count
+         from selected_run pipeline_run
+         left join public.market_price_publication_snapshots snapshot
+           on snapshot.run_id = pipeline_run.id
+         left join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+       ),
+       phase_totals as (
+         select
+           count(distinct phase.phase_name) filter (
+             where phase.state = 'succeeded'
+               and phase.phase_name in (
+                 'prepare_variant_assignments',
+                 'stage_candidates',
+                 'qualify',
+                 'build_publication',
+                 'reconcile'
+               )
+           )::integer as succeeded_required_phase_count,
+           count(*) filter (where phase.state = 'failed')::integer as failed_phase_attempt_count
+         from selected_run pipeline_run
+         left join public.market_price_pipeline_phase_attempts phase
+           on phase.run_id = pipeline_run.id
        ),
        current_totals as (
          select
@@ -122,6 +160,11 @@ async function main() {
            count(distinct card_print_id)::integer as current_parent_price_count,
            max(observed_at) as latest_published_source_at
          from public.v_market_price_current_v1
+       ),
+       current_publication as (
+         select publication_set_id, run_id, activated_at
+         from public.market_price_current_publication
+         where singleton = true
        ),
        broken_trace as (
          select count(*)::integer as broken_trace_count
@@ -140,15 +183,37 @@ async function main() {
          source.finished_at as latest_source_finished_at,
          source.price_row_count as latest_source_price_row_count,
          source.error as latest_source_error,
+         pipeline_run.id as selected_run_id,
+         pipeline_run.run_mode as selected_run_mode,
+         pipeline_run.state as selected_run_state,
+         pipeline_run.reconciliation_state,
+         pipeline_run.selected_count as run_selected_count,
+         pipeline_run.excluded_count as run_excluded_count,
+         pipeline_run.quarantined_count as run_quarantined_count,
+         pipeline_run.delayed_count as run_delayed_count,
+         pipeline_run.suppressed_count as run_suppressed_count,
+         pipeline_run.eligible_count as run_eligible_count,
+         pipeline_run.snapshot_count as run_snapshot_count,
+         pipeline_run.required_phase_count,
+         pipeline_run.succeeded_phase_count,
          decisions.*,
          snapshots.snapshot_count,
+         snapshots.traced_snapshot_count,
+         phases.succeeded_required_phase_count,
+         phases.failed_phase_attempt_count,
          current_prices.*,
+         current_publication.publication_set_id as current_publication_set_id,
+         current_publication.run_id as current_publication_run_id,
+         current_publication.activated_at as current_publication_activated_at,
          broken_trace.broken_trace_count
        from decision_totals decisions
        cross join snapshot_totals snapshots
+       cross join phase_totals phases
        cross join current_totals current_prices
        cross join broken_trace
-       left join latest_source source on true`,
+       left join latest_source source on true
+       left join selected_run pipeline_run on true
+       left join current_publication on true`,
       [args.runKey],
     );
     const metrics = result.rows[0];
@@ -169,6 +234,49 @@ async function main() {
     ) {
       findings.push("latest_current_source_sync_stale");
     }
+    if (args.runKey && !metrics.selected_run_id) {
+      findings.push("durable_pipeline_run_missing");
+    }
+    if (
+      metrics.selected_run_id &&
+      metrics.reconciliation_state !== "reconciled"
+    ) {
+      findings.push("durable_pipeline_run_not_reconciled");
+    }
+    if (
+      metrics.selected_run_mode === "shadow" &&
+      metrics.selected_run_state !== "shadow_verified"
+    ) {
+      findings.push("shadow_run_not_verified");
+    }
+    if (
+      ["canary", "production"].includes(metrics.selected_run_mode) &&
+      metrics.selected_run_state !== "verified"
+    ) {
+      findings.push("published_run_not_verified");
+    }
+    if (
+      metrics.selected_run_id &&
+      (
+        Number(metrics.required_phase_count) !==
+          Number(metrics.succeeded_required_phase_count) ||
+        Number(metrics.succeeded_phase_count) !==
+          Number(metrics.required_phase_count)
+      )
+    ) {
+      findings.push("required_pipeline_phases_incomplete");
+    }
+    if (
+      metrics.selected_run_id &&
+      Number(metrics.run_selected_count) !==
+        Number(metrics.run_eligible_count) +
+          Number(metrics.run_delayed_count) +
+          Number(metrics.run_suppressed_count) +
+          Number(metrics.run_quarantined_count) +
+          Number(metrics.run_excluded_count)
+    ) {
+      findings.push("durable_run_lane_reconciliation_mismatch");
+    }
     if (
       Number(metrics.current_exact_price_count) < args.minimumCurrentPrices
     ) {
@@ -179,6 +287,18 @@ async function main() {
       Number(metrics.snapshot_count) !== Number(metrics.eligible_count)
     ) {
       findings.push("eligible_snapshot_reconciliation_mismatch");
+    }
+    if (
+      Number(metrics.snapshot_count) !==
+      Number(metrics.traced_snapshot_count)
+    ) {
+      findings.push("snapshot_trace_reconciliation_mismatch");
+    }
+    if (
+      ["canary", "production"].includes(metrics.selected_run_mode) &&
+      metrics.current_publication_run_id !== metrics.selected_run_id
+    ) {
+      findings.push("current_publication_pointer_mismatch");
     }
     if (Number(metrics.broken_trace_count) !== 0) {
       findings.push("broken_source_to_publication_trace");

@@ -21,7 +21,7 @@ const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 
 function parseArgs(argv) {
   const args = {
-    apply: false,
+    runMode: "dry_run",
     runKey: null,
     outRoot: DEFAULT_OUT_ROOT,
     skipIngest: false,
@@ -31,9 +31,14 @@ function parseArgs(argv) {
   };
 
   for (const arg of argv) {
-    if (arg === "--apply" || arg === "--run") args.apply = true;
-    else if (arg === "--dry-run") args.apply = false;
-    else if (arg === "--skip-ingest") args.skipIngest = true;
+    if (arg === "--apply" || arg === "--run" || arg === "--production") {
+      args.runMode = "production";
+    } else if (arg === "--dry-run") args.runMode = "dry_run";
+    else if (arg === "--shadow") args.runMode = "shadow";
+    else if (arg === "--canary") args.runMode = "canary";
+    else if (arg.startsWith("--mode=")) {
+      args.runMode = arg.slice("--mode=".length).trim();
+    } else if (arg === "--skip-ingest") args.skipIngest = true;
     else if (arg.startsWith("--run-key=")) args.runKey = arg.slice(10).trim();
     else if (arg.startsWith("--resume-run-key=")) {
       args.runKey = arg.slice("--resume-run-key=".length).trim();
@@ -67,6 +72,12 @@ function parseArgs(argv) {
     (!Number.isInteger(args.publicationLimit) || args.publicationLimit < 1)
   ) {
     throw new Error("--publication-limit must be a positive integer");
+  }
+  if (!new Set(["dry_run", "shadow", "canary", "production"]).has(args.runMode)) {
+    throw new Error("--mode must be dry_run, shadow, canary, or production");
+  }
+  if (args.runMode === "canary" && args.publicationLimit === null) {
+    throw new Error("canary mode requires --publication-limit");
   }
   return args;
 }
@@ -123,11 +134,6 @@ async function runPhase({
   state,
   statePath,
 }) {
-  if (state.phases[phase]?.status === "completed") {
-    process.stdout.write(`[market-pipeline] phase=${phase} status=resumed\n`);
-    return;
-  }
-
   const startedAt = new Date().toISOString();
   state.phases[phase] = {
     status: "running",
@@ -179,9 +185,11 @@ async function runPhase({
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const writeMode = args.runMode !== "dry_run";
+  const activationMode = new Set(["canary", "production"]).has(args.runMode);
   const runKey =
     args.runKey ||
-    `TCGPLAYER-MARKET-PIPELINE-${args.apply ? "APPLY" : "DRY"}-${timestamp()}`;
+    `TCGPLAYER-MARKET-PIPELINE-${args.runMode.toUpperCase()}-${timestamp()}`;
   const runDir = path.join(args.outRoot, safeSegment(runKey));
   const runPlanPath = path.join(runDir, "run_plan.json");
   const statePath = path.join(runDir, "pipeline_state.json");
@@ -194,7 +202,7 @@ async function main() {
     "--porcelain",
     "--untracked-files=no",
   ]);
-  if (args.apply && trackedChanges) {
+  if (writeMode && trackedChanges) {
     throw new Error(
       "apply mode requires a clean tracked working tree so the producing commit is exact",
     );
@@ -203,7 +211,7 @@ async function main() {
   const runPlan = {
     pipeline_version: PIPELINE_VERSION,
     run_key: runKey,
-    mode: args.apply ? "apply" : "dry_run",
+    mode: args.runMode,
     commit_sha: commitSha,
     branch,
     created_at: new Date().toISOString(),
@@ -214,14 +222,16 @@ async function main() {
       request_ceiling: args.requestCeiling,
       publication_limit: args.publicationLimit,
       freshness_hours: args.freshnessHours,
+      phase_state_authority: "database",
     },
     boundaries: {
       canonical_identity_writes: false,
       vault_writes: false,
       synthetic_value_calculation: false,
-      source_warehouse_writes: args.apply && !args.skipIngest,
-      qualification_decision_writes: args.apply,
-      immutable_publication_snapshot_writes: args.apply,
+      source_warehouse_writes: writeMode && !args.skipIngest,
+      qualification_decision_writes: writeMode,
+      immutable_publication_snapshot_writes: writeMode,
+      current_publication_activation: activationMode,
     },
   };
 
@@ -254,7 +264,7 @@ async function main() {
     const warehouseArgs = [
       path.join("scripts", "workers", "tcgcsv_full_source_warehouse_worker_v1.mjs"),
       "--mode=current",
-      args.apply ? "--apply" : "--dry-run",
+      writeMode ? "--apply" : "--dry-run",
       `--resume-run-key=${runKey}-warehouse`,
       `--request-ceiling=${args.requestCeiling}`,
       `--out-dir=${path.join(runDir, "warehouse")}`,
@@ -271,7 +281,7 @@ async function main() {
 
   const publicationArgs = [
     path.join("scripts", "workers", "tcgplayer_market_publication_worker_v1.mjs"),
-    args.apply ? "--apply" : "--dry-run",
+    `--mode=${args.runMode}`,
     `--run-key=${runKey}-publication`,
     `--out-root=${path.join(runDir, "publication")}`,
     `--freshness-hours=${args.freshnessHours}`,
@@ -293,7 +303,7 @@ async function main() {
     `--run-key=${runKey}-publication`,
     `--out-root=${path.join(runDir, "health")}`,
     `--max-source-age-hours=${args.freshnessHours}`,
-    args.apply ? "--minimum-current-prices=1" : "--minimum-current-prices=0",
+    activationMode ? "--minimum-current-prices=1" : "--minimum-current-prices=0",
   ];
   await runPhase({
     phase: "health",
