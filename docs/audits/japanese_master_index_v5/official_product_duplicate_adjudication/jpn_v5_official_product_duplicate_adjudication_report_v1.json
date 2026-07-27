@@ -10,15 +10,15 @@
   },
   "generated_at": "2026-07-27T05:45:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DUPLICATE-ADJUDICATION-V1",
-  "next_gate": "build_v5_working_index_overlay_for_253_resolved_identities",
+  "next_gate": "build_v5_working_index_overlay_for_278_resolved_identities",
   "official_product_lane": {
-    "direct_resolution_count": 245,
-    "duplicate_cluster_resolution_count": 8,
-    "exact_identity_count": 253,
-    "integration_ready_identity_count": 253
+    "direct_resolution_count": 269,
+    "duplicate_cluster_resolution_count": 9,
+    "exact_identity_count": 278,
+    "integration_ready_identity_count": 278
   },
-  "reviewed_cluster_count": 8,
-  "safe_merge_cluster_count": 8,
+  "reviewed_cluster_count": 9,
+  "safe_merge_cluster_count": 9,
   "status": "duplicate_candidate_clusters_adjudicated",
-  "superseded_candidate_row_count": 24
+  "superseded_candidate_row_count": 26
 }

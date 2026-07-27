@@ -23,6 +23,9 @@ const LINK_ASSERTIONS =
 const DETAILS =
   'docs/audits/japanese_master_index_v5/official_product_details/'
   + 'jpn_v5_official_product_card_details_v1.jsonl';
+const SEARCH_ASSERTIONS =
+  'docs/audits/japanese_master_index_v5/official_product_search/'
+  + 'official_jp_card_assertions_v1.json';
 const CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
   + 'candidate_union_manifest_v1.json';
@@ -49,6 +52,15 @@ function readJsonl(filePath) {
     .split('\n')
     .filter(Boolean)
     .map((line) => JSON.parse(line));
+}
+
+function readVerifiedArtifact(filePath) {
+  const artifact = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  if (contentFingerprint(artifact.content)
+      !== artifact.content_fingerprint_sha256) {
+    throw new Error(`Artifact fingerprint mismatch: ${filePath}`);
+  }
+  return artifact;
 }
 
 function imageBasename(value) {
@@ -116,9 +128,57 @@ async function main() {
   }
   const assertions = readJsonl(LINK_ASSERTIONS);
   const details = readJsonl(DETAILS);
+  const searchAssertions =
+    readVerifiedArtifact(SEARCH_ASSERTIONS).content.assertions;
+  for (const row of searchAssertions) {
+    assertions.push({
+      registry_key: row.registry_key,
+      source_external_id: row.source_external_id,
+      source_set_code: row.source_set_code,
+      image_urls: row.image_urls,
+      source_fields: row.source_fields,
+    });
+  }
   const detailByCardId = new Map(
     details.map((row) => [row.card_id, row]),
   );
+  for (const row of searchAssertions) {
+    const prior = detailByCardId.get(row.source_external_id);
+    const imageUrl = row.image_urls?.[0] ?? null;
+    if (prior) {
+      const priorImage = prior.detail.image_url;
+      if (prior.detail.printed_name !== row.printed_name
+          || imageBasename(priorImage) !== imageBasename(imageUrl)) {
+        throw new Error(
+          `Conflicting official detail for card ${row.source_external_id}`,
+        );
+      }
+      continue;
+    }
+    detailByCardId.set(row.source_external_id, {
+      card_id: row.source_external_id,
+      evidence_origin: 'v5_official_product_search',
+      detail: {
+        printed_name: row.printed_name,
+        image_url: imageUrl,
+        card_number_raw: row.card_number_raw,
+        card_number_numerator: row.card_number_numerator,
+        card_number_denominator: row.card_number_denominator,
+        source_set_code: row.source_set_code,
+        rarity: row.rarity,
+        illustrator: row.illustrator,
+        hp: row.hp,
+        category: row.category,
+        source_product_name: row.source_product_name,
+        source_product_url: row.related_urls?.[0] ?? null,
+        source_fields: row.source_fields,
+      },
+      product_registry_keys: [row.registry_key],
+      raw_snapshot_ref: row.raw_snapshot_ref,
+      raw_snapshot_sha256: row.raw_snapshot_sha256,
+      retrieved_at: row.retrieved_at,
+    });
+  }
   const { rows: candidates } = await loadVerifiedDatasetFromManifest({
     manifestPath: CANDIDATE_MANIFEST,
     datasetKey: 'identity_candidate_rows_v1',

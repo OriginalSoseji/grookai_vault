@@ -1,0 +1,51 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "contract": "Governed official products with verified numeric search IDs are queried through the existing read-only Official JP card adapter.",
+    "execution_boundary": {
+      "database_reads": false,
+      "database_writes": false,
+      "plan_only": true,
+      "source_fetches": false,
+      "storage_writes": false
+    },
+    "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-SEARCH-PLAN-V1",
+    "work_items": [
+      {
+        "acquisition_tier": 1,
+        "card_detail_strategy": "official_card_search_pagination_and_detail",
+        "checkpoint_key": "official_jp_cards:703",
+        "disposition": "scheduled",
+        "disposition_reason": "v5_verified_official_search_product_id_from_product_page",
+        "lane_id": "official_jp_cards",
+        "live_parent_rows": 0,
+        "live_public_rows": 0,
+        "max_concurrency": 1,
+        "original_v4_source_container_id": "detail:/info/2019/20191110_002152.html:プレミアムトレーナーボックス　ソード＆シールド",
+        "registry_key": "jpn-product-2ea70ba63e47923f",
+        "registry_scope_status": "admitted_official_card_product",
+        "request_delay_ms": 750,
+        "source_assertion_key": "official_jp_product_search:703",
+        "source_container_id": "703",
+        "source_container_url": "https://www.pokemon-card.com/info/2019/20191110_002152.html",
+        "source_expected_card_count": null,
+        "source_family": "pokemon_card_official_jp",
+        "source_native_code": null,
+        "source_native_japanese_name": null,
+        "source_native_name": "プレミアムトレーナーボックス　ソード＆シールド",
+        "source_release_date": "2019年12月 6日（金）",
+        "strategy": "official_card_search_container",
+        "v5_followup_disposition": "official_search_api_followup_ready",
+        "work_item_key": "7692794b604f6bb04bb263950630d394176542e5386f9eb215fd56a7322da8bc"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "55247750b9c27ced9bf46048b6eb709bb0d8f3c480c05ed60b7a00c37c9400bc",
+  "generated_at": "2026-07-27T07:00:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-SEARCH-PLAN-V1",
+  "retrieval": {
+    "mode": "offline_plan",
+    "source_followup_path": "docs/audits/japanese_master_index_v5/official_product_links/parsed/jpn_v5_official_product_link_followups_v1.jsonl",
+    "source_v4_plan_path": "docs/audits/japanese_master_index_v4/cards/card_acquisition_plan_v1.json"
+  }
+}

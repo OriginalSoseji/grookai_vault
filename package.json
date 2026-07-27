@@ -33,6 +33,8 @@
     "jpn-master-index:v5:resolve-product-identities": "node scripts/audits/japanese_master_index_v5/official_product_identity_resolution_v1.mjs",
     "jpn-master-index:v5:adjudicate-product-duplicates": "node scripts/audits/japanese_master_index_v5/official_product_duplicate_adjudication_v1.mjs",
     "jpn-master-index:v5:build-working-overlay": "node scripts/audits/japanese_master_index_v5/working_index_overlay_v1.mjs",
+    "jpn-master-index:v5:plan-product-search": "node scripts/audits/japanese_master_index_v5/official_product_search_plan_v1.mjs",
+    "jpn-master-index:v5:harvest-product-search": "node scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs --source official_jp_cards --plan docs/audits/japanese_master_index_v5/official_product_search/jpn_v5_official_product_search_plan_v1.json --output-dir docs/audits/japanese_master_index_v5/official_product_search --generated-at 2026-07-27T08:00:00.000Z",
     "jpn-master-index:v5:test": "node --test tests/contracts/japanese_master_index_v5_*.test.mjs",
     "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",

@@ -23,22 +23,22 @@ function jsonl(name) {
 test('V5 acquisition waves assign every affected release exactly once', () => {
   const summary = json('jpn_v5_acquisition_wave_report_v1.json');
   const rows = jsonl('jpn_v5_release_workpacks_v1.jsonl');
-  assert.equal(rows.length, 1308);
+  assert.equal(rows.length, 1306);
   assert.equal(new Set(rows.map((row) => row.release_key)).size, rows.length);
   assert.equal(summary.baseline.original_issue_rows, 2705);
-  assert.equal(summary.baseline.reconciled_issue_rows, 2529);
+  assert.equal(summary.baseline.reconciled_issue_rows, 2525);
   assert.equal(summary.baseline.reconciled_container_dispositions, 72);
-  assert.equal(summary.baseline.completed_official_product_scopes, 14);
-  assert.equal(summary.baseline.completed_official_release_scopes, 2);
-  assert.equal(summary.baseline.newly_resolved_official_identities, 253);
-  assert.equal(summary.baseline.projected_v5_working_identity_count, 72021);
+  assert.equal(summary.baseline.completed_official_product_scopes, 15);
+  assert.equal(summary.baseline.completed_official_release_scopes, 3);
+  assert.equal(summary.baseline.newly_resolved_official_identities, 278);
+  assert.equal(summary.baseline.projected_v5_working_identity_count, 72020);
   assert.deepEqual(summary.baseline.base_identity_coverage, {
-    covered_slots: 8186,
-    expected_slots: 21919,
-    percent: 37.35,
+    covered_slots: 8211,
+    expected_slots: 21944,
+    percent: 37.42,
   });
-  assert.equal(summary.baseline.reconciled_active_container_count, 1367);
-  assert.equal(summary.baseline.active_releases_without_census_issues, 59);
+  assert.equal(summary.baseline.reconciled_active_container_count, 1366);
+  assert.equal(summary.baseline.active_releases_without_census_issues, 60);
   assert.equal(
     rows.reduce((sum, row) => sum + row.issue_count, 0),
     summary.baseline.reconciled_issue_rows,
@@ -55,8 +55,8 @@ test('V5 acquisition waves preserve the expected release ordering', () => {
       ]),
     ),
     {
-      zero_inventory_acquisition: 580,
-      denominator_repair: 453,
+      zero_inventory_acquisition: 579,
+      denominator_repair: 452,
       bounded_slot_completion: 206,
       strict_corroboration: 69,
     },

@@ -172,6 +172,8 @@ async function main() {
     Number(left.official_card_id) - Number(right.official_card_id));
 
   const safe = adjudications.filter((row) => row.safe_to_merge);
+  const directResolutionCount =
+    identityRows.length - adjudications.length;
   const report = {
     generator_version: GENERATOR_VERSION,
     generated_at: GENERATED_AT,
@@ -185,12 +187,13 @@ async function main() {
       safe.reduce(
         (sum, row) => sum + row.superseded_candidate_keys.length,
         0,
-      ),
+    ),
     official_product_lane: {
-      exact_identity_count: 253,
-      direct_resolution_count: 245,
+      exact_identity_count: identityRows.length,
+      direct_resolution_count: directResolutionCount,
       duplicate_cluster_resolution_count: safe.length,
-      integration_ready_identity_count: 245 + safe.length,
+      integration_ready_identity_count:
+        directResolutionCount + safe.length,
     },
     boundary: {
       source_fetches: false,
@@ -201,7 +204,7 @@ async function main() {
       blocked_clusters_auto_merged: 0,
     },
     next_gate: safe.length === adjudications.length
-      ? 'build_v5_working_index_overlay_for_253_resolved_identities'
+      ? `build_v5_working_index_overlay_for_${identityRows.length}_resolved_identities`
       : 'manual_review_blocked_duplicate_clusters',
   };
 

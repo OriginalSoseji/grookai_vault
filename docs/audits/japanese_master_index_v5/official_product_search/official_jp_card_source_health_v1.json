@@ -1,0 +1,69 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "containers": [
+      {
+        "api_hit_count": 33,
+        "api_page_count": 1,
+        "detail_failure_count": 0,
+        "detail_failures": [],
+        "detail_success_count": 33,
+        "findings": [],
+        "parsed_card_row_count": 33,
+        "registry_key": "jpn-product-2ea70ba63e47923f",
+        "result_page_snapshot_fetched_at": [
+          "2026-07-27T20:22:36.674Z"
+        ],
+        "result_page_snapshot_sha256": [
+          "d96cb1e97d5b5477798f187a2387534a59e45f2d4151ea561ba87924d692cfe5"
+        ],
+        "selected_card_count": 33,
+        "source_container_id": "703",
+        "source_expected_card_count": null,
+        "status": "complete"
+      }
+    ],
+    "run": {
+      "max_cards_per_container": null,
+      "mode": "live_capture",
+      "selected_container_count": 1,
+      "selected_container_ids": [
+        "703"
+      ]
+    },
+    "selected_run_healthy": true,
+    "summary": {
+      "assertion_fingerprint_sha256": "511c727c3c1a77fa00f4632483a77bdec523319a542c9f778f9e99e0d7f2f9ec",
+      "combined_assertion_count": 33,
+      "container_status_counts": {
+        "complete": 1
+      },
+      "failed_container_count": 0,
+      "fresh_assertion_count": 33,
+      "prior_assertion_count": 0,
+      "retained_prior_assertion_count": 0,
+      "selected_container_count": 1,
+      "source_request_count": 34,
+      "tracked_container_count": 1
+    }
+  },
+  "content_fingerprint_sha256": "4b25fe336e03628963cbbaefff63b1250de40ecebcef6d17084e8832a20551c1",
+  "generated_at": "2026-07-27T08:00:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V4-CARD-ACQUISITION-HARVEST-V1",
+  "retrieval": {
+    "card_detail_requests": true,
+    "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-HARVEST-V1",
+    "image_downloads": false,
+    "image_references_only": true,
+    "mode": "live_capture",
+    "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+    "plan_content_fingerprint_sha256": "55247750b9c27ced9bf46048b6eb709bb0d8f3c480c05ed60b7a00c37c9400bc",
+    "request_delay_ms": 750,
+    "result_api_pagination": true,
+    "resume": false,
+    "source_base_url": "https://www.pokemon-card.com/card-search",
+    "source_lane": "official_jp_cards",
+    "targeted_queue_content_fingerprint_sha256": null,
+    "targeted_queue_path": null
+  }
+}
