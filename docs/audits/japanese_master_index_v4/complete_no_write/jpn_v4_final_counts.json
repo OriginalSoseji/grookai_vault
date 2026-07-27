@@ -6,16 +6,17 @@
   "generated_at": "2026-07-27T00:00:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1",
   "identity_dispositions": {
-    "additional_resolved_promotion_ready": 1637,
+    "additional_resolved_promotion_ready": 1448,
+    "blocked_but_otherwise_admissible": 355,
     "direct_card_insert_ready": 38,
     "duplicate_of_existing_production_identity": 37,
-    "existing_production_identity_preserved": 22316,
+    "existing_production_identity_preserved": 22150,
     "existing_production_identity_with_core_drift": 167,
     "explicitly_excluded": 178,
-    "historical_record_deferred_for_later_review": 3673,
-    "insufficient_evidence": 25179,
+    "historical_record_deferred_for_later_review": 3693,
+    "insufficient_evidence": 39737,
     "set_first_then_card_insert_ready": 3850,
-    "unresolved_contradiction": 14917
+    "unresolved_contradiction": 339
   },
   "identity_truth": {
     "blocked_candidates_classified": 43806,
@@ -43,35 +44,86 @@
     "existing_production_printings_preserved": 25953
   },
   "promotion": {
-    "additional_resolved_cards": 1637,
-    "additional_resolved_english_names": 1622,
+    "additional_resolved_cards": 1448,
+    "additional_resolved_english_names": 1433,
     "additional_resolved_set_mappings": 15,
+    "card_package_conflict_proof": {
+      "all_conflict_checks_pass": true,
+      "duplicate_package_candidate_rows": 0,
+      "duplicate_package_coordinate_groups": 0,
+      "existing_live_set_target_rows": 53,
+      "generated_child_printings": 0,
+      "generated_database_identifiers": 0,
+      "generated_public_gv_ids": 0,
+      "live_set_number_conflict_rows": 0,
+      "package_card_rows": 5336,
+      "unique_package_coordinates": 5336
+    },
     "dependent_cards": 3850,
     "direct_cards": 38,
-    "image_ready_cards": 5525,
+    "image_ready_cards": 5336,
+    "set_package_conflict_proof": {
+      "generated_database_identifiers": 0,
+      "generated_public_routes": 0,
+      "insert_ready_reconciliations": 1041,
+      "live_match_conflict_rows": 0,
+      "missing_set_reconciliations": 1041,
+      "set_rows": 1041
+    },
     "sets_first": 1041,
-    "total_cards_ready": 5525
+    "total_cards_ready": 5336
   },
   "readiness_schema": {
     "separate_gate": "requires a later separately authorized exact-printing, storage, public-visibility, search, sitemap, or scanner action"
   },
   "reconciliation": {
     "generic_blocked_dispositions": 0,
+    "generic_linked_assertion_dispositions": 0,
     "identity_rows_reconcile": true,
+    "package_conflict_checks_pass": true,
     "printing_rows_reconcile": true,
     "promotion_original_counts_preserved": true,
     "source_rows_reconcile": true
   },
   "remaining_review": {
-    "deferred_historical_review": 3673,
+    "deferred_historical_review": 3693,
     "explicit_finish_corroboration": 255,
-    "identity_contradictions": 14917,
-    "insufficient_identity_evidence": 25179,
-    "source_acquisition_targets": 29107,
-    "unresolved_english_name": 166,
+    "identity_contradictions": 339,
+    "insufficient_identity_evidence": 39737,
+    "source_acquisition_targets": 43685,
+    "unresolved_english_name": 355,
     "unresolved_set_mapping": 84
   },
   "source_disposition_schema": {
+    "assertion_disposition_meanings": {
+      "additional_ready": "assertion supports an additional resolved promotion-ready identity",
+      "admissible_blocked": "assertion supports an admissible identity still blocked from promotion",
+      "direct_ready": "assertion supports a direct card insert-ready identity",
+      "duplicate_identity_excluded": "assertion belongs to a duplicate identity excluded from promotion",
+      "excluded_identity": "assertion belongs to an explicitly excluded identity",
+      "excluded_source_assertion": "assertion was explicitly excluded before candidate linkage",
+      "existing_aligned": "assertion supports an aligned existing production identity",
+      "existing_core_drift": "assertion supports an existing production identity with core drift",
+      "historical_deferred": "assertion supports a historical identity deferred for review",
+      "insufficient_evidence": "assertion supports an identity lacking sufficient evidence",
+      "set_first_ready": "assertion supports a set-first card insert-ready identity",
+      "source_group_conflict": "assertion is unlinked because its source identity group conflicts",
+      "unlinked_source_assertion_requires_adjudication": "assertion has no final candidate link and requires adjudication",
+      "unresolved_contradiction": "assertion supports an identity with an unresolved contradiction"
+    },
+    "assertion_dispositions": {
+      "additional_resolved_promotion_ready": "additional_ready",
+      "blocked_but_otherwise_admissible": "admissible_blocked",
+      "direct_card_insert_ready": "direct_ready",
+      "duplicate_of_existing_production_identity": "duplicate_identity_excluded",
+      "existing_production_identity_preserved": "existing_aligned",
+      "existing_production_identity_with_core_drift": "existing_core_drift",
+      "explicitly_excluded": "excluded_identity",
+      "historical_record_deferred_for_later_review": "historical_deferred",
+      "insufficient_evidence": "insufficient_evidence",
+      "set_first_then_card_insert_ready": "set_first_ready",
+      "unresolved_contradiction": "unresolved_contradiction"
+    },
     "kind": {
       "a": "source_assertion",
       "g": "source_gap"
@@ -80,26 +132,35 @@
     "subject_key": "identity_or_printing_fact_key"
   },
   "source_dispositions": {
+    "additional_ready": 1481,
+    "admissible_blocked": 364,
+    "direct_ready": 130,
     "evidence_no_longer_needed": 37,
     "evidence_no_longer_needed_fact_rejected": 45692,
-    "genuine_acquisition_target": 4254,
-    "linked_to_final_identity_disposition": 210207,
-    "missing_corroboration": 24853,
-    "source_conflict": 14917,
+    "excluded_identity": 254,
+    "existing_aligned": 148475,
+    "existing_core_drift": 760,
+    "genuine_acquisition_target": 7213,
+    "historical_deferred": 14761,
+    "insufficient_evidence": 39793,
+    "missing_corroboration": 36472,
+    "set_first_ready": 3850,
+    "source_conflict": 339,
     "source_coverage_limitation": 25964,
-    "unresolved_source_conflict": 5577
+    "source_group_conflict": 5577,
+    "unresolved_contradiction": 339
   },
   "source_gap_dispositions": {
     "evidence_no_longer_needed": 37,
     "evidence_no_longer_needed_fact_rejected": 45692,
-    "genuine_acquisition_target": 4254,
-    "missing_corroboration": 24853,
-    "source_conflict": 14917,
+    "genuine_acquisition_target": 7213,
+    "missing_corroboration": 36472,
+    "source_conflict": 339,
     "source_coverage_limitation": 25964
   },
   "source_gap_resolution": {
-    "acquisition_required": 29107,
-    "contradiction_adjudication_required": 14917,
+    "acquisition_required": 43685,
+    "contradiction_adjudication_required": 339,
     "no_further_acquisition_required": 71693
   },
   "status": "complete_no_write_adjudication"

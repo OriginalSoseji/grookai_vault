@@ -35,7 +35,7 @@
       "action": "promote conservatively resolved cards in dependency order",
       "name": "additional_resolved_cards",
       "package": "jpn_v4_additional_resolved_card_package.jsonl",
-      "row_count": 1637,
+      "row_count": 1448,
       "sequence": 4
     },
     {
