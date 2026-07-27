@@ -1,0 +1,106 @@
+{
+  "deduplication": {
+    "aliases": 0,
+    "duplicate_losers": 37
+  },
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1",
+  "identity_dispositions": {
+    "additional_resolved_promotion_ready": 1637,
+    "direct_card_insert_ready": 38,
+    "duplicate_of_existing_production_identity": 37,
+    "existing_production_identity_preserved": 22316,
+    "existing_production_identity_with_core_drift": 167,
+    "explicitly_excluded": 178,
+    "historical_record_deferred_for_later_review": 3673,
+    "insufficient_evidence": 25179,
+    "set_first_then_card_insert_ready": 3850,
+    "unresolved_contradiction": 14917
+  },
+  "identity_truth": {
+    "blocked_candidates_classified": 43806,
+    "defensibly_known_base_identities": 28008,
+    "newly_verified_v4_identities_absent_from_production": 5691
+  },
+  "input": {
+    "source_assertions": 215784,
+    "source_assertions_and_gaps": 331501,
+    "source_gaps": 115717,
+    "working_identity_candidates": 71992,
+    "working_printing_facts": 71900
+  },
+  "invalid_non_card_exclusions": 0,
+  "printing_dispositions": {
+    "existing_production_printing_preserved": 25953,
+    "explicit_finish_claim_requires_corroboration": 255,
+    "unsupported_exact_printing_claim_rejected": 45692
+  },
+  "printing_truth": {
+    "duplicate_facts": 0,
+    "exact_printing_facts_ready": 0,
+    "exact_printing_facts_rejected": 45692,
+    "exact_printing_facts_unresolved": 255,
+    "existing_production_printings_preserved": 25953
+  },
+  "promotion": {
+    "additional_resolved_cards": 1637,
+    "additional_resolved_english_names": 1622,
+    "additional_resolved_set_mappings": 15,
+    "dependent_cards": 3850,
+    "direct_cards": 38,
+    "image_ready_cards": 5525,
+    "sets_first": 1041,
+    "total_cards_ready": 5525
+  },
+  "readiness_schema": {
+    "separate_gate": "requires a later separately authorized exact-printing, storage, public-visibility, search, sitemap, or scanner action"
+  },
+  "reconciliation": {
+    "generic_blocked_dispositions": 0,
+    "identity_rows_reconcile": true,
+    "printing_rows_reconcile": true,
+    "promotion_original_counts_preserved": true,
+    "source_rows_reconcile": true
+  },
+  "remaining_review": {
+    "deferred_historical_review": 3673,
+    "explicit_finish_corroboration": 255,
+    "identity_contradictions": 14917,
+    "insufficient_identity_evidence": 25179,
+    "source_acquisition_targets": 29107,
+    "unresolved_english_name": 166,
+    "unresolved_set_mapping": 84
+  },
+  "source_disposition_schema": {
+    "kind": {
+      "a": "source_assertion",
+      "g": "source_gap"
+    },
+    "record_key": "immutable_assertion_or_gap_key",
+    "subject_key": "identity_or_printing_fact_key"
+  },
+  "source_dispositions": {
+    "evidence_no_longer_needed": 37,
+    "evidence_no_longer_needed_fact_rejected": 45692,
+    "genuine_acquisition_target": 4254,
+    "linked_to_final_identity_disposition": 210207,
+    "missing_corroboration": 24853,
+    "source_conflict": 14917,
+    "source_coverage_limitation": 25964,
+    "unresolved_source_conflict": 5577
+  },
+  "source_gap_dispositions": {
+    "evidence_no_longer_needed": 37,
+    "evidence_no_longer_needed_fact_rejected": 45692,
+    "genuine_acquisition_target": 4254,
+    "missing_corroboration": 24853,
+    "source_conflict": 14917,
+    "source_coverage_limitation": 25964
+  },
+  "source_gap_resolution": {
+    "acquisition_required": 29107,
+    "contradiction_adjudication_required": 14917,
+    "no_further_acquisition_required": 71693
+  },
+  "status": "complete_no_write_adjudication"
+}
