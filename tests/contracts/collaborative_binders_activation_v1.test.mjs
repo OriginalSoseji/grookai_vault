@@ -14,12 +14,16 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "fd026d0a51852ab5596c54a48b48cc8021aa1c5473fae68f19e8498c26068e88";
+  "32c31b7dfdd12f0f3883d45d2987a3450a424ebbea3891d9fbc8074e13841352";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
 const INSTALLATION_HEAD_SHA =
   "a29680bdf79409823eedab8a62f0bd5cc89d675c";
+const SEALED_ACTIVATION_HEAD_SHA =
+  "67a33dbe0b69e930d064094ece9c8cf167fe6536";
+const REVIEWED_SAFE_MAIN_HEAD_SHA =
+  "d01a2d818513175061db8b6e9280c9850319b5ab";
 const PRODUCTION_PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const CANONICAL_REPOSITORY = "OriginalSoseji/grookai_vault";
 const WINDOWS_ONLY = process.platform === "win32";
@@ -44,6 +48,51 @@ const READBACK_PATH =
   "scripts/ops/sql/collaborative_binders_activation_readback_v1.sql";
 const KILL_SWITCH_SQL_PATH =
   "scripts/ops/sql/collaborative_binders_activation_kill_switch_v1.sql";
+
+const INSTALLATION_TO_SEALED_TRANSITION_PATHS = [
+  "scripts/ops/CollaborativeBindersActivationV1.psm1",
+  "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_manifest_v1.json",
+  "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
+  "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
+  "tests/contracts/collaborative_binders_activation_v1.test.mjs",
+];
+
+const SAFE_MAIN_TO_CURRENT_TRANSITION_PATHS = [
+  "scripts/ops/CollaborativeBindersActivationV1.psm1",
+  "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_manifest_v1.json",
+  "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+  "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
+  "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
+  "tests/contracts/collaborative_binders_activation_v1.test.mjs",
+];
+
+const PROTECTED_TREE_PATHS = [
+  ".metadata",
+  "analysis_options.yaml",
+  "android",
+  "apps",
+  "backend",
+  "deno.lock",
+  "ios",
+  "lib",
+  "linux",
+  "macos",
+  "package-lock.json",
+  "pubspec.lock",
+  "pubspec.yaml",
+  "scripts/ops",
+  "supabase",
+  "test",
+  "web",
+  "windows",
+];
 
 const ACTIVATION_WRAPPERS = [
   {
@@ -390,6 +439,23 @@ test("activation manifest is one exact content-addressed package", () => {
     manifest.required_installation_head_sha,
     INSTALLATION_HEAD_SHA,
   );
+  assert.equal(
+    manifest.sealed_activation_head_sha,
+    SEALED_ACTIVATION_HEAD_SHA,
+  );
+  assert.equal(
+    manifest.reviewed_safe_main_head_sha,
+    REVIEWED_SAFE_MAIN_HEAD_SHA,
+  );
+  assert.deepEqual(
+    manifest.installation_to_sealed_transition_paths,
+    INSTALLATION_TO_SEALED_TRANSITION_PATHS,
+  );
+  assert.deepEqual(
+    manifest.safe_main_to_current_transition_paths,
+    SAFE_MAIN_TO_CURRENT_TRANSITION_PATHS,
+  );
+  assert.deepEqual(manifest.protected_tree_paths, PROTECTED_TREE_PATHS);
   assert.equal(manifest.supported_supabase_cli_version, EXPECTED_CLI.version);
   assert.equal(manifest.supabase_cli_launcher_sha256, EXPECTED_CLI.launcher);
   assert.equal(manifest.supabase_cli_binary_sha256, EXPECTED_CLI.binary);
@@ -1118,28 +1184,64 @@ test("phase one accepts only the production installer's exact nested apply evide
     "Assert-BinderActivationRepositoryV1",
   );
   assert.ok(repositoryBody.includes(INSTALLATION_HEAD_SHA));
+  assert.ok(repositoryBody.includes(SEALED_ACTIVATION_HEAD_SHA));
+  assert.ok(repositoryBody.includes(REVIEWED_SAFE_MAIN_HEAD_SHA));
   assert.match(
     repositoryBody,
-    /merge-base[\s\S]*?--is-ancestor[\s\S]*?\$InstallationHead[\s\S]*?\$ActivationHead/i,
+    /\$ExpectedHeadSha\s*-ceq\s*\$sealedActivationHeadSha/i,
+  );
+  assert.match(
+    repositoryBody,
+    /Assert-BinderRepositoryStateV1[\s\S]*?-ExpectedHeadSha\s+\$TargetHeadSha[\s\S]*?\}\s+\$RepoRoot\s+\$currentRepositoryHeadSha/i,
+  );
+  assert.doesNotMatch(
+    repositoryBody,
+    /\}\s+\$RepoRoot\s+\$ExpectedHeadSha[\s\S]*?Assert-BinderRepositoryStateV1/i,
+  );
+  assert.match(
+    repositoryBody,
+    /merge-base[\s\S]*?--is-ancestor[\s\S]*?\$InstallationHead[\s\S]*?\$SealedActivationHead/i,
   );
   assert.match(
     repositoryBody,
     /diff[\s\S]*?--name-only[\s\S]*?--diff-filter=ACDMRTUXB/i,
   );
-  for (const allowedPath of [
-    "scripts/ops/CollaborativeBindersActivationV1.psm1",
-    "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
-    "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
-    "scripts/ops/collaborative_binders_activation_manifest_v1.json",
-    "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
-    "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
-    "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
-    "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
-    "tests/contracts/collaborative_binders_activation_v1.test.mjs",
-  ]) {
+  assert.match(
+    repositoryBody,
+    /\$SealedActivationHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$CurrentHead/i,
+  );
+  assert.match(
+    repositoryBody,
+    /'rev-parse'[\s\S]*?\('\{0\}:\{1\}'\s+-f\s+\$SealedActivationHead,\s*\$path\)/i,
+  );
+  assert.match(
+    repositoryBody,
+    /'rev-parse'[\s\S]*?\('\{0\}:\{1\}'\s+-f\s+\$ReviewedSafeMainHead,\s*\$path\)/i,
+  );
+  assert.match(
+    repositoryBody,
+    /\$sealedObjectSha\s+-cmatch\s+'\^\[0-9a-f\]\{40\}\$'[\s\S]*?\$reviewedObjectSha\s+-cmatch\s+'\^\[0-9a-f\]\{40\}\$'[\s\S]*?\$sealedObjectSha\s+-ceq\s+\$reviewedObjectSha/i,
+  );
+  assert.match(
+    repositoryBody,
+    /\$ReviewedSafeMainHead\.\.\$CurrentHead/i,
+  );
+  for (const allowedPath of INSTALLATION_TO_SEALED_TRANSITION_PATHS) {
     assert.ok(
       repositoryBody.includes(`'${allowedPath}'`),
-      `Installation-to-activation allowlist is missing ${allowedPath}.`,
+      `Installation-to-sealed allowlist is missing ${allowedPath}.`,
+    );
+  }
+  for (const allowedPath of SAFE_MAIN_TO_CURRENT_TRANSITION_PATHS) {
+    assert.ok(
+      repositoryBody.includes(`'${allowedPath}'`),
+      `Safe-main-to-current allowlist is missing ${allowedPath}.`,
+    );
+  }
+  for (const protectedPath of PROTECTED_TREE_PATHS) {
+    assert.ok(
+      repositoryBody.includes(`'${protectedPath}'`),
+      `Protected tree inventory is missing ${protectedPath}.`,
     );
   }
 });

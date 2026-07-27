@@ -43,7 +43,7 @@ $activationModulePath =
 $productionModulePath =
   Join-Path $PSScriptRoot 'CollaborativeBindersProductionRolloutV1.psm1'
 $expectedActivationModuleSha256 =
-  '30e3553217ded512fb54219e672b9ddff9d520de267da436de69b1d92ca61748'
+  '7ad2c2bcc86bf9f8d4b40ff3fbd9d3af4f3db3bc4dc9ace6880a783bf7747826'
 $expectedProductionModuleSha256 =
   '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
 
