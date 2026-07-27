@@ -14,10 +14,12 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "5a18aeb749e8a4fc1da74949228c5e0d519c48935e5315baea679ca3b398df19";
+  "fd026d0a51852ab5596c54a48b48cc8021aa1c5473fae68f19e8498c26068e88";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
+const INSTALLATION_HEAD_SHA =
+  "a29680bdf79409823eedab8a62f0bd5cc89d675c";
 const PRODUCTION_PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const CANONICAL_REPOSITORY = "OriginalSoseji/grookai_vault";
 const WINDOWS_ONLY = process.platform === "win32";
@@ -384,6 +386,10 @@ test("activation manifest is one exact content-addressed package", () => {
     manifest.required_installation_package_fingerprint_sha256,
     INSTALLATION_PACKAGE_FINGERPRINT,
   );
+  assert.equal(
+    manifest.required_installation_head_sha,
+    INSTALLATION_HEAD_SHA,
+  );
   assert.equal(manifest.supported_supabase_cli_version, EXPECTED_CLI.version);
   assert.equal(manifest.supabase_cli_launcher_sha256, EXPECTED_CLI.launcher);
   assert.equal(manifest.supabase_cli_binary_sha256, EXPECTED_CLI.binary);
@@ -416,6 +422,16 @@ test("activation vectors are contiguous, exact, and exclude P8 surfaces", () => 
   assert.deepEqual(manifest.final_enabled_flags, FINAL_ENABLED_FLAGS);
   assert.deepEqual(manifest.excluded_flags, EXCLUDED_FLAGS);
   assert.equal(manifest.excluded_project_phase, "P8");
+  assert.equal(
+    manifest.installation_evidence_ttl_hours,
+    24,
+    "Initial installation evidence must stay within the accepted daily-backup horizon.",
+  );
+  assert.equal(
+    manifest.prior_evidence_ttl_hours,
+    2,
+    "Phase-to-phase evidence must keep its narrow two-hour window.",
+  );
 
   let before = [];
   const seenTargets = new Set();
@@ -645,7 +661,19 @@ test("prior sibling apply evidence enforces exact phase and catalog continuity",
   assert.ok(/\$readback\.checks\.enabled_flags/i.test(priorBody));
   assert.ok(/\$readback\.checks\.effective_enabled_flags/i.test(priorBody));
   assert.ok(/StableCatalogFingerprintSha256/i.test(priorBody));
-  assert.ok(/AddHours\(-2\)/i.test(priorBody));
+  const priorTimeBody = functionBody(
+    moduleSource,
+    "Assert-BinderActivationPriorEvidenceTimeV1",
+  );
+  assert.match(
+    priorTimeBody,
+    /\$PhaseSequence\s*-eq\s*1[\s\S]*?installation_evidence_ttl_hours[\s\S]*?else\s*{[\s\S]*?prior_evidence_ttl_hours/i,
+  );
+  assert.match(priorTimeBody, /AddHours\(-\$ttlHours\)/i);
+  assert.match(
+    priorBody,
+    /Assert-BinderActivationPriorEvidenceTimeV1/i,
+  );
   assert.ok(/mutation_termination_confirmed/i.test(priorBody));
 
   assert.ok(/Join-Path\s+\$applyRoot\s+'apply-result\.json'/i.test(applyBody));
@@ -699,6 +727,21 @@ test("activation continuity preserves explicit recovery and backup evidence", ()
       new RegExp(field, "i").test(applyBody),
       `Activation apply result does not preserve ${field}.`,
     );
+  }
+  for (const field of [
+    "activation_head_sha",
+    "installation_evidence_head_sha",
+  ]) {
+    for (const [label, body] of [
+      ["prior evidence", priorBody],
+      ["preflight manifest", manifestBody],
+      ["activation apply", applyBody],
+    ]) {
+      assert.ok(
+        body.toLowerCase().includes(field),
+        `${label} does not preserve ${field}.`,
+      );
+    }
   }
   assert.ok(/restore_path_reviewed\s*-eq\s*\$true/i.test(priorBody));
   assert.ok(/recoverable/i.test(priorBody));
@@ -1052,7 +1095,135 @@ test("phase one accepts only the production installer's exact nested apply evide
     functionBody(moduleSource, "Test-BinderActivationPriorEvidenceV1"),
     /Test-BinderInstallationPreflightEvidenceV1/i,
   );
+  const priorBody = functionBody(
+    moduleSource,
+    "Test-BinderActivationPriorEvidenceV1",
+  );
+  assert.match(
+    priorBody,
+    /\$result\.head_sha\s*-ceq\s*\[string\]\$policy\.Manifest\.required_installation_head_sha/i,
+  );
+  assert.match(
+    priorBody,
+    /\$installationManifest\.Data\.head_sha\s*-ceq\s*\[string\]\$policy\.Manifest\.required_installation_head_sha/i,
+  );
+  assert.match(
+    priorBody,
+    /\$installationManifest\.Data\.origin_main_sha\s*-ceq\s*\[string\]\$policy\.Manifest\.required_installation_head_sha/i,
+  );
+  assert.match(priorBody, /\$result\.head_sha\s*-ceq\s*\$ExpectedHeadSha/i);
+
+  const repositoryBody = functionBody(
+    moduleSource,
+    "Assert-BinderActivationRepositoryV1",
+  );
+  assert.ok(repositoryBody.includes(INSTALLATION_HEAD_SHA));
+  assert.match(
+    repositoryBody,
+    /merge-base[\s\S]*?--is-ancestor[\s\S]*?\$InstallationHead[\s\S]*?\$ActivationHead/i,
+  );
+  assert.match(
+    repositoryBody,
+    /diff[\s\S]*?--name-only[\s\S]*?--diff-filter=ACDMRTUXB/i,
+  );
+  for (const allowedPath of [
+    "scripts/ops/CollaborativeBindersActivationV1.psm1",
+    "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
+    "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
+    "scripts/ops/collaborative_binders_activation_manifest_v1.json",
+    "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
+    "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
+    "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
+    "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
+    "tests/contracts/collaborative_binders_activation_v1.test.mjs",
+  ]) {
+    assert.ok(
+      repositoryBody.includes(`'${allowedPath}'`),
+      `Installation-to-activation allowlist is missing ${allowedPath}.`,
+    );
+  }
 });
+
+test(
+  "phase-specific prior evidence windows accept only exact 24h install and 2h phase boundaries",
+  { skip: !WINDOWS_ONLY },
+  () => {
+    const script = String.raw`
+param($activationModule)
+$now = [datetimeoffset]'2026-07-27T00:00:00Z'
+$manifest = [pscustomobject]@{
+  installation_evidence_ttl_hours = 24
+  prior_evidence_ttl_hours = 2
+}
+function Invoke-Probe {
+  param(
+    [int]$Sequence,
+    [datetimeoffset]$Completed,
+    [object]$PolicyManifest = $manifest
+  )
+  try {
+    $ttl = & $activationModule {
+      param($completedAt, $phaseSequence, $policyManifest, $current)
+      Assert-BinderActivationPriorEvidenceTimeV1 -CompletedAtUtc $completedAt -PhaseSequence $phaseSequence -Manifest $policyManifest -NowUtc $current
+    } $Completed $Sequence $PolicyManifest $now
+    return [pscustomobject]@{
+      accepted = $true
+      ttl = [int]$ttl
+      error = ''
+    }
+  } catch {
+    return [pscustomobject]@{
+      accepted = $false
+      ttl = 0
+      error = $_.Exception.Message
+    }
+  }
+}
+[pscustomobject]@{
+  install_exact = Invoke-Probe 1 ($now.AddHours(-24))
+  install_expired = Invoke-Probe 1 ($now.AddHours(-24).AddSeconds(-1))
+  phase_exact = Invoke-Probe 2 ($now.AddHours(-2))
+  phase_expired = Invoke-Probe 2 ($now.AddHours(-2).AddSeconds(-1))
+  future_exact = Invoke-Probe 1 ($now.AddMinutes(5))
+  future_invalid = Invoke-Probe 1 ($now.AddMinutes(5).AddSeconds(1))
+  invalid_sequence = Invoke-Probe 0 $now
+  install_bad_ttl = Invoke-Probe 1 $now ([pscustomobject]@{
+    installation_evidence_ttl_hours = 23
+    prior_evidence_ttl_hours = 2
+  })
+  phase_bad_ttl = Invoke-Probe 2 $now ([pscustomobject]@{
+    installation_evidence_ttl_hours = 24
+    prior_evidence_ttl_hours = 3
+  })
+} | ConvertTo-Json -Depth 5 -Compress
+`;
+    const result = runActivationPowerShell(script);
+    assert.equal(
+      result.error,
+      undefined,
+      `could not launch pwsh: ${result.error?.message ?? ""}`,
+    );
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const report = JSON.parse(result.stdout.trim());
+    assert.equal(report.install_exact.accepted, true);
+    assert.equal(report.install_exact.ttl, 24);
+    assert.equal(report.install_expired.accepted, false);
+    assert.match(report.install_expired.error, /phase-specific activation window/i);
+    assert.equal(report.phase_exact.accepted, true);
+    assert.equal(report.phase_exact.ttl, 2);
+    assert.equal(report.phase_expired.accepted, false);
+    assert.match(report.phase_expired.error, /phase-specific activation window/i);
+    assert.equal(report.future_exact.accepted, true);
+    assert.equal(report.future_invalid.accepted, false);
+    assert.match(report.future_invalid.error, /phase-specific activation window/i);
+    assert.equal(report.invalid_sequence.accepted, false);
+    assert.match(report.invalid_sequence.error, /phase sequence is invalid/i);
+    assert.equal(report.install_bad_ttl.accepted, false);
+    assert.match(report.install_bad_ttl.error, /phase-specific TTL is invalid/i);
+    assert.equal(report.phase_bad_ttl.accepted, false);
+    assert.match(report.phase_bad_ttl.error, /phase-specific TTL is invalid/i);
+  },
+);
 
 test(
   "phase-one parent preflight evidence rejects digest tampering and extra files",
@@ -1352,6 +1523,8 @@ test("every phase chains sealed clients-dark evidence through preflight, apply, 
   assert.match(preflightBody, /Test-BinderActivationClientsDarkEvidenceV1/i);
 
   const continuityFields = [
+    "activation_head_sha",
+    "installation_evidence_head_sha",
     "clients_dark_evidence_root",
     "clients_dark_evidence_checksum_sha256",
     "clients_dark_evidence_sha256",
