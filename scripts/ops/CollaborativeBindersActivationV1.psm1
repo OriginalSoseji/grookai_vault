@@ -1185,8 +1185,12 @@ function Get-BinderActivationPolicyV1 {
     [int]$manifest.clients_dark_through_phase_sequence -eq 8 -and
     $manifest.binder_domain_must_remain_empty -eq $true -and
     $manifest.backup_chain_required -eq $true -and
+    [int]$manifest.installation_evidence_ttl_hours -eq 24 -and
     [int]$manifest.prior_evidence_ttl_hours -eq 2 -and
     [int]$manifest.backup_max_activation_recovery_lag_minutes -eq 1440 -and
+    (
+      [int]$manifest.installation_evidence_ttl_hours * 60
+    ) -eq [int]$manifest.backup_max_activation_recovery_lag_minutes -and
     $manifest.clients_dark_evidence_required -eq $true -and
     [int]$manifest.clients_dark_evidence_ttl_hours -eq 2 -and
     [string]$manifest.clients_dark_evidence_package_id -ceq
@@ -1371,6 +1375,10 @@ function Assert-BinderActivationSourceV1 {
   Assert-BinderActivationConditionV1 (
     [string]$manifest.excluded_project_phase -ceq 'P8'
   ) 'Binder activation must keep P8 excluded.'
+  Assert-BinderActivationConditionV1 (
+    [string]$manifest.required_installation_head_sha -ceq
+      'a29680bdf79409823eedab8a62f0bd5cc89d675c'
+  ) 'Binder installation source HEAD requirement changed.'
 
   $rollout = Test-BinderSourceV1 -RepoRoot $resolvedRepoRoot
   Assert-BinderActivationConditionV1 (
@@ -1426,12 +1434,73 @@ function Assert-BinderActivationRepositoryV1 {
     [string]$ExpectedHeadSha
   )
 
-  return & $script:RolloutModule {
+  $repository = & $script:RolloutModule {
     param($TargetRepoRoot, $TargetHeadSha)
     Assert-BinderRepositoryStateV1 `
       -RepoRoot $TargetRepoRoot `
       -ExpectedHeadSha $TargetHeadSha
   } $RepoRoot $ExpectedHeadSha
+
+  $installationHeadSha =
+    'a29680bdf79409823eedab8a62f0bd5cc89d675c'
+  $allowedTransitionPaths = @(
+    'scripts/ops/CollaborativeBindersActivationV1.psm1',
+    'scripts/ops/collaborative_binders_activation_apply_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_manifest_v1.json',
+    'scripts/ops/collaborative_binders_activation_preflight_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_recovery_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_source_validate_v1.ps1',
+    'scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1',
+    'tests/contracts/collaborative_binders_activation_v1.test.mjs'
+  )
+  $transition = & $script:RolloutModule {
+    param(
+      $TargetRepoRoot,
+      $InstallationHead,
+      $ActivationHead
+    )
+    $ancestor = Invoke-BinderGitV1 `
+      -Arguments @(
+        'merge-base',
+        '--is-ancestor',
+        $InstallationHead,
+        $ActivationHead
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $ancestor `
+      -Label 'Binder installation-to-activation ancestor check'
+    $diff = Invoke-BinderGitV1 `
+      -Arguments @(
+        'diff',
+        '--name-only',
+        '--diff-filter=ACDMRTUXB',
+        "$InstallationHead..$ActivationHead"
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $diff `
+      -Label 'Binder installation-to-activation path check'
+    return @(
+      $diff.StdOut -split '\r?\n' |
+        Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+    )
+  } $RepoRoot $installationHeadSha $ExpectedHeadSha
+  Assert-BinderActivationConditionV1 (
+    (@($transition | Sort-Object) -join "`n") -ceq
+      (@($allowedTransitionPaths | Sort-Object) -join "`n")
+  ) 'Binder installation-to-activation transition changed outside the exact guard allowlist.'
+
+  return [pscustomobject][ordered]@{
+    HeadSha = [string]$repository.HeadSha
+    OriginMainSha = [string]$repository.OriginMainSha
+    Branch = [string]$repository.Branch
+    Clean = [bool]$repository.Clean
+    InstallationHeadSha = $installationHeadSha
+    InstallationHeadIsAncestor = $true
+    TransitionPaths = @($transition)
+  }
 }
 
 function Resolve-BinderSupabaseExecutableV1 {
@@ -1681,6 +1750,41 @@ function Invoke-BinderActivationDiagnosticReadbackV1 {
   }
 }
 
+function Assert-BinderActivationPriorEvidenceTimeV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [datetimeoffset]$CompletedAtUtc,
+
+    [Parameter(Mandatory = $true)]
+    [int]$PhaseSequence,
+
+    [Parameter(Mandatory = $true)]
+    [object]$Manifest,
+
+    [Parameter(Mandatory = $true)]
+    [datetimeoffset]$NowUtc
+  )
+
+  Assert-BinderActivationConditionV1 (
+    $PhaseSequence -ge 1 -and
+    $PhaseSequence -le 8
+  ) 'Prior evidence phase sequence is invalid.'
+  $ttlHours = if ($PhaseSequence -eq 1) {
+    [int]$Manifest.installation_evidence_ttl_hours
+  } else {
+    [int]$Manifest.prior_evidence_ttl_hours
+  }
+  Assert-BinderActivationConditionV1 (
+    ($PhaseSequence -ne 1 -or $ttlHours -eq 24) -and
+    ($PhaseSequence -eq 1 -or $ttlHours -eq 2)
+  ) 'Prior evidence phase-specific TTL is invalid.'
+  Assert-BinderActivationConditionV1 (
+    $CompletedAtUtc -le $NowUtc.AddMinutes(5) -and
+    $CompletedAtUtc -ge $NowUtc.AddHours(-$ttlHours)
+  ) 'Prior evidence is outside its phase-specific activation window.'
+  return $ttlHours
+}
+
 function Test-BinderActivationPriorEvidenceV1 {
   param(
     [Parameter(Mandatory = $true)]
@@ -1741,12 +1845,14 @@ function Test-BinderActivationPriorEvidenceV1 {
   $completed = ConvertTo-BinderActivationUtcV1 `
     -Value $result.completed_at_utc `
     -Label 'Prior evidence completion time'
-  Assert-BinderActivationConditionV1 (
-    $completed -le $NowUtc.AddMinutes(5) -and
-    $completed -ge $NowUtc.AddHours(-2)
-  ) 'Prior evidence is outside the two-hour activation window.'
+  [void](Assert-BinderActivationPriorEvidenceTimeV1 `
+    -CompletedAtUtc $completed `
+    -PhaseSequence ([int]$Phase.sequence) `
+    -Manifest $policy.Manifest `
+    -NowUtc $NowUtc)
   $backup = $null
   $priorClientsDark = $null
+  $installationEvidenceHeadSha = $null
 
   if ([int]$Phase.sequence -eq 1) {
     Assert-BinderActivationConditionV1 (
@@ -1755,7 +1861,8 @@ function Test-BinderActivationPriorEvidenceV1 {
       $result.package_fingerprint_sha256 -ceq
         [string]$policy.Manifest.required_installation_package_fingerprint_sha256 -and
       $result.project_ref -ceq 'ycdxbpibncqcchqiihfz' -and
-      $result.head_sha -ceq $ExpectedHeadSha -and
+      $result.head_sha -ceq
+        [string]$policy.Manifest.required_installation_head_sha -and
       $result.push_succeeded -eq $true -and
       $result.push_termination_confirmed -eq $true -and
       [int]$result.feature_flags_enabled -eq 0
@@ -1776,7 +1883,10 @@ function Test-BinderActivationPriorEvidenceV1 {
         -NowUtc $TargetCompletedAtUtc
     } $installationManifestPath $completed.UtcDateTime
     Assert-BinderActivationConditionV1 (
-      $installationManifest.Data.head_sha -ceq $ExpectedHeadSha -and
+      $installationManifest.Data.head_sha -ceq
+        [string]$policy.Manifest.required_installation_head_sha -and
+      $installationManifest.Data.origin_main_sha -ceq
+        [string]$policy.Manifest.required_installation_head_sha -and
       $installationManifest.Data.project_ref -ceq
         'ycdxbpibncqcchqiihfz' -and
       $installationManifest.Data.package_fingerprint_sha256 -ceq
@@ -1799,6 +1909,8 @@ function Test-BinderActivationPriorEvidenceV1 {
       backup_evidence_sha256 = [string]$digest.Sha256
       restore_path_reviewed = [bool]$digest.RestorePathReviewed
     }
+    $installationEvidenceHeadSha =
+      [string]$policy.Manifest.required_installation_head_sha
   } else {
     $expectedPreviousSequence = [int]$Phase.sequence - 1
     $normalApply = (
@@ -1822,6 +1934,9 @@ function Test-BinderActivationPriorEvidenceV1 {
         $policy.PackageFingerprintSha256 -and
       $result.project_ref -ceq 'ycdxbpibncqcchqiihfz' -and
       $result.head_sha -ceq $ExpectedHeadSha -and
+      [string]$result.activation_head_sha -ceq $ExpectedHeadSha -and
+      [string]$result.installation_evidence_head_sha -ceq
+        [string]$policy.Manifest.required_installation_head_sha -and
       [int]$result.phase_sequence -eq $expectedPreviousSequence
     ) 'Prior activation evidence is invalid.'
     Assert-BinderActivationConditionV1 (
@@ -1871,6 +1986,8 @@ function Test-BinderActivationPriorEvidenceV1 {
       mobile_apk_sha256 =
         [string]$result.mobile_apk_sha256
     }
+    $installationEvidenceHeadSha =
+      [string]$result.installation_evidence_head_sha
   }
 
   Assert-BinderActivationConditionV1 (
@@ -1945,6 +2062,8 @@ function Test-BinderActivationPriorEvidenceV1 {
 
   return [pscustomobject][ordered]@{
     Root = $root
+    ActivationHeadSha = $ExpectedHeadSha
+    InstallationEvidenceHeadSha = $installationEvidenceHeadSha
     ChecksumPath = $checksums.ChecksumPath
     ChecksumSha256 = $checksums.ChecksumSha256
     CompletedAtUtc = $completed.ToString('o')
@@ -2055,6 +2174,9 @@ function New-BinderActivationManifestV1 {
     expires_at_utc = $NowUtc.AddMinutes(30).ToString('o')
     project_ref = [string]$Policy.Manifest.production_project_ref
     head_sha = $ExpectedHeadSha
+    activation_head_sha = $ExpectedHeadSha
+    installation_evidence_head_sha =
+      [string]$PriorEvidence.InstallationEvidenceHeadSha
     phase_sequence = [int]$Phase.sequence
     target_flag = [string]$Phase.flag_key
     rollout_model = [string]$Policy.Manifest.rollout_model
@@ -2312,6 +2434,10 @@ function Read-BinderActivationPreflightManifestV1 {
     [string]$manifest.status -ceq 'pass' -and
     [string]$manifest.project_ref -ceq 'ycdxbpibncqcchqiihfz' -and
     [string]$manifest.head_sha -cmatch '^[0-9a-f]{40}$' -and
+    [string]$manifest.activation_head_sha -ceq
+      [string]$manifest.head_sha -and
+    [string]$manifest.installation_evidence_head_sha -ceq
+      'a29680bdf79409823eedab8a62f0bd5cc89d675c' -and
     [string]$manifest.rollout_model -ceq
       'clients_dark_empty_domain' -and
     [int]$manifest.clients_dark_through_phase_sequence -eq 8 -and
@@ -2495,6 +2621,10 @@ function Invoke-BinderActivationRecoveryV1 {
     [string]$evidenceRecord.project_ref -ceq
       'ycdxbpibncqcchqiihfz' -and
     [string]$evidenceRecord.head_sha -ceq $ExpectedHeadSha -and
+    [string]$evidenceRecord.activation_head_sha -ceq
+      $ExpectedHeadSha -and
+    [string]$evidenceRecord.installation_evidence_head_sha -ceq
+      [string]$policy.Manifest.required_installation_head_sha -and
     [int]$evidenceRecord.phase_sequence -eq [int]$phase.sequence -and
     [string]$evidenceRecord.target_flag -ceq
       [string]$phase.flag_key -and
@@ -2555,6 +2685,9 @@ function Invoke-BinderActivationRecoveryV1 {
       $policy.PackageFingerprintSha256 -and
     [string]$intent.project_ref -ceq 'ycdxbpibncqcchqiihfz' -and
     [string]$intent.head_sha -ceq $ExpectedHeadSha -and
+    [string]$intent.activation_head_sha -ceq $ExpectedHeadSha -and
+    [string]$intent.installation_evidence_head_sha -ceq
+      [string]$policy.Manifest.required_installation_head_sha -and
     [int]$intent.phase_sequence -eq [int]$phase.sequence -and
     [string]$intent.target_flag -ceq [string]$phase.flag_key -and
     [string]$intent.rollout_model -ceq
@@ -2579,6 +2712,10 @@ function Invoke-BinderActivationRecoveryV1 {
       (@($phase.enabled_after) -join "`n")
   ) 'Interrupted activation intent does not match one exact phase.'
   Assert-BinderActivationConditionV1 (
+    [string]$intent.activation_head_sha -ceq
+      [string]$evidenceRecord.activation_head_sha -and
+    [string]$intent.installation_evidence_head_sha -ceq
+      [string]$evidenceRecord.installation_evidence_head_sha -and
     [string]$intent.clients_dark_evidence_root -ceq
       [string]$evidenceRecord.clients_dark_evidence_root -and
     [string]$intent.clients_dark_evidence_checksum_sha256 -ceq
@@ -2634,6 +2771,9 @@ function Invoke-BinderActivationRecoveryV1 {
     [string]$intent.preflight_manifest_fingerprint_sha256 -ceq
       [string]$manifest.manifest_fingerprint_sha256 -and
     [string]$manifest.head_sha -ceq $ExpectedHeadSha -and
+    [string]$manifest.activation_head_sha -ceq $ExpectedHeadSha -and
+    [string]$manifest.installation_evidence_head_sha -ceq
+      [string]$policy.Manifest.required_installation_head_sha -and
     [int]$manifest.phase_sequence -eq [int]$phase.sequence -and
     [string]$manifest.target_flag -ceq [string]$phase.flag_key -and
     [string]$manifest.package_fingerprint_sha256 -ceq
@@ -2829,6 +2969,9 @@ function Invoke-BinderActivationRecoveryV1 {
         package_fingerprint_sha256 = $policy.PackageFingerprintSha256
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = $ExpectedHeadSha
+        activation_head_sha = $ExpectedHeadSha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         enabled_flags_before = @($phase.enabled_before)
@@ -2918,6 +3061,9 @@ function Invoke-BinderActivationRecoveryV1 {
         package_fingerprint_sha256 = $policy.PackageFingerprintSha256
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = $ExpectedHeadSha
+        activation_head_sha = $ExpectedHeadSha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         rollout_model = [string]$manifest.rollout_model
@@ -2994,6 +3140,9 @@ function Invoke-BinderActivationRecoveryV1 {
         package_id = 'COLLABORATIVE-BINDERS-ACTIVATION-V1'
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = $ExpectedHeadSha
+        activation_head_sha = $ExpectedHeadSha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
@@ -3027,6 +3176,9 @@ function Invoke-BinderActivationRecoveryV1 {
         package_id = 'COLLABORATIVE-BINDERS-ACTIVATION-V1'
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = $ExpectedHeadSha
+        activation_head_sha = $ExpectedHeadSha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
@@ -3066,6 +3218,9 @@ function Invoke-BinderActivationRecoveryV1 {
         package_id = 'COLLABORATIVE-BINDERS-ACTIVATION-V1'
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = $ExpectedHeadSha
+        activation_head_sha = $ExpectedHeadSha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
@@ -3687,6 +3842,12 @@ function Invoke-BinderActivationApplyV1 {
       [string]$manifest.prior_evidence_checksum_sha256
   ) 'Prior evidence changed after activation preflight.'
   Assert-BinderActivationConditionV1 (
+    [string]$manifest.activation_head_sha -ceq
+      [string]$manifest.head_sha -and
+    [string]$manifest.installation_evidence_head_sha -ceq
+      [string]$prior.InstallationEvidenceHeadSha
+  ) 'Activation and installation evidence HEAD continuity changed after preflight.'
+  Assert-BinderActivationConditionV1 (
     $prior.BackupKind -ceq [string]$manifest.backup_kind -and
     $prior.BackupVerifiedAtUtc -ceq
       [string]$manifest.backup_verified_at_utc -and
@@ -3789,6 +3950,9 @@ function Invoke-BinderActivationApplyV1 {
         package_fingerprint_sha256 = $policy.PackageFingerprintSha256
         project_ref = 'ycdxbpibncqcchqiihfz'
         head_sha = [string]$manifest.head_sha
+        activation_head_sha = [string]$manifest.activation_head_sha
+        installation_evidence_head_sha =
+          [string]$manifest.installation_evidence_head_sha
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         enabled_flags_before = @($phase.enabled_before)
@@ -3941,6 +4105,9 @@ function Invoke-BinderActivationApplyV1 {
       package_fingerprint_sha256 = $policy.PackageFingerprintSha256
       project_ref = 'ycdxbpibncqcchqiihfz'
       head_sha = [string]$manifest.head_sha
+      activation_head_sha = [string]$manifest.activation_head_sha
+      installation_evidence_head_sha =
+        [string]$manifest.installation_evidence_head_sha
       phase_sequence = [int]$phase.sequence
       target_flag = [string]$phase.flag_key
       rollout_model = [string]$manifest.rollout_model
@@ -4045,6 +4212,9 @@ function Invoke-BinderActivationApplyV1 {
       package_fingerprint_sha256 = $policy.PackageFingerprintSha256
       project_ref = 'ycdxbpibncqcchqiihfz'
       head_sha = [string]$manifest.head_sha
+      activation_head_sha = [string]$manifest.activation_head_sha
+      installation_evidence_head_sha =
+        [string]$manifest.installation_evidence_head_sha
       phase_sequence = [int]$phase.sequence
       target_flag = [string]$phase.flag_key
       enabled_flags_before = @($phase.enabled_before)
