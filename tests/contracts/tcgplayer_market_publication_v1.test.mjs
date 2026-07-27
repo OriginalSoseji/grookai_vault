@@ -403,6 +403,7 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
 
 test("local smoke proves publication, resume, rollback, append-only, and ACL boundaries", () => {
   assert.match(LOCAL_SMOKE, /local smoke test refuses a non-local database URL/);
+  assert.match(LOCAL_SMOKE, /\$1::bigint[\s\S]*jsonb_build_object\([\s\S]*\$1::bigint/);
   assert.match(LOCAL_SMOKE, /resuming a verified run must not repeat completed phases/);
   assert.match(LOCAL_SMOKE, /rollback_market_price_publication_set_v1/);
   assert.match(LOCAL_SMOKE, /append-only/i);

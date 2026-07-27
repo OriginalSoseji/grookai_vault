@@ -222,10 +222,10 @@ async function seedFixture(client, fixture) {
          catalog_metadata_status
        )
        values (
-         $1, 3, 1, 'Pricing Smoke Pikachu', 'Pricing Smoke Pikachu',
+         $1::bigint, 3, 1, 'Pricing Smoke Pikachu', 'Pricing Smoke Pikachu',
          '[{"name":"Number","value":"1"}]'::jsonb,
          jsonb_build_object(
-           'productId', $1,
+           'productId', $1::bigint,
            'name', 'Pricing Smoke Pikachu'
          ),
          $2, $3, true, 'current'
