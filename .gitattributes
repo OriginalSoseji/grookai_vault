@@ -7,3 +7,4 @@
 *.yaml text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+docs/audits/japanese_master_index_v4/sets/raw/*.html -text -diff
