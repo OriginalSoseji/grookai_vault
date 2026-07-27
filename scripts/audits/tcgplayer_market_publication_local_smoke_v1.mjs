@@ -416,31 +416,34 @@ async function main() {
       /append-only/i,
     );
 
-    const authenticated = await client.query(
-      `begin;
-       set local role authenticated;
-       select count(*)::integer as row_count
-       from public.get_market_pricing_read_model_v1(array[$1]::uuid[], null);
-       rollback;`,
-      [fixture.cardPrintId],
-    );
-    const authenticatedResult = authenticated.find(
-      (entry) => entry?.rows?.[0]?.row_count !== undefined,
-    );
-    assert.equal(Number(authenticatedResult.rows[0].row_count), 1);
+    await client.query("begin");
+    let authenticated;
+    try {
+      await client.query("set local role authenticated");
+      authenticated = await client.query(
+        `select count(*)::integer as row_count
+           from public.get_market_pricing_read_model_v1(array[$1]::uuid[], null)`,
+        [fixture.cardPrintId],
+      );
+    } finally {
+      await client.query("rollback");
+    }
+    assert.equal(Number(authenticated.rows[0].row_count), 1);
 
     const provenance = current.rows[0].provenance_id;
-    await assert.rejects(
-      client.query(
-        `begin;
-         set local role authenticated;
-         select * from public.get_market_price_trace_v1($1);
-         rollback;`,
-        [provenance],
-      ),
-      /permission denied/i,
-    );
-    await client.query("rollback").catch(() => {});
+    await client.query("begin");
+    try {
+      await client.query("set local role authenticated");
+      await assert.rejects(
+        client.query(
+          `select * from public.get_market_price_trace_v1($1)`,
+          [provenance],
+        ),
+        /permission denied/i,
+      );
+    } finally {
+      await client.query("rollback");
+    }
     const trace = await client.query(
       `select * from public.get_market_price_trace_v1($1)`,
       [provenance],
