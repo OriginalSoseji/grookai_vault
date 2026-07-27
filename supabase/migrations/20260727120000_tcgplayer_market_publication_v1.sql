@@ -21,6 +21,20 @@ $$;
 comment on function public.normalize_tcgplayer_market_subtype_v1(text) is
   'Maps only unambiguous ordinary TCGPlayer price subtypes to canonical finish keys. Edition and special-finish subtypes intentionally abstain.';
 
+-- These established production reference values were absent from the local
+-- migration ledger even though ordinary printing contracts already depend on
+-- them. Reconcile the ledger before adding the governed market publication path.
+insert into public.finish_keys (key, label, sort_order, is_active, meta)
+values
+  ('normal', 'Normal', 10, true, '{}'::jsonb),
+  ('reverse', 'Reverse Holo', 20, true, '{}'::jsonb),
+  ('holo', 'Holo', 30, true, '{}'::jsonb)
+on conflict (key) do update
+set
+  label = excluded.label,
+  sort_order = excluded.sort_order,
+  is_active = excluded.is_active;
+
 alter table public.market_evidence_variant_assignments
   drop constraint if exists market_evidence_variant_assignments_source_family_check;
 alter table public.market_evidence_variant_assignments

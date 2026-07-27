@@ -277,6 +277,10 @@ test("quarantines finish conflicts and non-positive market prices", () => {
 });
 
 test("migration creates append-only qualification and publication ledgers", () => {
+  assert.match(
+    MIGRATION,
+    /\('normal', 'Normal', 10[\s\S]*\('reverse', 'Reverse Holo', 20[\s\S]*\('holo', 'Holo', 30/i,
+  );
   assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_runs/i);
   assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_phase_attempts/i);
   assert.match(MIGRATION, /create table if not exists public\.market_price_pipeline_candidates/i);
