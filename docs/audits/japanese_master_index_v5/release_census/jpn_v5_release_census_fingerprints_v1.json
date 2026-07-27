@@ -1,0 +1,32 @@
+{
+  "aggregate_sha256": "e10d43aec908323da1be03527813a3e81526b247aa7d7972c0026371f98895f7",
+  "files": {
+    "jpn_v5_acquisition_priority_queue_v1.jsonl": {
+      "bytes": 639769,
+      "row_count": 2705,
+      "sha256": "30e288452279a0391a1f8b398116a76684d7c249ac1cd07b101cc10860337d8e"
+    },
+    "jpn_v5_denominator_report_v1.json": {
+      "bytes": 1943,
+      "row_count": null,
+      "sha256": "0446953940d4f62c238f146b6209fff6e1ad5588d4b7602891cb7669931bee51"
+    },
+    "jpn_v5_no_write_attestation_v1.json": {
+      "bytes": 412,
+      "row_count": null,
+      "sha256": "acacb65c4c01dbf1b8d4cdf1d0222eb7b610ef33d0f713384bac1656a282f6d2"
+    },
+    "jpn_v5_release_census_report_v1.md": {
+      "bytes": 487,
+      "row_count": null,
+      "sha256": "99b11773853731edc208b9b0e12513ff33be89e1d62a8d4a0855e3f401f4627e"
+    },
+    "jpn_v5_release_census_v1.jsonl": {
+      "bytes": 1449302,
+      "row_count": 1453,
+      "sha256": "38c7435e47561c9b8b0ceb5d126caba510e8b85865e75909ba104b2b3858adeb"
+    }
+  },
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-RELEASE-CENSUS-V1"
+}

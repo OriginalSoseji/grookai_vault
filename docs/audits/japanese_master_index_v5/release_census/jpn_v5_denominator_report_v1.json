@@ -1,0 +1,61 @@
+{
+  "acquisition_queue": {
+    "by_issue_kind": {
+      "base_identity_slot_gap": 356,
+      "expected_count_conflict": 151,
+      "missing_container_inventory": 666,
+      "missing_expected_count": 189,
+      "product_slot_manifest_missing": 631,
+      "strict_admission_gap": 712
+    },
+    "by_priority": {
+      "1": 666,
+      "2": 507,
+      "3": 820,
+      "4": 712
+    },
+    "issue_rows": 2705
+  },
+  "baseline": {
+    "v4_aggregate_sha256": "0d6998adc0e4220fad27afb9ce2d3913283e68e5d96455de668e1c01c5b26747",
+    "v4_frozen_live_and_english_match": true
+  },
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-RELEASE-CENSUS-V1",
+  "next_gate": "resolve_missing_and_conflicting_container_bounds_before_global_ratio",
+  "provisional_bounded_coverage": {
+    "claim_scope": "only_admissible_containers_with_one_unique_expected_count",
+    "expected_slots": 23181,
+    "included_container_count": 455,
+    "missing_slot_lower_bound": 15248,
+    "percent": 34.22,
+    "ratio": 0.34221992,
+    "strict_admissible_slots_capped": 7933
+  },
+  "registry": {
+    "by_denominator_status": {
+      "excluded_conflicting_expected_counts": 151,
+      "excluded_missing_expected_count": 189,
+      "excluded_product_scope_requires_slot_manifest": 631,
+      "excluded_set_identity_not_admissible": 27,
+      "provisional_bounded_unique_expected_count": 455
+    },
+    "by_entry_kind": {
+      "japanese_card_release": 822,
+      "official_product": 631
+    },
+    "by_release_kind": {
+      "constructed_deck": 381,
+      "expansion_or_subset": 475,
+      "magazine_movie_media": 10,
+      "product_exclusive_distribution": 550,
+      "promo_series": 33,
+      "tournament_trophy_event": 1,
+      "vending": 3
+    },
+    "containers_with_candidate_rows": 787,
+    "containers_without_candidate_rows": 666,
+    "total_containers": 1453
+  },
+  "status": "initial_provisional_denominator_not_98_percent_claim"
+}

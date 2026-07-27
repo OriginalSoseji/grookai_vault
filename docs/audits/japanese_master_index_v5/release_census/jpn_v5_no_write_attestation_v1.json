@@ -1,0 +1,12 @@
+{
+  "database_reads": false,
+  "database_writes": false,
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-RELEASE-CENSUS-V1",
+  "migrations": false,
+  "production_mutated": false,
+  "source_fetches": false,
+  "status": "attested_read_only_no_write",
+  "storage_writes": false,
+  "v4_aggregate_sha256": "0d6998adc0e4220fad27afb9ce2d3913283e68e5d96455de668e1c01c5b26747"
+}
