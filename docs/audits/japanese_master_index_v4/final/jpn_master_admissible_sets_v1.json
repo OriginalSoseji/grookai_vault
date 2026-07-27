@@ -1,0 +1,25 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "dataset": {
+      "content_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+      "dataset_key": "master_admissible_set_rows_v1",
+      "row_count": 1426,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_set_rows_v1/master_admissible_set_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "generator_version": "JPN-MASTER-INDEX-FINAL-ADMISSION-V1"
+  },
+  "content_fingerprint_sha256": "bf0a4503fb0c10c2e5544c528d1a7f82e0a852c2a819961baec2f27af0bad636",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-ADMISSIBLE-SET-ROWS-SHARD-V1-DESCRIPTOR",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "note": "Stored source keys are evidence lanes; source-family independence is adjudicated later.",
+    "sources": [
+      {
+        "card_rows": 23868,
+        "evidence_rows": 23868,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "source_key": "artofpkm_jp"
+      },
+      {
+        "card_rows": 3977,
+        "evidence_rows": 3977,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "source_key": "bulbapedia_jp_card_list"
+      },
+      {
+        "card_rows": 134,
+        "evidence_rows": 134,
+        "first_stored_at": "2026-07-03T22:04:41.534Z",
+        "last_stored_at": "2026-07-03T22:04:41.534Z",
+        "source_key": "bulbapedia_pikachu_tcg"
+      },
+      {
+        "card_rows": 18462,
+        "evidence_rows": 18462,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "source_key": "limitless_tcg_jp"
+      },
+      {
+        "card_rows": 17734,
+        "evidence_rows": 17734,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "source_key": "pokellector_jp"
+      },
+      {
+        "card_rows": 21235,
+        "evidence_rows": 21294,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "source_key": "pokemon_card_official_jp"
+      },
+      {
+        "card_rows": 25059,
+        "evidence_rows": 25059,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-03T22:04:41.534Z",
+        "source_key": "tcgcollector_jp"
+      },
+      {
+        "card_rows": 6061,
+        "evidence_rows": 6061,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "source_key": "tcgdex_ja"
+      }
+    ],
+    "stored_lane_distribution": [
+      {
+        "parent_rows": 94,
+        "stored_lane_count": 0
+      },
+      {
+        "parent_rows": 90,
+        "stored_lane_count": 1
+      },
+      {
+        "parent_rows": 2443,
+        "stored_lane_count": 2
+      },
+      {
+        "parent_rows": 3337,
+        "stored_lane_count": 3
+      },
+      {
+        "parent_rows": 4449,
+        "stored_lane_count": 4
+      },
+      {
+        "parent_rows": 10057,
+        "stored_lane_count": 5
+      },
+      {
+        "parent_rows": 5577,
+        "stored_lane_count": 6
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "bf6fef4e32da8a004a665612b090b40001e651a96b16790743549a7a11f22e52",
+  "generated_at": "2026-07-26T19:05:27.244Z",
+  "package_id": "LIVE-JPN-SOURCE-COVERAGE-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}

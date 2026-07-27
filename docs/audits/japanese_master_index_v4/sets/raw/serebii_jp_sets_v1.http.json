@@ -1,0 +1,20 @@
+{
+  "body_path": "docs/audits/japanese_master_index_v4/sets/raw/serebii_jp_sets_v1.html",
+  "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+  "byte_size": 115670,
+  "fetched_at": "2026-07-26T17:04:26.141Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.serebii.net/card/japanese.shtml",
+  "response_headers": {
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=ISO-8859-1",
+    "date": "Sun, 26 Jul 2026 17:04:26 GMT",
+    "server": "nginx",
+    "vary": "Accept-Encoding"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "serebii_jp_sets",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

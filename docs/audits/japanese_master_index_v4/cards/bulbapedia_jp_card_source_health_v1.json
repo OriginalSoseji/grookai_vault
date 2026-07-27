@@ -1,0 +1,3862 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "containers": [
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:36:58.011Z",
+        "article_snapshot_sha256": "9dab57e097934641048995ae53decd551bd72d02ec2782a5cffe13bf57a7e75f",
+        "covered_base_number_count": 28,
+        "diagnostics": {
+          "candidate_numbered_row_count": 79,
+          "card_list_table_count": 3,
+          "matching_row_count": 30,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 49,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 30,
+        "registry_key": "jpn-s8a",
+        "selected_card_count": 30,
+        "source_container_id": "25th_Anniversary_Collection_(TCG)",
+        "source_expected_card_count": 28,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:03.337Z",
+        "article_snapshot_sha256": "2be21d5e703495a6dd7b1ba7efdd25611f7b76fb799a4e4087cd2c0b4056fd90",
+        "covered_base_number_count": 81,
+        "diagnostics": {
+          "candidate_numbered_row_count": 118,
+          "card_list_table_count": 1,
+          "matching_row_count": 118,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-m5",
+        "selected_card_count": 118,
+        "source_container_id": "Abyss_Eye_(TCG)",
+        "source_expected_card_count": 81,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:08.620Z",
+        "article_snapshot_sha256": "157d65b86398835ef127eec092aa05d4a8832db6617faed1dce292644c80e781",
+        "covered_base_number_count": 55,
+        "diagnostics": {
+          "candidate_numbered_row_count": 198,
+          "card_list_table_count": 3,
+          "matching_row_count": 55,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 143,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 55,
+        "registry_key": "jpn-release-482756808099183d",
+        "selected_card_count": 55,
+        "source_container_id": "ADV_Expansion_Pack_(TCG)",
+        "source_expected_card_count": 55,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:14.217Z",
+        "article_snapshot_sha256": "b44962df2b2006892c98f74d3c8b08c1534f648f1e7407aaf2ebd6a66e5a320e",
+        "covered_base_number_count": 90,
+        "diagnostics": {
+          "candidate_numbered_row_count": 197,
+          "card_list_table_count": 3,
+          "matching_row_count": 90,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 107,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-dpt4",
+        "selected_card_count": 90,
+        "source_container_id": "Advent_of_Arceus_(TCG)",
+        "source_expected_card_count": 90,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:19.758Z",
+        "article_snapshot_sha256": "3f61c14e2bcaa49189e36563483cef9f24da6050c5fec29f92c31167d534602c",
+        "covered_base_number_count": 95,
+        "diagnostics": {
+          "candidate_numbered_row_count": 398,
+          "card_list_table_count": 3,
+          "matching_row_count": 117,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 281,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 117,
+        "registry_key": "jpn-sm12",
+        "selected_card_count": 117,
+        "source_container_id": "Alter_Genesis_(TCG)",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:25.464Z",
+        "article_snapshot_sha256": "d94a59dea9af569b0a40bfa7e71a06f548648abccdd20dfe89b4171e6820a526",
+        "covered_base_number_count": 66,
+        "diagnostics": {
+          "candidate_numbered_row_count": 505,
+          "card_list_table_count": 4,
+          "matching_row_count": 190,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 315,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 95,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 190,
+        "registry_key": "jpn-release-91b289c0def54d1c",
+        "selected_card_count": 190,
+        "source_container_id": "Ancient_Roar/Future_Flash_(TCG)",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:31.255Z",
+        "article_snapshot_sha256": "55db12338a5c482db79f2de4484a638da0b93745f786a1aa2acf37b60eec17da",
+        "covered_base_number_count": 50,
+        "diagnostics": {
+          "candidate_numbered_row_count": 272,
+          "card_list_table_count": 4,
+          "matching_row_count": 124,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 148,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 62,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 124,
+        "registry_key": "jpn-release-b0587b7a52002691",
+        "selected_card_count": 124,
+        "source_container_id": "Awakened_Heroes/Ultradimensional_Beasts_(TCG)",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:36.826Z",
+        "article_snapshot_sha256": "7545dc9fecd3d1bc23dac357560a0077de9a977bf27a0d9921089020b4a23d30",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 66,
+          "card_list_table_count": 2,
+          "matching_row_count": 57,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 66,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            57
+          ],
+          "unnumbered_candidate_table_counts": [
+            57
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 57,
+        "registry_key": "jpn-release-a66fd47c97974224",
+        "selected_card_count": 57,
+        "source_container_id": "Awakening_Legends_(TCG)",
+        "source_expected_card_count": 57,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:42.095Z",
+        "article_snapshot_sha256": "12d20fe9e109f89a6431269a2b3d34adba4583688942eb64bce329e7552c7cb1",
+        "covered_base_number_count": 78,
+        "diagnostics": {
+          "candidate_numbered_row_count": 228,
+          "card_list_table_count": 3,
+          "matching_row_count": 88,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 140,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-xy10",
+        "selected_card_count": 88,
+        "source_container_id": "Awakening_Psychic_King_(TCG)",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:47.604Z",
+        "article_snapshot_sha256": "1d6e0d21ca693853c386c7b8367fa60c2ac015bf0e149dec09e0a00a96f254b6",
+        "covered_base_number_count": 81,
+        "diagnostics": {
+          "candidate_numbered_row_count": 215,
+          "card_list_table_count": 3,
+          "matching_row_count": 97,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 118,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 97,
+        "registry_key": "jpn-xy7",
+        "selected_card_count": 97,
+        "source_container_id": "Bandit_Ring_(TCG)",
+        "source_expected_card_count": 81,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:53.152Z",
+        "article_snapshot_sha256": "f01cf303d6e53f99744f583479e0f86a43958431cad8205ade81f18b4837d8b8",
+        "covered_base_number_count": 128,
+        "diagnostics": {
+          "candidate_numbered_row_count": 295,
+          "card_list_table_count": 3,
+          "matching_row_count": 128,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 167,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 128,
+        "registry_key": "jpn-release-62268dbd70a1c1be",
+        "selected_card_count": 128,
+        "source_container_id": "Base_Expansion_Pack_(TCG)",
+        "source_expected_card_count": 128,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:37:58.706Z",
+        "article_snapshot_sha256": "53cdfc7fc3d57e460ddbef0901125e69e64ae6cacea15606a3ee35dc196b37be",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 132,
+          "card_list_table_count": 1,
+          "matching_row_count": 132,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-sv9",
+        "selected_card_count": 132,
+        "source_container_id": "Battle_Partners_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:03.994Z",
+        "article_snapshot_sha256": "91c949b7c8b9e6e1ed33d89d207749c8b626161523091d9d4acf3021716305bb",
+        "covered_base_number_count": 67,
+        "diagnostics": {
+          "candidate_numbered_row_count": 93,
+          "card_list_table_count": 1,
+          "matching_row_count": 93,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 93,
+        "registry_key": "jpn-s9a",
+        "selected_card_count": 93,
+        "source_container_id": "Battle_Region_(TCG)",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:09.309Z",
+        "article_snapshot_sha256": "e7e6947256ee7fc766416c99f518689696be0e44a9f3c8202523335073421fb2",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 275,
+          "card_list_table_count": 3,
+          "matching_row_count": 100,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 175,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-dpt3",
+        "selected_card_count": 100,
+        "source_container_id": "Beat_of_the_Frontier_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:14.898Z",
+        "article_snapshot_sha256": "9fce1142dff218c8d070f53baa293cbcaf76fc2c8cde51a8b18ccc373c0450cb",
+        "covered_base_number_count": 86,
+        "diagnostics": {
+          "candidate_numbered_row_count": 348,
+          "card_list_table_count": 2,
+          "matching_row_count": 348,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 174,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 348,
+        "registry_key": "jpn-release-77b6754eb77e9131",
+        "selected_card_count": 348,
+        "source_container_id": "Black_Bolt/White_Flare_(TCG)",
+        "source_expected_card_count": 86,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:20.594Z",
+        "article_snapshot_sha256": "0cfb0025a80519458d022095f7605fdd13401c36f31214ce18e1da710c6b9fed",
+        "covered_base_number_count": 53,
+        "diagnostics": {
+          "candidate_numbered_row_count": 270,
+          "card_list_table_count": 4,
+          "matching_row_count": 112,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 158,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 56,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 112,
+        "registry_key": "jpn-release-6d66ec10e77f9ece",
+        "selected_card_count": 112,
+        "source_container_id": "Black_Collection/White_Collection_(TCG)",
+        "source_expected_card_count": 53,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:26.148Z",
+        "article_snapshot_sha256": "869501751f5f144620ce6a34c52f19c727dc00524aad039996a6d399caf84514",
+        "covered_base_number_count": 59,
+        "diagnostics": {
+          "candidate_numbered_row_count": 321,
+          "card_list_table_count": 4,
+          "matching_row_count": 130,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 191,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 65,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 130,
+        "registry_key": "jpn-release-75b36820ac1b92e3",
+        "selected_card_count": 130,
+        "source_container_id": "Blue_Shock/Red_Flash_(TCG)",
+        "source_expected_card_count": 59,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:31.738Z",
+        "article_snapshot_sha256": "5d84c6c69ea04ff899ea0a1b44ed3aa93cccc652bc8be95f1b15ab47ac22f07a",
+        "covered_base_number_count": 90,
+        "diagnostics": {
+          "candidate_numbered_row_count": 219,
+          "card_list_table_count": 3,
+          "matching_row_count": 90,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 129,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-dpt2",
+        "selected_card_count": 90,
+        "source_container_id": "Bonds_to_the_End_of_Time_(TCG)",
+        "source_expected_card_count": 90,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:37.056Z",
+        "article_snapshot_sha256": "8fefcd5e71b382233af903471fc90b6e5f3b4d52c5913bdf33d51be666020b8a",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 135,
+          "card_list_table_count": 4,
+          "matching_row_count": 98,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 135,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            98
+          ],
+          "unnumbered_candidate_table_counts": [
+            98
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 98,
+        "registry_key": "jpn-release-d4793b8ee109bd84",
+        "selected_card_count": 98,
+        "source_container_id": "Challenge_from_the_Darkness_(TCG)",
+        "source_expected_card_count": 98,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:42.351Z",
+        "article_snapshot_sha256": "9ce3c15efd8a7d539e2627511906d395ca93e44c3366bcc5c5dffdb1af1eec33",
+        "covered_base_number_count": 66,
+        "diagnostics": {
+          "candidate_numbered_row_count": 86,
+          "card_list_table_count": 1,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-sm6b",
+        "selected_card_count": 86,
+        "source_container_id": "Champion_Road_(TCG)",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:47.842Z",
+        "article_snapshot_sha256": "cb437e585822d462cfba363a995d2daa511dc64cb0aec908b55d34a05366b5bf",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 194,
+          "card_list_table_count": 3,
+          "matching_row_count": 81,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 113,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 81,
+        "registry_key": "jpn-l3",
+        "selected_card_count": 81,
+        "source_container_id": "Clash_at_the_Summit_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:53.347Z",
+        "article_snapshot_sha256": "acca804b23dea849598bfe44ade9a21899968ee23ecbbd4317cece3c3d3e2a34",
+        "covered_base_number_count": 82,
+        "diagnostics": {
+          "candidate_numbered_row_count": 202,
+          "card_list_table_count": 3,
+          "matching_row_count": 82,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 120,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 82,
+        "registry_key": "jpn-release-93a156ccac7153f1",
+        "selected_card_count": 82,
+        "source_container_id": "Clash_of_the_Blue_Sky_(TCG)",
+        "source_expected_card_count": 82,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:38:58.875Z",
+        "article_snapshot_sha256": "00aebe2c5930152378a8ce1c8dc88d7d50f8d5f34247e326f344a9275beaa8d7",
+        "covered_base_number_count": 60,
+        "diagnostics": {
+          "candidate_numbered_row_count": 398,
+          "card_list_table_count": 4,
+          "matching_row_count": 146,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 252,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 73,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 146,
+        "registry_key": "jpn-release-0a0f7299d0620e8a",
+        "selected_card_count": 146,
+        "source_container_id": "Collection_Sun/Collection_Moon_(TCG)",
+        "source_expected_card_count": 60,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:04.176Z",
+        "article_snapshot_sha256": "79bc7f49f95b42fa24ecce779e0da0b99af975dbfa9c1fd06a29b11930eef0bb",
+        "covered_base_number_count": 60,
+        "diagnostics": {
+          "candidate_numbered_row_count": 311,
+          "card_list_table_count": 4,
+          "matching_row_count": 126,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 185,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 63,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 126,
+        "registry_key": "jpn-release-c7e55295b23d7e01",
+        "selected_card_count": 126,
+        "source_container_id": "Collection_X/Collection_Y_(TCG)",
+        "source_expected_card_count": 60,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:09.745Z",
+        "article_snapshot_sha256": "f74e9dd3025d1f2ddd0ebd4b3c5e32ea96c76d32a8962cc63116ef4439ebdd22",
+        "covered_base_number_count": 66,
+        "diagnostics": {
+          "candidate_numbered_row_count": 96,
+          "card_list_table_count": 1,
+          "matching_row_count": 96,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-sv5a",
+        "selected_card_count": 96,
+        "source_container_id": "Crimson_Haze_(TCG)",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:15.193Z",
+        "article_snapshot_sha256": "986b911ff1e2d7a591c7a1adc38cbff78878750f92ff3da8cba4e671f57517be",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 75,
+          "card_list_table_count": 2,
+          "matching_row_count": 56,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 75,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            56
+          ],
+          "unnumbered_candidate_table_counts": [
+            56
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 56,
+        "registry_key": "jpn-release-f327c885c3280ad7",
+        "selected_card_count": 56,
+        "source_container_id": "Crossing_the_Ruins..._(TCG)",
+        "source_expected_card_count": 56,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:20.488Z",
+        "article_snapshot_sha256": "13d5a7f456d399448c541730a9ae81e9edafc44598e63d2a39cc2fadebd21b9b",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 167,
+          "card_list_table_count": 4,
+          "matching_row_count": 130,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 167,
+          "selected_unnumbered_table_count": 2,
+          "selected_unnumbered_table_counts": [
+            65,
+            65
+          ],
+          "unnumbered_candidate_table_counts": [
+            65,
+            65
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers",
+          "multiple_unnumbered_japanese_card_lists_preserved"
+        ],
+        "parsed_card_row_count": 130,
+        "registry_key": "jpn-release-a2115788042a547c",
+        "selected_card_count": 130,
+        "source_container_id": "Cry_from_the_Mysterious/Temple_of_Anger_(TCG)",
+        "source_expected_card_count": 65,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:26.051Z",
+        "article_snapshot_sha256": "3b6488a1460df366908e30de8c3523b4382be1a788f9e421d7e1921b87a472c2",
+        "covered_base_number_count": 52,
+        "diagnostics": {
+          "candidate_numbered_row_count": 65,
+          "card_list_table_count": 1,
+          "matching_row_count": 65,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-sm8a",
+        "selected_card_count": 65,
+        "source_container_id": "Dark_Order_(TCG)",
+        "source_expected_card_count": 52,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:31.324Z",
+        "article_snapshot_sha256": "2eff06119cbf45b33f00041a8479f1c9bc6418a094010eea678da25ac1b89b01",
+        "covered_base_number_count": 69,
+        "diagnostics": {
+          "candidate_numbered_row_count": 218,
+          "card_list_table_count": 3,
+          "matching_row_count": 76,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 142,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 76,
+        "registry_key": "jpn-bw4",
+        "selected_card_count": 76,
+        "source_container_id": "Dark_Rush_(TCG)",
+        "source_expected_card_count": 69,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:36.869Z",
+        "article_snapshot_sha256": "b6d1da0e350c52fdb2fb5c97684245ba2f9c65bdda4cad32fb018b313c3e1694",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 113,
+          "card_list_table_count": 2,
+          "matching_row_count": 113,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 113,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            113
+          ],
+          "unnumbered_candidate_table_counts": [
+            113
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 113,
+        "registry_key": "jpn-release-4f74998f8efd8c8b",
+        "selected_card_count": 113,
+        "source_container_id": "Darkness,_and_to_Light..._(TCG)",
+        "source_expected_card_count": 113,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:42.132Z",
+        "article_snapshot_sha256": "48d14957522719dcec3f49d19737bd65840793534ca7a4c7f6d0a39f69b874ae",
+        "covered_base_number_count": 95,
+        "diagnostics": {
+          "candidate_numbered_row_count": 364,
+          "card_list_table_count": 3,
+          "matching_row_count": 116,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 248,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 116,
+        "registry_key": "jpn-sm10",
+        "selected_card_count": 116,
+        "source_container_id": "Double_Blaze_(TCG)",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:47.931Z",
+        "article_snapshot_sha256": "707c6bf2c564eb01abe948a57fe914be531a3ca8f1825ade739f016295de57d4",
+        "covered_base_number_count": 50,
+        "diagnostics": {
+          "candidate_numbered_row_count": 255,
+          "card_list_table_count": 5,
+          "matching_row_count": 110,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 145,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 55,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 110,
+        "registry_key": "jpn-release-22e118eb83888511",
+        "selected_card_count": 110,
+        "source_container_id": "Dragon_Blast/Dragon_Blade_(TCG)",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:53.447Z",
+        "article_snapshot_sha256": "0219751d6fe35f0c6c0558d7ea336c913d55559cd997cb9989e1c07832c8557b",
+        "covered_base_number_count": 20,
+        "diagnostics": {
+          "candidate_numbered_row_count": 54,
+          "card_list_table_count": 3,
+          "matching_row_count": 54,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 9,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 54,
+        "registry_key": "jpn-ds",
+        "selected_card_count": 54,
+        "source_container_id": "Dragon_Selection_(TCG)",
+        "source_expected_card_count": 20,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:39:58.897Z",
+        "article_snapshot_sha256": "8be2aa309b37884b0a37e70cde2ae2658c7eee4a5a169edd6c2b80223c94ed39",
+        "covered_base_number_count": 53,
+        "diagnostics": {
+          "candidate_numbered_row_count": 150,
+          "card_list_table_count": 3,
+          "matching_row_count": 66,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 84,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 66,
+        "registry_key": "jpn-sm6a",
+        "selected_card_count": 66,
+        "source_container_id": "Dragon_Storm_(TCG)",
+        "source_expected_card_count": 53,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:04.366Z",
+        "article_snapshot_sha256": "cf0ff0bec5e5ff21e51a06dea319e28af80839cc6349a21b7c6ed5880c865597",
+        "covered_base_number_count": 49,
+        "diagnostics": {
+          "candidate_numbered_row_count": 75,
+          "card_list_table_count": 1,
+          "matching_row_count": 75,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 75,
+        "registry_key": "jpn-sm11b",
+        "selected_card_count": 75,
+        "source_container_id": "Dream_League_(TCG)",
+        "source_expected_card_count": 49,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:09.855Z",
+        "article_snapshot_sha256": "dfbdb7d225fe6af17d804137e97e94e3ffad204fa45d385a4dc40342971000d7",
+        "covered_base_number_count": 69,
+        "diagnostics": {
+          "candidate_numbered_row_count": 101,
+          "card_list_table_count": 1,
+          "matching_row_count": 101,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 101,
+        "registry_key": "jpn-s6a",
+        "selected_card_count": 101,
+        "source_container_id": "Eevee_Heroes_(TCG)",
+        "source_expected_card_count": 69,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:15.325Z",
+        "article_snapshot_sha256": "d3917e2d782623d610cfa75018be060e53ac61d98561dbe1d080b7bb0cac7ca1",
+        "covered_base_number_count": 78,
+        "diagnostics": {
+          "candidate_numbered_row_count": 210,
+          "card_list_table_count": 3,
+          "matching_row_count": 91,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 119,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 91,
+        "registry_key": "jpn-xy6",
+        "selected_card_count": 91,
+        "source_container_id": "Emerald_Break_(TCG)",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:20.641Z",
+        "article_snapshot_sha256": "c36d2427a91d737f2f1aa77452c9dd04fe93c7f5ec3ff5adf89ba29c555f674d",
+        "covered_base_number_count": 51,
+        "diagnostics": {
+          "candidate_numbered_row_count": 68,
+          "card_list_table_count": 1,
+          "matching_row_count": 68,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-release-9532032d6c6f34ed",
+        "selected_card_count": 68,
+        "source_container_id": "Enhanced_Expansion_Pack_Sun_&_Moon_(TCG)",
+        "source_expected_card_count": 51,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:26.229Z",
+        "article_snapshot_sha256": "a6e645ddac7be0a955ce7dc74585d1241e10ddef91de6734b997c8cb34bc1182",
+        "covered_base_number_count": 93,
+        "diagnostics": {
+          "candidate_numbered_row_count": 230,
+          "card_list_table_count": 3,
+          "matching_row_count": 99,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 131,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-ebb",
+        "selected_card_count": 99,
+        "source_container_id": "EX_Battle_Boost_(TCG)",
+        "source_expected_card_count": 93,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:31.785Z",
+        "article_snapshot_sha256": "077c28a162cd18fd4760ab01a9f84d528e495cbca41a12e909efbf71798c71e1",
+        "covered_base_number_count": 102,
+        "diagnostics": {
+          "candidate_numbered_row_count": 126,
+          "card_list_table_count": 4,
+          "matching_row_count": 126,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            102
+          ],
+          "unnumbered_candidate_table_counts": [
+            102
+          ]
+        },
+        "duplicate_number_count": 15,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 126,
+        "registry_key": "jpn-release-40012e8d7b8404ad",
+        "selected_card_count": 126,
+        "source_container_id": "Expansion_Pack_(TCG)",
+        "source_expected_card_count": 102,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:37.303Z",
+        "article_snapshot_sha256": "8584a6411965f21461293222df215b3b63fa0a68f8080aae9512d18905358a57",
+        "covered_base_number_count": 87,
+        "diagnostics": {
+          "candidate_numbered_row_count": 369,
+          "card_list_table_count": 4,
+          "matching_row_count": 103,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 266,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 103,
+        "registry_key": "jpn-cp6",
+        "selected_card_count": 103,
+        "source_container_id": "Expansion_Pack_20th_Anniversary_(TCG)",
+        "source_expected_card_count": 87,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:42.597Z",
+        "article_snapshot_sha256": "6f0e506772d258fafbed1acbd56de0f04ec9b6af44cd874809b77c650e2b22c7",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 86,
+          "card_list_table_count": 1,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-s2a",
+        "selected_card_count": 86,
+        "source_container_id": "Explosive_Walker_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:48.059Z",
+        "article_snapshot_sha256": "85c2ea9a0e8c202782dbe072fb9a5ef7aa9b4d78f3e36dec9070a12f600375a2",
+        "covered_base_number_count": 49,
+        "diagnostics": {
+          "candidate_numbered_row_count": 66,
+          "card_list_table_count": 1,
+          "matching_row_count": 66,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 66,
+        "registry_key": "jpn-sm2+",
+        "selected_card_count": 66,
+        "source_container_id": "Facing_a_New_Trial_(TCG)",
+        "source_expected_card_count": 49,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:53.494Z",
+        "article_snapshot_sha256": "3f412d1e78ce5476752a75858d0d647031131a8b7c10a0f1a99cae02f210cbd2",
+        "covered_base_number_count": 50,
+        "diagnostics": {
+          "candidate_numbered_row_count": 63,
+          "card_list_table_count": 1,
+          "matching_row_count": 63,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 63,
+        "registry_key": "jpn-sm7b",
+        "selected_card_count": 63,
+        "source_container_id": "Fairy_Rise_(TCG)",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:40:58.978Z",
+        "article_snapshot_sha256": "8057e078c3ac84cdf302270215be6cc59db0a5791dc5ccf8418d513781e8abca",
+        "covered_base_number_count": 54,
+        "diagnostics": {
+          "candidate_numbered_row_count": 251,
+          "card_list_table_count": 4,
+          "matching_row_count": 118,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 133,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 59,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-release-4caa8e1ebbf62b37",
+        "selected_card_count": 118,
+        "source_container_id": "Fever-Burst_Fighter/Cruel_Traitor_(TCG)",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:04.501Z",
+        "article_snapshot_sha256": "495c9c6ab765ff2a4dd89c3d9f1878a466cbf3ad04af15747f6e4c54ba0e9235",
+        "covered_base_number_count": 82,
+        "diagnostics": {
+          "candidate_numbered_row_count": 200,
+          "card_list_table_count": 3,
+          "matching_row_count": 82,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 118,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 82,
+        "registry_key": "jpn-release-d2cb57b99ecf5a6c",
+        "selected_card_count": 82,
+        "source_container_id": "Flight_of_Legends_(TCG)",
+        "source_expected_card_count": 82,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:09.807Z",
+        "article_snapshot_sha256": "1e6d8749f1e5c9be01d89fea58b9d996767ac10928c11743a3a4bb9e510f9af9",
+        "covered_base_number_count": 94,
+        "diagnostics": {
+          "candidate_numbered_row_count": 274,
+          "card_list_table_count": 3,
+          "matching_row_count": 110,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 164,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 110,
+        "registry_key": "jpn-sm6",
+        "selected_card_count": 110,
+        "source_container_id": "Forbidden_Light_(TCG)",
+        "source_expected_card_count": 94,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:15.128Z",
+        "article_snapshot_sha256": "a62f3996412963ff870dbd50528e9d8485dc3bb4fa6525fc5bb36900e8101232",
+        "covered_base_number_count": 59,
+        "diagnostics": {
+          "candidate_numbered_row_count": 305,
+          "card_list_table_count": 4,
+          "matching_row_count": 130,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 175,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 65,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 130,
+        "registry_key": "jpn-release-45c3edcc6955b648",
+        "selected_card_count": 130,
+        "source_container_id": "Freeze_Bolt/Cold_Flare_(TCG)",
+        "source_expected_card_count": 59,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:20.406Z",
+        "article_snapshot_sha256": "214d18d71a9bb2a0d26191dc340254e2704432ef0fce167515574ffc92517b80",
+        "covered_base_number_count": 54,
+        "diagnostics": {
+          "candidate_numbered_row_count": 69,
+          "card_list_table_count": 1,
+          "matching_row_count": 69,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm9b",
+        "selected_card_count": 69,
+        "source_container_id": "Full_Metal_Wall_(TCG)",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:25.701Z",
+        "article_snapshot_sha256": "bddd60f435010f8977cd19f29005f3d66ae07ea755aa2dd93d602c6fd91ba0d9",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 471,
+          "card_list_table_count": 3,
+          "matching_row_count": 129,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 342,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 129,
+        "registry_key": "jpn-s8",
+        "selected_card_count": 129,
+        "source_container_id": "Fusion_Arts_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:31.437Z",
+        "article_snapshot_sha256": "f5e488f8b524cae509eca4bfc8c14a469609f17e9c9eee8a1d0d17aa08caeafc",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 335,
+          "card_list_table_count": 4,
+          "matching_row_count": 160,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 175,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 80,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 160,
+        "registry_key": "jpn-release-942688b28cee28fb",
+        "selected_card_count": 160,
+        "source_container_id": "Gaia_Volcano/Tidal_Storm_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:37.049Z",
+        "article_snapshot_sha256": "f38f676488380631d861b278ced1e0b5050efc866e66fa02fc137d47ad314f7c",
+        "covered_base_number_count": 96,
+        "diagnostics": {
+          "candidate_numbered_row_count": 237,
+          "card_list_table_count": 4,
+          "matching_row_count": 96,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 141,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-dpt1",
+        "selected_card_count": 96,
+        "source_container_id": "Galactic's_Conquest_(TCG)",
+        "source_expected_card_count": 96,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:42.338Z",
+        "article_snapshot_sha256": "a4324e09f7fccbb9598aceb47a69441d7a2079f17fa249892b3fe2c8563e8be7",
+        "covered_base_number_count": 54,
+        "diagnostics": {
+          "candidate_numbered_row_count": 69,
+          "card_list_table_count": 1,
+          "matching_row_count": 69,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm10a",
+        "selected_card_count": 69,
+        "source_container_id": "GG_End_(TCG)",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:47.739Z",
+        "article_snapshot_sha256": "529a8f65ff48860d8eb16ad2b2ce67122f2d0d91d67ec7326775fef18916ed13",
+        "covered_base_number_count": 98,
+        "diagnostics": {
+          "candidate_numbered_row_count": 132,
+          "card_list_table_count": 1,
+          "matching_row_count": 132,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-release-be3aa08966286bbd",
+        "selected_card_count": 132,
+        "source_container_id": "Glory_of_the_Rocket_Gang_(TCG)",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:53.034Z",
+        "article_snapshot_sha256": "1a4908e2c392bafc9507eca50b65e5e52c58266b762f2c055d442a4d99125d39",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 114,
+          "card_list_table_count": 4,
+          "matching_row_count": 96,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 114,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            96
+          ],
+          "unnumbered_candidate_table_counts": [
+            5,
+            96
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-release-468a341483d6e016",
+        "selected_card_count": 96,
+        "source_container_id": "Gold,_Silver,_to_a_New_World..._(TCG)",
+        "source_expected_card_count": 96,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:41:58.310Z",
+        "article_snapshot_sha256": "3468bd455b1c67c0ada26f55fb639485b1a1fee19789198c865fd12f979c91b7",
+        "covered_base_number_count": 106,
+        "diagnostics": {
+          "candidate_numbered_row_count": 231,
+          "card_list_table_count": 3,
+          "matching_row_count": 106,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 125,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 106,
+        "registry_key": "jpn-release-bfd93655709431d0",
+        "selected_card_count": 106,
+        "source_container_id": "Golden_Sky,_Silvery_Ocean_(TCG)",
+        "source_expected_card_count": 106,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:03.832Z",
+        "article_snapshot_sha256": "b7ebabff473cd4003ae52147c3f54eb952825f372e2b037e879f465dab42a25c",
+        "covered_base_number_count": 114,
+        "diagnostics": {
+          "candidate_numbered_row_count": 125,
+          "card_list_table_count": 1,
+          "matching_row_count": 125,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 125,
+        "registry_key": "jpn-release-b88f934d137634ed",
+        "selected_card_count": 125,
+        "source_container_id": "GX_Battle_Boost_(TCG)",
+        "source_expected_card_count": 114,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:09.112Z",
+        "article_snapshot_sha256": "6559114deaffcd31661b02dde14d0c347598b6d8619506939c518c974801ef4f",
+        "covered_base_number_count": 150,
+        "diagnostics": {
+          "candidate_numbered_row_count": 336,
+          "card_list_table_count": 3,
+          "matching_row_count": 250,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 86,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 250,
+        "registry_key": "jpn-sm8b",
+        "selected_card_count": 250,
+        "source_container_id": "GX_Ultra_Shiny_(TCG)",
+        "source_expected_card_count": 150,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:14.784Z",
+        "article_snapshot_sha256": "e8c3c643504aa07de6e6a237575a2a4309e68aae6f486055963f9cb0a62a747d",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 288,
+          "card_list_table_count": 4,
+          "matching_row_count": 142,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 146,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 71,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 142,
+        "registry_key": "jpn-release-5ecedebcb0768660",
+        "selected_card_count": 142,
+        "source_container_id": "HeartGold_Collection/SoulSilver_Collection_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:20.333Z",
+        "article_snapshot_sha256": "f6b5d8d1dce68c17ed4c7324332b7a273eafc10838d07ee93c21f0f17db1c236",
+        "covered_base_number_count": 52,
+        "diagnostics": {
+          "candidate_numbered_row_count": 167,
+          "card_list_table_count": 3,
+          "matching_row_count": 52,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 115,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 52,
+        "registry_key": "jpn-release-6d6df3485e89d3da",
+        "selected_card_count": 52,
+        "source_container_id": "Holon_Phantom_(TCG)",
+        "source_expected_card_count": 52,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:25.628Z",
+        "article_snapshot_sha256": "843a62b76d9b9e0a1ab27eb91b2c1b84d961b0d5df2ba964d2f26288f4b8be8a",
+        "covered_base_number_count": 86,
+        "diagnostics": {
+          "candidate_numbered_row_count": 206,
+          "card_list_table_count": 3,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 120,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-release-27c74e7178fd9898",
+        "selected_card_count": 86,
+        "source_container_id": "Holon_Research_Tower_(TCG)",
+        "source_expected_card_count": 86,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:30.937Z",
+        "article_snapshot_sha256": "abde5d5586d64653fe94f2f3bca99618f2410d11ef1e4fa17f49a31b161e5025",
+        "covered_base_number_count": 63,
+        "diagnostics": {
+          "candidate_numbered_row_count": 92,
+          "card_list_table_count": 1,
+          "matching_row_count": 92,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-release-f8f1b4d8a91b1e95",
+        "selected_card_count": 92,
+        "source_container_id": "Hot_Wind_Arena_(TCG)",
+        "source_expected_card_count": 63,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:36.373Z",
+        "article_snapshot_sha256": "a22ca9e9cc3228a65fad8282a291aaeeeea10165a3c3d1b9b9c3b7994e2a4667",
+        "covered_base_number_count": 68,
+        "diagnostics": {
+          "candidate_numbered_row_count": 94,
+          "card_list_table_count": 1,
+          "matching_row_count": 94,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-s11a",
+        "selected_card_count": 94,
+        "source_container_id": "Incandescent_Arcana_(TCG)",
+        "source_expected_card_count": 68,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:41.805Z",
+        "article_snapshot_sha256": "ce4f6e98481b814665ab14347a9e6f4db69c3639512dfab0b312e17d1d2ba17b",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 116,
+          "card_list_table_count": 1,
+          "matching_row_count": 116,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 116,
+        "registry_key": "jpn-m2",
+        "selected_card_count": 116,
+        "source_container_id": "Inferno_X_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:47.080Z",
+        "article_snapshot_sha256": "6b85875dc19dad907cd432336ee4ce13be28e4d7575351236304cf41a599c297",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 348,
+          "card_list_table_count": 3,
+          "matching_row_count": 119,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 229,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 119,
+        "registry_key": "jpn-s3",
+        "selected_card_count": 119,
+        "source_container_id": "Infinity_Zone_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:52.843Z",
+        "article_snapshot_sha256": "22eb9dfa369d1c2338d316cc56ca7be00fcd29c015a02762eaf62a28658ee784",
+        "covered_base_number_count": 92,
+        "diagnostics": {
+          "candidate_numbered_row_count": 201,
+          "card_list_table_count": 3,
+          "matching_row_count": 92,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 109,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-dps",
+        "selected_card_count": 92,
+        "source_container_id": "Intense_Fight_in_the_Destroyed_Sky_(TCG)",
+        "source_expected_card_count": 92,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:42:58.145Z",
+        "article_snapshot_sha256": "d2d78d5927512e282f463de67747a7f857c0d57a258e489ffa176e8c382ea772",
+        "covered_base_number_count": 50,
+        "diagnostics": {
+          "candidate_numbered_row_count": 317,
+          "card_list_table_count": 4,
+          "matching_row_count": 124,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 193,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 62,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 124,
+        "registry_key": "jpn-release-b8d0fc24d116e09a",
+        "selected_card_count": 124,
+        "source_container_id": "Islands_Await_You/Alolan_Moonlight_(TCG)",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:03.487Z",
+        "article_snapshot_sha256": "107c4da620e98a76b090226e213d635bd868f6aaace78e9724d376230988881b",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 134,
+          "card_list_table_count": 3,
+          "matching_row_count": 96,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 134,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            96
+          ],
+          "unnumbered_candidate_table_counts": [
+            96
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-release-5bdc3107c3d84789",
+        "selected_card_count": 96,
+        "source_container_id": "Leaders'_Stadium_(TCG)",
+        "source_expected_card_count": 96,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:08.774Z",
+        "article_snapshot_sha256": "b8977f46ddcd14833c3141965fdb473dcf428eeea37230d5af0a812c206c5253",
+        "covered_base_number_count": 76,
+        "diagnostics": {
+          "candidate_numbered_row_count": 94,
+          "card_list_table_count": 1,
+          "matching_row_count": 94,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-s3a",
+        "selected_card_count": 94,
+        "source_container_id": "Legendary_Heartbeat_(TCG)",
+        "source_expected_card_count": 76,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:14.241Z",
+        "article_snapshot_sha256": "4018352c13f87a22d0ee757389b547095098fd7f6659cfcf2d464849e04e9821",
+        "covered_base_number_count": 27,
+        "diagnostics": {
+          "candidate_numbered_row_count": 27,
+          "card_list_table_count": 1,
+          "matching_row_count": 27,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 27,
+        "registry_key": "jpn-cp2",
+        "selected_card_count": 27,
+        "source_container_id": "Legendary_Shine_Collection_(TCG)",
+        "source_expected_card_count": 27,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:19.630Z",
+        "article_snapshot_sha256": "59eafc2ede111604f4af3e40d51b5519731b1783778f3e23e7ce2b9d5c61105a",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 365,
+          "card_list_table_count": 3,
+          "matching_row_count": 127,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 238,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-s11",
+        "selected_card_count": 127,
+        "source_container_id": "Lost_Abyss_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:25.281Z",
+        "article_snapshot_sha256": "31705c8791c813ff79577738660e8247dda3b1d5a2e83f3bdbd2864a71ebba02",
+        "covered_base_number_count": 40,
+        "diagnostics": {
+          "candidate_numbered_row_count": 40,
+          "card_list_table_count": 1,
+          "matching_row_count": 40,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 40,
+        "registry_key": "jpn-ll",
+        "selected_card_count": 40,
+        "source_container_id": "Lost_Link_(TCG)",
+        "source_expected_card_count": 40,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:30.746Z",
+        "article_snapshot_sha256": "c8f3f7d399055a60be8977ec8ba19d4577944dd9274fb4875d5c66810493be84",
+        "covered_base_number_count": 34,
+        "diagnostics": {
+          "candidate_numbered_row_count": 68,
+          "card_list_table_count": 2,
+          "matching_row_count": 68,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-release-55be839b074c1f02",
+        "selected_card_count": 68,
+        "source_container_id": "Magma_Gang_VS_Aqua_Gang:_Double_Crisis_(TCG)",
+        "source_expected_card_count": 34,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:36.197Z",
+        "article_snapshot_sha256": "d16651b46e1f6f08195da4c03bb8d5342b0875d73df8ee387d505942a489611f",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 180,
+          "card_list_table_count": 3,
+          "matching_row_count": 80,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 100,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 80,
+        "registry_key": "jpn-release-f74744ba0b0564be",
+        "selected_card_count": 80,
+        "source_container_id": "Magma_VS_Aqua:_Two_Ambitions_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:41.766Z",
+        "article_snapshot_sha256": "f4e71f21b71bd60ba39917fe1142e690dec3767ddee816e6473651d2c4962b7a",
+        "covered_base_number_count": 63,
+        "diagnostics": {
+          "candidate_numbered_row_count": 184,
+          "card_list_table_count": 2,
+          "matching_row_count": 184,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 92,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 184,
+        "registry_key": "jpn-release-05d7a6df83837b1e",
+        "selected_card_count": 184,
+        "source_container_id": "Mega_Brave/Mega_Symphonia_(TCG)",
+        "source_expected_card_count": 63,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:47.095Z",
+        "article_snapshot_sha256": "0f3cd2f0de9c702097e0d2a463a1d3d03b7b8567364cfbccc2aebd55d806fff0",
+        "covered_base_number_count": 193,
+        "diagnostics": {
+          "candidate_numbered_row_count": 250,
+          "card_list_table_count": 1,
+          "matching_row_count": 250,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 250,
+        "registry_key": "jpn-m2a",
+        "selected_card_count": 250,
+        "source_container_id": "MEGA_Dream_ex_(TCG)",
+        "source_expected_card_count": 193,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:52.426Z",
+        "article_snapshot_sha256": "a00935080d47c5a6756754e7c5c2e58b77c3e63f8764d0d748334df12ed41a78",
+        "covered_base_number_count": 76,
+        "diagnostics": {
+          "candidate_numbered_row_count": 202,
+          "card_list_table_count": 3,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 116,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-bw9",
+        "selected_card_count": 86,
+        "source_container_id": "Megalo_Cannon_(TCG)",
+        "source_expected_card_count": 76,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:43:58.180Z",
+        "article_snapshot_sha256": "fe1aedbca83722dfea7a51956c72c7e495f8aab140edd804fb4284ac20153fa2",
+        "covered_base_number_count": 75,
+        "diagnostics": {
+          "candidate_numbered_row_count": 185,
+          "card_list_table_count": 3,
+          "matching_row_count": 75,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 110,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 75,
+        "registry_key": "jpn-release-d22a9dd357f27197",
+        "selected_card_count": 75,
+        "source_container_id": "Miracle_Crystal_(TCG)",
+        "source_expected_card_count": 75,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:03.706Z",
+        "article_snapshot_sha256": "e782481fd21c28bbbba927082d43cb8b55515a4e0af6a78bf44b4d493739fa2a",
+        "covered_base_number_count": 53,
+        "diagnostics": {
+          "candidate_numbered_row_count": 167,
+          "card_list_table_count": 3,
+          "matching_row_count": 53,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 114,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 53,
+        "registry_key": "jpn-release-f3edc7c4482495e6",
+        "selected_card_count": 53,
+        "source_container_id": "Miracle_of_the_Desert_(TCG)",
+        "source_expected_card_count": 53,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:08.978Z",
+        "article_snapshot_sha256": "c7f2e92dcaf959f520f4cb0f00589175e9a9a4043dfaa5124fcf987959a0ca29",
+        "covered_base_number_count": 94,
+        "diagnostics": {
+          "candidate_numbered_row_count": 399,
+          "card_list_table_count": 3,
+          "matching_row_count": 115,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 284,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-sm11",
+        "selected_card_count": 115,
+        "source_container_id": "Miracle_Twin_(TCG)",
+        "source_expected_card_count": 94,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:14.586Z",
+        "article_snapshot_sha256": "fdbf708a4dfcedc59a45301749eaa64fa76e8b64d7edde93aac39436d4e67a72",
+        "covered_base_number_count": 86,
+        "diagnostics": {
+          "candidate_numbered_row_count": 184,
+          "card_list_table_count": 3,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 98,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-release-426829a8906c7ca0",
+        "selected_card_count": 86,
+        "source_container_id": "Mirage_Forest_(TCG)",
+        "source_expected_card_count": 86,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:19.867Z",
+        "article_snapshot_sha256": "1dd2127a3075d0051fa6fb44e83ce9d6ab22a34fb43b0abdb7ff7cece5505d09",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 0,
+          "card_list_table_count": 2,
+          "matching_row_count": 140,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 2,
+          "selected_unnumbered_table_counts": [
+            70,
+            70
+          ],
+          "unnumbered_candidate_table_counts": [
+            70,
+            70
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers",
+          "multiple_unnumbered_japanese_card_lists_preserved"
+        ],
+        "parsed_card_row_count": 140,
+        "registry_key": "jpn-release-a756e4c7cb880ab7",
+        "selected_card_count": 140,
+        "source_container_id": "Moonlit_Pursuit/Dawn_Dash_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:25.322Z",
+        "article_snapshot_sha256": "3fcc1187918ad7963f018d13793119b45cedf42939d16c2339e780fdfdefdc85",
+        "covered_base_number_count": 88,
+        "diagnostics": {
+          "candidate_numbered_row_count": 332,
+          "card_list_table_count": 3,
+          "matching_row_count": 182,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 150,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 91,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 182,
+        "registry_key": "jpn-release-c876aa483a727649",
+        "selected_card_count": 182,
+        "source_container_id": "Mysterious_Mountains_(TCG)",
+        "source_expected_card_count": 88,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:30.895Z",
+        "article_snapshot_sha256": "7efb5a3fea4329fed69f370fbabe91498e442e4b9c72577e8117bbf14017b227",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 73,
+          "card_list_table_count": 4,
+          "matching_row_count": 48,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 73,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            48
+          ],
+          "unnumbered_candidate_table_counts": [
+            48
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 48,
+        "registry_key": "jpn-release-426e7f4f11967d68",
+        "selected_card_count": 48,
+        "source_container_id": "Mystery_of_the_Fossils_(TCG)",
+        "source_expected_card_count": 48,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:36.218Z",
+        "article_snapshot_sha256": "7e58b9fa650cdb798dc08df7f5c5344951707c2266c97f2bdaa567e8e913bc95",
+        "covered_base_number_count": 55,
+        "diagnostics": {
+          "candidate_numbered_row_count": 70,
+          "card_list_table_count": 1,
+          "matching_row_count": 70,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 70,
+        "registry_key": "jpn-sm9a",
+        "selected_card_count": 70,
+        "source_container_id": "Night_Unison_(TCG)",
+        "source_expected_card_count": 55,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:41.677Z",
+        "article_snapshot_sha256": "a9201e16c8897296737343e7dd9b2153540a1710656069c12b8c21030dac5a20",
+        "covered_base_number_count": 64,
+        "diagnostics": {
+          "candidate_numbered_row_count": 205,
+          "card_list_table_count": 3,
+          "matching_row_count": 205,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 94,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 205,
+        "registry_key": "jpn-sv6a",
+        "selected_card_count": 205,
+        "source_container_id": "Night_Wanderer_(TCG)",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:47.201Z",
+        "article_snapshot_sha256": "000c14c71144723b4b82cfe356c7b39b277064254f8d0728a8c7e5d1b2bede12",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 117,
+          "card_list_table_count": 1,
+          "matching_row_count": 117,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 117,
+        "registry_key": "jpn-m3",
+        "selected_card_count": 117,
+        "source_container_id": "Nihil_Zero_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:52.485Z",
+        "article_snapshot_sha256": "9854b516345f3de93b765cd1fcbb737cbd7f5d8c14f0bbc4008aaa4d44324b48",
+        "covered_base_number_count": 83,
+        "diagnostics": {
+          "candidate_numbered_row_count": 120,
+          "card_list_table_count": 1,
+          "matching_row_count": 120,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 120,
+        "registry_key": "jpn-m4",
+        "selected_card_count": 120,
+        "source_container_id": "Ninja_Spinner_(TCG)",
+        "source_expected_card_count": 83,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:44:57.783Z",
+        "article_snapshot_sha256": "2ce13b10ef71d908dd93e228f4ad6c967a462fc6cf0cbc2053db3aebb30e8200",
+        "covered_base_number_count": 68,
+        "diagnostics": {
+          "candidate_numbered_row_count": 171,
+          "card_list_table_count": 3,
+          "matching_row_count": 68,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 103,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-release-322c110f169e1ce2",
+        "selected_card_count": 68,
+        "source_container_id": "Offense_and_Defense_of_the_Furthest_Ends_(TCG)",
+        "source_expected_card_count": 68,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:03.278Z",
+        "article_snapshot_sha256": "68c8b94f7d71001ef257c30c56507416302fe2303c203739894b1c9d3f2f5240",
+        "covered_base_number_count": 98,
+        "diagnostics": {
+          "candidate_numbered_row_count": 355,
+          "card_list_table_count": 3,
+          "matching_row_count": 125,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 230,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 125,
+        "registry_key": "jpn-s12",
+        "selected_card_count": 125,
+        "source_container_id": "Paradigm_Trigger_(TCG)",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:08.576Z",
+        "article_snapshot_sha256": "e2ac84f22f6bcb490647d17db44dd2a3ffbb522a969f3e42f6ca970866a3b35a",
+        "covered_base_number_count": 64,
+        "diagnostics": {
+          "candidate_numbered_row_count": 94,
+          "card_list_table_count": 1,
+          "matching_row_count": 94,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-sv7a",
+        "selected_card_count": 94,
+        "source_container_id": "Paradise_Dragona_(TCG)",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:13.986Z",
+        "article_snapshot_sha256": "b16d04d6beeb5f3c248035a41b61311dbb857928b4bdbba869fa6f956ea24104",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 96,
+          "card_list_table_count": 1,
+          "matching_row_count": 96,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-release-58035b6ea2d6563e",
+        "selected_card_count": 96,
+        "source_container_id": "Peerless_Fighters_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:19.574Z",
+        "article_snapshot_sha256": "c95b766b710fc810ad7167eeb7ed1aefdb3c2fdeafe8610ef0d7b0088dd55f39",
+        "covered_base_number_count": 88,
+        "diagnostics": {
+          "candidate_numbered_row_count": 237,
+          "card_list_table_count": 3,
+          "matching_row_count": 97,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 140,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 97,
+        "registry_key": "jpn-xy4",
+        "selected_card_count": 97,
+        "source_container_id": "Phantom_Gate_(TCG)",
+        "source_expected_card_count": 88,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:25.111Z",
+        "article_snapshot_sha256": "a8fe94b45790c4f5feb5e67aa849970ae59e1333719caf95f3881b7f87d63bad",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 232,
+          "card_list_table_count": 4,
+          "matching_row_count": 79,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 153,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 79,
+        "registry_key": "jpn-bw7",
+        "selected_card_count": 79,
+        "source_container_id": "Plasma_Gale_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:30.774Z",
+        "article_snapshot_sha256": "6976411c34e17c6d844913bc94138e2e5649b64cac0562ac97668cfff4f5450f",
+        "covered_base_number_count": 32,
+        "diagnostics": {
+          "candidate_numbered_row_count": 32,
+          "card_list_table_count": 1,
+          "matching_row_count": 32,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 32,
+        "registry_key": "jpn-cp3",
+        "selected_card_count": 32,
+        "source_container_id": "PokéKyun_Collection_(TCG)",
+        "source_expected_card_count": 32,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:36.212Z",
+        "article_snapshot_sha256": "5ebe49c25109919363a54e4d870846fa7e38863de62ed8b990523935f2f5d8ad",
+        "covered_base_number_count": 165,
+        "diagnostics": {
+          "candidate_numbered_row_count": 449,
+          "card_list_table_count": 3,
+          "matching_row_count": 449,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 207,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 449,
+        "registry_key": "jpn-sv2a",
+        "selected_card_count": 449,
+        "source_container_id": "Pokémon_Card_151_(TCG)",
+        "source_expected_card_count": 165,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:41.634Z",
+        "article_snapshot_sha256": "33633f5f5d04cb3dfa3bfca64ebb06fa23e25c4033fb8602db8b15656d9093c0",
+        "covered_base_number_count": 71,
+        "diagnostics": {
+          "candidate_numbered_row_count": 187,
+          "card_list_table_count": 3,
+          "matching_row_count": 93,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 94,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 93,
+        "registry_key": "jpn-s10b",
+        "selected_card_count": 93,
+        "source_container_id": "Pokémon_GO_(TCG)",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:46.928Z",
+        "article_snapshot_sha256": "9bac7e880db1bbe1aee34eb6d05446a2197aededa9909ed284c9b6d0bd87a6f6",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 69,
+          "card_list_table_count": 4,
+          "matching_row_count": 48,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 69,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            48
+          ],
+          "unnumbered_candidate_table_counts": [
+            48
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 48,
+        "registry_key": "jpn-release-9200a69b8d9f3556",
+        "selected_card_count": 48,
+        "source_container_id": "Pokémon_Jungle_(TCG)",
+        "source_expected_card_count": 48,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:52.377Z",
+        "article_snapshot_sha256": "b279942b1d3f1474ad57f22ae8176994cfa97e57149157526fb64c8f705ca05c",
+        "covered_base_number_count": 141,
+        "diagnostics": {
+          "candidate_numbered_row_count": 142,
+          "card_list_table_count": 1,
+          "matching_row_count": 142,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 142,
+        "registry_key": "jpn-release-596daaa8c64fca1f",
+        "selected_card_count": 142,
+        "source_container_id": "Pokémon_VS_(TCG)",
+        "source_expected_card_count": 141,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:45:57.678Z",
+        "article_snapshot_sha256": "27cac1ad22ea401122e18625fbfd7045738f315e6d52a0b71966735e214387af",
+        "covered_base_number_count": 48,
+        "diagnostics": {
+          "candidate_numbered_row_count": 48,
+          "card_list_table_count": 1,
+          "matching_row_count": 48,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 48,
+        "registry_key": "jpn-release-9ed4d3a8f0440a07",
+        "selected_card_count": 48,
+        "source_container_id": "Pokémon_Web_(TCG)",
+        "source_expected_card_count": 48,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:02.944Z",
+        "article_snapshot_sha256": "4daaf6c4bc3e67ddaabb3994bd0c89e219eeebea080463e82d8a47f8c19ec5c4",
+        "covered_base_number_count": 131,
+        "diagnostics": {
+          "candidate_numbered_row_count": 131,
+          "card_list_table_count": 1,
+          "matching_row_count": 131,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 131,
+        "registry_key": "jpn-release-67228633adae2d5a",
+        "selected_card_count": 131,
+        "source_container_id": "Premium_Champion_Pack_(TCG)",
+        "source_expected_card_count": 131,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:08.450Z",
+        "article_snapshot_sha256": "6205a5f07d5dbea7bccf850ba478a69c5c6eb388b74f026eed01d2d75ea576b2",
+        "covered_base_number_count": 52,
+        "diagnostics": {
+          "candidate_numbered_row_count": 241,
+          "card_list_table_count": 5,
+          "matching_row_count": 114,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 127,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 57,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 114,
+        "registry_key": "jpn-release-fd9d9060d2b4f301",
+        "selected_card_count": 114,
+        "source_container_id": "Psycho_Drive/Hail_Blizzard_(TCG)",
+        "source_expected_card_count": 52,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:13.746Z",
+        "article_snapshot_sha256": "a5569b8d50d7ed32e50939015d19ea588ffd5f45fb73e214ba7e529a5dbc6595",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 229,
+          "card_list_table_count": 3,
+          "matching_row_count": 89,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 140,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 89,
+        "registry_key": "jpn-xy9",
+        "selected_card_count": 89,
+        "source_container_id": "Rage_of_the_Broken_Heavens_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:19.291Z",
+        "article_snapshot_sha256": "651b275dfb8a7ce0accee468b2f67e0e8e379d97f654d27d04412bcb38a14757",
+        "covered_base_number_count": 62,
+        "diagnostics": {
+          "candidate_numbered_row_count": 92,
+          "card_list_table_count": 1,
+          "matching_row_count": 92,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-sv3a",
+        "selected_card_count": 92,
+        "source_container_id": "Raging_Surf_(TCG)",
+        "source_expected_card_count": 62,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:24.754Z",
+        "article_snapshot_sha256": "cfbc1a640ad8c8c368920a1d3d7dcfd3cb243249b640237f82cef6b92d10c31c",
+        "covered_base_number_count": 96,
+        "diagnostics": {
+          "candidate_numbered_row_count": 366,
+          "card_list_table_count": 3,
+          "matching_row_count": 115,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 251,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-s2",
+        "selected_card_count": 115,
+        "source_container_id": "Rebellion_Crash_(TCG)",
+        "source_expected_card_count": 96,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:30.343Z",
+        "article_snapshot_sha256": "2500d98b14b34bf101c9dade8d316f611aacb0e1b99ff8cea0167bf0aeca8dba",
+        "covered_base_number_count": 66,
+        "diagnostics": {
+          "candidate_numbered_row_count": 197,
+          "card_list_table_count": 3,
+          "matching_row_count": 72,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 125,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 72,
+        "registry_key": "jpn-bw2",
+        "selected_card_count": 72,
+        "source_container_id": "Red_Collection_(TCG)",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:35.824Z",
+        "article_snapshot_sha256": "ded69ff836ff69e3cfeb848213f4ef674ea31732e7daad086ad9ea8a5193bc34",
+        "covered_base_number_count": 64,
+        "diagnostics": {
+          "candidate_numbered_row_count": 80,
+          "card_list_table_count": 1,
+          "matching_row_count": 80,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 80,
+        "registry_key": "jpn-sm11a",
+        "selected_card_count": 80,
+        "source_container_id": "Remix_Bout_(TCG)",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:41.119Z",
+        "article_snapshot_sha256": "d71225c7e234c17269121337800cbc02ce40fd7f0592eea92bca19bd985ffe3b",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 183,
+          "card_list_table_count": 3,
+          "matching_row_count": 81,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 102,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 81,
+        "registry_key": "jpn-l2",
+        "selected_card_count": 81,
+        "source_container_id": "Reviving_Legends_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:46.393Z",
+        "article_snapshot_sha256": "1615e5f6e6376625845126864d22d1546dcc5a54551e474b9db0b5bfd1e9be97",
+        "covered_base_number_count": 96,
+        "diagnostics": {
+          "candidate_numbered_row_count": 245,
+          "card_list_table_count": 3,
+          "matching_row_count": 105,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 140,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 105,
+        "registry_key": "jpn-xy3",
+        "selected_card_count": 105,
+        "source_container_id": "Rising_Fist_(TCG)",
+        "source_expected_card_count": 96,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:51.936Z",
+        "article_snapshot_sha256": "ca745bfdf3a9e9e515816439131e566534348f89d408b75a82d553e74a3fc36d",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 87,
+          "card_list_table_count": 4,
+          "matching_row_count": 65,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 87,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            65
+          ],
+          "unnumbered_candidate_table_counts": [
+            65
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-release-d6d824dc67a05835",
+        "selected_card_count": 65,
+        "source_container_id": "Rocket_Gang_(TCG)",
+        "source_expected_card_count": 65,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:46:57.228Z",
+        "article_snapshot_sha256": "5ac04806e8b1f98de6fe5a4bf7399ada598594522a04be1fdd5f2c74d5418ef1",
+        "covered_base_number_count": 84,
+        "diagnostics": {
+          "candidate_numbered_row_count": 201,
+          "card_list_table_count": 3,
+          "matching_row_count": 85,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 116,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 85,
+        "registry_key": "jpn-release-4fd17b78ef9b1d7a",
+        "selected_card_count": 85,
+        "source_container_id": "Rocket_Gang_Strikes_Back_(TCG)",
+        "source_expected_card_count": 84,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:02.748Z",
+        "article_snapshot_sha256": "24bb3ac6d1312a0b1f3c48fe351bcf7e0711e97d42b9e31252307f59df7b1fd8",
+        "covered_base_number_count": 108,
+        "diagnostics": {
+          "candidate_numbered_row_count": 422,
+          "card_list_table_count": 3,
+          "matching_row_count": 141,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 281,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 141,
+        "registry_key": "jpn-sv3",
+        "selected_card_count": 141,
+        "source_container_id": "Ruler_of_the_Black_Flame_(TCG)",
+        "source_expected_card_count": 108,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:08.419Z",
+        "article_snapshot_sha256": "418a0a31364d33f8407a162ddf216e739f1b718c74bb5e2d8652866601830be9",
+        "covered_base_number_count": 54,
+        "diagnostics": {
+          "candidate_numbered_row_count": 173,
+          "card_list_table_count": 3,
+          "matching_row_count": 54,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 119,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 54,
+        "registry_key": "jpn-release-6fbc82703daa225b",
+        "selected_card_count": 54,
+        "source_container_id": "Rulers_of_the_Heavens_(TCG)",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:13.746Z",
+        "article_snapshot_sha256": "b72c95b8703fdc86bec09cf9ec5dbc936556692f9c1506e41625ed3148f83dd6",
+        "covered_base_number_count": 78,
+        "diagnostics": {
+          "candidate_numbered_row_count": 596,
+          "card_list_table_count": 4,
+          "matching_row_count": 216,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 380,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 108,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 216,
+        "registry_key": "jpn-release-f8352fc7cb2b9a7e",
+        "selected_card_count": 216,
+        "source_container_id": "Scarlet_ex/Violet_ex_(TCG)",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:19.550Z",
+        "article_snapshot_sha256": "f3f57c9677cf3980e7091b646892826ec843714c26c12c7e1c8ef6d5f32b3910",
+        "covered_base_number_count": 123,
+        "diagnostics": {
+          "candidate_numbered_row_count": 140,
+          "card_list_table_count": 3,
+          "matching_row_count": 140,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            123
+          ],
+          "unnumbered_candidate_table_counts": [
+            123
+          ]
+        },
+        "duplicate_number_count": 13,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 140,
+        "registry_key": "jpn-dp2",
+        "selected_card_count": 140,
+        "source_container_id": "Secret_of_the_Lakes_(TCG)",
+        "source_expected_card_count": 123,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:25.099Z",
+        "article_snapshot_sha256": "2b25cedb4211acf9472e3454da86798c58450676b48b3ae139c575285a44e7cc",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 149,
+          "card_list_table_count": 3,
+          "matching_row_count": 119,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 149,
+          "selected_unnumbered_table_count": 1,
+          "selected_unnumbered_table_counts": [
+            119
+          ],
+          "unnumbered_candidate_table_counts": [
+            119
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers"
+        ],
+        "parsed_card_row_count": 119,
+        "registry_key": "jpn-dp3",
+        "selected_card_count": 119,
+        "source_container_id": "Shining_Darkness_(TCG)",
+        "source_expected_card_count": 119,
+        "status": "source_numbering_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:30.408Z",
+        "article_snapshot_sha256": "d5ac3cc31f475772453c57125c10581f964ddd3646171d74ff1fe519d748d7f0",
+        "covered_base_number_count": 20,
+        "diagnostics": {
+          "candidate_numbered_row_count": 25,
+          "card_list_table_count": 1,
+          "matching_row_count": 25,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-sc",
+        "selected_card_count": 25,
+        "source_container_id": "Shiny_Collection_(TCG)",
+        "source_expected_card_count": 20,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:35.774Z",
+        "article_snapshot_sha256": "045545b2c34acd724758b4a9323ceb0cff35e073ea4395df07f4fe5ee6c70301",
+        "covered_base_number_count": 190,
+        "diagnostics": {
+          "candidate_numbered_row_count": 409,
+          "card_list_table_count": 3,
+          "matching_row_count": 330,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 79,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 330,
+        "registry_key": "jpn-s4a",
+        "selected_card_count": 330,
+        "source_container_id": "Shiny_Star_V_(TCG)",
+        "source_expected_card_count": 190,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:41.475Z",
+        "article_snapshot_sha256": "aafb280faa965cd5a92cb25a5ee9cf7912eea5c80c92abbe411baa0c25c6c6c5",
+        "covered_base_number_count": 190,
+        "diagnostics": {
+          "candidate_numbered_row_count": 619,
+          "card_list_table_count": 3,
+          "matching_row_count": 360,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 259,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 360,
+        "registry_key": "jpn-sv4a",
+        "selected_card_count": 360,
+        "source_container_id": "Shiny_Treasure_ex_(TCG)",
+        "source_expected_card_count": 190,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:47.283Z",
+        "article_snapshot_sha256": "9131df8a40f37c34f76341c76983bf2ca4ca32ed984ba3f695c2f67ef26c566f",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 449,
+          "card_list_table_count": 4,
+          "matching_row_count": 190,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 259,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 95,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 190,
+        "registry_key": "jpn-release-a11d2df4ea04478f",
+        "selected_card_count": 190,
+        "source_container_id": "Silver_Lance/Jet-Black_Spirit_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:52.608Z",
+        "article_snapshot_sha256": "b5358387600f96034b0c87d6ac48546cee21c09df75a843a29e0c31f7b930b91",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 380,
+          "card_list_table_count": 4,
+          "matching_row_count": 182,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 198,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 91,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 182,
+        "registry_key": "jpn-release-7c602dbcb79df670",
+        "selected_card_count": 182,
+        "source_container_id": "Single_Strike_Master/Rapid_Strike_Master_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:47:58.248Z",
+        "article_snapshot_sha256": "5d6661e8456e7803f873c6ec316e6955e54020724b976c0d6a8cf54e6cbe4135",
+        "covered_base_number_count": 54,
+        "diagnostics": {
+          "candidate_numbered_row_count": 69,
+          "card_list_table_count": 1,
+          "matching_row_count": 69,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm10b",
+        "selected_card_count": 69,
+        "source_container_id": "Sky_Legend_(TCG)",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:03.522Z",
+        "article_snapshot_sha256": "d44cc9be4d65875acf681bca7aa6fd17ea0e2c4a606eed8edbc5e4b322057255",
+        "covered_base_number_count": 96,
+        "diagnostics": {
+          "candidate_numbered_row_count": 314,
+          "card_list_table_count": 3,
+          "matching_row_count": 112,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 202,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 112,
+        "registry_key": "jpn-sm7",
+        "selected_card_count": 112,
+        "source_container_id": "Sky-Splitting_Charisma_(TCG)",
+        "source_expected_card_count": 96,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:09.110Z",
+        "article_snapshot_sha256": "e00cf278f4d79f226d8f3c72d41c6a1c2f07a8c70677dccd51860982d622f0f2",
+        "covered_base_number_count": 67,
+        "diagnostics": {
+          "candidate_numbered_row_count": 435,
+          "card_list_table_count": 4,
+          "matching_row_count": 180,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 255,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 90,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 180,
+        "registry_key": "jpn-release-d9abf30aaf4ac54e",
+        "selected_card_count": 180,
+        "source_container_id": "Skyscraping_Perfection/Blue_Sky_Stream_(TCG)",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:14.813Z",
+        "article_snapshot_sha256": "1029d0187469376a4a62ab14054ed10891b1245f6752316e2acd1582d7c113fd",
+        "covered_base_number_count": 71,
+        "diagnostics": {
+          "candidate_numbered_row_count": 579,
+          "card_list_table_count": 4,
+          "matching_row_count": 198,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 381,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 99,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 198,
+        "registry_key": "jpn-release-0595d0ea48f8324a",
+        "selected_card_count": 198,
+        "source_container_id": "Snow_Hazard/Clay_Burst_(TCG)",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:20.541Z",
+        "article_snapshot_sha256": "a135f592ae4ad2013ff823e84f3e9f2377d40f682231cacb41ef69f7d6033744",
+        "covered_base_number_count": 0,
+        "diagnostics": {
+          "candidate_numbered_row_count": 167,
+          "card_list_table_count": 4,
+          "matching_row_count": 236,
+          "numbering_mode": "unavailable",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 2,
+          "selected_unnumbered_table_counts": [
+            117,
+            119
+          ],
+          "unnumbered_candidate_table_counts": [
+            117,
+            119
+          ]
+        },
+        "duplicate_number_count": 0,
+        "findings": [
+          "source_list_has_no_printed_numbers",
+          "source_expected_card_count_unavailable",
+          "multiple_unnumbered_japanese_card_lists_preserved"
+        ],
+        "parsed_card_row_count": 236,
+        "registry_key": "jpn-release-cb010e8c5c9c28af",
+        "selected_card_count": 236,
+        "source_container_id": "Space-Time_Creation_(TCG)",
+        "source_expected_card_count": null,
+        "status": "source_expected_count_unavailable"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:26.195Z",
+        "article_snapshot_sha256": "bba0339d9971c8e08a47313a73cd3c18168154053b67ff6f29ba3aa475258578",
+        "covered_base_number_count": 51,
+        "diagnostics": {
+          "candidate_numbered_row_count": 257,
+          "card_list_table_count": 4,
+          "matching_row_count": 116,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 141,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 58,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 116,
+        "registry_key": "jpn-release-b9f3d92422109a83",
+        "selected_card_count": 116,
+        "source_container_id": "Spiral_Force/Thunder_Knuckle_(TCG)",
+        "source_expected_card_count": 51,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:31.741Z",
+        "article_snapshot_sha256": "6afe74d1e1302e4fc4096a9a03fccf8c720157a9f2150fa2fa62d3effd1caa78",
+        "covered_base_number_count": 88,
+        "diagnostics": {
+          "candidate_numbered_row_count": 332,
+          "card_list_table_count": 3,
+          "matching_row_count": 182,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 150,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 91,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 182,
+        "registry_key": "jpn-release-4961b9d8bce74e89",
+        "selected_card_count": 182,
+        "source_container_id": "Split_Earth_(TCG)",
+        "source_expected_card_count": 88,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:37.402Z",
+        "article_snapshot_sha256": "e005813a1cb4446333209b3254b7244c5428d2b80cc6c7a7c9ba0f6aa10eae46",
+        "covered_base_number_count": 100,
+        "diagnostics": {
+          "candidate_numbered_row_count": 370,
+          "card_list_table_count": 3,
+          "matching_row_count": 127,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 243,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-s9",
+        "selected_card_count": 127,
+        "source_container_id": "Star_Birth_(TCG)",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:42.751Z",
+        "article_snapshot_sha256": "bae01635789438132c00bc243bbb00e2dd4630d8a7614904deb2354f9ef1e633",
+        "covered_base_number_count": 102,
+        "diagnostics": {
+          "candidate_numbered_row_count": 342,
+          "card_list_table_count": 3,
+          "matching_row_count": 135,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 207,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 135,
+        "registry_key": "jpn-sv7",
+        "selected_card_count": 135,
+        "source_container_id": "Stellar_Miracle_(TCG)",
+        "source_expected_card_count": 102,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:48.084Z",
+        "article_snapshot_sha256": "688e4da4b2a35ac791d363c97d47b5765cba8544bec10a2782ea372789042ba3",
+        "covered_base_number_count": 95,
+        "diagnostics": {
+          "candidate_numbered_row_count": 382,
+          "card_list_table_count": 3,
+          "matching_row_count": 111,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 271,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 111,
+        "registry_key": "jpn-sm8",
+        "selected_card_count": 111,
+        "source_container_id": "Super-Burst_Impact_(TCG)",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:53.398Z",
+        "article_snapshot_sha256": "2cd521160e031668b425ae7a8dd63ec927e7be5a699ba2a40b7c7831630cd39c",
+        "covered_base_number_count": 60,
+        "diagnostics": {
+          "candidate_numbered_row_count": 453,
+          "card_list_table_count": 4,
+          "matching_row_count": 150,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 303,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 75,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 150,
+        "registry_key": "jpn-release-468ec0745ef5a70d",
+        "selected_card_count": 150,
+        "source_container_id": "Sword/Shield_(TCG)",
+        "source_expected_card_count": 60,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:48:59.170Z",
+        "article_snapshot_sha256": "b6c20c89839736cc1ae5d11e5d15ed760042e556625233186212b147f27708d2",
+        "covered_base_number_count": 173,
+        "diagnostics": {
+          "candidate_numbered_row_count": 226,
+          "card_list_table_count": 1,
+          "matching_row_count": 226,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 226,
+        "registry_key": "jpn-release-478f10d1d4a22fc5",
+        "selected_card_count": 226,
+        "source_container_id": "Tag_All_Stars_(TCG)",
+        "source_expected_card_count": 173,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:04.741Z",
+        "article_snapshot_sha256": "f5c44f10eb80e44ebb489bbee85d2571849d5933d68f3b936d45e2f4378026e7",
+        "covered_base_number_count": 95,
+        "diagnostics": {
+          "candidate_numbered_row_count": 327,
+          "card_list_table_count": 3,
+          "matching_row_count": 118,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 209,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-sm9",
+        "selected_card_count": 118,
+        "source_container_id": "Tag_Bolt_(TCG)",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:10.050Z",
+        "article_snapshot_sha256": "55b9add4d386ed78d9835f6a2bfd4fd7c9b8a3d79e3dd6987aaedf1a85c1dd93",
+        "covered_base_number_count": 187,
+        "diagnostics": {
+          "candidate_numbered_row_count": 237,
+          "card_list_table_count": 1,
+          "matching_row_count": 237,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 237,
+        "registry_key": "jpn-sv8a",
+        "selected_card_count": 237,
+        "source_container_id": "Terastal_Fest_ex_(TCG)",
+        "source_expected_card_count": 187,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:15.371Z",
+        "article_snapshot_sha256": "b42968978a58a58feafa63b344c2af066128fa0aa915029d99cf333d140fe6a1",
+        "covered_base_number_count": 171,
+        "diagnostics": {
+          "candidate_numbered_row_count": 188,
+          "card_list_table_count": 1,
+          "matching_row_count": 188,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 188,
+        "registry_key": "jpn-xy",
+        "selected_card_count": 188,
+        "source_container_id": "The_Best_of_XY_(TCG)",
+        "source_expected_card_count": 171,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:20.905Z",
+        "article_snapshot_sha256": "7120816dd2ae445d91c4c285575f6b95d9a2a21010b426d5f3783acdbe7ddd8a",
+        "covered_base_number_count": 92,
+        "diagnostics": {
+          "candidate_numbered_row_count": 328,
+          "card_list_table_count": 3,
+          "matching_row_count": 92,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 236,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-release-256e78c79c550e0c",
+        "selected_card_count": 92,
+        "source_container_id": "The_Town_on_No_Map_(TCG)",
+        "source_expected_card_count": 92,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:26.508Z",
+        "article_snapshot_sha256": "8f56d1106f81c58fd21200825f15eff30299a5cea19b6126b369f9f8a0ab1284",
+        "covered_base_number_count": 60,
+        "diagnostics": {
+          "candidate_numbered_row_count": 73,
+          "card_list_table_count": 1,
+          "matching_row_count": 73,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 73,
+        "registry_key": "jpn-sm7a",
+        "selected_card_count": 73,
+        "source_container_id": "Thunderclap_Spark_(TCG)",
+        "source_expected_card_count": 60,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:32.167Z",
+        "article_snapshot_sha256": "f6f711fff4f385efffa9fb18d6db73f1f8617c93ac5563b4ce4322ffb9333777",
+        "covered_base_number_count": 67,
+        "diagnostics": {
+          "candidate_numbered_row_count": 416,
+          "card_list_table_count": 4,
+          "matching_row_count": 176,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 240,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 88,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 176,
+        "registry_key": "jpn-release-4b1ad16327f8e8f2",
+        "selected_card_count": 176,
+        "source_container_id": "Time_Gazer/Space_Juggler_(TCG)",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:37.847Z",
+        "article_snapshot_sha256": "96bc8fccbf3f2a0c04ecb554c0389724da3b4cd9c170078cb2cff0443465fd29",
+        "covered_base_number_count": 51,
+        "diagnostics": {
+          "candidate_numbered_row_count": 328,
+          "card_list_table_count": 4,
+          "matching_row_count": 128,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 200,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 64,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 128,
+        "registry_key": "jpn-release-73ee14a6a81b74ea",
+        "selected_card_count": 128,
+        "source_container_id": "To_Have_Seen_the_Battle_Rainbow/Darkness_that_Consumes_Light_(TCG)",
+        "source_expected_card_count": 51,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:43.485Z",
+        "article_snapshot_sha256": "d90242ddb025797b67197b2409c4cf15e4eea106fe465dc2b86a842050a97531",
+        "covered_base_number_count": 101,
+        "diagnostics": {
+          "candidate_numbered_row_count": 409,
+          "card_list_table_count": 3,
+          "matching_row_count": 133,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 276,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 133,
+        "registry_key": "jpn-release-9709297dbc69c7b1",
+        "selected_card_count": 133,
+        "source_container_id": "Transformation_Mask_(TCG)",
+        "source_expected_card_count": 101,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:49.120Z",
+        "article_snapshot_sha256": "6bca75f16cb251288ceba4bc38c70588aac0479b65266100e998e6e7424315eb",
+        "covered_base_number_count": 73,
+        "diagnostics": {
+          "candidate_numbered_row_count": 103,
+          "card_list_table_count": 1,
+          "matching_row_count": 103,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 103,
+        "registry_key": "jpn-sv1a",
+        "selected_card_count": 103,
+        "source_container_id": "Triplet_Beat_(TCG)",
+        "source_expected_card_count": 73,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:49:54.597Z",
+        "article_snapshot_sha256": "bceaeb00cf48c7f94ebacde8313878381699145ca462421c30c3fd83d7030723",
+        "covered_base_number_count": 50,
+        "diagnostics": {
+          "candidate_numbered_row_count": 63,
+          "card_list_table_count": 1,
+          "matching_row_count": 63,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 63,
+        "registry_key": "jpn-release-d92055e3cb31ee94",
+        "selected_card_count": 63,
+        "source_container_id": "Ultra_Force_(TCG)",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:00.038Z",
+        "article_snapshot_sha256": "5d354a1d07b278cba3ea2cab2195e11acdea35b373ff0eb59be277f721af85a6",
+        "covered_base_number_count": 66,
+        "diagnostics": {
+          "candidate_numbered_row_count": 363,
+          "card_list_table_count": 4,
+          "matching_row_count": 156,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 207,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 78,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 156,
+        "registry_key": "jpn-release-e8f4cce34c4c9a73",
+        "selected_card_count": 156,
+        "source_container_id": "Ultra_Sun/Ultra_Moon_(TCG)",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:05.713Z",
+        "article_snapshot_sha256": "a415cf2cd3730d1fd5a7cc6a7ff0c7337beac95d04a38fdbbec5283fe372c3f1",
+        "covered_base_number_count": 83,
+        "diagnostics": {
+          "candidate_numbered_row_count": 192,
+          "card_list_table_count": 3,
+          "matching_row_count": 83,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 109,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 83,
+        "registry_key": "jpn-release-b4c58ad14d37c38f",
+        "selected_card_count": 83,
+        "source_container_id": "Undone_Seal_(TCG)",
+        "source_expected_card_count": 83,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:11.000Z",
+        "article_snapshot_sha256": "933ffff0739237b7814151fbeb19cb8b853be7f30422f3c170ea04d1e8c0910b",
+        "covered_base_number_count": 184,
+        "diagnostics": {
+          "candidate_numbered_row_count": 285,
+          "card_list_table_count": 1,
+          "matching_row_count": 285,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 285,
+        "registry_key": "jpn-s8b",
+        "selected_card_count": 285,
+        "source_container_id": "VMAX_Climax_(TCG)",
+        "source_expected_card_count": 184,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:16.285Z",
+        "article_snapshot_sha256": "cf7491582901f82af699bf11d2fd589e8ad673fe540b7583c38e7dc88d1ada0e",
+        "covered_base_number_count": 70,
+        "diagnostics": {
+          "candidate_numbered_row_count": 86,
+          "card_list_table_count": 1,
+          "matching_row_count": 86,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-s1a",
+        "selected_card_count": 86,
+        "source_container_id": "VMAX_Rising_(TCG)",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:21.733Z",
+        "article_snapshot_sha256": "766b9ddd6212fcaa9ce5043b1b23669779166d152f3eda6858526dc8125b03cb",
+        "covered_base_number_count": 172,
+        "diagnostics": {
+          "candidate_numbered_row_count": 432,
+          "card_list_table_count": 3,
+          "matching_row_count": 262,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 170,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 262,
+        "registry_key": "jpn-s12a",
+        "selected_card_count": 262,
+        "source_container_id": "VSTAR_Universe_(TCG)",
+        "source_expected_card_count": 172,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:27.444Z",
+        "article_snapshot_sha256": "c26a8ea61187b31f5ff01b7c21aa64b32e523bb6aa66501bdcb05b974cadae9d",
+        "covered_base_number_count": 80,
+        "diagnostics": {
+          "candidate_numbered_row_count": 217,
+          "card_list_table_count": 3,
+          "matching_row_count": 90,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 127,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-xy2",
+        "selected_card_count": 90,
+        "source_container_id": "Wild_Blaze_(TCG)",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:33.007Z",
+        "article_snapshot_sha256": "199dd8c8f35b9d0d36804afda83fd8ee2b815dad02dff6ab0fde881ff6e3361e",
+        "covered_base_number_count": 71,
+        "diagnostics": {
+          "candidate_numbered_row_count": 465,
+          "card_list_table_count": 4,
+          "matching_row_count": 200,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 265,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 100,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 200,
+        "registry_key": "jpn-release-b28e1db89442b023",
+        "selected_card_count": 200,
+        "source_container_id": "Wild_Force/Cyber_Judge_(TCG)",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:38.671Z",
+        "article_snapshot_sha256": "f822bf66effd906a07c72c286ac31f92ad7de56873ea65bd0a667e7e8774e44b",
+        "covered_base_number_count": 87,
+        "diagnostics": {
+          "candidate_numbered_row_count": 328,
+          "card_list_table_count": 3,
+          "matching_row_count": 90,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 238,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 0,
+        "findings": [],
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-release-5a2606476652e721",
+        "selected_card_count": 90,
+        "source_container_id": "Wind_from_the_Sea_(TCG)",
+        "source_expected_card_count": 87,
+        "status": "complete"
+      },
+      {
+        "article_snapshot_fetched_at": "2026-07-26T22:50:44.307Z",
+        "article_snapshot_sha256": "55c363b8bbf33c315d622a5e7c99a3cb04a5dc4d5fa6cdb929356c9fc7ef3c68",
+        "covered_base_number_count": 108,
+        "diagnostics": {
+          "candidate_numbered_row_count": 221,
+          "card_list_table_count": 3,
+          "matching_row_count": 221,
+          "numbering_mode": "printed_number",
+          "rejected_other_denominator_count": 0,
+          "selected_unnumbered_table_count": 0,
+          "selected_unnumbered_table_counts": [],
+          "unnumbered_candidate_table_counts": []
+        },
+        "duplicate_number_count": 14,
+        "findings": [
+          "multiple_matching_japanese_number_lanes"
+        ],
+        "parsed_card_row_count": 221,
+        "registry_key": "jpn-release-a6e2ccd9c6ce3008",
+        "selected_card_count": 221,
+        "source_container_id": "World_Champions_Pack_(TCG)",
+        "source_expected_card_count": 108,
+        "status": "complete"
+      }
+    ],
+    "run": {
+      "max_cards_per_container": null,
+      "mode": "offline_replay",
+      "selected_container_count": 152,
+      "selected_container_ids": [
+        "25th_Anniversary_Collection_(TCG)",
+        "Abyss_Eye_(TCG)",
+        "ADV_Expansion_Pack_(TCG)",
+        "Advent_of_Arceus_(TCG)",
+        "Alter_Genesis_(TCG)",
+        "Ancient_Roar/Future_Flash_(TCG)",
+        "Awakened_Heroes/Ultradimensional_Beasts_(TCG)",
+        "Awakening_Legends_(TCG)",
+        "Awakening_Psychic_King_(TCG)",
+        "Bandit_Ring_(TCG)",
+        "Base_Expansion_Pack_(TCG)",
+        "Battle_Partners_(TCG)",
+        "Battle_Region_(TCG)",
+        "Beat_of_the_Frontier_(TCG)",
+        "Black_Bolt/White_Flare_(TCG)",
+        "Black_Collection/White_Collection_(TCG)",
+        "Blue_Shock/Red_Flash_(TCG)",
+        "Bonds_to_the_End_of_Time_(TCG)",
+        "Challenge_from_the_Darkness_(TCG)",
+        "Champion_Road_(TCG)",
+        "Clash_at_the_Summit_(TCG)",
+        "Clash_of_the_Blue_Sky_(TCG)",
+        "Collection_Sun/Collection_Moon_(TCG)",
+        "Collection_X/Collection_Y_(TCG)",
+        "Crimson_Haze_(TCG)",
+        "Crossing_the_Ruins..._(TCG)",
+        "Cry_from_the_Mysterious/Temple_of_Anger_(TCG)",
+        "Dark_Order_(TCG)",
+        "Dark_Rush_(TCG)",
+        "Darkness,_and_to_Light..._(TCG)",
+        "Double_Blaze_(TCG)",
+        "Dragon_Blast/Dragon_Blade_(TCG)",
+        "Dragon_Selection_(TCG)",
+        "Dragon_Storm_(TCG)",
+        "Dream_League_(TCG)",
+        "Eevee_Heroes_(TCG)",
+        "Emerald_Break_(TCG)",
+        "Enhanced_Expansion_Pack_Sun_&_Moon_(TCG)",
+        "EX_Battle_Boost_(TCG)",
+        "Expansion_Pack_(TCG)",
+        "Expansion_Pack_20th_Anniversary_(TCG)",
+        "Explosive_Walker_(TCG)",
+        "Facing_a_New_Trial_(TCG)",
+        "Fairy_Rise_(TCG)",
+        "Fever-Burst_Fighter/Cruel_Traitor_(TCG)",
+        "Flight_of_Legends_(TCG)",
+        "Forbidden_Light_(TCG)",
+        "Freeze_Bolt/Cold_Flare_(TCG)",
+        "Full_Metal_Wall_(TCG)",
+        "Fusion_Arts_(TCG)",
+        "Gaia_Volcano/Tidal_Storm_(TCG)",
+        "Galactic's_Conquest_(TCG)",
+        "GG_End_(TCG)",
+        "Glory_of_the_Rocket_Gang_(TCG)",
+        "Gold,_Silver,_to_a_New_World..._(TCG)",
+        "Golden_Sky,_Silvery_Ocean_(TCG)",
+        "GX_Battle_Boost_(TCG)",
+        "GX_Ultra_Shiny_(TCG)",
+        "HeartGold_Collection/SoulSilver_Collection_(TCG)",
+        "Holon_Phantom_(TCG)",
+        "Holon_Research_Tower_(TCG)",
+        "Hot_Wind_Arena_(TCG)",
+        "Incandescent_Arcana_(TCG)",
+        "Inferno_X_(TCG)",
+        "Infinity_Zone_(TCG)",
+        "Intense_Fight_in_the_Destroyed_Sky_(TCG)",
+        "Islands_Await_You/Alolan_Moonlight_(TCG)",
+        "Leaders'_Stadium_(TCG)",
+        "Legendary_Heartbeat_(TCG)",
+        "Legendary_Shine_Collection_(TCG)",
+        "Lost_Abyss_(TCG)",
+        "Lost_Link_(TCG)",
+        "Magma_Gang_VS_Aqua_Gang:_Double_Crisis_(TCG)",
+        "Magma_VS_Aqua:_Two_Ambitions_(TCG)",
+        "Mega_Brave/Mega_Symphonia_(TCG)",
+        "MEGA_Dream_ex_(TCG)",
+        "Megalo_Cannon_(TCG)",
+        "Miracle_Crystal_(TCG)",
+        "Miracle_of_the_Desert_(TCG)",
+        "Miracle_Twin_(TCG)",
+        "Mirage_Forest_(TCG)",
+        "Moonlit_Pursuit/Dawn_Dash_(TCG)",
+        "Mysterious_Mountains_(TCG)",
+        "Mystery_of_the_Fossils_(TCG)",
+        "Night_Unison_(TCG)",
+        "Night_Wanderer_(TCG)",
+        "Nihil_Zero_(TCG)",
+        "Ninja_Spinner_(TCG)",
+        "Offense_and_Defense_of_the_Furthest_Ends_(TCG)",
+        "Paradigm_Trigger_(TCG)",
+        "Paradise_Dragona_(TCG)",
+        "Peerless_Fighters_(TCG)",
+        "Phantom_Gate_(TCG)",
+        "Plasma_Gale_(TCG)",
+        "PokéKyun_Collection_(TCG)",
+        "Pokémon_Card_151_(TCG)",
+        "Pokémon_GO_(TCG)",
+        "Pokémon_Jungle_(TCG)",
+        "Pokémon_VS_(TCG)",
+        "Pokémon_Web_(TCG)",
+        "Premium_Champion_Pack_(TCG)",
+        "Psycho_Drive/Hail_Blizzard_(TCG)",
+        "Rage_of_the_Broken_Heavens_(TCG)",
+        "Raging_Surf_(TCG)",
+        "Rebellion_Crash_(TCG)",
+        "Red_Collection_(TCG)",
+        "Remix_Bout_(TCG)",
+        "Reviving_Legends_(TCG)",
+        "Rising_Fist_(TCG)",
+        "Rocket_Gang_(TCG)",
+        "Rocket_Gang_Strikes_Back_(TCG)",
+        "Ruler_of_the_Black_Flame_(TCG)",
+        "Rulers_of_the_Heavens_(TCG)",
+        "Scarlet_ex/Violet_ex_(TCG)",
+        "Secret_of_the_Lakes_(TCG)",
+        "Shining_Darkness_(TCG)",
+        "Shiny_Collection_(TCG)",
+        "Shiny_Star_V_(TCG)",
+        "Shiny_Treasure_ex_(TCG)",
+        "Silver_Lance/Jet-Black_Spirit_(TCG)",
+        "Single_Strike_Master/Rapid_Strike_Master_(TCG)",
+        "Sky_Legend_(TCG)",
+        "Sky-Splitting_Charisma_(TCG)",
+        "Skyscraping_Perfection/Blue_Sky_Stream_(TCG)",
+        "Snow_Hazard/Clay_Burst_(TCG)",
+        "Space-Time_Creation_(TCG)",
+        "Spiral_Force/Thunder_Knuckle_(TCG)",
+        "Split_Earth_(TCG)",
+        "Star_Birth_(TCG)",
+        "Stellar_Miracle_(TCG)",
+        "Super-Burst_Impact_(TCG)",
+        "Sword/Shield_(TCG)",
+        "Tag_All_Stars_(TCG)",
+        "Tag_Bolt_(TCG)",
+        "Terastal_Fest_ex_(TCG)",
+        "The_Best_of_XY_(TCG)",
+        "The_Town_on_No_Map_(TCG)",
+        "Thunderclap_Spark_(TCG)",
+        "Time_Gazer/Space_Juggler_(TCG)",
+        "To_Have_Seen_the_Battle_Rainbow/Darkness_that_Consumes_Light_(TCG)",
+        "Transformation_Mask_(TCG)",
+        "Triplet_Beat_(TCG)",
+        "Ultra_Force_(TCG)",
+        "Ultra_Sun/Ultra_Moon_(TCG)",
+        "Undone_Seal_(TCG)",
+        "VMAX_Climax_(TCG)",
+        "VMAX_Rising_(TCG)",
+        "VSTAR_Universe_(TCG)",
+        "Wild_Blaze_(TCG)",
+        "Wild_Force/Cyber_Judge_(TCG)",
+        "Wind_from_the_Sea_(TCG)",
+        "World_Champions_Pack_(TCG)"
+      ]
+    },
+    "selected_run_healthy": true,
+    "summary": {
+      "assertion_fingerprint_sha256": "03decd7665c2ec923bdc1fc6bbf90b2185900f725e89e52848b745548a128d9a",
+      "combined_assertion_count": 18113,
+      "container_status_counts": {
+        "complete": 139,
+        "source_expected_count_unavailable": 1,
+        "source_numbering_unavailable": 12
+      },
+      "failed_container_count": 0,
+      "fresh_assertion_count": 18113,
+      "prior_assertion_count": 0,
+      "retained_prior_assertion_count": 0,
+      "selected_container_count": 152,
+      "source_request_count": 0,
+      "tracked_container_count": 152
+    }
+  },
+  "content_fingerprint_sha256": "ce968049afd32d56a6aa64c690fe68a84032a720dbe897f2c56e21c91da6e979",
+  "generated_at": "2026-07-26T22:25:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V4-CARD-ACQUISITION-HARVEST-V1",
+  "retrieval": {
+    "card_detail_requests": false,
+    "displayed_name_language": "en",
+    "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-HARVEST-V1",
+    "japanese_table_selection": "registry_expected_denominator",
+    "mode": "offline_replay",
+    "parser_version": "JPN-MASTER-INDEX-BULBAPEDIA-JP-CARD-PARSER-V2",
+    "plan_content_fingerprint_sha256": "7b06e0f66b63e98e77956167ca7cc4aa440a9655c081a9aa15c6293cdf8eed10",
+    "request_delay_ms": null,
+    "resume": true,
+    "source_base_url": "https://bulbapedia.bulbagarden.net/wiki",
+    "source_lane": "bulbapedia_jp_card_lists",
+    "targeted_queue_content_fingerprint_sha256": "a526998eea3edd2a6f9472e3c1e65d3aff4b7d8eda3192774c30089e8dd2aa0e",
+    "targeted_queue_path": "docs/audits/japanese_master_index_v4/index/targeted_source_queue_v1.json"
+  }
+}

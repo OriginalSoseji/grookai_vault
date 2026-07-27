@@ -1,0 +1,30 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "dataset": {
+      "content_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+      "dataset_key": "master_family_relationship_rows_v1",
+      "row_count": 28008,
+      "shard_count": 6,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0001_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0002_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0003_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0004_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0005_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0006_of_0006.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "generator_version": "JPN-MASTER-INDEX-FINAL-ADMISSION-V1"
+  },
+  "content_fingerprint_sha256": "255b546b19349ebcaad94f5e8b81ecf95efec42f6e4e42dca50505ed81edecc0",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-FAMILY-RELATIONSHIP-ROWS-SHARD-V1-DESCRIPTOR",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

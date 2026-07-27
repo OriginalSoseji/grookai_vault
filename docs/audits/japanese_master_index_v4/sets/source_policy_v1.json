@@ -1,0 +1,150 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "blocked_automated_card_sources": [
+      "tcgcollector_jp_sets"
+    ],
+    "blocked_automated_sources": [
+      "pokellector_jp_sets"
+    ],
+    "policies": [
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "Published product result API; bounded pagination only.",
+        "robots_url": "https://www.pokemon-card.com/robots.txt",
+        "source_id": "official_jp_products",
+        "terms_url": null
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "Published Japanese set API; one collection request.",
+        "robots_url": "https://api.tcgdex.net/robots.txt",
+        "source_id": "tcgdex_ja_sets",
+        "terms_url": "https://tcgdex.dev/"
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "Public Japanese set index; one collection request.",
+        "robots_url": "https://limitlesstcg.com/robots.txt",
+        "source_id": "limitless_jp_sets",
+        "terms_url": null
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "Public set index; one collection request.",
+        "robots_url": "https://www.artofpkm.com/robots.txt",
+        "source_id": "artofpkm_jp_sets",
+        "terms_url": null
+      },
+      {
+        "automated_card_capture": "blocked_without_written_permission",
+        "automated_index_capture": "admitted",
+        "boundary": "The public Japanese set index was captured once. Card/API acquisition is not automated because the API is partner-only and the published license does not authorize this commercial reuse.",
+        "robots_url": "https://www.tcgcollector.com/robots.txt",
+        "source_id": "tcgcollector_jp_sets",
+        "terms_url": "https://www.tcgcollector.com/legal/terms-of-service"
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "robots.txt permits the Japanese card index; one collection request.",
+        "robots_url": "https://www.serebii.net/robots.txt",
+        "source_id": "serebii_jp_sets",
+        "terms_url": null
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "robots.txt allows /wiki/ with a five-second crawl delay; one article request.",
+        "robots_url": "https://bulbapedia.bulbagarden.net/robots.txt",
+        "source_id": "bulbapedia_jp_expansions",
+        "terms_url": "https://bulbapedia.bulbagarden.net/wiki/Bulbapedia:Copyrights"
+      },
+      {
+        "automated_index_capture": "admitted",
+        "boundary": "Three server-rendered pages from one public set-list index; no article crawl.",
+        "robots_url": "https://www.pokeguardian.com/robots.txt",
+        "source_id": "pokeguardian_jp_sets",
+        "terms_url": null
+      },
+      {
+        "automated_index_capture": "blocked_without_written_permission",
+        "boundary": "Terms prohibit automated interaction with stored data; preserve as a manual-review lane only.",
+        "robots_url": "https://jp.pokellector.com/robots.txt",
+        "source_id": "pokellector_jp_sets",
+        "terms_url": "https://www.pokellector.com/terms"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "1fb02fff71b6cf2970ef85ea2c37749acba60126799d4a4322f56c2f4ae5e89c",
+  "generated_at": "2026-07-26T18:12:50.481Z",
+  "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-HARVEST-V1",
+  "retrieval": {
+    "mode": "offline_replay",
+    "parser_version": "JPN-MASTER-INDEX-SET-SOURCE-PARSERS-V1",
+    "sources": [
+      {
+        "body_sha256": "e5d9d122c1012e937d691d93fcbfcd7763eb90facdb5cbb167b1ab6b54745fbd",
+        "byte_size": 547619,
+        "fetched_at": "2026-07-26T16:32:08.644Z",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/products/",
+        "source_id": "official_jp_products"
+      },
+      {
+        "body_sha256": "c44e6d7db3efc35513dd121aa18ca29c704d250dcd797de1e939f1dafaaf4460",
+        "byte_size": 403960,
+        "fetched_at": "2026-07-26T17:04:20.944Z",
+        "http_status": 200,
+        "request_url": "https://www.pokeguardian.com/sets/set-lists/japanese-sets",
+        "source_id": "pokeguardian_jp_sets"
+      },
+      {
+        "body_sha256": "5d7f46e8eaa710276021fc79b09ee104ee6ba9cafc47b7dcae5fc7cd5ffacf57",
+        "byte_size": 15659,
+        "fetched_at": "2026-07-26T16:26:13.530Z",
+        "http_status": 200,
+        "request_url": "https://api.tcgdex.net/v2/ja/sets",
+        "source_id": "tcgdex_ja_sets"
+      },
+      {
+        "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
+        "byte_size": 157221,
+        "fetched_at": "2026-07-26T16:26:13.884Z",
+        "http_status": 200,
+        "request_url": "https://limitlesstcg.com/cards/jp",
+        "source_id": "limitless_jp_sets"
+      },
+      {
+        "body_sha256": "83f1fe1f6d803c6ab834cc43d9f6ee232f01c5f415e79df992acbca8ceb14d24",
+        "byte_size": 669625,
+        "fetched_at": "2026-07-26T16:33:16.580Z",
+        "http_status": 200,
+        "request_url": "https://www.artofpkm.com/sets",
+        "source_id": "artofpkm_jp_sets"
+      },
+      {
+        "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
+        "byte_size": 1854365,
+        "fetched_at": "2026-07-26T16:26:14.419Z",
+        "http_status": 200,
+        "request_url": "https://www.tcgcollector.com/sets/jp",
+        "source_id": "tcgcollector_jp_sets"
+      },
+      {
+        "body_sha256": "9b43c549953b0c34e0b79b5d69dd79cdce29398820ccacc0883fe304e61b123b",
+        "byte_size": 115670,
+        "fetched_at": "2026-07-26T17:04:26.141Z",
+        "http_status": 200,
+        "request_url": "https://www.serebii.net/card/japanese.shtml",
+        "source_id": "serebii_jp_sets"
+      },
+      {
+        "body_sha256": "4ed66878b58d60c7e4cea673715b84adf648ce18c501352ae6e125fca725f2bb",
+        "byte_size": 515887,
+        "fetched_at": "2026-07-26T17:04:27.155Z",
+        "http_status": 200,
+        "request_url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_TCG_Expansions",
+        "source_id": "bulbapedia_jp_expansions"
+      }
+    ]
+  }
+}

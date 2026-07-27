@@ -1,0 +1,100 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 14,
+    "maxPage": 14,
+    "hitCnt": 267,
+    "products": [
+        {
+            "productTitle": "映画公開記念パック「サザンアイランド」",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/other-item-poketMonsterCardGame-4.jpg",
+            "releaseDate": "1999年 7月17日（土）",
+            "priceTxt": "200円（税抜き）",
+            "description": "カード／各3枚\n続き絵となるポストカード／1枚",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "クイックスターター ギフト",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-8.jpg",
+            "releaseDate": "1998年12月 4日（金）",
+            "priceTxt": "3,900円（税抜き）",
+            "description": "オリジナルケース入りデッキ(カード60枚)／2個\n特製プレイマット／1枚\nダメージカウンター／30個\nどくマーカー／8枚\nポケモンコイン／2枚\n拡張シート青版／1枚\nすぐわかるポケモンカードの遊びかた 最新版／1冊\n遊びかた説明書／1冊",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "拡張シート 第3弾(緑版)",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/other-item-poketMonsterCardGame-3.jpg",
+            "releaseDate": "1998年11月24日（火）",
+            "priceTxt": "100円（税込）",
+            "description": "ポケモンカード／3枚\nダメージカウンター・マーカー／10個・3個\n※1つのテーマにつき3種類のシートがあります",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "拡張シート 第2弾(赤版)",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/other-item-poketMonsterCardGame-2.jpg",
+            "releaseDate": "1998年 6月17日（水）",
+            "priceTxt": "100円（税込）",
+            "description": "ポケモンカード／3枚\nダメージカウンター・マーカー／10個・3個\n※1つのテーマにつき3種類のシートがあります",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "拡張シート 第1弾(青版)",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/other-item-poketMonsterCardGame-1.jpg",
+            "releaseDate": "1998年 3月23日（月）",
+            "priceTxt": "100円（税込）",
+            "description": "ポケモンカード／3枚\nダメージカウンター・マーカー／10個・3個\n※1つのテーマにつき3種類のシートがあります",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ロケット団 ギフトパック",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-3.jpg",
+            "releaseDate": "1997年12月19日（金）",
+            "priceTxt": "3,900円（税抜き）",
+            "description": "デッキ(カード60枚)／2個\n特製プレイマット／1枚\nダメージカウンター／30個\nどくマーカー／8枚\nポケモンコイン／2枚\n遊びかた説明書／1冊\nロケット団バッジ／2個\nロケット団ポスター／1枚",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        },
+        {
+            "productTitle": "ギフトパック",
+            "productType": "その他の商品",
+            "tumbsImg": "/assets/images/products/archive/poketMonsterCardGame/construct-item-poketMonsterCardGame-2.jpg",
+            "releaseDate": "1996年12月12日（木）",
+            "priceTxt": "3,900円（税抜き）",
+            "description": "第1弾 スターターパック（カード／60枚、ポケモンコイン／1枚、遊びかた説明書／1冊）／2個\n特製プレイマット／1枚\nダメージカウンター／30個\nどくマーカー／8枚\nすぐわかるポケモンカードの遊びかた／1冊\nスペシャルカード／2枚",
+            "beginnerFlg": 0,
+            "storesAvailable": "",
+            "link_cardList": "",
+            "link_detailPage": "",
+            "link_pokemonCenter": ""
+        }
+    ]
+}

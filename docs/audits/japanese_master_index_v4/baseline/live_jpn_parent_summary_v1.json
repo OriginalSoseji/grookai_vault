@@ -1,0 +1,147 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "counts": {
+      "active_family_review_rows": 28062,
+      "active_jpn_identities": 25953,
+      "active_primary_species_links": 19678,
+      "cards_in_source_placeholder_sets": 1297,
+      "case_folded_set_codes": 388,
+      "case_only_alias_groups": 116,
+      "jpn_child_printings": 25953,
+      "jpn_parent_rows": 26047,
+      "no_active_identity_or_evidence_rows": 94,
+      "no_public_gv_or_image_rows": 62,
+      "public_jpn_gv_ids": 25985,
+      "raw_set_codes": 504,
+      "source_placeholder_sets": 45
+    },
+    "family_review_statuses": [
+      {
+        "family_status": "english_name_family_candidate",
+        "review_status": "approved_for_family_link_promotion",
+        "rows": 13153
+      },
+      {
+        "family_status": "english_name_family_candidate",
+        "review_status": "rejected",
+        "rows": 5088
+      },
+      {
+        "family_status": "english_name_variant_family_candidate",
+        "review_status": "rejected",
+        "rows": 1563
+      },
+      {
+        "family_status": "japanese_name_family_candidate",
+        "review_status": "rejected",
+        "rows": 92
+      },
+      {
+        "family_status": "same_species_or_character_family_candidate",
+        "review_status": "rejected",
+        "rows": 2
+      },
+      {
+        "family_status": "english_name_family_candidate",
+        "review_status": "superseded",
+        "rows": 458
+      },
+      {
+        "family_status": "english_name_variant_family_candidate",
+        "review_status": "superseded",
+        "rows": 4490
+      },
+      {
+        "family_status": "japanese_name_family_candidate",
+        "review_status": "superseded",
+        "rows": 85
+      },
+      {
+        "family_status": "same_species_or_character_family_candidate",
+        "review_status": "superseded",
+        "rows": 3131
+      }
+    ],
+    "plan_baseline_drift": {
+      "active_jpn_identities": {
+        "actual": 25953,
+        "delta": 0,
+        "expected": 25953,
+        "matches": true
+      },
+      "cards_in_source_placeholder_sets": {
+        "actual": 1297,
+        "delta": 0,
+        "expected": 1297,
+        "matches": true
+      },
+      "case_folded_set_codes": {
+        "actual": 388,
+        "delta": 0,
+        "expected": 388,
+        "matches": true
+      },
+      "case_only_alias_groups": {
+        "actual": 116,
+        "delta": 0,
+        "expected": 116,
+        "matches": true
+      },
+      "jpn_child_printings": {
+        "actual": 25953,
+        "delta": 0,
+        "expected": 25953,
+        "matches": true
+      },
+      "jpn_parent_rows": {
+        "actual": 26047,
+        "delta": 0,
+        "expected": 26047,
+        "matches": true
+      },
+      "no_active_identity_or_evidence_rows": {
+        "actual": 94,
+        "delta": 0,
+        "expected": 94,
+        "matches": true
+      },
+      "no_public_gv_or_image_rows": {
+        "actual": 62,
+        "delta": 0,
+        "expected": 62,
+        "matches": true
+      },
+      "public_jpn_gv_ids": {
+        "actual": 25985,
+        "delta": 0,
+        "expected": 25985,
+        "matches": true
+      },
+      "raw_set_codes": {
+        "actual": 504,
+        "delta": 0,
+        "expected": 504,
+        "matches": true
+      },
+      "source_placeholder_sets": {
+        "actual": 45,
+        "delta": 0,
+        "expected": 45,
+        "matches": true
+      }
+    },
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065"
+  },
+  "content_fingerprint_sha256": "7e4f1952b6653f7fea0d876067fe61d6eb63d9167632090e279224170d9614d1",
+  "generated_at": "2026-07-26T19:05:27.244Z",
+  "package_id": "LIVE-JPN-PARENT-SUMMARY-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}

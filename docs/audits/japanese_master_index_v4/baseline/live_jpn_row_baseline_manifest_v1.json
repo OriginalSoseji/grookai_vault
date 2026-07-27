@@ -1,0 +1,166 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "datasets": [
+      {
+        "content_fingerprint_sha256": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+        "dataset_key": "live_jpn_parent_rows_v1",
+        "row_count": 26047,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_parent_rows_v1/live_jpn_parent_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+        "dataset_key": "live_jpn_identity_rows_v1",
+        "row_count": 26015,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_identity_rows_v1/live_jpn_identity_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+        "dataset_key": "live_jpn_evidence_rows_v1",
+        "row_count": 116589,
+        "shard_count": 24,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0001_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0002_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0003_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0004_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0005_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0006_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0007_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0008_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0009_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0010_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0011_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0012_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0013_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0014_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0015_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0016_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0017_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0018_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0019_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0020_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0021_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0022_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0023_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_evidence_rows_v1/live_jpn_evidence_rows_v1_0024_of_0024.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+        "dataset_key": "live_jpn_printing_rows_v1",
+        "row_count": 25953,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_printing_rows_v1/live_jpn_printing_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "1aa57e4b3f0b38b5cb462b315f4383cfaf484c2daf798c69290fa740de6615be",
+        "dataset_key": "live_jpn_family_review_rows_v1",
+        "row_count": 28161,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_family_review_rows_v1/live_jpn_family_review_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+        "dataset_key": "live_jpn_species_link_rows_v1",
+        "row_count": 19678,
+        "shard_count": 4,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0001_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0002_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0003_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/live_jpn_species_link_rows_v1/live_jpn_species_link_rows_v1_0004_of_0004.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "442e54d5adabdc6fbd869d481a7b1ab8f339330e416fce71ff63d44079c81a2b",
+        "dataset_key": "language_agnostic_species_rows_v1",
+        "row_count": 1025,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/language_agnostic_species_rows_v1/language_agnostic_species_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "77d6e7d9a14f2bf87abe3b2845126066dc0c8af9b77457dae525510b3b431f05",
+        "dataset_key": "english_family_card_rows_v1",
+        "row_count": 19194,
+        "shard_count": 4,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0001_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0002_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0003_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_card_rows_v1/english_family_card_rows_v1_0004_of_0004.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "b161d423d6db073f7952ad60726595e35d10bdb875f96175b96d64ddea4933da",
+        "dataset_key": "english_family_species_link_rows_v1",
+        "row_count": 19346,
+        "shard_count": 4,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0001_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0002_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0003_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/baseline/rows/english_family_species_link_rows_v1/english_family_species_link_rows_v1_0004_of_0004.json.gz"
+        ],
+        "shard_size": 5000
+      }
+    ],
+    "generator_version": "JPN-MASTER-INDEX-BASELINE-EXPORT-V1",
+    "no_write_boundary": {
+      "database_writes": false,
+      "storage_writes": false
+    },
+    "shard_size": 5000
+  },
+  "content_fingerprint_sha256": "5c1771d099050f8138c45fc169eacbd68f906d7b852efd6dbe4ce788f65a778e",
+  "generated_at": "2026-07-26T19:05:27.244Z",
+  "package_id": "LIVE-JPN-ROW-BASELINE-MANIFEST-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}

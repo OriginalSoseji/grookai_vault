@@ -1,0 +1,3411 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "conflicts": [
+      {
+        "conflict_key": "jpn-bkc",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          14,
+          16
+        ],
+        "registry_keys": [
+          "jpn-bkc"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BKc",
+          "tcgcollector_jp_sets:11343"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bkt",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          14,
+          17
+        ],
+        "registry_keys": [
+          "jpn-bkt"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BKt",
+          "tcgcollector_jp_sets:11342"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bkv",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          14,
+          17
+        ],
+        "registry_keys": [
+          "jpn-bkv"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BKv",
+          "tcgcollector_jp_sets:11341"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw1-bb",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          53,
+          56
+        ],
+        "registry_keys": [
+          "jpn-bw1-bb"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW1b",
+          "tcgcollector_jp_sets:11167",
+          "artofpkm_jp_sets:227",
+          "serebii_jp_sets:blackcollection"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw1-bw",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          54,
+          56
+        ],
+        "registry_keys": [
+          "jpn-bw1-bw"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW1w",
+          "tcgcollector_jp_sets:11202",
+          "artofpkm_jp_sets:228",
+          "serebii_jp_sets:whitecollection"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          67,
+          72
+        ],
+        "registry_keys": [
+          "jpn-bw2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW2",
+          "tcgcollector_jp_sets:11166",
+          "artofpkm_jp_sets:238",
+          "serebii_jp_sets:redcollection",
+          "bulbapedia_jp_expansions:Red_Collection_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw3-bh",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          52,
+          57
+        ],
+        "registry_keys": [
+          "jpn-bw3-bh"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW3h",
+          "tcgcollector_jp_sets:11209",
+          "artofpkm_jp_sets:241",
+          "serebii_jp_sets:hailblizzard"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw3-bp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          52,
+          57
+        ],
+        "registry_keys": [
+          "jpn-bw3-bp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW3p",
+          "tcgcollector_jp_sets:11199",
+          "artofpkm_jp_sets:240",
+          "serebii_jp_sets:psychodrive"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          69,
+          75,
+          76
+        ],
+        "registry_keys": [
+          "jpn-bw4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW4",
+          "tcgcollector_jp_sets:11230",
+          "artofpkm_jp_sets:247",
+          "serebii_jp_sets:darkrush",
+          "bulbapedia_jp_expansions:Dark_Rush_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw5-brn",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          54,
+          55
+        ],
+        "registry_keys": [
+          "jpn-bw5-brn"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW5n",
+          "tcgcollector_jp_sets:11245",
+          "artofpkm_jp_sets:251",
+          "serebii_jp_sets:dragonblade"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw5-brz",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          54,
+          55
+        ],
+        "registry_keys": [
+          "jpn-bw5-brz"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW5z",
+          "tcgcollector_jp_sets:11274",
+          "artofpkm_jp_sets:250",
+          "serebii_jp_sets:dragonblast"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw6-bc",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          59,
+          65
+        ],
+        "registry_keys": [
+          "jpn-bw6-bc"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW6c",
+          "tcgcollector_jp_sets:11307",
+          "artofpkm_jp_sets:259"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw6-bf",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          59,
+          65
+        ],
+        "registry_keys": [
+          "jpn-bw6-bf"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW6f",
+          "tcgcollector_jp_sets:11215",
+          "artofpkm_jp_sets:257"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw7",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          79
+        ],
+        "registry_keys": [
+          "jpn-bw7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW7",
+          "tcgcollector_jp_sets:11207",
+          "artofpkm_jp_sets:261",
+          "serebii_jp_sets:plasmagale",
+          "bulbapedia_jp_expansions:Plasma_Gale_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw8-brf",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          51,
+          58
+        ],
+        "registry_keys": [
+          "jpn-bw8-brf"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW8f",
+          "tcgcollector_jp_sets:11301",
+          "artofpkm_jp_sets:269",
+          "serebii_jp_sets:spiralforce"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bw9",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          76,
+          86
+        ],
+        "registry_keys": [
+          "jpn-bw9"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BW9",
+          "tcgcollector_jp_sets:11251",
+          "artofpkm_jp_sets:272",
+          "serebii_jp_sets:megalocannon",
+          "bulbapedia_jp_expansions:Megalo_Cannon_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-bwp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          246,
+          295
+        ],
+        "registry_keys": [
+          "jpn-bwp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:BWP",
+          "tcgcollector_jp_sets:11219"
+        ]
+      },
+      {
+        "conflict_key": "jpn-cp4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          131,
+          140
+        ],
+        "registry_keys": [
+          "jpn-cp4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:CP4",
+          "limitless_jp_sets:CP4",
+          "tcgcollector_jp_sets:11293",
+          "official_jp_products:unlinked:expansion:プレミアムチャンピオンパック「EX×M×BREAK」:2016年 4月16日（土）"
+        ]
+      },
+      {
+        "conflict_key": "jpn-cp5",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          36,
+          38
+        ],
+        "registry_keys": [
+          "jpn-cp5"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:CP5",
+          "limitless_jp_sets:CP5",
+          "tcgcollector_jp_sets:11214",
+          "bulbapedia_jp_expansions:Mythical_&_Legendary_Dream_Shine_Collection_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-cp6",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          87,
+          103
+        ],
+        "registry_keys": [
+          "jpn-cp6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:CP6",
+          "limitless_jp_sets:CP6",
+          "tcgcollector_jp_sets:11276",
+          "bulbapedia_jp_expansions:Expansion_Pack_20th_Anniversary_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-dp4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          136
+        ],
+        "registry_keys": [
+          "jpn-dp4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11818",
+          "tcgcollector_jp_sets:12145",
+          "tcgcollector_jp_sets:12146",
+          "artofpkm_jp_sets:164",
+          "artofpkm_jp_sets:166"
+        ]
+      },
+      {
+        "conflict_key": "jpn-ebb",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          93,
+          97,
+          99,
+          100
+        ],
+        "registry_keys": [
+          "jpn-ebb"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:EBB",
+          "tcgcollector_jp_sets:11246",
+          "artofpkm_jp_sets:277",
+          "serebii_jp_sets:exbattleboost",
+          "bulbapedia_jp_expansions:EX_Battle_Boost_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-gbr",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          16,
+          18
+        ],
+        "registry_keys": [
+          "jpn-gbr"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:GBR",
+          "tcgcollector_jp_sets:11322",
+          "artofpkm_jp_sets:252",
+          "serebii_jp_sets:garchomphalfdeck"
+        ]
+      },
+      {
+        "conflict_key": "jpn-l1-bss",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          71
+        ],
+        "registry_keys": [
+          "jpn-l1-bss"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11300",
+          "artofpkm_jp_sets:204",
+          "serebii_jp_sets:soulsilvercollection"
+        ]
+      },
+      {
+        "conflict_key": "jpn-l2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          19,
+          70,
+          80,
+          81
+        ],
+        "registry_keys": [
+          "jpn-l2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:L2",
+          "tcgcollector_jp_sets:11226",
+          "tcgcollector_jp_sets:11417",
+          "tcgcollector_jp_sets:11619",
+          "artofpkm_jp_sets:213",
+          "serebii_jp_sets:revivinglegends",
+          "bulbapedia_jp_expansions:Reviving_Legends_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-l3",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          80,
+          81
+        ],
+        "registry_keys": [
+          "jpn-l3"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:L3",
+          "tcgcollector_jp_sets:11297",
+          "artofpkm_jp_sets:220",
+          "bulbapedia_jp_expansions:Clash_at_the_Summit_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m1l",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          92,
+          98
+        ],
+        "registry_keys": [
+          "jpn-m1l"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M1L",
+          "limitless_jp_sets:M1L",
+          "tcgcollector_jp_sets:11660",
+          "artofpkm_jp_sets:570",
+          "serebii_jp_sets:megabrave"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m1s",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          92,
+          98
+        ],
+        "registry_keys": [
+          "jpn-m1s"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M1S",
+          "limitless_jp_sets:M1S",
+          "tcgcollector_jp_sets:11661",
+          "artofpkm_jp_sets:571",
+          "serebii_jp_sets:megasymphonia"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          80,
+          98,
+          116
+        ],
+        "registry_keys": [
+          "jpn-m2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M2",
+          "limitless_jp_sets:M2",
+          "tcgcollector_jp_sets:11675",
+          "artofpkm_jp_sets:575",
+          "serebii_jp_sets:infernox",
+          "bulbapedia_jp_expansions:Inferno_X_(TCG)",
+          "pokeguardian_jp_sets:M2"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m2a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          193,
+          250
+        ],
+        "registry_keys": [
+          "jpn-m2a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M2a",
+          "limitless_jp_sets:M2a",
+          "tcgcollector_jp_sets:11678",
+          "artofpkm_jp_sets:579",
+          "serebii_jp_sets:megadreamex",
+          "bulbapedia_jp_expansions:MEGA_Dream_ex_(TCG)",
+          "pokeguardian_jp_sets:M2A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m3",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          80,
+          117,
+          124
+        ],
+        "registry_keys": [
+          "jpn-m3"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M3",
+          "limitless_jp_sets:M3",
+          "tcgcollector_jp_sets:11684",
+          "artofpkm_jp_sets:583",
+          "serebii_jp_sets:nihilzero",
+          "bulbapedia_jp_expansions:Nihil_Zero_(TCG)",
+          "pokeguardian_jp_sets:M3"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          83,
+          120,
+          124
+        ],
+        "registry_keys": [
+          "jpn-m4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M4",
+          "limitless_jp_sets:M4",
+          "tcgcollector_jp_sets:11800",
+          "artofpkm_jp_sets:585",
+          "serebii_jp_sets:ninjaspinner",
+          "bulbapedia_jp_expansions:Ninja_Spinner_(TCG)",
+          "pokeguardian_jp_sets:M4"
+        ]
+      },
+      {
+        "conflict_key": "jpn-m5",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          81,
+          118,
+          124
+        ],
+        "registry_keys": [
+          "jpn-m5"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:M5",
+          "limitless_jp_sets:M5",
+          "tcgcollector_jp_sets:11810",
+          "artofpkm_jp_sets:588",
+          "serebii_jp_sets:abysseye",
+          "bulbapedia_jp_expansions:Abyss_Eye_(TCG)",
+          "pokeguardian_jp_sets:M5"
+        ]
+      },
+      {
+        "conflict_key": "jpn-mdb",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          46,
+          51
+        ],
+        "registry_keys": [
+          "jpn-mdb"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:MDB",
+          "tcgcollector_jp_sets:11223"
+        ]
+      },
+      {
+        "conflict_key": "jpn-mp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          102,
+          134,
+          290
+        ],
+        "registry_keys": [
+          "jpn-mp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:MP",
+          "tcgcollector_jp_sets:11410",
+          "tcgcollector_jp_sets:11665"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-5a2606476652e721",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          87,
+          90
+        ],
+        "registry_keys": [
+          "jpn-release-5a2606476652e721"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11227",
+          "artofpkm_jp_sets:57",
+          "bulbapedia_jp_expansions:Wind_from_the_Sea_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-6b02de7e6b7e945f",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          54,
+          58
+        ],
+        "registry_keys": [
+          "jpn-release-6b02de7e6b7e945f"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY11b",
+          "limitless_jp_sets:XY11b"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-8e24fccc62c9b3e2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          72,
+          77,
+          82
+        ],
+        "registry_keys": [
+          "jpn-release-8e24fccc62c9b3e2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM3+",
+          "limitless_jp_sets:SM3p",
+          "tcgcollector_jp_sets:11206",
+          "bulbapedia_jp_expansions:Shining_Legends_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-10ce4ad24f2df6f7",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          76,
+          190
+        ],
+        "registry_keys": [
+          "jpn-release-10ce4ad24f2df6f7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:M6",
+          "tcgcollector_jp_sets:11929",
+          "artofpkm_jp_sets:595",
+          "serebii_jp_sets:stormemeralda",
+          "bulbapedia_jp_expansions:Storm_Emeralda_(TCG)",
+          "pokeguardian_jp_sets:M6"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-189d15142aa81827",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          59,
+          64
+        ],
+        "registry_keys": [
+          "jpn-release-189d15142aa81827"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY8b",
+          "limitless_jp_sets:XY8b"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-4961b9d8bce74e89",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          88,
+          91
+        ],
+        "registry_keys": [
+          "jpn-release-4961b9d8bce74e89"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11188",
+          "artofpkm_jp_sets:59",
+          "bulbapedia_jp_expansions:Split_Earth_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-b88f934d137634ed",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          114,
+          120,
+          125
+        ],
+        "registry_keys": [
+          "jpn-release-b88f934d137634ed"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM4+",
+          "limitless_jp_sets:SM4p",
+          "tcgcollector_jp_sets:11239",
+          "artofpkm_jp_sets:345",
+          "serebii_jp_sets:gxbattleboost",
+          "bulbapedia_jp_expansions:GX_Battle_Boost_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-c876aa483a727649",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          88,
+          91
+        ],
+        "registry_keys": [
+          "jpn-release-c876aa483a727649"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11183",
+          "artofpkm_jp_sets:61",
+          "bulbapedia_jp_expansions:Mysterious_Mountains_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-release-d92055e3cb31ee94",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          56,
+          68
+        ],
+        "registry_keys": [
+          "jpn-release-d92055e3cb31ee94"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM5+",
+          "limitless_jp_sets:SM5p",
+          "tcgcollector_jp_sets:11212",
+          "bulbapedia_jp_expansions:Ultra_Force_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s1a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          78,
+          86
+        ],
+        "registry_keys": [
+          "jpn-s1a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S1a",
+          "limitless_jp_sets:S1a",
+          "tcgcollector_jp_sets:11370",
+          "artofpkm_jp_sets:404",
+          "serebii_jp_sets:vmaxrising",
+          "bulbapedia_jp_expansions:VMAX_Rising_(TCG)",
+          "pokeguardian_jp_sets:S1A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s1h",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          60,
+          68,
+          75
+        ],
+        "registry_keys": [
+          "jpn-s1h"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S1H",
+          "limitless_jp_sets:S1H",
+          "tcgcollector_jp_sets:11340",
+          "artofpkm_jp_sets:399",
+          "serebii_jp_sets:shield"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s1w",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          60,
+          68,
+          75
+        ],
+        "registry_keys": [
+          "jpn-s1w"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S1W",
+          "limitless_jp_sets:S1W",
+          "tcgcollector_jp_sets:11339",
+          "artofpkm_jp_sets:400",
+          "serebii_jp_sets:sword"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          96,
+          106,
+          115
+        ],
+        "registry_keys": [
+          "jpn-s2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S2",
+          "limitless_jp_sets:S2",
+          "tcgcollector_jp_sets:11374",
+          "artofpkm_jp_sets:405",
+          "bulbapedia_jp_expansions:Rebellion_Crash_(TCG)",
+          "pokeguardian_jp_sets:S2"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s2a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          78,
+          86
+        ],
+        "registry_keys": [
+          "jpn-s2a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S2a",
+          "limitless_jp_sets:S2a",
+          "tcgcollector_jp_sets:11375",
+          "artofpkm_jp_sets:408",
+          "serebii_jp_sets:explosivewalker",
+          "bulbapedia_jp_expansions:Explosive_Walker_(TCG)",
+          "pokeguardian_jp_sets:S2A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s3",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          110,
+          119
+        ],
+        "registry_keys": [
+          "jpn-s3"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S3",
+          "limitless_jp_sets:S3",
+          "tcgcollector_jp_sets:11376",
+          "artofpkm_jp_sets:410",
+          "serebii_jp_sets:infinityzone",
+          "bulbapedia_jp_expansions:Infinity_Zone_(TCG)",
+          "pokeguardian_jp_sets:S3"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s3a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          76,
+          85,
+          94
+        ],
+        "registry_keys": [
+          "jpn-s3a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S3a",
+          "limitless_jp_sets:S3a",
+          "tcgcollector_jp_sets:11377",
+          "artofpkm_jp_sets:411",
+          "bulbapedia_jp_expansions:Legendary_Heartbeat_(TCG)",
+          "pokeguardian_jp_sets:S3A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          111,
+          121
+        ],
+        "registry_keys": [
+          "jpn-s4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S4",
+          "limitless_jp_sets:S4",
+          "tcgcollector_jp_sets:11379",
+          "bulbapedia_jp_expansions:Amazing_Volt_Tackle_(TCG)",
+          "pokeguardian_jp_sets:S4"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s4a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          190,
+          326,
+          330
+        ],
+        "registry_keys": [
+          "jpn-s4a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S4a",
+          "limitless_jp_sets:S4a",
+          "tcgcollector_jp_sets:11383",
+          "artofpkm_jp_sets:419",
+          "serebii_jp_sets:shinystarv",
+          "bulbapedia_jp_expansions:Shiny_Star_V_(TCG)",
+          "pokeguardian_jp_sets:S4A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s5a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          84,
+          96
+        ],
+        "registry_keys": [
+          "jpn-s5a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S5a",
+          "limitless_jp_sets:S5a",
+          "tcgcollector_jp_sets:11412",
+          "artofpkm_jp_sets:427",
+          "pokeguardian_jp_sets:S5A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s5i",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          81,
+          91
+        ],
+        "registry_keys": [
+          "jpn-s5i"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S5I",
+          "limitless_jp_sets:S5I",
+          "tcgcollector_jp_sets:11387",
+          "artofpkm_jp_sets:424",
+          "serebii_jp_sets:singlestrikemaster"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s5r",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          81,
+          91
+        ],
+        "registry_keys": [
+          "jpn-s5r"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S5R",
+          "limitless_jp_sets:S5R",
+          "tcgcollector_jp_sets:11388",
+          "artofpkm_jp_sets:423",
+          "serebii_jp_sets:rapidstrikemaster"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s6a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          69,
+          87,
+          101
+        ],
+        "registry_keys": [
+          "jpn-s6a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S6a",
+          "limitless_jp_sets:S6a",
+          "tcgcollector_jp_sets:11424",
+          "artofpkm_jp_sets:432",
+          "serebii_jp_sets:eeveeheroes",
+          "bulbapedia_jp_expansions:Eevee_Heroes_(TCG)",
+          "pokeguardian_jp_sets:S6A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s6h",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          83,
+          95
+        ],
+        "registry_keys": [
+          "jpn-s6h"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S6H",
+          "limitless_jp_sets:S6H",
+          "tcgcollector_jp_sets:11421",
+          "artofpkm_jp_sets:429",
+          "serebii_jp_sets:silverlance"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s6k",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          70,
+          83,
+          95
+        ],
+        "registry_keys": [
+          "jpn-s6k"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S6K",
+          "limitless_jp_sets:S6K",
+          "tcgcollector_jp_sets:11422"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s7d",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          67,
+          79,
+          90
+        ],
+        "registry_keys": [
+          "jpn-s7d"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S7D",
+          "limitless_jp_sets:S7D",
+          "tcgcollector_jp_sets:11429"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s7r",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          67,
+          79,
+          90
+        ],
+        "registry_keys": [
+          "jpn-s7r"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S7R",
+          "limitless_jp_sets:S7R",
+          "tcgcollector_jp_sets:11430",
+          "artofpkm_jp_sets:437",
+          "serebii_jp_sets:blueskystream"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s8",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          115,
+          129
+        ],
+        "registry_keys": [
+          "jpn-s8"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S8",
+          "limitless_jp_sets:S8",
+          "tcgcollector_jp_sets:11437",
+          "artofpkm_jp_sets:442",
+          "serebii_jp_sets:fusionarts",
+          "bulbapedia_jp_expansions:Fusion_Arts_(TCG)",
+          "pokeguardian_jp_sets:S8"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s8a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          28,
+          37,
+          38
+        ],
+        "registry_keys": [
+          "jpn-s8a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S8a",
+          "limitless_jp_sets:S8a",
+          "tcgcollector_jp_sets:11441",
+          "artofpkm_jp_sets:446",
+          "serebii_jp_sets:25thanniversarycollection",
+          "bulbapedia_jp_expansions:25th_Anniversary_Collection_(TCG)",
+          "pokeguardian_jp_sets:S8A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s8b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          184,
+          277,
+          285,
+          293
+        ],
+        "registry_keys": [
+          "jpn-s8b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S8b",
+          "limitless_jp_sets:S8b",
+          "tcgcollector_jp_sets:11449",
+          "artofpkm_jp_sets:451",
+          "serebii_jp_sets:vmaxclimax",
+          "bulbapedia_jp_expansions:VMAX_Climax_(TCG)",
+          "pokeguardian_jp_sets:S8B"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s9",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          127
+        ],
+        "registry_keys": [
+          "jpn-s9"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S9",
+          "limitless_jp_sets:S9",
+          "tcgcollector_jp_sets:11452",
+          "artofpkm_jp_sets:453",
+          "serebii_jp_sets:starbirth",
+          "bulbapedia_jp_expansions:Star_Birth_(TCG)",
+          "pokeguardian_jp_sets:S9"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s9a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          67,
+          93
+        ],
+        "registry_keys": [
+          "jpn-s9a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S9a",
+          "limitless_jp_sets:S9a",
+          "tcgcollector_jp_sets:11456",
+          "artofpkm_jp_sets:456",
+          "serebii_jp_sets:battleregion",
+          "bulbapedia_jp_expansions:Battle_Region_(TCG)",
+          "pokeguardian_jp_sets:S9A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s10a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          99
+        ],
+        "registry_keys": [
+          "jpn-s10a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S10a",
+          "limitless_jp_sets:S10a",
+          "tcgcollector_jp_sets:11469",
+          "serebii_jp_sets:darkphantasma",
+          "bulbapedia_jp_expansions:Dark_Phantasma_(TCG)",
+          "pokeguardian_jp_sets:S10A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s10b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          101
+        ],
+        "registry_keys": [
+          "jpn-s10b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S10b",
+          "limitless_jp_sets:S10b",
+          "tcgcollector_jp_sets:11481",
+          "artofpkm_jp_sets:464",
+          "bulbapedia_jp_expansions:Pokémon_GO_(TCG)",
+          "pokeguardian_jp_sets:S10B"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s10d",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          67,
+          88
+        ],
+        "registry_keys": [
+          "jpn-s10d"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S10D",
+          "limitless_jp_sets:S10D",
+          "tcgcollector_jp_sets:11462",
+          "artofpkm_jp_sets:459",
+          "serebii_jp_sets:timegazer"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s10p",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          67,
+          88
+        ],
+        "registry_keys": [
+          "jpn-s10p"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S10P",
+          "limitless_jp_sets:S10P",
+          "tcgcollector_jp_sets:11463",
+          "artofpkm_jp_sets:460",
+          "serebii_jp_sets:spacejuggler"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s11",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          127
+        ],
+        "registry_keys": [
+          "jpn-s11"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S11",
+          "limitless_jp_sets:S11",
+          "tcgcollector_jp_sets:11484",
+          "artofpkm_jp_sets:466",
+          "serebii_jp_sets:lostabyss",
+          "bulbapedia_jp_expansions:Lost_Abyss_(TCG)",
+          "pokeguardian_jp_sets:S11"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s11a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          68,
+          94
+        ],
+        "registry_keys": [
+          "jpn-s11a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S11a",
+          "limitless_jp_sets:S11a",
+          "tcgcollector_jp_sets:11497",
+          "artofpkm_jp_sets:473",
+          "serebii_jp_sets:incandescentarcana",
+          "bulbapedia_jp_expansions:Incandescent_Arcana_(TCG)",
+          "pokeguardian_jp_sets:S11A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s12",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          98,
+          125
+        ],
+        "registry_keys": [
+          "jpn-s12"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S12",
+          "limitless_jp_sets:S12",
+          "tcgcollector_jp_sets:11499",
+          "artofpkm_jp_sets:476",
+          "serebii_jp_sets:paradigmtrigger",
+          "bulbapedia_jp_expansions:Paradigm_Trigger_(TCG)",
+          "pokeguardian_jp_sets:S12"
+        ]
+      },
+      {
+        "conflict_key": "jpn-s12a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          172,
+          240,
+          254,
+          262
+        ],
+        "registry_keys": [
+          "jpn-s12a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:S12a",
+          "limitless_jp_sets:S12a",
+          "tcgcollector_jp_sets:11503",
+          "artofpkm_jp_sets:479",
+          "serebii_jp_sets:vstaruniverse",
+          "bulbapedia_jp_expansions:VSTAR_Universe_(TCG)",
+          "pokeguardian_jp_sets:S12A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sc",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          20,
+          21,
+          25
+        ],
+        "registry_keys": [
+          "jpn-sc"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SC",
+          "tcgcollector_jp_sets:11263",
+          "tcgcollector_jp_sets:11391",
+          "tcgcollector_jp_sets:11392",
+          "artofpkm_jp_sets:274",
+          "serebii_jp_sets:shinycollection",
+          "bulbapedia_jp_expansions:Shiny_Collection_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-si",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          427,
+          430
+        ],
+        "registry_keys": [
+          "jpn-si"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SI",
+          "tcgcollector_jp_sets:11450",
+          "artofpkm_jp_sets:452"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm1+",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          51,
+          73
+        ],
+        "registry_keys": [
+          "jpn-sm1+"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM1+",
+          "tcgcollector_jp_sets:11272"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm1m",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          60,
+          66,
+          73
+        ],
+        "registry_keys": [
+          "jpn-sm1m"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM1M",
+          "limitless_jp_sets:SM1M",
+          "tcgcollector_jp_sets:11216",
+          "artofpkm_jp_sets:326",
+          "serebii_jp_sets:collectionmoon"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm1s",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          60,
+          66,
+          73
+        ],
+        "registry_keys": [
+          "jpn-sm1s"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM1S",
+          "limitless_jp_sets:SM1S",
+          "tcgcollector_jp_sets:11229",
+          "artofpkm_jp_sets:325",
+          "serebii_jp_sets:collectionsun"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm2+",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          49,
+          70
+        ],
+        "registry_keys": [
+          "jpn-sm2+"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:sm2+",
+          "tcgcollector_jp_sets:11289",
+          "bulbapedia_jp_expansions:Facing_a_New_Trial_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm2k",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          55,
+          61,
+          62
+        ],
+        "registry_keys": [
+          "jpn-sm2k"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM2K",
+          "limitless_jp_sets:SM2K",
+          "tcgcollector_jp_sets:11170",
+          "artofpkm_jp_sets:333",
+          "serebii_jp_sets:islandsawaityou"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm2l",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          55,
+          61,
+          62
+        ],
+        "registry_keys": [
+          "jpn-sm2l"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM2L",
+          "limitless_jp_sets:SM2L",
+          "tcgcollector_jp_sets:11277",
+          "artofpkm_jp_sets:330",
+          "serebii_jp_sets:alolanmoonlight"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm3h",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          51,
+          57,
+          64
+        ],
+        "registry_keys": [
+          "jpn-sm3h"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM3H",
+          "limitless_jp_sets:SM3H",
+          "tcgcollector_jp_sets:11284",
+          "artofpkm_jp_sets:339",
+          "serebii_jp_sets:didyouseethefightingrainbow"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm3n",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          51,
+          57,
+          64
+        ],
+        "registry_keys": [
+          "jpn-sm3n"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM3N",
+          "limitless_jp_sets:SM3N",
+          "tcgcollector_jp_sets:11265"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm4a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          55,
+          62
+        ],
+        "registry_keys": [
+          "jpn-sm4a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM4A",
+          "limitless_jp_sets:SM4A",
+          "tcgcollector_jp_sets:11250"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm4s",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          55,
+          62
+        ],
+        "registry_keys": [
+          "jpn-sm4s"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM4S",
+          "limitless_jp_sets:SM4S",
+          "tcgcollector_jp_sets:11163"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm5m",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          72,
+          78
+        ],
+        "registry_keys": [
+          "jpn-sm5m"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM5M",
+          "limitless_jp_sets:SM5M",
+          "tcgcollector_jp_sets:11164",
+          "artofpkm_jp_sets:349",
+          "serebii_jp_sets:ultramoon"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm5s",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          72,
+          78
+        ],
+        "registry_keys": [
+          "jpn-sm5s"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM5S",
+          "limitless_jp_sets:SM5S",
+          "tcgcollector_jp_sets:11306",
+          "artofpkm_jp_sets:350",
+          "serebii_jp_sets:ultrasun"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm6",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          94,
+          102,
+          110
+        ],
+        "registry_keys": [
+          "jpn-sm6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM6",
+          "limitless_jp_sets:SM6",
+          "tcgcollector_jp_sets:11305",
+          "artofpkm_jp_sets:355",
+          "bulbapedia_jp_expansions:Forbidden_Light_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm6a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          53,
+          59,
+          66
+        ],
+        "registry_keys": [
+          "jpn-sm6a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM6a",
+          "limitless_jp_sets:SM6a",
+          "tcgcollector_jp_sets:11235",
+          "artofpkm_jp_sets:356",
+          "serebii_jp_sets:dragonstorm",
+          "bulbapedia_jp_expansions:Dragon_Storm_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm6b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          77,
+          86
+        ],
+        "registry_keys": [
+          "jpn-sm6b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM6b",
+          "limitless_jp_sets:SM6b",
+          "tcgcollector_jp_sets:11260",
+          "artofpkm_jp_sets:357",
+          "serebii_jp_sets:championroad",
+          "bulbapedia_jp_expansions:Champion_Road_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm7",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          96,
+          104,
+          112
+        ],
+        "registry_keys": [
+          "jpn-sm7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM7",
+          "limitless_jp_sets:SM7",
+          "tcgcollector_jp_sets:11224",
+          "artofpkm_jp_sets:359",
+          "bulbapedia_jp_expansions:Sky-Splitting_Charisma_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm7a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          60,
+          66,
+          73
+        ],
+        "registry_keys": [
+          "jpn-sm7a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM7a",
+          "limitless_jp_sets:SM7a",
+          "tcgcollector_jp_sets:11285",
+          "artofpkm_jp_sets:360",
+          "serebii_jp_sets:thunderclapspark",
+          "bulbapedia_jp_expansions:Thunderclap_Spark_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm7b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          50,
+          56,
+          63
+        ],
+        "registry_keys": [
+          "jpn-sm7b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM7b",
+          "limitless_jp_sets:SM7b",
+          "tcgcollector_jp_sets:11204",
+          "artofpkm_jp_sets:362",
+          "serebii_jp_sets:fairyrise",
+          "bulbapedia_jp_expansions:Fairy_Rise_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm8",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          95,
+          103,
+          111
+        ],
+        "registry_keys": [
+          "jpn-sm8"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM8",
+          "limitless_jp_sets:SM8",
+          "tcgcollector_jp_sets:11253",
+          "artofpkm_jp_sets:364",
+          "bulbapedia_jp_expansions:Super-Burst_Impact_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm8a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          52,
+          58,
+          65
+        ],
+        "registry_keys": [
+          "jpn-sm8a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM8a",
+          "limitless_jp_sets:SM8a",
+          "tcgcollector_jp_sets:11294",
+          "artofpkm_jp_sets:366",
+          "serebii_jp_sets:darkorder",
+          "bulbapedia_jp_expansions:Dark_Order_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm8b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          150,
+          243,
+          250
+        ],
+        "registry_keys": [
+          "jpn-sm8b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM8b",
+          "limitless_jp_sets:SM8b",
+          "tcgcollector_jp_sets:11217",
+          "artofpkm_jp_sets:368",
+          "serebii_jp_sets:gxultrashiny",
+          "bulbapedia_jp_expansions:GX_Ultra_Shiny_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm9",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          95,
+          109,
+          118
+        ],
+        "registry_keys": [
+          "jpn-sm9"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM9",
+          "limitless_jp_sets:SM9",
+          "tcgcollector_jp_sets:11296",
+          "artofpkm_jp_sets:372",
+          "serebii_jp_sets:tagbolt",
+          "bulbapedia_jp_expansions:Tag_Bolt_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm9a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          55,
+          63,
+          70
+        ],
+        "registry_keys": [
+          "jpn-sm9a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM9a",
+          "limitless_jp_sets:SM9a",
+          "tcgcollector_jp_sets:11178",
+          "artofpkm_jp_sets:373",
+          "serebii_jp_sets:nightunison",
+          "bulbapedia_jp_expansions:Night_Unison_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm9b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          54,
+          62,
+          69
+        ],
+        "registry_keys": [
+          "jpn-sm9b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM9b",
+          "limitless_jp_sets:SM9b",
+          "tcgcollector_jp_sets:11203",
+          "artofpkm_jp_sets:376",
+          "serebii_jp_sets:fullmetalwall",
+          "bulbapedia_jp_expansions:Full_Metal_Wall_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm10",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          95,
+          107,
+          116
+        ],
+        "registry_keys": [
+          "jpn-sm10"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM10",
+          "limitless_jp_sets:SM10",
+          "tcgcollector_jp_sets:11180",
+          "artofpkm_jp_sets:378",
+          "serebii_jp_sets:doubleblaze",
+          "bulbapedia_jp_expansions:Double_Blaze_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm10a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          54,
+          62,
+          69
+        ],
+        "registry_keys": [
+          "jpn-sm10a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SM10a",
+          "tcgcollector_jp_sets:11171",
+          "artofpkm_jp_sets:381",
+          "serebii_jp_sets:ggend",
+          "bulbapedia_jp_expansions:GG_End_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm10b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          54,
+          56,
+          62,
+          69
+        ],
+        "registry_keys": [
+          "jpn-sm10b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM10b",
+          "limitless_jp_sets:SM10b",
+          "tcgcollector_jp_sets:11298",
+          "artofpkm_jp_sets:383",
+          "serebii_jp_sets:skylegend",
+          "bulbapedia_jp_expansions:Sky_Legend_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm11",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          94,
+          106,
+          115
+        ],
+        "registry_keys": [
+          "jpn-sm11"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SM11",
+          "tcgcollector_jp_sets:11191",
+          "artofpkm_jp_sets:386",
+          "serebii_jp_sets:miracletwin",
+          "bulbapedia_jp_expansions:Miracle_Twin_(TCG)",
+          "pokeguardian_jp_sets:SM11"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm11a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          64,
+          73,
+          80
+        ],
+        "registry_keys": [
+          "jpn-sm11a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM11a",
+          "limitless_jp_sets:SM11a",
+          "tcgcollector_jp_sets:11268",
+          "artofpkm_jp_sets:387",
+          "serebii_jp_sets:remixbout",
+          "bulbapedia_jp_expansions:Remix_Bout_(TCG)",
+          "pokeguardian_jp_sets:SM11A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm11b",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          49,
+          68,
+          75
+        ],
+        "registry_keys": [
+          "jpn-sm11b"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM11b",
+          "limitless_jp_sets:SM11b",
+          "tcgcollector_jp_sets:11176",
+          "artofpkm_jp_sets:388",
+          "serebii_jp_sets:dreamleague",
+          "bulbapedia_jp_expansions:Dream_League_(TCG)",
+          "pokeguardian_jp_sets:SM11B"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm12",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          95,
+          117
+        ],
+        "registry_keys": [
+          "jpn-sm12"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM12",
+          "limitless_jp_sets:SM12",
+          "tcgcollector_jp_sets:11185",
+          "artofpkm_jp_sets:391",
+          "serebii_jp_sets:altergenesis",
+          "bulbapedia_jp_expansions:Alter_Genesis_(TCG)",
+          "pokeguardian_jp_sets:SM12"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sm12a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          173,
+          226,
+          235
+        ],
+        "registry_keys": [
+          "jpn-sm12a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SM12a",
+          "limitless_jp_sets:SM12a",
+          "tcgcollector_jp_sets:11211",
+          "serebii_jp_sets:tagallstars",
+          "pokeguardian_jp_sets:SM12A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sma",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          59,
+          68
+        ],
+        "registry_keys": [
+          "jpn-sma"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SMA",
+          "tcgcollector_jp_sets:11313"
+        ]
+      },
+      {
+        "conflict_key": "jpn-smb",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          15,
+          18
+        ],
+        "registry_keys": [
+          "jpn-smb"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SMB",
+          "tcgcollector_jp_sets:11312"
+        ]
+      },
+      {
+        "conflict_key": "jpn-smf",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          12,
+          20
+        ],
+        "registry_keys": [
+          "jpn-smf"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SMF",
+          "tcgcollector_jp_sets:11358",
+          "artofpkm_jp_sets:351"
+        ]
+      },
+      {
+        "conflict_key": "jpn-smg",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          12,
+          41
+        ],
+        "registry_keys": [
+          "jpn-smg"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SMG",
+          "tcgcollector_jp_sets:11353"
+        ]
+      },
+      {
+        "conflict_key": "jpn-smp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          440,
+          449
+        ],
+        "registry_keys": [
+          "jpn-smp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SMP",
+          "tcgcollector_jp_sets:11175",
+          "artofpkm_jp_sets:324"
+        ]
+      },
+      {
+        "conflict_key": "jpn-smp2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          24,
+          25
+        ],
+        "registry_keys": [
+          "jpn-smp2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SMP2",
+          "limitless_jp_sets:SMP2",
+          "tcgcollector_jp_sets:11279",
+          "serebii_jp_sets:greatdetectivepikachu"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          300,
+          360
+        ],
+        "registry_keys": [
+          "jpn-sp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SP",
+          "tcgcollector_jp_sets:11373",
+          "artofpkm_jp_sets:397"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv1a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          73,
+          103
+        ],
+        "registry_keys": [
+          "jpn-sv1a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV1a",
+          "limitless_jp_sets:SV1a",
+          "tcgcollector_jp_sets:11566",
+          "artofpkm_jp_sets:485",
+          "serebii_jp_sets:tripletbeat",
+          "bulbapedia_jp_expansions:Triplet_Beat_(TCG)",
+          "pokeguardian_jp_sets:SV1A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv1s",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          108
+        ],
+        "registry_keys": [
+          "jpn-sv1s"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV1S",
+          "limitless_jp_sets:SV1S",
+          "tcgcollector_jp_sets:11505",
+          "artofpkm_jp_sets:481",
+          "serebii_jp_sets:scarletex"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv1v",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          108
+        ],
+        "registry_keys": [
+          "jpn-sv1v"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV1V",
+          "limitless_jp_sets:SV1V",
+          "tcgcollector_jp_sets:11506",
+          "artofpkm_jp_sets:482",
+          "serebii_jp_sets:violetex"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv2a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          165,
+          210
+        ],
+        "registry_keys": [
+          "jpn-sv2a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV2a",
+          "limitless_jp_sets:SV2a",
+          "tcgcollector_jp_sets:11575",
+          "artofpkm_jp_sets:490",
+          "bulbapedia_jp_expansions:Pokémon_Card_151_(TCG)",
+          "pokeguardian_jp_sets:SV2A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv2d",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          99
+        ],
+        "registry_keys": [
+          "jpn-sv2d"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV2D",
+          "limitless_jp_sets:SV2D",
+          "tcgcollector_jp_sets:11570",
+          "artofpkm_jp_sets:486",
+          "serebii_jp_sets:clayburst"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv2p",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          99
+        ],
+        "registry_keys": [
+          "jpn-sv2p"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV2P",
+          "limitless_jp_sets:SV2P",
+          "tcgcollector_jp_sets:11569",
+          "artofpkm_jp_sets:484",
+          "serebii_jp_sets:snowhazard"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv3",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          105,
+          108,
+          141
+        ],
+        "registry_keys": [
+          "jpn-sv3"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV3",
+          "limitless_jp_sets:SV3",
+          "tcgcollector_jp_sets:11578",
+          "artofpkm_jp_sets:493",
+          "serebii_jp_sets:ruleroftheblackflame",
+          "bulbapedia_jp_expansions:Ruler_of_the_Black_Flame_(TCG)",
+          "pokeguardian_jp_sets:SV3"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv3a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          62,
+          92
+        ],
+        "registry_keys": [
+          "jpn-sv3a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV3a",
+          "limitless_jp_sets:SV3a",
+          "tcgcollector_jp_sets:11583",
+          "artofpkm_jp_sets:502",
+          "serebii_jp_sets:ragingsurf",
+          "bulbapedia_jp_expansions:Raging_Surf_(TCG)",
+          "pokeguardian_jp_sets:SV3A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv4a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          190,
+          320,
+          360
+        ],
+        "registry_keys": [
+          "jpn-sv4a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV4a",
+          "limitless_jp_sets:SV4a",
+          "tcgcollector_jp_sets:11602",
+          "artofpkm_jp_sets:506",
+          "serebii_jp_sets:shinytreasureex",
+          "bulbapedia_jp_expansions:Shiny_Treasure_ex_(TCG)",
+          "pokeguardian_jp_sets:SV4A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv4k",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          94,
+          95
+        ],
+        "registry_keys": [
+          "jpn-sv4k"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV4K",
+          "limitless_jp_sets:SV4K",
+          "tcgcollector_jp_sets:11592",
+          "artofpkm_jp_sets:501",
+          "serebii_jp_sets:ancientroar"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv4m",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          94,
+          95
+        ],
+        "registry_keys": [
+          "jpn-sv4m"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV4M",
+          "limitless_jp_sets:SV4M",
+          "tcgcollector_jp_sets:11593",
+          "artofpkm_jp_sets:503",
+          "serebii_jp_sets:futureflash"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv5a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          66,
+          96
+        ],
+        "registry_keys": [
+          "jpn-sv5a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV5a",
+          "limitless_jp_sets:SV5a",
+          "tcgcollector_jp_sets:11622",
+          "artofpkm_jp_sets:513",
+          "serebii_jp_sets:crimsonhaze",
+          "bulbapedia_jp_expansions:Crimson_Haze_(TCG)",
+          "pokeguardian_jp_sets:SV5A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv5k",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          100
+        ],
+        "registry_keys": [
+          "jpn-sv5k"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV5K",
+          "limitless_jp_sets:SV5K",
+          "tcgcollector_jp_sets:11603",
+          "artofpkm_jp_sets:508",
+          "serebii_jp_sets:wildforce"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv5m",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          71,
+          100
+        ],
+        "registry_keys": [
+          "jpn-sv5m"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV5M",
+          "limitless_jp_sets:SV5M",
+          "tcgcollector_jp_sets:11604",
+          "artofpkm_jp_sets:509",
+          "serebii_jp_sets:cyberjudge"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv6",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          101,
+          133
+        ],
+        "registry_keys": [
+          "jpn-sv6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV6",
+          "limitless_jp_sets:SV6",
+          "tcgcollector_jp_sets:11624",
+          "artofpkm_jp_sets:515",
+          "serebii_jp_sets:maskofchange",
+          "pokeguardian_jp_sets:SV6"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv6a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          64,
+          94
+        ],
+        "registry_keys": [
+          "jpn-sv6a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV6a",
+          "limitless_jp_sets:SV6a",
+          "tcgcollector_jp_sets:11626",
+          "artofpkm_jp_sets:519",
+          "serebii_jp_sets:nightwanderer",
+          "bulbapedia_jp_expansions:Night_Wanderer_(TCG)",
+          "pokeguardian_jp_sets:SV6A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv7",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          102,
+          135
+        ],
+        "registry_keys": [
+          "jpn-sv7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV7",
+          "limitless_jp_sets:SV7",
+          "tcgcollector_jp_sets:11629",
+          "artofpkm_jp_sets:520",
+          "serebii_jp_sets:stellarmiracle",
+          "bulbapedia_jp_expansions:Stellar_Miracle_(TCG)",
+          "pokeguardian_jp_sets:SV7"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv7a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          64,
+          94
+        ],
+        "registry_keys": [
+          "jpn-sv7a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV7a",
+          "limitless_jp_sets:SV7a",
+          "tcgcollector_jp_sets:11635",
+          "artofpkm_jp_sets:544",
+          "serebii_jp_sets:paradisedragona",
+          "bulbapedia_jp_expansions:Paradise_Dragona_(TCG)",
+          "pokeguardian_jp_sets:SV7A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv8",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          106,
+          137,
+          138
+        ],
+        "registry_keys": [
+          "jpn-sv8"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV8",
+          "limitless_jp_sets:SV8",
+          "tcgcollector_jp_sets:11638",
+          "serebii_jp_sets:superelectricbreaker",
+          "bulbapedia_jp_expansions:Super_Electric_Breaker_(TCG)",
+          "pokeguardian_jp_sets:SV8"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv8a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          187,
+          237,
+          267
+        ],
+        "registry_keys": [
+          "jpn-sv8a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV8a",
+          "limitless_jp_sets:SV8a",
+          "tcgcollector_jp_sets:11640",
+          "artofpkm_jp_sets:552",
+          "serebii_jp_sets:terastalfestivalex",
+          "bulbapedia_jp_expansions:Terastal_Fest_ex_(TCG)",
+          "pokeguardian_jp_sets:SV8A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv9",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          100,
+          132
+        ],
+        "registry_keys": [
+          "jpn-sv9"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV9",
+          "limitless_jp_sets:SV9",
+          "tcgcollector_jp_sets:11643",
+          "artofpkm_jp_sets:556",
+          "serebii_jp_sets:battlepartners",
+          "bulbapedia_jp_expansions:Battle_Partners_(TCG)",
+          "pokeguardian_jp_sets:SV9"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv9a",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          92,
+          93
+        ],
+        "registry_keys": [
+          "jpn-sv9a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV9a",
+          "limitless_jp_sets:SV9a",
+          "tcgcollector_jp_sets:11648",
+          "serebii_jp_sets:hotairarena",
+          "pokeguardian_jp_sets:SV9A"
+        ]
+      },
+      {
+        "conflict_key": "jpn-sv10",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          98,
+          132
+        ],
+        "registry_keys": [
+          "jpn-sv10"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV10",
+          "limitless_jp_sets:SV10",
+          "tcgcollector_jp_sets:11649",
+          "artofpkm_jp_sets:563",
+          "serebii_jp_sets:gloryofteamrocket",
+          "pokeguardian_jp_sets:SV10"
+        ]
+      },
+      {
+        "conflict_key": "jpn-svp",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          300,
+          303
+        ],
+        "registry_keys": [
+          "jpn-svp"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SVP",
+          "tcgcollector_jp_sets:11502",
+          "artofpkm_jp_sets:478"
+        ]
+      },
+      {
+        "conflict_key": "jpn-wak",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          55,
+          62
+        ],
+        "registry_keys": [
+          "jpn-wak"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:WAK",
+          "tcgcollector_jp_sets:11319",
+          "artofpkm_jp_sets:268"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          171,
+          188,
+          314
+        ],
+        "registry_keys": [
+          "jpn-xy"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:XY",
+          "tcgcollector_jp_sets:11190",
+          "artofpkm_jp_sets:537",
+          "bulbapedia_jp_expansions:The_Best_of_XY_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy2",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          80,
+          87,
+          90
+        ],
+        "registry_keys": [
+          "jpn-xy2"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY2",
+          "limitless_jp_sets:XY2",
+          "tcgcollector_jp_sets:11273",
+          "artofpkm_jp_sets:290",
+          "serebii_jp_sets:wildblaze",
+          "bulbapedia_jp_expansions:Wild_Blaze_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy3",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          96,
+          103,
+          105
+        ],
+        "registry_keys": [
+          "jpn-xy3"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY3",
+          "limitless_jp_sets:XY3",
+          "tcgcollector_jp_sets:11208",
+          "artofpkm_jp_sets:294",
+          "serebii_jp_sets:risingfist",
+          "bulbapedia_jp_expansions:Rising_Fist_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy4",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          88,
+          95,
+          97
+        ],
+        "registry_keys": [
+          "jpn-xy4"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY4",
+          "limitless_jp_sets:XY4",
+          "tcgcollector_jp_sets:11232",
+          "artofpkm_jp_sets:296",
+          "serebii_jp_sets:phantomgate",
+          "bulbapedia_jp_expansions:Phantom_Gate_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy5-bg",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          80
+        ],
+        "registry_keys": [
+          "jpn-xy5-bg"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:XY5g",
+          "tcgcollector_jp_sets:11174",
+          "artofpkm_jp_sets:299",
+          "serebii_jp_sets:gaiavolcano"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy5-bt",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          80
+        ],
+        "registry_keys": [
+          "jpn-xy5-bt"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:XY5t",
+          "tcgcollector_jp_sets:11197",
+          "artofpkm_jp_sets:300",
+          "serebii_jp_sets:tidalstorm"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy6",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          89,
+          91
+        ],
+        "registry_keys": [
+          "jpn-xy6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY6",
+          "limitless_jp_sets:XY6",
+          "tcgcollector_jp_sets:11267",
+          "artofpkm_jp_sets:305",
+          "serebii_jp_sets:emeraldbreak",
+          "bulbapedia_jp_expansions:Emerald_Break_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy7",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          81,
+          95,
+          97
+        ],
+        "registry_keys": [
+          "jpn-xy7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY7",
+          "limitless_jp_sets:XY7",
+          "tcgcollector_jp_sets:11269",
+          "artofpkm_jp_sets:308",
+          "bulbapedia_jp_expansions:Bandit_Ring_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy9",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          80,
+          88,
+          89
+        ],
+        "registry_keys": [
+          "jpn-xy9"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY9",
+          "limitless_jp_sets:XY9",
+          "tcgcollector_jp_sets:11237",
+          "artofpkm_jp_sets:526",
+          "bulbapedia_jp_expansions:Rage_of_the_Broken_Heavens_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy10",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          78,
+          87,
+          88
+        ],
+        "registry_keys": [
+          "jpn-xy10"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:XY10",
+          "limitless_jp_sets:XY10",
+          "tcgcollector_jp_sets:11256",
+          "artofpkm_jp_sets:528",
+          "bulbapedia_jp_expansions:Awakening_Psychic_King_(TCG)"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xy11-br",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          58,
+          59
+        ],
+        "registry_keys": [
+          "jpn-xy11-br"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:XY11r",
+          "tcgcollector_jp_sets:11257",
+          "artofpkm_jp_sets:534",
+          "serebii_jp_sets:crueltraitor"
+        ]
+      },
+      {
+        "conflict_key": "jpn-xyb",
+        "conflict_type": "expected_card_count_disagreement",
+        "observed_values": [
+          19,
+          20
+        ],
+        "registry_keys": [
+          "jpn-xyb"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:XYB",
+          "tcgcollector_jp_sets:11360"
+        ]
+      },
+      {
+        "conflict_key": "b",
+        "conflict_type": "native_code_maps_to_multiple_releases",
+        "registry_keys": [
+          "jpn-release-3f35f60ef4a563ae",
+          "jpn-release-8bc02c883a42e500",
+          "jpn-release-d54606e0501452a2",
+          "jpn-release-e6bd41a4e8f3b1af"
+        ],
+        "severity": "blocking_for_code_promotion",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11413",
+          "tcgcollector_jp_sets:11414",
+          "tcgcollector_jp_sets:11415",
+          "tcgcollector_jp_sets:11416"
+        ]
+      },
+      {
+        "conflict_key": "e",
+        "conflict_type": "native_code_maps_to_multiple_releases",
+        "registry_keys": [
+          "jpn-release-5e4615b00aa3549f",
+          "jpn-release-805d29f739ae3537"
+        ],
+        "severity": "blocking_for_code_promotion",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11620",
+          "tcgcollector_jp_sets:11621"
+        ]
+      },
+      {
+        "conflict_key": "pt",
+        "conflict_type": "native_code_maps_to_multiple_releases",
+        "registry_keys": [
+          "jpn-release-336b83eb9aad7f8e",
+          "jpn-release-9204b87e15c86d55",
+          "jpn-release-1714688272b4deb9",
+          "jpn-release-ac3c28d277f1899e",
+          "jpn-release-bc68873c261527aa",
+          "jpn-release-c747d3172a816da6"
+        ],
+        "severity": "blocking_for_code_promotion",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11419",
+          "tcgcollector_jp_sets:11420",
+          "tcgcollector_jp_sets:11445",
+          "tcgcollector_jp_sets:11446",
+          "tcgcollector_jp_sets:11447",
+          "tcgcollector_jp_sets:11448"
+        ]
+      },
+      {
+        "conflict_key": "sa",
+        "conflict_type": "native_code_maps_to_multiple_releases",
+        "registry_keys": [
+          "jpn-release-3e12ab89b4bf6694",
+          "jpn-release-6b8903a09b954166",
+          "jpn-release-89a46fec30897a18",
+          "jpn-release-5130a4184de68950",
+          "jpn-release-d9afd891c5ebca87"
+        ],
+        "severity": "blocking_for_code_promotion",
+        "source_assertion_keys": [
+          "tcgcollector_jp_sets:11394",
+          "tcgcollector_jp_sets:11395",
+          "tcgcollector_jp_sets:11396",
+          "tcgcollector_jp_sets:11397",
+          "tcgcollector_jp_sets:11398"
+        ]
+      },
+      {
+        "conflict_key": "beginning set",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-hs",
+          "jpn-release-4ec7edd00e433ff1",
+          "jpn-release-270d8cf79b530b01"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "artofpkm_jp_sets:223",
+          "tcgcollector_jp_sets:11399",
+          "tcgcollector_jp_sets:11403"
+        ]
+      },
+      {
+        "conflict_key": "family pokémon card game",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-sh",
+          "jpn-sml"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "limitless_jp_sets:SH",
+          "limitless_jp_sets:SML"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 悪エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-7edcf53081fd8f24",
+          "jpn-product-bbea7e1f32cc5713"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 悪エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 悪エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 水エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-8a528d58f5774d8a",
+          "jpn-product-462acfc066abbac8"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 水エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 水エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 炎エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-381a84f8c4d8e70d",
+          "jpn-product-c4a60806f58aaefc"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 炎エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 炎エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 草エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-89c167ea75bbd063",
+          "jpn-product-a2efbd16823ee182"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 草エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 草エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 超エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-178d6d0abb289f0c",
+          "jpn-product-fbdab3e41fcdc5f1"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 超エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 超エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 鋼エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-066a3fe6b660ef77",
+          "jpn-product-313c5fad28cd521d"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 鋼エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 鋼エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 闘エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-41cc2b903b1d1f98",
+          "jpn-product-92600e7c3abe6977"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 闘エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 闘エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エネルギーパック 雷エネルギー",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-1fd0b36338ea04d7",
+          "jpn-product-ea216e3b82e73fc6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:エネルギーパック 雷エネルギー:2018年12月 7日（金）",
+          "official_jp_products:unlinked:others:エネルギーパック 雷エネルギー:2021年 2月12日（金）"
+        ]
+      },
+      {
+        "conflict_key": "エントリーパック",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-e2f770e05bfe9983",
+          "jpn-product-fff92ba6ca324e20"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:construction:エントリーパック:2006年10月27日（金）",
+          "official_jp_products:unlinked:construction:エントリーパック:2008年10月10日（金）"
+        ]
+      },
+      {
+        "conflict_key": "ギフトボックス",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-430f2350923cfef3",
+          "jpn-product-e3614b04951fc7e7"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:ギフトボックス:2003年11月28日（金）",
+          "official_jp_products:unlinked:others:ギフトボックス:2008年11月20日（木）"
+        ]
+      },
+      {
+        "conflict_key": "スターターパック",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-1c0992c6c02ddfc0",
+          "jpn-product-54f26eb37bb268b8"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:construction:スターターパック:2000年 2月 4日（金）",
+          "official_jp_products:unlinked:construction:スターターパック:2001年12月 1日（土）"
+        ]
+      },
+      {
+        "conflict_key": "スペシャルセット ピカチュウ",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-653daced139f12e6",
+          "jpn-product-b85657e11a330376"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:スペシャルセット「ピカチュウ」:2016年12月 9日（金）",
+          "official_jp_products:unlinked:others:スペシャルセット「ピカチュウ」:2017年 3月17日（金）"
+        ]
+      },
+      {
+        "conflict_key": "トリプレットビート",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-release-5cd6398a9163591e",
+          "jpn-release-7d5bd4343d56732c",
+          "jpn-release-8d6b968dc6c8fec3",
+          "jpn-release-8da802ee2902a103",
+          "jpn-release-11b6e352c4a3b830",
+          "jpn-release-52fa1b76248a9260",
+          "jpn-release-740001d7a0661ae5",
+          "jpn-release-954109e60bdf6247",
+          "jpn-release-1391917dd04abe77",
+          "jpn-release-6723178f290d7418",
+          "jpn-release-31737353c6025d73",
+          "jpn-release-341971409beead99",
+          "jpn-release-a5c9da16511b412d",
+          "jpn-release-b3ebbab6061dd68c",
+          "jpn-release-d6d91fd27b5fbec1",
+          "jpn-sv1a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:CS1.5",
+          "tcgdex_ja_sets:CS1a",
+          "tcgdex_ja_sets:CS1b",
+          "tcgdex_ja_sets:CS2.5",
+          "tcgdex_ja_sets:CS2a",
+          "tcgdex_ja_sets:CS2b",
+          "tcgdex_ja_sets:CS3.5",
+          "tcgdex_ja_sets:CS3D",
+          "tcgdex_ja_sets:CS3a",
+          "tcgdex_ja_sets:CS3b",
+          "tcgdex_ja_sets:CS4",
+          "tcgdex_ja_sets:CS4Da",
+          "tcgdex_ja_sets:CS4a",
+          "tcgdex_ja_sets:CS4b",
+          "tcgdex_ja_sets:CSA",
+          "tcgdex_ja_sets:SV1a"
+        ]
+      },
+      {
+        "conflict_key": "はじめてセット",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-1a266f8c6e8a755e",
+          "jpn-product-10e6b970aa794bc6"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:construction:「はじめてセット」:2010年10月29日（金）",
+          "official_jp_products:unlinked:construction:「はじめてセット」:2013年11月 8日（金）"
+        ]
+      },
+      {
+        "conflict_key": "はじめてセット forガール",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-5588fd0a6a113b26",
+          "jpn-product-e13ea643fae1a94c"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:construction:「はじめてセット forガール」:2010年10月29日（金）",
+          "official_jp_products:unlinked:construction:「はじめてセット forガール」:2013年11月 8日（金）"
+        ]
+      },
+      {
+        "conflict_key": "はじめてセットdx",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-8f2fa9147cd40be7",
+          "jpn-product-9fe3806f2be17bee"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:「はじめてセットDX」:2010年11月20日（土）",
+          "official_jp_products:unlinked:others:「はじめてセットDX」:2013年11月15日（金）"
+        ]
+      },
+      {
+        "conflict_key": "はじめてセットdx forガール",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-32b7554ffe978009",
+          "jpn-product-d661399480ef8b40"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:unlinked:others:「はじめてセットDX forガール」:2010年11月20日（土）",
+          "official_jp_products:unlinked:others:「はじめてセットDX forガール」:2013年11月15日（金）"
+        ]
+      },
+      {
+        "conflict_key": "ファミリーポケモンカードゲーム",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-product-75dd47032c13a489",
+          "jpn-product-5430d61d6640258e"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "official_jp_products:738",
+          "official_jp_products:unlinked:construction:ファミリーポケモンカードゲーム:2019年 3月15日（金）"
+        ]
+      },
+      {
+        "conflict_key": "レイジングサーフ",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-sv3a",
+          "jpn-sv4a"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:SV3a",
+          "tcgdex_ja_sets:SV4a"
+        ]
+      },
+      {
+        "conflict_key": "冷酷の反逆者",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-cp5",
+          "jpn-release-6b02de7e6b7e945f"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:CP5",
+          "tcgdex_ja_sets:XY11b"
+        ]
+      },
+      {
+        "conflict_key": "拡張パック",
+        "conflict_type": "source_name_reused_within_source",
+        "registry_keys": [
+          "jpn-pmcg1",
+          "jpn-release-1e9877dfea181092"
+        ],
+        "severity": "review",
+        "source_assertion_keys": [
+          "tcgdex_ja_sets:ADV1",
+          "tcgdex_ja_sets:PMCG1"
+        ]
+      }
+    ],
+    "summary": {
+      "conflict_count": 179,
+      "conflict_type_counts": [
+        {
+          "conflict_type": "expected_card_count_disagreement",
+          "count": 152
+        },
+        {
+          "conflict_type": "native_code_maps_to_multiple_releases",
+          "count": 4
+        },
+        {
+          "conflict_type": "source_name_reused_within_source",
+          "count": 23
+        }
+      ]
+    }
+  },
+  "content_fingerprint_sha256": "c62aeb01c086d31e9a7c8c74cdc74548e23b4bfdaa50079df2f834518929d2c0",
+  "generated_at": "2026-07-26T18:12:50.481Z",
+  "package_id": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+  "retrieval": {
+    "baseline_fingerprint_sha256": "d38dfba7ea40f94a699b6ec0b3ce029ee8d5c3fd549573f19cd096288c9ddbe6",
+    "baseline_path": "docs/audits/japanese_master_index_v4/baseline/live_jpn_set_code_inventory_v1.json",
+    "mode": "offline_registry_resolution",
+    "resolver_version": "JPN-MASTER-INDEX-V4-SET-REGISTRY-BUILD-V1",
+    "source_assertions_fingerprint_sha256": "ae77c19db68ac9f63126290ce5ed6c3ac658c76dfd08167d06275358710d91c3",
+    "source_assertions_path": "docs/audits/japanese_master_index_v4/sets/source_set_assertions_v1.json"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "dataset": {
+      "content_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+      "dataset_key": "master_printing_fact_rows_v1",
+      "row_count": 71900,
+      "shard_count": 15,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0001_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0002_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0003_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0004_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0005_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0006_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0007_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0008_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0009_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0010_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0011_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0012_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0013_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0014_of_0015.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0015_of_0015.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "generator_version": "JPN-MASTER-INDEX-FINAL-ADMISSION-V1"
+  },
+  "content_fingerprint_sha256": "e044d688d10f6c054283467e65fdf0504df8e441b0c8cd75040721e2e53ae4d7",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-PRINTING-FACT-ROWS-SHARD-V1-DESCRIPTOR",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

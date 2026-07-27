@@ -1,0 +1,94 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "card_dataset": {
+      "content_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+      "dataset_key": "master_admissible_card_rows_v1",
+      "row_count": 28008,
+      "shard_count": 6,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0001_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0002_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0003_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0004_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0005_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0006_of_0006.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "execution_boundary": {
+      "cleanup": false,
+      "database_writes": false,
+      "deletion": false,
+      "family_promotion": false,
+      "identity_writes": false,
+      "image_writes": false,
+      "pricing_writes": false,
+      "quarantine": false,
+      "storage_writes": false
+    },
+    "family_dataset": {
+      "content_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+      "dataset_key": "master_family_relationship_rows_v1",
+      "row_count": 28008,
+      "shard_count": 6,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0001_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0002_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0003_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0004_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0005_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0006_of_0006.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "generator_version": "JPN-MASTER-INDEX-FINAL-ADMISSION-V1",
+    "printing_dataset": {
+      "content_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "dataset_key": "master_admissible_printing_rows_v1",
+      "row_count": 0,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_printing_rows_v1/master_admissible_printing_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "set_dataset": {
+      "content_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+      "dataset_key": "master_admissible_set_rows_v1",
+      "row_count": 1426,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/final/rows/master_admissible_set_rows_v1/master_admissible_set_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "status": "master_admissible_index_built",
+    "summary": {
+      "adjudicated_exclusion_count": 434,
+      "assertion_disposition_count": 215784,
+      "blocked_fact_count": 121308,
+      "blocked_identity_count": 43806,
+      "blocked_printing_fact_count": 71900,
+      "discovered_set_or_product_count": 1453,
+      "excluded_identity_count": 178,
+      "family_relationship_count": 28008,
+      "master_admissible_identity_count": 28008,
+      "master_admissible_printing_fact_count": 0,
+      "master_admissible_set_count": 1426,
+      "source_assertion_union_count": 215784,
+      "source_gap_count": 115717,
+      "working_identity_candidate_count": 71992,
+      "working_printing_fact_count": 71900
+    }
+  },
+  "content_fingerprint_sha256": "e7dccc8350451a4bc83ed99a91baea9a8cd810c4b9a42462e0e6496904bca0cf",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-ADMISSIBLE-EXPORT-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "body_path": "docs/audits/japanese_master_index_v4/sets/raw/tcgcollector_jp_sets_v1.html",
+  "body_sha256": "585d06e2cbd9792cc37fdacbe3459b0fb9c08312de97be42932469cc6c103ef9",
+  "byte_size": 1854365,
+  "fetched_at": "2026-07-26T16:26:14.419Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.tcgcollector.com/sets/jp",
+  "response_headers": {
+    "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 26 Jul 2026 16:26:15 GMT",
+    "expires": "Sun, 26 Jul 2026 16:26:14 GMT",
+    "server": "cloudflare",
+    "vary": "Accept-Encoding"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "tcgcollector_jp_sets",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

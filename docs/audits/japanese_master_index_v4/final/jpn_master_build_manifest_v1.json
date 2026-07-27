@@ -1,0 +1,454 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "baseline_manifest": "docs/audits/japanese_master_index_v4/baseline/live_jpn_row_baseline_manifest_v1.json",
+    "baseline_manifest_fingerprint_sha256": "5c1771d099050f8138c45fc169eacbd68f906d7b852efd6dbe4ce788f65a778e",
+    "candidate_manifest": "docs/audits/japanese_master_index_v4/index/candidate_union_manifest_v1.json",
+    "candidate_manifest_fingerprint_sha256": "60d398779a40e363f20dc1c10387c26b701cda0f6c01645c1b99e4d166468a55",
+    "completion": {
+      "all_static_admission_checks_pass": true,
+      "checks": {
+        "every_admissible_card_has_family_disposition": true,
+        "every_admissible_card_has_required_identity_fields": true,
+        "every_admissible_card_passes_source_admission": true,
+        "every_admissible_printing_passes_strict_rule": true,
+        "every_admissible_set_has_required_identity_fields": true,
+        "every_assertion_disposed": true,
+        "every_set_adjudicated": true,
+        "no_mutation_artifacts_emitted": true,
+        "no_placeholder_set_in_admissible_export": true,
+        "no_unresolved_exact_collision_in_admissible_export": true,
+        "required_coverage_lanes_present": true
+      },
+      "pending_finalizer_checks": [
+        "offline_replay_fingerprint_match",
+        "english_reference_fingerprint_unchanged",
+        "live_no_write_baseline_unchanged"
+      ]
+    },
+    "datasets": [
+      {
+        "content_fingerprint_sha256": "e367eb1ba0b7a4281c4e40597092fc889420ce410bf8711aa5d09fb8deb7a45a",
+        "dataset_key": "master_set_adjudication_rows_v1",
+        "row_count": 1453,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_set_adjudication_rows_v1/master_set_adjudication_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+        "dataset_key": "master_admissible_set_rows_v1",
+        "row_count": 1426,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_set_rows_v1/master_admissible_set_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "5e01eaba2630f1fb302dcd12f414894751ac7f879060cbaa6671cd9a59e8f158",
+        "dataset_key": "master_card_resolution_rows_v1",
+        "row_count": 71992,
+        "shard_count": 15,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0001_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0002_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0003_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0004_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0005_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0006_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0007_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0008_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0009_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0010_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0011_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0012_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0013_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0014_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_card_resolution_rows_v1/master_card_resolution_rows_v1_0015_of_0015.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+        "dataset_key": "master_admissible_card_rows_v1",
+        "row_count": 28008,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_card_rows_v1/master_admissible_card_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "717fde7c4ea62bb59858a1b428b732f4d7ba03f9f6f0b0223f62652ea0431ed9",
+        "dataset_key": "master_printing_fact_rows_v1",
+        "row_count": 71900,
+        "shard_count": 15,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0001_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0002_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0003_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0004_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0005_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0006_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0007_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0008_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0009_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0010_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0011_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0012_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0013_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0014_of_0015.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_printing_fact_rows_v1/master_printing_fact_rows_v1_0015_of_0015.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "dataset_key": "master_admissible_printing_rows_v1",
+        "row_count": 0,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_admissible_printing_rows_v1/master_admissible_printing_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+        "dataset_key": "master_family_relationship_rows_v1",
+        "row_count": 28008,
+        "shard_count": 6,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0001_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0002_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0003_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0004_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0005_of_0006.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_family_relationship_rows_v1/master_family_relationship_rows_v1_0006_of_0006.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "9514b426895fdc55ba904fd4d73e81869efa452c1864621f841d39c4650cd03d",
+        "dataset_key": "master_assertion_disposition_rows_v1",
+        "row_count": 215784,
+        "shard_count": 44,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0001_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0002_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0003_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0004_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0005_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0006_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0007_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0008_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0009_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0010_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0011_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0012_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0013_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0014_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0015_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0016_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0017_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0018_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0019_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0020_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0021_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0022_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0023_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0024_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0025_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0026_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0027_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0028_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0029_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0030_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0031_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0032_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0033_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0034_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0035_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0036_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0037_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0038_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0039_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0040_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0041_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0042_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0043_of_0044.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_assertion_disposition_rows_v1/master_assertion_disposition_rows_v1_0044_of_0044.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "65acc6ddbaec18088e737e628b9bcdb8a4834fbc1577831aa22aed99398b73cf",
+        "dataset_key": "master_blocked_fact_rows_v1",
+        "row_count": 121308,
+        "shard_count": 25,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0001_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0002_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0003_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0004_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0005_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0006_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0007_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0008_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0009_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0010_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0011_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0012_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0013_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0014_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0015_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0016_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0017_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0018_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0019_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0020_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0021_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0022_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0023_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0024_of_0025.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_blocked_fact_rows_v1/master_blocked_fact_rows_v1_0025_of_0025.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "173a88daba46b928c663ed6ef97d0d20d4b351a14a5cce6699522ba62192003f",
+        "dataset_key": "master_adjudicated_exclusion_rows_v1",
+        "row_count": 434,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_adjudicated_exclusion_rows_v1/master_adjudicated_exclusion_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "47070ff23af540fc48ce36cdd4c0408d15f89bd574a13e2a2cc33ee3bdf7b173",
+        "dataset_key": "master_coverage_matrix_rows_v1",
+        "row_count": 39,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_coverage_matrix_rows_v1/master_coverage_matrix_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      {
+        "content_fingerprint_sha256": "7dc57c9e2bcc616d80a4d89c28313c3ac7fb8ab81740f2589f97d058347165a5",
+        "dataset_key": "master_source_gap_rows_v1",
+        "row_count": 115717,
+        "shard_count": 24,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0001_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0002_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0003_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0004_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0005_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0006_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0007_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0008_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0009_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0010_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0011_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0012_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0013_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0014_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0015_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0016_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0017_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0018_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0019_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0020_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0021_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0022_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0023_of_0024.json.gz",
+          "docs/audits/japanese_master_index_v4/final/rows/master_source_gap_rows_v1/master_source_gap_rows_v1_0024_of_0024.json.gz"
+        ],
+        "shard_size": 5000
+      }
+    ],
+    "execution_boundary": {
+      "cleanup": false,
+      "database_writes": false,
+      "deletion": false,
+      "family_promotion": false,
+      "identity_writes": false,
+      "image_writes": false,
+      "pricing_writes": false,
+      "quarantine": false,
+      "storage_writes": false
+    },
+    "future_queue_fingerprint_sha256": "c6ed613c0e7d8e838166fa90b76d20a89a9311ef7c42aaa0311e660c14366f56",
+    "generator_version": "JPN-MASTER-INDEX-FINAL-ADMISSION-V1",
+    "master_admissible_export": {
+      "bytes": 4739,
+      "content_fingerprint_sha256": "e7dccc8350451a4bc83ed99a91baea9a8cd810c4b9a42462e0e6496904bca0cf",
+      "path": "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_export_v1.json",
+      "sha256": "cab740ff81a64384d3d4f1be6d012ece2a286c2b9e8c139d24b14649e1d34023"
+    },
+    "required_files": [
+      {
+        "bytes": 952,
+        "content_fingerprint_sha256": "3fd68d88cd4cec86995eeb5e317f0fdaaf6e1b3f1a83e423a122fa9136958cd0",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_set_adjudication_v1.json",
+        "sha256": "0399bfb92d36738f9199745aabc04ca05fd764f50254d0c5510eb9973e0ec3c0"
+      },
+      {
+        "bytes": 944,
+        "content_fingerprint_sha256": "bf0a4503fb0c10c2e5544c528d1a7f82e0a852c2a819961baec2f27af0bad636",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_sets_v1.json",
+        "sha256": "3667baba70f7937cb4d14ae1d480e521de6a8107e0b2b0d5b5eab3a12114c689"
+      },
+      {
+        "bytes": 2938,
+        "content_fingerprint_sha256": "034c039c3768d6f4bc97809b1036b768ff298999b4429d1326dba3e224829873",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_resolved_card_identities_v1.json",
+        "sha256": "fef3742499c77a4342b955c822b05df2cc54d2b67646837b25f67a1022867364"
+      },
+      {
+        "bytes": 1659,
+        "content_fingerprint_sha256": "bcb90f3eea3a5b4b04a1495c5cfedc2c28fb25245d04115d5875174aaf133133",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_cards_v1.json",
+        "sha256": "2341a8c268ea1199cc591b41af7f5e2b3ff6afe988a71668e8d4492d19398d01"
+      },
+      {
+        "bytes": 2874,
+        "content_fingerprint_sha256": "e044d688d10f6c054283467e65fdf0504df8e441b0c8cd75040721e2e53ae4d7",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_resolved_printing_facts_v1.json",
+        "sha256": "02a3b0681c9b7180628582d562254f6ba0afda7afdd7e2db57324852856319c2"
+      },
+      {
+        "bytes": 961,
+        "content_fingerprint_sha256": "4b13df091584f3b8e3d6a0f71047b5c14491d0a0375557fb07b9df2c730d5255",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_admissible_printings_v1.json",
+        "sha256": "c0338ca23cafb6c206d91781475f87563241b32953cb5733ab24c8768f2299ea"
+      },
+      {
+        "bytes": 1715,
+        "content_fingerprint_sha256": "255b546b19349ebcaad94f5e8b81ecf95efec42f6e4e42dca50505ed81edecc0",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_family_relationships_v1.json",
+        "sha256": "e34fae752772b70aba750f666df29a0f0f7c76666a43c2abcd67f809c30300b1"
+      },
+      {
+        "bytes": 7597,
+        "content_fingerprint_sha256": "54af96753635d78d68fe77e212883f108137a9678b33ba7c9b3d37019fa70092",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_assertion_dispositions_v1.json",
+        "sha256": "108ae176cdf5ff7b1008bcef4ca7479a37c5b81f67b7f6bd48308334421564e3"
+      },
+      {
+        "bytes": 4203,
+        "content_fingerprint_sha256": "54af6c1a88f06cbfb0685885d9145d1ea7af27c1cd0e931fc07e562aca522e44",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_blocked_facts_v1.json",
+        "sha256": "01fb1405e38868d38eaacba70541d667378eeb4fb42d978c6e7e1179c822de9b"
+      },
+      {
+        "bytes": 971,
+        "content_fingerprint_sha256": "5434fc37014e64ea92a9e2f27db5d9ff01bf61a0c6afbe2c972fb7d60d8b7d1a",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_adjudicated_exclusions_v1.json",
+        "sha256": "b308aa09d20aed73574e94579985c0fe03a8fa122a4ac5cfd3863892d870854b"
+      },
+      {
+        "bytes": 946,
+        "content_fingerprint_sha256": "2798f99330ed989277eafa3058f697336057951ab36ed7ef8eead9a4d80ea14e",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_coverage_matrix_v1.json",
+        "sha256": "ea78854c7931eb5bdfd08ee0bd28bdc62f1396c148f27c854040c86d093c1160"
+      },
+      {
+        "bytes": 3967,
+        "content_fingerprint_sha256": "765b071afb4da5c2e6e9da4da5043efe7c272148aec446d6807a51d384ea7163",
+        "path": "docs/audits/japanese_master_index_v4/final/jpn_master_source_gap_queue_v1.json",
+        "sha256": "20a6c83f072ee09d37b4e90f2a839e2089c85afccab21e8e686ad9b337ddbfbf"
+      }
+    ],
+    "set_conflict_fingerprint_sha256": "c62aeb01c086d31e9a7c8c74cdc74548e23b4bfdaa50079df2f834518929d2c0",
+    "set_registry_fingerprint_sha256": "c7e9e0b8c39b84c24ad67523fffc7ae0c47a9fa7acbfa711085c3b877e7769ba",
+    "source_artifacts": [
+      {
+        "artifact_fingerprint_sha256": "0ce5133d8ea8298e721a0e477dcbd4cd433914eaad00897c67556ca6bdfbcc8e",
+        "assertion_count": 9843,
+        "assertion_fingerprint_sha256": "1a338d4fc57c1087cccd5aa6be6efa41d055b00b6e94a0f3ad352afed1c7fa8e",
+        "lane_id": "official_jp_cards",
+        "path": "docs/audits/japanese_master_index_v4/cards/official_jp_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "cd24511bc8061d6310c4344418b7bb8b0ba393e26cc500921587ada255164037",
+        "assertion_count": 23015,
+        "assertion_fingerprint_sha256": "a0cf8d3707585f150b6acac152a970f86421ffbc64aac2ed0af81d583358ebf2",
+        "lane_id": "artofpkm_jp_cards",
+        "path": "docs/audits/japanese_master_index_v4/cards/artofpkm_jp_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "cb792902c0f55d67bfa2e8fb8eb7d67215fab452e36f0905f54eb1ba7fd79fd8",
+        "assertion_count": 19904,
+        "assertion_fingerprint_sha256": "531a2d73c287cbad19d956fe542ac9e032012a355513a369f6b1ee67d4ee358a",
+        "lane_id": "limitless_jp_cards",
+        "path": "docs/audits/japanese_master_index_v4/cards/limitless_jp_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "ec42142cce07ad79fb35229cf6e7ec56282f506898e4b6b6e24a43d82bf9368a",
+        "assertion_count": 8159,
+        "assertion_fingerprint_sha256": "fc5ad097e132b148d202a03993775fc80de530e2a6e023aa93f8e67992e0e268",
+        "lane_id": "tcgdex_ja_cards",
+        "path": "docs/audits/japanese_master_index_v4/cards/tcgdex_ja_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "7110fdcc0657fc705b5c1591397c2a08717b5f0359748e72d8d89b22c9762371",
+        "assertion_count": 14477,
+        "assertion_fingerprint_sha256": "27f709e51d0e9280b1a8d36f2f87fe7bbb599cff8b861f7c1d2b736e8f4c5c99",
+        "lane_id": "serebii_jp_cards",
+        "path": "docs/audits/japanese_master_index_v4/cards/serebii_jp_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "55bd6c4c93a62557976ebc016302232eeb42fc1d5da54cfc25215fa6bb71042b",
+        "assertion_count": 18113,
+        "assertion_fingerprint_sha256": "68469df7ebd99aa65a364af826485b429906de207de6362801c1acedb060534d",
+        "lane_id": "bulbapedia_jp_card_lists",
+        "path": "docs/audits/japanese_master_index_v4/cards/bulbapedia_jp_card_assertions_v1.json.gz"
+      },
+      {
+        "artifact_fingerprint_sha256": "d79b497283a6ebddb971b279409827afe9cbc0da972995c07d9b3b88d9208281",
+        "assertion_count": 5684,
+        "assertion_fingerprint_sha256": "d59154aa39b888fb8b4d4c000b9963e0ecb182769a8e84729fe3809961174d22",
+        "lane_id": "pokeguardian_release_reports",
+        "path": "docs/audits/japanese_master_index_v4/cards/pokeguardian_jp_card_assertions_v1.json.gz"
+      }
+    ],
+    "source_exhaustion_fingerprint_sha256": "c0e4fcb03371b04c383f062b6b06dffc82ccb42491bbb0263d8e36411c8cf3c1",
+    "status": "static_admission_complete_finalizer_proofs_pending",
+    "summary": {
+      "adjudicated_exclusion_count": 434,
+      "assertion_disposition_count": 215784,
+      "blocked_fact_count": 121308,
+      "blocked_identity_count": 43806,
+      "blocked_printing_fact_count": 71900,
+      "discovered_set_or_product_count": 1453,
+      "excluded_identity_count": 178,
+      "family_relationship_count": 28008,
+      "master_admissible_identity_count": 28008,
+      "master_admissible_printing_fact_count": 0,
+      "master_admissible_set_count": 1426,
+      "source_assertion_union_count": 215784,
+      "source_gap_count": 115717,
+      "working_identity_candidate_count": 71992,
+      "working_printing_fact_count": 71900
+    }
+  },
+  "content_fingerprint_sha256": "2f17e2410a35d27373e6ff3a9f698c046278fd0d2a639a2d5b33cb7715793b4b",
+  "generated_at": "2026-07-27T01:05:00.000Z",
+  "package_id": "JPN-MASTER-BUILD-MANIFEST-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

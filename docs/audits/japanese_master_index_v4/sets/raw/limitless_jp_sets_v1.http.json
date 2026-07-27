@@ -1,0 +1,20 @@
+{
+  "body_path": "docs/audits/japanese_master_index_v4/sets/raw/limitless_jp_sets_v1.html",
+  "body_sha256": "06dac1f7f57dc5972b8f66a7dbae3cd2dbfad8dd8ae68a70e04dd17cf015858f",
+  "byte_size": 157221,
+  "fetched_at": "2026-07-26T16:26:13.884Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://limitlesstcg.com/cards/jp",
+  "response_headers": {
+    "cache-control": "no-cache, private",
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 26 Jul 2026 16:26:14 GMT",
+    "server": "nginx/1.30.3"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "limitless_jp_sets",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

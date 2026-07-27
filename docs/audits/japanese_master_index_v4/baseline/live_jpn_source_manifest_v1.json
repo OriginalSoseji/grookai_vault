@@ -1,0 +1,95 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "generator_version": "JPN-MASTER-INDEX-BASELINE-EXPORT-V1",
+    "note": "This manifest inventories preserved live evidence only; Phase 3 adds source-owned raw artifacts.",
+    "queried_tables": [
+      "card_print_family_review_queue",
+      "card_print_identity",
+      "card_print_identity_source_evidence",
+      "card_print_species",
+      "card_printings",
+      "card_prints",
+      "pokemon_species",
+      "sets"
+    ],
+    "raw_source_acquisition_status": "not_started_in_v4",
+    "stored_sources": [
+      {
+        "card_rows": 23868,
+        "evidence_rows": 23868,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "artofpkm_jp"
+      },
+      {
+        "card_rows": 3977,
+        "evidence_rows": 3977,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "bulbapedia_jp_card_list"
+      },
+      {
+        "card_rows": 134,
+        "evidence_rows": 134,
+        "first_stored_at": "2026-07-03T22:04:41.534Z",
+        "last_stored_at": "2026-07-03T22:04:41.534Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "bulbapedia_pikachu_tcg"
+      },
+      {
+        "card_rows": 18462,
+        "evidence_rows": 18462,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "limitless_tcg_jp"
+      },
+      {
+        "card_rows": 17734,
+        "evidence_rows": 17734,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "pokellector_jp"
+      },
+      {
+        "card_rows": 21235,
+        "evidence_rows": 21294,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T21:08:44.410Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "pokemon_card_official_jp"
+      },
+      {
+        "card_rows": 25059,
+        "evidence_rows": 25059,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-03T22:04:41.534Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "tcgcollector_jp"
+      },
+      {
+        "card_rows": 6061,
+        "evidence_rows": 6061,
+        "first_stored_at": "2026-07-01T18:36:34.720Z",
+        "last_stored_at": "2026-07-01T19:27:31.040Z",
+        "preservation_status": "live_database_evidence_exported",
+        "source_key": "tcgdex_ja"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "35e417e30b803985be811988e4a629985c057e81077066577879518c6d10ad72",
+  "generated_at": "2026-07-26T19:05:27.244Z",
+  "package_id": "LIVE-JPN-SOURCE-MANIFEST-V1",
+  "retrieval": {
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
+    "environment_label": "production-read-only",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "schema_fingerprint_sha256": "94ccd7ffacd9600330b1a734dd23bb3cc887ae8d71a74f7b10a5e5720ed60065",
+    "transaction_read_only": "on"
+  }
+}

@@ -1,0 +1,2822 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "containers": [
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:25.011Z",
+        "checklist_snapshot_sha256": "a27ecc11a3b5ebfc94e32b2f2167f3269e6de890cfab3d7fe9a8b4ef247a83cf",
+        "findings": [],
+        "observed_denominators": [
+          87
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 103,
+        "registry_key": "jpn-release-1a6b2f7995357d4d",
+        "selected_card_count": 103,
+        "source_container_id": "20thanniversary",
+        "source_expected_card_count": 103,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:26.283Z",
+        "checklist_snapshot_sha256": "9fff59a34c3f3eba7b28fe165fc847668209d22380febc287da849ddbbb77007",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          28
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-s8a",
+        "selected_card_count": 25,
+        "source_container_id": "25thanniversarycollection",
+        "source_expected_card_count": 28,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:27.505Z",
+        "checklist_snapshot_sha256": "91de7decd1c0d020709c80e6865b9eee77363a22be2ea03b80d76a7ab6d78e89",
+        "findings": [
+          "checklist_rows_below_registry_expected_count",
+          "page_normal_count_differs_from_registry_expected_count"
+        ],
+        "observed_denominators": [
+          103
+        ],
+        "page_declared_normal_card_count": 128,
+        "parsed_card_row_count": 23,
+        "registry_key": "jpn-release-092086b106771722",
+        "selected_card_count": 23,
+        "source_container_id": "30thcelebrationjapan",
+        "source_expected_card_count": 190,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:28.747Z",
+        "checklist_snapshot_sha256": "6eb81dc50e7ced8f4a83d142fde9a96592bc1bdd7db206f34b11aff54760e65b",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          81
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-m5",
+        "selected_card_count": 118,
+        "source_container_id": "abysseye",
+        "source_expected_card_count": 124,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:29.990Z",
+        "checklist_snapshot_sha256": "4baec0b35d02d79f9d0739867f3d838106ff0d932e472542916a3ba249287a7a",
+        "findings": [],
+        "observed_denominators": [
+          90
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-dpt4",
+        "selected_card_count": 90,
+        "source_container_id": "adventofarceus",
+        "source_expected_card_count": 90,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:31.233Z",
+        "checklist_snapshot_sha256": "db0a0a7ae01dd2adcfa7b68b1cfbd50079c6d294e1fc3ef819f6daddc2075b48",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 62,
+        "registry_key": "jpn-sm2l",
+        "selected_card_count": 62,
+        "source_container_id": "alolanmoonlight",
+        "source_expected_card_count": 61,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:32.453Z",
+        "checklist_snapshot_sha256": "64e7db784cb3fed93ea5fa5c6cc3f45dc728d8f160fd391cc44391c6747cf3a7",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          95
+        ],
+        "page_declared_normal_card_count": 95,
+        "parsed_card_row_count": 117,
+        "registry_key": "jpn-sm12",
+        "selected_card_count": 117,
+        "source_container_id": "altergenesis",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:45:03.172Z",
+        "checklist_snapshot_sha256": "920544f95d78eee8a4af3a6c1145ff0da3ff6fbd0127b688762d80a90a9d5b16",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": 66,
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-sv4k",
+        "selected_card_count": 95,
+        "source_container_id": "ancientroar",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:34.778Z",
+        "checklist_snapshot_sha256": "1d3193ebb867591656cddd0a2d11ecd2ca7da30968780dcee1cee1fef8b733ea",
+        "findings": [],
+        "observed_denominators": [
+          17
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 17,
+        "registry_key": "jpn-release-1baeb40318b32c60",
+        "selected_card_count": 17,
+        "source_container_id": "arceuslvxgrassandfire",
+        "source_expected_card_count": 17,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:36.001Z",
+        "checklist_snapshot_sha256": "128eb4ec31b37d9dd6d50992094c2aafcb50aa29b37752f2878bb137c8b63997",
+        "findings": [],
+        "observed_denominators": [
+          17
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 17,
+        "registry_key": "jpn-release-1313cbecea2b4c34",
+        "selected_card_count": 17,
+        "source_container_id": "arceuslvxlightningandpsychic",
+        "source_expected_card_count": 17,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:37.228Z",
+        "checklist_snapshot_sha256": "1e90d58cc382c660d438b279c80ee107d05a453068923b50a5d38a6c1f4164e7",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": 100,
+        "parsed_card_row_count": 121,
+        "registry_key": "jpn-release-190938dd27bbb3f3",
+        "selected_card_count": 121,
+        "source_container_id": "astonishingvolttackle",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:38.565Z",
+        "checklist_snapshot_sha256": "48f8875130961c0ff516d56e150066a3491966007f56667114d2d7115dbbcdb6",
+        "findings": [],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 62,
+        "registry_key": "jpn-release-097fdd952ab91d34",
+        "selected_card_count": 62,
+        "source_container_id": "awakeninghero",
+        "source_expected_card_count": 62,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:39.802Z",
+        "checklist_snapshot_sha256": "32a7d87e91e0890bb461c1fedff1776529878abb2c275f91935dda92f395ebb8",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          78
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-release-dd3b66bc40667a9b",
+        "selected_card_count": 88,
+        "source_container_id": "awakeningpsychicchampion",
+        "source_expected_card_count": 87,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:41.041Z",
+        "checklist_snapshot_sha256": "d9470aab3be3845b8379b1fa440e84160814f1e6052bc17e0970a274f9eb1bc2",
+        "findings": [],
+        "observed_denominators": [
+          81
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 97,
+        "registry_key": "jpn-release-3f6de5e6eb37bd19",
+        "selected_card_count": 97,
+        "source_container_id": "bandedring",
+        "source_expected_card_count": 97,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:42.269Z",
+        "checklist_snapshot_sha256": "056b25ca2e325cf96ab9f769b76174affcb0b8a57b54b26a998934517f08bfb1",
+        "findings": [],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-sv9",
+        "selected_card_count": 132,
+        "source_container_id": "battlepartners",
+        "source_expected_card_count": 132,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:43.541Z",
+        "checklist_snapshot_sha256": "c0b05cfb1bd0b858b28c25624605a105f0e5731874f22f5df34f38346519c25f",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          67
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 93,
+        "registry_key": "jpn-s9a",
+        "selected_card_count": 93,
+        "source_container_id": "battleregion",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:44.802Z",
+        "checklist_snapshot_sha256": "76d421cf903bdfd393ef40c3bd5506532a5826ac08aa93b71a849247c7f378d0",
+        "findings": [],
+        "observed_denominators": [
+          49
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 66,
+        "registry_key": "jpn-release-153356f345184dbe",
+        "selected_card_count": 66,
+        "source_container_id": "beyondanewchallenge",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:46.028Z",
+        "checklist_snapshot_sha256": "aa9465bf183530010ab705d09871209f3467a334592f10bb2db438a7f3d6dd53",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-release-67a9f1aff719d987",
+        "selected_card_count": 78,
+        "source_container_id": "bigsummitclash",
+        "source_expected_card_count": 80,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:47.255Z",
+        "checklist_snapshot_sha256": "e069e14d768a18a947998d8eaf8979d46ef14dafa492896156bf884ef9a7ce61",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          86
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 174,
+        "registry_key": "jpn-release-0759199b252b09cb",
+        "selected_card_count": 174,
+        "source_container_id": "blackbolt-jp",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:48.497Z",
+        "checklist_snapshot_sha256": "00c6931149ba053b0962a9d09ca2733fe804002b004a72b14c7b31b954f17474",
+        "findings": [],
+        "observed_denominators": [
+          53
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 56,
+        "registry_key": "jpn-bw1-bb",
+        "selected_card_count": 56,
+        "source_container_id": "blackcollection",
+        "source_expected_card_count": 56,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:49.718Z",
+        "checklist_snapshot_sha256": "2da8a04a4e7d43c33c6ace78532738661df9284194ac49fb3c64feb9c7d82fb2",
+        "findings": [],
+        "observed_denominators": [
+          59
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-xy8-bb",
+        "selected_card_count": 65,
+        "source_container_id": "blueshock",
+        "source_expected_card_count": 65,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:50.958Z",
+        "checklist_snapshot_sha256": "769d6a83715778a553393b4d0a933e338960a75b7f330f11a70e6b7da32a0371",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          67
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-s7r",
+        "selected_card_count": 90,
+        "source_container_id": "blueskystream",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:52.199Z",
+        "checklist_snapshot_sha256": "3e2fb364b9f2cb6f017adb8a54ca2d9b89215f4f06bf96e57ba736517650be45",
+        "findings": [],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 16,
+        "registry_key": "jpn-release-76a16ab0d43549c1",
+        "selected_card_count": 16,
+        "source_container_id": "breakcombodeckgolduckbreakpalkiaex",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:53.451Z",
+        "checklist_snapshot_sha256": "18124ebb01ec1502581fcfd44599622603b0c55263ea911d619a6f505f4dfe13",
+        "findings": [],
+        "observed_denominators": [
+          10
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 10,
+        "registry_key": "jpn-release-3fe502406f54c8fc",
+        "selected_card_count": 10,
+        "source_container_id": "breakevolutionpacknoivernbreak",
+        "source_expected_card_count": 10,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:54.708Z",
+        "checklist_snapshot_sha256": "ad3e460195016e2cfd5c709cd6cd78b4d51fb4b7e212dc40a71a46f3b3f33142",
+        "findings": [],
+        "observed_denominators": [
+          10
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 10,
+        "registry_key": "jpn-release-9a468e84f111f2f9",
+        "selected_card_count": 10,
+        "source_container_id": "breakevolutionpackraichubreak",
+        "source_expected_card_count": 10,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:55.981Z",
+        "checklist_snapshot_sha256": "c9b3b0f4a2c25359fddec4e5b669f621b9e615c69775b8924fde8533a19aaea9",
+        "findings": [],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-sm6b",
+        "selected_card_count": 86,
+        "source_container_id": "championroad",
+        "source_expected_card_count": 86,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:57.210Z",
+        "checklist_snapshot_sha256": "f96d55ae4814f26b40261fca22fd556d159cfffff53e85d682b77f72d7e0b4d9",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          96
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 112,
+        "registry_key": "jpn-release-57a66532723ddde7",
+        "selected_card_count": 112,
+        "source_container_id": "charismaofthewreckedsky",
+        "source_expected_card_count": 114,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:58.434Z",
+        "checklist_snapshot_sha256": "4ad90f29bd79f4d93f61ca67310c1fa74e89e084edfe85c4f404984e33a73887",
+        "findings": [],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 16,
+        "registry_key": "jpn-release-640cac1d495b5667",
+        "selected_card_count": 16,
+        "source_container_id": "charizardhalfdeck",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:46:59.674Z",
+        "checklist_snapshot_sha256": "ce76fb974c2a350d7b1c592f5f43a02bec7d2561544014abca76528fccefdbc8",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards",
+          "page_normal_count_differs_from_registry_expected_count"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": 78,
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-sv2d",
+        "selected_card_count": 99,
+        "source_container_id": "clayburst",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:00.922Z",
+        "checklist_snapshot_sha256": "482ecc850489756c6513f0a1e19a8ed8afc8019167a4c6e1d74c83e8efe6eb9d",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 73,
+        "registry_key": "jpn-sm1m",
+        "selected_card_count": 73,
+        "source_container_id": "collectionmoon",
+        "source_expected_card_count": 73,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:02.154Z",
+        "checklist_snapshot_sha256": "8d76c69e889f93717d95600b06f711ece7aabc6ae0cc830422129fb2a2fc3ff2",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 73,
+        "registry_key": "jpn-sm1s",
+        "selected_card_count": 73,
+        "source_container_id": "collectionsun",
+        "source_expected_card_count": 73,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:03.390Z",
+        "checklist_snapshot_sha256": "ee8d35361deb9fa9445e151c392273e5c613d81d8b36def89e6d444cb72d6585",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 63,
+        "registry_key": "jpn-xy1-bx",
+        "selected_card_count": 63,
+        "source_container_id": "collectionx",
+        "source_expected_card_count": 63,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:04.609Z",
+        "checklist_snapshot_sha256": "af759380949f0e2ea59378c59c119d71f1d6657491a804b9cecb52745b279697",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 63,
+        "registry_key": "jpn-xy1-by",
+        "selected_card_count": 63,
+        "source_container_id": "collectiony",
+        "source_expected_card_count": 63,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:05.880Z",
+        "checklist_snapshot_sha256": "6677ab5bbeedd013451af4f141f69ca91219959b35effeb35237e0db2a2a3c22",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-sv5a",
+        "selected_card_count": 96,
+        "source_container_id": "crimsonhaze",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:07.124Z",
+        "checklist_snapshot_sha256": "ca90b174e618fe62371e263e06c1029b8c295ed2c815e6d93cf12ffb71703a2b",
+        "findings": [],
+        "observed_denominators": [
+          54
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 59,
+        "registry_key": "jpn-xy11-br",
+        "selected_card_count": 59,
+        "source_container_id": "crueltraitor",
+        "source_expected_card_count": 59,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:08.351Z",
+        "checklist_snapshot_sha256": "dcc1a0a0f77abbbec9a45f0e4e2159bfcc60671c1eb25ea1c0116ea3b33f4806",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-sv5m",
+        "selected_card_count": 100,
+        "source_container_id": "cyberjudge",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:09.599Z",
+        "checklist_snapshot_sha256": "df67db54600d3766981b0868604ab2f02ae8fed9b66b00172b7aeca5155c4289",
+        "findings": [],
+        "observed_denominators": [
+          52
+        ],
+        "page_declared_normal_card_count": 52,
+        "parsed_card_row_count": 52,
+        "registry_key": "jpn-sm8a",
+        "selected_card_count": 52,
+        "source_container_id": "darkorder",
+        "source_expected_card_count": 52,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:10.820Z",
+        "checklist_snapshot_sha256": "5b1a447b7dee9cedf93682ebc0d470548d74dd6926fbf04e05c2250472a8973a",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": 71,
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-s10a",
+        "selected_card_count": 99,
+        "source_container_id": "darkphantasma",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:12.041Z",
+        "checklist_snapshot_sha256": "7a84a94c66ccae8441a3beebf3789aacfb34278f98bb2bf9a96eb9fddaf2ae7e",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          69
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 76,
+        "registry_key": "jpn-bw4",
+        "selected_card_count": 76,
+        "source_container_id": "darkrush",
+        "source_expected_card_count": 75,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:13.269Z",
+        "checklist_snapshot_sha256": "6e0bf531f7a1512704a7edbf4b42e2f02c027e61e46952c09ba35cf4ea31771d",
+        "findings": [],
+        "observed_denominators": [
+          51
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 64,
+        "registry_key": "jpn-sm3h",
+        "selected_card_count": 64,
+        "source_container_id": "didyouseethefightingrainbow",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:14.482Z",
+        "checklist_snapshot_sha256": "c3b91780821c7012b840efcf51e9796a3189d478371ad1c5557093cb80126cf2",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          95
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-sm10",
+        "selected_card_count": 115,
+        "source_container_id": "doubleblaze",
+        "source_expected_card_count": 116,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:15.692Z",
+        "checklist_snapshot_sha256": "905e3dd1ba69c098771c408c8fbcb8101cb1e8f6f5b0558ff00157855fdf8441",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 55,
+        "registry_key": "jpn-bw5-brn",
+        "selected_card_count": 55,
+        "source_container_id": "dragonblade",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:16.917Z",
+        "checklist_snapshot_sha256": "6f72d371719a5b845125a86608804f7096c7caf9737d38e9e839201d03203bb3",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 55,
+        "registry_key": "jpn-bw5-brz",
+        "selected_card_count": 55,
+        "source_container_id": "dragonblast",
+        "source_expected_card_count": 54,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:18.145Z",
+        "checklist_snapshot_sha256": "d9d8c63c2878c5cd43e1b2d6e6c9e77cf8c3fcc24202fe1fe20a0fcad266158d",
+        "findings": [],
+        "observed_denominators": [
+          20
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 20,
+        "registry_key": "jpn-ds",
+        "selected_card_count": 20,
+        "source_container_id": "dragonselection",
+        "source_expected_card_count": 20,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:19.383Z",
+        "checklist_snapshot_sha256": "b8a56f2d9666afee2501602b6a25b0967bd189fa5d8c5934056181555d5714fb",
+        "findings": [],
+        "observed_denominators": [
+          53
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 66,
+        "registry_key": "jpn-sm6a",
+        "selected_card_count": 66,
+        "source_container_id": "dragonstorm",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:20.968Z",
+        "checklist_snapshot_sha256": "03faf3f7b04f1849ed913e4c56c0cb7fb420249f4676327ee3e79be762c28cfa",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          49
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 75,
+        "registry_key": "jpn-sm11b",
+        "selected_card_count": 75,
+        "source_container_id": "dreamleague",
+        "source_expected_card_count": 68,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:22.209Z",
+        "checklist_snapshot_sha256": "b15ecdb96b84dbf39f6f321eb73fedefc8cf7a8cab9ea3078e6e2859b7e0dab6",
+        "findings": [],
+        "observed_denominators": [
+          69
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 101,
+        "registry_key": "jpn-s6a",
+        "selected_card_count": 101,
+        "source_container_id": "eeveeheroes",
+        "source_expected_card_count": 101,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:23.450Z",
+        "checklist_snapshot_sha256": "3b29942bdc74c8e7faeccb017608d8fee7a634cd2b1f019aa8d759e76b3ea88d",
+        "findings": [],
+        "observed_denominators": [
+          78
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 91,
+        "registry_key": "jpn-xy6",
+        "selected_card_count": 91,
+        "source_container_id": "emeraldbreak",
+        "source_expected_card_count": 91,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:24.684Z",
+        "checklist_snapshot_sha256": "a34b9fe0f9c8857965fbb454ba3ea3d35858d7fd9da661d84dc20f203d367590",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          93
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-ebb",
+        "selected_card_count": 99,
+        "source_container_id": "exbattleboost",
+        "source_expected_card_count": 100,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:25.920Z",
+        "checklist_snapshot_sha256": "ff8f22011a412a020b1839ef2c0967d89d38732748816d7cc93a884b77f25407",
+        "findings": [],
+        "observed_denominators": [
+          95
+        ],
+        "page_declared_normal_card_count": 95,
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-release-d4e6bac36a5a317f",
+        "selected_card_count": 95,
+        "source_container_id": "explosiveimpact",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:27.172Z",
+        "checklist_snapshot_sha256": "6f50742281cf493a17b874ca3308eb45efc8a571b92fb625c492825830a709c8",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-s2a",
+        "selected_card_count": 86,
+        "source_container_id": "explosivewalker",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:28.400Z",
+        "checklist_snapshot_sha256": "489c4b306cb58352f399588007e9df9ca952ec93d2cd0e2ff252844e024c2526",
+        "findings": [],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": 50,
+        "parsed_card_row_count": 50,
+        "registry_key": "jpn-sm7b",
+        "selected_card_count": 50,
+        "source_container_id": "fairyrise",
+        "source_expected_card_count": 50,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:29.621Z",
+        "checklist_snapshot_sha256": "2f5ad2200f6607735f1b0f36037026d0ea4dbfd419233f502d8a2e22bbeb71d2",
+        "findings": [],
+        "observed_denominators": [
+          54
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 59,
+        "registry_key": "jpn-xy11-bb",
+        "selected_card_count": 59,
+        "source_container_id": "feverburstfighter",
+        "source_expected_card_count": 59,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:30.848Z",
+        "checklist_snapshot_sha256": "409a392febcfe6fa994816f44e694857b8e238ba8cea0725aa6bb911f3eeb5f4",
+        "findings": [],
+        "observed_denominators": [
+          94
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 110,
+        "registry_key": "jpn-release-2221ac564a4bb575",
+        "selected_card_count": 110,
+        "source_container_id": "forbiddenlightjp",
+        "source_expected_card_count": 110,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:32.091Z",
+        "checklist_snapshot_sha256": "897cc44fbe4f785b1b9f1112d3c74a381df12c92bc90bab2fe08693a1acd8bf6",
+        "findings": [],
+        "observed_denominators": [
+          59
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-release-c4700ceb7b388dae",
+        "selected_card_count": 65,
+        "source_container_id": "freezeshock",
+        "source_expected_card_count": 65,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:33.313Z",
+        "checklist_snapshot_sha256": "0fd4791086a5346ba9c55d4179b6e86c68c3c5054814b6ae920bcf0d401a8bff",
+        "findings": [],
+        "observed_denominators": [
+          54
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm9b",
+        "selected_card_count": 69,
+        "source_container_id": "fullmetalwall",
+        "source_expected_card_count": 69,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:34.538Z",
+        "checklist_snapshot_sha256": "4815d2deca13a9ba8858788f349a3825b8233f2ffda03e8e6a7d1c9e7cd55d22",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 129,
+        "registry_key": "jpn-s8",
+        "selected_card_count": 129,
+        "source_container_id": "fusionarts",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:35.814Z",
+        "checklist_snapshot_sha256": "94d37b4e3dac11e362dd97458d195e0cadffdd0e8ee62539ca8952dfcc4c2892",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": 66,
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-sv4m",
+        "selected_card_count": 95,
+        "source_container_id": "futureflash",
+        "source_expected_card_count": 66,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:37.065Z",
+        "checklist_snapshot_sha256": "f7f2f2ac3037f82fd3a47c16363dd4203347b141e941236ebff2d787dd87ad2a",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 80,
+        "registry_key": "jpn-xy5-bg",
+        "selected_card_count": 80,
+        "source_container_id": "gaiavolcano",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:38.304Z",
+        "checklist_snapshot_sha256": "861723fa2d44a054a1266a1b8b3415125e4e36f038060d5a9b00c4ac13e5ca54",
+        "findings": [],
+        "observed_denominators": [
+          15
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 15,
+        "registry_key": "jpn-release-f55cbae50018e735",
+        "selected_card_count": 15,
+        "source_container_id": "garchompdeck",
+        "source_expected_card_count": 15,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:39.539Z",
+        "checklist_snapshot_sha256": "9ce8f851454c9de7b921e9599679dc3fb099c60d110669cf5b14676f2176beaf",
+        "findings": [],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 16,
+        "registry_key": "jpn-gbr",
+        "selected_card_count": 16,
+        "source_container_id": "garchomphalfdeck",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:40.750Z",
+        "checklist_snapshot_sha256": "95020242c4582ae163c67c171433d2873f902e7ba6425286aeff317916230f4c",
+        "findings": [],
+        "observed_denominators": [
+          54
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm10a",
+        "selected_card_count": 69,
+        "source_container_id": "ggend",
+        "source_expected_card_count": 69,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:42.005Z",
+        "checklist_snapshot_sha256": "fdda6262be052a92620c3511e6104e07dc652a25e00fa50474b652fe7ddd4cb6",
+        "findings": [],
+        "observed_denominators": [
+          98
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 132,
+        "registry_key": "jpn-sv10",
+        "selected_card_count": 132,
+        "source_container_id": "gloryofteamrocket",
+        "source_expected_card_count": 132,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:43.263Z",
+        "checklist_snapshot_sha256": "64783bd48b95147e7b91b019704c0a0d18d891b28b2a75ff8d5c6a3a99f95960",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          24
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 5,
+        "registry_key": "jpn-smp2",
+        "selected_card_count": 5,
+        "source_container_id": "greatdetectivepikachu",
+        "source_expected_card_count": 25,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:44.485Z",
+        "checklist_snapshot_sha256": "1ee22a933ea831a30cdf0c1bb3e1be87160f18ef091df24cd6494f3269f8fac9",
+        "findings": [],
+        "observed_denominators": [
+          114
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 125,
+        "registry_key": "jpn-release-b88f934d137634ed",
+        "selected_card_count": 125,
+        "source_container_id": "gxbattleboost",
+        "source_expected_card_count": 125,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:45.774Z",
+        "checklist_snapshot_sha256": "e36fe21610894c678ef319cc3a3b50f9eff1422775df2a462a20a53757ef4103",
+        "findings": [],
+        "observed_denominators": [
+          150
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 243,
+        "registry_key": "jpn-sm8b",
+        "selected_card_count": 243,
+        "source_container_id": "gxultrashiny",
+        "source_expected_card_count": 243,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:47.095Z",
+        "checklist_snapshot_sha256": "53f1be1504aa832e7aa4c14eda312dd517980e0abaf3d9b2416d996f8a42754b",
+        "findings": [],
+        "observed_denominators": [
+          52
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 57,
+        "registry_key": "jpn-bw3-bh",
+        "selected_card_count": 57,
+        "source_container_id": "hailblizzard",
+        "source_expected_card_count": 57,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:48.351Z",
+        "checklist_snapshot_sha256": "be22fef44f6a6f0392b8f83821157b0e7c5c80f5104ec2a042e9ddbeba225ca3",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 70,
+        "registry_key": "jpn-l1-bhg",
+        "selected_card_count": 70,
+        "source_container_id": "heartgoldcollection",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:49.619Z",
+        "checklist_snapshot_sha256": "6fc9fab2b4f88dfcf5a195d09e5ccc2cfb04a41e9f1ef89a28b3162ac993abb3",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          63
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-sv9a",
+        "selected_card_count": 92,
+        "source_container_id": "hotairarena",
+        "source_expected_card_count": 93,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:50.918Z",
+        "checklist_snapshot_sha256": "f831a014b4bf4df987bc328cab910e2ba0314bf45f3fd6f38479cd7d29194f82",
+        "findings": [],
+        "observed_denominators": [
+          15
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 15,
+        "registry_key": "jpn-release-eef69dcb28cf560d",
+        "selected_card_count": 15,
+        "source_container_id": "hydreigondeck",
+        "source_expected_card_count": 15,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:52.158Z",
+        "checklist_snapshot_sha256": "da3dacfc38bf24226951d74a2364d88f549c978fa97116deef8d5f5e4d7db79b",
+        "findings": [],
+        "observed_denominators": [
+          18
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 18,
+        "registry_key": "jpn-release-456f62490788ea2b",
+        "selected_card_count": 18,
+        "source_container_id": "hypermetalchaindeck",
+        "source_expected_card_count": 18,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:53.383Z",
+        "checklist_snapshot_sha256": "7189b695ae429365fd8f2e72ee55cb17daee3ddda25acd1001247abc975a4d32",
+        "findings": [],
+        "observed_denominators": [
+          59
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-release-8e797fb6ff7638c9",
+        "selected_card_count": 65,
+        "source_container_id": "iceburn",
+        "source_expected_card_count": 65,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:54.628Z",
+        "checklist_snapshot_sha256": "0e501aa72a0c29dbf41554abd39d46e5faab4c657db02986126d3d7d052ff33a",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          68
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-s11a",
+        "selected_card_count": 94,
+        "source_container_id": "incandescentarcana",
+        "source_expected_card_count": 68,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:55.873Z",
+        "checklist_snapshot_sha256": "a661ec1739606aaced26cefb9d486dc15ffc88db6e6182ccace7b0bb6703e91b",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 116,
+        "registry_key": "jpn-m2",
+        "selected_card_count": 116,
+        "source_container_id": "infernox",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:57.128Z",
+        "checklist_snapshot_sha256": "0b287536d0aa26c94b6e07bc955a0fe38838f76e673220e75dce75c587a6e681",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 119,
+        "registry_key": "jpn-s3",
+        "selected_card_count": 119,
+        "source_container_id": "infinityzone",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:58.420Z",
+        "checklist_snapshot_sha256": "718717f6a929558cc96e4eff086b8d049324b53d5fe2fb053838a99d9f52973b",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 62,
+        "registry_key": "jpn-sm2k",
+        "selected_card_count": 62,
+        "source_container_id": "islandsawaityou",
+        "source_expected_card_count": 61,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:47:59.641Z",
+        "checklist_snapshot_sha256": "3303a3d74c418f6fc341aa21bdef9a22ac6de8328a8debd3efe1a40c50211b26",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-release-f0dcaaadba0a5b85",
+        "selected_card_count": 95,
+        "source_container_id": "jetblackpoltergeist",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:00.869Z",
+        "checklist_snapshot_sha256": "9e9aa03e6ec4171b45c1e1314c68994065e0471abedd606e4d5c4ba5b4ce455c",
+        "findings": [
+          "page_normal_count_differs_from_registry_expected_count"
+        ],
+        "observed_denominators": [
+          76
+        ],
+        "page_declared_normal_card_count": 70,
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-release-1eaff3a1b1ad70bc",
+        "selected_card_count": 94,
+        "source_container_id": "legendarybeat",
+        "source_expected_card_count": 94,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:02.093Z",
+        "checklist_snapshot_sha256": "fd431e0fd6a405fbcd460ab2fd6273f254696fc179e8889d72c5074ef52d79bf",
+        "findings": [],
+        "observed_denominators": [
+          27
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 27,
+        "registry_key": "jpn-release-aa1eef8e9b04d717",
+        "selected_card_count": 27,
+        "source_container_id": "legendaryshinycollection",
+        "source_expected_card_count": 27,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:03.355Z",
+        "checklist_snapshot_sha256": "598c55aeaca3af829aca6177329064ac93e4a4e8fbc9d594068a611794540911",
+        "findings": [],
+        "observed_denominators": [
+          51
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 64,
+        "registry_key": "jpn-release-f1811539823935ec",
+        "selected_card_count": 64,
+        "source_container_id": "light-devouringdarkness",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:04.632Z",
+        "checklist_snapshot_sha256": "3b8a9956cab2a2ee0ef383730f868b092ae0704b987253702c3f107366442b0d",
+        "findings": [],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-s11",
+        "selected_card_count": 127,
+        "source_container_id": "lostabyss",
+        "source_expected_card_count": 127,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:05.856Z",
+        "checklist_snapshot_sha256": "e97121f938d58ab908511437fb91a2f33df262cdbbc3a2fee5b6b710d6ba52c7",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          40
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 39,
+        "registry_key": "jpn-ll",
+        "selected_card_count": 39,
+        "source_container_id": "lostlink",
+        "source_expected_card_count": 40,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:07.095Z",
+        "checklist_snapshot_sha256": "668639a364b0cbd7daa88d5e050ab84e9cb09492ee8a376e82fb9094fb962c60",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          101
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 133,
+        "registry_key": "jpn-sv6",
+        "selected_card_count": 133,
+        "source_container_id": "maskofchange",
+        "source_expected_card_count": 101,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:08.398Z",
+        "checklist_snapshot_sha256": "f015ac92bdb655d5cf3c21f37b7873c1f08c69e9d981d59302bde0eb316dbf6e",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards",
+          "page_normal_count_differs_from_registry_expected_count"
+        ],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": 78,
+        "parsed_card_row_count": 96,
+        "registry_key": "jpn-release-bd3bca74330393a5",
+        "selected_card_count": 96,
+        "source_container_id": "matchlessfighter",
+        "source_expected_card_count": 93,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:09.636Z",
+        "checklist_snapshot_sha256": "266374afbaa89a88bcf9cb0500827f3ed26ca13c98ff51dafacab8664bb9e1e7",
+        "findings": [],
+        "observed_denominators": [
+          21
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-release-5d21048e9d6421e8",
+        "selected_card_count": 21,
+        "source_container_id": "megabattledeckmcharizardex",
+        "source_expected_card_count": 21,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:10.861Z",
+        "checklist_snapshot_sha256": "7c44b12e4522c99d0684d9aff7f373ab825838659c0f0c3f3b1819e86ed910cf",
+        "findings": [],
+        "observed_denominators": [
+          18
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 18,
+        "registry_key": "jpn-release-a8e81d2aaa114571",
+        "selected_card_count": 18,
+        "source_container_id": "megabattledeckmrayquazaex",
+        "source_expected_card_count": 18,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:12.079Z",
+        "checklist_snapshot_sha256": "aaec3b9846b0b27d867a43ad923768886e0a2f458ba29921fcf0be3ca0dd0fc6",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          63
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-m1l",
+        "selected_card_count": 92,
+        "source_container_id": "megabrave",
+        "source_expected_card_count": 98,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:13.320Z",
+        "checklist_snapshot_sha256": "b7c6c3f550a9ab6f9e9366773ac7c306011b68fd78f8d55f682f83d89b43865b",
+        "findings": [],
+        "observed_denominators": [
+          193
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 250,
+        "registry_key": "jpn-m2a",
+        "selected_card_count": 250,
+        "source_container_id": "megadreamex",
+        "source_expected_card_count": 250,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:14.603Z",
+        "checklist_snapshot_sha256": "b1704e43a2acf3a15e1be84961eed912cb5315e4332bf70693de813156321f49",
+        "findings": [],
+        "observed_denominators": [
+          76
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-bw9",
+        "selected_card_count": 86,
+        "source_container_id": "megalocannon",
+        "source_expected_card_count": 86,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:15.888Z",
+        "checklist_snapshot_sha256": "df4ffff25974f6f6ac928f42ab935b7a9c591b4a36f716b62fc9cd2a8163d3f8",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          63
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-m1s",
+        "selected_card_count": 92,
+        "source_container_id": "megasymphonia",
+        "source_expected_card_count": 98,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:17.134Z",
+        "checklist_snapshot_sha256": "bc96e2ca168f023f1432b49412ce243b622f1be0e045f3d1dfe09d20fcee6c26",
+        "findings": [],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 16,
+        "registry_key": "jpn-release-1836d5fa7df0cdd2",
+        "selected_card_count": 16,
+        "source_container_id": "mewtwovsgenesect-genesect",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:18.370Z",
+        "checklist_snapshot_sha256": "3e867850af0fb4f3e60f580d914ce8705d230878dbac1aef06fa68027e3bf756",
+        "findings": [],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 16,
+        "registry_key": "jpn-release-650abaf4fa6893c4",
+        "selected_card_count": 16,
+        "source_container_id": "mewtwovsgenesect-mewtwo",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:19.607Z",
+        "checklist_snapshot_sha256": "4223c7791c4fa579ecd380f162494b8bedd86efff30cff66a70a61fed4fb6505",
+        "findings": [],
+        "observed_denominators": [
+          94
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-sm11",
+        "selected_card_count": 115,
+        "source_container_id": "miracletwin",
+        "source_expected_card_count": 115,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:20.853Z",
+        "checklist_snapshot_sha256": "ca8b2d659820e9ff80745f21144a63d3d8f7391a1a66cde609c50410e55c60d4",
+        "findings": [],
+        "observed_denominators": [
+          55
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 70,
+        "registry_key": "jpn-sm9a",
+        "selected_card_count": 70,
+        "source_container_id": "nightunison",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:22.101Z",
+        "checklist_snapshot_sha256": "47e91ce145d7590ab1d0c882557ddd402d85ee8eaaa865ff55b1809fb1750968",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          64
+        ],
+        "page_declared_normal_card_count": 64,
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-sv6a",
+        "selected_card_count": 94,
+        "source_container_id": "nightwanderer",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:23.349Z",
+        "checklist_snapshot_sha256": "8f58da8153537bbe88a19245ecb3c19eb3c862541294d2933ba583a676b45950",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 117,
+        "registry_key": "jpn-m3",
+        "selected_card_count": 117,
+        "source_container_id": "nihilzero",
+        "source_expected_card_count": 124,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:24.592Z",
+        "checklist_snapshot_sha256": "9444551387465a9a8ad77712ed9cb4a8d1d43aa6a4c915db5868e71876f43700",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          83
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 120,
+        "registry_key": "jpn-m4",
+        "selected_card_count": 120,
+        "source_container_id": "ninjaspinner",
+        "source_expected_card_count": 124,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:25.883Z",
+        "checklist_snapshot_sha256": "1f5732172b53477fb8e33632940bddd299cd9a3a58c13e1c5e5cb4d316e44089",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          98
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 125,
+        "registry_key": "jpn-s12",
+        "selected_card_count": 125,
+        "source_container_id": "paradigmtrigger",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:27.145Z",
+        "checklist_snapshot_sha256": "b7999aa396c0a1ce3e38c87a3f2471513c70c4fb2a1cb5137d52f11e5cee0f96",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          64
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 94,
+        "registry_key": "jpn-sv7a",
+        "selected_card_count": 94,
+        "source_container_id": "paradisedragona",
+        "source_expected_card_count": 64,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:28.389Z",
+        "checklist_snapshot_sha256": "382b6ef28e3844b2674e25d26f91fb4e00b3a8cedaac09fe9cb8010d5a3594c8",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 26,
+        "registry_key": "jpn-release-2eb07879bf93cd0f",
+        "selected_card_count": 26,
+        "source_container_id": "perfectbattledeck60megaaudinoex",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:29.643Z",
+        "checklist_snapshot_sha256": "a26456fd98d84788c9a31c13166bd4a62967c903d2c295bc0dae50350f9407d3",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          16
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 19,
+        "registry_key": "jpn-release-44340e4b04696fd3",
+        "selected_card_count": 19,
+        "source_container_id": "perfectbattledeck60zygardeex",
+        "source_expected_card_count": 16,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:30.887Z",
+        "checklist_snapshot_sha256": "01aad4ca8ac07f7aa16f76e29395b23bb886e8c792f402fa051e335ae8a9d9db",
+        "findings": [],
+        "observed_denominators": [
+          88
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 97,
+        "registry_key": "jpn-xy4",
+        "selected_card_count": 97,
+        "source_container_id": "phantomgate",
+        "source_expected_card_count": 97,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:32.114Z",
+        "checklist_snapshot_sha256": "d3967445d89506dd47f3e8f1e4007ed096c6ecc5f9e54cac292bb2703ee5170a",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 79,
+        "registry_key": "jpn-bw7",
+        "selected_card_count": 79,
+        "source_container_id": "plasmagale",
+        "source_expected_card_count": 79,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:33.342Z",
+        "checklist_snapshot_sha256": "b04a9eb0ab0f5d90cbca737ae5a43ed81a9babda22b4150c868a942a3a1c6037",
+        "findings": [],
+        "observed_denominators": [
+          32
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 32,
+        "registry_key": "jpn-cp3",
+        "selected_card_count": 32,
+        "source_container_id": "pokekyuncollection",
+        "source_expected_card_count": 32,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:34.575Z",
+        "checklist_snapshot_sha256": "63bb14ba95a03a79008fb9dbdabcf61bcd5295d7b8401ffc6933c31175b8e4df",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          165
+        ],
+        "page_declared_normal_card_count": 165,
+        "parsed_card_row_count": 210,
+        "registry_key": "jpn-release-b2c3b3fb76feed48",
+        "selected_card_count": 210,
+        "source_container_id": "pokemoncard151",
+        "source_expected_card_count": 165,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:35.878Z",
+        "checklist_snapshot_sha256": "8c58bb98c211adb2fda5fd9ec5bde284db6076672177e78ee476aacdc1cd220a",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 93,
+        "registry_key": "jpn-release-5ab03765ffde6ad9",
+        "selected_card_count": 93,
+        "source_container_id": "pokemongoxpokemoncardgame",
+        "source_expected_card_count": 83,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:37.169Z",
+        "checklist_snapshot_sha256": "50f07c32e576d6563e0dff1f9921d928ce0c30c6b46069028223162127bd81d2",
+        "findings": [],
+        "observed_denominators": [
+          131
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 131,
+        "registry_key": "jpn-release-f7c6ed172535e21b",
+        "selected_card_count": 131,
+        "source_container_id": "premiumchampionpackexmbreak",
+        "source_expected_card_count": 131,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:38.445Z",
+        "checklist_snapshot_sha256": "37dbb88104633f0541fc92ef09798b9f6702a97b419eacb2f42f02033a6e6efe",
+        "findings": [],
+        "observed_denominators": [
+          52
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 57,
+        "registry_key": "jpn-bw3-bp",
+        "selected_card_count": 57,
+        "source_container_id": "psychodrive",
+        "source_expected_card_count": 57,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:39.685Z",
+        "checklist_snapshot_sha256": "0051e81a22a9625a851beee50faf5f180da8ca2fb59af13749607d506cca4afd",
+        "findings": [],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-release-8de9a50c1dd5c404",
+        "selected_card_count": 100,
+        "source_container_id": "pulseofthefrontier",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:40.941Z",
+        "checklist_snapshot_sha256": "4c41e7d3abc7a84bfb4cf29d2c2d4f774f9a152fd1835bc94592caf0514cc2e9",
+        "findings": [],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 89,
+        "registry_key": "jpn-release-947df16ee8da7f2d",
+        "selected_card_count": 89,
+        "source_container_id": "rageofthetornheavens",
+        "source_expected_card_count": 89,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:42.183Z",
+        "checklist_snapshot_sha256": "134ebe26a7f5d94f4a829aeb383a47bf1bf547008df85b17006c6f7fec0f0cb2",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          62
+        ],
+        "page_declared_normal_card_count": 62,
+        "parsed_card_row_count": 92,
+        "registry_key": "jpn-sv3a",
+        "selected_card_count": 92,
+        "source_container_id": "ragingsurf",
+        "source_expected_card_count": 62,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:43.406Z",
+        "checklist_snapshot_sha256": "bc7a51722f44bc0e7e18d2382e61f820458ccc64078dfbda0cc96eb89c5de3b2",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 91,
+        "registry_key": "jpn-s5r",
+        "selected_card_count": 91,
+        "source_container_id": "rapidstrikemaster",
+        "source_expected_card_count": 91,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:44.663Z",
+        "checklist_snapshot_sha256": "a97a7c87fea8295851d3daa29dbf33a5c7f23de4a66b2001f447487757e31598",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          96
+        ],
+        "page_declared_normal_card_count": 96,
+        "parsed_card_row_count": 115,
+        "registry_key": "jpn-release-eea09ea4519afe11",
+        "selected_card_count": 115,
+        "source_container_id": "rebelliousclash",
+        "source_expected_card_count": 96,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:45.918Z",
+        "checklist_snapshot_sha256": "f316d01c36ae2d13077901c0ec043721d42e2c08b370dc8b9695f54806bcdc33",
+        "findings": [],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 72,
+        "registry_key": "jpn-bw2",
+        "selected_card_count": 72,
+        "source_container_id": "redcollection",
+        "source_expected_card_count": 72,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:47.193Z",
+        "checklist_snapshot_sha256": "6f51903e5628c25b5bd9d06babdf1e258f0ac018d84b2168fd8a0c0af74dc3ef",
+        "findings": [],
+        "observed_denominators": [
+          59
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 65,
+        "registry_key": "jpn-xy8-br",
+        "selected_card_count": 65,
+        "source_container_id": "redflash",
+        "source_expected_card_count": 65,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:48.449Z",
+        "checklist_snapshot_sha256": "092fd0bf427f2f257ed9ef98a72736af1ec6a15abf4c539654fe4991a59003c1",
+        "findings": [],
+        "observed_denominators": [
+          64
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 80,
+        "registry_key": "jpn-sm11a",
+        "selected_card_count": 80,
+        "source_container_id": "remixbout",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:50.744Z",
+        "checklist_snapshot_sha256": "034b07951a7afe6f69c38d73782baf55a589524dc728a022eb6cf6ea43cae60e",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-l2",
+        "selected_card_count": 78,
+        "source_container_id": "revivinglegends",
+        "source_expected_card_count": 80,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:51.999Z",
+        "checklist_snapshot_sha256": "00b10858955c5d87edbcf5ef499389f8a7883b7abc8deac11ccbb07c6577bbde",
+        "findings": [],
+        "observed_denominators": [
+          96
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 105,
+        "registry_key": "jpn-xy3",
+        "selected_card_count": 105,
+        "source_container_id": "risingfist",
+        "source_expected_card_count": 105,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:53.227Z",
+        "checklist_snapshot_sha256": "309a979f43a2de929b28d3f435073401a3c184b6fe6e4176ad399ceb1fd29367",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          105
+        ],
+        "page_declared_normal_card_count": 105,
+        "parsed_card_row_count": 141,
+        "registry_key": "jpn-sv3",
+        "selected_card_count": 141,
+        "source_container_id": "ruleroftheblackflame",
+        "source_expected_card_count": 105,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:54.483Z",
+        "checklist_snapshot_sha256": "5313b590bff068445a2eb2367bb0e57a576fea31c422c46d5844381aa027db4a",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          78
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 108,
+        "registry_key": "jpn-sv1s",
+        "selected_card_count": 108,
+        "source_container_id": "scarletex",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:55.740Z",
+        "checklist_snapshot_sha256": "7d4d6d8e30f988877ed61528bbcc76f1c11e63f0c8ae7099cb6a3529f2fd98a3",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 75,
+        "registry_key": "jpn-s1h",
+        "selected_card_count": 75,
+        "source_container_id": "shield",
+        "source_expected_card_count": 75,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:56.967Z",
+        "checklist_snapshot_sha256": "a3e2aef61aaa4e97d018486d88d0c577b2a0d3dfcd4321b9a9816e65a8d2cb84",
+        "findings": [],
+        "observed_denominators": [
+          72
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 82,
+        "registry_key": "jpn-release-516acd1b4f1f8e99",
+        "selected_card_count": 82,
+        "source_container_id": "shininglegend",
+        "source_expected_card_count": 82,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:58.209Z",
+        "checklist_snapshot_sha256": "6022f294d86d6baa54da641bf8078a24584d26cdbbbf5db7bccbd630842fe3d2",
+        "findings": [],
+        "observed_denominators": [
+          20
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 25,
+        "registry_key": "jpn-sc",
+        "selected_card_count": 25,
+        "source_container_id": "shinycollection",
+        "source_expected_card_count": 25,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:48:59.477Z",
+        "checklist_snapshot_sha256": "d178528d3022166c2bfd549e0804d6dabadab712b616c019acb572e1a5a361a1",
+        "findings": [],
+        "observed_denominators": [
+          190
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 330,
+        "registry_key": "jpn-s4a",
+        "selected_card_count": 330,
+        "source_container_id": "shinystarv",
+        "source_expected_card_count": 330,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:00.854Z",
+        "checklist_snapshot_sha256": "9bdedc11ce5f9b5302f0e82619a10aa3ff78783430530d7124ef13eff3eb65ed",
+        "findings": [],
+        "observed_denominators": [
+          190
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 360,
+        "registry_key": "jpn-sv4a",
+        "selected_card_count": 360,
+        "source_container_id": "shinytreasureex",
+        "source_expected_card_count": 360,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:02.141Z",
+        "checklist_snapshot_sha256": "6c1b079e2739134be7f7d998a22665fb2ade46da59a1285bf7ace1622044985b",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 95,
+        "registry_key": "jpn-s6h",
+        "selected_card_count": 95,
+        "source_container_id": "silverlance",
+        "source_expected_card_count": 95,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:03.371Z",
+        "checklist_snapshot_sha256": "6f7fbbe38baadf6f8caec030531e483165aeb5a012b19a7a308e852d73ec6e3e",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 91,
+        "registry_key": "jpn-s5i",
+        "selected_card_count": 91,
+        "source_container_id": "singlestrikemaster",
+        "source_expected_card_count": 91,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:04.646Z",
+        "checklist_snapshot_sha256": "d6581bbcd4772073c9ecd859fd2e6199690d22143661e4dc2f4372ecb3243c9a",
+        "findings": [],
+        "observed_denominators": [
+          54
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 69,
+        "registry_key": "jpn-sm10b",
+        "selected_card_count": 69,
+        "source_container_id": "skylegend",
+        "source_expected_card_count": 69,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:05.876Z",
+        "checklist_snapshot_sha256": "b0a272d39cef39282c6d50eed06a4a3b780707f0b12f9e3999e24932726f50ed",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          67
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-release-05afd6f0d47125d0",
+        "selected_card_count": 90,
+        "source_container_id": "skyscrapingperfect",
+        "source_expected_card_count": 67,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:07.164Z",
+        "checklist_snapshot_sha256": "7cfc2a30c5c05ce02d199d83866af5c858e90bf51312d58234664303636a2c4b",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards",
+          "page_normal_count_differs_from_registry_expected_count"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": 78,
+        "parsed_card_row_count": 99,
+        "registry_key": "jpn-sv2p",
+        "selected_card_count": 99,
+        "source_container_id": "snowhazard",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:08.392Z",
+        "checklist_snapshot_sha256": "08d476b138c9448180f35649d8c8eee21ad59b273e38f6e028a211d214d56985",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 70,
+        "registry_key": "jpn-l1-bss",
+        "selected_card_count": 70,
+        "source_container_id": "soulsilvercollection",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:09.621Z",
+        "checklist_snapshot_sha256": "bab4951322204d4f0dbf5389a1247605c1c7f5a857ecb9dea62bac980e18f6b8",
+        "findings": [],
+        "observed_denominators": [
+          67
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-s10p",
+        "selected_card_count": 88,
+        "source_container_id": "spacejuggler",
+        "source_expected_card_count": 88,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:10.850Z",
+        "checklist_snapshot_sha256": "d08dc78a0e8e563f425bc0659b663bcdf7310af7c3c08ae3e7689d4b3a0b61b4",
+        "findings": [],
+        "observed_denominators": [
+          51
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 58,
+        "registry_key": "jpn-bw8-brf",
+        "selected_card_count": 58,
+        "source_container_id": "spiralforce",
+        "source_expected_card_count": 58,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:12.139Z",
+        "checklist_snapshot_sha256": "982fc756272dd99583099a936a1f31239c9c8824491361ea2fb488e8fb0a375a",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          100
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 127,
+        "registry_key": "jpn-s9",
+        "selected_card_count": 127,
+        "source_container_id": "starbirth",
+        "source_expected_card_count": 100,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:13.400Z",
+        "checklist_snapshot_sha256": "b93631d754af09e12363af58d720da586ecaa1df05c186219d80992e5fc0b045",
+        "findings": [],
+        "observed_denominators": [
+          21
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 21,
+        "registry_key": "jpn-smc",
+        "selected_card_count": 21,
+        "source_container_id": "startersettapubulugx",
+        "source_expected_card_count": 21,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:14.637Z",
+        "checklist_snapshot_sha256": "8c27788ba42c02c7d518d8cb67e5e6386d09a5ea67e394341c590fc5695103c1",
+        "findings": [],
+        "observed_denominators": [
+          19
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 19,
+        "registry_key": "jpn-release-15fd534daba61f79",
+        "selected_card_count": 19,
+        "source_container_id": "steelixmetal",
+        "source_expected_card_count": 19,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:15.862Z",
+        "checklist_snapshot_sha256": "7d9d406c86b6b8270b46ca6a2a8ac6773c4d9c430f92f659cac9d080c9c29f88",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          102
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 135,
+        "registry_key": "jpn-sv7",
+        "selected_card_count": 135,
+        "source_container_id": "stellarmiracle",
+        "source_expected_card_count": 102,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:17.136Z",
+        "checklist_snapshot_sha256": "596bbaf94677eca0d23c104a117c03a8ff5e6728bc3ab6841e7f5fc2c03999bb",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          76
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 76,
+        "registry_key": "jpn-release-10ce4ad24f2df6f7",
+        "selected_card_count": 76,
+        "source_container_id": "stormemeralda",
+        "source_expected_card_count": 190,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:18.379Z",
+        "checklist_snapshot_sha256": "15bc7c3e6d410f11b1ce363ba7011b41f76bcc15474bc259553b3431f6989b60",
+        "findings": [],
+        "observed_denominators": [
+          51
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 68,
+        "registry_key": "jpn-release-c38bf7fa228b2d84",
+        "selected_card_count": 68,
+        "source_container_id": "sunmoonstrengtheningpack",
+        "source_expected_card_count": 68,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:19.624Z",
+        "checklist_snapshot_sha256": "4b9e74f5bcc4c827d819ff3221d2589978cc72e555a29c6faf9a8c55b4763ad0",
+        "findings": [],
+        "observed_denominators": [
+          106
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 138,
+        "registry_key": "jpn-sv8",
+        "selected_card_count": 138,
+        "source_container_id": "superelectricbreaker",
+        "source_expected_card_count": 138,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:20.894Z",
+        "checklist_snapshot_sha256": "72e989efc177956882bc6b4978f34b7885abba2d557e3096ef313c5c7f5cc6e1",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 75,
+        "registry_key": "jpn-s1w",
+        "selected_card_count": 75,
+        "source_container_id": "sword",
+        "source_expected_card_count": 75,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:22.123Z",
+        "checklist_snapshot_sha256": "f2ac381c36d823df07b0815de68ddd4ae2976430a2ee63d6282a807aec29c4f0",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          173
+        ],
+        "page_declared_normal_card_count": 173,
+        "parsed_card_row_count": 226,
+        "registry_key": "jpn-sm12a",
+        "selected_card_count": 226,
+        "source_container_id": "tagallstars",
+        "source_expected_card_count": 173,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:23.393Z",
+        "checklist_snapshot_sha256": "55ce9a55571640e09891fa763ba29945fa0e72303ebf3e4c719c4795b239060c",
+        "findings": [],
+        "observed_denominators": [
+          95
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 118,
+        "registry_key": "jpn-sm9",
+        "selected_card_count": 118,
+        "source_container_id": "tagbolt",
+        "source_expected_card_count": 118,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:24.615Z",
+        "checklist_snapshot_sha256": "f9ae5afa93868646beee8c5ed37017b7bf23b03d44c5091ed5de3b98b9380d0f",
+        "findings": [],
+        "observed_denominators": [
+          34
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 34,
+        "registry_key": "jpn-cp1",
+        "selected_card_count": 34,
+        "source_container_id": "teammagmavsteamaquadoublecrisis",
+        "source_expected_card_count": 34,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:25.873Z",
+        "checklist_snapshot_sha256": "6063a53d30535cc63b74f2d5e8841c8ffda0c9b29b8b1a8c01ce83f70e3f3d05",
+        "findings": [],
+        "observed_denominators": [
+          17
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 17,
+        "registry_key": "jpn-release-d1a1350764cdfc6a",
+        "selected_card_count": 17,
+        "source_container_id": "teamplasmapowerdeck",
+        "source_expected_card_count": 17,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:27.088Z",
+        "checklist_snapshot_sha256": "ff709e76d249fa1ad9843f28717ec24674a7c96368b17ec5dfcaef7f37bcc7c6",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          187
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 237,
+        "registry_key": "jpn-sv8a",
+        "selected_card_count": 237,
+        "source_container_id": "terastalfestivalex",
+        "source_expected_card_count": 267,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:28.372Z",
+        "checklist_snapshot_sha256": "d781c628d72af266514538c83b90226b4df727d8c374123f69899f27655a915b",
+        "findings": [],
+        "observed_denominators": [
+          60
+        ],
+        "page_declared_normal_card_count": 60,
+        "parsed_card_row_count": 60,
+        "registry_key": "jpn-sm7a",
+        "selected_card_count": 60,
+        "source_container_id": "thunderclapspark",
+        "source_expected_card_count": 60,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:29.620Z",
+        "checklist_snapshot_sha256": "e1d8096631115ab2cbb27c6b1a5a9476da6acd917a184a6aa5aa39f23dd944fb",
+        "findings": [],
+        "observed_denominators": [
+          51
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 58,
+        "registry_key": "jpn-bw8-brn",
+        "selected_card_count": 58,
+        "source_container_id": "thunderknuckle",
+        "source_expected_card_count": 58,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:30.887Z",
+        "checklist_snapshot_sha256": "248760279764cc644ef21aaf6af65240242653b526a6b228b7e61de3812b46af",
+        "findings": [],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 80,
+        "registry_key": "jpn-xy5-bt",
+        "selected_card_count": 80,
+        "source_container_id": "tidalstorm",
+        "source_expected_card_count": 80,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:32.135Z",
+        "checklist_snapshot_sha256": "12a18d360ebb10885364786fbff7d6065810c2688971aadbfae550455f589140",
+        "findings": [],
+        "observed_denominators": [
+          67
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 88,
+        "registry_key": "jpn-s10d",
+        "selected_card_count": 88,
+        "source_container_id": "timegazer",
+        "source_expected_card_count": 88,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:33.367Z",
+        "checklist_snapshot_sha256": "5f4efe68decd07dd095a6af941c9c933b27b12b07bc2a2ad56a5178cade26a32",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          73
+        ],
+        "page_declared_normal_card_count": 73,
+        "parsed_card_row_count": 103,
+        "registry_key": "jpn-sv1a",
+        "selected_card_count": 103,
+        "source_container_id": "tripletbeat",
+        "source_expected_card_count": 73,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:34.621Z",
+        "checklist_snapshot_sha256": "c061ec3886ac13d438988d2fcea76f3554ad91bb058910fb5985135c9996c540",
+        "findings": [],
+        "observed_denominators": [
+          19
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 19,
+        "registry_key": "jpn-release-770bbce0d3eaced2",
+        "selected_card_count": 19,
+        "source_container_id": "tyranitardarkness",
+        "source_expected_card_count": 19,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:35.857Z",
+        "checklist_snapshot_sha256": "3718e98a60c579b0da7cbafb94a3f30f6f0be31f2a422fe4bd605c0954673bf6",
+        "findings": [],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 62,
+        "registry_key": "jpn-release-9d02baa8146f499a",
+        "selected_card_count": 62,
+        "source_container_id": "ultradimensionalbeast",
+        "source_expected_card_count": 62,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:37.158Z",
+        "checklist_snapshot_sha256": "408481092b9be713c03f7aae590c65b96c5ad7443f86eef6308f65671db6ffae",
+        "findings": [],
+        "observed_denominators": [
+          50
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 63,
+        "registry_key": "jpn-release-09d37de9c6ebd909",
+        "selected_card_count": 63,
+        "source_container_id": "ultraforces",
+        "source_expected_card_count": 63,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:38.404Z",
+        "checklist_snapshot_sha256": "c007a82ee8d41b338d1ea6382def543087a229f81f18911a5efe8b9b9af3a8a0",
+        "findings": [],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-sm5m",
+        "selected_card_count": 78,
+        "source_container_id": "ultramoon",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:39.638Z",
+        "checklist_snapshot_sha256": "672d0143da1e516184dcf77ae70661f9ea2d44745eeb3f33468954d9d1dcb67d",
+        "findings": [],
+        "observed_denominators": [
+          66
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 78,
+        "registry_key": "jpn-sm5s",
+        "selected_card_count": 78,
+        "source_container_id": "ultrasun",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:40.866Z",
+        "checklist_snapshot_sha256": "ea79d080045227372519c8c24823cc4cc62e15940f6c3ecfe3e0c8e356b575ee",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          78
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 108,
+        "registry_key": "jpn-sv1v",
+        "selected_card_count": 108,
+        "source_container_id": "violetex",
+        "source_expected_card_count": 78,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:42.150Z",
+        "checklist_snapshot_sha256": "7edca37a092681b815f887a3f4b680c2f1adf08b174132574189275d87d1ed75",
+        "findings": [
+          "checklist_rows_below_registry_expected_count"
+        ],
+        "observed_denominators": [
+          184
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 282,
+        "registry_key": "jpn-s8b",
+        "selected_card_count": 282,
+        "source_container_id": "vmaxclimax",
+        "source_expected_card_count": 285,
+        "status": "source_count_mismatch"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:43.407Z",
+        "checklist_snapshot_sha256": "d88206041b5acf8166c70d0061c417e41b452f790673361db71d6a55e07422a9",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          70
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 86,
+        "registry_key": "jpn-s1a",
+        "selected_card_count": 86,
+        "source_container_id": "vmaxrising",
+        "source_expected_card_count": 70,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:44.653Z",
+        "checklist_snapshot_sha256": "3b718afdd5a5fa1899fa322d20bc46e8a1d1d415f452ca57cde6f162910f6231",
+        "findings": [],
+        "observed_denominators": [
+          141
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 142,
+        "registry_key": "jpn-release-ebb773348d73e3e5",
+        "selected_card_count": 142,
+        "source_container_id": "vs",
+        "source_expected_card_count": 142,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:45.925Z",
+        "checklist_snapshot_sha256": "173d24570f5099357647ce77a859bc0f25107b95c6180a988239a1078ae9dad0",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          172
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 262,
+        "registry_key": "jpn-s12a",
+        "selected_card_count": 262,
+        "source_container_id": "vstaruniverse",
+        "source_expected_card_count": 240,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:47.186Z",
+        "checklist_snapshot_sha256": "2d720d3cee4cf0d4829526bc5dd5992d9d91cbc6ebd9d64e5fcb85319b7d9bdd",
+        "findings": [],
+        "observed_denominators": [
+          53
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 56,
+        "registry_key": "jpn-bw1-bw",
+        "selected_card_count": 56,
+        "source_container_id": "whitecollection",
+        "source_expected_card_count": 56,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:48.427Z",
+        "checklist_snapshot_sha256": "8500b115ecb4292186368b41fbdeb599312f435e8c8b3909471e6ca528d01a3f",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          86
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 174,
+        "registry_key": "jpn-release-82bfc19156fd474b",
+        "selected_card_count": 174,
+        "source_container_id": "whiteflare-jp",
+        "source_expected_card_count": 98,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:49.680Z",
+        "checklist_snapshot_sha256": "3b99f668c40f4eeb77d5839677b37a71711681d91ca840cd2246e887bef13a5e",
+        "findings": [],
+        "observed_denominators": [
+          80
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 90,
+        "registry_key": "jpn-xy2",
+        "selected_card_count": 90,
+        "source_container_id": "wildblaze",
+        "source_expected_card_count": 90,
+        "status": "complete"
+      },
+      {
+        "checklist_snapshot_fetched_at": "2026-07-26T18:49:50.924Z",
+        "checklist_snapshot_sha256": "7f53feedaa497d3b4b83b4d1720bed94c4ad98071c68ad6ec97b5a52d872918e",
+        "findings": [
+          "checklist_includes_secret_or_extra_numbered_cards"
+        ],
+        "observed_denominators": [
+          71
+        ],
+        "page_declared_normal_card_count": null,
+        "parsed_card_row_count": 100,
+        "registry_key": "jpn-sv5k",
+        "selected_card_count": 100,
+        "source_container_id": "wildforce",
+        "source_expected_card_count": 71,
+        "status": "complete"
+      }
+    ],
+    "run": {
+      "max_cards_per_container": null,
+      "mode": "live_capture",
+      "selected_container_count": 165,
+      "selected_container_ids": [
+        "20thanniversary",
+        "25thanniversarycollection",
+        "30thcelebrationjapan",
+        "abysseye",
+        "adventofarceus",
+        "alolanmoonlight",
+        "altergenesis",
+        "ancientroar",
+        "arceuslvxgrassandfire",
+        "arceuslvxlightningandpsychic",
+        "astonishingvolttackle",
+        "awakeninghero",
+        "awakeningpsychicchampion",
+        "bandedring",
+        "battlepartners",
+        "battleregion",
+        "beyondanewchallenge",
+        "bigsummitclash",
+        "blackbolt-jp",
+        "blackcollection",
+        "blueshock",
+        "blueskystream",
+        "breakcombodeckgolduckbreakpalkiaex",
+        "breakevolutionpacknoivernbreak",
+        "breakevolutionpackraichubreak",
+        "championroad",
+        "charismaofthewreckedsky",
+        "charizardhalfdeck",
+        "clayburst",
+        "collectionmoon",
+        "collectionsun",
+        "collectionx",
+        "collectiony",
+        "crimsonhaze",
+        "crueltraitor",
+        "cyberjudge",
+        "darkorder",
+        "darkphantasma",
+        "darkrush",
+        "didyouseethefightingrainbow",
+        "doubleblaze",
+        "dragonblade",
+        "dragonblast",
+        "dragonselection",
+        "dragonstorm",
+        "dreamleague",
+        "eeveeheroes",
+        "emeraldbreak",
+        "exbattleboost",
+        "explosiveimpact",
+        "explosivewalker",
+        "fairyrise",
+        "feverburstfighter",
+        "forbiddenlightjp",
+        "freezeshock",
+        "fullmetalwall",
+        "fusionarts",
+        "futureflash",
+        "gaiavolcano",
+        "garchompdeck",
+        "garchomphalfdeck",
+        "ggend",
+        "gloryofteamrocket",
+        "greatdetectivepikachu",
+        "gxbattleboost",
+        "gxultrashiny",
+        "hailblizzard",
+        "heartgoldcollection",
+        "hotairarena",
+        "hydreigondeck",
+        "hypermetalchaindeck",
+        "iceburn",
+        "incandescentarcana",
+        "infernox",
+        "infinityzone",
+        "islandsawaityou",
+        "jetblackpoltergeist",
+        "legendarybeat",
+        "legendaryshinycollection",
+        "light-devouringdarkness",
+        "lostabyss",
+        "lostlink",
+        "maskofchange",
+        "matchlessfighter",
+        "megabattledeckmcharizardex",
+        "megabattledeckmrayquazaex",
+        "megabrave",
+        "megadreamex",
+        "megalocannon",
+        "megasymphonia",
+        "mewtwovsgenesect-genesect",
+        "mewtwovsgenesect-mewtwo",
+        "miracletwin",
+        "nightunison",
+        "nightwanderer",
+        "nihilzero",
+        "ninjaspinner",
+        "paradigmtrigger",
+        "paradisedragona",
+        "perfectbattledeck60megaaudinoex",
+        "perfectbattledeck60zygardeex",
+        "phantomgate",
+        "plasmagale",
+        "pokekyuncollection",
+        "pokemoncard151",
+        "pokemongoxpokemoncardgame",
+        "premiumchampionpackexmbreak",
+        "psychodrive",
+        "pulseofthefrontier",
+        "rageofthetornheavens",
+        "ragingsurf",
+        "rapidstrikemaster",
+        "rebelliousclash",
+        "redcollection",
+        "redflash",
+        "remixbout",
+        "revivinglegends",
+        "risingfist",
+        "ruleroftheblackflame",
+        "scarletex",
+        "shield",
+        "shininglegend",
+        "shinycollection",
+        "shinystarv",
+        "shinytreasureex",
+        "silverlance",
+        "singlestrikemaster",
+        "skylegend",
+        "skyscrapingperfect",
+        "snowhazard",
+        "soulsilvercollection",
+        "spacejuggler",
+        "spiralforce",
+        "starbirth",
+        "startersettapubulugx",
+        "steelixmetal",
+        "stellarmiracle",
+        "stormemeralda",
+        "sunmoonstrengtheningpack",
+        "superelectricbreaker",
+        "sword",
+        "tagallstars",
+        "tagbolt",
+        "teammagmavsteamaquadoublecrisis",
+        "teamplasmapowerdeck",
+        "terastalfestivalex",
+        "thunderclapspark",
+        "thunderknuckle",
+        "tidalstorm",
+        "timegazer",
+        "tripletbeat",
+        "tyranitardarkness",
+        "ultradimensionalbeast",
+        "ultraforces",
+        "ultramoon",
+        "ultrasun",
+        "violetex",
+        "vmaxclimax",
+        "vmaxrising",
+        "vs",
+        "vstaruniverse",
+        "whitecollection",
+        "whiteflare-jp",
+        "wildblaze",
+        "wildforce"
+      ]
+    },
+    "selected_run_healthy": true,
+    "summary": {
+      "assertion_fingerprint_sha256": "e08609e6ad8f4b19d2035b11e2320cffde1c4c3f8ebf6e337639700cab7fc8f1",
+      "combined_assertion_count": 14477,
+      "container_status_counts": {
+        "complete": 147,
+        "source_count_mismatch": 18
+      },
+      "failed_container_count": 0,
+      "fresh_assertion_count": 14477,
+      "prior_assertion_count": 95,
+      "retained_prior_assertion_count": 0,
+      "selected_container_count": 165,
+      "source_request_count": 164,
+      "tracked_container_count": 165
+    }
+  },
+  "content_fingerprint_sha256": "b2388b2c7eef6a184d4eae53e4ce372a50b5c4e2c5180e5b77c8beb076d050f5",
+  "generated_at": "2026-07-26T18:49:51.252Z",
+  "package_id": "JPN-MASTER-INDEX-V4-CARD-ACQUISITION-HARVEST-V1",
+  "retrieval": {
+    "card_detail_requests": false,
+    "displayed_name_language": "en",
+    "generator_version": "JPN-MASTER-INDEX-CARD-ACQUISITION-HARVEST-V1",
+    "image_references_only": true,
+    "mode": "live_capture",
+    "parser_version": "JPN-MASTER-INDEX-SEREBII-JP-CARD-PARSER-V1",
+    "plan_content_fingerprint_sha256": "e7a4f1c1fb2179235f076df698d4843983086dbec9d7c4ba72d730200e20d973",
+    "request_delay_ms": 1000,
+    "resume": true,
+    "source_base_url": "https://www.serebii.net/card",
+    "source_lane": "serebii_jp_cards"
+  }
+}
