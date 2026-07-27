@@ -469,14 +469,15 @@ async function main() {
     });
     const body = result.stdout.trim();
     const diffPath = path.join(runDir, "linked_schema_diff.sql");
-    if (body) await fs.writeFile(diffPath, `${body}\n`);
+    const diffContents = body ? `${body}\n` : "";
+    if (body) await fs.writeFile(diffPath, diffContents);
     schemaDiff = {
       status:
         result.exit_code !== 0 ? "command_failed" : body ? "nonempty" : "empty",
       exit_code: result.exit_code,
-      bytes: Buffer.byteLength(body),
-      lines: body ? body.split(/\r?\n/).length : 0,
-      sha256: body ? sha256(body) : null,
+      bytes: Buffer.byteLength(diffContents),
+      lines: body ? diffContents.split(/\r?\n/).length - 1 : 0,
+      sha256: body ? sha256(diffContents) : null,
       artifact_path: body
         ? path.relative(REPO_ROOT, diffPath).replace(/\\/g, "/")
         : null,
