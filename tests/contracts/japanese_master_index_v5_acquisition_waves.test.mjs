@@ -23,21 +23,21 @@ function jsonl(name) {
 test('V5 acquisition waves assign every affected release exactly once', () => {
   const summary = json('jpn_v5_acquisition_wave_report_v1.json');
   const rows = jsonl('jpn_v5_release_workpacks_v1.jsonl');
-  assert.equal(rows.length, 1295);
+  assert.equal(rows.length, 1292);
   assert.equal(new Set(rows.map((row) => row.release_key)).size, rows.length);
   assert.equal(summary.baseline.original_issue_rows, 2705);
-  assert.equal(summary.baseline.reconciled_issue_rows, 2503);
+  assert.equal(summary.baseline.reconciled_issue_rows, 2497);
   assert.equal(summary.baseline.reconciled_container_dispositions, 72);
-  assert.equal(summary.baseline.completed_official_product_scopes, 19);
+  assert.equal(summary.baseline.completed_official_product_scopes, 22);
   assert.equal(summary.baseline.completed_official_release_scopes, 10);
-  assert.equal(summary.baseline.newly_resolved_official_identities, 412);
-  assert.equal(summary.baseline.projected_v5_working_identity_count, 71903);
+  assert.equal(summary.baseline.newly_resolved_official_identities, 419);
+  assert.equal(summary.baseline.projected_v5_working_identity_count, 71910);
   assert.deepEqual(summary.baseline.base_identity_coverage, {
-    covered_slots: 8267,
-    expected_slots: 22078,
-    percent: 37.44,
+    covered_slots: 8274,
+    expected_slots: 22085,
+    percent: 37.46,
   });
-  assert.equal(summary.baseline.reconciled_active_container_count, 1362);
+  assert.equal(summary.baseline.reconciled_active_container_count, 1359);
   assert.equal(summary.baseline.active_releases_without_census_issues, 67);
   assert.equal(
     rows.reduce((sum, row) => sum + row.issue_count, 0),
@@ -55,7 +55,7 @@ test('V5 acquisition waves preserve the expected release ordering', () => {
       ]),
     ),
     {
-      zero_inventory_acquisition: 575,
+      zero_inventory_acquisition: 572,
       denominator_repair: 445,
       bounded_slot_completion: 206,
       strict_corroboration: 69,

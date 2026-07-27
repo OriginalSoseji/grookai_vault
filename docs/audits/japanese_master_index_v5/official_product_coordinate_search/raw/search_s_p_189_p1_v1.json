@@ -1,0 +1,34 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 3,
+    "cardStart": 1,
+    "cardEnd": 3,
+    "searchCondition": [
+        "キーワード：エーフィVMAX",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "40654",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040654_P_EFUIVMAX.jpg",
+            "cardNameAltText": "エーフィVMAX",
+            "cardNameViewText": "エーフィVMAX"
+        },
+        {
+            "cardID": "39657",
+            "cardThumbFile": "/assets/images/card_images/large/SP4/039657_P_EFIVMAX.jpg",
+            "cardNameAltText": "エーフィVMAX",
+            "cardNameViewText": "エーフィVMAX"
+        },
+        {
+            "cardID": "39913",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039913_P_EFIVMAX.jpg",
+            "cardNameAltText": "エーフィVMAX",
+            "cardNameViewText": "エーフィVMAX"
+        }
+    ]
+}

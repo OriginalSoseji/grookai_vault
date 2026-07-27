@@ -1,0 +1,46 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 5,
+    "cardStart": 1,
+    "cardEnd": 5,
+    "searchCondition": [
+        "キーワード：エンペルトV",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "40364",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040364_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39156",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039156_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39249",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039249_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39250",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039250_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39583",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039583_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        }
+    ]
+}

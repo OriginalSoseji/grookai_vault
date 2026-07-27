@@ -1,0 +1,131 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "execution_boundary": {
+      "database_reads": false,
+      "database_writes": false,
+      "image_downloads": false,
+      "pricing_writes": false,
+      "production_writes": false,
+      "storage_writes": false
+    },
+    "failures": [],
+    "resolutions": [
+      {
+        "card_number_raw": "184",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-e66b2d8c16a44330:S-P:184",
+        "official_card_id": "39583",
+        "printed_name": "エンペルトV",
+        "registry_key": "jpn-product-e66b2d8c16a44330",
+        "rejected_candidates": [],
+        "search_hit_count": 5,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "185",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-e66b2d8c16a44330:S-P:185",
+        "official_card_id": "39584",
+        "printed_name": "バンギラスV",
+        "registry_key": "jpn-product-e66b2d8c16a44330",
+        "rejected_candidates": [],
+        "search_hit_count": 7,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "189",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-cf985e7761549d45:S-P:189",
+        "official_card_id": "39913",
+        "printed_name": "エーフィVMAX",
+        "registry_key": "jpn-product-cf985e7761549d45",
+        "rejected_candidates": [],
+        "search_hit_count": 3,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "268",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-c48dc9f11716c705:S-P:268",
+        "official_card_id": "41182",
+        "printed_name": "リーフィアV",
+        "registry_key": "jpn-product-c48dc9f11716c705",
+        "rejected_candidates": [],
+        "search_hit_count": 13,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "269",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-c48dc9f11716c705:S-P:269",
+        "official_card_id": "41183",
+        "printed_name": "リーフィアVSTAR",
+        "registry_key": "jpn-product-c48dc9f11716c705",
+        "rejected_candidates": [],
+        "search_hit_count": 3,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "270",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-ad47af2d8b461c26:S-P:270",
+        "official_card_id": "41184",
+        "printed_name": "グレイシアV",
+        "registry_key": "jpn-product-ad47af2d8b461c26",
+        "rejected_candidates": [],
+        "search_hit_count": 10,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      },
+      {
+        "card_number_raw": "271",
+        "disposition": "exact_official_coordinate_resolved",
+        "exact_candidate_count": 1,
+        "followup_key": "official_product_coordinate:jpn-product-ad47af2d8b461c26:S-P:271",
+        "official_card_id": "41185",
+        "printed_name": "グレイシアVSTAR",
+        "registry_key": "jpn-product-ad47af2d8b461c26",
+        "rejected_candidates": [],
+        "search_hit_count": 2,
+        "set_filtered_candidate_count": 1,
+        "source_set_code": "S-P"
+      }
+    ],
+    "summary": {
+      "exact_card_ids": [
+        "39583",
+        "39584",
+        "39913",
+        "41182",
+        "41183",
+        "41184",
+        "41185"
+      ],
+      "failed_count": 0,
+      "followup_count": 7,
+      "resolved_count": 7
+    }
+  },
+  "content_fingerprint_sha256": "cf81f5fffefe5b76d36313acccf6422c0b2f7d1b3c74783c355a29d4c41095df",
+  "generated_at": "2026-07-27T23:30:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-COORDINATE-SEARCH-HARVEST-V1-HEALTH",
+  "retrieval": {
+    "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-COORDINATE-SEARCH-HARVEST-V1",
+    "mode": "preserved_source_capture",
+    "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+    "request_delay_ms": 750,
+    "source_followups_path": "docs/audits/japanese_master_index_v5/official_product_detail_pages/parsed/jpn_v5_official_product_coordinate_search_followups_v1.jsonl"
+  }
+}

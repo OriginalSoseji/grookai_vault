@@ -1,0 +1,28 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 2,
+    "cardStart": 1,
+    "cardEnd": 2,
+    "searchCondition": [
+        "キーワード：グレイシアVSTAR",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42867",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042867_P_GUREISHIAVSTAR.jpg",
+            "cardNameAltText": "グレイシアVSTAR",
+            "cardNameViewText": "グレイシアVSTAR"
+        },
+        {
+            "cardID": "41185",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041185_P_GUREISHIAVSTAR.jpg",
+            "cardNameAltText": "グレイシアVSTAR",
+            "cardNameViewText": "グレイシアVSTAR"
+        }
+    ]
+}

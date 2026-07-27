@@ -1,0 +1,501 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "assertions": [
+      {
+        "assertion_key": "81f8f940dfb6743af87f220b8847f4512460391ba3f462b163d991f6b439ec18",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 184,
+        "card_number_prefix": null,
+        "card_number_raw": "184",
+        "card_number_suffix": null,
+        "category": "たね",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 210,
+        "identity_modifiers": [],
+        "illustrator": "PLANETA Mochizuki",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/039583_P_ENPERUTOV.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "エンペルトV",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_39583_v1.html",
+        "raw_snapshot_sha256": "49e86afb64d13f1d1ba307888e60ad248db7e72af7e7a965ce4194c7af6abde6",
+        "registry_key": "jpn-product-e66b2d8c16a44330",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10780",
+          "https://www.pokemon-card.com/products/s/sg.html"
+        ],
+        "release_date": "2021年 5月28日（金）",
+        "retrieved_at": "2026-07-27T20:57:14.708Z",
+        "source_container_id": "coordinate:S-P:184",
+        "source_external_id": "39583",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-e66b2d8c16a44330:S-P:184",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/products/2021/images/1400_SP_184_395EMPERTEv.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/5718062097a25406bbc9.html",
+          "coordinate_page_snapshot_sha256": "5b3b789aa7e59ca01faa6c817693bbb77bfb0fd6d9f3a70a1d2fa65c4e4e1bd2",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 5,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_184_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "330e00003f2bb344b679cfa2ef5afc316dad1a98dda9e6d710fc181d6bdbdfe5"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "ハイクラスデッキダブルBOX ゲンガーVMAX＆インテレオンVMAX",
+        "source_set_code": "S-P",
+        "source_set_name": "ハイクラスデッキダブルBOX ゲンガーVMAX＆インテレオンVMAX",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/39583/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "e80a120f4d8ceef7256ba555fed33d53cfe0cfb19c78f099ed557063280124f0",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 185,
+        "card_number_prefix": null,
+        "card_number_raw": "185",
+        "card_number_suffix": null,
+        "category": "たね",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 230,
+        "identity_modifiers": [],
+        "illustrator": "PLANETA Tsuji",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/039584_P_BANGIRASUV.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "バンギラスV",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_39584_v1.html",
+        "raw_snapshot_sha256": "97cd730fa7171af8185b7b658985e3df4eebae00a039527f094d8925c4cc6407",
+        "registry_key": "jpn-product-e66b2d8c16a44330",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10780",
+          "https://www.pokemon-card.com/products/s/sg.html"
+        ],
+        "release_date": "2021年 5月28日（金）",
+        "retrieved_at": "2026-07-27T20:57:16.933Z",
+        "source_container_id": "coordinate:S-P:185",
+        "source_external_id": "39584",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-e66b2d8c16a44330:S-P:185",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/products/2021/images/1400_SP_185_248BANGIRASv.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/5718062097a25406bbc9.html",
+          "coordinate_page_snapshot_sha256": "5b3b789aa7e59ca01faa6c817693bbb77bfb0fd6d9f3a70a1d2fa65c4e4e1bd2",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 7,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_185_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "dfc128645a80b626c073c7684d687b0a052f52996c6c8e60293100912f742c6c"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "ハイクラスデッキダブルBOX ゲンガーVMAX＆インテレオンVMAX",
+        "source_set_code": "S-P",
+        "source_set_name": "ハイクラスデッキダブルBOX ゲンガーVMAX＆インテレオンVMAX",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/39584/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "812c4bda440283b62e50cfb2a46e7dab13197a46e75cf373130ddfa3d2e42998",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 189,
+        "card_number_prefix": null,
+        "card_number_raw": "189",
+        "card_number_suffix": null,
+        "category": "V進化",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 310,
+        "identity_modifiers": [],
+        "illustrator": "Kouki Saitou",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/039913_P_EFIVMAX.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "エーフィVMAX",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_39913_v1.html",
+        "raw_snapshot_sha256": "74e48da9aefab3ea9d37f364124e1f1d518cd9aaa102d54baf49144ddb117ae9",
+        "registry_key": "jpn-product-cf985e7761549d45",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10786",
+          "https://www.pokemon-card.com/info/2021/20210504_002922.html"
+        ],
+        "release_date": "2021年 5月28日（金）",
+        "retrieved_at": "2026-07-27T20:57:19.164Z",
+        "source_container_id": "coordinate:S-P:189",
+        "source_external_id": "39913",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-cf985e7761549d45:S-P:189",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/info/2021/04/images/1400_SP_189_196EIFIEvmax.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/c2d0dab077ef3e72b0c6.html",
+          "coordinate_page_snapshot_sha256": "f25838c3c3730a62e9c3ff4bd4f61f628a353b6728f94235db854ce284af6dbd",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 3,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_189_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "bf4650ab697da0a628cddf0843be9c231c1aec4bb30fa0af2e2571bdcf4ce8bc"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "強化拡張パック イーブイヒーローズ イーブイズセット",
+        "source_set_code": "S-P",
+        "source_set_name": "強化拡張パック イーブイヒーローズ イーブイズセット",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/39913/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "3b0633a9f36fd1160c28e7d197ff1683b08dec6c766887963c3bf08548be3b93",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 268,
+        "card_number_prefix": null,
+        "card_number_raw": "268",
+        "card_number_suffix": null,
+        "category": "たね",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 210,
+        "identity_modifiers": [],
+        "illustrator": "PLANETA Yamashita",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/041182_P_RIFUIAV.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "リーフィアV",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_41182_v1.html",
+        "raw_snapshot_sha256": "0c098ab45c73adfb5947d6823e87ae06c21a5045d763f35f3266fba66c307b83",
+        "registry_key": "jpn-product-c48dc9f11716c705",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10807",
+          "https://www.pokemon-card.com/info/003235.html"
+        ],
+        "release_date": "2022年 2月 4日（金）",
+        "retrieved_at": "2026-07-27T20:57:21.373Z",
+        "source_container_id": "coordinate:S-P:268",
+        "source_external_id": "41182",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-c48dc9f11716c705:S-P:268",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_268_LEAFIAv.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/92b90cfded93451ac687.html",
+          "coordinate_page_snapshot_sha256": "fdcf2f94db0e8516216a11b1950524e5d923a657dc0db8132647ddcede2a39ed",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 13,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_268_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "09b1157ace90028c53e5d7e32f3a21be4d1490a0569ecb7e40407c3271e4a8d5"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "スペシャルカードセット 草のリーフィアVSTAR",
+        "source_set_code": "S-P",
+        "source_set_name": "スペシャルカードセット 草のリーフィアVSTAR",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/41182/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "2c75949cb6f34c0af7f7a207ee4819615a262a3fd016e23e2dde976474c3a52f",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 269,
+        "card_number_prefix": null,
+        "card_number_raw": "269",
+        "card_number_suffix": null,
+        "category": "V進化",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 260,
+        "identity_modifiers": [],
+        "illustrator": "5ban Graphics",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/041183_P_RIFUIAVSTAR.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "リーフィアVSTAR",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_41183_v1.html",
+        "raw_snapshot_sha256": "3c354d7ee9ae643ffe26b12d7d4cdb26cca7c06a639dea4f5193092311390b5e",
+        "registry_key": "jpn-product-c48dc9f11716c705",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10807",
+          "https://www.pokemon-card.com/info/003235.html"
+        ],
+        "release_date": "2022年 2月 4日（金）",
+        "retrieved_at": "2026-07-27T20:57:23.545Z",
+        "source_container_id": "coordinate:S-P:269",
+        "source_external_id": "41183",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-c48dc9f11716c705:S-P:269",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_269_LEAFIAvstar.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/92b90cfded93451ac687.html",
+          "coordinate_page_snapshot_sha256": "fdcf2f94db0e8516216a11b1950524e5d923a657dc0db8132647ddcede2a39ed",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 3,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_269_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "530c4ee12f93ce4b85899813817f81b95c06ca68a01fc235839a7e6235594082"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "スペシャルカードセット 草のリーフィアVSTAR",
+        "source_set_code": "S-P",
+        "source_set_name": "スペシャルカードセット 草のリーフィアVSTAR",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/41183/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "9cf545b15263357e2f2010fc365c111e74649da20063e356a2390019c8f09268",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 270,
+        "card_number_prefix": null,
+        "card_number_raw": "270",
+        "card_number_suffix": null,
+        "category": "たね",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 210,
+        "identity_modifiers": [],
+        "illustrator": "PLANETA Yamashita",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/041184_P_GUREISHIAV.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "グレイシアV",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_41184_v1.html",
+        "raw_snapshot_sha256": "6ceb94496157caf9b8a1e99e45946347577bd9922e4aa688af6e4caec28797ea",
+        "registry_key": "jpn-product-ad47af2d8b461c26",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10808",
+          "https://www.pokemon-card.com/info/003235.html"
+        ],
+        "release_date": "2022年 2月 4日（金）",
+        "retrieved_at": "2026-07-27T20:57:25.763Z",
+        "source_container_id": "coordinate:S-P:270",
+        "source_external_id": "41184",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-ad47af2d8b461c26:S-P:270",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_270_471GLACIAv.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/92b90cfded93451ac687.html",
+          "coordinate_page_snapshot_sha256": "fdcf2f94db0e8516216a11b1950524e5d923a657dc0db8132647ddcede2a39ed",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 10,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_270_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "8b02437283074a3d03b1ad239f06b0585b39d2848884cbbb844a9873982199e3"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "スペシャルカードセット 氷のグレイシアVSTAR",
+        "source_set_code": "S-P",
+        "source_set_name": "スペシャルカードセット 氷のグレイシアVSTAR",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/41184/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      },
+      {
+        "assertion_key": "8af0a3800ff583cb2dd8b0e77fd062a49024a56fb1c9e01d23257f30b7f419c6",
+        "assertion_version": "JPN-MASTER-INDEX-CARD-SOURCE-ASSERTION-V1",
+        "card_number_denominator": null,
+        "card_number_numerator": 271,
+        "card_number_prefix": null,
+        "card_number_raw": "271",
+        "card_number_suffix": null,
+        "category": "V進化",
+        "dex_numbers": [],
+        "distribution_labels": [],
+        "edition_labels": [],
+        "english_display_name": null,
+        "finish_labels": [],
+        "hp": 260,
+        "identity_modifiers": [],
+        "illustrator": "5ban Graphics",
+        "image_urls": [
+          "https://www.pokemon-card.com/assets/images/card_images/large/S-P/041185_P_GUREISHIAVSTAR.jpg"
+        ],
+        "language": "ja",
+        "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+        "printed_name": "グレイシアVSTAR",
+        "rarity": null,
+        "raw_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/card_41185_v1.html",
+        "raw_snapshot_sha256": "c079fa06698ae675324b887ba50719488db94d483b0d905ee143fff4adc62f64",
+        "registry_key": "jpn-product-ad47af2d8b461c26",
+        "regulation_mark": null,
+        "related_urls": [
+          "https://www.pokemon-card.com/card-search/index.php?regulation_detail=all&pg=10808",
+          "https://www.pokemon-card.com/info/003235.html"
+        ],
+        "release_date": "2022年 2月 4日（金）",
+        "retrieved_at": "2026-07-27T20:57:28.039Z",
+        "source_container_id": "coordinate:S-P:271",
+        "source_external_id": "41185",
+        "source_family": "pokemon_card_official_jp",
+        "source_fields": {
+          "coordinate_followup_key": "official_product_coordinate:jpn-product-ad47af2d8b461c26:S-P:271",
+          "coordinate_page_image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_271_471GLACIAvstar.jpg",
+          "coordinate_page_snapshot_ref": "docs/audits/japanese_master_index_v5/official_product_detail_pages/raw/92b90cfded93451ac687.html",
+          "coordinate_page_snapshot_sha256": "fdcf2f94db0e8516216a11b1950524e5d923a657dc0db8132647ddcede2a39ed",
+          "exact_coordinate_validation": true,
+          "printed_denominator_raw": "S-P",
+          "rarity_image_url": null,
+          "search_hit_count": 2,
+          "search_max_page": 1,
+          "search_result_pages": [
+            1
+          ],
+          "search_snapshot_refs": [
+            "docs/audits/japanese_master_index_v5/official_product_coordinate_search/raw/search_s_p_271_p1_v1.json"
+          ],
+          "search_snapshot_sha256": [
+            "8f3c755ca5d531404be7c2b031d0d4de673557ee0813fccc02b91a28a4d44997"
+          ]
+        },
+        "source_id": "official_jp_cards",
+        "source_kind": "official_card_catalog",
+        "source_product_id": null,
+        "source_product_name": "スペシャルカードセット 氷のグレイシアVSTAR",
+        "source_set_code": "S-P",
+        "source_set_name": "スペシャルカードセット 氷のグレイシアVSTAR",
+        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/41185/regu/all",
+        "stamp_labels": [],
+        "type_line": null,
+        "unnumbered_label": null
+      }
+    ],
+    "execution_boundary": {
+      "database_reads": false,
+      "database_writes": false,
+      "image_downloads": false,
+      "pricing_writes": false,
+      "production_writes": false,
+      "storage_writes": false
+    }
+  },
+  "content_fingerprint_sha256": "7b054806fdbe04b6764a997395466cb0eddf1ef08271bd4070e616a606252c17",
+  "generated_at": "2026-07-27T23:30:00.000Z",
+  "package_id": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-COORDINATE-SEARCH-HARVEST-V1",
+  "retrieval": {
+    "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-COORDINATE-SEARCH-HARVEST-V1",
+    "mode": "preserved_source_capture",
+    "parser_version": "JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1",
+    "request_delay_ms": 750,
+    "source_followups_path": "docs/audits/japanese_master_index_v5/official_product_detail_pages/parsed/jpn_v5_official_product_coordinate_search_followups_v1.jsonl"
+  }
+}

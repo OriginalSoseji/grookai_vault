@@ -56,6 +56,7 @@ test('parser schedules only product-specific numeric search collections', () => 
   assert.equal(summary.verified_product_count, 3);
   assert.equal(summary.verified_search_collection_count, 6);
   assert.equal(summary.exact_embedded_official_card_count, 3);
+  assert.equal(summary.coordinate_search_followup_count, 7);
   assert.equal(summary.release_wide_search_id_exclusion_count, 2);
   assert.deepEqual(
     followups.map((row) => row.official_search_product_id).sort(),
@@ -75,6 +76,27 @@ test('parser schedules only product-specific numeric search collections', () => 
   assert.deepEqual(
     cardAssertions.map((row) => row.source_external_id),
     ['37745', '38001', '38002'],
+  );
+  const coordinateFollowups = readJsonl(path.join(
+    parsedRoot,
+    'jpn_v5_official_product_coordinate_search_followups_v1.jsonl',
+  ));
+  assert.deepEqual(
+    coordinateFollowups.map((row) =>
+      `${row.source_set_code}:${row.card_number_raw}:${row.printed_name}`),
+    [
+      'S-P:184:エンペルトV',
+      'S-P:185:バンギラスV',
+      'S-P:189:エーフィVMAX',
+      'S-P:268:リーフィアV',
+      'S-P:269:リーフィアVSTAR',
+      'S-P:270:グレイシアV',
+      'S-P:271:グレイシアVSTAR',
+    ],
+  );
+  assert.equal(
+    new Set(coordinateFollowups.map((row) => row.registry_key)).size,
+    4,
   );
 });
 
@@ -98,6 +120,7 @@ test('detail-page parsing replays deterministically from preserved HTML', () => 
       'jpn_v5_official_product_detail_page_parse_summary_v1.json',
       'jpn_v5_official_product_detail_search_followups_v1.jsonl',
       'jpn_v5_official_product_detail_card_assertions_v1.jsonl',
+      'jpn_v5_official_product_coordinate_search_followups_v1.jsonl',
     ]) {
       assert.equal(
         fs.readFileSync(path.join(replay, name), 'utf8'),

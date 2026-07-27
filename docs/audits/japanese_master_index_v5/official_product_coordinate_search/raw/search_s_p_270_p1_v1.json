@@ -1,0 +1,76 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 10,
+    "cardStart": 1,
+    "cardEnd": 10,
+    "searchCondition": [
+        "キーワード：グレイシアV",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42867",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042867_P_GUREISHIAVSTAR.jpg",
+            "cardNameAltText": "グレイシアVSTAR",
+            "cardNameViewText": "グレイシアVSTAR"
+        },
+        {
+            "cardID": "40367",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040367_P_GUREISHIAV.jpg",
+            "cardNameAltText": "グレイシアV",
+            "cardNameViewText": "グレイシアV"
+        },
+        {
+            "cardID": "40368",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040368_P_GUREISHIAVMAX.jpg",
+            "cardNameAltText": "グレイシアVMAX",
+            "cardNameViewText": "グレイシアVMAX"
+        },
+        {
+            "cardID": "39608",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039608_P_GUREISHIAV.jpg",
+            "cardNameAltText": "グレイシアV",
+            "cardNameViewText": "グレイシアV"
+        },
+        {
+            "cardID": "39609",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039609_P_GUREISHIAVMAX.jpg",
+            "cardNameAltText": "グレイシアVMAX",
+            "cardNameViewText": "グレイシアVMAX"
+        },
+        {
+            "cardID": "39888",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039888_P_GUREISHIAV.jpg",
+            "cardNameAltText": "グレイシアV",
+            "cardNameViewText": "グレイシアV"
+        },
+        {
+            "cardID": "39889",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039889_P_GUREISHIAV.jpg",
+            "cardNameAltText": "グレイシアV",
+            "cardNameViewText": "グレイシアV"
+        },
+        {
+            "cardID": "39647",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039647_T_SUNORIFUBAJJI.jpg",
+            "cardNameAltText": "スノーリーフバッジ",
+            "cardNameViewText": "スノーリーフバッジ"
+        },
+        {
+            "cardID": "41184",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041184_P_GUREISHIAV.jpg",
+            "cardNameAltText": "グレイシアV",
+            "cardNameViewText": "グレイシアV"
+        },
+        {
+            "cardID": "41185",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041185_P_GUREISHIAVSTAR.jpg",
+            "cardNameAltText": "グレイシアVSTAR",
+            "cardNameViewText": "グレイシアVSTAR"
+        }
+    ]
+}

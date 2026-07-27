@@ -1,0 +1,34 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 3,
+    "cardStart": 1,
+    "cardEnd": 3,
+    "searchCondition": [
+        "キーワード：リーフィアVSTAR",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42273",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042273_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        },
+        {
+            "cardID": "42860",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042860_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        },
+        {
+            "cardID": "41183",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041183_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        }
+    ]
+}

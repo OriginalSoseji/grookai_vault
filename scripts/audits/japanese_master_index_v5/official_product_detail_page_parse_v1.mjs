@@ -101,6 +101,54 @@ function directOfficialCardImages(html) {
     Number(left.card_id) - Number(right.card_id));
 }
 
+function coordinateCardImages(html) {
+  const rows = [];
+  for (const match of String(html).matchAll(/<img\b(?<attrs>[^>]+)>/gi)) {
+    const source = match.groups.attrs.match(
+      /\bsrc=["'](?<value>[^"']+)["']/i,
+    )?.groups?.value;
+    const printedName = match.groups.attrs.match(
+      /\balt=["'](?<value>[^"']*)["']/i,
+    )?.groups?.value;
+    if (!source || !printedName) continue;
+    const coordinate = source.match(
+      /(?:^|[_/])SP[_-](?<number>\d+)[_-]/i,
+    );
+    if (!coordinate) continue;
+    rows.push({
+      printed_name: decodeHtml(printedName).trim(),
+      source_set_code: 'S-P',
+      card_number_raw: String(Number(coordinate.groups.number)),
+      image_url: new URL(
+        decodeHtml(source),
+        'https://www.pokemon-card.com',
+      ).toString(),
+    });
+  }
+  return [...new Map(
+    rows.map((row) => [
+      `${row.source_set_code}:${row.card_number_raw}:${row.printed_name}`,
+      row,
+    ]),
+  ).values()].sort((left, right) =>
+    Number(left.card_number_raw) - Number(right.card_number_raw));
+}
+
+function normalizedCardSubject(value) {
+  return String(value ?? '')
+    .normalize('NFKC')
+    .replace(/\s+/g, '')
+    .replace(/(?:V-UNION|VSTAR|VMAX|ex|V)$/i, '');
+}
+
+function productsForCoordinate(products, coordinate) {
+  if (products.length === 1) return products;
+  const subject = normalizedCardSubject(coordinate.printed_name);
+  return products.filter((product) =>
+    product.product_name.normalize('NFKC').replace(/\s+/g, '')
+      .includes(subject));
+}
+
 function cardLikeAssets(html) {
   return [...new Set(
     [...String(html).matchAll(
@@ -165,6 +213,7 @@ async function main() {
   const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
   const searchFollowups = [];
   const cardAssertions = [];
+  const coordinateFollowups = [];
   const productResults = [];
   for (const snapshot of manifest.snapshots) {
     const body = fs.readFileSync(snapshot.body_path);
@@ -176,6 +225,7 @@ async function main() {
     const invalidSearchValues = nonNumericSearchValues(html);
     const pageCardIds = directCardIds(html);
     const directImages = directOfficialCardImages(html);
+    const coordinateImages = coordinateCardImages(html);
     const pageCardAssets = cardLikeAssets(html);
     const scope = searchScopeDisposition(snapshot.source_url);
 
@@ -256,9 +306,49 @@ async function main() {
         direct_card_ids_on_page: pageCardIds,
         direct_official_card_image_ids:
           directImages.map((row) => row.card_id),
+        coordinate_card_slots: coordinateImages
+          .filter((row) =>
+            productsForCoordinate(snapshot.products, row)
+              .some((candidate) =>
+                candidate.registry_key === product.registry_key))
+          .map((row) => ({
+            printed_name: row.printed_name,
+            source_set_code: row.source_set_code,
+            card_number_raw: row.card_number_raw,
+            image_url: row.image_url,
+          })),
         card_like_asset_urls_on_page: pageCardAssets,
         raw_snapshot_ref: snapshot.body_path,
         raw_snapshot_sha256: snapshot.metadata.body_sha256,
+      });
+    }
+    for (const coordinate of coordinateImages) {
+      const assignedProducts = productsForCoordinate(
+        snapshot.products,
+        coordinate,
+      );
+      if (assignedProducts.length !== 1) continue;
+      const [product] = assignedProducts;
+      coordinateFollowups.push({
+        followup_key:
+          `official_product_coordinate:${product.registry_key}:`
+          + `${coordinate.source_set_code}:${coordinate.card_number_raw}`,
+        generator_version: GENERATOR_VERSION,
+        registry_key: product.registry_key,
+        product_name: product.product_name,
+        release_date: product.release_date,
+        printed_name: coordinate.printed_name,
+        source_set_code: coordinate.source_set_code,
+        card_number_raw: coordinate.card_number_raw,
+        page_image_url: coordinate.image_url,
+        source_url: snapshot.source_url
+          + (product.source_fragment ?? ''),
+        raw_snapshot_ref: snapshot.body_path,
+        raw_snapshot_sha256: snapshot.metadata.body_sha256,
+        retrieved_at: snapshot.metadata.fetched_at,
+        disposition: 'official_coordinate_search_followup_ready',
+        disposition_reason:
+          'official_product_image_encodes_set_and_printed_number',
       });
     }
   }
@@ -270,6 +360,10 @@ async function main() {
   cardAssertions.sort((left, right) =>
     left.registry_key.localeCompare(right.registry_key)
     || Number(left.source_external_id) - Number(right.source_external_id));
+  coordinateFollowups.sort((left, right) =>
+    left.source_set_code.localeCompare(right.source_set_code)
+    || Number(left.card_number_raw) - Number(right.card_number_raw)
+    || left.registry_key.localeCompare(right.registry_key));
   productResults.sort((left, right) =>
     left.registry_key.localeCompare(right.registry_key));
 
@@ -286,6 +380,7 @@ async function main() {
     verified_search_collection_count: searchFollowups.length,
     exact_embedded_official_card_count:
       new Set(cardAssertions.map((row) => row.source_external_id)).size,
+    coordinate_search_followup_count: coordinateFollowups.length,
     release_wide_search_id_exclusion_count: productResults.filter(
       (row) =>
         row.disposition === 'release_wide_search_id_not_product_specific',
@@ -323,6 +418,13 @@ async function main() {
     ),
     cardAssertions,
   );
+  await writeJsonl(
+    path.join(
+      outputRoot,
+      'jpn_v5_official_product_coordinate_search_followups_v1.jsonl',
+    ),
+    coordinateFollowups,
+  );
 
   if (!args.quiet) {
     console.log(JSON.stringify({
@@ -333,6 +435,8 @@ async function main() {
       verified_search_collections: summary.verified_search_collection_count,
       exact_embedded_official_cards:
         summary.exact_embedded_official_card_count,
+      coordinate_search_followups:
+        summary.coordinate_search_followup_count,
       release_wide_exclusions:
         summary.release_wide_search_id_exclusion_count,
       unresolved_products: summary.unresolved_product_count,

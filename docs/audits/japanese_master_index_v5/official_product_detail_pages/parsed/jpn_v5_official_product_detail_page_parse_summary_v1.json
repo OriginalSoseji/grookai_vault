@@ -6,6 +6,7 @@
     "production_writes": false,
     "storage_access": false
   },
+  "coordinate_search_followup_count": 7,
   "exact_embedded_official_card_count": 3,
   "generated_at": "2026-07-27T21:00:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DETAIL-PAGE-PARSE-V1",
@@ -14,6 +15,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -30,6 +32,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -46,6 +49,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -64,6 +68,7 @@
       "card_like_asset_urls_on_page": [
         "/products/2021/images/S_V-UNION_logo.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "product_search_ids_verified",
@@ -86,6 +91,7 @@
         "726"
       ],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "official_search_api_followup_ready",
@@ -139,6 +145,7 @@
         "./assets/images/trainers-card-8.png",
         "./assets/images/trainers-card-9.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [
         "43322",
         "43323",
@@ -309,6 +316,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -325,6 +333,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -341,6 +350,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -357,6 +367,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -373,6 +384,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -391,6 +403,7 @@
       "card_like_asset_urls_on_page": [
         "/products/2021/images/S_V-UNION_logo.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "product_search_ids_verified",
@@ -409,6 +422,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -425,6 +439,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -441,6 +456,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -457,6 +473,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [
         "37745",
@@ -477,6 +494,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -493,6 +511,20 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [
+        {
+          "card_number_raw": "270",
+          "image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_270_471GLACIAv.jpg",
+          "printed_name": "グレイシアV",
+          "source_set_code": "S-P"
+        },
+        {
+          "card_number_raw": "271",
+          "image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_271_471GLACIAvstar.jpg",
+          "printed_name": "グレイシアVSTAR",
+          "source_set_code": "S-P"
+        }
+      ],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -511,6 +543,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -527,6 +560,20 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [
+        {
+          "card_number_raw": "268",
+          "image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_268_LEAFIAv.jpg",
+          "printed_name": "リーフィアV",
+          "source_set_code": "S-P"
+        },
+        {
+          "card_number_raw": "269",
+          "image_url": "https://www.pokemon-card.com/info/2021/12/images/1400_SP_269_LEAFIAvstar.jpg",
+          "printed_name": "リーフィアVSTAR",
+          "source_set_code": "S-P"
+        }
+      ],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -545,6 +592,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -561,6 +609,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -591,6 +640,7 @@
         "./assets/images/trainers-card-4.png",
         "./assets/images/trainers-card-5.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "official_search_api_followup_ready",
@@ -609,6 +659,14 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [
+        {
+          "card_number_raw": "189",
+          "image_url": "https://www.pokemon-card.com/info/2021/04/images/1400_SP_189_196EIFIEvmax.jpg",
+          "printed_name": "エーフィVMAX",
+          "source_set_code": "S-P"
+        }
+      ],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -625,6 +683,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -641,6 +700,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",
@@ -660,6 +720,20 @@
         "735"
       ],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [
+        {
+          "card_number_raw": "184",
+          "image_url": "https://www.pokemon-card.com/products/2021/images/1400_SP_184_395EMPERTEv.jpg",
+          "printed_name": "エンペルトV",
+          "source_set_code": "S-P"
+        },
+        {
+          "card_number_raw": "185",
+          "image_url": "https://www.pokemon-card.com/products/2021/images/1400_SP_185_248BANGIRASv.jpg",
+          "printed_name": "バンギラスV",
+          "source_set_code": "S-P"
+        }
+      ],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "official_search_api_followup_ready",
@@ -712,6 +786,7 @@
         "./assets/images/trainers-card-8.png",
         "./assets/images/trainers-card-9.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [
         "43322",
         "43323",
@@ -884,6 +959,7 @@
       "card_like_asset_urls_on_page": [
         "/products/2021/images/S_V-UNION_logo.png"
       ],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "product_search_ids_verified",
@@ -902,6 +978,7 @@
     {
       "assigned_official_search_product_ids": [],
       "card_like_asset_urls_on_page": [],
+      "coordinate_card_slots": [],
       "direct_card_ids_on_page": [],
       "direct_official_card_image_ids": [],
       "disposition": "no_verified_product_search_id",

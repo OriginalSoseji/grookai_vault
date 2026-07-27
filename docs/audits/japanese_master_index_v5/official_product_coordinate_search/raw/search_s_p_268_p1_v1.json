@@ -1,0 +1,94 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 13,
+    "cardStart": 1,
+    "cardEnd": 13,
+    "searchCondition": [
+        "キーワード：リーフィアV",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42272",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042272_P_RIFUIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "42273",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042273_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        },
+        {
+            "cardID": "42860",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042860_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        },
+        {
+            "cardID": "40339",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040339_P_RIFUIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "40508",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040508_P_RIFUIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "40509",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040509_P_RIFUIAVMAX.jpg",
+            "cardNameAltText": "リーフィアVMAX",
+            "cardNameViewText": "リーフィアVMAX"
+        },
+        {
+            "cardID": "39586",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039586_P_RIFIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "39587",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039587_P_RIFIAVMAX.jpg",
+            "cardNameAltText": "リーフィアVMAX",
+            "cardNameViewText": "リーフィアVMAX"
+        },
+        {
+            "cardID": "39882",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039882_P_RIFIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "39883",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039883_P_RIFIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "39647",
+            "cardThumbFile": "/assets/images/card_images/large/S6a/039647_T_SUNORIFUBAJJI.jpg",
+            "cardNameAltText": "スノーリーフバッジ",
+            "cardNameViewText": "スノーリーフバッジ"
+        },
+        {
+            "cardID": "41182",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041182_P_RIFUIAV.jpg",
+            "cardNameAltText": "リーフィアV",
+            "cardNameViewText": "リーフィアV"
+        },
+        {
+            "cardID": "41183",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041183_P_RIFUIAVSTAR.jpg",
+            "cardNameAltText": "リーフィアVSTAR",
+            "cardNameViewText": "リーフィアVSTAR"
+        }
+    ]
+}

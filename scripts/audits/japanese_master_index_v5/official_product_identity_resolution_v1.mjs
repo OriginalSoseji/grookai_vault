@@ -32,6 +32,10 @@ const SEARCH_ASSERTIONS =
 const DETAIL_SEARCH_ASSERTIONS =
   'docs/audits/japanese_master_index_v5/official_product_detail_search/'
   + 'official_jp_card_assertions_v1.json';
+const COORDINATE_SEARCH_ASSERTIONS =
+  'docs/audits/japanese_master_index_v5/'
+  + 'official_product_coordinate_search/'
+  + 'official_jp_card_assertions_v1.json';
 const CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
   + 'candidate_union_manifest_v1.json';
@@ -145,6 +149,11 @@ async function main() {
     {
       evidenceOrigin: 'v5_official_product_detail_search',
       rows: readVerifiedArtifact(DETAIL_SEARCH_ASSERTIONS).content.assertions,
+    },
+    {
+      evidenceOrigin: 'v5_official_product_coordinate_search',
+      rows: readVerifiedArtifact(COORDINATE_SEARCH_ASSERTIONS)
+        .content.assertions,
     },
   ];
   const searchAssertions = searchAssertionSources.flatMap(
@@ -440,7 +449,11 @@ async function main() {
       duplicate_candidates_auto_merged: 0,
     },
     next_gate:
-      'integrate_245_direct_resolutions_and_adjudicate_8_duplicate_clusters',
+      `integrate_${
+        identityRows.filter((row) => row.promotion_ready).length
+      }_direct_resolutions_and_adjudicate_${
+        identityRows.filter((row) => !row.promotion_ready).length
+      }_duplicate_clusters`,
   };
 
   await fsp.rm(outputRoot, { force: true, recursive: true });

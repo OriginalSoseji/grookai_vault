@@ -74,18 +74,18 @@ test('official product identities resolve exact V4 delta', () => {
     resolutionRoot,
     'jpn_v5_official_product_identity_delta_v1.jsonl',
   );
-  assert.equal(report.official_unique_identity_count, 412);
+  assert.equal(report.official_unique_identity_count, 419);
   assert.equal(report.currently_master_admissible_count, 78);
-  assert.equal(report.newly_covered_base_identity_count, 334);
+  assert.equal(report.newly_covered_base_identity_count, 341);
   assert.deepEqual(report.resolution_disposition_counts, {
     duplicate_candidate_cluster_exact_image_review: 114,
     existing_candidate_exact_image_upgrade: 253,
-    new_official_identity: 45,
+    new_official_identity: 52,
   });
   assert.deepEqual(report.coverage_projection.projected, {
-    covered_slots: 8_267,
-    expected_slots: 22_078,
-    percent: 37.44,
+    covered_slots: 8_274,
+    expected_slots: 22_085,
+    percent: 37.46,
   });
   assert.ok(identities.every((row) =>
     row.base_identity_coverage_resolved));
@@ -103,7 +103,7 @@ test('all duplicate official-image clusters are evidence-safe', () => {
   assert.equal(report.reviewed_cluster_count, 114);
   assert.equal(report.safe_merge_cluster_count, 114);
   assert.equal(report.blocked_cluster_count, 0);
-  assert.equal(report.official_product_lane.integration_ready_identity_count, 412);
+  assert.equal(report.official_product_lane.integration_ready_identity_count, 419);
   assert.ok(rows.every((row) => row.safe_to_merge));
   assert.ok(rows.every((row) => row.blockers.length === 0));
   assert.ok(rows.every((row) =>
@@ -124,12 +124,12 @@ test('working overlay preserves V4 and adds exact base identities', () => {
     overlayRoot,
     'jpn_v5_candidate_supersessions_v1.jsonl',
   );
-  assert.equal(report.overlay_identity_count, 412);
-  assert.equal(report.newly_covered_base_identity_count, 334);
+  assert.equal(report.overlay_identity_count, 419);
+  assert.equal(report.newly_covered_base_identity_count, 341);
   assert.equal(report.previously_master_admissible_identity_count, 78);
-  assert.equal(report.projected_v5_working_identity_count, 71_903);
+  assert.equal(report.projected_v5_working_identity_count, 71_910);
   assert.equal(supersessions.length, 248);
-  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 412);
+  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 419);
   assert.ok(overlay.every((row) =>
     row.base_identity_coverage_status === 'resolved'));
   assert.equal(report.boundary.v4_artifacts_mutated, false);

@@ -1,0 +1,58 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 7,
+    "cardStart": 1,
+    "cardEnd": 7,
+    "searchCondition": [
+        "キーワード：バンギラスV",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "40420",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040420_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "40739",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040739_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39862",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039862_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39106",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039106_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39262",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039262_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39263",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039263_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39584",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039584_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        }
+    ]
+}

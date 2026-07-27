@@ -2,20 +2,20 @@
   "baseline": {
     "active_releases_without_census_issues": 67,
     "base_identity_coverage": {
-      "covered_slots": 8267,
-      "expected_slots": 22078,
-      "percent": 37.44
+      "covered_slots": 8274,
+      "expected_slots": 22085,
+      "percent": 37.46
     },
-    "completed_official_product_scopes": 19,
+    "completed_official_product_scopes": 22,
     "completed_official_release_scopes": 10,
-    "newly_resolved_official_identities": 412,
+    "newly_resolved_official_identities": 419,
     "original_issue_rows": 2705,
-    "projected_v5_working_identity_count": 71903,
-    "reconciled_active_container_count": 1362,
+    "projected_v5_working_identity_count": 71910,
+    "reconciled_active_container_count": 1359,
     "reconciled_container_dispositions": 72,
-    "reconciled_issue_rows": 2503,
+    "reconciled_issue_rows": 2497,
     "release_count": 1453,
-    "unique_releases_with_work": 1295
+    "unique_releases_with_work": 1292
   },
   "batches": {
     "batch_count": 28,
@@ -134,16 +134,16 @@
     "zero_inventory_acquisition": {
       "issue_counts": {
         "base_identity_slot_gap": 135,
-        "missing_container_inventory": 575,
+        "missing_container_inventory": 572,
         "missing_expected_count": 4,
-        "product_slot_manifest_missing": 436
+        "product_slot_manifest_missing": 433
       },
-      "release_count": 575,
+      "release_count": 572,
       "release_kind_counts": {
         "constructed_deck": 163,
         "expansion_or_subset": 72,
         "magazine_movie_media": 2,
-        "product_exclusive_distribution": 329,
+        "product_exclusive_distribution": 326,
         "promo_series": 6,
         "vending": 3
       },

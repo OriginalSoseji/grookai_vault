@@ -1,8 +1,8 @@
 {
   "base_identity_coverage": {
-    "covered_slots": 8267,
-    "expected_slots": 22078,
-    "percent": 37.44
+    "covered_slots": 8274,
+    "expected_slots": 22085,
+    "percent": 37.46
   },
   "boundary": {
     "database_access": false,
@@ -15,20 +15,20 @@
   "generated_at": "2026-07-27T06:00:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V5-WORKING-INDEX-OVERLAY-V1",
   "identity_action_counts": {
-    "add_new_official_identity": 45,
+    "add_new_official_identity": 52,
     "collapse_duplicate_candidates_to_official_identity": 114,
     "upgrade_existing_candidate_with_official_identity": 253
   },
-  "newly_covered_base_identity_count": 334,
+  "newly_covered_base_identity_count": 341,
   "next_gate": "recompute_release_census_and_continue_next_zero_inventory_batch",
-  "overlay_identity_count": 412,
+  "overlay_identity_count": 419,
   "previously_master_admissible_identity_count": 78,
-  "projected_v5_working_identity_count": 71903,
+  "projected_v5_working_identity_count": 71910,
   "promotion_readiness": {
-    "base_identity_ready_promotion_blocked": 238,
+    "base_identity_ready_promotion_blocked": 245,
     "blocker_counts": {
-      "collector_facing_english_name_missing": 45,
-      "family_relationship_unresolved": 197
+      "collector_facing_english_name_missing": 52,
+      "family_relationship_unresolved": 204
     },
     "promotion_evidence_ready": 174
   },
