@@ -1,0 +1,27 @@
+{
+  "aggregate_sha256": "f081c5ec813f6ab26fdad60a36f81c17f5b1685722dc9879b5cec693e456729a",
+  "files": {
+    "assertions": {
+      "bytes": 458557,
+      "row_count": 327,
+      "sha256": "bd569c3ae710f9b6918d387d7b63b18d9658c206d6b29b6c5e31af2345613c2a"
+    },
+    "followups": {
+      "bytes": 209,
+      "row_count": 1,
+      "sha256": "90db10f6b14451128ccf9fda6273d075447e1417cf813ac843684ae52064b552"
+    },
+    "productResults": {
+      "bytes": 2376,
+      "row_count": 14,
+      "sha256": "e16bca5e6aa3ad1aa5d4361b7dc4d6067031f965c6e989eb973f59fd47a5c163"
+    },
+    "report": {
+      "bytes": 783,
+      "row_count": null,
+      "sha256": "17527fdd5614fb942d40c7c3b81d437162ef17a1e5f660aeda1460cf74db379b"
+    }
+  },
+  "generated_at": "2026-07-27T05:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-PARSE-V1"
+}

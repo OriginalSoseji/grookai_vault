@@ -1,12 +1,24 @@
 {
   "baseline": {
-    "issue_rows": 2705,
+    "active_releases_without_census_issues": 59,
+    "base_identity_coverage": {
+      "covered_slots": 8186,
+      "expected_slots": 21919,
+      "percent": 37.35
+    },
+    "completed_official_product_scopes": 14,
+    "completed_official_release_scopes": 2,
+    "newly_resolved_official_identities": 253,
+    "original_issue_rows": 2705,
+    "projected_v5_working_identity_count": 72021,
+    "reconciled_active_container_count": 1367,
+    "reconciled_container_dispositions": 72,
+    "reconciled_issue_rows": 2529,
     "release_count": 1453,
-    "releases_without_census_issues": 57,
-    "unique_releases_with_work": 1396
+    "unique_releases_with_work": 1308
   },
   "batches": {
-    "batch_count": 31,
+    "batch_count": 29,
     "batch_size": 50,
     "database_writes_approved": false,
     "source_fetches_approved": false
@@ -91,13 +103,13 @@
     "denominator_repair": {
       "issue_counts": {
         "expected_count_conflict": 151,
-        "missing_expected_count": 185,
+        "missing_expected_count": 183,
         "product_slot_manifest_missing": 119,
-        "strict_admission_gap": 445
+        "strict_admission_gap": 443
       },
-      "release_count": 455,
+      "release_count": 453,
       "release_kind_counts": {
-        "constructed_deck": 100,
+        "constructed_deck": 98,
         "expansion_or_subset": 201,
         "magazine_movie_media": 2,
         "product_exclusive_distribution": 131,
@@ -121,17 +133,17 @@
     },
     "zero_inventory_acquisition": {
       "issue_counts": {
-        "base_identity_slot_gap": 150,
-        "missing_container_inventory": 666,
+        "base_identity_slot_gap": 135,
+        "missing_container_inventory": 580,
         "missing_expected_count": 4,
-        "product_slot_manifest_missing": 512
+        "product_slot_manifest_missing": 441
       },
-      "release_count": 666,
+      "release_count": 580,
       "release_kind_counts": {
         "constructed_deck": 163,
-        "expansion_or_subset": 87,
+        "expansion_or_subset": 72,
         "magazine_movie_media": 2,
-        "product_exclusive_distribution": 405,
+        "product_exclusive_distribution": 334,
         "promo_series": 6,
         "vending": 3
       },

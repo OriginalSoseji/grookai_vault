@@ -1,0 +1,36 @@
+{
+  "acquired_official_assertion_count": 191,
+  "boundary": {
+    "database_access": false,
+    "name_only_identity_merges": 0,
+    "production_writes": false,
+    "source_evidence_replaced": false,
+    "source_fetches": false,
+    "storage_access": false
+  },
+  "bounded_coverage_after": {
+    "covered_slots": 7933,
+    "expected_slots": 21666,
+    "percent": 36.61
+  },
+  "bounded_coverage_before": {
+    "covered_slots": 7933,
+    "expected_slots": 21666,
+    "percent": 36.61
+  },
+  "coverage_change_reason": "official names are acquired evidence, but exact printing admission still requires a printed number or governed unnumbered image key",
+  "disposition_counts": {
+    "ambiguous_name_match_needs_image_or_number": 166,
+    "novel_official_slot_needs_image_or_number": 19,
+    "single_name_match_other_release_needs_print_confirmation": 6
+  },
+  "followup_product_count": 116,
+  "generated_at": "2026-07-27T04:30:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CORPUS-RECONCILE-V1",
+  "linked_official_card_list_count": 15,
+  "linked_official_product_detail_count": 55,
+  "next_gate": "harvest_official_card_lists_and_product_details_in_bounded_batches",
+  "source_product_count": 455,
+  "status": "official_product_slots_reconciled_without_admission",
+  "strict_identity_admission_count": 0
+}

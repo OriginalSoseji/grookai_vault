@@ -1,0 +1,22 @@
+{
+  "aggregate_sha256": "66c7cb5a610399a22c4b24eaa3d492bd305c1d7983c87705d0c25ad21be27f62",
+  "files": {
+    "adjudications": {
+      "bytes": 13814,
+      "row_count": 8,
+      "sha256": "c32d327e4770ed8cd90328bce7826ea8b9b0c94a7b951240628d44e45456d14d"
+    },
+    "attestation": {
+      "bytes": 324,
+      "row_count": null,
+      "sha256": "6660f2821aa693ab7015fa7d785adcb46ff807d936753015f0491ab6cbde6777"
+    },
+    "report": {
+      "bytes": 815,
+      "row_count": null,
+      "sha256": "6c6ca155f3fdf8152f093e0aaa0ddca0f9c904237cd97d74774aebe5612c9252"
+    }
+  },
+  "generated_at": "2026-07-27T05:45:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DUPLICATE-ADJUDICATION-V1"
+}

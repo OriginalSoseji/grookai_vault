@@ -1,0 +1,10 @@
+{
+  "database_access": false,
+  "generated_at": "2026-07-27T06:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-WORKING-INDEX-OVERLAY-V1",
+  "production_writes": false,
+  "promotion_executed": false,
+  "source_fetches": false,
+  "storage_access": false,
+  "v4_artifacts_mutated": false
+}

@@ -1,0 +1,43 @@
+{
+  "boundary": {
+    "database_access": false,
+    "duplicate_candidates_auto_merged": 0,
+    "production_writes": false,
+    "source_evidence_replaced": false,
+    "source_fetches": false,
+    "storage_access": false
+  },
+  "canonical_release_scope_count": 2,
+  "coverage_projection": {
+    "denominator_rule": "unique official card ID counted once in its canonical release union",
+    "official_product_delta": {
+      "covered_slots": 253,
+      "expected_slots": 253
+    },
+    "prior": {
+      "covered_slots": 7933,
+      "expected_slots": 21666,
+      "percent": 36.61
+    },
+    "projected": {
+      "covered_slots": 8186,
+      "expected_slots": 21919,
+      "percent": 37.35
+    }
+  },
+  "currently_master_admissible_count": 0,
+  "duplicate_candidate_review_count": 8,
+  "generated_at": "2026-07-27T05:30:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-IDENTITY-RESOLUTION-V1",
+  "newly_covered_base_identity_count": 253,
+  "next_gate": "integrate_245_direct_resolutions_and_adjudicate_8_duplicate_clusters",
+  "official_unique_identity_count": 253,
+  "product_scope_disposition_count": 14,
+  "promotion_ready_identity_count": 245,
+  "resolution_disposition_counts": {
+    "duplicate_candidate_cluster_exact_image_review": 8,
+    "existing_candidate_exact_image_upgrade": 200,
+    "new_official_identity": 45
+  },
+  "status": "official_product_identity_delta_resolved"
+}

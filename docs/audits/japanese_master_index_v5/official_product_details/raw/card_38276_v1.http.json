@@ -1,0 +1,17 @@
+{
+  "body_bytes": 10278,
+  "body_sha256": "a53ac0176e774db4388f134810002f013d2dd227a1ed0fc4d025ffa5f26b4a58",
+  "capture_mode": "live_fetch",
+  "fetched_at": "2026-07-27T20:01:53.863Z",
+  "final_url": "https://www.pokemon-card.com/card-search/details.php/card/38276/regu/all",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CARD-DETAIL-HARVEST-V1",
+  "http_status": 200,
+  "request_url": "https://www.pokemon-card.com/card-search/details.php/card/38276/regu/all",
+  "response_headers": {
+    "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content_length": null,
+    "content_type": "text/html; charset=UTF-8",
+    "etag": null,
+    "last_modified": "Mon, 27 Jul 2026 20:01:54 GMT"
+  }
+}

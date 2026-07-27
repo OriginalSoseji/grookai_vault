@@ -1,0 +1,346 @@
+{
+  "boundary": {
+    "approved_source_host": "www.pokemon-card.com",
+    "database_access": false,
+    "pricing_access": false,
+    "production_writes": false,
+    "storage_access": false
+  },
+  "generated_at": "2026-07-27T19:52:36.104Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+  "request_delay_ms": 1500,
+  "snapshot_origin_live_fetch_count": 11,
+  "snapshots": [
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/8f21f0ec46b51792919d.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38586,
+        "body_sha256": "82597773f023f9c6b552a4f3fc01cf1800dfe2174add6d2c877c9b588d881e4d",
+        "fetched_at": "2026-07-27T19:52:16.212Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=88cYca-7yc52h-DGc8Gc",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=88cYca-7yc52h-DGc8Gc",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:17 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ悪　ガラルヤドラン",
+          "registry_key": "jpn-product-dbc8fda23b4835f1",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=88cYca-7yc52h-DGc8Gc"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/072bd63680b4a4034926.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 40400,
+        "body_sha256": "3b39251e57837bde526864f46bf492def1ec0029f350952465b7f807e0f40503",
+        "fetched_at": "2026-07-27T19:52:18.643Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9gnn6L-kZOtzl-L9gn6g",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9gnn6L-kZOtzl-L9gn6g",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:19 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ無色　イーブイ",
+          "registry_key": "jpn-product-f5633e03a9341642",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9gnn6L-kZOtzl-L9gn6g"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/d973dac5483e41ca3050.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38581,
+        "body_sha256": "2579471664fe79f58d409bb6708d313dfa77ca6aced6469d4237daf354484b77",
+        "fetched_at": "2026-07-27T19:52:20.420Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9igngg-8mJfAT-g6Hg9n",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9igngg-8mJfAT-g6Hg9n",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:21 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ雷　ピカチュウ",
+          "registry_key": "jpn-product-8adc845ea8f834c3",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9igngg-8mJfAT-g6Hg9n"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/9acef42852a5197317cd.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38341,
+        "body_sha256": "78648ef950cafeac81e3d5e1f376f719bae465e7d3cb451177faaee0e18bdf6b",
+        "fetched_at": "2026-07-27T19:52:22.181Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9Qnngg-6kOGRZ-gN9Lin",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9Qnngg-6kOGRZ-gN9Lin",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:23 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ炎　ガオガエン",
+          "registry_key": "jpn-product-13de9c70cf23f4e0",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9Qnngg-6kOGRZ-gN9Lin"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/d272f7f4097cb8a10704.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38377,
+        "body_sha256": "93642c55a62e9d2688cebb6d9adbf3d60876edced032df29d0dd115b46452bb6",
+        "fetched_at": "2026-07-27T19:52:24.365Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bF1vVk-2jHuIW-Fkbf1F",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bF1vVk-2jHuIW-Fkbf1F",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:25 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ草　フシギバナ",
+          "registry_key": "jpn-product-28325b8c776f84ec",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bF1vVk-2jHuIW-Fkbf1F"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/e3d4b0b8db00b2313c96.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38433,
+        "body_sha256": "acd626e8a019b5c771b121ee5e0c350aa0a85f6a0039c0ac2a7b95e80533650d",
+        "fetched_at": "2026-07-27T19:52:26.579Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bkbFkF-TzdQEL-vbvbF1",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bkbFkF-TzdQEL-vbvbF1",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:27 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ鋼　ジュラルドン",
+          "registry_key": "jpn-product-40281c386d2bb4af",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=bkbFkF-TzdQEL-vbvbF1"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/c8986658c26c03b44e44.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38333,
+        "body_sha256": "c638d14fd610b7fb067a58b918de326312d5b9c494218fac65bdfce593bdd7b6",
+        "fetched_at": "2026-07-27T19:52:28.807Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=DacKGc-CWLPYO-8cxD8G",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=DacKGc-CWLPYO-8cxD8G",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:29 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ水　ホエルオー",
+          "registry_key": "jpn-product-6a660c798c0204e0",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=DacKGc-CWLPYO-8cxD8G"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/532ac0bddc514d25d073.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38562,
+        "body_sha256": "0330e29773134e2ed8718264d444ab8c5e2f9000ab1711d2cd05906446e61d34",
+        "fetched_at": "2026-07-27T19:52:30.583Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=G848cc-pLg6W8-ac4G48",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=G848cc-pLg6W8-ac4G48",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:31 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ超　ミュウ",
+          "registry_key": "jpn-product-3f8453ac8da07ff8",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=G848cc-pLg6W8-ac4G48"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/73fb789ce10494f5b53a.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 38332,
+        "body_sha256": "6a9d17dfe99580e5d5a474beaf062f8420e419507f2de36e9cd8462f59b71512",
+        "fetched_at": "2026-07-27T19:52:32.780Z",
+        "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=iiLQgn-32T7z9-gHgn99",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=iiLQgn-32T7z9-gHgn99",
+        "response_headers": {
+          "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": "Mon, 27 Jul 2026 19:52:33 GMT"
+        }
+      },
+      "products": [
+        {
+          "product_name": "Vスタートデッキ闘　ルカリオ",
+          "registry_key": "jpn-product-674055eeb689df06",
+          "source_fragment": null
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/deck/deck.html?deckID=iiLQgn-32T7z9-gHgn99"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/257a45a6d1aa321574ba.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 30919,
+        "body_sha256": "1d959e1c0923233f03346bc7ff45eeb114c97bdbd8cc7b33b289b642fb0670c9",
+        "fetched_at": "2026-07-27T19:52:34.528Z",
+        "final_url": "https://www.pokemon-card.com/info/2019/20191110_002152.html",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/info/2019/20191110_002152.html",
+        "response_headers": {
+          "cache_control": null,
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": null
+        }
+      },
+      "products": [
+        {
+          "product_name": "プレミアムトレーナーボックス　ソード＆シールド",
+          "registry_key": "jpn-product-2ea70ba63e47923f",
+          "source_fragment": "#list"
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/info/2019/20191110_002152.html"
+    },
+    {
+      "body_path": "docs/audits/japanese_master_index_v5/official_product_links/raw/a5cf8100b585d0c2addc.html",
+      "capture_mode": "live_fetch",
+      "metadata": {
+        "body_bytes": 108076,
+        "body_sha256": "5fb1198104c1ab21206e2ac01986f818c2733ec952ffd1b7d8697d650e49c2c0",
+        "fetched_at": "2026-07-27T19:52:36.104Z",
+        "final_url": "https://www.pokemon-card.com/products/s/sa.html",
+        "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+        "http_status": 200,
+        "request_url": "https://www.pokemon-card.com/products/s/sa.html",
+        "response_headers": {
+          "cache_control": null,
+          "content_length": null,
+          "content_type": "text/html; charset=UTF-8",
+          "etag": null,
+          "last_modified": null
+        }
+      },
+      "products": [
+        {
+          "product_name": "スターターセットV　草",
+          "registry_key": "jpn-product-03b149bcbcf265d4",
+          "source_fragment": "#V1"
+        },
+        {
+          "product_name": "スターターセットV　雷",
+          "registry_key": "jpn-product-6234a4aa8dfeefbe",
+          "source_fragment": "#V4"
+        },
+        {
+          "product_name": "スターターセットV　闘",
+          "registry_key": "jpn-product-7bbe5a59d6228af0",
+          "source_fragment": "#V5"
+        },
+        {
+          "product_name": "スターターセットV　水",
+          "registry_key": "jpn-product-9252a1d1d12fdef2",
+          "source_fragment": "#V3"
+        },
+        {
+          "product_name": "スターターセットV　炎",
+          "registry_key": "jpn-product-aa47b403295f9472",
+          "source_fragment": "#V2"
+        }
+      ],
+      "source_url": "https://www.pokemon-card.com/products/s/sa.html"
+    }
+  ],
+  "source_product_count": 15,
+  "status": "official_product_card_list_snapshots_preserved",
+  "unique_request_url_count": 11
+}

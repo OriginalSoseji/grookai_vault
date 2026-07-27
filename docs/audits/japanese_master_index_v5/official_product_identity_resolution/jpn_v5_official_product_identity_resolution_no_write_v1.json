@@ -1,0 +1,10 @@
+{
+  "database_access": false,
+  "duplicate_candidates_auto_merged": 0,
+  "generated_at": "2026-07-27T05:30:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-IDENTITY-RESOLUTION-V1",
+  "production_writes": false,
+  "source_evidence_replaced": false,
+  "source_fetches": false,
+  "storage_access": false
+}

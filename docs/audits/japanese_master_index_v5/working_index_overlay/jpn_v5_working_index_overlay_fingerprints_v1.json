@@ -1,0 +1,27 @@
+{
+  "aggregate_sha256": "0ea3121b6617cc075446f79b0e6f8bd65ea338177ac7bb2e4b3cafc742886ba0",
+  "files": {
+    "attestation": {
+      "bytes": 296,
+      "row_count": null,
+      "sha256": "85509cbe1d8fd5533ba3ac13d21e292edb1d4674034fd09fbf08070bfb862837"
+    },
+    "overlay": {
+      "bytes": 251782,
+      "row_count": 253,
+      "sha256": "7eaf196900150c510f541c39ee6873b8e685233ee370bb7caed44a1de703a195"
+    },
+    "report": {
+      "bytes": 1171,
+      "row_count": null,
+      "sha256": "46c539035cb93cf4fd6e7a32496f3ae1f45ba75a6924bf486e564d124e6efc0d"
+    },
+    "supersessions": {
+      "bytes": 6552,
+      "row_count": 24,
+      "sha256": "a84179db28b030952e340ca2156eefc699a97d02de0511196fa150f699030089"
+    }
+  },
+  "generated_at": "2026-07-27T06:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-WORKING-INDEX-OVERLAY-V1"
+}

@@ -14,6 +14,10 @@ const DEFAULT_OUTPUT_ROOT =
   'docs/audits/japanese_master_index_v5/acquisition_waves';
 const CENSUS_ROOT =
   'docs/audits/japanese_master_index_v5/release_census';
+const OFFICIAL_PRODUCT_RESOLUTION_ROOT =
+  'docs/audits/japanese_master_index_v5/official_product_identity_resolution';
+const WORKING_INDEX_OVERLAY_ROOT =
+  'docs/audits/japanese_master_index_v5/working_index_overlay';
 
 const SOURCE_LANE_BY_SET_SOURCE = new Map([
   ['official_jp_products', 'official_jp_cards'],
@@ -203,6 +207,21 @@ async function main() {
   const issueRows = loadJsonl(
     `${CENSUS_ROOT}/jpn_v5_acquisition_priority_queue_v1.jsonl`,
   );
+  const scopeDispositions = loadJsonl(
+    'docs/audits/japanese_master_index_v5/registry_scope/'
+    + 'jpn_v5_registry_scope_dispositions_v1.jsonl',
+  );
+  const officialProductDispositions = loadJsonl(
+    `${OFFICIAL_PRODUCT_RESOLUTION_ROOT}/`
+    + 'jpn_v5_official_product_scope_dispositions_v1.jsonl',
+  );
+  const completedOfficialReleaseScopes = loadJsonl(
+    `${OFFICIAL_PRODUCT_RESOLUTION_ROOT}/`
+    + 'jpn_v5_official_release_scope_coverage_v1.jsonl',
+  );
+  const workingIndexOverlay = readJson(
+    `${WORKING_INDEX_OVERLAY_ROOT}/jpn_v5_working_index_overlay_report_v1.json`,
+  );
   const denominator = readJson(
     `${CENSUS_ROOT}/jpn_v5_denominator_report_v1.json`,
   );
@@ -212,7 +231,26 @@ async function main() {
   const lanes = sourceExhaustion.content.source_lanes;
   const laneById = new Map(lanes.map((lane) => [lane.lane_id, lane]));
   const censusByKey = new Map(census.map((row) => [row.release_key, row]));
-  const issuesByRelease = groupBy(issueRows, (row) => row.release_key);
+  const removedRegistryKeys = new Set(
+    scopeDispositions.map((row) => row.release_key),
+  );
+  const completedOfficialProductKeys = new Set(
+    officialProductDispositions.map((row) => row.product_registry_key),
+  );
+  const completedOfficialReleaseKeys = new Set(
+    completedOfficialReleaseScopes.map(
+      (row) => row.canonical_release_registry_key,
+    ),
+  );
+  const completedWorkKeys = new Set([
+    ...removedRegistryKeys,
+    ...completedOfficialProductKeys,
+    ...completedOfficialReleaseKeys,
+  ]);
+  const activeIssueRows = issueRows.filter(
+    (row) => !completedWorkKeys.has(row.release_key),
+  );
+  const issuesByRelease = groupBy(activeIssueRows, (row) => row.release_key);
 
   const workpacks = [...issuesByRelease].map(([releaseKey, rows]) => {
     const release = censusByKey.get(releaseKey);
@@ -280,10 +318,26 @@ async function main() {
     status: 'planned_not_executed',
     baseline: {
       release_count: denominator.registry.total_containers,
-      issue_rows: denominator.acquisition_queue.issue_rows,
+      reconciled_active_container_count:
+        denominator.registry.total_containers
+        - removedRegistryKeys.size
+        - completedOfficialProductKeys.size,
+      original_issue_rows: denominator.acquisition_queue.issue_rows,
+      reconciled_issue_rows: activeIssueRows.length,
+      reconciled_container_dispositions: scopeDispositions.length,
+      completed_official_product_scopes: completedOfficialProductKeys.size,
+      completed_official_release_scopes: completedOfficialReleaseKeys.size,
+      newly_resolved_official_identities:
+        workingIndexOverlay.overlay_identity_count,
+      projected_v5_working_identity_count:
+        workingIndexOverlay.projected_v5_working_identity_count,
+      base_identity_coverage: workingIndexOverlay.base_identity_coverage,
       unique_releases_with_work: workpacks.length,
-      releases_without_census_issues:
-        denominator.registry.total_containers - workpacks.length,
+      active_releases_without_census_issues:
+        denominator.registry.total_containers
+        - removedRegistryKeys.size
+        - completedOfficialProductKeys.size
+        - workpacks.length,
     },
     waves: Object.fromEntries(
       [...groupBy(workpacks, (row) => row.wave_key)]
@@ -357,7 +411,8 @@ async function main() {
     console.log(JSON.stringify({
       status: summary.status,
       releases_with_work: workpacks.length,
-      releases_without_issues: summary.baseline.releases_without_census_issues,
+      releases_without_issues:
+        summary.baseline.active_releases_without_census_issues,
       batches: batches.length,
       waves: Object.fromEntries(
         Object.entries(summary.waves).map(([key, value]) => [

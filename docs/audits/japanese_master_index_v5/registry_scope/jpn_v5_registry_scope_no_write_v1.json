@@ -1,0 +1,9 @@
+{
+  "database_access": false,
+  "generated_at": "2026-07-27T03:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-REGISTRY-SCOPE-RECONCILIATION-V1",
+  "production_writes": false,
+  "registry_mutation": false,
+  "source_fetches": false,
+  "storage_access": false
+}

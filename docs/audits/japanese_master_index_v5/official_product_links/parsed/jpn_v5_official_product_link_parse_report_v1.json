@@ -1,0 +1,24 @@
+{
+  "assertion_count": 327,
+  "boundary": {
+    "database_access": false,
+    "production_writes": false,
+    "source_evidence_replaced": false,
+    "source_fetches": false,
+    "storage_access": false
+  },
+  "followup_count": 1,
+  "generated_at": "2026-07-27T05:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-PARSE-V1",
+  "governed_unnumbered_assertion_count": 243,
+  "next_gate": "resolve_official_card_ids_and_images_against_v4_working_index",
+  "numbered_assertion_count": 84,
+  "parsed_product_count": 14,
+  "parser_lane_counts": {
+    "official_deck_builder": 9,
+    "official_static_starter_page": 5
+  },
+  "physical_quantity_is_identity_count": false,
+  "status": "official_product_card_lists_parsed",
+  "unique_official_card_id_count": 253
+}

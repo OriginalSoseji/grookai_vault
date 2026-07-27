@@ -1,0 +1,32 @@
+{
+  "aggregate_sha256": "31da8070c5acb71560ad556cc17a51fbbab46196955ee7831ed0c6b43df10b84",
+  "files": {
+    "assertions": {
+      "bytes": 32792,
+      "row_count": 23,
+      "sha256": "ff8cab3c73f0b4d39e874116bd758e5524ee23faf2c14897ce89b557e6a26e5d"
+    },
+    "attestation": {
+      "bytes": 313,
+      "row_count": null,
+      "sha256": "83859334e378b1ea173a6c00621899c15bafa77e9712ef92ca958b71750ee3b7"
+    },
+    "dispositions": {
+      "bytes": 9555,
+      "row_count": 50,
+      "sha256": "b8fe7af05f654f78f0b293ad1efdabc322395694483f98c34fa0e461db4f5697"
+    },
+    "report": {
+      "bytes": 939,
+      "row_count": null,
+      "sha256": "5382a9e5699d9fdd8dd8aa52f22115f4f2b3cc55efd0299dfac1eed1f45bf728"
+    },
+    "sourceRows": {
+      "bytes": 54183,
+      "row_count": 50,
+      "sha256": "1ee0c102c4fd0e1a69ee3f7a04c8252464df3efd8d3513e0450f839b13c16de3"
+    }
+  },
+  "generated_at": "2026-07-27T04:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-BATCH-EXTRACT-V1"
+}

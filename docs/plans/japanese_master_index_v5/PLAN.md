@@ -30,6 +30,44 @@ aliases, and duplicate rows never inflate the denominator.
 - Historical deferrals: 3,693
 - Unresolved contradictions: 339
 
+## Current V5 Progress
+
+- Governed containers censused: 1,453
+- Deterministic scope dispositions: 72
+  - 15 contaminated TCGdex aliases excluded
+  - 57 duplicate official expansion-product aliases merged
+- Reconciled bounded denominator after the first official-product lane:
+  21,919 base-card slots
+- Exact covered slots on the reconciled bounded denominator: 8,186
+- Current bounded coverage: 37.35%
+- Projected V5 working identities: 72,021
+- Active release/product scopes with unresolved work: 1,308
+- Zero-inventory release/product containers remaining: 580
+- Official zero-inventory products processed from preserved snapshots: 455
+- Explicit named-card slots acquired from official product contents: 191
+- Direct official card-list products discovered: 15
+- Official card-list products parsed: 14
+- Official product card-list assertions acquired: 327
+- Unique official card IDs represented by those assertions: 253
+- Exact official identities integrated into the read-only V5 overlay: 253
+  - 45 new identities absent from V4
+  - 200 exact-image upgrades to existing V4 candidates
+  - 8 duplicate basic-energy clusters collapsed under exact official IDs
+  - 24 source-isolated V4 candidate rows superseded
+- Completed official product scopes retired from the active queue: 14
+- Completed canonical release scopes retired from the active queue: 2
+- Base identities with complete promotion evidence: 76
+- Base identities retained with promotion blockers: 177
+  - 45 missing collector-facing English names
+  - 136 unresolved family relationships; blocker categories may overlap
+
+The 191 product-content assertions remain source evidence rather than
+name-only coverage. The completed direct card-list lane supplied 253 exact
+official card IDs, 244 printed numbers, nine governed unnumbered basic-energy
+identities, and exact official images. Those identities are reconciled
+against V4 by official image/card ID rather than title. Base-index coverage
+and production-promotion readiness remain separate measurements.
+
 ## Workstreams
 
 1. Build a complete release-container census and classify denominator quality.

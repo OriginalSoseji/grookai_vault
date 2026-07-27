@@ -1,0 +1,16 @@
+{
+  "body_bytes": 38581,
+  "body_sha256": "2579471664fe79f58d409bb6708d313dfa77ca6aced6469d4237daf354484b77",
+  "fetched_at": "2026-07-27T19:52:20.420Z",
+  "final_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9igngg-8mJfAT-g6Hg9n",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-LINK-HARVEST-V1",
+  "http_status": 200,
+  "request_url": "https://www.pokemon-card.com/deck/deck.html?deckID=9igngg-8mJfAT-g6Hg9n",
+  "response_headers": {
+    "cache_control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content_length": null,
+    "content_type": "text/html; charset=UTF-8",
+    "etag": null,
+    "last_modified": "Mon, 27 Jul 2026 19:52:21 GMT"
+  }
+}

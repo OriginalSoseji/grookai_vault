@@ -1,0 +1,33 @@
+{
+  "denominator_effect": {
+    "covered_slots": 7933,
+    "interpretation": "provisional_bounded_coverage_after_evidence_proven_container_dedup",
+    "previous_expected_slots": 23181,
+    "previous_percent": 34.22,
+    "ratio": 0.36614973,
+    "reconciled_expected_slots": 21666,
+    "reconciled_percent": 36.61,
+    "removed_false_expected_slots": 1515
+  },
+  "dispositions": {
+    "by_disposition": {
+      "exclude_source_metadata_alias_contamination": 15,
+      "merge_official_expansion_product_alias": 57
+    },
+    "by_evidence_strength": {
+      "deterministic_cluster": 15,
+      "exact_core_name_and_date": 38,
+      "exact_core_name_unique_target": 19
+    },
+    "row_count": 72
+  },
+  "generated_at": "2026-07-27T03:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-REGISTRY-SCOPE-RECONCILIATION-V1",
+  "next_gate": "rebuild_wave_plan_excluding_reconciled_container_aliases",
+  "status": "read_only_scope_reconciliation",
+  "wave_1_effect": {
+    "prior_zero_inventory_release_count": 666,
+    "remaining_zero_inventory_release_count": 594,
+    "resolved_as_container_alias_or_source_contamination": 72
+  }
+}

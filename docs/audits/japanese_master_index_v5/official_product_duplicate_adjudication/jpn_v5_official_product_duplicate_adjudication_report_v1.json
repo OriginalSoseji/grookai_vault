@@ -1,0 +1,24 @@
+{
+  "blocked_cluster_count": 0,
+  "boundary": {
+    "blocked_clusters_auto_merged": 0,
+    "database_access": false,
+    "production_writes": false,
+    "source_evidence_replaced": false,
+    "source_fetches": false,
+    "storage_access": false
+  },
+  "generated_at": "2026-07-27T05:45:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DUPLICATE-ADJUDICATION-V1",
+  "next_gate": "build_v5_working_index_overlay_for_253_resolved_identities",
+  "official_product_lane": {
+    "direct_resolution_count": 245,
+    "duplicate_cluster_resolution_count": 8,
+    "exact_identity_count": 253,
+    "integration_ready_identity_count": 253
+  },
+  "reviewed_cluster_count": 8,
+  "safe_merge_cluster_count": 8,
+  "status": "duplicate_candidate_clusters_adjudicated",
+  "superseded_candidate_row_count": 24
+}

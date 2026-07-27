@@ -1,0 +1,27 @@
+{
+  "aggregate_sha256": "351136729cafebb1d101d7fde9e98c1c6ed54e82cdce84ea8080ba9be48b2980",
+  "files": {
+    "attestation": {
+      "bytes": 315,
+      "row_count": null,
+      "sha256": "10c8ada2cca87dace84aaa5a832ec7e2e37f1d09c30c8902988dfced3e0342a7"
+    },
+    "queue": {
+      "bytes": 41853,
+      "row_count": 116,
+      "sha256": "ec7a3d9832eee76edb49390b9fea1fc50b0e512bab5257ecd282493c3ec8adae"
+    },
+    "reconciliation": {
+      "bytes": 297439,
+      "row_count": 191,
+      "sha256": "2934a5eb720f1c867308b049dc5f08de47f8d0d4235f0b80fb58a5896d8dcbcf"
+    },
+    "report": {
+      "bytes": 1327,
+      "row_count": null,
+      "sha256": "9d2d9e496ca01168a0b240fd70d485c560b996b1e5f0ba3295013feb9b293cb9"
+    }
+  },
+  "generated_at": "2026-07-27T04:30:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CORPUS-RECONCILE-V1"
+}

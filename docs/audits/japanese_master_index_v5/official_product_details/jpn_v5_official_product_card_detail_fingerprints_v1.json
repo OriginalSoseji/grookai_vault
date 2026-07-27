@@ -1,0 +1,22 @@
+{
+  "aggregate_sha256": "d6988226c5d79509aa6cf7707ff949b9f598cfc30bfa6337c02d480ff2e1f132",
+  "files": {
+    "details": {
+      "bytes": 226141,
+      "row_count": 253,
+      "sha256": "1d9fefd95e41f036a9e747ec0a50c9a1163801683729bc7b42c7e766b09d9f26"
+    },
+    "failures": {
+      "bytes": 1,
+      "row_count": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "report": {
+      "bytes": 728,
+      "row_count": null,
+      "sha256": "67878b96bb3ce5718d711cfdd3042de253b304856370f027067d89fa44f927e4"
+    }
+  },
+  "generated_at": "2026-07-27T20:07:43.618Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CARD-DETAIL-HARVEST-V1"
+}

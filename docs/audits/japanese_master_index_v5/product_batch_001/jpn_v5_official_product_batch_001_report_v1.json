@@ -1,0 +1,25 @@
+{
+  "batch_key": "zero_inventory_acquisition:001",
+  "boundary": {
+    "database_access": false,
+    "production_writes": false,
+    "source_evidence_replaced": false,
+    "source_fetches": false,
+    "storage_access": false
+  },
+  "disposition_counts": {
+    "official_explicit_reprint_only_product": 3,
+    "official_identity_manifest_followup_required": 27,
+    "official_named_card_slots_extracted": 14,
+    "official_packaging_only_no_direct_identity": 1,
+    "official_random_booster_release_followup": 5
+  },
+  "exact_raw_product_match_count": 50,
+  "generated_at": "2026-07-27T04:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-BATCH-EXTRACT-V1",
+  "next_gate": "reconcile_23_official_unnumbered_assertions_and_follow_card_list_urls",
+  "official_named_card_assertion_count": 23,
+  "products_with_named_card_assertions": 14,
+  "source_product_count": 50,
+  "status": "offline_source_evidence_extracted"
+}

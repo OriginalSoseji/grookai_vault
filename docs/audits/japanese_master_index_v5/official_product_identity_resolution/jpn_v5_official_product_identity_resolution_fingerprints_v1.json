@@ -1,0 +1,32 @@
+{
+  "aggregate_sha256": "5f0fec4e703bba40c98ac0b85887744b7c0703096341038cd7a1ecc0ee946753",
+  "files": {
+    "attestation": {
+      "bytes": 325,
+      "row_count": null,
+      "sha256": "10a3623a0f79b0dd1ff32256c4716cf7c3d98aae9085973abb7a775a2e50cbf8"
+    },
+    "identities": {
+      "bytes": 255628,
+      "row_count": 253,
+      "sha256": "60158bf8cafea9737edc9912c1e778578ae60d62250ce039c1dddb8ded452dd9"
+    },
+    "products": {
+      "bytes": 5768,
+      "row_count": 14,
+      "sha256": "c7e36a9f6fa149bd110037ecab34f15492512439fae7d3efbc8b349e895e272c"
+    },
+    "report": {
+      "bytes": 1405,
+      "row_count": null,
+      "sha256": "eab1a063323af1cf08d7f28b5c6b8eacdf060538601b147830a4341300cef36a"
+    },
+    "scopes": {
+      "bytes": 442,
+      "row_count": 2,
+      "sha256": "d7fd8897f944116c0ea796cba03a60be3c504a301aa7b231a76776ab346dcc70"
+    }
+  },
+  "generated_at": "2026-07-27T05:30:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-IDENTITY-RESOLUTION-V1"
+}

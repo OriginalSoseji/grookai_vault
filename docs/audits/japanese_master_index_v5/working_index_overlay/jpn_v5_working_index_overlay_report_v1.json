@@ -1,0 +1,36 @@
+{
+  "base_identity_coverage": {
+    "covered_slots": 8186,
+    "expected_slots": 21919,
+    "percent": 37.35
+  },
+  "boundary": {
+    "database_access": false,
+    "production_writes": false,
+    "promotion_executed": false,
+    "source_fetches": false,
+    "storage_access": false,
+    "v4_artifacts_mutated": false
+  },
+  "generated_at": "2026-07-27T06:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-WORKING-INDEX-OVERLAY-V1",
+  "identity_action_counts": {
+    "add_new_official_identity": 45,
+    "collapse_duplicate_candidates_to_official_identity": 8,
+    "upgrade_existing_candidate_with_official_identity": 200
+  },
+  "next_gate": "recompute_release_census_and_continue_next_zero_inventory_batch",
+  "overlay_identity_count": 253,
+  "projected_v5_working_identity_count": 72021,
+  "promotion_readiness": {
+    "base_identity_ready_promotion_blocked": 177,
+    "blocker_counts": {
+      "collector_facing_english_name_missing": 45,
+      "family_relationship_unresolved": 136
+    },
+    "promotion_evidence_ready": 76
+  },
+  "status": "v5_working_base_identity_overlay_built",
+  "superseded_v4_candidate_count": 24,
+  "v4_working_identity_count": 71992
+}

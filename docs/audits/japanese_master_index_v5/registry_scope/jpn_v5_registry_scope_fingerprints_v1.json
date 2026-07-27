@@ -1,0 +1,22 @@
+{
+  "aggregate_sha256": "38dbdd5861745706f62e7eb40b81d1811b1f5e670238d1c162535070162cb4f3",
+  "files": {
+    "attestation": {
+      "bytes": 270,
+      "row_count": null,
+      "sha256": "2dc8d88755f28c14e45fe8d823f5570d350a6c0da06734ac7af0c56d18ea8318"
+    },
+    "dispositions": {
+      "bytes": 47902,
+      "row_count": 72,
+      "sha256": "ca5bf54fe3d7a01efc6c9b6e5a77d6538540bd7874d48ca427a5cb7100aaf276"
+    },
+    "report": {
+      "bytes": 1129,
+      "row_count": null,
+      "sha256": "143f685bf114b2dc20c06e687fb46882a2b38b3772780b8a21186d497e4debc9"
+    }
+  },
+  "generated_at": "2026-07-27T03:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-REGISTRY-SCOPE-RECONCILIATION-V1"
+}

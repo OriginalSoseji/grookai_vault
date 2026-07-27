@@ -1,0 +1,10 @@
+{
+  "blocked_clusters_auto_merged": 0,
+  "database_access": false,
+  "generated_at": "2026-07-27T05:45:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DUPLICATE-ADJUDICATION-V1",
+  "production_writes": false,
+  "source_evidence_replaced": false,
+  "source_fetches": false,
+  "storage_access": false
+}
