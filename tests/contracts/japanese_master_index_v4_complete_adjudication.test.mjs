@@ -59,6 +59,25 @@ test('complete adjudication reconciles every required input row', async () => {
   assert.equal(counts.reconciliation.source_rows_reconcile, true);
   assert.equal(counts.reconciliation.printing_rows_reconcile, true);
   assert.equal(counts.reconciliation.generic_blocked_dispositions, 0);
+  assert.equal(
+    counts.reconciliation.generic_linked_assertion_dispositions,
+    0,
+  );
+  assert.equal(counts.reconciliation.package_conflict_checks_pass, true);
+  assert.deepEqual(counts.identity_dispositions, {
+    additional_resolved_promotion_ready: 1448,
+    blocked_but_otherwise_admissible: 355,
+    direct_card_insert_ready: 38,
+    duplicate_of_existing_production_identity: 37,
+    existing_production_identity_preserved: 22150,
+    existing_production_identity_with_core_drift: 167,
+    explicitly_excluded: 178,
+    historical_record_deferred_for_later_review: 3693,
+    insufficient_evidence: 39737,
+    set_first_then_card_insert_ready: 3850,
+    unresolved_contradiction: 339,
+  });
+  assert.equal(counts.identity_truth.blocked_candidates_classified, 43806);
 });
 
 test('identity dispositions are exclusive and never generic blocked', async () => {
@@ -79,12 +98,22 @@ test('identity dispositions are exclusive and never generic blocked', async () =
   assert.ok(dispositions.has('insufficient_evidence'));
   assert.ok(dispositions.has('unresolved_contradiction'));
   assert.ok(dispositions.has('explicitly_excluded'));
+  assert.ok(dispositions.has('blocked_but_otherwise_admissible'));
   assert.ok(
     dispositions.has('duplicate_of_existing_production_identity'),
   );
 });
 
 test('source and printing ledgers classify every row explicitly', async () => {
+  const counts = readJson('jpn_v4_final_counts.json');
+  const exactAssertionDispositions = new Set([
+    ...Object.values(
+      counts.source_disposition_schema.assertion_dispositions,
+    ),
+    'source_group_conflict',
+    'excluded_source_assertion',
+    'unlinked_source_assertion_requires_adjudication',
+  ]);
   const sourceKinds = { a: 0, g: 0 };
   const sourceCount = await readJsonl(
     'jpn_v4_final_source_assertion_disposition.jsonl',
@@ -93,6 +122,17 @@ test('source and printing ledgers classify every row explicitly', async () => {
       assert.ok(row.record_key);
       assert.ok(row.disposition);
       assert.notEqual(row.disposition, 'blocked');
+      assert.notEqual(
+        row.disposition,
+        'linked_to_final_identity_disposition',
+      );
+      if (row.kind === 'a') {
+        assert.equal(
+          exactAssertionDispositions.has(row.disposition),
+          true,
+          row.disposition,
+        );
+      }
     },
   );
   assert.equal(sourceCount, 331501);
@@ -132,7 +172,7 @@ test('promotion packages preserve old lanes and add resolved cards', async () =>
   );
   assert.equal(
     files['jpn_v4_additional_resolved_card_package.jsonl'].row_count,
-    1637,
+    1448,
   );
 
   let english = 0;
@@ -149,10 +189,123 @@ test('promotion packages preserve old lanes and add resolved cards', async () =>
         || row.target_set.prerequisite === 'promote_set_candidate_first');
       if (row.resolution.english) english += 1;
       if (row.resolution.set) sets += 1;
+      if (row.resolution.english) {
+        assert.ok(row.resolution.english.support_count >= 2);
+        assert.equal(
+          row.resolution.english.name_kind,
+          'approved_collector_display_mapping_not_claimed_official',
+        );
+      }
+      const conflict = row.promotion_contract.conflict_check_results;
+      assert.equal(conflict.package_coordinate_duplicate, false);
+      assert.deepEqual(conflict.live_set_number_occupant_ids, []);
+      assert.equal(conflict.public_gv_id_generated, false);
+      assert.equal(conflict.child_printing_generated, false);
     },
   );
-  assert.equal(english, 1622);
+  assert.equal(english, 1433);
   assert.equal(sets, 15);
+});
+
+test('package collision proof covers every ready card and set', async () => {
+  const counts = readJson('jpn_v4_final_counts.json');
+  assert.deepEqual(counts.promotion.card_package_conflict_proof, {
+    all_conflict_checks_pass: true,
+    duplicate_package_candidate_rows: 0,
+    duplicate_package_coordinate_groups: 0,
+    existing_live_set_target_rows: 53,
+    generated_child_printings: 0,
+    generated_database_identifiers: 0,
+    generated_public_gv_ids: 0,
+    live_set_number_conflict_rows: 0,
+    package_card_rows: 5336,
+    unique_package_coordinates: 5336,
+  });
+  assert.deepEqual(counts.promotion.set_package_conflict_proof, {
+    generated_database_identifiers: 0,
+    generated_public_routes: 0,
+    insert_ready_reconciliations: 1041,
+    live_match_conflict_rows: 0,
+    missing_set_reconciliations: 1041,
+    set_rows: 1041,
+  });
+  assert.equal(counts.promotion.image_ready_cards, 5336);
+  assert.equal(counts.promotion.total_cards_ready, 5336);
+
+  await readJsonl('jpn_v4_set_promotion_package.jsonl', (row) => {
+    const result = row.promotion_contract.conflict_check_results;
+    assert.equal(result.reconciliation_status, 'missing_set');
+    assert.equal(result.promotion_readiness, 'set_insert_candidate');
+    assert.deepEqual(result.live_match_ids, []);
+    assert.equal(result.generated_database_identifier, false);
+    assert.equal(result.generated_public_route, false);
+  });
+});
+
+test('admissible blockers and set conflicts retain exact evidence', async () => {
+  let admissibleBlocked = 0;
+  await readJsonl(
+    'jpn_v4_final_identity_disposition.jsonl',
+    (row) => {
+      if (row.disposition !== 'blocked_but_otherwise_admissible') return;
+      admissibleBlocked += 1;
+      assert.ok(row.reason_codes.includes(
+        'collector_facing_english_name_missing',
+      ));
+      assert.ok(row.reason_codes.includes(
+        'insufficient_authoritative_bilingual_mapping_support',
+      ));
+      assert.equal(row.promotion_status, 'not_promotion_ready');
+      assert.equal(row.readiness.english_display_name, false);
+    },
+  );
+  assert.equal(admissibleBlocked, 355);
+
+  const review = readJson('jpn_v4_remaining_review_queues.json');
+  assert.equal(review.summary.unresolved_english_name, 355);
+  assert.equal(review.summary.unresolved_set_mapping, 84);
+  for (const row of review.queues.unresolved_english_name) {
+    assert.equal(
+      row.evidence_needed,
+      'second_independent_approved_bilingual_mapping_or_authoritative_name',
+    );
+  }
+
+  const expectedSetCodes = new Set(['jpn-S8b', 'jpn-SV8a']);
+  let setResolutions = 0;
+  await readJsonl(
+    'jpn_v4_additional_resolved_card_package.jsonl',
+    (row) => {
+      if (!row.resolution.set) return;
+      setResolutions += 1;
+      assert.equal(
+        row.resolution.set.conflict_classification,
+        'duplicate_live_set_shells',
+      );
+      assert.equal(
+        row.resolution.set.recommended_action,
+        'reuse_named_canonical_set_preserve_other_shell_no_mutation',
+      );
+      assert.equal(
+        expectedSetCodes.has(row.resolution.set.selected_match.code),
+        true,
+      );
+      assert.equal(row.resolution.set.rejected_matches.length, 1);
+    },
+  );
+  assert.equal(setResolutions, 15);
+});
+
+test('source gaps are grouped by candidate, source, and kind exactly once', () => {
+  const review = readJson('jpn_v4_remaining_review_queues.json');
+  assert.deepEqual(review.source_gap_grouping_proof, {
+    candidate_source_groups: 115717,
+    candidate_source_groups_with_multiple_rows: 0,
+    candidate_source_kind_groups: 115717,
+    duplicate_candidate_source_kind_groups: 0,
+    max_candidate_source_kind_group_size: 1,
+    source_gap_rows: 115717,
+  });
 });
 
 test('duplicate map has deterministic survivors and no invalid inventions', async () => {
@@ -186,6 +339,10 @@ test('artifact fingerprints and no-write attestation are exact', async () => {
       crypto.createHash('sha256').update(value).digest('hex'),
       expected.sha256,
       filename,
+    );
+    assert.ok(
+      value.byteLength < 100 * 1024 * 1024,
+      `${filename} exceeds GitHub's 100 MiB limit`,
     );
   }
   const attestation = readJson('jpn_v4_no_write_attestation.json');

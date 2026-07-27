@@ -7,7 +7,8 @@ Generator: `JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1`
 - 71,992 identity candidates received one mutually exclusive final disposition.
 - 331,501 source assertions and gap records received a final evidence disposition.
 - 71,900 printing facts were preserved, rejected, or assigned a concrete corroboration target.
-- 1,637 promotion-blocked card candidates are now promotion-ready through conservative bilingual or set-survivor evidence.
+- 1,448 promotion-blocked card candidates are now promotion-ready through conservative bilingual or set-survivor evidence.
+- Bilingual consensus names are approved collector display mappings; they are not asserted to be official English printed names.
 - 37 exact duplicate production identity shells have deterministic canonical survivors.
 - 28,008 base identities remain defensibly known under the strict V4 rules.
 - 5,691 verified V4 identities are absent from the frozen production parent baseline.
@@ -17,19 +18,23 @@ Generator: `JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1`
 - Direct card package: 38
 - Set-first package: 1,041 sets
 - Set-dependent card package: 3,850
-- Additional resolved card package: 1,637
-- Total card candidates ready: 5,525
-- Cards with image evidence: 5,525
-- English-name blockers remaining: 166
+- Additional resolved card package: 1,448
+- Total card candidates ready: 5,336
+- Cards with image evidence: 5,336
+- English-name blockers remaining: 355
 - Set review rows remaining: 84
+- Card-level set-mapping blockers remaining: 0
+- Package coordinate duplicate groups: 0
+- Frozen live-set number conflicts: 0
 
 ## Remaining Legitimate Work
 
-- Insufficient identity evidence: 25,179
-- Deferred historical records: 3,673
-- Unresolved contradictions: 14,917
-- Source gaps requiring acquisition: 29,107
-- Source gaps requiring contradiction adjudication: 14,917
+- Insufficient identity evidence: 39,737
+- Deferred historical records: 3,693
+- Unresolved contradictions: 339
+- Source gaps requiring acquisition: 43,685
+- Source gaps requiring contradiction adjudication: 339
+- Candidate/source/kind gap groups: 115,717 (0 duplicate groups)
 
 ## Printing Facts
 

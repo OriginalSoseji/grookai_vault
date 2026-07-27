@@ -135,6 +135,28 @@
   },
   "generated_at": "2026-07-27T00:00:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1",
+  "package_conflict_proof": {
+    "cards": {
+      "all_conflict_checks_pass": true,
+      "duplicate_package_candidate_rows": 0,
+      "duplicate_package_coordinate_groups": 0,
+      "existing_live_set_target_rows": 53,
+      "generated_child_printings": 0,
+      "generated_database_identifiers": 0,
+      "generated_public_gv_ids": 0,
+      "live_set_number_conflict_rows": 0,
+      "package_card_rows": 5336,
+      "unique_package_coordinates": 5336
+    },
+    "sets": {
+      "generated_database_identifiers": 0,
+      "generated_public_routes": 0,
+      "insert_ready_reconciliations": 1041,
+      "live_match_conflict_rows": 0,
+      "missing_set_reconciliations": 1041,
+      "set_rows": 1041
+    }
+  },
   "production_state_mutated": false,
   "promotion_authorized": false,
   "source_final_package_fingerprint": "d2935a74683c02b3ad6e4c845b804b6fcd3694dbf30c139e4e1b0126a3136455",

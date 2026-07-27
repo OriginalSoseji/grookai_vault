@@ -33,6 +33,9 @@ const paths = {
   reconciliation:
     'docs/audits/japanese_master_index_v4/reconciliation/'
     + 'jpn_live_reconciliation_v1.json',
+  baselineRows:
+    'docs/audits/japanese_master_index_v4/baseline/'
+    + 'live_jpn_row_baseline_manifest_v1.json',
   finalPackage:
     'docs/audits/japanese_master_index_v4/index/'
     + 'jpn_master_index_final_package_v1.json',
@@ -215,7 +218,8 @@ function buildEnglishConsensus(cards) {
       && row.collector_facing_name_en),
     (row) => `${row.card_domain}\u0000${row.printed_name_ja}`,
   );
-  const result = new Map();
+  const accepted = new Map();
+  const reviewed = new Map();
   for (const [key, rows] of evidence) {
     const exact = by(rows, (row) =>
       normalizeHtmlName(row.collector_facing_name_en));
@@ -224,11 +228,22 @@ function buildEnglishConsensus(cards) {
       .sort((a, b) =>
         b.support.length - a.support.length || a.name.localeCompare(b.name));
     const total = rows.length;
-    if (ranked.length === 1) {
-      result.set(key, {
+    reviewed.set(key, {
+      mapping_candidates: ranked.map((candidate) => ({
+        support_count: candidate.support.length,
+        support_identity_keys: candidate.support
+          .map((row) => row.jpn_card_identity_key)
+          .sort(),
+        value: candidate.name,
+      })),
+      total_mapping_count: total,
+    });
+    if (ranked.length === 1 && ranked[0].support.length >= 2) {
+      accepted.set(key, {
         value: ranked[0].name,
         method: 'unique_existing_bilingual_mapping',
-        confidence: 0.82,
+        name_kind: 'approved_collector_display_mapping_not_claimed_official',
+        confidence: 0.9,
         support_count: ranked[0].support.length,
         total_mapping_count: total,
         support_identity_keys: ranked[0].support
@@ -239,9 +254,10 @@ function buildEnglishConsensus(cards) {
     }
     if (ranked[0].support.length >= 2
         && ranked[0].support.length / total >= 0.8) {
-      result.set(key, {
+      accepted.set(key, {
         value: ranked[0].name,
         method: 'dominant_existing_bilingual_mapping',
+        name_kind: 'approved_collector_display_mapping_not_claimed_official',
         confidence: 0.92,
         support_count: ranked[0].support.length,
         total_mapping_count: total,
@@ -268,9 +284,10 @@ function buildEnglishConsensus(cards) {
       const selected = [...spellings]
         .map(([name, support]) => ({ name, count: support.length }))
         .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))[0];
-      result.set(key, {
+      accepted.set(key, {
         value: selected.name,
         method: 'semantic_dominant_existing_bilingual_mapping',
+        name_kind: 'approved_collector_display_mapping_not_claimed_official',
         confidence: 0.88,
         support_count: first.support.length,
         total_mapping_count: total,
@@ -280,7 +297,7 @@ function buildEnglishConsensus(cards) {
       });
     }
   }
-  return result;
+  return { accepted, reviewed };
 }
 
 function setMatchScore(reconciliation, match) {
@@ -307,6 +324,41 @@ function recommendedSetMatch(row) {
     .sort((a, b) =>
       setMatchScore(row, b) - setMatchScore(row, a)
       || String(a.id).localeCompare(String(b.id)))[0];
+}
+
+function setResolutionEvidence(reconciliation, selected) {
+  return {
+    conflict_classification: 'duplicate_live_set_shells',
+    method: 'canonical_name_then_source_richness',
+    recommended_action:
+      'reuse_named_canonical_set_preserve_other_shell_no_mutation',
+    selected_match: {
+      code: selected.code,
+      id: selected.id,
+      name: selected.name,
+      printed_total: selected.printed_total,
+      source_contract_keys: Object.keys(selected.source ?? {}).sort(),
+    },
+    rejected_matches: reconciliation.live_matches
+      .filter((match) => match.id !== selected.id)
+      .map((match) => ({
+        code: match.code,
+        id: match.id,
+        name: match.name,
+        printed_total: match.printed_total,
+        reason:
+          'duplicate_live_set_shell_not_selected_as_named_canonical_survivor',
+        source_contract_keys: Object.keys(match.source ?? {}).sort(),
+      }))
+      .sort((a, b) => a.id.localeCompare(b.id)),
+    comparison_evidence: {
+      canonical_name_ja: reconciliation.canonical_name_ja,
+      collector_facing_name_en:
+        reconciliation.collector_facing_name_en,
+      release_kind: reconciliation.release_kind,
+      source_ids: reconciliation.source_ids,
+    },
+  };
 }
 
 function promotionContract(row, lane, sequence) {
@@ -361,6 +413,7 @@ function confidenceForDisposition(disposition) {
   if (disposition === 'historical_record_deferred_for_later_review') {
     return 0.45;
   }
+  if (disposition === 'blocked_but_otherwise_admissible') return 0.9;
   if (disposition === 'insufficient_evidence') return 0.25;
   return 0.2;
 }
@@ -371,13 +424,15 @@ function enrichIdentityDisposition(classification, card, reconciliation, set) {
     source_ids: _sourceIds,
     ...baseClassification
   } = classification;
-  const accepted = [
+  const promotionEligible = [
     'additional_resolved_promotion_ready',
     'direct_card_insert_ready',
     'existing_production_identity_preserved',
     'existing_production_identity_with_core_drift',
     'set_first_then_card_insert_ready',
   ].includes(classification.disposition);
+  const identityAdmissible = promotionEligible
+    || classification.disposition === 'blocked_but_otherwise_admissible';
   const familyReady = String(card.family_status).startsWith('resolved_');
   return {
     ...baseClassification,
@@ -410,7 +465,7 @@ function enrichIdentityDisposition(classification, card, reconciliation, set) {
       reconciliation_status: reconciliation?.reconciliation_status ?? null,
     },
     readiness: {
-      canonical_parent_identity: accepted,
+      canonical_parent_identity: identityAdmissible,
       child_printing: reconciliation?.live_state?.child_printing_count > 0
         ? 'already_live'
         : 'separate_gate',
@@ -426,8 +481,8 @@ function enrichIdentityDisposition(classification, card, reconciliation, set) {
       ),
       provenance: card.independent_source_count > 0
         || card.baseline_evidence_ids.length > 0,
-      public_gv_id_input: accepted && Boolean(card.printed_number),
-      public_safe_copy: accepted && Boolean(
+      public_gv_id_input: promotionEligible && Boolean(card.printed_number),
+      public_safe_copy: promotionEligible && Boolean(
         classification.resolved_display_name_en
         ?? card.collector_facing_name_en,
       ),
@@ -510,6 +565,7 @@ function classifyIdentity(row, {
   directKeys,
   dependentKeys,
   additionalByKey,
+  blockedByKey,
   reconciliationByKey,
 }) {
   const duplicate = duplicateByLoser.get(row.jpn_card_identity_key);
@@ -584,6 +640,24 @@ function classifyIdentity(row, {
   if (row.final_disposition === 'master_admissible') {
     const reconciliation =
       reconciliationByKey.get(row.jpn_card_identity_key);
+    if (reconciliation?.reconciliation_status
+        === 'novel_candidate_missing_from_live') {
+      const blocked = blockedByKey.get(row.jpn_card_identity_key);
+      return {
+        candidate_key: row.jpn_card_identity_key,
+        candidate_kind: row.candidate_kind,
+        disposition: 'blocked_but_otherwise_admissible',
+        canonical_identity_key: row.jpn_card_identity_key,
+        canonical_card_print_id: null,
+        promotion_lane: null,
+        reason_codes: compact([
+          ...(blocked?.promotion_blockers ?? []),
+          'insufficient_authoritative_bilingual_mapping_support',
+        ]),
+        source_count: row.independent_source_count,
+        source_ids: row.source_ids,
+      };
+    }
     return {
       candidate_key: row.jpn_card_identity_key,
       candidate_kind: row.candidate_kind,
@@ -600,9 +674,7 @@ function classifyIdentity(row, {
     };
   }
   const reasons = row.disposition_reasons ?? [];
-  const contradiction = row.conflict_status !== 'none'
-    || reasons.some((reason) =>
-      /conflict|collision|ambiguous/.test(reason));
+  const contradiction = row.conflict_status !== 'none';
   if (contradiction) {
     return {
       candidate_key: row.jpn_card_identity_key,
@@ -640,6 +712,74 @@ function classifyIdentity(row, {
     source_count: row.independent_source_count,
     source_ids: row.source_ids,
   };
+}
+
+const ASSERTION_DISPOSITION_BY_IDENTITY = {
+  additional_resolved_promotion_ready: 'additional_ready',
+  blocked_but_otherwise_admissible: 'admissible_blocked',
+  direct_card_insert_ready: 'direct_ready',
+  duplicate_of_existing_production_identity:
+    'duplicate_identity_excluded',
+  explicitly_excluded: 'excluded_identity',
+  existing_production_identity_preserved: 'existing_aligned',
+  existing_production_identity_with_core_drift:
+    'existing_core_drift',
+  historical_record_deferred_for_later_review:
+    'historical_deferred',
+  insufficient_evidence: 'insufficient_evidence',
+  set_first_then_card_insert_ready: 'set_first_ready',
+  unresolved_contradiction: 'unresolved_contradiction',
+};
+
+const ASSERTION_DISPOSITION_MEANINGS = {
+  additional_ready:
+    'assertion supports an additional resolved promotion-ready identity',
+  admissible_blocked:
+    'assertion supports an admissible identity still blocked from promotion',
+  direct_ready:
+    'assertion supports a direct card insert-ready identity',
+  duplicate_identity_excluded:
+    'assertion belongs to a duplicate identity excluded from promotion',
+  excluded_identity:
+    'assertion belongs to an explicitly excluded identity',
+  existing_aligned:
+    'assertion supports an aligned existing production identity',
+  existing_core_drift:
+    'assertion supports an existing production identity with core drift',
+  historical_deferred:
+    'assertion supports a historical identity deferred for review',
+  insufficient_evidence:
+    'assertion supports an identity lacking sufficient evidence',
+  set_first_ready:
+    'assertion supports a set-first card insert-ready identity',
+  unresolved_contradiction:
+    'assertion supports an identity with an unresolved contradiction',
+  source_group_conflict:
+    'assertion is unlinked because its source identity group conflicts',
+  excluded_source_assertion:
+    'assertion was explicitly excluded before candidate linkage',
+  unlinked_source_assertion_requires_adjudication:
+    'assertion has no final candidate link and requires adjudication',
+};
+
+function assertionDisposition(identity, assertion) {
+  if (identity) {
+    const disposition =
+      ASSERTION_DISPOSITION_BY_IDENTITY[identity.disposition];
+    if (!disposition) {
+      throw new Error(
+        `Missing assertion disposition for ${identity.disposition}`,
+      );
+    }
+    return disposition;
+  }
+  if (assertion.final_disposition === 'conflict_blocked') {
+    return 'source_group_conflict';
+  }
+  if (assertion.final_disposition === 'adjudicated_excluded') {
+    return 'excluded_source_assertion';
+  }
+  return 'unlinked_source_assertion_requires_adjudication';
 }
 
 function classifyGap(row, identityByKey, printingByKey) {
@@ -796,6 +936,8 @@ function promoteAdditional(row, card, resolution, setReconciliation) {
       market: 'JP',
       printed_name_ja: card.printed_name_ja,
       collector_facing_name_en: collectorName,
+      collector_facing_name_source: resolution.english?.name_kind
+        ?? 'master_index_explicit',
       printed_number: card.printed_number,
       card_domain: card.card_domain,
       card_type: card.card_type,
@@ -836,6 +978,90 @@ function promoteAdditional(row, card, resolution, setReconciliation) {
   }, lane, lane === 'set_first' ? 4 : 3);
 }
 
+function datasetByKey(manifest, datasetKey) {
+  const descriptor = manifest.content.datasets.find(
+    (item) => item.dataset_key === datasetKey,
+  );
+  if (!descriptor) throw new Error(`Dataset not found: ${datasetKey}`);
+  return descriptor;
+}
+
+function packageCardCoordinate(row) {
+  return JSON.stringify([
+    row.target_set.live_set_id ?? row.target_set.jpn_set_key,
+    normalizedNumber(row.printed_identity.printed_number),
+    row.printed_identity.printed_name_ja,
+    row.printed_identity.identity_modifiers ?? [],
+  ]);
+}
+
+function analyzeCardPackageConflicts(rows, liveParents) {
+  const coordinateGroups = by(rows, packageCardCoordinate);
+  const duplicateCoordinates = new Set(
+    [...coordinateGroups]
+      .filter(([, candidates]) => candidates.length > 1)
+      .map(([coordinate]) => coordinate),
+  );
+  const liveBySetAndNumber = by(
+    liveParents,
+    (row) => JSON.stringify([
+      row.set_id,
+      normalizedNumber(row.printed_number),
+    ]),
+  );
+  const annotatedRows = rows.map((row) => {
+    const liveKey = JSON.stringify([
+      row.target_set.live_set_id,
+      normalizedNumber(row.printed_identity.printed_number),
+    ]);
+    const liveOccupants = row.target_set.live_set_id
+      ? (liveBySetAndNumber.get(liveKey) ?? [])
+      : [];
+    const coordinate = packageCardCoordinate(row);
+    return {
+      ...row,
+      promotion_contract: {
+        ...row.promotion_contract,
+        conflict_check_results: {
+          package_coordinate_duplicate:
+            duplicateCoordinates.has(coordinate),
+          live_set_number_occupant_ids: liveOccupants
+            .map((item) => item.card_print_id)
+            .sort(),
+          public_gv_id_generated: row.generated_public_gv_id === true,
+          child_printing_generated: false,
+        },
+      },
+    };
+  });
+  const liveConflictRows = annotatedRows.filter((row) =>
+    row.promotion_contract.conflict_check_results
+      .live_set_number_occupant_ids.length > 0);
+  return {
+    rows: annotatedRows,
+    proof: {
+      package_card_rows: rows.length,
+      unique_package_coordinates: coordinateGroups.size,
+      duplicate_package_coordinate_groups: duplicateCoordinates.size,
+      duplicate_package_candidate_rows: rows.filter((row) =>
+        duplicateCoordinates.has(packageCardCoordinate(row))).length,
+      existing_live_set_target_rows: rows.filter(
+        (row) => Boolean(row.target_set.live_set_id),
+      ).length,
+      live_set_number_conflict_rows: liveConflictRows.length,
+      generated_database_identifiers: rows.filter(
+        (row) => row.generated_database_identifiers === true,
+      ).length,
+      generated_public_gv_ids: rows.filter(
+        (row) => row.generated_public_gv_id === true,
+      ).length,
+      generated_child_printings: 0,
+      all_conflict_checks_pass:
+        duplicateCoordinates.size === 0 && liveConflictRows.length === 0,
+    },
+  };
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const outputRoot = path.resolve(args.outputRoot);
@@ -859,6 +1085,7 @@ async function main() {
   const gapManifest = readJson(paths.gaps);
   const promotionManifest = readJson(paths.promotion);
   const reconciliationManifest = readJson(paths.reconciliation);
+  const baselineManifest = readJson(paths.baselineRows);
   const finalPackage = readJson(paths.finalPackage);
 
   const cards = loadRows(cardManifest.content.dataset);
@@ -879,6 +1106,10 @@ async function main() {
   const setReconciliations = loadRows(
     reconciliationManifest.content.set_dataset,
   );
+  const liveParentRows = loadRows(datasetByKey(
+    baselineManifest,
+    'live_jpn_parent_rows_v1',
+  ));
 
   const cardsByKey = new Map(
     cards.map((row) => [row.jpn_card_identity_key, row]),
@@ -893,7 +1124,11 @@ async function main() {
   const duplicateByLoser = new Map(
     duplicateRows.map((row) => [row.duplicate_identity_key, row]),
   );
-  const englishConsensus = buildEnglishConsensus(cards);
+  const englishEvidence = buildEnglishConsensus(cards);
+  const englishConsensus = englishEvidence.accepted;
+  const blockedByKey = new Map(
+    blockedCards.map((row) => [row.candidate_key, row]),
+  );
 
   const additionalRows = [];
   for (const blocked of blockedCards) {
@@ -918,6 +1153,7 @@ async function main() {
         ? {
           confidence: english.confidence,
           method: english.method,
+          name_kind: english.name_kind,
           support_count: english.support_count,
           total_mapping_count: english.total_mapping_count,
           value: english.value,
@@ -925,12 +1161,7 @@ async function main() {
         }
         : null,
       set: setMatch
-        ? {
-          live_set_code: setMatch.code,
-          live_set_id: setMatch.id,
-          live_set_name: setMatch.name,
-          method: 'canonical_name_then_source_richness',
-        }
+        ? setResolutionEvidence(setReconciliation, setMatch)
         : null,
       reasons: compact([
         english ? 'english_name_resolved_from_existing_bilingual_consensus' : null,
@@ -957,6 +1188,7 @@ async function main() {
     .map((row) => {
       const classification = classifyIdentity(row, {
         additionalByKey,
+        blockedByKey,
         dependentKeys,
         directKeys,
         duplicateByLoser,
@@ -987,21 +1219,22 @@ async function main() {
     const evidenceNeeded =
       identity?.disposition === 'insufficient_evidence'
         ? 'independent_corroborating_identity_source'
+        : identity?.disposition === 'blocked_but_otherwise_admissible'
+          ? 'second_independent_approved_bilingual_mapping_or_authoritative_name'
         : identity?.disposition === 'unresolved_contradiction'
           ? 'contradiction_resolution'
+          : !identity && row.final_disposition === 'conflict_blocked'
+            ? 'source_identity_group_conflict_resolution'
           : null;
-    return {
+    const result = {
       kind: 'a',
       record_key: row.assertion_key ?? row.union_row_key,
       source_key: row.source_key,
       subject_key: row.projected_candidate_key,
-      disposition: identity
-        ? 'linked_to_final_identity_disposition'
-        : row.final_disposition === 'excluded'
-          ? 'evidence_no_longer_needed'
-          : 'unresolved_source_conflict',
+      disposition: assertionDisposition(identity, row),
       ...(evidenceNeeded ? { evidence_needed: evidenceNeeded } : {}),
     };
+    return result;
   });
   const gapRows = gaps.map((row) => {
     const result = {
@@ -1019,33 +1252,80 @@ async function main() {
     || String(a.record_key).localeCompare(String(b.record_key)));
 
   const assertionIndex = sourceAssertionIndex();
-  const directPackage = directCards
+  const directPackageBase = directCards
     .map((row) => promotionContract(row, 'direct', 2))
     .map((row) => enrichPromotionEvidence(row, assertionIndex))
     .sort((a, b) => a.candidate_key.localeCompare(b.candidate_key));
   const setPackage = setCandidates
-    .map((row) => ({
-      ...row,
-      promotion_contract: {
-        sequence: 1,
-        preconditions: [
-          'frozen_source_fingerprints_match',
-          'set_code_and_name_conflict_checks_pass',
-        ],
-        post_invariants: [
-          'one_canonical_japanese_set',
-          'no_public_route_generated_by_this_package',
-        ],
-      },
-    }))
+    .map((row) => {
+      const reconciliation = setByKey.get(row.candidate_key);
+      const liveMatches = reconciliation?.live_matches ?? [];
+      return {
+        ...row,
+        promotion_contract: {
+          sequence: 1,
+          preconditions: [
+            'frozen_source_fingerprints_match',
+            'set_code_and_name_conflict_checks_pass',
+          ],
+          conflict_check_results: {
+            reconciliation_status:
+              reconciliation?.reconciliation_status ?? null,
+            promotion_readiness:
+              reconciliation?.promotion_readiness ?? null,
+            live_match_ids: liveMatches.map((match) => match.id).sort(),
+            generated_database_identifier:
+              row.generated_database_identifier === true,
+            generated_public_route: row.generated_public_route === true,
+          },
+          post_invariants: [
+            'one_canonical_japanese_set',
+            'no_public_route_generated_by_this_package',
+          ],
+        },
+      };
+    })
     .sort((a, b) => a.candidate_key.localeCompare(b.candidate_key));
-  const dependentPackage = dependentCards
+  const dependentPackageBase = dependentCards
     .map((row) => promotionContract(row, 'set_first', 3))
     .map((row) => enrichPromotionEvidence(row, assertionIndex))
     .sort((a, b) => a.candidate_key.localeCompare(b.candidate_key));
-  const additionalPackage = additionalRows
+  const additionalPackageBase = additionalRows
     .map((row) => enrichPromotionEvidence(row, assertionIndex))
     .sort((a, b) => a.candidate_key.localeCompare(b.candidate_key));
+  const packageAnalysis = analyzeCardPackageConflicts([
+    ...directPackageBase,
+    ...dependentPackageBase,
+    ...additionalPackageBase,
+  ], liveParentRows);
+  const analyzedPackageByKey = new Map(
+    packageAnalysis.rows.map((row) => [row.candidate_key, row]),
+  );
+  const directPackage = directPackageBase.map(
+    (row) => analyzedPackageByKey.get(row.candidate_key),
+  );
+  const dependentPackage = dependentPackageBase.map(
+    (row) => analyzedPackageByKey.get(row.candidate_key),
+  );
+  const additionalPackage = additionalPackageBase.map(
+    (row) => analyzedPackageByKey.get(row.candidate_key),
+  );
+  const setPackageConflictProof = {
+    set_rows: setPackage.length,
+    missing_set_reconciliations: setPackage.filter((row) =>
+      row.promotion_contract.conflict_check_results
+        .reconciliation_status === 'missing_set').length,
+    insert_ready_reconciliations: setPackage.filter((row) =>
+      row.promotion_contract.conflict_check_results
+        .promotion_readiness === 'set_insert_candidate').length,
+    live_match_conflict_rows: setPackage.filter((row) =>
+      row.promotion_contract.conflict_check_results
+        .live_match_ids.length > 0).length,
+    generated_database_identifiers: setPackage.filter((row) =>
+      row.generated_database_identifier === true).length,
+    generated_public_routes: setPackage.filter((row) =>
+      row.generated_public_route === true).length,
+  };
 
   const unresolvedBlocked = blockedCards
     .filter((row) => !additionalByKey.has(row.candidate_key));
@@ -1064,14 +1344,22 @@ async function main() {
         .filter((row) => row.promotion_blockers.includes(
           'collector_facing_english_name_missing',
         ))
-        .map((row) => ({
-          candidate_key: row.candidate_key,
-          printed_name_ja: row.printed_name_ja,
-          printed_number: row.printed_number,
-          jpn_set_key: row.jpn_set_key,
-          evidence_needed:
-            'authoritative_or_dominant_bilingual_name_evidence',
-        })),
+        .map((row) => {
+          const card = cardsByKey.get(row.candidate_key);
+          const reviewed = englishEvidence.reviewed.get(
+            `${card.card_domain}\u0000${card.printed_name_ja}`,
+          );
+          return {
+            candidate_key: row.candidate_key,
+            printed_name_ja: row.printed_name_ja,
+            printed_number: row.printed_number,
+            jpn_set_key: row.jpn_set_key,
+            mapping_candidates: reviewed?.mapping_candidates ?? [],
+            total_mapping_count: reviewed?.total_mapping_count ?? 0,
+            evidence_needed:
+              'second_independent_approved_bilingual_mapping_or_authoritative_name',
+          };
+        }),
       unresolved_set_mapping: unresolvedSetReviews.map((row) => ({
         candidate_key: row.candidate_key,
         reconciliation_status: row.reconciliation_status,
@@ -1130,6 +1418,36 @@ async function main() {
     gapRows,
     (row) => `${row.source_key ?? 'unspecified'}:${row.disposition}`,
   );
+  const candidateSourceGapGroups = by(
+    gaps,
+    (row) => JSON.stringify([
+      row.subject_key,
+      row.source_family ?? null,
+    ]),
+  );
+  const candidateSourceKindGapGroups = by(
+    gaps,
+    (row) => JSON.stringify([
+      row.subject_key,
+      row.source_family ?? null,
+      row.gap_kind,
+    ]),
+  );
+  reviewQueues.source_gap_grouping_proof = {
+    source_gap_rows: gapRows.length,
+    candidate_source_groups: candidateSourceGapGroups.size,
+    candidate_source_groups_with_multiple_rows:
+      [...candidateSourceGapGroups.values()]
+        .filter((rows) => rows.length > 1).length,
+    candidate_source_kind_groups: candidateSourceKindGapGroups.size,
+    duplicate_candidate_source_kind_groups:
+      [...candidateSourceKindGapGroups.values()]
+        .filter((rows) => rows.length > 1).length,
+    max_candidate_source_kind_group_size: Math.max(
+      ...[...candidateSourceKindGapGroups.values()]
+        .map((rows) => rows.length),
+    ),
+  };
 
   const invalidExclusions = [];
   const gapDispositionCounts = countBy(gapRows, (row) => row.disposition);
@@ -1203,6 +1521,8 @@ async function main() {
       },
       record_key: 'immutable_assertion_or_gap_key',
       subject_key: 'identity_or_printing_fact_key',
+      assertion_dispositions: ASSERTION_DISPOSITION_BY_IDENTITY,
+      assertion_disposition_meanings: ASSERTION_DISPOSITION_MEANINGS,
     },
     readiness_schema: {
       separate_gate:
@@ -1225,6 +1545,8 @@ async function main() {
         directPackage.length
         + dependentPackage.length
         + additionalPackage.length,
+      card_package_conflict_proof: packageAnalysis.proof,
+      set_package_conflict_proof: setPackageConflictProof,
     },
     deduplication: {
       duplicate_losers: duplicateRows.length,
@@ -1246,6 +1568,17 @@ async function main() {
       generic_blocked_dispositions: identityRows.filter(
         (row) => row.disposition === 'blocked',
       ).length,
+      generic_linked_assertion_dispositions: sourceRows.filter(
+        (row) =>
+          row.disposition === 'linked_to_final_identity_disposition',
+      ).length,
+      package_conflict_checks_pass:
+        packageAnalysis.proof.all_conflict_checks_pass
+        && setPackageConflictProof.live_match_conflict_rows === 0
+        && setPackageConflictProof.missing_set_reconciliations
+          === setPackage.length
+        && setPackageConflictProof.insert_ready_reconciliations
+          === setPackage.length,
     },
   };
 
@@ -1320,6 +1653,8 @@ async function main() {
     `- ${additionalPackage.length.toLocaleString()} promotion-blocked card `
       + 'candidates are now promotion-ready through conservative bilingual '
       + 'or set-survivor evidence.',
+    '- Bilingual consensus names are approved collector display mappings; '
+      + 'they are not asserted to be official English printed names.',
     `- ${duplicateRows.length.toLocaleString()} exact duplicate production `
       + 'identity shells have deterministic canonical survivors.',
     `- ${cards.filter((row) =>
@@ -1345,6 +1680,17 @@ async function main() {
         'collector_facing_english_name_missing',
       )).length.toLocaleString()}`,
     `- Set review rows remaining: ${unresolvedSetReviews.length.toLocaleString()}`,
+    `- Card-level set-mapping blockers remaining: ${unresolvedBlocked.filter(
+      (row) => row.promotion_blockers.includes(
+        'set_mapping_not_promotion_safe',
+      ),
+    ).length.toLocaleString()}`,
+    `- Package coordinate duplicate groups: ${(
+      packageAnalysis.proof.duplicate_package_coordinate_groups
+    ).toLocaleString()}`,
+    `- Frozen live-set number conflicts: ${(
+      packageAnalysis.proof.live_set_number_conflict_rows
+    ).toLocaleString()}`,
     '',
     '## Remaining Legitimate Work',
     '',
@@ -1364,6 +1710,10 @@ async function main() {
     `- Source gaps requiring contradiction adjudication: ${(
       counts.source_gap_resolution.contradiction_adjudication_required
     ).toLocaleString()}`,
+    `- Candidate/source/kind gap groups: ${(
+      candidateSourceKindGapGroups.size
+    ).toLocaleString()} (${reviewQueues.source_gap_grouping_proof
+      .duplicate_candidate_source_kind_groups.toLocaleString()} duplicate groups)`,
     '',
     '## Printing Facts',
     '',
@@ -1440,6 +1790,10 @@ async function main() {
     source_final_package_fingerprint:
       finalPackage.content_fingerprint_sha256,
     frozen_live_baseline: finalPackage.content.live_baseline_recheck,
+    package_conflict_proof: {
+      cards: packageAnalysis.proof,
+      sets: setPackageConflictProof,
+    },
     execution_boundary: {
       canonical_id_allocation: false,
       database_reads: false,
