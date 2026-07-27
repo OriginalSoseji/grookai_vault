@@ -37,4 +37,3 @@ This is a deterministic, no-fetch, no-database-write plan. It does not promote c
 - Editorial and marketplace lanes are targeted after primary-source deltas, not bulk-crawled.
 - Every adapter must preserve raw snapshots and replay offline before its assertions enter the union.
 - This plan contains no database credentials and performs no network requests.
-
