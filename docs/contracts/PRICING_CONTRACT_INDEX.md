@@ -2,6 +2,16 @@
 
 **Status: ACTIVE — Binding Governance Document**
 
+## Production V1 Amendment
+
+`TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md` governs the app-facing Production V1
+headline price. It supersedes synthetic Grookai Value requirements for current
+web and Flutter product surfaces.
+
+The versioning, evidence, and safety rules below remain historical/internal
+governance for proprietary valuation research. They do not authorize a
+synthetic app-facing price in Production V1.
+
 ## 1. Purpose
 
 This document defines all invariant rules governing Grookai Vault pricing logic.

@@ -44,7 +44,7 @@ const ATTRIBUTE_SECTIONS: AttributeSection[] = [
       { key: "number", label: "Number" },
       { key: "rarity", label: "Rarity" },
       { key: "variant", label: "Variant" },
-      { key: "raw_price", label: "Grookai Value" },
+      { key: "raw_price", label: "TCGPlayer Market" },
     ],
   },
   {

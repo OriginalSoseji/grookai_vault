@@ -5,7 +5,7 @@ import '../theme/gv_tokens.dart';
 
 enum CardSurfacePriceSize { grid, list, dense }
 
-enum CardSurfacePriceMode { automatic, grookai, manual, hidden }
+enum CardSurfacePriceMode { automatic, market, manual, hidden }
 
 class CardSurfacePricePill extends StatelessWidget {
   const CardSurfacePricePill({
@@ -28,7 +28,7 @@ class CardSurfacePricePill extends StatelessWidget {
     final resolvedPricing = pricing;
     final value = switch (mode) {
       CardSurfacePriceMode.automatic => resolvedPricing?.visibleValue,
-      CardSurfacePriceMode.grookai => resolvedPricing?.visibleValue,
+      CardSurfacePriceMode.market => resolvedPricing?.visibleValue,
       CardSurfacePriceMode.manual => manualPrice,
       CardSurfacePriceMode.hidden => null,
     };
@@ -100,7 +100,7 @@ class CardSurfacePriceText extends StatelessWidget {
     final resolvedPricing = pricing;
     final value = switch (mode) {
       CardSurfacePriceMode.automatic => resolvedPricing?.visibleValue,
-      CardSurfacePriceMode.grookai => resolvedPricing?.visibleValue,
+      CardSurfacePriceMode.market => resolvedPricing?.visibleValue,
       CardSurfacePriceMode.manual => manualPrice,
       CardSurfacePriceMode.hidden => null,
     };

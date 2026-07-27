@@ -1296,7 +1296,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         : CardSurfacePriceText(
             pricing: _pricing,
             size: CardSurfacePriceSize.list,
-            mode: CardSurfacePriceMode.grookai,
+            mode: CardSurfacePriceMode.market,
           );
 
     return _ManageSurface(

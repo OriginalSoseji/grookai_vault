@@ -1194,7 +1194,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                             textAlign: TextAlign.left,
                           )
                         : Text(
-                            'Grookai Value',
+                            'TCGPlayer Market',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.labelSmall?.copyWith(

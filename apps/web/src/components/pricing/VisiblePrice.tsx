@@ -46,7 +46,7 @@ export default function VisiblePrice({
   size = "grid",
   note = "none",
   className = "",
-  label = "Grookai Value",
+  label = "TCGPlayer Market",
 }: VisiblePriceProps) {
   const classes = getClasses(size);
 
@@ -54,9 +54,11 @@ export default function VisiblePrice({
     <div className={`${classes.wrapper} ${className}`.trim()}>
       <p className={classes.label}>{label}</p>
       <p className={classes.value}>{formatUsdPrice(value)}</p>
-      {note === "compact" ? <p className={classes.note}>Beta estimate</p> : null}
+      {note === "compact" ? <p className={classes.note}>Latest qualified close</p> : null}
       {note === "full" ? (
-        <p className={classes.note}>Derived from active listings and market data. We are actively refining the model.</p>
+        <p className={classes.note}>
+          Exact-printing TCGPlayer market price. Active listing asks are tracked separately.
+        </p>
       ) : null}
     </div>
   );

@@ -10,9 +10,9 @@ test("search pricing enrichment fails open instead of breaking resolver results"
 
   assert.match(
     source,
-    /public bridge read failed; search will continue without pricing enrichment/,
+    /shared market read failed; search will continue without pricing enrichment/,
   );
-  assert.match(source, /if\s*\(\s*error\s*\)\s*\{[\s\S]*return new Map\(\);/);
-  assert.doesNotMatch(source, /if\s*\(\s*error\s*\)\s*\{\s*throw error;\s*\}/);
+  assert.match(source, /\.catch\s*\(\s*\(error\)\s*=>\s*\{[\s\S]*return \[\];/);
+  assert.match(source, /if\s*\(records\.length === 0\)\s*\{\s*return new Map\(\);/);
+  assert.doesNotMatch(source, /\.catch\s*\(\s*\(error\)\s*=>\s*\{\s*throw error;/);
 });
-

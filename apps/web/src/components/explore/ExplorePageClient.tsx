@@ -2003,7 +2003,7 @@ export default function ExplorePageClient({
                           Variant
                         </th>
                         <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          Grookai Value
+                          TCGPlayer Market
                         </th>
                         <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                           Compare

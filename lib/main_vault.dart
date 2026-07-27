@@ -1904,7 +1904,7 @@ class VaultPageState extends State<VaultPage> {
                 children: [
                   Text(
                     derivedData.estimatedValue == null
-                        ? 'Grookai Value'
+                        ? 'TCGPlayer Market'
                         : _formatVaultValue(derivedData.estimatedValue!),
                     style: theme.textTheme.headlineSmall?.copyWith(
                       color: theme.colorScheme.onSurface,

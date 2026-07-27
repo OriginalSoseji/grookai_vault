@@ -723,7 +723,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
       includeCameos ? getCameosByGvId(supabase, row.gv_id) : Promise.resolve(undefined),
     ]);
   // Pricing authority note:
-  // Current active engine = v_grookai_value_v1_1
+  // Public pricing is resolved by the governed TCGPlayer market read model.
   // App-facing read surface = v_best_prices_all_gv_v1
   // Keep product reads on the compatibility surface during stabilization.
   const pricingByCardId = includePricing && row.id

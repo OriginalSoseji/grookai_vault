@@ -3,19 +3,21 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class CardSurfacePricingData {
   const CardSurfacePricingData({
     required this.cardPrintId,
-    this.grookaiValue,
-    this.primaryPrice,
+    this.marketClose,
     this.primarySource,
+    this.sourceLabel,
+    this.observedAt,
   });
 
   final String cardPrintId;
-  final double? grookaiValue;
-  final double? primaryPrice;
+  final double? marketClose;
   final String? primarySource;
+  final String? sourceLabel;
+  final DateTime? observedAt;
 
-  double? get visibleValue => grookaiValue ?? primaryPrice;
+  double? get visibleValue => marketClose;
 
-  String get compactLabel => grookaiValue != null ? 'Value' : 'Market';
+  String get compactLabel => 'Market';
 
   bool get hasVisibleValue => visibleValue != null;
 }
@@ -43,13 +45,16 @@ class CardSurfacePricingService {
           ? normalizedIds.length
           : start + _chunkSize;
       final chunk = normalizedIds.sublist(start, end);
-      final rows = await client
-          .from('v_card_pricing_ui_v1')
-          .select('card_print_id,grookai_value,primary_price,primary_source')
-          .inFilter('card_print_id', chunk);
+      final rows = await client.rpc(
+        'get_market_pricing_read_model_v1',
+        params: {'p_card_print_ids': chunk, 'p_card_printing_ids': null},
+      );
 
       for (final rawRow in rows as List<dynamic>) {
         final row = Map<String, dynamic>.from(rawRow as Map);
+        if ((row['pricing_scope'] ?? '').toString() != 'parent') {
+          continue;
+        }
         final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
         if (cardPrintId.isEmpty) {
           continue;
@@ -57,9 +62,10 @@ class CardSurfacePricingService {
 
         pricingById[cardPrintId] = CardSurfacePricingData(
           cardPrintId: cardPrintId,
-          grookaiValue: _toDouble(row['grookai_value']),
-          primaryPrice: _toDouble(row['primary_price']),
-          primarySource: _normalizeSource(row['primary_source']),
+          marketClose: _toDouble(row['market_close']),
+          primarySource: _normalizeSource(row['source_name']),
+          sourceLabel: (row['source_label'] ?? '').toString().trim(),
+          observedAt: DateTime.tryParse((row['observed_at'] ?? '').toString()),
         );
       }
     }
@@ -79,7 +85,7 @@ class CardSurfacePricingService {
 
   static String? _normalizeSource(dynamic value) {
     final normalized = (value ?? '').toString().trim().toLowerCase();
-    if (normalized == 'justtcg' || normalized == 'ebay') {
+    if (normalized == 'tcgplayer') {
       return normalized;
     }
     return null;

@@ -1,0 +1,237 @@
+import { createHash } from "node:crypto";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import pg from "pg";
+
+import "../../backend/env.mjs";
+
+const { Client } = pg;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const REPO_ROOT = path.resolve(__dirname, "..", "..");
+const DEFAULT_OUT_ROOT = path.join(
+  REPO_ROOT,
+  "artifacts",
+  "market_pricing_product_v1",
+  "health",
+);
+const HEALTH_VERSION = "TCGPLAYER_MARKET_HEALTH_V1";
+
+function parseArgs(argv) {
+  const args = {
+    runKey: null,
+    outRoot: DEFAULT_OUT_ROOT,
+    maxSourceAgeHours: 36,
+    minimumCurrentPrices: 1,
+  };
+  for (const arg of argv) {
+    if (arg.startsWith("--run-key=")) args.runKey = arg.slice(10).trim();
+    else if (arg.startsWith("--out-root=")) {
+      args.outRoot = path.resolve(arg.slice("--out-root=".length));
+    } else if (arg.startsWith("--max-source-age-hours=")) {
+      args.maxSourceAgeHours = Number(
+        arg.slice("--max-source-age-hours=".length),
+      );
+    } else if (arg.startsWith("--minimum-current-prices=")) {
+      args.minimumCurrentPrices = Number.parseInt(
+        arg.slice("--minimum-current-prices=".length),
+        10,
+      );
+    }
+  }
+  if (!Number.isFinite(args.maxSourceAgeHours) || args.maxSourceAgeHours <= 0) {
+    throw new Error("--max-source-age-hours must be positive");
+  }
+  if (
+    !Number.isInteger(args.minimumCurrentPrices) ||
+    args.minimumCurrentPrices < 0
+  ) {
+    throw new Error("--minimum-current-prices must be a non-negative integer");
+  }
+  return args;
+}
+
+function connectionString() {
+  return (
+    process.env.SUPABASE_DB_URL ||
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    ""
+  );
+}
+
+function sslConfig(url) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
+    ? false
+    : { rejectUnauthorized: false };
+}
+
+function stamp() {
+  return new Date().toISOString().replace(/[:.]/g, "-");
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const url = connectionString();
+  if (!url) {
+    throw new Error(
+      "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
+    );
+  }
+  const client = new Client({
+    connectionString: url,
+    ssl: sslConfig(url),
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+  });
+  await client.connect();
+
+  try {
+    const result = await client.query(
+      `with latest_source as (
+         select run_key, status, finished_at, price_row_count, error
+         from public.tcgcsv_source_sync_runs
+         where sync_mode = 'current_full_sync'
+         order by finished_at desc nulls last, created_at desc
+         limit 1
+       ),
+       selected_decisions as (
+         select *
+         from public.market_price_qualification_decisions
+         where ($1::text is null or run_key = $1)
+       ),
+       decision_totals as (
+         select
+           count(*)::integer as decision_count,
+           count(*) filter (where eligible)::integer as eligible_count,
+           count(*) filter (where not eligible)::integer as quarantined_count
+         from selected_decisions
+       ),
+       snapshot_totals as (
+         select count(distinct snapshot.id)::integer as snapshot_count
+         from selected_decisions decision
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.qualification_decision_id = decision.id
+       ),
+       current_totals as (
+         select
+           count(*)::integer as current_exact_price_count,
+           count(distinct card_print_id)::integer as current_parent_price_count,
+           max(observed_at) as latest_published_source_at
+         from public.v_market_price_current_v1
+       ),
+       broken_trace as (
+         select count(*)::integer as broken_trace_count
+         from public.market_price_publication_snapshots snapshot
+         left join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.eligible = true
+          and decision.source_observation_id = snapshot.source_observation_id
+         left join public.tcgcsv_source_price_daily_observations observation
+           on observation.id = snapshot.source_observation_id
+         where decision.id is null or observation.id is null
+       )
+       select
+         source.run_key as latest_source_run_key,
+         source.status as latest_source_status,
+         source.finished_at as latest_source_finished_at,
+         source.price_row_count as latest_source_price_row_count,
+         source.error as latest_source_error,
+         decisions.*,
+         snapshots.snapshot_count,
+         current_prices.*,
+         broken_trace.broken_trace_count
+       from decision_totals decisions
+       cross join snapshot_totals snapshots
+       cross join current_totals current_prices
+       cross join broken_trace
+       left join latest_source source on true`,
+      [args.runKey],
+    );
+    const metrics = result.rows[0];
+    const findings = [];
+    const sourceFinishedAt = metrics.latest_source_finished_at
+      ? new Date(metrics.latest_source_finished_at)
+      : null;
+    const sourceAgeHours = sourceFinishedAt
+      ? (Date.now() - sourceFinishedAt.getTime()) / 3_600_000
+      : null;
+
+    if (metrics.latest_source_status !== "completed") {
+      findings.push("latest_current_source_sync_not_completed");
+    }
+    if (
+      sourceAgeHours === null ||
+      sourceAgeHours > args.maxSourceAgeHours
+    ) {
+      findings.push("latest_current_source_sync_stale");
+    }
+    if (
+      Number(metrics.current_exact_price_count) < args.minimumCurrentPrices
+    ) {
+      findings.push("current_exact_price_count_below_minimum");
+    }
+    if (
+      args.runKey &&
+      Number(metrics.snapshot_count) !== Number(metrics.eligible_count)
+    ) {
+      findings.push("eligible_snapshot_reconciliation_mismatch");
+    }
+    if (Number(metrics.broken_trace_count) !== 0) {
+      findings.push("broken_source_to_publication_trace");
+    }
+
+    const summary = {
+      health_version: HEALTH_VERSION,
+      checked_at: new Date().toISOString(),
+      status: findings.length ? "critical" : "healthy",
+      run_key: args.runKey,
+      thresholds: {
+        max_source_age_hours: args.maxSourceAgeHours,
+        minimum_current_prices: args.minimumCurrentPrices,
+      },
+      metrics: {
+        ...metrics,
+        source_age_hours:
+          sourceAgeHours === null ? null : Number(sourceAgeHours.toFixed(3)),
+      },
+      findings,
+    };
+    await fs.mkdir(args.outRoot, { recursive: true });
+    const summaryPath = path.join(
+      args.outRoot,
+      `tcgplayer_market_health_${stamp()}.json`,
+    );
+    await fs.writeFile(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
+    const hash = createHash("sha256")
+      .update(await fs.readFile(summaryPath))
+      .digest("hex");
+    await fs.writeFile(
+      `${summaryPath}.sha256`,
+      `${hash}  ${path.basename(summaryPath)}\n`,
+    );
+    process.stdout.write(
+      `${JSON.stringify(
+        {
+          ...summary,
+          artifact_path: path
+            .relative(REPO_ROOT, summaryPath)
+            .replace(/\\/g, "/"),
+        },
+        null,
+        2,
+      )}\n`,
+    );
+    if (findings.length) process.exitCode = 1;
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
+main().catch((error) => {
+  console.error(`[market-health] ${error.stack || error.message}`);
+  process.exitCode = 1;
+});

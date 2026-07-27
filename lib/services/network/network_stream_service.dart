@@ -1051,19 +1051,25 @@ class NetworkStreamService {
     }
 
     try {
-      final rows = await client
-          .from('v_card_pricing_ui_v1')
-          .select('card_print_id,ebay_listing_count')
-          .inFilter('card_print_id', normalizedIds);
+      final response = await client.rpc(
+        'get_market_pricing_read_model_v1',
+        params: {
+          'p_card_print_ids': normalizedIds,
+          'p_card_printing_ids': null,
+        },
+      );
 
       final listingCounts = <String, int>{};
-      for (final rawRow in rows as List<dynamic>) {
+      for (final rawRow in response as List<dynamic>) {
         final row = Map<String, dynamic>.from(rawRow as Map);
+        if (_nullable(row['pricing_scope']) != 'parent') {
+          continue;
+        }
         final cardPrintId = _nullable(row['card_print_id']);
         if (cardPrintId == null) {
           continue;
         }
-        final listingCount = _positiveCount(row['ebay_listing_count']);
+        final listingCount = _positiveCount(row['active_ask_listing_count']);
         if (listingCount != null) {
           listingCounts[cardPrintId] = listingCount;
         }
@@ -1263,14 +1269,10 @@ class NetworkStreamService {
     required Set<String> excludeCardPrintIds,
     required int limit,
   }) async {
-    final pricingRows = await client
-        .from('v_card_pricing_ui_v1')
-        .select(
-          'card_print_id,grookai_value,primary_price,primary_source,ebay_listing_count',
-        )
-        .order('grookai_value', ascending: false, nullsFirst: false)
-        .order('primary_price', ascending: false, nullsFirst: false)
-        .limit(_clampedInt(limit * 5, 32, 180));
+    final pricingRows = await client.rpc(
+      'get_top_market_pricing_v1',
+      params: {'p_limit': _clampedInt(limit * 5, 32, 180)},
+    );
 
     final pricingById = <String, Map<String, dynamic>>{};
     final orderedIds = <String>[];
@@ -1280,8 +1282,7 @@ class NetworkStreamService {
       if (cardPrintId == null || excludeCardPrintIds.contains(cardPrintId)) {
         continue;
       }
-      if (_toDouble(row['grookai_value']) == null &&
-          _toDouble(row['primary_price']) == null) {
+      if (_toDouble(row['market_close']) == null) {
         continue;
       }
       if (pricingById.containsKey(cardPrintId)) {
@@ -1482,7 +1483,7 @@ class NetworkStreamService {
       rarity: _nullable(cardRow['rarity']),
       imageUrl: _displayImageUrl(cardRow),
       pricing: resolvedPricing,
-      listingCount: _positiveCount(pricingRow?['ebay_listing_count']),
+      listingCount: _positiveCount(pricingRow?['active_ask_listing_count']),
     );
   }
 
@@ -1494,9 +1495,10 @@ class NetworkStreamService {
 
     return CardSurfacePricingData(
       cardPrintId: cardPrintId,
-      grookaiValue: _toDouble(row['grookai_value']),
-      primaryPrice: _toDouble(row['primary_price']),
-      primarySource: _nullable(row['primary_source']),
+      marketClose: _toDouble(row['market_close']),
+      primarySource: _nullable(row['source_name']),
+      sourceLabel: _nullable(row['source_label']),
+      observedAt: DateTime.tryParse(_nullable(row['observed_at']) ?? ''),
     );
   }
 

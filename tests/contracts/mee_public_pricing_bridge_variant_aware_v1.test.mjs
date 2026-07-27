@@ -90,11 +90,10 @@ test("card detail pricing client-loads one parent-plus-variant bundle", () => {
   const page = read(cardPagePath);
   const rail = read(railPath);
 
-  assert.match(helper, /\.rpc\("get_market_evidence_public_pricing_bridge_variant_aware_v1"/);
+  assert.match(helper, /getMarketPricingReadModelV1/);
   assert.match(helper, /getCardPricingUiRowsByCardPrintIdWithClient/);
   assert.match(helper, /pricing_scope/);
-  assert.match(helper, /card_printing_id/);
-  assert.match(helper, /printing_gv_id/);
+  assert.match(helper, /MarketPricingRecordV1/);
   assert.match(helper, /createServerAdminClient/);
   assert.match(route, /pricingRecords/);
   assert.match(route, /getCardPricingUiRowsByCardPrintIdWithClient/);
@@ -114,7 +113,7 @@ test("variant selector drives pricing rail without per-click pricing fetches", (
   assert.match(rail, /selectedCardPrintingId/);
   assert.match(rail, /selectedPrintingGvId/);
   assert.match(rail, /pricingRecords/);
-  assert.match(rail, /eBay active ask for selected variant/);
+  assert.match(rail, /Lowest exact-printing eBay active ask/);
   assert.match(panels, /useState<CardPrinting \| null>/);
   assert.match(panels, /selectedPrintingId/);
   assert.match(panels, /selectedPrintingGvId/);

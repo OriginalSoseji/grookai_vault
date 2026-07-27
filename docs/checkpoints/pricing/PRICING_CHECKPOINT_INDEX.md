@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
+
+This checkpoint records the production pivot from a synthetic app-facing value
+to exact TCGPlayer Market publication for ordinary English Pokemon printings.
+It locks the shared read model, append-only qualification/publication ledgers,
+source-to-UI traceability, and the signed-in canary rollout boundary.
+
+Decision locked there:
+
+- Production V1 displays source TCGPlayer `marketPrice`; active asks and
+  proprietary valuation research remain separate lanes
+
+Unresolved risk afterward:
+
+- the migration, bounded publication apply, remote readback, and signed-in
+  production canary still require their explicit deployment gates
+
 ### `PRICING_CHECKPOINT_01_READINESS_AND_RISK.md`
 
 This checkpoint records the moment pricing work stopped being “keep building” and became “audit before scale.” It explains why `NOT READY` and `AT RISK` were the correct classifications, why mapping-first ingestion became the main blocker, and why broader eBay connection was intentionally paused.
@@ -276,7 +293,10 @@ Recommended reading order for future maintainers:
 13. `PRICING_CHECKPOINT_14_WAREHOUSE_CONTRACT_V1.md`
    - then read how warehouse-first ingestion was locked so replayable listing storage never bypasses the observation truth gate
 
-After those thirteen checkpoints, read the supporting audits in this order:
+14. `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
+   - then read how exact TCGPlayer Market publication became the Production V1 app-facing price contract
+
+After those fourteen checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`

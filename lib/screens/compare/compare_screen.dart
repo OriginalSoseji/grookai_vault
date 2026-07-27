@@ -246,7 +246,7 @@ class _CompareScreenState extends State<CompareScreen> {
           _AttributeRow(key: 'number', label: 'Number'),
           _AttributeRow(key: 'rarity', label: 'Rarity'),
           _AttributeRow(key: 'variant', label: 'Variant'),
-          _AttributeRow(key: 'price', label: 'Grookai Value'),
+          _AttributeRow(key: 'price', label: 'TCGPlayer Market'),
         ],
       ),
       const _AttributeSection(
