@@ -1,0 +1,154 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 23,
+    "cardStart": 1,
+    "cardEnd": 23,
+    "searchCondition": [
+        "スターターセットVMAX リザードン",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "38887",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038887_P_RIZADONV.jpg",
+            "cardNameAltText": "リザードンV",
+            "cardNameViewText": "リザードンV"
+        },
+        {
+            "cardID": "38888",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038888_P_RIZADONVMAX.jpg",
+            "cardNameAltText": "リザードンVMAX",
+            "cardNameViewText": "リザードンVMAX"
+        },
+        {
+            "cardID": "38889",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038889_P_BIKUTEINI.jpg",
+            "cardNameAltText": "ビクティニ",
+            "cardNameViewText": "ビクティニ"
+        },
+        {
+            "cardID": "38890",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038890_P_JIGARUDE.jpg",
+            "cardNameAltText": "ジガルデ",
+            "cardNameViewText": "ジガルデ"
+        },
+        {
+            "cardID": "38891",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038891_P_TANDON.jpg",
+            "cardNameAltText": "タンドン",
+            "cardNameViewText": "タンドン"
+        },
+        {
+            "cardID": "38892",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038892_P_TOROGGON.jpg",
+            "cardNameAltText": "トロッゴン",
+            "cardNameViewText": "トロッゴン"
+        },
+        {
+            "cardID": "38893",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038893_P_SEKITANZAN.jpg",
+            "cardNameAltText": "セキタンザン",
+            "cardNameViewText": "セキタンザン"
+        },
+        {
+            "cardID": "38894",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038894_P_KENTAROSU.jpg",
+            "cardNameAltText": "ケンタロス",
+            "cardNameViewText": "ケンタロス"
+        },
+        {
+            "cardID": "38895",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038895_T_KUIKKUBORU.jpg",
+            "cardNameAltText": "クイックボール",
+            "cardNameViewText": "クイックボール"
+        },
+        {
+            "cardID": "38896",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038896_T_SHINKANOOKOU.jpg",
+            "cardNameAltText": "しんかのおこう",
+            "cardNameViewText": "しんかのおこう"
+        },
+        {
+            "cardID": "38897",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038897_T_SUMAHOROTOMU.jpg",
+            "cardNameAltText": "スマホロトム",
+            "cardNameViewText": "スマホロトム"
+        },
+        {
+            "cardID": "38898",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038898_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "38899",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038899_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "38900",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038900_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "38901",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038901_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "38902",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038902_T_RISETTOSUTANPU.jpg",
+            "cardNameAltText": "リセットスタンプ",
+            "cardNameViewText": "リセットスタンプ"
+        },
+        {
+            "cardID": "38903",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038903_T_HAKASENOKENKYUUARARAGIHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "38904",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038904_T_POKEMONGOKKO.jpg",
+            "cardNameAltText": "ポケモンごっこ",
+            "cardNameViewText": "ポケモンごっこ"
+        },
+        {
+            "cardID": "38905",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038905_T_HOPPU.jpg",
+            "cardNameAltText": "ホップ",
+            "cardNameViewText": "ホップ"
+        },
+        {
+            "cardID": "38906",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038906_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "38907",
+            "cardThumbFile": "/assets/images/card_images/large/SC2/038907_T_YARO.jpg",
+            "cardNameAltText": "ヤロー",
+            "cardNameViewText": "ヤロー"
+        },
+        {
+            "cardID": "37747",
+            "cardThumbFile": "/assets/images/card_images/large//037747_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "37743",
+            "cardThumbFile": "/assets/images/card_images/large//037743_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        }
+    ]
+}

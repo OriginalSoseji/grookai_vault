@@ -1,0 +1,148 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 22,
+    "cardStart": 1,
+    "cardEnd": 22,
+    "searchCondition": [
+        "スターターセットVMAX フシギバナ",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "38865",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038865_P_FUSHIGIBANAV.jpg",
+            "cardNameAltText": "フシギバナV",
+            "cardNameViewText": "フシギバナV"
+        },
+        {
+            "cardID": "38866",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038866_P_FUSHIGIBANAVMAX.jpg",
+            "cardNameAltText": "フシギバナVMAX",
+            "cardNameViewText": "フシギバナVMAX"
+        },
+        {
+            "cardID": "38867",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038867_P_YANYANMA.jpg",
+            "cardNameAltText": "ヤンヤンマ",
+            "cardNameViewText": "ヤンヤンマ"
+        },
+        {
+            "cardID": "38868",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038868_P_MEGAYANMA.jpg",
+            "cardNameAltText": "メガヤンマ",
+            "cardNameViewText": "メガヤンマ"
+        },
+        {
+            "cardID": "38869",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038869_P_SEREBII.jpg",
+            "cardNameAltText": "セレビィ",
+            "cardNameViewText": "セレビィ"
+        },
+        {
+            "cardID": "38870",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038870_P_SABONEA.jpg",
+            "cardNameAltText": "サボネア",
+            "cardNameViewText": "サボネア"
+        },
+        {
+            "cardID": "38871",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038871_P_TOROPIUSU.jpg",
+            "cardNameAltText": "トロピウス",
+            "cardNameViewText": "トロピウス"
+        },
+        {
+            "cardID": "38872",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038872_P_HIMENKA.jpg",
+            "cardNameAltText": "ヒメンカ",
+            "cardNameViewText": "ヒメンカ"
+        },
+        {
+            "cardID": "38873",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038873_P_WATASHIRAGA.jpg",
+            "cardNameAltText": "ワタシラガ",
+            "cardNameViewText": "ワタシラガ"
+        },
+        {
+            "cardID": "38874",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038874_P_ZARUDO.jpg",
+            "cardNameAltText": "ザルード",
+            "cardNameViewText": "ザルード"
+        },
+        {
+            "cardID": "38875",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038875_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "38876",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038876_T_KUIKKUBORU.jpg",
+            "cardNameAltText": "クイックボール",
+            "cardNameViewText": "クイックボール"
+        },
+        {
+            "cardID": "38877",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038877_T_SHINKANOOKOU.jpg",
+            "cardNameAltText": "しんかのおこう",
+            "cardNameViewText": "しんかのおこう"
+        },
+        {
+            "cardID": "38878",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038878_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "38879",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038879_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "38880",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038880_T_HAKASENOKENKYUUARARAGIHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "38881",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038881_T_BITO.jpg",
+            "cardNameAltText": "ビート",
+            "cardNameViewText": "ビート"
+        },
+        {
+            "cardID": "38882",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038882_T_BOSUNOSHIREIFURADARI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "38883",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038883_T_HOPPU.jpg",
+            "cardNameAltText": "ホップ",
+            "cardNameViewText": "ホップ"
+        },
+        {
+            "cardID": "38884",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038884_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "38885",
+            "cardThumbFile": "/assets/images/card_images/large/SEF/038885_T_YARO.jpg",
+            "cardNameAltText": "ヤロー",
+            "cardNameViewText": "ヤロー"
+        },
+        {
+            "cardID": "37742",
+            "cardThumbFile": "/assets/images/card_images/large//037742_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        }
+    ]
+}

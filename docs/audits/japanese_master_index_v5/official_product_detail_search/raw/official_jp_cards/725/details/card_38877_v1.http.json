@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_binder_production_main/docs/audits/japanese_master_index_v5/official_product_detail_search/raw/official_jp_cards/725/details/card_38877_v1.html",
+  "body_sha256": "985a7e2abbbeaf844bdfaf51694cf8a3760a4c5d26caf154531f7af0c2694b28",
+  "byte_size": 8285,
+  "fetched_at": "2026-07-27T20:36:29.748Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/card-search/details.php/card/38877/regu/all",
+  "response_headers": {
+    "cache-control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Mon, 27 Jul 2026 20:36:30 GMT",
+    "expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+    "last-modified": "Mon, 27 Jul 2026 20:36:30 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "card_38877",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

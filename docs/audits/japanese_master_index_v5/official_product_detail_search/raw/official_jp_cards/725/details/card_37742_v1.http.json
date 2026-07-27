@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_binder_production_main/docs/audits/japanese_master_index_v5/official_product_detail_search/raw/official_jp_cards/725/details/card_37742_v1.html",
+  "body_sha256": "03b22d1592000af5a60c7598ed7981632ae246a8c79511dfdee61dc4564fa705",
+  "byte_size": 8442,
+  "fetched_at": "2026-07-27T20:36:40.787Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/card-search/details.php/card/37742/regu/all",
+  "response_headers": {
+    "cache-control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Mon, 27 Jul 2026 20:36:41 GMT",
+    "expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+    "last-modified": "Mon, 27 Jul 2026 20:36:41 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "card_37742",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

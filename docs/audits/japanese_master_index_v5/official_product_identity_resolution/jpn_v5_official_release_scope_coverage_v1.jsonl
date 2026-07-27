@@ -1,3 +1,9 @@
+{"canonical_release_registry_key":"jpn-product-3c674e9d43b3d1f2","source_set_code":"SGG","official_unique_identity_count":21,"coverage_resolved_count":21,"promotion_ready_count":0,"duplicate_candidate_review_count":21}
+{"canonical_release_registry_key":"jpn-product-85badb576bdce97c","source_set_code":"SEK","official_unique_identity_count":20,"coverage_resolved_count":20,"promotion_ready_count":0,"duplicate_candidate_review_count":20}
+{"canonical_release_registry_key":"jpn-product-ab2caec78a8d8a9b","source_set_code":"SGI","official_unique_identity_count":24,"coverage_resolved_count":24,"promotion_ready_count":0,"duplicate_candidate_review_count":24}
+{"canonical_release_registry_key":"jpn-product-d9b3b964bc0dcf4a","source_set_code":"SEF","official_unique_identity_count":21,"coverage_resolved_count":21,"promotion_ready_count":0,"duplicate_candidate_review_count":21}
 {"canonical_release_registry_key":"jpn-release-23c11f745d122b52","source_set_code":"SA","official_unique_identity_count":118,"coverage_resolved_count":118,"promotion_ready_count":118,"duplicate_candidate_review_count":0}
+{"canonical_release_registry_key":"jpn-release-49939b7753a36f9a","source_set_code":"SC2","official_unique_identity_count":21,"coverage_resolved_count":21,"promotion_ready_count":21,"duplicate_candidate_review_count":0}
 {"canonical_release_registry_key":"jpn-release-60524fdaaa78a7ce","source_set_code":"SB","official_unique_identity_count":26,"coverage_resolved_count":26,"promotion_ready_count":24,"duplicate_candidate_review_count":2}
+{"canonical_release_registry_key":"jpn-release-d52bc91758fc354d","source_set_code":"SVC","official_unique_identity_count":25,"coverage_resolved_count":25,"promotion_ready_count":6,"duplicate_candidate_review_count":19}
 {"canonical_release_registry_key":"jpn-release-f641be1bf337b56f","source_set_code":"SD","official_unique_identity_count":134,"coverage_resolved_count":134,"promotion_ready_count":127,"duplicate_candidate_review_count":7}

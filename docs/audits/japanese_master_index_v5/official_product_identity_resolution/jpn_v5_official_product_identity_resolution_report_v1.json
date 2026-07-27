@@ -7,12 +7,12 @@
     "source_fetches": false,
     "storage_access": false
   },
-  "canonical_release_scope_count": 3,
+  "canonical_release_scope_count": 9,
   "coverage_projection": {
     "denominator_rule": "unique official card ID counted once in its canonical release union",
     "official_product_delta": {
-      "covered_slots": 278,
-      "expected_slots": 278
+      "covered_slots": 332,
+      "expected_slots": 410
     },
     "prior": {
       "covered_slots": 7933,
@@ -20,23 +20,23 @@
       "percent": 36.61
     },
     "projected": {
-      "covered_slots": 8211,
-      "expected_slots": 21944,
-      "percent": 37.42
+      "covered_slots": 8265,
+      "expected_slots": 22076,
+      "percent": 37.44
     }
   },
-  "currently_master_admissible_count": 0,
-  "duplicate_candidate_review_count": 9,
+  "currently_master_admissible_count": 78,
+  "duplicate_candidate_review_count": 114,
   "generated_at": "2026-07-27T05:30:00.000Z",
   "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-IDENTITY-RESOLUTION-V1",
-  "newly_covered_base_identity_count": 278,
+  "newly_covered_base_identity_count": 332,
   "next_gate": "integrate_245_direct_resolutions_and_adjudicate_8_duplicate_clusters",
-  "official_unique_identity_count": 278,
-  "product_scope_disposition_count": 15,
-  "promotion_ready_identity_count": 269,
+  "official_unique_identity_count": 410,
+  "product_scope_disposition_count": 18,
+  "promotion_ready_identity_count": 296,
   "resolution_disposition_counts": {
-    "duplicate_candidate_cluster_exact_image_review": 9,
-    "existing_candidate_exact_image_upgrade": 224,
+    "duplicate_candidate_cluster_exact_image_review": 114,
+    "existing_candidate_exact_image_upgrade": 251,
     "new_official_identity": 45
   },
   "status": "official_product_identity_delta_resolved"

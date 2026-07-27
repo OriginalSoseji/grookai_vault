@@ -1,0 +1,21 @@
+{
+  "body_path": "C:/grookai_vault_binder_production_main/docs/audits/japanese_master_index_v5/official_product_detail_search/raw/official_jp_cards/734/details/card_39547_v1.html",
+  "body_sha256": "7f868946d13daf5b3008e3509cf991e96aba0fbc2a0b21591dd4bc0bcfadfcce",
+  "byte_size": 8287,
+  "fetched_at": "2026-07-27T20:37:27.984Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/card-search/details.php/card/39547/regu/all",
+  "response_headers": {
+    "cache-control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Mon, 27 Jul 2026 20:37:28 GMT",
+    "expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+    "last-modified": "Mon, 27 Jul 2026 20:37:28 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "card_39547",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

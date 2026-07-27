@@ -36,39 +36,53 @@ aliases, and duplicate rows never inflate the denominator.
 - Deterministic scope dispositions: 72
   - 15 contaminated TCGdex aliases excluded
   - 57 duplicate official expansion-product aliases merged
-- Reconciled bounded denominator after the first official-product lanes:
-  21,944 base-card slots
-- Exact covered slots on the reconciled bounded denominator: 8,211
-- Current bounded coverage: 37.42%
-- Projected V5 working identities: 72,020
-- Active release/product scopes with unresolved work: 1,306
-- Zero-inventory release/product containers remaining: 579
+- Reconciled conservative denominator after the official-product lanes:
+  22,076 base-card slots
+- Exact covered slots on the reconciled bounded denominator: 8,265
+- Current bounded coverage: 37.44%
+- Projected V5 working identities: 71,903
+- Active release/product scopes with unresolved work: 1,297
+- Zero-inventory release/product containers remaining: 576
 - Official zero-inventory products processed from preserved snapshots: 455
 - Explicit named-card slots acquired from official product contents: 191
 - Direct official card-list products discovered: 15
 - Official card-list products parsed: 14
 - Official product card-list assertions acquired: 327
 - Unique official card IDs represented by those assertions: 253
-- Exact official identities integrated into the read-only V5 overlay: 278
+- Official product detail pages preserved and hash-verified: 17
+- Current product records represented by those pages: 30
+- Future product records explicitly excluded as of the census date: 10
+- Product-specific Official JP card-search collections recovered: 6
+  - Official collection IDs: 724, 725, 726, 734, 735, and 878
+  - Complete official card records acquired: 136
+  - Release-wide collection ID 882 excluded from product assignment
+- Exact official identities integrated into the read-only V5 overlay: 410
   - 45 new identities absent from V4
-  - 224 exact-image upgrades to existing V4 candidates
-  - 9 duplicate basic-energy clusters collapsed under exact official IDs
-  - 26 source-isolated V4 candidate rows superseded
-- Completed official product scopes retired from the active queue: 15
-- Completed canonical release scopes retired from the active queue: 3
-- Base identities with complete promotion evidence: 101
-- Base identities retained with promotion blockers: 177
+  - 251 exact-image upgrades to existing V4 candidates
+  - 114 duplicate candidate clusters collapsed under exact official IDs
+  - 248 source-isolated V4 candidate rows superseded
+  - 332 identities newly covered by V5
+  - 78 identities already master-admissible and not counted twice
+- Completed official product scopes retired from the active queue: 18
+- Completed canonical release scopes retired from the active queue: 9
+- Base identities with complete promotion evidence: 173
+- Base identities retained with promotion blockers: 237
   - 45 missing collector-facing English names
-  - 136 unresolved family relationships; blocker categories may overlap
+  - 196 unresolved family relationships; blocker categories may overlap
 
 The 191 product-content assertions remain source evidence rather than
 name-only coverage. The direct card-list lane supplied 253 exact official
 card IDs. A repaired numeric Official JP product-search lane added the `SB`
 release: 24 numbered identities plus nine governed unnumbered basic-energy
-IDs, eight of which overlap the first lane. The union is therefore 278 exact
-official identities. These identities are reconciled against V4 by official
-image/card ID rather than title. Base-index coverage and
-production-promotion readiness remain separate measurements.
+IDs, eight of which overlap the first lane. The product-detail lane then
+recovered six product-specific official search collections and 136 complete
+records. Four overlap earlier official evidence, producing a cumulative union
+of 410 exact official identities. The release-wide `SV2a` search collection
+was not assigned to its two accessory products. These identities are
+reconciled against V4 by official image/card ID rather than title. The
+coverage numerator excludes 78 identities that were already master-admissible.
+Base-index coverage and production-promotion readiness remain separate
+measurements.
 
 ## Workstreams
 

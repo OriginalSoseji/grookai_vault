@@ -229,7 +229,6 @@
       "jpn-v5-wave-1:jpn-product-715cadbbf067c16d",
       "jpn-v5-wave-1:jpn-product-72338937b612d9ad",
       "jpn-v5-wave-1:jpn-product-72af8b209bab8793",
-      "jpn-v5-wave-1:jpn-product-72d246c9a8a08658",
       "jpn-v5-wave-1:jpn-product-72daab863c31f56d",
       "jpn-v5-wave-1:jpn-product-72e22097d14d5977",
       "jpn-v5-wave-1:jpn-product-73340943da56ed97",
@@ -240,7 +239,8 @@
       "jpn-v5-wave-1:jpn-product-7494d7b97b11e92f",
       "jpn-v5-wave-1:jpn-product-74adda099d8e20d2",
       "jpn-v5-wave-1:jpn-product-74c8fe0fe0c89875",
-      "jpn-v5-wave-1:jpn-product-750128ae968bfa6a"
+      "jpn-v5-wave-1:jpn-product-750128ae968bfa6a",
+      "jpn-v5-wave-1:jpn-product-75b1f3421479cdb8"
     ]
   },
   {
@@ -252,7 +252,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-product-75b1f3421479cdb8",
       "jpn-v5-wave-1:jpn-product-75dd47032c13a489",
       "jpn-v5-wave-1:jpn-product-76d65b45d026357a",
       "jpn-v5-wave-1:jpn-product-78945855ccbd73b1",
@@ -301,7 +300,8 @@
       "jpn-v5-wave-1:jpn-product-8fe9b62cc2ce49f6",
       "jpn-v5-wave-1:jpn-product-908cfc7f08567717",
       "jpn-v5-wave-1:jpn-product-90dfb752e512143b",
-      "jpn-v5-wave-1:jpn-product-9116f0273626f932"
+      "jpn-v5-wave-1:jpn-product-9116f0273626f932",
+      "jpn-v5-wave-1:jpn-product-9144c3450e987e8e"
     ]
   },
   {
@@ -313,7 +313,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-product-9144c3450e987e8e",
       "jpn-v5-wave-1:jpn-product-91729a9938cb178d",
       "jpn-v5-wave-1:jpn-product-924bc72ed7d4f9a1",
       "jpn-v5-wave-1:jpn-product-92600e7c3abe6977",
@@ -362,7 +361,8 @@
       "jpn-v5-wave-1:jpn-product-a80d80fb21e56443",
       "jpn-v5-wave-1:jpn-product-a8795d569efd39dd",
       "jpn-v5-wave-1:jpn-product-a8a0e0cebd69b69e",
-      "jpn-v5-wave-1:jpn-product-a917fec016c630e9"
+      "jpn-v5-wave-1:jpn-product-a917fec016c630e9",
+      "jpn-v5-wave-1:jpn-product-a96e747944c56a07"
     ]
   },
   {
@@ -374,7 +374,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-product-a96e747944c56a07",
       "jpn-v5-wave-1:jpn-product-a985b638b05470c0",
       "jpn-v5-wave-1:jpn-product-a9c54a517c89fa78",
       "jpn-v5-wave-1:jpn-product-a9cb70e8c298d85f",
@@ -423,7 +422,8 @@
       "jpn-v5-wave-1:jpn-product-ca87af8331b4f5b1",
       "jpn-v5-wave-1:jpn-product-ca918d88876f6597",
       "jpn-v5-wave-1:jpn-product-caa49cbc92727561",
-      "jpn-v5-wave-1:jpn-product-cad8668493ce0d5f"
+      "jpn-v5-wave-1:jpn-product-cad8668493ce0d5f",
+      "jpn-v5-wave-1:jpn-product-cb353e88d68770a2"
     ]
   },
   {
@@ -435,13 +435,11 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-product-cb353e88d68770a2",
       "jpn-v5-wave-1:jpn-product-cb48ac4c2ca94157",
       "jpn-v5-wave-1:jpn-product-cb83f38da9d152c1",
       "jpn-v5-wave-1:jpn-product-cc436e882c2508ba",
       "jpn-v5-wave-1:jpn-product-cc642a6ecbb43f08",
       "jpn-v5-wave-1:jpn-product-ccb2f48067682b93",
-      "jpn-v5-wave-1:jpn-product-ce3d5d4fc28eebc6",
       "jpn-v5-wave-1:jpn-product-cf985e7761549d45",
       "jpn-v5-wave-1:jpn-product-d0744d92f5a9212c",
       "jpn-v5-wave-1:jpn-product-d14f8eea51cffbf3",
@@ -484,7 +482,9 @@
       "jpn-v5-wave-1:jpn-product-e3b1b786f2a6a508",
       "jpn-v5-wave-1:jpn-product-e3fd8361359f921f",
       "jpn-v5-wave-1:jpn-product-e4986bf61c588f1c",
-      "jpn-v5-wave-1:jpn-product-e50aeaed500a233a"
+      "jpn-v5-wave-1:jpn-product-e50aeaed500a233a",
+      "jpn-v5-wave-1:jpn-product-e6d058dcbcba4a47",
+      "jpn-v5-wave-1:jpn-product-e6d1e3974c6fd775"
     ]
   },
   {
@@ -496,9 +496,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-product-e66b2d8c16a44330",
-      "jpn-v5-wave-1:jpn-product-e6d058dcbcba4a47",
-      "jpn-v5-wave-1:jpn-product-e6d1e3974c6fd775",
       "jpn-v5-wave-1:jpn-product-e7b1a46f5ee3cede",
       "jpn-v5-wave-1:jpn-product-e8787a2779239c18",
       "jpn-v5-wave-1:jpn-product-e9f69ffe976e0faf",
@@ -545,7 +542,10 @@
       "jpn-v5-wave-1:jpn-release-0b0cb943d1a62975",
       "jpn-v5-wave-1:jpn-release-0d680389de19f636",
       "jpn-v5-wave-1:jpn-release-118655a4fef7078c",
-      "jpn-v5-wave-1:jpn-release-158403cf005ad452"
+      "jpn-v5-wave-1:jpn-release-158403cf005ad452",
+      "jpn-v5-wave-1:jpn-release-16b8e2d7a9dd0cae",
+      "jpn-v5-wave-1:jpn-release-1714688272b4deb9",
+      "jpn-v5-wave-1:jpn-release-18c8a21683f19202"
     ]
   },
   {
@@ -557,9 +557,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-release-16b8e2d7a9dd0cae",
-      "jpn-v5-wave-1:jpn-release-1714688272b4deb9",
-      "jpn-v5-wave-1:jpn-release-18c8a21683f19202",
       "jpn-v5-wave-1:jpn-release-18cf736b69adb4e4",
       "jpn-v5-wave-1:jpn-release-1cab1c5d891ed2f8",
       "jpn-v5-wave-1:jpn-release-1e9877dfea181092",
@@ -606,7 +603,10 @@
       "jpn-v5-wave-1:jpn-release-6eea5bf63faacfd0",
       "jpn-v5-wave-1:jpn-release-6eef4cffc4ac2f3b",
       "jpn-v5-wave-1:jpn-release-6fc6b5e97f213112",
-      "jpn-v5-wave-1:jpn-release-71958c24a78d64cc"
+      "jpn-v5-wave-1:jpn-release-71958c24a78d64cc",
+      "jpn-v5-wave-1:jpn-release-720c7ec968458e5a",
+      "jpn-v5-wave-1:jpn-release-73ee14a6a81b74ea",
+      "jpn-v5-wave-1:jpn-release-73fab3a495a466f8"
     ]
   },
   {
@@ -618,9 +618,6 @@
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-release-720c7ec968458e5a",
-      "jpn-v5-wave-1:jpn-release-73ee14a6a81b74ea",
-      "jpn-v5-wave-1:jpn-release-73fab3a495a466f8",
       "jpn-v5-wave-1:jpn-release-75b36820ac1b92e3",
       "jpn-v5-wave-1:jpn-release-77b6754eb77e9131",
       "jpn-v5-wave-1:jpn-release-7c1abb4a8703aab7",
@@ -667,21 +664,21 @@
       "jpn-v5-wave-1:jpn-release-b939b1de977fb4e1",
       "jpn-v5-wave-1:jpn-release-b9f3d92422109a83",
       "jpn-v5-wave-1:jpn-release-bc68873c261527aa",
-      "jpn-v5-wave-1:jpn-release-c0e50ee6e99b5ed7"
+      "jpn-v5-wave-1:jpn-release-c0e50ee6e99b5ed7",
+      "jpn-v5-wave-1:jpn-release-c257f617252d884c",
+      "jpn-v5-wave-1:jpn-release-c345235d4983ba16",
+      "jpn-v5-wave-1:jpn-release-c62f2e031dc5547a"
     ]
   },
   {
     "batch_key": "zero_inventory_acquisition:012",
     "database_writes_approved": false,
     "execution_status": "planned_not_executed",
-    "release_count": 29,
+    "release_count": 26,
     "source_fetches_approved": false,
     "wave": 1,
     "wave_key": "zero_inventory_acquisition",
     "work_keys": [
-      "jpn-v5-wave-1:jpn-release-c257f617252d884c",
-      "jpn-v5-wave-1:jpn-release-c345235d4983ba16",
-      "jpn-v5-wave-1:jpn-release-c62f2e031dc5547a",
       "jpn-v5-wave-1:jpn-release-c747d3172a816da6",
       "jpn-v5-wave-1:jpn-release-c7e55295b23d7e01",
       "jpn-v5-wave-1:jpn-release-c94b547cf0c7b8cc",
@@ -932,7 +929,6 @@
       "jpn-v5-wave-2:jpn-product-3090050c1bdfc5ce",
       "jpn-v5-wave-2:jpn-product-3378bcd84f0dd325",
       "jpn-v5-wave-2:jpn-product-39bbc128bcfd8955",
-      "jpn-v5-wave-2:jpn-product-3c674e9d43b3d1f2",
       "jpn-v5-wave-2:jpn-product-3f3a2ef96d5d54ca",
       "jpn-v5-wave-2:jpn-product-434a034ec53995ba",
       "jpn-v5-wave-2:jpn-product-48f4cc1504b3dc44",
@@ -951,7 +947,8 @@
       "jpn-v5-wave-2:jpn-product-6671b2f8b557630c",
       "jpn-v5-wave-2:jpn-product-66e6a33f9ca32537",
       "jpn-v5-wave-2:jpn-product-69b67ed6584f12d3",
-      "jpn-v5-wave-2:jpn-product-6d83de429849f877"
+      "jpn-v5-wave-2:jpn-product-6d83de429849f877",
+      "jpn-v5-wave-2:jpn-product-70901ac1cf877574"
     ]
   },
   {
@@ -963,7 +960,6 @@
     "wave": 2,
     "wave_key": "denominator_repair",
     "work_keys": [
-      "jpn-v5-wave-2:jpn-product-70901ac1cf877574",
       "jpn-v5-wave-2:jpn-product-71c5c5667123da14",
       "jpn-v5-wave-2:jpn-product-72427ea875fb9be8",
       "jpn-v5-wave-2:jpn-product-729bc1689d3de870",
@@ -975,7 +971,6 @@
       "jpn-v5-wave-2:jpn-product-7cbba888c415e5e8",
       "jpn-v5-wave-2:jpn-product-7f2bcdeb8c4a4a52",
       "jpn-v5-wave-2:jpn-product-82835d62452f200a",
-      "jpn-v5-wave-2:jpn-product-85badb576bdce97c",
       "jpn-v5-wave-2:jpn-product-86bbdd2fab1d3f74",
       "jpn-v5-wave-2:jpn-product-882f171cf2c745cd",
       "jpn-v5-wave-2:jpn-product-90dd8907f07494df",
@@ -992,7 +987,6 @@
       "jpn-v5-wave-2:jpn-product-a0a19806f58fc77f",
       "jpn-v5-wave-2:jpn-product-a745f838bed540dd",
       "jpn-v5-wave-2:jpn-product-a888176e7e120d7a",
-      "jpn-v5-wave-2:jpn-product-ab2caec78a8d8a9b",
       "jpn-v5-wave-2:jpn-product-ab6b72b859131558",
       "jpn-v5-wave-2:jpn-product-ac450e80698fd8df",
       "jpn-v5-wave-2:jpn-product-ac9233a40a03cc1f",
@@ -1012,7 +1006,10 @@
       "jpn-v5-wave-2:jpn-product-c6eb029296ed2983",
       "jpn-v5-wave-2:jpn-product-c81b015d350f5961",
       "jpn-v5-wave-2:jpn-product-c9cc6e6ad7d80473",
-      "jpn-v5-wave-2:jpn-product-cde5bd8f038ef1ea"
+      "jpn-v5-wave-2:jpn-product-cde5bd8f038ef1ea",
+      "jpn-v5-wave-2:jpn-product-cfe58fe86bcc6275",
+      "jpn-v5-wave-2:jpn-product-d1ba737aa9d393fd",
+      "jpn-v5-wave-2:jpn-product-d8fb9583873e0e98"
     ]
   },
   {
@@ -1024,10 +1021,6 @@
     "wave": 2,
     "wave_key": "denominator_repair",
     "work_keys": [
-      "jpn-v5-wave-2:jpn-product-cfe58fe86bcc6275",
-      "jpn-v5-wave-2:jpn-product-d1ba737aa9d393fd",
-      "jpn-v5-wave-2:jpn-product-d8fb9583873e0e98",
-      "jpn-v5-wave-2:jpn-product-d9b3b964bc0dcf4a",
       "jpn-v5-wave-2:jpn-product-dda484e49b308e00",
       "jpn-v5-wave-2:jpn-product-e0633bd3f4d76f5f",
       "jpn-v5-wave-2:jpn-product-e248c0e355e0cf5d",
@@ -1073,7 +1066,11 @@
       "jpn-v5-wave-2:jpn-release-253bd7a4cd7dc5dc",
       "jpn-v5-wave-2:jpn-release-26a2c5e4d72ebbf4",
       "jpn-v5-wave-2:jpn-release-2af7d9ca8aaa0e75",
-      "jpn-v5-wave-2:jpn-release-2d098ded9ac3a9c6"
+      "jpn-v5-wave-2:jpn-release-2d098ded9ac3a9c6",
+      "jpn-v5-wave-2:jpn-release-2e115d85f1ce87af",
+      "jpn-v5-wave-2:jpn-release-2fdb25e5a85f9fe6",
+      "jpn-v5-wave-2:jpn-release-32195a8c7c2a045d",
+      "jpn-v5-wave-2:jpn-release-3355ebd42de7e0dc"
     ]
   },
   {
@@ -1085,10 +1082,6 @@
     "wave": 2,
     "wave_key": "denominator_repair",
     "work_keys": [
-      "jpn-v5-wave-2:jpn-release-2e115d85f1ce87af",
-      "jpn-v5-wave-2:jpn-release-2fdb25e5a85f9fe6",
-      "jpn-v5-wave-2:jpn-release-32195a8c7c2a045d",
-      "jpn-v5-wave-2:jpn-release-3355ebd42de7e0dc",
       "jpn-v5-wave-2:jpn-release-33f9bc67d860cde8",
       "jpn-v5-wave-2:jpn-release-387069b5d7c70a23",
       "jpn-v5-wave-2:jpn-release-38ecc3643dc4c86d",
@@ -1105,7 +1098,6 @@
       "jpn-v5-wave-2:jpn-release-488c725e7db2ee01",
       "jpn-v5-wave-2:jpn-release-48da65dd70ea747f",
       "jpn-v5-wave-2:jpn-release-48df6182239316d4",
-      "jpn-v5-wave-2:jpn-release-49939b7753a36f9a",
       "jpn-v5-wave-2:jpn-release-49de4dbd8e63a152",
       "jpn-v5-wave-2:jpn-release-4ba10ec344b30da5",
       "jpn-v5-wave-2:jpn-release-4c2f30a49c5fb2b2",
@@ -1134,7 +1126,12 @@
       "jpn-v5-wave-2:jpn-release-5def4db4451e9d8b",
       "jpn-v5-wave-2:jpn-release-5e1532977c33178b",
       "jpn-v5-wave-2:jpn-release-5e3ae5afe377bd90",
-      "jpn-v5-wave-2:jpn-release-5f3b7751f34a4660"
+      "jpn-v5-wave-2:jpn-release-5f3b7751f34a4660",
+      "jpn-v5-wave-2:jpn-release-60096a267c8c3de6",
+      "jpn-v5-wave-2:jpn-release-662361f896939441",
+      "jpn-v5-wave-2:jpn-release-6658f3d91cd7fea8",
+      "jpn-v5-wave-2:jpn-release-66aa4382f1ad0738",
+      "jpn-v5-wave-2:jpn-release-67b5d8c754f0e2d4"
     ]
   },
   {
@@ -1146,11 +1143,6 @@
     "wave": 2,
     "wave_key": "denominator_repair",
     "work_keys": [
-      "jpn-v5-wave-2:jpn-release-60096a267c8c3de6",
-      "jpn-v5-wave-2:jpn-release-662361f896939441",
-      "jpn-v5-wave-2:jpn-release-6658f3d91cd7fea8",
-      "jpn-v5-wave-2:jpn-release-66aa4382f1ad0738",
-      "jpn-v5-wave-2:jpn-release-67b5d8c754f0e2d4",
       "jpn-v5-wave-2:jpn-release-684e4ccd59c8006e",
       "jpn-v5-wave-2:jpn-release-6aca7f6c6e9557e2",
       "jpn-v5-wave-2:jpn-release-6b0bf9483a1f7f3b",
@@ -1195,23 +1187,23 @@
       "jpn-v5-wave-2:jpn-release-a3c19e7d57945300",
       "jpn-v5-wave-2:jpn-release-a9cf720f2b75391b",
       "jpn-v5-wave-2:jpn-release-aa1334c887012ddc",
-      "jpn-v5-wave-2:jpn-release-ac8e04263cb9cbcb"
+      "jpn-v5-wave-2:jpn-release-ac8e04263cb9cbcb",
+      "jpn-v5-wave-2:jpn-release-b0fc6f5f3c4e3eb2",
+      "jpn-v5-wave-2:jpn-release-b19ce76bd2e5cd20",
+      "jpn-v5-wave-2:jpn-release-b264da68eae4e502",
+      "jpn-v5-wave-2:jpn-release-b4543073de702013",
+      "jpn-v5-wave-2:jpn-release-b9124d64a9d933ac"
     ]
   },
   {
     "batch_key": "denominator_repair:009",
     "database_writes_approved": false,
     "execution_status": "planned_not_executed",
-    "release_count": 50,
+    "release_count": 46,
     "source_fetches_approved": false,
     "wave": 2,
     "wave_key": "denominator_repair",
     "work_keys": [
-      "jpn-v5-wave-2:jpn-release-b0fc6f5f3c4e3eb2",
-      "jpn-v5-wave-2:jpn-release-b19ce76bd2e5cd20",
-      "jpn-v5-wave-2:jpn-release-b264da68eae4e502",
-      "jpn-v5-wave-2:jpn-release-b4543073de702013",
-      "jpn-v5-wave-2:jpn-release-b9124d64a9d933ac",
       "jpn-v5-wave-2:jpn-release-b9971e7f9d6780c7",
       "jpn-v5-wave-2:jpn-release-b9f77b3d8d360c71",
       "jpn-v5-wave-2:jpn-release-bb5b2b0555ebd8d3",
@@ -1232,7 +1224,6 @@
       "jpn-v5-wave-2:jpn-release-cf6eb913da1fc8a1",
       "jpn-v5-wave-2:jpn-release-d182a3a3b6aad457",
       "jpn-v5-wave-2:jpn-release-d4f09b76f9672e24",
-      "jpn-v5-wave-2:jpn-release-d52bc91758fc354d",
       "jpn-v5-wave-2:jpn-release-d8c91c267cf29ba8",
       "jpn-v5-wave-2:jpn-release-df57a9f5a39030ea",
       "jpn-v5-wave-2:jpn-release-e06cfd71821ede14",
@@ -1256,18 +1247,7 @@
       "jpn-v5-wave-2:jpn-release-f648f9e0063e2424",
       "jpn-v5-wave-2:jpn-release-f98f530ac5ab95ef",
       "jpn-v5-wave-2:jpn-release-fa01e79c6faed341",
-      "jpn-v5-wave-2:jpn-release-fa7510873742c22e"
-    ]
-  },
-  {
-    "batch_key": "denominator_repair:010",
-    "database_writes_approved": false,
-    "execution_status": "planned_not_executed",
-    "release_count": 2,
-    "source_fetches_approved": false,
-    "wave": 2,
-    "wave_key": "denominator_repair",
-    "work_keys": [
+      "jpn-v5-wave-2:jpn-release-fa7510873742c22e",
       "jpn-v5-wave-2:jpn-release-fab9fa2a1c8678fb",
       "jpn-v5-wave-2:jpn-release-fd8c429aaffd5bd1"
     ]

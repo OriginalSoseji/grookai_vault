@@ -1,0 +1,17 @@
+{
+  "body_bytes": 32959,
+  "body_sha256": "bb151222b7f3b090271840c38b81be7866b7fdff29701b1446e027b0cd36487d",
+  "capture_mode": "live_fetch",
+  "fetched_at": "2026-07-27T20:30:06.954Z",
+  "final_url": "https://www.pokemon-card.com/ex/svc/",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DETAIL-PAGE-HARVEST-V1",
+  "http_status": 200,
+  "request_url": "https://www.pokemon-card.com/ex/svc/",
+  "response_headers": {
+    "cache_control": null,
+    "content_length": null,
+    "content_type": "text/html; charset=UTF-8",
+    "etag": null,
+    "last_modified": null
+  }
+}

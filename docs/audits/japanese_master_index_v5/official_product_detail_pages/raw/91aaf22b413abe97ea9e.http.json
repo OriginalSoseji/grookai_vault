@@ -1,0 +1,17 @@
+{
+  "body_bytes": 34599,
+  "body_sha256": "a1dced3dee9515ea3a28055b037f139b1d2f8179dac9d2003eee463eb86494fc",
+  "capture_mode": "live_fetch",
+  "fetched_at": "2026-07-27T20:30:19.491Z",
+  "final_url": "https://www.pokemon-card.com/info/2020/20201030_002656.html",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-DETAIL-PAGE-HARVEST-V1",
+  "http_status": 200,
+  "request_url": "https://www.pokemon-card.com/info/2020/20201030_002656.html",
+  "response_headers": {
+    "cache_control": null,
+    "content_length": null,
+    "content_type": "text/html; charset=UTF-8",
+    "etag": null,
+    "last_modified": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 24,
+    "cardStart": 1,
+    "cardEnd": 24,
+    "searchCondition": [
+        "ハイクラスデッキ「インテレオンVMAX」",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "39559",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039559_P_RAPURASU.jpg",
+            "cardNameAltText": "ラプラス",
+            "cardNameViewText": "ラプラス"
+        },
+        {
+            "cardID": "39560",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039560_P_TEPPOUO.jpg",
+            "cardNameAltText": "テッポウオ",
+            "cardNameViewText": "テッポウオ"
+        },
+        {
+            "cardID": "39561",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039561_P_OKUTAN.jpg",
+            "cardNameAltText": "オクタン",
+            "cardNameViewText": "オクタン"
+        },
+        {
+            "cardID": "39562",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039562_P_BASURAO.jpg",
+            "cardNameAltText": "バスラオ",
+            "cardNameViewText": "バスラオ"
+        },
+        {
+            "cardID": "39563",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039563_P_INTEREONV.jpg",
+            "cardNameAltText": "インテレオンV",
+            "cardNameViewText": "インテレオンV"
+        },
+        {
+            "cardID": "39564",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039564_P_INTEREONVMAX.jpg",
+            "cardNameAltText": "インテレオンVMAX",
+            "cardNameViewText": "インテレオンVMAX"
+        },
+        {
+            "cardID": "39565",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039565_P_KUROBATTOV.jpg",
+            "cardNameAltText": "クロバットV",
+            "cardNameViewText": "クロバットV"
+        },
+        {
+            "cardID": "39566",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039566_P_MIMIRORU.jpg",
+            "cardNameAltText": "ミミロル",
+            "cardNameViewText": "ミミロル"
+        },
+        {
+            "cardID": "39567",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039567_P_MIMIROPPU.jpg",
+            "cardNameAltText": "ミミロップ",
+            "cardNameViewText": "ミミロップ"
+        },
+        {
+            "cardID": "39568",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039568_P_RUCHABURU.jpg",
+            "cardNameAltText": "ルチャブル",
+            "cardNameViewText": "ルチャブル"
+        },
+        {
+            "cardID": "44976",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/044976_P_INTEREONVMAX.jpg",
+            "cardNameAltText": "インテレオンVMAX",
+            "cardNameViewText": "インテレオンVMAX"
+        },
+        {
+            "cardID": "39569",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039569_T_ENERUGIKAISHUU.jpg",
+            "cardNameAltText": "エネルギー回収",
+            "cardNameViewText": "エネルギー回収"
+        },
+        {
+            "cardID": "39570",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039570_T_KUIKKUBORU.jpg",
+            "cardNameAltText": "クイックボール",
+            "cardNameViewText": "クイックボール"
+        },
+        {
+            "cardID": "39571",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039571_T_SHINKANOOKOU.jpg",
+            "cardNameAltText": "しんかのおこう",
+            "cardNameViewText": "しんかのおこう"
+        },
+        {
+            "cardID": "39572",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039572_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "39573",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039573_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "39574",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039574_T_KORUNINOKIAI.jpg",
+            "cardNameAltText": "コルニの気合い",
+            "cardNameViewText": "コルニの気合い"
+        },
+        {
+            "cardID": "39575",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039575_T_HAKASENOKENKYUUARARAGIHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "39576",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039576_T_BOUKENKANOHAKKEN.jpg",
+            "cardNameAltText": "冒険家の発見",
+            "cardNameViewText": "冒険家の発見"
+        },
+        {
+            "cardID": "39577",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039577_T_BOSUNOSHIREIFURADARI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "39578",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039578_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "39579",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039579_T_MIZUNOTOU.jpg",
+            "cardNameAltText": "みずの塔",
+            "cardNameViewText": "みずの塔"
+        },
+        {
+            "cardID": "39580",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039580_E_RENGEKIENERUGI.jpg",
+            "cardNameAltText": "れんげきエネルギー",
+            "cardNameViewText": "れんげきエネルギー"
+        },
+        {
+            "cardID": "39582",
+            "cardThumbFile": "/assets/images/card_images/large/SGI/039582_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        }
+    ]
+}

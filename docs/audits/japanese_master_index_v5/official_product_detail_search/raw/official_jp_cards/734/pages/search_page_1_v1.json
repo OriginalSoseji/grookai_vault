@@ -1,0 +1,142 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 21,
+    "cardStart": 1,
+    "cardEnd": 21,
+    "searchCondition": [
+        "ハイクラスデッキ「ゲンガーVMAX」",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "39538",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039538_P_GENGAV.jpg",
+            "cardNameAltText": "ゲンガーV",
+            "cardNameViewText": "ゲンガーV"
+        },
+        {
+            "cardID": "39539",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039539_P_GENGAVMAX.jpg",
+            "cardNameAltText": "ゲンガーVMAX",
+            "cardNameViewText": "ゲンガーVMAX"
+        },
+        {
+            "cardID": "39540",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039540_P_KUROBATTOV.jpg",
+            "cardNameAltText": "クロバットV",
+            "cardNameViewText": "クロバットV"
+        },
+        {
+            "cardID": "39541",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039541_P_DERUBIRU.jpg",
+            "cardNameAltText": "デルビル",
+            "cardNameViewText": "デルビル"
+        },
+        {
+            "cardID": "39542",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039542_P_HERUGA.jpg",
+            "cardNameAltText": "ヘルガー",
+            "cardNameViewText": "ヘルガー"
+        },
+        {
+            "cardID": "39543",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039543_P_IBERUTARU.jpg",
+            "cardNameAltText": "イベルタル",
+            "cardNameViewText": "イベルタル"
+        },
+        {
+            "cardID": "39544",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039544_P_MORUPEKO.jpg",
+            "cardNameAltText": "モルペコ",
+            "cardNameViewText": "モルペコ"
+        },
+        {
+            "cardID": "44975",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/044975_P_GENGAVMAX.jpg",
+            "cardNameAltText": "ゲンガーVMAX",
+            "cardNameViewText": "ゲンガーVMAX"
+        },
+        {
+            "cardID": "39545",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039545_T_KATSURYOKUNOTSUBO.jpg",
+            "cardNameAltText": "活力の壺",
+            "cardNameViewText": "活力の壺"
+        },
+        {
+            "cardID": "39546",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039546_T_KUIKKUBORU.jpg",
+            "cardNameAltText": "クイックボール",
+            "cardNameViewText": "クイックボール"
+        },
+        {
+            "cardID": "39547",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039547_T_SHINKANOOKOU.jpg",
+            "cardNameAltText": "しんかのおこう",
+            "cardNameViewText": "しんかのおこう"
+        },
+        {
+            "cardID": "39548",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039548_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "39549",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039549_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "39550",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039550_T_SHIBA.jpg",
+            "cardNameAltText": "シバ",
+            "cardNameViewText": "シバ"
+        },
+        {
+            "cardID": "39551",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039551_T_HAKASENOKENKYUUARARAGIHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "39552",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039552_T_BOUKENKANOHAKKEN.jpg",
+            "cardNameAltText": "冒険家の発見",
+            "cardNameViewText": "冒険家の発見"
+        },
+        {
+            "cardID": "39553",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039553_T_BOSUNOSHIREIFURADARI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "39554",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039554_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "39555",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039555_T_AKUNOTOU.jpg",
+            "cardNameAltText": "あくの塔",
+            "cardNameViewText": "あくの塔"
+        },
+        {
+            "cardID": "39556",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039556_E_ICHIGEKIENERUGI.jpg",
+            "cardNameAltText": "いちげきエネルギー",
+            "cardNameViewText": "いちげきエネルギー"
+        },
+        {
+            "cardID": "39558",
+            "cardThumbFile": "/assets/images/card_images/large/SGG/039558_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        }
+    ]
+}

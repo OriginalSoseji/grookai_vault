@@ -1,0 +1,166 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 1,
+    "maxPage": 1,
+    "hitCnt": 25,
+    "cardStart": 1,
+    "cardEnd": 25,
+    "searchCondition": [
+        "スターターセットex ピカチュウex&パーモット",
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "43093",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043093_P_PIKACHIXYUUEX.jpg",
+            "cardNameAltText": "ピカチュウex",
+            "cardNameViewText": "ピカチュウex"
+        },
+        {
+            "cardID": "43094",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043094_P_KOIRU.jpg",
+            "cardNameAltText": "コイル",
+            "cardNameViewText": "コイル"
+        },
+        {
+            "cardID": "43095",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043095_P_BIRIRIDAMA.jpg",
+            "cardNameAltText": "ビリリダマ",
+            "cardNameViewText": "ビリリダマ"
+        },
+        {
+            "cardID": "43096",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043096_P_MARUMAIN.jpg",
+            "cardNameAltText": "マルマイン",
+            "cardNameViewText": "マルマイン"
+        },
+        {
+            "cardID": "43097",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043097_P_KORINKU.jpg",
+            "cardNameAltText": "コリンク",
+            "cardNameViewText": "コリンク"
+        },
+        {
+            "cardID": "43098",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043098_P_BACHINUNI.jpg",
+            "cardNameAltText": "バチンウニ",
+            "cardNameViewText": "バチンウニ"
+        },
+        {
+            "cardID": "43099",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043099_P_PAMO.jpg",
+            "cardNameAltText": "パモ",
+            "cardNameViewText": "パモ"
+        },
+        {
+            "cardID": "43114",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043114_P_PAMO.jpg",
+            "cardNameAltText": "パモ",
+            "cardNameViewText": "パモ"
+        },
+        {
+            "cardID": "43100",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043100_P_PAMOTTO.jpg",
+            "cardNameAltText": "パモット",
+            "cardNameViewText": "パモット"
+        },
+        {
+            "cardID": "43115",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043115_P_PAMOTTO.jpg",
+            "cardNameAltText": "パモット",
+            "cardNameViewText": "パモット"
+        },
+        {
+            "cardID": "43101",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043101_P_PAMOTTO.jpg",
+            "cardNameAltText": "パーモット",
+            "cardNameViewText": "パーモット"
+        },
+        {
+            "cardID": "43116",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043116_P_PAMOTTO.jpg",
+            "cardNameAltText": "パーモット",
+            "cardNameViewText": "パーモット"
+        },
+        {
+            "cardID": "43102",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043102_P_GURUTON.jpg",
+            "cardNameAltText": "グルトン",
+            "cardNameViewText": "グルトン"
+        },
+        {
+            "cardID": "43103",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043103_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "43104",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043104_T_EREKIJIENERETA.jpg",
+            "cardNameAltText": "エレキジェネレーター",
+            "cardNameViewText": "エレキジェネレーター"
+        },
+        {
+            "cardID": "43105",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043105_T_NESUTOBORU.jpg",
+            "cardNameAltText": "ネストボール",
+            "cardNameViewText": "ネストボール"
+        },
+        {
+            "cardID": "43106",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043106_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "43107",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043107_T_POKEGIA30.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "43108",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043108_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "43109",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043109_T_POKEMONKIXYATCHIXYA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "43110",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043110_T_JIXYAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "43111",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043111_T_TANPANKOZOU.jpg",
+            "cardNameAltText": "たんぱんこぞう",
+            "cardNameViewText": "たんぱんこぞう"
+        },
+        {
+            "cardID": "43112",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043112_T_NEMO.jpg",
+            "cardNameAltText": "ネモ",
+            "cardNameViewText": "ネモ"
+        },
+        {
+            "cardID": "43113",
+            "cardThumbFile": "/assets/images/card_images/large/SVC/043113_T_HAKASENOKENKIXYUUFUTOUHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "42782",
+            "cardThumbFile": "/assets/images/card_images/large/ENE/042782_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        }
+    ]
+}

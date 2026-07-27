@@ -198,6 +198,7 @@ async function main() {
       image_url: identity.image_url,
       card_domain: cardDomain,
       base_identity_coverage_status: 'resolved',
+      previously_master_admissible: identity.current_master_admissible,
       official_source_present: true,
       exact_image_or_card_id_present: true,
       promotion_status: promotionBlockers.length === 0
@@ -234,7 +235,10 @@ async function main() {
     v4WorkingCount
     + addedCount
     - (collapsedSourceCount - collapsedIdentityCount);
-  const covered = 7_933 + overlayRows.length;
+  const newlyCoveredCount = overlayRows.filter(
+    (row) => !row.previously_master_admissible,
+  ).length;
+  const covered = 7_933 + newlyCoveredCount;
   const expected = 21_666 + overlayRows.length;
   const report = {
     generator_version: GENERATOR_VERSION,
@@ -246,6 +250,9 @@ async function main() {
       (row) => row.identity_action,
     ),
     superseded_v4_candidate_count: supersessions.length,
+    newly_covered_base_identity_count: newlyCoveredCount,
+    previously_master_admissible_identity_count:
+      overlayRows.length - newlyCoveredCount,
     v4_working_identity_count: v4WorkingCount,
     projected_v5_working_identity_count: projectedWorkingCount,
     base_identity_coverage: {

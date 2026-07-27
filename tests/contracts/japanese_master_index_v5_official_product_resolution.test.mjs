@@ -74,24 +74,24 @@ test('official product identities resolve exact V4 delta', () => {
     resolutionRoot,
     'jpn_v5_official_product_identity_delta_v1.jsonl',
   );
-  assert.equal(report.official_unique_identity_count, 278);
-  assert.equal(report.currently_master_admissible_count, 0);
-  assert.equal(report.newly_covered_base_identity_count, 278);
+  assert.equal(report.official_unique_identity_count, 410);
+  assert.equal(report.currently_master_admissible_count, 78);
+  assert.equal(report.newly_covered_base_identity_count, 332);
   assert.deepEqual(report.resolution_disposition_counts, {
-    duplicate_candidate_cluster_exact_image_review: 9,
-    existing_candidate_exact_image_upgrade: 224,
+    duplicate_candidate_cluster_exact_image_review: 114,
+    existing_candidate_exact_image_upgrade: 251,
     new_official_identity: 45,
   });
   assert.deepEqual(report.coverage_projection.projected, {
-    covered_slots: 8_211,
-    expected_slots: 21_944,
-    percent: 37.42,
+    covered_slots: 8_265,
+    expected_slots: 22_076,
+    percent: 37.44,
   });
   assert.ok(identities.every((row) =>
     row.base_identity_coverage_resolved));
 });
 
-test('all duplicate energy clusters are evidence-safe', () => {
+test('all duplicate official-image clusters are evidence-safe', () => {
   const report = json(
     duplicateRoot,
     'jpn_v5_official_product_duplicate_adjudication_report_v1.json',
@@ -100,10 +100,10 @@ test('all duplicate energy clusters are evidence-safe', () => {
     duplicateRoot,
     'jpn_v5_official_product_duplicate_adjudications_v1.jsonl',
   );
-  assert.equal(report.reviewed_cluster_count, 9);
-  assert.equal(report.safe_merge_cluster_count, 9);
+  assert.equal(report.reviewed_cluster_count, 114);
+  assert.equal(report.safe_merge_cluster_count, 114);
   assert.equal(report.blocked_cluster_count, 0);
-  assert.equal(report.official_product_lane.integration_ready_identity_count, 278);
+  assert.equal(report.official_product_lane.integration_ready_identity_count, 410);
   assert.ok(rows.every((row) => row.safe_to_merge));
   assert.ok(rows.every((row) => row.blockers.length === 0));
   assert.ok(rows.every((row) =>
@@ -124,10 +124,12 @@ test('working overlay preserves V4 and adds exact base identities', () => {
     overlayRoot,
     'jpn_v5_candidate_supersessions_v1.jsonl',
   );
-  assert.equal(report.overlay_identity_count, 278);
-  assert.equal(report.projected_v5_working_identity_count, 72_020);
-  assert.equal(supersessions.length, 26);
-  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 278);
+  assert.equal(report.overlay_identity_count, 410);
+  assert.equal(report.newly_covered_base_identity_count, 332);
+  assert.equal(report.previously_master_admissible_identity_count, 78);
+  assert.equal(report.projected_v5_working_identity_count, 71_903);
+  assert.equal(supersessions.length, 248);
+  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 410);
   assert.ok(overlay.every((row) =>
     row.base_identity_coverage_status === 'resolved'));
   assert.equal(report.boundary.v4_artifacts_mutated, false);

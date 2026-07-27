@@ -26,6 +26,9 @@ const DETAILS =
 const SEARCH_ASSERTIONS =
   'docs/audits/japanese_master_index_v5/official_product_search/'
   + 'official_jp_card_assertions_v1.json';
+const DETAIL_SEARCH_ASSERTIONS =
+  'docs/audits/japanese_master_index_v5/official_product_detail_search/'
+  + 'official_jp_card_assertions_v1.json';
 const CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
   + 'candidate_union_manifest_v1.json';
@@ -128,8 +131,22 @@ async function main() {
   }
   const assertions = readJsonl(LINK_ASSERTIONS);
   const details = readJsonl(DETAILS);
-  const searchAssertions =
-    readVerifiedArtifact(SEARCH_ASSERTIONS).content.assertions;
+  const searchAssertionSources = [
+    {
+      evidenceOrigin: 'v5_official_product_search',
+      rows: readVerifiedArtifact(SEARCH_ASSERTIONS).content.assertions,
+    },
+    {
+      evidenceOrigin: 'v5_official_product_detail_search',
+      rows: readVerifiedArtifact(DETAIL_SEARCH_ASSERTIONS).content.assertions,
+    },
+  ];
+  const searchAssertions = searchAssertionSources.flatMap(
+    (source) => source.rows.map((row) => ({
+      ...row,
+      evidence_origin: source.evidenceOrigin,
+    })),
+  );
   for (const row of searchAssertions) {
     assertions.push({
       registry_key: row.registry_key,
@@ -157,7 +174,7 @@ async function main() {
     }
     detailByCardId.set(row.source_external_id, {
       card_id: row.source_external_id,
-      evidence_origin: 'v5_official_product_search',
+      evidence_origin: row.evidence_origin,
       detail: {
         printed_name: row.printed_name,
         image_url: imageUrl,
