@@ -1,7 +1,7 @@
 {
   "base_identity_coverage": {
-    "covered_slots": 8265,
-    "expected_slots": 22076,
+    "covered_slots": 8267,
+    "expected_slots": 22078,
     "percent": 37.44
   },
   "boundary": {
@@ -17,20 +17,20 @@
   "identity_action_counts": {
     "add_new_official_identity": 45,
     "collapse_duplicate_candidates_to_official_identity": 114,
-    "upgrade_existing_candidate_with_official_identity": 251
+    "upgrade_existing_candidate_with_official_identity": 253
   },
-  "newly_covered_base_identity_count": 332,
+  "newly_covered_base_identity_count": 334,
   "next_gate": "recompute_release_census_and_continue_next_zero_inventory_batch",
-  "overlay_identity_count": 410,
+  "overlay_identity_count": 412,
   "previously_master_admissible_identity_count": 78,
   "projected_v5_working_identity_count": 71903,
   "promotion_readiness": {
-    "base_identity_ready_promotion_blocked": 237,
+    "base_identity_ready_promotion_blocked": 238,
     "blocker_counts": {
       "collector_facing_english_name_missing": 45,
-      "family_relationship_unresolved": 196
+      "family_relationship_unresolved": 197
     },
-    "promotion_evidence_ready": 173
+    "promotion_evidence_ready": 174
   },
   "status": "v5_working_base_identity_overlay_built",
   "superseded_v4_candidate_count": 248,

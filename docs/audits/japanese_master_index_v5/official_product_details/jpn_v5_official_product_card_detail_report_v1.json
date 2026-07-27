@@ -7,14 +7,14 @@
     "storage_access": false
   },
   "failed_detail_count": 0,
-  "generated_at": "2026-07-27T20:07:43.618Z",
+  "generated_at": "2026-07-27T20:47:54.785Z",
   "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CARD-DETAIL-HARVEST-V1",
   "minimum_request_delay_ms": 750,
   "next_gate": "merge_detail_facts_into_product_assertions_and_resolve_candidates",
-  "numbered_detail_count": 244,
-  "preserved_or_fetched_detail_count": 253,
-  "requested_unique_card_id_count": 253,
+  "numbered_detail_count": 246,
+  "preserved_or_fetched_detail_count": 255,
+  "requested_unique_card_id_count": 255,
   "reused_v4_official_detail_count": 4,
-  "snapshot_origin_live_fetch_count": 249,
+  "snapshot_origin_live_fetch_count": 251,
   "status": "official_product_card_details_complete"
 }

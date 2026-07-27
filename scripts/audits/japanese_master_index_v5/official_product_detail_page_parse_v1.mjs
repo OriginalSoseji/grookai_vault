@@ -75,6 +75,32 @@ function directCardIds(html) {
   )].sort((left, right) => Number(left) - Number(right));
 }
 
+function directOfficialCardImages(html) {
+  const rows = [];
+  for (const match of String(html).matchAll(
+    /<img\b(?<attrs>[^>]*\bsrc=["'](?<url>\/assets\/images\/card_images\/large\/(?<set>[^/"']*)\/(?<file>[^"']+))["'][^>]*)>/gi,
+  )) {
+    const id = match.groups.file.match(/^(?<id>\d{6})_/)?.groups?.id;
+    if (!id) continue;
+    const alt = match.groups.attrs.match(
+      /\balt=["'](?<value>[^"']*)["']/i,
+    )?.groups?.value;
+    rows.push({
+      card_id: String(Number(id)),
+      printed_name: decodeHtml(alt).trim() || null,
+      source_set_code: match.groups.set || null,
+      image_url: new URL(
+        decodeHtml(match.groups.url),
+        'https://www.pokemon-card.com',
+      ).toString(),
+    });
+  }
+  return [...new Map(
+    rows.map((row) => [row.card_id, row]),
+  ).values()].sort((left, right) =>
+    Number(left.card_id) - Number(right.card_id));
+}
+
 function cardLikeAssets(html) {
   return [...new Set(
     [...String(html).matchAll(
@@ -138,6 +164,7 @@ async function main() {
 
   const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
   const searchFollowups = [];
+  const cardAssertions = [];
   const productResults = [];
   for (const snapshot of manifest.snapshots) {
     const body = fs.readFileSync(snapshot.body_path);
@@ -148,6 +175,7 @@ async function main() {
     const searchIds = numericSearchIds(html);
     const invalidSearchValues = nonNumericSearchValues(html);
     const pageCardIds = directCardIds(html);
+    const directImages = directOfficialCardImages(html);
     const pageCardAssets = cardLikeAssets(html);
     const scope = searchScopeDisposition(snapshot.source_url);
 
@@ -176,6 +204,43 @@ async function main() {
           retrieved_at: snapshot.metadata.fetched_at,
         });
       }
+      for (const card of directImages) {
+        cardAssertions.push({
+          assertion_key:
+            `official_jp_product_detail:${product.registry_key}:`
+            + `${card.card_id}`,
+          assertion_version: GENERATOR_VERSION,
+          source_id: 'official_jp_product_detail',
+          source_family: 'pokemon_card_official_jp',
+          source_kind: 'official_product_embedded_card_image',
+          source_external_id: card.card_id,
+          source_url: snapshot.source_url
+            + (product.source_fragment ?? ''),
+          source_container_id: product.registry_key,
+          source_product_id: product.registry_key,
+          registry_key: product.registry_key,
+          language: 'ja',
+          printed_name: card.printed_name,
+          card_number_raw: null,
+          card_number_numerator: null,
+          card_number_denominator: null,
+          source_set_code: card.source_set_code,
+          unnumbered_label: `official_card_id:${card.card_id}`,
+          identity_modifiers: [
+            `official_product:${product.registry_key}`,
+            `official_card_id:${card.card_id}`,
+          ],
+          image_urls: [card.image_url],
+          source_product_name: product.product_name,
+          source_fields: {
+            parser_lane: 'official_product_embedded_card_image',
+            image_reference_only: false,
+          },
+          raw_snapshot_ref: snapshot.body_path,
+          raw_snapshot_sha256: snapshot.metadata.body_sha256,
+          retrieved_at: snapshot.metadata.fetched_at,
+        });
+      }
       productResults.push({
         registry_key: product.registry_key,
         product_name: product.product_name,
@@ -189,6 +254,8 @@ async function main() {
         assigned_official_search_product_ids: assignedSearchIds,
         nonnumeric_search_values_on_page: invalidSearchValues,
         direct_card_ids_on_page: pageCardIds,
+        direct_official_card_image_ids:
+          directImages.map((row) => row.card_id),
         card_like_asset_urls_on_page: pageCardAssets,
         raw_snapshot_ref: snapshot.body_path,
         raw_snapshot_sha256: snapshot.metadata.body_sha256,
@@ -200,6 +267,9 @@ async function main() {
     left.registry_key.localeCompare(right.registry_key)
     || Number(left.official_search_product_id)
       - Number(right.official_search_product_id));
+  cardAssertions.sort((left, right) =>
+    left.registry_key.localeCompare(right.registry_key)
+    || Number(left.source_external_id) - Number(right.source_external_id));
   productResults.sort((left, right) =>
     left.registry_key.localeCompare(right.registry_key));
 
@@ -214,6 +284,8 @@ async function main() {
       searchFollowups.map((row) => row.registry_key),
     ).size,
     verified_search_collection_count: searchFollowups.length,
+    exact_embedded_official_card_count:
+      new Set(cardAssertions.map((row) => row.source_external_id)).size,
     release_wide_search_id_exclusion_count: productResults.filter(
       (row) =>
         row.disposition === 'release_wide_search_id_not_product_specific',
@@ -244,6 +316,13 @@ async function main() {
     ),
     searchFollowups,
   );
+  await writeJsonl(
+    path.join(
+      outputRoot,
+      'jpn_v5_official_product_detail_card_assertions_v1.jsonl',
+    ),
+    cardAssertions,
+  );
 
   if (!args.quiet) {
     console.log(JSON.stringify({
@@ -252,6 +331,8 @@ async function main() {
       source_products: summary.source_product_count,
       verified_products: summary.verified_product_count,
       verified_search_collections: summary.verified_search_collection_count,
+      exact_embedded_official_cards:
+        summary.exact_embedded_official_card_count,
       release_wide_exclusions:
         summary.release_wide_search_id_exclusion_count,
       unresolved_products: summary.unresolved_product_count,

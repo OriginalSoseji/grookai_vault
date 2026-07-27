@@ -1,5 +1,5 @@
 {
-  "aggregate_sha256": "d68dd7956bbac4c329475dfa553ce5812b853f32218354cb1d83dd8c90604241",
+  "aggregate_sha256": "5a5265e46cf9243dffc3ec9a261926a2f090368542f8416877cd74be01ee42c7",
   "files": {
     "attestation": {
       "bytes": 303,
@@ -7,19 +7,19 @@
       "sha256": "169eeb5854b4b1101e57809abf23aa43c661fe3f25db0b06e3b327f986907491"
     },
     "batches": {
-      "bytes": 69776,
+      "bytes": 69694,
       "row_count": null,
-      "sha256": "10d481838e676be7b81b4822725d0c602753913fd2a193cc325322fb900d6028"
+      "sha256": "563c6ea0c6c2cf23811b03e0ab689d0e67469517d410d92cfa4697835d07ca5a"
     },
     "summary": {
-      "bytes": 4793,
+      "bytes": 4794,
       "row_count": null,
-      "sha256": "265abdd282c3dd597859710bef40eca92be49322b0bcb490a9a1ef6d589f484d"
+      "sha256": "b1947beeaa2a7e35aca848695fc9361accdb0282e020e640b0b12669f4b8ec6f"
     },
     "workpacks": {
-      "bytes": 4663026,
-      "row_count": 1297,
-      "sha256": "472233c6f3c419113a8fcfddadddb2b70f6e28503092decee1bfa5ce70fa5054"
+      "bytes": 4655816,
+      "row_count": 1295,
+      "sha256": "8547b193fb88a9f862410537f3aeddc2c60399ced162063981d1eb28e10fa5e4"
     }
   },
   "generated_at": "2026-07-27T02:00:00.000Z",

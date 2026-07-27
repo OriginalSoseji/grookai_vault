@@ -11,6 +11,9 @@ import {
   contentFingerprint,
   stableJson,
 } from '../japanese_master_index_v4/deterministic_artifact_v1.mjs';
+import {
+  captureSourceSnapshot,
+} from '../japanese_master_index_v4/source_snapshot_v1.mjs';
 
 const GENERATOR_VERSION =
   'JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CARD-DETAIL-HARVEST-V1';
@@ -19,6 +22,9 @@ const DEFAULT_OUTPUT_ROOT =
 const LINK_ASSERTIONS =
   'docs/audits/japanese_master_index_v5/official_product_links/parsed/'
   + 'jpn_v5_official_product_link_card_assertions_v1.jsonl';
+const DETAIL_PAGE_ASSERTIONS =
+  'docs/audits/japanese_master_index_v5/official_product_detail_pages/parsed/'
+  + 'jpn_v5_official_product_detail_card_assertions_v1.jsonl';
 const V4_OFFICIAL_ASSERTIONS =
   'docs/audits/japanese_master_index_v4/cards/'
   + 'official_jp_card_assertions_v1.json.gz';
@@ -118,47 +124,19 @@ async function captureCard({
     throw new Error(`Offline snapshot missing for official card ${cardId}`);
   }
 
-  const url = detailUrl(cardId);
-  let response;
-  let body;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    response = await fetch(url, {
-      headers: {
-        accept: 'text/html,application/xhtml+xml',
-        'accept-language': 'ja,en;q=0.8',
-        'user-agent':
-          'GrookaiVault-JapaneseMasterIndex/5.0 '
-          + '(evidence acquisition; contact hello@grookaivault.com)',
-      },
-      redirect: 'follow',
-    });
-    body = Buffer.from(await response.arrayBuffer());
-    if (response.ok) break;
-    if (![429, 500, 502, 503, 504].includes(response.status)
-        || attempt === 3) {
-      throw new Error(`Official card ${cardId} returned ${response.status}`);
-    }
-    await sleep(attempt * 2_000);
-  }
+  const sourceId = `card_${cardId}`;
+  const captured = await captureSourceSnapshot({
+    sourceId,
+    url: detailUrl(cardId),
+    outputDirectory: path.join(outputRoot, 'raw'),
+    extension: 'html',
+  });
+  const body = captured.body;
   const metadata = {
+    ...captured.metadata,
     generator_version: GENERATOR_VERSION,
     capture_mode: 'live_fetch',
-    fetched_at: new Date().toISOString(),
-    request_url: url,
-    final_url: response.url,
-    http_status: response.status,
-    response_headers: {
-      cache_control: response.headers.get('cache-control'),
-      content_length: response.headers.get('content-length'),
-      content_type: response.headers.get('content-type'),
-      etag: response.headers.get('etag'),
-      last_modified: response.headers.get('last-modified'),
-    },
-    body_bytes: body.byteLength,
-    body_sha256: hash(body),
   };
-  await fsp.mkdir(path.dirname(bodyPath), { recursive: true });
-  await fsp.writeFile(bodyPath, body);
   await writeJson(metadataPath, metadata);
   return {
     body,
@@ -187,7 +165,10 @@ async function main() {
       && !outputRoot.includes(`${path.sep}.tmp${path.sep}`)) {
     throw new Error('Output must be canonical or under .tmp');
   }
-  const linkAssertions = readJsonl(LINK_ASSERTIONS);
+  const linkAssertions = [
+    ...readJsonl(LINK_ASSERTIONS),
+    ...readJsonl(DETAIL_PAGE_ASSERTIONS),
+  ];
   const linkByCardId = new Map();
   for (const row of linkAssertions) {
     const values = linkByCardId.get(row.source_external_id) ?? [];

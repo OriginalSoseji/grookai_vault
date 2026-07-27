@@ -20,6 +20,9 @@ const DEFAULT_OUTPUT_ROOT =
 const LINK_ASSERTIONS =
   'docs/audits/japanese_master_index_v5/official_product_links/parsed/'
   + 'jpn_v5_official_product_link_card_assertions_v1.jsonl';
+const DETAIL_PAGE_ASSERTIONS =
+  'docs/audits/japanese_master_index_v5/official_product_detail_pages/parsed/'
+  + 'jpn_v5_official_product_detail_card_assertions_v1.jsonl';
 const DETAILS =
   'docs/audits/japanese_master_index_v5/official_product_details/'
   + 'jpn_v5_official_product_card_details_v1.jsonl';
@@ -129,7 +132,10 @@ async function main() {
       && !outputRoot.includes(`${path.sep}.tmp${path.sep}`)) {
     throw new Error('Output must be canonical or under .tmp');
   }
-  const assertions = readJsonl(LINK_ASSERTIONS);
+  const assertions = [
+    ...readJsonl(LINK_ASSERTIONS),
+    ...readJsonl(DETAIL_PAGE_ASSERTIONS),
+  ];
   const details = readJsonl(DETAILS);
   const searchAssertionSources = [
     {

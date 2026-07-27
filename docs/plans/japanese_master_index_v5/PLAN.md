@@ -37,12 +37,12 @@ aliases, and duplicate rows never inflate the denominator.
   - 15 contaminated TCGdex aliases excluded
   - 57 duplicate official expansion-product aliases merged
 - Reconciled conservative denominator after the official-product lanes:
-  22,076 base-card slots
-- Exact covered slots on the reconciled bounded denominator: 8,265
+  22,078 base-card slots
+- Exact covered slots on the reconciled bounded denominator: 8,267
 - Current bounded coverage: 37.44%
 - Projected V5 working identities: 71,903
-- Active release/product scopes with unresolved work: 1,297
-- Zero-inventory release/product containers remaining: 576
+- Active release/product scopes with unresolved work: 1,295
+- Zero-inventory release/product containers remaining: 575
 - Official zero-inventory products processed from preserved snapshots: 455
 - Explicit named-card slots acquired from official product contents: 191
 - Direct official card-list products discovered: 15
@@ -56,19 +56,21 @@ aliases, and duplicate rows never inflate the denominator.
   - Official collection IDs: 724, 725, 726, 734, 735, and 878
   - Complete official card records acquired: 136
   - Release-wide collection ID 882 excluded from product assignment
-- Exact official identities integrated into the read-only V5 overlay: 410
+- Exact Official JP embedded card-image IDs recovered: 3
+  - Two add net identities; one overlaps earlier official evidence
+- Exact official identities integrated into the read-only V5 overlay: 412
   - 45 new identities absent from V4
-  - 251 exact-image upgrades to existing V4 candidates
+  - 253 exact-image upgrades to existing V4 candidates
   - 114 duplicate candidate clusters collapsed under exact official IDs
   - 248 source-isolated V4 candidate rows superseded
-  - 332 identities newly covered by V5
+  - 334 identities newly covered by V5
   - 78 identities already master-admissible and not counted twice
-- Completed official product scopes retired from the active queue: 18
-- Completed canonical release scopes retired from the active queue: 9
-- Base identities with complete promotion evidence: 173
-- Base identities retained with promotion blockers: 237
+- Completed official product scopes retired from the active queue: 19
+- Completed canonical release scopes retired from the active queue: 10
+- Base identities with complete promotion evidence: 174
+- Base identities retained with promotion blockers: 238
   - 45 missing collector-facing English names
-  - 196 unresolved family relationships; blocker categories may overlap
+  - 197 unresolved family relationships; blocker categories may overlap
 
 The 191 product-content assertions remain source evidence rather than
 name-only coverage. The direct card-list lane supplied 253 exact official
@@ -77,8 +79,10 @@ release: 24 numbered identities plus nine governed unnumbered basic-energy
 IDs, eight of which overlap the first lane. The product-detail lane then
 recovered six product-specific official search collections and 136 complete
 records. Four overlap earlier official evidence, producing a cumulative union
-of 410 exact official identities. The release-wide `SV2a` search collection
-was not assigned to its two accessory products. These identities are
+of 410 exact official identities. Three embedded official card-image IDs add
+two more net identities, producing a 412-identity union. The release-wide
+`SV2a` search collection was not assigned to its two accessory products.
+These identities are
 reconciled against V4 by official image/card ID rather than title. The
 coverage numerator excludes 78 identities that were already master-admissible.
 Base-index coverage and production-promotion readiness remain separate

@@ -1,21 +1,21 @@
 {
   "baseline": {
-    "active_releases_without_census_issues": 66,
+    "active_releases_without_census_issues": 67,
     "base_identity_coverage": {
-      "covered_slots": 8265,
-      "expected_slots": 22076,
+      "covered_slots": 8267,
+      "expected_slots": 22078,
       "percent": 37.44
     },
-    "completed_official_product_scopes": 18,
-    "completed_official_release_scopes": 9,
-    "newly_resolved_official_identities": 410,
+    "completed_official_product_scopes": 19,
+    "completed_official_release_scopes": 10,
+    "newly_resolved_official_identities": 412,
     "original_issue_rows": 2705,
     "projected_v5_working_identity_count": 71903,
-    "reconciled_active_container_count": 1363,
+    "reconciled_active_container_count": 1362,
     "reconciled_container_dispositions": 72,
-    "reconciled_issue_rows": 2507,
+    "reconciled_issue_rows": 2503,
     "release_count": 1453,
-    "unique_releases_with_work": 1297
+    "unique_releases_with_work": 1295
   },
   "batches": {
     "batch_count": 28,
@@ -102,18 +102,18 @@
     },
     "denominator_repair": {
       "issue_counts": {
-        "expected_count_conflict": 151,
+        "expected_count_conflict": 150,
         "missing_expected_count": 180,
         "product_slot_manifest_missing": 115,
-        "strict_admission_gap": 436
+        "strict_admission_gap": 435
       },
-      "release_count": 446,
+      "release_count": 445,
       "release_kind_counts": {
         "constructed_deck": 96,
         "expansion_or_subset": 201,
         "magazine_movie_media": 2,
         "product_exclusive_distribution": 126,
-        "promo_series": 20,
+        "promo_series": 19,
         "tournament_trophy_event": 1
       },
       "wave": 2
@@ -134,16 +134,16 @@
     "zero_inventory_acquisition": {
       "issue_counts": {
         "base_identity_slot_gap": 135,
-        "missing_container_inventory": 576,
+        "missing_container_inventory": 575,
         "missing_expected_count": 4,
-        "product_slot_manifest_missing": 437
+        "product_slot_manifest_missing": 436
       },
-      "release_count": 576,
+      "release_count": 575,
       "release_kind_counts": {
         "constructed_deck": 163,
         "expansion_or_subset": 72,
         "magazine_movie_media": 2,
-        "product_exclusive_distribution": 330,
+        "product_exclusive_distribution": 329,
         "promo_series": 6,
         "vending": 3
       },

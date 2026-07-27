@@ -38,13 +38,13 @@ test('official product detail evidence is complete and preserved', () => {
     'jpn_v5_official_product_card_details_v1.jsonl',
   );
   assert.equal(report.status, 'official_product_card_details_complete');
-  assert.equal(report.requested_unique_card_id_count, 253);
+  assert.equal(report.requested_unique_card_id_count, 255);
   assert.equal(report.reused_v4_official_detail_count, 4);
-  assert.equal(report.preserved_or_fetched_detail_count, 253);
-  assert.equal(report.numbered_detail_count, 244);
+  assert.equal(report.preserved_or_fetched_detail_count, 255);
+  assert.equal(report.numbered_detail_count, 246);
   assert.equal(report.failed_detail_count, 0);
-  assert.equal(report.snapshot_origin_live_fetch_count, 249);
-  assert.equal(details.length, 253);
+  assert.equal(report.snapshot_origin_live_fetch_count, 251);
+  assert.equal(details.length, 255);
   assert.ok(details.every((row) => row.detail.printed_name));
   assert.ok(details.every((row) => row.detail.image_url));
   assert.ok(details.every((row) => row.raw_snapshot_sha256.length === 64));
@@ -55,7 +55,7 @@ test('live detail snapshots retain exact source hashes', () => {
     detailRoot,
     'jpn_v5_official_product_card_details_v1.jsonl',
   ).filter((row) => row.evidence_origin === 'live_fetch');
-  assert.equal(details.length, 249);
+  assert.equal(details.length, 251);
   for (const row of details) {
     const body = fs.readFileSync(row.raw_snapshot_ref);
     assert.equal(
@@ -74,17 +74,17 @@ test('official product identities resolve exact V4 delta', () => {
     resolutionRoot,
     'jpn_v5_official_product_identity_delta_v1.jsonl',
   );
-  assert.equal(report.official_unique_identity_count, 410);
+  assert.equal(report.official_unique_identity_count, 412);
   assert.equal(report.currently_master_admissible_count, 78);
-  assert.equal(report.newly_covered_base_identity_count, 332);
+  assert.equal(report.newly_covered_base_identity_count, 334);
   assert.deepEqual(report.resolution_disposition_counts, {
     duplicate_candidate_cluster_exact_image_review: 114,
-    existing_candidate_exact_image_upgrade: 251,
+    existing_candidate_exact_image_upgrade: 253,
     new_official_identity: 45,
   });
   assert.deepEqual(report.coverage_projection.projected, {
-    covered_slots: 8_265,
-    expected_slots: 22_076,
+    covered_slots: 8_267,
+    expected_slots: 22_078,
     percent: 37.44,
   });
   assert.ok(identities.every((row) =>
@@ -103,7 +103,7 @@ test('all duplicate official-image clusters are evidence-safe', () => {
   assert.equal(report.reviewed_cluster_count, 114);
   assert.equal(report.safe_merge_cluster_count, 114);
   assert.equal(report.blocked_cluster_count, 0);
-  assert.equal(report.official_product_lane.integration_ready_identity_count, 410);
+  assert.equal(report.official_product_lane.integration_ready_identity_count, 412);
   assert.ok(rows.every((row) => row.safe_to_merge));
   assert.ok(rows.every((row) => row.blockers.length === 0));
   assert.ok(rows.every((row) =>
@@ -124,12 +124,12 @@ test('working overlay preserves V4 and adds exact base identities', () => {
     overlayRoot,
     'jpn_v5_candidate_supersessions_v1.jsonl',
   );
-  assert.equal(report.overlay_identity_count, 410);
-  assert.equal(report.newly_covered_base_identity_count, 332);
+  assert.equal(report.overlay_identity_count, 412);
+  assert.equal(report.newly_covered_base_identity_count, 334);
   assert.equal(report.previously_master_admissible_identity_count, 78);
   assert.equal(report.projected_v5_working_identity_count, 71_903);
   assert.equal(supersessions.length, 248);
-  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 410);
+  assert.equal(new Set(overlay.map((row) => row.v5_identity_key)).size, 412);
   assert.ok(overlay.every((row) =>
     row.base_identity_coverage_status === 'resolved'));
   assert.equal(report.boundary.v4_artifacts_mutated, false);

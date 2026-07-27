@@ -1,10 +1,10 @@
 {
-  "aggregate_sha256": "d6988226c5d79509aa6cf7707ff949b9f598cfc30bfa6337c02d480ff2e1f132",
+  "aggregate_sha256": "f58a030e648c0cd738b543ae0c201a13b3f89db71695933881fbea6f1e0c5bbd",
   "files": {
     "details": {
-      "bytes": 226141,
-      "row_count": 253,
-      "sha256": "1d9fefd95e41f036a9e747ec0a50c9a1163801683729bc7b42c7e766b09d9f26"
+      "bytes": 228131,
+      "row_count": 255,
+      "sha256": "40cb4fcf4852fb87cc12114bd7f4372c78ff7f0a8a675a7e9d8559d4841e1d48"
     },
     "failures": {
       "bytes": 1,
@@ -14,9 +14,9 @@
     "report": {
       "bytes": 728,
       "row_count": null,
-      "sha256": "67878b96bb3ce5718d711cfdd3042de253b304856370f027067d89fa44f927e4"
+      "sha256": "6d3d7aadc1883aa832b2fc68e4683920ebf7351246a0223cccac782d8491a8fb"
     }
   },
-  "generated_at": "2026-07-27T20:07:43.618Z",
+  "generated_at": "2026-07-27T20:47:54.785Z",
   "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-PRODUCT-CARD-DETAIL-HARVEST-V1"
 }

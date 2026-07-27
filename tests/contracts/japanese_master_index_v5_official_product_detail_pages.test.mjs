@@ -55,6 +55,7 @@ test('parser schedules only product-specific numeric search collections', () => 
   const followups = readJsonl(followupsPath);
   assert.equal(summary.verified_product_count, 3);
   assert.equal(summary.verified_search_collection_count, 6);
+  assert.equal(summary.exact_embedded_official_card_count, 3);
   assert.equal(summary.release_wide_search_id_exclusion_count, 2);
   assert.deepEqual(
     followups.map((row) => row.official_search_product_id).sort(),
@@ -67,6 +68,14 @@ test('parser schedules only product-specific numeric search collections', () => 
   assert.equal(releaseWide.length, 2);
   assert.ok(releaseWide.every((row) =>
     row.assigned_official_search_product_ids.length === 0));
+  const cardAssertions = readJsonl(path.join(
+    parsedRoot,
+    'jpn_v5_official_product_detail_card_assertions_v1.jsonl',
+  ));
+  assert.deepEqual(
+    cardAssertions.map((row) => row.source_external_id),
+    ['37745', '38001', '38002'],
+  );
 });
 
 test('detail-page parsing replays deterministically from preserved HTML', () => {
@@ -88,6 +97,7 @@ test('detail-page parsing replays deterministically from preserved HTML', () => 
     for (const name of [
       'jpn_v5_official_product_detail_page_parse_summary_v1.json',
       'jpn_v5_official_product_detail_search_followups_v1.jsonl',
+      'jpn_v5_official_product_detail_card_assertions_v1.jsonl',
     ]) {
       assert.equal(
         fs.readFileSync(path.join(replay, name), 'utf8'),
