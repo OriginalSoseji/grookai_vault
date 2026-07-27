@@ -1,0 +1,141 @@
+{
+  "baseline": {
+    "issue_rows": 2705,
+    "release_count": 1453,
+    "releases_without_census_issues": 57,
+    "unique_releases_with_work": 1396
+  },
+  "batches": {
+    "batch_count": 31,
+    "batch_size": 50,
+    "database_writes_approved": false,
+    "source_fetches_approved": false
+  },
+  "generated_at": "2026-07-27T02:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-ACQUISITION-WAVES-V1",
+  "next_gate": "approve_and_execute_wave_1_source_specific_harvests_under_existing_source_rules",
+  "source_lanes": {
+    "artofpkm_jp_cards": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 1,
+      "exhaustion_status": "primary_exhausted_with_explicit_findings"
+    },
+    "bounded_marketplace_review": {
+      "access_mode": "bounded_targeted_review",
+      "acquisition_tier": 3,
+      "exhaustion_status": "future_lane_without_governed_work_items"
+    },
+    "bulbapedia_jp_card_lists": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 2,
+      "exhaustion_status": "targeted_exhausted_with_explicit_findings"
+    },
+    "historical_distribution_archives": {
+      "access_mode": "bounded_targeted_review",
+      "acquisition_tier": 3,
+      "exhaustion_status": "future_lane_without_governed_work_items"
+    },
+    "limitless_jp_cards": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 1,
+      "exhaustion_status": "primary_exhausted_with_explicit_findings"
+    },
+    "official_jp_cards": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 1,
+      "exhaustion_status": "primary_exhausted_clean"
+    },
+    "pokeguardian_release_reports": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 2,
+      "exhaustion_status": "targeted_exhausted_with_explicit_findings"
+    },
+    "pokellector_jp_manual": {
+      "access_mode": "manual_review_only",
+      "acquisition_tier": 2,
+      "exhaustion_status": "preserved_manual_only"
+    },
+    "serebii_jp_cards": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 2,
+      "exhaustion_status": "primary_exhausted_with_explicit_findings"
+    },
+    "tcgcollector_jp_manual": {
+      "access_mode": "manual_review_only",
+      "acquisition_tier": 2,
+      "exhaustion_status": "preserved_manual_only"
+    },
+    "tcgdex_ja_cards": {
+      "access_mode": "reproducible_automation",
+      "acquisition_tier": 1,
+      "exhaustion_status": "primary_exhausted_with_explicit_findings"
+    }
+  },
+  "status": "planned_not_executed",
+  "waves": {
+    "bounded_slot_completion": {
+      "issue_counts": {
+        "base_identity_slot_gap": 206,
+        "strict_admission_gap": 198
+      },
+      "release_count": 206,
+      "release_kind_counts": {
+        "constructed_deck": 55,
+        "expansion_or_subset": 137,
+        "magazine_movie_media": 6,
+        "product_exclusive_distribution": 3,
+        "promo_series": 5
+      },
+      "wave": 3
+    },
+    "denominator_repair": {
+      "issue_counts": {
+        "expected_count_conflict": 151,
+        "missing_expected_count": 185,
+        "product_slot_manifest_missing": 119,
+        "strict_admission_gap": 445
+      },
+      "release_count": 455,
+      "release_kind_counts": {
+        "constructed_deck": 100,
+        "expansion_or_subset": 201,
+        "magazine_movie_media": 2,
+        "product_exclusive_distribution": 131,
+        "promo_series": 20,
+        "tournament_trophy_event": 1
+      },
+      "wave": 2
+    },
+    "strict_corroboration": {
+      "issue_counts": {
+        "strict_admission_gap": 69
+      },
+      "release_count": 69,
+      "release_kind_counts": {
+        "constructed_deck": 20,
+        "expansion_or_subset": 43,
+        "product_exclusive_distribution": 5,
+        "promo_series": 1
+      },
+      "wave": 4
+    },
+    "zero_inventory_acquisition": {
+      "issue_counts": {
+        "base_identity_slot_gap": 150,
+        "missing_container_inventory": 666,
+        "missing_expected_count": 4,
+        "product_slot_manifest_missing": 512
+      },
+      "release_count": 666,
+      "release_kind_counts": {
+        "constructed_deck": 163,
+        "expansion_or_subset": 87,
+        "magazine_movie_media": 2,
+        "product_exclusive_distribution": 405,
+        "promo_series": 6,
+        "vending": 3
+      },
+      "wave": 1
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "aggregate_sha256": "a376574d4c42b735733d8d95c5e029d8875425211f4911ebeca9b3531dd5bfe1",
+  "files": {
+    "attestation": {
+      "bytes": 303,
+      "row_count": null,
+      "sha256": "169eeb5854b4b1101e57809abf23aa43c661fe3f25db0b06e3b327f986907491"
+    },
+    "batches": {
+      "bytes": 75792,
+      "row_count": null,
+      "sha256": "aeb3ea7846417f6616f073a3137c3850bc4041eeab77e5363cbfe156a32fdd14"
+    },
+    "summary": {
+      "bytes": 4343,
+      "row_count": null,
+      "sha256": "e0bf428edc89b63cd8ca86e057729d40b04c1b616b0a0b7d4c5335a0b725d8b0"
+    },
+    "workpacks": {
+      "bytes": 5021380,
+      "row_count": 1396,
+      "sha256": "871aa55bb7970089b4a94e4086d13266cd6373ce24e73d3356257eb0fbdd2f4d"
+    }
+  },
+  "generated_at": "2026-07-27T02:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-ACQUISITION-WAVES-V1"
+}
