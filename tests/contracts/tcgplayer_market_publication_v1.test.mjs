@@ -340,6 +340,10 @@ test("signed-in clients receive a shared contract while provenance stays service
     MIGRATION,
     /grant execute on function public\.get_market_price_trace_v1\(uuid\) to service_role/i,
   );
+  assert.match(
+    MIGRATION,
+    /get_market_price_trace_v1\(p_provenance_id uuid\)[\s\S]*language plpgsql[\s\S]*return query/i,
+  );
   assert.doesNotMatch(
     MIGRATION,
     /get_market_pricing_read_model_v1\(uuid\[\], uuid\[\]\) to anon/i,

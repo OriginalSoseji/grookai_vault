@@ -463,7 +463,7 @@ async function main() {
       second_publication_set_id: second.publication_set_id,
       restored_publication_set_id: rollback.rows[0].restored_set_id,
       market_price: Number(current.rows[0].market_price),
-      authenticated_read_rows: Number(authenticatedResult.rows[0].row_count),
+      authenticated_read_rows: Number(authenticated.rows[0].row_count),
       service_trace_rows: trace.rowCount,
       artifact_root: path.relative(REPO_ROOT, outRoot).replace(/\\/g, "/"),
     };

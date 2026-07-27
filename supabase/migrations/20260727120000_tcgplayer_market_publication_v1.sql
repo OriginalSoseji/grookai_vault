@@ -1611,11 +1611,13 @@ returns table (
   qualified_at timestamptz,
   published_at timestamptz
 )
-language sql
+language plpgsql
 stable
 security definer
 set search_path = public
 as $$
+begin
+  return query
   select
     snapshot.provenance_id,
     snapshot.publication_set_id,
@@ -1656,6 +1658,7 @@ as $$
   join public.market_price_qualification_decisions decision
     on decision.id = snapshot.qualification_decision_id
   where snapshot.provenance_id = p_provenance_id;
+end;
 $$;
 
 alter table public.market_price_pipeline_runs enable row level security;
