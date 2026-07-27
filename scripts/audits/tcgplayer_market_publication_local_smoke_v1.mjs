@@ -447,21 +447,21 @@ async function main() {
     assert.equal(Number(authenticated.rows[0].row_count), 1);
 
     const provenance = current.rows[0].provenance_id;
-    await withClient(url, async (authenticatedClient) => {
-      await authenticatedClient.query("begin");
-      try {
-        await authenticatedClient.query("set local role authenticated");
-        await assert.rejects(
-          authenticatedClient.query(
-            `select public.get_market_price_trace_v1($1) as trace`,
-            [provenance],
-          ),
-          /permission denied/i,
-        );
-      } finally {
-        await authenticatedClient.query("rollback");
-      }
-    });
+    const tracePrivileges = await client.query(
+      `select
+         has_function_privilege(
+           'authenticated',
+           'public.get_market_price_trace_v1(uuid)',
+           'EXECUTE'
+         ) as authenticated_can_trace,
+         has_function_privilege(
+           'service_role',
+           'public.get_market_price_trace_v1(uuid)',
+           'EXECUTE'
+         ) as service_role_can_trace`,
+    );
+    assert.equal(tracePrivileges.rows[0].authenticated_can_trace, false);
+    assert.equal(tracePrivileges.rows[0].service_role_can_trace, true);
     const trace = await client.query(
       `select public.get_market_price_trace_v1($1) as trace`,
       [provenance],
@@ -486,6 +486,9 @@ async function main() {
       restored_publication_set_id: rollback.rows[0].restored_set_id,
       market_price: Number(current.rows[0].market_price),
       authenticated_read_rows: Number(authenticated.rows[0].row_count),
+      authenticated_can_trace:
+        tracePrivileges.rows[0].authenticated_can_trace,
+      service_role_can_trace: tracePrivileges.rows[0].service_role_can_trace,
       service_trace_rows: trace.rows[0].trace ? 1 : 0,
       artifact_root: path.relative(REPO_ROOT, outRoot).replace(/\\/g, "/"),
     };
