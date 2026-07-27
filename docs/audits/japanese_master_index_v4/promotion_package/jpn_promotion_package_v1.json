@@ -1,0 +1,128 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "datasets": {
+      "direct_card_candidates": {
+        "content_fingerprint_sha256": "62d9726e3339c0201bfc4ec36511a8593608f16fe3f15cd77fc8e2af7ffc514e",
+        "dataset_key": "jpn_promotion_direct_card_candidate_rows_v1",
+        "row_count": 38,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_direct_card_candidate_rows_v1/jpn_promotion_direct_card_candidate_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "evidence_gap_review": {
+        "content_fingerprint_sha256": "0d8c5159c79a4d800f41ac3c43971f809971aeb1b90710cdcf4fdc1ad6ac382e",
+        "dataset_key": "jpn_promotion_evidence_gap_review_rows_v1",
+        "row_count": 17891,
+        "shard_count": 4,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_evidence_gap_review_rows_v1/jpn_promotion_evidence_gap_review_rows_v1_0001_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_evidence_gap_review_rows_v1/jpn_promotion_evidence_gap_review_rows_v1_0002_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_evidence_gap_review_rows_v1/jpn_promotion_evidence_gap_review_rows_v1_0003_of_0004.json.gz",
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_evidence_gap_review_rows_v1/jpn_promotion_evidence_gap_review_rows_v1_0004_of_0004.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "existing_parent_review": {
+        "content_fingerprint_sha256": "e7d702a79e503f78f1becd72137c2e46993729b64364dbd7d914e758a29264ba",
+        "dataset_key": "jpn_existing_parent_promotion_review_rows_v1",
+        "row_count": 2224,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_existing_parent_promotion_review_rows_v1/jpn_existing_parent_promotion_review_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "novel_blocked_review": {
+        "content_fingerprint_sha256": "fcee72a38c9c41d5831ec0786505d60866dba2c3f47a0a46908f6f440dfef6b9",
+        "dataset_key": "jpn_promotion_novel_blocked_review_rows_v1",
+        "row_count": 1803,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_novel_blocked_review_rows_v1/jpn_promotion_novel_blocked_review_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "set_dependent_card_candidates": {
+        "content_fingerprint_sha256": "683ef89a3649d80a4134ec003600a2bbc664878a0316b0dce3515d36f3347844",
+        "dataset_key": "jpn_promotion_set_dependent_card_candidate_rows_v1",
+        "row_count": 3850,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_set_dependent_card_candidate_rows_v1/jpn_promotion_set_dependent_card_candidate_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "set_insert_candidates": {
+        "content_fingerprint_sha256": "4dfc0ca4de29b9b40d24de7c376fbedd98a1daab19fb8cc7a5093ea48f76be12",
+        "dataset_key": "jpn_promotion_set_insert_candidate_rows_v1",
+        "row_count": 1041,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_set_insert_candidate_rows_v1/jpn_promotion_set_insert_candidate_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "set_mapping_review": {
+        "content_fingerprint_sha256": "4df91549cffd04337c4813be164ad0f8f62d08739e38c327620fed3c08a24ecd",
+        "dataset_key": "jpn_promotion_set_mapping_review_rows_v1",
+        "row_count": 86,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/promotion_package/rows/jpn_promotion_set_mapping_review_rows_v1/jpn_promotion_set_mapping_review_rows_v1_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      }
+    },
+    "execution_boundary": {
+      "database_identifiers_generated": false,
+      "database_reads": false,
+      "database_writes": false,
+      "english_mutation": false,
+      "family_promotion": false,
+      "identity_writes": false,
+      "promotion_approval_implied": false,
+      "public_gv_ids_generated": false,
+      "source_fetches": false,
+      "sql_generated": false,
+      "storage_writes": false
+    },
+    "generator_version": "JPN-MASTER-INDEX-PROMOTION-PACKAGE-V1",
+    "novel_blocker_counts": {
+      "collector_facing_english_name_missing": 1788,
+      "set_mapping_not_promotion_safe": 15
+    },
+    "source_fingerprints": {
+      "english_family": "7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db",
+      "master_cards": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+      "master_families": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+      "master_sets": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8",
+      "reconciliation": "4e1dcee7d87c584aaadc72867a91059e1ddd7277ce51b9e7187fe4723ca1f685",
+      "reconciliation_cards": "abd079f474c755ea2bcacfb7802d3477b3937f04944f0e1a2e4975a7f080c388",
+      "reconciliation_sets": "aee17d374b250f48ebced2d3e10a631bc17ca098b41fee988018464b97e99d57"
+    },
+    "status": "complete_no_write_promotion_package",
+    "summary": {
+      "direct_card_candidates": 38,
+      "evidence_gap_review": 17891,
+      "existing_parent_review": 2224,
+      "novel_blocked_review": 1803,
+      "ready_cards_with_image_evidence": 3888,
+      "set_dependent_card_candidates": 3850,
+      "set_insert_candidates": 1041,
+      "set_mapping_review": 86,
+      "total_promotion_ready_cards": 3888
+    }
+  },
+  "content_fingerprint_sha256": "4dd2ddbcb68492cb05a261b834bd41800cb7edc91072d22f719cc68103772dcb",
+  "generated_at": "2026-07-27T03:31:30.141Z",
+  "package_id": "JPN-MASTER-INDEX-PROMOTION-PACKAGE-V1",
+  "retrieval": {
+    "access_mode": "local_verified_artifacts_only",
+    "database_access": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}
