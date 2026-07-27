@@ -1434,16 +1434,13 @@ function Assert-BinderActivationRepositoryV1 {
     [string]$ExpectedHeadSha
   )
 
-  $repository = & $script:RolloutModule {
-    param($TargetRepoRoot, $TargetHeadSha)
-    Assert-BinderRepositoryStateV1 `
-      -RepoRoot $TargetRepoRoot `
-      -ExpectedHeadSha $TargetHeadSha
-  } $RepoRoot $ExpectedHeadSha
-
   $installationHeadSha =
     'a29680bdf79409823eedab8a62f0bd5cc89d675c'
-  $allowedTransitionPaths = @(
+  $sealedActivationHeadSha =
+    '67a33dbe0b69e930d064094ece9c8cf167fe6536'
+  $reviewedSafeMainHeadSha =
+    'd01a2d818513175061db8b6e9280c9850319b5ab'
+  $allowedInstallationTransitionPaths = @(
     'scripts/ops/CollaborativeBindersActivationV1.psm1',
     'scripts/ops/collaborative_binders_activation_apply_v1.ps1',
     'scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1',
@@ -1454,52 +1451,228 @@ function Assert-BinderActivationRepositoryV1 {
     'scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1',
     'tests/contracts/collaborative_binders_activation_v1.test.mjs'
   )
-  $transition = & $script:RolloutModule {
+  $allowedCurrentGuardTransitionPaths = @(
+    'scripts/ops/CollaborativeBindersActivationV1.psm1',
+    'scripts/ops/collaborative_binders_activation_apply_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_manifest_v1.json',
+    'scripts/ops/collaborative_binders_activation_preflight_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_recovery_v1.ps1',
+    'scripts/ops/collaborative_binders_activation_source_validate_v1.ps1',
+    'scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1',
+    'tests/contracts/collaborative_binders_activation_v1.test.mjs'
+  )
+  $protectedTreePaths = @(
+    '.metadata',
+    'analysis_options.yaml',
+    'android',
+    'apps',
+    'backend',
+    'deno.lock',
+    'ios',
+    'lib',
+    'linux',
+    'macos',
+    'package-lock.json',
+    'pubspec.lock',
+    'pubspec.yaml',
+    'scripts/ops',
+    'supabase',
+    'test',
+    'web',
+    'windows'
+  )
+  $policy = Get-BinderActivationPolicyV1 -RepoRoot $RepoRoot
+  $manifest = $policy.Manifest
+  Assert-BinderActivationConditionV1 (
+    [string]$manifest.required_installation_head_sha -ceq
+      $installationHeadSha -and
+    [string]$manifest.sealed_activation_head_sha -ceq
+      $sealedActivationHeadSha -and
+    [string]$manifest.reviewed_safe_main_head_sha -ceq
+      $reviewedSafeMainHeadSha -and
+    (@($manifest.installation_to_sealed_transition_paths) -join "`n") -ceq
+      (@($allowedInstallationTransitionPaths) -join "`n") -and
+    (@($manifest.safe_main_to_current_transition_paths) -join "`n") -ceq
+      (@($allowedCurrentGuardTransitionPaths) -join "`n") -and
+    (@($manifest.protected_tree_paths) -join "`n") -ceq
+      (@($protectedTreePaths) -join "`n")
+  ) 'Binder activation repository continuity policy is not exact.'
+  Assert-BinderActivationConditionV1 (
+    $ExpectedHeadSha -ceq $sealedActivationHeadSha
+  ) 'Binder activation evidence HEAD is not the sealed activation HEAD.'
+
+  $currentRepositoryHeadSha = & $script:RolloutModule {
+    param($TargetRepoRoot)
+    $head = Invoke-BinderGitV1 `
+      -Arguments @('rev-parse', 'HEAD') `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $head `
+      -Label 'Binder current repository HEAD check'
+    $headSha = $head.StdOut.Trim()
+    Assert-BinderConditionV1 (
+      $headSha -cmatch '^[0-9a-f]{40}$'
+    ) 'Binder current repository HEAD is invalid.'
+    return $headSha
+  } $RepoRoot
+  $repository = & $script:RolloutModule {
+    param($TargetRepoRoot, $TargetHeadSha)
+    Assert-BinderRepositoryStateV1 `
+      -RepoRoot $TargetRepoRoot `
+      -ExpectedHeadSha $TargetHeadSha
+  } $RepoRoot $currentRepositoryHeadSha
+
+  $installationTransition = & $script:RolloutModule {
     param(
       $TargetRepoRoot,
       $InstallationHead,
-      $ActivationHead
+      $SealedActivationHead
     )
     $ancestor = Invoke-BinderGitV1 `
       -Arguments @(
         'merge-base',
         '--is-ancestor',
         $InstallationHead,
-        $ActivationHead
+        $SealedActivationHead
       ) `
       -RepoRoot $TargetRepoRoot
     Assert-BinderCommandSucceededV1 `
       -Result $ancestor `
-      -Label 'Binder installation-to-activation ancestor check'
+      -Label 'Binder installation-to-sealed-activation ancestor check'
     $diff = Invoke-BinderGitV1 `
       -Arguments @(
         'diff',
         '--name-only',
         '--diff-filter=ACDMRTUXB',
-        "$InstallationHead..$ActivationHead"
+        "$InstallationHead..$SealedActivationHead"
       ) `
       -RepoRoot $TargetRepoRoot
     Assert-BinderCommandSucceededV1 `
       -Result $diff `
-      -Label 'Binder installation-to-activation path check'
+      -Label 'Binder installation-to-sealed-activation path check'
     return @(
       $diff.StdOut -split '\r?\n' |
         Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
     )
   } $RepoRoot $installationHeadSha $ExpectedHeadSha
   Assert-BinderActivationConditionV1 (
-    (@($transition | Sort-Object) -join "`n") -ceq
-      (@($allowedTransitionPaths | Sort-Object) -join "`n")
-  ) 'Binder installation-to-activation transition changed outside the exact guard allowlist.'
+    (@($installationTransition | Sort-Object) -join "`n") -ceq
+      (@($allowedInstallationTransitionPaths | Sort-Object) -join "`n")
+  ) 'Binder installation-to-sealed-activation transition changed outside the exact guard allowlist.'
+
+  $repositoryContinuity = & $script:RolloutModule {
+    param(
+      $TargetRepoRoot,
+      $SealedActivationHead,
+      $ReviewedSafeMainHead,
+      $CurrentHead,
+      $ProtectedPaths
+    )
+    $sealedToReviewedAncestor = Invoke-BinderGitV1 `
+      -Arguments @(
+        'merge-base',
+        '--is-ancestor',
+        $SealedActivationHead,
+        $ReviewedSafeMainHead
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $sealedToReviewedAncestor `
+      -Label 'Binder sealed-to-reviewed-main ancestor check'
+    $reviewedToCurrentAncestor = Invoke-BinderGitV1 `
+      -Arguments @(
+        'merge-base',
+        '--is-ancestor',
+        $ReviewedSafeMainHead,
+        $CurrentHead
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $reviewedToCurrentAncestor `
+      -Label 'Binder reviewed-main-to-current ancestor check'
+
+    $protectedObjects = @(
+      foreach ($path in @($ProtectedPaths)) {
+        $sealedObject = Invoke-BinderGitV1 `
+          -Arguments @(
+            'rev-parse',
+            ('{0}:{1}' -f $SealedActivationHead, $path)
+          ) `
+          -RepoRoot $TargetRepoRoot
+        Assert-BinderCommandSucceededV1 `
+          -Result $sealedObject `
+          -Label "Binder sealed protected object check: $path"
+        $reviewedObject = Invoke-BinderGitV1 `
+          -Arguments @(
+            'rev-parse',
+            ('{0}:{1}' -f $ReviewedSafeMainHead, $path)
+          ) `
+          -RepoRoot $TargetRepoRoot
+        Assert-BinderCommandSucceededV1 `
+          -Result $reviewedObject `
+          -Label "Binder reviewed-main protected object check: $path"
+        $sealedObjectSha = $sealedObject.StdOut.Trim()
+        $reviewedObjectSha = $reviewedObject.StdOut.Trim()
+        Assert-BinderConditionV1 (
+          $sealedObjectSha -cmatch '^[0-9a-f]{40}$' -and
+          $reviewedObjectSha -cmatch '^[0-9a-f]{40}$' -and
+          $sealedObjectSha -ceq $reviewedObjectSha
+        ) "Binder protected object changed in reviewed main: $path"
+        [pscustomobject][ordered]@{
+          path = [string]$path
+          sealed_object_sha = $sealedObjectSha
+          reviewed_main_object_sha = $reviewedObjectSha
+        }
+      }
+    )
+
+    $diff = Invoke-BinderGitV1 `
+      -Arguments @(
+        'diff',
+        '--name-only',
+        '--diff-filter=ACDMRTUXB',
+        "$ReviewedSafeMainHead..$CurrentHead"
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $diff `
+      -Label 'Binder reviewed-main-to-current guard path check'
+    $transitionPaths = @(
+      $diff.StdOut -split '\r?\n' |
+        Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+    )
+    return [pscustomobject][ordered]@{
+      TransitionPaths = @($transitionPaths)
+      ProtectedObjects = @($protectedObjects)
+    }
+  } `
+    $RepoRoot `
+    $sealedActivationHeadSha `
+    $reviewedSafeMainHeadSha `
+    $currentRepositoryHeadSha `
+    $protectedTreePaths
+  Assert-BinderActivationConditionV1 (
+    (@($repositoryContinuity.TransitionPaths | Sort-Object) -join "`n") -ceq
+      (@($allowedCurrentGuardTransitionPaths | Sort-Object) -join "`n")
+  ) 'Binder reviewed-main-to-current transition changed outside the exact guard allowlist.'
 
   return [pscustomobject][ordered]@{
-    HeadSha = [string]$repository.HeadSha
+    HeadSha = $ExpectedHeadSha
+    ActivationHeadSha = $ExpectedHeadSha
+    CurrentRepositoryHeadSha = [string]$repository.HeadSha
     OriginMainSha = [string]$repository.OriginMainSha
     Branch = [string]$repository.Branch
     Clean = [bool]$repository.Clean
     InstallationHeadSha = $installationHeadSha
     InstallationHeadIsAncestor = $true
-    TransitionPaths = @($transition)
+    SealedActivationHeadSha = $sealedActivationHeadSha
+    ReviewedSafeMainHeadSha = $reviewedSafeMainHeadSha
+    ProtectedTreePaths = @($protectedTreePaths)
+    ProtectedObjects = @($repositoryContinuity.ProtectedObjects)
+    InstallationTransitionPaths = @($installationTransition)
+    CurrentGuardTransitionPaths =
+      @($repositoryContinuity.TransitionPaths)
   }
 }
 
