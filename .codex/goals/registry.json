@@ -1,0 +1,35 @@
+{
+  "schema_version": "GROOKAI_EXECUTION_GOAL_REGISTRY_V1",
+  "goals": [
+    {
+      "id": "mee-pricing-platform-production-v1",
+      "title": "MEE Pricing Platform Production V1",
+      "status": "active",
+      "spec_path": ".codex/goals/MEE_PRICING_PLATFORM_PRODUCTION_V1.md",
+      "spec_sha256": "445d9c80993d5816bd7638bbbc230cfd4304d70b0c49105c0a50ee76ffeb0c88",
+      "objective": "Complete the governed Production V1 pricing platform from repository audit through verified production rollout.",
+      "autonomous_execution": true,
+      "micro_approvals_required": false,
+      "completion_model": "production_verified",
+      "completion_requires": [
+        "production_migration_parity",
+        "durable_current_price_pipeline",
+        "three_shadow_cycles",
+        "verified_100_printing_canary",
+        "authenticated_72_hour_canary",
+        "seven_unattended_full_eligible_cycles",
+        "minimum_95_percent_exact_mapping_coverage",
+        "all_supported_surfaces_on_shared_contract",
+        "complete_source_to_client_provenance",
+        "public_rollout_gates_or_documented_external_block"
+      ],
+      "blocked_conditions": [
+        "unavailable_credentials_or_external_access",
+        "unauthorized_irreversible_destructive_action",
+        "unresolved_licensing_or_legal_decision",
+        "genuine_invariant_conflict_without_safe_resolution",
+        "missing_production_evidence_unavailable_through_read_only_access"
+      ]
+    }
+  ]
+}
