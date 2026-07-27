@@ -1,0 +1,138 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "card_dataset": {
+      "content_fingerprint_sha256": "abd079f474c755ea2bcacfb7802d3477b3937f04944f0e1a2e4975a7f080c388",
+      "dataset_key": "jpn_live_card_reconciliation_rows_v1",
+      "row_count": 28008,
+      "shard_count": 6,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0001_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0002_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0003_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0004_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0005_of_0006.json.gz",
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_card_reconciliation_rows_v1/jpn_live_card_reconciliation_rows_v1_0006_of_0006.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "card_promotion_readiness_counts": {
+      "already_live": 20093,
+      "blocked": 1803,
+      "blocked_existing_review": 2224,
+      "delta_candidate": 38,
+      "delta_candidate_after_set_insert": 3850
+    },
+    "card_status_counts": {
+      "existing_parent_aligned": 22150,
+      "existing_parent_core_drift": 167,
+      "novel_candidate_missing_from_live": 5691
+    },
+    "display_name_source_counts": {
+      "language_agnostic_species_fallback": 3891,
+      "master_index_explicit": 22292,
+      "missing": 1825
+    },
+    "english_family_proof": {
+      "expected_combined_fingerprint_sha256": "7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db",
+      "live_combined_fingerprint_sha256": "7aaa2d3c4d14e379515a33a60bc19444b4333c4ba6ecc1c0a2a8c2eea52669db",
+      "unchanged": true
+    },
+    "execution_boundary": {
+      "database_reads": true,
+      "database_reads_are_transaction_guarded_and_read_only": true,
+      "database_writes": false,
+      "english_mutation": false,
+      "family_promotion": false,
+      "identity_writes": false,
+      "pricing_writes": false,
+      "promotion_payload_generated": false,
+      "storage_writes": false
+    },
+    "existing_parent_blocker_counts": {
+      "collector_facing_english_name_missing": 37,
+      "existing_parent_core_drift": 167,
+      "set_mapping_not_promotion_safe": 2056
+    },
+    "generator_version": "JPN-MASTER-INDEX-LIVE-RECONCILIATION-V1",
+    "missing_evidence_source_counts": {
+      "bulbapedia": 6897,
+      "limitless": 77,
+      "official_jp": 5629,
+      "serebii": 10113,
+      "tcgdex": 1768
+    },
+    "novel_candidate_blocker_counts": {
+      "collector_facing_english_name_missing": 1788,
+      "set_mapping_not_promotion_safe": 15
+    },
+    "set_dataset": {
+      "content_fingerprint_sha256": "aee17d374b250f48ebced2d3e10a631bc17ca098b41fee988018464b97e99d57",
+      "dataset_key": "jpn_live_set_reconciliation_rows_v1",
+      "row_count": 1426,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/reconciliation/rows/jpn_live_set_reconciliation_rows_v1/jpn_live_set_reconciliation_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "set_promotion_readiness_counts": {
+      "already_live": 299,
+      "blocked": 86,
+      "set_insert_candidate": 1041
+    },
+    "set_status_counts": {
+      "existing_alias_review_required": 43,
+      "existing_exact_code": 196,
+      "existing_name_ambiguous": 1,
+      "existing_name_review_required": 24,
+      "existing_parent_anchor": 103,
+      "existing_parent_anchor_ambiguous": 18,
+      "missing_set": 1041
+    },
+    "source_fingerprints": {
+      "final_package": "d2935a74683c02b3ad6e4c845b804b6fcd3694dbf30c139e4e1b0126a3136455",
+      "live_evidence": "4314d262de96dcfa8d5860016f55ef7118416efac7439d34f3ad33e6e00b0ad9",
+      "live_identities": "48c1a7d2f46a4fe453c9e0f65df6d25a12f2417f0f81a23817e130c5e021759f",
+      "live_parents": "f57ef52aa7cfdde0594ff099fa2200a9a20125f1411d6ed30c37b72324e7be62",
+      "live_printings": "2f7716b3248fbb975a99f9d8370ed4bc4423f7d254f40fcb0a6e030aed016886",
+      "live_sets": "e78cecb27900feebfd63418a07de7f35511a944fcc097ddc6146aad1082297c5",
+      "live_species_links": "6103b19b3a8fb3bf5de24caf3666564269e3d5865e4395a87a699259972722c5",
+      "master_cards": "80e032a962766634cd1c48f2bc48d6de8518c0a1603fa5f8b310647f7e531867",
+      "master_families": "f729b6f13eb5e19f67ce67cc1501de3a90e94c72b71e1c35884c6998e708a14e",
+      "master_sets": "0c2ba9967702ad848d9ed04d8a3752fb75a0f6b62c62c194aa41fe1d7341dbe8"
+    },
+    "status": "complete_read_only_reconciliation",
+    "summary": {
+      "cards_missing_any_evidence_lane": 17891,
+      "english_family_unchanged": true,
+      "existing_exact_live_sets": 196,
+      "existing_parent_anchored_live_sets": 103,
+      "existing_parents_aligned": 22150,
+      "existing_parents_with_any_promotion_blocker": 2224,
+      "existing_parents_with_core_drift": 167,
+      "master_admissible_cards": 28008,
+      "master_admissible_sets": 1426,
+      "missing_evidence_lane_memberships": 24484,
+      "missing_species_links": 0,
+      "novel_candidates_after_set_insert": 3850,
+      "novel_candidates_blocked": 1803,
+      "novel_parent_delta_candidates": 38,
+      "promotion_ready_novel_candidates_with_image_evidence": 3888,
+      "set_insert_candidates": 1041,
+      "set_mapping_review": 86
+    }
+  },
+  "content_fingerprint_sha256": "4e1dcee7d87c584aaadc72867a91059e1ddd7277ce51b9e7187fe4723ca1f685",
+  "generated_at": "2026-07-27T02:50:24.680Z",
+  "package_id": "JPN-MASTER-INDEX-LIVE-RECONCILIATION-V1",
+  "retrieval": {
+    "baseline_guard": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "baseline_transaction_read_only": "on",
+    "default_transaction_read_only": "on",
+    "environment_key_sha256": "e47ce4a2da125f7aeef5f044788636abdeddb9d6002f25b373bd604416946a07",
+    "environment_label": "production-read-only-reconciliation",
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "transaction_read_only": "on"
+  }
+}
