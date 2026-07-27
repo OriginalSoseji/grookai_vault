@@ -14,7 +14,7 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "32c31b7dfdd12f0f3883d45d2987a3450a424ebbea3891d9fbc8074e13841352";
+  "4573bb8535acf3c1c8eabff6e2152e9fd08efe33b7b8e6ddf8f41e0b1d402d75";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
@@ -595,6 +595,14 @@ test("every activation phase is a one-statement one-target compare-and-set", () 
 });
 
 test("activation readback is immutable, read-only, and proves raw/effective vectors", () => {
+  const readbackBody = functionBody(
+    moduleSource,
+    "Invoke-BinderActivationReadbackV1",
+  );
+  assert.match(
+    readbackBody,
+    /\[Parameter\(Mandatory\s*=\s*\$true\)\]\s*\[AllowEmptyCollection\(\)\]\s*\[string\[\]\]\$ExpectedEnabledFlags/i,
+  );
   assert.equal(
     manifest.activation_readback.sha256,
     sha256(bytes(READBACK_PATH)),
@@ -620,6 +628,73 @@ test("activation readback is immutable, read-only, and proves raw/effective vect
   assert.match(sql, /'read_only',\s*true/i);
   assert.match(sql, /'phase',\s*'activation'/i);
 });
+
+test(
+  "activation readback accepts the empty phase-one flag vector",
+  { skip: !WINDOWS_ONLY },
+  () => {
+    const script = String.raw`
+param($activationModule)
+$command = $activationModule.ExportedCommands[
+  'Invoke-BinderActivationReadbackV1'
+]
+$parameter = $command.Parameters['ExpectedEnabledFlags']
+$allowEmptyCount = @(
+  $parameter.Attributes | Where-Object {
+    $_ -is [Management.Automation.AllowEmptyCollectionAttribute]
+  }
+).Count
+$mandatoryCount = @(
+  $parameter.Attributes | Where-Object {
+    $_ -is [Management.Automation.ParameterAttribute] -and
+    $_.Mandatory
+  }
+).Count
+$probeRoot = Join-Path (
+  [IO.Path]::GetTempPath()
+) ('binder-empty-vector-probe-' + [guid]::NewGuid().ToString('N'))
+$probeRootExists = Test-Path -LiteralPath $probeRoot
+$errorId = ''
+$errorMessage = ''
+try {
+  $probeArguments = @{
+    RepoRoot = $probeRoot
+    ExpectedEnabledFlags = [string[]]@()
+    ExecutablePath = 'not-used'
+  }
+  & $command @probeArguments
+} catch {
+  $errorId = $_.FullyQualifiedErrorId
+  $errorMessage = $_.Exception.Message
+}
+[pscustomobject]@{
+  AllowEmptyCollectionCount = $allowEmptyCount
+  MandatoryCount = $mandatoryCount
+  ParameterType = $parameter.ParameterType.FullName
+  ProbeRootExists = $probeRootExists
+  ErrorId = $errorId
+  ErrorMessage = $errorMessage
+} | ConvertTo-Json -Compress
+`;
+    const result = runActivationPowerShell(script);
+    assert.equal(
+      result.error,
+      undefined,
+      `could not launch pwsh: ${result.error?.message ?? ""}`,
+    );
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const report = JSON.parse(result.stdout.trim());
+    assert.equal(report.AllowEmptyCollectionCount, 1);
+    assert.equal(report.MandatoryCount, 1);
+    assert.equal(report.ParameterType, "System.String[]");
+    assert.equal(report.ProbeRootExists, false);
+    assert.doesNotMatch(
+      report.ErrorId,
+      /ParameterArgumentValidationErrorEmptyArrayNotAllowed/i,
+    );
+    assert.match(report.ErrorMessage, /activation manifest is missing/i);
+  },
+);
 
 test("every activation entrypoint explicitly requires PowerShell 7", () => {
   for (const relativePath of [

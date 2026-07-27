@@ -1741,6 +1741,7 @@ function Invoke-BinderActivationReadbackV1 {
     [string]$RepoRoot,
 
     [Parameter(Mandatory = $true)]
+    [AllowEmptyCollection()]
     [string[]]$ExpectedEnabledFlags,
 
     [string[]]$AlternateEnabledFlags,
