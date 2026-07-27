@@ -57,6 +57,16 @@ async function runWorker(url, runKey, outRoot) {
   );
 }
 
+async function withClient(url, callback) {
+  const client = new Client({ connectionString: url });
+  await client.connect();
+  try {
+    return await callback(client);
+  } finally {
+    await client.end();
+  }
+}
+
 async function seedFixture(client, fixture) {
   const base = await client.query(
     `select
@@ -406,44 +416,52 @@ async function main() {
       first.publication_set_id,
     );
 
-    await assert.rejects(
-      client.query(
-        `update public.market_price_qualification_decisions
-            set market_price = 99
-          where run_id = $1`,
-        [first.run_id],
-      ),
-      /append-only/i,
-    );
-
-    await client.query("begin");
-    let authenticated;
-    try {
-      await client.query("set local role authenticated");
-      authenticated = await client.query(
-        `select count(*)::integer as row_count
-           from public.get_market_pricing_read_model_v1(array[$1]::uuid[], null)`,
-        [fixture.cardPrintId],
+    await withClient(url, async (immutabilityClient) => {
+      await assert.rejects(
+        immutabilityClient.query(
+          `update public.market_price_qualification_decisions
+              set market_price = 99
+            where run_id = $1`,
+          [first.run_id],
+        ),
+        /append-only/i,
       );
-    } finally {
-      await client.query("rollback");
-    }
+    });
+
+    const authenticated = await withClient(
+      url,
+      async (authenticatedClient) => {
+        await authenticatedClient.query("begin");
+        try {
+          await authenticatedClient.query("set local role authenticated");
+          return await authenticatedClient.query(
+            `select count(*)::integer as row_count
+               from public.get_market_pricing_read_model_v1(array[$1]::uuid[], null)`,
+            [fixture.cardPrintId],
+          );
+        } finally {
+          await authenticatedClient.query("rollback");
+        }
+      },
+    );
     assert.equal(Number(authenticated.rows[0].row_count), 1);
 
     const provenance = current.rows[0].provenance_id;
-    await client.query("begin");
-    try {
-      await client.query("set local role authenticated");
-      await assert.rejects(
-        client.query(
-          `select public.get_market_price_trace_v1($1) as trace`,
-          [provenance],
-        ),
-        /permission denied/i,
-      );
-    } finally {
-      await client.query("rollback");
-    }
+    await withClient(url, async (authenticatedClient) => {
+      await authenticatedClient.query("begin");
+      try {
+        await authenticatedClient.query("set local role authenticated");
+        await assert.rejects(
+          authenticatedClient.query(
+            `select public.get_market_price_trace_v1($1) as trace`,
+            [provenance],
+          ),
+          /permission denied/i,
+        );
+      } finally {
+        await authenticatedClient.query("rollback");
+      }
+    });
     const trace = await client.query(
       `select public.get_market_price_trace_v1($1) as trace`,
       [provenance],

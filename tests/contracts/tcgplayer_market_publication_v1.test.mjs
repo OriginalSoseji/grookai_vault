@@ -411,6 +411,8 @@ test("local smoke proves publication, resume, rollback, append-only, and ACL bou
   assert.match(LOCAL_SMOKE, /resuming a verified run must not repeat completed phases/);
   assert.match(LOCAL_SMOKE, /rollback_market_price_publication_set_v1/);
   assert.match(LOCAL_SMOKE, /append-only/i);
+  assert.match(LOCAL_SMOKE, /withClient\(url, async \(immutabilityClient\)/);
+  assert.match(LOCAL_SMOKE, /withClient\(url, async \(authenticatedClient\)/);
   assert.doesNotMatch(
     LOCAL_SMOKE,
     /client\.query\(\s*`begin;[\s\S]{0,500}array\[\$1\]::uuid/,
