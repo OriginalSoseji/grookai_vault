@@ -170,7 +170,7 @@ test('generated preflight is collision-free and preserves no-write boundaries', 
   const report = artifact.content;
   assert.equal(
     report.status,
-    'preflight_complete_repository_schema_drift',
+    'preflight_complete_no_write',
   );
   assert.deepEqual(report.summary, {
     blocking_collisions: 0,
@@ -180,7 +180,7 @@ test('generated preflight is collision-free and preserves no-write boundaries', 
     family_review_rows: 3888,
     identity_rows: 3888,
     nonblocking_collisions: 0,
-    repository_schema_drift_tables: 2,
+    repository_schema_drift_tables: 0,
     set_rows: 1041,
   });
   assert.equal(report.execution_boundary.database_reads, true);
