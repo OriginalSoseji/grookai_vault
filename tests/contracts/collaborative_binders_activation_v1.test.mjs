@@ -1,7 +1,15 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -14,7 +22,7 @@ const REPO_ROOT = path.resolve(
 
 const PACKAGE_ID = "COLLABORATIVE-BINDERS-ACTIVATION-V1";
 const PACKAGE_FINGERPRINT =
-  "32c31b7dfdd12f0f3883d45d2987a3450a424ebbea3891d9fbc8074e13841352";
+  "d016bceb45acce78365758bf9c73e41a89d0255904a6aae6f626a56305f829d4";
 const INSTALLATION_PACKAGE_ID = "COLLABORATIVE-BINDERS-DB-V1";
 const INSTALLATION_PACKAGE_FINGERPRINT =
   "14a235d9ca9bc2172ddd3bfb8e2ba8b8812849079fe0469b73f35d02b6b47fb9";
@@ -24,9 +32,28 @@ const SEALED_ACTIVATION_HEAD_SHA =
   "67a33dbe0b69e930d064094ece9c8cf167fe6536";
 const REVIEWED_SAFE_MAIN_HEAD_SHA =
   "d01a2d818513175061db8b6e9280c9850319b5ab";
+const CURRENT_REPOSITORY_GUARD_BASE_SHA =
+  "72bb84807a614d0e2f2d76c18c8aa64a6d1aa578";
 const PRODUCTION_PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const CANONICAL_REPOSITORY = "OriginalSoseji/grookai_vault";
 const WINDOWS_ONLY = process.platform === "win32";
+const BACKUP_OVERRIDE_SHA256 =
+  "fd1f9cc1682792ba57cea97f1d5d5e9d270381a3a6796fca09267ee9ac6afae6";
+const BACKUP_OVERRIDE_REFERENCE =
+  "supabase-backups-list:physical:2026-07-27T10:32:57.612Z:COMPLETED";
+const BACKUP_OVERRIDE_JSON = `{
+  "schema_version": 1,
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "backup_kind": "supabase_platform_backup",
+  "status": "COMPLETED",
+  "is_physical_backup": true,
+  "verified_at_utc": "2026-07-27T16:50:32.000Z",
+  "recoverable_through_utc": "2026-07-27T10:32:57.612Z",
+  "evidence_reference": "${BACKUP_OVERRIDE_REFERENCE}",
+  "restore_path_reviewed": true,
+  "operator": "codex-read-only-backup-verification"
+}
+`;
 
 const MANIFEST_PATH =
   "scripts/ops/collaborative_binders_activation_manifest_v1.json";
@@ -447,6 +474,10 @@ test("activation manifest is one exact content-addressed package", () => {
     manifest.reviewed_safe_main_head_sha,
     REVIEWED_SAFE_MAIN_HEAD_SHA,
   );
+  assert.equal(
+    manifest.current_repository_guard_base_sha,
+    CURRENT_REPOSITORY_GUARD_BASE_SHA,
+  );
   assert.deepEqual(
     manifest.installation_to_sealed_transition_paths,
     INSTALLATION_TO_SEALED_TRANSITION_PATHS,
@@ -480,6 +511,207 @@ test("activation manifest is one exact content-addressed package", () => {
     );
   }
   assert.equal(manifest.activation_readback.file, READBACK_PATH);
+});
+
+test("phase-one backup override pins the exact completed physical attestation", () => {
+  assert.equal(sha256(Buffer.from(BACKUP_OVERRIDE_JSON, "utf8")), BACKUP_OVERRIDE_SHA256);
+  assert.deepEqual(manifest.phase_one_backup_override, {
+    required: true,
+    phase_sequence: 1,
+    schema_version: 1,
+    project_ref: PRODUCTION_PROJECT_REF,
+    backup_kind: "supabase_platform_backup",
+    status: "COMPLETED",
+    is_physical_backup: true,
+    verified_at_utc: "2026-07-27T16:50:32.000Z",
+    recoverable_through_utc: "2026-07-27T10:32:57.612Z",
+    evidence_reference: BACKUP_OVERRIDE_REFERENCE,
+    restore_path_reviewed: true,
+    operator: "codex-read-only-backup-verification",
+    sha256: BACKUP_OVERRIDE_SHA256,
+    sealed_apply_file: "activation-backup-override.json",
+  });
+
+  const validator = functionBody(
+    moduleSource,
+    "Test-BinderActivationBackupOverrideV1",
+  );
+  const policy = functionBody(moduleSource, "Get-BinderActivationPolicyV1");
+  const exactContract = `${policy}\n${validator}`;
+  for (const marker of [
+    "status",
+    "COMPLETED",
+    "is_physical_backup",
+    "supabase_platform_backup",
+    "verified_at_utc",
+    "recoverable_through_utc",
+    "evidence_reference",
+    "restore_path_reviewed",
+    "operator",
+    "ReparsePoint",
+    "backup_max_activation_recovery_lag_minutes",
+  ]) {
+    assert.ok(
+      exactContract.includes(marker),
+      `Backup override contract does not bind ${marker}.`,
+    );
+  }
+  assert.match(
+    validator,
+    /PhaseSequence\s*-eq\s*1/i,
+    "Backup override must be valid only for phase one.",
+  );
+});
+
+test(
+  "PowerShell accepts only the exact phase-one backup override bytes",
+  { skip: !WINDOWS_ONLY },
+  () => {
+    const tempRoot = mkdtempSync(path.join(os.tmpdir(), "binder-backup-override-"));
+    try {
+      const exactPath = path.join(tempRoot, "exact.json");
+      const tamperedPath = path.join(tempRoot, "tampered.json");
+      writeFileSync(exactPath, BACKUP_OVERRIDE_JSON, "utf8");
+      writeFileSync(
+        tamperedPath,
+        BACKUP_OVERRIDE_JSON.replace('"status": "COMPLETED"', '"status": "FAILED"'),
+        "utf8",
+      );
+
+      const invoke = (
+        targetPath,
+        phaseSequence = 1,
+        nowUtc = "2026-07-27T17:00:00Z",
+      ) =>
+        runActivationPowerShell(`
+          param($Module)
+          & $Module {
+            param($TargetPath, $TargetPhase, $TargetRepo)
+            Test-BinderActivationBackupOverrideV1 \
+              -Path $TargetPath \
+              -PhaseSequence $TargetPhase \
+              -RepoRoot $TargetRepo \
+              -NowUtc ([datetimeoffset]'${nowUtc}')
+          } ${psLiteral(targetPath)} ${phaseSequence} ${psLiteral(REPO_ROOT)} |
+            ConvertTo-Json -Compress
+        `);
+
+      const exact = invoke(exactPath);
+      assert.equal(exact.status, 0, exact.stderr || exact.stdout);
+      const proof = JSON.parse(exact.stdout.trim());
+      assert.equal(proof.Sha256, BACKUP_OVERRIDE_SHA256);
+      assert.equal(proof.Kind, "supabase_platform_backup");
+      assert.equal(proof.EvidenceReference, BACKUP_OVERRIDE_REFERENCE);
+
+      const tampered = invoke(tamperedPath);
+      assert.notEqual(tampered.status, 0);
+      assert.match(
+        `${tampered.stderr}\n${tampered.stdout}`,
+        /hash does not match the sealed identity/i,
+      );
+
+      const laterPhase = invoke(exactPath, 2);
+      assert.notEqual(laterPhase.status, 0);
+      assert.match(
+        `${laterPhase.stderr}\n${laterPhase.stdout}`,
+        /permitted only for phase one/i,
+      );
+
+      const stale = invoke(exactPath, 1, "2026-07-28T10:33:00Z");
+      assert.notEqual(stale.status, 0);
+      assert.match(
+        `${stale.stderr}\n${stale.stdout}`,
+        /outside its recovery window/i,
+      );
+
+      const future = invoke(exactPath, 1, "2026-07-27T16:40:00Z");
+      assert.notEqual(future.status, 0);
+      assert.match(
+        `${future.stderr}\n${future.stdout}`,
+        /outside its recovery window/i,
+      );
+
+      const unsafe = invoke(absolute(MANIFEST_PATH));
+      assert.notEqual(unsafe.status, 0);
+      assert.match(
+        `${unsafe.stderr}\n${unsafe.stdout}`,
+        /must be outside the repository/i,
+      );
+    } finally {
+      rmSync(tempRoot, { recursive: true, force: true });
+    }
+  },
+);
+
+test("override path is phase-one-only and sealed through apply and recovery", () => {
+  const preflightEntry = source(PREFLIGHT_PATH);
+  const applyEntry = source(APPLY_PATH);
+  const recoveryEntry = source(RECOVERY_PATH);
+  const priorBody = functionBody(
+    moduleSource,
+    "Test-BinderActivationPriorEvidenceV1",
+  );
+  const exactJsonReaderBody = functionBody(
+    moduleSource,
+    "Read-BinderActivationJsonV1",
+  );
+  const preflightManifestBody = functionBody(
+    moduleSource,
+    "Read-BinderActivationPreflightManifestV1",
+  );
+  const applyBody = functionBody(moduleSource, "Invoke-BinderActivationApplyV1");
+  const recoveryBody = functionBody(
+    moduleSource,
+    "Invoke-BinderActivationRecoveryV1",
+  );
+
+  assert.match(preflightEntry, /\$ActivationBackupEvidencePath\b/);
+  assert.doesNotMatch(applyEntry, /\$ActivationBackupEvidencePath\b/);
+  assert.doesNotMatch(recoveryEntry, /\$ActivationBackupEvidencePath\b/);
+  assert.match(
+    priorBody,
+    /Activation backup override path is permitted only for phase one/i,
+  );
+  assert.match(exactJsonReaderBody, /\[Text\.Json\.JsonDocument\]::Parse/i);
+  assert.match(exactJsonReaderBody, /JsonValueKind\]::String/i);
+  assert.doesNotMatch(moduleSource, /ConvertFrom-Json[^\r\n]*-DateKind/i);
+  for (const body of [priorBody, preflightManifestBody, recoveryBody]) {
+    assert.match(body, /Read-BinderActivationJsonV1/i);
+    assert.ok(body.includes("backup_verified_at_utc"));
+    assert.ok(body.includes("backup_recoverable_through_utc"));
+  }
+  for (const field of [
+    "backup_evidence_origin",
+    "backup_evidence_path",
+    "installation_backup_evidence_sha256",
+    "installation_preflight_checksum_sha256",
+  ]) {
+    for (const [label, body] of [
+      ["prior evidence", priorBody],
+      ["apply", applyBody],
+      ["recovery", recoveryBody],
+    ]) {
+      assert.ok(
+        body.includes(field),
+        `${label} does not preserve ${field}.`,
+      );
+    }
+  }
+  for (const [label, body] of [
+    ["apply", applyBody],
+    ["recovery", recoveryBody],
+  ]) {
+    assert.match(body, /phase_one_backup_override\.sealed_apply_file/i);
+    assert.match(body, /\[IO\.File\]::Copy/i);
+    assert.match(body, /Open-BinderActivationSealV1\s+-Paths/i);
+    assert.match(body, /Test-BinderActivationBackupOverrideV1/i);
+    assert.match(body, /Get-BinderActivationSha256V1/i);
+    assert.match(
+      body,
+      /Invoke-BinderActivationSupabaseV1|Invoke-BinderActivationDiagnosticReadbackV1/i,
+      `${label} must retain its guarded live operation.`,
+    );
+  }
 });
 
 test("activation vectors are contiguous, exact, and exclude P8 surfaces", () => {
@@ -595,6 +827,14 @@ test("every activation phase is a one-statement one-target compare-and-set", () 
 });
 
 test("activation readback is immutable, read-only, and proves raw/effective vectors", () => {
+  const readbackBody = functionBody(
+    moduleSource,
+    "Invoke-BinderActivationReadbackV1",
+  );
+  assert.match(
+    readbackBody,
+    /\[Parameter\(Mandatory\s*=\s*\$true\)\]\s*\[AllowEmptyCollection\(\)\]\s*\[string\[\]\]\$ExpectedEnabledFlags/i,
+  );
   assert.equal(
     manifest.activation_readback.sha256,
     sha256(bytes(READBACK_PATH)),
@@ -620,6 +860,73 @@ test("activation readback is immutable, read-only, and proves raw/effective vect
   assert.match(sql, /'read_only',\s*true/i);
   assert.match(sql, /'phase',\s*'activation'/i);
 });
+
+test(
+  "activation readback accepts the empty phase-one flag vector",
+  { skip: !WINDOWS_ONLY },
+  () => {
+    const script = String.raw`
+param($activationModule)
+$command = $activationModule.ExportedCommands[
+  'Invoke-BinderActivationReadbackV1'
+]
+$parameter = $command.Parameters['ExpectedEnabledFlags']
+$allowEmptyCount = @(
+  $parameter.Attributes | Where-Object {
+    $_ -is [Management.Automation.AllowEmptyCollectionAttribute]
+  }
+).Count
+$mandatoryCount = @(
+  $parameter.Attributes | Where-Object {
+    $_ -is [Management.Automation.ParameterAttribute] -and
+    $_.Mandatory
+  }
+).Count
+$probeRoot = Join-Path (
+  [IO.Path]::GetTempPath()
+) ('binder-empty-vector-probe-' + [guid]::NewGuid().ToString('N'))
+$probeRootExists = Test-Path -LiteralPath $probeRoot
+$errorId = ''
+$errorMessage = ''
+try {
+  $probeArguments = @{
+    RepoRoot = $probeRoot
+    ExpectedEnabledFlags = [string[]]@()
+    ExecutablePath = 'not-used'
+  }
+  & $command @probeArguments
+} catch {
+  $errorId = $_.FullyQualifiedErrorId
+  $errorMessage = $_.Exception.Message
+}
+[pscustomobject]@{
+  AllowEmptyCollectionCount = $allowEmptyCount
+  MandatoryCount = $mandatoryCount
+  ParameterType = $parameter.ParameterType.FullName
+  ProbeRootExists = $probeRootExists
+  ErrorId = $errorId
+  ErrorMessage = $errorMessage
+} | ConvertTo-Json -Compress
+`;
+    const result = runActivationPowerShell(script);
+    assert.equal(
+      result.error,
+      undefined,
+      `could not launch pwsh: ${result.error?.message ?? ""}`,
+    );
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const report = JSON.parse(result.stdout.trim());
+    assert.equal(report.AllowEmptyCollectionCount, 1);
+    assert.equal(report.MandatoryCount, 1);
+    assert.equal(report.ParameterType, "System.String[]");
+    assert.equal(report.ProbeRootExists, false);
+    assert.doesNotMatch(
+      report.ErrorId,
+      /ParameterArgumentValidationErrorEmptyArrayNotAllowed/i,
+    );
+    assert.match(report.ErrorMessage, /activation manifest is missing/i);
+  },
+);
 
 test("every activation entrypoint explicitly requires PowerShell 7", () => {
   for (const relativePath of [
@@ -1186,6 +1493,7 @@ test("phase one accepts only the production installer's exact nested apply evide
   assert.ok(repositoryBody.includes(INSTALLATION_HEAD_SHA));
   assert.ok(repositoryBody.includes(SEALED_ACTIVATION_HEAD_SHA));
   assert.ok(repositoryBody.includes(REVIEWED_SAFE_MAIN_HEAD_SHA));
+  assert.ok(repositoryBody.includes(CURRENT_REPOSITORY_GUARD_BASE_SHA));
   assert.match(
     repositoryBody,
     /\$ExpectedHeadSha\s*-ceq\s*\$sealedActivationHeadSha/i,
@@ -1208,7 +1516,7 @@ test("phase one accepts only the production installer's exact nested apply evide
   );
   assert.match(
     repositoryBody,
-    /\$SealedActivationHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$CurrentHead/i,
+    /\$SealedActivationHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$ReviewedSafeMainHead[\s\S]*?\$CurrentRepositoryGuardBase[\s\S]*?\$CurrentRepositoryGuardBase[\s\S]*?\$CurrentHead/i,
   );
   assert.match(
     repositoryBody,
@@ -1224,7 +1532,7 @@ test("phase one accepts only the production installer's exact nested apply evide
   );
   assert.match(
     repositoryBody,
-    /\$ReviewedSafeMainHead\.\.\$CurrentHead/i,
+    /\$CurrentRepositoryGuardBase\.\.\$CurrentHead/i,
   );
   for (const allowedPath of INSTALLATION_TO_SEALED_TRANSITION_PATHS) {
     assert.ok(
@@ -1879,6 +2187,35 @@ test("recovery emits prior evidence only for exact after; before and unexpected 
     /Invoke-BinderActivationApplyV1|Invoke-BinderActivationKillSwitchV1/i,
     "Recovery must never execute an activation or rollback mutation.",
   );
+  const stopBlocks = [
+    ...recoveryBody.matchAll(
+      /\$stop\s*=\s*\[ordered\]@\{([\s\S]*?)\r?\n\s{6}\}/gi,
+    ),
+  ].map((match) => match[1]);
+  assert.equal(stopBlocks.length, 3);
+  for (const [index, stopBlock] of stopBlocks.entries()) {
+    for (const field of [
+      "installation_backup_evidence_sha256",
+      "installation_preflight_checksum_sha256",
+      "backup_kind",
+      "backup_verified_at_utc",
+      "backup_recoverable_through_utc",
+      "backup_evidence_reference",
+      "backup_evidence_sha256",
+      "backup_evidence_origin",
+      "backup_evidence_path",
+      "activation_backup_override_applied",
+      "activation_backup_override_path",
+      "activation_backup_override_sha256",
+      "activation_backup_override_sealed_path",
+      "restore_path_reviewed",
+    ]) {
+      assert.ok(
+        stopBlock.includes(field),
+        `Recovery STOP ${index + 1} does not preserve ${field}.`,
+      );
+    }
+  }
   assert.match(
     recoveryBody,
     /if\s*\([^)]*DiagnosticState\s*-ceq\s*'before'[^)]*\)\s*{[\s\S]*?status\s*=\s*'stop'[\s\S]*?STOP-recovery\.json/i,

@@ -76,6 +76,44 @@ function Get-BinderActivationSha256V1 {
   ).Hash.ToLowerInvariant()
 }
 
+function Read-BinderActivationJsonV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path,
+
+    [string[]]$ExactStringProperties = @()
+  )
+
+  $fullPath = [IO.Path]::GetFullPath($Path)
+  Assert-BinderActivationConditionV1 (
+    Test-Path -LiteralPath $fullPath -PathType Leaf
+  ) "Binder activation JSON file is missing: $fullPath"
+  $item = Get-Item -LiteralPath $fullPath -Force
+  Assert-BinderActivationConditionV1 (
+    -not $item.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint)
+  ) "Binder activation JSON file must not be a reparse point: $fullPath"
+
+  $json = Get-Content -LiteralPath $fullPath -Raw
+  $value = $json | ConvertFrom-Json -AsHashtable
+  if (@($ExactStringProperties).Count -eq 0) {
+    return $value
+  }
+
+  $document = [Text.Json.JsonDocument]::Parse($json)
+  try {
+    foreach ($propertyName in $ExactStringProperties) {
+      $property = $document.RootElement.GetProperty($propertyName)
+      Assert-BinderActivationConditionV1 (
+        $property.ValueKind -eq [Text.Json.JsonValueKind]::String
+      ) "Binder activation JSON property $propertyName must be a string."
+      $value[$propertyName] = $property.GetString()
+    }
+  } finally {
+    $document.Dispose()
+  }
+  return $value
+}
+
 function ConvertTo-BinderActivationUtcV1 {
   param(
     [Parameter(Mandatory = $true)]
@@ -543,6 +581,119 @@ function Test-BinderInstallationPreflightEvidenceV1 {
       $resolvedPreflightRoot
     ) 'backup-evidence.digest.json'
     FileCount = $actual.Count
+  }
+}
+
+function Test-BinderActivationBackupOverrideV1 {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Path,
+
+    [Parameter(Mandatory = $true)]
+    [int]$PhaseSequence,
+
+    [Parameter(Mandatory = $true)]
+    [string]$RepoRoot,
+
+    [datetimeoffset]$NowUtc = [datetimeoffset]::UtcNow
+  )
+
+  Assert-BinderActivationConditionV1 (
+    $PhaseSequence -eq 1
+  ) 'Activation backup override is permitted only for phase one.'
+  Assert-BinderActivationConditionV1 (
+    -not [string]::IsNullOrWhiteSpace($Path)
+  ) 'Phase one requires the exact activation backup override path.'
+
+  $policy = Get-BinderActivationPolicyV1 -RepoRoot $RepoRoot
+  $identity = $policy.Manifest.phase_one_backup_override
+  $fullPath = [IO.Path]::GetFullPath($Path)
+  $repoPath = [IO.Path]::GetFullPath($RepoRoot).TrimEnd('\', '/')
+  Assert-BinderActivationConditionV1 (
+    -not $fullPath.StartsWith(
+      "$repoPath\",
+      [StringComparison]::OrdinalIgnoreCase
+    )
+  ) 'Activation backup override must be outside the repository.'
+  Assert-BinderActivationConditionV1 (
+    Test-Path -LiteralPath $fullPath -PathType Leaf
+  ) 'Activation backup override file does not exist.'
+  $file = Get-Item -LiteralPath $fullPath -Force
+  Assert-BinderActivationConditionV1 (
+    -not $file.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint)
+  ) 'Activation backup override must not be a reparse point.'
+
+  $actualSha256 = Get-BinderActivationSha256V1 -Path $fullPath
+  Assert-BinderActivationConditionV1 (
+    $actualSha256 -ceq [string]$identity.sha256
+  ) 'Activation backup override hash does not match the sealed identity.'
+  $evidence = Read-BinderActivationJsonV1 `
+    -Path $fullPath `
+    -ExactStringProperties @(
+      'verified_at_utc',
+      'recoverable_through_utc'
+    )
+  $expectedProperties = @(
+    'backup_kind',
+    'evidence_reference',
+    'is_physical_backup',
+    'operator',
+    'project_ref',
+    'recoverable_through_utc',
+    'restore_path_reviewed',
+    'schema_version',
+    'status',
+    'verified_at_utc'
+  ) | Sort-Object
+  $actualProperties = @($evidence.Keys | Sort-Object)
+  Assert-BinderActivationConditionV1 (
+    (@($actualProperties) -join "`n") -ceq
+      (@($expectedProperties) -join "`n")
+  ) 'Activation backup override fields are missing or unexpected.'
+  Assert-BinderActivationConditionV1 (
+    [int]$evidence.schema_version -eq [int]$identity.schema_version -and
+    [string]$evidence.project_ref -ceq [string]$identity.project_ref -and
+    [string]$evidence.backup_kind -ceq [string]$identity.backup_kind -and
+    [string]$evidence.status -ceq [string]$identity.status -and
+    $evidence.is_physical_backup -eq
+      [bool]$identity.is_physical_backup -and
+    [string]$evidence.verified_at_utc -ceq
+      [string]$identity.verified_at_utc -and
+    [string]$evidence.recoverable_through_utc -ceq
+      [string]$identity.recoverable_through_utc -and
+    [string]$evidence.evidence_reference -ceq
+      [string]$identity.evidence_reference -and
+    $evidence.restore_path_reviewed -eq
+      [bool]$identity.restore_path_reviewed -and
+    [string]$evidence.operator -ceq [string]$identity.operator
+  ) 'Activation backup override does not match the sealed identity.'
+
+  $verifiedAt = ConvertTo-BinderActivationUtcV1 `
+    -Value ([string]$evidence.verified_at_utc) `
+    -Label 'Activation backup override verification time'
+  $recoverableThrough = ConvertTo-BinderActivationUtcV1 `
+    -Value ([string]$evidence.recoverable_through_utc) `
+    -Label 'Activation backup override recovery horizon'
+  Assert-BinderActivationConditionV1 (
+    $verifiedAt -le $NowUtc.AddMinutes(5) -and
+    $verifiedAt -ge $NowUtc.AddHours(-24) -and
+    $recoverableThrough -le $verifiedAt -and
+    $recoverableThrough -le $NowUtc -and
+    $recoverableThrough -ge $NowUtc.AddMinutes(
+      -[int]$policy.Manifest.backup_max_activation_recovery_lag_minutes
+    )
+  ) 'Activation backup override is outside its recovery window.'
+
+  return [pscustomobject][ordered]@{
+    Path = $fullPath
+    Sha256 = $actualSha256
+    Kind = [string]$identity.backup_kind
+    VerifiedAtUtc = [string]$identity.verified_at_utc
+    RecoverableThroughUtc =
+      [string]$identity.recoverable_through_utc
+    EvidenceReference = [string]$identity.evidence_reference
+    RestorePathReviewed = $true
+    Operator = [string]$identity.operator
   }
 }
 
@@ -1108,8 +1259,27 @@ function Get-BinderActivationPolicyV1 {
   Assert-BinderActivationConditionV1 (
     -not $manifestItem.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint)
   ) 'Binder activation manifest must not be a reparse point.'
-  $manifest = Get-Content -LiteralPath $manifestPath -Raw |
-    ConvertFrom-Json -AsHashtable
+  $manifestJson = Get-Content -LiteralPath $manifestPath -Raw
+  $manifest = $manifestJson | ConvertFrom-Json -AsHashtable
+  $manifestDocument = [Text.Json.JsonDocument]::Parse($manifestJson)
+  try {
+    $backupOverrideElement = $manifestDocument.RootElement.GetProperty(
+      'phase_one_backup_override'
+    )
+    foreach ($propertyName in @(
+      'verified_at_utc',
+      'recoverable_through_utc'
+    )) {
+      $property = $backupOverrideElement.GetProperty($propertyName)
+      Assert-BinderActivationConditionV1 (
+        $property.ValueKind -eq [Text.Json.JsonValueKind]::String
+      ) "Binder activation manifest $propertyName must be a string."
+      $manifest.phase_one_backup_override[$propertyName] =
+        $property.GetString()
+    }
+  } finally {
+    $manifestDocument.Dispose()
+  }
   Assert-BinderActivationConditionV1 (
     $manifest.schema_version -eq 1
   ) 'Binder activation manifest schema is invalid.'
@@ -1179,12 +1349,38 @@ function Get-BinderActivationPolicyV1 {
     'BINDERS_SET_TARGET_V1',
     'BINDERS_CUSTOM_TARGET_V1'
   )
+  $backupOverride = $manifest.phase_one_backup_override
   Assert-BinderActivationConditionV1 (
     [string]$manifest.rollout_model -ceq
       'clients_dark_empty_domain' -and
     [int]$manifest.clients_dark_through_phase_sequence -eq 8 -and
     $manifest.binder_domain_must_remain_empty -eq $true -and
     $manifest.backup_chain_required -eq $true -and
+    $backupOverride.required -eq $true -and
+    [int]$backupOverride.phase_sequence -eq 1 -and
+    [int]$backupOverride.schema_version -eq 1 -and
+    [string]$backupOverride.project_ref -ceq
+      'ycdxbpibncqcchqiihfz' -and
+    [string]$backupOverride.backup_kind -ceq
+      'supabase_platform_backup' -and
+    [string]$backupOverride.status -ceq 'COMPLETED' -and
+    $backupOverride.is_physical_backup -eq $true -and
+    [string]$backupOverride.verified_at_utc -ceq
+      '2026-07-27T16:50:32.000Z' -and
+    [string]$backupOverride.recoverable_through_utc -ceq
+      '2026-07-27T10:32:57.612Z' -and
+    [string]$backupOverride.evidence_reference -ceq
+      (
+        'supabase-backups-list:physical:' +
+        '2026-07-27T10:32:57.612Z:COMPLETED'
+      ) -and
+    $backupOverride.restore_path_reviewed -eq $true -and
+    [string]$backupOverride.operator -ceq
+      'codex-read-only-backup-verification' -and
+    [string]$backupOverride.sha256 -ceq
+      'fd1f9cc1682792ba57cea97f1d5d5e9d270381a3a6796fca09267ee9ac6afae6' -and
+    [string]$backupOverride.sealed_apply_file -ceq
+      'activation-backup-override.json' -and
     [int]$manifest.installation_evidence_ttl_hours -eq 24 -and
     [int]$manifest.prior_evidence_ttl_hours -eq 2 -and
     [int]$manifest.backup_max_activation_recovery_lag_minutes -eq 1440 -and
@@ -1440,6 +1636,8 @@ function Assert-BinderActivationRepositoryV1 {
     '67a33dbe0b69e930d064094ece9c8cf167fe6536'
   $reviewedSafeMainHeadSha =
     'd01a2d818513175061db8b6e9280c9850319b5ab'
+  $currentRepositoryGuardBaseSha =
+    '72bb84807a614d0e2f2d76c18c8aa64a6d1aa578'
   $allowedInstallationTransitionPaths = @(
     'scripts/ops/CollaborativeBindersActivationV1.psm1',
     'scripts/ops/collaborative_binders_activation_apply_v1.ps1',
@@ -1491,6 +1689,8 @@ function Assert-BinderActivationRepositoryV1 {
       $sealedActivationHeadSha -and
     [string]$manifest.reviewed_safe_main_head_sha -ceq
       $reviewedSafeMainHeadSha -and
+    [string]$manifest.current_repository_guard_base_sha -ceq
+      $currentRepositoryGuardBaseSha -and
     (@($manifest.installation_to_sealed_transition_paths) -join "`n") -ceq
       (@($allowedInstallationTransitionPaths) -join "`n") -and
     (@($manifest.safe_main_to_current_transition_paths) -join "`n") -ceq
@@ -1566,6 +1766,7 @@ function Assert-BinderActivationRepositoryV1 {
       $TargetRepoRoot,
       $SealedActivationHead,
       $ReviewedSafeMainHead,
+      $CurrentRepositoryGuardBase,
       $CurrentHead,
       $ProtectedPaths
     )
@@ -1580,17 +1781,28 @@ function Assert-BinderActivationRepositoryV1 {
     Assert-BinderCommandSucceededV1 `
       -Result $sealedToReviewedAncestor `
       -Label 'Binder sealed-to-reviewed-main ancestor check'
-    $reviewedToCurrentAncestor = Invoke-BinderGitV1 `
+    $reviewedToGuardBaseAncestor = Invoke-BinderGitV1 `
       -Arguments @(
         'merge-base',
         '--is-ancestor',
         $ReviewedSafeMainHead,
+        $CurrentRepositoryGuardBase
+      ) `
+      -RepoRoot $TargetRepoRoot
+    Assert-BinderCommandSucceededV1 `
+      -Result $reviewedToGuardBaseAncestor `
+      -Label 'Binder reviewed-main-to-current-guard-base ancestor check'
+    $guardBaseToCurrentAncestor = Invoke-BinderGitV1 `
+      -Arguments @(
+        'merge-base',
+        '--is-ancestor',
+        $CurrentRepositoryGuardBase,
         $CurrentHead
       ) `
       -RepoRoot $TargetRepoRoot
     Assert-BinderCommandSucceededV1 `
-      -Result $reviewedToCurrentAncestor `
-      -Label 'Binder reviewed-main-to-current ancestor check'
+      -Result $guardBaseToCurrentAncestor `
+      -Label 'Binder current-guard-base-to-current ancestor check'
 
     $protectedObjects = @(
       foreach ($path in @($ProtectedPaths)) {
@@ -1632,12 +1844,12 @@ function Assert-BinderActivationRepositoryV1 {
         'diff',
         '--name-only',
         '--diff-filter=ACDMRTUXB',
-        "$ReviewedSafeMainHead..$CurrentHead"
+        "$CurrentRepositoryGuardBase..$CurrentHead"
       ) `
       -RepoRoot $TargetRepoRoot
     Assert-BinderCommandSucceededV1 `
       -Result $diff `
-      -Label 'Binder reviewed-main-to-current guard path check'
+      -Label 'Binder current-guard-base-to-current path check'
     $transitionPaths = @(
       $diff.StdOut -split '\r?\n' |
         Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
@@ -1650,12 +1862,13 @@ function Assert-BinderActivationRepositoryV1 {
     $RepoRoot `
     $sealedActivationHeadSha `
     $reviewedSafeMainHeadSha `
+    $currentRepositoryGuardBaseSha `
     $currentRepositoryHeadSha `
     $protectedTreePaths
   Assert-BinderActivationConditionV1 (
     (@($repositoryContinuity.TransitionPaths | Sort-Object) -join "`n") -ceq
       (@($allowedCurrentGuardTransitionPaths | Sort-Object) -join "`n")
-  ) 'Binder reviewed-main-to-current transition changed outside the exact guard allowlist.'
+  ) 'Binder current-guard-base-to-current transition changed outside the exact guard allowlist.'
 
   return [pscustomobject][ordered]@{
     HeadSha = $ExpectedHeadSha
@@ -1668,6 +1881,7 @@ function Assert-BinderActivationRepositoryV1 {
     InstallationHeadIsAncestor = $true
     SealedActivationHeadSha = $sealedActivationHeadSha
     ReviewedSafeMainHeadSha = $reviewedSafeMainHeadSha
+    CurrentRepositoryGuardBaseSha = $currentRepositoryGuardBaseSha
     ProtectedTreePaths = @($protectedTreePaths)
     ProtectedObjects = @($repositoryContinuity.ProtectedObjects)
     InstallationTransitionPaths = @($installationTransition)
@@ -1741,6 +1955,7 @@ function Invoke-BinderActivationReadbackV1 {
     [string]$RepoRoot,
 
     [Parameter(Mandatory = $true)]
+    [AllowEmptyCollection()]
     [string[]]$ExpectedEnabledFlags,
 
     [string[]]$AlternateEnabledFlags,
@@ -1963,6 +2178,10 @@ function Test-BinderActivationPriorEvidenceV1 {
     [Parameter(Mandatory = $true)]
     [string]$Path,
 
+    [AllowNull()]
+    [AllowEmptyString()]
+    [string]$ActivationBackupEvidencePath,
+
     [Parameter(Mandatory = $true)]
     [object]$Phase,
 
@@ -2013,7 +2232,16 @@ function Test-BinderActivationPriorEvidenceV1 {
   Assert-BinderActivationConditionV1 (
     Test-Path -LiteralPath $readbackPath -PathType Leaf
   ) 'Prior evidence readback is missing.'
-  $result = Get-Content -LiteralPath $resultPath -Raw | ConvertFrom-Json
+  $result = if ([int]$Phase.sequence -eq 1) {
+    Get-Content -LiteralPath $resultPath -Raw | ConvertFrom-Json
+  } else {
+    Read-BinderActivationJsonV1 `
+      -Path $resultPath `
+      -ExactStringProperties @(
+        'backup_verified_at_utc',
+        'backup_recoverable_through_utc'
+      )
+  }
   $readback = Get-Content -LiteralPath $readbackPath -Raw | ConvertFrom-Json
   $completed = ConvertTo-BinderActivationUtcV1 `
     -Value $result.completed_at_utc `
@@ -2024,6 +2252,9 @@ function Test-BinderActivationPriorEvidenceV1 {
     -Manifest $policy.Manifest `
     -NowUtc $NowUtc)
   $backup = $null
+  $installationBackup = $null
+  $installationBackupEvidenceSha256 = $null
+  $installationPreflightChecksumSha256 = $null
   $priorClientsDark = $null
   $installationEvidenceHeadSha = $null
 
@@ -2073,7 +2304,7 @@ function Test-BinderActivationPriorEvidenceV1 {
       (Get-BinderActivationSha256V1 -Path ([string]$digest.Path)) -ceq
         [string]$digest.Sha256
     ) 'Installation backup evidence hash no longer matches its preflight.'
-    $backup = [pscustomobject][ordered]@{
+    $installationBackup = [pscustomobject][ordered]@{
       backup_kind = [string]$digest.Kind
       backup_verified_at_utc = [string]$digest.VerifiedAtUtc
       backup_recoverable_through_utc =
@@ -2082,9 +2313,42 @@ function Test-BinderActivationPriorEvidenceV1 {
       backup_evidence_sha256 = [string]$digest.Sha256
       restore_path_reviewed = [bool]$digest.RestorePathReviewed
     }
+    $installationBackupVerified = ConvertTo-BinderActivationUtcV1 `
+      -Value $installationBackup.backup_verified_at_utc `
+      -Label 'Installation backup verification time'
+    $installationBackupRecoverable = ConvertTo-BinderActivationUtcV1 `
+      -Value $installationBackup.backup_recoverable_through_utc `
+      -Label 'Installation backup recoverable-through time'
+    Assert-BinderActivationConditionV1 (
+      $installationBackupVerified -le $completed -and
+      $installationBackupRecoverable -le $installationBackupVerified
+    ) 'Installation backup evidence is not historically consistent.'
+    $installationBackupEvidenceSha256 =
+      [string]$installationBackup.backup_evidence_sha256
+    $installationPreflightChecksumSha256 =
+      [string]$installationPreflight.ChecksumSha256
+    $override = Test-BinderActivationBackupOverrideV1 `
+      -Path $ActivationBackupEvidencePath `
+      -PhaseSequence ([int]$Phase.sequence) `
+      -RepoRoot $RepoRoot `
+      -NowUtc $NowUtc
+    $backup = [pscustomobject][ordered]@{
+      backup_kind = [string]$override.Kind
+      backup_verified_at_utc = [string]$override.VerifiedAtUtc
+      backup_recoverable_through_utc =
+        [string]$override.RecoverableThroughUtc
+      backup_evidence_reference = [string]$override.EvidenceReference
+      backup_evidence_sha256 = [string]$override.Sha256
+      restore_path_reviewed = [bool]$override.RestorePathReviewed
+      backup_evidence_path = [string]$override.Path
+      backup_evidence_origin = 'phase_one_activation_override'
+    }
     $installationEvidenceHeadSha =
       [string]$policy.Manifest.required_installation_head_sha
   } else {
+    Assert-BinderActivationConditionV1 (
+      [string]::IsNullOrWhiteSpace($ActivationBackupEvidencePath)
+    ) 'Activation backup override path is permitted only for phase one.'
     $expectedPreviousSequence = [int]$Phase.sequence - 1
     $normalApply = (
       $result.status -ceq 'pass' -and
@@ -2110,6 +2374,10 @@ function Test-BinderActivationPriorEvidenceV1 {
       [string]$result.activation_head_sha -ceq $ExpectedHeadSha -and
       [string]$result.installation_evidence_head_sha -ceq
         [string]$policy.Manifest.required_installation_head_sha -and
+      [string]$result.installation_backup_evidence_sha256 -cmatch
+        '^[0-9a-f]{64}$' -and
+      [string]$result.installation_preflight_checksum_sha256 -cmatch
+        '^[0-9a-f]{64}$' -and
       [int]$result.phase_sequence -eq $expectedPreviousSequence
     ) 'Prior activation evidence is invalid.'
     Assert-BinderActivationConditionV1 (
@@ -2133,7 +2401,13 @@ function Test-BinderActivationPriorEvidenceV1 {
         [string]$result.backup_evidence_reference
       backup_evidence_sha256 = [string]$result.backup_evidence_sha256
       restore_path_reviewed = [bool]$result.restore_path_reviewed
+      backup_evidence_path = [string]$result.backup_evidence_path
+      backup_evidence_origin = [string]$result.backup_evidence_origin
     }
+    $installationBackupEvidenceSha256 =
+      [string]$result.installation_backup_evidence_sha256
+    $installationPreflightChecksumSha256 =
+      [string]$result.installation_preflight_checksum_sha256
     $priorClientsDark = [pscustomobject][ordered]@{
       root = [string]$result.clients_dark_evidence_root
       checksum_sha256 =
@@ -2175,6 +2449,10 @@ function Test-BinderActivationPriorEvidenceV1 {
     ) -and
     $backup.restore_path_reviewed -eq $true
   ) 'Prior evidence does not preserve valid reviewed backup recovery data.'
+  Assert-BinderActivationConditionV1 (
+    [string]$backup.backup_evidence_origin -ceq
+      'phase_one_activation_override'
+  ) 'Prior evidence lost the phase-one activation backup origin.'
   $backupVerified = ConvertTo-BinderActivationUtcV1 `
     -Value $backup.backup_verified_at_utc `
     -Label 'Prior backup verification time'
@@ -2182,7 +2460,10 @@ function Test-BinderActivationPriorEvidenceV1 {
     -Value $backup.backup_recoverable_through_utc `
     -Label 'Prior backup recoverable-through time'
   Assert-BinderActivationConditionV1 (
-    $backupVerified -le $completed -and
+    (
+      [int]$Phase.sequence -eq 1 -or
+      $backupVerified -le $completed
+    ) -and
     $backupRecoverable -le $backupVerified -and
     $backupVerified -le $NowUtc -and
     $backupRecoverable -le $NowUtc -and
@@ -2243,10 +2524,17 @@ function Test-BinderActivationPriorEvidenceV1 {
     StableCatalogFingerprintSha256 =
       [string]$readback.checks.stable_catalog_fingerprint_sha256
     BackupKind = $backup.backup_kind
-    BackupVerifiedAtUtc = $backupVerified.ToString('o')
-    BackupRecoverableThroughUtc = $backupRecoverable.ToString('o')
+    BackupVerifiedAtUtc = [string]$backup.backup_verified_at_utc
+    BackupRecoverableThroughUtc =
+      [string]$backup.backup_recoverable_through_utc
     BackupEvidenceReference = $backup.backup_evidence_reference
     BackupEvidenceSha256 = $backup.backup_evidence_sha256
+    BackupEvidencePath = $backup.backup_evidence_path
+    BackupEvidenceOrigin = $backup.backup_evidence_origin
+    InstallationBackupEvidenceSha256 =
+      $installationBackupEvidenceSha256
+    InstallationPreflightChecksumSha256 =
+      $installationPreflightChecksumSha256
     RestorePathReviewed = $backup.restore_path_reviewed
     ClientsDarkEvidenceRoot = if ($null -ne $priorClientsDark) {
       $priorClientsDark.root
@@ -2350,6 +2638,10 @@ function New-BinderActivationManifestV1 {
     activation_head_sha = $ExpectedHeadSha
     installation_evidence_head_sha =
       [string]$PriorEvidence.InstallationEvidenceHeadSha
+    installation_backup_evidence_sha256 =
+      [string]$PriorEvidence.InstallationBackupEvidenceSha256
+    installation_preflight_checksum_sha256 =
+      [string]$PriorEvidence.InstallationPreflightChecksumSha256
     phase_sequence = [int]$Phase.sequence
     target_flag = [string]$Phase.flag_key
     rollout_model = [string]$Policy.Manifest.rollout_model
@@ -2401,6 +2693,21 @@ function New-BinderActivationManifestV1 {
       [string]$PriorEvidence.BackupEvidenceReference
     backup_evidence_sha256 =
       [string]$PriorEvidence.BackupEvidenceSha256
+    backup_evidence_origin =
+      [string]$PriorEvidence.BackupEvidenceOrigin
+    backup_evidence_path =
+      [string]$PriorEvidence.BackupEvidencePath
+    activation_backup_override_applied =
+      ([int]$Phase.sequence -eq 1)
+    activation_backup_override_path = if ([int]$Phase.sequence -eq 1) {
+      [string]$PriorEvidence.BackupEvidencePath
+    } else {
+      $null
+    }
+    activation_backup_override_sha256 =
+      [string]$Policy.Manifest.phase_one_backup_override.sha256
+    activation_backup_override_sealed_apply_file =
+      [string]$Policy.Manifest.phase_one_backup_override.sealed_apply_file
     restore_path_reviewed =
       [bool]$PriorEvidence.RestorePathReviewed
     readback_before_sha256 = [string]$Readback.ReportSha256
@@ -2449,6 +2756,10 @@ function Invoke-BinderActivationPreflightV1 {
     [Parameter(Mandatory = $true)]
     [string]$PriorEvidenceRoot,
 
+    [AllowNull()]
+    [AllowEmptyString()]
+    [string]$ActivationBackupEvidencePath,
+
     [Parameter(Mandatory = $true)]
     [string]$ClientsDarkEvidenceRoot,
 
@@ -2482,6 +2793,7 @@ function Invoke-BinderActivationPreflightV1 {
   $phaseDefinition = $phaseEnvelope.Phase
   $prior = Test-BinderActivationPriorEvidenceV1 `
     -Path $PriorEvidenceRoot `
+    -ActivationBackupEvidencePath $ActivationBackupEvidencePath `
     -Phase $phaseDefinition `
     -ExpectedHeadSha $ExpectedHeadSha `
     -ExpectedWebDeploymentId $ExpectedWebDeploymentId `
@@ -2588,8 +2900,14 @@ function Read-BinderActivationPreflightManifestV1 {
     (Get-BinderActivationSha256V1 -Path $fullPath) -ceq
       $expectedFileHash
   ) 'Activation preflight manifest file hash mismatch.'
-  $manifest = Get-Content -LiteralPath $fullPath -Raw |
-    ConvertFrom-Json -AsHashtable
+  $manifest = Read-BinderActivationJsonV1 `
+    -Path $fullPath `
+    -ExactStringProperties @(
+      'backup_verified_at_utc',
+      'backup_recoverable_through_utc'
+    )
+  $policy = Get-BinderActivationPolicyV1
+  $backupOverride = $policy.Manifest.phase_one_backup_override
   $core = [ordered]@{}
   foreach ($entry in $manifest.GetEnumerator()) {
     if ($entry.Key -cne 'manifest_fingerprint_sha256') {
@@ -2611,6 +2929,46 @@ function Read-BinderActivationPreflightManifestV1 {
       [string]$manifest.head_sha -and
     [string]$manifest.installation_evidence_head_sha -ceq
       'a29680bdf79409823eedab8a62f0bd5cc89d675c' -and
+    [string]$manifest.installation_backup_evidence_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
+    [string]$manifest.installation_preflight_checksum_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
+    [int]$manifest.phase_sequence -ge 1 -and
+    [int]$manifest.phase_sequence -le 8 -and
+    [string]$manifest.backup_evidence_origin -ceq
+      'phase_one_activation_override' -and
+    -not [string]::IsNullOrWhiteSpace(
+      [string]$manifest.backup_evidence_path
+    ) -and
+    [string]$manifest.backup_kind -ceq
+      [string]$backupOverride.backup_kind -and
+    [string]$manifest.backup_verified_at_utc -ceq
+      [string]$backupOverride.verified_at_utc -and
+    [string]$manifest.backup_recoverable_through_utc -ceq
+      [string]$backupOverride.recoverable_through_utc -and
+    [string]$manifest.backup_evidence_reference -ceq
+      [string]$backupOverride.evidence_reference -and
+    [string]$manifest.backup_evidence_sha256 -ceq
+      [string]$backupOverride.sha256 -and
+    [string]$manifest.activation_backup_override_sha256 -ceq
+      [string]$backupOverride.sha256 -and
+    [string]$manifest.activation_backup_override_sealed_apply_file -ceq
+      [string]$backupOverride.sealed_apply_file -and
+    (
+      (
+        [int]$manifest.phase_sequence -eq 1 -and
+        $manifest.activation_backup_override_applied -eq $true -and
+        [string]$manifest.activation_backup_override_path -ceq
+          [string]$manifest.backup_evidence_path
+      ) -or
+      (
+        [int]$manifest.phase_sequence -gt 1 -and
+        $manifest.activation_backup_override_applied -eq $false -and
+        [string]::IsNullOrWhiteSpace(
+          [string]$manifest.activation_backup_override_path
+        )
+      )
+    ) -and
     [string]$manifest.rollout_model -ceq
       'clients_dark_empty_domain' -and
     [int]$manifest.clients_dark_through_phase_sequence -eq 8 -and
@@ -2770,14 +3128,23 @@ function Invoke-BinderActivationRecoveryV1 {
   Assert-BinderActivationConditionV1 (
     $incidentExists -xor $applyResultExists
   ) 'Recovery evidence must contain exactly one pass or STOP result.'
-  $intent = Get-Content -LiteralPath $intentPath -Raw | ConvertFrom-Json
+  $intent = Read-BinderActivationJsonV1 `
+    -Path $intentPath `
+    -ExactStringProperties @(
+      'backup_verified_at_utc',
+      'backup_recoverable_through_utc'
+    )
   $evidenceRecordPath = if ($incidentExists) {
     $incidentPath
   } else {
     $applyResultPath
   }
-  $evidenceRecord = Get-Content -LiteralPath $evidenceRecordPath -Raw |
-    ConvertFrom-Json
+  $evidenceRecord = Read-BinderActivationJsonV1 `
+    -Path $evidenceRecordPath `
+    -ExactStringProperties @(
+      'backup_verified_at_utc',
+      'backup_recoverable_through_utc'
+    )
   $evidenceStatus = if ($incidentExists) { 'stop' } else { 'pass' }
   $phaseEnvelope = Get-BinderActivationPhaseV1 `
     -Phase ([string]$intent.target_flag) `
@@ -2785,6 +3152,9 @@ function Invoke-BinderActivationRecoveryV1 {
   $phase = $phaseEnvelope.Phase
   $policy = $phaseEnvelope.Policy
   $activationManifestPath = $policy.ManifestPath
+  $expectedSealedBackupOverridePath = Join-Path (
+    $interruptedRoot
+  ) ([string]$policy.Manifest.phase_one_backup_override.sealed_apply_file)
   Assert-BinderActivationConditionV1 (
     [string]$evidenceRecord.status -ceq $evidenceStatus -and
     [string]$evidenceRecord.package_id -ceq
@@ -2798,6 +3168,10 @@ function Invoke-BinderActivationRecoveryV1 {
       $ExpectedHeadSha -and
     [string]$evidenceRecord.installation_evidence_head_sha -ceq
       [string]$policy.Manifest.required_installation_head_sha -and
+    [string]$evidenceRecord.installation_backup_evidence_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
+    [string]$evidenceRecord.installation_preflight_checksum_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
     [int]$evidenceRecord.phase_sequence -eq [int]$phase.sequence -and
     [string]$evidenceRecord.target_flag -ceq
       [string]$phase.flag_key -and
@@ -2829,8 +3203,43 @@ function Invoke-BinderActivationRecoveryV1 {
     [int]$evidenceRecord.mobile_version_code -gt 0 -and
     [string]$evidenceRecord.mobile_apk_sha256 -cmatch
       '^[0-9a-f]{64}$' -and
-    [string]$evidenceRecord.backup_evidence_sha256 -cmatch
-      '^[0-9a-f]{64}$' -and
+    [string]$evidenceRecord.backup_kind -ceq
+      [string]$policy.Manifest.phase_one_backup_override.backup_kind -and
+    [string]$evidenceRecord.backup_verified_at_utc -ceq
+      [string]$policy.Manifest.phase_one_backup_override.verified_at_utc -and
+    [string]$evidenceRecord.backup_recoverable_through_utc -ceq
+      [string]$policy.Manifest.phase_one_backup_override.recoverable_through_utc -and
+    [string]$evidenceRecord.backup_evidence_reference -ceq
+      [string]$policy.Manifest.phase_one_backup_override.evidence_reference -and
+    [string]$evidenceRecord.backup_evidence_sha256 -ceq
+      [string]$policy.Manifest.phase_one_backup_override.sha256 -and
+    [string]$evidenceRecord.backup_evidence_origin -ceq
+      'phase_one_activation_override' -and
+    -not [string]::IsNullOrWhiteSpace(
+      [string]$evidenceRecord.backup_evidence_path
+    ) -and
+    [string]$evidenceRecord.activation_backup_override_sha256 -ceq
+      [string]$policy.Manifest.phase_one_backup_override.sha256 -and
+    (
+      (
+        [int]$phase.sequence -eq 1 -and
+        $evidenceRecord.activation_backup_override_applied -eq $true -and
+        [string]$evidenceRecord.activation_backup_override_path -ceq
+          [string]$evidenceRecord.backup_evidence_path -and
+        [string]$evidenceRecord.activation_backup_override_sealed_path -ceq
+          $expectedSealedBackupOverridePath
+      ) -or
+      (
+        [int]$phase.sequence -gt 1 -and
+        $evidenceRecord.activation_backup_override_applied -eq $false -and
+        [string]::IsNullOrWhiteSpace(
+          [string]$evidenceRecord.activation_backup_override_path
+        ) -and
+        [string]::IsNullOrWhiteSpace(
+          [string]$evidenceRecord.activation_backup_override_sealed_path
+        )
+      )
+    ) -and
     $evidenceRecord.restore_path_reviewed -eq $true -and
     (@($evidenceRecord.excluded_flags) -join "`n") -ceq
       (@($policy.Manifest.excluded_flags) -join "`n") -and
@@ -2861,6 +3270,10 @@ function Invoke-BinderActivationRecoveryV1 {
     [string]$intent.activation_head_sha -ceq $ExpectedHeadSha -and
     [string]$intent.installation_evidence_head_sha -ceq
       [string]$policy.Manifest.required_installation_head_sha -and
+    [string]$intent.installation_backup_evidence_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
+    [string]$intent.installation_preflight_checksum_sha256 -cmatch
+      '^[0-9a-f]{64}$' -and
     [int]$intent.phase_sequence -eq [int]$phase.sequence -and
     [string]$intent.target_flag -ceq [string]$phase.flag_key -and
     [string]$intent.rollout_model -ceq
@@ -2878,6 +3291,44 @@ function Invoke-BinderActivationRecoveryV1 {
       'com.grookai.vault' -and
     [int]$intent.mobile_version_code -gt 0 -and
     [string]$intent.mobile_apk_sha256 -cmatch '^[0-9a-f]{64}$' -and
+    [string]$intent.backup_kind -ceq
+      [string]$policy.Manifest.phase_one_backup_override.backup_kind -and
+    [string]$intent.backup_verified_at_utc -ceq
+      [string]$policy.Manifest.phase_one_backup_override.verified_at_utc -and
+    [string]$intent.backup_recoverable_through_utc -ceq
+      [string]$policy.Manifest.phase_one_backup_override.recoverable_through_utc -and
+    [string]$intent.backup_evidence_reference -ceq
+      [string]$policy.Manifest.phase_one_backup_override.evidence_reference -and
+    [string]$intent.backup_evidence_sha256 -ceq
+      [string]$policy.Manifest.phase_one_backup_override.sha256 -and
+    [string]$intent.backup_evidence_origin -ceq
+      'phase_one_activation_override' -and
+    -not [string]::IsNullOrWhiteSpace(
+      [string]$intent.backup_evidence_path
+    ) -and
+    [string]$intent.activation_backup_override_sha256 -ceq
+      [string]$policy.Manifest.phase_one_backup_override.sha256 -and
+    (
+      (
+        [int]$phase.sequence -eq 1 -and
+        $intent.activation_backup_override_applied -eq $true -and
+        [string]$intent.activation_backup_override_path -ceq
+          [string]$intent.backup_evidence_path -and
+        [string]$intent.activation_backup_override_sealed_path -ceq
+          $expectedSealedBackupOverridePath
+      ) -or
+      (
+        [int]$phase.sequence -gt 1 -and
+        $intent.activation_backup_override_applied -eq $false -and
+        [string]::IsNullOrWhiteSpace(
+          [string]$intent.activation_backup_override_path
+        ) -and
+        [string]::IsNullOrWhiteSpace(
+          [string]$intent.activation_backup_override_sealed_path
+        )
+      )
+    ) -and
+    $intent.restore_path_reviewed -eq $true -and
     $intent.automatic_retry_permitted -eq $false -and
     (@($intent.enabled_flags_before) -join "`n") -ceq
       (@($phase.enabled_before) -join "`n") -and
@@ -2889,6 +3340,10 @@ function Invoke-BinderActivationRecoveryV1 {
       [string]$evidenceRecord.activation_head_sha -and
     [string]$intent.installation_evidence_head_sha -ceq
       [string]$evidenceRecord.installation_evidence_head_sha -and
+    [string]$intent.installation_backup_evidence_sha256 -ceq
+      [string]$evidenceRecord.installation_backup_evidence_sha256 -and
+    [string]$intent.installation_preflight_checksum_sha256 -ceq
+      [string]$evidenceRecord.installation_preflight_checksum_sha256 -and
     [string]$intent.clients_dark_evidence_root -ceq
       [string]$evidenceRecord.clients_dark_evidence_root -and
     [string]$intent.clients_dark_evidence_checksum_sha256 -ceq
@@ -2912,7 +3367,31 @@ function Invoke-BinderActivationRecoveryV1 {
     [int]$intent.mobile_version_code -eq
       [int]$evidenceRecord.mobile_version_code -and
     [string]$intent.mobile_apk_sha256 -ceq
-      [string]$evidenceRecord.mobile_apk_sha256
+      [string]$evidenceRecord.mobile_apk_sha256 -and
+    [string]$intent.backup_kind -ceq
+      [string]$evidenceRecord.backup_kind -and
+    [string]$intent.backup_verified_at_utc -ceq
+      [string]$evidenceRecord.backup_verified_at_utc -and
+    [string]$intent.backup_recoverable_through_utc -ceq
+      [string]$evidenceRecord.backup_recoverable_through_utc -and
+    [string]$intent.backup_evidence_reference -ceq
+      [string]$evidenceRecord.backup_evidence_reference -and
+    [string]$intent.backup_evidence_sha256 -ceq
+      [string]$evidenceRecord.backup_evidence_sha256 -and
+    [string]$intent.backup_evidence_origin -ceq
+      [string]$evidenceRecord.backup_evidence_origin -and
+    [string]$intent.backup_evidence_path -ceq
+      [string]$evidenceRecord.backup_evidence_path -and
+    $intent.activation_backup_override_applied -eq
+      $evidenceRecord.activation_backup_override_applied -and
+    [string]$intent.activation_backup_override_path -ceq
+      [string]$evidenceRecord.activation_backup_override_path -and
+    [string]$intent.activation_backup_override_sha256 -ceq
+      [string]$evidenceRecord.activation_backup_override_sha256 -and
+    [string]$intent.activation_backup_override_sealed_path -ceq
+      [string]$evidenceRecord.activation_backup_override_sealed_path -and
+    $intent.restore_path_reviewed -eq
+      $evidenceRecord.restore_path_reviewed
   ) 'Interrupted activation clients-dark identity chain changed.'
 
   $preflightPath = [IO.Path]::GetFullPath(
@@ -2947,6 +3426,10 @@ function Invoke-BinderActivationRecoveryV1 {
     [string]$manifest.activation_head_sha -ceq $ExpectedHeadSha -and
     [string]$manifest.installation_evidence_head_sha -ceq
       [string]$policy.Manifest.required_installation_head_sha -and
+    [string]$manifest.installation_backup_evidence_sha256 -ceq
+      [string]$intent.installation_backup_evidence_sha256 -and
+    [string]$manifest.installation_preflight_checksum_sha256 -ceq
+      [string]$intent.installation_preflight_checksum_sha256 -and
     [int]$manifest.phase_sequence -eq [int]$phase.sequence -and
     [string]$manifest.target_flag -ceq [string]$phase.flag_key -and
     [string]$manifest.package_fingerprint_sha256 -ceq
@@ -2975,13 +3458,38 @@ function Invoke-BinderActivationRecoveryV1 {
     [int]$manifest.mobile_version_code -eq
       [int]$intent.mobile_version_code -and
     [string]$manifest.mobile_apk_sha256 -ceq
-      [string]$intent.mobile_apk_sha256
+      [string]$intent.mobile_apk_sha256 -and
+    [string]$manifest.backup_kind -ceq
+      [string]$intent.backup_kind -and
+    [string]$manifest.backup_verified_at_utc -ceq
+      [string]$intent.backup_verified_at_utc -and
+    [string]$manifest.backup_recoverable_through_utc -ceq
+      [string]$intent.backup_recoverable_through_utc -and
+    [string]$manifest.backup_evidence_reference -ceq
+      [string]$intent.backup_evidence_reference -and
+    [string]$manifest.backup_evidence_sha256 -ceq
+      [string]$intent.backup_evidence_sha256 -and
+    [string]$manifest.backup_evidence_origin -ceq
+      [string]$intent.backup_evidence_origin -and
+    [string]$manifest.backup_evidence_path -ceq
+      [string]$intent.backup_evidence_path -and
+    $manifest.activation_backup_override_applied -eq
+      $intent.activation_backup_override_applied -and
+    [string]$manifest.activation_backup_override_path -ceq
+      [string]$intent.activation_backup_override_path -and
+    [string]$manifest.activation_backup_override_sha256 -ceq
+      [string]$intent.activation_backup_override_sha256 -and
+    $manifest.restore_path_reviewed -eq
+      $intent.restore_path_reviewed
   ) 'Interrupted activation preflight no longer matches its intent.'
   $preflightCreated = ConvertTo-BinderActivationUtcV1 `
     -Value $manifest.created_at_utc `
     -Label 'Interrupted activation preflight creation time'
   $prior = Test-BinderActivationPriorEvidenceV1 `
     -Path ([string]$manifest.prior_evidence_root) `
+    -ActivationBackupEvidencePath (
+      [string]$manifest.activation_backup_override_path
+    ) `
     -Phase $phase `
     -ExpectedHeadSha $ExpectedHeadSha `
     -ExpectedWebDeploymentId ([string]$manifest.web_deployment_id) `
@@ -3004,8 +3512,51 @@ function Invoke-BinderActivationRecoveryV1 {
       [string]$manifest.backup_evidence_reference -and
     $prior.BackupEvidenceSha256 -ceq
       [string]$manifest.backup_evidence_sha256 -and
+    $prior.BackupEvidenceOrigin -ceq
+      [string]$manifest.backup_evidence_origin -and
+    $prior.BackupEvidencePath -ceq
+      [string]$manifest.backup_evidence_path -and
+    $prior.InstallationBackupEvidenceSha256 -ceq
+      [string]$manifest.installation_backup_evidence_sha256 -and
+    $prior.InstallationPreflightChecksumSha256 -ceq
+      [string]$manifest.installation_preflight_checksum_sha256 -and
     $prior.RestorePathReviewed -eq $true
   ) 'Interrupted activation backup recovery chain changed.'
+  $activationBackupOverride = if ([int]$phase.sequence -eq 1) {
+    Test-BinderActivationBackupOverrideV1 `
+      -Path ([string]$manifest.activation_backup_override_path) `
+      -PhaseSequence ([int]$phase.sequence) `
+      -RepoRoot $RepoRoot `
+      -NowUtc $preflightCreated
+  } else {
+    Assert-BinderActivationConditionV1 (
+      [string]::IsNullOrWhiteSpace(
+        [string]$manifest.activation_backup_override_path
+      )
+    ) 'Activation backup override path is permitted only for phase one.'
+    $null
+  }
+  $sealedInterruptedBackupOverridePath = Join-Path (
+    $interruptedRoot
+  ) ([string]$policy.Manifest.phase_one_backup_override.sealed_apply_file)
+  if ($null -ne $activationBackupOverride) {
+    Assert-BinderActivationConditionV1 (
+      Test-Path `
+        -LiteralPath $sealedInterruptedBackupOverridePath `
+        -PathType Leaf
+    ) 'Interrupted phase-one evidence lost its sealed backup override.'
+    Assert-BinderActivationConditionV1 (
+      (Get-BinderActivationSha256V1 `
+        -Path $sealedInterruptedBackupOverridePath) -ceq
+        [string]$activationBackupOverride.Sha256
+    ) 'Interrupted phase-one backup override copy changed.'
+  } else {
+    Assert-BinderActivationConditionV1 (
+      -not (Test-Path `
+        -LiteralPath $sealedInterruptedBackupOverridePath `
+        -PathType Leaf)
+    ) 'A later activation phase contains a forbidden backup override copy.'
+  }
   $sealedClientsDark = Test-BinderActivationClientsDarkEvidenceV1 `
     -Path ([string]$manifest.clients_dark_evidence_root) `
     -ExpectedHeadSha $ExpectedHeadSha `
@@ -3127,11 +3678,34 @@ function Invoke-BinderActivationRecoveryV1 {
     Get-ChildItem -LiteralPath $clientsDark.Root -File -Recurse |
       Select-Object -ExpandProperty FullName
   )
+  if ($null -ne $activationBackupOverride) {
+    $sealPaths += @(
+      [string]$activationBackupOverride.Path,
+      $sealedInterruptedBackupOverridePath
+    )
+  }
   $sealStreams = @()
   $stopRecorded = $false
   $recoveryRoot = New-BinderActivationArtifactRootV1 `
     -Path $resolvedRecoveryCandidate `
     -RepoRoot $RepoRoot
+  $sealedRecoveryBackupOverridePath = $null
+  if ($null -ne $activationBackupOverride) {
+    $sealedRecoveryBackupOverridePath = Join-Path (
+      $recoveryRoot
+    ) ([string]$policy.Manifest.phase_one_backup_override.sealed_apply_file)
+    [IO.File]::Copy(
+      $sealedInterruptedBackupOverridePath,
+      $sealedRecoveryBackupOverridePath,
+      $false
+    )
+    Assert-BinderActivationConditionV1 (
+      (Get-BinderActivationSha256V1 `
+        -Path $sealedRecoveryBackupOverridePath) -ceq
+        [string]$activationBackupOverride.Sha256
+    ) 'Sealed recovery backup override copy hash is wrong.'
+    $sealPaths += $sealedRecoveryBackupOverridePath
+  }
 
   try {
     Write-BinderActivationJsonV1 `
@@ -3145,6 +3719,10 @@ function Invoke-BinderActivationRecoveryV1 {
         activation_head_sha = $ExpectedHeadSha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         enabled_flags_before = @($phase.enabled_before)
@@ -3183,6 +3761,29 @@ function Invoke-BinderActivationRecoveryV1 {
           $clientsDark.MobileVersionCode
         mobile_apk_sha256 =
           $clientsDark.MobileApkSha256
+        backup_kind = [string]$manifest.backup_kind
+        backup_verified_at_utc =
+          [string]$manifest.backup_verified_at_utc
+        backup_recoverable_through_utc =
+          [string]$manifest.backup_recoverable_through_utc
+        backup_evidence_reference =
+          [string]$manifest.backup_evidence_reference
+        backup_evidence_sha256 =
+          [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedRecoveryBackupOverridePath
+        restore_path_reviewed =
+          [bool]$manifest.restore_path_reviewed
         created_at_utc = [datetimeoffset]::UtcNow.ToString('o')
         state_neutral_readback_only = $true
         mutation_performed_by_recovery = $false
@@ -3190,6 +3791,23 @@ function Invoke-BinderActivationRecoveryV1 {
         automatic_rollback_permitted = $false
       })
     $sealStreams = Open-BinderActivationSealV1 -Paths $sealPaths
+    if ($null -ne $activationBackupOverride) {
+      $sealedOverrideAtRecovery = Test-BinderActivationBackupOverrideV1 `
+        -Path ([string]$activationBackupOverride.Path) `
+        -PhaseSequence ([int]$phase.sequence) `
+        -RepoRoot $RepoRoot `
+        -NowUtc $preflightCreated
+      Assert-BinderActivationConditionV1 (
+        [string]$sealedOverrideAtRecovery.Sha256 -ceq
+          [string]$manifest.activation_backup_override_sha256 -and
+        (Get-BinderActivationSha256V1 `
+          -Path $sealedInterruptedBackupOverridePath) -ceq
+          [string]$manifest.activation_backup_override_sha256 -and
+        (Get-BinderActivationSha256V1 `
+          -Path $sealedRecoveryBackupOverridePath) -ceq
+          [string]$manifest.activation_backup_override_sha256
+      ) 'Activation backup override changed at the recovery seal.'
+    }
     [void](Assert-BinderActivationSourceV1 -RepoRoot $RepoRoot)
     [void](Assert-BinderActivationRepositoryV1 `
       -RepoRoot $RepoRoot `
@@ -3237,6 +3855,10 @@ function Invoke-BinderActivationRecoveryV1 {
         activation_head_sha = $ExpectedHeadSha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         rollout_model = [string]$manifest.rollout_model
@@ -3276,6 +3898,18 @@ function Invoke-BinderActivationRecoveryV1 {
           [string]$manifest.backup_evidence_reference
         backup_evidence_sha256 =
           [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedRecoveryBackupOverridePath
         restore_path_reviewed =
           [bool]$manifest.restore_path_reviewed
         artifact_root = $recoveryRoot
@@ -3316,12 +3950,39 @@ function Invoke-BinderActivationRecoveryV1 {
         activation_head_sha = $ExpectedHeadSha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
         interrupted_evidence_root = $interruptedRoot
         interrupted_evidence_checksum_sha256 =
           $interruptedChecksums.ChecksumSha256
+        backup_kind = [string]$manifest.backup_kind
+        backup_verified_at_utc =
+          [string]$manifest.backup_verified_at_utc
+        backup_recoverable_through_utc =
+          [string]$manifest.backup_recoverable_through_utc
+        backup_evidence_reference =
+          [string]$manifest.backup_evidence_reference
+        backup_evidence_sha256 =
+          [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedRecoveryBackupOverridePath
+        restore_path_reviewed =
+          [bool]$manifest.restore_path_reviewed
         recorded_at_utc = [datetimeoffset]::UtcNow.ToString('o')
         recovery_classification = 'before'
         recovered_prior_evidence = $false
@@ -3352,12 +4013,39 @@ function Invoke-BinderActivationRecoveryV1 {
         activation_head_sha = $ExpectedHeadSha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
         interrupted_evidence_root = $interruptedRoot
         interrupted_evidence_checksum_sha256 =
           $interruptedChecksums.ChecksumSha256
+        backup_kind = [string]$manifest.backup_kind
+        backup_verified_at_utc =
+          [string]$manifest.backup_verified_at_utc
+        backup_recoverable_through_utc =
+          [string]$manifest.backup_recoverable_through_utc
+        backup_evidence_reference =
+          [string]$manifest.backup_evidence_reference
+        backup_evidence_sha256 =
+          [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedRecoveryBackupOverridePath
+        restore_path_reviewed =
+          [bool]$manifest.restore_path_reviewed
         recorded_at_utc = [datetimeoffset]::UtcNow.ToString('o')
         recovery_classification = 'unexpected'
         recovered_prior_evidence = $false
@@ -3394,12 +4082,39 @@ function Invoke-BinderActivationRecoveryV1 {
         activation_head_sha = $ExpectedHeadSha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         artifact_root = $recoveryRoot
         interrupted_evidence_root = $interruptedRoot
         interrupted_evidence_checksum_sha256 =
           $interruptedChecksums.ChecksumSha256
+        backup_kind = [string]$manifest.backup_kind
+        backup_verified_at_utc =
+          [string]$manifest.backup_verified_at_utc
+        backup_recoverable_through_utc =
+          [string]$manifest.backup_recoverable_through_utc
+        backup_evidence_reference =
+          [string]$manifest.backup_evidence_reference
+        backup_evidence_sha256 =
+          [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedRecoveryBackupOverridePath
+        restore_path_reviewed =
+          [bool]$manifest.restore_path_reviewed
         recorded_at_utc = [datetimeoffset]::UtcNow.ToString('o')
         recovery_state = 'diagnostic_failed'
         message = $originalError.Exception.Message
@@ -4003,6 +4718,9 @@ function Invoke-BinderActivationApplyV1 {
   ) 'Clients-dark evidence changed after activation preflight.'
   $prior = Test-BinderActivationPriorEvidenceV1 `
     -Path ([string]$manifest.prior_evidence_root) `
+    -ActivationBackupEvidencePath (
+      [string]$manifest.activation_backup_override_path
+    ) `
     -Phase $phase `
     -ExpectedHeadSha ([string]$manifest.head_sha) `
     -ExpectedWebDeploymentId ([string]$manifest.web_deployment_id) `
@@ -4018,7 +4736,11 @@ function Invoke-BinderActivationApplyV1 {
     [string]$manifest.activation_head_sha -ceq
       [string]$manifest.head_sha -and
     [string]$manifest.installation_evidence_head_sha -ceq
-      [string]$prior.InstallationEvidenceHeadSha
+      [string]$prior.InstallationEvidenceHeadSha -and
+    [string]$manifest.installation_backup_evidence_sha256 -ceq
+      [string]$prior.InstallationBackupEvidenceSha256 -and
+    [string]$manifest.installation_preflight_checksum_sha256 -ceq
+      [string]$prior.InstallationPreflightChecksumSha256
   ) 'Activation and installation evidence HEAD continuity changed after preflight.'
   Assert-BinderActivationConditionV1 (
     $prior.BackupKind -ceq [string]$manifest.backup_kind -and
@@ -4030,8 +4752,25 @@ function Invoke-BinderActivationApplyV1 {
       [string]$manifest.backup_evidence_reference -and
     $prior.BackupEvidenceSha256 -ceq
       [string]$manifest.backup_evidence_sha256 -and
+    $prior.BackupEvidenceOrigin -ceq
+      [string]$manifest.backup_evidence_origin -and
+    $prior.BackupEvidencePath -ceq
+      [string]$manifest.backup_evidence_path -and
     $prior.RestorePathReviewed -eq $true
   ) 'Backup recovery evidence changed after activation preflight.'
+  $activationBackupOverride = if ([int]$phase.sequence -eq 1) {
+    Test-BinderActivationBackupOverrideV1 `
+      -Path ([string]$manifest.activation_backup_override_path) `
+      -PhaseSequence ([int]$phase.sequence) `
+      -RepoRoot $RepoRoot
+  } else {
+    Assert-BinderActivationConditionV1 (
+      [string]::IsNullOrWhiteSpace(
+        [string]$manifest.activation_backup_override_path
+      )
+    ) 'Activation backup override path is permitted only for phase one.'
+    $null
+  }
 
   $preflightRoot = Assert-BinderActivationArtifactRootV1 `
     -Path (Split-Path -Parent $manifestEnvelope.Path) `
@@ -4091,6 +4830,9 @@ function Invoke-BinderActivationApplyV1 {
     Get-ChildItem -LiteralPath $clientsDark.Root -File -Recurse |
       Select-Object -ExpandProperty FullName
   )
+  if ($null -ne $activationBackupOverride) {
+    $sealPaths += [string]$activationBackupOverride.Path
+  }
   $sealStreams = @()
   $mutation = $null
   $mutationStarted = $false
@@ -4113,6 +4855,23 @@ function Invoke-BinderActivationApplyV1 {
   $applyRoot = New-BinderActivationArtifactRootV1 `
     -Path $resolvedApplyCandidate `
     -RepoRoot $RepoRoot
+  $sealedActivationBackupOverridePath = $null
+  if ($null -ne $activationBackupOverride) {
+    $sealedActivationBackupOverridePath = Join-Path (
+      $applyRoot
+    ) ([string]$policy.Manifest.phase_one_backup_override.sealed_apply_file)
+    [IO.File]::Copy(
+      [string]$activationBackupOverride.Path,
+      $sealedActivationBackupOverridePath,
+      $false
+    )
+    Assert-BinderActivationConditionV1 (
+      (Get-BinderActivationSha256V1 `
+        -Path $sealedActivationBackupOverridePath) -ceq
+        [string]$activationBackupOverride.Sha256
+    ) 'Sealed activation backup override copy hash is wrong.'
+    $sealPaths += $sealedActivationBackupOverridePath
+  }
 
   try {
     Write-BinderActivationJsonV1 `
@@ -4126,6 +4885,10 @@ function Invoke-BinderActivationApplyV1 {
         activation_head_sha = [string]$manifest.activation_head_sha
         installation_evidence_head_sha =
           [string]$manifest.installation_evidence_head_sha
+        installation_backup_evidence_sha256 =
+          [string]$manifest.installation_backup_evidence_sha256
+        installation_preflight_checksum_sha256 =
+          [string]$manifest.installation_preflight_checksum_sha256
         phase_sequence = [int]$phase.sequence
         target_flag = [string]$phase.flag_key
         enabled_flags_before = @($phase.enabled_before)
@@ -4172,6 +4935,18 @@ function Invoke-BinderActivationApplyV1 {
           [string]$manifest.backup_evidence_reference
         backup_evidence_sha256 =
           [string]$manifest.backup_evidence_sha256
+        backup_evidence_origin =
+          [string]$manifest.backup_evidence_origin
+        backup_evidence_path =
+          [string]$manifest.backup_evidence_path
+        activation_backup_override_applied =
+          [bool]$manifest.activation_backup_override_applied
+        activation_backup_override_path =
+          [string]$manifest.activation_backup_override_path
+        activation_backup_override_sha256 =
+          [string]$manifest.activation_backup_override_sha256
+        activation_backup_override_sealed_path =
+          $sealedActivationBackupOverridePath
         restore_path_reviewed =
           [bool]$manifest.restore_path_reviewed
         created_at_utc = [datetimeoffset]::UtcNow.ToString('o')
@@ -4179,6 +4954,19 @@ function Invoke-BinderActivationApplyV1 {
         automatic_retry_permitted = $false
       })
     $sealStreams = Open-BinderActivationSealV1 -Paths $sealPaths
+    if ($null -ne $activationBackupOverride) {
+      $sealedOverrideAtApply = Test-BinderActivationBackupOverrideV1 `
+        -Path ([string]$activationBackupOverride.Path) `
+        -PhaseSequence ([int]$phase.sequence) `
+        -RepoRoot $RepoRoot
+      Assert-BinderActivationConditionV1 (
+        [string]$sealedOverrideAtApply.Sha256 -ceq
+          [string]$manifest.activation_backup_override_sha256 -and
+        (Get-BinderActivationSha256V1 `
+          -Path $sealedActivationBackupOverridePath) -ceq
+          [string]$manifest.activation_backup_override_sha256
+      ) 'Activation backup override changed at the final apply seal.'
+    }
     [void](Assert-BinderActivationSourceV1 -RepoRoot $RepoRoot)
     [void](Assert-BinderActivationRepositoryV1 `
       -RepoRoot $RepoRoot `
@@ -4281,6 +5069,10 @@ function Invoke-BinderActivationApplyV1 {
       activation_head_sha = [string]$manifest.activation_head_sha
       installation_evidence_head_sha =
         [string]$manifest.installation_evidence_head_sha
+      installation_backup_evidence_sha256 =
+        [string]$manifest.installation_backup_evidence_sha256
+      installation_preflight_checksum_sha256 =
+        [string]$manifest.installation_preflight_checksum_sha256
       phase_sequence = [int]$phase.sequence
       target_flag = [string]$phase.flag_key
       rollout_model = [string]$manifest.rollout_model
@@ -4320,6 +5112,18 @@ function Invoke-BinderActivationApplyV1 {
         [string]$manifest.backup_evidence_reference
       backup_evidence_sha256 =
         [string]$manifest.backup_evidence_sha256
+      backup_evidence_origin =
+        [string]$manifest.backup_evidence_origin
+      backup_evidence_path =
+        [string]$manifest.backup_evidence_path
+      activation_backup_override_applied =
+        [bool]$manifest.activation_backup_override_applied
+      activation_backup_override_path =
+        [string]$manifest.activation_backup_override_path
+      activation_backup_override_sha256 =
+        [string]$manifest.activation_backup_override_sha256
+      activation_backup_override_sealed_path =
+        $sealedActivationBackupOverridePath
       restore_path_reviewed =
         [bool]$manifest.restore_path_reviewed
       artifact_root = $applyRoot
@@ -4388,6 +5192,10 @@ function Invoke-BinderActivationApplyV1 {
       activation_head_sha = [string]$manifest.activation_head_sha
       installation_evidence_head_sha =
         [string]$manifest.installation_evidence_head_sha
+      installation_backup_evidence_sha256 =
+        [string]$manifest.installation_backup_evidence_sha256
+      installation_preflight_checksum_sha256 =
+        [string]$manifest.installation_preflight_checksum_sha256
       phase_sequence = [int]$phase.sequence
       target_flag = [string]$phase.flag_key
       enabled_flags_before = @($phase.enabled_before)
@@ -4427,6 +5235,18 @@ function Invoke-BinderActivationApplyV1 {
         [string]$manifest.backup_evidence_reference
       backup_evidence_sha256 =
         [string]$manifest.backup_evidence_sha256
+      backup_evidence_origin =
+        [string]$manifest.backup_evidence_origin
+      backup_evidence_path =
+        [string]$manifest.backup_evidence_path
+      activation_backup_override_applied =
+        [bool]$manifest.activation_backup_override_applied
+      activation_backup_override_path =
+        [string]$manifest.activation_backup_override_path
+      activation_backup_override_sha256 =
+        [string]$manifest.activation_backup_override_sha256
+      activation_backup_override_sealed_path =
+        $sealedActivationBackupOverridePath
       restore_path_reviewed =
         [bool]$manifest.restore_path_reviewed
       artifact_root = $applyRoot

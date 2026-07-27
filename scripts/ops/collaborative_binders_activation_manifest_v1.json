@@ -1,12 +1,28 @@
 {
   "schema_version": 1,
   "package_id": "COLLABORATIVE-BINDERS-ACTIVATION-V1",
-  "package_fingerprint_sha256": "32c31b7dfdd12f0f3883d45d2987a3450a424ebbea3891d9fbc8074e13841352",
+  "package_fingerprint_sha256": "d016bceb45acce78365758bf9c73e41a89d0255904a6aae6f626a56305f829d4",
   "rollout_model": "clients_dark_empty_domain",
   "clients_dark_through_phase_sequence": 8,
   "binder_domain_must_remain_empty": true,
   "backup_chain_required": true,
   "backup_max_activation_recovery_lag_minutes": 1440,
+  "phase_one_backup_override": {
+    "required": true,
+    "phase_sequence": 1,
+    "schema_version": 1,
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "backup_kind": "supabase_platform_backup",
+    "status": "COMPLETED",
+    "is_physical_backup": true,
+    "verified_at_utc": "2026-07-27T16:50:32.000Z",
+    "recoverable_through_utc": "2026-07-27T10:32:57.612Z",
+    "evidence_reference": "supabase-backups-list:physical:2026-07-27T10:32:57.612Z:COMPLETED",
+    "restore_path_reviewed": true,
+    "operator": "codex-read-only-backup-verification",
+    "sha256": "fd1f9cc1682792ba57cea97f1d5d5e9d270381a3a6796fca09267ee9ac6afae6",
+    "sealed_apply_file": "activation-backup-override.json"
+  },
   "installation_evidence_ttl_hours": 24,
   "prior_evidence_ttl_hours": 2,
   "clients_dark_evidence_required": true,
@@ -42,59 +58,59 @@
   ],
   "activation_module": {
     "file": "scripts/ops/CollaborativeBindersActivationV1.psm1",
-    "sha256": "7ad2c2bcc86bf9f8d4b40ff3fbd9d3af4f3db3bc4dc9ace6880a783bf7747826"
+    "sha256": "89d93e725ea1b7ed70d2c9dd65f0d4e05f0c766a15796400c0fc817af6ee4679"
   },
   "activation_wrappers": [
     {
       "role": "source_validate",
       "file": "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
-      "sha256": "5575a09e1de9c635d8f7adcd8fd95b11ec274ced3fcc8f330bc97fc09ff2cb75"
+      "sha256": "e743368d80e16b34a6abd991fc7863635e3e496e04d4203fe40998e202efe033"
     },
     {
       "role": "preflight",
       "file": "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
-      "sha256": "0b485aec5e7acb6adc3ce00aa663aa9c52f5eebaccd130d514c1cb009e796ff2"
+      "sha256": "7cd1f0d839b2463b52f753f509f9526f2346303b8f209e0adc4bd70303e21607"
     },
     {
       "role": "apply",
       "file": "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
-      "sha256": "8a9fa7ff2b1f221b19ba81870261bf138f60eb3cdcb09da0ee65944ac5f7aab9"
+      "sha256": "c205c3c457d1a08d2981b2d6764dc7ca02e55f601706f55de7ba8624cd223fbe"
     },
     {
       "role": "recovery",
       "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
-      "sha256": "fa93c6f4b13a9c7027b9404f28a7775f78d09feab880263cf882abd9e409d381"
+      "sha256": "4d101d67bb0b44f4b289d39f33aa9f7f8042a78a005dbdfbe87545519bb6aab7"
     },
     {
       "role": "kill_switch",
       "file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
-      "sha256": "29c752864d773e2465b4ae6b722e3741c98f19fbfbb45d053d464ab0586248a0"
+      "sha256": "587cd9498f2405afe2614e8bd87781d2987fff70ed92935993f4ef02a05fc66b"
     }
   ],
   "activation_sources": [
     {
       "file": "scripts/ops/CollaborativeBindersActivationV1.psm1",
-      "sha256": "7ad2c2bcc86bf9f8d4b40ff3fbd9d3af4f3db3bc4dc9ace6880a783bf7747826"
+      "sha256": "89d93e725ea1b7ed70d2c9dd65f0d4e05f0c766a15796400c0fc817af6ee4679"
     },
     {
       "file": "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
-      "sha256": "8a9fa7ff2b1f221b19ba81870261bf138f60eb3cdcb09da0ee65944ac5f7aab9"
+      "sha256": "c205c3c457d1a08d2981b2d6764dc7ca02e55f601706f55de7ba8624cd223fbe"
     },
     {
       "file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
-      "sha256": "29c752864d773e2465b4ae6b722e3741c98f19fbfbb45d053d464ab0586248a0"
+      "sha256": "587cd9498f2405afe2614e8bd87781d2987fff70ed92935993f4ef02a05fc66b"
     },
     {
       "file": "scripts/ops/collaborative_binders_activation_preflight_v1.ps1",
-      "sha256": "0b485aec5e7acb6adc3ce00aa663aa9c52f5eebaccd130d514c1cb009e796ff2"
+      "sha256": "7cd1f0d839b2463b52f753f509f9526f2346303b8f209e0adc4bd70303e21607"
     },
     {
       "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
-      "sha256": "fa93c6f4b13a9c7027b9404f28a7775f78d09feab880263cf882abd9e409d381"
+      "sha256": "4d101d67bb0b44f4b289d39f33aa9f7f8042a78a005dbdfbe87545519bb6aab7"
     },
     {
       "file": "scripts/ops/collaborative_binders_activation_source_validate_v1.ps1",
-      "sha256": "5575a09e1de9c635d8f7adcd8fd95b11ec274ced3fcc8f330bc97fc09ff2cb75"
+      "sha256": "e743368d80e16b34a6abd991fc7863635e3e496e04d4203fe40998e202efe033"
     },
     {
       "file": "scripts/ops/collaborative_binders_backup_watch_v1.ps1",
@@ -102,12 +118,12 @@
     },
     {
       "file": "scripts/ops/collaborative_binders_clients_dark_evidence_v1.ps1",
-      "sha256": "3e9b8d57dcbf7d1e5b6e6de73804773f5b507ef0dd55c048b69f27fe67e222c6"
+      "sha256": "85212b12511f7cc21c998cd7e02ca2440c8d0849d652df77d405eecf129868d4"
     }
   ],
   "recovery_entrypoint": {
     "file": "scripts/ops/collaborative_binders_activation_recovery_v1.ps1",
-    "sha256": "fa93c6f4b13a9c7027b9404f28a7775f78d09feab880263cf882abd9e409d381"
+    "sha256": "4d101d67bb0b44f4b289d39f33aa9f7f8042a78a005dbdfbe87545519bb6aab7"
   },
   "recovery_policy": {
     "accepted_evidence_statuses": [
@@ -130,7 +146,7 @@
     "file": "scripts/ops/sql/collaborative_binders_activation_kill_switch_v1.sql",
     "sha256": "bf67c17722f7942ee4e02b855be3cb8ae6ff1d1fe380f214050c6aff8a9f737b",
     "entrypoint_file": "scripts/ops/collaborative_binders_activation_kill_switch_v1.ps1",
-    "entrypoint_sha256": "29c752864d773e2465b4ae6b722e3741c98f19fbfbb45d053d464ab0586248a0",
+    "entrypoint_sha256": "587cd9498f2405afe2614e8bd87781d2987fff70ed92935993f4ef02a05fc66b",
     "target_flag": "schema_internal",
     "set_enabled": false,
     "effective_enabled_flags_after": [],
@@ -147,6 +163,7 @@
   "required_installation_head_sha": "a29680bdf79409823eedab8a62f0bd5cc89d675c",
   "sealed_activation_head_sha": "67a33dbe0b69e930d064094ece9c8cf167fe6536",
   "reviewed_safe_main_head_sha": "d01a2d818513175061db8b6e9280c9850319b5ab",
+  "current_repository_guard_base_sha": "72bb84807a614d0e2f2d76c18c8aa64a6d1aa578",
   "installation_to_sealed_transition_paths": [
     "scripts/ops/CollaborativeBindersActivationV1.psm1",
     "scripts/ops/collaborative_binders_activation_apply_v1.ps1",
