@@ -89,7 +89,7 @@
       "sql_generated": false,
       "storage_writes": false
     },
-    "generated_at": "2026-07-27T05:10:09.561Z",
+    "generated_at": "2026-07-27T05:35:55.426Z",
     "generator_version": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
     "guard": {
       "default_transaction_read_only": "on",
@@ -108,17 +108,21 @@
     "payload_fingerprint_sha256": "14be9772c50707a8e200e3b8d63d4bf831fab0de63c63741b3253623bc26d3e3",
     "repository_schema_coverage": [
       {
-        "creating_migration_paths": [],
+        "creating_migration_paths": [
+          "supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql"
+        ],
         "table": "card_print_identity_source_evidence"
       },
       {
-        "creating_migration_paths": [],
+        "creating_migration_paths": [
+          "supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql"
+        ],
         "table": "card_print_family_review_queue"
       }
     ],
     "schema_contract": {
       "artifact_path": "docs/audits/japanese_master_index_v4/payload_preflight/jpn_payload_target_schema_contract_v1.json",
-      "artifact_sha256": "5b324724af5716f1c1b68b686fbb6fa8b2845ba1e87bf2050acb131f56ad3844",
+      "artifact_sha256": "3ed41bd59bbebb30281f00d2d34f12507d1ec32fdb224270d366160aa9542874",
       "column_count": 109,
       "constraint_count": 31,
       "fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
@@ -136,7 +140,7 @@
     "source_final_manifest_fingerprint": "2f17e2410a35d27373e6ff3a9f698c046278fd0d2a639a2d5b33cb7715793b4b",
     "source_promotion_package_fingerprint": "4dd2ddbcb68492cb05a261b834bd41800cb7edc91072d22f719cc68103772dcb",
     "source_union_manifest_fingerprint": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
-    "status": "preflight_complete_repository_schema_drift",
+    "status": "preflight_complete_no_write",
     "summary": {
       "blocking_collisions": 0,
       "card_print_rows": 3888,
@@ -145,12 +149,12 @@
       "family_review_rows": 3888,
       "identity_rows": 3888,
       "nonblocking_collisions": 0,
-      "repository_schema_drift_tables": 2,
+      "repository_schema_drift_tables": 0,
       "set_rows": 1041
     }
   },
-  "content_fingerprint_sha256": "9d29a1f36ca91756617f38c81c0fa4c623f33271917a61eea7a69a9e0ac6e5df",
-  "generated_at": "2026-07-27T05:10:09.561Z",
+  "content_fingerprint_sha256": "117833dd50709644bcbd948921f10f531498f6c2790cbf4ba035233d58aafb15",
+  "generated_at": "2026-07-27T05:35:55.426Z",
   "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
   "retrieval": {
     "access_mode": "live_database_proven_read_only_plus_local_artifacts",

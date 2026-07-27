@@ -1,10 +1,10 @@
 # Japanese Master Index V4 Payload Preflight
 
-Generated: 2026-07-27T05:10:09.561Z
+Generated: 2026-07-27T05:35:55.426Z
 
 ## Status
 
-- Status: `preflight_complete_repository_schema_drift`
+- Status: `preflight_complete_no_write`
 - Payload fingerprint: `14be9772c50707a8e200e3b8d63d4bf831fab0de63c63741b3253623bc26d3e3`
 - Blocking collisions: 0
 - Non-blocking natural-key accommodations: 0
@@ -25,9 +25,9 @@ Generated: 2026-07-27T05:10:09.561Z
 - Public child rows are identifiers/contracts only and remain blocked behind separate visibility and self-hosted-image approval.
 - No English card, pricing, family-link, or identity rows were mutated.
 
-## Repository Schema Drift
+## Repository Schema Coverage
 
-- `card_print_identity_source_evidence`: **no creating migration found in the repository**
-- `card_print_family_review_queue`: **no creating migration found in the repository**
+- `card_print_identity_source_evidence`: supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
+- `card_print_family_review_queue`: supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
 
-This drift must be repaired before a fresh-chain apply package can be considered production-ready.
+All required payload target tables now have creating migrations in the repository.

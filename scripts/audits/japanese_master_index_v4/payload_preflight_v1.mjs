@@ -1279,7 +1279,7 @@ function markdown(report) {
       + 'behind separate visibility and self-hosted-image approval.',
     '- No English card, pricing, family-link, or identity rows were mutated.',
     '',
-    '## Repository Schema Drift',
+    '## Repository Schema Coverage',
     '',
   ];
   for (const row of report.repository_schema_coverage) {
@@ -1290,9 +1290,13 @@ function markdown(report) {
     );
   }
   lines.push('');
-  lines.push('This drift must be repaired before a fresh-chain apply package '
-    + 'can be considered production-ready.');
-  lines.push('');
+  if (report.summary.repository_schema_drift_tables > 0) {
+    lines.push('This drift must be repaired before a fresh-chain apply package '
+      + 'can be considered production-ready.');
+  } else {
+    lines.push('All required payload target tables now have creating '
+      + 'migrations in the repository.');
+  }
   return `${lines.join('\n')}\n`;
 }
 
