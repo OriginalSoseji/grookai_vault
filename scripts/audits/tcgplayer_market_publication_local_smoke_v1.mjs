@@ -436,7 +436,7 @@ async function main() {
       await client.query("set local role authenticated");
       await assert.rejects(
         client.query(
-          `select * from public.get_market_price_trace_v1($1)`,
+          `select public.get_market_price_trace_v1($1) as trace`,
           [provenance],
         ),
         /permission denied/i,
@@ -445,11 +445,15 @@ async function main() {
       await client.query("rollback");
     }
     const trace = await client.query(
-      `select * from public.get_market_price_trace_v1($1)`,
+      `select public.get_market_price_trace_v1($1) as trace`,
       [provenance],
     );
     assert.equal(trace.rowCount, 1);
-    assert.equal(trace.rows[0].source_observation_id, fixture.observationId);
+    assert.ok(trace.rows[0].trace);
+    assert.equal(
+      trace.rows[0].trace.source_observation_id,
+      fixture.observationId,
+    );
 
     const summary = {
       smoke_version: "TCGPLAYER_MARKET_PUBLICATION_LOCAL_SMOKE_V1",
@@ -464,7 +468,7 @@ async function main() {
       restored_publication_set_id: rollback.rows[0].restored_set_id,
       market_price: Number(current.rows[0].market_price),
       authenticated_read_rows: Number(authenticated.rows[0].row_count),
-      service_trace_rows: trace.rowCount,
+      service_trace_rows: trace.rows[0].trace ? 1 : 0,
       artifact_root: path.relative(REPO_ROOT, outRoot).replace(/\\/g, "/"),
     };
     await fs.writeFile(

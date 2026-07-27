@@ -342,7 +342,7 @@ test("signed-in clients receive a shared contract while provenance stays service
   );
   assert.match(
     MIGRATION,
-    /get_market_price_trace_v1\(p_provenance_id uuid\)[\s\S]*language plpgsql[\s\S]*return query/i,
+    /get_market_price_trace_v1\(p_provenance_id uuid\)[\s\S]*returns jsonb[\s\S]*to_jsonb\(trace_row\)/i,
   );
   assert.doesNotMatch(
     MIGRATION,

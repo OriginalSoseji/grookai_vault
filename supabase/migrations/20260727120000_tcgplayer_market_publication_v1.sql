@@ -1574,91 +1574,55 @@ as $$
 $$;
 
 create or replace function public.get_market_price_trace_v1(p_provenance_id uuid)
-returns table (
-  provenance_id uuid,
-  publication_set_id uuid,
-  run_id uuid,
-  run_key text,
-  pipeline_candidate_id uuid,
-  phase_attempt_id uuid,
-  source_observation_id uuid,
-  source_sync_run_id uuid,
-  source_artifact_id uuid,
-  source_artifact_date date,
-  source_artifact_hash text,
-  source_price_row_identity text,
-  source_row_hash text,
-  source_mapping_id bigint,
-  variant_assignment_id uuid,
-  source_product_id integer,
-  source_subtype_name text,
-  source_observed_on date,
-  source_sync_finished_at timestamptz,
-  card_print_id uuid,
-  card_printing_id uuid,
-  gv_id text,
-  printing_gv_id text,
-  finish_key text,
-  market_price numeric,
-  qualification_decision_id uuid,
-  policy_version text,
-  publication_lane text,
-  language_result text,
-  finish_result text,
-  source_integrity_result text,
-  duplicate_product_result text,
-  freshness_result text,
-  qualified_at timestamptz,
-  published_at timestamptz
-)
-language plpgsql
+returns jsonb
+language sql
 stable
 security definer
 set search_path = public
 as $$
-begin
-  return query
-  select
-    snapshot.provenance_id,
-    snapshot.publication_set_id,
-    snapshot.run_id,
-    decision.run_key,
-    decision.pipeline_candidate_id,
-    snapshot.phase_attempt_id,
-    snapshot.source_observation_id,
-    snapshot.source_sync_run_id,
-    snapshot.source_artifact_id,
-    snapshot.source_artifact_date,
-    snapshot.source_artifact_hash,
-    snapshot.source_price_row_identity,
-    snapshot.source_row_hash,
-    snapshot.source_mapping_id,
-    snapshot.variant_assignment_id,
-    snapshot.source_product_id,
-    snapshot.source_subtype_name,
-    snapshot.source_observed_on,
-    snapshot.source_sync_finished_at,
-    snapshot.card_print_id,
-    snapshot.card_printing_id,
-    snapshot.gv_id,
-    snapshot.printing_gv_id,
-    snapshot.finish_key,
-    snapshot.market_price,
-    snapshot.qualification_decision_id,
-    snapshot.policy_version,
-    decision.publication_lane,
-    decision.language_result,
-    decision.finish_result,
-    decision.source_integrity_result,
-    decision.duplicate_product_result,
-    decision.freshness_result,
-    snapshot.qualified_at,
-    snapshot.published_at
-  from public.market_price_publication_snapshots snapshot
-  join public.market_price_qualification_decisions decision
-    on decision.id = snapshot.qualification_decision_id
-  where snapshot.provenance_id = p_provenance_id;
-end;
+  select to_jsonb(trace_row)
+  from (
+    select
+      snapshot.provenance_id,
+      snapshot.publication_set_id,
+      snapshot.run_id,
+      decision.run_key,
+      decision.pipeline_candidate_id,
+      snapshot.phase_attempt_id,
+      snapshot.source_observation_id,
+      snapshot.source_sync_run_id,
+      snapshot.source_artifact_id,
+      snapshot.source_artifact_date,
+      snapshot.source_artifact_hash,
+      snapshot.source_price_row_identity,
+      snapshot.source_row_hash,
+      snapshot.source_mapping_id,
+      snapshot.variant_assignment_id,
+      snapshot.source_product_id,
+      snapshot.source_subtype_name,
+      snapshot.source_observed_on,
+      snapshot.source_sync_finished_at,
+      snapshot.card_print_id,
+      snapshot.card_printing_id,
+      snapshot.gv_id,
+      snapshot.printing_gv_id,
+      snapshot.finish_key,
+      snapshot.market_price,
+      snapshot.qualification_decision_id,
+      snapshot.policy_version,
+      decision.publication_lane,
+      decision.language_result,
+      decision.finish_result,
+      decision.source_integrity_result,
+      decision.duplicate_product_result,
+      decision.freshness_result,
+      snapshot.qualified_at,
+      snapshot.published_at
+    from public.market_price_publication_snapshots snapshot
+    join public.market_price_qualification_decisions decision
+      on decision.id = snapshot.qualification_decision_id
+    where snapshot.provenance_id = p_provenance_id
+  ) trace_row;
 $$;
 
 alter table public.market_price_pipeline_runs enable row level security;
