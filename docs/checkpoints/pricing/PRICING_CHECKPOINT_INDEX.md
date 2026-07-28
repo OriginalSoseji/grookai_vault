@@ -33,6 +33,25 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_28_READ_MODEL_CONTRACT_COMPLETION.md`
+
+This checkpoint records the completion of the shared pricing read contract:
+separate source-observation and publication timestamps, deterministic parent
+minimums that retain their exact-printing identity and provenance, governed
+top-market reads, and exact/parent client selection semantics.
+
+Decision locked there:
+
+- every displayed parent amount remains traceable to one selected exact
+  eligible printing, and product reads do not aggregate the raw listing
+  warehouse
+
+Unresolved risk afterward:
+
+- the migration remains local until the frozen 72-hour canary passes; corrected
+  deployment, fresh full shadow, signed-in full rollout, seven unattended
+  cycles, and public licensing authority remain open
+
 ### `PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md`
 
 This checkpoint records the fail-closed full-production scope guards, exact
@@ -550,6 +569,16 @@ Recommended reading order for future maintainers:
 25. `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
     - then read how rollback, provenance lookup, incident handling, and the
       fail-closed production completion matrix became permanent operations
+
+26. `PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md`
+    - then read how full signed-in publication became fail-closed on complete
+      scope, exact deployed commit, fresh shadow evidence, and seven reconciled
+      unattended cycles
+
+27. `PRICING_CHECKPOINT_28_READ_MODEL_CONTRACT_COMPLETION.md`
+    - then read how publication timestamps, backing exact-printing identity,
+      parent minimum provenance, and governed top-market reads completed the
+      shared product contract
 
 After those checkpoints, read the supporting audits in this order:
 
