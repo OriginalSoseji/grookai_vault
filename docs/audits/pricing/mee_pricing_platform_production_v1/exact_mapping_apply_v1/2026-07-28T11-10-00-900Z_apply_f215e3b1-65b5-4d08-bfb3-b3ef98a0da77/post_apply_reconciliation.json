@@ -1,0 +1,35 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_POST_APPLY_RECONCILIATION_V1",
+  "status": "passed",
+  "producing_commit_sha": "2e1a3f5f8884df0aa46352372dabf4674f881df6",
+  "candidate_plan_commit_sha": "2e1a3f5f8884df0aa46352372dabf4674f881df6",
+  "maintenance_run_id": "f215e3b1-65b5-4d08-bfb3-b3ef98a0da77",
+  "batch_fingerprint": "431cfbba5acc81e4c13475369b8a4a90ee71bc81667383bf61d7447826a4cd64",
+  "candidate_artifact_sha256": "a179937025ab0c06a8df0b184a204027a70648bc328b47e0644c575644cc8584",
+  "selected_count": 25,
+  "inserted_count": 25,
+  "readback_count": 25,
+  "post_apply_source_product_already_mapped_count": 25,
+  "pre_apply_candidate_count": 276,
+  "post_apply_candidate_count": 251,
+  "candidate_count_delta": -25,
+  "active_publication_overlap_count": 0,
+  "publication_writes": 0,
+  "customer_state_writes": 0,
+  "immutable_shadow_coverage": {
+    "denominator_rows": 32676,
+    "numerator_rows": 31123,
+    "coverage_percent": 95.247,
+    "coverage_status": "passed",
+    "current_publication_scope_status": "failed",
+    "unchanged_reason": "The audited shadow qualification ledger predates the mapping apply and is append-only."
+  },
+  "evidence": {
+    "clean_coverage_replay": "docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2_clean_replay/2026-07-28T11-09-03-274Z",
+    "clean_mapping_plan": "docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1_clean_replay/2026-07-28T11-09-23-301Z",
+    "clean_apply_dry_run": "docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_apply_v1_clean_replay/2026-07-28T11-09-42-315Z_dry_run_5ee5010c-3f2e-416b-80bb-b4beb4d1ca07",
+    "apply": "docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_apply_v1/2026-07-28T11-10-00-900Z_apply_f215e3b1-65b5-4d08-bfb3-b3ef98a0da77",
+    "post_apply_coverage": "docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2_post_mapping_apply/2026-07-28T11-11-15-894Z",
+    "post_apply_mapping_plan": "docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1_post_apply/2026-07-28T11-11-33-622Z"
+  }
+}

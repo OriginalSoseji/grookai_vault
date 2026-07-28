@@ -491,6 +491,10 @@ Recommended reading order for future maintainers:
     - then read how a year-qualified Staff variant was removed from Product V1
       and the first bounded mapping writer was proven read-only before apply
 
+24. `PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md`
+    - then read how the first 25 exact mappings were applied from a clean
+      committed plan, read back exactly, and kept isolated from publication
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -507,3 +511,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1/2026-07-28T10-38-25-697Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2/2026-07-28T10-49-27-107Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1/2026-07-28T10-50-02-909Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_apply_v1/2026-07-28T11-10-00-900Z_apply_f215e3b1-65b5-4d08-bfb3-b3ef98a0da77/post_apply_reconciliation.json`

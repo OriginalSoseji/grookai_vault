@@ -1,0 +1,9 @@
+{
+  "run_plan.json": "7fb9c8aa43c3d1e37f90a102e196d3dbb82e23442c3b9475f611caa09e3ddb32",
+  "summary.json": "25823bda85510ae2ced5c83e234cca13db39af3c4847258a3ab08c053fd35d65",
+  "selected_candidates.jsonl": "208d9dc3f3a9e9cf17736bdcaa64ef2f00c04e68882495023bf8ac21b7c9d2e4",
+  "live_precondition_readback.json": "0fe478830590fbc2693a117f4e168cecf3bb306c7f188867d557856c498ed06f",
+  "inserted_mappings.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "mapping_readback.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rollback_manifest.json": "89aea02f533c5f2c532e7e54ae57b0d22ee3edf5ebfca6dde9cfb3fe4d84988f"
+}
