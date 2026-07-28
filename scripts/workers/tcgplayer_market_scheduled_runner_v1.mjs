@@ -29,6 +29,8 @@ const PIPELINE = path.join(
 const RUNNER_VERSION = "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1";
 const LOCK_NAME = "tcgplayer_market_scheduled_runner_v1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
+const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
+const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 
 function parseArgs(argv) {
   const live = argv.includes("--run");
@@ -57,6 +59,11 @@ function parseArgs(argv) {
   const requestCeiling = Number.parseInt(
     process.env.TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING ||
       String(FULL_SYNC_REQUEST_CEILING),
+    10,
+  );
+  const phaseTimeoutMinutes = Number.parseInt(
+    process.env.TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES ||
+      String(DEFAULT_PHASE_TIMEOUT_MINUTES),
     10,
   );
   const freshnessHours = Number(
@@ -93,6 +100,14 @@ function parseArgs(argv) {
       `scheduled full warehouse sync requires request ceiling >= ${FULL_SYNC_REQUEST_CEILING}`,
     );
   }
+  if (
+    !Number.isInteger(phaseTimeoutMinutes) ||
+    phaseTimeoutMinutes < FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES
+  ) {
+    throw new Error(
+      `scheduled full warehouse sync requires phase timeout >= ${FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES} minutes`,
+    );
+  }
   if (!Number.isFinite(freshnessHours) || freshnessHours <= 0) {
     throw new Error("freshness hours must be positive");
   }
@@ -114,6 +129,7 @@ function parseArgs(argv) {
     retryDelaysSeconds,
     publicationLimit,
     requestCeiling,
+    phaseTimeoutMinutes,
     freshnessHours,
   };
 }
@@ -219,6 +235,7 @@ async function main() {
     max_attempts: args.maxAttempts,
     retry_delays_seconds: args.retryDelaysSeconds,
     request_ceiling: args.requestCeiling,
+    phase_timeout_minutes: args.phaseTimeoutMinutes,
     freshness_hours: args.freshnessHours,
     publication_limit: args.publicationLimit,
     boundaries: {
@@ -241,6 +258,7 @@ async function main() {
       "max_attempts",
       "retry_delays_seconds",
       "request_ceiling",
+      "phase_timeout_minutes",
       "freshness_hours",
       "publication_limit",
       "boundaries",
@@ -320,6 +338,7 @@ async function main() {
         `--resume-run-key=${args.runKey}`,
         `--out-root=${pipelineOutRoot}`,
         `--request-ceiling=${args.requestCeiling}`,
+        `--phase-timeout-minutes=${args.phaseTimeoutMinutes}`,
         `--freshness-hours=${args.freshnessHours}`,
       ];
       if (args.publicationLimit !== null) {

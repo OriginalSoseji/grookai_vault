@@ -485,6 +485,30 @@ test("full source syncs cannot use a ceiling below the observed TCGCSV workload"
   );
 });
 
+test("full source phase timeout exceeds the measured 70-76 minute runtime", () => {
+  assert.match(PIPELINE, /DEFAULT_PHASE_TIMEOUT_MINUTES = 120/);
+  assert.match(PIPELINE, /FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90/);
+  assert.match(
+    PIPELINE,
+    /phaseTimeoutMinutes < FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES/,
+  );
+  assert.match(PIPELINE, /timeoutMs: args\.phaseTimeoutMinutes \* 60 \* 1000/g);
+  assert.match(PIPELINE, /phase_timeout_minutes: args\.phaseTimeoutMinutes/);
+  assert.match(
+    PIPELINE,
+    /resume refused because frozen run-plan fields changed/,
+  );
+  assert.match(SCHEDULED_RUNNER, /DEFAULT_PHASE_TIMEOUT_MINUTES = 120/);
+  assert.match(
+    SCHEDULED_RUNNER,
+    /--phase-timeout-minutes=\$\{args\.phaseTimeoutMinutes\}/,
+  );
+  assert.match(
+    SCHEDULE_ENV_EXAMPLE,
+    /TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES=120/,
+  );
+});
+
 test("scheduled failure policy retries source transport failures but stops invariant failures", () => {
   assert.deepEqual(
     classifyMarketPipelineFailureV1({

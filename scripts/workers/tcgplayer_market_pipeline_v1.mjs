@@ -19,6 +19,8 @@ const DEFAULT_OUT_ROOT = path.join(
 );
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
+const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
+const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 
 function parseArgs(argv) {
   const args = {
@@ -27,6 +29,11 @@ function parseArgs(argv) {
     outRoot: DEFAULT_OUT_ROOT,
     skipIngest: false,
     requestCeiling: FULL_SYNC_REQUEST_CEILING,
+    phaseTimeoutMinutes: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES ||
+        String(DEFAULT_PHASE_TIMEOUT_MINUTES),
+      10,
+    ),
     freshnessHours: 36,
     publicationLimit: null,
   };
@@ -50,6 +57,11 @@ function parseArgs(argv) {
         arg.slice("--request-ceiling=".length),
         10,
       );
+    } else if (arg.startsWith("--phase-timeout-minutes=")) {
+      args.phaseTimeoutMinutes = Number.parseInt(
+        arg.slice("--phase-timeout-minutes=".length),
+        10,
+      );
     } else if (arg.startsWith("--freshness-hours=")) {
       args.freshnessHours = Number(
         arg.slice("--freshness-hours=".length),
@@ -68,6 +80,20 @@ function parseArgs(argv) {
   if (!args.skipIngest && args.requestCeiling < FULL_SYNC_REQUEST_CEILING) {
     throw new Error(
       `full warehouse sync requires --request-ceiling >= ${FULL_SYNC_REQUEST_CEILING}`,
+    );
+  }
+  if (
+    !Number.isInteger(args.phaseTimeoutMinutes) ||
+    args.phaseTimeoutMinutes < 1
+  ) {
+    throw new Error("--phase-timeout-minutes must be a positive integer");
+  }
+  if (
+    !args.skipIngest &&
+    args.phaseTimeoutMinutes < FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES
+  ) {
+    throw new Error(
+      `full warehouse sync requires --phase-timeout-minutes >= ${FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES}`,
     );
   }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
@@ -139,6 +165,7 @@ async function runPhase({
   runDir,
   state,
   statePath,
+  timeoutMs,
 }) {
   const startedAt = new Date().toISOString();
   state.phases[phase] = {
@@ -152,7 +179,7 @@ async function runPhase({
     const result = await execFileAsync(command, args, {
       cwd: REPO_ROOT,
       env: process.env,
-      timeout: 60 * 60 * 1000,
+      timeout: timeoutMs,
       maxBuffer: 64 * 1024 * 1024,
       windowsHide: true,
     });
@@ -226,6 +253,7 @@ async function main() {
       : ["warehouse_current_sync", "publication", "health"],
     settings: {
       request_ceiling: args.requestCeiling,
+      phase_timeout_minutes: args.phaseTimeoutMinutes,
       publication_limit: args.publicationLimit,
       freshness_hours: args.freshnessHours,
       phase_state_authority: "database",
@@ -243,12 +271,21 @@ async function main() {
 
   if (await exists(runPlanPath)) {
     const existingPlan = await readJson(runPlanPath);
-    if (
-      existingPlan.commit_sha !== commitSha ||
-      existingPlan.mode !== runPlan.mode
-    ) {
+    const frozenFields = [
+      "commit_sha",
+      "branch",
+      "mode",
+      "phases",
+      "settings",
+      "boundaries",
+    ];
+    const mismatches = frozenFields.filter(
+      (field) =>
+        JSON.stringify(existingPlan[field]) !== JSON.stringify(runPlan[field]),
+    );
+    if (mismatches.length) {
       throw new Error(
-        "resume refused because commit SHA or mode differs from the frozen run plan",
+        `resume refused because frozen run-plan fields changed: ${mismatches.join(",")}`,
       );
     }
   } else {
@@ -282,6 +319,7 @@ async function main() {
       runDir,
       state,
       statePath,
+      timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
     });
   }
 
@@ -302,6 +340,7 @@ async function main() {
     runDir,
     state,
     statePath,
+    timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
   });
 
   const healthArgs = [
@@ -318,6 +357,7 @@ async function main() {
     runDir,
     state,
     statePath,
+    timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
   });
 
   state.status = "completed";
