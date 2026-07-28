@@ -293,6 +293,8 @@ test("the observer is read-only and preserves governed evidence artifacts", () =
   assert.match(SCRIPT, /coverage_summary_input\.json/);
   assert.match(SCRIPT, /performance_summary_input\.json/);
   assert.match(SCRIPT, /artifact_hashes\.json/);
+  assert.match(SCRIPT, /observer_commit_sha:\s*gitValue/);
+  assert.match(SCRIPT, /observer_tracked_worktree_clean/);
   assert.match(SCRIPT, /--require-pass/);
   assert.doesNotMatch(
     SCRIPT,

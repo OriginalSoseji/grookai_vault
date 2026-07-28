@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md`
+
+This checkpoint records the fail-closed full-production scope guards, exact
+deployed-commit schedule enforcement, bounded representative performance
+policy, separate shadow/current coverage gates, and the read-only seven-cycle
+full-rollout observer.
+
+Decision locked there:
+
+- full production means the complete eligible signed-in scope, produced and
+  observed from exact clean commits through seven reconciled unattended cycles
+
+Unresolved risk afterward:
+
+- the frozen authenticated canary must finish, then fresh corrected shadow,
+  full signed-in activation, seven-cycle evidence, and licensing authority
+  must pass before anonymous rollout
+
 ### `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
 
 This checkpoint records the guarded publication rollback worker, exact GV-ID

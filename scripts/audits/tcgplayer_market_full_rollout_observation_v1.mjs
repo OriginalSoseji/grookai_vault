@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -136,6 +137,13 @@ function stamp() {
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
+}
+
+function gitValue(args) {
+  return execFileSync("git", args, {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  }).trim();
 }
 
 async function readGovernedSummary(summaryPath, commitField) {
@@ -544,6 +552,10 @@ async function main() {
       audit_version: AUDIT_VERSION,
       policy_version:
         TCGPLAYER_MARKET_FULL_ROLLOUT_OBSERVATION_POLICY_V1,
+      observer_commit_sha: gitValue(["rev-parse", "HEAD"]),
+      observer_branch: gitValue(["branch", "--show-current"]),
+      observer_tracked_worktree_clean:
+        gitValue(["status", "--porcelain", "--untracked-files=no"]) === "",
       window_start: args.windowStart,
       activation_run_id: args.activationRunId,
       expected_commit_sha: args.expectedCommitSha,

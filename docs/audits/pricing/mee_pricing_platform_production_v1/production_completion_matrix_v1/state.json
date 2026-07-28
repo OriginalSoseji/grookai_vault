@@ -1,6 +1,6 @@
 {
   "schema_version": "TCGPLAYER_MARKET_COMPLETION_STATE_V1",
-  "as_of": "2026-07-28T11:30:00.000Z",
+  "as_of": "2026-07-28T12:14:44.031Z",
   "requirements": [
     {
       "requirement_id": "selectable_goal_registered",
@@ -166,9 +166,9 @@
     {
       "requirement_id": "seven_unattended_full_eligible_cycles",
       "status": "pending",
-      "current_truth": "The scheduled 100-printing canary is active; full-eligible unattended publication has not begun.",
+      "current_truth": "The exact-commit full-rollout observer and production scope guards are implemented; full-eligible unattended publication has not begun.",
       "next_gate": "After corrected V1.2 signed-in activation, prove seven consecutive unattended full-eligible cycles with healthy telemetry and reconciliation.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md"]
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md", "backend/pricing/tcgplayer_market_full_rollout_observation_policy_v1.mjs", "scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs", "docs/checkpoints/pricing/PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md"]
     },
     {
       "requirement_id": "minimum_95_percent_exact_mapping_coverage",
@@ -187,9 +187,9 @@
     {
       "requirement_id": "production_runbooks_complete",
       "status": "passed",
-      "current_truth": "Production operations are documented for deploy, schedule, observation, provenance, rollback, acquisition, mapping, API, notification, and historical-worker incidents.",
+      "current_truth": "Production operations are documented for deploy, exact-commit full rollout, seven-cycle observation, provenance, rollback, acquisition, mapping, API, notification, and historical-worker incidents.",
       "next_gate": null,
-      "evidence": ["docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md", "scripts/workers/tcgplayer_market_rollback_v1.mjs", "scripts/audits/tcgplayer_market_provenance_lookup_v1.mjs"]
+      "evidence": ["docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md", "scripts/workers/tcgplayer_market_rollback_v1.mjs", "scripts/audits/tcgplayer_market_provenance_lookup_v1.mjs", "scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs"]
     },
     {
       "requirement_id": "pricing_checkpoints_complete",
