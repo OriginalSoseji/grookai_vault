@@ -98,7 +98,7 @@ test("repository completion state covers the exact governed requirement set", ()
   assert.deepEqual(result.findings, []);
 });
 
-test("repository state does not overclaim undeployed exact-Vault work", () => {
+test("repository state preserves both undeployed pricing migrations", () => {
   const byId = new Map(
     STATE.requirements.map((row) => [row.requirement_id, row]),
   );
@@ -108,16 +108,31 @@ test("repository state does not overclaim undeployed exact-Vault work", () => {
   assert.equal(schemaParity.status, "pending");
   assert.match(
     schemaParity.next_gate,
+    /20260728130000_tcgplayer_market_read_model_contract_completion_v1\.sql/,
+  );
+  assert.match(
+    schemaParity.next_gate,
     /20260728133000_vault_exact_market_pricing_targets_v1\.sql/,
+  );
+  assert.ok(
+    schemaParity.evidence.includes(
+      "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql",
+    ),
   );
   assert.ok(
     schemaParity.evidence.includes(
       "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql",
     ),
   );
+  assert.ok(
+    schemaParity.evidence.includes(
+      "backend/pricing/rollout/tcgplayer_market_production_v1_migration_manifest.json",
+    ),
+  );
 
   assert.equal(surfaces.status, "pending");
-  assert.match(surfaces.current_truth, /not yet deployed/);
+  assert.match(surfaces.current_truth, /read-model completion migration/);
+  assert.match(surfaces.current_truth, /exact-Vault migration/);
   assert.match(surfaces.next_gate, /source-to-render proof/);
   assert.ok(
     surfaces.evidence.includes(
