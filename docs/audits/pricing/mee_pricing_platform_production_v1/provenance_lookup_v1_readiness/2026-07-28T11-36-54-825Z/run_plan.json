@@ -1,0 +1,16 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_PROVENANCE_LOOKUP_AUDIT_V1",
+  "mode": "read_only",
+  "commit_sha": "7c6150decb228a8256386f50820cf374e8b38b18",
+  "branch": "pricing/mee-productization-v1",
+  "tracked_worktree_clean": true,
+  "printing_gv_id": "GV-PK-HP-101-HOLO",
+  "provenance_id": null,
+  "require_available": true,
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "service_only_trace": true,
+    "public_trace_exposure": false
+  }
+}

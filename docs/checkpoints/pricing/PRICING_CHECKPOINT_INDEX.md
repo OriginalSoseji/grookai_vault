@@ -33,6 +33,40 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
+
+This checkpoint records the guarded publication rollback worker, exact GV-ID
+provenance diagnostic, expanded incident runbook, clean-SHA readiness evidence,
+and the first deterministic 30-requirement production completion matrix.
+
+Decision locked there:
+
+- Production V1 completion is a governed evidence decision: every required
+  operational, product, rollout, and licensing gate must be represented, and
+  pending or externally blocked rows prevent a completion claim
+
+Unresolved risk afterward:
+
+- the authenticated 72-hour canary, corrected V1.2 full shadow and signed-in
+  rollout, seven unattended full-eligible cycles, final deterministic gap
+  ledger, checkpoint closeout, and public licensing authority remain open
+
+### `PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md`
+
+This checkpoint records the first bounded canonical mapping apply: exactly 25
+collision-free source products were inserted and read back without publication,
+qualification, customer, or vault writes.
+
+Decision locked there:
+
+- exact mapping changes are append-only canon-maintenance actions produced from
+  a hashed clean-commit plan and reconciled before any new pricing publication
+
+Unresolved risk afterward:
+
+- a fresh corrected full shadow must prove the launch denominator and gap
+  ledger after the canary; no mapping apply itself authorizes rollout
+
 ### `PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md`
 
 This checkpoint records the year-qualified Staff scope defect found before
@@ -495,6 +529,10 @@ Recommended reading order for future maintainers:
     - then read how the first 25 exact mappings were applied from a clean
       committed plan, read back exactly, and kept isolated from publication
 
+25. `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
+    - then read how rollback, provenance lookup, incident handling, and the
+      fail-closed production completion matrix became permanent operations
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -512,3 +550,7 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2/2026-07-28T10-49-27-107Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1/2026-07-28T10-50-02-909Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_apply_v1/2026-07-28T11-10-00-900Z_apply_f215e3b1-65b5-4d08-bfb3-b3ef98a0da77/post_apply_reconciliation.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T11-38-04-675Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/provenance_lookup_v1_readiness/2026-07-28T11-36-54-825Z/summary.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
