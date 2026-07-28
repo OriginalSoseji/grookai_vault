@@ -175,6 +175,32 @@ For a bounded set of exact printings, confirm:
 - the client RPC returns the same value
 - `get_market_price_trace_v1` closes the provenance chain
 
+## 72-Hour Canary Observation
+
+Run the read-only observation evaluator with the exact activation evidence:
+
+```powershell
+npm run pricing:market:canary:observe -- `
+  --window-start=<activation-timestamp> `
+  --activation-run-id=<activation-publication-run-id> `
+  --expected-commit-sha=<frozen-producing-sha>
+```
+
+Before 72 hours elapse, the expected result is `observing`. At or after the
+required end time, require a passing result:
+
+```powershell
+npm run pricing:market:canary:observe -- `
+  --window-start=<activation-timestamp> `
+  --activation-run-id=<activation-publication-run-id> `
+  --expected-commit-sha=<frozen-producing-sha> `
+  --require-pass
+```
+
+The evaluator reads production state but performs no database writes,
+publication activation, rollback, or grant changes. Preserve its run plan,
+evidence, summary, report, and artifact hashes with the canary checkpoint.
+
 ## Rollout
 
 Keep RPC execution authenticated-only during the signed-in canary.

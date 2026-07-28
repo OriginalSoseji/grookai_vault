@@ -143,6 +143,24 @@ The standalone TCGCSV current-sync timer may be retired only after combined
 pipeline shadow verification. Historical backfill remains independently
 governed and must continue to yield during the current-price window.
 
+The signed-in canary observation window is evaluated by
+`TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1`. The evaluator is read-only and
+must prove:
+
+- the activation run and every expected daily schedule slot use the frozen
+  producing commit
+- every run selects, maps, qualifies, snapshots, and traces the exact verified
+  canary count
+- no delayed, suppressed, quarantined, or excluded canary row appears
+- no terminal pricing operations alert occurs inside the observation window
+- current prices remain fresh, positive USD values with complete provenance
+- authenticated runtime reads succeed and anonymous runtime reads remain denied
+- rollback authority and a prior publication generation remain available
+
+An incomplete time window is `observing`, not passed. A missing elapsed schedule
+slot, broken trace, stale value, access-boundary regression, terminal alert, or
+run mismatch fails the gate.
+
 ## Health Gates
 
 Production health is critical when:
