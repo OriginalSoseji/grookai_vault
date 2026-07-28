@@ -33,6 +33,25 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_30_PRE_ROLLOUT_COMPLETION_TRUTH.md`
+
+This checkpoint corrects the Production V1 completion matrix after
+exact-printing Vault work was committed but intentionally left undeployed
+during the frozen authenticated canary. It also preserves the current
+`95.247%` V1.2 coverage baseline, deterministic gap ledger, and passing
+read-model latency proof.
+
+Decision locked there:
+
+- committed and locally verified pricing work remains pending until production
+  schema and source-to-render evidence prove the deployed state
+
+Unresolved risk afterward:
+
+- the 72-hour canary, exact-Vault deployment/readback, fresh full shadow,
+  signed-in activation, seven unattended cycles, and public licensing
+  authority remain open
+
 ### `PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md`
 
 This checkpoint records the migration of private/public, web/Flutter Vault

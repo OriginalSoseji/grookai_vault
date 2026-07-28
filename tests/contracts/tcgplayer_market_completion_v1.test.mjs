@@ -92,8 +92,38 @@ test("repository completion state covers the exact governed requirement set", ()
   assert.equal(result.completion_allowed, false);
   assert.equal(result.counts.required, 30);
   assert.equal(result.counts.represented, 30);
+  assert.equal(result.counts.passed, 21);
+  assert.equal(result.counts.pending, 8);
   assert.equal(result.counts.blocked_external, 1);
   assert.deepEqual(result.findings, []);
+});
+
+test("repository state does not overclaim undeployed exact-Vault work", () => {
+  const byId = new Map(
+    STATE.requirements.map((row) => [row.requirement_id, row]),
+  );
+  const schemaParity = byId.get("production_schema_migration_parity");
+  const surfaces = byId.get("all_supported_surfaces_shared_interface");
+
+  assert.equal(schemaParity.status, "pending");
+  assert.match(
+    schemaParity.next_gate,
+    /20260728133000_vault_exact_market_pricing_targets_v1\.sql/,
+  );
+  assert.ok(
+    schemaParity.evidence.includes(
+      "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql",
+    ),
+  );
+
+  assert.equal(surfaces.status, "pending");
+  assert.match(surfaces.current_truth, /not yet deployed/);
+  assert.match(surfaces.next_gate, /source-to-render proof/);
+  assert.ok(
+    surfaces.evidence.includes(
+      "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md",
+    ),
+  );
 });
 
 test("completion audit is read-only and can enforce the final gate", () => {

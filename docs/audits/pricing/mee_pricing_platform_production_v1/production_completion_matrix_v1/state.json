@@ -1,6 +1,6 @@
 {
   "schema_version": "TCGPLAYER_MARKET_COMPLETION_STATE_V1",
-  "as_of": "2026-07-28T12:16:32.311Z",
+  "as_of": "2026-07-28T14:02:44.892Z",
   "requirements": [
     {
       "requirement_id": "selectable_goal_registered",
@@ -32,10 +32,10 @@
     },
     {
       "requirement_id": "production_schema_migration_parity",
-      "status": "passed",
-      "current_truth": "The Production V1 pricing migration was applied and production schema and security readback match repository authority.",
-      "next_gate": null,
-      "evidence": ["supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md"]
+      "status": "pending",
+      "current_truth": "The core Production V1 pricing migration is applied, but the exact-printing Vault target migration is committed and locally verified only; it is intentionally not deployed while the authenticated canary is frozen.",
+      "next_gate": "After the 72-hour canary passes, apply 20260728133000_vault_exact_market_pricing_targets_v1.sql from the clean rollout SHA and preserve production schema, grant, RLS, and authenticated/anonymous readback proof.",
+      "evidence": ["supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql", "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md"]
     },
     {
       "requirement_id": "qualification_decision_model",
@@ -109,10 +109,10 @@
     },
     {
       "requirement_id": "all_supported_surfaces_shared_interface",
-      "status": "passed",
-      "current_truth": "Card detail, search, set grids, vault totals, market history, web, and Flutter were migrated to the governed shared pricing interface.",
-      "next_gate": null,
-      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md"]
+      "status": "pending",
+      "current_truth": "Repository code for Card Detail, search, set grids, market history, web, Flutter, and exact-printing Vault totals consumes the governed pricing interface, but the latest exact-Vault migration and clients are not yet deployed.",
+      "next_gate": "Deploy the clean post-canary rollout SHA, verify exact-printing Vault values and totals on authenticated web and Flutter surfaces, and preserve source-to-render proof before marking this production requirement passed.",
+      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "tests/contracts/tcgplayer_market_vault_exact_pricing_v1.test.mjs", "test/vault_exact_pricing_test.dart"]
     },
     {
       "requirement_id": "grookai_value_retired_from_v1_product_path",
@@ -159,7 +159,7 @@
     {
       "requirement_id": "authenticated_72_hour_canary",
       "status": "pending",
-      "current_truth": "At 3.605 observed hours, the authenticated 100-printing canary remains healthy with zero findings and anonymous access denied; its 72-hour window has not elapsed.",
+      "current_truth": "At 5.276 observed hours, the authenticated 100-printing canary remains healthy with zero findings and anonymous access denied; its 72-hour window has not elapsed.",
       "next_gate": "Observe through 2026-07-31T08:40:15.793Z and require every scheduled slot, alert, freshness, trace, access, and rollback check to pass.",
       "evidence": ["docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T12-17-33-743Z/summary.json"]
     },
@@ -173,14 +173,14 @@
     {
       "requirement_id": "minimum_95_percent_exact_mapping_coverage",
       "status": "pending",
-      "current_truth": "The fixed frozen shadow measured 95.247 percent under V1.2 and 25 exact mappings were applied, but a fresh corrected full shadow has not yet established launch coverage.",
+      "current_truth": "A read-only V1.2 audit at the current repository SHA measured 95.247 percent coverage with zero unclassified gaps, but the frozen canary publication still uses the earlier scope and a fresh rollout-producing shadow is required.",
       "next_gate": "Run a fresh full eligible V1.2 shadow after the canary, reconcile the new mappings, and require at least 95 percent coverage without scope mismatches.",
       "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md"]
     },
     {
       "requirement_id": "all_remaining_gaps_deterministic",
       "status": "pending",
-      "current_truth": "The planner classifies remaining unmapped products into exact candidates or explicit blockers, but launch-state gap reconciliation awaits a fresh full shadow.",
+      "current_truth": "The current read-only V1.2 audit classifies all 1,553 denominator gaps with deterministic reasons and reports zero unclassified rows, but launch-state reconciliation awaits the fresh rollout-producing shadow.",
       "next_gate": "Recompute the complete gap ledger from the corrected full shadow and prove every remaining row has a deterministic reason.",
       "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md"]
     },
@@ -194,9 +194,9 @@
     {
       "requirement_id": "pricing_checkpoints_complete",
       "status": "pending",
-      "current_truth": "Pricing decisions and current production evidence are checkpointed through the first exact-mapping apply; final rollout truth is not yet available.",
+      "current_truth": "Pricing decisions and current production evidence are checkpointed through exact-printing Vault integration and its clean-SHA smoke proof; final rollout truth is not yet available.",
       "next_gate": "Update the pricing checkpoint pack after the 72-hour canary, corrected full rollout, seven cycles, and final licensing decision.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md"]
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md"]
     },
     {
       "requirement_id": "public_rollout_gates_before_anonymous_access",
