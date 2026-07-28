@@ -27,6 +27,7 @@ const WRONG_IMAGE_URL = "https://images.pokemontcg.io/cel25c/15_A.png";
 const WRONG_IMAGE_PATH =
   "warehouse-derived/self-hosted-images-v1/card_prints/cel25c/gv-pk-cel-15cc-here-comes-team-rocket/484f5a0f6ac9d70b585b7b15.png";
 const STORAGE_BUCKET = "user-card-images";
+const IMAGE_SOURCE = "identity";
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
   "artifacts",
@@ -239,7 +240,7 @@ async function main() {
           `update public.card_prints
               set image_url = $4,
                   image_path = $5,
-                  image_source = 'tcgplayer_canary_verified',
+                  image_source = $8,
                   image_hash = $6,
                   image_note =
                     'Corrected during TCGPlayer Market canary verification; prior pointer rendered Venusaur instead of Here Comes Team Rocket!.'
@@ -255,6 +256,7 @@ async function main() {
             storagePath,
             imageHash,
             WRONG_IMAGE_PATH,
+            IMAGE_SOURCE,
           ],
         );
         if (update.rowCount !== 1) {
@@ -265,7 +267,7 @@ async function main() {
           after.image_url !== SOURCE_IMAGE_URL ||
           after.image_path !== storagePath ||
           after.image_hash !== imageHash ||
-          after.image_source !== "tcgplayer_canary_verified" ||
+          after.image_source !== IMAGE_SOURCE ||
           Number(after.current_publication_refs) !== 0
         ) {
           throw new Error("post-update image readback did not reconcile");
@@ -280,7 +282,7 @@ async function main() {
         ...before,
         image_url: SOURCE_IMAGE_URL,
         image_path: storagePath,
-        image_source: "tcgplayer_canary_verified",
+        image_source: IMAGE_SOURCE,
         image_hash: imageHash,
       };
     }

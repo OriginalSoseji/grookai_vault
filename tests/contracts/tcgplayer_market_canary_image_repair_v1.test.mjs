@@ -14,6 +14,8 @@ test("canary image repair is exact, pointer-only, and activation-safe", () => {
   assert.match(REPAIR, /GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET/);
   assert.match(REPAIR, /product\/250323_in_1000x1000\.jpg/);
   assert.match(REPAIR, /upsert: false/);
+  assert.match(REPAIR, /const IMAGE_SOURCE = "identity"/);
+  assert.match(REPAIR, /image_source = \$8/);
   assert.match(REPAIR, /where id = \$1[\s\S]*and gv_id = \$2/);
   assert.match(REPAIR, /current_publication_refs/);
   assert.match(REPAIR, /canonical_identity_fields_changed: false/);
