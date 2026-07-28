@@ -1,6 +1,6 @@
 {
   "schema_version": "TCGPLAYER_MARKET_COMPLETION_STATE_V1",
-  "as_of": "2026-07-28T12:14:44.031Z",
+  "as_of": "2026-07-28T12:16:32.311Z",
   "requirements": [
     {
       "requirement_id": "selectable_goal_registered",
@@ -159,9 +159,9 @@
     {
       "requirement_id": "authenticated_72_hour_canary",
       "status": "pending",
-      "current_truth": "The authenticated 100-printing canary is healthy and anonymous access remains denied, but its 72-hour window has not elapsed.",
+      "current_truth": "At 3.605 observed hours, the authenticated 100-printing canary remains healthy with zero findings and anonymous access denied; its 72-hour window has not elapsed.",
       "next_gate": "Observe through 2026-07-31T08:40:15.793Z and require every scheduled slot, alert, freshness, trace, access, and rollback check to pass.",
-      "evidence": ["docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T11-18-26-600Z/summary.json"]
+      "evidence": ["docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T12-17-33-743Z/summary.json"]
     },
     {
       "requirement_id": "seven_unattended_full_eligible_cycles",
