@@ -212,13 +212,17 @@ function selectPricingRecord({
 }) {
   if (selectedCardPrintingId) {
     const exact = records.find(
-      (record) => record.card_printing_id === selectedCardPrintingId,
+      (record) =>
+        record.pricing_scope === "card_printing" &&
+        record.card_printing_id === selectedCardPrintingId,
     );
     if (exact) return exact;
   }
   if (selectedPrintingGvId) {
     const exact = records.find(
-      (record) => record.printing_gv_id === selectedPrintingGvId,
+      (record) =>
+        record.pricing_scope === "card_printing" &&
+        record.printing_gv_id === selectedPrintingGvId,
     );
     if (exact) return exact;
   }

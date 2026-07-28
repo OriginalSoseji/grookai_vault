@@ -47,9 +47,9 @@ export async function getPublicPricingByCardIds(
         confidence: 1,
         listing_count: record.active_ask_listing_count,
         price_source: "tcgplayer_market",
-        updated_at: record.observed_at,
+        updated_at: record.published_at,
         active_price_updated_at: record.active_ask_observed_at,
-        last_snapshot_at: record.observed_at,
+        last_snapshot_at: record.published_at,
       },
     ]),
   );

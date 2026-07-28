@@ -1499,6 +1499,7 @@ class NetworkStreamService {
       primarySource: _nullable(row['source_name']),
       sourceLabel: _nullable(row['source_label']),
       observedAt: DateTime.tryParse(_nullable(row['observed_at']) ?? ''),
+      publishedAt: DateTime.tryParse(_nullable(row['published_at']) ?? ''),
     );
   }
 

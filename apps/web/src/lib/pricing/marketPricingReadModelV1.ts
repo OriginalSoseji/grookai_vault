@@ -16,6 +16,7 @@ type MarketPricingReadRowV1 = {
   source_name: string | null;
   source_label: string | null;
   observed_at: string | null;
+  published_at: string | null;
   freshness: string | null;
   low_price: number | null;
   mid_price: number | null;
@@ -43,6 +44,7 @@ export type MarketPricingRecordV1 = {
   source_name: "tcgplayer";
   source_label: string;
   observed_at: string;
+  published_at: string;
   freshness: "fresh";
   low_price?: number;
   mid_price?: number;
@@ -73,7 +75,8 @@ function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
     row.currency !== "USD" ||
     row.source_name !== "tcgplayer" ||
     row.freshness !== "fresh" ||
-    !row.observed_at
+    !row.observed_at ||
+    !row.published_at
   ) {
     return null;
   }
@@ -93,6 +96,7 @@ function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
     source_name: "tcgplayer",
     source_label: row.source_label?.trim() || "TCGPlayer Market",
     observed_at: row.observed_at,
+    published_at: row.published_at,
     freshness: "fresh",
     low_price: finite(row.low_price),
     mid_price: finite(row.mid_price),
@@ -147,4 +151,3 @@ export async function getMarketPricingReadModelV1(
     .map(mapRow)
     .filter((row): row is MarketPricingRecordV1 => row !== null);
 }
-

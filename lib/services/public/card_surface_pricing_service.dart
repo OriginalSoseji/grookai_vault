@@ -7,6 +7,7 @@ class CardSurfacePricingData {
     this.primarySource,
     this.sourceLabel,
     this.observedAt,
+    this.publishedAt,
   });
 
   final String cardPrintId;
@@ -14,6 +15,7 @@ class CardSurfacePricingData {
   final String? primarySource;
   final String? sourceLabel;
   final DateTime? observedAt;
+  final DateTime? publishedAt;
 
   double? get visibleValue => marketClose;
 
@@ -66,6 +68,9 @@ class CardSurfacePricingService {
           primarySource: _normalizeSource(row['source_name']),
           sourceLabel: (row['source_label'] ?? '').toString().trim(),
           observedAt: DateTime.tryParse((row['observed_at'] ?? '').toString()),
+          publishedAt: DateTime.tryParse(
+            (row['published_at'] ?? '').toString(),
+          ),
         );
       }
     }

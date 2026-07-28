@@ -72,9 +72,20 @@ Service-role trace tooling consumes:
 
 Raw publication tables and internal views are not client-readable.
 
-Parent rows may show `From` only when more than one exact eligible printing is
-available. The parent value is the deterministic minimum of those exact
-printing closes. It must be labeled `From TCGPlayer Market`.
+Every available row exposes both the source observation timestamp and immutable
+publication timestamp. Exact-printing rows expose their printing identity and
+provenance directly.
+
+A parent with one eligible exact printing exposes that printing's identity,
+close, observation timestamp, publication timestamp, and provenance. A parent
+may show `From` only when more than one exact eligible printing is available.
+The parent value is the deterministic minimum of those exact printing closes
+and retains the selected minimum printing's identity, timestamps, and
+provenance. It must be labeled `From TCGPlayer Market`, retain
+`pricing_scope = parent`, and report the complete eligible-printing count.
+Ranked discovery reads use the same parent-summary semantics and the
+background-refreshed active-ask cache; they must not aggregate the raw listing
+warehouse during a product request.
 
 ## Supported Product Surfaces
 

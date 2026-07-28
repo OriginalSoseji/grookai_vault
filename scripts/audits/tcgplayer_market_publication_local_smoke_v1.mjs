@@ -42,9 +42,8 @@ async function runWorker(url, runKey, outRoot) {
     process.execPath,
     [
       WORKER,
-      "--mode=canary",
+      "--mode=production",
       `--run-key=${runKey}`,
-      "--limit=1",
       `--out-root=${outRoot}`,
     ],
     {
@@ -90,12 +89,14 @@ async function seedFixture(client, fixture) {
          gv_id,
          identity_domain
        )
-       values ($1, $2, $3, 'Pricing Smoke Pikachu', '1', 'Rare Holo', 'SMOKE', $4, 'pokemon_eng_standard')`,
+       values ($1, $2, $3, $5, $6, 'Rare Holo', 'SMOKE', $4, 'pokemon_eng_standard')`,
       [
         fixture.cardPrintId,
         base.rows[0].game_id,
         base.rows[0].set_id,
         fixture.gvId,
+        fixture.canonicalName,
+        fixture.canonicalNumber,
       ],
     );
     await client.query(
@@ -113,12 +114,19 @@ async function seedFixture(client, fixture) {
          is_active
        )
        values (
-         $1, $2, 'pokemon_eng_standard', 'SMOKE', '1',
-         'pricing smoke pikachu', 'Pricing Smoke Pikachu',
+         $1, $2, 'pokemon_eng_standard', 'SMOKE', $4,
+         $5, $6,
          '{"variant_key_current":"standard"}'::jsonb,
          'pokemon_eng_standard:v1', $3, true
        )`,
-      [randomUUID(), fixture.cardPrintId, randomUUID().replaceAll("-", "")],
+      [
+        randomUUID(),
+        fixture.cardPrintId,
+        randomUUID().replaceAll("-", ""),
+        fixture.canonicalNumber,
+        fixture.canonicalName.toLowerCase(),
+        fixture.canonicalName,
+      ],
     );
     await client.query(
       `insert into public.card_printings (
@@ -232,11 +240,13 @@ async function seedFixture(client, fixture) {
          catalog_metadata_status
        )
        values (
-         $1::bigint, 3, 1, 'Pricing Smoke Pikachu', 'Pricing Smoke Pikachu',
-         '[{"name":"Number","value":"1"}]'::jsonb,
+         $1::bigint, 3, 1, $4::text, $4::text,
+         jsonb_build_array(
+           jsonb_build_object('name', 'Number', 'value', $5::text)
+         ),
          jsonb_build_object(
            'productId', $1::bigint,
-           'name', 'Pricing Smoke Pikachu'
+           'name', $4::text
          ),
          $2, $3, true, 'current'
        )`,
@@ -244,6 +254,8 @@ async function seedFixture(client, fixture) {
         fixture.productId,
         fixture.productPayloadHash,
         fixture.sourceRunId,
+        fixture.canonicalName,
+        fixture.canonicalNumber,
       ],
     );
     await client.query(
@@ -324,11 +336,14 @@ async function main() {
   const url = connectionString();
   assertLocalUrl(url);
   const fixtureKey = new Date().toISOString().replace(/[:.]/g, "-");
+  const fixtureSuffix = randomInt(100_000, 999_999);
   const fixture = {
     cardPrintId: randomUUID(),
     cardPrintingId: randomUUID(),
     gvId: `GV-PK-SMOKE-${fixtureKey}`,
     printingGvId: `GV-PK-SMOKE-${fixtureKey}-HOLO`,
+    canonicalName: `Pricing Smoke Pikachu ${fixtureSuffix}`,
+    canonicalNumber: `SMOKE-${fixtureSuffix}`,
     productId: randomInt(900_000_000, 999_999_999),
     sourceRunId: randomUUID(),
     sourceRunKey: `LOCAL-SOURCE-${fixtureKey}`,
@@ -435,16 +450,44 @@ async function main() {
         try {
           await authenticatedClient.query("set local role authenticated");
           return await authenticatedClient.query(
-            `select count(*)::integer as row_count
-               from public.get_market_pricing_read_model_v1(array[$1]::uuid[], null)`,
-            [fixture.cardPrintId],
+            `select *
+               from public.get_market_pricing_read_model_v1(
+                 array[$1]::uuid[],
+                 array[$2]::uuid[]
+               )`,
+            [fixture.cardPrintId, fixture.cardPrintingId],
           );
         } finally {
           await authenticatedClient.query("rollback");
         }
       },
     );
-    assert.equal(Number(authenticated.rows[0].row_count), 1);
+    assert.equal(authenticated.rowCount, 2);
+    const parentRead = authenticated.rows.find(
+      (row) => row.pricing_scope === "parent",
+    );
+    const exactRead = authenticated.rows.find(
+      (row) => row.pricing_scope === "card_printing",
+    );
+    assert.ok(parentRead);
+    assert.ok(exactRead);
+    for (const readRow of [parentRead, exactRead]) {
+      assert.equal(readRow.card_print_id, fixture.cardPrintId);
+      assert.equal(readRow.card_printing_id, fixture.cardPrintingId);
+      assert.equal(readRow.printing_gv_id, fixture.printingGvId);
+      assert.equal(readRow.finish_key, "holo");
+      assert.equal(readRow.status, "available");
+      assert.equal(Number(readRow.market_close), 12.34);
+      assert.ok(readRow.observed_at);
+      assert.ok(readRow.published_at);
+      assert.equal(readRow.provenance_id, current.rows[0].provenance_id);
+    }
+    assert.equal(parentRead.is_from_price, false);
+    assert.equal(Number(parentRead.eligible_printing_count), 1);
+    assert.equal(parentRead.market_close, exactRead.market_close);
+    const parentPublishedAt = new Date(parentRead.published_at).toISOString();
+    const exactPublishedAt = new Date(exactRead.published_at).toISOString();
+    assert.equal(parentPublishedAt, exactPublishedAt);
 
     const provenance = current.rows[0].provenance_id;
     const tracePrivileges = await client.query(
@@ -485,7 +528,13 @@ async function main() {
       second_publication_set_id: second.publication_set_id,
       restored_publication_set_id: rollback.rows[0].restored_set_id,
       market_price: Number(current.rows[0].market_price),
-      authenticated_read_rows: Number(authenticated.rows[0].row_count),
+      authenticated_read_rows: authenticated.rowCount,
+      parent_identity_matches_exact:
+        parentRead.card_printing_id === exactRead.card_printing_id,
+      parent_published_at_matches_exact:
+        parentPublishedAt === exactPublishedAt,
+      parent_provenance_matches_exact:
+        parentRead.provenance_id === exactRead.provenance_id,
       authenticated_can_trace:
         tracePrivileges.rows[0].authenticated_can_trace,
       service_role_can_trace: tracePrivileges.rows[0].service_role_can_trace,
