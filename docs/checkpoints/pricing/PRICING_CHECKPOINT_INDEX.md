@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md`
+
+This checkpoint records the year-qualified Staff scope defect found before
+mapping apply, the V1.2 policy repair, corrected `95.247%` coverage, and the
+maintenance-only 25-row apply readiness proof.
+
+Decision locked there:
+
+- source claims are classified from explicit evidence rather than exact phrase
+  shape, and any mapping write must revalidate a hashed one-to-one plan from a
+  clean producing commit inside the canon-maintenance boundary
+
+Unresolved risk afterward:
+
+- the first bounded mapping apply/readback, 72-hour canary, corrected V1.2 full
+  shadow, broader signed-in rollout, unattended cycles, and anonymous licensing
+  authority remain open
+
 ### `PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md`
 
 This checkpoint records the read-only exact-mapping planner, its one-to-one
@@ -469,6 +487,10 @@ Recommended reading order for future maintainers:
     - then read how unmapped source products were classified into collision-free
       exact candidates and explicit blockers without changing canonical state
 
+23. `PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md`
+    - then read how a year-qualified Staff variant was removed from Product V1
+      and the first bounded mapping writer was proven read-only before apply
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -483,3 +505,5 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/read_performance_gate/2026-07-28T09-47-20-239Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_1/2026-07-28T10-25-50-424Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1/2026-07-28T10-38-25-697Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2/2026-07-28T10-49-27-107Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1/2026-07-28T10-50-02-909Z/REPORT.md`

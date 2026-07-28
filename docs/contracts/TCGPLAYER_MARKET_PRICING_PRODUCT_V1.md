@@ -190,7 +190,7 @@ Each expansion requires its own evidence contract and rollout gate.
 ## Coverage Contract
 
 Production V1 coverage is governed by
-`TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1`.
+`TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2`.
 
 The denominator unit is one current TCGCSV source product/subtype price row.
 It includes rows that:
@@ -202,7 +202,7 @@ It includes rows that:
 - are not deterministically excluded object or V1.1 special-print lanes
 
 Object and special-print scope is shared with publication through
-`TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1`. The classifier separates:
+`TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2`. The classifier separates:
 
 - ordinary V1 single cards: `in_scope`
 - sealed, packaged, accessory, and non-card products:
@@ -216,6 +216,14 @@ evidence is absent. This prevents an ordinary numbered card such as
 its canonical name contains a packaging word. Explicit parenthetical
 distribution labels and special-print markers remain V1.1 exclusions even
 when a printed number is present.
+
+V1.2 extends event/distribution evidence to year-qualified and otherwise
+decorated markers inside a source suffix. For example, `(2014 Staff)` is a
+special-print exclusion even though `(Staff)` was the only form recognized by
+V1.1. Ordinary identity-bearing promo context such as
+`(World Championships 2018)` or `(e-League)` is not excluded merely for
+containing an event name. It requires separate visible source evidence such as
+`Staff`, `Winner`, `Prerelease`, or `Stamped`.
 
 Missing canonical mapping, identity, printed-number, or exact-finish evidence
 does not remove a row from the denominator. Those are coverage gaps.
@@ -236,6 +244,39 @@ boundary; it must not remove ordinary unmapped singles to manufacture a pass.
 Broader rollout additionally requires every row in the active publication to
 remain `in_scope` under the same active scope policy. Passing the aggregate
 coverage percentage does not override an active-publication scope mismatch.
+
+## Exact Mapping Repair Contract
+
+Unmapped ordinary source products may enter a bounded mapping repair only
+through `TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1` and
+`TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1`.
+
+The plan is read-only. A candidate requires:
+
+- exact normalized name and collector number
+- one governed set authority
+- one active `pokemon_eng_standard` target identity
+- no active source mapping
+- no active TCGPlayer mapping on the target
+- one-to-one source/target ownership
+- Product Scope V1.2 eligibility
+
+The apply command is registered under the canon-maintenance launcher, is
+dry-run by default, and is limited to `25` mappings per execution. Apply mode
+requires an exact candidate-artifact hash, a candidate plan that records a
+clean tracked worktree, a separately pinned candidate-plan commit that is an
+ancestor of the exact clean producing commit, the explicit maintenance
+boundary, and a confirmation token. It revalidates source, target, observation,
+identity, mapping, scope, and active-publication state inside a serializable
+transaction.
+
+Mapping repair inserts new `external_mappings` rows only. It does not update or
+delete existing mappings and does not write publication, pricing, scheduler, or
+customer state. Every inserted mapping must retain the plan hash, candidate
+fingerprint, batch fingerprint, source run, method, confidence, producing
+commit, candidate-plan commit, and rollback identity in its metadata and
+permanent apply artifacts. A post-commit readback failure must still emit a
+rollback manifest for the inserted mapping IDs.
 
 ## Performance Contract
 

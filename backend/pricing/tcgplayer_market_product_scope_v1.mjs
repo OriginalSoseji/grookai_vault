@@ -1,5 +1,7 @@
 export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1";
+export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2 =
+  "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2";
 
 export const TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES = Object.freeze([
   {
@@ -55,7 +57,7 @@ export const TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES = Object.freeze([
   },
 ]);
 
-const SPECIAL_VARIANT_RULES = Object.freeze([
+const SPECIAL_VARIANT_RULES_V1_1 = Object.freeze([
   {
     id: "ball_pattern_print",
     pattern:
@@ -85,6 +87,18 @@ const SPECIAL_VARIANT_RULES = Object.freeze([
       /\([^)]*\b(?:collector'?s?(?: carry)? tin|series collector'?s? tin|blister exclusive|deck exclusive)\b[^)]*\)/i,
   },
 ]);
+
+const SPECIAL_VARIANT_RULES_V1_2 = Object.freeze(
+  SPECIAL_VARIANT_RULES_V1_1.map((rule) =>
+    rule.id === "event_or_distribution_stamp"
+      ? {
+          ...rule,
+          pattern:
+            /(?:\(|\[| - )[^)\]]*\b(?:staff|pre-?release|winner|league (?:stamp|stamped)|release event|stamped)\b[^)\]]*(?:\)|\]|$)/i,
+        }
+      : rule,
+  ),
+);
 
 const UNSUPPORTED_PRODUCT_RULES = Object.freeze([
   {
@@ -124,9 +138,10 @@ function result({
   productName,
   groupName,
   hasPrintedNumberEvidence,
+  policyVersion,
 }) {
   return {
-    policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1,
+    policy_version: policyVersion,
     scope_result: scopeResult,
     in_scope: scopeResult === "in_scope",
     reason_code: scopeResult === "in_scope" ? null : scopeResult,
@@ -139,7 +154,10 @@ function result({
   };
 }
 
-export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
+function classifyTcgplayerMarketProductScope(row, {
+  policyVersion,
+  specialVariantRules,
+}) {
   const rowEvidence = evidence(row);
   const productName = text(
     row.source_product_name ?? rowEvidence.source_product_name,
@@ -161,10 +179,11 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
       productName,
       groupName,
       hasPrintedNumberEvidence,
+      policyVersion,
     });
   }
 
-  const specialVariantRule = firstMatch(SPECIAL_VARIANT_RULES, productName);
+  const specialVariantRule = firstMatch(specialVariantRules, productName);
   if (specialVariantRule) {
     return result({
       scopeResult: "special_variant_v1_1",
@@ -172,6 +191,7 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
       productName,
       groupName,
       hasPrintedNumberEvidence,
+      policyVersion,
     });
   }
 
@@ -182,6 +202,7 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
       productName,
       groupName,
       hasPrintedNumberEvidence,
+      policyVersion,
     });
   }
 
@@ -196,6 +217,7 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
       productName,
       groupName,
       hasPrintedNumberEvidence,
+      policyVersion,
     });
   }
 
@@ -204,5 +226,20 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
     productName,
     groupName,
     hasPrintedNumberEvidence,
+    policyVersion,
+  });
+}
+
+export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
+  return classifyTcgplayerMarketProductScope(row, {
+    policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1,
+    specialVariantRules: SPECIAL_VARIANT_RULES_V1_1,
+  });
+}
+
+export function classifyTcgplayerMarketProductScopeV1_2(row = {}) {
+  return classifyTcgplayerMarketProductScope(row, {
+    policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2,
+    specialVariantRules: SPECIAL_VARIANT_RULES_V1_2,
   });
 }

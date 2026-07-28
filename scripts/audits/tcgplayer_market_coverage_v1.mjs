@@ -8,11 +8,11 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   summarizeTcgplayerMarketCoverageV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_1,
+  classifyTcgplayerMarketProductScopeV1_2,
 } from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 
 const { Client } = pg;
@@ -25,7 +25,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "coverage",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_1";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_2";
 
 function parseArgs(argv) {
   const args = {
@@ -111,7 +111,7 @@ function markdown(run, summary, currentPublicationScope) {
     "# TCGPlayer Market Production V1 Coverage",
     "",
     `- Audit version: \`${AUDIT_VERSION}\``,
-    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1}\``,
+    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2}\``,
     `- Source run: \`${run.run_key}\``,
     `- Source commit: \`${run.git_commit_sha}\``,
     `- Status: \`${summary.status}\``,
@@ -276,7 +276,7 @@ async function main() {
     const currentPublicationClassifications = currentPublicationRows.map(
       (row) => ({
         ...row,
-        product_scope: classifyTcgplayerMarketProductScopeV1_1(row),
+        product_scope: classifyTcgplayerMarketProductScopeV1_2(row),
       }),
     );
     const currentPublicationOutOfScope =
@@ -284,7 +284,7 @@ async function main() {
         (row) => !row.product_scope.in_scope,
       );
     const currentPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
       status:
         currentPublicationOutOfScope.length === 0 ? "passed" : "failed",
       row_count: currentPublicationClassifications.length,
@@ -296,7 +296,7 @@ async function main() {
     if (currentPublicationOutOfScope.length > 0) {
       summary.findings = [
         ...summary.findings,
-        "current_publication_contains_v1_1_scope_exclusion",
+        "current_publication_contains_v1_2_scope_exclusion",
       ];
       summary.status = "failed";
     }
@@ -308,7 +308,7 @@ async function main() {
     await fs.mkdir(runDir, { recursive: true });
     const runPlan = {
       audit_version: AUDIT_VERSION,
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
       source_run_id: run.id,
       source_run_key: run.run_key,
       source_commit_sha: run.git_commit_sha,

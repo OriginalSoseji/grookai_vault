@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import {
   classifyTcgplayerMarketCoverageRowV1,
   summarizeTcgplayerMarketCoverageV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
   tcgplayerMarketCoverageEraV1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 
@@ -60,7 +60,7 @@ function coverageRow(overrides = {}) {
 test("ordinary exact publish row belongs to denominator and numerator", () => {
   const result = classifyTcgplayerMarketCoverageRowV1(coverageRow());
 
-  assert.equal(result.policy_version, TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1);
+  assert.equal(result.policy_version, TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2);
   assert.equal(result.in_denominator, true);
   assert.equal(result.in_numerator, true);
   assert.equal(result.denominator_exclusion_reason, null);
@@ -177,12 +177,13 @@ test("V1.1 excludes unnumbered sealed products without excluding card names", ()
   assert.equal(numberedCard.in_denominator, true);
 });
 
-test("V1.1 routes explicit special print treatments out of V1 scope", () => {
+test("V1.2 routes explicit special print treatments out of V1 scope", () => {
   for (const sourceProductName of [
     "Exeggcute (Poke Ball Pattern)",
     "Exeggutor (Master Ball Pattern)",
     "Erika's Oddish (Energy Symbol Pattern)",
     "Kyogre - SM129 (Prerelease) [Staff]",
+    "Champions Festival - XY27 (2014 Staff)",
     "Luxio - BW34 (Cracked Ice Holo)",
     "Pikachu (Pokemon Center)",
     "Victory Cup (Winner)",
@@ -200,13 +201,15 @@ test("V1.1 routes explicit special print treatments out of V1 scope", () => {
   }
 });
 
-test("V1.1 keeps ordinary identity descriptors and finishes in scope", () => {
+test("V1.2 keeps ordinary identity descriptors and finishes in scope", () => {
   for (const sourceProductName of [
     "Pikachu (Full Art)",
     "Mew (Shiny)",
     "Charizard (Delta Species)",
     "Gengar (Holo)",
     "Suspicious Food Tin",
+    "Champions Festival - SM148 (World Championships 2018)",
+    "Chimecho - 024 (e-League)",
   ]) {
     const result = classifyTcgplayerMarketCoverageRowV1(
       coverageRow({ source_product_name: sourceProductName }),
@@ -215,7 +218,7 @@ test("V1.1 keeps ordinary identity descriptors and finishes in scope", () => {
   }
 });
 
-test("V1.1 removes special variants from denominator and numerator", () => {
+test("V1.2 removes special variants from denominator and numerator", () => {
   const result = summarizeTcgplayerMarketCoverageV1([
     coverageRow({ id: "ordinary" }),
     coverageRow({
@@ -386,7 +389,7 @@ test("coverage audit is read-only and produces governed artifacts", () => {
   assert.match(AUDIT, /current_publication_scope\.json/);
   assert.match(
     AUDIT,
-    /current_publication_contains_v1_1_scope_exclusion/,
+    /current_publication_contains_v1_2_scope_exclusion/,
   );
   assert.match(AUDIT, /artifact_hashes\.json/);
   assert.doesNotMatch(AUDIT, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);

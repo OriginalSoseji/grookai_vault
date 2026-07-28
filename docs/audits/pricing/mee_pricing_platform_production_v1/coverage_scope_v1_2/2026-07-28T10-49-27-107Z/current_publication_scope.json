@@ -1,0 +1,44 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2",
+  "status": "failed",
+  "row_count": 100,
+  "out_of_scope_count": 2,
+  "out_of_scope_rows": [
+    {
+      "source_product_id": 83694,
+      "source_product_name": "Bagon",
+      "source_group_name": "EX Trainer Kit 1: Latias & Latios",
+      "has_printed_number_evidence": true,
+      "product_scope": {
+        "policy_version": "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2",
+        "scope_result": "special_variant_v1_1",
+        "in_scope": false,
+        "reason_code": "special_variant_v1_1",
+        "rule_id": "deck_exclusive_special_variant",
+        "evidence": {
+          "source_product_name": "Bagon",
+          "source_group_name": "EX Trainer Kit 1: Latias & Latios",
+          "has_printed_number_evidence": true
+        }
+      }
+    },
+    {
+      "source_product_id": 85131,
+      "source_product_name": "Electrike",
+      "source_group_name": "EX Trainer Kit 1: Latias & Latios",
+      "has_printed_number_evidence": true,
+      "product_scope": {
+        "policy_version": "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2",
+        "scope_result": "special_variant_v1_1",
+        "in_scope": false,
+        "reason_code": "special_variant_v1_1",
+        "rule_id": "deck_exclusive_special_variant",
+        "evidence": {
+          "source_product_name": "Electrike",
+          "source_group_name": "EX Trainer Kit 1: Latias & Latios",
+          "has_printed_number_evidence": true
+        }
+      }
+    }
+  ]
+}

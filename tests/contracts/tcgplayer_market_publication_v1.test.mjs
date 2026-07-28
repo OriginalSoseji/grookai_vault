@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
   evaluateTcgplayerMarketQualificationV1,
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
@@ -369,7 +369,7 @@ test("publishes an exact fresh English Pokemon printing", () => {
   const result = evaluateTcgplayerMarketQualificationV1(validCandidate(), {
     now: NOW,
   });
-  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1);
+  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2);
   assert.equal(result.decision, "publish");
   assert.equal(result.eligible, true);
   assert.deepEqual(result.reason_codes, []);
@@ -467,7 +467,7 @@ test("quarantines foreign, special, sealed, and code-card lanes", () => {
   assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
 });
 
-test("publication V1.1 scope is evidence-aware and keeps numbered card names", () => {
+test("publication V1.2 scope is evidence-aware and keeps numbered card names", () => {
   const sealed = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
       source_product_name: "Journey Together Booster Bundle",
@@ -498,7 +498,7 @@ test("publication V1.1 scope is evidence-aware and keeps numbered card names", (
   assert.ok(special.reason_codes.includes("special_variant_v1_1"));
   assert.equal(
     special.evidence.product_scope_policy_version,
-    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1",
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2",
   );
   assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
 
@@ -512,6 +512,18 @@ test("publication V1.1 scope is evidence-aware and keeps numbered card names", (
   assert.equal(
     tinPromo.evidence.product_scope_rule_id,
     "distribution_packaging_variant",
+  );
+
+  const yearQualifiedStaff = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_product_name: "Champions Festival - XY27 (2014 Staff)",
+    }),
+    { now: NOW },
+  );
+  assert.equal(yearQualifiedStaff.decision, "exclude");
+  assert.equal(
+    yearQualifiedStaff.evidence.product_scope_rule_id,
+    "event_or_distribution_stamp",
   );
 });
 

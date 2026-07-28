@@ -11,7 +11,7 @@ import "../../backend/env.mjs";
 import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
-  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1,
+  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 
 const { Client } = pg;
@@ -19,7 +19,7 @@ const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1";
+const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_1";
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
   "artifacts",
@@ -446,19 +446,20 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const url = connectionString();
   if (!url) throw new Error("database URL is required");
-  const [commitSha, branch] = await Promise.all([
+  const [commitSha, branch, trackedWorktreeStatus] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),
+    git(["status", "--porcelain", "--untracked-files=no"]),
   ]);
   const gaps = await readJsonl(args.coverageGaps);
   if (
     gaps.length === 0 ||
     gaps.some(
       (row) =>
-        row.policy_version !== "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1",
+        row.policy_version !== "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2",
     )
   ) {
-    throw new Error("coverage artifact is empty or not V1.1");
+    throw new Error("coverage artifact is empty or not V1.2");
   }
   const groupedGaps = groupGapRows(gaps);
   const client = new Client({
@@ -523,7 +524,7 @@ async function main() {
 
     const summary = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
       status: findings.length === 0 ? "passed" : "failed",
       source_run: sourceRun,
       coverage_gaps_artifact: path
@@ -558,10 +559,11 @@ async function main() {
     await fs.mkdir(outDir, { recursive: true });
     const runPlan = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
       mode: "read_only_dry_run",
       commit_sha: commitSha,
       branch,
+      tracked_worktree_clean: !trackedWorktreeStatus,
       source_sync_run_id: args.sourceRunId,
       coverage_gaps_artifact: summary.coverage_gaps_artifact,
       reviewed_set_authorities: REVIEWED_SET_AUTHORITIES,

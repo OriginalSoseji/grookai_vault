@@ -1,0 +1,8 @@
+{
+  "script_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_V1",
+  "status": "failed",
+  "mode": "dry_run",
+  "maintenance_run_id": "821a0a94-fc03-41d1-a842-651f1d0f15c8",
+  "committed": false,
+  "error": "for SELECT DISTINCT, ORDER BY expressions must appear in select list"
+}

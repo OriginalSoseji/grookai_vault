@@ -1,11 +1,13 @@
 import {
-  classifyTcgplayerMarketProductScopeV1_1,
+  classifyTcgplayerMarketProductScopeV1_2,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1";
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1";
+export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2 =
+  "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2";
 
 export const TCGPLAYER_MARKET_FRESHNESS_HOURS_V1 = 36;
 export const TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1 = 72;
@@ -69,7 +71,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const normalizedFinish =
     clean(row.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
-  const scope = classifyTcgplayerMarketProductScopeV1_1(row);
+  const scope = classifyTcgplayerMarketProductScopeV1_2(row);
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
@@ -253,7 +255,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const eligible = decision === "publish";
 
   return {
-    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
+    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
     decision,
     eligible,
     publication_lane: publicationLane,

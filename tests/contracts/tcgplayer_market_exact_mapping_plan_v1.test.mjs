@@ -10,6 +10,11 @@ import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
+import {
+  buildTcgplayerExactMappingMetaV1,
+  selectTcgplayerExactMappingApplyBatchV1,
+  TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1,
+} from "../../backend/pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +25,24 @@ const SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_market_exact_mapping_plan_v1.mjs",
+  ),
+  "utf8",
+);
+const APPLY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "backend",
+    "maintenance",
+    "tcgplayer_market_exact_mapping_apply_v1.mjs",
+  ),
+  "utf8",
+);
+const MAINTENANCE_RUNNER = readFileSync(
+  path.join(
+    ROOT,
+    "backend",
+    "maintenance",
+    "run_canon_maintenance_v1.mjs",
   ),
   "utf8",
 );
@@ -175,6 +198,129 @@ test("out-of-scope special variants never become mapping candidates", () => {
   });
   assert.equal(result.disposition, "blocked");
   assert.equal(result.reason, "source_outside_product_v1_scope");
+
+  const yearQualifiedStaff = planTcgplayerExactMappingCandidateV1({
+    source: source({
+      source_product_name: "Champions Festival - XY27 (2014 Staff)",
+      printed_number: "XY27",
+    }),
+    directTargets: [
+      target({
+        name: "Champions Festival",
+        number: "XY27",
+        embedded_external_id: null,
+      }),
+    ],
+  });
+  assert.equal(yearQualifiedStaff.disposition, "blocked");
+  assert.equal(
+    yearQualifiedStaff.reason,
+    "source_outside_product_v1_scope",
+  );
+});
+
+test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {
+  const candidates = [1001, 1002, 1003].map((sourceProductId, index) =>
+    planTcgplayerExactMappingCandidateV1({
+      source: source({ source_product_id: sourceProductId }),
+      directTargets: [
+        target({
+          card_print_id: `card-${index + 1}`,
+          gv_id: `GV-PK-ME05-00${index + 1}`,
+          embedded_external_id: `tcgcsv:24688:${sourceProductId}`,
+        }),
+      ],
+    }),
+  );
+  const batch = selectTcgplayerExactMappingApplyBatchV1(candidates, {
+    limit: 2,
+    excludedSourceProductIds: [1001],
+  });
+  assert.deepEqual(
+    batch.selected.map((row) => row.source_product_id),
+    [1002, 1003],
+  );
+  assert.equal(batch.excluded_count, 1);
+  assert.match(batch.batch_fingerprint, /^[a-f0-9]{64}$/);
+  assert.throws(
+    () =>
+      selectTcgplayerExactMappingApplyBatchV1(candidates, {
+        limit: 26,
+      }),
+    /APPLY_LIMIT_OUT_OF_RANGE/,
+  );
+
+  const tampered = structuredClone(candidates);
+  tampered[0].target.gv_id = "GV-TAMPERED";
+  assert.throws(
+    () =>
+      selectTcgplayerExactMappingApplyBatchV1(tampered, {
+        limit: 1,
+      }),
+    /candidate_fingerprint_mismatch/,
+  );
+});
+
+test("mapping metadata preserves exact candidate and run provenance", () => {
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: source({ source_product_id: 1001 }),
+    directTargets: [
+      target({ embedded_external_id: "tcgcsv:24688:1001" }),
+    ],
+  });
+  const meta = buildTcgplayerExactMappingMetaV1(candidate, {
+    batch_fingerprint: "batch-hash",
+    maintenance_run_id: "run-id",
+    source_sync_run_id: "source-run-id",
+    candidate_artifact_sha256: "artifact-hash",
+    candidate_artifact_path: "docs/audits/candidates.jsonl",
+    candidate_plan_commit_sha: "plan-commit-sha",
+    producing_commit_sha: "commit-sha",
+  });
+  assert.equal(meta.mapping_method, candidate.mapping_method);
+  assert.equal(meta.confidence, candidate.mapping_confidence);
+  assert.equal(meta.candidate_fingerprint, candidate.candidate_fingerprint);
+  assert.equal(meta.maintenance_run_id, "run-id");
+  assert.equal(meta.candidate_plan_commit_sha, "plan-commit-sha");
+  assert.equal(meta.canonical_gv_id, candidate.target.gv_id);
+});
+
+test("mapping apply is launcher-only, dry-run-default, bounded, and insert-only", () => {
+  assert.match(
+    MAINTENANCE_RUNNER,
+    /backend\/maintenance\/tcgplayer_market_exact_mapping_apply_v1\.mjs/,
+  );
+  assert.match(APPLY_SCRIPT, /canon maintenance scripts must be launched/);
+  assert.match(
+    APPLY_SCRIPT,
+    /CANON_MAINTENANCE_DRY_RUN_ENV_V1\]\s*!==\s*"false"/,
+  );
+  assert.match(
+    APPLY_SCRIPT,
+    /begin isolation level serializable/,
+  );
+  assert.match(APPLY_SCRIPT, /pg_advisory_xact_lock/);
+  assert.match(APPLY_SCRIPT, /insert into public\.external_mappings/);
+  assert.match(APPLY_SCRIPT, /active_publication_overlap/);
+  assert.match(APPLY_SCRIPT, /SOURCE_PLAN_TRACKED_WORKTREE_NOT_CLEAN/);
+  assert.match(APPLY_SCRIPT, /SOURCE_PLAN_COMMIT_NOT_ANCESTOR/);
+  assert.match(
+    APPLY_SCRIPT,
+    /TCGPLAYER_EXACT_MAPPING_EXPECTED_PLAN_COMMIT_SHA/,
+  );
+  assert.match(APPLY_SCRIPT, /rollback_manifest\.json/);
+  assert.match(
+    APPLY_SCRIPT,
+    new RegExp(TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1),
+  );
+  assert.doesNotMatch(
+    APPLY_SCRIPT,
+    /\b(update|delete\s+from)\s+public\.external_mappings/i,
+  );
+  assert.doesNotMatch(
+    APPLY_SCRIPT,
+    /\b(insert\s+into|update|delete\s+from)\s+public\.market_price_/i,
+  );
 });
 
 test("planner is database-read-only and rejects apply mode", () => {
@@ -182,6 +328,10 @@ test("planner is database-read-only and rejects apply mode", () => {
   assert.match(SCRIPT, /database_writes:\s*false/);
   assert.match(SCRIPT, /does not support --apply/);
   assert.match(SCRIPT, /begin read only/);
+  assert.match(
+    SCRIPT,
+    /tracked_worktree_clean:\s*!trackedWorktreeStatus/,
+  );
   assert.doesNotMatch(
     SCRIPT,
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,

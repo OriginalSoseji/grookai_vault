@@ -1,0 +1,30 @@
+{
+  "planner_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_1",
+  "policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1",
+  "mode": "read_only_dry_run",
+  "commit_sha": "d953b84e0577d88e0264ef61b569fa5a3b57ed2a",
+  "branch": "pricing/mee-productization-v1",
+  "source_sync_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+  "coverage_gaps_artifact": "docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2/2026-07-28T10-49-27-107Z/coverage_gaps.jsonl",
+  "reviewed_set_authorities": [
+    {
+      "source_group_id": 23529,
+      "source_group_name": "SV: Shrouded Fable",
+      "target_set_code": "sv06.5",
+      "evidence_lane": "reviewed_group_set_authority",
+      "mapping_method": "exact_reviewed_set_number_name_authority_v1",
+      "mapping_confidence": 0.99,
+      "authority_evidence": {
+        "authority_version": "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+        "rationale": "TCGdex canonical set is the established TCGPlayer target when a PokemonAPI duplicate set exists"
+      }
+    }
+  ],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false,
+    "customer_state_writes": false
+  }
+}

@@ -2,7 +2,7 @@ import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_1,
+  classifyTcgplayerMarketProductScopeV1_2,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
@@ -10,6 +10,8 @@ export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1 =
   "TCGPLAYER_MARKET_COVERAGE_POLICY_V1";
 export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1 =
   "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1";
+export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2 =
+  "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2";
 export const TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1 = 95;
 
 export const TCGPLAYER_MARKET_V1_SCOPE_EXCLUSION_RULES =
@@ -98,7 +100,7 @@ function denominatorExclusion(row) {
   const normalizedFinish =
     text(row.normalized_finish_key ?? rowEvidence.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
-  const scope = classifyTcgplayerMarketProductScopeV1_1(row);
+  const scope = classifyTcgplayerMarketProductScopeV1_2(row);
 
   if (categoryId !== 3) return "not_pokemon_category";
   if (sourceActive !== true) return "source_product_inactive";
@@ -140,7 +142,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     Boolean(text(row.card_print_id));
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
     decision_id: row.id ?? null,
     source_observation_id: row.source_observation_id ?? null,
     source_product_id: Number(row.source_product_id),
@@ -154,7 +156,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     reason_codes: reasons(row),
     in_denominator: inDenominator,
     denominator_exclusion_reason: exclusionReason,
-    product_scope: classifyTcgplayerMarketProductScopeV1_1(row),
+    product_scope: classifyTcgplayerMarketProductScopeV1_2(row),
     in_numerator: inNumerator,
     primary_gap_reason:
       inDenominator && !inNumerator ? primaryGapReason(row) : null,
@@ -254,7 +256,7 @@ export function summarizeTcgplayerMarketCoverageV1(
   }
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
     status: findings.length ? "failed" : "passed",
     threshold_percent: minimumCoveragePercent,
     counts: {

@@ -1,11 +1,13 @@
 import { createHash } from "node:crypto";
 
 import {
-  classifyTcgplayerMarketProductScopeV1_1,
+  classifyTcgplayerMarketProductScopeV1_2,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
+export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1 =
+  "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1";
 
 function text(value) {
   return String(value ?? "").trim();
@@ -156,7 +158,7 @@ function targetFailures(source, target) {
 
 function baseResult(source) {
   return {
-    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
     source_product_id: Number(source.source_product_id),
     source_product_name: text(source.source_product_name),
     source_group_id: Number(source.source_group_id),
@@ -193,7 +195,7 @@ export function planTcgplayerExactMappingCandidateV1({
   setTargets = [],
 }) {
   const base = baseResult(source);
-  const scope = classifyTcgplayerMarketProductScopeV1_1(source);
+  const scope = classifyTcgplayerMarketProductScopeV1_2(source);
 
   if (!scope.in_scope) {
     return blocked(source, "source_outside_product_v1_scope", {
