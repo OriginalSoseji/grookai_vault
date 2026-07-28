@@ -382,7 +382,7 @@ async function readback(client, sourceRunId, expectedCardPrintId) {
            order by source_subtype_name
          )
          from public.v_tcgplayer_market_qualification_candidates_v1
-         where source_product_id = $2
+         where source_product_id = $2::integer
        )
      ) as proof`,
     [
