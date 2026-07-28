@@ -35,7 +35,7 @@
       "status": "pending",
       "current_truth": "The core Production V1 pricing migration is applied, but the exact-printing Vault target migration is committed and locally verified only; it is intentionally not deployed while the authenticated canary is frozen.",
       "next_gate": "After the 72-hour canary passes, apply 20260728133000_vault_exact_market_pricing_targets_v1.sql from the clean rollout SHA and preserve production schema, grant, RLS, and authenticated/anonymous readback proof.",
-      "evidence": ["supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql", "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md"]
+      "evidence": ["supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql", "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md"]
     },
     {
       "requirement_id": "qualification_decision_model",
@@ -112,7 +112,7 @@
       "status": "pending",
       "current_truth": "Repository code for Card Detail, search, set grids, market history, web, Flutter, and exact-printing Vault totals consumes the governed pricing interface, but the latest exact-Vault migration and clients are not yet deployed.",
       "next_gate": "Deploy the clean post-canary rollout SHA, verify exact-printing Vault values and totals on authenticated web and Flutter surfaces, and preserve source-to-render proof before marking this production requirement passed.",
-      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "tests/contracts/tcgplayer_market_vault_exact_pricing_v1.test.mjs", "test/vault_exact_pricing_test.dart"]
+      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md", "tests/contracts/tcgplayer_market_vault_exact_pricing_v1.test.mjs", "test/vault_exact_pricing_test.dart"]
     },
     {
       "requirement_id": "grookai_value_retired_from_v1_product_path",

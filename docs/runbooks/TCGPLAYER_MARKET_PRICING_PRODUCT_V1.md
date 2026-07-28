@@ -14,7 +14,9 @@
 node --check scripts/workers/tcgplayer_market_publication_worker_v1.mjs
 node --check scripts/workers/tcgplayer_market_pipeline_v1.mjs
 node --check scripts/workers/tcgplayer_market_health_v1.mjs
+node --check scripts/audits/tcgplayer_market_vault_production_readback_v1.mjs
 node --test tests/contracts/tcgplayer_market_publication_v1.test.mjs
+node --test tests/contracts/tcgplayer_market_vault_production_readback_v1.test.mjs
 npm --prefix apps/web run typecheck
 flutter analyze
 flutter test
@@ -322,8 +324,8 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
 ```
 
 5. Immediately run health, fresh V1.2 coverage, bounded performance,
-   provenance lookup, and rollback dry-run. Every gate must pass before the
-   production schedule is enabled.
+   provenance lookup, exact-Vault production readback, and rollback dry-run.
+   Every gate must pass before the production schedule is enabled.
 
 ```powershell
 npm run pricing:market:coverage -- `
@@ -333,6 +335,21 @@ npm run pricing:market:coverage -- `
 
 This post-activation replay must also report
 `current_publication_scope_status: passed`.
+
+Require the exact-Vault schema, ACL/RLS, owner scope, exact-printing rows, and
+copy-level total to reconcile from the deployed commit:
+
+```powershell
+npm run pricing:market:vault:verify -- `
+  --expected-commit-sha=<exact-deployed-40-character-sha> `
+  --require-pass
+```
+
+The verifier is read-only. It must prove authenticated owner isolation,
+anonymous SQLSTATE `42501`, zero cross-owner rows, zero parent-scope pricing,
+and agreement between the governed pricing RPC and the independent current
+exact-printing view. It writes no customer identifiers to its artifacts.
+
 6. Configure the exact deployed commit and full-scope schedule:
 
 ```text

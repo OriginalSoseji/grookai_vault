@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md`
+
+This checkpoint records the read-only exact-Vault production verifier and its
+expected failing pre-deployment baseline. The verifier closes schema,
+ACL/RLS, owner-isolation, exact-scope, copy-count, and independent-total proof
+in one hashed package without preserving customer identifiers.
+
+Decision locked there:
+
+- exact-Vault production completion requires a clean-SHA enforcing verifier
+  run after deployment, not a migration command or local smoke alone
+
+Unresolved risk afterward:
+
+- the target view remains absent until the frozen canary passes and the
+  post-canary rollout is deployed
+
 ### `PRICING_CHECKPOINT_30_PRE_ROLLOUT_COMPLETION_TRUTH.md`
 
 This checkpoint corrects the Production V1 completion matrix after
