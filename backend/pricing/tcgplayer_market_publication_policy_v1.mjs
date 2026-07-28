@@ -1,12 +1,16 @@
+import {
+  classifyTcgplayerMarketProductScopeV1_1,
+} from "./tcgplayer_market_product_scope_v1.mjs";
+
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1";
+export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1 =
+  "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1";
 
 export const TCGPLAYER_MARKET_FRESHNESS_HOURS_V1 = 36;
 export const TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1 = 72;
 
 const SUPPORTED_FINISHES = new Set(["normal", "holo", "reverse"]);
-const EXCLUDED_PRODUCT_PATTERN =
-  /\b(booster box|booster pack|code card|theme deck|battle deck|collection box|elite trainer box|tin|sealed)\b/i;
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -65,8 +69,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const normalizedFinish =
     clean(row.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
-  const sourceProductName = clean(row.source_product_name);
-  const cardRarity = clean(row.card_rarity);
+  const scope = classifyTcgplayerMarketProductScopeV1_1(row);
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
@@ -80,9 +83,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   if (row.has_printed_number_evidence !== true) {
     reasons.push("missing_printed_number_evidence");
   }
-  if (EXCLUDED_PRODUCT_PATTERN.test(sourceProductName) || /code card/i.test(cardRarity)) {
-    exclusionReasons.push("unsupported_product_kind");
-  }
+  if (!scope.in_scope) exclusionReasons.push(scope.reason_code);
   if (clean(row.currency).toUpperCase() !== "USD") reasons.push("unsupported_currency");
   if (marketPrice === null || marketPrice <= 0) reasons.push("missing_positive_market_price");
   if (!clean(row.source_row_hash ?? row.source_payload_hash)) {
@@ -252,7 +253,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const eligible = decision === "publish";
 
   return {
-    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
     decision,
     eligible,
     publication_lane: publicationLane,
@@ -270,6 +271,9 @@ export function evaluateTcgplayerMarketQualificationV1(
       source_product_active: row.source_product_active === true,
       source_product_catalog_status:
         clean(row.source_product_catalog_status) || null,
+      product_scope_policy_version: scope.policy_version,
+      product_scope_result: scope.scope_result,
+      product_scope_rule_id: scope.rule_id,
       has_printed_number_evidence: row.has_printed_number_evidence === true,
       source_sync_mode: clean(row.source_sync_mode) || null,
       source_sync_status: clean(row.source_sync_status) || null,

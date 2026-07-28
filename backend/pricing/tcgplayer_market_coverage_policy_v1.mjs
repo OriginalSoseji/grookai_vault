@@ -1,57 +1,19 @@
 import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
+import {
+  classifyTcgplayerMarketProductScopeV1_1,
+  TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
+} from "./tcgplayer_market_product_scope_v1.mjs";
 
 export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1 =
   "TCGPLAYER_MARKET_COVERAGE_POLICY_V1";
+export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1 =
+  "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1";
 export const TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1 = 95;
 
-const UNSUPPORTED_PRODUCT_PATTERN =
-  /\b(booster box|booster pack|code card|theme deck|battle deck|collection box|elite trainer box|tin|sealed)\b/i;
-
-export const TCGPLAYER_MARKET_V1_SCOPE_EXCLUSION_RULES = Object.freeze([
-  {
-    id: "world_championship_deck",
-    pattern: /^world championship decks$/i,
-  },
-  {
-    id: "ambiguous_mixed_group",
-    pattern: /^miscellaneous cards & products$/i,
-  },
-  {
-    id: "stamped_special_variant",
-    pattern: /^(prize pack series cards|league & championship cards)$/i,
-  },
-  {
-    id: "deck_exclusive_special_variant",
-    pattern:
-      /^(deck exclusives|battle academy(?: 2022| 2024)?|my first battle|ex battle stadium)$/i,
-  },
-  {
-    id: "deck_exclusive_special_variant",
-    pattern: /trainer kit/i,
-  },
-  {
-    id: "oversized_object",
-    pattern: /^(jumbo cards|first partner pack)$/i,
-  },
-  {
-    id: "distribution_special_variant",
-    pattern: /^(blister exclusives|alternate art promos)$/i,
-  },
-  {
-    id: "special_reprint_product",
-    pattern: /^trading card game classic$/i,
-  },
-  {
-    id: "special_distribution_set",
-    pattern: /^trick or trade booster bundle(?: 2023| 2024)?$/i,
-  },
-  {
-    id: "special_print_run",
-    pattern: /^base set \(shadowless\)$/i,
-  },
-]);
+export const TCGPLAYER_MARKET_V1_SCOPE_EXCLUSION_RULES =
+  TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES;
 
 const GAP_REASON_PRIORITY = [
   "ambiguous_active_source_mapping",
@@ -136,17 +98,12 @@ function denominatorExclusion(row) {
   const normalizedFinish =
     text(row.normalized_finish_key ?? rowEvidence.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
+  const scope = classifyTcgplayerMarketProductScopeV1_1(row);
 
   if (categoryId !== 3) return "not_pokemon_category";
   if (sourceActive !== true) return "source_product_inactive";
   if (sourceCatalogStatus !== "current") return "source_product_not_current";
-  if (UNSUPPORTED_PRODUCT_PATTERN.test(text(row.source_product_name))) {
-    return "unsupported_product_kind";
-  }
-  const groupExclusion = tcgplayerMarketV1GroupScopeExclusionV1(
-    row.source_group_name,
-  );
-  if (groupExclusion) return groupExclusion;
+  if (!scope.in_scope) return scope.reason_code;
   if (currency !== "USD") return "unsupported_currency";
   if (marketPrice === null || marketPrice <= 0) {
     return "missing_positive_market_price";
@@ -183,7 +140,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     Boolean(text(row.card_print_id));
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
     decision_id: row.id ?? null,
     source_observation_id: row.source_observation_id ?? null,
     source_product_id: Number(row.source_product_id),
@@ -197,6 +154,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     reason_codes: reasons(row),
     in_denominator: inDenominator,
     denominator_exclusion_reason: exclusionReason,
+    product_scope: classifyTcgplayerMarketProductScopeV1_1(row),
     in_numerator: inNumerator,
     primary_gap_reason:
       inDenominator && !inNumerator ? primaryGapReason(row) : null,
@@ -296,7 +254,7 @@ export function summarizeTcgplayerMarketCoverageV1(
   }
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
     status: findings.length ? "failed" : "passed",
     threshold_percent: minimumCoveragePercent,
     counts: {

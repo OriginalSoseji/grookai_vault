@@ -10,7 +10,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
   TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
   evaluateTcgplayerMarketQualificationV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
@@ -29,7 +29,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_1";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_2";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -461,7 +461,7 @@ async function ensureRun(client, {
     [
       runKey,
       PIPELINE_VERSION,
-      TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+      TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
       runMode,
       sourceRun.observed_on,
       sourceRun.id,
@@ -489,7 +489,7 @@ async function ensureRun(client, {
     run.git_commit_sha !== commitSha ||
     run.run_mode !== runMode ||
     run.source_sync_run_id !== sourceRun.id ||
-    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 ||
+    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1 ||
     run.worker_version !== WORKER_VERSION
   ) {
     throw new Error(
@@ -1598,7 +1598,7 @@ async function main() {
       pipeline_version: PIPELINE_VERSION,
       worker_version: WORKER_VERSION,
       schema_version: SCHEMA_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -1665,7 +1665,7 @@ async function main() {
     const counts = decisionSummary(decisions);
     const summary = {
       worker_version: WORKER_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,

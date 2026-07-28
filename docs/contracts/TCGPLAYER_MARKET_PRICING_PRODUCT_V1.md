@@ -190,7 +190,7 @@ Each expansion requires its own evidence contract and rollout gate.
 ## Coverage Contract
 
 Production V1 coverage is governed by
-`TCGPLAYER_MARKET_COVERAGE_POLICY_V1`.
+`TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1`.
 
 The denominator unit is one current TCGCSV source product/subtype price row.
 It includes rows that:
@@ -200,6 +200,22 @@ It includes rows that:
 - carry a positive USD `marketPrice`
 - represent a supported ordinary V1 finish
 - are not deterministically excluded object or V1.1 special-print lanes
+
+Object and special-print scope is shared with publication through
+`TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1`. The classifier separates:
+
+- ordinary V1 single cards: `in_scope`
+- sealed, packaged, accessory, and non-card products:
+  `unsupported_product_kind`
+- stamped, patterned, distribution, and other explicitly deferred print
+  treatments: `special_variant_v1_1`
+
+Packaging/object terms exclude a source product only when printed-number
+evidence is absent. This prevents an ordinary numbered card such as
+`Suspicious Food Tin` or `Box of Disaster` from being excluded merely because
+its canonical name contains a packaging word. Explicit parenthetical
+distribution labels and special-print markers remain V1.1 exclusions even
+when a printed number is present.
 
 Missing canonical mapping, identity, printed-number, or exact-finish evidence
 does not remove a row from the denominator. Those are coverage gaps.
@@ -211,6 +227,15 @@ freshness-delayed qualification decision.
 The minimum Production V1 threshold is `95%`. Every non-numerator denominator
 row and every scope exclusion must retain a deterministic reason. Coverage must
 be reported by source set, era, finish, and value band.
+
+Coverage policy changes must be versioned and replayed over the same frozen
+source population. Historical failed baselines remain permanent evidence.
+Changing scope is permitted only to enforce the already-approved Product V1
+boundary; it must not remove ordinary unmapped singles to manufacture a pass.
+
+Broader rollout additionally requires every row in the active publication to
+remain `in_scope` under the same active scope policy. Passing the aggregate
+coverage percentage does not override an active-publication scope mismatch.
 
 ## Performance Contract
 

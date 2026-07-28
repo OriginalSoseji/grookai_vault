@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
+
+This checkpoint centralizes the ordinary-single versus product-object and
+special-print boundary, preserves the failed V1 baseline, and proves corrected
+V1.1 coverage at `95.177%` over the same `45,082` source rows.
+
+Decision locked there:
+
+- coverage and publication share one evidence-aware product-scope classifier;
+  missing ordinary mappings remain gaps while explicit V1.1 variants and
+  unsupported product objects receive versioned exclusions
+
+Unresolved risk afterward:
+
+- the repaired policy still needs a new full shadow after the canary window;
+  remaining exact mapping gaps, broader signed-in rollout, unattended cycles,
+  and anonymous licensing authority remain open
+
 ### `PRICING_CHECKPOINT_21_TCGPLAYER_MARKET_READ_PERFORMANCE.md`
 
 This checkpoint records the production read-path repair that moved active-list
@@ -426,6 +444,10 @@ Recommended reading order for future maintainers:
    - then read how customer pricing reads were separated from the raw listing
      warehouse and proven below the Product V1 latency target in production
 
+21. `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
+   - then read how the Product V1 scope boundary was corrected without hiding
+     ordinary mapping gaps or discarding the original failed baseline
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -438,3 +460,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/TCGPLAYER_MARKET_SHADOW_GATE_1_20260728.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/2026-07-28T08-40-41Z_canary_schedule_activation/DEPLOYMENT_REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/read_performance_gate/2026-07-28T09-47-20-239Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_1/2026-07-28T10-25-50-424Z/REPORT.md`

@@ -8,9 +8,12 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   summarizeTcgplayerMarketCoverageV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
+import {
+  classifyTcgplayerMarketProductScopeV1_1,
+} from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 
 const { Client } = pg;
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +25,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "coverage",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_1";
 
 function parseArgs(argv) {
   const args = {
@@ -84,7 +87,7 @@ function jsonl(rows) {
   );
 }
 
-function markdown(run, summary) {
+function markdown(run, summary, currentPublicationScope) {
   const topGaps = Object.entries(summary.gap_reasons).slice(0, 20);
   const weakestSets = Object.entries(summary.by_set)
     .filter(([, row]) => row.denominator > 0)
@@ -108,16 +111,23 @@ function markdown(run, summary) {
     "# TCGPlayer Market Production V1 Coverage",
     "",
     `- Audit version: \`${AUDIT_VERSION}\``,
-    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1}\``,
+    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1}\``,
     `- Source run: \`${run.run_key}\``,
     `- Source commit: \`${run.git_commit_sha}\``,
     `- Status: \`${summary.status}\``,
+    `- Coverage threshold status: \`${summary.coverage_status}\``,
     `- Coverage: \`${summary.coverage_percent}%\``,
     `- Required: \`${summary.threshold_percent}%\``,
     `- Denominator: \`${summary.counts.denominator_rows}\``,
     `- Numerator: \`${summary.counts.numerator_rows}\``,
     `- Remaining gap rows: \`${summary.counts.gap_rows}\``,
     `- Exact rows needed to reach threshold: \`${summary.rows_needed_for_threshold}\``,
+    "",
+    "## Current Publication Boundary",
+    "",
+    `- Current exact publication rows: \`${currentPublicationScope.row_count}\``,
+    `- Current rows outside V1.1 scope: \`${currentPublicationScope.out_of_scope_count}\``,
+    `- Current publication scope status: \`${currentPublicationScope.status}\``,
     "",
     "## Denominator",
     "",
@@ -157,7 +167,6 @@ function markdown(run, summary) {
     ...(summary.findings.length
       ? summary.findings.map((finding) => `- \`${finding}\``)
       : ["- none"]),
-    "",
   ];
   return `${lines.join("\n")}\n`;
 }
@@ -239,6 +248,58 @@ async function main() {
       minimumCoveragePercent: args.minimumCoveragePercent,
     });
     const { rows: classifiedRows, ...summary } = result;
+    const currentPublicationRows = (
+      await client.query(
+        `select
+           snapshot.source_product_id,
+           product.name as source_product_name,
+           source_group.name as source_group_name,
+           coalesce(
+             (decision.evidence ->> 'has_printed_number_evidence')::boolean,
+             false
+           ) as has_printed_number_evidence
+         from public.market_price_current_publication pointer
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = pointer.publication_set_id
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+         join public.tcgcsv_source_products product
+           on product.product_id = snapshot.source_product_id
+         join public.tcgcsv_source_price_daily_observations observation
+           on observation.id = snapshot.source_observation_id
+         join public.tcgcsv_source_groups source_group
+           on source_group.group_id = observation.group_id
+         where pointer.singleton
+         order by snapshot.source_product_id, snapshot.source_subtype_name`,
+      )
+    ).rows;
+    const currentPublicationClassifications = currentPublicationRows.map(
+      (row) => ({
+        ...row,
+        product_scope: classifyTcgplayerMarketProductScopeV1_1(row),
+      }),
+    );
+    const currentPublicationOutOfScope =
+      currentPublicationClassifications.filter(
+        (row) => !row.product_scope.in_scope,
+      );
+    const currentPublicationScope = {
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
+      status:
+        currentPublicationOutOfScope.length === 0 ? "passed" : "failed",
+      row_count: currentPublicationClassifications.length,
+      out_of_scope_count: currentPublicationOutOfScope.length,
+      out_of_scope_rows: currentPublicationOutOfScope,
+    };
+    summary.coverage_status = summary.status;
+    summary.current_publication_scope_status = currentPublicationScope.status;
+    if (currentPublicationOutOfScope.length > 0) {
+      summary.findings = [
+        ...summary.findings,
+        "current_publication_contains_v1_1_scope_exclusion",
+      ];
+      summary.status = "failed";
+    }
     const gaps = classifiedRows.filter(
       (row) => row.in_denominator && !row.in_numerator,
     );
@@ -247,7 +308,7 @@ async function main() {
     await fs.mkdir(runDir, { recursive: true });
     const runPlan = {
       audit_version: AUDIT_VERSION,
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1,
       source_run_id: run.id,
       source_run_key: run.run_key,
       source_commit_sha: run.git_commit_sha,
@@ -265,7 +326,12 @@ async function main() {
       "summary.json": `${JSON.stringify(summary, null, 2)}\n`,
       "coverage_gaps.jsonl": jsonl(gaps),
       "scope_exclusions.jsonl": jsonl(exclusions),
-      "REPORT.md": markdown(run, summary),
+      "current_publication_scope.json": `${JSON.stringify(
+        currentPublicationScope,
+        null,
+        2,
+      )}\n`,
+      "REPORT.md": markdown(run, summary, currentPublicationScope),
     };
     const hashes = {};
     for (const [name, contents] of Object.entries(files)) {

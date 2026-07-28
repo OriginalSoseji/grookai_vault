@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1,
   evaluateTcgplayerMarketQualificationV1,
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
@@ -369,7 +369,7 @@ test("publishes an exact fresh English Pokemon printing", () => {
   const result = evaluateTcgplayerMarketQualificationV1(validCandidate(), {
     now: NOW,
   });
-  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1);
+  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1);
   assert.equal(result.decision, "publish");
   assert.equal(result.eligible, true);
   assert.deepEqual(result.reason_codes, []);
@@ -458,10 +458,61 @@ test("quarantines foreign, special, sealed, and code-card lanes", () => {
   );
 
   const sealed = evaluateTcgplayerMarketQualificationV1(
-    validCandidate({ source_product_name: "Test Booster Box" }),
+    validCandidate({
+      source_product_name: "Test Booster Box",
+      has_printed_number_evidence: false,
+    }),
     { now: NOW },
   );
   assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
+});
+
+test("publication V1.1 scope is evidence-aware and keeps numbered card names", () => {
+  const sealed = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_product_name: "Journey Together Booster Bundle",
+      has_printed_number_evidence: false,
+    }),
+    { now: NOW },
+  );
+  assert.equal(sealed.decision, "exclude");
+  assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
+
+  const numberedCard = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ source_product_name: "Box of Disaster" }),
+    { now: NOW },
+  );
+  assert.equal(numberedCard.decision, "publish");
+
+  const ordinaryTinCard = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ source_product_name: "Suspicious Food Tin" }),
+    { now: NOW },
+  );
+  assert.equal(ordinaryTinCard.decision, "publish");
+
+  const special = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ source_product_name: "Pikachu (Master Ball Pattern)" }),
+    { now: NOW },
+  );
+  assert.equal(special.decision, "exclude");
+  assert.ok(special.reason_codes.includes("special_variant_v1_1"));
+  assert.equal(
+    special.evidence.product_scope_policy_version,
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1",
+  );
+  assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
+
+  const tinPromo = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_product_name: "Celebi - 029 (EX Collector's Carry Tin)",
+    }),
+    { now: NOW },
+  );
+  assert.equal(tinPromo.decision, "exclude");
+  assert.equal(
+    tinPromo.evidence.product_scope_rule_id,
+    "distribution_packaging_variant",
+  );
 });
 
 test("quarantines finish conflicts and non-positive market prices", () => {

@@ -1,0 +1,15 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_1",
+  "policy_version": "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1",
+  "source_run_id": "7c3ae80a-1247-46d4-b40d-f7982f84a5ae",
+  "source_run_key": "TCGPLAYER-MARKET-SHADOW-FINAL-SHA-CYCLE3-20260728T0720Z-publication",
+  "source_commit_sha": "958b14eaff091919d344d39517890f7a1fcb57e4",
+  "minimum_coverage_percent": 95,
+  "denominator_unit": "source_product_subtype_price_row",
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false
+  }
+}
