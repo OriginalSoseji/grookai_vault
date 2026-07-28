@@ -700,6 +700,19 @@ test("scheduled runner is safe by default and preserves one durable run key acro
   assert.match(SCHEDULED_RUNNER, /scheduled_summary\.json/);
   assert.match(SCHEDULED_RUNNER, /scheduled resume refused because frozen plan fields changed/);
   assert.match(SCHEDULED_RUNNER, /--resume-run-key=\$\{args\.runKey\}/);
+  assert.match(
+    SCHEDULED_RUNNER,
+    /scheduled canary mode requires an exact --canary-definition/,
+  );
+  assert.match(
+    SCHEDULED_RUNNER,
+    /scheduled canary mode forbids first-N publication limits/,
+  );
+  assert.match(
+    SCHEDULED_RUNNER,
+    /--canary-definition=\$\{loadedCanary\.absolutePath\}/,
+  );
+  assert.match(SCHEDULED_RUNNER, /canary_definition_sha256/);
   assert.match(SCHEDULED_RUNNER, /classification\.retryable/);
   assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);
@@ -744,6 +757,12 @@ test("schedule installation cannot retire the old timer before replacement proof
   assert.match(SCHEDULE_INSTALLER, /systemctl enable --now "\$\{TIMER_NAME\}"/);
   assert.match(SCHEDULE_VERIFIER, /legacy_current_sync_timer_still_enabled/);
   assert.match(SCHEDULE_VERIFIER, /missing_operations_webhook_route/);
+  assert.match(SCHEDULE_VERIFIER, /schedule_mode_not_canary/);
+  assert.match(SCHEDULE_VERIFIER, /canary_definition_not_found/);
+  assert.match(
+    SCHEDULE_ENV_EXAMPLE,
+    /TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=/,
+  );
   assert.match(SCHEDULE_VERIFIER, /TCGPLAYER_MARKET_OPS_READY/);
 });
 

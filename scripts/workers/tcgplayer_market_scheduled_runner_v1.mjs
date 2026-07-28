@@ -14,6 +14,9 @@ import {
   parseRetryDelaysV1,
   retryDelayMsV1,
 } from "../../backend/pricing/tcgplayer_market_operations_policy_v1.mjs";
+import {
+  loadTcgplayerMarketCanaryDefinitionV1,
+} from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -57,6 +60,16 @@ function parseArgs(argv) {
     process.env.TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT || "";
   const publicationLimit = publicationLimitRaw
     ? Number.parseInt(publicationLimitRaw, 10)
+    : null;
+  const canaryDefinitionArg = argv.find((arg) =>
+    arg.startsWith("--canary-definition="),
+  );
+  const canaryDefinitionRaw =
+    canaryDefinitionArg?.slice("--canary-definition=".length) ||
+    process.env.TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION ||
+    "";
+  const canaryDefinitionPath = canaryDefinitionRaw
+    ? path.resolve(canaryDefinitionRaw)
     : null;
   const requestCeiling = Number.parseInt(
     process.env.TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING ||
@@ -132,8 +145,20 @@ function parseArgs(argv) {
   ) {
     throw new Error("publication limit must be a positive integer");
   }
-  if (mode === "canary" && publicationLimit === null) {
-    throw new Error("scheduled canary mode requires a publication limit");
+  if (mode === "canary" && !canaryDefinitionPath) {
+    throw new Error(
+      "scheduled canary mode requires an exact --canary-definition",
+    );
+  }
+  if (mode === "canary" && publicationLimit !== null) {
+    throw new Error(
+      "scheduled canary mode forbids first-N publication limits",
+    );
+  }
+  if (mode !== "canary" && canaryDefinitionPath) {
+    throw new Error(
+      "scheduled canary definition is only valid in canary mode",
+    );
   }
   return {
     live,
@@ -143,6 +168,7 @@ function parseArgs(argv) {
     maxAttempts,
     retryDelaysSeconds,
     publicationLimit,
+    canaryDefinitionPath,
     requestCeiling,
     phaseTimeoutMinutes,
     databaseTimeoutMinutes,
@@ -226,6 +252,11 @@ function delay(ms) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const loadedCanary = args.canaryDefinitionPath
+    ? await loadTcgplayerMarketCanaryDefinitionV1(
+        args.canaryDefinitionPath,
+      )
+    : null;
   const commitSha = await git(["rev-parse", "HEAD"]);
   const branch = await git(["branch", "--show-current"]);
   const runDir = path.join(args.outRoot, safeSegment(args.runKey));
@@ -255,6 +286,15 @@ async function main() {
     database_timeout_minutes: args.databaseTimeoutMinutes,
     freshness_hours: args.freshnessHours,
     publication_limit: args.publicationLimit,
+    canary_definition_path: loadedCanary
+      ? relative(loadedCanary.absolutePath)
+      : null,
+    canary_definition_sha256: loadedCanary
+      ? createHash("sha256").update(loadedCanary.raw).digest("hex")
+      : null,
+    canary_id: loadedCanary?.definition.canary_id ?? null,
+    canary_expected_count:
+      loadedCanary?.definition.expected_count ?? null,
     boundaries: {
       source_sync: args.live,
       qualification_and_snapshot_writes: args.live,
@@ -278,6 +318,10 @@ async function main() {
       "phase_timeout_minutes",
       "freshness_hours",
       "publication_limit",
+      "canary_definition_path",
+      "canary_definition_sha256",
+      "canary_id",
+      "canary_expected_count",
       "boundaries",
     ];
     const mismatches = frozenFields.filter(
@@ -361,6 +405,11 @@ async function main() {
       ];
       if (args.publicationLimit !== null) {
         pipelineArgs.push(`--publication-limit=${args.publicationLimit}`);
+      }
+      if (loadedCanary) {
+        pipelineArgs.push(
+          `--canary-definition=${loadedCanary.absolutePath}`,
+        );
       }
 
       try {

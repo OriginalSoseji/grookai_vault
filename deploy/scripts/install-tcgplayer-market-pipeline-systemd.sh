@@ -103,14 +103,36 @@ if [[ "$(env_value TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN)" != "1" ]]; then
   echo "${ENV_FILE} must set TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1 before activation." >&2
   exit 1
 fi
-if [[ "$(env_value TCGPLAYER_MARKET_SCHEDULE_MODE)" != "production" ]]; then
-  echo "${ENV_FILE} must set TCGPLAYER_MARKET_SCHEDULE_MODE=production before activation." >&2
-  exit 1
-fi
-if [[ "$(env_value TCGPLAYER_MARKET_REPLACEMENT_VERIFIED)" != "1" ]]; then
-  echo "${ENV_FILE} must set TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1 after shadow verification." >&2
-  exit 1
-fi
+schedule_mode="$(env_value TCGPLAYER_MARKET_SCHEDULE_MODE)"
+case "${schedule_mode}" in
+  canary)
+    require_env_value "TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION"
+    if [[ -n "$(env_value TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT)" ]]; then
+      echo "${ENV_FILE} must leave TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT empty in exact canary mode." >&2
+      exit 1
+    fi
+    canary_definition="$(env_value TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION)"
+    if [[ "${canary_definition}" = /* ]]; then
+      canary_definition_path="${canary_definition}"
+    else
+      canary_definition_path="${REPO_DIR}/${canary_definition}"
+    fi
+    if [[ ! -f "${canary_definition_path}" ]]; then
+      echo "Verified canary definition not found: ${canary_definition_path}" >&2
+      exit 1
+    fi
+    ;;
+  production)
+    if [[ "$(env_value TCGPLAYER_MARKET_REPLACEMENT_VERIFIED)" != "1" ]]; then
+      echo "${ENV_FILE} must set TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1 after shadow verification." >&2
+      exit 1
+    fi
+    ;;
+  *)
+    echo "${ENV_FILE} must set TCGPLAYER_MARKET_SCHEDULE_MODE=canary or production before activation." >&2
+    exit 1
+    ;;
+esac
 
 # The combined pipeline now owns acquisition and publication. Retire only the
 # standalone current-sync timer; historical backfill remains separately governed.

@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ENV_FILE="${ENV_FILE:-/etc/grookai/tcgplayer-market-pricing.env}"
+REPO_DIR="${REPO_DIR:-/opt/grookai_vault_mee_nightly}"
 SERVICE_NAME="grookai-tcgplayer-market-pipeline.service"
 TIMER_NAME="grookai-tcgplayer-market-pipeline.timer"
 LEGACY_TIMER="grookai-tcgcsv-warehouse.timer"
@@ -54,6 +55,40 @@ if [[ "${VERIFY_MODE}" == "--production" ]]; then
   fi
   if ! grep -q '^TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1$' "${ENV_FILE}" 2>/dev/null; then
     record_failure "replacement_not_verified"
+  fi
+elif [[ "${VERIFY_MODE}" == "--canary" ]]; then
+  if ! systemctl is-enabled "${TIMER_NAME}" >/dev/null 2>&1; then
+    record_failure "authoritative_timer_not_enabled"
+  fi
+  if ! systemctl is-active "${TIMER_NAME}" >/dev/null 2>&1; then
+    record_failure "authoritative_timer_not_active"
+  fi
+  if systemctl is-enabled "${LEGACY_TIMER}" >/dev/null 2>&1; then
+    record_failure "legacy_current_sync_timer_still_enabled"
+  fi
+  if ! grep -q '^TCGPLAYER_MARKET_SCHEDULE_MODE=canary$' "${ENV_FILE}" 2>/dev/null; then
+    record_failure "schedule_mode_not_canary"
+  fi
+  canary_definition="$(
+    awk -F= '$1 == "TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION" {
+      value = substr($0, length($1) + 2)
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", value)
+      gsub(/^"|"$/, "", value)
+      print value
+      exit
+    }' "${ENV_FILE}" 2>/dev/null
+  )"
+  if [[ -z "${canary_definition}" ]]; then
+    record_failure "missing_canary_definition"
+  else
+    if [[ "${canary_definition}" = /* ]]; then
+      canary_definition_path="${canary_definition}"
+    else
+      canary_definition_path="${REPO_DIR}/${canary_definition}"
+    fi
+    if [[ ! -f "${canary_definition_path}" ]]; then
+      record_failure "canary_definition_not_found"
+    fi
   fi
 fi
 

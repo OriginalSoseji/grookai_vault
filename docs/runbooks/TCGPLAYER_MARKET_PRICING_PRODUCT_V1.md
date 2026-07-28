@@ -103,25 +103,41 @@ Install the units without activation while shadow proof is pending:
 sudo bash deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh
 ```
 
-After three shadow cycles pass, set the dedicated environment file to:
+After three shadow cycles and exact 100-printing verification pass, begin the
+authenticated canary with:
 
 ```text
 TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1
-TCGPLAYER_MARKET_SCHEDULE_MODE=production
-TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
+TCGPLAYER_MARKET_SCHEDULE_MODE=canary
+TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=backend/pricing/canaries/tcgplayer_market_canary_100_v1.json
+TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT=
 ```
 
-Then perform the guarded schedule replacement:
+Then perform the guarded canary schedule replacement:
 
 ```bash
 sudo ACTIVATE_TIMER=1 \
   bash deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh
-bash deploy/scripts/verify-tcgplayer-market-pipeline-systemd.sh --production
+bash deploy/scripts/verify-tcgplayer-market-pipeline-systemd.sh --canary
 ```
 
 Activation disables the standalone `grookai-tcgcsv-warehouse.timer` because
 the combined pipeline now owns current acquisition and publication. It does not
 disable historical backfill or the separately governed internal MEE worker.
+
+Canary scheduling always resolves the verified definition exactly. First-N
+publication limits, substituted IDs, and unverified definitions fail closed.
+
+Only after the authenticated canary and full eligible signed-in gates pass may
+the environment move to:
+
+```text
+TCGPLAYER_MARKET_SCHEDULE_MODE=production
+TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=
+TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
+```
+
+Re-run the installer and verify with `--production` after that explicit gate.
 
 `GROOKAI_OPERATIONS_WEBHOOK_URL` is mandatory for activation and must remain in
 `/etc/grookai/tcgplayer-market-pricing.env`, never in Git.
