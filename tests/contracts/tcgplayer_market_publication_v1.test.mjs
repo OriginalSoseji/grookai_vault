@@ -36,6 +36,15 @@ const CANDIDATE_PERFORMANCE_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const ASSIGNMENT_IDEMPOTENCY_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260728030000_tcgplayer_market_assignment_prepare_idempotency_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -438,6 +447,21 @@ test("qualification candidate view avoids a redundant wide aggregation", () => {
   );
   assert.doesNotMatch(CANDIDATE_PERFORMANCE_MIGRATION, /\bgroup by\b/i);
   assert.doesNotMatch(CANDIDATE_PERFORMANCE_MIGRATION, /\barray_agg\s*\(/i);
+});
+
+test("variant assignment preparation skips rows already assigned", () => {
+  assert.match(
+    ASSIGNMENT_IDEMPOTENCY_MIGRATION,
+    /create or replace function public\.prepare_tcgplayer_market_variant_assignments_v1/i,
+  );
+  assert.match(
+    ASSIGNMENT_IDEMPOTENCY_MIGRATION,
+    /candidate\.variant_assignment_id is null/i,
+  );
+  assert.match(
+    ASSIGNMENT_IDEMPOTENCY_MIGRATION,
+    /on conflict \(\s*source_family,\s*source_row_id,\s*variant_assignment_version\s*\) do nothing/i,
+  );
 });
 
 test("signed-in clients receive a shared contract while provenance stays service-only", () => {
