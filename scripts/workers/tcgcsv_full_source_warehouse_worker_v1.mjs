@@ -443,9 +443,38 @@ async function insertArtifacts(client, runId, runKey, artifacts) {
            observed_on, category_id, group_id, coalesce(payload, '{}'::jsonb)
          from input_rows
          on conflict (run_key, artifact_kind, local_path, sha256) do nothing
-         returning 1
+         returning id, artifact_kind, local_path, sha256
+       ), resolved_rows as (
+         select
+           inserted_row.id,
+           inserted_row.artifact_kind,
+           inserted_row.local_path,
+           inserted_row.sha256,
+           true as inserted
+         from inserted_rows inserted_row
+         union all
+         select
+           existing.id,
+           input_row.artifact_kind,
+           input_row.local_path,
+           input_row.sha256,
+           false as inserted
+         from input_rows input_row
+         join public.tcgcsv_source_artifacts existing
+           on existing.run_key = $3
+          and existing.artifact_kind = input_row.artifact_kind
+          and existing.local_path = input_row.local_path
+          and existing.sha256 = input_row.sha256
+         where not exists (
+           select 1
+           from inserted_rows inserted_row
+           where inserted_row.artifact_kind = input_row.artifact_kind
+             and inserted_row.local_path = input_row.local_path
+             and inserted_row.sha256 = input_row.sha256
+         )
        )
-       select count(*)::int as inserted from inserted_rows`,
+       select id, artifact_kind, local_path, sha256, inserted
+       from resolved_rows`,
       [JSON.stringify(chunk.map((artifact) => ({
         artifact_kind: artifact.artifact_kind,
         request_url: artifact.request_url ?? null,
@@ -461,7 +490,31 @@ async function insertArtifacts(client, runId, runKey, artifacts) {
         payload: artifact.payload ?? {},
       }))), runId, runKey],
     );
-    inserted += Number(result.rows[0]?.inserted ?? 0);
+    const resolvedIds = new Map(
+      result.rows.map((row) => [
+        [
+          row.artifact_kind,
+          row.local_path,
+          row.sha256,
+        ].join("\u0000"),
+        row,
+      ]),
+    );
+    for (const artifact of chunk) {
+      const key = [
+        artifact.artifact_kind,
+        artifact.local_path,
+        artifact.sha256,
+      ].join("\u0000");
+      const resolved = resolvedIds.get(key);
+      if (!resolved?.id) {
+        throw new Error(
+          `artifact id resolution failed for ${artifact.local_path}`,
+        );
+      }
+      artifact.database_id = resolved.id;
+      if (resolved.inserted) inserted += 1;
+    }
     const processed = Math.min(offset + chunk.length, artifacts.length);
     if (processed === artifacts.length || processed % (chunkSize * 10) === 0) {
       console.error(`[tcgcsv-full] artifacts processed=${processed}/${artifacts.length} inserted=${inserted}`);
@@ -770,6 +823,9 @@ async function upsertPriceObservations(client, rows) {
             or public.tcgcsv_source_price_daily_observations.group_id is distinct from coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id)
             or public.tcgcsv_source_price_daily_observations.subtype_name is distinct from excluded.subtype_name
             or public.tcgcsv_source_price_daily_observations.subtype_name_normalized is distinct from excluded.subtype_name_normalized
+            or public.tcgcsv_source_price_daily_observations.source_archive_path is distinct from excluded.source_archive_path
+            or public.tcgcsv_source_price_daily_observations.source_artifact_id is distinct from excluded.source_artifact_id
+            or public.tcgcsv_source_price_daily_observations.last_seen_run_id is distinct from excluded.last_seen_run_id
          returning (xmax = 0) as inserted
        )
        select
@@ -1083,7 +1139,10 @@ async function runCurrentSync(args, runKey, artifactRoot) {
               totals.updated += productsResult.updated;
               totals.noOp += productsResult.noOp;
 
-              const { json: pricesPayload } = await fetcher.fetchJson(
+              const {
+                json: pricesPayload,
+                artifact: pricesArtifact,
+              } = await fetcher.fetchJson(
                 `${TCGPLAYER_BASE}/${categoryId}/${groupId}/prices`,
                 "prices",
                 `current/${categoryId}/${groupId}/prices.json`,
@@ -1095,7 +1154,8 @@ async function runCurrentSync(args, runKey, artifactRoot) {
               const priceResult = await upsertPriceObservations(client, prices.map((row) => priceObservationRow(row, {
                 observedOn,
                 runId,
-                artifactPath: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
+                artifactId: pricesArtifact.database_id,
+                artifactPath: pricesArtifact.local_path,
                 categoryId: row.categoryId,
                 groupId: row.groupId,
               })));
@@ -1337,10 +1397,17 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
     try {
       const runId = await upsertRun(client, { ...run, status: "running", finished_at: null });
       const artifactCount = await insertArtifacts(client, runId, runKey, fetcher.artifacts);
+      const artifactIdsByPath = new Map(
+        fetcher.artifacts.map((artifact) => [
+          artifact.local_path,
+          artifact.database_id,
+        ]),
+      );
       const placeholderProducts = await ensureHistoricalProducts(client, allPrices, runId);
       const priceRows = allPrices.map((row) => priceObservationRow(row, {
         observedOn: row.observedOn,
         runId,
+        artifactId: artifactIdsByPath.get(row.archivePath) ?? null,
         artifactPath: row.archivePath,
         categoryId: row.categoryId,
         groupId: row.groupId,

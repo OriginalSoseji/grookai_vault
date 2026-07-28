@@ -139,6 +139,24 @@ const SCHEDULE_ENV_EXAMPLE = readFileSync(
   path.join(ROOT, "deploy", "env", "tcgplayer-market-pricing.env.example"),
   "utf8",
 );
+const TCGCSV_WAREHOUSE_WORKER = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "workers",
+    "tcgcsv_full_source_warehouse_worker_v1.mjs",
+  ),
+  "utf8",
+);
+const TCGCSV_ARTIFACT_LINK_REPAIR = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgcsv_current_price_artifact_link_repair_v1.mjs",
+  ),
+  "utf8",
+);
 const WEB_READ_MODEL = readFileSync(
   path.join(
     ROOT,
@@ -567,6 +585,41 @@ test("publication database timeout covers measured assignment preparation", () =
   assert.match(
     SCHEDULE_ENV_EXAMPLE,
     /TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES=20/,
+  );
+});
+
+test("warehouse price observations retain exact source artifact lineage", () => {
+  assert.match(
+    TCGCSV_WAREHOUSE_WORKER,
+    /artifact\.database_id = resolved\.id/,
+  );
+  assert.match(
+    TCGCSV_WAREHOUSE_WORKER,
+    /artifactId: pricesArtifact\.database_id/,
+  );
+  assert.match(
+    TCGCSV_WAREHOUSE_WORKER,
+    /artifactPath: pricesArtifact\.local_path/,
+  );
+  assert.match(
+    TCGCSV_WAREHOUSE_WORKER,
+    /source_artifact_id is distinct from excluded\.source_artifact_id/,
+  );
+  assert.match(
+    TCGCSV_WAREHOUSE_WORKER,
+    /artifactId: artifactIdsByPath\.get\(row\.archivePath\) \?\? null/,
+  );
+  assert.match(
+    TCGCSV_ARTIFACT_LINK_REPAIR,
+    /source_artifact_id = artifact\.id/,
+  );
+  assert.match(
+    TCGCSV_ARTIFACT_LINK_REPAIR,
+    /source_archive_path = artifact\.local_path/,
+  );
+  assert.match(
+    TCGCSV_ARTIFACT_LINK_REPAIR,
+    /current_publication_activation: false/,
   );
 });
 
