@@ -22,6 +22,10 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+function normalizeSpecification(value) {
+  return value.replace(/\r\n?/g, "\n");
+}
+
 function assertGoalContract(goal, specification) {
   const requiredMarkers = [
     "# GOAL: MEE Pricing Platform Production V1",
@@ -57,7 +61,9 @@ export async function loadGoal(goalId) {
   if (!specPath.startsWith(`${REPO_ROOT}${path.sep}`)) {
     throw new Error("goal specification path escapes the repository");
   }
-  const specification = await readFile(specPath, "utf8");
+  const specification = normalizeSpecification(
+    await readFile(specPath, "utf8"),
+  );
   const actualHash = sha256(specification);
   if (actualHash !== goal.spec_sha256) {
     throw new Error(
