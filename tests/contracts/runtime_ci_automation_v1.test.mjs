@@ -26,12 +26,17 @@ test('package command surface exposes the runtime automation commands', async ()
   assert.match(packageJson.scripts['contracts:test'], /tests\/contracts\/\*\.test\.mjs/);
 });
 
-test('runtime protection workflow runs runtime health and focused contracts tests', async () => {
+test('runtime protection workflow covers goal changes and runs focused contracts', async () => {
   const workflow = await fs.readFile(
     new URL('../../.github/workflows/contracts-runtime-protection.yml', import.meta.url),
     'utf8',
   );
 
+  assert.equal(
+    workflow.match(/\.codex\/goals\/\*\*/g)?.length,
+    2,
+    'push and pull-request filters must both cover selectable goal changes',
+  );
   assert.match(workflow, /npm run contracts:runtime-health/);
   assert.match(workflow, /npm run contracts:test/);
 });

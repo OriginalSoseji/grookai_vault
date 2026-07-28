@@ -3,6 +3,7 @@ name: Contracts Runtime Protection
 on:
   push:
     paths:
+      - '.codex/goals/**'
       - 'apps/web/src/lib/contracts/**'
       - 'apps/web/src/lib/network/**'
       - 'apps/web/src/lib/slabs/**'
@@ -18,6 +19,7 @@ on:
       - '.github/workflows/contracts-runtime-protection.yml'
   pull_request:
     paths:
+      - '.codex/goals/**'
       - 'apps/web/src/lib/contracts/**'
       - 'apps/web/src/lib/network/**'
       - 'apps/web/src/lib/slabs/**'
