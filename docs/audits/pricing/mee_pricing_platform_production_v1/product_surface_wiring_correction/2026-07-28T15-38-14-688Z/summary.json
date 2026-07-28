@@ -1,0 +1,44 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_PRODUCT_SURFACE_WIRING_CORRECTION_V1",
+  "status": "passed",
+  "generated_at": "2026-07-28T15:38:14.688Z",
+  "branch": "pricing/mee-productization-v1",
+  "parent_commit_sha": "1e1bdd85b4d43ebc08db5b46e0c98864f0f307e5",
+  "corrected_surfaces": [
+    "web_set_grid",
+    "flutter_compare",
+    "flutter_network"
+  ],
+  "verification": {
+    "pricing_proof_contract": {
+      "passed": 11,
+      "failed": 0
+    },
+    "full_node_contract_suite": {
+      "passed": 868,
+      "failed": 0
+    },
+    "flutter_price_widget_tests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "full_flutter_test_suite": {
+      "passed": 310,
+      "failed": 0
+    },
+    "web_typecheck": "passed",
+    "web_lint": "passed",
+    "web_strict_production_build": "passed",
+    "flutter_analyze": "passed",
+    "git_diff_check": "passed"
+  },
+  "boundaries": {
+    "production_writes": 0,
+    "migrations_applied": 0,
+    "publication_changes": 0,
+    "deployments": 0,
+    "anonymous_access_changes": 0,
+    "canary_frozen": true
+  },
+  "final_production_surface_gate": "pending_post_canary"
+}

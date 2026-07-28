@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_34_PRODUCT_SURFACE_WIRING_CORRECTION.md`
+
+This checkpoint corrects three source-to-render gaps found after the initial
+readiness audit: web Set grids had no pricing path, while Flutter Compare and
+Network rendered prices without preserving complete machine-readable
+evidence.
+
+Decision locked there:
+
+- every required surface must retain the governed pricing record through
+  render; visible dollar text and documentation claims are not substitutes
+
+Unresolved risk afterward:
+
+- final same-commit authenticated production captures remain pending until the
+  frozen canary and post-canary rollout gates pass
+
 ### `PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md`
 
 This checkpoint records the 17-surface production proof contract, deployed

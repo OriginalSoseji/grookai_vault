@@ -10,6 +10,7 @@ import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCa
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import ShareCardButton from "@/components/ShareCardButton";
+import VisiblePrice from "@/components/pricing/VisiblePrice";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getPrintingPublicReference } from "@/lib/cards/printingSelection";
 import {
@@ -143,6 +144,7 @@ export default function PublicSetCardGrid({
           const finishLabels = (card.printings ?? []).map((printing) => printing.finish_name).filter((label): label is string => Boolean(label));
           const badgeLabels = [...variantLabels];
           const selectedFinishLabel = selectedPrinting?.finish_name ?? null;
+          const selectedPricing = selectedPrinting?.pricing;
 
           return (
             <PokemonCardGridTile
@@ -225,6 +227,24 @@ export default function PublicSetCardGrid({
                     <span className="block text-xs font-semibold text-slate-800">Selected: {selectedFinishLabel}</span>
                   ) : null}
                 </div>
+              }
+              summary={
+                selectedPricing ? (
+                  <VisiblePrice
+                    value={selectedPricing.market_close}
+                    size="grid"
+                    className="gv-hi-price"
+                    cardPrintId={card.id}
+                    cardPrintingId={selectedPrinting?.id}
+                    printingGvId={selectedPrinting?.printing_gv_id}
+                    observedAt={selectedPricing.observed_at}
+                    publishedAt={selectedPricing.published_at}
+                    provenanceId={selectedPricing.provenance_id}
+                    sourceLabel={selectedPricing.source_label}
+                    pricingScope={selectedPricing.pricing_scope}
+                    isFromPrice={selectedPricing.is_from_price}
+                  />
+                ) : null
               }
               footer={
                 <div className="flex items-center justify-between gap-3">

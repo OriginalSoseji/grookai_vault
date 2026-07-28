@@ -1,5 +1,10 @@
 # Pricing Checkpoint 33: Product Surface Proof Readiness
 
+> Implementation-readiness amendment: a later source audit found that web Set
+> grids, Flutter Compare, and Flutter Network did not yet preserve complete
+> proof-bearing pricing through render. Checkpoint 34 records and verifies the
+> correction. The production `17/17` gate was never marked passed.
+
 ## Context
 
 The shared TCGPlayer Market read model already powers repository code for web

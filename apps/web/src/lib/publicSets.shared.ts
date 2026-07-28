@@ -193,6 +193,16 @@ export type PublicSetCard = {
       | "missing"
       | "blocked";
     owned_count?: number;
+    pricing?: {
+      pricing_scope: "card_printing";
+      market_close: number;
+      currency: "USD";
+      source_label: string;
+      observed_at: string;
+      published_at: string;
+      provenance_id?: string;
+      is_from_price: false;
+    };
   }>;
 };
 

@@ -67,6 +67,67 @@ const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
   "utf8",
 );
+const WEB_SET_PAGE = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "app",
+    "sets",
+    "[set_code]",
+    "page.tsx",
+  ),
+  "utf8",
+);
+const WEB_SET_API = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "app",
+    "api",
+    "public-set-cards",
+    "route.ts",
+  ),
+  "utf8",
+);
+const WEB_SET_GRID = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "components",
+    "PublicSetCardGrid.tsx",
+  ),
+  "utf8",
+);
+const WEB_SET_PRICING = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "lib",
+    "pricing",
+    "enrichPublicSetCardsWithMarketPricingV1.ts",
+  ),
+  "utf8",
+);
+const FLUTTER_COMPARE_SERVICE = readFileSync(
+  path.join(ROOT, "lib", "services", "public", "compare_service.dart"),
+  "utf8",
+);
+const FLUTTER_COMPARE_SCREEN = readFileSync(
+  path.join(ROOT, "lib", "screens", "compare", "compare_screen.dart"),
+  "utf8",
+);
+const FLUTTER_NETWORK_SCREEN = readFileSync(
+  path.join(ROOT, "lib", "screens", "network", "network_screen.dart"),
+  "utf8",
+);
 
 function readModelRow() {
   return {
@@ -339,6 +400,57 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(VISIBLE_PRICE, /data-source-label=\{sourceLabel\}/);
   assert.match(FLUTTER_PRICE, /identifier:\s*resolvedPricing == null/);
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
+});
+
+test("web Set grids use exact child-printing pricing for initial and paginated rows", () => {
+  assert.match(
+    WEB_SET_PAGE,
+    /enrichPublicSetCardsWithMarketPricingV1\(\s*supabase,\s*initialCardsWithOwnership/s,
+  );
+  assert.match(
+    WEB_SET_PAGE,
+    /const initialCardsWithPricing = user\?\.id/,
+  );
+  assert.match(
+    WEB_SET_API,
+    /enrichPublicSetCardsWithMarketPricingV1\(\s*supabase,\s*itemsWithOwnership/s,
+  );
+  assert.match(WEB_SET_API, /const items = user\?\.id/);
+  assert.match(
+    WEB_SET_PRICING,
+    /indexExactMarketPricingByCardPrintingId/,
+  );
+  assert.match(WEB_SET_PRICING, /cardPrintingIds/);
+  assert.doesNotMatch(WEB_SET_PRICING, /cardPrintIds/);
+  assert.match(WEB_SET_GRID, /selectedPrinting\?\.pricing/);
+  assert.match(WEB_SET_GRID, /cardPrintingId=\{selectedPrinting\?\.id\}/);
+  assert.match(WEB_SET_GRID, /pricingScope=\{selectedPricing\.pricing_scope\}/);
+  assert.doesNotMatch(WEB_SET_GRID, /pricingScope=["']parent["']/);
+});
+
+test("Flutter Compare and Network preserve governed pricing render evidence", () => {
+  assert.match(
+    FLUTTER_COMPARE_SERVICE,
+    /final CardSurfacePricingData\? pricing;/,
+  );
+  assert.match(FLUTTER_COMPARE_SERVICE, /pricing:\s*priceRow,/);
+  assert.doesNotMatch(FLUTTER_COMPARE_SERVICE, /rawPrice(?:Source|Timestamp)?/);
+  assert.match(
+    FLUTTER_COMPARE_SCREEN,
+    /CardSurfacePriceText\(\s*pricing:\s*card\.pricing,/s,
+  );
+  assert.match(
+    FLUTTER_NETWORK_SCREEN,
+    /_NetworkSupportingInfo\([\s\S]*?pricing:\s*row\.pricing,/,
+  );
+  assert.match(
+    FLUTTER_NETWORK_SCREEN,
+    /CardSurfacePriceText\(\s*pricing:\s*pricing,/s,
+  );
+  assert.doesNotMatch(
+    FLUTTER_NETWORK_SCREEN,
+    /values\.add\(_formatPrice\(visiblePrice\)\)/,
+  );
 });
 
 test("Flutter semantics proof keys preserve price and Vault total meaning", () => {

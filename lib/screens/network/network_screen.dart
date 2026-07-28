@@ -14,10 +14,12 @@ import '../../services/identity/canon_image_url_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
 import '../../services/provisional/provisional_service.dart';
+import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/card_surface_artwork.dart';
+import '../../widgets/card_surface_price.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
 import '../../widgets/provisional/provisional_card_section.dart';
@@ -1911,6 +1913,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
         supportText: supportText,
         inventoryContext: inventoryContext,
         ownershipState: ownershipState,
+        pricing: row.pricing,
       ),
       actionBar: _NetworkActionBar(
         row: row,
@@ -1943,12 +1946,8 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
 
   String? _buildSupportText(NetworkStreamRow row) {
     final values = <String>[];
-    final visiblePrice = row.pricing?.visibleValue;
 
     if (row.isDiscoverySource) {
-      if (visiblePrice != null) {
-        values.add(_formatPrice(visiblePrice));
-      }
       final rarity = (row.rarity ?? '').trim();
       if (rarity.isNotEmpty) {
         values.add(rarity);
@@ -1968,21 +1967,10 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
       }
     }
 
-    if (visiblePrice != null) {
-      values.add(_formatPrice(visiblePrice));
-    }
-
     if (values.isEmpty) {
       return null;
     }
     return values.join(' • ');
-  }
-
-  String _formatPrice(double value) {
-    if (value >= 1000) {
-      return '\$${value.toStringAsFixed(0)}';
-    }
-    return '\$${value.toStringAsFixed(2)}';
   }
 
   String? _buildInventoryContext(NetworkStreamRow row) {
@@ -2048,31 +2036,47 @@ class _NetworkSupportingInfo extends StatelessWidget {
     required this.supportText,
     required this.inventoryContext,
     required this.ownershipState,
+    required this.pricing,
   });
 
   final String? supportText;
   final String? inventoryContext;
   final OwnershipState? ownershipState;
+  final CardSurfacePricingData? pricing;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final children = <Widget>[
+      if (pricing?.hasVisibleValue == true)
+        CardSurfacePriceText(
+          pricing: pricing,
+          size: CardSurfacePriceSize.dense,
+        ),
       if ((supportText ?? '').trim().isNotEmpty)
-        Text(
-          supportText!,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.56),
-            fontWeight: FontWeight.w500,
-            fontSize: 12.3,
-            height: 1.3,
+        Padding(
+          padding: EdgeInsets.only(
+            top: pricing?.hasVisibleValue == true ? 4 : 0,
+          ),
+          child: Text(
+            supportText!,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.56),
+              fontWeight: FontWeight.w500,
+              fontSize: 12.3,
+              height: 1.3,
+            ),
           ),
         ),
       if ((inventoryContext ?? '').trim().isNotEmpty)
         Padding(
           padding: EdgeInsets.only(
-            top: (supportText ?? '').trim().isEmpty ? 0 : 4,
+            top:
+                pricing?.hasVisibleValue == true ||
+                    (supportText ?? '').trim().isNotEmpty
+                ? 4
+                : 0,
           ),
           child: Text(
             inventoryContext!,
@@ -2089,7 +2093,8 @@ class _NetworkSupportingInfo extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(
             top:
-                (supportText ?? '').trim().isEmpty &&
+                pricing?.hasVisibleValue != true &&
+                    (supportText ?? '').trim().isEmpty &&
                     (inventoryContext ?? '').trim().isEmpty
                 ? 0
                 : 4,

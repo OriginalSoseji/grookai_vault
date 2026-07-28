@@ -91,9 +91,7 @@ class ComparePublicCard {
     this.releaseYear,
     this.artist,
     this.imageUrl,
-    this.rawPrice,
-    this.rawPriceSource,
-    this.rawPriceTimestamp,
+    this.pricing,
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
@@ -109,9 +107,7 @@ class ComparePublicCard {
   final int? releaseYear;
   final String? artist;
   final String? imageUrl;
-  final double? rawPrice;
-  final String? rawPriceSource;
-  final String? rawPriceTimestamp;
+  final CardSurfacePricingData? pricing;
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
@@ -199,9 +195,7 @@ class PublicCompareService {
             releaseYear: _parseReleaseYear(setRecord?['release_date']),
             artist: _normalizeOptionalText(row['artist']),
             imageUrl: _displayImageUrl(row),
-            rawPrice: priceRow?.marketClose,
-            rawPriceSource: priceRow?.primarySource,
-            rawPriceTimestamp: priceRow?.observedAt?.toIso8601String(),
+            pricing: priceRow,
             variantKey: _normalizeOptionalText(row['variant_key']),
             printedIdentityModifier: _normalizeOptionalText(
               row['printed_identity_modifier'],

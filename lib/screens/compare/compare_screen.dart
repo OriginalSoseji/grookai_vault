@@ -7,6 +7,7 @@ import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../utils/display_image_contract.dart';
+import '../../widgets/card_surface_price.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
 ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
@@ -308,19 +309,28 @@ class _CompareScreenState extends State<CompareScreen> {
                       final value = _formatAttribute(card, row.key);
 
                       return DataCell(
-                        Text(
-                          value,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                fontWeight: matchesReference
-                                    ? FontWeight.w500
-                                    : FontWeight.w700,
-                                color: matchesReference
-                                    ? Theme.of(context).colorScheme.onSurface
-                                          .withValues(alpha: 0.82)
-                                    : Theme.of(context).colorScheme.primary,
+                        row.key == 'price'
+                            ? CardSurfacePriceText(
+                                pricing: card.pricing,
+                                size: CardSurfacePriceSize.dense,
+                              )
+                            : Text(
+                                value,
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(
+                                      fontWeight: matchesReference
+                                          ? FontWeight.w500
+                                          : FontWeight.w700,
+                                      color: matchesReference
+                                          ? Theme.of(context)
+                                                .colorScheme
+                                                .onSurface
+                                                .withValues(alpha: 0.82)
+                                          : Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
+                                    ),
                               ),
-                        ),
                       );
                     }),
                   ],
@@ -351,9 +361,13 @@ class _CompareScreenState extends State<CompareScreen> {
       case 'variant':
         return (card.variantLabel ?? '').isEmpty ? '—' : card.variantLabel!;
       case 'price':
-        return card.rawPrice == null
-            ? '—'
-            : '\$${card.rawPrice!.toStringAsFixed(2)}';
+        final pricing = card.pricing;
+        final value = pricing?.visibleValue;
+        if (value == null) {
+          return '—';
+        }
+        final formatted = formatCardSurfaceMoney(value);
+        return pricing?.isFromPrice == true ? 'From $formatted' : formatted;
       case 'artist':
         return (card.artist ?? '').isEmpty ? '—' : card.artist!;
       case 'release':
