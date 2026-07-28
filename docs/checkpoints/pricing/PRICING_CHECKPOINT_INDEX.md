@@ -295,7 +295,7 @@ Recommended reading order for future maintainers:
    - then read how warehouse-first ingestion was locked so replayable listing storage never bypasses the observation truth gate
 
 14. `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
-   - then read how exact TCGPlayer Market publication became the Production V1 app-facing price contract
+   - then read how exact TCGPlayer Market publication became the Production V1 app-facing price contract and was routed through supported web and Flutter surfaces
 
 After those fourteen checkpoints, read the supporting audits in this order:
 
@@ -303,3 +303,5 @@ After those fourteen checkpoints, read the supporting audits in this order:
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`
 - `docs/audits/PRICING_OBSERVATION_OFFLINE_VALIDATION_V1.md`
 - `docs/audits/PRICING_OBSERVATION_LIVE_VALIDATION_V1.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_PUBLICATION_LOCAL_PROOF_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md`

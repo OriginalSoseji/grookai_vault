@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import 'card_surface_pricing_service.dart';
 
 const int kMaxCompareCards = 4;
 const int kMinCompareCards = 2;
@@ -159,21 +160,10 @@ class PublicCompareService {
         .where((value) => value.isNotEmpty)
         .toList();
 
-    final priceByCardId = <String, Map<String, dynamic>>{};
-    if (cardIds.isNotEmpty) {
-      final priceRows = await client
-          .from('v_best_prices_all_gv_v1')
-          .select('card_id,base_market,base_source,base_ts')
-          .inFilter('card_id', cardIds);
-
-      for (final rawRow in priceRows as List<dynamic>) {
-        final row = Map<String, dynamic>.from(rawRow as Map);
-        final cardId = _cleanText(row['card_id']);
-        if (cardId.isNotEmpty) {
-          priceByCardId[cardId] = row;
-        }
-      }
-    }
+    final priceByCardId = await CardSurfacePricingService.fetchByCardPrintIds(
+      client: client,
+      cardPrintIds: cardIds,
+    );
 
     final rowByGvId = <String, Map<String, dynamic>>{};
     for (final row in normalizedRows) {
@@ -209,11 +199,9 @@ class PublicCompareService {
             releaseYear: _parseReleaseYear(setRecord?['release_date']),
             artist: _normalizeOptionalText(row['artist']),
             imageUrl: _displayImageUrl(row),
-            rawPrice: priceRow?['base_market'] is num
-                ? (priceRow!['base_market'] as num).toDouble()
-                : null,
-            rawPriceSource: _normalizeOptionalText(priceRow?['base_source']),
-            rawPriceTimestamp: _normalizeOptionalText(priceRow?['base_ts']),
+            rawPrice: priceRow?.marketClose,
+            rawPriceSource: priceRow?.primarySource,
+            rawPriceTimestamp: priceRow?.observedAt?.toIso8601String(),
             variantKey: _normalizeOptionalText(row['variant_key']),
             printedIdentityModifier: _normalizeOptionalText(
               row['printed_identity_modifier'],

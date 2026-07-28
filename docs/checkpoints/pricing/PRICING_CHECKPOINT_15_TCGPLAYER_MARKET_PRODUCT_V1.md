@@ -45,7 +45,7 @@ separate exact-printing availability lane.
 - The V1 migration, policy, publication worker, pipeline, health probe, shared
   read model, web consumers, and Flutter consumers are implemented locally.
 - The publication worker is dry-run by default.
-- The full repository ship gate passes, including `714/714` Node contract
+- The full repository ship gate passes, including `731/731` Node contract
   tests, web typecheck/lint/production build, Flutter analyze, and Flutter
   tests.
 - Local PostgreSQL compilation and security readback prove raw ledgers are
@@ -61,6 +61,14 @@ separate exact-printing availability lane.
   bounded same-run retries, operating-system and PostgreSQL overlap locks,
   durable attempt artifacts, guarded legacy-timer replacement, and required
   generic operations-webhook routing.
+- Supported web and Flutter collector surfaces now consume the governed
+  TCGPlayer Market read model. Flutter Compare and the live-price request no
+  longer read `v_best_prices_all_gv_v1`.
+- Card Detail resolves parent and exact-printing rows together. Market History
+  reads `get_market_price_history_v1` for one explicitly selected printing and
+  never aggregates variant histories.
+- Local product-surface readback returned the parent and exact-printing
+  `$12.34` market rows plus one exact-printing history point.
 - The V1 migration has not been applied to production in this checkpoint.
 - No production publication rows have been written by this work.
 
@@ -86,8 +94,6 @@ separate exact-printing availability lane.
 
 ## Explicit Next Gate
 
-Commit and verify the scheduled operations package, then route and test every
-supported web and Flutter surface through the shared read model. After those
-local gates pass, reconcile the nonempty linked schema diff before any remote
-migration apply, run three shadow cycles, and proceed to the bounded signed-in
-canary without granting anonymous access.
+Reconcile the nonempty linked schema diff before any remote migration apply.
+Then apply the governed migration, run three production shadow cycles, and
+proceed to the bounded signed-in canary without granting anonymous access.

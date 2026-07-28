@@ -18,7 +18,11 @@ export type CardPricingUiRecord = MarketPricingRecordV1 & {
   pricing_basis: "tcgplayer_market_exact" | "tcgplayer_market_from";
 };
 
-type PricingClient = Pick<SupabaseClient, "rpc">;
+type PricingClient = Pick<SupabaseClient, "from" | "rpc">;
+
+type CardPrintingIdRow = {
+  id: string | null;
+};
 
 function toUiRecord(record: MarketPricingRecordV1): CardPricingUiRecord {
   return {
@@ -55,8 +59,24 @@ export async function getCardPricingUiRowsByCardPrintIdWithClient(
     return [];
   }
 
+  const { data: printingRows, error: printingError } = await supabase
+    .from("card_printings")
+    .select("id")
+    .eq("card_print_id", normalizedCardPrintId);
+  if (printingError) {
+    console.error("[pricing:v1] exact-printing lookup failed", {
+      code: printingError.code,
+      message: printingError.message,
+      cardPrintId: normalizedCardPrintId,
+    });
+  }
+  const cardPrintingIds = ((printingRows ?? []) as CardPrintingIdRow[])
+    .map((row) => row.id?.trim() ?? "")
+    .filter(Boolean);
+
   const records = await getMarketPricingReadModelV1(supabase, {
     cardPrintIds: [normalizedCardPrintId],
+    cardPrintingIds,
   });
   return sortPricingRecords(records.map(toUiRecord));
 }

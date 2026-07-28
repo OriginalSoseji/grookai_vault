@@ -722,10 +722,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
       getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
       includeCameos ? getCameosByGvId(supabase, row.gv_id) : Promise.resolve(undefined),
     ]);
-  // Pricing authority note:
   // Public pricing is resolved by the governed TCGPlayer market read model.
-  // App-facing read surface = v_best_prices_all_gv_v1
-  // Keep product reads on the compatibility surface during stabilization.
   const pricingByCardId = includePricing && row.id
     ? await getPublicPricingByCardIds(supabase, [row.id])
     : new Map();

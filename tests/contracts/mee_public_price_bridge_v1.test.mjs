@@ -26,6 +26,9 @@ const publicPricingHelperPath = "apps/web/src/lib/pricing/getPublicPricingByCard
 const cardPricingRoutePath = "apps/web/src/app/api/card-pricing/route.ts";
 const pricingRailPath = "apps/web/src/components/pricing/CardPagePricingRail.tsx";
 const pricingDisclosurePath = "apps/web/src/components/common/PricingDisclosure.tsx";
+const marketAnalysisModelPath = "apps/web/src/lib/pricing/getCardMarketAnalysisModel.ts";
+const compareServicePath = "lib/services/public/compare_service.dart";
+const livePricingRequestPath = "supabase/functions/pricing-live-request/index.ts";
 
 test("MEE public price bridge reads only approved internal MEE price signals", () => {
   const sql = stripSqlComments(read(bridgeSqlPath));
@@ -96,6 +99,26 @@ test("app pricing reads keep active asks separate from the market close", () => 
   assert.match(cardHelper, /active_ask_listing_count/);
   assert.match(publicHelper, /raw_price:\s*record\.market_close/);
   assert.match(publicHelper, /raw_price_source:\s*"tcgplayer_market"/);
+});
+
+test("all supported pricing surfaces use the governed market read model", () => {
+  const cardHelper = read(cardPricingHelperPath);
+  const marketModel = read(marketAnalysisModelPath);
+  const compareService = read(compareServicePath);
+  const livePricingRequest = read(livePricingRequestPath);
+
+  assert.match(cardHelper, /\.from\("card_printings"\)/);
+  assert.match(cardHelper, /cardPrintingIds/);
+  assert.match(marketModel, /get_market_price_history_v1/);
+  assert.match(marketModel, /pricing_scope === "card_printing"/);
+  assert.match(marketModel, /usedCardFallback:\s*false/);
+  assert.match(compareService, /CardSurfacePricingService\.fetchByCardPrintIds/);
+  assert.match(livePricingRequest, /get_market_pricing_read_model_v1/);
+
+  for (const surface of [compareService, livePricingRequest, marketModel]) {
+    assert.doesNotMatch(surface, /v_best_prices_all_gv_v1/);
+    assert.doesNotMatch(surface, /\bgrookaiValue\b/i);
+  }
 });
 
 test("pricing UI copy separates TCGPlayer Market and exact active asks", () => {
