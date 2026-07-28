@@ -462,6 +462,17 @@ test("variant assignment preparation skips rows already assigned", () => {
     ASSIGNMENT_IDEMPOTENCY_MIGRATION,
     /on conflict \(\s*source_family,\s*source_row_id,\s*variant_assignment_version\s*\) do nothing/i,
   );
+  assert.match(
+    WORKER,
+    /async function missingVariantAssignmentCount\(client, sourceRun\)/,
+  );
+  assert.match(WORKER, /and assignment\.id is null/);
+  assert.match(WORKER, /if \(missingCount === 0\)/);
+  assert.match(WORKER, /skipped_expensive_prepare: true/);
+  assert.match(
+    WORKER,
+    /variant assignment preparation mismatch missing=\$\{missingCount\} inserted=\$\{insertedCount\}/,
+  );
 });
 
 test("signed-in clients receive a shared contract while provenance stays service-only", () => {
