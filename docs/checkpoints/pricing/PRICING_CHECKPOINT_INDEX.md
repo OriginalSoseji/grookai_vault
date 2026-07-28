@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md`
+
+This checkpoint records the migration of private/public, web/Flutter Vault
+pricing to exact raw-copy identity, explicit unresolved-copy coverage, slab
+exclusion, the owner-filtered read boundary, and the clean-SHA publication,
+security, provenance, and rollback proof.
+
+Decision locked there:
+
+- Vault total is the sum of eligible exact raw-copy market closes; a parent
+  `From` amount is never multiplied by quantity
+
+Unresolved risk afterward:
+
+- the migration remains local until the frozen 72-hour canary passes; corrected
+  deployment, fresh full shadow, signed-in full rollout, seven unattended
+  cycles, and public licensing authority remain open
+
 ### `PRICING_CHECKPOINT_28_READ_MODEL_CONTRACT_COMPLETION.md`
 
 This checkpoint records the completion of the shared pricing read contract:
@@ -579,6 +597,11 @@ Recommended reading order for future maintainers:
     - then read how publication timestamps, backing exact-printing identity,
       parent minimum provenance, and governed top-market reads completed the
       shared product contract
+
+28. `PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md`
+    - then read how Vault totals became sums of exact raw-copy prices, with
+      unresolved copies and slabs excluded and private ownership targets
+      constrained to an authenticated read-only view
 
 After those checkpoints, read the supporting audits in this order:
 
