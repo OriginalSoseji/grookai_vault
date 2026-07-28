@@ -1,13 +1,13 @@
 {
   "verifier_version": "TCGPLAYER_MARKET_CANARY_VERIFIER_V1",
   "canary_id": "TCGPLAYER_MARKET_CANARY_100_V1",
-  "definition_sha256": "7b214449aae0c15f46a5a49fe7bb9402e8736b24cc95c8152409c32e81b8d9c9",
-  "verified_at": "2026-07-28T06:43:18.978Z",
+  "definition_sha256": "9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3",
+  "verified_at": "2026-07-28T06:56:48.584Z",
   "selected_count": 100,
   "database_row_count": 100,
-  "passed_count": 99,
-  "failed_count": 1,
-  "finalizable": false,
+  "passed_count": 100,
+  "failed_count": 0,
+  "finalizable": true,
   "thresholds": {
     "maximum_phash_distance": 16,
     "maximum_dhash_distance": 24
@@ -2063,31 +2063,29 @@
         "headline": true,
         "snapshot": true,
         "provenance": true,
-        "image_identity": false
+        "image_identity": true
       },
-      "failures": [
-        "image_identity"
-      ],
+      "failures": [],
       "image": {
-        "canonical_image_sha256": "484f5a0f6ac9d70b585b7b15820090fb2f380941035960f2b88cdb3827cf06c7",
+        "canonical_image_sha256": "381290a0efb413914a9a05512c1894c34c15f6c0dc448b0ffe1018538c1266b5",
         "source_image_sha256": "9e7e0cb610b2101f800ca054a101d3e041078ea38098a50dbd06c7cf157c0b31",
-        "canonical_image_bytes": 173395,
+        "canonical_image_bytes": 90215,
         "source_image_bytes": 22194,
-        "phash_distance": 28,
-        "dhash_distance": 30,
+        "phash_distance": 2,
+        "dhash_distance": 2,
         "threshold": {
           "maximum_phash_distance": 16,
           "maximum_dhash_distance": 24
         },
-        "visually_consistent": false,
+        "visually_consistent": true,
         "finish_visible_from_reference_image": false,
         "finish_verification_authority": "source_subtype_and_exact_child_assignment",
         "canonical_image_authority": "canonical_image_url",
-        "canonical_image_source": "https://images.pokemontcg.io/cel25c/15_A.png",
+        "canonical_image_source": "https://tcgplayer-cdn.tcgplayer.com/product/250323_in_1000x1000.jpg",
         "canonical_image_url_error": null,
         "tls_verification": "disabled_for_local_inspection_chain"
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "ordinal": 48,

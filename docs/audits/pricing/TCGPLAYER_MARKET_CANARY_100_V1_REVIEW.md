@@ -3,8 +3,12 @@
 - Canary: `TCGPLAYER_MARKET_CANARY_100_V1`
 - Shadow run: `TCGPLAYER-MARKET-SHADOW-CORRECTED-SHA-CYCLE3-20260728T0620Z-publication`
 - Source run: `52068f31-2f07-4ad4-9000-83c4054d5b4a`
-- Status: `pending_visual_data_review`
+- Status: `verified`
 - Printings: `100`
+- Verified at: `2026-07-28T06:56:41.398Z`
+- Result: `100/100 passed`
+- Definition SHA-256: `9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3`
+- Verification report: `docs/audits/pricing/TCGPLAYER_MARKET_CANARY_100_V1_VERIFICATION.json`
 
 This packet is review evidence only. It does not authorize activation.
 
@@ -18,7 +22,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$69.88`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 2. Charizard GV-PK-AR-1-HOLO
 
@@ -30,7 +34,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$67.67`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 3. Charizard GV-PK-AR-1-RH
 
@@ -42,7 +46,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$54.75`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 4. Pikachu ex GV-PK-ASC-276-HOLO
 
@@ -54,7 +58,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1161.13`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 5. Alolan Sandslash GV-PK-SM-SM127-STD
 
@@ -66,7 +70,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.37`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=true, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 6. Kyogre ex GV-PK-PR-NP-1-STD
 
@@ -78,7 +82,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$41.77`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=true, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 7. Alolan Ninetales GV-PK-SM-SM128-STD
 
@@ -90,7 +94,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$6.26`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=true, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 8. Pikachu δ GV-PK-PR-NP-35-HOLO
 
@@ -102,7 +106,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$197.76`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=true, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 9. Adaman GV-PK-ASR-135-RH
 
@@ -114,7 +118,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.34`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 10. Alolan Meowth GV-PK-SM-SM51-STD
 
@@ -126,7 +130,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$4.69`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=true, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 11. Ace Trainer GV-PK-AOR-69-RH
 
@@ -138,7 +142,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.37`
 - Strata: `era=middle, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 12. Great Ball GV-PK-BKP-100-RH
 
@@ -150,7 +154,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.58`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 13. Phanpy GV-PK-AQ-100-STD
 
@@ -162,7 +166,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$13.93`
 - Strata: `era=vintage, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 14. Monferno GV-PK-BRS-025-RH
 
@@ -174,7 +178,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.27`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 15. Crawdaunt GV-PK-DR-3-HOLO
 
@@ -186,7 +190,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$9.48`
 - Strata: `era=vintage, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 16. Picnicker GV-PK-PR-SV-114-STD
 
@@ -198,7 +202,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.43`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 17. Oddish GV-PK-BCR-1-RH
 
@@ -210,7 +214,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$8.86`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 18. Vivillon GV-PK-BKT-15-HOLO
 
@@ -222,7 +226,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.63`
 - Strata: `era=middle, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 19. Bellsprout GV-PK-BST-1-RH
 
@@ -234,7 +238,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.31`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 20. Computer Error GV-PK-PR-16-STD
 
@@ -246,7 +250,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$6.55`
 - Strata: `era=vintage, branch=trainer, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 21. Gengar GV-PK-CIN-38-HOLO
 
@@ -258,7 +262,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$23.17`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 22. Snivy GV-PK-BLW-1-RH
 
@@ -270,7 +274,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.38`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 23. Caterpie GV-PK-BUS-1-STD
 
@@ -282,7 +286,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.21`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 24. Alakazam GV-PK-EX-1-HOLO
 
@@ -294,7 +298,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$236.24`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 25. Marnie GV-PK-PR-SW-SWSH120-HOLO
 
@@ -306,7 +310,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$4.03`
 - Strata: `era=modern, branch=trainer, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 26. Banette GV-PK-CG-1-RH
 
@@ -318,7 +322,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$30.50`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 27. Lileep GV-PK-CEC-10-STD
 
@@ -330,7 +334,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.28`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 28. Banette GV-PK-HL-1-HOLO
 
@@ -342,7 +346,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$34.69`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 29. Mawile Spirit Link GV-PK-PR-XY-XY105-STD
 
@@ -354,7 +358,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$5.06`
 - Strata: `era=middle, branch=trainer, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 30. Bellsprout GV-PK-CES-1-RH
 
@@ -366,7 +370,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.59`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 31. Weedle GV-PK-CRE-1-RH
 
@@ -378,7 +382,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.24`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 32. Alakazam GV-PK-LC-1-HOLO
 
@@ -390,7 +394,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$78.10`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 33. Professor Oak's New Theory GV-PK-COL-83-STD
 
@@ -402,7 +406,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.04`
 - Strata: `era=middle, branch=trainer, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 34. Vulpix GV-PK-MCD-2016-1-HOLO
 
@@ -414,7 +418,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$179.99`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 35. Centiskorch GV-PK-CPA-10-RH
 
@@ -426,7 +430,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.23`
 - Strata: `era=middle, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 36. Charmander GV-PK-DRM-1-STD
 
@@ -438,7 +442,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$4.15`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 37. Team Aqua's Cacturne GV-PK-MA-1-HOLO
 
@@ -450,7 +454,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$27.33`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 38. Adversity Policy GV-PK-CRI-074-RH
 
@@ -462,7 +466,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.21`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 39. Snorlax GV-PK-CRZ-109-STD
 
@@ -474,7 +478,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.86`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 40. Abomasnow GV-PK-ASR-TG01-HOLO
 
@@ -486,7 +490,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.85`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 41. Weedle GV-PK-B2-100-STD
 
@@ -498,7 +502,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.61`
 - Strata: `era=vintage, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 42. Surprise Box GV-PK-UNB-187-RH
 
@@ -510,7 +514,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$26.93`
 - Strata: `era=modern, branch=trainer, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 43. Electabuzz GV-PK-BOG-1-RH
 
@@ -522,7 +526,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$31.51`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 44. Serperior ex GV-PK-BLK-003-HOLO
 
@@ -534,7 +538,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.66`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 45. Beedrill GV-PK-BS-17-STD
 
@@ -546,7 +550,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$6.13`
 - Strata: `era=vintage, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 46. Team Magma's Numel GV-PK-DCR-1-RH
 
@@ -558,11 +562,11 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$6.35`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 47. Here Comes Team Rocket! GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET-HOLO
 
-![Here Comes Team Rocket!](https://images.pokemontcg.io/cel25c/15_A.png)
+![Here Comes Team Rocket!](https://tcgplayer-cdn.tcgplayer.com/product/250323_in_1000x1000.jpg)
 
 - Canonical: `GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET`, Celebrations: Classic Collection #15
 - Printing: `15c26d52-1719-40be-b29f-5169263e923b`, finish `holo`
@@ -570,7 +574,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.89`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 48. Armaldo ex GV-PK-POP1-16-STD
 
@@ -582,7 +586,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$23.94`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 49. Flareon GV-PK-BRS-TG01-HOLO
 
@@ -594,7 +598,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$25.86`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 50. Bulbasaur GV-PK-DEX-1-STD
 
@@ -606,7 +610,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$8.40`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 51. Big Parasol GV-PK-DAA-157-RH
 
@@ -618,7 +622,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.34`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 52. Ho-Oh GV-PK-CEL-1-HOLO
 
@@ -630,7 +634,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.34`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 53. Ampharos δ GV-PK-DF-1-RH
 
@@ -642,7 +646,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$103.99`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 54. Multi Energy GV-PK-RG-103-STD
 
@@ -654,7 +658,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.49`
 - Strata: `era=vintage, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 55. Hisuian Voltorb GV-PK-CRZ-GG01-HOLO
 
@@ -666,7 +670,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.79`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 56. Double Full Heal GV-PK-DP-105-STD
 
@@ -678,7 +682,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.32`
 - Strata: `era=middle, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 57. Charizard GV-PK-EVO-11-RH
 
@@ -690,7 +694,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$103.07`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 58. Aggron GV-PK-RS-1-HOLO
 
@@ -702,7 +706,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$32.36`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 59. Ethan's Pinsir GV-PK-DRI-1-RH
 
@@ -714,7 +718,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.29`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 60. Holon Farmer GV-PK-DS-91-STD
 
@@ -726,7 +730,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.29`
 - Strata: `era=middle, branch=trainer, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 61. Bulbasaur GV-PK-DET-1-HOLO
 
@@ -738,7 +742,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.96`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 62. Mew GV-PK-SI-1-RH
 
@@ -750,7 +754,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$467.73`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 63. Audino GV-PK-DRX-108-STD
 
@@ -762,7 +766,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.78`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 64. Pinsir GV-PK-EVS-1-RH
 
@@ -774,7 +778,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.28`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 65. N GV-PK-FCO-105-STD
 
@@ -786,7 +790,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.77`
 - Strata: `era=modern, branch=trainer, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 66. Kabutops GV-PK-SK-150-HOLO
 
@@ -798,7 +802,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1000.00`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 67. Dratini GV-PK-DRV-1-HOLO
 
@@ -810,7 +814,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$4.30`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 68. Exeggcute GV-PK-FLI-1-STD
 
@@ -822,7 +826,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.78`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 69. Master Ball GV-PK-DX-88-RH
 
@@ -834,7 +838,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$29.11`
 - Strata: `era=middle, branch=trainer, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 70. Caterpie GV-PK-FST-1-RH
 
@@ -846,7 +850,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.29`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 71. Armaldo GV-PK-SS-1-HOLO
 
@@ -858,7 +862,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$19.38`
 - Strata: `era=vintage, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 72. Kyogre GV-PK-EM-15-STD
 
@@ -870,7 +874,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$20.52`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 73. Venusaur-EX GV-PK-GEN-1-HOLO
 
@@ -882,7 +886,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$11.11`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 74. Aether Paradise Conservation Area GV-PK-GRI-116-RH
 
@@ -894,7 +898,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.30`
 - Strata: `era=modern, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 75. Dark Dragonite GV-PK-TRR-15-STD
 
@@ -906,7 +910,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$92.24`
 - Strata: `era=vintage, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 76. Caterpie GV-PK-HIF-1-RH
 
@@ -918,7 +922,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.40`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 77. Whimsicott GV-PK-EPO-12-STD
 
@@ -930,7 +934,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.65`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 78. Judge GV-PK-LOT-209-HOLO
 
@@ -942,7 +946,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$66.73`
 - Strata: `era=modern, branch=trainer, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 79. Bagon GV-PK-TK-tk1a-1-STD
 
@@ -954,7 +958,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.26`
 - Strata: `era=vintage, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 80. Herbal Energy GV-PK-FFI-103-RH
 
@@ -966,7 +970,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.46`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 81. Rotom V GV-PK-LOR-177-HOLO
 
@@ -978,7 +982,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$30.96`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 82. Parasect GV-PK-LOR-TG01-HOLO
 
@@ -990,7 +994,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$4.05`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 83. Fiery Torch GV-PK-FLF-89-RH
 
@@ -1002,7 +1006,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.52`
 - Strata: `era=middle, branch=trainer, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 84. Electrike GV-PK-TK-tk1b-1-STD
 
@@ -1014,7 +1018,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.19`
 - Strata: `era=vintage, branch=pokemon, value_band=low, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 85. Pikachu GV-PK-MCD-2017-5-HOLO
 
@@ -1026,7 +1030,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$28.16`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 86. Blaziken GV-PK-GE-1-RH
 
@@ -1038,7 +1042,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$38.29`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 87. Switch GV-PK-HS-102-STD
 
@@ -1050,7 +1054,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.55`
 - Strata: `era=middle, branch=trainer, value_band=medium, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 88. Caterpie GV-PK-JTG-1-RH
 
@@ -1062,7 +1066,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.24`
 - Strata: `era=middle, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 89. Weedle GV-PK-KSS-1-STD
 
@@ -1074,7 +1078,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$1.24`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=false, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 90. Deoxys Normal Forme GV-PK-LA-1-HOLO
 
@@ -1086,7 +1090,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$43.23`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 91. Aerodactyl GV-PK-LM-1-HOLO
 
@@ -1098,7 +1102,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$76.31`
 - Strata: `era=middle, branch=pokemon, value_band=high, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 92. Tangela GV-PK-LTR-1-RH
 
@@ -1110,7 +1114,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.66`
 - Strata: `era=middle, branch=pokemon, value_band=low, promo=false, multi_finish_family=true, family_finish_count=2`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 93. Snivy GV-PK-MCD-2011-1-HOLO
 
@@ -1122,7 +1126,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$5.41`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 94. Servine GV-PK-MCD-2012-1-HOLO
 
@@ -1134,7 +1138,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$9.56`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 95. Weedle GV-PK-MCD-2014-1-HOLO
 
@@ -1146,7 +1150,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$12.43`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 96. Treecko GV-PK-MCD-2015-1-HOLO
 
@@ -1158,7 +1162,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$5.96`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 97. Growlithe GV-PK-MCD-2018-1-HOLO
 
@@ -1170,7 +1174,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$21.24`
 - Strata: `era=modern, branch=pokemon, value_band=high, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 98. Caterpie GV-PK-MCD-2019-1-HOLO
 
@@ -1182,7 +1186,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$13.87`
 - Strata: `era=modern, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 99. Ledyba GV-PK-MCD-2022-1-STD
 
@@ -1194,7 +1198,7 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$0.17`
 - Strata: `era=modern, branch=pokemon, value_band=low, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`
 
 ## 100. Sprigatito GV-PK-MCD-2023-1-HOLO
 
@@ -1206,4 +1210,4 @@ This packet is review evidence only. It does not authorize activation.
 - Expected TCGPlayer Market: `$2.05`
 - Strata: `era=middle, branch=pokemon, value_band=medium, promo=true, multi_finish_family=false, family_finish_count=1`
 - Provenance: `passed`
-- Visual/data verification: `pending`
+- Visual/data verification: `passed`

@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_18_TCGPLAYER_MARKET_CANARY_VERIFICATION.md`
+
+This checkpoint records the genuine stratified 100-printing verification
+canary, the Arceus Charizard assignment correction, the wrong Here Comes Team
+Rocket image caught by visual review, and the final `100/100` result with no
+customer activation.
+
+Decision locked there:
+
+- signed-in canary activation may use only the exact verified 100-printing
+  allowlist after a same-SHA shadow and exact-definition dry-run proof
+
+Unresolved risk afterward:
+
+- final same-SHA shadow cycles, exact-definition dry-run, authenticated
+  activation, telemetry, rollback proof, and the 72-hour observation window
+  remain required
+
 ### `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
 
 This checkpoint records the first complete production shadow lock for
@@ -337,6 +355,10 @@ Recommended reading order for future maintainers:
 16. `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
    - then read how the production pipeline completed three deterministic
      same-SHA shadow cycles with complete provenance and no customer activation
+
+17. `PRICING_CHECKPOINT_18_TCGPLAYER_MARKET_CANARY_VERIFICATION.md`
+   - then read how a genuine fixed 100-printing sample caught and repaired
+     canonical assignment and image defects before any signed-in activation
 
 After those checkpoints, read the supporting audits in this order:
 

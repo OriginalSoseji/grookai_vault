@@ -7,8 +7,8 @@
   "source_sync_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
   "source_shadow_commit_sha": "6da82b498a3e91ddaac79e09d373baf46624557e",
   "expected_count": 100,
-  "verification_status": "pending_visual_data_review",
-  "generated_at": "2026-07-28T06:34:04.820Z",
+  "verification_status": "verified",
+  "generated_at": "2026-07-28T06:56:02.646Z",
   "stratification_targets": {
     "finish": {
       "holo": 30,
@@ -115,13 +115,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7b30c050f9ccdc7a1a073368a96dbf78998e8fc398f11216df1e6de381edc436",
+        "source_image_sha256": "48d3b270f7b668ba2b3fe8dcbb99c190a611c5a550fa0cb8bbab31dd4fdd78a0",
+        "phash_distance": 12,
+        "dhash_distance": 12,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -169,13 +175,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "4b579e9c06ab9a4533a93ead6c2ac38d8bb0092ba53d63aba1fa0f2af2377718",
+        "source_image_sha256": "3ec63f18bd1eef6d5f53c1f35fc709479931db5acaf588c737c0719fdadceefe",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -223,13 +235,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "4b579e9c06ab9a4533a93ead6c2ac38d8bb0092ba53d63aba1fa0f2af2377718",
+        "source_image_sha256": "3ec63f18bd1eef6d5f53c1f35fc709479931db5acaf588c737c0719fdadceefe",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -277,13 +295,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "de840f97bc36e4bfc9ec2091caa35b69357f137ef48125e212044ec016730f8e",
+        "source_image_sha256": "10d984a19eb68c06e5fab1497bc7a1fae5f0ba3909e8188bafb15d565fbf8071",
+        "phash_distance": 2,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -331,13 +355,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "ce1765882b68d6fb6ea0f2bb78876b0a33c7415757427779514aef8b2e399715",
+        "source_image_sha256": "ea408ee7d8642df143678499ed9462bb191cc3c1624378d078223daa1c32f49b",
+        "phash_distance": 2,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -385,13 +415,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "6314eba6bb478483e4bfff3e1f539a4c4ef75c755808813bf2392684b448c848",
+        "source_image_sha256": "3b4d5241e820f8135f9a50cdd1aec8be74c2989b1acf2852e58898d84f6857c9",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -439,13 +475,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "fb2a98b9cb46aedfe8617204ad27165ff8fc92e68b05b0550c09fa669c963e54",
+        "source_image_sha256": "7bc37a5016c29843cceaa39a5ea9a48a7e8db1d1870b545ac37c43ff6cb311ac",
+        "phash_distance": 2,
+        "dhash_distance": 1,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -493,13 +535,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "afec9ffb118fd9ff40976a96fe842a08eecf06cce5e8a075cd8f50c02f112298",
+        "source_image_sha256": "7b9e06012850f42746f052df302c8bc3da8924ad93e04070cdd31ec5295e079e",
+        "phash_distance": 2,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -547,13 +595,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "6a9a958b4c7ffda3e3f6bfeea8814ed2001d7973efccaca56e58b15efc720e3f",
+        "source_image_sha256": "ef9efcee8d837e64920d3dbcb22bd60b47f0b80dbbdee9e7f5c38fedfc7de1af",
+        "phash_distance": 0,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -601,13 +655,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7969a371ebbc22e2fca28fe7ec276b38ad4b523a74dfdb1fb7c48190dc81c96f",
+        "source_image_sha256": "a2c12cace6782cc68aed14b78319134b16f6fab675ad1a32027585b5522f0554",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -655,13 +715,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "0d3b71530258ca9ee835bb87f60a6a90da9af601e5607d3a88effe33e4ee002d",
+        "source_image_sha256": "94e3f04935913f212f43af5c3fc8d09f754edf9108ce31329f92b486f5638dc3",
+        "phash_distance": 2,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -709,13 +775,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "e6e9d19f091b77f29f4dd88e29163f2b85cb686258a223afb20784166c5e93a5",
+        "source_image_sha256": "0f28ba32532c8aa3d99d995636f130359e14a664a11ae3b11addc54af8fe746f",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -763,13 +835,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7d0e27c21c7d97693ca766d1d1b94f676e65b88dac7d8dbf3bd69848de93e3b5",
+        "source_image_sha256": "a387115f0c60b8d84877933a2c75410f2e1ff17b0a8dc6fd06e3e336d8619b96",
+        "phash_distance": 2,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -817,13 +895,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3485075d8544a462ecf7ba64412ff42aef33ef6743e23c9a77f857f76b8d70e6",
+        "source_image_sha256": "45422761d66cc590ff9038cf625318cb4a7e1f3b724e9d590d863d76b793d892",
+        "phash_distance": 0,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -871,13 +955,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f1ab449d987d5e66ddacda67c84a8c248fb727dc465eb34072c890da300ce2b2",
+        "source_image_sha256": "cc08de2bbba6fc2eeac80d4243a8716ce36af62c5520887878b5957d45eaca1d",
+        "phash_distance": 0,
+        "dhash_distance": 10,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -925,13 +1015,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "827f8b5b90163c00a66714a1b37024d10e76db064ff0a66fcfbca77103b61881",
+        "source_image_sha256": "9c69e08b7fa638fe753b7347a48879375554c6bd501aab870858a2782ea0e232",
+        "phash_distance": 2,
+        "dhash_distance": 8,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -979,13 +1075,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "5ee1f5849e88afd0668a71812f45584d117323988c2f1d28d4f300e977bad24f",
+        "source_image_sha256": "3760ad87860b584ebc9a881675aea1ccda7dd6fffa6eb1d0db9b19f3067e170f",
+        "phash_distance": 4,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1033,13 +1135,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "a9818734b8b651ae2dba4450990ced0523b2d3d2e23ae0b0d6a7d3376d0449da",
+        "source_image_sha256": "fa43331444a26e2090f4ba1e96858e2d7a5362528a7f6010614745e83002c1d8",
+        "phash_distance": 4,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1087,13 +1195,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f9afe0a1cd5bbe5846c16f1e2f5747caade2aa1c5e408a333cbd3250443732d6",
+        "source_image_sha256": "87f6e9776a2263958399950db4e1526ca724976a59ff7024f3ff97be0b325535",
+        "phash_distance": 2,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1141,13 +1255,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c87fd21c131bdac27f25185726705fb1dfcb47ee746999a706a5e05a9cce773e",
+        "source_image_sha256": "b57f34509ecb49652f91723e34f72a533be00217e89320877554f72df6fad421",
+        "phash_distance": 2,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1195,13 +1315,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "32bcd5ef3f28564e71c95c57e23a069dfe700f01526ba35e5aa80e7ef995fb36",
+        "source_image_sha256": "f91c0318dadde604945b4f9a73497faddfcbb5412fb7c8795a7906a2605f58e5",
+        "phash_distance": 2,
+        "dhash_distance": 17,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1249,13 +1375,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "4910535f7827a986d85383d59dbe13f1b98d79275e34d05f5435a6c7d0d6b0f4",
+        "source_image_sha256": "e90ed4ff08ac891471e53b8fc62623ed97054c6a345ca6c6ddd47d6302473745",
+        "phash_distance": 0,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1303,13 +1435,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "4d20d987a69b2732a81d9b0808c83b7607ff73b0a587a520d6003012e237b9e6",
+        "source_image_sha256": "b8d60b008790c3953846f4220ca33a1e92aee184ba21cad540edde89b254d535",
+        "phash_distance": 4,
+        "dhash_distance": 16,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1357,13 +1495,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "bfb52ac8cdc683a13c7294c471b7ac1ad7c2086d0bd072390ffb252c14c80707",
+        "source_image_sha256": "da110072b6b9975a98156b61e8702392951853c31c5a6fdcb0095d237c6b5e96",
+        "phash_distance": 2,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1411,13 +1555,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c2170dfa80a3a0cb8d088749fbf9c64e1d4efa1c298ae6f1a44ff2c8910f3ad4",
+        "source_image_sha256": "590c034cdd526dbf84b7805af518924ad9bf0722f635c20263cb128830801c7f",
+        "phash_distance": 12,
+        "dhash_distance": 13,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1465,13 +1615,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f0b7b67696e0f70dedf9fe93939c8785a3113b574ad0f55893e51526efcf020b",
+        "source_image_sha256": "3bafb3be53b5e0a9977760ab9edb1a0b8a15f3747597925010fb41b5d63228dc",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1519,13 +1675,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "995855f3c83106cf3adb807e4738fccca1536d1a201ed4d41231a64654a88f68",
+        "source_image_sha256": "a3afde2f9b3720370efda3cf667f2aeca1e5b0d9f855f4015499e0a8003af1d7",
+        "phash_distance": 0,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1573,13 +1735,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "af6c1ac1fb204587c89c430bddb154bac668a31aa5edd839348b48e140409984",
+        "source_image_sha256": "81da5383f7413791d0156a6b30815c65b24a2ad34d07197c01fba94ecde7d66a",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1627,13 +1795,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "ca687f769850ef2fb8b965c3086bc90f808948fd6bf3957b4e4faa2f05e68ec0",
+        "source_image_sha256": "544f140cf6c1d7a93b341a50f0627230418635193fc4fa54877be9b0b88c2a91",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1681,13 +1855,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3af27d918459d21108464efbb591b8d8243fdd273c9cdc31f990faf20e4cee0f",
+        "source_image_sha256": "45e2d6aa4d90c41eeef4c342585fbfb75632601a3f6afd4b6db10af9ee83b761",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1735,13 +1915,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f8b2b6786fd9f2c773b4692ff316c2853ec1391003ef621398c8a4d72bb3b53b",
+        "source_image_sha256": "33b7e9db7f9e464f47ced4bd283ef74eafed6725a9aa177979c3b561c2137823",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1789,13 +1975,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "53e1764086b66c5e657101d983ba00b4119bb9a57ac8203e128e04e1f45ed626",
+        "source_image_sha256": "db6870477050c126c04b16ecb69f67e258a7e8e8af9a17f3c20ebca1df5085e2",
+        "phash_distance": 0,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1843,13 +2035,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f73ce7381fc61f8d5c8ff8a7e60df959661a8b53d6a12de11d98a8443eac63d7",
+        "source_image_sha256": "15b81b2543ee51b0d90fb1fb61d0e9769bd9d6b61f77269e575492c299ecb5a6",
+        "phash_distance": 6,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1897,13 +2095,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "9b02ed3f08f84472e3ad8893caed91ae84438cf0247bb58755759761e35320f3",
+        "source_image_sha256": "1088674eb1891f8b07f671d7b464d97f1038dd7e2c89dcc576a4bd1aa65287fc",
+        "phash_distance": 4,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -1951,13 +2155,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "edc6f9dccbf8d097d359426974200c226122ffc4f838074143d7a20b8f0f61c7",
+        "source_image_sha256": "05dbc9f48a73716bc6e5fcee39653d46b12d747dea3b85aaa96b73483762a4b8",
+        "phash_distance": 2,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2005,13 +2215,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7313ba17ff8a947276f1687ba88e77d83bc0b5bad4d9886e46277a067222eea8",
+        "source_image_sha256": "898e26a8e96e8321c478a4a039be4388d4578327312b2ba39e7a3f8a0f918bbf",
+        "phash_distance": 0,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2059,13 +2275,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "832d33929e12317c8ec548b179e7a9a87d53b460682e1ca08e6575adf47c41f3",
+        "source_image_sha256": "a425f9c9598b0f8cc587246ad5d814f1aa22ae45c0b4e75080470c57977d11a2",
+        "phash_distance": 2,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2113,13 +2335,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "42920a34044fc489e24f489971ebdbf0644723e803c5bd1348337220b61e4e25",
+        "source_image_sha256": "339705d5e8daf35c6e5f8e81adc985ad3cb4e9810cd2a61ba54904f968c2f58d",
+        "phash_distance": 4,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2167,13 +2395,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "9b3e2b5ff6e3ad06813fe43af137f1bb23e9d21e00d18f6bac8199de55cb6bb4",
+        "source_image_sha256": "9b0ba3e0ac8b2b3f414363d49e4bba0312b3b7e918b98968fbee0f52303b5219",
+        "phash_distance": 2,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2221,13 +2455,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "e28cab1ef8fdc9e1d0afa948de202a4efeeb3b1b24910452f24f9b39a5d142a4",
+        "source_image_sha256": "1b30d48e1d937e2c8c3b2e75e41ec68d312e2df9555f8994171eaaf4a7611b02",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2275,13 +2515,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "818513b191d3c02ae360f099f736b0e41aa2f344e96bf2e0bc22be5502fb5824",
+        "source_image_sha256": "7f83836ec9b073cede0a01d426f2c891ecb7ac017f7b8498933c419c2fa92949",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2329,13 +2575,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7b8eff0ea54aed930ce6bb8e696d0c02152d30f35840b5a2e18528f915c1a829",
+        "source_image_sha256": "bbdc3eefa4f428283350d14e420c1ee0e1e320aee25ca8b996957fd72bfbe4f7",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2383,13 +2635,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "e38b461c57dc14486ba552601e1c555ce85c5620551c79d96ff431595e8673a7",
+        "source_image_sha256": "9701bf89c59a7f548d765e9c1d583976d4e6e93c11e9b41a2f0964f2477b33b5",
+        "phash_distance": 2,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2437,13 +2695,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "2f31f078ae95ebc4abcca3ba83ffeb788b09d171525d4c7993d05699b2264ac0",
+        "source_image_sha256": "1402edf0bd94715860b1af4fff04db5963c359f58e39b3b932f30cf49c298dd1",
+        "phash_distance": 2,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2491,13 +2755,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "bd8c9086ca12bbd24c022823a34ca29329bbc6d2d5a5588b631f31f0beab4ab9",
+        "source_image_sha256": "b3d36bdf002955433e7a3f66bd2aed16d3283651bc8fd8ea9e7b196293e298e3",
+        "phash_distance": 10,
+        "dhash_distance": 14,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2545,13 +2815,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "fcf0e12acef14890308bbafa7f1ebb0d0d76a2c23e80183861da74c93e5c6997",
+        "source_image_sha256": "3bc1f45ccceb190187ea3d0299735ee13ca6a8f7f47690a513f33b3e951b2a3c",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2573,7 +2849,7 @@
       "expected_publication_state": "publish",
       "expected_headline_usd": 0.89,
       "expected_quarantine_reason": null,
-      "image_url": "https://images.pokemontcg.io/cel25c/15_A.png",
+      "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/250323_in_1000x1000.jpg",
       "image_source": "identity",
       "strata": {
         "era": "modern",
@@ -2599,13 +2875,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "381290a0efb413914a9a05512c1894c34c15f6c0dc448b0ffe1018538c1266b5",
+        "source_image_sha256": "9e7e0cb610b2101f800ca054a101d3e041078ea38098a50dbd06c7cf157c0b31",
+        "phash_distance": 2,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2653,13 +2935,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c46fd56f2f4512f30326e99ce80b8a7de34e7ebab84fde9d83727de2137adcf9",
+        "source_image_sha256": "912dbe882bbd4116dfc9aba2ab27a70b5afa4a56364b0c096c5df5c1ef37a70a",
+        "phash_distance": 2,
+        "dhash_distance": 12,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2707,13 +2995,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "8a87dc4451f0c398287aec284ea6ea6dae06c787c27470b19750bb30d0001c39",
+        "source_image_sha256": "62b7c879cad98e0f9b364c7c233fe2ab6809caa1627ee23ada9989a1f05d0a19",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2761,13 +3055,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "837e6d85cd606b0ee71b01cc3a4b40aca2f2be8a3fee06a1d8cd04d595d18d8e",
+        "source_image_sha256": "5d3affda8166111a7825c41ac73aa94d9f18c679215ea386137b5468a3dd2c1c",
+        "phash_distance": 0,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2815,13 +3115,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "719efcd13333de461836145563da177b671928051e93f558ac166586c9ffc1c5",
+        "source_image_sha256": "a5882a44bb74dfd248b0695b8bbc9334d52f5e58c9f4052ce9143fde401bc8ed",
+        "phash_distance": 0,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2869,13 +3175,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "ea0cb2761906dd1a14bdc92a477b244292a1f9a5f26b4e0e8a74de5bdf8ce0d6",
+        "source_image_sha256": "e61d38ac8a9f7f7356548e0e00bf664bfc02fe3b503cb803abb1dc014f930e38",
+        "phash_distance": 2,
+        "dhash_distance": 10,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2923,13 +3235,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "89420edb137ab3cf5f0b384b62c4d77de2df4566819e10e7c037ae05c3a5603a",
+        "source_image_sha256": "40857010e3166e4505512ed682fd48721f662930256fd6c4479ce971711d4166",
+        "phash_distance": 4,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -2977,13 +3295,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "275d37ed7709c5a67bb84859574218c2deebf262aa851ab8ed17e5e52ee8881f",
+        "source_image_sha256": "64c2fe4f8a2b09c105faf5e898a3cbc13e15d6f8d1317cfc2bf9ca4681251ae5",
+        "phash_distance": 4,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3031,13 +3355,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "be3c2794e6d156db7441aa837cc2a29fad1c234edf0df3c4c49e972fc0fdf934",
+        "source_image_sha256": "039d0eaa4579eb01aaad58d8b959c13d170716e377c8a48b733f112cd7519a20",
+        "phash_distance": 0,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3085,13 +3415,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "7328114143b26bf037c44797970f4b5ed91adc21db8c2608021c5687f0c7a52f",
+        "source_image_sha256": "80862bc09858003a9b83e2ddc6f4fbfe920beea36e6789a8b1796c558a74a401",
+        "phash_distance": 6,
+        "dhash_distance": 12,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3139,13 +3475,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "08de0d8173a9bf16b0c4cbbf6937f863cc328f3fbb9e89df3ff10eb0337d84c1",
+        "source_image_sha256": "84c08dcfc770b764a8636593a7aa568f3305485919b079b31ab1d6e941e38b07",
+        "phash_distance": 2,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3193,13 +3535,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "2e723d64b11377aae58272b034e0f7274ee283f39a8cad1684c7c6c0d5593556",
+        "source_image_sha256": "a76386c18fbf1b27d5490ba657af13511c152cafbc74972d0b8faa56b20d60a3",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3247,13 +3595,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "136e2c1697c5685e619c2acd02b81506d44fed6d73c5bf4d06bd24f763cb11f8",
+        "source_image_sha256": "a494b91876ca06744d7eb363a499ce35858fa3406b5cf91a4fe7f80ef5e63a6b",
+        "phash_distance": 2,
+        "dhash_distance": 11,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3301,13 +3655,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "a79258144072cacb53f9a2fb7c6191f47417eaa4b87f1c89b47ca6b836cfd9c0",
+        "source_image_sha256": "679125ad604be0f0fa13c55040824d61a0c4deac0141bd3687b4f59cbfe738a4",
+        "phash_distance": 0,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3355,13 +3715,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "90bd6c2557ceaf1dfdd1b26106bbc0286471153e268e3962c2535652e7cf2b3d",
+        "source_image_sha256": "1d7c986924911f485718cf4f3c11ec2edf2072e321abe94e9ecb1443b423763c",
+        "phash_distance": 0,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3409,13 +3775,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3571f3fa6a2dfb43a9bdbd17ef91abe6d9e51d6be077ead00c0c55e34121516a",
+        "source_image_sha256": "1ade3064cdc19101d7fecce13bf6ab91769ad465ccbd10f0962ceffc1e8d5ed6",
+        "phash_distance": 10,
+        "dhash_distance": 15,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3463,13 +3835,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c17afa70f02fdb9b35e3cfd9c15976bb05d417c1d33a310e4134476882be2479",
+        "source_image_sha256": "4c830ea81afb87b9f1bad87b53b12668115fba096e7e9b953b3af8239992daa7",
+        "phash_distance": 0,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3517,13 +3895,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "53f8b7043b827c3d5010ea04dfd0b0e9fb717a8800460594065e51381aabb531",
+        "source_image_sha256": "0e70f6dc81f5bc66e12b9f73b118e6ffb29217ef7c0fcdabb7681111a7c18756",
+        "phash_distance": 0,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3571,13 +3955,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "aa7e5701fed3937abd55ccf6e41e8e11bd11b6aea111c544a3aa95e1d2b48eba",
+        "source_image_sha256": "daa522456fccc90b743ef6257f5419c14b2a4770549d5aa0401343878d5aad69",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3625,13 +4015,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "2d2bd5f3e3c3bba824ef14ff61656aada329acae2a6b840faa88bfea10bbb3c9",
+        "source_image_sha256": "05fe9e3f54016518d6cf5e86f44374b7658fa8d13c2766944e3d3863e9dab4b2",
+        "phash_distance": 2,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3679,13 +4075,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "032686b8099a74601ba042d46beab085caaeca24306168f8176eeb5c0267f7ff",
+        "source_image_sha256": "c3dfdc4979956a7a903ce028bc8d4436f166df67204217be04375fee886c1158",
+        "phash_distance": 0,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3733,13 +4135,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "a76a5e37e485785e3bc9f65d6720029a1c75a51ffa4ab37050018281e1434610",
+        "source_image_sha256": "a8b36a4e677b80f8735617e0536be944acad006ea8b0dd87963b10033896e638",
+        "phash_distance": 0,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3787,13 +4195,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "84ee8460dcf167c949e0135a13b53635f76b27f52fbb3229caa6e8582cf2429b",
+        "source_image_sha256": "684608546d60c42dd8b072ab5ae01581fee2b05d646a1bf5f39ad15dfefe09de",
+        "phash_distance": 2,
+        "dhash_distance": 1,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3841,13 +4255,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "1f7bee59076fdd19fe862e37fcf3f15039c50d895e4451b2bfca0976c5d68f82",
+        "source_image_sha256": "1f697597d897af818c70f2f396aa28eadd5ea4eaadcff4b8efb1d75ed46d4a8c",
+        "phash_distance": 2,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3895,13 +4315,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "b01c7f9d081acef7f5238b152e5c982f358283dfb0058f3dbfecbc2e2c26beec",
+        "source_image_sha256": "49bae626ad50626f79d4a228ef092a1bbdcb901b1d64c72a3f4d368944a414a1",
+        "phash_distance": 4,
+        "dhash_distance": 12,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -3949,13 +4375,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "6119d42251cb2eac0d4d46505fd1c98d8dd357a07c6ad6de0f7935d45a5f3860",
+        "source_image_sha256": "a43b17f96cc06e120cc862c38c39962da3b4647683f9cf28f495f4d927d856f0",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4003,13 +4435,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c3ecceb5e530f66a2ff659441631c73db6ea9e05b45efc5eee37d1d2b1c899b1",
+        "source_image_sha256": "05aada458d9ba5d024734da8c23fb8e6c78da89966becdf2aaaba671b6c1a3be",
+        "phash_distance": 2,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4057,13 +4495,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "b50704f33de47c2b6dca541dae54247c5e3767fcec44d4349fd4b5b24d902923",
+        "source_image_sha256": "a799f362c06acef70328cbd8ba676005d23b5eb1748e824182ee26ba7225e35f",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4111,13 +4555,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3794d4b2a22ceabf830a2461c0d59abf6878cde4fc826a2b814dbac9ed388838",
+        "source_image_sha256": "ebd58eb5508b0b821c1f8a7156d3e3d937adfd84bb3175c414d7c0b60888d707",
+        "phash_distance": 2,
+        "dhash_distance": 10,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4165,13 +4615,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "31800471e2c67d22d37725a5a1b3a983d4092f72adfe87aadb4a46f10106a7b9",
+        "source_image_sha256": "67f90fe6842e387a14713f729abfc342e2e78af1b273cd7ceb5ccce7f6e0993b",
+        "phash_distance": 4,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4219,13 +4675,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3bd11d7cbd225ed84151e514fa976b44144918e135d2bc449143612e85bea8f7",
+        "source_image_sha256": "8a3130f13e9cf880a5dd884bf026511a4cc6f48ab923a3e552bbc3a150a282dc",
+        "phash_distance": 4,
+        "dhash_distance": 12,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4273,13 +4735,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "6ce922d776a53a6f860cdae1cc264b31a3473e21659b739850091a7c26a7b1ad",
+        "source_image_sha256": "e1bd449db2f68e4a391130afa2eac8b09a3773d7a4e831b637837138662d80a5",
+        "phash_distance": 4,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4327,13 +4795,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "0850c73611ed4fbbf87bcdb9fd3bb601efcfcfe964958f98e6220d21e92e8cf7",
+        "source_image_sha256": "ad8666466f5e81cbbdd39fa3cd177ad84f94ed75ddf065e6641879a2d10e9b5a",
+        "phash_distance": 2,
+        "dhash_distance": 1,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4381,13 +4855,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "1fbd4f00a65b2b80990393ec727ded8742aabfbb52ec18d637d8d822ae32b1c2",
+        "source_image_sha256": "c01e2d761fbfa5a0a91e7ac54d9990e85610c6bd41cd561f930bb5005d16120d",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4435,13 +4915,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "ac3d3dbfba29b887f4956aa45b36fe9816c6d05440d9f7f9a28651fdfad39a00",
+        "source_image_sha256": "588c73aa90e5725e0e43827f8cd4e7a0ba66bb0e8232cfd8bb118b79def8753c",
+        "phash_distance": 0,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4489,13 +4975,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "01790cdfea5908237e31e1d9334a25137923e428d4ded21821d7c68d6ced8640",
+        "source_image_sha256": "812351e69babc0ea82c7dc5e5cb004fe1a41b82572cfad24abc3b596b12d23ab",
+        "phash_distance": 4,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4543,13 +5035,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "591c2323dd9c28fb276b1c56abb89c8c36dd053b25a745d5fd26b3baf3ebf58d",
+        "source_image_sha256": "cf999ac2d696afd535b221a5cb55bb03d37694f04c7cd7b2502ab6fc29692187",
+        "phash_distance": 0,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4597,13 +5095,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "41a50244b3ddc7f9fdaedc521f940ea91c153c099ebd3bde42adf4b0586b8c11",
+        "source_image_sha256": "efbf31fa1d1b8cceb865ab6257d27c368ce67009376aa90a903fd7bc45ef80c9",
+        "phash_distance": 2,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4651,13 +5155,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "3d190f6cacda466d79cfbbf964e8bdf39849c1d7ef4b72f2caba4f08df34cba3",
+        "source_image_sha256": "bf3c02e25cb7cac7f6c8ea1234bdfaeae94fbb92133d934a33f106a489feab5c",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4705,13 +5215,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "d8e96ae4cd202efad8322d19ca57175ee9500e3e36a2c3e29d863314719e99be",
+        "source_image_sha256": "1a937a7c0875faec441ae27e7bc32bef2506899b3cb020921a927d9778527339",
+        "phash_distance": 4,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4759,13 +5275,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "89e91022282ad2453b7577c4be224ce616fece7a15b3b631b8ed9db011ec634b",
+        "source_image_sha256": "b17a4da0923b1abf4b7c11f90605d37c049b223c2d99bbd2866bd90cd81a44b2",
+        "phash_distance": 4,
+        "dhash_distance": 7,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4813,13 +5335,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "637572a08006267a1730e0a417b9aeaea44f25fd11b4c042bf073f499d8992ae",
+        "source_image_sha256": "e462339e807c2e67d5ef4248393f6fd88ce1a7ab58d6361b95958b173bf58adb",
+        "phash_distance": 2,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4867,13 +5395,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "10d779599ca5352a67e09624d1097003e948824e4f1414e72fedd3c137914792",
+        "source_image_sha256": "92c54a7be0cca1da67b49d72b33d45947206ef076cf64c9c7485bbe3d204d0a5",
+        "phash_distance": 0,
+        "dhash_distance": 6,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4921,13 +5455,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "aa9bbc7fc79800adb29fcbf7828f0982d4b61217f76b0af84a3def340f764bd3",
+        "source_image_sha256": "ab4eccf7f4ba491f928ec6296d64ce4f5642c69ce91fbe7bcb0065f68898edc3",
+        "phash_distance": 0,
+        "dhash_distance": 10,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -4975,13 +5515,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "6159857694471cc45abe6c870965bd8545c5c22b2e6b0c71104b3201c2216a2e",
+        "source_image_sha256": "411d6361e412a05052f2532f61f00f99447fede883ad3999fac82f88035b51c6",
+        "phash_distance": 0,
+        "dhash_distance": 9,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5029,13 +5575,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "74c4aacbf50159b5e4ef1e59b997327e1fccb95d60cdaced2a7dcc649764a028",
+        "source_image_sha256": "81b32fcc2654a611a2d181229db89f8e060861a9faec80100215cee3ab185452",
+        "phash_distance": 4,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5083,13 +5635,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "4b2bbfe2843b0a98454776663823757332304d3149a5ad6b73bb93203f75cbd8",
+        "source_image_sha256": "c85c7dd78474e594b1d368b4cb99046f41a108b73fd6f22597bcebdd0ca9feb0",
+        "phash_distance": 6,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5137,13 +5695,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "cbfc5ee6d73c1704f11cd3d40f8a29d5033a1cba53fcbc7d3ba2174d6b7d2887",
+        "source_image_sha256": "26875132f3eaed62e1d9789c77b48aff3a98d4908094b4f1a472a7c261b54741",
+        "phash_distance": 4,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5191,13 +5755,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "f55b1308c350fab96b27bdcd244e1a54c2aa0d4fa775c2e7199b3da3439f221c",
+        "source_image_sha256": "c1366fc62eea6eb9cac0795c9c0bbd81f1e6898bf2816e799b3ef41c08e8481f",
+        "phash_distance": 2,
+        "dhash_distance": 4,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5245,13 +5815,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "1d26c32a1ff1d33c9c8351e7f8eec61375aa1c8134509115e8d91d9dcb86a3c8",
+        "source_image_sha256": "d687ee93f229b27ad3835119f14d79a4e2fec42b41ea3a70fa3f9082056775f0",
+        "phash_distance": 6,
+        "dhash_distance": 5,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5299,13 +5875,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "b456c98c78ba8e2e9caaac2d546b4a2a65776671b71f215e207333946b2e2cc2",
+        "source_image_sha256": "75f6916ad11e71daac51f1d56d01f169164efd715f22ce30d9a91b01857c4ede",
+        "phash_distance": 2,
+        "dhash_distance": 10,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5353,13 +5935,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "5d2725bdfe6b21e26797c87653c53621824ef709d868041ea956ba52495b6fb8",
+        "source_image_sha256": "e9711f279723dfd4755a783da70b1e688ec8ea62555d68653572250e7fa1434f",
+        "phash_distance": 0,
+        "dhash_distance": 2,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5407,13 +5995,19 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "c8970fc7f860d831b16a29dd094bf0e2dae14e7ea6dd515e83a72414ab6abbc3",
+        "source_image_sha256": "efbd147d5b60f521d6d4555d6d11226802bf8fa42de827d4d0bd0dc448cd0ae5",
+        "phash_distance": 4,
+        "dhash_distance": 3,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     },
     {
@@ -5461,14 +6055,23 @@
         "variant_assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1"
       },
       "visual_data_verification": {
-        "status": "pending",
-        "canonical_identity_match": null,
-        "card_number_match": null,
-        "set_match": null,
-        "finish_data_match": null,
-        "source_market_price_match": null,
-        "notes": null
+        "status": "passed",
+        "canonical_identity_match": true,
+        "card_number_match": true,
+        "set_match": true,
+        "finish_data_match": true,
+        "source_market_price_match": true,
+        "image_identity_match": true,
+        "canonical_image_sha256": "39c2d92ce72f61c12fcf1aa12f235116c258e11df831717b45199c1c3637e20d",
+        "source_image_sha256": "39c2d92ce72f61c12fcf1aa12f235116c258e11df831717b45199c1c3637e20d",
+        "phash_distance": 0,
+        "dhash_distance": 0,
+        "finish_verification_authority": "source_subtype_and_exact_child_assignment",
+        "notes": "Canonical and TCGPlayer source images match by perceptual hash; exact finish is proven by source subtype plus exact child assignment."
       }
     }
-  ]
+  ],
+  "verified_at": "2026-07-28T06:56:41.398Z",
+  "verifier_version": "TCGPLAYER_MARKET_CANARY_VERIFIER_V1",
+  "verification_report_path": "docs/audits/pricing/TCGPLAYER_MARKET_CANARY_100_V1_VERIFICATION.json"
 }
