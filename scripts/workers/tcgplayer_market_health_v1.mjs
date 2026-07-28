@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {
+  evaluateTcgplayerCurrentSourceHealthV1,
+  TCGPLAYER_MARKET_HEALTH_POLICY_V1,
+} from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
 
 const { Client } = pg;
 const __filename = fileURLToPath(import.meta.url);
@@ -92,9 +96,31 @@ async function main() {
   try {
     const result = await client.query(
       `with latest_source as (
-         select run_key, status, finished_at, price_row_count, error
+         select
+           run_key,
+           status,
+           source_marker,
+           finished_at,
+           price_row_count,
+           failed_count,
+           error
          from public.tcgcsv_source_sync_runs
          where sync_mode = 'current_full_sync'
+         order by finished_at desc nulls last, created_at desc
+         limit 1
+       ),
+       completed_source as (
+         select
+           run_key,
+           status,
+           source_marker,
+           finished_at,
+           price_row_count,
+           failed_count,
+           error
+         from public.tcgcsv_source_sync_runs
+         where sync_mode = 'current_full_sync'
+           and status = 'completed'
          order by finished_at desc nulls last, created_at desc
          limit 1
        ),
@@ -180,9 +206,18 @@ async function main() {
        select
          source.run_key as latest_source_run_key,
          source.status as latest_source_status,
+         source.source_marker as latest_source_marker,
          source.finished_at as latest_source_finished_at,
          source.price_row_count as latest_source_price_row_count,
+         source.failed_count as latest_source_failed_count,
          source.error as latest_source_error,
+         completed_source.run_key as completed_source_run_key,
+         completed_source.status as completed_source_status,
+         completed_source.source_marker as completed_source_marker,
+         completed_source.finished_at as completed_source_finished_at,
+         completed_source.price_row_count as completed_source_price_row_count,
+         completed_source.failed_count as completed_source_failed_count,
+         completed_source.error as completed_source_error,
          pipeline_run.id as selected_run_id,
          pipeline_run.run_mode as selected_run_mode,
          pipeline_run.state as selected_run_state,
@@ -212,28 +247,16 @@ async function main() {
        cross join current_totals current_prices
        cross join broken_trace
        left join latest_source source on true
+       left join completed_source on true
        left join selected_run pipeline_run on true
        left join current_publication on true`,
       [args.runKey],
     );
     const metrics = result.rows[0];
-    const findings = [];
-    const sourceFinishedAt = metrics.latest_source_finished_at
-      ? new Date(metrics.latest_source_finished_at)
-      : null;
-    const sourceAgeHours = sourceFinishedAt
-      ? (Date.now() - sourceFinishedAt.getTime()) / 3_600_000
-      : null;
-
-    if (metrics.latest_source_status !== "completed") {
-      findings.push("latest_current_source_sync_not_completed");
-    }
-    if (
-      sourceAgeHours === null ||
-      sourceAgeHours > args.maxSourceAgeHours
-    ) {
-      findings.push("latest_current_source_sync_stale");
-    }
+    const sourceHealth = evaluateTcgplayerCurrentSourceHealthV1(metrics, {
+      maxSourceAgeHours: args.maxSourceAgeHours,
+    });
+    const findings = [...sourceHealth.findings];
     if (args.runKey && !metrics.selected_run_id) {
       findings.push("durable_pipeline_run_missing");
     }
@@ -306,6 +329,7 @@ async function main() {
 
     const summary = {
       health_version: HEALTH_VERSION,
+      health_policy_version: TCGPLAYER_MARKET_HEALTH_POLICY_V1,
       checked_at: new Date().toISOString(),
       status: findings.length ? "critical" : "healthy",
       run_key: args.runKey,
@@ -315,8 +339,12 @@ async function main() {
       },
       metrics: {
         ...metrics,
-        source_age_hours:
-          sourceAgeHours === null ? null : Number(sourceAgeHours.toFixed(3)),
+        source_continuity_mode: sourceHealth.continuity_mode,
+        effective_source_run_key: sourceHealth.effective_source_run_key,
+        effective_source_status: sourceHealth.effective_source_status,
+        effective_source_price_row_count:
+          sourceHealth.effective_source_price_row_count,
+        source_age_hours: sourceHealth.source_age_hours,
       },
       findings,
     };

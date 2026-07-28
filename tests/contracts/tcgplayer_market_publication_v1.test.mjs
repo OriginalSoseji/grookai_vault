@@ -14,6 +14,10 @@ import {
   parseRetryDelaysV1,
   retryDelayMsV1,
 } from "../../backend/pricing/tcgplayer_market_operations_policy_v1.mjs";
+import {
+  evaluateTcgplayerCurrentSourceHealthV1,
+  TCGPLAYER_MARKET_HEALTH_POLICY_V1,
+} from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -212,6 +216,96 @@ const FLUTTER_NETWORK = readFileSync(
 );
 
 const NOW = new Date("2026-07-27T18:00:00.000Z");
+
+function sourceHealthMetrics(overrides = {}) {
+  return {
+    latest_source_run_key: "current-attempt",
+    latest_source_status: "completed",
+    latest_source_marker: "2026-07-27T16:00:00+0000",
+    latest_source_finished_at: "2026-07-27T17:00:00.000Z",
+    latest_source_price_row_count: 500_000,
+    latest_source_failed_count: 0,
+    completed_source_run_key: "current-attempt",
+    completed_source_status: "completed",
+    completed_source_marker: "2026-07-27T16:00:00+0000",
+    completed_source_finished_at: "2026-07-27T17:00:00.000Z",
+    completed_source_price_row_count: 500_000,
+    completed_source_failed_count: 0,
+    ...overrides,
+  };
+}
+
+test("health accepts a completed current source sync", () => {
+  const result = evaluateTcgplayerCurrentSourceHealthV1(
+    sourceHealthMetrics(),
+    { now: NOW, maxSourceAgeHours: 36 },
+  );
+  assert.equal(
+    result.policy_version,
+    TCGPLAYER_MARKET_HEALTH_POLICY_V1,
+  );
+  assert.equal(result.accepted, true);
+  assert.equal(result.continuity_mode, "completed_sync");
+  assert.deepEqual(result.findings, []);
+});
+
+test("health accepts a no-change check only with completed marker continuity", () => {
+  const result = evaluateTcgplayerCurrentSourceHealthV1(
+    sourceHealthMetrics({
+      latest_source_run_key: "no-change-attempt",
+      latest_source_status: "skipped_no_change",
+      latest_source_price_row_count: 0,
+      completed_source_run_key: "prior-completed-sync",
+    }),
+    { now: NOW, maxSourceAgeHours: 36 },
+  );
+  assert.equal(result.accepted, true);
+  assert.equal(result.continuity_mode, "verified_no_change");
+  assert.equal(result.effective_source_run_key, "prior-completed-sync");
+  assert.equal(result.effective_source_price_row_count, 500_000);
+  assert.deepEqual(result.findings, []);
+});
+
+test("health rejects no-change checks without matching completed evidence", () => {
+  for (const overrides of [
+    { completed_source_marker: "different-marker" },
+    { completed_source_price_row_count: 0 },
+    { completed_source_failed_count: 1 },
+    { completed_source_status: null },
+  ]) {
+    const result = evaluateTcgplayerCurrentSourceHealthV1(
+      sourceHealthMetrics({
+        latest_source_status: "skipped_no_change",
+        latest_source_price_row_count: 0,
+        ...overrides,
+      }),
+      { now: NOW, maxSourceAgeHours: 36 },
+    );
+    assert.equal(result.accepted, false);
+    assert.ok(
+      result.findings.includes("latest_current_source_sync_not_completed"),
+    );
+  }
+});
+
+test("health rejects failed or stale current source checks", () => {
+  const failed = evaluateTcgplayerCurrentSourceHealthV1(
+    sourceHealthMetrics({ latest_source_status: "failed" }),
+    { now: NOW, maxSourceAgeHours: 36 },
+  );
+  assert.equal(failed.accepted, false);
+  assert.ok(
+    failed.findings.includes("latest_current_source_sync_not_completed"),
+  );
+
+  const stale = evaluateTcgplayerCurrentSourceHealthV1(
+    sourceHealthMetrics({
+      latest_source_finished_at: "2026-07-25T00:00:00.000Z",
+    }),
+    { now: NOW, maxSourceAgeHours: 36 },
+  );
+  assert.ok(stale.findings.includes("latest_current_source_sync_stale"));
+});
 
 function validCandidate(overrides = {}) {
   return {
@@ -767,7 +861,8 @@ test("schedule installation cannot retire the old timer before replacement proof
 });
 
 test("health probe checks freshness, reconciliation, and source-to-publication trace", () => {
-  assert.match(HEALTH, /latest_current_source_sync_stale/);
+  assert.match(HEALTH, /evaluateTcgplayerCurrentSourceHealthV1/);
+  assert.match(HEALTH, /source_continuity_mode/);
   assert.match(HEALTH, /eligible_snapshot_reconciliation_mismatch/);
   assert.match(HEALTH, /broken_source_to_publication_trace/);
   assert.match(HEALTH, /minimum_current_prices/);
