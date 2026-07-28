@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
+
+This checkpoint records the historical linked-schema reconciliation required
+before TCGPlayer Market V1 could advance through the normal migration path. It
+locks replay-safe reconstruction, exact security metadata, the synthetic pull
+provenance, and the safe renumbering of the still-unapplied pricing migration.
+
+Decision locked there:
+
+- historical schema state must be reproducible without migration repair or
+  `--include-all`, and physical column position is not a product contract
+
+Unresolved risk afterward:
+
+- production pricing migration apply and schema/security readback remain
+  pending, followed by the required shadow and canary gates
+
 ### `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
 
 This checkpoint records the production pivot from a synthetic app-facing value
@@ -297,6 +314,9 @@ Recommended reading order for future maintainers:
 14. `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
    - then read how exact TCGPlayer Market publication became the Production V1 app-facing price contract and was routed through supported web and Flutter surfaces
 
+15. `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
+   - then read how historical linked drift was converted into replayable repository authority before the production pricing migration
+
 After those fourteen checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -305,3 +325,4 @@ After those fourteen checkpoints, read the supporting audits in this order:
 - `docs/audits/PRICING_OBSERVATION_LIVE_VALIDATION_V1.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_PUBLICATION_LOCAL_PROOF_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_SCHEMA_RECONCILIATION_V1_20260727.md`

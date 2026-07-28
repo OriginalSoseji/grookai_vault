@@ -10,7 +10,7 @@
 ## Migration Replay
 
 `supabase db reset --local --yes` completed successfully through
-`20260727120000_tcgplayer_market_publication_v1.sql`.
+`20260728010000_tcgplayer_market_publication_v1.sql`.
 
 ## Integration Smoke
 

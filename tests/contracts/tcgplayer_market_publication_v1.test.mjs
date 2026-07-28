@@ -23,7 +23,7 @@ const MIGRATION = readFileSync(
     ROOT,
     "supabase",
     "migrations",
-    "20260727120000_tcgplayer_market_publication_v1.sql",
+    "20260728010000_tcgplayer_market_publication_v1.sql",
   ),
   "utf8",
 );

@@ -323,7 +323,7 @@ create table if not exists public.market_price_qualification_decisions (
   observed_at timestamptz,
   evaluated_at timestamptz not null default now(),
   code_version text not null,
-  migration_version text not null default '20260727120000',
+  migration_version text not null default '20260728010000',
   constraint market_price_qualification_decisions_source_check
     check (source_name = 'tcgplayer'),
   constraint market_price_qualification_decisions_decision_check
