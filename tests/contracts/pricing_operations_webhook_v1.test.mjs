@@ -14,6 +14,7 @@ const dispatcher = readFileSync(
   "supabase/functions/notification-dispatcher/index.ts",
   "utf8",
 );
+const supabaseConfig = readFileSync("supabase/config.toml", "utf8");
 const notifier = readFileSync(
   "scripts/ops/grookai_operations_webhook_v1.mjs",
   "utf8",
@@ -71,6 +72,17 @@ test("operations webhook requires its own bearer and dispatches the exact alert"
   assert.match(webhook, /operations_notification_id: notificationId/);
   assert.match(webhook, /MAX_PAYLOAD_BYTES/);
   assert.doesNotMatch(webhook, /service_role.*eyJ/i);
+});
+
+test("shared-secret operations functions bypass the Supabase JWT gateway", () => {
+  assert.match(
+    supabaseConfig,
+    /\[functions\.notification-dispatcher\]\s+enabled = true\s+verify_jwt = false/s,
+  );
+  assert.match(
+    supabaseConfig,
+    /\[functions\.operations-webhook-v1\]\s+enabled = true\s+verify_jwt = false/s,
+  );
 });
 
 test("dispatcher treats operations alerts as non-card critical notifications", () => {
