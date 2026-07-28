@@ -108,6 +108,11 @@ function parseArgs(argv) {
   if (args.limit !== null && (!Number.isInteger(args.limit) || args.limit < 1)) {
     throw new Error("--limit must be a positive integer");
   }
+  if (args.runMode === "production" && args.limit !== null) {
+    throw new Error(
+      "production mode forbids --limit; full rollout must evaluate the complete eligible scope",
+    );
+  }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
     throw new Error("--freshness-hours must be positive");
   }

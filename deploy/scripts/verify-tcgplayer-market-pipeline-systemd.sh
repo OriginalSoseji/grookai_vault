@@ -41,6 +41,24 @@ else
   if ! grep -Eq '^GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN=.+$' "${ENV_FILE}"; then
     record_failure "missing_operations_webhook_bearer_token"
   fi
+  expected_commit_sha="$(
+    awk -F= '$1 == "TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA" {
+      value = substr($0, length($1) + 2)
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", value)
+      gsub(/^"|"$/, "", value)
+      print value
+      exit
+    }' "${ENV_FILE}"
+  )"
+  actual_commit_sha="$(git -C "${REPO_DIR}" rev-parse HEAD 2>/dev/null || true)"
+  if [[ ! "${expected_commit_sha}" =~ ^[a-f0-9]{40}$ ]]; then
+    record_failure "missing_or_invalid_expected_commit_sha"
+  elif [[ "${actual_commit_sha}" != "${expected_commit_sha}" ]]; then
+    record_failure "deployed_commit_mismatch"
+  fi
+  if [[ -n "$(git -C "${REPO_DIR}" status --porcelain --untracked-files=no 2>/dev/null)" ]]; then
+    record_failure "deployed_tracked_worktree_dirty"
+  fi
 fi
 
 if [[ "${VERIFY_MODE}" == "--production" ]]; then
@@ -58,6 +76,12 @@ if [[ "${VERIFY_MODE}" == "--production" ]]; then
   fi
   if ! grep -q '^TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1$' "${ENV_FILE}" 2>/dev/null; then
     record_failure "replacement_not_verified"
+  fi
+  if grep -Eq '^TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT=.+$' "${ENV_FILE}" 2>/dev/null; then
+    record_failure "production_publication_limit_not_empty"
+  fi
+  if grep -Eq '^TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=.+$' "${ENV_FILE}" 2>/dev/null; then
+    record_failure "production_canary_definition_not_empty"
   fi
 elif [[ "${VERIFY_MODE}" == "--canary" ]]; then
   if ! systemctl is-enabled "${TIMER_NAME}" >/dev/null 2>&1; then

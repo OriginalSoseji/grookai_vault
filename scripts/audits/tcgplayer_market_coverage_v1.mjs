@@ -33,6 +33,7 @@ function parseArgs(argv) {
     outRoot: DEFAULT_OUT_ROOT,
     minimumCoveragePercent: TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
     requirePass: false,
+    requireCoveragePass: false,
   };
   for (const arg of argv) {
     if (arg.startsWith("--run-key=")) {
@@ -45,6 +46,8 @@ function parseArgs(argv) {
       );
     } else if (arg === "--require-pass") {
       args.requirePass = true;
+    } else if (arg === "--require-coverage-pass") {
+      args.requireCoveragePass = true;
     }
   }
   if (
@@ -356,6 +359,12 @@ async function main() {
       )}\n`,
     );
     if (args.requirePass && summary.status !== "passed") process.exitCode = 1;
+    if (
+      args.requireCoveragePass &&
+      summary.coverage_status !== "passed"
+    ) {
+      process.exitCode = 1;
+    }
   } finally {
     await client.end().catch(() => {});
   }

@@ -100,6 +100,7 @@
     "pricing:market:publish:apply": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --apply",
     "pricing:market:health": "node scripts/workers/tcgplayer_market_health_v1.mjs",
     "pricing:market:canary:observe": "node scripts/audits/tcgplayer_market_canary_observation_v1.mjs",
+    "pricing:market:full-rollout:observe": "node scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs",
     "pricing:market:completion": "node scripts/audits/tcgplayer_market_completion_v1.mjs",
     "pricing:market:completion:require": "node scripts/audits/tcgplayer_market_completion_v1.mjs --require-complete",
     "pricing:market:coverage": "node scripts/audits/tcgplayer_market_coverage_v1.mjs",

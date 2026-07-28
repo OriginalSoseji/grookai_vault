@@ -89,6 +89,15 @@ function parseArgs(argv) {
   const freshnessHours = Number(
     process.env.TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS || "36",
   );
+  const expectedCommitSha =
+    argv
+      .find((arg) => arg.startsWith("--expected-commit-sha="))
+      ?.slice("--expected-commit-sha=".length)
+      .trim()
+      .toLowerCase() ||
+    (process.env.TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA || "")
+      .trim()
+      .toLowerCase();
   const outRoot = path.resolve(
     outRootArg?.slice("--out-root=".length) ||
       process.env.TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT ||
@@ -145,6 +154,11 @@ function parseArgs(argv) {
   ) {
     throw new Error("publication limit must be a positive integer");
   }
+  if (mode === "production" && publicationLimit !== null) {
+    throw new Error(
+      "scheduled production mode forbids publication limits",
+    );
+  }
   if (mode === "canary" && !canaryDefinitionPath) {
     throw new Error(
       "scheduled canary mode requires an exact --canary-definition",
@@ -173,6 +187,7 @@ function parseArgs(argv) {
     phaseTimeoutMinutes,
     databaseTimeoutMinutes,
     freshnessHours,
+    expectedCommitSha,
   };
 }
 
@@ -259,6 +274,23 @@ async function main() {
     : null;
   const commitSha = await git(["rev-parse", "HEAD"]);
   const branch = await git(["branch", "--show-current"]);
+  const trackedWorktreeClean =
+    !(await git(["status", "--porcelain", "--untracked-files=no"]));
+  if (args.live) {
+    if (!/^[a-f0-9]{40}$/.test(args.expectedCommitSha)) {
+      throw new Error(
+        "live schedule requires TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA",
+      );
+    }
+    if (commitSha !== args.expectedCommitSha) {
+      throw new Error(
+        `scheduled producing commit mismatch: ${commitSha}:${args.expectedCommitSha}`,
+      );
+    }
+    if (!trackedWorktreeClean) {
+      throw new Error("live schedule requires a clean tracked worktree");
+    }
+  }
   const runDir = path.join(args.outRoot, safeSegment(args.runKey));
   const pipelineOutRoot = path.join(runDir, "pipeline");
   const pipelineRunDir = path.join(
@@ -277,7 +309,9 @@ async function main() {
     mode: args.mode,
     live: args.live,
     commit_sha: commitSha,
+    expected_commit_sha: args.expectedCommitSha || null,
     branch,
+    tracked_worktree_clean: trackedWorktreeClean,
     created_at: new Date().toISOString(),
     max_attempts: args.maxAttempts,
     retry_delays_seconds: args.retryDelaysSeconds,
@@ -309,7 +343,9 @@ async function main() {
     const existingPlan = JSON.parse(await fs.readFile(runPlanPath, "utf8"));
     const frozenFields = [
       "commit_sha",
+      "expected_commit_sha",
       "branch",
+      "tracked_worktree_clean",
       "mode",
       "live",
       "max_attempts",

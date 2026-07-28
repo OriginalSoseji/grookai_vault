@@ -104,6 +104,21 @@ if [[ "$(env_value TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN)" != "1" ]]; then
   echo "${ENV_FILE} must set TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1 before activation." >&2
   exit 1
 fi
+require_env_value "TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
+expected_commit_sha="$(env_value TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA)"
+actual_commit_sha="$(git rev-parse HEAD)"
+if [[ ! "${expected_commit_sha}" =~ ^[a-f0-9]{40}$ ]]; then
+  echo "${ENV_FILE} must contain a full lowercase expected commit SHA." >&2
+  exit 1
+fi
+if [[ "${actual_commit_sha}" != "${expected_commit_sha}" ]]; then
+  echo "Deployed commit ${actual_commit_sha} does not match ${expected_commit_sha}." >&2
+  exit 1
+fi
+if [[ -n "$(git status --porcelain --untracked-files=no)" ]]; then
+  echo "Live schedule activation requires a clean tracked checkout." >&2
+  exit 1
+fi
 schedule_mode="$(env_value TCGPLAYER_MARKET_SCHEDULE_MODE)"
 case "${schedule_mode}" in
   canary)
@@ -126,6 +141,14 @@ case "${schedule_mode}" in
   production)
     if [[ "$(env_value TCGPLAYER_MARKET_REPLACEMENT_VERIFIED)" != "1" ]]; then
       echo "${ENV_FILE} must set TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1 after shadow verification." >&2
+      exit 1
+    fi
+    if [[ -n "$(env_value TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT)" ]]; then
+      echo "${ENV_FILE} must leave TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT empty in production mode." >&2
+      exit 1
+    fi
+    if [[ -n "$(env_value TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION)" ]]; then
+      echo "${ENV_FILE} must leave TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION empty in production mode." >&2
       exit 1
     fi
     ;;

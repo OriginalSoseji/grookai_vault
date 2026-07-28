@@ -111,6 +111,7 @@ TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1
 TCGPLAYER_MARKET_SCHEDULE_MODE=canary
 TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=backend/pricing/canaries/tcgplayer_market_canary_100_v1.json
 TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT=
+TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA=<exact-deployed-40-character-sha>
 ```
 
 Then perform the guarded canary schedule replacement:
@@ -134,6 +135,8 @@ the environment move to:
 ```text
 TCGPLAYER_MARKET_SCHEDULE_MODE=production
 TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=
+TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT=
+TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA=<exact-deployed-40-character-sha>
 TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
 ```
 
@@ -266,6 +269,10 @@ Flutter for detail and representative batch requests, then executes the same
 function under the database `authenticated` role. Preserve the run plan,
 sample IDs, raw measurements, execution plans, summary, report, and hashes.
 
+The representative parent and printing batches default to `200` IDs and may
+be configured only from `50` through `500`. Do not benchmark the entire
+current publication as one product request.
+
 The scheduled activation pipeline refreshes the exact active-ask materialized
 snapshot before publication:
 
@@ -276,12 +283,119 @@ npm run pricing:market:active-ask:refresh -- --apply
 Do not run this command from a dirty tracked worktree. Shadow and dry-run
 pipelines read and validate the existing snapshot but do not refresh it.
 
-## Rollout
+## Full Eligible Signed-In Rollout
+
+Do not begin this section until the 72-hour canary observer passes with
+`--require-pass`. Keep anonymous RPC execution denied.
+
+1. Deploy the exact clean commit intended to produce all full-eligible
+   publication evidence. Record its 40-character SHA.
+2. Run a fresh full-source V1.2 shadow from that commit:
+
+```powershell
+node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
+  --mode=shadow `
+  --run-key=TCGPLAYER-MARKET-FULL-SHADOW-<timestamp>
+```
+
+3. Require corrected coverage against the resulting publication run:
+
+```powershell
+npm run pricing:market:coverage -- `
+  --run-key=TCGPLAYER-MARKET-FULL-SHADOW-<timestamp>-publication `
+  --require-coverage-pass
+```
+
+The fresh shadow artifact must report V1.2 policy, at least `95%` coverage,
+and zero unclassified gap rows. `--require-coverage-pass` deliberately checks
+the candidate shadow denominator without pretending the older current
+publication has changed. Preserve this threshold proof.
+
+4. Activate the complete eligible scope. Production mode refuses row limits
+   and canary definitions:
+
+```powershell
+node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
+  --mode=production `
+  --skip-ingest `
+  --run-key=TCGPLAYER-MARKET-FULL-ACTIVATION-<timestamp>
+```
+
+5. Immediately run health, fresh V1.2 coverage, bounded performance,
+   provenance lookup, and rollback dry-run. Every gate must pass before the
+   production schedule is enabled.
+
+```powershell
+npm run pricing:market:coverage -- `
+  --run-key=TCGPLAYER-MARKET-FULL-SHADOW-<timestamp>-publication `
+  --require-pass
+```
+
+This post-activation replay must also report
+`current_publication_scope_status: passed`.
+6. Configure the exact deployed commit and full-scope schedule:
+
+```text
+TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1
+TCGPLAYER_MARKET_SCHEDULE_MODE=production
+TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT=
+TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION=
+TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA=<exact-deployed-40-character-sha>
+TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
+```
+
+7. Activate and verify the production timer:
+
+```bash
+sudo ACTIVATE_TIMER=1 \
+  bash deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh
+bash deploy/scripts/verify-tcgplayer-market-pipeline-systemd.sh --production
+```
+
+The installer and scheduled runner both refuse a commit mismatch, dirty
+tracked checkout, production publication limit, or production canary
+definition.
+
+## Seven-Cycle Full Rollout Gate
+
+Run the read-only observer after activation and after each expected daily
+`08:15 UTC` production cycle:
+
+```powershell
+npm run pricing:market:full-rollout:observe -- `
+  --window-start=<full-activation-completed-at> `
+  --activation-run-id=<full-activation-publication-run-id> `
+  --expected-commit-sha=<exact-deployed-40-character-sha> `
+  --coverage-summary=<fresh-v1.2-coverage-directory>/summary.json `
+  --performance-summary=<fresh-performance-directory>/summary.json
+```
+
+Before seven cycles complete, the expected result is `observing`. After the
+seventh cycle, rerun with `--require-pass`. A pass requires:
+
+- one exact full activation and seven healthy full-scope scheduled runs
+- identical V1.2 policy and producing commit
+- complete top-level, decision, snapshot, and trace reconciliation
+- current pointer and count agreement with the latest healthy run
+- zero stale, missing-provenance, broken-trace, or invalid-policy rows
+- healthy current source continuity
+- authenticated read success and anonymous denial
+- prior-generation rollback availability
+- fresh passing V1.2 coverage and bounded p95 performance
+- zero terminal pipeline alerts
+
+The observer reads production state and copies the governed coverage and
+performance summaries into a hashed audit package. It performs no writes,
+publication activation, grant changes, rollback, or deployment.
+
+## Public Rollout
 
 Keep RPC execution authenticated-only during the signed-in canary.
 
 Public anonymous access requires a later migration changing only the approved
-read RPC grants. Do not grant raw tables or internal views.
+read RPC grants. Do not grant raw tables or internal views. Do not perform the
+grant until signed-in full rollout, seven unattended cycles, licensing,
+attribution, and public display authority all pass.
 
 ## Guarded Publication Rollback
 

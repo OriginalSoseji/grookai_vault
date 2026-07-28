@@ -130,6 +130,11 @@ function parseArgs(argv) {
   ) {
     throw new Error("--publication-limit must be a positive integer");
   }
+  if (args.runMode === "production" && args.publicationLimit !== null) {
+    throw new Error(
+      "production mode forbids --publication-limit; full rollout must evaluate the complete eligible scope",
+    );
+  }
   if (!new Set(["dry_run", "shadow", "canary", "production"]).has(args.runMode)) {
     throw new Error("--mode must be dry_run, shadow, canary, or production");
   }

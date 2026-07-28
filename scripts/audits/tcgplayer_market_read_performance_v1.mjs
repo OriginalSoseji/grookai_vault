@@ -31,6 +31,7 @@ function parseArgs(argv) {
     iterations: 30,
     warmups: 3,
     targetP95Ms: TCGPLAYER_MARKET_READ_P95_TARGET_MS_V1,
+    maxRepresentativeBatch: 200,
     outRoot: DEFAULT_OUT_ROOT,
     requirePass: false,
   };
@@ -41,6 +42,11 @@ function parseArgs(argv) {
       args.warmups = Number(arg.slice("--warmups=".length));
     } else if (arg.startsWith("--target-p95-ms=")) {
       args.targetP95Ms = Number(arg.slice("--target-p95-ms=".length));
+    } else if (arg.startsWith("--max-representative-batch=")) {
+      args.maxRepresentativeBatch = Number.parseInt(
+        arg.slice("--max-representative-batch=".length),
+        10,
+      );
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
     } else if (arg === "--require-pass") {
@@ -55,6 +61,15 @@ function parseArgs(argv) {
   }
   if (!Number.isFinite(args.targetP95Ms) || args.targetP95Ms <= 0) {
     throw new Error("--target-p95-ms must be positive");
+  }
+  if (
+    !Number.isInteger(args.maxRepresentativeBatch) ||
+    args.maxRepresentativeBatch < 50 ||
+    args.maxRepresentativeBatch > 500
+  ) {
+    throw new Error(
+      "--max-representative-batch must be an integer from 50 through 500",
+    );
   }
   return args;
 }
@@ -109,7 +124,7 @@ function take(ids, count) {
   return ids.slice(0, Math.min(ids.length, count));
 }
 
-function testCases(parentIds, printingIds) {
+function testCases(parentIds, printingIds, maxRepresentativeBatch) {
   return [
     {
       case_id: "parent_detail_1",
@@ -122,9 +137,9 @@ function testCases(parentIds, printingIds) {
       requested_ids: take(parentIds, 25),
     },
     {
-      case_id: "parent_grid_all_current",
+      case_id: "parent_grid_representative",
       scope: "parent",
-      requested_ids: parentIds,
+      requested_ids: take(parentIds, maxRepresentativeBatch),
     },
     {
       case_id: "printing_detail_1",
@@ -137,9 +152,9 @@ function testCases(parentIds, printingIds) {
       requested_ids: take(printingIds, 50),
     },
     {
-      case_id: "printing_batch_all_current",
+      case_id: "printing_batch_representative",
       scope: "card_printing",
-      requested_ids: printingIds,
+      requested_ids: take(printingIds, maxRepresentativeBatch),
     },
   ].map((testCase) => ({
     ...testCase,
@@ -314,7 +329,11 @@ async function main() {
     if (!parentIds.length || !printingIds.length) {
       throw new Error("current publication sample is empty");
     }
-    const cases = testCases(parentIds, printingIds);
+    const cases = testCases(
+      parentIds,
+      printingIds,
+      args.maxRepresentativeBatch,
+    );
     if (cases.some((testCase) => !testCase.requested_ids.length)) {
       throw new Error("one or more performance cases has no IDs");
     }
@@ -346,6 +365,7 @@ async function main() {
       iterations: args.iterations,
       warmups: args.warmups,
       target_p95_ms: args.targetP95Ms,
+      max_representative_batch: args.maxRepresentativeBatch,
       parent_sample_count: parentIds.length,
       printing_sample_count: printingIds.length,
       function_definition_sha256: sha256(
