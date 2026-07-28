@@ -76,6 +76,33 @@ const HEALTH = readFileSync(
   ),
   "utf8",
 );
+const ROLLBACK_WORKER = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "workers",
+    "tcgplayer_market_rollback_v1.mjs",
+  ),
+  "utf8",
+);
+const PROVENANCE_LOOKUP = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_market_provenance_lookup_v1.mjs",
+  ),
+  "utf8",
+);
+const PROVENANCE_POLICY = readFileSync(
+  path.join(
+    ROOT,
+    "backend",
+    "pricing",
+    "tcgplayer_market_provenance_policy_v1.mjs",
+  ),
+  "utf8",
+);
 const LOCAL_SMOKE = readFileSync(
   path.join(
     ROOT,
@@ -150,6 +177,15 @@ const SCHEDULE_VERIFIER = readFileSync(
 );
 const SCHEDULE_ENV_EXAMPLE = readFileSync(
   path.join(ROOT, "deploy", "env", "tcgplayer-market-pricing.env.example"),
+  "utf8",
+);
+const RUNBOOK = readFileSync(
+  path.join(
+    ROOT,
+    "docs",
+    "runbooks",
+    "TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md",
+  ),
   "utf8",
 );
 const TCGCSV_WAREHOUSE_WORKER = readFileSync(
@@ -931,6 +967,70 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
   assert.match(HEALTH, /minimum_current_prices/);
   assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
   assert.match(HEALTH, /current_publication_pointer_mismatch/);
+});
+
+test("publication rollback is guarded, dry-run-default, and read back before commit", () => {
+  assert.match(ROLLBACK_WORKER, /const apply = argv\.includes\("--apply"\)/);
+  assert.match(
+    ROLLBACK_WORKER,
+    /--expected-current-publication-set-id is required/,
+  );
+  assert.match(
+    ROLLBACK_WORKER,
+    /--expected-restore-publication-set-id is required for apply/,
+  );
+  assert.match(ROLLBACK_WORKER, /--expected-commit-sha is required for apply/);
+  assert.match(
+    ROLLBACK_WORKER,
+    /TCGPLAYER_MARKET_PUBLICATION_ROLLBACK_V1/,
+  );
+  assert.match(ROLLBACK_WORKER, /begin isolation level serializable/);
+  assert.match(ROLLBACK_WORKER, /begin read only/);
+  assert.match(
+    ROLLBACK_WORKER,
+    /rollback_market_price_publication_set_v1/,
+  );
+  assert.match(ROLLBACK_WORKER, /validatePostconditions/);
+  assert.match(
+    ROLLBACK_WORKER,
+    /ROLLBACK_POSTCONDITION_FAILED[\s\S]*client\.query\("commit"\)/,
+  );
+  assert.match(ROLLBACK_WORKER, /artifact_hashes\.json/);
+  assert.doesNotMatch(
+    ROLLBACK_WORKER,
+    /\b(insert\s+into|update|delete\s+from)\s+public\.market_price_/i,
+  );
+});
+
+test("production runbook covers rollback and ordinary incident recovery", () => {
+  assert.match(RUNBOOK, /## Guarded Publication Rollback/);
+  assert.match(RUNBOOK, /pricing:market:rollback:dry-run/);
+  assert.match(RUNBOOK, /pricing:market:rollback:apply/);
+  assert.match(RUNBOOK, /## Acquisition And Artifact Failures/);
+  assert.match(RUNBOOK, /--resume-run-key=<run-key>/);
+  assert.match(RUNBOOK, /## Mapping And Duplicate Resolution/);
+  assert.match(RUNBOOK, /## API Or Client Failure/);
+  assert.match(RUNBOOK, /## Operations Webhook Failure/);
+  assert.match(RUNBOOK, /## Historical Worker Coordination/);
+});
+
+test("GV-ID provenance lookup is read-only and closes the governed trace", () => {
+  assert.match(
+    PROVENANCE_LOOKUP,
+    /provide exactly one of --printing-gv-id or --provenance-id/,
+  );
+  assert.match(PROVENANCE_LOOKUP, /begin read only/);
+  assert.match(PROVENANCE_LOOKUP, /get_market_pricing_read_model_v1/);
+  assert.match(PROVENANCE_LOOKUP, /get_market_price_trace_v1/);
+  assert.match(PROVENANCE_POLICY, /trace_market_close_mismatch/);
+  assert.match(PROVENANCE_POLICY, /"source_artifact_hash"/);
+  assert.match(PROVENANCE_POLICY, /trace_missing_\$\{field\}/);
+  assert.match(PROVENANCE_LOOKUP, /public_trace_exposure:\s*false/);
+  assert.match(PROVENANCE_LOOKUP, /artifact_hashes\.json/);
+  assert.doesNotMatch(
+    PROVENANCE_LOOKUP,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
 });
 
 test("local smoke proves publication, resume, rollback, append-only, and ACL boundaries", () => {

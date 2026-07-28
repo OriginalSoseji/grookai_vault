@@ -175,6 +175,32 @@ For a bounded set of exact printings, confirm:
 - the client RPC returns the same value
 - `get_market_price_trace_v1` closes the provenance chain
 
+Run the service-only, read-only GV-ID diagnostic for any exact printing:
+
+```powershell
+npm run pricing:market:provenance -- `
+  --printing-gv-id=<exact-printing-gv-id> `
+  --require-available `
+  --out-root=artifacts/market_pricing_product_v1/provenance_lookup
+```
+
+The artifact must reconcile canonical identity, the shared read-model row,
+market close, immutable snapshot, qualification decision, source mapping,
+variant assignment, source observation, source artifact, and both artifact and
+row hashes. It performs no writes and does not expose the service-only trace to
+product clients.
+
+An exact historical provenance identifier can be inspected with:
+
+```powershell
+npm run pricing:market:provenance -- `
+  --provenance-id=<provenance-uuid> `
+  --out-root=artifacts/market_pricing_product_v1/provenance_lookup
+```
+
+The command reports `requested_provenance_is_not_current` when the immutable
+trace is valid but no longer backs the current publication.
+
 ## 72-Hour Canary Observation
 
 Run the read-only observation evaluator with the exact activation evidence:
@@ -256,6 +282,150 @@ Keep RPC execution authenticated-only during the signed-in canary.
 
 Public anonymous access requires a later migration changing only the approved
 read RPC grants. Do not grant raw tables or internal views.
+
+## Guarded Publication Rollback
+
+Rollback is an incident response action. It restores the exact prior complete
+publication generation; it does not regenerate prices or mutate snapshots.
+
+Take the current and previous publication-set IDs from the latest health or
+canary observation artifact. First run the read-only precondition check:
+
+```powershell
+npm run pricing:market:rollback:dry-run -- `
+  --expected-current-publication-set-id=<current-publication-set-id> `
+  --expected-restore-publication-set-id=<previous-publication-set-id> `
+  --out-root=artifacts/market_pricing_product_v1/publication_rollback
+```
+
+Require:
+
+- `status: passed`
+- `committed: false`
+- both publication snapshot counts reconcile with their expected counts
+- current state is `published`
+- restore state is `superseded`
+
+Apply only from the exact clean commit that passed the dry run:
+
+```powershell
+npm run pricing:market:rollback:apply -- `
+  --expected-current-publication-set-id=<current-publication-set-id> `
+  --expected-restore-publication-set-id=<previous-publication-set-id> `
+  --reason="<incident-id and factual rollback reason>" `
+  --expected-commit-sha=<exact-40-character-clean-commit-sha> `
+  --confirmation=TCGPLAYER_MARKET_PUBLICATION_ROLLBACK_V1 `
+  --out-root=artifacts/market_pricing_product_v1/publication_rollback
+```
+
+The command performs the database rollback function and all postcondition
+readback inside one serializable transaction. It commits only when the restored
+pointer, publication/run states, snapshot count, reason, and two publication
+events reconcile. Preserve the run plan, precondition and postcondition
+readbacks, event rows, summary, and hashes.
+
+After apply:
+
+```powershell
+npm run pricing:market:health
+```
+
+Stop the affected rollout. Do not start a replacement publication until the
+incident is understood and a new dry run reconciles.
+
+## Acquisition And Artifact Failures
+
+For a partial download, malformed artifact, hash mismatch, provider outage, or
+retry exhaustion:
+
+1. Preserve the original pipeline run key and its artifacts.
+2. Confirm the current publication remains healthy:
+
+```powershell
+npm run pricing:market:health
+```
+
+3. Do not activate staged or unreconciled rows.
+4. After source transport recovers, resume the same frozen run:
+
+```powershell
+node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply --resume-run-key=<run-key>
+```
+
+The pipeline must reuse a previously verified artifact or restart the failed
+acquisition phase under the same run plan. A malformed or hash-mismatched
+artifact remains quarantined and must not be renamed or substituted.
+
+For a same-date replacement artifact, use its distinct artifact hash and a new
+run key. Never rewrite the prior artifact identity or prior qualification
+decisions.
+
+## Mapping And Duplicate Resolution
+
+Mapping or duplicate-product failures remain quarantined. Do not edit
+qualification decisions or publication snapshots.
+
+Use the read-only coverage and exact-mapping planner:
+
+```powershell
+npm run pricing:market:coverage
+node scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs `
+  --source-run-id=<verified-source-sync-run-id> `
+  --coverage-gaps=<coverage-audit-directory>/coverage_gaps.jsonl `
+  --out-root=artifacts/market_pricing_product_v1/exact_mapping_plan
+```
+
+Only collision-free exact candidates may enter the bounded canon-maintenance
+apply command. Ambiguous set authority, multiple matching source products,
+missing printed number, target ownership, and special-print evidence remain
+blocked with their deterministic reason.
+
+## API Or Client Failure
+
+If the database health check passes but a product surface disagrees:
+
+1. Stop rollout expansion.
+2. Preserve the failing detail or batch API payload and printing GV-ID.
+3. Verify detail/batch parity through the shared RPC.
+4. Resolve the payload `provenance_id` through
+   `get_market_price_trace_v1` using service-role access.
+5. Compare the rendered amount to the API `market_close`, snapshot
+   `market_price`, qualification decision, source observation, and artifact
+   hash.
+
+Do not work around an API failure with a direct warehouse read, client-side
+freshness logic, a parent fallback, or a supporting price field.
+
+## Operations Webhook Failure
+
+On the production host inspect the exact failed units:
+
+```bash
+sudo systemctl status grookai-tcgplayer-market-pipeline.service
+sudo systemctl status grookai-operations-webhook@grookai-tcgplayer-market-pipeline.service.service
+sudo journalctl -u grookai-tcgplayer-market-pipeline.service --since today
+sudo journalctl -u grookai-operations-webhook@grookai-tcgplayer-market-pipeline.service.service --since today
+```
+
+Preserve the corresponding receipt under
+`/var/lib/grookai/operations-notifications`. Restore the configured generic
+webhook route in `/etc/grookai/tcgplayer-market-pricing.env`, then verify the
+systemd package again:
+
+```bash
+bash deploy/scripts/verify-tcgplayer-market-pipeline-systemd.sh --canary
+```
+
+Do not suppress or bypass the `OnFailure` unit to make a scheduled cycle look
+healthy.
+
+## Historical Worker Coordination
+
+Current-price publication owns the daily `08:15 UTC` window. Historical
+backfill remains a separate run identity, runs at lower priority, and must
+yield while the current-price pipeline is active. Historical completion cannot
+block current publication and historical rows cannot modify current
+qualification, publication pointers, or freshness semantics.
 
 ## Failure Handling
 
