@@ -110,7 +110,18 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       meta={<span>{metaLine}</span>}
       summary={
         canViewPricing && typeof card.raw_price === "number" ? (
-          <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" />
+          <VisiblePrice
+            value={card.raw_price}
+            size="grid"
+            className="gv-hi-price"
+            cardPrintId={card.id}
+            observedAt={card.raw_price_ts}
+            publishedAt={card.raw_price_published_at}
+            provenanceId={card.pricing_provenance_id}
+            sourceLabel={card.pricing_source_label}
+            pricingScope={card.pricing_scope}
+            isFromPrice={card.pricing_is_from_price}
+          />
         ) : null
       }
       imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[160px]"}

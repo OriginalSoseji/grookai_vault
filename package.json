@@ -107,6 +107,8 @@
     "pricing:market:performance": "node scripts/audits/tcgplayer_market_read_performance_v1.mjs",
     "pricing:market:provenance": "node scripts/audits/tcgplayer_market_provenance_lookup_v1.mjs",
     "pricing:market:vault:verify": "node scripts/audits/tcgplayer_market_vault_production_readback_v1.mjs",
+    "pricing:market:surfaces:verify": "node scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs",
+    "pricing:market:surfaces:manifest": "node scripts/audits/tcgplayer_market_product_surface_manifest_v1.mjs",
     "pricing:market:active-ask:refresh": "node scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
     "pricing:market:rollback:dry-run": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --dry-run",
     "pricing:market:rollback:apply": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --apply",

@@ -13,6 +13,12 @@ type VaultInstanceVisiblePricingCardProps = {
   marketReferencePrice: number | null;
   marketReferenceSource: string | null;
   marketReferenceUpdatedAt: string | null;
+  marketReferenceObservedAt: string | null;
+  marketReferencePublishedAt: string | null;
+  marketReferenceProvenanceId: string | null;
+  cardPrintId: string;
+  cardPrintingId: string | null;
+  printingGvId: string | null;
   isGraded: boolean;
 };
 
@@ -41,6 +47,12 @@ export default function VaultInstanceVisiblePricingCard({
   marketReferencePrice,
   marketReferenceSource,
   marketReferenceUpdatedAt,
+  marketReferenceObservedAt,
+  marketReferencePublishedAt,
+  marketReferenceProvenanceId,
+  cardPrintId,
+  cardPrintingId,
+  printingGvId,
   isGraded,
 }: VaultInstanceVisiblePricingCardProps) {
   const marketReferenceDate = formatPricingTimestamp(marketReferenceUpdatedAt);
@@ -54,7 +66,23 @@ export default function VaultInstanceVisiblePricingCard({
 
       {pricingMode === "asking" ? (
         <div className="space-y-1">
-          <p className="text-xl font-semibold tracking-tight text-slate-950">
+          <p
+            className="text-xl font-semibold tracking-tight text-slate-950"
+            data-pricing-proof="tcgplayer-market"
+            data-pricing-status="available"
+            data-pricing-scope="card_printing"
+            data-card-print-id={cardPrintId}
+            data-card-printing-id={cardPrintingId ?? undefined}
+            data-printing-gv-id={printingGvId ?? undefined}
+            data-market-close-usd={marketReferencePrice}
+            data-currency="USD"
+            data-source-name="tcgplayer"
+            data-source-label="TCGPlayer Market"
+            data-observed-at={marketReferenceObservedAt ?? undefined}
+            data-published-at={marketReferencePublishedAt ?? undefined}
+            data-provenance-id={marketReferenceProvenanceId ?? undefined}
+            data-is-from-price="false"
+          >
             {formatVaultInstancePrice(askingPriceAmount, askingPriceCurrency)}
           </p>
           {askingPriceNote ? <p className="text-sm text-slate-600">{askingPriceNote}</p> : null}

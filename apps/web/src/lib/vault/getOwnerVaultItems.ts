@@ -145,6 +145,7 @@ function normalizeVaultItems(
           pricing_published_at: copyItem.pricing_published_at,
         })),
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
+        pricing_updated_at: row.pricing_updated_at,
         priced_raw_copy_count: row.priced_raw_copy_count,
         unpriced_raw_copy_count: row.unpriced_raw_copy_count,
         image_url:

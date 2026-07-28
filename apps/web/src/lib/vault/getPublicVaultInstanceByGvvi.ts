@@ -157,6 +157,8 @@ export type PublicVaultInstanceDetail = {
   marketReferenceUpdatedAt: string | null;
   marketReferenceObservedAt: string | null;
   marketReferencePublishedAt: string | null;
+  marketReferenceProvenanceId: string | null;
+  marketReferencePrintingGvId: string | null;
 };
 
 export async function getPublicVaultInstanceByGvvi(
@@ -321,5 +323,7 @@ export async function getPublicVaultInstanceByGvvi(
     marketReferenceUpdatedAt: pricingRecord?.published_at ?? null,
     marketReferenceObservedAt: pricingRecord?.observed_at ?? null,
     marketReferencePublishedAt: pricingRecord?.published_at ?? null,
+    marketReferenceProvenanceId: pricingRecord?.provenance_id ?? null,
+    marketReferencePrintingGvId: pricingRecord?.printing_gv_id ?? null,
   };
 }

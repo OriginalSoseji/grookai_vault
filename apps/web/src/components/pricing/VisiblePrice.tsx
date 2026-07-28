@@ -6,6 +6,15 @@ type VisiblePriceProps = {
   note?: "none" | "compact" | "full";
   className?: string;
   label?: string;
+  sourceLabel?: string;
+  cardPrintId?: string;
+  cardPrintingId?: string;
+  printingGvId?: string;
+  observedAt?: string;
+  publishedAt?: string;
+  provenanceId?: string;
+  pricingScope?: "parent" | "card_printing";
+  isFromPrice?: boolean;
 };
 
 function getClasses(size: VisiblePriceProps["size"]) {
@@ -47,13 +56,43 @@ export default function VisiblePrice({
   note = "none",
   className = "",
   label = "TCGPlayer Market",
+  sourceLabel = "TCGPlayer Market",
+  cardPrintId,
+  cardPrintingId,
+  printingGvId,
+  observedAt,
+  publishedAt,
+  provenanceId,
+  pricingScope = "parent",
+  isFromPrice = false,
 }: VisiblePriceProps) {
   const classes = getClasses(size);
 
   return (
-    <div className={`${classes.wrapper} ${className}`.trim()}>
+    <div
+      className={`${classes.wrapper} ${className}`.trim()}
+      data-pricing-proof="tcgplayer-market"
+      data-pricing-status={
+        typeof value === "number" ? "available" : "unavailable"
+      }
+      data-pricing-scope={pricingScope}
+      data-card-print-id={cardPrintId}
+      data-card-printing-id={cardPrintingId}
+      data-printing-gv-id={printingGvId}
+      data-market-close-usd={value}
+      data-currency="USD"
+      data-source-name="tcgplayer"
+      data-source-label={sourceLabel}
+      data-observed-at={observedAt}
+      data-published-at={publishedAt}
+      data-provenance-id={provenanceId}
+      data-is-from-price={isFromPrice ? "true" : "false"}
+    >
       <p className={classes.label}>{label}</p>
-      <p className={classes.value}>{formatUsdPrice(value)}</p>
+      <p className={classes.value}>
+        {isFromPrice ? "From " : ""}
+        {formatUsdPrice(value)}
+      </p>
       {note === "compact" ? <p className={classes.note}>Latest qualified close</p> : null}
       {note === "full" ? (
         <p className={classes.note}>

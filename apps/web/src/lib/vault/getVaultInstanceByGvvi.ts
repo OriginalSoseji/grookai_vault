@@ -188,6 +188,8 @@ export type VaultInstanceDetail = {
   marketReferenceUpdatedAt: string | null;
   marketReferenceObservedAt: string | null;
   marketReferencePublishedAt: string | null;
+  marketReferenceProvenanceId: string | null;
+  marketReferencePrintingGvId: string | null;
   outcomes: VaultInstanceOutcome[];
 };
 
@@ -340,6 +342,8 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     marketReferenceUpdatedAt: pricingRecord?.published_at ?? null,
     marketReferenceObservedAt: pricingRecord?.observed_at ?? null,
     marketReferencePublishedAt: pricingRecord?.published_at ?? null,
+    marketReferenceProvenanceId: pricingRecord?.provenance_id ?? null,
+    marketReferencePrintingGvId: pricingRecord?.printing_gv_id ?? null,
     outcomes: outcomeRows.map((row) => ({
       id: row.id,
       executionEventId: normalizeOptionalText(row.execution_event_id),

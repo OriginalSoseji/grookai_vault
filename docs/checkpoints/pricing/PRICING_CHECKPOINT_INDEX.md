@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md`
+
+This checkpoint records the 17-surface production proof contract, deployed
+web evidence attributes, Flutter accessibility identifiers, exact Vault
+total distinction, capture tooling, and fail-closed source-to-render
+reconciliation.
+
+Decision locked there:
+
+- all-surface completion requires same-commit authenticated production
+  captures reconciled to the shared RPC and exact-copy Vault evidence
+
+Unresolved risk afterward:
+
+- final captures remain pending until the frozen canary passes and the exact
+  rollout clients are deployed
+
 ### `PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md`
 
 This checkpoint freezes the exact two-migration post-canary apply set, hashes,

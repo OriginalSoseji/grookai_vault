@@ -238,7 +238,25 @@ export default async function MarketAnalysisPage({
 
               <div className="space-y-4">
                 {typeof model.heroPrice === "number" ? (
-                  <p className="text-5xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
+                  <p
+                    className="text-5xl font-semibold tracking-tight text-slate-950"
+                    data-pricing-proof="tcgplayer-market"
+                    data-pricing-status="available"
+                    data-pricing-scope="card_printing"
+                    data-card-print-id={model.selectedSlice?.cardPrintId}
+                    data-card-printing-id={model.selectedSlice?.variantId}
+                    data-printing-gv-id={model.selectedSlice?.printingGvId ?? undefined}
+                    data-market-close-usd={model.heroPrice}
+                    data-currency="USD"
+                    data-source-name="tcgplayer"
+                    data-source-label={model.selectedSlice?.sourceLabel}
+                    data-observed-at={model.selectedSlice?.updatedAt ?? undefined}
+                    data-published-at={model.selectedSlice?.publishedAt ?? undefined}
+                    data-provenance-id={model.selectedSlice?.provenanceId ?? undefined}
+                    data-is-from-price="false"
+                  >
+                    {formatUsdPrice(model.heroPrice)}
+                  </p>
                 ) : null}
                 <MarketHistoryChart points={historyPoints} />
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
@@ -298,7 +316,25 @@ export default async function MarketAnalysisPage({
                   Historical chart data is not available for this market slice yet.
                 </p>
                 {typeof model.heroPrice === "number" ? (
-                  <p className="pt-2 text-lg font-medium text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
+                  <p
+                    className="pt-2 text-lg font-medium text-slate-950"
+                    data-pricing-proof="tcgplayer-market"
+                    data-pricing-status="available"
+                    data-pricing-scope="card_printing"
+                    data-card-print-id={model.selectedSlice?.cardPrintId}
+                    data-card-printing-id={model.selectedSlice?.variantId}
+                    data-printing-gv-id={model.selectedSlice?.printingGvId ?? undefined}
+                    data-market-close-usd={model.heroPrice}
+                    data-currency="USD"
+                    data-source-name="tcgplayer"
+                    data-source-label={model.selectedSlice?.sourceLabel}
+                    data-observed-at={model.selectedSlice?.updatedAt ?? undefined}
+                    data-published-at={model.selectedSlice?.publishedAt ?? undefined}
+                    data-provenance-id={model.selectedSlice?.provenanceId ?? undefined}
+                    data-is-from-price="false"
+                  >
+                    {formatUsdPrice(model.heroPrice)}
+                  </p>
                 ) : null}
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
               </div>

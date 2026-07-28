@@ -13,12 +13,17 @@ export const CARD_MARKET_ANALYSIS_DURATIONS = ["7d", "30d", "90d", "180d"] as co
 type MarketAnalysisDuration = (typeof CARD_MARKET_ANALYSIS_DURATIONS)[number];
 
 type MarketAnalysisSelectedSlice = {
+  cardPrintId: string;
   variantId: string;
+  printingGvId: string | null;
   condition: string;
   printing: string;
   language: string | null;
   currentPrice: number | null;
+  sourceLabel: string;
   updatedAt: string | null;
+  publishedAt: string | null;
+  provenanceId: string | null;
 };
 
 export type MarketAnalysisAvailableSlice = {
@@ -252,12 +257,17 @@ export async function getCardMarketAnalysisModelWithClient(
       : "No qualified TCGPlayer Market history exists for this exact printing.";
   const printingLabel = sliceLabel(selectedPricing);
   const selectedSlice: MarketAnalysisSelectedSlice = {
+    cardPrintId: selectedPricing.card_print_id,
     variantId: selectedPricing.card_printing_id,
+    printingGvId: selectedPricing.printing_gv_id ?? null,
     condition: "Market price",
     printing: printingLabel,
     language: null,
     currentPrice: selectedPricing.market_close,
+    sourceLabel: selectedPricing.source_label,
     updatedAt: selectedPricing.observed_at,
+    publishedAt: selectedPricing.published_at,
+    provenanceId: selectedPricing.provenance_id ?? null,
   };
   const pageMode = points.length ? "chart" : "empty-history";
 

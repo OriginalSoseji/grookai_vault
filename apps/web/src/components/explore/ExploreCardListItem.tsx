@@ -113,7 +113,18 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
             </div>
             <div className="hidden shrink-0 text-right md:block">
               {canViewPricing ? (
-                <VisiblePrice value={card.raw_price} size="list" className="gv-hi-price" />
+                <VisiblePrice
+                  value={card.raw_price}
+                  size="list"
+                  className="gv-hi-price"
+                  cardPrintId={card.id}
+                  observedAt={card.raw_price_ts}
+                  publishedAt={card.raw_price_published_at}
+                  provenanceId={card.pricing_provenance_id}
+                  sourceLabel={card.pricing_source_label}
+                  pricingScope={card.pricing_scope}
+                  isFromPrice={card.pricing_is_from_price}
+                />
               ) : (
                 <LockedPrice href={signInHref} size="list" className="gv-hi-price" />
               )}
@@ -124,7 +135,18 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           <CompareCardButton gvId={card.gv_id} variant="compact" />
           <div className="md:hidden">
             {canViewPricing ? (
-              <VisiblePrice value={card.raw_price} size="dense" className="gv-hi-price" />
+              <VisiblePrice
+                value={card.raw_price}
+                size="dense"
+                className="gv-hi-price"
+                cardPrintId={card.id}
+                observedAt={card.raw_price_ts}
+                publishedAt={card.raw_price_published_at}
+                provenanceId={card.pricing_provenance_id}
+                sourceLabel={card.pricing_source_label}
+                pricingScope={card.pricing_scope}
+                isFromPrice={card.pricing_is_from_price}
+              />
             ) : (
               <LockedPrice href={signInHref} size="dense" className="gv-hi-price" />
             )}

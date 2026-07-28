@@ -686,17 +686,39 @@ class VaultPageState extends State<VaultPage> {
     var estimatedValue = 0.0;
     var pricedUniqueCount = 0;
     var pricedCopyCount = 0;
+    var unpricedCopyCount = 0;
+    DateTime? latestPricingObservedAt;
+    DateTime? latestPricingPublishedAt;
     for (final row in _items) {
       final cardPrintId = (row['card_id'] ?? '').toString().trim();
       final pricingSummary = _pricingSummaryByCardPrintId[cardPrintId];
       final visiblePrice = pricingSummary?.totalMarketValue;
       if (visiblePrice == null || pricingSummary == null) {
+        if (pricingSummary != null) {
+          unpricedCopyCount += pricingSummary.unpricedCopyCount;
+        }
         continue;
       }
       estimatedValue += visiblePrice;
       pricedUniqueCount += 1;
       pricedCopyCount += pricingSummary.pricedCopyCount;
+      unpricedCopyCount += pricingSummary.unpricedCopyCount;
+      latestPricingObservedAt = _latestVaultPricingTimestamp(
+        latestPricingObservedAt,
+        pricingSummary.latestObservedAt,
+      );
+      latestPricingPublishedAt = _latestVaultPricingTimestamp(
+        latestPricingPublishedAt,
+        pricingSummary.latestPublishedAt,
+      );
     }
+    final vaultPricingSummary = VaultExactPricingSummary(
+      totalMarketValue: pricedUniqueCount == 0 ? null : estimatedValue,
+      pricedCopyCount: pricedCopyCount,
+      unpricedCopyCount: unpricedCopyCount,
+      latestObservedAt: latestPricingObservedAt,
+      latestPublishedAt: latestPricingPublishedAt,
+    );
 
     _derivedData = _VaultDerivedData(
       sortedRows: sortedRows,
@@ -712,6 +734,7 @@ class VaultPageState extends State<VaultPage> {
       lastAddedLabel: _lastAddedLabel(_items),
       estimatedValue: pricedUniqueCount == 0 ? null : estimatedValue,
       pricedCopyCount: pricedCopyCount,
+      vaultPricingSummary: vaultPricingSummary,
     );
   }
 
@@ -1950,15 +1973,27 @@ class VaultPageState extends State<VaultPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    derivedData.estimatedValue == null
-                        ? 'TCGPlayer Market'
+                  Semantics(
+                    identifier:
+                        derivedData.vaultPricingSummary.totalMarketValue == null
+                        ? null
+                        : vaultExactPricingTotalProofKey(
+                            derivedData.vaultPricingSummary,
+                          ),
+                    label: 'TCGPlayer Market Vault total',
+                    value: derivedData.estimatedValue == null
+                        ? 'Unavailable'
                         : _formatVaultValue(derivedData.estimatedValue!),
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      color: theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w700,
-                      height: 1.0,
-                      letterSpacing: 0,
+                    child: Text(
+                      derivedData.estimatedValue == null
+                          ? 'TCGPlayer Market'
+                          : _formatVaultValue(derivedData.estimatedValue!),
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                        fontWeight: FontWeight.w700,
+                        height: 1.0,
+                        letterSpacing: 0,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -2141,6 +2176,7 @@ class _VaultDerivedData {
     required this.lastAddedLabel,
     required this.estimatedValue,
     required this.pricedCopyCount,
+    required this.vaultPricingSummary,
   });
 
   const _VaultDerivedData.empty()
@@ -2156,7 +2192,14 @@ class _VaultDerivedData {
       setCount = 0,
       lastAddedLabel = 'No cards yet',
       estimatedValue = null,
-      pricedCopyCount = 0;
+      pricedCopyCount = 0,
+      vaultPricingSummary = const VaultExactPricingSummary(
+        totalMarketValue: null,
+        pricedCopyCount: 0,
+        unpricedCopyCount: 0,
+        latestObservedAt: null,
+        latestPublishedAt: null,
+      );
 
   final List<Map<String, dynamic>> sortedRows;
   final List<Map<String, dynamic>> searchedRows;
@@ -2171,6 +2214,13 @@ class _VaultDerivedData {
   final String lastAddedLabel;
   final double? estimatedValue;
   final int pricedCopyCount;
+  final VaultExactPricingSummary vaultPricingSummary;
+}
+
+DateTime? _latestVaultPricingTimestamp(DateTime? left, DateTime? right) {
+  if (left == null) return right;
+  if (right == null) return left;
+  return left.isAfter(right) ? left : right;
 }
 
 int _ownedCountForRow(Map<String, dynamic> row) {

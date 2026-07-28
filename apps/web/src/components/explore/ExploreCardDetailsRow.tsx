@@ -119,7 +119,18 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       </td>
       <td className="px-4 py-3">
         {canViewPricing ? (
-          <VisiblePrice value={card.raw_price} size="dense" className="gv-hi-price" />
+          <VisiblePrice
+            value={card.raw_price}
+            size="dense"
+            className="gv-hi-price"
+            cardPrintId={card.id}
+            observedAt={card.raw_price_ts}
+            publishedAt={card.raw_price_published_at}
+            provenanceId={card.pricing_provenance_id}
+            sourceLabel={card.pricing_source_label}
+            pricingScope={card.pricing_scope}
+            isFromPrice={card.pricing_is_from_price}
+          />
         ) : (
           <LockedPrice href={signInHref} size="dense" className="gv-hi-price" />
         )}

@@ -13,6 +13,9 @@ class CardSurfacePricingData {
     this.sourceLabel,
     this.observedAt,
     this.publishedAt,
+    this.provenanceId,
+    this.proofPricedCopyCount,
+    this.proofUnpricedCopyCount,
   });
 
   final String cardPrintId;
@@ -26,6 +29,9 @@ class CardSurfacePricingData {
   final String? sourceLabel;
   final DateTime? observedAt;
   final DateTime? publishedAt;
+  final String? provenanceId;
+  final int? proofPricedCopyCount;
+  final int? proofUnpricedCopyCount;
 
   double? get visibleValue => marketClose;
 
@@ -143,6 +149,7 @@ class CardSurfacePricingService {
       sourceLabel: _clean(row['source_label']),
       observedAt: DateTime.tryParse((row['observed_at'] ?? '').toString()),
       publishedAt: DateTime.tryParse((row['published_at'] ?? '').toString()),
+      provenanceId: _clean(row['provenance_id']),
     );
   }
 

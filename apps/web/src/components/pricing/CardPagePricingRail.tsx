@@ -57,7 +57,11 @@ function SourceRange({ pricing }: { pricing: CardPricingUiRecord }) {
 
 function PricingEmptyState() {
   return (
-    <div className="space-y-1.5">
+    <div
+      className="space-y-1.5"
+      data-pricing-proof="tcgplayer-market"
+      data-pricing-status="unavailable"
+    >
       <p className="text-base font-semibold text-slate-950 dark:text-slate-100">
         No qualified market price
       </p>
@@ -86,7 +90,23 @@ function MarketPriceBlock({
         : "Exact printing";
 
   return (
-    <div className="space-y-1">
+    <div
+      className="space-y-1"
+      data-pricing-proof="tcgplayer-market"
+      data-pricing-status={pricing.status}
+      data-pricing-scope={pricing.pricing_scope}
+      data-card-print-id={pricing.card_print_id}
+      data-card-printing-id={pricing.card_printing_id}
+      data-printing-gv-id={pricing.printing_gv_id}
+      data-market-close-usd={pricing.market_close}
+      data-currency={pricing.currency}
+      data-source-name={pricing.source_name}
+      data-source-label={pricing.source_label}
+      data-observed-at={pricing.observed_at}
+      data-published-at={pricing.published_at}
+      data-provenance-id={pricing.provenance_id}
+      data-is-from-price={pricing.is_from_price ? "true" : "false"}
+    >
       <p className="text-3xl font-semibold text-slate-950 dark:text-slate-100">
         {pricing.is_from_price ? "From " : ""}
         {formatUsdPrice(pricing.market_close)}

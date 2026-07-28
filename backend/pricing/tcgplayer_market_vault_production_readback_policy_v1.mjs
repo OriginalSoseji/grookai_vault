@@ -119,6 +119,22 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
   if (integer(pricing.priced_copy_count) < 1) {
     findings.push("vault_exact_pricing_priced_sample_unavailable");
   }
+  const sampleGroup = pricing.sample_group ?? null;
+  if (!sampleGroup?.card_print_id) {
+    findings.push("vault_exact_pricing_sample_group_unavailable");
+  } else {
+    if (integer(sampleGroup.priced_copy_count) < 1) {
+      findings.push("vault_exact_pricing_sample_group_unpriced");
+    }
+    if (
+      Math.abs(
+        money(sampleGroup.reconciled_total_usd) -
+          money(sampleGroup.independent_total_usd),
+      ) > 0.000001
+    ) {
+      findings.push("vault_exact_pricing_sample_group_total_mismatch");
+    }
+  }
   if (
     Math.abs(
       money(pricing.reconciled_total_usd) -
@@ -177,6 +193,22 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
       unpriced_copy_count: integer(pricing.unpriced_copy_count),
       reconciled_total_usd: money(pricing.reconciled_total_usd),
       independent_total_usd: money(pricing.independent_total_usd),
+      sample_group: sampleGroup
+        ? {
+            card_print_id: sampleGroup.card_print_id ?? null,
+            priced_copy_count: integer(sampleGroup.priced_copy_count),
+            unpriced_copy_count: integer(sampleGroup.unpriced_copy_count),
+            reconciled_total_usd: money(
+              sampleGroup.reconciled_total_usd,
+            ),
+            independent_total_usd: money(
+              sampleGroup.independent_total_usd,
+            ),
+            latest_observed_at: sampleGroup.latest_observed_at ?? null,
+            latest_published_at:
+              sampleGroup.latest_published_at ?? null,
+          }
+        : null,
     },
   };
 }

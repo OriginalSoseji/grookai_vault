@@ -82,6 +82,14 @@ function money(value) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function iso(value) {
+  if (!value) {
+    return null;
+  }
+  const parsed = new Date(value);
+  return Number.isFinite(parsed.getTime()) ? parsed.toISOString() : null;
+}
+
 async function querySchemaEvidence(client) {
   const row = (
     await client.query(
@@ -372,10 +380,7 @@ async function queryRuntimeEvidence(client, relationExists) {
           row.card_printing_id &&
           money(row.market_close) > 0,
       )
-      .map((row) => [
-        String(row.card_printing_id),
-        money(row.market_close),
-      ]),
+      .map((row) => [String(row.card_printing_id), row]),
   );
   const directPriceRows =
     requestedPrintingIds.length === 0
@@ -399,17 +404,65 @@ async function queryRuntimeEvidence(client, relationExists) {
   let pricedCopyCount = 0;
   let reconciledTotalUsd = 0;
   let independentTotalUsd = 0;
+  const groupTotals = new Map();
   for (const target of authenticatedTargets) {
-    const rpcAmount = availableByPrintingId.get(target.card_printing_id);
-    if (rpcAmount !== undefined) {
+    const group = groupTotals.get(target.card_print_id) ?? {
+      card_print_id: target.card_print_id,
+      priced_copy_count: 0,
+      unpriced_copy_count: 0,
+      reconciled_total_usd: 0,
+      independent_total_usd: 0,
+      latest_observed_at: null,
+      latest_published_at: null,
+    };
+    const rpcRow = availableByPrintingId.get(target.card_printing_id);
+    if (rpcRow) {
+      const rpcAmount = money(rpcRow.market_close);
       pricedCopyCount += 1;
       reconciledTotalUsd += rpcAmount;
+      group.priced_copy_count += 1;
+      group.reconciled_total_usd += rpcAmount;
+      const observedAt = iso(rpcRow.observed_at);
+      const publishedAt = iso(rpcRow.published_at);
+      if (
+        observedAt &&
+        (!group.latest_observed_at ||
+          observedAt > group.latest_observed_at)
+      ) {
+        group.latest_observed_at = observedAt;
+      }
+      if (
+        publishedAt &&
+        (!group.latest_published_at ||
+          publishedAt > group.latest_published_at)
+      ) {
+        group.latest_published_at = publishedAt;
+      }
+    } else {
+      group.unpriced_copy_count += 1;
     }
     const directAmount = directByPrintingId.get(target.card_printing_id);
     if (directAmount !== undefined) {
       independentTotalUsd += directAmount;
+      group.independent_total_usd += directAmount;
     }
+    groupTotals.set(target.card_print_id, group);
   }
+  const sampleGroup =
+    [...groupTotals.values()]
+      .filter((group) => group.priced_copy_count > 0)
+      .sort((left, right) =>
+        left.card_print_id.localeCompare(right.card_print_id),
+      )
+      .map((group) => ({
+        ...group,
+        reconciled_total_usd: Number(
+          group.reconciled_total_usd.toFixed(6),
+        ),
+        independent_total_usd: Number(
+          group.independent_total_usd.toFixed(6),
+        ),
+      }))[0] ?? null;
 
   return {
     access: {
@@ -435,6 +488,7 @@ async function queryRuntimeEvidence(client, relationExists) {
       unpriced_copy_count: authenticatedTargets.length - pricedCopyCount,
       reconciled_total_usd: Number(reconciledTotalUsd.toFixed(6)),
       independent_total_usd: Number(independentTotalUsd.toFixed(6)),
+      sample_group: sampleGroup,
     },
   };
 }

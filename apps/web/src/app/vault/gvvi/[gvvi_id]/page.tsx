@@ -297,6 +297,12 @@ export default async function VaultInstancePage({
             marketReferencePrice={detail.marketReferencePrice}
             marketReferenceSource={detail.marketReferenceSource}
             marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
+            marketReferenceObservedAt={detail.marketReferenceObservedAt}
+            marketReferencePublishedAt={detail.marketReferencePublishedAt}
+            marketReferenceProvenanceId={detail.marketReferenceProvenanceId}
+            cardPrintId={detail.cardPrintId}
+            cardPrintingId={detail.cardPrintingId}
+            printingGvId={detail.marketReferencePrintingGvId}
           />
 
           {messageSummary && messagesHref ? (

@@ -1,0 +1,640 @@
+export const TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_POLICY_V1 =
+  "TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_POLICY_V1";
+
+export const TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1 = Object.freeze([
+  Object.freeze({
+    surface_id: "web_card_detail",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_search",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_explore",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_set_grid",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_compare",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_private_vault",
+    client: "web",
+    proof_kind: "vault_total",
+  }),
+  Object.freeze({
+    surface_id: "web_public_vault",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_vault_item",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "web_market_history",
+    client: "web",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_card_detail",
+    client: "flutter",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_search_or_grid",
+    client: "flutter",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_set_grid",
+    client: "flutter",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_compare",
+    client: "flutter",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_private_vault",
+    client: "flutter",
+    proof_kind: "vault_total",
+  }),
+  Object.freeze({
+    surface_id: "flutter_public_collector",
+    client: "flutter",
+    proof_kind: "vault_group_total",
+  }),
+  Object.freeze({
+    surface_id: "flutter_network",
+    client: "flutter",
+    proof_kind: "price_record",
+  }),
+  Object.freeze({
+    surface_id: "flutter_vault_item",
+    client: "flutter",
+    proof_kind: "vault_group_total",
+  }),
+]);
+
+const SHA256_PATTERN = /^[a-f0-9]{64}$/;
+const COMMIT_SHA_PATTERN = /^[a-f0-9]{40}$/;
+
+function clean(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function money(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function timestamp(value) {
+  const normalized = clean(value);
+  if (!normalized) {
+    return null;
+  }
+  const parsed = new Date(normalized);
+  return Number.isFinite(parsed.getTime()) ? parsed.toISOString() : null;
+}
+
+function rowKey(scope, cardPrintId, cardPrintingId) {
+  return scope === "card_printing"
+    ? `card_printing:${clean(cardPrintingId)}`
+    : `parent:${clean(cardPrintId)}`;
+}
+
+function sameMoney(left, right) {
+  const normalizedLeft = money(left);
+  const normalizedRight = money(right);
+  return (
+    normalizedLeft !== null &&
+    normalizedRight !== null &&
+    Math.abs(normalizedLeft - normalizedRight) <= 0.000001
+  );
+}
+
+function addFinding(findings, finding, captureId = "") {
+  findings.push(captureId ? `${finding}:${captureId}` : finding);
+}
+
+export function evaluateTcgplayerMarketProductSurfaceProofV1(
+  evidence = {},
+) {
+  const findings = [];
+  const expectedCommitSha = clean(evidence.expected_commit_sha).toLowerCase();
+  const deployedCommitSha = clean(evidence.deployed_commit_sha).toLowerCase();
+  const captureCommitSha = clean(
+    evidence.capture_manifest?.deployed_commit_sha,
+  ).toLowerCase();
+  const captures = Array.isArray(evidence.capture_manifest?.captures)
+    ? evidence.capture_manifest.captures
+    : [];
+  const readModelRows = Array.isArray(evidence.read_model_rows)
+    ? evidence.read_model_rows
+    : [];
+  const vaultReadback = evidence.vault_readback ?? {};
+
+  if (!COMMIT_SHA_PATTERN.test(expectedCommitSha)) {
+    findings.push("expected_commit_sha_invalid");
+  }
+  if (!COMMIT_SHA_PATTERN.test(deployedCommitSha)) {
+    findings.push("deployed_commit_sha_invalid");
+  }
+  if (expectedCommitSha !== deployedCommitSha) {
+    findings.push("deployed_commit_sha_mismatch");
+  }
+  if (captureCommitSha !== deployedCommitSha) {
+    findings.push("capture_commit_sha_mismatch");
+  }
+  if (evidence.capture_manifest?.environment !== "production") {
+    findings.push("capture_environment_not_production");
+  }
+  if (evidence.capture_manifest?.auth_lane !== "authenticated") {
+    findings.push("capture_auth_lane_not_authenticated");
+  }
+
+  const requiredById = new Map(
+    TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1.map((surface) => [
+      surface.surface_id,
+      surface,
+    ]),
+  );
+  const readRowsByKey = new Map();
+  for (const row of readModelRows) {
+    const key = rowKey(
+      clean(row.pricing_scope),
+      row.card_print_id,
+      row.card_printing_id,
+    );
+    const rows = readRowsByKey.get(key) ?? [];
+    rows.push(row);
+    readRowsByKey.set(key, rows);
+  }
+
+  const seenCaptureIds = new Set();
+  const capturesBySurface = new Map();
+  const surfaceResults = [];
+
+  for (const capture of captures) {
+    const captureId = clean(capture.capture_id);
+    const surfaceId = clean(capture.surface_id);
+    const required = requiredById.get(surfaceId);
+    const captureFindings = [];
+
+    if (!captureId) {
+      addFinding(captureFindings, "capture_id_missing");
+    } else if (seenCaptureIds.has(captureId)) {
+      addFinding(captureFindings, "capture_id_duplicate", captureId);
+    } else {
+      seenCaptureIds.add(captureId);
+    }
+
+    if (!required) {
+      addFinding(
+        captureFindings,
+        "surface_id_not_supported",
+        captureId,
+      );
+    } else if (capture.client !== required.client) {
+      addFinding(
+        captureFindings,
+        "surface_client_mismatch",
+        captureId,
+      );
+    }
+
+    const surfaceCaptures = capturesBySurface.get(surfaceId) ?? [];
+    surfaceCaptures.push(capture);
+    capturesBySurface.set(surfaceId, surfaceCaptures);
+
+    if (capture.authenticated !== true) {
+      addFinding(
+        captureFindings,
+        "surface_not_authenticated",
+        captureId,
+      );
+    }
+    if (!clean(capture.route)) {
+      addFinding(captureFindings, "surface_route_missing", captureId);
+    }
+    if (!timestamp(capture.captured_at)) {
+      addFinding(
+        captureFindings,
+        "surface_capture_timestamp_invalid",
+        captureId,
+      );
+    }
+    if (!SHA256_PATTERN.test(clean(capture.screenshot_sha256))) {
+      addFinding(
+        captureFindings,
+        "surface_screenshot_hash_invalid",
+        captureId,
+      );
+    }
+    if (!SHA256_PATTERN.test(clean(capture.render_evidence_sha256))) {
+      addFinding(
+        captureFindings,
+        "surface_render_evidence_hash_invalid",
+        captureId,
+      );
+    }
+    if (capture.render_evidence_integrity !== true) {
+      addFinding(
+        captureFindings,
+        "surface_render_evidence_integrity_failed",
+        captureId,
+      );
+    }
+
+    const rendered = capture.rendered ?? {};
+    if (
+      required &&
+      clean(capture.proof_kind) !== required.proof_kind
+    ) {
+      addFinding(
+        captureFindings,
+        "surface_proof_kind_mismatch",
+        captureId,
+      );
+    }
+    if (required?.proof_kind === "vault_total") {
+      if (rendered.status !== "available") {
+        addFinding(
+          captureFindings,
+          "vault_total_not_rendered_available",
+          captureId,
+        );
+      }
+      if (rendered.currency !== "USD") {
+        addFinding(
+          captureFindings,
+          "vault_total_currency_not_usd",
+          captureId,
+        );
+      }
+      if (rendered.source_label !== "TCGPlayer Market") {
+        addFinding(
+          captureFindings,
+          "vault_total_source_label_unexpected",
+          captureId,
+        );
+      }
+      if (vaultReadback.status !== "passed") {
+        addFinding(
+          captureFindings,
+          "vault_total_readback_not_passed",
+          captureId,
+        );
+      }
+      if (
+        !sameMoney(
+          rendered.vault_market_value_usd,
+          vaultReadback.exact_pricing?.reconciled_total_usd,
+        )
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_total_value_mismatch",
+          captureId,
+        );
+      }
+      if (
+        Number(rendered.priced_copy_count) !==
+        Number(vaultReadback.exact_pricing?.priced_copy_count)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_total_priced_copy_count_mismatch",
+          captureId,
+        );
+      }
+      if (
+        Number(rendered.unpriced_copy_count) !==
+        Number(vaultReadback.exact_pricing?.unpriced_copy_count)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_total_unpriced_copy_count_mismatch",
+          captureId,
+        );
+      }
+
+      findings.push(...captureFindings);
+      surfaceResults.push({
+        capture_id: captureId || null,
+        surface_id: surfaceId || null,
+        client: clean(capture.client) || null,
+        status: captureFindings.length === 0 ? "passed" : "failed",
+        findings: [...new Set(captureFindings)].sort(),
+        read_model_key: "vault_total",
+      });
+      continue;
+    }
+    if (required?.proof_kind === "vault_group_total") {
+      const sampleGroup = vaultReadback.exact_pricing?.sample_group ?? {};
+      if (rendered.status !== "available") {
+        addFinding(
+          captureFindings,
+          "vault_group_total_not_rendered_available",
+          captureId,
+        );
+      }
+      if (rendered.currency !== "USD") {
+        addFinding(
+          captureFindings,
+          "vault_group_total_currency_not_usd",
+          captureId,
+        );
+      }
+      if (rendered.source_label !== "TCGPlayer Market") {
+        addFinding(
+          captureFindings,
+          "vault_group_total_source_label_unexpected",
+          captureId,
+        );
+      }
+      if (vaultReadback.status !== "passed") {
+        addFinding(
+          captureFindings,
+          "vault_group_total_readback_not_passed",
+          captureId,
+        );
+      }
+      if (
+        clean(capture.card_print_id) !==
+        clean(sampleGroup.card_print_id)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_card_print_id_mismatch",
+          captureId,
+        );
+      }
+      if (
+        !sameMoney(
+          rendered.vault_market_value_usd,
+          sampleGroup.reconciled_total_usd,
+        )
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_value_mismatch",
+          captureId,
+        );
+      }
+      if (
+        Number(rendered.priced_copy_count) !==
+        Number(sampleGroup.priced_copy_count)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_priced_copy_count_mismatch",
+          captureId,
+        );
+      }
+      if (
+        Number(rendered.unpriced_copy_count) !==
+        Number(sampleGroup.unpriced_copy_count)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_unpriced_copy_count_mismatch",
+          captureId,
+        );
+      }
+      if (
+        timestamp(rendered.observed_at) !==
+        timestamp(sampleGroup.latest_observed_at)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_observed_at_mismatch",
+          captureId,
+        );
+      }
+      if (
+        timestamp(rendered.published_at) !==
+        timestamp(sampleGroup.latest_published_at)
+      ) {
+        addFinding(
+          captureFindings,
+          "vault_group_total_published_at_mismatch",
+          captureId,
+        );
+      }
+
+      findings.push(...captureFindings);
+      surfaceResults.push({
+        capture_id: captureId || null,
+        surface_id: surfaceId || null,
+        client: clean(capture.client) || null,
+        status: captureFindings.length === 0 ? "passed" : "failed",
+        findings: [...new Set(captureFindings)].sort(),
+        read_model_key: "vault_group_total",
+      });
+      continue;
+    }
+
+    const scope = clean(rendered.pricing_scope);
+    const cardPrintId = clean(capture.card_print_id);
+    const cardPrintingId = clean(capture.card_printing_id);
+    if (!cardPrintId) {
+      addFinding(
+        captureFindings,
+        "surface_card_print_id_missing",
+        captureId,
+      );
+    }
+    if (scope !== "parent" && scope !== "card_printing") {
+      addFinding(
+        captureFindings,
+        "surface_pricing_scope_invalid",
+        captureId,
+      );
+    }
+    if (scope === "card_printing" && !cardPrintingId) {
+      addFinding(
+        captureFindings,
+        "surface_card_printing_id_missing",
+        captureId,
+      );
+    }
+    if (rendered.status !== "available") {
+      addFinding(
+        captureFindings,
+        "surface_price_not_rendered_available",
+        captureId,
+      );
+    }
+
+    const key = rowKey(scope, cardPrintId, cardPrintingId);
+    const matchingRows = readRowsByKey.get(key) ?? [];
+    const expectedRow =
+      matchingRows.length === 1 ? matchingRows[0] : null;
+    if (matchingRows.length !== 1) {
+      addFinding(
+        captureFindings,
+        matchingRows.length === 0
+          ? "surface_read_model_row_missing"
+          : "surface_read_model_row_ambiguous",
+        captureId,
+      );
+    }
+
+    if (expectedRow) {
+      if (expectedRow.status !== "available") {
+        addFinding(
+          captureFindings,
+          "surface_read_model_status_not_available",
+          captureId,
+        );
+      }
+      if (expectedRow.currency !== "USD") {
+        addFinding(
+          captureFindings,
+          "surface_read_model_currency_not_usd",
+          captureId,
+        );
+      }
+      if (expectedRow.source_name !== "tcgplayer") {
+        addFinding(
+          captureFindings,
+          "surface_read_model_source_not_tcgplayer",
+          captureId,
+        );
+      }
+      const expectedSourceLabel =
+        expectedRow.is_from_price === true
+          ? "From TCGPlayer Market"
+          : "TCGPlayer Market";
+      if (expectedRow.source_label !== expectedSourceLabel) {
+        addFinding(
+          captureFindings,
+          "surface_read_model_label_unexpected",
+          captureId,
+        );
+      }
+      if (expectedRow.freshness !== "fresh") {
+        addFinding(
+          captureFindings,
+          "surface_read_model_not_fresh",
+          captureId,
+        );
+      }
+      if (
+        !sameMoney(rendered.market_close_usd, expectedRow.market_close)
+      ) {
+        addFinding(
+          captureFindings,
+          "surface_market_close_mismatch",
+          captureId,
+        );
+      }
+      if (rendered.currency !== expectedRow.currency) {
+        addFinding(
+          captureFindings,
+          "surface_currency_mismatch",
+          captureId,
+        );
+      }
+      if (rendered.source_label !== expectedRow.source_label) {
+        addFinding(
+          captureFindings,
+          "surface_source_label_mismatch",
+          captureId,
+        );
+      }
+      if (
+        timestamp(rendered.observed_at) !==
+        timestamp(expectedRow.observed_at)
+      ) {
+        addFinding(
+          captureFindings,
+          "surface_observed_at_mismatch",
+          captureId,
+        );
+      }
+      if (
+        timestamp(rendered.published_at) !==
+        timestamp(expectedRow.published_at)
+      ) {
+        addFinding(
+          captureFindings,
+          "surface_published_at_mismatch",
+          captureId,
+        );
+      }
+      if (
+        clean(rendered.provenance_id) !==
+        clean(expectedRow.provenance_id)
+      ) {
+        addFinding(
+          captureFindings,
+          "surface_provenance_id_mismatch",
+          captureId,
+        );
+      }
+      if (
+        rendered.is_from_price !==
+        (expectedRow.is_from_price === true)
+      ) {
+        addFinding(
+          captureFindings,
+          "surface_from_price_state_mismatch",
+          captureId,
+        );
+      }
+    }
+
+    findings.push(...captureFindings);
+    surfaceResults.push({
+      capture_id: captureId || null,
+      surface_id: surfaceId || null,
+      client: clean(capture.client) || null,
+      status: captureFindings.length === 0 ? "passed" : "failed",
+      findings: [...new Set(captureFindings)].sort(),
+      read_model_key: key,
+    });
+  }
+
+  for (const required of TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1) {
+    const count = (capturesBySurface.get(required.surface_id) ?? []).length;
+    if (count === 0) {
+      findings.push(`required_surface_missing:${required.surface_id}`);
+    } else if (count > 1) {
+      findings.push(`required_surface_duplicated:${required.surface_id}`);
+    }
+  }
+
+  const uniqueFindings = [...new Set(findings)].sort();
+  return {
+    policy_version: TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_POLICY_V1,
+    status: uniqueFindings.length === 0 ? "passed" : "failed",
+    findings: uniqueFindings,
+    expected_commit_sha: expectedCommitSha || null,
+    deployed_commit_sha: deployedCommitSha || null,
+    required_surface_count:
+      TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1.length,
+    captured_surface_count: captures.length,
+    passed_surface_count: surfaceResults.filter(
+      (result) => result.status === "passed",
+    ).length,
+    failed_surface_count: surfaceResults.filter(
+      (result) => result.status === "failed",
+    ).length,
+    surfaces: surfaceResults,
+  };
+}

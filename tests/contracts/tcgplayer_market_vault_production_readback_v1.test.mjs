@@ -62,6 +62,15 @@ function evidence() {
       unpriced_copy_count: 1,
       reconciled_total_usd: 24.68,
       independent_total_usd: 24.68,
+      sample_group: {
+        card_print_id: "card-print-1",
+        priced_copy_count: 2,
+        unpriced_copy_count: 1,
+        reconciled_total_usd: 24.68,
+        independent_total_usd: 24.68,
+        latest_observed_at: "2026-07-28T08:15:00.000Z",
+        latest_published_at: "2026-07-28T08:20:00.000Z",
+      },
     },
   };
 }

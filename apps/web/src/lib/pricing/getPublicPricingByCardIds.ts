@@ -6,6 +6,12 @@ export type CanonicalRawPricingRecord = {
   raw_price?: number;
   raw_price_source?: string;
   raw_price_ts?: string;
+  raw_price_published_at?: string;
+  pricing_provenance_id?: string;
+  pricing_source_label?: string;
+  pricing_scope?: "parent" | "card_printing";
+  pricing_is_from_price?: boolean;
+  eligible_printing_count?: number;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
@@ -43,6 +49,12 @@ export async function getPublicPricingByCardIds(
         raw_price: record.market_close,
         raw_price_source: "tcgplayer_market",
         raw_price_ts: record.observed_at,
+        raw_price_published_at: record.published_at,
+        pricing_provenance_id: record.provenance_id,
+        pricing_source_label: record.source_label,
+        pricing_scope: record.pricing_scope,
+        pricing_is_from_price: record.is_from_price,
+        eligible_printing_count: record.eligible_printing_count,
         latest_price: record.market_close,
         confidence: 1,
         listing_count: record.active_ask_listing_count,

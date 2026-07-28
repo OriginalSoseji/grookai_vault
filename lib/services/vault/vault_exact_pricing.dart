@@ -40,8 +40,21 @@ class VaultExactPricingSummary {
       sourceLabel: 'TCGPlayer Market',
       observedAt: latestObservedAt,
       publishedAt: latestPublishedAt,
+      proofPricedCopyCount: pricedCopyCount,
+      proofUnpricedCopyCount: unpricedCopyCount,
     );
   }
+}
+
+String vaultExactPricingTotalProofKey(VaultExactPricingSummary summary) {
+  return <String>[
+    'tcgplayer-market-vault-total-v1',
+    summary.totalMarketValue?.toString() ?? '',
+    summary.pricedCopyCount.toString(),
+    summary.unpricedCopyCount.toString(),
+    summary.latestObservedAt?.toUtc().toIso8601String() ?? '',
+    summary.latestPublishedAt?.toUtc().toIso8601String() ?? '',
+  ].join('|');
 }
 
 VaultExactPricingSummary summarizeVaultExactPricing({

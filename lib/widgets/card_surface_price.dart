@@ -7,6 +7,24 @@ enum CardSurfacePriceSize { grid, list, dense }
 
 enum CardSurfacePriceMode { automatic, market, manual, hidden }
 
+String cardSurfacePricingProofKey(CardSurfacePricingData pricing) {
+  return <String>[
+    'tcgplayer-market-v1',
+    pricing.pricingScope,
+    pricing.cardPrintId,
+    pricing.cardPrintingId ?? '',
+    pricing.printingGvId ?? '',
+    pricing.marketClose?.toString() ?? '',
+    pricing.observedAt?.toUtc().toIso8601String() ?? '',
+    pricing.publishedAt?.toUtc().toIso8601String() ?? '',
+    pricing.provenanceId ?? '',
+    pricing.sourceLabel ?? '',
+    pricing.isFromPrice ? 'from' : 'exact',
+    pricing.proofPricedCopyCount?.toString() ?? '',
+    pricing.proofUnpricedCopyCount?.toString() ?? '',
+  ].join('|');
+}
+
 class CardSurfacePricePill extends StatelessWidget {
   const CardSurfacePricePill({
     this.pricing,
@@ -52,25 +70,45 @@ class CardSurfacePricePill extends StatelessWidget {
       ),
     };
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: metrics.horizontal,
-        vertical: metrics.vertical,
-      ),
-      decoration: BoxDecoration(
-        color: colorScheme.surface.withValues(alpha: 0.74),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
-      child: Text(
-        value == null
-            ? '—'
-            : formatCardSurfaceMoney(value, currency: manualCurrency),
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: colorScheme.onSurface.withValues(alpha: 0.76),
-          fontWeight: GvText.semibold,
-          fontSize: metrics.font,
-          height: 1.0,
+    final baseFormattedValue = value == null
+        ? '—'
+        : formatCardSurfaceMoney(value, currency: manualCurrency);
+    final formattedValue =
+        (mode == CardSurfacePriceMode.automatic ||
+                mode == CardSurfacePriceMode.market) &&
+            resolvedPricing?.isFromPrice == true &&
+            value != null
+        ? 'From $baseFormattedValue'
+        : baseFormattedValue;
+    return Semantics(
+      identifier: resolvedPricing == null
+          ? null
+          : cardSurfacePricingProofKey(resolvedPricing),
+      label: 'TCGPlayer Market',
+      value: formattedValue,
+      child: Container(
+        key: resolvedPricing == null
+            ? null
+            : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
+        padding: EdgeInsets.symmetric(
+          horizontal: metrics.horizontal,
+          vertical: metrics.vertical,
+        ),
+        decoration: BoxDecoration(
+          color: colorScheme.surface.withValues(alpha: 0.74),
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.08),
+          ),
+        ),
+        child: Text(
+          formattedValue,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.76),
+            fontWeight: GvText.semibold,
+            fontSize: metrics.font,
+            height: 1.0,
+          ),
         ),
       ),
     );
@@ -116,19 +154,37 @@ class CardSurfacePriceText extends StatelessWidget {
       CardSurfacePriceSize.dense => 12.5,
     };
 
-    return Text(
-      value == null
-          ? '—'
-          : formatCardSurfaceMoney(value, currency: manualCurrency),
-      textAlign: textAlign,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: theme.textTheme.labelLarge?.copyWith(
-        color: colorScheme.onSurface.withValues(alpha: 0.92),
-        fontSize: fontSize,
-        fontWeight: GvText.semibold,
-        height: 1.05,
-        fontFeatures: const [FontFeature.tabularFigures()],
+    final baseFormattedValue = value == null
+        ? '—'
+        : formatCardSurfaceMoney(value, currency: manualCurrency);
+    final formattedValue =
+        (mode == CardSurfacePriceMode.automatic ||
+                mode == CardSurfacePriceMode.market) &&
+            resolvedPricing?.isFromPrice == true &&
+            value != null
+        ? 'From $baseFormattedValue'
+        : baseFormattedValue;
+    return Semantics(
+      identifier: resolvedPricing == null
+          ? null
+          : cardSurfacePricingProofKey(resolvedPricing),
+      label: 'TCGPlayer Market',
+      value: formattedValue,
+      child: Text(
+        formattedValue,
+        key: resolvedPricing == null
+            ? null
+            : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
+        textAlign: textAlign,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.labelLarge?.copyWith(
+          color: colorScheme.onSurface.withValues(alpha: 0.92),
+          fontSize: fontSize,
+          fontWeight: GvText.semibold,
+          height: 1.05,
+          fontFeatures: const [FontFeature.tabularFigures()],
+        ),
       ),
     );
   }

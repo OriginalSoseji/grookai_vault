@@ -654,7 +654,21 @@ export function VaultCollectionView({
                   Estimated Vault Value
                 </p>
                 <div className="space-y-1">
-                  <p className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]">
+                  <p
+                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    data-pricing-proof="vault-exact-total"
+                    data-vault-market-value-usd={
+                      valueSummary.totalEstimatedValue ?? undefined
+                    }
+                    data-priced-copy-count={valueSummary.pricedCopyCount}
+                    data-unpriced-copy-count={valueSummary.unpricedCopyCount}
+                    data-total-raw-copy-count={valueSummary.totalRawCopyCount}
+                    data-published-at={
+                      valueSummary.latestPricingUpdateAt ?? undefined
+                    }
+                    data-source-name="tcgplayer"
+                    data-source-label="TCGPlayer Market"
+                  >
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
                   <p className="text-xs text-slate-400">TCGPlayer Market for exact raw printings.</p>

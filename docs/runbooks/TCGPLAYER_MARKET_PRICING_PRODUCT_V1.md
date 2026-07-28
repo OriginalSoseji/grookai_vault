@@ -388,6 +388,59 @@ anonymous SQLSTATE `42501`, zero cross-owner rows, zero parent-scope pricing,
 and agreement between the governed pricing RPC and the independent current
 exact-printing view. It writes no customer identifiers to its artifacts.
 
+### Authenticated Product Surface Proof
+
+After the exact client commit is deployed, capture every surface listed in
+`docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. Do not reuse
+captures from an older deployment.
+
+For each web surface, sign in, navigate to a card from the current eligible
+publication, save a screenshot, then run
+`scripts/audits/tcgplayer_market_web_surface_capture_v1.js` unchanged as a
+browser DevTools Snippet. Select the matching surface ID. Save the downloaded
+`.render.json` beside a screenshot named with the same capture ID.
+
+For each Flutter surface, connect the production test device with ADB, open
+the signed-in screen, and run:
+
+```powershell
+node scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs `
+  --surface-id=<required-flutter-surface-id> `
+  --route=<screen-or-route-identity> `
+  --out-dir=<surface-capture-directory>
+```
+
+When more than one price is visible, add
+`--match=<card-print-id-or-printing-id>` to select exactly one semantics node.
+The command preserves the screenshot, UI Automator tree, and normalized render
+evidence.
+
+Build the exact capture manifest:
+
+```powershell
+npm run pricing:market:surfaces:manifest -- `
+  --capture-dir=<surface-capture-directory> `
+  --deployed-commit-sha=<exact-deployed-40-character-sha> `
+  --require-complete
+```
+
+Then reconcile every capture against the production RPC and the exact-Vault
+readback:
+
+```powershell
+npm run pricing:market:surfaces:verify -- `
+  --capture-manifest=<surface-capture-directory>/capture_manifest.json `
+  --vault-readback=<exact-vault-audit-directory>/summary.json `
+  --expected-commit-sha=<exact-deployed-40-character-sha> `
+  --deployed-commit-sha=<exact-deployed-40-character-sha> `
+  --require-pass
+```
+
+The verifier must report all `17/17` surfaces passed with zero findings. It
+hashes screenshots and render evidence and performs only an authenticated
+read-only production RPC call. A screenshot-only review, a local component
+test, or a capture from a different commit cannot satisfy this gate.
+
 7. Configure the exact deployed commit and full-scope schedule:
 
 ```text

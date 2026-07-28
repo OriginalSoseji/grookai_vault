@@ -12,6 +12,10 @@ The versioning, evidence, and safety rules below remain historical/internal
 governance for proprietary valuation research. They do not authorize a
 synthetic app-facing price in Production V1.
 
+Deployed authenticated pricing surfaces are governed by
+`TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. Repository wiring alone does
+not satisfy its source-to-render requirement.
+
 ## 1. Purpose
 
 This document defines all invariant rules governing Grookai Vault pricing logic.
