@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
+
+This checkpoint records the first complete production shadow lock for
+TCGPlayer Market Product V1. It preserves the production performance and
+artifact-lineage repairs, three identical same-SHA cycles, complete snapshot
+provenance, and proof that no customer publication was activated.
+
+Decision locked there:
+
+- production qualification is deterministic and traceable enough to advance
+  from shadow publication into a fixed 100-printing verification canary
+
+Unresolved risk afterward:
+
+- the stratified 100-printing sample still requires image/data verification,
+  signed-in activation, telemetry, and the full 72-hour canary window
+
 ### `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
 
 This checkpoint records the historical linked-schema reconciliation required
@@ -317,7 +334,11 @@ Recommended reading order for future maintainers:
 15. `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
    - then read how historical linked drift was converted into replayable repository authority before the production pricing migration
 
-After those fourteen checkpoints, read the supporting audits in this order:
+16. `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
+   - then read how the production pipeline completed three deterministic
+     same-SHA shadow cycles with complete provenance and no customer activation
+
+After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`
@@ -326,3 +347,4 @@ After those fourteen checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/TCGPLAYER_MARKET_PUBLICATION_LOCAL_PROOF_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_SCHEMA_RECONCILIATION_V1_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_SHADOW_GATE_1_20260728.md`
