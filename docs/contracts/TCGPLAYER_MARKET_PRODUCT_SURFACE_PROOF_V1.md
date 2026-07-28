@@ -102,6 +102,36 @@ Every capture must include:
 - machine-readable render evidence
 - SHA-256 hashes for both artifacts
 
+Surface identity is fail-closed. A valid price captured from one route cannot
+be relabeled as proof for another required surface.
+
+Web route requirements:
+
+| Surface | Required route identity |
+| --- | --- |
+| `web_card_detail` | `/card/<gv-id>` |
+| `web_search` | `/explore` with a nonempty `q` search parameter after the `/search` redirect |
+| `web_explore` | `/explore` without a `q` search parameter |
+| `web_set_grid` | `/sets/<set-code>` |
+| `web_compare` | `/compare` |
+| `web_private_vault` | `/vault` |
+| `web_public_vault` | `/u/<collector-slug>` |
+| `web_vault_item` | `/vault/card/<id>` or `/vault/gvvi/<gvvi-id>` |
+| `web_market_history` | `/card/<gv-id>/market` |
+
+Flutter capture commands must use these exact screen identities:
+
+| Surface | `--route` |
+| --- | --- |
+| `flutter_card_detail` | `card_detail` |
+| `flutter_search_or_grid` | `search_or_grid` |
+| `flutter_set_grid` | `set_grid` |
+| `flutter_compare` | `compare` |
+| `flutter_private_vault` | `private_vault` |
+| `flutter_public_collector` | `public_collector` |
+| `flutter_network` | `network` |
+| `flutter_vault_item` | `vault_item` |
+
 Web pricing components expose `data-pricing-*` evidence attributes. Flutter
 pricing components expose a semantics identifier beginning with
 `tcgplayer-market-v1` or `tcgplayer-market-vault-total-v1`.

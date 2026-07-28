@@ -4,6 +4,10 @@
 
 ## Production V1 Amendment
 
+`MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` is the frozen
+Production V1 release definition. It governs scope, release gates, exclusions,
+and change control. Any semantic change requires Production V1.1 or later.
+
 `TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md` governs the app-facing Production V1
 headline price. It supersedes synthetic Grookai Value requirements for current
 web and Flutter product surfaces.

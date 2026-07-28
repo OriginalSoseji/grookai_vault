@@ -400,6 +400,13 @@ publication, save a screenshot, then run
 browser DevTools Snippet. Select the matching surface ID. Save the downloaded
 `.render.json` beside a screenshot named with the same capture ID.
 
+The verifier binds each web surface to the route table in
+`docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. For Search,
+start at `/search` with a query that resolves to a result list; capture the
+resulting `/explore?q=...` route. Capture Explore separately at `/explore`
+without a `q` parameter. A capture from the wrong route fails even when its
+pricing record is otherwise valid.
+
 For each Flutter surface, connect the production test device with ADB, open
 the signed-in screen, and run:
 
@@ -413,7 +420,8 @@ node scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs `
 When more than one price is visible, add
 `--match=<card-print-id-or-printing-id>` to select exactly one semantics node.
 The command preserves the screenshot, UI Automator tree, and normalized render
-evidence.
+evidence. Use the exact `--route` screen identity listed in the product
+surface proof contract; arbitrary labels fail verification.
 
 Build the exact capture manifest:
 

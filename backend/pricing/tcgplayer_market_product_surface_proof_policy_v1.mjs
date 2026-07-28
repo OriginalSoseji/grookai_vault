@@ -89,6 +89,18 @@ export const TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1 = Object.freeze([
   }),
 ]);
 
+export const TCGPLAYER_MARKET_FLUTTER_SURFACE_ROUTE_IDENTITIES_V1 =
+  Object.freeze({
+    flutter_card_detail: "card_detail",
+    flutter_search_or_grid: "search_or_grid",
+    flutter_set_grid: "set_grid",
+    flutter_compare: "compare",
+    flutter_private_vault: "private_vault",
+    flutter_public_collector: "public_collector",
+    flutter_network: "network",
+    flutter_vault_item: "vault_item",
+  });
+
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const COMMIT_SHA_PATTERN = /^[a-f0-9]{40}$/;
 
@@ -128,6 +140,61 @@ function sameMoney(left, right) {
 
 function addFinding(findings, finding, captureId = "") {
   findings.push(captureId ? `${finding}:${captureId}` : finding);
+}
+
+function webRoute(route) {
+  try {
+    return new URL(route, "https://pricing-surface-proof.invalid");
+  } catch {
+    return null;
+  }
+}
+
+export function isTcgplayerMarketProductSurfaceRouteV1(surfaceId, route) {
+  const normalizedSurfaceId = clean(surfaceId);
+  const normalizedRoute = clean(route);
+  if (!normalizedRoute) {
+    return false;
+  }
+
+  const flutterIdentity =
+    TCGPLAYER_MARKET_FLUTTER_SURFACE_ROUTE_IDENTITIES_V1[
+      normalizedSurfaceId
+    ];
+  if (flutterIdentity) {
+    return normalizedRoute === flutterIdentity;
+  }
+
+  const parsed = webRoute(normalizedRoute);
+  if (!parsed) {
+    return false;
+  }
+  const pathname = parsed.pathname.replace(/\/+$/, "") || "/";
+  switch (normalizedSurfaceId) {
+    case "web_card_detail":
+      return /^\/card\/[^/]+$/.test(pathname);
+    case "web_search":
+      return (
+        pathname === "/explore" &&
+        Boolean(clean(parsed.searchParams.get("q")))
+      );
+    case "web_explore":
+      return pathname === "/explore" && !clean(parsed.searchParams.get("q"));
+    case "web_set_grid":
+      return /^\/sets\/[^/]+$/.test(pathname);
+    case "web_compare":
+      return pathname === "/compare";
+    case "web_private_vault":
+      return pathname === "/vault";
+    case "web_public_vault":
+      return /^\/u\/[^/]+$/.test(pathname);
+    case "web_vault_item":
+      return /^\/vault\/(?:card|gvvi)\/[^/]+$/.test(pathname);
+    case "web_market_history":
+      return /^\/card\/[^/]+\/market$/.test(pathname);
+    default:
+      return false;
+  }
 }
 
 export function evaluateTcgplayerMarketProductSurfaceProofV1(
@@ -229,6 +296,15 @@ export function evaluateTcgplayerMarketProductSurfaceProofV1(
     }
     if (!clean(capture.route)) {
       addFinding(captureFindings, "surface_route_missing", captureId);
+    } else if (
+      required &&
+      !isTcgplayerMarketProductSurfaceRouteV1(surfaceId, capture.route)
+    ) {
+      addFinding(
+        captureFindings,
+        "surface_route_identity_mismatch",
+        captureId,
+      );
     }
     if (!timestamp(capture.captured_at)) {
       addFinding(

@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   evaluateTcgplayerMarketProductSurfaceProofV1,
+  isTcgplayerMarketProductSurfaceRouteV1,
   TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1,
 } from "../../backend/pricing/tcgplayer_market_product_surface_proof_policy_v1.mjs";
 import {
@@ -149,6 +150,25 @@ function readModelRow() {
 }
 
 function capture(surface, index) {
+  const routeBySurface = {
+    web_card_detail: "/card/GV-PK-TEST-001",
+    web_search: "/explore?q=charizard&sort=relevance",
+    web_explore: "/explore",
+    web_set_grid: "/sets/base1",
+    web_compare: "/compare?cards=GV-PK-TEST-001,GV-PK-TEST-002",
+    web_private_vault: "/vault",
+    web_public_vault: "/u/test-collector",
+    web_vault_item: `/vault/card/${CARD_PRINT_ID}`,
+    web_market_history: "/card/GV-PK-TEST-001/market",
+    flutter_card_detail: "card_detail",
+    flutter_search_or_grid: "search_or_grid",
+    flutter_set_grid: "set_grid",
+    flutter_compare: "compare",
+    flutter_private_vault: "private_vault",
+    flutter_public_collector: "public_collector",
+    flutter_network: "network",
+    flutter_vault_item: "vault_item",
+  };
   if (surface.proof_kind === "vault_total") {
     return {
       capture_id: `capture_${String(index).padStart(2, "0")}`,
@@ -156,7 +176,7 @@ function capture(surface, index) {
       client: surface.client,
       proof_kind: "vault_total",
       authenticated: true,
-      route: `/${surface.surface_id}`,
+      route: routeBySurface[surface.surface_id],
       captured_at: "2026-07-28T10:05:00.000Z",
       screenshot_sha256: HASH,
       render_evidence_sha256: HASH,
@@ -178,7 +198,7 @@ function capture(surface, index) {
       client: surface.client,
       proof_kind: "vault_group_total",
       authenticated: true,
-      route: `/${surface.surface_id}`,
+      route: routeBySurface[surface.surface_id],
       captured_at: "2026-07-28T10:05:00.000Z",
       screenshot_sha256: HASH,
       render_evidence_sha256: HASH,
@@ -202,7 +222,7 @@ function capture(surface, index) {
     client: surface.client,
     proof_kind: "price_record",
     authenticated: true,
-    route: `/${surface.surface_id}`,
+    route: routeBySurface[surface.surface_id],
     captured_at: "2026-07-28T10:05:00.000Z",
     screenshot_sha256: HASH,
     render_evidence_sha256: HASH,
@@ -283,6 +303,58 @@ test("missing and duplicate surface captures fail closed", () => {
   assert.ok(
     result.findings.some((finding) =>
       finding.startsWith("required_surface_duplicated:"),
+    ),
+  );
+});
+
+test("surface proof route identity is bound to the claimed product surface", () => {
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1(
+      "web_search",
+      "/explore?q=charizard&sort=relevance",
+    ),
+    true,
+  );
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1("web_search", "/explore"),
+    false,
+  );
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1(
+      "web_market_history",
+      "/card/GV-PK-TEST-001/market",
+    ),
+    true,
+  );
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1(
+      "web_set_grid",
+      "/card/GV-PK-TEST-001",
+    ),
+    false,
+  );
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1(
+      "flutter_compare",
+      "compare",
+    ),
+    true,
+  );
+  assert.equal(
+    isTcgplayerMarketProductSurfaceRouteV1(
+      "flutter_compare",
+      "network",
+    ),
+    false,
+  );
+
+  const input = evidence();
+  input.capture_manifest.captures[0].route = "/explore";
+  const result = evaluateTcgplayerMarketProductSurfaceProofV1(input);
+  assert.equal(result.status, "failed");
+  assert.ok(
+    result.findings.some((finding) =>
+      finding.startsWith("surface_route_identity_mismatch:"),
     ),
   );
 });

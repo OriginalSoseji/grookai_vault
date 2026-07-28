@@ -1,0 +1,14 @@
+{
+  "schema_version": "AUDIT_ARTIFACT_HASHES_V1",
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "REPORT.md",
+      "sha256": "3234a3da77ad8757ce728d58cf843e934b5f519594d46e6929749ae2603b6413"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "179ecdc0752855ba7c53f29ce19f4acb62247335e6c58feb12a74d75b834a380"
+    }
+  ]
+}

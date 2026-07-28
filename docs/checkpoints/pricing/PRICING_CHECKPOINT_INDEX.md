@@ -33,6 +33,38 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
+
+This checkpoint freezes Production V1 scope and acceptance criteria, limits
+the release branch to defects and release proof, and parks future pricing ideas
+outside the V1 execution path.
+
+Decision locked there:
+
+- release management replaces product design; every branch change must close
+  an existing frozen Definition of Done requirement
+
+Unresolved risk afterward:
+
+- the 72-hour canary, post-canary deployment, full signed-in rollout, and seven
+  unattended cycles remain unproven
+
+### `PRICING_CHECKPOINT_35_PRODUCT_SURFACE_ROUTE_IDENTITY.md`
+
+This checkpoint binds each of the 17 production pricing captures to an
+explicit web route or canonical Flutter screen identity so one working surface
+cannot impersonate another.
+
+Decision locked there:
+
+- correct price evidence only proves the surface from which it was actually
+  captured; route identity mismatches fail closed
+
+Unresolved risk afterward:
+
+- final route-bound production captures remain pending until the frozen canary
+  and post-canary deployment pass
+
 ### `PRICING_CHECKPOINT_34_PRODUCT_SURFACE_WIRING_CORRECTION.md`
 
 This checkpoint corrects three source-to-render gaps found after the initial
