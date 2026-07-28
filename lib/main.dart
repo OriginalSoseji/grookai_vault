@@ -54,6 +54,7 @@ import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
+import 'services/vault/vault_exact_pricing.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';

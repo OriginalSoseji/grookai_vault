@@ -49,6 +49,9 @@ export type VaultCardInstanceData = {
   cert_number: string | null;
   notes: string | null;
   created_at: string | null;
+  market_price?: number | null;
+  pricing_observed_at?: string | null;
+  pricing_published_at?: string | null;
 };
 
 export type VaultCardData = {
@@ -79,6 +82,8 @@ export type VaultCardData = {
   slab_items: VaultCardSlabItemData[];
   copy_items: VaultCardInstanceData[];
   effective_price: number | null;
+  priced_raw_copy_count: number;
+  unpriced_raw_copy_count: number;
   image_url?: string;
   canonical_image_url?: string;
   canonical_image_status?: string | null;

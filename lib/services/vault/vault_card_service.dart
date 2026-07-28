@@ -182,6 +182,7 @@ class VaultManageCardCopy {
     required this.conditionLabel,
     required this.intent,
     this.gvviId,
+    this.cardPrintingId,
     this.note,
     this.createdAt,
     this.grader,
@@ -192,6 +193,7 @@ class VaultManageCardCopy {
 
   final String instanceId;
   final String? gvviId;
+  final String? cardPrintingId;
   final String conditionLabel;
   final String intent;
   final String? note;
@@ -205,6 +207,7 @@ class VaultManageCardCopy {
     return VaultManageCardCopy(
       instanceId: instanceId,
       gvviId: gvviId,
+      cardPrintingId: cardPrintingId,
       conditionLabel: conditionLabel,
       intent: intent ?? this.intent,
       note: note,
@@ -217,8 +220,10 @@ class VaultManageCardCopy {
   }
 
   factory VaultManageCardCopy.fromJson(Map<String, dynamic> json) {
-    final grader = _trimmedOrNull(json['grade_company']);
-    final gradeValue = _trimmedOrNull(json['grade_value']);
+    final grader =
+        _trimmedOrNull(json['grader']) ?? _trimmedOrNull(json['grade_company']);
+    final gradeValue =
+        _trimmedOrNull(json['grade']) ?? _trimmedOrNull(json['grade_value']);
     final gradeLabel = _trimmedOrNull(json['grade_label']);
     final certNumber =
         _trimmedOrNull(json['cert_number']) ??
@@ -230,8 +235,9 @@ class VaultManageCardCopy {
         certNumber != null;
 
     return VaultManageCardCopy(
-      instanceId: (json['id'] ?? '').toString(),
+      instanceId: (json['instance_id'] ?? json['id'] ?? '').toString(),
       gvviId: _trimmedOrNull(json['gv_vi_id']),
+      cardPrintingId: _trimmedOrNull(json['card_printing_id']),
       conditionLabel: _trimmedOrNull(json['condition_label']) ?? 'NM',
       intent: normalizeVaultIntentValue(json['intent']),
       note: _trimmedOrNull(json['notes']),
@@ -1388,7 +1394,7 @@ class VaultCardService {
     final rawRows = await client
         .from('vault_item_instances')
         .select(
-          'id,gv_vi_id,condition_label,intent,notes,created_at,grade_company,grade_value,grade_label,slab_cert_id',
+          'id,gv_vi_id,card_printing_id,condition_label,intent,notes,created_at,grade_company,grade_value,grade_label,slab_cert_id',
         )
         .eq('user_id', userId)
         .eq('card_print_id', normalizedCardPrintId)

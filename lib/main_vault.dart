@@ -532,6 +532,8 @@ class VaultPageState extends State<VaultPage> {
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
+  Map<String, VaultExactPricingSummary> _pricingSummaryByCardPrintId =
+      const <String, VaultExactPricingSummary>{};
   Map<String, VaultSharedCardState> _sharedStateByCardPrintId =
       const <String, VaultSharedCardState>{};
   String _search = '';
@@ -562,6 +564,9 @@ class VaultPageState extends State<VaultPage> {
     if (_uid == null) {
       setState(() {
         _items = const [];
+        _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
+        _pricingSummaryByCardPrintId =
+            const <String, VaultExactPricingSummary>{};
         _derivedData = const _VaultDerivedData.empty();
         _selectedLotCardPrintIds.clear();
       });
@@ -577,18 +582,60 @@ class VaultPageState extends State<VaultPage> {
           .map((row) => (row['card_id'] ?? '').toString())
           .where((value) => value.isNotEmpty)
           .toList();
+      final rawPricingTargets = await supabase.rpc(
+        'vault_mobile_pricing_targets_v1',
+      );
+      final pricingTargets = (rawPricingTargets as List<dynamic>)
+          .whereType<Map>()
+          .map((raw) => Map<String, dynamic>.from(raw))
+          .map(
+            (row) => VaultExactPricingTarget(
+              cardPrintId: (row['card_print_id'] ?? '').toString().trim(),
+              cardPrintingId:
+                  (row['card_printing_id'] ?? '').toString().trim().isEmpty
+                  ? null
+                  : row['card_printing_id'].toString().trim(),
+            ),
+          )
+          .where((target) => target.cardPrintId.isNotEmpty)
+          .toList(growable: false);
       final results = await Future.wait<dynamic>([
-        CardSurfacePricingService.fetchByCardPrintIds(
+        CardSurfacePricingService.fetchByCardPrintingIds(
           client: supabase,
-          cardPrintIds: cardPrintIds,
+          cardPrintingIds: pricingTargets.map(
+            (target) => target.cardPrintingId ?? '',
+          ),
         ).catchError((_) => const <String, CardSurfacePricingData>{}),
         VaultCardService.getSharedStatesByCardPrintIds(
           client: supabase,
           cardPrintIds: cardPrintIds,
         ).catchError((_) => const <String, VaultSharedCardState>{}),
       ]);
-      final pricing = results[0] as Map<String, CardSurfacePricingData>;
+      final exactPricing = results[0] as Map<String, CardSurfacePricingData>;
       final sharedStates = results[1] as Map<String, VaultSharedCardState>;
+      final pricingTargetsByCardPrintId =
+          <String, List<VaultExactPricingTarget>>{};
+      for (final target in pricingTargets) {
+        pricingTargetsByCardPrintId
+            .putIfAbsent(target.cardPrintId, () => <VaultExactPricingTarget>[])
+            .add(target);
+      }
+      final pricingSummaries = <String, VaultExactPricingSummary>{
+        for (final cardPrintId in cardPrintIds)
+          cardPrintId: summarizeVaultExactPricing(
+            targets:
+                pricingTargetsByCardPrintId[cardPrintId] ??
+                const <VaultExactPricingTarget>[],
+            pricingByCardPrintingId: exactPricing,
+          ),
+      };
+      final pricing = <String, CardSurfacePricingData>{};
+      for (final entry in pricingSummaries.entries) {
+        final surfacePricing = entry.value.asSurfacePricing(entry.key);
+        if (surfacePricing != null) {
+          pricing[entry.key] = surfacePricing;
+        }
+      }
 
       if (!mounted) {
         return;
@@ -597,6 +644,7 @@ class VaultPageState extends State<VaultPage> {
       setState(() {
         _items = rows;
         _pricingByCardPrintId = pricing;
+        _pricingSummaryByCardPrintId = pricingSummaries;
         _sharedStateByCardPrintId = sharedStates;
         _selectedLotCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
@@ -640,14 +688,14 @@ class VaultPageState extends State<VaultPage> {
     var pricedCopyCount = 0;
     for (final row in _items) {
       final cardPrintId = (row['card_id'] ?? '').toString().trim();
-      final visiblePrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
-      final ownedCount = _ownedCountForRow(row);
-      if (visiblePrice == null || ownedCount <= 0) {
+      final pricingSummary = _pricingSummaryByCardPrintId[cardPrintId];
+      final visiblePrice = pricingSummary?.totalMarketValue;
+      if (visiblePrice == null || pricingSummary == null) {
         continue;
       }
-      estimatedValue += visiblePrice * ownedCount;
+      estimatedValue += visiblePrice;
       pricedUniqueCount += 1;
-      pricedCopyCount += ownedCount;
+      pricedCopyCount += pricingSummary.pricedCopyCount;
     }
 
     _derivedData = _VaultDerivedData(

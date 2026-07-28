@@ -310,7 +310,11 @@ void main() {
 
     expect(vault, contains('estimatedValue'));
     expect(vault, contains('_formatVaultValue'));
-    expect(vault, contains('visiblePrice * ownedCount'));
+    expect(vault, contains("'vault_mobile_pricing_targets_v1'"));
+    expect(vault, contains('fetchByCardPrintingIds'));
+    expect(vault, contains('summarizeVaultExactPricing'));
+    expect(vault, contains('estimatedValue += visiblePrice'));
+    expect(vault, isNot(contains('visiblePrice * ownedCount')));
     expect(vault, contains('valued copies'));
     expect(vault, contains('30d trend pending'));
   });

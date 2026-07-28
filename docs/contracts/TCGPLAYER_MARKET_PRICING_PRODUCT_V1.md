@@ -101,6 +101,25 @@ Every surface must use the shared read contract. Compatibility field names may
 exist at component boundaries, but they must carry `market_close`, not a
 synthetic or active-ask value.
 
+### Vault Exact-Printing Contract
+
+Vault totals are the sum of current TCGPlayer Market values for each owned
+eligible exact raw printing. Duplicate copies are priced independently, and
+different finishes under the same parent card may contribute different exact
+values.
+
+A parent `From` amount is never an owned-card value and must not be multiplied
+by quantity. A raw copy with an unresolved `card_printing_id`, no current
+qualified exact price, or an identity mismatch remains unpriced. Slabs are
+excluded from Production V1 Vault market totals because grade-specific pricing
+is outside this contract.
+
+Vault surfaces must expose priced and unpriced raw-copy coverage. Their pricing
+timestamp is the latest immutable publication timestamp among the exact rows
+included in the displayed total. Public Vault views follow the same exact-copy
+rule and may read only ownership already authorized by the public sharing
+boundary.
+
 ## Active Ask Boundary
 
 eBay active asks:

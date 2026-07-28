@@ -717,7 +717,7 @@ test("worker is dry-run by default and writes only governed pricing tables in wr
 
 test("all active web and Flutter pricing consumers use the shared read model", () => {
   assert.match(WEB_READ_MODEL, /get_market_pricing_read_model_v1/);
-  assert.match(WEB_VAULT, /getMarketPricingReadModelV1/);
+  assert.match(WEB_VAULT, /getExactMarketPricingByCardPrintingIds/);
   assert.doesNotMatch(WEB_VAULT, /v_card_pricing_ui_v1|grookai_value/i);
   assert.match(FLUTTER_PRICING, /get_market_pricing_read_model_v1/);
   assert.match(FLUTTER_NETWORK, /get_top_market_pricing_v1/);

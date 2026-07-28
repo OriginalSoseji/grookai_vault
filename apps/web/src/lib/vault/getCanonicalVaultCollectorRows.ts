@@ -24,7 +24,7 @@ import {
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import {
-  getMarketPricingReadModelV1,
+  getExactMarketPricingByCardPrintingIds,
   type MarketPricingRecordV1,
 } from "@/lib/pricing/marketPricingReadModelV1";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
@@ -60,6 +60,9 @@ export type CanonicalVaultCollectorCopyItem = {
   cert_number: string | null;
   notes: string | null;
   created_at: string | null;
+  market_price: number | null;
+  pricing_observed_at: string | null;
+  pricing_published_at: string | null;
 };
 
 export type CanonicalVaultCollectorRow = {
@@ -93,6 +96,8 @@ export type CanonicalVaultCollectorRow = {
   copy_items: CanonicalVaultCollectorCopyItem[];
   effective_price: number | null;
   pricing_updated_at: string | null;
+  priced_raw_copy_count: number;
+  unpriced_raw_copy_count: number;
   image_url: string | null;
   canonical_image_url: string | null;
   canonical_representative_image_url: string | null;
@@ -280,6 +285,9 @@ function buildCopyItem(
     cert_number: normalizeOptionalText(slabCert?.cert_number),
     notes: normalizeOptionalText(row.notes),
     created_at: row.created_at ?? null,
+    market_price: null,
+    pricing_observed_at: null,
+    pricing_published_at: null,
   };
 }
 
@@ -587,52 +595,96 @@ async function fetchVaultCompatibilityMetadataByCardId(userId: string, cardPrint
   return rowsByCardId;
 }
 
-async function fetchMarketPriceMetadataByCardId(cardPrintIds: string[]) {
+async function fetchMarketPriceMetadataByPrintingId(cardPrintingIds: string[]) {
   const adminClient = createServerAdminClient();
-  const rowsByCardId = new Map<string, MarketPricingRecordV1>();
+  const rowsByPrintingId = new Map<string, MarketPricingRecordV1>();
 
-  for (const ids of chunkArray(cardPrintIds, 200)) {
-    const rows = await getMarketPricingReadModelV1(adminClient, {
-      cardPrintIds: ids,
-    });
-    for (const row of rows) {
-      if (row.pricing_scope === "parent") {
-        rowsByCardId.set(row.card_print_id, row);
-      }
+  for (const ids of chunkArray(cardPrintingIds, 200)) {
+    const rows = await getExactMarketPricingByCardPrintingIds(
+      adminClient,
+      ids,
+    );
+    for (const [cardPrintingId, row] of rows) {
+      rowsByPrintingId.set(cardPrintingId, row);
     }
   }
 
-  return rowsByCardId;
+  return rowsByPrintingId;
 }
 
-function selectVaultEffectivePrice({
-  aggregate,
-  marketPrice,
-}: {
-  aggregate: CardAggregate;
-  marketPrice: MarketPricingRecordV1 | null;
-}) {
-  const isRawOnlyGroup = aggregate.rawCount > 0 && aggregate.slabCount === 0;
-  if (!isRawOnlyGroup) {
-    return null;
+function pickLatestIsoTimestamp(
+  left: string | null,
+  right: string | null,
+) {
+  if (!left) {
+    return right;
   }
-
-  return marketPrice?.market_close ?? null;
+  if (!right) {
+    return left;
+  }
+  return Date.parse(left) >= Date.parse(right) ? left : right;
 }
 
-function selectVaultPricingUpdatedAt({
+function buildVaultExactPricingSummary({
   aggregate,
-  marketPrice,
+  marketPriceByPrintingId,
 }: {
   aggregate: CardAggregate;
-  marketPrice: MarketPricingRecordV1 | null;
+  marketPriceByPrintingId: Map<string, MarketPricingRecordV1>;
 }) {
-  const isRawOnlyGroup = aggregate.rawCount > 0 && aggregate.slabCount === 0;
-  if (!isRawOnlyGroup) {
-    return null;
-  }
+  let total = 0;
+  let pricedRawCopyCount = 0;
+  let latestPublishedAt: string | null = null;
 
-  return marketPrice?.observed_at ?? null;
+  const copyItems = aggregate.copyItems.map((copy) => {
+    if (copy.is_graded || !copy.card_printing_id) {
+      return copy;
+    }
+
+    const marketPrice = marketPriceByPrintingId.get(copy.card_printing_id);
+    if (!marketPrice) {
+      return copy;
+    }
+
+    total += marketPrice.market_close;
+    pricedRawCopyCount += 1;
+    latestPublishedAt = pickLatestIsoTimestamp(
+      latestPublishedAt,
+      marketPrice.published_at,
+    );
+    return {
+      ...copy,
+      market_price: marketPrice.market_close,
+      pricing_observed_at: marketPrice.observed_at,
+      pricing_published_at: marketPrice.published_at,
+    };
+  });
+
+  return {
+    copyItems,
+    effectivePrice:
+      pricedRawCopyCount > 0 ? Number(total.toFixed(2)) : null,
+    pricingUpdatedAt: latestPublishedAt,
+    pricedRawCopyCount,
+    unpricedRawCopyCount: Math.max(
+      0,
+      aggregate.rawCount - pricedRawCopyCount,
+    ),
+  };
+}
+
+function assertVaultPricingSummary(
+  aggregate: CardAggregate,
+  summary: ReturnType<typeof buildVaultExactPricingSummary>,
+) {
+  if (
+    summary.pricedRawCopyCount + summary.unpricedRawCopyCount !==
+    aggregate.rawCount
+  ) {
+    throw new Error(
+      `[vault:pricing] exact copy reconciliation failed for card_print_id=${aggregate.cardPrintId}`,
+    );
+  }
 }
 
 function selectRepresentativeBucket(
@@ -707,12 +759,12 @@ export async function getCanonicalVaultCollectorRows(
     bucketMetadataByCardId,
     cardMetadataById,
     vaultCompatibilityMetadataByCardId,
-    marketPriceMetadataByCardId,
+    marketPriceMetadataByPrintingId,
   ] = await Promise.all([
     fetchBucketMetadataByCardId(normalizedUserId, cardPrintIds),
     fetchCardMetadataById(cardPrintIds),
     fetchVaultCompatibilityMetadataByCardId(normalizedUserId, cardPrintIds),
-    fetchMarketPriceMetadataByCardId(cardPrintIds),
+    fetchMarketPriceMetadataByPrintingId(cardPrintingIds),
   ]);
   const preferredImageUrlByCardId = new Map(
     await Promise.all(
@@ -749,7 +801,11 @@ export async function getCanonicalVaultCollectorRows(
 
     const card = cardMetadataById.get(cardPrintId) ?? null;
     const vaultCompatibility = vaultCompatibilityMetadataByCardId.get(cardPrintId) ?? null;
-    const marketPrice = marketPriceMetadataByCardId.get(cardPrintId) ?? null;
+    const pricingSummary = buildVaultExactPricingSummary({
+      aggregate,
+      marketPriceByPrintingId: marketPriceMetadataByPrintingId,
+    });
+    assertVaultPricingSummary(aggregate, pricingSummary);
     const canonicalImageFields = card
       ? applyChildDisplayImageFallback(
           await resolveCardImageFieldsV1(card),
@@ -809,15 +865,11 @@ export async function getCanonicalVaultCollectorRows(
       slab_count: aggregate.slabCount,
       removable_raw_instance_id: aggregate.removableRawInstanceId,
       slab_items: aggregate.slabItems,
-      copy_items: aggregate.copyItems,
-      effective_price: selectVaultEffectivePrice({
-        aggregate,
-        marketPrice,
-      }),
-      pricing_updated_at: selectVaultPricingUpdatedAt({
-        aggregate,
-        marketPrice,
-      }),
+      copy_items: pricingSummary.copyItems,
+      effective_price: pricingSummary.effectivePrice,
+      pricing_updated_at: pricingSummary.pricingUpdatedAt,
+      priced_raw_copy_count: pricingSummary.pricedRawCopyCount,
+      unpriced_raw_copy_count: pricingSummary.unpricedRawCopyCount,
       image_url: preferredImageUrl ?? canonicalDisplayImageUrl,
       canonical_image_url: canonicalImageUrl,
       canonical_representative_image_url: canonicalImageFields?.representative_image_url ?? null,

@@ -1495,6 +1495,11 @@ class NetworkStreamService {
 
     return CardSurfacePricingData(
       cardPrintId: cardPrintId,
+      pricingScope: _nullable(row['pricing_scope']) ?? 'parent',
+      cardPrintingId: _nullable(row['card_printing_id']),
+      printingGvId: _nullable(row['printing_gv_id']),
+      finishKey: _nullable(row['finish_key']),
+      isFromPrice: row['is_from_price'] == true,
       marketClose: _toDouble(row['market_close']),
       primarySource: _nullable(row['source_name']),
       sourceLabel: _nullable(row['source_label']),

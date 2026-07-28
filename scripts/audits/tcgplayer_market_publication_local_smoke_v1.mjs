@@ -146,6 +146,71 @@ async function seedFixture(client, fixture) {
       ],
     );
     await client.query(
+      `insert into auth.users (
+         id,
+         aud,
+         role,
+         email,
+         email_confirmed_at,
+         raw_app_meta_data,
+         raw_user_meta_data,
+         created_at,
+         updated_at
+       )
+       values (
+         $1, 'authenticated', 'authenticated', $2, now(),
+         '{}'::jsonb, '{}'::jsonb, now(), now()
+       )`,
+      [fixture.ownerUserId, fixture.ownerEmail],
+    );
+    await client.query(
+      `insert into public.public_profiles (
+         user_id,
+         slug,
+         display_name,
+         public_profile_enabled,
+         vault_sharing_enabled
+       )
+       values ($1, $2, 'Pricing Smoke Collector', true, true)`,
+      [fixture.ownerUserId, fixture.ownerSlug],
+    );
+    await client.query(
+      `insert into public.shared_cards (
+         user_id,
+         card_id,
+         gv_id,
+         is_shared
+       )
+       values ($1, $2, $3, true)`,
+      [fixture.ownerUserId, fixture.cardPrintId, fixture.gvId],
+    );
+    await client.query(
+      `insert into public.vault_item_instances (
+         id,
+         user_id,
+         gv_vi_id,
+         card_print_id,
+         card_printing_id,
+         intent,
+         condition_label
+       )
+       values
+         ($1, $4, $7, $5, $6, 'showcase', 'Near Mint'),
+         ($2, $4, $8, $5, $6, 'hold', 'Near Mint'),
+         ($3, $4, $9, $5, null, 'hold', 'Near Mint')`,
+      [
+        fixture.exactVaultInstanceIdA,
+        fixture.exactVaultInstanceIdB,
+        fixture.unresolvedVaultInstanceId,
+        fixture.ownerUserId,
+        fixture.cardPrintId,
+        fixture.cardPrintingId,
+        fixture.exactGvviIdA,
+        fixture.exactGvviIdB,
+        fixture.unresolvedGvviId,
+      ],
+    );
+    await client.query(
       `insert into public.external_mappings (
          card_print_id,
          source,
@@ -340,6 +405,15 @@ async function main() {
   const fixture = {
     cardPrintId: randomUUID(),
     cardPrintingId: randomUUID(),
+    ownerUserId: randomUUID(),
+    ownerEmail: `pricing-smoke-${fixtureSuffix}@example.test`,
+    ownerSlug: `pricing-smoke-${fixtureSuffix}`,
+    exactVaultInstanceIdA: randomUUID(),
+    exactVaultInstanceIdB: randomUUID(),
+    unresolvedVaultInstanceId: randomUUID(),
+    exactGvviIdA: `GV-VI-SMOKE-${fixtureSuffix}-A`,
+    exactGvviIdB: `GV-VI-SMOKE-${fixtureSuffix}-B`,
+    unresolvedGvviId: `GV-VI-SMOKE-${fixtureSuffix}-U`,
     gvId: `GV-PK-SMOKE-${fixtureKey}`,
     printingGvId: `GV-PK-SMOKE-${fixtureKey}-HOLO`,
     canonicalName: `Pricing Smoke Pikachu ${fixtureSuffix}`,
@@ -489,6 +563,88 @@ async function main() {
     const exactPublishedAt = new Date(exactRead.published_at).toISOString();
     assert.equal(parentPublishedAt, exactPublishedAt);
 
+    const authenticatedVaultTargets = await withClient(
+      url,
+      async (authenticatedClient) => {
+        await authenticatedClient.query("begin");
+        try {
+          await authenticatedClient.query(
+            "select set_config('request.jwt.claim.sub', $1, true)",
+            [fixture.ownerUserId],
+          );
+          await authenticatedClient.query(
+            "select set_config('request.jwt.claim.role', 'authenticated', true)",
+          );
+          await authenticatedClient.query("set local role authenticated");
+          return await authenticatedClient.query(
+            "select * from public.vault_mobile_pricing_targets_v1()",
+          );
+        } finally {
+          await authenticatedClient.query("rollback");
+        }
+      },
+    );
+    assert.equal(authenticatedVaultTargets.rowCount, 3);
+    const exactVaultTargets = authenticatedVaultTargets.rows.filter(
+      (row) => row.card_printing_id === fixture.cardPrintingId,
+    );
+    const unresolvedVaultTargets = authenticatedVaultTargets.rows.filter(
+      (row) => row.card_printing_id === null,
+    );
+    assert.equal(exactVaultTargets.length, 2);
+    assert.equal(unresolvedVaultTargets.length, 1);
+    assert.equal(
+      Number(exactRead.market_close) * exactVaultTargets.length,
+      24.68,
+    );
+
+    await withClient(url, async (anonymousClient) => {
+      await anonymousClient.query("begin");
+      try {
+        await anonymousClient.query("set local role anon");
+        await assert.rejects(
+          anonymousClient.query(
+            "select * from public.vault_mobile_pricing_targets_v1()",
+          ),
+          /permission denied/i,
+        );
+      } finally {
+        await anonymousClient.query("rollback");
+      }
+    });
+
+    const publicVaultTargets = await withClient(
+      url,
+      async (anonymousClient) => {
+        await anonymousClient.query("begin");
+        try {
+          await anonymousClient.query("set local role anon");
+          return await anonymousClient.query(
+            `select *
+               from public.public_shared_card_pricing_targets_v1(
+                 $1,
+                 array[$2]::uuid[]
+               )`,
+            [fixture.ownerUserId, fixture.cardPrintId],
+          );
+        } finally {
+          await anonymousClient.query("rollback");
+        }
+      },
+    );
+    assert.equal(publicVaultTargets.rowCount, 3);
+    assert.equal(
+      publicVaultTargets.rows.filter(
+        (row) => row.card_printing_id === fixture.cardPrintingId,
+      ).length,
+      2,
+    );
+    assert.equal(
+      publicVaultTargets.rows.filter((row) => row.card_printing_id === null)
+        .length,
+      1,
+    );
+
     const provenance = current.rows[0].provenance_id;
     const tracePrivileges = await client.query(
       `select
@@ -535,6 +691,12 @@ async function main() {
         parentPublishedAt === exactPublishedAt,
       parent_provenance_matches_exact:
         parentRead.provenance_id === exactRead.provenance_id,
+      vault_target_rows: authenticatedVaultTargets.rowCount,
+      vault_exact_priced_copy_count: exactVaultTargets.length,
+      vault_unpriced_copy_count: unresolvedVaultTargets.length,
+      vault_exact_total: Number(exactRead.market_close) * exactVaultTargets.length,
+      anonymous_private_vault_target_read_denied: true,
+      public_shared_vault_target_rows: publicVaultTargets.rowCount,
       authenticated_can_trace:
         tracePrivileges.rows[0].authenticated_can_trace,
       service_role_can_trace: tracePrivileges.rows[0].service_role_can_trace,

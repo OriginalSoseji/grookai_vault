@@ -151,3 +151,29 @@ export async function getMarketPricingReadModelV1(
     .map(mapRow)
     .filter((row): row is MarketPricingRecordV1 => row !== null);
 }
+
+export function indexExactMarketPricingByCardPrintingId(
+  records: MarketPricingRecordV1[],
+): Map<string, MarketPricingRecordV1> {
+  const indexed = new Map<string, MarketPricingRecordV1>();
+  for (const record of records) {
+    if (
+      record.pricing_scope !== "card_printing" ||
+      !record.card_printing_id
+    ) {
+      continue;
+    }
+    indexed.set(record.card_printing_id, record);
+  }
+  return indexed;
+}
+
+export async function getExactMarketPricingByCardPrintingIds(
+  client: PricingClient,
+  cardPrintingIds: string[],
+): Promise<Map<string, MarketPricingRecordV1>> {
+  const records = await getMarketPricingReadModelV1(client, {
+    cardPrintingIds,
+  });
+  return indexExactMarketPricingByCardPrintingId(records);
+}

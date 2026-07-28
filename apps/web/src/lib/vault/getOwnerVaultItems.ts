@@ -23,6 +23,9 @@ export type VaultValueSummary = {
   totalEstimatedValue: number | null;
   pricedGroupedCount: number;
   totalGroupedCount: number;
+  pricedCopyCount: number;
+  totalRawCopyCount: number;
+  unpricedCopyCount: number;
   latestPricingUpdateAt: string | null;
 };
 
@@ -57,9 +60,15 @@ function pickLatestIsoTimestamp(left: string | null, right: string | null) {
 export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): VaultValueSummary {
   let totalEstimatedValue = 0;
   let pricedGroupedCount = 0;
+  let pricedCopyCount = 0;
+  let totalRawCopyCount = 0;
+  let unpricedCopyCount = 0;
   let latestPricingUpdateAt: string | null = null;
 
   for (const row of rows) {
+    pricedCopyCount += row.priced_raw_copy_count;
+    totalRawCopyCount += row.raw_count;
+    unpricedCopyCount += row.unpriced_raw_copy_count;
     if (typeof row.effective_price !== "number" || Number.isNaN(row.effective_price)) {
       continue;
     }
@@ -73,6 +82,9 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
     totalEstimatedValue: pricedGroupedCount > 0 ? Number(totalEstimatedValue.toFixed(2)) : null,
     pricedGroupedCount,
     totalGroupedCount: rows.length,
+    pricedCopyCount,
+    totalRawCopyCount,
+    unpricedCopyCount,
     latestPricingUpdateAt,
   };
 }
@@ -128,8 +140,13 @@ function normalizeVaultItems(
           cert_number: copyItem.cert_number,
           notes: copyItem.notes,
           created_at: copyItem.created_at,
+          market_price: copyItem.market_price,
+          pricing_observed_at: copyItem.pricing_observed_at,
+          pricing_published_at: copyItem.pricing_published_at,
         })),
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
+        priced_raw_copy_count: row.priced_raw_copy_count,
+        unpriced_raw_copy_count: row.unpriced_raw_copy_count,
         image_url:
           resolveDisplayImageUrl({
             display_image_url: row.image_url,
