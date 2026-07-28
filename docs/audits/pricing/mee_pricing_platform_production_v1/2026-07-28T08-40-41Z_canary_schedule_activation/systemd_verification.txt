@@ -1,0 +1,137 @@
+# /etc/systemd/system/grookai-tcgplayer-market-pipeline.service
+[Unit]
+Description=Grookai TCGPlayer Market Production V1 Pipeline
+Wants=network-online.target
+After=network-online.target grookai-mee-nightly.service
+Conflicts=grookai-tcgcsv-warehouse.service
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/home/grookai/grookai_vault_mee_productization_v1
+EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
+ExecStart=/usr/bin/flock -n /tmp/grookai-tcgplayer-market-pipeline.lock /usr/bin/env node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run
+TimeoutStartSec=8h
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target
+# /etc/systemd/system/grookai-tcgplayer-market-pipeline.timer
+[Unit]
+Description=Run Grookai TCGPlayer Market Production V1 daily at 08:15 UTC
+
+[Timer]
+OnCalendar=*-*-* 08:15:00 UTC
+Persistent=true
+AccuracySec=1min
+RandomizedDelaySec=0
+Unit=grookai-tcgplayer-market-pipeline.service
+
+[Install]
+WantedBy=timers.target
+Result=success
+NRestarts=0
+ExecMainStatus=0
+OnFailure=grookai-operations-webhook@grookai-tcgplayer-market-pipeline.service.service
+OnFailureJobMode=replace-irreversibly
+Unit=grookai-tcgplayer-market-pipeline.service
+TimersCalendar={ OnCalendar=*-*-* 08:15:00 UTC ; next_elapse=Wed 2026-07-29 08:15:00 UTC }
+NextElapseUSecRealtime=Wed 2026-07-29 08:15:00 UTC
+Result=success
+
+Recent pipeline logs:
+Jul 28 08:30:32 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Starting grookai-tcgplayer-market-pipeline.service - Grookai TCGPlayer Market Production V1 Pipeline...
+Jul 28 08:30:32 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]: [dotenv@17.2.3] injecting env (0) from .env.local -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]: {
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "runner_version": "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "operations_policy_version": "TCGPLAYER_MARKET_OPERATIONS_POLICY_V1",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "mode": "canary",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "live": true,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "commit_sha": "24be3ea91a7583265ea1d13007c67e324daa20ba",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "branch": "pricing/mee-productization-v1",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "created_at": "2026-07-28T08:30:32.358Z",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "max_attempts": 3,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "retry_delays_seconds": [
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     60,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     300
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   ],
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "request_ceiling": 10000,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "phase_timeout_minutes": 120,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "database_timeout_minutes": 20,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "freshness_hours": 36,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "publication_limit": null,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "canary_definition_path": "backend/pricing/canaries/tcgplayer_market_canary_100_v1.json",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "canary_definition_sha256": "9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "canary_id": "TCGPLAYER_MARKET_CANARY_100_V1",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "canary_expected_count": 100,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "boundaries": {
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "source_sync": true,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "qualification_and_snapshot_writes": true,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "publication_activation": true,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "canonical_identity_writes": false,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "vault_writes": false,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:     "modeled_value_writes": false
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   },
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "status": "failed",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "final_classification": "non_retryable_health_gate_failure",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "attempt_count": 1,
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28",
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]:   "finished_at": "2026-07-28T08:32:14.998Z"
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[460602]: }
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Main process exited, code=exited, status=1/FAILURE
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Failed with result 'exit-code'.
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Failed to start grookai-tcgplayer-market-pipeline.service - Grookai TCGPlayer Market Production V1 Pipeline.
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Triggering OnFailure= dependencies.
+Jul 28 08:32:15 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Consumed 1.485s CPU time, 51.5M memory peak, 0B memory swap peak.
+Jul 28 08:39:12 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Starting grookai-tcgplayer-market-pipeline.service - Grookai TCGPlayer Market Production V1 Pipeline...
+Jul 28 08:39:12 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]: [dotenv@17.2.3] injecting env (0) from .env.local -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]: {
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "runner_version": "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "operations_policy_version": "TCGPLAYER_MARKET_OPERATIONS_POLICY_V1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "mode": "canary",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "live": true,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "branch": "pricing/mee-productization-v1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "created_at": "2026-07-28T08:39:12.992Z",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "max_attempts": 3,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "retry_delays_seconds": [
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     60,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     300
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   ],
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "request_ceiling": 10000,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "phase_timeout_minutes": 120,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "database_timeout_minutes": 20,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "freshness_hours": 36,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "publication_limit": null,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "canary_definition_path": "backend/pricing/canaries/tcgplayer_market_canary_100_v1.json",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "canary_definition_sha256": "9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "canary_id": "TCGPLAYER_MARKET_CANARY_100_V1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "canary_expected_count": 100,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "boundaries": {
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "source_sync": true,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "qualification_and_snapshot_writes": true,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "publication_activation": true,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "canonical_identity_writes": false,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "vault_writes": false,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:     "modeled_value_writes": false
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   },
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "status": "completed",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "final_classification": "success",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "attempt_count": 1,
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1",
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]:   "finished_at": "2026-07-28T08:40:41.448Z"
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[461364]: }
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Deactivated successfully.
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Finished grookai-tcgplayer-market-pipeline.service - Grookai TCGPlayer Market Production V1 Pipeline.
+Jul 28 08:40:41 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-tcgplayer-market-pipeline.service: Consumed 1.463s CPU time, 49.0M memory peak, 0B memory swap peak.
+
+Latest durable scheduled artifacts:
+1785228041.4487234680 /var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1/scheduled_summary.json
+1785227534.9974989190 /var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28/scheduled_summary.json
+TCGPLAYER_MARKET_OPS_READY

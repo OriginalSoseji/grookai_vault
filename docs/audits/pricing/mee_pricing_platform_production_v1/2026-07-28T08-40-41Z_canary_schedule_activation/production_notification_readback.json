@@ -1,0 +1,78 @@
+{
+  "notification_ids": [
+    "1788c06a698f2675d3b6be07453223b6554637f68ea585e8ca8cf7790d81264d",
+    "f46328c60e338adfaf53902691673ce7edbedba8b33074159612bd28ee733809"
+  ],
+  "events": [
+    {
+      "notification_id": "1788c06a698f2675d3b6be07453223b6554637f68ea585e8ca8cf7790d81264d",
+      "event_type": "production_smoke",
+      "severity": "critical",
+      "source_unit": "grookai-tcgplayer-market-pipeline.service",
+      "source_commit_sha": "24be3ea91a7583265ea1d13007c67e324daa20ba",
+      "recipient_count": 1,
+      "received_at": "2026-07-28T08:29:36.120Z"
+    },
+    {
+      "notification_id": "f46328c60e338adfaf53902691673ce7edbedba8b33074159612bd28ee733809",
+      "event_type": "systemd_on_failure",
+      "severity": "critical",
+      "source_unit": "grookai-tcgplayer-market-pipeline.service",
+      "source_commit_sha": "24be3ea91a7583265ea1d13007c67e324daa20ba",
+      "recipient_count": 1,
+      "received_at": "2026-07-28T08:32:15.411Z"
+    }
+  ],
+  "outbox": [
+    {
+      "notification_id": "1788c06a698f2675d3b6be07453223b6554637f68ea585e8ca8cf7790d81264d",
+      "event_type": "operations_alert",
+      "tier": "instant",
+      "card_anchor_is_null": true,
+      "attempts": 1,
+      "send_started_at": "2026-07-28T08:29:36.935Z",
+      "sent_at": "2026-07-28T08:29:37.275Z",
+      "failed_at": null,
+      "folded_into_digest_at": null,
+      "failure_reason": null
+    },
+    {
+      "notification_id": "f46328c60e338adfaf53902691673ce7edbedba8b33074159612bd28ee733809",
+      "event_type": "operations_alert",
+      "tier": "instant",
+      "card_anchor_is_null": true,
+      "attempts": 1,
+      "send_started_at": "2026-07-28T08:32:15.911Z",
+      "sent_at": "2026-07-28T08:32:16.390Z",
+      "failed_at": null,
+      "folded_into_digest_at": null,
+      "failure_reason": null
+    }
+  ],
+  "delivery_logs": [
+    {
+      "notification_id": "1788c06a698f2675d3b6be07453223b6554637f68ea585e8ca8cf7790d81264d",
+      "event_type": "operations_alert",
+      "tier": "instant",
+      "card_anchor_is_null": true,
+      "send_status": "sent",
+      "sent_at": "2026-07-28T08:29:37.275Z",
+      "title": "Grookai operations alert · grookai-tcgplayer-market-pipeline.service"
+    },
+    {
+      "notification_id": "f46328c60e338adfaf53902691673ce7edbedba8b33074159612bd28ee733809",
+      "event_type": "operations_alert",
+      "tier": "instant",
+      "card_anchor_is_null": true,
+      "send_status": "sent",
+      "sent_at": "2026-07-28T08:32:16.390Z",
+      "title": "Grookai operations alert · grookai-tcgplayer-market-pipeline.service"
+    }
+  ],
+  "reconciliation": {
+    "events": 2,
+    "outbox": 2,
+    "delivery_logs": 2,
+    "all_sent": true
+  }
+}

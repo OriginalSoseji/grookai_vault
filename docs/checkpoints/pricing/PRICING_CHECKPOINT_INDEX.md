@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md`
+
+This checkpoint records the production operations migration, durable founder
+alert route, guarded systemd schedule, first fail-closed run, narrow verified
+no-change health repair, and successful 100-printing signed-in canary run.
+
+Decision locked there:
+
+- the signed-in canary may run unattended only through the guarded scheduler,
+  with evidence-backed source continuity, durable failure alerts, and exact
+  source-to-client reconciliation
+
+Unresolved risk afterward:
+
+- the full 72-hour scheduled observation window, full eligible signed-in
+  rollout, seven daily cycles, and anonymous licensing/display gate remain
+
 ### `PRICING_CHECKPOINT_18_TCGPLAYER_MARKET_CANARY_VERIFICATION.md`
 
 This checkpoint records the genuine stratified 100-printing verification
@@ -360,6 +377,11 @@ Recommended reading order for future maintainers:
    - then read how a genuine fixed 100-printing sample caught and repaired
      canonical assignment and image defects before any signed-in activation
 
+18. `PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md`
+   - then read how the exact canary became a guarded scheduled production
+     operation with durable alerts, verified no-change health policy, and
+     signed-in source-to-client readback
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -370,3 +392,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_SCHEMA_RECONCILIATION_V1_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_SHADOW_GATE_1_20260728.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/2026-07-28T08-40-41Z_canary_schedule_activation/DEPLOYMENT_REPORT.md`

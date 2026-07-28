@@ -1,0 +1,28 @@
+{
+  "hash_algorithm": "sha256",
+  "producing_commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+  "generated_at": "2026-07-28T08:40:41.448Z",
+  "files": {
+    "DEPLOYMENT_REPORT.md": "53566370a3d521bf502fe42b2c100a44f8c9863a2761ba37f75e15634df4b058",
+    "failed_health.json": "7af4066364bd5b6f93871e000fd109fa3ec5578b60e7e535e0cbc329b2df619c",
+    "failed_scheduled_summary.json": "fa46038cd6375a641b99014be83071c1092e1b2094b75b3df7073b198242e83d",
+    "function_deployment_readback.json": "7e7185207cc71c9de74121038b9d4bf3e6d6596e1bfd034bcf6eb02e6d000200",
+    "migration_apply_output.txt": "99f3f4dfeec7eaa9b425fc86bee807682f1d2f045d5faa7db39fe6bff56d269b",
+    "production_notification_readback.json": "5ea9f3b1fc61b7aee459287080919ddd70d0c5399fed9cb9693def0082567ba7",
+    "production_price_readback.json": "d691e6e08aaa7aaa1b08e8e17b2185b8700ec8d68f33da8c21589a53dbb6949f",
+    "production_schema_security_readback.json": "de78af0d7caf5a61ddc16127ebfe9987d2d9878d6241a90a4ed7218b54801931",
+    "repaired_health.json": "c3fd76e6e3525efee7b0d005346b6aa0bf32f98b9fcc2f9ea63e9bf3801cf9bd",
+    "repaired_pipeline_artifact_hashes.json": "3ca77dc94442a89605c5678927f9341dc3a09294017e0bf95673ecbaf4b6700c",
+    "repaired_pipeline_run_plan.json": "a492ad2473abc70c46d0b279247475931c6b9183c638d9c20e5617fa1e5900c2",
+    "repaired_pipeline_state.json": "080184cad1f2a85c24a397eb2716670ff883ac45c9733f70e87deb0bc449e6a6",
+    "repaired_publication_artifact_hashes.json": "cfabadf050cc84f8437344d84a91606f52bfe4901e52cd4827aae1c3ea957f1e",
+    "repaired_publication_summary.json": "11963f9bcae4575f8f6267af2b904f0c37e283b56be4d9acd8d86b34dd7dc7d6",
+    "repaired_reconciliation.json": "78ce884a891f54be92714a91282b51843717c93e9f0274931f0b659343b27ba0",
+    "repaired_scheduled_artifact_hashes.json": "e50e68214c2aee4751eb2454780f8618ff63f32ea3d58a977750c26bde6fa4cd",
+    "repaired_scheduled_attempts.jsonl": "ca748ece9d6de783b02002c31854bededef50623f54efcae483fef375116ae1c",
+    "repaired_scheduled_run_plan.json": "f15ac50b4a2b8876eabd0991ad0b8aab341be990a2731c84158ceb35586a2f38",
+    "repaired_scheduled_summary.json": "0dd2539220bf0096666da1b3fc83294de0a21a2faa653d45dcfc6ad850e1fef9",
+    "systemd_verification.txt": "4a726088bf225032a639d970f72fc7c007749edb0354f502403e2bdc3301b99c",
+    "VERIFICATION_RESULTS.md": "4d0ae195977b6805ad11dda13494f3d40c211e963cdd287e05abe9356c196d11"
+  }
+}

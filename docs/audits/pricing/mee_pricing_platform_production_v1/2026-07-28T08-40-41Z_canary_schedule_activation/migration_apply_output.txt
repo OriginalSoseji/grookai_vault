@@ -1,0 +1,12 @@
+Finished supabase db push.
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20260728050000_pricing_operations_notification_webhook_v1.sql
+
+ [Y/n] y
+Applying migration 20260728050000_pricing_operations_notification_webhook_v1.sql...
+NOTICE: constraint "notification_outbox_card_anchor_v2" of relation "notification_outbox" does not exist, skipping
+NOTICE: trigger "trg_operations_notification_events_append_only" for relation "public.operations_notification_events" does not exist, skipping
+NOTICE: policy "operations_notification_events_service_role_all" for relation "public.operations_notification_events" does not exist, skipping
+Finished supabase db push.

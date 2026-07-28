@@ -1,0 +1,51 @@
+{
+  "health_version": "TCGPLAYER_MARKET_HEALTH_V1",
+  "checked_at": "2026-07-28T08:32:14.767Z",
+  "status": "critical",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-publication",
+  "thresholds": {
+    "max_source_age_hours": 36,
+    "minimum_current_prices": 1
+  },
+  "metrics": {
+    "latest_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-warehouse",
+    "latest_source_status": "skipped_no_change",
+    "latest_source_finished_at": "2026-07-28T08:30:33.986Z",
+    "latest_source_price_row_count": 0,
+    "latest_source_error": null,
+    "selected_run_id": "ec2c7bfa-eccf-48b5-90a8-be2ac0392096",
+    "selected_run_mode": "canary",
+    "selected_run_state": "verified",
+    "reconciliation_state": "reconciled",
+    "run_selected_count": 100,
+    "run_excluded_count": 0,
+    "run_quarantined_count": 0,
+    "run_delayed_count": 0,
+    "run_suppressed_count": 0,
+    "run_eligible_count": 100,
+    "run_snapshot_count": 100,
+    "required_phase_count": 5,
+    "succeeded_phase_count": 5,
+    "decision_count": 100,
+    "eligible_count": 100,
+    "delayed_count": 0,
+    "suppressed_count": 0,
+    "quarantined_count": 0,
+    "excluded_count": 0,
+    "snapshot_count": 100,
+    "traced_snapshot_count": 100,
+    "succeeded_required_phase_count": 5,
+    "failed_phase_attempt_count": 0,
+    "current_exact_price_count": 100,
+    "current_parent_price_count": 99,
+    "latest_published_source_at": "2026-07-28T03:33:15.112Z",
+    "current_publication_set_id": "94731fe5-5522-40f5-89b4-d07b8b08c149",
+    "current_publication_run_id": "ec2c7bfa-eccf-48b5-90a8-be2ac0392096",
+    "current_publication_activated_at": "2026-07-28T08:31:44.005Z",
+    "broken_trace_count": 0,
+    "source_age_hours": 0.028
+  },
+  "findings": [
+    "latest_current_source_sync_not_completed"
+  ]
+}
