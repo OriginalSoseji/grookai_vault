@@ -290,9 +290,47 @@ pipelines read and validate the existing snapshot but do not refresh it.
 Do not begin this section until the 72-hour canary observer passes with
 `--require-pass`. Keep anonymous RPC execution denied.
 
-1. Deploy the exact clean commit intended to produce all full-eligible
-   publication evidence. Record its 40-character SHA.
-2. Run a fresh full-source V1.2 shadow from that commit:
+1. Freeze the exact clean commit intended to produce all full-eligible
+   evidence and record its 40-character SHA. Confirm the migration rollout
+   manifest still matches the pending files:
+
+```text
+backend/pricing/rollout/tcgplayer_market_production_v1_migration_manifest.json
+```
+
+From PowerShell, rerun the tested strict preflight for the exact pending set:
+
+```powershell
+.\scripts\migration_preflight_strict.ps1 `
+  -Phase PrePush `
+  -ExpectedLocalOnlyIds @("20260728130000", "20260728133000")
+```
+
+Require exactly those two local-only IDs, zero remote-only IDs, a passing
+duplicate-object scan, and a passing full local reset. Stop on any mismatch.
+Do not use `--include-all`.
+
+Apply only the reviewed migration history:
+
+```powershell
+supabase db push
+```
+
+Immediately require an empty linked schema diff:
+
+```powershell
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 `
+  -Phase AuditLinkedSchema
+```
+
+Read back the new schema, grants, RLS, authenticated behavior, and anonymous
+denial before deploying clients or activating full publication. Both migration
+IDs must now appear in both ledger columns with no remaining local-only or
+remote-only IDs.
+
+2. Deploy that same exact clean commit to every pricing runtime and supported
+   client surface.
+3. Run a fresh full-source V1.2 shadow from that commit:
 
 ```powershell
 node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
@@ -300,7 +338,7 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
   --run-key=TCGPLAYER-MARKET-FULL-SHADOW-<timestamp>
 ```
 
-3. Require corrected coverage against the resulting publication run:
+4. Require corrected coverage against the resulting publication run:
 
 ```powershell
 npm run pricing:market:coverage -- `
@@ -313,7 +351,7 @@ and zero unclassified gap rows. `--require-coverage-pass` deliberately checks
 the candidate shadow denominator without pretending the older current
 publication has changed. Preserve this threshold proof.
 
-4. Activate the complete eligible scope. Production mode refuses row limits
+5. Activate the complete eligible scope. Production mode refuses row limits
    and canary definitions:
 
 ```powershell
@@ -323,7 +361,7 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
   --run-key=TCGPLAYER-MARKET-FULL-ACTIVATION-<timestamp>
 ```
 
-5. Immediately run health, fresh V1.2 coverage, bounded performance,
+6. Immediately run health, fresh V1.2 coverage, bounded performance,
    provenance lookup, exact-Vault production readback, and rollback dry-run.
    Every gate must pass before the production schedule is enabled.
 
@@ -350,7 +388,7 @@ anonymous SQLSTATE `42501`, zero cross-owner rows, zero parent-scope pricing,
 and agreement between the governed pricing RPC and the independent current
 exact-printing view. It writes no customer identifiers to its artifacts.
 
-6. Configure the exact deployed commit and full-scope schedule:
+7. Configure the exact deployed commit and full-scope schedule:
 
 ```text
 TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1
@@ -361,7 +399,7 @@ TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA=<exact-deployed-40-character-sha>
 TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
 ```
 
-7. Activate and verify the production timer:
+8. Activate and verify the production timer:
 
 ```bash
 sudo ACTIVATE_TIMER=1 \

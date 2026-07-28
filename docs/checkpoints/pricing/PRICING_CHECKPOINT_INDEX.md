@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md`
+
+This checkpoint freezes the exact two-migration post-canary apply set, hashes,
+strict preflight evidence, forbidden history shortcuts, and enforcing
+post-apply checks.
+
+Decision locked there:
+
+- only the two manifest migrations may be applied after the 72-hour canary
+  passes, and production schema parity requires an empty linked diff plus
+  production readback
+
+Unresolved risk afterward:
+
+- the migrations remain intentionally unapplied until the canary gate passes
+
 ### `PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md`
 
 This checkpoint records the read-only exact-Vault production verifier and its

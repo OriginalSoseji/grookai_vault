@@ -1,0 +1,65 @@
+{
+  "manifest_version": "TCGPLAYER_MARKET_PRODUCTION_V1_MIGRATION_ROLLOUT_MANIFEST_V1",
+  "status": "pre_apply_ready_canary_blocked",
+  "created_at": "2026-07-28T14:26:53.090Z",
+  "branch": "pricing/mee-productization-v1",
+  "preflight_commit_sha": "4d3fbd8fb43eef26dfa58a993258b2640eb5f225",
+  "target_project_ref": "ycdxbpibncqcchqiihfz",
+  "expected_local_only_migration_ids": [
+    "20260728130000",
+    "20260728133000"
+  ],
+  "migrations": [
+    {
+      "id": "20260728130000",
+      "path": "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql",
+      "sha256": "028c94a4b86cf2e29fcd74dba4e5111c24ce70512019db3688c6d1e5b1632681"
+    },
+    {
+      "id": "20260728133000",
+      "path": "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql",
+      "sha256": "a66c7ae4aa3903077ad70d81bd1aeaa595f90a27ad30dd5b5604198eb7975cd7"
+    }
+  ],
+  "pre_apply_evidence": {
+    "migration_ledger_checked_at": "2026-07-28T14:26:53.090Z",
+    "expected_local_only_count": 2,
+    "actual_local_only_count": 2,
+    "remote_only_count": 0,
+    "duplicate_pending_object_scan": "passed",
+    "full_local_replay": "passed",
+    "strict_pre_push_status": "passed",
+    "linked_schema_audit_status": "expected_pending_delta",
+    "production_writes": 0
+  },
+  "required_preconditions": {
+    "canary_observer_status": "passed",
+    "tracked_worktree_status": "clean",
+    "deployment_commit_recorded": true,
+    "deployment_commit_matches_checkout": true,
+    "strict_pre_push_rerun": "passed",
+    "expected_remote_only_count": 0
+  },
+  "commands": {
+    "strict_pre_push": ".\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds @(\"20260728130000\", \"20260728133000\")",
+    "apply": "supabase db push",
+    "post_apply_linked_audit": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
+    "post_apply_vault_readback": "npm run pricing:market:vault:verify -- --expected-commit-sha=<exact-deployed-40-character-sha> --require-pass"
+  },
+  "forbidden": {
+    "apply_flags": [
+      "--include-all"
+    ],
+    "production_apply_before_canary_pass": true,
+    "ad_hoc_remote_schema_edits": true,
+    "migration_id_substitution": true
+  },
+  "post_apply_requirements": [
+    "both migration IDs appear in both local and remote ledgers",
+    "no local-only or remote-only migration IDs remain",
+    "linked schema audit passes with an empty diff",
+    "schema, grants, and RLS readback pass",
+    "exact-Vault production verifier passes",
+    "fresh full-source V1.2 shadow passes before activation"
+  ]
+}
