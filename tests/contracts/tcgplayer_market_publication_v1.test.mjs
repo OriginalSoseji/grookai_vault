@@ -27,6 +27,15 @@ const MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const CANDIDATE_PERFORMANCE_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260728020000_tcgplayer_market_candidate_view_performance_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -393,6 +402,24 @@ test("current and history read models use source market_price", () => {
   assert.match(MIGRATION, /create or replace view public\.v_market_price_history_v1/i);
   assert.match(MIGRATION, /snapshot\.market_price/i);
   assert.doesNotMatch(MIGRATION, /grookai_value/i);
+});
+
+test("qualification candidate view avoids a redundant wide aggregation", () => {
+  assert.match(
+    CANDIDATE_PERFORMANCE_MIGRATION,
+    /create or replace view public\.v_tcgplayer_market_qualification_candidates_v1/i,
+  );
+  assert.match(CANDIDATE_PERFORMANCE_MIGRATION, /source_run as materialized/i);
+  assert.match(
+    CANDIDATE_PERFORMANCE_MIGRATION,
+    /case when source_mapping\.id is null then 0 else 1 end::integer\s+as source_mapping_count/i,
+  );
+  assert.match(
+    CANDIDATE_PERFORMANCE_MIGRATION,
+    /case when source_mapping\.card_print_id is null then 0 else 1 end::integer\s+as card_print_mapping_count/i,
+  );
+  assert.doesNotMatch(CANDIDATE_PERFORMANCE_MIGRATION, /\bgroup by\b/i);
+  assert.doesNotMatch(CANDIDATE_PERFORMANCE_MIGRATION, /\barray_agg\s*\(/i);
 });
 
 test("signed-in clients receive a shared contract while provenance stays service-only", () => {
