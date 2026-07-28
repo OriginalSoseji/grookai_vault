@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md`
+
+This checkpoint records the read-only exact-mapping planner, its one-to-one
+evidence requirements, and the production classification of `1,066` unmapped
+source products into `274` exact candidates and `792` blocked cases.
+
+Decision locked there:
+
+- exact mappings require name, collector number, set authority, active standard
+  identity, and collision-free source/target evidence; planning never writes
+
+Unresolved risk afterward:
+
+- candidates still require a bounded append-only apply/readback gate, while
+  blocked identities, the 72-hour canary, corrected V1.1 shadow, broader
+  signed-in rollout, and anonymous licensing authority remain open
+
 ### `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
 
 This checkpoint centralizes the ordinary-single versus product-object and
@@ -445,8 +462,12 @@ Recommended reading order for future maintainers:
      warehouse and proven below the Product V1 latency target in production
 
 21. `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
-   - then read how the Product V1 scope boundary was corrected without hiding
-     ordinary mapping gaps or discarding the original failed baseline
+    - then read how the Product V1 scope boundary was corrected without hiding
+      ordinary mapping gaps or discarding the original failed baseline
+
+22. `PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md`
+    - then read how unmapped source products were classified into collision-free
+      exact candidates and explicit blockers without changing canonical state
 
 After those checkpoints, read the supporting audits in this order:
 
@@ -461,3 +482,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/2026-07-28T08-40-41Z_canary_schedule_activation/DEPLOYMENT_REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/read_performance_gate/2026-07-28T09-47-20-239Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_1/2026-07-28T10-25-50-424Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1/2026-07-28T10-38-25-697Z/REPORT.md`

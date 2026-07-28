@@ -1,0 +1,43 @@
+{
+  "planner_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1",
+  "policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1",
+  "status": "passed",
+  "source_run": {
+    "id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+    "sync_mode": "current_full_sync",
+    "status": "completed",
+    "failed_count": 0,
+    "observed_on": "2026-07-28T06:00:00.000Z",
+    "finished_at": "2026-07-28T03:33:15.112Z",
+    "artifact_hash": "26ffd4ca212f18d0c32d41080987d02f2dd271ea4ec2f2fff4bb00f0e415e86b"
+  },
+  "coverage_gaps_artifact": "docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_1/2026-07-28T10-25-50-424Z/coverage_gaps.jsonl",
+  "counts": {
+    "coverage_gap_rows": 1577,
+    "missing_mapping_gap_rows": 1416,
+    "source_products": 1066,
+    "candidates": 274,
+    "blocked": 792,
+    "projected_gap_rows": 443
+  },
+  "candidates_by_lane": {
+    "reviewed_group_set_authority": 99,
+    "unique_group_set_consensus": 175
+  },
+  "blocked_by_reason": {
+    "missing_printed_number_evidence": 208,
+    "missing_unique_set_authority": 186,
+    "multiple_source_products_match_same_canonical_target": 60,
+    "no_exact_set_number_name_target": 205,
+    "target_already_has_active_tcgplayer_mapping": 13,
+    "target_missing_unique_active_standard_identity": 120
+  },
+  "findings": [],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false,
+    "customer_state_writes": false
+  }
+}
