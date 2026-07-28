@@ -14,6 +14,10 @@ import {
   TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
   evaluateTcgplayerMarketQualificationV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
+import {
+  loadTcgplayerMarketCanaryDefinitionV1,
+  tcgplayerMarketCanarySourceKeyV1,
+} from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -48,6 +52,7 @@ function parseArgs(argv) {
     runKey: null,
     outRoot: DEFAULT_OUT_ROOT,
     limit: null,
+    canaryDefinitionPath: null,
     freshnessHours: TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
     suppressionHours: TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
     batchSize: 500,
@@ -77,6 +82,10 @@ function parseArgs(argv) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
     } else if (arg.startsWith("--limit=")) {
       args.limit = Number.parseInt(arg.slice("--limit=".length), 10);
+    } else if (arg.startsWith("--canary-definition=")) {
+      args.canaryDefinitionPath = path.resolve(
+        arg.slice("--canary-definition=".length),
+      );
     } else if (arg.startsWith("--freshness-hours=")) {
       args.freshnessHours = Number(arg.slice("--freshness-hours=".length));
     } else if (arg.startsWith("--suppression-hours=")) {
@@ -125,8 +134,21 @@ function parseArgs(argv) {
       `write modes require --database-timeout-minutes >= ${MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES}`,
     );
   }
-  if (args.runMode === "canary" && args.limit === null) {
-    throw new Error("canary mode requires --limit");
+  if (args.runMode === "canary" && !args.canaryDefinitionPath) {
+    throw new Error("canary mode requires --canary-definition");
+  }
+  if (args.canaryDefinitionPath && args.limit !== null) {
+    throw new Error(
+      "exact canary definition modes forbid first-N --limit selection",
+    );
+  }
+  if (
+    args.canaryDefinitionPath &&
+    !new Set(["dry_run", "canary"]).has(args.runMode)
+  ) {
+    throw new Error(
+      "--canary-definition is only valid in dry_run or canary mode",
+    );
   }
   return args;
 }
@@ -233,7 +255,50 @@ async function latestSourceRun(client) {
   return result.rows[0];
 }
 
-async function candidateRows(client, limit) {
+async function candidateRows(client, { limit, canaryDefinition }) {
+  if (canaryDefinition) {
+    const printingIds = canaryDefinition.printings.map(
+      (printing) => printing.card_printing_id,
+    );
+    const result = await client.query(
+      `select *
+         from public.v_tcgplayer_market_qualification_candidates_v1
+        where card_printing_id = any($1::uuid[])
+        order by source_product_id, source_subtype_name, source_observation_id`,
+      [printingIds],
+    );
+    const rowsBySourceKey = new Map();
+    for (const row of result.rows) {
+      const key = tcgplayerMarketCanarySourceKeyV1(row);
+      const matches = rowsBySourceKey.get(key) ?? [];
+      matches.push(row);
+      rowsBySourceKey.set(key, matches);
+    }
+    return canaryDefinition.printings.map((printing) => {
+      const key = tcgplayerMarketCanarySourceKeyV1(printing);
+      const matches = rowsBySourceKey.get(key) ?? [];
+      if (matches.length !== 1) {
+        throw new Error(
+          `canary source identity ${key} resolved ${matches.length} rows`,
+        );
+      }
+      const row = matches[0];
+      const mismatches = [
+        ["card_print_id", printing.card_print_id],
+        ["gv_id", printing.gv_id],
+        ["printing_gv_id", printing.printing_gv_id],
+        ["finish_key", printing.expected_finish],
+      ].filter(([field, expected]) => row[field] !== expected);
+      if (mismatches.length) {
+        throw new Error(
+          `canary identity ${key} drifted: ${mismatches
+            .map(([field, expected]) => `${field}=${row[field]} expected=${expected}`)
+            .join(",")}`,
+        );
+      }
+      return row;
+    });
+  }
   const params = [];
   const limitSql = limit === null ? "" : "limit $1";
   if (limit !== null) params.push(limit);
@@ -1237,7 +1302,10 @@ function decisionSummary(decisions) {
 }
 
 async function runDryRun(client, args, sourceRun, runPlan) {
-  const rows = await candidateRows(client, args.limit);
+  const rows = await candidateRows(client, {
+    limit: args.limit,
+    canaryDefinition: args.canaryDefinition,
+  });
   const evaluatedAt = new Date().toISOString();
   const decisions = rows.map((row, index) =>
     buildDecision(
@@ -1328,7 +1396,10 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "stage_candidates",
       operation: async () => {
-        const rows = await candidateRows(client, args.limit);
+        const rows = await candidateRows(client, {
+          limit: args.limit,
+          canaryDefinition: args.canaryDefinition,
+        });
         const candidates = rows.map((row) => buildCandidate(row, run.id));
         await insertCandidates(client, candidates, args.batchSize);
         const staged = await stagedCandidates(client, run.id);
@@ -1484,6 +1555,15 @@ async function runDurable(client, args, sourceRun, runPlan) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  let loadedCanary = null;
+  if (args.canaryDefinitionPath) {
+    loadedCanary = await loadTcgplayerMarketCanaryDefinitionV1(
+      args.canaryDefinitionPath,
+    );
+    args.canaryDefinition = loadedCanary.definition;
+  } else {
+    args.canaryDefinition = null;
+  }
   const url = connectionString();
   if (!url) {
     throw new Error(
@@ -1532,6 +1612,15 @@ async function main() {
       created_at: new Date().toISOString(),
       settings: {
         limit: args.limit,
+        canary_definition_path: loadedCanary
+          ? path.relative(REPO_ROOT, loadedCanary.absolutePath).replace(/\\/g, "/")
+          : null,
+        canary_definition_sha256: loadedCanary
+          ? sha256(loadedCanary.raw)
+          : null,
+        canary_id: loadedCanary?.definition.canary_id ?? null,
+        canary_expected_count:
+          loadedCanary?.definition.expected_count ?? null,
         freshness_hours: args.freshnessHours,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
@@ -1546,6 +1635,14 @@ async function main() {
         publication_snapshot_writes: WRITE_MODES.has(args.runMode),
         current_publication_activation: ACTIVATION_MODES.has(args.runMode),
       },
+      canary_selection: loadedCanary
+        ? loadedCanary.definition.printings.map((printing) => ({
+            ordinal: printing.ordinal,
+            card_printing_id: printing.card_printing_id,
+            source_product_id: printing.source_product_id,
+            source_subtype_name: printing.source_subtype_name,
+          }))
+        : null,
     };
     await writeJson(path.join(outDir, "run_plan.json"), runPlan);
 
@@ -1584,6 +1681,10 @@ async function main() {
       supporting_fields_change_market_close: false,
       writes_publication_tables: WRITE_MODES.has(args.runMode),
       activates_current_publication: ACTIVATION_MODES.has(args.runMode),
+      canary_id: loadedCanary?.definition.canary_id ?? null,
+      canary_definition_sha256: loadedCanary
+        ? sha256(loadedCanary.raw)
+        : null,
       writes_canonical_identity: false,
       writes_vault: false,
     };

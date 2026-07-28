@@ -43,6 +43,7 @@ function parseArgs(argv) {
     ),
     freshnessHours: 36,
     publicationLimit: null,
+    canaryDefinitionPath: null,
   };
 
   for (const arg of argv) {
@@ -82,6 +83,10 @@ function parseArgs(argv) {
       args.publicationLimit = Number.parseInt(
         arg.slice("--publication-limit=".length),
         10,
+      );
+    } else if (arg.startsWith("--canary-definition=")) {
+      args.canaryDefinitionPath = path.resolve(
+        arg.slice("--canary-definition=".length),
       );
     }
   }
@@ -128,8 +133,21 @@ function parseArgs(argv) {
   if (!new Set(["dry_run", "shadow", "canary", "production"]).has(args.runMode)) {
     throw new Error("--mode must be dry_run, shadow, canary, or production");
   }
-  if (args.runMode === "canary" && args.publicationLimit === null) {
-    throw new Error("canary mode requires --publication-limit");
+  if (args.runMode === "canary" && !args.canaryDefinitionPath) {
+    throw new Error("canary mode requires --canary-definition");
+  }
+  if (args.canaryDefinitionPath && args.publicationLimit !== null) {
+    throw new Error(
+      "exact canary definition modes forbid first-N --publication-limit",
+    );
+  }
+  if (
+    args.canaryDefinitionPath &&
+    !new Set(["dry_run", "canary"]).has(args.runMode)
+  ) {
+    throw new Error(
+      "--canary-definition is only valid in dry_run or canary mode",
+    );
   }
   return args;
 }
@@ -276,6 +294,9 @@ async function main() {
       phase_timeout_minutes: args.phaseTimeoutMinutes,
       database_timeout_minutes: args.databaseTimeoutMinutes,
       publication_limit: args.publicationLimit,
+      canary_definition_path: args.canaryDefinitionPath
+        ? relative(args.canaryDefinitionPath)
+        : null,
       freshness_hours: args.freshnessHours,
       phase_state_authority: "database",
     },
@@ -354,6 +375,11 @@ async function main() {
   ];
   if (args.publicationLimit !== null) {
     publicationArgs.push(`--limit=${args.publicationLimit}`);
+  }
+  if (args.canaryDefinitionPath) {
+    publicationArgs.push(
+      `--canary-definition=${args.canaryDefinitionPath}`,
+    );
   }
   await runPhase({
     phase: "publication",
