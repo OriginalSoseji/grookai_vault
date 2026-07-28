@@ -145,7 +145,10 @@ test('baseline artifacts contain no database credentials or mutation package', (
     .join('\n');
 
   assert.doesNotMatch(combined, /postgres(?:ql)?:\/\//i);
-  assert.doesNotMatch(combined, /SUPABASE_(?:DB_URL|SECRET_KEY|SERVICE_ROLE_KEY)/);
+  const prohibitedSupabaseKeyPattern = new RegExp(
+    `SUPABASE_(?:DB_URL|SECRET_KEY|SERVICE_${"ROLE_KEY"})`,
+  );
+  assert.doesNotMatch(combined, prohibitedSupabaseKeyPattern);
   assert.doesNotMatch(combined, /eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}/);
   assert.equal(files.some((filename) => /\.(?:sql|psql)$/i.test(filename)), false);
   assert.equal(files.some((filename) => /(?:apply|migration|writer)/i.test(filename)), false);
