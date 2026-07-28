@@ -126,6 +126,10 @@ const SCHEDULE_VERIFIER = readFileSync(
   ),
   "utf8",
 );
+const SCHEDULE_ENV_EXAMPLE = readFileSync(
+  path.join(ROOT, "deploy", "env", "tcgplayer-market-pricing.env.example"),
+  "utf8",
+);
 const WEB_READ_MODEL = readFileSync(
   path.join(
     ROOT,
@@ -462,6 +466,23 @@ test("pipeline freezes provenance, resumes completed phases, and keeps write bou
   assert.match(PIPELINE, /vault_writes:\s*false/);
   assert.match(PIPELINE, /synthetic_value_calculation:\s*false/);
   assert.match(PIPELINE, /clean tracked working tree/);
+});
+
+test("full source syncs cannot use a ceiling below the observed TCGCSV workload", () => {
+  assert.match(PIPELINE, /FULL_SYNC_REQUEST_CEILING = 10_000/);
+  assert.match(
+    PIPELINE,
+    /!args\.skipIngest && args\.requestCeiling < FULL_SYNC_REQUEST_CEILING/,
+  );
+  assert.match(SCHEDULED_RUNNER, /FULL_SYNC_REQUEST_CEILING = 10_000/);
+  assert.match(
+    SCHEDULED_RUNNER,
+    /requestCeiling < FULL_SYNC_REQUEST_CEILING/,
+  );
+  assert.match(
+    SCHEDULE_ENV_EXAMPLE,
+    /TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING=10000/,
+  );
 });
 
 test("scheduled failure policy retries source transport failures but stops invariant failures", () => {

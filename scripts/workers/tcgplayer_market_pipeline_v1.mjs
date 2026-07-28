@@ -18,6 +18,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "pipeline",
 );
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
+const FULL_SYNC_REQUEST_CEILING = 10_000;
 
 function parseArgs(argv) {
   const args = {
@@ -25,7 +26,7 @@ function parseArgs(argv) {
     runKey: null,
     outRoot: DEFAULT_OUT_ROOT,
     skipIngest: false,
-    requestCeiling: 5000,
+    requestCeiling: FULL_SYNC_REQUEST_CEILING,
     freshnessHours: 36,
     publicationLimit: null,
   };
@@ -63,6 +64,11 @@ function parseArgs(argv) {
 
   if (!Number.isInteger(args.requestCeiling) || args.requestCeiling < 1) {
     throw new Error("--request-ceiling must be a positive integer");
+  }
+  if (!args.skipIngest && args.requestCeiling < FULL_SYNC_REQUEST_CEILING) {
+    throw new Error(
+      `full warehouse sync requires --request-ceiling >= ${FULL_SYNC_REQUEST_CEILING}`,
+    );
   }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
     throw new Error("--freshness-hours must be positive");

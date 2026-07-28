@@ -28,6 +28,7 @@ const PIPELINE = path.join(
 );
 const RUNNER_VERSION = "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1";
 const LOCK_NAME = "tcgplayer_market_scheduled_runner_v1";
+const FULL_SYNC_REQUEST_CEILING = 10_000;
 
 function parseArgs(argv) {
   const live = argv.includes("--run");
@@ -54,7 +55,8 @@ function parseArgs(argv) {
     ? Number.parseInt(publicationLimitRaw, 10)
     : null;
   const requestCeiling = Number.parseInt(
-    process.env.TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING || "5000",
+    process.env.TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING ||
+      String(FULL_SYNC_REQUEST_CEILING),
     10,
   );
   const freshnessHours = Number(
@@ -83,8 +85,13 @@ function parseArgs(argv) {
   if (!Number.isInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 5) {
     throw new Error("max attempts must be an integer from 1 through 5");
   }
-  if (!Number.isInteger(requestCeiling) || requestCeiling < 1) {
-    throw new Error("request ceiling must be a positive integer");
+  if (
+    !Number.isInteger(requestCeiling) ||
+    requestCeiling < FULL_SYNC_REQUEST_CEILING
+  ) {
+    throw new Error(
+      `scheduled full warehouse sync requires request ceiling >= ${FULL_SYNC_REQUEST_CEILING}`,
+    );
   }
   if (!Number.isFinite(freshnessHours) || freshnessHours <= 0) {
     throw new Error("freshness hours must be positive");
