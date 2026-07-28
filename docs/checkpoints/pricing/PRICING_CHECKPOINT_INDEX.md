@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_21_TCGPLAYER_MARKET_READ_PERFORMANCE.md`
+
+This checkpoint records the production read-path repair that moved active-list
+aggregation out of customer requests, preserved the shared pricing contract,
+and proved all detail and representative batch cases below the `500 ms` p95
+target.
+
+Decision locked there:
+
+- product reads never scan the raw listing warehouse; current prices use
+  request-scoped queries and available-today evidence comes from a separately
+  refreshed indexed snapshot
+
+Unresolved risk afterward:
+
+- the 72-hour canary, `95%` fixed-denominator coverage, full eligible signed-in
+  rollout, seven unattended cycles, and anonymous licensing gate remain
+
 ### `PRICING_CHECKPOINT_20_TCGPLAYER_MARKET_COVERAGE_BASELINE.md`
 
 This checkpoint fixes the Production V1 coverage denominator, preserves the
@@ -404,6 +422,10 @@ Recommended reading order for future maintainers:
      `90.712%` baseline and the concentrated exact-mapping work required before
      broad signed-in rollout
 
+20. `PRICING_CHECKPOINT_21_TCGPLAYER_MARKET_READ_PERFORMANCE.md`
+   - then read how customer pricing reads were separated from the raw listing
+     warehouse and proven below the Product V1 latency target in production
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -415,3 +437,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/TCGPLAYER_MARKET_SCHEMA_RECONCILIATION_V1_20260727.md`
 - `docs/audits/pricing/TCGPLAYER_MARKET_SHADOW_GATE_1_20260728.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/2026-07-28T08-40-41Z_canary_schedule_activation/DEPLOYMENT_REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/read_performance_gate/2026-07-28T09-47-20-239Z/REPORT.md`
