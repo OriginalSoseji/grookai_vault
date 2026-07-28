@@ -42,11 +42,11 @@ const PRODUCT_CONTRACT = read(
 test("ownership pricing targets expose exact raw printing identity and exclude slabs", () => {
   assert.match(
     MIGRATION,
-    /create or replace function public\.vault_mobile_pricing_targets_v1\(\)/i,
+    /create or replace view public\.v_vault_mobile_pricing_targets_v1/i,
   );
   assert.match(
     MIGRATION,
-    /vault_mobile_pricing_targets_v1\(\)[\s\S]*language plpgsql\s+security definer\s+set search_path = public/i,
+    /v_vault_mobile_pricing_targets_v1[\s\S]*security_barrier = true[\s\S]*security_invoker = false/i,
   );
   assert.match(
     MIGRATION,
@@ -77,11 +77,11 @@ test("ownership pricing targets expose exact raw printing identity and exclude s
 test("private ownership target is authenticated-only and public targets are visibility-gated", () => {
   assert.match(
     MIGRATION,
-    /revoke all on function public\.vault_mobile_pricing_targets_v1\(\)\s+from public, anon/i,
+    /revoke all on table public\.v_vault_mobile_pricing_targets_v1\s+from public, anon, authenticated, service_role/i,
   );
   assert.match(
     MIGRATION,
-    /grant execute on function public\.vault_mobile_pricing_targets_v1\(\)\s+to authenticated, service_role/i,
+    /grant select on table public\.v_vault_mobile_pricing_targets_v1\s+to authenticated, service_role/i,
   );
   assert.match(
     MIGRATION,
@@ -181,7 +181,7 @@ test("Flutter exact pricing rejects parent scope, mismatched identity, and missi
 });
 
 test("Flutter private, public, and GVVI Vault paths request exact printing prices", () => {
-  assert.match(FLUTTER_VAULT, /vault_mobile_pricing_targets_v1/);
+  assert.match(FLUTTER_VAULT, /v_vault_mobile_pricing_targets_v1/);
   assert.match(FLUTTER_VAULT, /fetchByCardPrintingIds/);
   assert.match(
     FLUTTER_PUBLIC,

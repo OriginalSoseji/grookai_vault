@@ -505,18 +505,6 @@ async function main() {
       first.publication_set_id,
     );
 
-    await withClient(url, async (immutabilityClient) => {
-      await assert.rejects(
-        immutabilityClient.query(
-          `update public.market_price_qualification_decisions
-              set market_price = 99
-            where run_id = $1`,
-          [first.run_id],
-        ),
-        /append-only/i,
-      );
-    });
-
     const authenticated = await withClient(
       url,
       async (authenticatedClient) => {
@@ -577,7 +565,7 @@ async function main() {
           );
           await authenticatedClient.query("set local role authenticated");
           return await authenticatedClient.query(
-            "select * from public.vault_mobile_pricing_targets_v1()",
+            "select * from public.v_vault_mobile_pricing_targets_v1",
           );
         } finally {
           await authenticatedClient.query("rollback");
@@ -602,10 +590,10 @@ async function main() {
       await anonymousClient.query("begin");
       try {
         await anonymousClient.query("set local role anon");
-        await assert.rejects(
-          anonymousClient.query(
-            "select * from public.vault_mobile_pricing_targets_v1()",
-          ),
+          await assert.rejects(
+            anonymousClient.query(
+              "select * from public.v_vault_mobile_pricing_targets_v1",
+            ),
           /permission denied/i,
         );
       } finally {
@@ -644,6 +632,18 @@ async function main() {
         .length,
       1,
     );
+
+    await withClient(url, async (immutabilityClient) => {
+      await assert.rejects(
+        immutabilityClient.query(
+          `update public.market_price_qualification_decisions
+              set market_price = 99
+            where run_id = $1`,
+          [first.run_id],
+        ),
+        /append-only/i,
+      );
+    });
 
     const provenance = current.rows[0].provenance_id;
     const tracePrivileges = await client.query(

@@ -1,40 +1,22 @@
 begin;
 
-create or replace function public.vault_mobile_pricing_targets_v1()
-returns table (
-  instance_id uuid,
-  card_print_id uuid,
-  card_printing_id uuid
-)
-language plpgsql
-security definer
-set search_path = public
-as $$
-declare
-  v_uid uuid := auth.uid();
-begin
-  if v_uid is null then
-    raise exception 'not_authenticated' using errcode = '28000';
-  end if;
+create or replace view public.v_vault_mobile_pricing_targets_v1
+with (security_barrier = true, security_invoker = false)
+as
+select
+  vii.id as instance_id,
+  vii.card_print_id,
+  vii.card_printing_id
+from public.vault_item_instances vii
+where vii.user_id = (select auth.uid())
+  and vii.archived_at is null
+  and vii.slab_cert_id is null
+  and vii.card_print_id is not null;
 
-  return query
-  select
-    vii.id as instance_id,
-    vii.card_print_id,
-    vii.card_printing_id
-  from public.vault_item_instances vii
-  where vii.user_id = v_uid
-    and vii.archived_at is null
-    and vii.slab_cert_id is null
-    and vii.card_print_id is not null
-  order by vii.card_print_id, vii.created_at desc, vii.id desc;
-end;
-$$;
+revoke all on table public.v_vault_mobile_pricing_targets_v1
+from public, anon, authenticated, service_role;
 
-revoke all on function public.vault_mobile_pricing_targets_v1()
-from public, anon;
-
-grant execute on function public.vault_mobile_pricing_targets_v1()
+grant select on table public.v_vault_mobile_pricing_targets_v1
 to authenticated, service_role;
 
 drop function if exists public.vault_mobile_card_copies_v1(uuid, uuid);
