@@ -39,6 +39,8 @@ const REQUIRED_PHASES = [
 ];
 const WRITE_MODES = new Set(["shadow", "canary", "production"]);
 const ACTIVATION_MODES = new Set(["canary", "production"]);
+const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
+const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
 
 function parseArgs(argv) {
   const args = {
@@ -49,6 +51,11 @@ function parseArgs(argv) {
     freshnessHours: TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
     suppressionHours: TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
     batchSize: 500,
+    databaseTimeoutMinutes: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES ||
+        String(DEFAULT_DATABASE_TIMEOUT_MINUTES),
+      10,
+    ),
   };
 
   for (const arg of argv) {
@@ -78,6 +85,11 @@ function parseArgs(argv) {
       );
     } else if (arg.startsWith("--batch-size=")) {
       args.batchSize = Number.parseInt(arg.slice("--batch-size=".length), 10);
+    } else if (arg.startsWith("--database-timeout-minutes=")) {
+      args.databaseTimeoutMinutes = Number.parseInt(
+        arg.slice("--database-timeout-minutes=".length),
+        10,
+      );
     }
   }
 
@@ -98,6 +110,20 @@ function parseArgs(argv) {
   }
   if (!Number.isInteger(args.batchSize) || args.batchSize < 1 || args.batchSize > 2000) {
     throw new Error("--batch-size must be between 1 and 2000");
+  }
+  if (
+    !Number.isInteger(args.databaseTimeoutMinutes) ||
+    args.databaseTimeoutMinutes < 1
+  ) {
+    throw new Error("--database-timeout-minutes must be a positive integer");
+  }
+  if (
+    WRITE_MODES.has(args.runMode) &&
+    args.databaseTimeoutMinutes < MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES
+  ) {
+    throw new Error(
+      `write modes require --database-timeout-minutes >= ${MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES}`,
+    );
   }
   if (args.runMode === "canary" && args.limit === null) {
     throw new Error("canary mode requires --limit");
@@ -1429,8 +1455,8 @@ async function main() {
     connectionString: url,
     ssl: sslConfig(url),
     connectionTimeoutMillis: 15_000,
-    query_timeout: 300_000,
-    statement_timeout: 300_000,
+    query_timeout: args.databaseTimeoutMinutes * 60 * 1000,
+    statement_timeout: args.databaseTimeoutMinutes * 60 * 1000,
   });
   await client.connect();
   try {
@@ -1456,6 +1482,7 @@ async function main() {
         freshness_hours: args.freshnessHours,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
+        database_timeout_minutes: args.databaseTimeoutMinutes,
       },
       boundaries: {
         source_warehouse_writes: false,

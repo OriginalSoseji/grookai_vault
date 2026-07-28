@@ -536,6 +536,40 @@ test("full source phase timeout exceeds the measured 70-76 minute runtime", () =
   );
 });
 
+test("publication database timeout covers measured assignment preparation", () => {
+  assert.match(WORKER, /DEFAULT_DATABASE_TIMEOUT_MINUTES = 20/);
+  assert.match(WORKER, /MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10/);
+  assert.match(
+    WORKER,
+    /query_timeout: args\.databaseTimeoutMinutes \* 60 \* 1000/,
+  );
+  assert.match(
+    WORKER,
+    /statement_timeout: args\.databaseTimeoutMinutes \* 60 \* 1000/,
+  );
+  assert.match(
+    WORKER,
+    /database_timeout_minutes: args\.databaseTimeoutMinutes/,
+  );
+  assert.match(PIPELINE, /DEFAULT_DATABASE_TIMEOUT_MINUTES = 20/);
+  assert.match(
+    PIPELINE,
+    /--database-timeout-minutes=\$\{args\.databaseTimeoutMinutes\}/,
+  );
+  assert.match(
+    PIPELINE,
+    /database_timeout_minutes: args\.databaseTimeoutMinutes/,
+  );
+  assert.match(
+    SCHEDULED_RUNNER,
+    /--database-timeout-minutes=\$\{args\.databaseTimeoutMinutes\}/,
+  );
+  assert.match(
+    SCHEDULE_ENV_EXAMPLE,
+    /TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES=20/,
+  );
+});
+
 test("scheduled failure policy retries source transport failures but stops invariant failures", () => {
   assert.deepEqual(
     classifyMarketPipelineFailureV1({

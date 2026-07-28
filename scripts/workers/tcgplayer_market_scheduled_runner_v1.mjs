@@ -31,6 +31,8 @@ const LOCK_NAME = "tcgplayer_market_scheduled_runner_v1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
 const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
+const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
+const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
 
 function parseArgs(argv) {
   const live = argv.includes("--run");
@@ -64,6 +66,11 @@ function parseArgs(argv) {
   const phaseTimeoutMinutes = Number.parseInt(
     process.env.TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES ||
       String(DEFAULT_PHASE_TIMEOUT_MINUTES),
+    10,
+  );
+  const databaseTimeoutMinutes = Number.parseInt(
+    process.env.TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES ||
+      String(DEFAULT_DATABASE_TIMEOUT_MINUTES),
     10,
   );
   const freshnessHours = Number(
@@ -108,6 +115,14 @@ function parseArgs(argv) {
       `scheduled full warehouse sync requires phase timeout >= ${FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES} minutes`,
     );
   }
+  if (
+    !Number.isInteger(databaseTimeoutMinutes) ||
+    databaseTimeoutMinutes < MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES
+  ) {
+    throw new Error(
+      `scheduled writes require database timeout >= ${MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES} minutes`,
+    );
+  }
   if (!Number.isFinite(freshnessHours) || freshnessHours <= 0) {
     throw new Error("freshness hours must be positive");
   }
@@ -130,6 +145,7 @@ function parseArgs(argv) {
     publicationLimit,
     requestCeiling,
     phaseTimeoutMinutes,
+    databaseTimeoutMinutes,
     freshnessHours,
   };
 }
@@ -236,6 +252,7 @@ async function main() {
     retry_delays_seconds: args.retryDelaysSeconds,
     request_ceiling: args.requestCeiling,
     phase_timeout_minutes: args.phaseTimeoutMinutes,
+    database_timeout_minutes: args.databaseTimeoutMinutes,
     freshness_hours: args.freshnessHours,
     publication_limit: args.publicationLimit,
     boundaries: {
@@ -339,6 +356,7 @@ async function main() {
         `--out-root=${pipelineOutRoot}`,
         `--request-ceiling=${args.requestCeiling}`,
         `--phase-timeout-minutes=${args.phaseTimeoutMinutes}`,
+        `--database-timeout-minutes=${args.databaseTimeoutMinutes}`,
         `--freshness-hours=${args.freshnessHours}`,
       ];
       if (args.publicationLimit !== null) {

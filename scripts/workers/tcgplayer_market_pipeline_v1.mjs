@@ -21,6 +21,8 @@ const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
 const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
+const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
+const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
 
 function parseArgs(argv) {
   const args = {
@@ -32,6 +34,11 @@ function parseArgs(argv) {
     phaseTimeoutMinutes: Number.parseInt(
       process.env.TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES ||
         String(DEFAULT_PHASE_TIMEOUT_MINUTES),
+      10,
+    ),
+    databaseTimeoutMinutes: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES ||
+        String(DEFAULT_DATABASE_TIMEOUT_MINUTES),
       10,
     ),
     freshnessHours: 36,
@@ -62,6 +69,11 @@ function parseArgs(argv) {
         arg.slice("--phase-timeout-minutes=".length),
         10,
       );
+    } else if (arg.startsWith("--database-timeout-minutes=")) {
+      args.databaseTimeoutMinutes = Number.parseInt(
+        arg.slice("--database-timeout-minutes=".length),
+        10,
+      );
     } else if (arg.startsWith("--freshness-hours=")) {
       args.freshnessHours = Number(
         arg.slice("--freshness-hours=".length),
@@ -87,6 +99,14 @@ function parseArgs(argv) {
     args.phaseTimeoutMinutes < 1
   ) {
     throw new Error("--phase-timeout-minutes must be a positive integer");
+  }
+  if (
+    !Number.isInteger(args.databaseTimeoutMinutes) ||
+    args.databaseTimeoutMinutes < MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES
+  ) {
+    throw new Error(
+      `write modes require --database-timeout-minutes >= ${MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES}`,
+    );
   }
   if (
     !args.skipIngest &&
@@ -254,6 +274,7 @@ async function main() {
     settings: {
       request_ceiling: args.requestCeiling,
       phase_timeout_minutes: args.phaseTimeoutMinutes,
+      database_timeout_minutes: args.databaseTimeoutMinutes,
       publication_limit: args.publicationLimit,
       freshness_hours: args.freshnessHours,
       phase_state_authority: "database",
@@ -329,6 +350,7 @@ async function main() {
     `--run-key=${runKey}-publication`,
     `--out-root=${path.join(runDir, "publication")}`,
     `--freshness-hours=${args.freshnessHours}`,
+    `--database-timeout-minutes=${args.databaseTimeoutMinutes}`,
   ];
   if (args.publicationLimit !== null) {
     publicationArgs.push(`--limit=${args.publicationLimit}`);
