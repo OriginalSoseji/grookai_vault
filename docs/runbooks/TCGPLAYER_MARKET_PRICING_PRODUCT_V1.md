@@ -201,6 +201,26 @@ The evaluator reads production state but performs no database writes,
 publication activation, rollback, or grant changes. Preserve its run plan,
 evidence, summary, report, and artifact hashes with the canary checkpoint.
 
+## Coverage Gate
+
+Run the fixed-denominator coverage audit against the latest reconciled full
+shadow run:
+
+```powershell
+npm run pricing:market:coverage
+```
+
+To enforce the Production V1 threshold:
+
+```powershell
+npm run pricing:market:coverage -- --require-pass
+```
+
+The report must not remove missing mappings from the denominator. Use
+`coverage_gaps.jsonl` and the per-set report to prioritize exact canonical and
+finish-mapping repairs. Scope exclusions are written separately with their
+deterministic V1/V1.1 boundary reasons.
+
 ## Rollout
 
 Keep RPC execution authenticated-only during the signed-in canary.

@@ -186,3 +186,28 @@ The following are explicitly outside Production V1:
 - public anonymous reads
 
 Each expansion requires its own evidence contract and rollout gate.
+
+## Coverage Contract
+
+Production V1 coverage is governed by
+`TCGPLAYER_MARKET_COVERAGE_POLICY_V1`.
+
+The denominator unit is one current TCGCSV source product/subtype price row.
+It includes rows that:
+
+- belong to Pokemon category `3`
+- are active and current in the verified source artifact
+- carry a positive USD `marketPrice`
+- represent a supported ordinary V1 finish
+- are not deterministically excluded object or V1.1 special-print lanes
+
+Missing canonical mapping, identity, printed-number, or exact-finish evidence
+does not remove a row from the denominator. Those are coverage gaps.
+
+The numerator contains denominator rows that resolve to one exact canonical
+card, one exact canonical printing, one exact child finish, and an eligible or
+freshness-delayed qualification decision.
+
+The minimum Production V1 threshold is `95%`. Every non-numerator denominator
+row and every scope exclusion must retain a deterministic reason. Coverage must
+be reported by source set, era, finish, and value band.

@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_20_TCGPLAYER_MARKET_COVERAGE_BASELINE.md`
+
+This checkpoint fixes the Production V1 coverage denominator, preserves the
+first read-only production baseline, and records the real `90.712%` result
+without excluding missing mappings.
+
+Decision locked there:
+
+- ordinary V1 coverage uses a versioned source product/subtype denominator;
+  missing mappings remain gaps, and the signed-in rollout cannot expand until
+  coverage reaches at least `95%`
+
+Unresolved risk afterward:
+
+- at least `1,474` additional exact rows, concentrated in modern, holo, and
+  high-value lanes, must be repaired and proven through a new full shadow run
+
 ### `PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md`
 
 This checkpoint records the production operations migration, durable founder
@@ -381,6 +398,11 @@ Recommended reading order for future maintainers:
    - then read how the exact canary became a guarded scheduled production
      operation with durable alerts, verified no-change health policy, and
      signed-in source-to-client readback
+
+19. `PRICING_CHECKPOINT_20_TCGPLAYER_MARKET_COVERAGE_BASELINE.md`
+   - then read how the fixed Production V1 denominator exposed the real
+     `90.712%` baseline and the concentrated exact-mapping work required before
+     broad signed-in rollout
 
 After those checkpoints, read the supporting audits in this order:
 
