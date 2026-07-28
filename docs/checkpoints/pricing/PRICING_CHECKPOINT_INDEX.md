@@ -47,8 +47,9 @@ Decision locked there:
 
 Unresolved risk afterward:
 
-- the migration, bounded publication apply, remote readback, and signed-in
-  production canary still require their explicit deployment gates
+- the linked migration drift, remote apply, three shadow cycles, bounded
+  publication apply, and signed-in production canary still require their
+  explicit deployment gates
 
 ### `PRICING_CHECKPOINT_01_READINESS_AND_RISK.md`
 

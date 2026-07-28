@@ -9,6 +9,11 @@ import {
   evaluateTcgplayerMarketQualificationV1,
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
+import {
+  classifyMarketPipelineFailureV1,
+  parseRetryDelaysV1,
+  retryDelayMsV1,
+} from "../../backend/pricing/tcgplayer_market_operations_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,6 +60,69 @@ const LOCAL_SMOKE = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_market_publication_local_smoke_v1.mjs",
+  ),
+  "utf8",
+);
+const SCHEDULED_RUNNER = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "workers",
+    "tcgplayer_market_scheduled_runner_v1.mjs",
+  ),
+  "utf8",
+);
+const OPERATIONS_WEBHOOK = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "ops",
+    "grookai_operations_webhook_v1.mjs",
+  ),
+  "utf8",
+);
+const SCHEDULED_SERVICE = readFileSync(
+  path.join(
+    ROOT,
+    "deploy",
+    "systemd",
+    "grookai-tcgplayer-market-pipeline.service",
+  ),
+  "utf8",
+);
+const SCHEDULED_TIMER = readFileSync(
+  path.join(
+    ROOT,
+    "deploy",
+    "systemd",
+    "grookai-tcgplayer-market-pipeline.timer",
+  ),
+  "utf8",
+);
+const OPERATIONS_WEBHOOK_SERVICE = readFileSync(
+  path.join(
+    ROOT,
+    "deploy",
+    "systemd",
+    "grookai-operations-webhook@.service",
+  ),
+  "utf8",
+);
+const SCHEDULE_INSTALLER = readFileSync(
+  path.join(
+    ROOT,
+    "deploy",
+    "scripts",
+    "install-tcgplayer-market-pipeline-systemd.sh",
+  ),
+  "utf8",
+);
+const SCHEDULE_VERIFIER = readFileSync(
+  path.join(
+    ROOT,
+    "deploy",
+    "scripts",
+    "verify-tcgplayer-market-pipeline-systemd.sh",
   ),
   "utf8",
 );
@@ -394,6 +462,95 @@ test("pipeline freezes provenance, resumes completed phases, and keeps write bou
   assert.match(PIPELINE, /vault_writes:\s*false/);
   assert.match(PIPELINE, /synthetic_value_calculation:\s*false/);
   assert.match(PIPELINE, /clean tracked working tree/);
+});
+
+test("scheduled failure policy retries source transport failures but stops invariant failures", () => {
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "warehouse_current_sync",
+      errorText: "HTTP 503",
+    }),
+    {
+      classification: "retryable_source_or_transport_failure",
+      retryable: true,
+    },
+  );
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "health",
+      errorText: "eligible snapshot reconciliation mismatch",
+    }),
+    {
+      classification: "non_retryable_invariant_failure",
+      retryable: false,
+    },
+  );
+  assert.deepEqual(parseRetryDelaysV1("60, 300"), [60, 300]);
+  assert.equal(retryDelayMsV1([60, 300], 1), 60_000);
+  assert.equal(retryDelayMsV1([60, 300], 3), 300_000);
+});
+
+test("scheduled runner is safe by default and preserves one durable run key across retries", () => {
+  assert.match(SCHEDULED_RUNNER, /TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1/);
+  assert.match(SCHEDULED_RUNNER, /const live = argv\.includes\("--run"\)/);
+  assert.match(SCHEDULED_RUNNER, /TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN !== "1"/);
+  assert.match(
+    SCHEDULED_RUNNER,
+    /TCGPLAYER_MARKET_REPLACEMENT_VERIFIED !== "1"/,
+  );
+  assert.match(
+    SCHEDULED_RUNNER,
+    /pg_try_advisory_lock\(hashtext\(\$1\)\)/,
+  );
+  assert.match(SCHEDULED_RUNNER, /scheduled_attempts\.jsonl/);
+  assert.match(SCHEDULED_RUNNER, /scheduled_summary\.json/);
+  assert.match(SCHEDULED_RUNNER, /scheduled resume refused because frozen plan fields changed/);
+  assert.match(SCHEDULED_RUNNER, /--resume-run-key=\$\{args\.runKey\}/);
+  assert.match(SCHEDULED_RUNNER, /classification\.retryable/);
+  assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
+  assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);
+  assert.match(SCHEDULED_RUNNER, /modeled_value_writes:\s*false/);
+});
+
+test("systemd schedule is authoritative at 08:15 UTC and has a required failure route", () => {
+  assert.match(SCHEDULED_TIMER, /OnCalendar=\*-\*-\* 08:15:00 UTC/);
+  assert.match(SCHEDULED_TIMER, /RandomizedDelaySec=0/);
+  assert.match(
+    SCHEDULED_SERVICE,
+    /\/usr\/bin\/flock -n \/tmp\/grookai-tcgplayer-market-pipeline\.lock/,
+  );
+  assert.match(
+    SCHEDULED_SERVICE,
+    /OnFailure=grookai-operations-webhook@%n\.service/,
+  );
+  assert.match(
+    SCHEDULED_SERVICE,
+    /tcgplayer_market_scheduled_runner_v1\.mjs --run/,
+  );
+  assert.match(
+    OPERATIONS_WEBHOOK_SERVICE,
+    /grookai_operations_webhook_v1\.mjs/,
+  );
+  assert.match(OPERATIONS_WEBHOOK, /GROOKAI_OPERATIONS_WEBHOOK_URL/);
+  assert.match(OPERATIONS_WEBHOOK, /notification_payload\.json/);
+  assert.match(OPERATIONS_WEBHOOK, /delivery_receipt\.json/);
+  assert.match(OPERATIONS_WEBHOOK, /status: "delivery_failed"/);
+});
+
+test("schedule installation cannot retire the old timer before replacement proof", () => {
+  assert.match(SCHEDULE_INSTALLER, /ACTIVATE_TIMER="\$\{ACTIVATE_TIMER:-0\}"/);
+  assert.match(
+    SCHEDULE_INSTALLER,
+    /TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1 after shadow verification/,
+  );
+  assert.match(
+    SCHEDULE_INSTALLER,
+    /systemctl disable --now "\$\{LEGACY_TIMER\}" "\$\{LEGACY_SERVICE\}"/,
+  );
+  assert.match(SCHEDULE_INSTALLER, /systemctl enable --now "\$\{TIMER_NAME\}"/);
+  assert.match(SCHEDULE_VERIFIER, /legacy_current_sync_timer_still_enabled/);
+  assert.match(SCHEDULE_VERIFIER, /missing_operations_webhook_route/);
+  assert.match(SCHEDULE_VERIFIER, /TCGPLAYER_MARKET_OPS_READY/);
 });
 
 test("health probe checks freshness, reconciliation, and source-to-publication trace", () => {

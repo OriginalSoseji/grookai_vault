@@ -51,6 +51,16 @@ separate exact-printing availability lane.
 - Local PostgreSQL compilation and security readback prove raw ledgers are
   RLS-enabled and service-role-only, shared pricing reads are
   authenticated-only, and provenance trace is service-role-only.
+- Full zero-state migration replay completed locally on 2026-07-27.
+- Local integration smoke from commit `a8bba197` published and read back one
+  exact `$12.34` TCGPlayer Market row, resumed without duplicate phases,
+  created a second generation, rolled back to the first generation, rejected
+  append-only mutation, returned one authenticated shared-read row, denied
+  authenticated trace execution, and returned one service-role trace.
+- The authoritative scheduling package is now defined at `08:15 UTC` with
+  bounded same-run retries, operating-system and PostgreSQL overlap locks,
+  durable attempt artifacts, guarded legacy-timer replacement, and required
+  generic operations-webhook routing.
 - The V1 migration has not been applied to production in this checkpoint.
 - No production publication rows have been written by this work.
 
@@ -76,7 +86,8 @@ separate exact-printing availability lane.
 
 ## Explicit Next Gate
 
-Finish local verification, commit the implementation, apply the V1 migration
-to the linked environment under a targeted schema gate, verify schema/RLS/RPC
-readback, run a bounded publication apply, reconcile it, and inspect a
-signed-in canary before any anonymous/public grant.
+Commit and verify the scheduled operations package, then route and test every
+supported web and Flutter surface through the shared read model. After those
+local gates pass, reconcile the nonempty linked schema diff before any remote
+migration apply, run three shadow cycles, and proceed to the bounded signed-in
+canary without granting anonymous access.

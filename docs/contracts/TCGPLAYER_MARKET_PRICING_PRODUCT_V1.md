@@ -130,6 +130,15 @@ Ordinary operation must not require manual row approval. Ambiguous rows are
 quarantined by deterministic reason code and can be repaired as mapping policy
 work without blocking eligible rows.
 
+The authoritative current-price schedule runs the combined pipeline daily at
+`08:15 UTC`. It holds both an operating-system lock and a PostgreSQL advisory
+lock, retries only source/transport failures with the same durable run key, and
+routes terminal failures through the required generic operations webhook.
+
+The standalone TCGCSV current-sync timer may be retired only after combined
+pipeline shadow verification. Historical backfill remains independently
+governed and must continue to yield during the current-price window.
+
 ## Health Gates
 
 Production health is critical when:

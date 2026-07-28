@@ -22,6 +22,17 @@ flutter test
 
 Compile the migration in an isolated local database before remote apply.
 
+Run the complete local integration smoke:
+
+```powershell
+supabase db reset --local --yes
+node scripts/audits/tcgplayer_market_publication_local_smoke_v1.mjs
+```
+
+The smoke must prove publication, idempotent resume, a replacement generation,
+atomic rollback, append-only enforcement, authenticated shared reads, and
+service-only provenance.
+
 ## Publication Dry Run
 
 This reads the current warehouse and writes artifacts only:
@@ -66,6 +77,55 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply --resume-run-key=<
 Completed phases are not repeated. Resume is refused if the current commit SHA
 or mode differs from the frozen run plan.
 
+## Scheduled Operations
+
+The safe default produces an operations plan without writes:
+
+```powershell
+npm run pricing:market:schedule:dry-run
+```
+
+Production scheduling uses:
+
+- `grookai-tcgplayer-market-pipeline.timer`
+- `grookai-tcgplayer-market-pipeline.service`
+- `grookai-operations-webhook@.service`
+
+The timer is fixed at `08:15 UTC`. The scheduled runner holds a PostgreSQL
+advisory lock for the full run, preserves one run key across retries, and writes
+one durable attempt record per invocation. Only source/transport failures are
+retried. Health, reconciliation, and publication-invariant failures stop
+immediately and notify operations.
+
+Install the units without activation while shadow proof is pending:
+
+```bash
+sudo bash deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh
+```
+
+After three shadow cycles pass, set the dedicated environment file to:
+
+```text
+TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN=1
+TCGPLAYER_MARKET_SCHEDULE_MODE=production
+TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
+```
+
+Then perform the guarded schedule replacement:
+
+```bash
+sudo ACTIVATE_TIMER=1 \
+  bash deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh
+bash deploy/scripts/verify-tcgplayer-market-pipeline-systemd.sh --production
+```
+
+Activation disables the standalone `grookai-tcgcsv-warehouse.timer` because
+the combined pipeline now owns current acquisition and publication. It does not
+disable historical backfill or the separately governed internal MEE worker.
+
+`GROOKAI_OPERATIONS_WEBHOOK_URL` is mandatory for activation and must remain in
+`/etc/grookai/tcgplayer-market-pricing.env`, never in Git.
+
 ## Health Check
 
 ```powershell
@@ -105,6 +165,9 @@ read RPC grants. Do not grant raw tables or internal views.
 - Mapping ambiguity: quarantine and repair canonical/external mapping.
 - Finish ambiguity: quarantine; do not infer special edition equivalence.
 - Stale source: rerun current warehouse sync.
-- Source sync failure: preserve artifacts and retry with the same run key.
+- Source or transport failure: preserve artifacts and retry with the same run
+  key up to the configured ceiling.
+- Retry exhaustion: stop, preserve `scheduled_attempts.jsonl`, and verify the
+  webhook delivery receipt under `/var/lib/grookai/operations-notifications`.
 - Reconciliation mismatch: rollback publication transaction and stop.
 - Client mismatch: stop rollout and trace the `provenance_id`.
