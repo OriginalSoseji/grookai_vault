@@ -11,6 +11,7 @@
     "jpn-master-index:reconcile": "node scripts/audits/japanese_master_index_v4/live_reconciliation_v1.mjs",
     "jpn-master-index:promotion-package": "node scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs",
     "jpn-master-index:payload-preflight": "node scripts/audits/japanese_master_index_v4/payload_preflight_v1.mjs",
+    "jpn-master-index:payload-writer": "node scripts/audits/japanese_master_index_v4/payload_writer_v1.mjs",
     "jpn-master-index:sets": "node scripts/audits/japanese_master_index_v4/set_registry_harvest_v1.mjs",
     "jpn-master-index:sets:resolve": "node scripts/audits/japanese_master_index_v4/set_registry_build_v1.mjs",
     "jpn-master-index:cards:plan": "node scripts/audits/japanese_master_index_v4/card_acquisition_plan_v1.mjs",
