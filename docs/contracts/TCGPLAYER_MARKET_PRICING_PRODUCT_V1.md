@@ -211,3 +211,31 @@ freshness-delayed qualification decision.
 The minimum Production V1 threshold is `95%`. Every non-numerator denominator
 row and every scope exclusion must retain a deterministic reason. Coverage must
 be reported by source set, era, finish, and value band.
+
+## Performance Contract
+
+Production V1 read performance is governed by
+`TCGPLAYER_MARKET_PERFORMANCE_POLICY_V1`.
+
+The exact shared RPC consumed by web and Flutter must be measured through the
+production PostgREST endpoint for:
+
+- one parent-card detail lookup
+- representative parent-card grid batches
+- one exact-printing detail lookup
+- representative exact-printing batches
+
+Every case must return the complete requested row count with zero request
+errors. The maximum accepted p95 latency is `500 ms`. Measurements preserve
+p50, p95, p99, response size, access mode, exact sample IDs, database execution
+plans, and artifact hashes.
+
+Service-role HTTP measurements prove the production transport and RPC runtime,
+but they must not be described as end-user JWT measurements. A separate direct
+database proof must execute the same RPC under the `authenticated` role.
+
+The shared customer RPC must never aggregate the raw active-listing warehouse.
+Exact-printing eBay active asks are maintained in
+`mv_market_listing_active_ask_current_v1` by a separately governed refresh
+phase. Refresh failures fail the activation pipeline closed, while shadow and
+dry-run modes inspect the cache without changing it.

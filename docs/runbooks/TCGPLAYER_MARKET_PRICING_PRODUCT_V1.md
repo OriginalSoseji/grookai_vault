@@ -221,6 +221,35 @@ The report must not remove missing mappings from the denominator. Use
 finish-mapping repairs. Scope exclusions are written separately with their
 deterministic V1/V1.1 boundary reasons.
 
+## Read Performance Gate
+
+Run the production shared-read benchmark:
+
+```powershell
+npm run pricing:market:performance
+```
+
+To require the Product V1 p95 target:
+
+```powershell
+npm run pricing:market:performance -- --require-pass
+```
+
+The audit is read-only. It measures the exact PostgREST RPC used by web and
+Flutter for detail and representative batch requests, then executes the same
+function under the database `authenticated` role. Preserve the run plan,
+sample IDs, raw measurements, execution plans, summary, report, and hashes.
+
+The scheduled activation pipeline refreshes the exact active-ask materialized
+snapshot before publication:
+
+```powershell
+npm run pricing:market:active-ask:refresh -- --apply
+```
+
+Do not run this command from a dirty tracked worktree. Shadow and dry-run
+pipelines read and validate the existing snapshot but do not refresh it.
+
 ## Rollout
 
 Keep RPC execution authenticated-only during the signed-in canary.

@@ -287,8 +287,13 @@ async function main() {
     branch,
     created_at: new Date().toISOString(),
     phases: args.skipIngest
-      ? ["publication", "health"]
-      : ["warehouse_current_sync", "publication", "health"],
+      ? ["active_ask_refresh", "publication", "health"]
+      : [
+          "warehouse_current_sync",
+          "active_ask_refresh",
+          "publication",
+          "health",
+        ],
     settings: {
       request_ceiling: args.requestCeiling,
       phase_timeout_minutes: args.phaseTimeoutMinutes,
@@ -364,6 +369,26 @@ async function main() {
       timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
     });
   }
+
+  const activeAskArgs = [
+    path.join(
+      "scripts",
+      "workers",
+      "tcgplayer_market_active_ask_refresh_v1.mjs",
+    ),
+    activationMode ? "--apply" : "--dry-run",
+    `--out-root=${path.join(runDir, "active_ask_refresh")}`,
+    `--timeout-minutes=${args.databaseTimeoutMinutes}`,
+  ];
+  await runPhase({
+    phase: "active_ask_refresh",
+    command: process.execPath,
+    args: activeAskArgs,
+    runDir,
+    state,
+    statePath,
+    timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
+  });
 
   const publicationArgs = [
     path.join("scripts", "workers", "tcgplayer_market_publication_worker_v1.mjs"),
