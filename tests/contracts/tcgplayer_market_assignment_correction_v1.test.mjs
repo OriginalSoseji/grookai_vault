@@ -45,6 +45,7 @@ test("repair is exact, append-only, and never activates pricing", () => {
     /MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1/,
   );
   assert.match(repair, /current_publication_activation: false/);
+  assert.match(repair, /observation\.product_id = \$2::integer/);
   assert.match(repair, /where source_product_id = \$2::integer/);
   assert.doesNotMatch(repair, /update public\.market_price_publication_snapshots/i);
   assert.doesNotMatch(repair, /update public\.market_price_qualification_decisions/i);

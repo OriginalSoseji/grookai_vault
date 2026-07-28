@@ -366,9 +366,9 @@ async function readback(client, sourceRunId, expectedCardPrintId) {
           and assignment.variant_assignment_version = $5
           and assignment.card_print_id = $3
           and assignment.card_printing_id is not null
-          and assignment.variant_assignment_status = 'exact_child_finish'
+         and assignment.variant_assignment_status = 'exact_child_finish'
          where observation.last_seen_run_id = $1
-           and observation.product_id = $2
+           and observation.product_id = $2::integer
        ),
        'candidate_rows', (
          select jsonb_agg(
