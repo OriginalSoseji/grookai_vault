@@ -124,13 +124,23 @@ async function main() {
       "GROOKAI_OPERATIONS_WEBHOOK_URL is required for live notification",
     );
   }
+  const webhookBearerToken =
+    process.env.GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN;
+  if (!webhookBearerToken) {
+    throw new Error(
+      "GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN is required for live notification",
+    );
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
   let receipt;
   try {
     const response = await fetch(webhookUrl, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        authorization: `Bearer ${webhookBearerToken}`,
+        "content-type": "application/json",
+      },
       body: JSON.stringify(payload),
       signal: controller.signal,
     });

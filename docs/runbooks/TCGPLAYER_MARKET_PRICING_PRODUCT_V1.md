@@ -139,8 +139,14 @@ TCGPLAYER_MARKET_REPLACEMENT_VERIFIED=1
 
 Re-run the installer and verify with `--production` after that explicit gate.
 
-`GROOKAI_OPERATIONS_WEBHOOK_URL` is mandatory for activation and must remain in
-`/etc/grookai/tcgplayer-market-pricing.env`, never in Git.
+`GROOKAI_OPERATIONS_WEBHOOK_URL` and
+`GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN` are mandatory for activation and
+must remain in `/etc/grookai/tcgplayer-market-pricing.env`, never in Git.
+The webhook records an append-only service-only receipt, enqueues an
+`operations_alert` for active founder recipients, and invokes the existing
+push dispatcher by exact notification ID. Critical operations alerts bypass
+card-notification preferences, quiet hours, watch mutes, and daily card push
+budgets.
 
 ## Health Check
 

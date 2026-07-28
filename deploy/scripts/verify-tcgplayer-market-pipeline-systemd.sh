@@ -38,6 +38,9 @@ else
   if ! grep -Eq '^GROOKAI_OPERATIONS_WEBHOOK_URL=.+$' "${ENV_FILE}"; then
     record_failure "missing_operations_webhook_url"
   fi
+  if ! grep -Eq '^GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN=.+$' "${ENV_FILE}"; then
+    record_failure "missing_operations_webhook_bearer_token"
+  fi
 fi
 
 if [[ "${VERIFY_MODE}" == "--production" ]]; then

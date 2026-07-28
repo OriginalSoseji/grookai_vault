@@ -134,6 +134,10 @@ The authoritative current-price schedule runs the combined pipeline daily at
 `08:15 UTC`. It holds both an operating-system lock and a PostgreSQL advisory
 lock, retries only source/transport failures with the same durable run key, and
 routes terminal failures through the required generic operations webhook.
+The webhook must authenticate with a dedicated bearer secret, preserve an
+append-only receipt, and route the exact alert through the service-owned
+notification dispatcher to active founder devices. Operations alerts are not
+card activity and must not require a card anchor.
 
 The standalone TCGCSV current-sync timer may be retired only after combined
 pipeline shadow verification. Historical backfill remains independently

@@ -57,6 +57,7 @@ fi
 
 require_env_value "SUPABASE_DB_URL"
 require_env_value "GROOKAI_OPERATIONS_WEBHOOK_URL"
+require_env_value "GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN"
 
 set -a
 # shellcheck disable=SC1090
