@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FounderPricingPlatformSummaryCard } from "@/components/founder/FounderGovernedPricingPlatform";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageContainer from "@/components/layout/PageContainer";
@@ -14,6 +15,7 @@ import {
   getFounderPricingOpsSummary,
   type FounderPricingOpsSummary,
 } from "@/lib/founder/getPricingOpsSummary";
+import { getFounderGovernedPricingPlatformSummary } from "@/lib/founder/getGovernedPricingPlatformSummary";
 import {
   getCatalogImageOpsSummary,
   type CatalogImageOpsSummary,
@@ -1282,8 +1284,9 @@ export default async function FounderPage() {
   const admin = createServerAdminClient();
   await requireFounderAccess("/founder");
 
-  const [pricingOps, imageOps, opsReportRegistry] = await Promise.all([
+  const [pricingOps, governedPricing, imageOps, opsReportRegistry] = await Promise.all([
     getFounderPricingOpsSummary(admin),
+    getFounderGovernedPricingPlatformSummary(admin),
     getCatalogImageOpsSummary(),
     getFounderOpsReportRegistry(),
   ]);
@@ -1411,7 +1414,7 @@ export default async function FounderPage() {
           title="Founder Tools"
           description="Use these guarded lanes for access, review, and staged operational changes."
         />
-        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
           <FounderToolCard
             href="/founder/entitlements"
             eyebrow="Access"
@@ -1443,6 +1446,12 @@ export default async function FounderPage() {
             title="Early Access"
             description="View and copy early access emails captured through the public landing page."
           />
+          <FounderToolCard
+            href="/founder/pricing"
+            eyebrow="Pricing"
+            title="TCGPlayer Market"
+            description="Trace exact-printing publication, deployment visibility, canary evidence, and Production V1 release gates."
+          />
         </div>
       </PageSection>
 
@@ -1461,6 +1470,8 @@ export default async function FounderPage() {
       <FounderOpsReportsSection registry={opsReportRegistry} />
 
       <CatalogImageOpsSection imageOps={imageOps} />
+
+      <FounderPricingPlatformSummaryCard summary={governedPricing} />
 
       <PricingOpsSection pricingOps={pricingOps} />
 
@@ -1927,9 +1938,9 @@ function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummar
     <section className="space-y-5">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Pricing Ops</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Legacy eBay Pricing Jobs</h2>
           <p className="text-sm text-slate-600">
-            Live founder visibility into Browse quota, queue pressure, and retry behavior.
+            Browse quota, queue pressure, and retry behavior for the legacy eBay worker. This is not the governed TCGPlayer Market publication platform.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
