@@ -137,6 +137,7 @@ function parseFlag(argv, name) {
 export function parseEligibilityArgsV1(argv = []) {
   return {
     inventoryDir: parseFlag(argv, "inventory-dir") ?? DEFAULT_INVENTORY_DIR,
+    sourceArtifactRoot: parseFlag(argv, "source-artifact-root") ?? REPO_ROOT,
     outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
     outputDir: parseFlag(argv, "output-dir"),
     concurrency: Number.parseInt(parseFlag(argv, "concurrency") ?? "32", 10),
@@ -591,15 +592,22 @@ async function mapConcurrent(items, concurrency, mapper) {
   return results;
 }
 
-async function loadGeneratedRows(validRows, inventoryPlan, concurrency) {
-  const dbExportPath = repoPath(inventoryPlan.sources.database_saved_export);
+async function loadGeneratedRows(
+  validRows,
+  inventoryPlan,
+  concurrency,
+  sourceArtifactRoot = REPO_ROOT,
+) {
+  const sourcePath = (value) =>
+    path.isAbsolute(value) ? value : path.resolve(sourceArtifactRoot, value);
+  const dbExportPath = sourcePath(inventoryPlan.sources.database_saved_export);
   const dbExport = await readJson(dbExportPath);
   const databaseRows = new Map((dbExport.records ?? []).map((record) => [record.card_print_id, record.generated_row]));
   return mapConcurrent(validRows, concurrency, async (inventoryRow) => {
     if (inventoryRow.source === "private_database_apply_1000") {
       return databaseRows.get(inventoryRow.card_print_id) ?? null;
     }
-    const artifact = await readJson(repoPath(inventoryRow.source_artifact_path));
+    const artifact = await readJson(sourcePath(inventoryRow.source_artifact_path));
     return artifact.generated_row ?? null;
   });
 }
@@ -683,6 +691,7 @@ export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
     branch: git.branch,
     tracked_worktree_clean: true,
     inventory_dir: posixRelative(inventoryDir),
+    source_artifact_root: posixRelative(path.resolve(args.sourceArtifactRoot)),
     inventory_run_key: inventoryReport.run_plan.run_key,
     input_hashes_sha256: inputHashes,
     expected_source_ids: inventoryReport.reconciliation.counts.source_rows_total,
@@ -704,7 +713,12 @@ export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
   await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
 
   const [generatedRows, pokemonIdentityContext] = await Promise.all([
-    loadGeneratedRows(validRows, inventoryReport.run_plan, args.concurrency),
+    loadGeneratedRows(
+      validRows,
+      inventoryReport.run_plan,
+      args.concurrency,
+      path.resolve(args.sourceArtifactRoot),
+    ),
     loadPokemonIdentityContext(),
   ]);
   const validDecisions = validRows.map((row, index) => classifyEligibilityV1(generatedRows[index], row, pokemonIdentityContext));

@@ -67,6 +67,7 @@ export function parseVisualSearchProjectionArgsV1(argv = []) {
   return {
     groupingDir: parseFlag(argv, "grouping-dir") ?? DEFAULT_GROUPING_DIR,
     eligibilityDir: parseFlag(argv, "eligibility-dir") ?? DEFAULT_ELIGIBILITY_DIR,
+    sourceArtifactRoot: parseFlag(argv, "source-artifact-root") ?? REPO_ROOT,
     outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
     outputDir: parseFlag(argv, "output-dir"),
     concurrency: Number.parseInt(parseFlag(argv, "concurrency") ?? "32", 10),
@@ -873,6 +874,7 @@ export async function runVisualSearchProjectionV1(args = parseVisualSearchProjec
     eligibility_dir: posixRelative(eligibilityDir),
     eligibility_run_key: eligibilityReport.run_plan.run_key,
     inventory_dir: posixRelative(inventoryDir),
+    source_artifact_root: posixRelative(path.resolve(args.sourceArtifactRoot)),
     planned_artwork_groups: groups.length,
     planned_memberships: memberships.length,
     planned_document_types: [...DOCUMENT_TYPES],
@@ -915,7 +917,9 @@ export async function runVisualSearchProjectionV1(args = parseVisualSearchProjec
   }
 
   const bucketResults = await mapPool([...sourceBuckets.entries()], args.concurrency, async ([artifactPath, requests]) => {
-    const absolutePath = repoPath(artifactPath);
+    const absolutePath = path.isAbsolute(artifactPath)
+      ? artifactPath
+      : path.resolve(args.sourceArtifactRoot, artifactPath);
     try {
       const buffer = await fs.readFile(absolutePath);
       const actualArtifactHash = sha256Buffer(buffer);

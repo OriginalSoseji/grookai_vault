@@ -62,6 +62,16 @@ test("eligibility parser defaults to the frozen reconciled inventory", () => {
   assert.equal(args.concurrency, 32);
 });
 
+test("eligibility parser accepts an external authoritative artifact root", () => {
+  const args = parseEligibilityArgsV1([
+    "--source-artifact-root=C:\\grookai_visual_search_releases\\complete",
+  ]);
+  assert.equal(
+    args.sourceArtifactRoot,
+    "C:\\grookai_visual_search_releases\\complete",
+  );
+});
+
 test("clean evidence is Tier A", () => {
   const row = generatedRow();
   const decision = classifyEligibilityV1(row, inventoryRow(row));

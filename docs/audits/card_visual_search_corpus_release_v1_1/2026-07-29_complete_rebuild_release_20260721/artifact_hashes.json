@@ -1,0 +1,18 @@
+{
+  "hash_algorithm": "sha256",
+  "generated_on": "2026-07-29",
+  "artifacts": [
+    {
+      "path": "docs/manifests/card_visual_search_corpus_release_v1_1.json",
+      "sha256": "61856aa570ef889dd440e0506a0f60b474f20425258cceeace6613e794513543"
+    },
+    {
+      "path": "docs/audits/card_visual_search_corpus_release_v1_1/2026-07-29_complete_rebuild_release_20260721/release_plan.json",
+      "sha256": "cf64765c7ede6e4f4a8b6ad103676e3b6dce6ec50dd034533b68914afbfb2c7d"
+    },
+    {
+      "path": "docs/audits/card_visual_search_corpus_release_v1_1/2026-07-29_complete_rebuild_release_20260721/release_reconciliation.json",
+      "sha256": "0493145e447a9498908c82ad95d5b86dd3917a0e7d55e40a89a807282c6ea9ba"
+    }
+  ]
+}

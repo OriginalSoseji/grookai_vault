@@ -15,6 +15,14 @@ const AUDIT_DIR = path.join(
   REPO_ROOT,
   "docs/audits/card_visual_search_corpus_release_v1/2026-07-29_release_20260721",
 );
+const COMPLETE_MANIFEST_PATH = path.join(
+  REPO_ROOT,
+  "docs/manifests/card_visual_search_corpus_release_v1_1.json",
+);
+const COMPLETE_AUDIT_DIR = path.join(
+  REPO_ROOT,
+  "docs/audits/card_visual_search_corpus_release_v1_1/2026-07-29_complete_rebuild_release_20260721",
+);
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -98,6 +106,54 @@ test("release plan forbids Git bulk evidence and all runtime mutations", () => {
 
 test("permanent release artifacts match their SHA-256 manifest", () => {
   const hashManifest = readJson(path.join(AUDIT_DIR, "artifact_hashes.json"));
+  for (const artifact of hashManifest.artifacts) {
+    const actualHash = crypto
+      .createHash("sha256")
+      .update(fs.readFileSync(path.join(REPO_ROOT, artifact.path)))
+      .digest("hex");
+    assert.equal(actualHash, artifact.sha256, artifact.path);
+  }
+});
+
+test("complete rebuild release includes every authoritative payload", () => {
+  const manifest = readJson(COMPLETE_MANIFEST_PATH);
+  verifyPayloadHash(manifest, "release_manifest_payload_sha256");
+
+  assert.equal(manifest.release_version, "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V1_1");
+  assert.equal(
+    manifest.release_id,
+    "card_visual_search_corpus_release_v1_1_20260721",
+  );
+  assert.equal(manifest.file_count, 9418);
+  assert.equal(manifest.total_bytes, 1152590499);
+  assert.equal(
+    manifest.files.filter((file) => file.stage === "authoritative_payload").length,
+    9377,
+  );
+  assert.equal(
+    new Set(manifest.files.map((file) => file.relative_path)).size,
+    manifest.file_count,
+  );
+});
+
+test("complete rebuild release reconciles without missing or mismatched files", () => {
+  const reconciliation = readJson(
+    path.join(COMPLETE_AUDIT_DIR, "release_reconciliation.json"),
+  );
+  verifyPayloadHash(reconciliation, "reconciliation_payload_sha256");
+
+  assert.equal(reconciliation.status, "reconciled");
+  assert.equal(reconciliation.planned_files, 9418);
+  assert.equal(reconciliation.copied_files, 9418);
+  assert.equal(reconciliation.matching_files, 9418);
+  assert.equal(reconciliation.missing_files, 0);
+  assert.equal(reconciliation.mismatched_files, 0);
+  assert.equal(reconciliation.extra_files, 0);
+  assert.equal(reconciliation.copied_bytes, 1152590499);
+});
+
+test("complete rebuild permanent artifacts match their SHA-256 manifest", () => {
+  const hashManifest = readJson(path.join(COMPLETE_AUDIT_DIR, "artifact_hashes.json"));
   for (const artifact of hashManifest.artifacts) {
     const actualHash = crypto
       .createHash("sha256")

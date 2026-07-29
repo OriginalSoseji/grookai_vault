@@ -87,6 +87,16 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_5");
 });
 
+test("projection parser accepts an external authoritative artifact root", () => {
+  const args = parseVisualSearchProjectionArgsV1([
+    "--source-artifact-root=C:\\grookai_visual_search_releases\\complete",
+  ]);
+  assert.equal(
+    args.sourceArtifactRoot,
+    "C:\\grookai_visual_search_releases\\complete",
+  );
+});
+
 test("eligibility report parser accepts only the actual locked V1.4 shape", () => {
   assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciled: true }), true);
   assert.equal(isLockedEligibilityReportV1({ version: "CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4", reconciliation: { reconciled: true } }), false);

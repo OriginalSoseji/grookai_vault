@@ -5,23 +5,33 @@ import fsp from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-export const RELEASE_VERSION = "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V1";
+const COMPLETE_REBUILD = process.argv.includes("--complete-rebuild");
+
+export const RELEASE_VERSION = COMPLETE_REBUILD
+  ? "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V1_1"
+  : "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const SOURCE_ROOT = "C:\\grookai_vault_card_desc_agent";
-const RELEASE_ROOT =
-  "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_20260721";
+const RELEASE_ID = COMPLETE_REBUILD
+  ? "card_visual_search_corpus_release_v1_1_20260721"
+  : "card_visual_search_corpus_release_v1_20260721";
+const RELEASE_ROOT = path.join("C:\\grookai_visual_search_releases", RELEASE_ID);
 const AUDIT_DIR = path.join(
   REPO_ROOT,
-  "docs/audits/card_visual_search_corpus_release_v1/2026-07-29_release_20260721",
+  COMPLETE_REBUILD
+    ? "docs/audits/card_visual_search_corpus_release_v1_1/2026-07-29_complete_rebuild_release_20260721"
+    : "docs/audits/card_visual_search_corpus_release_v1/2026-07-29_release_20260721",
 );
 const REPO_MANIFEST_PATH = path.join(
   REPO_ROOT,
-  "docs/manifests/card_visual_search_corpus_release_v1.json",
+  COMPLETE_REBUILD
+    ? "docs/manifests/card_visual_search_corpus_release_v1_1.json"
+    : "docs/manifests/card_visual_search_corpus_release_v1.json",
 );
 const EXPECTED_PRODUCT_BRANCH = "feature/visual-search-v1-productization";
-const EXPECTED_PRODUCT_SHA = "e429d3b40e1b39ff567f07fe489184cdfe8bee3a";
+const EXPECTED_PRODUCT_SHA = "6848df94cb189932a072794c7d85e52a77fac3a8";
 const EXPECTED_SOURCE_BRANCH = "feature/card-visual-search-review-portal";
 const EXPECTED_SOURCE_SHA = "c5bbbba5dea998fcd51d0d8602601737356a1494";
 
@@ -141,7 +151,7 @@ function semanticCounts(reconciliations) {
 }
 
 async function collectReleaseFiles() {
-  const files = [];
+  const filesByPath = new Map();
   const reconciliations = {};
 
   for (const stage of stages) {
@@ -155,7 +165,7 @@ async function collectReleaseFiles() {
     for (const sourcePath of stageFiles) {
       const relativePath = posixPath(path.relative(SOURCE_ROOT, sourcePath));
       const stats = await fsp.stat(sourcePath);
-      files.push({
+      filesByPath.set(relativePath, {
         stage: stage.stage,
         relative_path: relativePath,
         bytes: stats.size,
@@ -164,6 +174,35 @@ async function collectReleaseFiles() {
     }
   }
 
+  if (COMPLETE_REBUILD) {
+    const candidatesPath = path.join(
+      SOURCE_ROOT,
+      stages.find((stage) => stage.stage === "corpus").relative_dir,
+      "corpus_valid_candidates.jsonl",
+    );
+    const candidates = (await fsp.readFile(candidatesPath, "utf8"))
+      .trim()
+      .split(/\r?\n/)
+      .map((line) => JSON.parse(line));
+    const sourcePaths = [
+      ...new Set(candidates.map((candidate) => candidate.source_artifact_path)),
+    ].sort();
+
+    for (const relativePath of sourcePaths) {
+      const normalizedPath = posixPath(relativePath);
+      if (filesByPath.has(normalizedPath)) continue;
+      const sourcePath = path.join(SOURCE_ROOT, normalizedPath);
+      const stats = await fsp.stat(sourcePath);
+      filesByPath.set(normalizedPath, {
+        stage: "authoritative_payload",
+        relative_path: normalizedPath,
+        bytes: stats.size,
+        sha256: await sha256File(sourcePath),
+      });
+    }
+  }
+
+  const files = [...filesByPath.values()];
   files.sort((left, right) => left.relative_path.localeCompare(right.relative_path));
   return { files, reconciliations };
 }
@@ -171,13 +210,17 @@ async function collectReleaseFiles() {
 async function buildPlan() {
   const git = verifyGitBoundaries();
   const collected = await collectReleaseFiles();
-  if (collected.files.length !== 41) {
-    throw new Error(`Expected 41 release files, received ${collected.files.length}`);
+  const expectedFileCount = COMPLETE_REBUILD ? 9_418 : 41;
+  if (collected.files.length !== expectedFileCount) {
+    throw new Error(
+      `Expected ${expectedFileCount} release files, received ${collected.files.length}`,
+    );
   }
 
   const payload = {
     release_version: RELEASE_VERSION,
-    release_id: "card_visual_search_corpus_release_v1_20260721",
+    release_id: RELEASE_ID,
+    release_profile: COMPLETE_REBUILD ? "complete_rebuild" : "operational_index",
     planned_on: "2026-07-29",
     productization_branch: git.productBranch,
     productization_pre_release_sha: git.productSha,
@@ -267,7 +310,9 @@ async function applyRelease() {
     release_manifest_payload_sha256: sha256Json(manifestPayload),
   };
   const reconciliationPayload = {
-    reconciliation_version: "CARD_VISUAL_SEARCH_CORPUS_RELEASE_RECONCILIATION_V1",
+    reconciliation_version: COMPLETE_REBUILD
+      ? "CARD_VISUAL_SEARCH_CORPUS_RELEASE_RECONCILIATION_V1_1"
+      : "CARD_VISUAL_SEARCH_CORPUS_RELEASE_RECONCILIATION_V1",
     release_id: plan.release_id,
     release_plan_payload_sha256: plan.plan_payload_sha256,
     release_manifest_payload_sha256:
