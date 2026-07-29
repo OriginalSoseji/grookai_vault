@@ -31,7 +31,7 @@ function allFiles(manifest) {
 
 test("manifest is pinned to the governed source and production baseline", () => {
   const manifest = loadManifest();
-  assert.equal(manifest.manifest_version, "CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1");
+  assert.equal(manifest.manifest_version, "CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1_1");
   assert.equal(manifest.production_baseline.commit_sha, "3c862b815735a4eda93b65ac108fc583f1c62fc9");
   assert.equal(manifest.governed_source.commit_sha, "c5bbbba5dea998fcd51d0d8602601737356a1494");
   assert.equal(manifest.target.branch, "feature/visual-search-v1-productization");
@@ -80,6 +80,7 @@ test("Lane A contains the complete deterministic search backbone", () => {
     "artwork_grouping",
     "deterministic_projection",
     "query_candidate_core",
+    "judgment_packet_core_dependency",
   ]) {
     assert.ok(laneAComponents.has(required), `Missing Lane A component: ${required}`);
   }

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grookai Vault Visual Search</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f4f2ed;
+      --surface: #ffffff;
+      --ink: #181a18;
+      --muted: #666a64;
+      --line: #d9d8d1;
+      --accent: #176b4d;
+      --accent-strong: #0c5138;
+      --warning: #9a5a08;
+      --danger: #a12d27;
+      --tag: #e8eee9;
+      --focus: #f2c94c;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    button, input { font: inherit; letter-spacing: 0; }
+    button { cursor: pointer; }
+    .shell { min-height: 100vh; }
+    header {
+      background: #1b2420;
+      color: #fff;
+      border-bottom: 4px solid #d5ad33;
+    }
+    .header-inner, main { width: min(1480px, calc(100% - 32px)); margin: 0 auto; }
+    .header-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .brand strong { font-size: 18px; font-weight: 760; white-space: nowrap; }
+    .brand span { color: #cad2cc; font-size: 12px; white-space: nowrap; }
+    .status { display: flex; align-items: center; gap: 8px; color: #cad2cc; font-size: 12px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #65c18c; }
+    main { padding: 24px 0 48px; }
+    .search-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; }
+    .search-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border: 1px solid #aaa99f;
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(23, 107, 77, 0.16); }
+    .command {
+      min-height: 48px;
+      border: 1px solid var(--accent-strong);
+      border-radius: 6px;
+      padding: 0 20px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+    .command:hover { background: var(--accent-strong); }
+    .command.secondary { color: var(--ink); background: var(--surface); border-color: #aaa99f; font-weight: 600; }
+    .command.secondary:hover { background: #ecebe6; }
+    .command:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .query-state {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .result-count { font-size: 14px; color: var(--muted); white-space: nowrap; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      max-width: 100%;
+      padding: 4px 8px;
+      border: 1px solid #cbd5cc;
+      border-radius: 999px;
+      background: var(--tag);
+      color: #294437;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .chip.unknown { border-color: #e0afa9; background: #f8e7e4; color: var(--danger); }
+    .message {
+      margin: 28px 0;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+      gap: 14px;
+      padding-top: 18px;
+    }
+    .result-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .image-wrap {
+      aspect-ratio: 2.5 / 3.5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #e5e4df;
+      border-bottom: 1px solid var(--line);
+    }
+    .image-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .image-fallback { padding: 16px; color: var(--muted); font-size: 13px; text-align: center; }
+    .result-body { padding: 12px; }
+    .result-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .result-heading h2 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+    .score { color: var(--accent-strong); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .meta { margin: 5px 0 10px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .evidence { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .evidence li { padding-left: 9px; border-left: 3px solid #8ab49f; }
+    .evidence-term { display: block; font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+    .evidence-source { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; overflow-wrap: anywhere; }
+    details { margin-top: 10px; border-top: 1px solid #ecebe6; padding-top: 9px; }
+    summary { color: var(--accent-strong); font-size: 12px; font-weight: 650; cursor: pointer; }
+    .printing-list { margin: 8px 0 0; padding-left: 17px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .loading { opacity: 0.6; pointer-events: none; }
+    @media (max-width: 680px) {
+      .header-inner, main { width: min(100% - 20px, 1480px); }
+      .brand span { display: none; }
+      .search-row { grid-template-columns: 1fr auto; }
+      .command.secondary { grid-column: 1 / -1; }
+      .query-state { align-items: flex-start; flex-direction: column; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .result-body { padding: 9px; }
+      .result-heading { display: block; }
+      .score { display: block; margin-top: 4px; }
+    }
+    @media (max-width: 390px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand"><strong>Grookai Vault</strong><span>Visual Facts Lab</span></div>
+        <div class="status"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Loading index</span></div>
+      </div>
+    </header>
+    <main>
+      <form id="searchForm" class="search-row">
+        <input id="searchInput" class="search-input" type="search" minlength="2" maxlength="180" autocomplete="off" spellcheck="false" placeholder="Pikachu sleeping in a forest" aria-label="Search visible card artwork facts">
+        <button class="command" type="submit">Search</button>
+        <button id="copyJson" class="command secondary" type="button" disabled>Copy JSON</button>
+      </form>
+      <section class="query-state" aria-live="polite">
+        <div id="chips" class="chips"></div>
+        <div id="resultCount" class="result-count"></div>
+      </section>
+      <div id="message" class="message">Search the locked 9,532-artwork sandbox.</div>
+      <section id="results" class="grid" aria-label="Visual search results"></section>
+    </main>
+  </div>
+  <script>
+    const form = document.getElementById("searchForm");
+    const input = document.getElementById("searchInput");
+    const resultsNode = document.getElementById("results");
+    const messageNode = document.getElementById("message");
+    const chipsNode = document.getElementById("chips");
+    const countNode = document.getElementById("resultCount");
+    const statusNode = document.getElementById("statusText");
+    const copyButton = document.getElementById("copyJson");
+    let lastPayload = null;
+
+    function element(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function addChip(text, unknown = false) {
+      chipsNode.append(element("span", `chip${unknown ? " unknown" : ""}`, text));
+    }
+
+    function renderParsed(parsed) {
+      chipsNode.replaceChildren();
+      if (parsed.detected_subject) addChip(`subject: ${parsed.detected_subject.canonical_name}`);
+      for (const branch of parsed.intent.canonical_filters.branches) addChip(`branch: ${branch}`);
+      for (const setCode of parsed.intent.canonical_filters.set_codes) addChip(`set: ${setCode}`);
+      for (const role of parsed.intent.visual_filters.subject_roles) addChip(`role: ${role}`);
+      for (const concept of parsed.intent.visual_filters.concepts) addChip(concept);
+      for (const count of parsed.intent.visual_filters.counts) addChip(`count: ${count.exact_count} ${count.label}`);
+      for (const alias of parsed.intent.query_aliases) addChip(`alias: ${alias}`);
+      for (const term of parsed.intent.unrecognized_terms) addChip(`unsupported: ${term}`, true);
+    }
+
+    function resultCard(result) {
+      const article = element("article", "result-card");
+      const imageWrap = element("div", "image-wrap");
+      if (result.representative_card && result.representative_card.image_url) {
+        const image = element("img");
+        image.src = `/api/image?source=${encodeURIComponent(result.representative_card.image_source_key)}`;
+        image.alt = `${result.representative_name} card artwork`;
+        image.loading = "lazy";
+        image.addEventListener("error", () => imageWrap.replaceChildren(element("span", "image-fallback", "Image unavailable")));
+        imageWrap.append(image);
+      } else {
+        imageWrap.append(element("span", "image-fallback", "Image unavailable"));
+      }
+      article.append(imageWrap);
+
+      const body = element("div", "result-body");
+      const heading = element("div", "result-heading");
+      heading.append(element("h2", "", result.representative_name));
+      heading.append(element("span", "score", result.score.toFixed(2)));
+      body.append(heading);
+      const card = result.representative_card;
+      body.append(element("p", "meta", `${card?.set_code || "Unknown set"} #${card?.number || "?"} | Tier ${result.eligibility_tier} | ${result.prompt_branch}`));
+
+      const evidence = element("ul", "evidence");
+      const seen = new Set();
+      for (const match of result.matched_evidence) {
+        const key = `${match.term}|${match.source_id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const item = element("li");
+        item.append(element("span", "evidence-term", match.term));
+        const refs = (match.supporting_observation_ids || []).join(", ");
+        item.append(element("span", "evidence-source", `${match.document_type} | ${refs}`));
+        evidence.append(item);
+        if (seen.size === 6) break;
+      }
+      body.append(evidence);
+
+      const details = element("details");
+      details.append(element("summary", "", `${result.matching_printings.length} matching printing${result.matching_printings.length === 1 ? "" : "s"}`));
+      const printingList = element("ul", "printing-list");
+      for (const printing of result.matching_printings) printingList.append(element("li", "", `${printing.gv_id} | ${printing.set_code} #${printing.number}`));
+      details.append(printingList);
+      body.append(details);
+      article.append(body);
+      return article;
+    }
+
+    function render(payload) {
+      lastPayload = payload;
+      copyButton.disabled = false;
+      renderParsed(payload.parsed_query);
+      countNode.textContent = `${payload.total_matches.toLocaleString()} artwork match${payload.total_matches === 1 ? "" : "es"} | ${payload.latency_ms.toFixed(1)} ms`;
+      resultsNode.replaceChildren(...payload.results.map(resultCard));
+      if (payload.results.length) {
+        messageNode.hidden = true;
+      } else {
+        messageNode.hidden = false;
+        const reason = payload.strict_zero_reason === "unrecognized_terms"
+          ? "Strict search stopped because one or more terms are unsupported."
+          : "No artwork has evidence for every requested constraint.";
+        messageNode.textContent = reason;
+      }
+    }
+
+    async function runSearch(query) {
+      document.body.classList.add("loading");
+      messageNode.hidden = false;
+      messageNode.textContent = "Searching visible facts...";
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&limit=24`);
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Search failed");
+        render(payload);
+        const url = new URL(window.location.href);
+        url.searchParams.set("q", query);
+        history.replaceState(null, "", url);
+      } catch (error) {
+        resultsNode.replaceChildren();
+        chipsNode.replaceChildren();
+        countNode.textContent = "";
+        messageNode.hidden = false;
+        messageNode.textContent = error.message;
+      } finally {
+        document.body.classList.remove("loading");
+      }
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = input.value.trim();
+      if (query.length >= 2) runSearch(query);
+    });
+
+    copyButton.addEventListener("click", async () => {
+      if (!lastPayload) return;
+      await navigator.clipboard.writeText(JSON.stringify(lastPayload, null, 2));
+      const previous = copyButton.textContent;
+      copyButton.textContent = "Copied";
+      setTimeout(() => { copyButton.textContent = previous; }, 1200);
+    });
+
+    fetch("/api/health").then((response) => response.json()).then((health) => {
+      statusNode.textContent = `${health.artwork_groups.toLocaleString()} artworks ready`;
+    }).catch(() => { statusNode.textContent = "Index unavailable"; });
+
+    const initialQuery = new URL(window.location.href).searchParams.get("q");
+    if (initialQuery) {
+      input.value = initialQuery;
+      runSearch(initialQuery);
+    } else {
+      input.focus();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+{
+  "import_version": "CARD_VISUAL_SEARCH_LANE_A_IMPORT_V1",
+  "created_on": "2026-07-28",
+  "branch": "feature/visual-search-v1-productization",
+  "pre_import_head_sha": "a911c260a1b333c3528edfb78b879138023d820a",
+  "governed_source_sha": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+  "manifest_payload_sha256": "7bd6f0c7d1f2826c981dde5431d2b9850adea264d6a51d9e24232558fe17658f",
+  "selected_file_count": 38,
+  "selected_files": [
+    {
+      "source_path": "backend/card_descriptions/card_visual_artwork_grouping_audit_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_artwork_grouping_audit_v1.mjs",
+      "source_blob_oid": "7bf16ee73ea61dd4f882f4005faced7f339fd9c9",
+      "source_sha256": "2e1646eafc259739d68d0408ec6496600848943ee7f0f362ac5e44efd915fe2f",
+      "source_last_commit_sha": "4c321ffe5f5837bb1fcfada4fcfbe42bd9535e3d",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_artwork_grouping_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_artwork_grouping_v1.mjs",
+      "source_blob_oid": "46a13d12bdae6994cddae5824ecf0abd17c6c2ce",
+      "source_sha256": "fc6cd4db0c958ac96e550cfa925760a20958b15cecad1bfbf111ac83cec86132",
+      "source_last_commit_sha": "de9ca5d5a1c1b8a58cb18aec0fc3f55b47b8153e",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_corpus_v1_inventory.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_corpus_v1_inventory.mjs",
+      "source_blob_oid": "d929df599ba7cc008b349a80879229563b6b5875",
+      "source_sha256": "721dbfb5451800de3d5ce5d0f29af2b74d7a0fb3b5c027756731d658878d9176",
+      "source_last_commit_sha": "d1ac24480a6774c2c89347324acbbf30ec89de8e",
+      "component_id": "corpus_inventory",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_eligibility_audit_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_eligibility_audit_v1.mjs",
+      "source_blob_oid": "21c34494e81fadbc4df8e937aa4028e48173e602",
+      "source_sha256": "0e25a5a01c47b3a0a30c24e6e6e85ff9b036a27905383dac0022a1ba8cab8418",
+      "source_last_commit_sha": "1def6cd1f1b4fd901c695716d87e09bcdfc2db50",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_eligibility_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_eligibility_v1.mjs",
+      "source_blob_oid": "99e3018fd291618bf79d3e67415db282073c4541",
+      "source_sha256": "599dcd45d01793953451165e18b08960147f18a8ec29abad49a1b7ece86624e9",
+      "source_last_commit_sha": "3ad2a7043d23416e8ee262704a017238170dc986",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "source_blob_oid": "51609f4dd2a48cb9b6635979c03a49ec8d0891c5",
+      "source_sha256": "7175ed30cf2e9abad52ec41712448379b71b575b203fdb25079b34f011f1bd4c",
+      "source_last_commit_sha": "b6aa1b053192a83572e37e2d64d46d2aabeb3d45",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
+      "source_blob_oid": "0c2540a70e71f4fc5e2926347e0371a115af7a2f",
+      "source_sha256": "78fd56831d966106492a5494e2e839289968355bb83ea28f2cebdda3bd21eeff",
+      "source_last_commit_sha": "bf0ac663e945460d77f1b506a329431c0671f0bb",
+      "component_id": "judgment_packet_core_dependency",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_lab_v1.html",
+      "destination_path": "backend/card_descriptions/card_visual_search_lab_v1.html",
+      "source_blob_oid": "ea8cf1b9ff134c2aeb41360e4ba2b3a7be87429d",
+      "source_sha256": "a15fbd079a1e26cf048707b23c8761685172eb055db09abd11ab9d86c740712c",
+      "source_last_commit_sha": "647592ca8b6ccc39d7679f192ee9d72b6d19e0ba",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_lab_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_lab_v1.mjs",
+      "source_blob_oid": "18841b9c4e7ce993ce6ecae2c8c9f84019b97fdd",
+      "source_sha256": "44c2dda03f2c9a11c41e795db00d33422d7668b900be03ec74c8789139b22ae5",
+      "source_last_commit_sha": "647592ca8b6ccc39d7679f192ee9d72b6d19e0ba",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_projection_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_projection_v1.mjs",
+      "source_blob_oid": "05d1ff5b91c0af775be9d21ccb7ff31f521edb47",
+      "source_sha256": "7f720bf7145b7136d2a510e510e882e0020578de47e250ff3440ea87dd8e8e56",
+      "source_last_commit_sha": "34cc15eec49be8b07322538129e75c7406234300",
+      "component_id": "deterministic_projection",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_projection_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+      "source_blob_oid": "5a886459261a419bbd254023e0f927c680a35edf",
+      "source_sha256": "eb471a77c9256f23302b8313e5e2db7f0cc0e969b0133638b7c48ba39845f2d5",
+      "source_last_commit_sha": "5188bb521c1853e93163aa13379fb692bfec9173",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+      "source_blob_oid": "bbf9f9d99587486016ebe5ff19a5a950b0a451ec",
+      "source_sha256": "ed25b1985f3da5136038e0479e8c54d5844dddb4a11a7dc65139b87dd5d8b170",
+      "source_last_commit_sha": "ff5e7cad1c72cdc61d910c074dae0deba32e9bbf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+      "source_blob_oid": "53b2b8939a52af3a8b254f605fe1a673d837e268",
+      "source_sha256": "8db75538eb86fc5bd981076da6701e3802fd1f935b0eebdbd06cd91ed60d7d33",
+      "source_last_commit_sha": "09658cc48eef525b48ca7f2e9b091934818494cf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+      "source_blob_oid": "64a254c65bc16f94060eef2c8f98821e22af0c5b",
+      "source_sha256": "d2d8db266bcbc040229e3de85a12fe008349649fd6f79c88040f35ec4f0c6c92",
+      "source_last_commit_sha": "ff5e7cad1c72cdc61d910c074dae0deba32e9bbf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+      "source_blob_oid": "4663af86e3ca6f725b7af7102b6258bd1a986d12",
+      "source_sha256": "62bdfb802bf2535b5b4bd0c77cd81691414c8fa969789bec13958cab9a770c97",
+      "source_last_commit_sha": "09658cc48eef525b48ca7f2e9b091934818494cf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+      "source_blob_oid": "65e1d0b7538285a61f08f363c361158738e20926",
+      "source_sha256": "6555eed9424d51729ec7cbb2d5ab80f21e4b03e451976343513ec64581a9e6b8",
+      "source_last_commit_sha": "1def6cd1f1b4fd901c695716d87e09bcdfc2db50",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+      "source_blob_oid": "e32fe1664e98ee71a14947254b74bb33f3a5bb5d",
+      "source_sha256": "73e79f60c8703e63d2c57329d9a8ed093e6dca4a381c990e3544e661cec7e731",
+      "source_last_commit_sha": "d628e416a71f3d715f40acbaf705bc46af913e57",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md",
+      "source_blob_oid": "afe4403fb4740d10f4e6ccc21f23dd1a5da228c5",
+      "source_sha256": "d3172fc018754a271ca7c31be55c3c8c1eb482fbbcad0cce833ef0f316fbe2de",
+      "source_last_commit_sha": "09658cc48eef525b48ca7f2e9b091934818494cf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+      "source_blob_oid": "6915f9926d4aa330f6a637854e1e215768b4f568",
+      "source_sha256": "091bb9365e1658d40b38444b993bbaa192c2886b5b9de2c4e92914ab7558d18e",
+      "source_last_commit_sha": "09658cc48eef525b48ca7f2e9b091934818494cf",
+      "component_id": "governing_contracts",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+        "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_search_projection_v1.test.mjs",
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+      "source_blob_oid": "1ed111b886988832d4b71bb854bff4e6dfd9b2df",
+      "source_sha256": "fcfe371e01a15e5f89fb48a161b36565bd65fbd2003ea7a0a2db5dffcc24e2f0",
+      "source_last_commit_sha": "c9fbbc752210999175372db4c87f6b9f438f065b",
+      "component_id": "judgment_packet_core_dependency",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+      "source_blob_oid": "8087f02e4a5f309675372f47b8d89f0452fc4ca0",
+      "source_sha256": "e88590430b2bbbbb495da28dc50c676b60efda3f091da65fe0057cbbb54f1681",
+      "source_last_commit_sha": "647592ca8b6ccc39d7679f192ee9d72b6d19e0ba",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+      "source_blob_oid": "638d6cbf51f36ae226937251395f9b8b9cc81841",
+      "source_sha256": "f8bbd51a73f178cf83063033b8d294e78dc8d1cb7358a054255dae5f9b776fa3",
+      "source_last_commit_sha": "34cc15eec49be8b07322538129e75c7406234300",
+      "component_id": "deterministic_projection",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_projection_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_artwork_grouping_audit_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_artwork_grouping_audit_v1.mjs",
+      "source_blob_oid": "dc2c316750471003570f5745edb6603cdce63f2f",
+      "source_sha256": "5ca10c1c43d73ec987760112329e350616b6c1cdfe73932dabf5980914993523",
+      "source_last_commit_sha": "4c321ffe5f5837bb1fcfada4fcfbe42bd9535e3d",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_artwork_grouping_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_artwork_grouping_v1.mjs",
+      "source_blob_oid": "162e6f80a0b1c284f5fd2044c5b43ebbe58dae67",
+      "source_sha256": "c8d8dd71f23df12a985bbfc247c97c524c4fb74ce789ff6bad933bab4e05697f",
+      "source_last_commit_sha": "ac4031672d3b05669e5acf853b613f695a0241f9",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_corpus_v1_inventory.mjs",
+      "destination_path": "scripts/audits/card_visual_corpus_v1_inventory.mjs",
+      "source_blob_oid": "16f969bf9504d36639e726d9b20e81d3c685bd21",
+      "source_sha256": "86742c59711873c5058d4b294bf22557a5277d8100f3418dee3f22b8b7057eda",
+      "source_last_commit_sha": "fd7fd9b847adc8cd4946c5e7e4a0d08c49f1f5d0",
+      "component_id": "corpus_inventory",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_eligibility_audit_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_eligibility_audit_v1.mjs",
+      "source_blob_oid": "03cb6ed8d80aa15227908ecbb6f5815bf2c29563",
+      "source_sha256": "7aa9499faa0f8051769bd19d8e9dd6fbb6bebd032912f1bbf6691c640723da35",
+      "source_last_commit_sha": "c6352ae2e5e1b5fa84504616099cbacd30f3be3b",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_eligibility_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_eligibility_v1.mjs",
+      "source_blob_oid": "34e2b5fe782ee88b0d8a07c3bcdea9bc0c08a75f",
+      "source_sha256": "c1aa251e474c198a12301a308f982480d4cf2d7f2dae5260f3632cf7e0eabdb9",
+      "source_last_commit_sha": "698417617ea5d120ee4f7e0c4a23b67518a15c1e",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "source_blob_oid": "e57ffa028f89db0df6de53bbe1ba5c7e57eb4c59",
+      "source_sha256": "7a2f9139967e52e97dcf353114553137d5f75683e4cc84f7ee4a292443e31183",
+      "source_last_commit_sha": "c7b39f27d89234ffa4bc89727009ae470dbb7cb3",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_projection_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_projection_v1.mjs",
+      "source_blob_oid": "5892128c18a56ca06fb708ed9bc99cc809fee718",
+      "source_sha256": "d4b8f91e3b05e10922e31e0f261531403afeedc4dec0133f7ce34960d8594bf1",
+      "source_last_commit_sha": "bab292eddf68926fc07278b4182117e55099aacd",
+      "component_id": "deterministic_projection",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_projection_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs",
+      "source_blob_oid": "cdcfbadea0e646be73514d7f701989688143a748",
+      "source_sha256": "f59663e7bdd066ee000d442c3f781eff75a4067303fb1e7d42b300e3ebc86bdc",
+      "source_last_commit_sha": "4c321ffe5f5837bb1fcfada4fcfbe42bd9535e3d",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+      "source_blob_oid": "4e135eb13adb931eaa96d4d2527f141ace156e3f",
+      "source_sha256": "d32fb87473157ab8a666edd29f6c1efacf7adde13ee91373db36043835b02257",
+      "source_last_commit_sha": "de9ca5d5a1c1b8a58cb18aec0fc3f55b47b8153e",
+      "component_id": "artwork_grouping",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+        "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+      "destination_path": "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+      "source_blob_oid": "47ee05ba9bcece2deaf5893462e1232395571317",
+      "source_sha256": "16a6f0e7c713c3799e90dbf2d549af65f5d969c351130d289cb7bd13190c2099",
+      "source_last_commit_sha": "d1ac24480a6774c2c89347324acbbf30ec89de8e",
+      "component_id": "corpus_inventory",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_corpus_v1_inventory.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs",
+      "source_blob_oid": "555f26482ed5fd5e5980262389734ea849a67b90",
+      "source_sha256": "34d9dbab00915df52c16e0d15c2c35d1a0aabd74910c05c3478b25b0113336c6",
+      "source_last_commit_sha": "1def6cd1f1b4fd901c695716d87e09bcdfc2db50",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+      "source_blob_oid": "ca346844149137e9037588388c9261d328de72bf",
+      "source_sha256": "1b0fd57a4d6b352edd2930855154cb0105580fd56cd365a7c86364ce121bff2b",
+      "source_last_commit_sha": "3ad2a7043d23416e8ee262704a017238170dc986",
+      "component_id": "search_eligibility",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+        "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+      "source_blob_oid": "57652ac36dcbce74addcf3c40e33243a2185a843",
+      "source_sha256": "1888005ce2a6b953608ba2005910a0206966b0bd0d7c4eccdd9640f1ecb8252c",
+      "source_last_commit_sha": "b6aa1b053192a83572e37e2d64d46d2aabeb3d45",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
+      "source_blob_oid": "578581f10e047be07efbf6627063a7667eedb554",
+      "source_sha256": "d6098e81330fcf32c6ad2e8446cdc833fcca6d33c7f1791289d27f774245d541",
+      "source_last_commit_sha": "5bdd4974d49038d131d93e0066491b6e54fd9c0f",
+      "component_id": "judgment_packet_core_dependency",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_lab_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_lab_v1.test.mjs",
+      "source_blob_oid": "1e2a20fb358016069ca217632f02c69b58ddcb26",
+      "source_sha256": "a80ce1a8bffbd87a9384b2c8f9672f6c62ace10cb83eef94c566092ea798ff7d",
+      "source_last_commit_sha": "647592ca8b6ccc39d7679f192ee9d72b6d19e0ba",
+      "component_id": "query_candidate_core",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+        "tests/contracts/card_visual_search_lab_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_projection_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_projection_v1.test.mjs",
+      "source_blob_oid": "ea3e4021a290692ae89b989a488e74e5221e4bfc",
+      "source_sha256": "24f55f404c9af998c753c85c41f3718eef3e21cd3a1c26ee5def53c2039a1fed",
+      "source_last_commit_sha": "34cc15eec49be8b07322538129e75c7406234300",
+      "component_id": "deterministic_projection",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_projection_v1.test.mjs"
+      ]
+    }
+  ],
+  "boundaries": {
+    "exact_source_blobs_only": true,
+    "manual_source_edits_during_import": false,
+    "database_writes_authorized": false,
+    "migration_apply_authorized": false,
+    "provider_calls_authorized": false,
+    "embeddings_authorized": false,
+    "public_search_activation_authorized": false,
+    "lane_b_import_authorized": false,
+    "pricing_changes_authorized": false
+  },
+  "plan_payload_sha256": "57412fafc3285c145fd7e5f4af42e1dd5154e445fde5d7c41175ba6c9b7b87f0"
+}

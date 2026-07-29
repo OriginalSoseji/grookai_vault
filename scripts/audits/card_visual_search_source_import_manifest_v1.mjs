@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-export const MANIFEST_VERSION = "CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1";
+export const MANIFEST_VERSION = "CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1_1";
 export const SOURCE_SHA = "c5bbbba5dea998fcd51d0d8602601737356a1494";
 export const PRODUCTION_BASELINE_SHA = "3c862b815735a4eda93b65ac108fc583f1c62fc9";
 
@@ -148,6 +148,22 @@ const components = [
     ],
   },
   {
+    component_id: "judgment_packet_core_dependency",
+    lane: "A_deterministic_core",
+    decision: "import_now",
+    rationale: "The local lab imports the judgment-packet image resolver directly, so its backend module, contract, and focused test are required Lane A dependencies.",
+    governing_contracts: [
+      "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+      "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+    ],
+    focused_tests: ["tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"],
+    files: [
+      "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
+      "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
+      "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+    ],
+  },
+  {
     component_id: "calibration_evaluator",
     lane: "B_calibration_tooling",
     decision: "import_later",
@@ -165,20 +181,17 @@ const components = [
     ],
   },
   {
-    component_id: "judgment_packet",
+    component_id: "judgment_packet_cli",
     lane: "B_calibration_tooling",
     decision: "import_later",
-    rationale: "Retain exact image/evidence review and JSONL export tooling without making reviewer decisions trusted application state.",
+    rationale: "Defer the judgment-packet command wrapper while importing its required image-resolver core with Lane A.",
     governing_contracts: [
       "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
       "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md",
     ],
     focused_tests: ["tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"],
     files: [
-      "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
       "scripts/audits/card_visual_search_judgment_packet_v1.mjs",
-      "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
-      "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
     ],
   },
   {
@@ -405,7 +418,7 @@ export function buildCardVisualSearchSourceImportManifestV1() {
       pricing_source_file_count: allFiles.filter((file) => /pricing/iu.test(file.source_path)).length,
       generated_audit_source_file_count: allFiles.filter((file) => file.source_path.startsWith("docs/audits/")).length,
     },
-    exact_next_action: "Import only Lane A files after this manifest and its contract test are reviewed and committed.",
+    exact_next_action: "Import only the 38 Lane A files after this manifest and its contract test are reviewed and committed.",
   };
 
   return {

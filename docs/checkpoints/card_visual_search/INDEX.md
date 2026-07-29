@@ -9,14 +9,23 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md` - `2026-07-28` - COMPLETE;
+  DETERMINISTIC CORE IMPORTED - Records the corrected V1.1 manifest dependency
+  boundary, frozen 38-file import plan, exact `38/38` source/destination hash
+  reconciliation, 10 backend assets, 12 active contracts, 7 command wrappers,
+  9 focused tests, the preserved initial `73/74` dependency finding, corrected
+  `89/89` focused contracts, `25/25` imported syntax checks, `9/9` backend import
+  checks, unchanged no-write boundaries, and the exact next gate as import of
+  five Lane B calibration-tooling files.
 - `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md` - `2026-07-28` -
-  COMPLETE; SOURCE IMPORT FROZEN - Records the deterministic 61-file
-  selective-import manifest pinned to source SHA `c5bbbba5`, including 35
-  Lane A imports, 8 later calibration files, 6 reference-only files, 10
+  COMPLETE WITH DEPENDENCY CORRECTION; SOURCE IMPORT V1.1 FROZEN - Records the
+  deterministic 61-file selective-import manifest pinned to source SHA
+  `c5bbbba5`, including 38 Lane A imports, 5 later calibration files, 6
+  reference-only files, 10
   superseded contracts, 2 generated portal exclusions, five production
-  rebuilds, per-file blob/content/commit provenance, `8/8` focused contracts,
-  unchanged no-write boundaries, and the exact next gate as hash-verified
-  import and reconciliation of only the 35 Lane A files.
+  rebuilds, the judgment-packet dependency correction, per-file
+  blob/content/commit provenance, `8/8` manifest contracts, unchanged no-write
+  boundaries, and the corrected Lane A transfer authority.
 - `VISUAL_SEARCH_V1_PRODUCTIZATION_START_20260728.md` - `2026-07-28` -
   ACTIVE; MAIN-BASED PRODUCTIZATION STARTED - Records the clean
   `origin/main` baseline, governed source-branch provenance, existing
@@ -30,8 +39,9 @@ create canonical truth, or authorize downstream recommendation systems.
 
 1. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_START_20260728.md`.
 2. Read `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md`.
-3. Confirm the current production `main` SHA and compare it with the checkpoint
+3. Read `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md`.
+4. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-4. Confirm pricing canary/release work remains isolated.
-5. Inspect the governed source branch at the recorded SHA.
-6. Resume only from the latest checkpoint's exact next gate.
+5. Confirm pricing canary/release work remains isolated.
+6. Inspect the governed source branch at the recorded SHA.
+7. Resume only from the latest checkpoint's exact next gate.

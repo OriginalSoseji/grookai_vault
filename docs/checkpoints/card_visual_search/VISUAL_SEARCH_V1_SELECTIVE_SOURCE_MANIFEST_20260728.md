@@ -2,7 +2,7 @@
 
 Date: 2026-07-28
 
-Status: COMPLETE; SOURCE IMPORT FROZEN; NO SOURCE FILES IMPORTED YET
+Status: COMPLETE WITH DEPENDENCY CORRECTION; SOURCE IMPORT V1.1 FROZEN
 
 ## Purpose
 
@@ -22,9 +22,9 @@ source provenance.
 - Governed source SHA: `c5bbbba5dea998fcd51d0d8602601737356a1494`
 - Existing portal release SHA:
   `f2e57e476e8d68aa241d2b6a3afbc8480e9d7100`
-- Manifest version: `CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1`
+- Manifest version: `CARD_VISUAL_SEARCH_SOURCE_IMPORT_MANIFEST_V1_1`
 - Manifest payload SHA-256:
-  `6f5faca2a88e12ab4c2a0ca375b5b8ecdd021a6171b5937821dd0974c26bc5dd`
+  `7bd6f0c7d1f2826c981dde5431d2b9850adea264d6a51d9e24232558fe17658f`
 
 ## Permanent Artifacts
 
@@ -39,7 +39,7 @@ source provenance.
 
 ## Manifest Result
 
-- Components: `12`
+- Components: `13`
 - Selected source files: `61`
 - Duplicate source paths: `0`
 - Pricing source files: `0`
@@ -50,15 +50,15 @@ Decision counts:
 
 | Decision | Files |
 | --- | ---: |
-| `import_now` | 35 |
-| `import_later` | 8 |
+| `import_now` | 38 |
+| `import_later` | 5 |
 | `reference_only` | 6 |
 | `exclude_superseded` | 10 |
 | `exclude_generated` | 2 |
 
 ## Lane A: Import Now
 
-Exactly `35` files are authorized for the next import gate.
+Exactly `38` files are authorized for the next import gate.
 
 ### Governing Contracts
 
@@ -131,20 +131,35 @@ These components are imported as an offline deterministic core. Their existing
 loopback server and HTML remain development tools, not production service or
 collector UI authorization.
 
+### Judgment Packet Core Dependency
+
+The initial V1 manifest classified the complete judgment-packet component as
+Lane B. The first Lane A test run proved that the local lab imports
+`grookaiImageUrlV1` directly from the judgment-packet backend module.
+
+Manifest V1.1 moves exactly three dependency files into Lane A:
+
+- judgment-packet backend module
+- judgment-packet active contract
+- judgment-packet focused test
+
+The command wrapper remains Lane B. This correction preserves exact source
+content and avoids rewriting the proven lab during transfer.
+
 ## Lane B: Import Later
 
-Exactly `8` source files are deferred until Lane A is imported and validated.
+Exactly `5` source files are deferred until Lane A is imported and validated.
 
 ### Calibration Evaluator
 
 The evaluator validates reviewer exports, calculates global and per-family
 metrics, preserves failure labels, and supports founder adjudication.
 
-### Judgment Packet
+### Judgment Packet Command Wrapper
 
-The packet builder connects ranked results to exact images and full saved
-visual records. It remains read-only and does not make reviewer output trusted
-application state.
+The packet backend and contract are Lane A dependencies. Only the packet
+command wrapper remains deferred. The packet remains read-only and does not
+make reviewer output trusted application state.
 
 This lane can be imported before PokeJavi finishes reviewing, but official
 calibration metrics cannot be finalized until the review export reconciles.
@@ -255,7 +270,8 @@ The focused contract proves:
 - all 61 paths are unique;
 - every file has a blob OID, SHA-256, and source commit;
 - every component has governing contracts and focused tests;
-- Lane A contains the complete deterministic search backbone;
+- Lane A contains the complete deterministic search backbone, including the
+  lab's judgment-packet image-resolver dependency;
 - no `import_now` file is pricing, migration, generated-audit, or extraction
   runtime content;
 - generated portal artifacts and superseded contracts are excluded;
@@ -268,10 +284,22 @@ Result:
 - Manifest generation: passed
 - Manifest contracts: `8/8` passed
 
+## Dependency Correction Evidence
+
+The first 35-file import reconciled all 35 hashes. Its focused run passed
+`73/74` tests and failed only because
+`card_visual_search_lab_v1.mjs` could not import the deferred
+`card_visual_search_judgment_packet_v1.mjs`.
+
+No source code was modified to hide the dependency.
+
+The manifest was corrected to V1.1, the three required files were moved to
+Lane A, and a new 38-file plan was frozen before the corrected transfer.
+
 ## Current Truths
 
-- The productization branch still contains no imported source implementation.
-- The frozen manifest is the only authority for the next import.
+- The V1 manifest was corrected before Lane A completion.
+- Manifest V1.1 is the only authority for the Lane A import.
 - No database connection or write occurred.
 - No migration was created or applied.
 - No provider call occurred.
@@ -298,7 +326,7 @@ Result:
 
 ## Exact Next Gate
 
-Import the exact `35` Lane A files from source SHA
+Import the exact `38` Lane A files from source SHA
 `c5bbbba5dea998fcd51d0d8602601737356a1494`.
 
 Required sequence:
@@ -306,7 +334,7 @@ Required sequence:
 1. Freeze an import plan from the manifest.
 2. Read every source blob from the recorded source SHA.
 3. Verify every source SHA-256 before writing.
-4. Write only the 35 `import_now` destination paths.
+4. Write only the 38 `import_now` destination paths.
 5. Verify destination SHA-256 equals the manifest for every file.
 6. Run all Lane A focused contract tests.
 7. Run syntax/import checks for every imported module.
