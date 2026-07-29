@@ -317,32 +317,6 @@ async function candidateRows(client, { limit, canaryDefinition }) {
   return result.rows;
 }
 
-async function missingVariantAssignmentCount(client, sourceRun) {
-  const result = await client.query(
-    `select count(*)::integer as missing_count
-       from public.tcgcsv_source_price_daily_observations observation
-       join public.external_mappings mapping
-         on mapping.source = 'tcgplayer'
-        and mapping.active = true
-        and mapping.external_id ~ '^[0-9]+$'
-        and mapping.external_id::integer = observation.product_id
-       left join public.market_evidence_variant_assignments assignment
-         on assignment.source_family = 'tcgcsv_market_close'
-        and assignment.source_table =
-          'tcgcsv_source_price_daily_observations'
-        and assignment.source_row_id = observation.id
-        and assignment.variant_assignment_version =
-          'MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1'
-      where observation.last_seen_run_id = $1
-        and observation.observed_on = $2
-        and observation.category_id = 3
-        and mapping.card_print_id is not null
-        and assignment.id is null`,
-    [sourceRun.id, sourceRun.observed_on],
-  );
-  return Number(result.rows[0].missing_count);
-}
-
 function buildCandidate(row, runId) {
   return {
     run_id: runId,
@@ -1357,40 +1331,19 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "prepare_variant_assignments",
       operation: async () => {
-        const missingCount = await missingVariantAssignmentCount(
-          client,
-          sourceRun,
-        );
-        if (missingCount === 0) {
-          return {
-            input_count: 0,
-            output_count: 0,
-            reconciled_count: 0,
-            resumability_data: {
-              source_sync_run_id: sourceRun.id,
-              missing_assignment_count: 0,
-              skipped_expensive_prepare: true,
-            },
-          };
-        }
         const result = await client.query(
           `select public.prepare_tcgplayer_market_variant_assignments_v1($1) as inserted_count`,
           [sourceRun.id],
         );
         const insertedCount = Number(result.rows[0].inserted_count);
-        if (insertedCount !== missingCount) {
-          throw new Error(
-            `variant assignment preparation mismatch missing=${missingCount} inserted=${insertedCount}`,
-          );
-        }
         return {
-          input_count: missingCount,
+          input_count: insertedCount,
           output_count: insertedCount,
           reconciled_count: insertedCount,
           resumability_data: {
             source_sync_run_id: sourceRun.id,
-            missing_assignment_count: missingCount,
-            skipped_expensive_prepare: false,
+            inserted_assignment_count: insertedCount,
+            idempotent_prepare_no_op: insertedCount === 0,
           },
         };
       },
@@ -1597,6 +1550,10 @@ async function main() {
     statement_timeout: args.databaseTimeoutMinutes * 60 * 1000,
   });
   await client.connect();
+  await client.query(
+    "select set_config('statement_timeout', $1, false)",
+    [`${args.databaseTimeoutMinutes}min`],
+  );
   try {
     const sourceRun = await latestSourceRun(client);
     const runPlan = {

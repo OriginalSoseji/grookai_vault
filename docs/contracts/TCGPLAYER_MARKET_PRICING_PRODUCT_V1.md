@@ -155,6 +155,12 @@ tcgcsv current warehouse sync
 Apply mode requires a clean tracked worktree and records the exact producing
 commit SHA. The pipeline writes a frozen run plan, resumable phase state,
 stdout/stderr logs, summaries, reconciliation, and artifact hashes.
+Successful source run keys are immutable and same-key retries resume their
+recorded terminal result. Variant-assignment preparation is an idempotent
+single pass over the frozen source-run/date slice; it must not first rescan the
+full observation history or qualification view. The publication worker applies
+its configured database timeout to the connected database session before any
+phase executes.
 
 Ordinary operation must not require manual row approval. Ambiguous rows are
 quarantined by deterministic reason code and can be repaired as mapping policy

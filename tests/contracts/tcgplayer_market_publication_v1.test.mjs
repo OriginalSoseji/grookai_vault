@@ -49,6 +49,15 @@ const ASSIGNMENT_IDEMPOTENCY_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const ASSIGNMENT_RUNTIME_REPAIR_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260729190000_tcgplayer_market_assignment_prepare_runtime_repair_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -642,7 +651,7 @@ test("qualification candidate view avoids a redundant wide aggregation", () => {
   assert.doesNotMatch(CANDIDATE_PERFORMANCE_MIGRATION, /\barray_agg\s*\(/i);
 });
 
-test("variant assignment preparation skips rows already assigned", () => {
+test("variant assignment preparation uses one idempotent materialized run slice", () => {
   assert.match(
     ASSIGNMENT_IDEMPOTENCY_MIGRATION,
     /create or replace function public\.prepare_tcgplayer_market_variant_assignments_v1/i,
@@ -656,16 +665,35 @@ test("variant assignment preparation skips rows already assigned", () => {
     /on conflict \(\s*source_family,\s*source_row_id,\s*variant_assignment_version\s*\) do nothing/i,
   );
   assert.match(
-    WORKER,
-    /async function missingVariantAssignmentCount\(client, sourceRun\)/,
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /source_observations as materialized/i,
   );
-  assert.match(WORKER, /and assignment\.id is null/);
-  assert.match(WORKER, /if \(missingCount === 0\)/);
-  assert.match(WORKER, /skipped_expensive_prepare: true/);
   assert.match(
-    WORKER,
-    /variant assignment preparation mismatch missing=\$\{missingCount\} inserted=\$\{insertedCount\}/,
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /observation\.last_seen_run_id = p_source_sync_run_id/i,
   );
+  assert.match(
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /observation\.observed_on = source_observed_on/i,
+  );
+  assert.match(
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /set enable_nestloop = off/i,
+  );
+  assert.match(
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /source_mapping\.external_id =\s*observation\.source_product_id::text/i,
+  );
+  assert.match(
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /where not exists \([\s\S]*assignment\.source_row_id = candidate\.source_observation_id/i,
+  );
+  assert.match(
+    ASSIGNMENT_RUNTIME_REPAIR_MIGRATION,
+    /on conflict \(\s*source_family,\s*source_row_id,\s*variant_assignment_version\s*\) do nothing/i,
+  );
+  assert.doesNotMatch(WORKER, /missingVariantAssignmentCount/);
+  assert.match(WORKER, /idempotent_prepare_no_op: insertedCount === 0/);
 });
 
 test("signed-in clients receive a shared contract while provenance stays service-only", () => {
@@ -793,6 +821,11 @@ test("publication database timeout covers measured assignment preparation", () =
     WORKER,
     /statement_timeout: args\.databaseTimeoutMinutes \* 60 \* 1000/,
   );
+  assert.match(
+    WORKER,
+    /select set_config\('statement_timeout', \$1, false\)/,
+  );
+  assert.match(WORKER, /\[`?\$\{args\.databaseTimeoutMinutes\}min`?\]/);
   assert.match(
     WORKER,
     /database_timeout_minutes: args\.databaseTimeoutMinutes/,
