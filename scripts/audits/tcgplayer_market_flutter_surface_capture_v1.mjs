@@ -54,6 +54,35 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+export function extractFlutterPricingProofNodesV1(xml) {
+  const nodes = [];
+  for (const match of xml.matchAll(/<node\b[^>]*>/g)) {
+    const attributes = new Map(
+      [...match[0].matchAll(/([\w:-]+)="([^"]*)"/g)].map((attribute) => [
+        attribute[1],
+        decodeXml(attribute[2]),
+      ]),
+    );
+    const resourceId = attributes.get("resource-id") ?? "";
+    if (!resourceId.includes("tcgplayer-market")) {
+      continue;
+    }
+    const visibleText = [
+      attributes.get("content-desc") ?? "",
+      attributes.get("text") ?? "",
+    ]
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .filter((value, index, values) => values.indexOf(value) === index)
+      .join(" ");
+    nodes.push({
+      resource_id: resourceId,
+      visible_text: visibleText,
+    });
+  }
+  return nodes;
+}
+
 export function parseFlutterPricingProofKeyV1(key) {
   const normalized = key.includes("tcgplayer-market")
     ? key.slice(key.indexOf("tcgplayer-market"))
@@ -133,20 +162,26 @@ async function main() {
     binary: true,
   });
   const xml = xmlBuffer.toString("utf8");
-  const resourceIds = [
-    ...xml.matchAll(/\bresource-id="([^"]*tcgplayer-market[^"]*)"/g),
-  ].map((match) => decodeXml(match[1]));
+  const proofNodes = extractFlutterPricingProofNodesV1(xml);
   const filtered = args.match
-    ? resourceIds.filter((resourceId) => resourceId.includes(args.match))
-    : resourceIds;
-  const uniqueMatches = [...new Set(filtered)];
+    ? proofNodes.filter((node) => node.resource_id.includes(args.match))
+    : proofNodes;
+  const matchesByResourceId = new Map();
+  for (const node of filtered) {
+    const existing = matchesByResourceId.get(node.resource_id);
+    if (!existing || (!existing.visible_text && node.visible_text)) {
+      matchesByResourceId.set(node.resource_id, node);
+    }
+  }
+  const uniqueMatches = [...matchesByResourceId.values()];
   if (uniqueMatches.length !== 1) {
     throw new Error(
       `Expected exactly one Flutter pricing proof node, found ${uniqueMatches.length}. Use --match to select one.`,
     );
   }
 
-  const parsed = parseFlutterPricingProofKeyV1(uniqueMatches[0]);
+  const matchedNode = uniqueMatches[0];
+  const parsed = parseFlutterPricingProofKeyV1(matchedNode.resource_id);
   if (parsed.proof_kind !== expectedProofKind) {
     throw new Error(
       `Surface expects ${expectedProofKind}, captured ${parsed.proof_kind}`,
@@ -177,8 +212,9 @@ async function main() {
     card_print_id: parsed.card_print_id,
     card_printing_id: parsed.card_printing_id,
     rendered: parsed.rendered,
+    visible_text: matchedNode.visible_text,
     ui_automator_dump_sha256: sha256(xmlBuffer),
-    semantics_identifier: uniqueMatches[0],
+    semantics_identifier: matchedNode.resource_id,
   };
   await fs.writeFile(
     evidencePath,

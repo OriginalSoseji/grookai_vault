@@ -203,6 +203,7 @@ export function VaultCardTile({
           <p
             className="gv-hi-price text-sm font-semibold tracking-tight"
             data-pricing-proof="vault-exact-total"
+            data-pricing-scope="vault_group_total"
             data-card-print-id={item.card_id}
             data-vault-market-value-usd={item.effective_price}
             data-priced-copy-count={item.priced_raw_copy_count}

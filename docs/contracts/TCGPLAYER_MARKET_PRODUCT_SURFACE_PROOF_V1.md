@@ -23,6 +23,11 @@ deployed client commit
 
 Every surface is required exactly once:
 
+The executable ownership, route, auth, reader, renderer, and selector registry
+is
+`backend/pricing/tcgplayer_market_product_surface_registry_v1.mjs`. The
+registry and this list must remain exactly reconciled.
+
 ### Web
 
 - `web_card_detail`
@@ -137,7 +142,9 @@ pricing components expose a semantics identifier beginning with
 `tcgplayer-market-v1` or `tcgplayer-market-vault-total-v1`.
 
 Visible text alone is insufficient. A screenshot without machine-readable
-identity and provenance evidence cannot pass.
+identity and provenance evidence cannot pass. Visible money is also mandatory:
+the amount and `From` state read by the collector from rendered text must
+reconcile to the machine-readable attributes and the governed read-model row.
 
 ## Verification
 

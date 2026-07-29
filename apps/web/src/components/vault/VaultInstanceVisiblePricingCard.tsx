@@ -66,6 +66,13 @@ export default function VaultInstanceVisiblePricingCard({
 
       {pricingMode === "asking" ? (
         <div className="space-y-1">
+          <p className="text-xl font-semibold tracking-tight text-slate-950">
+            {formatVaultInstancePrice(askingPriceAmount, askingPriceCurrency)}
+          </p>
+          {askingPriceNote ? <p className="text-sm text-slate-600">{askingPriceNote}</p> : null}
+        </div>
+      ) : typeof marketReferencePrice === "number" ? (
+        <div className="space-y-1">
           <p
             className="text-xl font-semibold tracking-tight text-slate-950"
             data-pricing-proof="tcgplayer-market"
@@ -83,13 +90,6 @@ export default function VaultInstanceVisiblePricingCard({
             data-provenance-id={marketReferenceProvenanceId ?? undefined}
             data-is-from-price="false"
           >
-            {formatVaultInstancePrice(askingPriceAmount, askingPriceCurrency)}
-          </p>
-          {askingPriceNote ? <p className="text-sm text-slate-600">{askingPriceNote}</p> : null}
-        </div>
-      ) : typeof marketReferencePrice === "number" ? (
-        <div className="space-y-1">
-          <p className="text-xl font-semibold tracking-tight text-slate-950">
             {formatVaultInstancePrice(marketReferencePrice, "USD")}
           </p>
           <p className="text-sm text-slate-600">

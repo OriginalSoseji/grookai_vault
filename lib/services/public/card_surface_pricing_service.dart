@@ -73,7 +73,7 @@ class CardSurfacePricingService {
         if ((row['pricing_scope'] ?? '').toString() != 'parent') {
           continue;
         }
-        final pricing = _fromRow(row);
+        final pricing = cardSurfacePricingDataFromReadModelRow(row);
         if (pricing == null) {
           continue;
         }
@@ -115,7 +115,7 @@ class CardSurfacePricingService {
         if ((row['pricing_scope'] ?? '').toString() != 'card_printing') {
           continue;
         }
-        final pricing = _fromRow(row);
+        final pricing = cardSurfacePricingDataFromReadModelRow(row);
         final cardPrintingId = pricing?.cardPrintingId;
         if (pricing == null ||
             cardPrintingId == null ||
@@ -128,51 +128,68 @@ class CardSurfacePricingService {
 
     return pricingById;
   }
+}
 
-  static CardSurfacePricingData? _fromRow(Map<String, dynamic> row) {
-    final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
-    final pricingScope = (row['pricing_scope'] ?? '').toString().trim();
-    if (cardPrintId.isEmpty ||
-        (pricingScope != 'parent' && pricingScope != 'card_printing')) {
-      return null;
-    }
+CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
+  Map<String, dynamic> row,
+) {
+  final cardPrintId = _cleanPricingValue(row['card_print_id']);
+  final pricingScope = _cleanPricingValue(row['pricing_scope']);
+  final cardPrintingId = _cleanPricingValue(row['card_printing_id']);
+  final marketClose = _pricingDouble(row['market_close']);
+  final observedAt = DateTime.tryParse((row['observed_at'] ?? '').toString());
+  final publishedAt = DateTime.tryParse((row['published_at'] ?? '').toString());
+  final provenanceId = _cleanPricingValue(row['provenance_id']);
+  final isFromPrice = row['is_from_price'] == true;
+  final expectedSourceLabel = isFromPrice
+      ? 'From TCGPlayer Market'
+      : 'TCGPlayer Market';
 
-    return CardSurfacePricingData(
-      cardPrintId: cardPrintId,
-      pricingScope: pricingScope,
-      cardPrintingId: _clean(row['card_printing_id']),
-      printingGvId: _clean(row['printing_gv_id']),
-      finishKey: _clean(row['finish_key']),
-      isFromPrice: row['is_from_price'] == true,
-      marketClose: _toDouble(row['market_close']),
-      primarySource: _normalizeSource(row['source_name']),
-      sourceLabel: _clean(row['source_label']),
-      observedAt: DateTime.tryParse((row['observed_at'] ?? '').toString()),
-      publishedAt: DateTime.tryParse((row['published_at'] ?? '').toString()),
-      provenanceId: _clean(row['provenance_id']),
-    );
-  }
-
-  static double? _toDouble(dynamic value) {
-    if (value is num) {
-      final doubleValue = value.toDouble();
-      if (doubleValue.isFinite) {
-        return doubleValue;
-      }
-    }
+  if (cardPrintId == null ||
+      (pricingScope != 'parent' && pricingScope != 'card_printing') ||
+      (pricingScope == 'card_printing' && cardPrintingId == null) ||
+      marketClose == null ||
+      marketClose <= 0 ||
+      row['status'] != 'available' ||
+      row['currency'] != 'USD' ||
+      row['freshness'] != 'fresh' ||
+      (row['source_name'] ?? '').toString().trim().toLowerCase() !=
+          'tcgplayer' ||
+      _cleanPricingValue(row['source_label']) != expectedSourceLabel ||
+      observedAt == null ||
+      publishedAt == null ||
+      provenanceId == null ||
+      (pricingScope == 'card_printing' && isFromPrice)) {
     return null;
   }
 
-  static String? _normalizeSource(dynamic value) {
-    final normalized = (value ?? '').toString().trim().toLowerCase();
-    if (normalized == 'tcgplayer') {
-      return normalized;
-    }
-    return null;
-  }
+  return CardSurfacePricingData(
+    cardPrintId: cardPrintId,
+    pricingScope: pricingScope!,
+    cardPrintingId: cardPrintingId,
+    printingGvId: _cleanPricingValue(row['printing_gv_id']),
+    finishKey: _cleanPricingValue(row['finish_key']),
+    isFromPrice: isFromPrice,
+    marketClose: marketClose,
+    primarySource: 'tcgplayer',
+    sourceLabel: expectedSourceLabel,
+    observedAt: observedAt,
+    publishedAt: publishedAt,
+    provenanceId: provenanceId,
+  );
+}
 
-  static String? _clean(dynamic value) {
-    final normalized = (value ?? '').toString().trim();
-    return normalized.isEmpty ? null : normalized;
+double? _pricingDouble(dynamic value) {
+  if (value is num) {
+    final doubleValue = value.toDouble();
+    if (doubleValue.isFinite) {
+      return doubleValue;
+    }
   }
+  return null;
+}
+
+String? _cleanPricingValue(dynamic value) {
+  final normalized = (value ?? '').toString().trim();
+  return normalized.isEmpty ? null : normalized;
 }

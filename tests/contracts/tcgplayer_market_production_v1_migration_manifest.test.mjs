@@ -20,6 +20,13 @@ const RUNBOOK_PATH = path.join(
   "runbooks",
   "TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md",
 );
+const POST_CANARY_PLAN_PATH = path.join(
+  ROOT,
+  "backend",
+  "pricing",
+  "rollout",
+  "tcgplayer_market_post_canary_release_plan_v1.json",
+);
 const HASHES_PATH = path.join(
   ROOT,
   "docs",
@@ -42,6 +49,9 @@ function sha256(relativePath) {
 }
 
 const manifest = JSON.parse(readFileSync(MANIFEST_PATH, "utf8"));
+const postCanaryPlan = JSON.parse(
+  readFileSync(POST_CANARY_PLAN_PATH, "utf8"),
+);
 const runbook = readFileSync(RUNBOOK_PATH, "utf8");
 const artifactHashes = JSON.parse(readFileSync(HASHES_PATH, "utf8"));
 
@@ -122,4 +132,47 @@ test("permanent migration-readiness artifacts match their recorded hashes", () =
   )) {
     assert.equal(sha256(relativePath), expectedHash);
   }
+});
+
+test("post-canary release plan stays blocked, ordered, and exact", () => {
+  assert.equal(
+    postCanaryPlan.plan_version,
+    "TCGPLAYER_MARKET_POST_CANARY_RELEASE_PLAN_V1",
+  );
+  assert.equal(postCanaryPlan.status, "frozen_blocked_by_active_canary");
+  assert.equal(
+    postCanaryPlan.production_runtime.anonymous_pricing_must_remain_denied,
+    true,
+  );
+  assert.deepEqual(
+    postCanaryPlan.pending_migration_package.migrations.map(
+      (migration) => migration.id,
+    ),
+    ["20260728130000", "20260728133000"],
+  );
+  assert.equal(
+    postCanaryPlan.pending_migration_package.runtime_repair_prerequisite
+      .must_not_be_added_to_pending_package,
+    true,
+  );
+  assert.deepEqual(
+    postCanaryPlan.ordered_gates.map((gate) => gate.order),
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  );
+  assert.ok(
+    postCanaryPlan.ordered_gates.find(
+      (gate) => gate.gate === "client_deploy",
+    ).order >
+      postCanaryPlan.ordered_gates.find(
+        (gate) => gate.gate === "schema_security_readback",
+      ).order,
+  );
+  assert.ok(
+    postCanaryPlan.ordered_gates.find(
+      (gate) => gate.gate === "signed_in_activation",
+    ).order >
+      postCanaryPlan.ordered_gates.find(
+        (gate) => gate.gate === "authenticated_product_surfaces",
+      ).order,
+  );
 });

@@ -1,0 +1,130 @@
+{
+  "plan_version": "TCGPLAYER_MARKET_POST_CANARY_RELEASE_PLAN_V1",
+  "status": "frozen_blocked_by_active_canary",
+  "prepared_at": "2026-07-29T21:39:43.000Z",
+  "production_runtime": {
+    "expected_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "replacement_activation_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3",
+    "required_canary_end": "2026-08-01T20:26:44.820Z",
+    "expected_current_row_count": 100,
+    "anonymous_pricing_must_remain_denied": true
+  },
+  "current_read_only_truth": {
+    "checked_at": "2026-07-29T21:39:43.000Z",
+    "current_rows": 100,
+    "positive_usd_rows": 100,
+    "tcgplayer_market_rows": 100,
+    "fresh_rows": 100,
+    "missing_provenance_rows": 0,
+    "run_count": 1,
+    "publication_set_count": 1,
+    "database_writes": 0
+  },
+  "pending_migration_package": {
+    "manifest": "backend/pricing/rollout/tcgplayer_market_production_v1_migration_manifest.json",
+    "migrations": [
+      {
+        "id": "20260728130000",
+        "path": "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql",
+        "sha256": "028c94a4b86cf2e29fcd74dba4e5111c24ce70512019db3688c6d1e5b1632681"
+      },
+      {
+        "id": "20260728133000",
+        "path": "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql",
+        "sha256": "a66c7ae4aa3903077ad70d81bd1aeaa595f90a27ad30dd5b5604198eb7975cd7"
+      }
+    ],
+    "runtime_repair_prerequisite": {
+      "id": "20260729190000",
+      "status": "already_applied_and_verified",
+      "must_not_be_added_to_pending_package": true
+    }
+  },
+  "ordered_gates": [
+    {
+      "order": 1,
+      "gate": "replacement_canary",
+      "require": "first enforcing observer at or after required_canary_end reports passed with every Checkpoint 39 condition true",
+      "on_failure": "stop_preserve_evidence_no_migration_no_deploy"
+    },
+    {
+      "order": 2,
+      "gate": "integration_candidate",
+      "require": "build a clean candidate from current origin/main carrying only reviewed Production V1 pricing changes; record the exact candidate SHA",
+      "on_failure": "stop_no_migration_no_deploy"
+    },
+    {
+      "order": 3,
+      "gate": "pre_apply_verification",
+      "require": "strict migration preflight, full contract suite, web typecheck/build, Flutter analyze/tests, surface contracts, and clean tracked worktree all pass",
+      "on_failure": "stop_no_migration_no_deploy"
+    },
+    {
+      "order": 4,
+      "gate": "migration_apply",
+      "require": "apply exactly the two frozen migration IDs atomically with no include-all or ID substitution",
+      "on_failure": "stop_preserve_database_output_do_not_activate"
+    },
+    {
+      "order": 5,
+      "gate": "schema_security_readback",
+      "require": "migration ledger, empty drift, schemas, grants, RLS, function definitions, authenticated access, anonymous denial, and exact-Vault readback pass",
+      "on_failure": "stop_do_not_deploy_do_not_activate"
+    },
+    {
+      "order": 6,
+      "gate": "client_deploy",
+      "require": "deploy web and Flutter artifacts from the same recorded integration candidate and verify deployment metadata",
+      "on_failure": "roll_back_client_to_prior_deployed_sha_keep_publication_at_100"
+    },
+    {
+      "order": 7,
+      "gate": "authenticated_product_surfaces",
+      "require": "all 17 registry surfaces pass same-commit screenshot, rendered-text, amount, scope, freshness, source, and provenance reconciliation",
+      "on_failure": "roll_back_affected_client_keep_publication_at_100"
+    },
+    {
+      "order": 8,
+      "gate": "full_scope_shadow",
+      "require": "fresh full-source V1.2 shadow, coverage, performance, provenance, exact-Vault, health, and rollback dry-run all pass",
+      "on_failure": "stop_keep_publication_at_100"
+    },
+    {
+      "order": 9,
+      "gate": "signed_in_activation",
+      "require": "activate complete signed-in publication only; anonymous access remains denied",
+      "on_failure": "restore_prior_publication_pointer"
+    },
+    {
+      "order": 10,
+      "gate": "seven_unattended_cycles",
+      "require": "seven consecutive governed production cycles reconcile with zero terminal alerts or broken traces",
+      "on_failure": "freeze_or_restore_publication_preserve_evidence"
+    },
+    {
+      "order": 11,
+      "gate": "production_v1_completion",
+      "require": "final report proves every frozen Definition of Done gate; anonymous rollout remains a separate licensing decision",
+      "on_failure": "status_remains_not_complete"
+    }
+  ],
+  "required_commands": {
+    "strict_migration_preflight": ".\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds @(\"20260728130000\", \"20260728133000\")",
+    "migration_apply": "supabase db push",
+    "linked_schema_readback": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
+    "vault_readback": "npm run pricing:market:vault:verify -- --expected-commit-sha=<integration-candidate-sha> --require-pass",
+    "web_capture": "npm run pricing:market:surfaces:web:capture -- --base-url=https://<production-host> --route-plan=<route-plan.json> --storage-state=<storage-state.json> --out-dir=<capture-dir> --deployed-commit-sha=<integration-candidate-sha>",
+    "surface_manifest": "npm run pricing:market:surfaces:manifest -- --capture-dir=<capture-dir> --deployed-commit-sha=<integration-candidate-sha> --require-complete",
+    "surface_verification": "npm run pricing:market:surfaces:verify -- --capture-manifest=<capture-dir>/capture_manifest.json --vault-readback=<vault-audit>/summary.json --expected-commit-sha=<integration-candidate-sha> --deployed-commit-sha=<integration-candidate-sha> --require-pass",
+    "rollback_dry_run": "npm run pricing:market:rollback:dry-run",
+    "full_rollout_observer": "npm run pricing:market:full-rollout:observe"
+  },
+  "forbidden_until_authorized": [
+    "post-canary migration before replacement observer pass",
+    "client deployment before schema and security readback",
+    "full signed-in publication before 17/17 surface proof",
+    "anonymous pricing before licensing and display-authority approval",
+    "Grookai Value, inferred pricing, slabs, sealed, Japanese, or other TCG expansion",
+    "rewriting or hiding failed canary history"
+  ]
+}

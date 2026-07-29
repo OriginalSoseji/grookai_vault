@@ -9,6 +9,7 @@ import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
+import { PublicWallCardVisiblePrice } from "@/components/public/PublicWallCardVisiblePrice";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity } from "@/hooks/useViewDensity";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
@@ -561,6 +562,7 @@ export function PublicCollectorProfileContent({
                         {card.public_note ? <p className="line-clamp-2 pt-1 text-xs leading-5 text-slate-500">{card.public_note}</p> : null}
                       </>
                     }
+                    summary={<PublicWallCardVisiblePrice card={card} />}
                     details={
                       <div className="space-y-3">
                         {card.in_play_copies && card.in_play_copies.length > 1 ? (

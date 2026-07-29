@@ -12,8 +12,14 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { getPublicCollectorWallViewBySlug } from "@/lib/wallSections/getPublicCollectorWallViewBySlug";
 import { PUBLIC_WALL_SECTION_ID } from "@/lib/wallSections/wallSectionTypes";
+import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
+import {
+  createServerComponentClient,
+  hasSupabaseServerAuthCookie,
+} from "@/lib/supabase/server";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function dedupePublicWallCards(cards: PublicWallCard[]) {
   const cardByKey = new Map<string, PublicWallCard>();
@@ -78,16 +84,37 @@ export default async function PublicProfilePage({
 }: {
   params: { slug: string };
 }) {
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = hasSupabaseServerAuthCookie()
+    ? await supabase.auth.getUser()
+    : { data: { user: null } };
   const profile = await getPublicProfileBySlug(params.slug);
 
   if (!profile || !profile.vault_sharing_enabled) {
     notFound();
   }
 
-  const [sectionViews, followCounts] = await Promise.all([
+  const [baseSectionViews, followCounts] = await Promise.all([
     getPublicCollectorWallViewBySlug(profile.slug),
     getCollectorFollowCounts(profile.user_id),
   ]);
+  const pricingByCardId = user
+    ? await getPublicPricingByCardIds(
+        supabase,
+        baseSectionViews.flatMap((section) =>
+          section.cards.map((card) => card.card_print_id),
+        ),
+      )
+    : new Map();
+  const sectionViews = baseSectionViews.map((section) => ({
+    ...section,
+    cards: section.cards.map((card) => ({
+      ...card,
+      ...(pricingByCardId.get(card.card_print_id) ?? {}),
+    })),
+  }));
   const renderableCards = dedupePublicWallCards(sectionViews.find((section) => section.id === PUBLIC_WALL_SECTION_ID)?.cards ?? []);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(renderableCards));
   const setCount = new Set(renderableCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
@@ -119,8 +146,8 @@ export default async function PublicProfilePage({
         actions={
           <FollowCollectorButton
             collectorUserId={profile.user_id}
-            isAuthenticated={false}
-            isOwnProfile={false}
+            isAuthenticated={Boolean(user)}
+            isOwnProfile={user?.id === profile.user_id}
             initialIsFollowing={false}
             loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}`)}`}
           />
@@ -134,8 +161,8 @@ export default async function PublicProfilePage({
         collectorDisplayName={profile.display_name}
         collectorUserId={profile.user_id}
         sections={sectionViews}
-        isAuthenticated={false}
-        viewerUserId={null}
+        isAuthenticated={Boolean(user)}
+        viewerUserId={user?.id ?? null}
         currentPath={`/u/${profile.slug}`}
         selectedSectionId={PUBLIC_WALL_SECTION_ID}
       />

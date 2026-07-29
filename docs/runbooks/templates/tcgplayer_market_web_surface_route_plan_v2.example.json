@@ -1,0 +1,54 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_WEB_CAPTURE_PLAN_V2",
+  "auth_probe_card_print_id": "<eligible-card-print-uuid>",
+  "surfaces": [
+    {
+      "surface_id": "web_card_detail",
+      "route": "/card/<gv-id>",
+      "match_card_print_id": "<card-print-uuid>",
+      "match_card_printing_id": "<card-printing-uuid>"
+    },
+    {
+      "surface_id": "web_search",
+      "route": "/explore?q=<query>",
+      "match_card_print_id": "<card-print-uuid>"
+    },
+    {
+      "surface_id": "web_explore",
+      "route": "/explore",
+      "match_card_print_id": "<card-print-uuid>"
+    },
+    {
+      "surface_id": "web_set_grid",
+      "route": "/sets/<set-code>",
+      "match_card_print_id": "<card-print-uuid>",
+      "match_card_printing_id": "<card-printing-uuid>"
+    },
+    {
+      "surface_id": "web_compare",
+      "route": "/compare?cards=<gv-id-1>,<gv-id-2>",
+      "match_card_print_id": "<card-print-uuid>"
+    },
+    {
+      "surface_id": "web_private_vault",
+      "route": "/vault"
+    },
+    {
+      "surface_id": "web_public_vault",
+      "route": "/u/<collector-slug>",
+      "match_card_print_id": "<card-print-uuid>"
+    },
+    {
+      "surface_id": "web_vault_item",
+      "route": "/vault/gvvi/<gvvi-id>",
+      "match_card_print_id": "<card-print-uuid>",
+      "match_card_printing_id": "<card-printing-uuid>"
+    },
+    {
+      "surface_id": "web_market_history",
+      "route": "/card/<gv-id>/market?printing=<printing-gv-id>",
+      "match_card_print_id": "<card-print-uuid>",
+      "match_card_printing_id": "<card-printing-uuid>"
+    }
+  ]
+}

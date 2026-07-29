@@ -80,14 +80,18 @@ class CardSurfacePricePill extends StatelessWidget {
             value != null
         ? 'From $baseFormattedValue'
         : baseFormattedValue;
+    final carriesMarketProof =
+        mode != CardSurfacePriceMode.manual && resolvedPricing != null;
     return Semantics(
-      identifier: resolvedPricing == null
+      identifier: !carriesMarketProof
           ? null
           : cardSurfacePricingProofKey(resolvedPricing),
-      label: 'TCGPlayer Market',
+      label: mode == CardSurfacePriceMode.manual
+          ? 'Collector asking price'
+          : 'TCGPlayer Market',
       value: formattedValue,
       child: Container(
-        key: resolvedPricing == null
+        key: !carriesMarketProof
             ? null
             : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
         padding: EdgeInsets.symmetric(
@@ -164,15 +168,19 @@ class CardSurfacePriceText extends StatelessWidget {
             value != null
         ? 'From $baseFormattedValue'
         : baseFormattedValue;
+    final carriesMarketProof =
+        mode != CardSurfacePriceMode.manual && resolvedPricing != null;
     return Semantics(
-      identifier: resolvedPricing == null
+      identifier: !carriesMarketProof
           ? null
           : cardSurfacePricingProofKey(resolvedPricing),
-      label: 'TCGPlayer Market',
+      label: mode == CardSurfacePriceMode.manual
+          ? 'Collector asking price'
+          : 'TCGPlayer Market',
       value: formattedValue,
       child: Text(
         formattedValue,
-        key: resolvedPricing == null
+        key: !carriesMarketProof
             ? null
             : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
         textAlign: textAlign,

@@ -157,9 +157,10 @@ test("web pricing records require and preserve published_at", () => {
   assert.match(WEB_READ_MODEL, /published_at: string;/);
   assert.match(
     WEB_READ_MODEL,
-    /!row\.observed_at \|\|\s*!row\.published_at/,
+    /const observedAt = validTimestamp\(row\.observed_at\);[\s\S]*?const publishedAt = validTimestamp\(row\.published_at\);/,
   );
-  assert.match(WEB_READ_MODEL, /published_at: row\.published_at/);
+  assert.match(WEB_READ_MODEL, /!observedAt \|\|\s*!publishedAt/);
+  assert.match(WEB_READ_MODEL, /published_at: publishedAt/);
   assert.match(WEB_PUBLIC_PRICING, /updated_at: record\.published_at/);
   assert.match(WEB_PUBLIC_PRICING, /last_snapshot_at: record\.published_at/);
 });
@@ -179,9 +180,15 @@ test("Flutter shared pricing models preserve the publication timestamp", () => {
   assert.match(FLUTTER_PRICING, /final DateTime\? publishedAt;/);
   assert.match(
     FLUTTER_PRICING,
-    /publishedAt: DateTime\.tryParse\(\s*\(row\['published_at'\]/,
+    /final publishedAt = DateTime\.tryParse\(\(row\['published_at'\]/,
   );
+  assert.match(FLUTTER_PRICING, /publishedAt == null/);
+  assert.match(FLUTTER_PRICING, /publishedAt: publishedAt/);
   assert.match(
+    FLUTTER_NETWORK,
+    /CardSurfacePricingService\.fetchByCardPrintIds\(/,
+  );
+  assert.doesNotMatch(
     FLUTTER_NETWORK,
     /publishedAt: DateTime\.tryParse\(_nullable\(row\['published_at'\]\)/,
   );

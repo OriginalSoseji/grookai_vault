@@ -136,6 +136,7 @@ async function materializeCaptures(manifest, manifestPath, outDir) {
       card_print_id: clean(renderEvidence.card_print_id),
       card_printing_id: clean(renderEvidence.card_printing_id) || null,
       rendered: renderEvidence.rendered ?? null,
+      visible_text: clean(renderEvidence.visible_text),
       screenshot_path: path
         .relative(outDir, screenshotTarget)
         .replaceAll("\\", "/"),

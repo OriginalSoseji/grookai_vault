@@ -657,6 +657,7 @@ export function VaultCollectionView({
                   <p
                     className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
                     data-pricing-proof="vault-exact-total"
+                    data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
                       valueSummary.totalEstimatedValue ?? undefined
                     }

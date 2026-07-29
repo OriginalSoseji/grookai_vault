@@ -39,6 +39,7 @@ type FeaturedExploreCardRow = {
 };
 
 export type FeaturedExploreCard = {
+  id: string;
   gv_id: string;
   name: string;
   display_name: string;
@@ -57,6 +58,13 @@ export type FeaturedExploreCard = {
   display_image_url?: string;
   display_image_fallback_url?: string;
   display_image_kind?: "exact" | "representative" | "missing_variant_visual" | "missing" | "blocked";
+  raw_price?: number;
+  raw_price_ts?: string;
+  raw_price_published_at?: string;
+  pricing_provenance_id?: string;
+  pricing_source_label?: string;
+  pricing_scope?: "parent" | "card_printing";
+  pricing_is_from_price?: boolean;
 };
 
 const FEATURED_EXPLORE_CARD_COUNT = 10;
@@ -89,6 +97,7 @@ async function normalizeFeaturedExploreCard(
   });
 
   return {
+    id: row.id ?? row.gv_id,
     gv_id: row.gv_id,
     name,
     display_name: displayIdentity.display_name,

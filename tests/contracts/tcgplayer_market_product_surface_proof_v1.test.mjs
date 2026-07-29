@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -7,11 +7,18 @@ import { fileURLToPath } from "node:url";
 import {
   evaluateTcgplayerMarketProductSurfaceProofV1,
   isTcgplayerMarketProductSurfaceRouteV1,
+  TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1,
   TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1,
 } from "../../backend/pricing/tcgplayer_market_product_surface_proof_policy_v1.mjs";
 import {
+  extractFlutterPricingProofNodesV1,
   parseFlutterPricingProofKeyV1,
 } from "../../scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs";
+import {
+  buildTcgplayerMarketWebRenderEvidenceV2,
+  TCGPLAYER_MARKET_WEB_CAPTURE_PLAN_V2,
+  validateTcgplayerMarketWebCapturePlanV2,
+} from "../../scripts/audits/tcgplayer_market_web_surface_capture_v2.mjs";
 
 const COMMIT = "a".repeat(40);
 const HASH = "b".repeat(64);
@@ -129,6 +136,90 @@ const FLUTTER_NETWORK_SCREEN = readFileSync(
   path.join(ROOT, "lib", "screens", "network", "network_screen.dart"),
   "utf8",
 );
+const FLUTTER_NETWORK_SERVICE = readFileSync(
+  path.join(ROOT, "lib", "services", "network", "network_stream_service.dart"),
+  "utf8",
+);
+const WEB_SEARCH_API = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "app",
+    "api",
+    "resolver",
+    "search",
+    "route.ts",
+  ),
+  "utf8",
+);
+const WEB_COMPARE_PAGE = readFileSync(
+  path.join(ROOT, "apps", "web", "src", "app", "compare", "page.tsx"),
+  "utf8",
+);
+const WEB_EXPLORE_PAGE = readFileSync(
+  path.join(ROOT, "apps", "web", "src", "app", "explore", "page.tsx"),
+  "utf8",
+);
+const WEB_PUBLIC_WALL_PAGE = readFileSync(
+  path.join(ROOT, "apps", "web", "src", "app", "u", "[slug]", "page.tsx"),
+  "utf8",
+);
+const WEB_PUBLIC_GVVI_PAGE = readFileSync(
+  path.join(ROOT, "apps", "web", "src", "app", "gvvi", "[gvvi_id]", "page.tsx"),
+  "utf8",
+);
+const WEB_VISIBLE_VAULT_PRICING = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "components",
+    "vault",
+    "VaultInstanceVisiblePricingCard.tsx",
+  ),
+  "utf8",
+);
+const WEB_PRIVATE_VAULT_ITEM_PAGE = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "app",
+    "vault",
+    "gvvi",
+    "[gvvi_id]",
+    "page.tsx",
+  ),
+  "utf8",
+);
+const WEB_PRIVATE_VAULT_ITEM_READER = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "lib",
+    "vault",
+    "getVaultInstanceByGvvi.ts",
+  ),
+  "utf8",
+);
+const WEB_PRIVATE_VAULT_ITEM_PRICING = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "components",
+    "vault",
+    "VaultInstancePricingCard.tsx",
+  ),
+  "utf8",
+);
 
 function readModelRow() {
   return {
@@ -158,7 +249,7 @@ function capture(surface, index) {
     web_compare: "/compare?cards=GV-PK-TEST-001,GV-PK-TEST-002",
     web_private_vault: "/vault",
     web_public_vault: "/u/test-collector",
-    web_vault_item: `/vault/card/${CARD_PRINT_ID}`,
+    web_vault_item: "/vault/gvvi/GV-VI-TEST-001",
     web_market_history: "/card/GV-PK-TEST-001/market",
     flutter_card_detail: "card_detail",
     flutter_search_or_grid: "search_or_grid",
@@ -189,6 +280,7 @@ function capture(surface, index) {
         currency: "USD",
         source_label: "TCGPlayer Market",
       },
+      visible_text: "$24.68",
     };
   }
   if (surface.proof_kind === "vault_group_total") {
@@ -214,6 +306,7 @@ function capture(surface, index) {
         observed_at: OBSERVED_AT,
         published_at: PUBLISHED_AT,
       },
+      visible_text: "$12.34",
     };
   }
   return {
@@ -240,6 +333,7 @@ function capture(surface, index) {
       provenance_id: PROVENANCE_ID,
       is_from_price: false,
     },
+    visible_text: "$12.34",
   };
 }
 
@@ -400,10 +494,29 @@ test("multi-printing parent summaries preserve the governed From state", () => {
     }
     captured.rendered.source_label = "From TCGPlayer Market";
     captured.rendered.is_from_price = true;
+    captured.visible_text = "From $12.34";
   }
   const result = evaluateTcgplayerMarketProductSurfaceProofV1(input);
   assert.equal(result.status, "passed");
   assert.deepEqual(result.findings, []);
+});
+
+test("visible price text must match the machine-readable amount and From state", () => {
+  const input = evidence();
+  input.capture_manifest.captures[0].visible_text = "$99.00";
+  input.capture_manifest.captures[1].visible_text = "From $12.34";
+  const result = evaluateTcgplayerMarketProductSurfaceProofV1(input);
+  assert.equal(result.status, "failed");
+  assert.ok(
+    result.findings.some((finding) =>
+      finding.startsWith("surface_price_visible_amount_mismatch:"),
+    ),
+  );
+  assert.ok(
+    result.findings.some((finding) =>
+      finding.startsWith("surface_price_visible_from_state_mismatch:"),
+    ),
+  );
 });
 
 test("authentication, screenshot, and render evidence are mandatory", () => {
@@ -470,8 +583,91 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(VISIBLE_PRICE, /data-published-at=\{publishedAt\}/);
   assert.match(VISIBLE_PRICE, /\{isFromPrice \? "From " : ""\}/);
   assert.match(VISIBLE_PRICE, /data-source-label=\{sourceLabel\}/);
-  assert.match(FLUTTER_PRICE, /identifier:\s*resolvedPricing == null/);
+  assert.match(FLUTTER_PRICE, /final carriesMarketProof =/);
+  assert.match(FLUTTER_PRICE, /identifier:\s*!carriesMarketProof/);
+  assert.match(FLUTTER_PRICE, /Collector asking price/);
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
+  assert.match(AUDIT, /visible_text:\s*clean\(renderEvidence\.visible_text\)/);
+});
+
+test("the executable registry binds all 17 surfaces to existing owners and proof selectors", () => {
+  assert.equal(TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.length, 17);
+  assert.equal(
+    new Set(
+      TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.map(
+        (surface) => surface.surface_id,
+      ),
+    ).size,
+    17,
+  );
+  for (const surface of TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1) {
+    assert.equal(surface.auth_lane, "signed_in");
+    assert.ok(surface.route_identity);
+    assert.ok(surface.capture_selector);
+    for (const owner of [
+      ...surface.read_owner_files,
+      ...surface.render_owner_files,
+      ...surface.auth_boundary_files,
+    ]) {
+      assert.equal(existsSync(path.join(ROOT, owner)), true, owner);
+    }
+  }
+
+  const vaultItem = TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.find(
+    (surface) => surface.surface_id === "web_vault_item",
+  );
+  assert.deepEqual(vaultItem?.read_owner_files, [
+    "apps/web/src/lib/vault/getVaultInstanceByGvvi.ts",
+    "apps/web/src/lib/pricing/marketPricingReadModelV1.ts",
+  ]);
+  assert.deepEqual(vaultItem?.render_owner_files, [
+    "apps/web/src/components/vault/VaultInstancePricingCard.tsx",
+  ]);
+  assert.deepEqual(vaultItem?.auth_boundary_files, [
+    "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
+  ]);
+});
+
+test("newly wired web surfaces require auth before fetching governed pricing", () => {
+  assert.match(WEB_EXPLORE_PAGE, /supabase\.auth\.getUser\(\)/);
+  assert.match(WEB_EXPLORE_PAGE, /const canViewPricing = Boolean\(user\)/);
+  assert.match(WEB_COMPARE_PAGE, /supabase\.auth\.getUser\(\)/);
+  assert.match(
+    WEB_COMPARE_PAGE,
+    /pricingClient:\s*canViewPricing\s*\?\s*supabase\s*:\s*undefined/,
+  );
+  assert.match(WEB_PUBLIC_WALL_PAGE, /supabase\.auth\.getUser\(\)/);
+  assert.match(
+    WEB_PUBLIC_WALL_PAGE,
+    /const pricingByCardId = user[\s\S]*?getPublicPricingByCardIds\(\s*supabase,/,
+  );
+  assert.match(WEB_PUBLIC_GVVI_PAGE, /includeMarketPricing:\s*Boolean\(user\)/);
+  assert.match(WEB_SEARCH_API, /authenticatedIncludePricing/);
+  assert.match(WEB_SEARCH_API, /private,\s*no-store/);
+});
+
+test("asking prices never carry TCGPlayer proof and exact market values do", () => {
+  const askingBranch = WEB_VISIBLE_VAULT_PRICING
+    .split('pricingMode === "asking" ? (')[1]
+    ?.split(') : typeof marketReferencePrice === "number" ? (')[0];
+  assert.ok(askingBranch);
+  assert.doesNotMatch(askingBranch, /data-pricing-proof/);
+  assert.match(
+    WEB_VISIBLE_VAULT_PRICING,
+    /data-pricing-proof="tcgplayer-market"/,
+  );
+  assert.match(
+    WEB_PRIVATE_VAULT_ITEM_PRICING,
+    /data-pricing-proof="tcgplayer-market"/,
+  );
+  assert.match(
+    WEB_PRIVATE_VAULT_ITEM_READER,
+    /getExactMarketPricingByCardPrintingIds\(admin,\s*\[cardPrintingId\]\)/,
+  );
+  assert.match(
+    WEB_PRIVATE_VAULT_ITEM_PAGE,
+    /<VaultInstancePricingCard[\s\S]*?marketReferencePrice=\{detail\.marketReferencePrice\}/,
+  );
 });
 
 test("web Set grids use exact child-printing pricing for initial and paginated rows", () => {
@@ -523,6 +719,11 @@ test("Flutter Compare and Network preserve governed pricing render evidence", ()
     FLUTTER_NETWORK_SCREEN,
     /values\.add\(_formatPrice\(visiblePrice\)\)/,
   );
+  assert.match(
+    FLUTTER_NETWORK_SERVICE,
+    /CardSurfacePricingService\.fetchByCardPrintIds\([\s\S]*?cardPrintIds:\s*rotatedIds/s,
+  );
+  assert.doesNotMatch(FLUTTER_NETWORK_SERVICE, /_pricingFromRow/);
 });
 
 test("Flutter semantics proof keys preserve price and Vault total meaning", () => {
@@ -583,4 +784,94 @@ test("Flutter semantics proof keys preserve price and Vault total meaning", () =
   assert.equal(vault.proof_kind, "vault_total");
   assert.equal(vault.rendered.vault_market_value_usd, 50.25);
   assert.equal(vault.rendered.priced_copy_count, 4);
+});
+
+test("Flutter UIAutomator evidence preserves visible text beside the proof key", () => {
+  const proofKey = [
+    "tcgplayer-market-v1",
+    "parent",
+    CARD_PRINT_ID,
+    "",
+    "",
+    "12.34",
+    OBSERVED_AT,
+    PUBLISHED_AT,
+    PROVENANCE_ID,
+    "TCGPlayer Market",
+    "exact",
+    "",
+    "",
+  ].join("|");
+  const nodes = extractFlutterPricingProofNodesV1(
+    `<hierarchy><node text="" content-desc="TCGPlayer Market $12.34" resource-id="${proofKey}" /></hierarchy>`,
+  );
+  assert.deepEqual(nodes, [
+    {
+      resource_id: proofKey,
+      visible_text: "TCGPlayer Market $12.34",
+    },
+  ]);
+});
+
+test("Playwright web capture requires every surface once and preserves visible evidence", () => {
+  const plan = {
+    schema_version: TCGPLAYER_MARKET_WEB_CAPTURE_PLAN_V2,
+    auth_probe_card_print_id: CARD_PRINT_ID,
+    surfaces: TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.filter(
+      (surface) => surface.client === "web",
+    ).map((surface) => ({
+      surface_id: surface.surface_id,
+      route:
+        surface.surface_id === "web_search"
+          ? "/explore?q=charizard"
+          : surface.surface_id === "web_explore"
+            ? "/explore"
+            : surface.route_identity
+                .replace("[gv_id]", "GV-PK-TEST-001")
+                .replace("[set_code]", "base1")
+                .replace("[slug]", "test-collector")
+                .replace("[gvvi_id]", "GVVI-TEST-001"),
+      ...(surface.surface_id === "web_private_vault"
+        ? {}
+        : { match_card_print_id: CARD_PRINT_ID }),
+    })),
+  };
+  assert.deepEqual(validateTcgplayerMarketWebCapturePlanV2(plan), {
+    status: "passed",
+    findings: [],
+  });
+
+  const missing = structuredClone(plan);
+  missing.surfaces.pop();
+  assert.equal(
+    validateTcgplayerMarketWebCapturePlanV2(missing).status,
+    "failed",
+  );
+
+  const surface = TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.find(
+    (entry) => entry.surface_id === "web_card_detail",
+  );
+  const evidence = buildTcgplayerMarketWebRenderEvidenceV2({
+    captureId: "web_card_detail_test",
+    surface,
+    route: "/card/GV-PK-TEST-001",
+    capturedAt: PUBLISHED_AT,
+    visibleText: "$12.34",
+    dataset: {
+      pricingStatus: "available",
+      pricingScope: "card_printing",
+      marketCloseUsd: "12.34",
+      currency: "USD",
+      sourceLabel: "TCGPlayer Market",
+      observedAt: OBSERVED_AT,
+      publishedAt: PUBLISHED_AT,
+      provenanceId: PROVENANCE_ID,
+      isFromPrice: "false",
+      cardPrintId: CARD_PRINT_ID,
+      cardPrintingId: CARD_PRINTING_ID,
+    },
+  });
+  assert.equal(evidence.visible_text, "$12.34");
+  assert.equal(evidence.rendered.market_close_usd, 12.34);
+  assert.equal(evidence.card_printing_id, CARD_PRINTING_ID);
 });

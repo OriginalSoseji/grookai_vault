@@ -777,6 +777,11 @@ Recommended reading order for future maintainers:
       replacement activation, observer restart gate, and corrected
       post-72-hour execution sequence
 
+38. `PRICING_CHECKPOINT_40_PRODUCT_SURFACE_RELEASE_READINESS.md`
+    - then read the executable 17-surface registry, shared-client corrections,
+      visible-text proof, read-only 100-row check, and frozen post-canary
+      migration/deployment/rollback sequence
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

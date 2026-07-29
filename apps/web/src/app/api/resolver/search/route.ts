@@ -429,13 +429,14 @@ export async function GET(request: NextRequest) {
   try {
     let userId: string | null = null;
 
-    if (hasSmartOwnershipIntent) {
+    if (hasSmartOwnershipIntent || includePricing) {
       const supabase = createServerComponentClient();
       const {
         data: { user },
       } = await supabase.auth.getUser();
       userId = user?.id ?? null;
     }
+    const authenticatedIncludePricing = includePricing && Boolean(userId);
 
     const includeProvisional =
       languageScope !== "ja" &&
@@ -458,7 +459,7 @@ export async function GET(request: NextRequest) {
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
             languageScope,
-            includePricing,
+            includePricing: authenticatedIncludePricing,
           }),
         ).then((rows) => ({
           rows,
@@ -471,7 +472,7 @@ export async function GET(request: NextRequest) {
             query,
             languageScope,
             sortMode,
-            includePricing,
+            authenticatedIncludePricing,
           ).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -491,7 +492,7 @@ export async function GET(request: NextRequest) {
             stampLabels: effectiveSmartSearchIntent.stampLabels,
             imageState: effectiveSmartSearchIntent.imageState,
             languageScope,
-            includePricing,
+            includePricing: authenticatedIncludePricing,
           }).then((rows) => ({
             rows,
             meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -511,7 +512,7 @@ export async function GET(request: NextRequest) {
               stampLabels: effectiveSmartSearchIntent.stampLabels,
               imageState: effectiveSmartSearchIntent.imageState,
               languageScope,
-              includePricing,
+              includePricing: authenticatedIncludePricing,
             }).then((rows) => ({
               rows,
               meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
@@ -528,7 +529,7 @@ export async function GET(request: NextRequest) {
               releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
               releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
               languageScope,
-              includePricing,
+              includePricing: authenticatedIncludePricing,
             }).then((resolved) => ({
               ...resolved,
               smartSearchIntent: effectiveSmartSearchIntent,
@@ -608,8 +609,10 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=300",
-          ...(effectiveSmartSearchIntent.ownedState ? { "Cache-Control": "private, no-store" } : {}),
+          "Cache-Control":
+            includePricing || effectiveSmartSearchIntent.ownedState
+              ? "private, no-store"
+              : "public, s-maxage=120, stale-while-revalidate=300",
         },
       },
     );
@@ -642,7 +645,7 @@ export async function GET(request: NextRequest) {
         },
         {
           headers: {
-            "Cache-Control": effectiveSmartSearchIntent.ownedState
+            "Cache-Control": includePricing || effectiveSmartSearchIntent.ownedState
               ? "private, no-store"
               : "public, s-maxage=30, stale-while-revalidate=120",
           },

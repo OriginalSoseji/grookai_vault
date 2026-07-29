@@ -163,6 +163,9 @@ export type PublicVaultInstanceDetail = {
 
 export async function getPublicVaultInstanceByGvvi(
   gvviId: string,
+  options: {
+    includeMarketPricing?: boolean;
+  } = {},
 ): Promise<PublicVaultInstanceDetail | null> {
   const normalizedGvviId = gvviId.trim();
   if (!normalizedGvviId) {
@@ -252,7 +255,7 @@ export async function getPublicVaultInstanceByGvvi(
     resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
-    cardPrintingId
+    options.includeMarketPricing && cardPrintingId
       ? getExactMarketPricingByCardPrintingIds(admin, [cardPrintingId])
       : Promise.resolve(new Map()),
     cardPrintingId

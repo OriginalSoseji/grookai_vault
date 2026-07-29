@@ -20,7 +20,7 @@
 
   const selector =
     proofKind === "vault_total"
-      ? '[data-pricing-proof="vault-exact-total"][data-vault-market-value-usd]'
+      ? '[data-pricing-proof="vault-exact-total"][data-pricing-scope="vault_total"][data-vault-market-value-usd]'
       : '[data-pricing-proof="tcgplayer-market"][data-pricing-status="available"]';
   const candidates = [...document.querySelectorAll(selector)].filter(
     (element) => {

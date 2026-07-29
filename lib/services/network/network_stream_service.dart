@@ -1274,7 +1274,6 @@ class NetworkStreamService {
       params: {'p_limit': _clampedInt(limit * 5, 32, 180)},
     );
 
-    final pricingById = <String, Map<String, dynamic>>{};
     final orderedIds = <String>[];
     for (final raw in pricingRows as List<dynamic>) {
       final row = Map<String, dynamic>.from(raw as Map);
@@ -1285,10 +1284,9 @@ class NetworkStreamService {
       if (_toDouble(row['market_close']) == null) {
         continue;
       }
-      if (pricingById.containsKey(cardPrintId)) {
+      if (orderedIds.contains(cardPrintId)) {
         continue;
       }
-      pricingById[cardPrintId] = row;
       orderedIds.add(cardPrintId);
       if (orderedIds.length >= limit * 3) {
         break;
@@ -1324,19 +1322,30 @@ class NetworkStreamService {
       }
     }
 
+    final enrichment = await Future.wait<dynamic>([
+      CardSurfacePricingService.fetchByCardPrintIds(
+        client: client,
+        cardPrintIds: rotatedIds,
+      ),
+      _fetchListingCounts(client: client, cardPrintIds: rotatedIds),
+    ]);
+    final governedPricingById =
+        enrichment[0] as Map<String, CardSurfacePricingData>;
+    final listingCountById = enrichment[1] as Map<String, int>;
     final rows = <NetworkStreamRow>[];
     for (final cardPrintId in rotatedIds) {
       final cardRow = cardsById[cardPrintId];
-      final pricingRow = pricingById[cardPrintId];
-      if (cardRow == null || pricingRow == null) {
+      final pricing = governedPricingById[cardPrintId];
+      if (cardRow == null || pricing == null) {
         continue;
       }
 
       final discoveryRow = _buildDiscoveryRow(
         cardRow: cardRow,
-        pricingRow: pricingRow,
         sourceType: NetworkStreamSourceType.dbHighEnd,
         sourceLabel: '',
+        pricing: pricing,
+        listingCount: listingCountById[cardPrintId],
       );
       if (discoveryRow != null) {
         rows.add(discoveryRow);
@@ -1424,7 +1433,6 @@ class NetworkStreamService {
     for (final cardRow in selectedRows) {
       final discoveryRow = _buildDiscoveryRow(
         cardRow: cardRow,
-        pricingRow: null,
         sourceType: NetworkStreamSourceType.dbRandomExplore,
         sourceLabel: 'Canonical explore',
         pricing: pricingById[_nullable(cardRow['id']) ?? ''],
@@ -1441,8 +1449,8 @@ class NetworkStreamService {
     required Map<String, dynamic> cardRow,
     required NetworkStreamSourceType sourceType,
     required String sourceLabel,
-    Map<String, dynamic>? pricingRow,
     CardSurfacePricingData? pricing,
+    int? listingCount,
   }) {
     final cardPrintId = _nullable(cardRow['id']);
     final gvId = _nullable(cardRow['gv_id']);
@@ -1451,9 +1459,6 @@ class NetworkStreamService {
     }
 
     final setRecord = _recordFrom(cardRow['sets']);
-    final resolvedPricing =
-        pricing ?? (pricingRow == null ? null : _pricingFromRow(pricingRow));
-
     return NetworkStreamRow(
       sourceType: sourceType,
       sourceLabel: sourceLabel,
@@ -1482,29 +1487,8 @@ class NetworkStreamService {
       setIdentityModel: _nullable(setRecord?['identity_model']),
       rarity: _nullable(cardRow['rarity']),
       imageUrl: _displayImageUrl(cardRow),
-      pricing: resolvedPricing,
-      listingCount: _positiveCount(pricingRow?['active_ask_listing_count']),
-    );
-  }
-
-  static CardSurfacePricingData? _pricingFromRow(Map<String, dynamic> row) {
-    final cardPrintId = _nullable(row['card_print_id']);
-    if (cardPrintId == null) {
-      return null;
-    }
-
-    return CardSurfacePricingData(
-      cardPrintId: cardPrintId,
-      pricingScope: _nullable(row['pricing_scope']) ?? 'parent',
-      cardPrintingId: _nullable(row['card_printing_id']),
-      printingGvId: _nullable(row['printing_gv_id']),
-      finishKey: _nullable(row['finish_key']),
-      isFromPrice: row['is_from_price'] == true,
-      marketClose: _toDouble(row['market_close']),
-      primarySource: _nullable(row['source_name']),
-      sourceLabel: _nullable(row['source_label']),
-      observedAt: DateTime.tryParse(_nullable(row['observed_at']) ?? ''),
-      publishedAt: DateTime.tryParse(_nullable(row['published_at']) ?? ''),
+      pricing: pricing,
+      listingCount: listingCount,
     );
   }
 

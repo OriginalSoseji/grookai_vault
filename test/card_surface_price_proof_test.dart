@@ -31,7 +31,9 @@ void main() {
 
     expect(find.byKey(ValueKey<String>(proofKey)), findsOneWidget);
     expect(find.text(r'$12.34'), findsOneWidget);
-    final semantics = tester.getSemantics(find.byKey(ValueKey<String>(proofKey)));
+    final semantics = tester.getSemantics(
+      find.byKey(ValueKey<String>(proofKey)),
+    );
     expect(semantics.identifier, proofKey);
     expect(semantics.label, contains('TCGPlayer Market'));
     expect(semantics.label, contains(r'$12.34'));
@@ -85,5 +87,81 @@ void main() {
       cardSurfacePricingProofKey(pricing),
       contains('|From TCGPlayer Market|from|'),
     );
+  });
+
+  testWidgets('manual prices never carry TCGPlayer market proof', (
+    tester,
+  ) async {
+    const pricing = CardSurfacePricingData(
+      cardPrintId: 'parent-1',
+      pricingScope: 'parent',
+      marketClose: 12.34,
+      primarySource: 'tcgplayer',
+      sourceLabel: 'TCGPlayer Market',
+    );
+    final proofKey = cardSurfacePricingProofKey(pricing);
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: CardSurfacePriceText(
+            pricing: pricing,
+            mode: CardSurfacePriceMode.manual,
+            manualPrice: 8.5,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text(r'$8.50'), findsOneWidget);
+    expect(find.byKey(ValueKey<String>(proofKey)), findsNothing);
+    final semantics = tester.getSemantics(find.text(r'$8.50'));
+    expect(semantics.identifier, isEmpty);
+    expect(semantics.label, contains('Collector asking price'));
+    expect(semantics.label, isNot(contains('TCGPlayer Market')));
+  });
+
+  test('read-model adapter accepts only complete governed rows', () {
+    final row = <String, dynamic>{
+      'pricing_scope': 'card_printing',
+      'card_print_id': 'parent-1',
+      'card_printing_id': 'printing-1',
+      'printing_gv_id': 'GV-PK-TEST-001-PRINT',
+      'finish_key': 'normal',
+      'status': 'available',
+      'currency': 'USD',
+      'market_close': 12.34,
+      'source_name': 'tcgplayer',
+      'source_label': 'TCGPlayer Market',
+      'observed_at': '2026-07-28T08:15:00.000Z',
+      'published_at': '2026-07-28T08:20:00.000Z',
+      'freshness': 'fresh',
+      'is_from_price': false,
+      'provenance_id': 'provenance-1',
+    };
+
+    final pricing = cardSurfacePricingDataFromReadModelRow(row);
+    expect(pricing, isNotNull);
+    expect(pricing?.marketClose, 12.34);
+    expect(pricing?.provenanceId, 'provenance-1');
+
+    for (final field in <String>[
+      'card_printing_id',
+      'status',
+      'currency',
+      'source_name',
+      'source_label',
+      'observed_at',
+      'published_at',
+      'freshness',
+      'provenance_id',
+    ]) {
+      final invalid = Map<String, dynamic>.from(row)..remove(field);
+      expect(
+        cardSurfacePricingDataFromReadModelRow(invalid),
+        isNull,
+        reason: 'missing $field must fail closed',
+      );
+    }
   });
 }

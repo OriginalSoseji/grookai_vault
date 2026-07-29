@@ -109,6 +109,7 @@
     "pricing:market:vault:verify": "node scripts/audits/tcgplayer_market_vault_production_readback_v1.mjs",
     "pricing:market:surfaces:verify": "node scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs",
     "pricing:market:surfaces:manifest": "node scripts/audits/tcgplayer_market_product_surface_manifest_v1.mjs",
+    "pricing:market:surfaces:web:capture": "node scripts/audits/tcgplayer_market_web_surface_capture_v2.mjs",
     "pricing:market:active-ask:refresh": "node scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
     "pricing:market:rollback:dry-run": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --dry-run",
     "pricing:market:rollback:apply": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --apply",
@@ -125,6 +126,7 @@
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "typescript": "^5.9.3"
   }
 }

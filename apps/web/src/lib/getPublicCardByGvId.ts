@@ -646,7 +646,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   gv_id: string,
   options: PublicCardDetailOptions = {},
 ): Promise<CardDetail | null> {
-  const includePricing = options.includePricing ?? true;
+  const includePricing = options.includePricing ?? false;
   const includeRelatedPrints = options.includeRelatedPrints ?? true;
   const includeCameos = options.includeCameos ?? true;
   const supabase = createServerSupabase();

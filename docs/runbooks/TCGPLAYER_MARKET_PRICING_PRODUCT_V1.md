@@ -394,14 +394,39 @@ After the exact client commit is deployed, capture every surface listed in
 `docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. Do not reuse
 captures from an older deployment.
 
-For each web surface, sign in, navigate to a card from the current eligible
-publication, save a screenshot, then run
-`scripts/audits/tcgplayer_market_web_surface_capture_v1.js` unchanged as a
-browser DevTools Snippet. Select the matching surface ID. Save the downloaded
-`.render.json` beside a screenshot named with the same capture ID.
+For web, prefer the read-only Playwright collector. Start from
+`docs/runbooks/templates/tcgplayer_market_web_surface_route_plan_v2.example.json`
+and replace every placeholder with an exact route and eligible current
+publication identity. Export a short-lived signed-in Playwright storage state
+outside the repository. Never commit the storage state.
+
+```powershell
+npm run pricing:market:surfaces:web:capture -- `
+  --base-url=https://<production-host> `
+  --route-plan=<exact-route-plan.json> `
+  --storage-state=<short-lived-storage-state.json> `
+  --out-dir=<surface-capture-directory> `
+  --deployed-commit-sha=<exact-deployed-40-character-sha>
+```
+
+The collector requires all nine web surfaces exactly once, blocks every
+non-read HTTP request, requires a successful signed-in pricing probe, selects
+exactly one visible proof element per route, captures only that element, and
+preserves both machine-readable attributes and visible text. Blocked non-read
+attempts are recorded in the capture manifest without reaching the network;
+if blocking prevents a required proof from rendering, that surface fails
+normally. Collector/profile slugs and GVVI routes are redacted in permanent
+render evidence.
+
+If Playwright cannot run in the production environment, the unchanged
+`scripts/audits/tcgplayer_market_web_surface_capture_v1.js` DevTools Snippet
+remains a manual fallback. A manual fallback must still produce one screenshot
+and one `.render.json` with the same capture ID for every web surface.
 
 The verifier binds each web surface to the route table in
-`docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. For Search,
+`docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md` and the
+executable owner registry in
+`backend/pricing/tcgplayer_market_product_surface_registry_v1.mjs`. For Search,
 start at `/search` with a query that resolves to a result list; capture the
 resulting `/explore?q=...` route. Capture Explore separately at `/explore`
 without a `q` parameter. A capture from the wrong route fails even when its
@@ -445,9 +470,10 @@ npm run pricing:market:surfaces:verify -- `
 ```
 
 The verifier must report all `17/17` surfaces passed with zero findings. It
-hashes screenshots and render evidence and performs only an authenticated
-read-only production RPC call. A screenshot-only review, a local component
-test, or a capture from a different commit cannot satisfy this gate.
+hashes screenshots and render evidence, reconciles rendered visible money
+against machine-readable values, and performs only an authenticated read-only
+production RPC call. A screenshot-only review, a local component test, or a
+capture from a different commit cannot satisfy this gate.
 
 7. Configure the exact deployed commit and full-scope schedule:
 

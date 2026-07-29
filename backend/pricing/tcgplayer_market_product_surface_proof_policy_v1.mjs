@@ -1,93 +1,15 @@
+import {
+  TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1,
+  TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1,
+} from "./tcgplayer_market_product_surface_registry_v1.mjs";
+
 export const TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_POLICY_V1 =
   "TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_POLICY_V1";
 
-export const TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1 = Object.freeze([
-  Object.freeze({
-    surface_id: "web_card_detail",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_search",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_explore",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_set_grid",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_compare",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_private_vault",
-    client: "web",
-    proof_kind: "vault_total",
-  }),
-  Object.freeze({
-    surface_id: "web_public_vault",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_vault_item",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "web_market_history",
-    client: "web",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_card_detail",
-    client: "flutter",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_search_or_grid",
-    client: "flutter",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_set_grid",
-    client: "flutter",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_compare",
-    client: "flutter",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_private_vault",
-    client: "flutter",
-    proof_kind: "vault_total",
-  }),
-  Object.freeze({
-    surface_id: "flutter_public_collector",
-    client: "flutter",
-    proof_kind: "vault_group_total",
-  }),
-  Object.freeze({
-    surface_id: "flutter_network",
-    client: "flutter",
-    proof_kind: "price_record",
-  }),
-  Object.freeze({
-    surface_id: "flutter_vault_item",
-    client: "flutter",
-    proof_kind: "vault_group_total",
-  }),
-]);
+export {
+  TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1,
+  TCGPLAYER_MARKET_REQUIRED_PRODUCT_SURFACES_V1,
+};
 
 export const TCGPLAYER_MARKET_FLUTTER_SURFACE_ROUTE_IDENTITIES_V1 =
   Object.freeze({
@@ -136,6 +58,56 @@ function sameMoney(left, right) {
     normalizedRight !== null &&
     Math.abs(normalizedLeft - normalizedRight) <= 0.000001
   );
+}
+
+function parseVisibleMoney(value) {
+  const normalized = clean(value).replace(/\s+/g, " ");
+  const match = normalized.match(
+    /(?:US\$|\$|USD\s*)(-?\d[\d,]*(?:\.\d+)?)/i,
+  );
+  if (!match) {
+    return {
+      amount: null,
+      is_from_price: /\bfrom\b/i.test(normalized),
+    };
+  }
+  return {
+    amount: money(match[1].replaceAll(",", "")),
+    is_from_price: /\bfrom\b/i.test(normalized),
+  };
+}
+
+function validateVisiblePrice({
+  findings,
+  capture,
+  captureId,
+  expectedAmount,
+  expectedFromPrice = false,
+  findingPrefix,
+}) {
+  const visible = parseVisibleMoney(capture.visible_text);
+  if (visible.amount === null) {
+    addFinding(
+      findings,
+      `${findingPrefix}_visible_amount_missing`,
+      captureId,
+    );
+    return;
+  }
+  if (!sameMoney(visible.amount, expectedAmount)) {
+    addFinding(
+      findings,
+      `${findingPrefix}_visible_amount_mismatch`,
+      captureId,
+    );
+  }
+  if (visible.is_from_price !== expectedFromPrice) {
+    addFinding(
+      findings,
+      `${findingPrefix}_visible_from_state_mismatch`,
+      captureId,
+    );
+  }
 }
 
 function addFinding(findings, finding, captureId = "") {
@@ -407,6 +379,13 @@ export function evaluateTcgplayerMarketProductSurfaceProofV1(
           captureId,
         );
       }
+      validateVisiblePrice({
+        findings: captureFindings,
+        capture,
+        captureId,
+        expectedAmount: rendered.vault_market_value_usd,
+        findingPrefix: "vault_total",
+      });
 
       findings.push(...captureFindings);
       surfaceResults.push({
@@ -511,6 +490,13 @@ export function evaluateTcgplayerMarketProductSurfaceProofV1(
           captureId,
         );
       }
+      validateVisiblePrice({
+        findings: captureFindings,
+        capture,
+        captureId,
+        expectedAmount: rendered.vault_market_value_usd,
+        findingPrefix: "vault_group_total",
+      });
 
       findings.push(...captureFindings);
       surfaceResults.push({
@@ -673,6 +659,14 @@ export function evaluateTcgplayerMarketProductSurfaceProofV1(
           captureId,
         );
       }
+      validateVisiblePrice({
+        findings: captureFindings,
+        capture,
+        captureId,
+        expectedAmount: rendered.market_close_usd,
+        expectedFromPrice: expectedRow.is_from_price === true,
+        findingPrefix: "surface_price",
+      });
     }
 
     findings.push(...captureFindings);
