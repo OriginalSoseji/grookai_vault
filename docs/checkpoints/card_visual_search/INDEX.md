@@ -9,6 +9,13 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md` - `2026-07-29` - COMPLETE;
+  CALIBRATION TOOLING IMPORTED - Records the frozen five-file Lane B plan,
+  exact `5/5` source/destination hash reconciliation, calibration evaluator
+  and judgment command availability, `98/98` combined contracts, continued
+  holdout and no-write boundaries, and the exact next gate as immutable corpus
+  evidence packaging plus deterministic full-index rebuild while human review
+  continues.
 - `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md` - `2026-07-28` - COMPLETE;
   DETERMINISTIC CORE IMPORTED - Records the corrected V1.1 manifest dependency
   boundary, frozen 38-file import plan, exact `38/38` source/destination hash
@@ -40,8 +47,9 @@ create canonical truth, or authorize downstream recommendation systems.
 1. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_START_20260728.md`.
 2. Read `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md`.
 3. Read `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md`.
-4. Confirm the current production `main` SHA and compare it with the checkpoint
+4. Read `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md`.
+5. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-5. Confirm pricing canary/release work remains isolated.
-6. Inspect the governed source branch at the recorded SHA.
-7. Resume only from the latest checkpoint's exact next gate.
+6. Confirm pricing canary/release work remains isolated.
+7. Inspect the governed source branch at the recorded SHA.
+8. Resume only from the latest checkpoint's exact next gate.

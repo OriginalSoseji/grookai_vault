@@ -1,0 +1,64 @@
+{
+  "reconciliation_version": "CARD_VISUAL_SEARCH_LANE_B_IMPORT_RECONCILIATION_V1",
+  "completed_on": "2026-07-29",
+  "branch": "feature/visual-search-v1-productization",
+  "pre_import_head_sha": "d3e9042cfd4b0d4432cdb91940d615f2d687aeea",
+  "governed_source_sha": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+  "manifest_payload_sha256": "7bd6f0c7d1f2826c981dde5431d2b9850adea264d6a51d9e24232558fe17658f",
+  "import_plan_payload_sha256": "b18cc0beb7e6aff5337a6451b41f8702c50563ae4972500783c98a12a1fb52c8",
+  "planned_file_count": 5,
+  "written_file_count": 5,
+  "matching_file_count": 5,
+  "mismatched_file_count": 0,
+  "missing_file_count": 0,
+  "extra_imported_file_count": 0,
+  "status": "reconciled",
+  "outcomes": [
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_calibration_evaluator_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_calibration_evaluator_v1.mjs",
+      "component_id": "calibration_evaluator",
+      "expected_sha256": "95d2189dd4d46b54330f19acac421f26135700b97f454331c478234a5cb506bf",
+      "destination_sha256": "95d2189dd4d46b54330f19acac421f26135700b97f454331c478234a5cb506bf",
+      "hash_match": true,
+      "bytes": 24087
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+      "component_id": "calibration_evaluator",
+      "expected_sha256": "6a8d2e548da015b1e6a5236d22ee581190d4920d302af74fe22589c99fdcfff6",
+      "destination_sha256": "6a8d2e548da015b1e6a5236d22ee581190d4920d302af74fe22589c99fdcfff6",
+      "hash_match": true,
+      "bytes": 2149
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_calibration_evaluator_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_calibration_evaluator_v1.mjs",
+      "component_id": "calibration_evaluator",
+      "expected_sha256": "2b686af225b4f3385d2ab94496d68c520d336619f5f23b095fe424a478077df3",
+      "destination_sha256": "2b686af225b4f3385d2ab94496d68c520d336619f5f23b095fe424a478077df3",
+      "hash_match": true,
+      "bytes": 119
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_judgment_packet_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_judgment_packet_v1.mjs",
+      "component_id": "judgment_packet_cli",
+      "expected_sha256": "4db8ee411e5c79757a75f778a92061666b7eff94b9a4bee1cc487fbe5c7f0357",
+      "destination_sha256": "4db8ee411e5c79757a75f778a92061666b7eff94b9a4bee1cc487fbe5c7f0357",
+      "hash_match": true,
+      "bytes": 113
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs",
+      "component_id": "calibration_evaluator",
+      "expected_sha256": "34156dbe9e95b63c8301610e8b10e538202973b996027161bdea632f72edd0b8",
+      "destination_sha256": "34156dbe9e95b63c8301610e8b10e538202973b996027161bdea632f72edd0b8",
+      "hash_match": true,
+      "bytes": 5731
+    }
+  ],
+  "reconciliation_payload_sha256": "97f8e0e9eed134c4f12aab0add91764b2a4a32de83fc8cc46440e54ea0651cfb"
+}

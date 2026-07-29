@@ -1,0 +1,98 @@
+{
+  "import_version": "CARD_VISUAL_SEARCH_LANE_B_IMPORT_V1",
+  "created_on": "2026-07-29",
+  "branch": "feature/visual-search-v1-productization",
+  "pre_import_head_sha": "d3e9042cfd4b0d4432cdb91940d615f2d687aeea",
+  "governed_source_sha": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+  "manifest_payload_sha256": "7bd6f0c7d1f2826c981dde5431d2b9850adea264d6a51d9e24232558fe17658f",
+  "selected_file_count": 5,
+  "selected_files": [
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_calibration_evaluator_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_calibration_evaluator_v1.mjs",
+      "source_blob_oid": "4731126c714b5e5429f34e6f3b3681ac4fd631c9",
+      "source_sha256": "95d2189dd4d46b54330f19acac421f26135700b97f454331c478234a5cb506bf",
+      "source_last_commit_sha": "b04ee1e9a06a03f2d2af2054c25bc37ef5e24db5",
+      "component_id": "calibration_evaluator",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+      "source_blob_oid": "c2582eb239687a1fb3473fdb48c46b73fdcc0f5c",
+      "source_sha256": "6a8d2e548da015b1e6a5236d22ee581190d4920d302af74fe22589c99fdcfff6",
+      "source_last_commit_sha": "b04ee1e9a06a03f2d2af2054c25bc37ef5e24db5",
+      "component_id": "calibration_evaluator",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_calibration_evaluator_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_calibration_evaluator_v1.mjs",
+      "source_blob_oid": "c2f5d378ccec6192654e41199538308ff2399aac",
+      "source_sha256": "2b686af225b4f3385d2ab94496d68c520d336619f5f23b095fe424a478077df3",
+      "source_last_commit_sha": "b04ee1e9a06a03f2d2af2054c25bc37ef5e24db5",
+      "component_id": "calibration_evaluator",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_judgment_packet_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_judgment_packet_v1.mjs",
+      "source_blob_oid": "f479f151b799aeba4e977273b8fa124c82bce3ad",
+      "source_sha256": "4db8ee411e5c79757a75f778a92061666b7eff94b9a4bee1cc487fbe5c7f0357",
+      "source_last_commit_sha": "f3e1bb4cd95e23f925da1f140fbce88d32918739",
+      "component_id": "judgment_packet_cli",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs"
+      ]
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs",
+      "source_blob_oid": "480273ce851a7caac290262ca78a85f891c501a3",
+      "source_sha256": "34156dbe9e95b63c8301610e8b10e538202973b996027161bdea632f72edd0b8",
+      "source_last_commit_sha": "b04ee1e9a06a03f2d2af2054c25bc37ef5e24db5",
+      "component_id": "calibration_evaluator",
+      "governing_contracts": [
+        "docs/contracts/CARD_VISUAL_SEARCH_CALIBRATION_EVALUATOR_V1.md",
+        "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md"
+      ],
+      "focused_tests": [
+        "tests/contracts/card_visual_search_calibration_evaluator_v1.test.mjs"
+      ]
+    }
+  ],
+  "boundaries": {
+    "exact_source_blobs_only": true,
+    "manual_source_edits_during_import": false,
+    "database_writes_authorized": false,
+    "migration_apply_authorized": false,
+    "provider_calls_authorized": false,
+    "embeddings_authorized": false,
+    "public_search_activation_authorized": false,
+    "holdout_execution_authorized": false,
+    "pricing_changes_authorized": false
+  },
+  "plan_payload_sha256": "b18cc0beb7e6aff5337a6451b41f8702c50563ae4972500783c98a12a1fb52c8"
+}

@@ -1,0 +1,18 @@
+{
+  "hash_algorithm": "sha256",
+  "generated_on": "2026-07-29",
+  "artifacts": [
+    {
+      "path": "docs/manifests/card_visual_search_v1_selective_source_import_manifest.json",
+      "sha256": "63cc7c4f3d3261faf824f9fcc283ecf826ca5f07cc47be93b82d158365477ee6"
+    },
+    {
+      "path": "docs/audits/card_visual_search_lane_b_import/2026-07-29_lane_b_import_d3e9042c/import_plan.json",
+      "sha256": "dd55792e9f13e0dfded48f846de36cb90db5175f57bc80b0dd4e2edcd1f33261"
+    },
+    {
+      "path": "docs/audits/card_visual_search_lane_b_import/2026-07-29_lane_b_import_d3e9042c/import_reconciliation.json",
+      "sha256": "9e20dd01c3a2d1fa301ab2811435b115b933ff515251bc4bcbc9a05271f3974f"
+    }
+  ]
+}
