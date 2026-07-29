@@ -13,6 +13,10 @@ import {
   isRetryableTcgcsvSourceFetchErrorV1,
   tcgcsvSourceRetryDelayMsV1,
 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
+import {
+  evaluateTcgcsvSourceRunResumeV1,
+  TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
+} from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -436,6 +440,10 @@ async function upsertRun(client, run) {
        finished_at = excluded.finished_at,
        error = excluded.error,
        payload = excluded.payload
+     where not (
+       tcgcsv_source_sync_runs.status in ('completed', 'skipped_no_change')
+       and tcgcsv_source_sync_runs.failed_count = 0
+     )
      returning id`,
     [
       run.run_key,
@@ -466,6 +474,11 @@ async function upsertRun(client, run) {
       JSON.stringify(run.payload ?? {}),
     ],
   );
+  if (!result.rowCount) {
+    throw new Error(
+      `refusing to overwrite successful terminal source run ${run.run_key}`,
+    );
+  }
   return result.rows[0].id;
 }
 
@@ -1005,6 +1018,57 @@ async function latestCompletedCurrentMarker(client) {
   return result.rows[0]?.source_marker ?? null;
 }
 
+async function sourceRunByKey(client, runKey) {
+  const result = await client.query(
+    `select
+       sync_run.*,
+       (
+         select count(*)::integer
+         from public.tcgcsv_source_artifacts artifact
+         where artifact.run_key = sync_run.run_key
+       ) as artifact_count
+     from public.tcgcsv_source_sync_runs sync_run
+     where sync_run.run_key = $1
+     limit 1`,
+    [runKey],
+  );
+  return result.rows[0] ?? null;
+}
+
+async function resumeSuccessfulCurrentRun(args, runKey) {
+  if (!args.apply) return null;
+
+  const client = await connectDb();
+  try {
+    const existingRun = await sourceRunByKey(client, runKey);
+    const decision = evaluateTcgcsvSourceRunResumeV1(existingRun, {
+      sync_mode: "current_full_sync",
+      git_commit_sha: await gitCommitSha(),
+      worker_version: WORKER_VERSION,
+      parser_version: PARSER_VERSION,
+      schema_contract_version: SCHEMA_CONTRACT_VERSION,
+    });
+    if (decision.action === "reject") {
+      throw new Error(
+        `resume refused because source run provenance changed: ${JSON.stringify(decision.mismatches)}`,
+      );
+    }
+    if (decision.action !== "resume_terminal") return null;
+
+    return {
+      run: existingRun,
+      summary: {
+        resumed_existing_terminal_run: true,
+        resume_policy_version: TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
+      },
+      artifacts: [],
+      artifact_count: Number(existingRun.artifact_count ?? 0),
+    };
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function discover7z() {
   const candidates = os.platform() === "win32" ? ["7z.exe", "7za.exe", "7zz.exe"] : ["7z", "7za", "7zz"];
   for (const candidate of candidates) {
@@ -1048,6 +1112,9 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
 }
 
 async function runCurrentSync(args, runKey, artifactRoot) {
+  const resumedRun = await resumeSuccessfulCurrentRun(args, runKey);
+  if (resumedRun) return resumedRun;
+
   const fetcher = new Fetcher({
     requestCeiling: args.requestCeiling,
     requestDelayMs: args.requestDelayMs,
@@ -1559,7 +1626,7 @@ async function main() {
     },
     run: result.run,
     summary: result.summary,
-    artifact_count: result.artifacts.length,
+    artifact_count: result.artifact_count ?? result.artifacts.length,
   });
 
   console.log(`[tcgcsv-full] mode=${args.mode} apply=${args.apply}`);
