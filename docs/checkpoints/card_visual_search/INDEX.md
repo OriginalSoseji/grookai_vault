@@ -9,6 +9,31 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_REVIEWER_DEPENDENCY_STOP_20260729.md` - `2026-07-29` -
+  ENGINEERING READY THROUGH HUMAN CALIBRATION - Records the complete immutable
+  release and deterministic rebuild, production database capability proof,
+  unapplied private persistence migration, no-write `9,532` artwork /
+  `321,937` index-entry load plan, `99/99` contracts, preserved holdout and
+  no-write boundaries, PokeJavi's outstanding review dependency, and the exact
+  22-step resume sequence through calibration, holdout, apply, staged load,
+  activation, and signed-in product rollout.
+- `VISUAL_SEARCH_V1_DB_CAPABILITY_20260729.md` - `2026-07-29` - COMPLETE;
+  PRODUCTION READBACK PROVEN; NO WRITE - Records GitHub Actions run
+  `30469205941`, PostgreSQL `17.4`, installed `pg_trgm`, `unaccent`, and
+  `vector`, current private visual table counts and RLS posture, absence of a
+  persistent visual-search projection/RPC, and the service-only persistence
+  design boundary.
+- `VISUAL_SEARCH_V1_PRODUCTIZATION_REBUILD_20260729.md` - `2026-07-29` -
+  COMPLETE; RECONCILED WITH DOCUMENTED RANKER HARDENING - Records the full
+  eligibility/grouping/projection/bootstrap replay from external V1.1 payloads,
+  exact locked counts, nine byte-identical semantic files, eight stricter
+  negative-evidence match reductions, zero expansions or top-result changes,
+  and the sealed holdout.
+- `VISUAL_SEARCH_V1_COMPLETE_CORPUS_RELEASE_20260729.md` - `2026-07-29` -
+  COMPLETE; FIRST-PRINCIPLES SOURCE RELEASE RECONCILED - Records the separate
+  9,418-file, 1,152,590,499-byte V1.1 external release including all 9,377
+  authoritative generated-row sources, zero missing/mismatched files, the
+  external artifact-root adapter, and the first-principles replay gate.
 - `VISUAL_SEARCH_V1_PRODUCTIZATION_BRANCH_GUARD_20260729.md` - `2026-07-29` -
   COMPLETE; PRODUCTIZATION REPLAY AUTHORIZED - Records the narrow shared branch
   allowlist for the governed source and dedicated productization branch,
@@ -61,9 +86,13 @@ create canonical truth, or authorize downstream recommendation systems.
 3. Read `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md`.
 4. Read `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md`.
 5. Read `VISUAL_SEARCH_V1_CORPUS_RELEASE_20260729.md`.
-6. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_BRANCH_GUARD_20260729.md`.
-7. Confirm the current production `main` SHA and compare it with the checkpoint
+6. Read `VISUAL_SEARCH_V1_COMPLETE_CORPUS_RELEASE_20260729.md`.
+7. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_BRANCH_GUARD_20260729.md`.
+8. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_REBUILD_20260729.md`.
+9. Read `VISUAL_SEARCH_V1_DB_CAPABILITY_20260729.md`.
+10. Read `VISUAL_SEARCH_V1_REVIEWER_DEPENDENCY_STOP_20260729.md`.
+11. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-8. Confirm pricing canary/release work remains isolated.
-9. Inspect the governed source branch at the recorded SHA.
-10. Resume only from the latest checkpoint's exact next gate.
+12. Confirm pricing canary/release work remains isolated.
+13. Inspect the governed source branch at the recorded SHA.
+14. Resume only from the reviewer-dependency checkpoint's exact sequence.

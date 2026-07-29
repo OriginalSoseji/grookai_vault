@@ -1,0 +1,14 @@
+{
+  "hash_algorithm": "sha256",
+  "generated_on": "2026-07-29",
+  "artifacts": [
+    {
+      "path": "docs/audits/card_visual_search_db_capability_v1/2026-07-29_run_30469205941/production_capability_readback.json",
+      "sha256": "7f121f04b3ffb1b7d9af3a961c651535c6a580b4d76b83732efa50cae796803e"
+    },
+    {
+      "path": "docs/audits/card_visual_search_db_capability_v1/2026-07-29_run_30469205941/CAPABILITY_SUMMARY.md",
+      "sha256": "8523b44c09207641002b5f38789e133c0750e9cb1f3776a0c8d8146cbee56c88"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "load_plan_version": "CARD_VISUAL_SEARCH_LOAD_PLAN_V1",
+  "created_on": "2026-07-29",
+  "release_key": "card_visual_search_productization_bbf20d0f_v1",
+  "source_release_id": "card_visual_search_corpus_release_v1_1_20260721",
+  "source_release_manifest_payload_sha256": "7d96b0f580a89f4dcf1618664767d719ec0bbf27685083f1e62d87ccd1bf071b",
+  "source_projection_version": "CARD_VISUAL_SEARCH_PROJECTION_V1_5",
+  "source_projection_producing_sha": "bbf20d0f4a59e61c4d529f523de0a9721c964dd9",
+  "source_rebuild_producing_sha": "bbf20d0f4a59e61c4d529f523de0a9721c964dd9",
+  "unapplied_migration": {
+    "path": "supabase/migrations/20260729173000_card_visual_search_persistence_v1.sql",
+    "sha256": "cf03ee267c49b4f0be7b30e5d708d664442ab759cbe2be2a0a9c6b5c1f5cdf54",
+    "status": "unapplied"
+  },
+  "source_inputs": {
+    "artworks": {
+      "artifact_path": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721\\_rebuild\\productization_bbf20d0f\\projection\\visual_search_artworks.jsonl",
+      "artifact_sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16",
+      "target_table": "public.card_visual_search_artworks",
+      "rows": 9532,
+      "chunk_size": 500,
+      "planned_chunks": 20
+    },
+    "printings": {
+      "artifact_path": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721\\_rebuild\\productization_bbf20d0f\\projection\\visual_search_printings.jsonl",
+      "artifact_sha256": "4ddbe8770db5ea56d56a22175a2722dacc993b4fb0fc09f19d6dfaf7a043b359",
+      "target_table": "public.card_visual_search_printings",
+      "rows": 9702,
+      "chunk_size": 500,
+      "planned_chunks": 20
+    },
+    "documents": {
+      "artifact_path": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721\\_rebuild\\productization_bbf20d0f\\projection\\visual_search_documents.jsonl",
+      "artifact_sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b",
+      "target_table": "public.card_visual_search_documents",
+      "rows": 28596,
+      "chunk_size": 250,
+      "planned_chunks": 115
+    },
+    "evidence": {
+      "artifact_path": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721\\_rebuild\\productization_bbf20d0f\\projection\\visual_search_concept_evidence.jsonl",
+      "artifact_sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f",
+      "target_table": "public.card_visual_search_evidence",
+      "rows": 357413,
+      "chunk_size": 1000,
+      "planned_chunks": 358
+    }
+  },
+  "derived_index": {
+    "target_table": "public.card_visual_search_index_entries",
+    "rows": 321937,
+    "chunk_size": 1000,
+    "planned_chunks": 322,
+    "derivation": "deterministic buildVisualSearchCandidateIndexV1 serialization",
+    "materialized_in_this_gate": false
+  },
+  "target_counts": {
+    "releases": 1,
+    "artworks": 9532,
+    "printings": 9702,
+    "documents": 28596,
+    "evidence": 357413,
+    "index_entries": 321937,
+    "active_release_pointer_rows": 0
+  },
+  "load_order": [
+    "card_visual_search_releases:staged",
+    "card_visual_search_artworks",
+    "card_visual_search_printings",
+    "card_visual_search_documents",
+    "card_visual_search_evidence",
+    "card_visual_search_index_entries",
+    "reconcile hashes and counts",
+    "card_visual_search_releases:loaded",
+    "validate service RPC readback",
+    "card_visual_search_releases:validated"
+  ],
+  "required_reconciliation": {
+    "exact_row_counts": true,
+    "duplicate_primary_keys": 0,
+    "missing_card_print_foreign_keys": 0,
+    "missing_document_foreign_keys": 0,
+    "source_hash_mismatches": 0,
+    "tier_c_rows": 0,
+    "energy_rows": 0,
+    "active_release_pointer_rows": 0,
+    "rpc_visible_before_activation": 0
+  },
+  "boundaries": {
+    "plan_only": true,
+    "database_connection": false,
+    "database_writes": false,
+    "migration_apply": false,
+    "release_load": false,
+    "release_activation": false,
+    "public_or_authenticated_grants": false,
+    "provider_calls": false,
+    "approvals": false,
+    "embeddings": false,
+    "holdout_execution": false,
+    "public_search_activation": false,
+    "pricing_changes": false
+  },
+  "exact_next_gate": "After human calibration approval, apply the migration in a governed database gate, load one staged release without activation, and reconcile every count and hash.",
+  "load_plan_payload_sha256": "25ddf127157b1735b554f470881935cef892c419068d3b9f58393d621f669174"
+}
