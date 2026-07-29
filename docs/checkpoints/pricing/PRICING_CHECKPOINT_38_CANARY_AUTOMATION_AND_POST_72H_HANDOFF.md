@@ -1,12 +1,18 @@
 # Pricing Checkpoint 38: Canary Automation and Post-72-Hour Handoff
 
+> **Superseded on 2026-07-29.** The original observation window was
+> invalidated by a partial TCGCSV source run and a terminal operations alert.
+> Preserve this checkpoint as the pre-incident release plan. Resume from
+> `PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`, which records
+> the repaired runtime and the replacement 72-hour window.
+
 ## Status
 
-Active time-gated release checkpoint.
+Historical, superseded release checkpoint.
 
-The authenticated TCGPlayer Market canary is healthy but has not completed its
-mandatory 72-hour observation window. No post-canary migration has been
-applied.
+The original observation window described here was invalidated. No
+post-canary migration was applied from this checkpoint. Checkpoint 39 records
+the repaired runtime and replacement observation window.
 
 ## Purpose
 

@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-07-29T19:22:00Z",
+  "purpose": "Preserve the current publication pointer before the replacement REPAIR3 activation.",
+  "current_publication_pointer": {
+    "publication_set_id": "c72743ef-0f47-4439-8e1d-4a6235ff7b23",
+    "run_id": "df59aeb2-8999-4fa9-a47f-8926957f904c",
+    "previous_publication_set_id": "ad858441-036d-4ec5-ad06-42d9936c7534",
+    "activated_at": "2026-07-29T09:30:08.926462+00:00"
+  },
+  "current_publication_set": {
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-publication",
+    "publication_state": "published",
+    "expected_snapshot_count": 100,
+    "actual_snapshot_count": 100,
+    "traced_snapshot_count": 100,
+    "eligible_decision_count": 100,
+    "snapshot_row_count_readback": 100
+  },
+  "interpretation": {
+    "publication_rows_lost": false,
+    "observer_failure_hidden": false,
+    "replacement_activation_required": true,
+    "reason": "The old pointer still referenced 100 immutable snapshots, but source continuity and the governed current read were invalidated by the failed unattended cycle."
+  }
+}

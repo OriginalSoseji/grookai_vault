@@ -1,0 +1,58 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2",
+  "status": "failed",
+  "started_at": "2026-07-29T16:56:45.966Z",
+  "commit_sha": "9827073a491047142aa7d1aae81e21f890e5a1d9",
+  "phases": {
+    "warehouse_current_sync": {
+      "status": "completed",
+      "started_at": "2026-07-29T18:22:31.810Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "--mode=current",
+        "--apply",
+        "--resume-run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-warehouse",
+        "--request-ceiling=10000",
+        "--out-dir=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/warehouse"
+      ],
+      "finished_at": "2026-07-29T18:22:32.883Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/warehouse_current_sync.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/warehouse_current_sync.stderr.log"
+    },
+    "active_ask_refresh": {
+      "status": "completed",
+      "started_at": "2026-07-29T18:22:32.883Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+        "--apply",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/active_ask_refresh",
+        "--timeout-minutes=20"
+      ],
+      "finished_at": "2026-07-29T18:22:39.497Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/active_ask_refresh.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/active_ask_refresh.stderr.log"
+    },
+    "publication": {
+      "status": "failed",
+      "started_at": "2026-07-29T18:22:39.497Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+        "--mode=canary",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/publication",
+        "--freshness-hours=36",
+        "--database-timeout-minutes=20",
+        "--canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v1.json"
+      ],
+      "finished_at": "2026-07-29T18:23:28.347Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/publication.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/publication.stderr.log",
+      "error": "Command failed: /usr/bin/node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --mode=canary --run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-publication --out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/publication --freshness-hours=36 --database-timeout-minutes=20 --canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v1.json\n[tcgplayer-market-publication] Error: resume refused because the frozen run provenance does not match\n    at ensureRun (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:500:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async runDurable (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1344:11)\n    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1665:23)\n"
+    }
+  },
+  "finished_at": "2026-07-29T18:23:28.347Z"
+}

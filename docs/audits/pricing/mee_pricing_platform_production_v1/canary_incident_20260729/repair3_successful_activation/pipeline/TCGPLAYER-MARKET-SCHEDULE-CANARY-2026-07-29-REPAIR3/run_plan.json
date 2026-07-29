@@ -1,0 +1,32 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3",
+  "mode": "canary",
+  "commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "branch": "pricing/mee-productization-v1",
+  "created_at": "2026-07-29T19:04:27.089Z",
+  "phases": [
+    "warehouse_current_sync",
+    "active_ask_refresh",
+    "publication",
+    "health"
+  ],
+  "settings": {
+    "request_ceiling": 10000,
+    "phase_timeout_minutes": 120,
+    "database_timeout_minutes": 20,
+    "publication_limit": null,
+    "canary_definition_path": "backend/pricing/canaries/tcgplayer_market_canary_100_v1.json",
+    "freshness_hours": 36,
+    "phase_state_authority": "database"
+  },
+  "boundaries": {
+    "canonical_identity_writes": false,
+    "vault_writes": false,
+    "synthetic_value_calculation": false,
+    "source_warehouse_writes": true,
+    "qualification_decision_writes": true,
+    "immutable_publication_snapshot_writes": true,
+    "current_publication_activation": true
+  }
+}

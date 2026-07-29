@@ -1,0 +1,16 @@
+captured_at=2026-07-29T19:33:03Z
+branch=pricing/mee-productization-v1
+commit=ffb2513fd530930dbfaee714b84df2358f7eaafc
+tracked_status_begin
+tracked_status_end
+service_active=activating
+timer_active=active
+timer_enabled=enabled
+legacy_timer_active=inactive
+legacy_timer_enabled=not-found
+12149124d3a49659186a7d8be543c55fcfa030cddb14c3a31a5221cfd6512fed  supabase/migrations/20260729190000_tcgplayer_market_assignment_prepare_runtime_repair_v1.sql
+NEXT                        LEFT LAST                         PASSED UNIT                                    ACTIVATES
+Thu 2026-07-30 08:15:00 UTC  12h Wed 2026-07-29 08:15:07 UTC 11h ago grookai-tcgplayer-market-pipeline.timer grookai-tcgplayer-market-pipeline.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.

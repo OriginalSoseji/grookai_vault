@@ -1,0 +1,15 @@
+[market-pipeline] Error: Command failed: /usr/bin/node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --mode=canary --run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-publication --out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/publication --freshness-hours=36 --database-timeout-minutes=20 --canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v1.json
+[tcgplayer-market-publication] error: canceling statement due to statement timeout
+    at /opt/grookai_vault_mee_nightly/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async operation (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1376:24)
+    at async runPhase (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:655:21)
+    at async runDurable (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1355:5)
+    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1665:23)
+
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at ChildProcess.exithandler (node:child_process:422:12)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)

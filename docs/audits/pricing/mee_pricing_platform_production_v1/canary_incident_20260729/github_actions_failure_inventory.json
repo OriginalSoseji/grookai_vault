@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-07-29T19:19:15.0108056Z",
+  "repository": "OriginalSoseji/grookai_vault",
+  "scope": "recent failures relevant to pricing canary repair and concurrent visual-search work",
+  "current_state": {
+    "unresolved_current_pr_check_failures": 0,
+    "canary_observer_workflow_state": "active_on_replacement_window",
+    "pricing_repair_commit": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "pricing_runtime_protection_run": {
+      "run_id": 30482027377,
+      "conclusion": "success",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30482027377"
+    },
+    "pricing_drift_gate_run": {
+      "run_id": 30482027337,
+      "conclusion": "success",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30482027337"
+    },
+    "main_edge_probe_run": {
+      "run_id": 30482470329,
+      "conclusion": "success",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30482470329"
+    },
+    "replacement_canary_observer_run": {
+      "run_id": 30488967875,
+      "conclusion": "success",
+      "observer_status": "observing",
+      "findings": 0,
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30488967875"
+    }
+  },
+  "failure_groups": [
+    {
+      "classification": "legitimate_canary_incident_evidence",
+      "workflow": "TCGPlayer Market Canary Observation",
+      "run_ids": [
+        30438471886,
+        30461381616,
+        30471230050,
+        30471426881
+      ],
+      "finding": "The observer correctly failed closed on a partial source run, terminal operations alert, unverified source continuity, and later empty governed current reads.",
+      "resolution": "These failures were not rerun or erased. The observer remained disabled until the replacement activation reconciled, then received a new activation ID and 72-hour window."
+    },
+    {
+      "classification": "superseded_branch_guard_failure",
+      "workflow": "Guard: No Legacy Keys",
+      "run_ids": [
+        30392414372,
+        30472097333
+      ],
+      "finding": "The guard found a pre-existing legacy service-role key literal on the affected branch.",
+      "resolution": "The exact removal was applied to the relevant branches. Current pricing repair checks are green; Binder pull requests 109 and 110 are green."
+    },
+    {
+      "classification": "superseded_visual_search_contract_failure",
+      "workflow": "Contracts Runtime Protection",
+      "run_ids": [
+        30467462342,
+        30468227930,
+        30469206151,
+        30470145252
+      ],
+      "finding": "Each run failed the same Lane A import reconciliation test because the expected file hash did not match the artifact hash.",
+      "resolution": "The branch repaired its artifact reconciliation and run 30470361755 passed at commit 0a67b26ce888c2bd37dd103df175864fd1be1357.",
+      "superseding_run": {
+        "run_id": 30470361755,
+        "conclusion": "success",
+        "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30470361755"
+      }
+    }
+  ],
+  "governance": {
+    "historical_failures_deleted": false,
+    "historical_failures_rerun_to_rewrite_history": false,
+    "completed_repairs_before_observer_restart": [
+      "replacement activation completed and reconciled",
+      "same-key source resume proved immutable",
+      "observer constants were rebound to the replacement activation"
+    ]
+  }
+}

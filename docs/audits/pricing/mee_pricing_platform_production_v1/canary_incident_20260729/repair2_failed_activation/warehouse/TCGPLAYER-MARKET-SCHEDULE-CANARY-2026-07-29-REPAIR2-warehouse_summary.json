@@ -1,0 +1,28 @@
+{
+  "boundary": {
+    "db_writes": true,
+    "public_pricing_writes": false,
+    "identity_writes": false,
+    "vault_writes": false,
+    "app_visible_pricing": false
+  },
+  "run": {
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-warehouse",
+    "sync_mode": "current_full_sync",
+    "status": "skipped_no_change",
+    "source_marker": "2026-07-28T20:12:27+0000",
+    "observed_on": "2026-07-29",
+    "request_count": 1,
+    "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-warehouse",
+    "git_commit_sha": "9827073a491047142aa7d1aae81e21f890e5a1d9",
+    "started_at": "2026-07-29T18:22:31.925Z",
+    "finished_at": "2026-07-29T18:22:32.647Z",
+    "payload": {
+      "existing_marker": "2026-07-28T20:12:27+0000"
+    }
+  },
+  "summary": {
+    "skipped": true
+  },
+  "artifact_count": 1
+}

@@ -1,0 +1,69 @@
+{
+  "repair_commit": "ec8afc411299465dc67954d45de74b9d9e0fc594",
+  "merged_pricing_commit": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "pull_request": "https://github.com/OriginalSoseji/grookai_vault/pull/115",
+  "production_checkout": "/home/grookai/grookai_vault_mee_productization_v1",
+  "migration": {
+    "version": "20260729190000",
+    "name": "tcgplayer_market_assignment_prepare_runtime_repair_v1",
+    "sha256": "12149124d3a49659186a7d8be543c55fcfa030cddb14c3a31a5221cfd6512fed",
+    "applied": true,
+    "ledger_rows": 1,
+    "security_definer": true,
+    "search_path": "public",
+    "enable_nestloop": "off",
+    "execute": {
+      "anon": false,
+      "authenticated": false,
+      "service_role": true
+    }
+  },
+  "production_scale_proofs": {
+    "observation_table_rows_approx": 93190152,
+    "observation_table_size_approx": "86 GB",
+    "assignment_table_rows_approx": 875549,
+    "assignment_table_size_approx": "1.2 GB",
+    "old_plan_result": "timed_out_after_90_seconds",
+    "old_plan_nested_loop_comparisons": 1117000000,
+    "equivalent_hash_plan_seconds": 3.856,
+    "rollback_only_prepare_rows": 33432,
+    "rollback_only_prepare_seconds": 15.51,
+    "rollback_only_reconciled_rows": 33432,
+    "rows_remaining_after_rollback": 0,
+    "idempotent_replay_rows": 0,
+    "idempotent_replay_seconds": 11.365
+  },
+  "tests": {
+    "targeted_contracts": {
+      "passed": 45,
+      "failed": 0
+    },
+    "full_contract_suite": {
+      "passed": 879,
+      "failed": 0
+    },
+    "syntax": "passed",
+    "runtime_health": "passed",
+    "release_secret_packaging": "passed",
+    "legacy_key_guard": "passed",
+    "diff_check": "passed",
+    "migration_compile_rollback": "passed"
+  },
+  "github_checks": {
+    "contracts_drift_gate": {
+      "run_id": 30482027337,
+      "conclusion": "success"
+    },
+    "contracts_runtime_protection": {
+      "run_id": 30482027377,
+      "conclusion": "success"
+    }
+  },
+  "boundaries": {
+    "canonical_identity_writes": false,
+    "vault_writes": false,
+    "modeled_value_writes": false,
+    "anonymous_pricing_enabled": false,
+    "post_canary_read_model_package_applied": false
+  }
+}

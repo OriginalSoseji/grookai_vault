@@ -1,0 +1,61 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1",
+  "status": "observing",
+  "window": {
+    "started_at": "2026-07-29T20:26:44.820Z",
+    "required_end_at": "2026-08-01T20:26:44.820Z",
+    "as_of": "2026-07-29T20:35:03.673Z",
+    "required_hours": 72,
+    "observed_hours": 0.139,
+    "elapsed": false
+  },
+  "schedule": {
+    "hour_utc": 8,
+    "minute_utc": 15,
+    "tolerance_minutes": 90,
+    "expected_slots": [],
+    "matched_slots": [],
+    "missing_slots": [],
+    "unmatched_run_keys": []
+  },
+  "run_evidence": {
+    "expected_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "expected_count": 100,
+    "activation_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication",
+    "scheduled_run_count": 0,
+    "unhealthy_run_keys": []
+  },
+  "terminal_alert_count": 0,
+  "current": {
+    "exact_price_count": 100,
+    "positive_usd_count": 100,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "7df41f05-0afe-45b3-a1f6-2fe8ee3f2599",
+    "current_publication_run_id": "2b71bed1-1f9b-468a-8341-e3ab9e8cf472",
+    "previous_publication_set_id": "c72743ef-0f47-4439-8e1d-4a6235ff7b23",
+    "current_publication_activated_at": "2026-07-29T20:26:44.820Z"
+  },
+  "source_health": {
+    "status": "healthy",
+    "source_continuity_mode": "completed_sync",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "effective_source_status": "completed",
+    "effective_source_price_row_count": 540624,
+    "source_age_hours": 0.165,
+    "findings": []
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 99,
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  },
+  "findings": []
+}

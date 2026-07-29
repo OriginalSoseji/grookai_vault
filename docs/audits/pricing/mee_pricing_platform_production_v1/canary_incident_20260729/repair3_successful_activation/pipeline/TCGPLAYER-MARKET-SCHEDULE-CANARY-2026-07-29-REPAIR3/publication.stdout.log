@@ -1,0 +1,49 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+[tcgplayer-market-publication] phase=prepare_variant_assignments status=succeeded
+[tcgplayer-market-publication] phase=stage_candidates status=succeeded
+[tcgplayer-market-publication] phase=qualify status=succeeded
+[tcgplayer-market-publication] phase=build_publication status=succeeded
+[tcgplayer-market-publication] phase=reconcile status=succeeded
+[tcgplayer-market-publication] phase=activate status=succeeded
+{
+  "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_3",
+  "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication",
+  "run_mode": "canary",
+  "commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "source_sync_run_id": "60fcfedf-5f45-4e02-a656-65be0b9ad71d",
+  "evaluated_at": "2026-07-29T20:26:46.885Z",
+  "freshness_hours": 36,
+  "suppression_hours": 72,
+  "selected_count": 100,
+  "eligible_count": 100,
+  "delayed_count": 0,
+  "suppressed_count": 0,
+  "quarantined_count": 0,
+  "excluded_count": 0,
+  "reason_counts": {},
+  "durable_run_state": "verified",
+  "reconciliation_state": "reconciled",
+  "source_of_market_close": "tcgcsv_source_price_daily_observations.market_price",
+  "supporting_fields_change_market_close": false,
+  "writes_publication_tables": true,
+  "activates_current_publication": true,
+  "canary_id": "TCGPLAYER_MARKET_CANARY_100_V1",
+  "canary_definition_sha256": "9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3",
+  "writes_canonical_identity": false,
+  "writes_vault": false,
+  "reconciliation": {
+    "mismatches": [],
+    "mapped_count": 100,
+    "delayed_count": 0,
+    "decision_count": 100,
+    "eligible_count": 100,
+    "excluded_count": 0,
+    "selected_count": 100,
+    "snapshot_count": 100,
+    "suppressed_count": 0,
+    "quarantined_count": 0,
+    "traced_snapshot_count": 100
+  },
+  "artifact_dir": "/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication"
+}
