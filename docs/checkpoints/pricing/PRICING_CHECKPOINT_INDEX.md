@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
+
+This checkpoint records the automated read-only observation of the frozen
+100-printing canary and the complete execution handoff for the first enforcing
+run after the 72-hour deadline.
+
+Decision locked there:
+
+- the canary must pass before the exact two-migration package moves, and the
+  post-canary rollout must integrate from current production `main` rather
+  than deploy the divergent pricing branch wholesale
+
+Unresolved risk afterward:
+
+- the time gate, exact migration apply/readback, current-main integration,
+  fresh V1.2 shadow, full signed-in activation, 17-surface proof, and seven
+  unattended cycles remain incomplete
+
 ### `PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
 
 This checkpoint freezes Production V1 scope and acceptance criteria, limits
@@ -720,6 +738,39 @@ Recommended reading order for future maintainers:
     - then read how Vault totals became sums of exact raw-copy prices, with
       unresolved copies and slabs excluded and private ownership targets
       constrained to an authenticated read-only view
+
+29. `PRICING_CHECKPOINT_30_PRE_ROLLOUT_COMPLETION_TRUTH.md`
+    - then read why committed pricing code, unapplied migrations, deployed
+      clients, and verified rendering remain separate completion states
+
+30. `PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md`
+    - then read how exact-copy Vault schema, ACL/RLS, ownership isolation,
+      scope, totals, and clean-SHA deployment are proven together
+
+31. `PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md`
+    - then read the frozen two-migration package, hashes, strict preflight,
+      forbidden history shortcuts, and enforcing post-apply readback
+
+32. `PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md`
+    - then read how the 17-surface source-to-render proof binds each captured
+      amount to shared RPC evidence from the exact deployed commit
+
+33. `PRICING_CHECKPOINT_34_PRODUCT_SURFACE_WIRING_CORRECTION.md`
+    - then read how Set grids, Flutter Compare, and Flutter Network were
+      corrected to preserve governed pricing evidence through render
+
+34. `PRICING_CHECKPOINT_35_PRODUCT_SURFACE_ROUTE_IDENTITY.md`
+    - then read how each proof is bound to an explicit web route or canonical
+      Flutter screen so one working surface cannot impersonate another
+
+35. `PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
+    - then read the immutable Production V1 product contract, release gates,
+      feature freeze, and post-V1 parking lot
+
+36. `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
+    - finally read the current automated canary state and the exact
+      post-72-hour preflight, migration, deployment, shadow, activation,
+      product-proof, rollback, and seven-cycle execution sequence
 
 After those checkpoints, read the supporting audits in this order:
 
