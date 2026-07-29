@@ -1,0 +1,145 @@
+{
+  "activationRun": {
+    "id": "2b71bed1-1f9b-468a-8341-e3ab9e8cf472",
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication",
+    "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+    "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2",
+    "run_mode": "canary",
+    "source_name": "tcgplayer",
+    "source_observed_on": "2026-07-29T00:00:00.000Z",
+    "source_sync_run_id": "60fcfedf-5f45-4e02-a656-65be0b9ad71d",
+    "source_artifact_id": null,
+    "source_artifact_hash": "e83944d1711a374573cb215b032184df37e4490b0b0579e8fa86b227613a3aa9",
+    "source_marker": "2026-07-28T20:12:27+0000",
+    "state": "verified",
+    "current_phase": "activate",
+    "reconciliation_state": "reconciled",
+    "selected_count": 100,
+    "mapped_count": 100,
+    "excluded_count": 0,
+    "quarantined_count": 0,
+    "delayed_count": 0,
+    "suppressed_count": 0,
+    "eligible_count": 100,
+    "snapshot_count": 100,
+    "required_phase_count": 5,
+    "succeeded_phase_count": 5,
+    "git_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_3",
+    "schema_version": "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1",
+    "started_at": "2026-07-29T20:26:14.600Z",
+    "completed_at": "2026-07-29T20:26:44.820Z",
+    "failed_at": null,
+    "error_classification": null,
+    "error": null,
+    "resumability_data": {},
+    "reconciliation": {
+      "mismatches": [],
+      "mapped_count": 100,
+      "delayed_count": 0,
+      "decision_count": 100,
+      "eligible_count": 100,
+      "excluded_count": 0,
+      "selected_count": 100,
+      "snapshot_count": 100,
+      "suppressed_count": 0,
+      "quarantined_count": 0,
+      "traced_snapshot_count": 100
+    },
+    "created_at": "2026-07-29T20:26:14.600Z",
+    "updated_at": "2026-07-29T20:26:46.280Z"
+  },
+  "scheduledRuns": [],
+  "terminalAlerts": [],
+  "current": {
+    "exact_price_count": 100,
+    "positive_usd_count": 100,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "7df41f05-0afe-45b3-a1f6-2fe8ee3f2599",
+    "current_publication_run_id": "2b71bed1-1f9b-468a-8341-e3ab9e8cf472",
+    "previous_publication_set_id": "c72743ef-0f47-4439-8e1d-4a6235ff7b23",
+    "current_publication_activated_at": "2026-07-29T20:26:44.820Z"
+  },
+  "sourceHealth": {
+    "status": "healthy",
+    "source_continuity_mode": "completed_sync",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "effective_source_status": "completed",
+    "effective_source_price_row_count": 540624,
+    "source_age_hours": 0.165,
+    "findings": []
+  },
+  "sourceRunEvidence": {
+    "latest_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "latest_source_status": "completed",
+    "latest_source_marker": "2026-07-28T20:12:27+0000",
+    "latest_source_finished_at": "2026-07-29T20:25:11.146Z",
+    "latest_source_price_row_count": 540624,
+    "latest_source_failed_count": 0,
+    "latest_source_error": null,
+    "latest_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9200
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 0,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    },
+    "completed_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "completed_source_status": "completed",
+    "completed_source_marker": "2026-07-28T20:12:27+0000",
+    "completed_source_finished_at": "2026-07-29T20:25:11.146Z",
+    "completed_source_price_row_count": 540624,
+    "completed_source_failed_count": 0,
+    "completed_source_error": null,
+    "completed_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9200
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 0,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    }
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 99,
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  }
+}

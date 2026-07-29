@@ -1,0 +1,17 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_AUDIT_V1",
+  "policy_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1",
+  "window_start": "2026-07-29T20:26:44.820Z",
+  "activation_run_id": "2b71bed1-1f9b-468a-8341-e3ab9e8cf472",
+  "expected_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "as_of": "2026-07-29T20:35:03.673Z",
+  "required_hours": 72,
+  "expected_count": 100,
+  "schedule_tolerance_minutes": 90,
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "publication_activation": false,
+    "grant_changes": false
+  }
+}

@@ -1,0 +1,40 @@
+Output format is unaligned.
+Field separator is "|".
+run_key|status|id|source_marker|observed_on|request_count|category_count|group_count|product_count|price_row_count|inserted_count|updated_count|no_op_count|failed_count|artifact_hash|git_commit_sha|started_at|finished_at|error
+TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse|completed|60fcfedf-5f45-4e02-a656-65be0b9ad71d|2026-07-28T20:12:27+0000|2026-07-29|9200|82|4558|497527|540624|337|1042454|0|0|e83944d1711a374573cb215b032184df37e4490b0b0579e8fa86b227613a3aa9|ffb2513fd530930dbfaee714b84df2358f7eaafc|2026-07-29 19:04:27.852+00|2026-07-29 20:25:11.146+00|
+(1 row)
+id|run_key|state|reconciliation_state|source_sync_run_id|source_artifact_hash|selected_count|mapped_count|excluded_count|quarantined_count|delayed_count|suppressed_count|eligible_count|snapshot_count|required_phase_count|succeeded_phase_count|git_commit_sha|started_at|completed_at|failed_at|error_classification|error
+2b71bed1-1f9b-468a-8341-e3ab9e8cf472|TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication|verified|reconciled|60fcfedf-5f45-4e02-a656-65be0b9ad71d|e83944d1711a374573cb215b032184df37e4490b0b0579e8fa86b227613a3aa9|100|100|0|0|0|0|100|100|5|5|ffb2513fd530930dbfaee714b84df2358f7eaafc|2026-07-29 20:26:14.600617+00|2026-07-29 20:26:44.820873+00|||
+(1 row)
+phase_name|attempt|state|input_count|output_count|reconciled_count|excluded_count|quarantined_count|error_classification|error|started_at|completed_at
+prepare_variant_assignments|1|started|0|0|0|0|0|||2026-07-29 20:26:14.82+00|
+prepare_variant_assignments|1|succeeded|33432|33432|33432|0|0|||2026-07-29 20:26:14.82+00|2026-07-29 20:26:35.419+00
+stage_candidates|1|started|0|0|0|0|0|||2026-07-29 20:26:35.743+00|
+stage_candidates|1|succeeded|100|100|100|0|0|||2026-07-29 20:26:35.743+00|2026-07-29 20:26:39.927+00
+qualify|1|started|0|0|0|0|0|||2026-07-29 20:26:40.214+00|
+qualify|1|succeeded|100|100|0|0|0|||2026-07-29 20:26:40.214+00|2026-07-29 20:26:41.352+00
+build_publication|1|started|0|0|0|0|0|||2026-07-29 20:26:41.638+00|
+build_publication|1|succeeded|100|100|100|0|0|||2026-07-29 20:26:41.638+00|2026-07-29 20:26:42.663+00
+reconcile|1|started|0|0|0|0|0|||2026-07-29 20:26:42.95+00|
+reconcile|1|succeeded|100|100|100|0|0|||2026-07-29 20:26:42.95+00|2026-07-29 20:26:44.352+00
+activate|1|started|0|0|0|0|0|||2026-07-29 20:26:44.639+00|
+activate|1|succeeded|100|100|100|0|0|||2026-07-29 20:26:44.639+00|2026-07-29 20:26:46.172+00
+(12 rows)
+singleton|publication_set_id|run_id|previous_publication_set_id|activated_at|updated_at
+t|7df41f05-0afe-45b3-a1f6-2fe8ee3f2599|2b71bed1-1f9b-468a-8341-e3ab9e8cf472|c72743ef-0f47-4439-8e1d-4a6235ff7b23|2026-07-29 20:26:44.820873+00|2026-07-29 20:26:44.820873+00
+(1 row)
+id|run_id|run_key|publication_state|expected_snapshot_count|previous_publication_set_id|published_at|reconciliation
+7df41f05-0afe-45b3-a1f6-2fe8ee3f2599|2b71bed1-1f9b-468a-8341-e3ab9e8cf472|TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication|published|100|c72743ef-0f47-4439-8e1d-4a6235ff7b23|2026-07-29 20:26:44.820873+00|{"actual_snapshot_count": 100, "traced_snapshot_count": 100, "eligible_decision_count": 100, "expected_snapshot_count": 100}
+(1 row)
+snapshot_count|positive_usd_count|missing_provenance_count
+100|100|0
+(1 row)
+current_exact_count|current_positive_usd_count|current_missing_provenance_count|current_stale_count
+100|100|0|0
+(1 row)
+broken_trace_count
+0
+(1 row)
+authenticated_execute|anon_execute|rollback_service_execute
+t|f|t
+(1 row)

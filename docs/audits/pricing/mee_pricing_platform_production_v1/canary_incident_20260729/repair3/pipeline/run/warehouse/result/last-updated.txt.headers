@@ -1,0 +1,17 @@
+HTTP/2 200
+content-type: text/plain
+content-length: 24
+last-modified: Tue, 28 Jul 2026 20:12:28 GMT
+x-amz-server-side-encryption: AES256
+x-robots-tag: noindex
+accept-ranges: bytes
+server: AmazonS3
+date: Wed, 29 Jul 2026 12:15:03 GMT
+etag: "179e269e01fed952b9ac808c2cb3c7c3"
+x-cache: Hit from cloudfront
+via: 1.1 d86c7af2714c38d7360f926e02497832.cloudfront.net (CloudFront)
+x-amz-cf-pop: SFO53-P8
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: kE9urAqsDIZKgTpB3K3K2pDULmRLojIUPpgePLmt-eHTSXhfkdxwDQ==
+age: 24566
+vary: Origin

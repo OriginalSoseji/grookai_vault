@@ -1,0 +1,66 @@
+{
+  "boundary": {
+    "db_writes": true,
+    "public_pricing_writes": false,
+    "identity_writes": false,
+    "vault_writes": false,
+    "app_visible_pricing": false
+  },
+  "run": {
+    "id": "60fcfedf-5f45-4e02-a656-65be0b9ad71d",
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "sync_mode": "current_full_sync",
+    "status": "completed",
+    "source_marker": "2026-07-28T20:12:27+0000",
+    "observed_on": "2026-07-29T00:00:00.000Z",
+    "date_from": null,
+    "date_to": null,
+    "request_count": 9200,
+    "category_count": 82,
+    "group_count": 4558,
+    "product_count": 497527,
+    "price_row_count": 540624,
+    "inserted_count": 337,
+    "updated_count": 1042454,
+    "no_op_count": 0,
+    "failed_count": 0,
+    "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+    "artifact_hash": "e83944d1711a374573cb215b032184df37e4490b0b0579e8fa86b227613a3aa9",
+    "worker_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_WORKER_V1",
+    "parser_version": "TCGCSV_FULL_SOURCE_PARSER_V1",
+    "schema_contract_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_V1",
+    "git_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "started_at": "2026-07-29T19:04:27.852Z",
+    "finished_at": "2026-07-29T20:25:11.146Z",
+    "error": null,
+    "payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9200
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 0,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    },
+    "created_at": "2026-07-29T19:04:28.705Z",
+    "artifact_count": 9200
+  },
+  "summary": {
+    "resumed_existing_terminal_run": true,
+    "resume_policy_version": "TCGCSV_SOURCE_RUN_RESUME_POLICY_V1"
+  },
+  "artifact_count": 9200
+}

@@ -1,0 +1,9 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[tcgcsv-full] mode=current apply=true
+[tcgcsv-full] status=completed
+[tcgcsv-full] requests=9200
+[tcgcsv-full] categories=82
+[tcgcsv-full] groups=4558
+[tcgcsv-full] products=497527
+[tcgcsv-full] price_rows=540624
+[tcgcsv-full] summary=../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json

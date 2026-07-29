@@ -1,0 +1,55 @@
+{
+  "policy_version": "TCGCSV_SOURCE_RUN_RESUME_POLICY_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse",
+  "result": "passed",
+  "execution": {
+    "started_at": "2026-07-29T20:25:11Z",
+    "finished_at": "2026-07-29T20:25:13Z",
+    "exit_code": 0
+  },
+  "resume_decision": {
+    "resumed_existing_terminal_run": true,
+    "provider_request_started": false,
+    "database_row_mutated": false
+  },
+  "immutable_field_reconciliation": {
+    "status": "completed",
+    "source_marker": "2026-07-28T20:12:27+0000",
+    "request_count": 9200,
+    "category_count": 82,
+    "group_count": 4558,
+    "product_count": 497527,
+    "price_row_count": 540624,
+    "inserted_count": 337,
+    "updated_count": 1042454,
+    "no_op_count": 0,
+    "failed_count": 0,
+    "artifact_hash": "e83944d1711a374573cb215b032184df37e4490b0b0579e8fa86b227613a3aa9",
+    "git_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "started_at": "2026-07-29T19:04:27.852Z",
+    "finished_at": "2026-07-29T20:25:11.146Z",
+    "all_governed_values_equal": true
+  },
+  "serialization_differences": [
+    {
+      "field": "id",
+      "initial_artifact": null,
+      "resume_artifact": "60fcfedf-5f45-4e02-a656-65be0b9ad71d",
+      "interpretation": "The live fetch result did not serialize the database-generated ID; the resumed database row did."
+    },
+    {
+      "field": "observed_on",
+      "initial_artifact": "2026-07-29",
+      "resume_artifact": "2026-07-29T00:00:00.000Z",
+      "interpretation": "Equivalent PostgreSQL date values were serialized once as a date and once as a UTC timestamp."
+    }
+  ],
+  "evidence_files": [
+    "execution.json",
+    "worker.stdout.log",
+    "worker.stderr.log",
+    "output/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+    "../pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+    "../post_activation_db_readback.txt"
+  ]
+}

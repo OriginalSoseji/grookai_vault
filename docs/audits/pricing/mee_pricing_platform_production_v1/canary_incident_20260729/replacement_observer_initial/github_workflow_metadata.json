@@ -1,0 +1,37 @@
+{
+  "schema_version": "pricing_canary_observer_workflow_metadata_v1",
+  "recorded_at": "2026-07-29T20:40:00.000Z",
+  "repository": "OriginalSoseji/grookai_vault",
+  "pull_request": {
+    "number": 116,
+    "url": "https://github.com/OriginalSoseji/grookai_vault/pull/116",
+    "source_commit_sha": "353ae14da63871bc2cc23413fde8d04aaf27c0c0",
+    "merge_commit_sha": "6dc2ea3ab4ccacb5c45939a010caae80bcae32a9",
+    "merged_at": "2026-07-29T20:33:49Z"
+  },
+  "workflow": {
+    "name": "TCGPlayer Market Canary Observation",
+    "state_after_restart": "active",
+    "run_id": 30488967875,
+    "run_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/30488967875",
+    "job_id": 90701751419,
+    "conclusion": "success"
+  },
+  "artifact": {
+    "id": 8738893328,
+    "name": "tcgplayer-market-canary-observation-30488967875",
+    "size_in_bytes": 4047
+  },
+  "canary_binding": {
+    "replacement_activation_id": "2b71bed1-1f9b-468a-8341-e3ab9e8cf472",
+    "pricing_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+    "window_start": "2026-07-29T20:26:44.820Z",
+    "required_end": "2026-08-01T20:26:44.820Z",
+    "expected_active_count": 100
+  },
+  "boundaries": {
+    "post_canary_migrations_applied": false,
+    "anonymous_pricing_enabled": false,
+    "full_publication_started": false
+  }
+}

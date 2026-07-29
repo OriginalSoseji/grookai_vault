@@ -1,0 +1,3 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: ⚙️  write to custom object with { processEnv: myObject }
+[market-pipeline] phase=warehouse_current_sync status=completed
+[market-pipeline] phase=active_ask_refresh status=completed

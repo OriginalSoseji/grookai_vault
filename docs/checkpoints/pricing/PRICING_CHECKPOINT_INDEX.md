@@ -768,9 +768,14 @@ Recommended reading order for future maintainers:
       feature freeze, and post-V1 parking lot
 
 36. `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
-    - finally read the current automated canary state and the exact
-      post-72-hour preflight, migration, deployment, shadow, activation,
-      product-proof, rollback, and seven-cycle execution sequence
+    - read the original canary handoff as historical pre-incident context; it
+      is superseded because the first unattended source cycle invalidated that
+      observation window
+
+37. `PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`
+    - finally read the source and publication incident, merged runtime repair,
+      replacement activation, observer restart gate, and corrected
+      post-72-hour execution sequence
 
 After those checkpoints, read the supporting audits in this order:
 
