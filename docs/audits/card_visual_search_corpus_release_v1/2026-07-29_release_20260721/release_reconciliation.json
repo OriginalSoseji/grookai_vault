@@ -1,0 +1,304 @@
+{
+  "reconciliation_version": "CARD_VISUAL_SEARCH_CORPUS_RELEASE_RECONCILIATION_V1",
+  "release_id": "card_visual_search_corpus_release_v1_20260721",
+  "release_plan_payload_sha256": "fc5c041a385627f285b37032add0c1feed25b7abcc5ad5de8b090bf01217384d",
+  "release_manifest_payload_sha256": "dd7956761bdb040958d3ca9b6e67fb9c272832091003043cd9db810f376b8cfa",
+  "planned_files": 41,
+  "copied_files": 41,
+  "matching_files": 41,
+  "missing_files": 0,
+  "mismatched_files": 0,
+  "extra_files": 0,
+  "copied_bytes": 708245401,
+  "status": "reconciled",
+  "outcomes": [
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artifact_hashes.json",
+      "expected_sha256": "d20db2d1fca7feec00d3a5cbf0618700247c551fdc32cd6c68fe6f24063b08b4",
+      "destination_sha256": "d20db2d1fca7feec00d3a5cbf0618700247c551fdc32cd6c68fe6f24063b08b4",
+      "hash_match": true,
+      "bytes": 915
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_group_conflicts.jsonl",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "bytes": 0
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_group_memberships.jsonl",
+      "expected_sha256": "e8e4226ccafb90c69f6da7c991e41f0bde875a1749610463134f8fa64289cb06",
+      "destination_sha256": "e8e4226ccafb90c69f6da7c991e41f0bde875a1749610463134f8fa64289cb06",
+      "hash_match": true,
+      "bytes": 9756344
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/ARTWORK_GROUPING_RECONCILIATION.json",
+      "expected_sha256": "116a70026556c9a8c50d7cb30b47cb7f9b4046bc96a5ccff8be94d597f95bf5f",
+      "destination_sha256": "116a70026556c9a8c50d7cb30b47cb7f9b4046bc96a5ccff8be94d597f95bf5f",
+      "hash_match": true,
+      "bytes": 1995
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/ARTWORK_GROUPING_RECONCILIATION.md",
+      "expected_sha256": "f8a1da1c71d440b98b3de0083b9aacc4b83df8e159d0f37234838cbbfa8a01c0",
+      "destination_sha256": "f8a1da1c71d440b98b3de0083b9aacc4b83df8e159d0f37234838cbbfa8a01c0",
+      "hash_match": true,
+      "bytes": 975
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_groups.jsonl",
+      "expected_sha256": "8fe68c81b8baaf06e716fbb92dd6e59bd3b760fdb3e24e894136986f50a82922",
+      "destination_sha256": "8fe68c81b8baaf06e716fbb92dd6e59bd3b760fdb3e24e894136986f50a82922",
+      "hash_match": true,
+      "bytes": 9532151
+    },
+    {
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/run_plan.json",
+      "expected_sha256": "321be430384c64af2efa7505e6b6e0ad969e22d7641e0d40bcf9f48cdfbbe69a",
+      "destination_sha256": "321be430384c64af2efa7505e6b6e0ad969e22d7641e0d40bcf9f48cdfbbe69a",
+      "hash_match": true,
+      "bytes": 1284
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/artifact_hashes.json",
+      "expected_sha256": "fc9190a4be4c15e48e0325836728ce88ad21b0e3533ef3ebbed3117e004d5720",
+      "destination_sha256": "fc9190a4be4c15e48e0325836728ce88ad21b0e3533ef3ebbed3117e004d5720",
+      "hash_match": true,
+      "bytes": 900
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_coverage_gaps.jsonl",
+      "expected_sha256": "1a4d15114bb45f4a409cf4c446a1e7bae8b189b711d6fa7db1853ad71afb953b",
+      "destination_sha256": "1a4d15114bb45f4a409cf4c446a1e7bae8b189b711d6fa7db1853ad71afb953b",
+      "hash_match": true,
+      "bytes": 627448
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_inventory.jsonl",
+      "expected_sha256": "bcdf737ddb6baea2232b7ee5f2c02ffd0d2c110763f24347bf371786a6f72204",
+      "destination_sha256": "bcdf737ddb6baea2232b7ee5f2c02ffd0d2c110763f24347bf371786a6f72204",
+      "hash_match": true,
+      "bytes": 15906311
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/CORPUS_SOURCE_RECONCILIATION.json",
+      "expected_sha256": "ff55550a4afe8a62a7606d7bf8aa10464c58cdd5537bc396baf3ade92759973e",
+      "destination_sha256": "ff55550a4afe8a62a7606d7bf8aa10464c58cdd5537bc396baf3ade92759973e",
+      "hash_match": true,
+      "bytes": 3706
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/CORPUS_SOURCE_RECONCILIATION.md",
+      "expected_sha256": "29448a3c06e9dd66c6d3fd9b06b6d86d6610c30f660e43cf7fbd98919a6dd0f1",
+      "destination_sha256": "29448a3c06e9dd66c6d3fd9b06b6d86d6610c30f660e43cf7fbd98919a6dd0f1",
+      "hash_match": true,
+      "bytes": 1250
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_valid_candidates.jsonl",
+      "expected_sha256": "9fbd9e97c61a4d9b708cb1f1e61ba7af32501826d1a729bb554acafbdeb04d4c",
+      "destination_sha256": "9fbd9e97c61a4d9b708cb1f1e61ba7af32501826d1a729bb554acafbdeb04d4c",
+      "hash_match": true,
+      "bytes": 15278863
+    },
+    {
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/run_plan.json",
+      "expected_sha256": "a23ce99d527706910293785528658b38f265614f9e0013af6c357f8a2af03d5d",
+      "destination_sha256": "a23ce99d527706910293785528658b38f265614f9e0013af6c357f8a2af03d5d",
+      "hash_match": true,
+      "bytes": 1727
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/artifact_hashes.json",
+      "expected_sha256": "eb28529431a4d9227a72951d7a112d87d1e3a35d11abe9b4c74bc74802f38f98",
+      "destination_sha256": "eb28529431a4d9227a72951d7a112d87d1e3a35d11abe9b4c74bc74802f38f98",
+      "hash_match": true,
+      "bytes": 999
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/eligibility_decisions.jsonl",
+      "expected_sha256": "d099d5602a54eacec7887b8e8624070f7b89726206609347a3916aec1e11daff",
+      "destination_sha256": "d099d5602a54eacec7887b8e8624070f7b89726206609347a3916aec1e11daff",
+      "hash_match": true,
+      "bytes": 17416517
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/ELIGIBILITY_RECONCILIATION.json",
+      "expected_sha256": "3b55ee6386d392493db69442e4939de1c0f09c08f303e5014a7afe7b824732f6",
+      "destination_sha256": "3b55ee6386d392493db69442e4939de1c0f09c08f303e5014a7afe7b824732f6",
+      "hash_match": true,
+      "bytes": 7734
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/ELIGIBILITY_RECONCILIATION.md",
+      "expected_sha256": "5545783c553458c0a058f8987a41a9c16482a563f563d4fa41bf56220da0e67a",
+      "destination_sha256": "5545783c553458c0a058f8987a41a9c16482a563f563d4fa41bf56220da0e67a",
+      "hash_match": true,
+      "bytes": 2252
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/run_plan.json",
+      "expected_sha256": "2a08b323528221f0df9bd109dd6770b99391742f62e5af2a9f799f629e6bf90b",
+      "destination_sha256": "2a08b323528221f0df9bd109dd6770b99391742f62e5af2a9f799f629e6bf90b",
+      "hash_match": true,
+      "bytes": 1232
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_a_decisions.jsonl",
+      "expected_sha256": "b4b678b9875160596382b01a259bdae9036495db7e8a5f0a34cf71584400ad8c",
+      "destination_sha256": "b4b678b9875160596382b01a259bdae9036495db7e8a5f0a34cf71584400ad8c",
+      "hash_match": true,
+      "bytes": 3027943
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_b_decisions.jsonl",
+      "expected_sha256": "d73f41e6c310eabc9740bf25cc5a34e1bc94646645596ce142a2f0161237205d",
+      "destination_sha256": "d73f41e6c310eabc9740bf25cc5a34e1bc94646645596ce142a2f0161237205d",
+      "hash_match": true,
+      "bytes": 12518898
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_c_decisions.jsonl",
+      "expected_sha256": "e4b69d5155ad178015aa6d6c453ee245a31455df3589f76d94da6e40a90925b2",
+      "destination_sha256": "e4b69d5155ad178015aa6d6c453ee245a31455df3589f76d94da6e40a90925b2",
+      "hash_match": true,
+      "bytes": 1869676
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/artifact_hashes.json",
+      "expected_sha256": "161cae08f10619498d3cb43f93800a4d5346f04049f1cdeb279275b120ea3321",
+      "destination_sha256": "161cae08f10619498d3cb43f93800a4d5346f04049f1cdeb279275b120ea3321",
+      "hash_match": true,
+      "bytes": 1116
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/BOOTSTRAP_EVALUATION_REPORT.json",
+      "expected_sha256": "7e6d48809a69de0285e9d0ee486ef4da8109dbe044c27d6b902a31d2d32532cd",
+      "destination_sha256": "7e6d48809a69de0285e9d0ee486ef4da8109dbe044c27d6b902a31d2d32532cd",
+      "hash_match": true,
+      "bytes": 4378
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/BOOTSTRAP_EVALUATION_REPORT.md",
+      "expected_sha256": "11ec8e3c073760673f58fd38dbc8d06de6c5e1cb1310a5c7ede739bcc735fe94",
+      "destination_sha256": "11ec8e3c073760673f58fd38dbc8d06de6c5e1cb1310a5c7ede739bcc735fe94",
+      "hash_match": true,
+      "bytes": 1003
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/candidate_index_summary.json",
+      "expected_sha256": "9d21960f187a332cb9ac162f6f22c2bffb603291767ef16da8f33eefc62e9615",
+      "destination_sha256": "9d21960f187a332cb9ac162f6f22c2bffb603291767ef16da8f33eefc62e9615",
+      "hash_match": true,
+      "bytes": 290
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/evaluation_failures.jsonl",
+      "expected_sha256": "42668007732c5cb5cf621271e8bc300ab84dcb724c167ce73784d2c168514e05",
+      "destination_sha256": "42668007732c5cb5cf621271e8bc300ab84dcb724c167ce73784d2c168514e05",
+      "hash_match": true,
+      "bytes": 26204
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/holdout_judgment_seals.jsonl",
+      "expected_sha256": "d02999d18454384e5d9c48fec9e64f5334e43186677df38b0eda693179cda866",
+      "destination_sha256": "d02999d18454384e5d9c48fec9e64f5334e43186677df38b0eda693179cda866",
+      "hash_match": true,
+      "bytes": 7500
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/query_suite.jsonl",
+      "expected_sha256": "76268725e798fdc8d5d7ec7af4220058d9877605d364493bb77867f7c72a2afc",
+      "destination_sha256": "76268725e798fdc8d5d7ec7af4220058d9877605d364493bb77867f7c72a2afc",
+      "hash_match": true,
+      "bytes": 248205
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/ranked_outputs.jsonl",
+      "expected_sha256": "9288b00d72438669943d09835a54158ee39a08ae8f29b858e9a2f29ecbcdf498",
+      "destination_sha256": "9288b00d72438669943d09835a54158ee39a08ae8f29b858e9a2f29ecbcdf498",
+      "hash_match": true,
+      "bytes": 3800859
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/run_plan.json",
+      "expected_sha256": "42b947797667fef4c2fe80bcbac0781151759b901c22d436c67d70d7343c3507",
+      "destination_sha256": "42b947797667fef4c2fe80bcbac0781151759b901c22d436c67d70d7343c3507",
+      "hash_match": true,
+      "bytes": 1983
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/artifact_hashes.json",
+      "expected_sha256": "d4711f3cf353291d004718bb5b513cd24fbc9db54b48d497dd95ac97dbd6ec9d",
+      "destination_sha256": "d4711f3cf353291d004718bb5b513cd24fbc9db54b48d497dd95ac97dbd6ec9d",
+      "hash_match": true,
+      "bytes": 1257
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/PROJECTION_RECONCILIATION.json",
+      "expected_sha256": "71bafdc2ab5b6a40c7c31a71bb033f90c1732185f1bbdc437cbc91013314bcc5",
+      "destination_sha256": "71bafdc2ab5b6a40c7c31a71bb033f90c1732185f1bbdc437cbc91013314bcc5",
+      "hash_match": true,
+      "bytes": 4122
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/PROJECTION_RECONCILIATION.md",
+      "expected_sha256": "58cf039d3f59ea30a704894e57cccdde1c5f7e0e30216ba2e8d38ab5ff57cb74",
+      "destination_sha256": "58cf039d3f59ea30a704894e57cccdde1c5f7e0e30216ba2e8d38ab5ff57cb74",
+      "hash_match": true,
+      "bytes": 765
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/run_plan.json",
+      "expected_sha256": "06400449e92ca95cdb43e733ceb59e7566c41306003049a79164c771af2295a0",
+      "destination_sha256": "06400449e92ca95cdb43e733ceb59e7566c41306003049a79164c771af2295a0",
+      "hash_match": true,
+      "bytes": 1983
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_artworks.jsonl",
+      "expected_sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16",
+      "destination_sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16",
+      "hash_match": true,
+      "bytes": 9778329
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_concept_evidence.jsonl",
+      "expected_sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f",
+      "destination_sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f",
+      "hash_match": true,
+      "bytes": 266981950
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_documents.jsonl",
+      "expected_sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b",
+      "destination_sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b",
+      "hash_match": true,
+      "bytes": 238600982
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_printings.jsonl",
+      "expected_sha256": "4ddbe8770db5ea56d56a22175a2722dacc993b4fb0fc09f19d6dfaf7a043b359",
+      "destination_sha256": "4ddbe8770db5ea56d56a22175a2722dacc993b4fb0fc09f19d6dfaf7a043b359",
+      "hash_match": true,
+      "bytes": 10591443
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_projection_exclusions.jsonl",
+      "expected_sha256": "dfc59abdaefc75c45a85d6e9436d11e1e44917007bc0ae82207d139d677aba4a",
+      "destination_sha256": "dfc59abdaefc75c45a85d6e9436d11e1e44917007bc0ae82207d139d677aba4a",
+      "hash_match": true,
+      "bytes": 92233912
+    },
+    {
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_projection_failures.jsonl",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "bytes": 0
+    }
+  ],
+  "reconciliation_payload_sha256": "d22f0c3b30a9132c8f8c8d1948a25ed7aa64424b4a221a294d48410c9888f66a"
+}

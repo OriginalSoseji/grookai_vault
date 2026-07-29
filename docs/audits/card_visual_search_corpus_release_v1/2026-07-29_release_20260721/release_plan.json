@@ -1,0 +1,318 @@
+{
+  "release_version": "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V1",
+  "release_id": "card_visual_search_corpus_release_v1_20260721",
+  "planned_on": "2026-07-29",
+  "productization_branch": "feature/visual-search-v1-productization",
+  "productization_pre_release_sha": "e429d3b40e1b39ff567f07fe489184cdfe8bee3a",
+  "governed_source_branch": "feature/card-visual-search-review-portal",
+  "governed_source_sha": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+  "source_root": "C:\\grookai_vault_card_desc_agent",
+  "release_root": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_20260721",
+  "stages": [
+    {
+      "stage": "corpus",
+      "relative_dir": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04",
+      "reconciliation_file": "CORPUS_SOURCE_RECONCILIATION.json"
+    },
+    {
+      "stage": "eligibility",
+      "relative_dir": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b",
+      "reconciliation_file": "ELIGIBILITY_RECONCILIATION.json"
+    },
+    {
+      "stage": "grouping",
+      "relative_dir": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469",
+      "reconciliation_file": "ARTWORK_GROUPING_RECONCILIATION.json"
+    },
+    {
+      "stage": "projection",
+      "relative_dir": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15",
+      "reconciliation_file": "PROJECTION_RECONCILIATION.json"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_dir": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3",
+      "reconciliation_file": "BOOTSTRAP_EVALUATION_REPORT.json"
+    }
+  ],
+  "file_count": 41,
+  "total_bytes": 708245401,
+  "semantic_counts": {
+    "source_rows": 11000,
+    "valid_fact_graphs": 10376,
+    "source_gaps": 624,
+    "search_eligible_printings": 9702,
+    "tier_a": 2687,
+    "tier_b": 7015,
+    "tier_c": 1298,
+    "artwork_groups": 9532,
+    "artwork_memberships": 9702,
+    "projection_documents": 28596,
+    "concept_evidence_entries": 357413,
+    "projection_exclusions": 168046,
+    "projection_failures": 0,
+    "calibration_queries": 200,
+    "sealed_holdout_queries": 50,
+    "holdout_executed": false,
+    "indexed_entries": 321937
+  },
+  "files": [
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artifact_hashes.json",
+      "bytes": 915,
+      "sha256": "d20db2d1fca7feec00d3a5cbf0618700247c551fdc32cd6c68fe6f24063b08b4"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_group_conflicts.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_group_memberships.jsonl",
+      "bytes": 9756344,
+      "sha256": "e8e4226ccafb90c69f6da7c991e41f0bde875a1749610463134f8fa64289cb06"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/ARTWORK_GROUPING_RECONCILIATION.json",
+      "bytes": 1995,
+      "sha256": "116a70026556c9a8c50d7cb30b47cb7f9b4046bc96a5ccff8be94d597f95bf5f"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/ARTWORK_GROUPING_RECONCILIATION.md",
+      "bytes": 975,
+      "sha256": "f8a1da1c71d440b98b3de0083b9aacc4b83df8e159d0f37234838cbbfa8a01c0"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/artwork_groups.jsonl",
+      "bytes": 9532151,
+      "sha256": "8fe68c81b8baaf06e716fbb92dd6e59bd3b760fdb3e24e894136986f50a82922"
+    },
+    {
+      "stage": "grouping",
+      "relative_path": "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469/run_plan.json",
+      "bytes": 1284,
+      "sha256": "321be430384c64af2efa7505e6b6e0ad969e22d7641e0d40bcf9f48cdfbbe69a"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/artifact_hashes.json",
+      "bytes": 900,
+      "sha256": "fc9190a4be4c15e48e0325836728ce88ad21b0e3533ef3ebbed3117e004d5720"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_coverage_gaps.jsonl",
+      "bytes": 627448,
+      "sha256": "1a4d15114bb45f4a409cf4c446a1e7bae8b189b711d6fa7db1853ad71afb953b"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_inventory.jsonl",
+      "bytes": 15906311,
+      "sha256": "bcdf737ddb6baea2232b7ee5f2c02ffd0d2c110763f24347bf371786a6f72204"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/CORPUS_SOURCE_RECONCILIATION.json",
+      "bytes": 3706,
+      "sha256": "ff55550a4afe8a62a7606d7bf8aa10464c58cdd5537bc396baf3ade92759973e"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/CORPUS_SOURCE_RECONCILIATION.md",
+      "bytes": 1250,
+      "sha256": "29448a3c06e9dd66c6d3fd9b06b6d86d6610c30f660e43cf7fbd98919a6dd0f1"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_valid_candidates.jsonl",
+      "bytes": 15278863,
+      "sha256": "9fbd9e97c61a4d9b708cb1f1e61ba7af32501826d1a729bb554acafbdeb04d4c"
+    },
+    {
+      "stage": "corpus",
+      "relative_path": "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/run_plan.json",
+      "bytes": 1727,
+      "sha256": "a23ce99d527706910293785528658b38f265614f9e0013af6c357f8a2af03d5d"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/artifact_hashes.json",
+      "bytes": 999,
+      "sha256": "eb28529431a4d9227a72951d7a112d87d1e3a35d11abe9b4c74bc74802f38f98"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/eligibility_decisions.jsonl",
+      "bytes": 17416517,
+      "sha256": "d099d5602a54eacec7887b8e8624070f7b89726206609347a3916aec1e11daff"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/ELIGIBILITY_RECONCILIATION.json",
+      "bytes": 7734,
+      "sha256": "3b55ee6386d392493db69442e4939de1c0f09c08f303e5014a7afe7b824732f6"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/ELIGIBILITY_RECONCILIATION.md",
+      "bytes": 2252,
+      "sha256": "5545783c553458c0a058f8987a41a9c16482a563f563d4fa41bf56220da0e67a"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/run_plan.json",
+      "bytes": 1232,
+      "sha256": "2a08b323528221f0df9bd109dd6770b99391742f62e5af2a9f799f629e6bf90b"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_a_decisions.jsonl",
+      "bytes": 3027943,
+      "sha256": "b4b678b9875160596382b01a259bdae9036495db7e8a5f0a34cf71584400ad8c"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_b_decisions.jsonl",
+      "bytes": 12518898,
+      "sha256": "d73f41e6c310eabc9740bf25cc5a34e1bc94646645596ce142a2f0161237205d"
+    },
+    {
+      "stage": "eligibility",
+      "relative_path": "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b/tier_c_decisions.jsonl",
+      "bytes": 1869676,
+      "sha256": "e4b69d5155ad178015aa6d6c453ee245a31455df3589f76d94da6e40a90925b2"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/artifact_hashes.json",
+      "bytes": 1116,
+      "sha256": "161cae08f10619498d3cb43f93800a4d5346f04049f1cdeb279275b120ea3321"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/BOOTSTRAP_EVALUATION_REPORT.json",
+      "bytes": 4378,
+      "sha256": "7e6d48809a69de0285e9d0ee486ef4da8109dbe044c27d6b902a31d2d32532cd"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/BOOTSTRAP_EVALUATION_REPORT.md",
+      "bytes": 1003,
+      "sha256": "11ec8e3c073760673f58fd38dbc8d06de6c5e1cb1310a5c7ede739bcc735fe94"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/candidate_index_summary.json",
+      "bytes": 290,
+      "sha256": "9d21960f187a332cb9ac162f6f22c2bffb603291767ef16da8f33eefc62e9615"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/evaluation_failures.jsonl",
+      "bytes": 26204,
+      "sha256": "42668007732c5cb5cf621271e8bc300ab84dcb724c167ce73784d2c168514e05"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/holdout_judgment_seals.jsonl",
+      "bytes": 7500,
+      "sha256": "d02999d18454384e5d9c48fec9e64f5334e43186677df38b0eda693179cda866"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/query_suite.jsonl",
+      "bytes": 248205,
+      "sha256": "76268725e798fdc8d5d7ec7af4220058d9877605d364493bb77867f7c72a2afc"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/ranked_outputs.jsonl",
+      "bytes": 3800859,
+      "sha256": "9288b00d72438669943d09835a54158ee39a08ae8f29b858e9a2f29ecbcdf498"
+    },
+    {
+      "stage": "bootstrap",
+      "relative_path": "docs/audits/card_visual_search_evaluation_bootstrap_v1/2026-07-21T17-51-47-805Z_bootstrap_4548a65b9be3/run_plan.json",
+      "bytes": 1983,
+      "sha256": "42b947797667fef4c2fe80bcbac0781151759b901c22d436c67d70d7343c3507"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/artifact_hashes.json",
+      "bytes": 1257,
+      "sha256": "d4711f3cf353291d004718bb5b513cd24fbc9db54b48d497dd95ac97dbd6ec9d"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/PROJECTION_RECONCILIATION.json",
+      "bytes": 4122,
+      "sha256": "71bafdc2ab5b6a40c7c31a71bb033f90c1732185f1bbdc437cbc91013314bcc5"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/PROJECTION_RECONCILIATION.md",
+      "bytes": 765,
+      "sha256": "58cf039d3f59ea30a704894e57cccdde1c5f7e0e30216ba2e8d38ab5ff57cb74"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/run_plan.json",
+      "bytes": 1983,
+      "sha256": "06400449e92ca95cdb43e733ceb59e7566c41306003049a79164c771af2295a0"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_artworks.jsonl",
+      "bytes": 9778329,
+      "sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_concept_evidence.jsonl",
+      "bytes": 266981950,
+      "sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_documents.jsonl",
+      "bytes": 238600982,
+      "sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_printings.jsonl",
+      "bytes": 10591443,
+      "sha256": "4ddbe8770db5ea56d56a22175a2722dacc993b4fb0fc09f19d6dfaf7a043b359"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_projection_exclusions.jsonl",
+      "bytes": 92233912,
+      "sha256": "dfc59abdaefc75c45a85d6e9436d11e1e44917007bc0ae82207d139d677aba4a"
+    },
+    {
+      "stage": "projection",
+      "relative_path": "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15/visual_search_projection_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "boundaries": {
+    "git_bulk_evidence_commit": false,
+    "provider_calls": false,
+    "database_connection": false,
+    "database_writes": false,
+    "embeddings": false,
+    "holdout_execution": false,
+    "public_search_activation": false,
+    "pricing_changes": false
+  },
+  "plan_payload_sha256": "fc5c041a385627f285b37032add0c1feed25b7abcc5ad5de8b090bf01217384d"
+}

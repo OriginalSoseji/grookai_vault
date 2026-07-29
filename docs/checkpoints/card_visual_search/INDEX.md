@@ -9,6 +9,12 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_CORPUS_RELEASE_20260729.md` - `2026-07-29` - COMPLETE;
+  EXTERNAL RELEASE RECONCILED - Records the minimum 41-file, 708,245,401-byte
+  immutable corpus release outside Git, exact source and destination hashes,
+  all locked 11,000-row/9,532-artwork/28,596-document counts, sealed holdout,
+  zero missing or mismatched files, and the next gate as productization-branch
+  governance adaptation followed by full deterministic replay.
 - `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md` - `2026-07-29` - COMPLETE;
   CALIBRATION TOOLING IMPORTED - Records the frozen five-file Lane B plan,
   exact `5/5` source/destination hash reconciliation, calibration evaluator
@@ -48,8 +54,9 @@ create canonical truth, or authorize downstream recommendation systems.
 2. Read `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md`.
 3. Read `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md`.
 4. Read `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md`.
-5. Confirm the current production `main` SHA and compare it with the checkpoint
+5. Read `VISUAL_SEARCH_V1_CORPUS_RELEASE_20260729.md`.
+6. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-6. Confirm pricing canary/release work remains isolated.
-7. Inspect the governed source branch at the recorded SHA.
-8. Resume only from the latest checkpoint's exact next gate.
+7. Confirm pricing canary/release work remains isolated.
+8. Inspect the governed source branch at the recorded SHA.
+9. Resume only from the latest checkpoint's exact next gate.
