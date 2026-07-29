@@ -90,16 +90,21 @@ The planned load is:
 
 ### Verification
 
-- Visual-search contracts: `99/99` passing
+- Final tested implementation SHA: `0a67b26ce888c2bd37dd103df175864fd1be1357`
+- Visual-search contracts: `101/101` passing
 - Syntax/import checks: passing
 - `git diff --check`: passing
 - Production capability workflow:
   [GitHub Actions run 30469205941](https://github.com/OriginalSoseji/grookai_vault/actions/runs/30469205941)
+- Runtime Protection:
+  [GitHub Actions run 30470361755](https://github.com/OriginalSoseji/grookai_vault/actions/runs/30470361755)
 
 The local managed shipcheck could not connect to production PostgreSQL on port
 5432. The governed CI drift gate and capability audit both succeeded using the
-repository secret. This is an environment routing limitation, not a migration
-apply result.
+repository secret. Runtime Protection also passed from a shallow checkout after
+the Lane A provenance test was corrected to use the immutable manifest and
+reconciliation hashes instead of requiring historical Git objects. This is an
+environment routing limitation, not a migration apply result.
 
 ## Current Invariants
 
