@@ -202,7 +202,7 @@ async function queryEvidence(client, args, asOf) {
     await client.query(
       `with latest_source as (
          select run_key, status, source_marker, finished_at, price_row_count,
-                failed_count, error
+                failed_count, error, payload
          from public.tcgcsv_source_sync_runs
          where sync_mode = 'current_full_sync'
          order by finished_at desc nulls last, created_at desc
@@ -210,7 +210,7 @@ async function queryEvidence(client, args, asOf) {
        ),
        completed_source as (
          select run_key, status, source_marker, finished_at, price_row_count,
-                failed_count, error
+                failed_count, error, payload
          from public.tcgcsv_source_sync_runs
          where sync_mode = 'current_full_sync' and status = 'completed'
          order by finished_at desc nulls last, created_at desc
@@ -224,13 +224,15 @@ async function queryEvidence(client, args, asOf) {
          latest_source.price_row_count as latest_source_price_row_count,
          latest_source.failed_count as latest_source_failed_count,
          latest_source.error as latest_source_error,
+         latest_source.payload as latest_source_payload,
          completed_source.run_key as completed_source_run_key,
          completed_source.status as completed_source_status,
          completed_source.source_marker as completed_source_marker,
          completed_source.finished_at as completed_source_finished_at,
          completed_source.price_row_count as completed_source_price_row_count,
          completed_source.failed_count as completed_source_failed_count,
-         completed_source.error as completed_source_error
+         completed_source.error as completed_source_error,
+         completed_source.payload as completed_source_payload
        from latest_source
        full join completed_source on true`,
     )
