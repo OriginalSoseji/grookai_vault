@@ -65,6 +65,7 @@ export function parseCardVisualSearchLabArgsV1(argv = []) {
   return {
     projectionDir: parseFlag(argv, "projection-dir") ?? DEFAULT_PROJECTION_DIR,
     corpusInventory: parseFlag(argv, "corpus-inventory") ?? DEFAULT_CORPUS_INVENTORY,
+    artifactRoot: parseFlag(argv, "artifact-root"),
     uiPath: parseFlag(argv, "ui-path") ?? DEFAULT_UI_PATH,
     host: parseFlag(argv, "host") ?? "127.0.0.1",
     port: Number.parseInt(parseFlag(argv, "port") ?? "4177", 10),
@@ -452,7 +453,25 @@ async function readJsonl(filePath) {
   return rows;
 }
 
-export async function createVisualSearchImageResolverV1(corpusInventoryPath) {
+export function resolveVisualSearchSourceArtifactPathV1(sourcePath, artifactRoot = null) {
+  const normalizedSourcePath = String(sourcePath ?? "").trim();
+  if (!normalizedSourcePath) throw new Error("source artifact path is required");
+
+  const root = artifactRoot ? repoPath(artifactRoot) : REPO_ROOT;
+  const resolved = path.isAbsolute(normalizedSourcePath)
+    ? path.normalize(normalizedSourcePath)
+    : path.resolve(root, normalizedSourcePath);
+  const relative = path.relative(root, resolved);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    throw new Error("source artifact path escapes the configured artifact root");
+  }
+  return resolved;
+}
+
+export async function createVisualSearchImageResolverV1(
+  corpusInventoryPath,
+  { artifactRoot = null } = {},
+) {
   const inventory = await readJsonl(repoPath(corpusInventoryPath));
   const sourceByCard = new Map(inventory.map((row) => [row.card_print_id, row.source_artifact_path]));
   const imageByCard = new Map();
@@ -460,7 +479,8 @@ export async function createVisualSearchImageResolverV1(corpusInventoryPath) {
 
   async function loadSource(sourcePath) {
     if (!sourcePromises.has(sourcePath)) {
-      sourcePromises.set(sourcePath, fs.readFile(repoPath(sourcePath), "utf8").then((text) => {
+      const resolvedSourcePath = resolveVisualSearchSourceArtifactPathV1(sourcePath, artifactRoot);
+      sourcePromises.set(sourcePath, fs.readFile(resolvedSourcePath, "utf8").then((text) => {
         for (const record of sourceRecords(JSON.parse(text))) {
           const cardId = sourceRecordId(record);
           if (cardId) imageByCard.set(cardId, sourceImageMetadata(record));
@@ -546,7 +566,9 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
   if (!Number.isInteger(args.port) || args.port < 1024 || args.port > 65535) throw new Error("port must be an integer from 1024 through 65535");
   const projection = await loadVisualSearchProjectionV1(repoPath(args.projectionDir));
   const [imageResolver, uiHtml] = await Promise.all([
-    createVisualSearchImageResolverV1(args.corpusInventory),
+    createVisualSearchImageResolverV1(args.corpusInventory, {
+      artifactRoot: args.artifactRoot,
+    }),
     fs.readFile(repoPath(args.uiPath), "utf8"),
   ]);
   const engine = createVisualSearchLabEngineV1(projection.groups, { imageResolver });

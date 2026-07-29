@@ -82,6 +82,23 @@ The lab has no path for:
 
 The index and image metadata caches exist only in process memory.
 
+When the reconciled corpus is stored outside the Git checkout, the lab must
+receive the immutable release root through `--artifact-root`. Relative source
+artifact paths from the corpus inventory are resolved only beneath that root;
+path traversal is rejected. The option affects image metadata lookup only and
+does not alter projection, parsing, ranking, evidence, or holdout state.
+
+Example for the reconciled external release:
+
+```powershell
+node backend/card_descriptions/card_visual_search_lab_v1.mjs `
+  --projection-dir=<release-root>/_rebuild/productization_bbf20d0f/projection `
+  --corpus-inventory=<release-root>/docs/audits/card_visual_corpus_v1/<inventory-run>/corpus_valid_candidates.jsonl `
+  --artifact-root=<release-root> `
+  --host=127.0.0.1 `
+  --port=4178
+```
+
 ## Verification
 
 Required checks:

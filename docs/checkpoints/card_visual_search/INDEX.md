@@ -9,6 +9,12 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_LAB_RUNTIME_FIX_20260729.md` - `2026-07-29` - COMPLETE;
+  LOCAL SEARCH FUNCTIONAL - Records the external-release artifact-root runtime
+  defect, bounded path-resolution repair, unchanged search semantics, real
+  `9,532`-artwork query proof with hydrated self-hosted images, `102/102`
+  contracts, desktop/mobile browser verification, and the unchanged human
+  calibration and sealed-holdout gates.
 - `VISUAL_SEARCH_V1_REVIEWER_DEPENDENCY_STOP_20260729.md` - `2026-07-29` -
   ENGINEERING READY THROUGH HUMAN CALIBRATION - Records the complete immutable
   release and deterministic rebuild, production database capability proof,
@@ -91,8 +97,9 @@ create canonical truth, or authorize downstream recommendation systems.
 8. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_REBUILD_20260729.md`.
 9. Read `VISUAL_SEARCH_V1_DB_CAPABILITY_20260729.md`.
 10. Read `VISUAL_SEARCH_V1_REVIEWER_DEPENDENCY_STOP_20260729.md`.
-11. Confirm the current production `main` SHA and compare it with the checkpoint
+11. Read `VISUAL_SEARCH_V1_LAB_RUNTIME_FIX_20260729.md`.
+12. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-12. Confirm pricing canary/release work remains isolated.
-13. Inspect the governed source branch at the recorded SHA.
-14. Resume only from the reviewer-dependency checkpoint's exact sequence.
+13. Confirm pricing canary/release work remains isolated.
+14. Inspect the governed source branch at the recorded SHA.
+15. Resume only from the reviewer-dependency checkpoint's exact sequence.

@@ -1,14 +1,25 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 import {
   CARD_VISUAL_SEARCH_LAB_VERSION,
   buildVisualSearchParserIndexV1,
+  createVisualSearchImageResolverV1,
   createVisualSearchLabEngineV1,
   createVisualSearchLabServerV1,
   matchVisualSearchAliasV1,
+  parseCardVisualSearchLabArgsV1,
   parseVisualSearchQueryV1,
+  resolveVisualSearchSourceArtifactPathV1,
 } from "../../backend/card_descriptions/card_visual_search_lab_v1.mjs";
 import { buildVisualSearchCandidateIndexV1 } from "../../backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs";
 
@@ -164,6 +175,73 @@ test("local HTTP API validates requests and reports sandbox boundaries", async (
   assert.equal(imageResponse.headers.get("content-type"), "image/png");
   assert.equal((await fetch(`${base}/api/image?source=${encodeURIComponent("https://example.com/not-allowed.png")}`)).status, 400);
   assert.equal((await fetch(`${base}/missing`)).status, 404);
+});
+
+test("external immutable releases resolve inventory artifacts under an explicit bounded root", async (context) => {
+  const artifactRoot = mkdtempSync(path.join(os.tmpdir(), "visual-search-release-"));
+  context.after(() => rmSync(artifactRoot, { recursive: true, force: true }));
+  const sourceRelativePath = path.join(
+    "docs",
+    "audits",
+    "card_visual_descriptions",
+    "source.json",
+  );
+  const sourcePath = path.join(artifactRoot, sourceRelativePath);
+  const inventoryPath = path.join(artifactRoot, "corpus_valid_candidates.jsonl");
+  mkdirSync(path.dirname(sourcePath), { recursive: true });
+  writeFileSync(
+    sourcePath,
+    JSON.stringify({
+      card_print_id: "print-external",
+      image_source_key:
+        "warehouse-derived/self-hosted-images-v1/card_prints/external.png",
+      image_sha256: "a".repeat(64),
+    }),
+  );
+  writeFileSync(
+    inventoryPath,
+    `${JSON.stringify({
+      card_print_id: "print-external",
+      source_artifact_path: sourceRelativePath.replaceAll("\\", "/"),
+    })}\n`,
+  );
+
+  const args = parseCardVisualSearchLabArgsV1([
+    `--artifact-root=${artifactRoot}`,
+  ]);
+  assert.equal(args.artifactRoot, artifactRoot);
+  const resolver = await createVisualSearchImageResolverV1(inventoryPath, {
+    artifactRoot,
+  });
+  const images = await resolver.resolve(["print-external"]);
+  assert.equal(
+    images.get("print-external").image_source_key,
+    "warehouse-derived/self-hosted-images-v1/card_prints/external.png",
+  );
+  assert.equal(
+    resolveVisualSearchSourceArtifactPathV1(sourceRelativePath, artifactRoot),
+    sourcePath,
+  );
+  assert.equal(
+    resolveVisualSearchSourceArtifactPathV1(sourcePath, artifactRoot),
+    sourcePath,
+  );
+  assert.throws(
+    () =>
+      resolveVisualSearchSourceArtifactPathV1(
+        path.join("..", "outside.json"),
+        artifactRoot,
+    ),
+    /escapes the configured artifact root/u,
+  );
+  assert.throws(
+    () =>
+      resolveVisualSearchSourceArtifactPathV1(
+        path.resolve(artifactRoot, "..", "outside.json"),
+        artifactRoot,
+      ),
+    /escapes the configured artifact root/u,
+  );
 });
 
 test("lab implementation has no provider, database, embedding, holdout, or persistent-index path", () => {
