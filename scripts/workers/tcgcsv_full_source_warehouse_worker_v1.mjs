@@ -9,6 +9,10 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {
+  isRetryableTcgcsvSourceFetchErrorV1,
+  tcgcsvSourceRetryDelayMsV1,
+} from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +27,8 @@ const PARSER_VERSION = "TCGCSV_FULL_SOURCE_PARSER_V1";
 const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
+const DEFAULT_REQUEST_RETRIES = 3;
+const DEFAULT_RETRY_BASE_DELAY_MS = 1_000;
 const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 500;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
@@ -35,6 +41,16 @@ function positiveIntFromEnv(name, fallback) {
   if (raw === undefined || raw === "") return fallback;
   const parsed = Number.parseInt(raw, 10);
   if (!Number.isInteger(parsed) || parsed < 1) throw new Error(`${name} must be a positive integer`);
+  return parsed;
+}
+
+function nonNegativeIntFromEnv(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === "") return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isInteger(parsed) || parsed < 0) {
+    throw new Error(`${name} must be a non-negative integer`);
+  }
   return parsed;
 }
 
@@ -64,6 +80,8 @@ function parseArgs(argv) {
     cacheDir: DEFAULT_CACHE_DIR,
     requestCeiling: Number.parseInt(process.env.TCGCSV_FULL_SYNC_REQUEST_CEILING ?? String(DEFAULT_REQUEST_CEILING), 10),
     requestDelayMs: Number.parseInt(process.env.TCGCSV_REQUEST_DELAY_MS ?? String(DEFAULT_REQUEST_DELAY_MS), 10),
+    requestRetries: nonNegativeIntFromEnv("TCGCSV_REQUEST_RETRIES", DEFAULT_REQUEST_RETRIES),
+    retryBaseDelayMs: positiveIntFromEnv("TCGCSV_RETRY_BASE_DELAY_MS", DEFAULT_RETRY_BASE_DELAY_MS),
     includeEmptyCategories: false,
     limitCategories: null,
     limitGroups: null,
@@ -86,6 +104,8 @@ function parseArgs(argv) {
     else if (arg.startsWith("--cache-dir=")) args.cacheDir = path.resolve(arg.slice("--cache-dir=".length));
     else if (arg.startsWith("--request-ceiling=")) args.requestCeiling = Number.parseInt(arg.slice("--request-ceiling=".length), 10);
     else if (arg.startsWith("--request-delay-ms=")) args.requestDelayMs = Number.parseInt(arg.slice("--request-delay-ms=".length), 10);
+    else if (arg.startsWith("--request-retries=")) args.requestRetries = Number.parseInt(arg.slice("--request-retries=".length), 10);
+    else if (arg.startsWith("--retry-base-delay-ms=")) args.retryBaseDelayMs = Number.parseInt(arg.slice("--retry-base-delay-ms=".length), 10);
     else if (arg === "--include-empty-categories") args.includeEmptyCategories = true;
     else if (arg.startsWith("--limit-categories=")) args.limitCategories = Number.parseInt(arg.slice("--limit-categories=".length), 10);
     else if (arg.startsWith("--limit-groups=")) args.limitGroups = Number.parseInt(arg.slice("--limit-groups=".length), 10);
@@ -96,6 +116,8 @@ function parseArgs(argv) {
   if (!["current", "historical"].includes(args.mode)) throw new Error("--mode must be current or historical");
   if (!Number.isInteger(args.requestCeiling) || args.requestCeiling < 1) throw new Error("--request-ceiling must be positive");
   if (!Number.isInteger(args.requestDelayMs) || args.requestDelayMs < 0) throw new Error("--request-delay-ms must be non-negative");
+  if (!Number.isInteger(args.requestRetries) || args.requestRetries < 0) throw new Error("--request-retries must be non-negative");
+  if (!Number.isInteger(args.retryBaseDelayMs) || args.retryBaseDelayMs < 1) throw new Error("--retry-base-delay-ms must be positive");
   if (args.limitCategories !== null && (!Number.isInteger(args.limitCategories) || args.limitCategories < 1)) {
     throw new Error("--limit-categories must be positive");
   }
@@ -178,22 +200,23 @@ async function sleep(ms) {
 }
 
 class Fetcher {
-  constructor({ requestCeiling, requestDelayMs, artifactRoot }) {
+  constructor({
+    requestCeiling,
+    requestDelayMs,
+    requestRetries,
+    retryBaseDelayMs,
+    artifactRoot,
+  }) {
     this.requestCeiling = requestCeiling;
     this.requestDelayMs = requestDelayMs;
+    this.requestRetries = requestRetries;
+    this.retryBaseDelayMs = retryBaseDelayMs;
     this.artifactRoot = artifactRoot;
     this.requestCount = 0;
     this.artifacts = [];
   }
 
   async fetchBuffer(url, artifactKind, relativePath, meta = {}) {
-    if (this.requestCount + 1 > this.requestCeiling) {
-      const err = new Error(`request ceiling exceeded before ${url}`);
-      err.code = "REQUEST_CEILING";
-      throw err;
-    }
-    this.requestCount += 1;
-    await sleep(this.requestDelayMs);
     const fullPath = path.join(this.artifactRoot, relativePath);
     await fs.mkdir(path.dirname(fullPath), { recursive: true });
     const headerPath = `${fullPath}.headers`;
@@ -202,6 +225,7 @@ class Fetcher {
       "--silent",
       "--show-error",
       "--location",
+      "--fail-with-body",
       "--max-time",
       "180",
       "--user-agent",
@@ -212,7 +236,43 @@ class Fetcher {
       fullPath,
       url,
     ];
-    await execFileAsync(CURL_BIN, args, { timeout: 240_000, maxBuffer: 2 * 1024 * 1024 });
+
+    for (let retry = 0; ; retry += 1) {
+      if (this.requestCount + 1 > this.requestCeiling) {
+        const err = new Error(`request ceiling exceeded before ${url}`);
+        err.code = "REQUEST_CEILING";
+        throw err;
+      }
+      this.requestCount += 1;
+      const delayMs =
+        retry === 0
+          ? this.requestDelayMs
+          : tcgcsvSourceRetryDelayMsV1({
+              retryNumber: retry,
+              baseDelayMs: this.retryBaseDelayMs,
+              requestDelayMs: this.requestDelayMs,
+            });
+      await sleep(delayMs);
+      try {
+        await execFileAsync(CURL_BIN, args, {
+          timeout: 240_000,
+          maxBuffer: 2 * 1024 * 1024,
+        });
+        break;
+      } catch (error) {
+        if (
+          !isRetryableTcgcsvSourceFetchErrorV1(error) ||
+          retry >= this.requestRetries
+        ) {
+          error.message = `${error.message} (failed after ${retry + 1} attempts)`;
+          throw error;
+        }
+        console.error(
+          `[tcgcsv-full] transient fetch failure retry=${retry + 1}/${this.requestRetries} url=${url} error=${String(error.message).split("\n")[0]}`,
+        );
+      }
+    }
+
     const buffer = await fs.readFile(fullPath);
     const headersText = await fs.readFile(headerPath, "utf8").catch(() => "");
     const httpStatus = Number(headersText.match(/HTTP\/\S+\s+(\d+)/g)?.at(-1)?.match(/(\d+)$/)?.[1] ?? 200);
@@ -988,7 +1048,13 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
 }
 
 async function runCurrentSync(args, runKey, artifactRoot) {
-  const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
+  const fetcher = new Fetcher({
+    requestCeiling: args.requestCeiling,
+    requestDelayMs: args.requestDelayMs,
+    requestRetries: args.requestRetries,
+    retryBaseDelayMs: args.retryBaseDelayMs,
+    artifactRoot,
+  });
   const observedOn = isoDate();
   const startedAt = new Date().toISOString();
   const { text: sourceMarker } = await fetcher.fetchText(`${BASE_URL}/last-updated.txt`, "last_updated", "last-updated.txt");
@@ -1326,7 +1392,13 @@ async function runCurrentSync(args, runKey, artifactRoot) {
 }
 
 async function runHistoricalSync(args, runKey, artifactRoot) {
-  const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
+  const fetcher = new Fetcher({
+    requestCeiling: args.requestCeiling,
+    requestDelayMs: args.requestDelayMs,
+    requestRetries: args.requestRetries,
+    retryBaseDelayMs: args.retryBaseDelayMs,
+    artifactRoot,
+  });
   const dates = dateRange(args.dateFrom, args.dateTo);
   const allPrices = [];
   const failedDates = [];
@@ -1498,6 +1570,9 @@ async function main() {
   console.log(`[tcgcsv-full] products=${result.run.product_count ?? 0}`);
   console.log(`[tcgcsv-full] price_rows=${result.run.price_row_count ?? 0}`);
   console.log(`[tcgcsv-full] summary=${path.relative(REPO_ROOT, summaryPath).replace(/\\/g, "/")}`);
+  if (["partial_success", "failed", "aborted_request_ceiling"].includes(result.run.status)) {
+    process.exitCode = 1;
+  }
 }
 
 await main();

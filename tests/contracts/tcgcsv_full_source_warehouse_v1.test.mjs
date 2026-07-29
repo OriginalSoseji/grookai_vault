@@ -2,6 +2,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import {
+  isRetryableTcgcsvSourceFetchErrorV1,
+  tcgcsvSourceRetryDelayMsV1,
+} from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
+
 const migration = readFileSync(
   "supabase/migrations/20260715110000_tcgcsv_full_source_warehouse_v1.sql",
   "utf8",
@@ -36,6 +41,58 @@ test("TCGCSV worker defaults to dry-run and records no public pricing boundary",
   assert.match(worker, /identity_writes:\s*false/);
   assert.match(worker, /vault_writes:\s*false/);
   assert.match(worker, /app_visible_pricing:\s*false/);
+});
+
+test("TCGCSV worker retries transient source fetches and fails closed on partial ingestion", () => {
+  assert.match(worker, /DEFAULT_REQUEST_RETRIES = 3/);
+  assert.match(worker, /TCGCSV_REQUEST_RETRIES/);
+  assert.match(worker, /"--fail-with-body"/);
+  assert.match(worker, /transient fetch failure retry=/);
+  assert.match(
+    worker,
+    /\["partial_success", "failed", "aborted_request_ceiling"\]\.includes\(result\.run\.status\)/,
+  );
+  assert.match(worker, /process\.exitCode = 1/);
+});
+
+test("TCGCSV source retry policy retries transport failures but not permanent HTTP errors", () => {
+  assert.equal(
+    isRetryableTcgcsvSourceFetchErrorV1({
+      code: 35,
+      message: "curl: (35) Recv failure: Connection reset by peer",
+    }),
+    true,
+  );
+  assert.equal(
+    isRetryableTcgcsvSourceFetchErrorV1({
+      code: 22,
+      message: "The requested URL returned error: 429",
+    }),
+    true,
+  );
+  assert.equal(
+    isRetryableTcgcsvSourceFetchErrorV1({
+      code: 22,
+      message: "The requested URL returned error: 404",
+    }),
+    false,
+  );
+  assert.equal(
+    tcgcsvSourceRetryDelayMsV1({
+      retryNumber: 1,
+      baseDelayMs: 1000,
+      requestDelayMs: 100,
+    }),
+    1000,
+  );
+  assert.equal(
+    tcgcsvSourceRetryDelayMsV1({
+      retryNumber: 8,
+      baseDelayMs: 1000,
+      requestDelayMs: 100,
+    }),
+    10_000,
+  );
 });
 
 test("TCGCSV contract preserves source-only and historical archive rules", () => {
