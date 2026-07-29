@@ -6,7 +6,7 @@ import path from "node:path";
 import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 
-import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
+import { assertCardVisualCorpusBranchV1, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 
 export const CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_VERSION = "CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1";
 export const CARD_VISUAL_SEARCH_QUERY_SUITE_VERSION = "CARD_VISUAL_SEARCH_QUERY_SUITE_V1_CANDIDATE";
@@ -660,7 +660,7 @@ export async function loadVisualSearchProjectionV1(projectionDir) {
 
 export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardVisualSearchEvaluationBootstrapArgsV1([])) {
   const git = currentGitState();
-  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
   if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
   const projectionDir = repoPath(args.projectionDir);

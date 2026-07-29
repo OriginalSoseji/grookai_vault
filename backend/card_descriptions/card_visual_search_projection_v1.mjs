@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
+import { assertCardVisualCorpusBranchV1, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_ARTWORK_GROUPING_VERSION } from "./card_visual_artwork_grouping_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_5";
@@ -810,7 +810,7 @@ async function hashManifest(outputDir, files) {
 
 export async function runVisualSearchProjectionV1(args = parseVisualSearchProjectionArgsV1([])) {
   const git = currentGitState();
-  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
   if (!Number.isInteger(args.concurrency) || args.concurrency < 1 || args.concurrency > 128) throw new Error("concurrency must be an integer from 1 through 128");
 

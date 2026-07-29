@@ -3,13 +3,30 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  CARD_VISUAL_CORPUS_ALLOWED_BRANCHES,
   CARD_VISUAL_CORPUS_SOURCE_INVENTORY_VERSION,
+  assertCardVisualCorpusBranchV1,
   buildSegmentStartIndexByRunKeyV1,
   expectedArtifactSelectedIndexV1,
   parseCorpusInventoryArgsV1,
   reconcileCorpusRecordsV1,
   sha256JsonV1,
 } from "../../backend/card_descriptions/card_visual_corpus_v1_inventory.mjs";
+
+test("corpus tooling allows only governed source and productization branches", () => {
+  assert.deepEqual(CARD_VISUAL_CORPUS_ALLOWED_BRANCHES, [
+    "feature/card-visual-description-agent",
+    "feature/visual-search-v1-productization",
+  ]);
+  assert.equal(
+    assertCardVisualCorpusBranchV1("feature/visual-search-v1-productization"),
+    "feature/visual-search-v1-productization",
+  );
+  assert.throws(
+    () => assertCardVisualCorpusBranchV1("main"),
+    /expected one of feature\/card-visual-description-agent, feature\/visual-search-v1-productization/u,
+  );
+});
 
 function validRecord(id, source, status = "pending") {
   return {

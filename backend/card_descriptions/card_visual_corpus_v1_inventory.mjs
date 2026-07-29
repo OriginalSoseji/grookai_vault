@@ -6,6 +6,11 @@ import { fileURLToPath } from "node:url";
 
 export const CARD_VISUAL_CORPUS_SOURCE_INVENTORY_VERSION = "CARD_VISUAL_CORPUS_SOURCE_INVENTORY_V1";
 export const CARD_VISUAL_CORPUS_EXPECTED_BRANCH = "feature/card-visual-description-agent";
+export const CARD_VISUAL_CORPUS_PRODUCTIZATION_BRANCH = "feature/visual-search-v1-productization";
+export const CARD_VISUAL_CORPUS_ALLOWED_BRANCHES = Object.freeze([
+  CARD_VISUAL_CORPUS_EXPECTED_BRANCH,
+  CARD_VISUAL_CORPUS_PRODUCTIZATION_BRANCH,
+]);
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
@@ -65,6 +70,15 @@ export function stableJsonV1(value) {
 
 export function sha256JsonV1(value) {
   return crypto.createHash("sha256").update(stableJsonV1(value)).digest("hex");
+}
+
+export function assertCardVisualCorpusBranchV1(branch) {
+  if (!CARD_VISUAL_CORPUS_ALLOWED_BRANCHES.includes(branch)) {
+    throw new Error(
+      `expected one of ${CARD_VISUAL_CORPUS_ALLOWED_BRANCHES.join(", ")}, found ${branch}`,
+    );
+  }
+  return branch;
 }
 
 function sha256Buffer(value) {
@@ -422,7 +436,7 @@ async function createHashManifest(outputDir, files) {
 
 export async function runCorpusInventoryV1(args = parseCorpusInventoryArgsV1([])) {
   const git = currentGitState();
-  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
 
   const sourcePaths = {

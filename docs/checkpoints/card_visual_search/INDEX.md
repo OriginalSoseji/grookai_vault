@@ -9,6 +9,12 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_PRODUCTIZATION_BRANCH_GUARD_20260729.md` - `2026-07-29` -
+  COMPLETE; PRODUCTIZATION REPLAY AUTHORIZED - Records the narrow shared branch
+  allowlist for the governed source and dedicated productization branch,
+  explicit rejection of `main`, no search-semantic changes, `58/58` focused
+  contracts, and the next gate as full deterministic replay from the immutable
+  corpus release.
 - `VISUAL_SEARCH_V1_CORPUS_RELEASE_20260729.md` - `2026-07-29` - COMPLETE;
   EXTERNAL RELEASE RECONCILED - Records the minimum 41-file, 708,245,401-byte
   immutable corpus release outside Git, exact source and destination hashes,
@@ -55,8 +61,9 @@ create canonical truth, or authorize downstream recommendation systems.
 3. Read `VISUAL_SEARCH_V1_LANE_A_IMPORT_20260728.md`.
 4. Read `VISUAL_SEARCH_V1_LANE_B_IMPORT_20260729.md`.
 5. Read `VISUAL_SEARCH_V1_CORPUS_RELEASE_20260729.md`.
-6. Confirm the current production `main` SHA and compare it with the checkpoint
+6. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_BRANCH_GUARD_20260729.md`.
+7. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-7. Confirm pricing canary/release work remains isolated.
-8. Inspect the governed source branch at the recorded SHA.
-9. Resume only from the latest checkpoint's exact next gate.
+8. Confirm pricing canary/release work remains isolated.
+9. Inspect the governed source branch at the recorded SHA.
+10. Resume only from the latest checkpoint's exact next gate.

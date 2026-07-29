@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
-  CARD_VISUAL_CORPUS_EXPECTED_BRANCH,
+  assertCardVisualCorpusBranchV1,
   sha256JsonV1,
 } from "./card_visual_corpus_v1_inventory.mjs";
 
@@ -658,7 +658,7 @@ async function createHashManifest(outputDir, files) {
 
 export async function runEligibilityV1(args = parseEligibilityArgsV1([])) {
   const git = currentGitState();
-  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
 
   const inventoryDir = repoPath(args.inventoryDir);

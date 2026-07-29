@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
+import { assertCardVisualCorpusBranchV1, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 
 export const CARD_VISUAL_ARTWORK_GROUPING_VERSION = "CARD_VISUAL_ARTWORK_GROUPING_V1_1";
 
@@ -323,7 +323,7 @@ async function hashManifest(outputDir, files) {
 
 export async function runArtworkGroupingV1(args = parseArtworkGroupingArgsV1([])) {
   const git = currentGitState();
-  if (git.branch !== CARD_VISUAL_CORPUS_EXPECTED_BRANCH) throw new Error(`expected branch ${CARD_VISUAL_CORPUS_EXPECTED_BRANCH}, found ${git.branch}`);
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
   const eligibilityDir = repoPath(args.eligibilityDir);
   const eligibilityReportPath = path.join(eligibilityDir, "ELIGIBILITY_RECONCILIATION.json");
