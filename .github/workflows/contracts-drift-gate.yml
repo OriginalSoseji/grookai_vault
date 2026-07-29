@@ -50,3 +50,18 @@ jobs:
 
       - name: Run contracts drift gate
         run: npm run contracts:drift-audit
+
+      - name: Audit visual search database capabilities
+        if: github.ref == 'refs/heads/feature/visual-search-v1-productization'
+        run: |
+          node scripts/audits/card_visual_search_db_capability_audit_v1.mjs \
+            --output="$RUNNER_TEMP/card_visual_search_db_capability_audit_v1.json"
+
+      - name: Upload visual search database capability audit
+        if: github.ref == 'refs/heads/feature/visual-search-v1-productization'
+        uses: actions/upload-artifact@v4
+        with:
+          name: card-visual-search-db-capability-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/card_visual_search_db_capability_audit_v1.json
+          if-no-files-found: error
+          retention-days: 30

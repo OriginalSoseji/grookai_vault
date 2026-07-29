@@ -1,0 +1,14 @@
+{
+  "hash_algorithm": "sha256",
+  "generated_on": "2026-07-29",
+  "artifacts": [
+    {
+      "path": "docs/audits/card_visual_search_productization_rebuild_v1/2026-07-29_bbf20d0f/rebuild_reconciliation.json",
+      "sha256": "de59f4fe88238d40d8eea2d548935bdf98fc321c5bf528d43347e3f1d3ff34b8"
+    },
+    {
+      "path": "docs/audits/card_visual_search_productization_rebuild_v1/2026-07-29_bbf20d0f/rebuild_reconciliation.md",
+      "sha256": "f09c38c001f4ce877765396d9a09ca17ea8022618a86e54c2a01506f180c43a4"
+    }
+  ]
+}
