@@ -309,6 +309,7 @@ async function queryEvidence(client, args, asOf) {
     terminalAlerts,
     current,
     sourceHealth,
+    sourceRunEvidence: sourceMetrics,
     access: {
       authenticated_execute_granted:
         grants.authenticated_execute_granted === true,
