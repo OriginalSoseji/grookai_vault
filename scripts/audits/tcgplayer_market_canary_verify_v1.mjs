@@ -196,8 +196,7 @@ async function canonicalImageBuffer(printing, databaseRow) {
     };
   } catch (urlError) {
     const storageUrl = storageImageUrl(databaseRow.canonical_image_path);
-    const key =
-      process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const key = process.env.SUPABASE_SECRET_KEY;
     if (!storageUrl || !key) throw urlError;
     return {
       buffer: await fetchBuffer(storageUrl, 0, {
