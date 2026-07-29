@@ -387,8 +387,8 @@ Required permanent groups:
 - `observer_initial_failure/`
 - `observer_diagnostic/`
 - `repair2_failed_activation/`
-- `repair3_successful_activation/`
-- `repair3_successful_activation/same_key_resume_proof/`
+- `repair3/`
+- `repair3/same_key_resume_proof/`
 - `replacement_observer_initial/`
 - `github_actions_failure_inventory.json`
 - root artifact hash manifest

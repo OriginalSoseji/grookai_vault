@@ -2,7 +2,7 @@
   "schema_version": "pricing_canary_incident_artifact_hash_manifest_v1",
   "algorithm": "sha256",
   "hash_scope": "git_index_blob_bytes",
-  "generated_at": "2026-07-29T20:43:13.473Z",
+  "generated_at": "2026-07-29T20:47:08.233Z",
   "artifact_count": 79,
   "files": [
     {
@@ -131,222 +131,222 @@
       "sha256": "3e73d90b60ac7125886b190ed5f25815127e43efb0faff6e3aa58f7bebca292e"
     },
     {
-      "path": "repair3_successful_activation/artifact_hashes.json",
+      "path": "repair3/artifact_hashes.json",
       "size_bytes": 299,
       "sha256": "a923d1f3301ec4b7703c1e498bfaddb7691b049ca488f630ed9fb065c4c507e7"
     },
     {
-      "path": "repair3_successful_activation/attempt_1.stderr.log",
+      "path": "repair3/attempt_1.stderr.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/attempt_1.stdout.log",
+      "path": "repair3/attempt_1.stdout.log",
       "size_bytes": 743,
       "sha256": "8aae61683542385f7c5e5cdd168a8245e9133c5ff4c5cd76de4f91ae883645cd"
     },
     {
-      "path": "repair3_successful_activation/deployment_readback.txt",
+      "path": "repair3/deployment_readback.txt",
       "size_bytes": 784,
       "sha256": "1dd4711068d5cb77e5327bf8b7d66300c28c328132fe391df20395edffb9143c"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/active_ask_refresh.stderr.log",
+      "path": "repair3/pipeline/run/active_ask_refresh.stderr.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/active_ask_refresh.stdout.log",
+      "path": "repair3/pipeline/run/active_ask_refresh.stdout.log",
       "size_bytes": 862,
       "sha256": "f57d2ef48f6dc70351d2a057e88abde320c0d7d11c6659124b0a200fa93013ef"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/active_ask_refresh/2026-07-29T20-25-11-508Z/artifact_hashes.json",
+      "path": "repair3/pipeline/run/active_ask_refresh/result/artifact_hashes.json",
       "size_bytes": 176,
       "sha256": "1e76ec4f2aa6744dba3c6b6da5027e40a2f64c27790854c236d67d52bc302435"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/active_ask_refresh/2026-07-29T20-25-11-508Z/run_plan.json",
+      "path": "repair3/pipeline/run/active_ask_refresh/result/run_plan.json",
       "size_bytes": 495,
       "sha256": "647517a1e19309eacfc0209e2333ee573b0e90e8656d6b32e5f34ea19f8f4584"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/active_ask_refresh/2026-07-29T20-25-11-508Z/summary.json",
+      "path": "repair3/pipeline/run/active_ask_refresh/result/summary.json",
       "size_bytes": 524,
       "sha256": "b90615bb7a574631a5a8677da8fa2e77e17d0a464279667fbabbb03c3c04e7c3"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/artifact_hashes.json",
+      "path": "repair3/pipeline/run/artifact_hashes.json",
       "size_bytes": 187,
       "sha256": "fb5aa1e86b479f56d3a1578a1369790bb66f6aed5349ed85fdb29f98bf4ec21c"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/health.stderr.log",
+      "path": "repair3/pipeline/run/health.stderr.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/health.stdout.log",
+      "path": "repair3/pipeline/run/health.stdout.log",
       "size_bytes": 2898,
       "sha256": "c84d04cb758d27635099be7d4f7400fe7003e54f7f520f91e624a3d946775f6e"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/health/tcgplayer_market_health_2026-07-29T20-27-21-138Z.json",
+      "path": "repair3/pipeline/run/health/health.json",
       "size_bytes": 2545,
       "sha256": "3e1350dce583996767b04e82d3b3fff4e063b400f1ca4ea92c00e8a1226fc803"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/health/tcgplayer_market_health_2026-07-29T20-27-21-138Z.json.sha256",
+      "path": "repair3/pipeline/run/health/health.json.sha256",
       "size_bytes": 120,
       "sha256": "365ee0fc20926d7da8be87da808ce4c08bf2b9ba44ca309ea1193d75713f7d52"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/pipeline_state.json",
+      "path": "repair3/pipeline/run/pipeline_state.json",
       "size_bytes": 4465,
       "sha256": "5634e8df5b29fedab21b69f016135f4bb9ef550a1fb344a70a251b22e57e3a9b"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication.stderr.log",
+      "path": "repair3/pipeline/run/publication.stderr.log",
       "size_bytes": 291,
       "sha256": "327c8791895585ecc89525d5aa135c5f71b1b8fdf60b78a95a19c4fc6e79d041"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication.stdout.log",
+      "path": "repair3/pipeline/run/publication.stdout.log",
       "size_bytes": 2214,
       "sha256": "ed873907c8b07df89b75ce70aa1693e15f27940a4976569fdbdb5c483df5f4ba"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication/artifact_hashes.json",
+      "path": "repair3/pipeline/run/publication/result/artifact_hashes.json",
       "size_bytes": 337,
       "sha256": "ce7e313bd490f0fb98e7ea1a501ee9a993c17a831bf49cfb37371714d576ec16"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication/qualification_decisions.jsonl",
+      "path": "repair3/pipeline/run/publication/result/qualification_decisions.jsonl",
       "size_bytes": 362495,
       "sha256": "0d7f76c2a97fe8ff7804fdca97580d9ef738b037ae736ecc27fecc9ddf9edb45"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication/reconciliation.json",
+      "path": "repair3/pipeline/run/publication/result/reconciliation.json",
       "size_bytes": 274,
       "sha256": "78ce884a891f54be92714a91282b51843717c93e9f0274931f0b659343b27ba0"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication/run_plan.json",
+      "path": "repair3/pipeline/run/publication/result/run_plan.json",
       "size_bytes": 19216,
       "sha256": "e683ab9002bc161ed96ec55691d497269c52be94f905c0eb302c0bca36bf6ed8"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-publication/summary.json",
+      "path": "repair3/pipeline/run/publication/result/summary.json",
       "size_bytes": 1122,
       "sha256": "51564385ff12595bc63b942d446c86421f110c3cbf8f5f036c891e1e970b2138"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/run_plan.json",
+      "path": "repair3/pipeline/run/run_plan.json",
       "size_bytes": 1020,
       "sha256": "6dbe24dce5efb5bbe673301510b385858fbf48d3030c69959a37673c455c2663"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse_current_sync.stderr.log",
+      "path": "repair3/pipeline/run/warehouse_current_sync.stderr.log",
       "size_bytes": 1014998,
       "sha256": "72aa514e2b7d944d542701b2bc2bba7c1c9d831b1b76ad248f13d06dae8440c2"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse_current_sync.stdout.log",
+      "path": "repair3/pipeline/run/warehouse_current_sync.stdout.log",
       "size_bytes": 664,
       "sha256": "a66896b3a3a195b4ac841bcf398a724102330a2158a6a7524af168df9a29e8c9"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/categories.json",
+      "path": "repair3/pipeline/run/warehouse/result/categories.json",
       "size_bytes": 51682,
       "sha256": "547151e2c1ba899c3dfc8aea783caebbb4facafb381214c9c8d760056149b2ab"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/categories.json.headers",
+      "path": "repair3/pipeline/run/warehouse/result/categories.json.headers",
       "size_bytes": 530,
       "sha256": "6b5cb493a51eac2a5fa25c596aa78b9ff0ed79599922bc1ee702016510867388"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/last-updated.txt",
+      "path": "repair3/pipeline/run/warehouse/result/last-updated.txt",
       "size_bytes": 24,
       "sha256": "2832985950241eec56d9fd236db835855139610423e219e8a0231bb60f0f25e0"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/last-updated.txt.headers",
+      "path": "repair3/pipeline/run/warehouse/result/last-updated.txt.headers",
       "size_bytes": 519,
       "sha256": "44593f5772bfd18ac678527f1dff3512d55231968c43de16dceace75829b4cf5"
     },
     {
-      "path": "repair3_successful_activation/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+      "path": "repair3/pipeline/run/warehouse/result/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
       "size_bytes": 1760,
       "sha256": "3a2d4355b231f59f42f45474286d5aa5b4e391e4622e1d212feb5dbf8a57d21a"
     },
     {
-      "path": "repair3_successful_activation/post_activation_db_readback_execution.json",
+      "path": "repair3/post_activation_db_readback_execution.json",
       "size_bytes": 89,
       "sha256": "1a0c4e6ad017587117b2b0380ab9128072e5ae0427cf2bb6a7b8cec73a91749b"
     },
     {
-      "path": "repair3_successful_activation/post_activation_db_readback.txt",
+      "path": "repair3/post_activation_db_readback.txt",
       "size_bytes": 3500,
       "sha256": "b34d749c290c14d2770034cfb86a2e5fd13f96b25ab406f4c8e0b12619ddb854"
     },
     {
-      "path": "repair3_successful_activation/post_activation_readback_watcher.log",
+      "path": "repair3/post_activation_readback_watcher.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/runtime_migration_readback.txt",
+      "path": "repair3/runtime_migration_readback.txt",
       "size_bytes": 458,
       "sha256": "f7dd3d62b193f5cdad6fd81e2a3df41d59ab71187143e7026a1650c809586ccc"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/execution.json",
+      "path": "repair3/same_key_resume_proof/execution.json",
       "size_bytes": 170,
       "sha256": "13948098c8a42c3714e7f0fe12ee010b446a5e3e50164a153dcbe60b31177ff2"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/output/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+      "path": "repair3/same_key_resume_proof/output/result/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
       "size_bytes": 2120,
       "sha256": "bbc44953859d769b550930c097e1b2f033cf97fee011c2c11b5b3420c7d501b4"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/reconciliation.json",
+      "path": "repair3/same_key_resume_proof/reconciliation.json",
       "size_bytes": 2132,
       "sha256": "2d8100c4f2198384f922ec2b9c64e83a2a47ecea2c215e1eea6d779e3fdafd83"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/watcher_started_at.txt",
+      "path": "repair3/same_key_resume_proof/watcher_started_at.txt",
       "size_bytes": 21,
       "sha256": "dcb4500f8f088c448475604ed25e2c4699b51b5d188e645cbb67cd36af713da0"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/worker.stderr.log",
+      "path": "repair3/same_key_resume_proof/worker.stderr.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_proof/worker.stdout.log",
+      "path": "repair3/same_key_resume_proof/worker.stdout.log",
       "size_bytes": 612,
       "sha256": "7cbe65a2527cdbfcf6dc229b68d4d8f4f7550988234b923ae2b3e19e08641e41"
     },
     {
-      "path": "repair3_successful_activation/same_key_resume_watcher.log",
+      "path": "repair3/same_key_resume_watcher.log",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "repair3_successful_activation/scheduled_attempts.jsonl",
+      "path": "repair3/scheduled_attempts.jsonl",
       "size_bytes": 374,
       "sha256": "893ee772017be272006fed56c34b671b8bd492daf26f61def8d70968f926fb19"
     },
     {
-      "path": "repair3_successful_activation/scheduled_run_plan.json",
+      "path": "repair3/scheduled_run_plan.json",
       "size_bytes": 1212,
       "sha256": "3bd6a8dc2879dc57a8b9f0c3e0a63abda11ae2549b15c7877e1c47d58b4b6148"
     },
     {
-      "path": "repair3_successful_activation/scheduled_summary.json",
+      "path": "repair3/scheduled_summary.json",
       "size_bytes": 1455,
       "sha256": "5205182caca3a284859a4acb43b490efe9483199b2b58a708d398e81134fea5b"
     },
