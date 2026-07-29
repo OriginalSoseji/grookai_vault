@@ -157,8 +157,7 @@ function assertPreconditions(row) {
 
 async function uploadNewObject(buffer, storagePath) {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const serviceKey =
-    process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const serviceKey = process.env.SUPABASE_SECRET_KEY;
   if (!supabaseUrl || !serviceKey) {
     throw new Error("Supabase URL and service key are required for apply");
   }

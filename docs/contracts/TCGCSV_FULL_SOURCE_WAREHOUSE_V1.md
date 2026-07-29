@@ -99,6 +99,10 @@ A run with some failed categories/groups is `partial_success`, not `completed`.
 - `--apply` is required for database writes.
 - Request ceiling defaults to `10,000`.
 - Request delay defaults to `100ms`.
+- Transient source fetches retry three times by default with bounded
+  exponential delay; every attempt counts against the request ceiling.
+- Exhausted fetch failures produce `partial_success` and a nonzero process
+  exit so a scheduler cannot treat incomplete acquisition as successful.
 - Every request uses a Grookai-specific User-Agent.
 - Historical extraction requires 7zip.
 - No writes to `pricing_observations`, `ebay_active_prices_latest`, public pricing views, identity tables, vault tables, images, or storage.
