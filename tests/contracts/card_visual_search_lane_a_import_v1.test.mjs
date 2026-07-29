@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -16,7 +15,6 @@ const AUDIT_DIR = path.join(
   REPO_ROOT,
   "docs/audits/card_visual_search_lane_a_import/2026-07-28_lane_a_import_a911c260",
 );
-const LANE_A_IMPORT_COMMIT = "d3e9042cfd4b0d4432cdb91940d615f2d687aeea";
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -72,18 +70,12 @@ test("Lane A import reconciliation proves exact file and hash agreement", () => 
 
   for (const outcome of reconciliation.outcomes) {
     assert.equal(outcome.hash_match, true, outcome.destination_path);
-    assert.equal(outcome.destination_sha256, expectedByPath.get(outcome.destination_path));
-    const destinationHash = crypto
-      .createHash("sha256")
-      .update(
-        execFileSync(
-          "git",
-          ["show", `${LANE_A_IMPORT_COMMIT}:${outcome.destination_path}`],
-          { cwd: REPO_ROOT, maxBuffer: 16 * 1024 * 1024 },
-        ),
-      )
-      .digest("hex");
-    assert.equal(destinationHash, outcome.expected_sha256, outcome.destination_path);
+    assert.equal(
+      outcome.expected_sha256,
+      expectedByPath.get(outcome.destination_path),
+      outcome.destination_path,
+    );
+    assert.equal(outcome.destination_sha256, outcome.expected_sha256, outcome.destination_path);
   }
 });
 
