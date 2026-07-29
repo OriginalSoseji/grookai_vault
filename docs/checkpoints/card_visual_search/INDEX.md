@@ -9,6 +9,14 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md` - `2026-07-28` -
+  COMPLETE; SOURCE IMPORT FROZEN - Records the deterministic 61-file
+  selective-import manifest pinned to source SHA `c5bbbba5`, including 35
+  Lane A imports, 8 later calibration files, 6 reference-only files, 10
+  superseded contracts, 2 generated portal exclusions, five production
+  rebuilds, per-file blob/content/commit provenance, `8/8` focused contracts,
+  unchanged no-write boundaries, and the exact next gate as hash-verified
+  import and reconciliation of only the 35 Lane A files.
 - `VISUAL_SEARCH_V1_PRODUCTIZATION_START_20260728.md` - `2026-07-28` -
   ACTIVE; MAIN-BASED PRODUCTIZATION STARTED - Records the clean
   `origin/main` baseline, governed source-branch provenance, existing
@@ -21,8 +29,9 @@ create canonical truth, or authorize downstream recommendation systems.
 ## Restart Order
 
 1. Read `VISUAL_SEARCH_V1_PRODUCTIZATION_START_20260728.md`.
-2. Confirm the current production `main` SHA and compare it with the checkpoint
+2. Read `VISUAL_SEARCH_V1_SELECTIVE_SOURCE_MANIFEST_20260728.md`.
+3. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-3. Confirm pricing canary/release work remains isolated.
-4. Inspect the governed source branch at the recorded SHA.
-5. Resume only from the checkpoint's exact next gate.
+4. Confirm pricing canary/release work remains isolated.
+5. Inspect the governed source branch at the recorded SHA.
+6. Resume only from the latest checkpoint's exact next gate.
