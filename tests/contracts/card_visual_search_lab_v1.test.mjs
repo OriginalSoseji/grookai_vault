@@ -67,7 +67,7 @@ function fixtures() {
       entry("trees", "tree count exact: 3", "scene", { source_type: "count" }),
     ]),
     group("002", "Collector Room", "trainer", [
-      entry("represented-pikachu", "character_representation: Pikachu", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+      entry("represented-pikachu", "character_representation: Pikachu: plush: yellow toy", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
       entry("plush", "yellow plush toy", "scene"),
     ], ["character_representation"]),
     group("003", "Haunted House", "stadium", [
@@ -82,6 +82,27 @@ function fixtures() {
     group("005", "Red Eyes", "pokemon", [entry("red-only", "red eyes", "subject")]),
     group("006", "Glove Trainer", "trainer", [entry("glove", "black glove", "subject")]),
     group("007", "Lightning Field", "stadium", [entry("bolts", "lightning bolts count exact: 3", "scene", { source_type: "count" })], []),
+    group("008", "Pillow Room", "trainer", [
+      entry("pillow-pikachu", "character_representation: Pikachu: pillow: bed pillow", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+    ], ["character_representation"]),
+    group("009", "Statue Garden", "stadium", [
+      entry("statue-pikachu", "character_representation: Pikachu: statue: stone figure", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+    ], ["character_representation"]),
+    group("010", "Portrait Room", "trainer", [
+      entry("portrait-pikachu", "character_representation: Pikachu: cartoon portrait: printed icon", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+    ], ["character_representation"]),
+    group("011", "Poster Room", "trainer", [
+      entry("poster-pikachu", "depicted_subject: Pikachu: poster: wall poster", "subject", { source_type: "subject_role", subject_role: "depicted_subject" }),
+    ], ["depicted_subject"]),
+    group("012", "Screen Room", "trainer", [
+      entry("screen-pikachu", "depicted_subject: Pikachu: screen: television screen", "subject", { source_type: "subject_role", subject_role: "depicted_subject" }),
+    ], ["depicted_subject"]),
+    group("013", "Illustration Room", "trainer", [
+      entry("illustrated-pikachu", "depicted_subject: Pikachu with green headband and smiling closed eyes: illustration: illustrated scene, left midground", "subject", { source_type: "subject_role", subject_role: "depicted_subject" }),
+    ], ["depicted_subject"]),
+    group("014", "Conflicting Identity Room", "trainer", [
+      entry("conflicting-pikachu", "character_representation: Pikachu (Tepig): plush: yellow toy", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+    ], ["character_representation"]),
   ];
 }
 
@@ -95,8 +116,15 @@ test("parser separates canonical subject, visual facts, roles, branches, counts,
 
   const roleQuery = parseVisualSearchQueryV1("Pikachu plush", parser);
   assert.deepEqual(roleQuery.intent.visual_filters.subject_roles, ["character_representation"]);
+  assert.deepEqual(roleQuery.intent.visual_filters.representation_forms, ["plush"]);
+  assert.deepEqual(roleQuery.intent.visual_filters.depicted_surfaces, []);
   assert.deepEqual(roleQuery.intent.canonical_filters.subjects, []);
-  assert.deepEqual(parseVisualSearchQueryV1("Pikachu-shaped pillow", parser).intent.unrecognized_terms, []);
+  const pillowQuery = parseVisualSearchQueryV1("Pikachu-shaped pillow", parser);
+  assert.deepEqual(pillowQuery.intent.visual_filters.representation_forms, ["pillow"]);
+  assert.deepEqual(pillowQuery.intent.unrecognized_terms, []);
+  const screenQuery = parseVisualSearchQueryV1("Pikachu on a screen", parser);
+  assert.deepEqual(screenQuery.intent.visual_filters.subject_roles, ["depicted_subject"]);
+  assert.deepEqual(screenQuery.intent.visual_filters.depicted_surfaces, ["screen"]);
 
   const trainerQuery = parseVisualSearchQueryV1("trainers wearing gloves", parser);
   assert.deepEqual(trainerQuery.intent.canonical_filters.branches, ["trainer"]);
@@ -133,6 +161,34 @@ test("explicit represented-subject role does not return a physically present sub
   assert.equal(found.total_matches, 1);
   assert.equal(found.results[0].artwork_group_id, "group-002");
   assert.deepEqual(found.results[0].matched_subject_roles, ["character_representation"]);
+  assert.ok(found.results[0].matched_evidence.some((row) => row.match_authority === "bound_subject_role_evidence" && row.term.includes("plush")));
+});
+
+test("representation forms and depicted surfaces remain strict bound constraints", async () => {
+  const engine = createVisualSearchLabEngineV1(fixtures());
+  const cases = [
+    ["Pikachu plush", "group-002"],
+    ["Pikachu pillow", "group-008"],
+    ["Pikachu statue", "group-009"],
+    ["Pikachu poster", "group-011"],
+    ["Pikachu on a screen", "group-012"],
+  ];
+  for (const [query, expectedGroup] of cases) {
+    const result = await engine.search(query);
+    assert.equal(result.total_matches, 1, query);
+    assert.equal(result.results[0].artwork_group_id, expectedGroup, query);
+    assert.notEqual(result.results[0].artwork_group_id, "group-010", query);
+    assert.ok(result.results[0].matched_evidence.every((row) => row.supporting_observation_ids.length), query);
+  }
+
+  const genericDepiction = await engine.search("Pikachu depicted");
+  assert.equal(genericDepiction.total_matches, 3);
+  assert.ok(genericDepiction.results.some((row) => row.artwork_group_id === "group-013"));
+  assert.ok(genericDepiction.results.every((row) => row.artwork_group_id !== "group-014"));
+
+  const absent = await engine.search("Pikachu logo");
+  assert.equal(absent.total_matches, 0);
+  assert.equal(absent.strict_zero_reason, "subject_role_evidence_not_found");
 });
 
 test("query aliases require objective multi-cue evidence and never store the alias as a fact", async () => {

@@ -28,13 +28,15 @@ The parser keeps these dimensions separate:
 - explicit set code using `set:<code>`
 - visual concepts
 - scene-subject, depicted-subject, and character-representation roles
+- character-representation forms such as plush, pillow, statue, toy, logo, sticker, pattern, food shape, and ice cream
+- depicted-subject surfaces such as poster, photograph, screen, painting, sign, book, and card-within-card
 - exact visible counts
 - evidence-gated query aliases
 - unrecognized terms
 
 Unrecognized terms remain visible. A strict query with an unrecognized term returns zero results rather than silently dropping that constraint.
 
-Canonical subject matching and image-derived subject matching are evaluated as separate deterministic alternatives. Explicit subject-role language disables canonical-name-only matching so a represented subject cannot be replaced by a physically present subject.
+Canonical subject matching and image-derived subject matching are evaluated as separate deterministic alternatives. Explicit subject-role language disables canonical-name-only matching so a represented subject cannot be replaced by a physically present subject. When a query names a subject role, representation form, or depicted surface, the identity and every requested qualifier must be supported by the same `subject_role` evidence row. A broad character representation cannot satisfy a request for a specific plush, pillow, statue, or other form, and a depicted subject on one surface cannot satisfy a different requested surface.
 
 ## Alias Policy
 
@@ -57,6 +59,7 @@ Results are unique artwork groups. Each result includes:
 - decomposed score components
 - eligibility tier
 - matched subject roles
+- matched representation forms or depicted surfaces when requested
 - matched evidence terms
 - source document, fact, and observation references
 - evidence-gated alias decisions when present

@@ -51,6 +51,47 @@ const ALIAS_DEFINITIONS = Object.freeze({
   },
 });
 
+const SUBJECT_ROLE_RULES = Object.freeze([
+  { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bfood shapes?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "ice cream", pattern: /\bice creams?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "plush", pattern: /\bplush(?: toys?)?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "pillow", pattern: /\bpillows?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "statue", pattern: /\bstatues?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "toy", pattern: /\btoys?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "logo", pattern: /\blogos?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "sticker", pattern: /\bstickers?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "pattern", pattern: /\bpatterns?\b/u },
+  { role: "character_representation", filter: null, value: null, pattern: /\bshaped like\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "card", pattern: /\bcard within card\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "photograph", pattern: /\b(?:photographs?|photos?)\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "poster", pattern: /\bposters?\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "screen", pattern: /\bscreens?\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "painting", pattern: /\bpaintings?\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "sign", pattern: /\bsigns?\b/u },
+  { role: "depicted_subject", filter: "depicted_surface", value: "book", pattern: /\bbooks?\b/u },
+  { role: "depicted_subject", filter: null, value: null, pattern: /\bdepicted\b/u },
+  { role: "scene_subject", filter: null, value: null, pattern: /\b(?:scene subject|physically present)\b/u },
+]);
+
+const ROLE_FILTER_PATTERNS = Object.freeze({
+  "food shape": /\bfood shapes?\b/u,
+  "ice cream": /\bice creams?\b/u,
+  plush: /\bplush(?: toys?)?\b/u,
+  pillow: /\bpillows?\b/u,
+  statue: /\bstatues?\b/u,
+  toy: /\btoys?\b/u,
+  logo: /\blogos?\b/u,
+  sticker: /\bstickers?\b/u,
+  pattern: /\bpatterns?\b/u,
+  card: /\bcards?\b/u,
+  photograph: /\b(?:photographs?|photos?)\b/u,
+  poster: /\bposters?\b/u,
+  screen: /\bscreens?\b/u,
+  painting: /\bpaintings?\b/u,
+  sign: /\bsigns?\b/u,
+  book: /\bbooks?\b/u,
+});
+
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
 }
@@ -194,14 +235,13 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
   }
 
   let subjectRole = null;
-  const roleRules = [
-    { role: "character_representation", pattern: /\b(?:shaped like|plush|pillow|statue|toy|logo|sticker|pattern|food shape|ice cream)\b/u },
-    { role: "depicted_subject", pattern: /\b(?:depicted|poster|photograph|photo|screen|painting|sign|book|card within card)\b/u },
-    { role: "scene_subject", pattern: /\b(?:scene subject|physically present)\b/u },
-  ];
-  for (const rule of roleRules) {
+  let representationForm = null;
+  let depictedSurface = null;
+  for (const rule of SUBJECT_ROLE_RULES) {
     if (!rule.pattern.test(working)) continue;
     subjectRole = rule.role;
+    if (rule.filter === "representation_form") representationForm = rule.value;
+    if (rule.filter === "depicted_surface") depictedSurface = rule.value;
     working = working.replace(rule.pattern, " ").replace(/\s+/gu, " ").trim();
     break;
   }
@@ -239,6 +279,8 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
       canonical_filters: { subjects: subject && !subjectRole ? [subject.canonical] : [], set_codes: setCodes, branches, years: null, artist: [] },
       visual_filters: {
         subject_roles: subjectRole ? [subjectRole] : [],
+        representation_forms: representationForm ? [representationForm] : [],
+        depicted_surfaces: depictedSurface ? [depictedSurface] : [],
         concepts: parsedConcepts.concepts,
         colors: [],
         counts: countConstraints,
@@ -249,6 +291,78 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
       unrecognized_terms: unique(unrecognizedTerms),
     },
   };
+}
+
+function parsedSubjectRoleEntry(entry) {
+  if (entry.source_type !== "subject_role" || !entry.subject_role) return null;
+  const normalizedRole = normalizeVisualSearchTextV1(entry.subject_role).replaceAll("_", " ");
+  const rawParts = String(entry.term ?? "").split(/\s*:\s*/u);
+  const parts = rawParts.map(normalizeVisualSearchTextV1);
+  if (parts.length < 2 || parts[0] !== normalizedRole) return null;
+  return {
+    role: entry.subject_role,
+    identity: parts[1],
+    identity_has_parenthetical: /\(/u.test(rawParts[1]),
+    qualifiers: parts.slice(2),
+  };
+}
+
+function roleFilterMatches(value, qualifiers) {
+  const pattern = ROLE_FILTER_PATTERNS[value];
+  return pattern ? pattern.test(qualifiers.join(" ")) : false;
+}
+
+function roleIdentityMatches(requestedIdentity, roleEntry) {
+  if (roleEntry.identity_has_parenthetical) return false;
+  if (roleEntry.identity === requestedIdentity) return true;
+  return roleEntry.identity.startsWith(`${requestedIdentity} `);
+}
+
+function subjectRoleEntries(group) {
+  const document = group.documents.subject;
+  if (!document) return [];
+  return document.structured_concepts
+    .filter((entry) => entry.source_type === "subject_role" && entry.subject_role)
+    .map((entry) => ({
+      ...entry,
+      document_type: document.document_type,
+      search_document_id: document.search_document_id,
+      normalized_term: normalizeVisualSearchTextV1(entry.term),
+    }));
+}
+
+function roleConstraintEvidence(parsed, group) {
+  const requestedRole = parsed.intent.visual_filters.subject_roles[0] ?? null;
+  if (!requestedRole) return [];
+  const requestedIdentity = parsed.detected_subject?.normalized_name ?? null;
+  const representationForms = parsed.intent.visual_filters.representation_forms;
+  const depictedSurfaces = parsed.intent.visual_filters.depicted_surfaces;
+  return subjectRoleEntries(group)
+    .filter((entry) => entry.supporting_observation_ids?.length)
+    .filter((entry) => {
+      const roleEntry = parsedSubjectRoleEntry(entry);
+      if (!roleEntry || roleEntry.role !== requestedRole) return false;
+      if (requestedIdentity && !roleIdentityMatches(requestedIdentity, roleEntry)) return false;
+      if (representationForms.length && !representationForms.every((value) => roleFilterMatches(value, roleEntry.qualifiers))) return false;
+      if (depictedSurfaces.length && !depictedSurfaces.every((value) => roleFilterMatches(value, roleEntry.qualifiers))) return false;
+      return true;
+    })
+    .map((entry) => ({
+      query_concept: [
+        parsed.detected_subject?.canonical_name,
+        ...representationForms,
+        ...depictedSurfaces,
+      ].filter(Boolean).join(" "),
+      search_document_id: entry.search_document_id,
+      document_type: entry.document_type,
+      source_type: entry.source_type,
+      source_id: entry.source_id,
+      term: entry.term,
+      subject_role: entry.subject_role,
+      supporting_observation_ids: entry.supporting_observation_ids,
+      confidence: entry.confidence,
+      match_authority: "bound_subject_role_evidence",
+    }));
 }
 
 function evidenceRows(group, pattern) {
@@ -333,7 +447,6 @@ function rankedIntentAlternatives(parsed, artworkGroupIds) {
   if (!parsed.detected_subject) return [primary];
   if (parsed.intent.visual_filters.subject_roles.length) {
     primary.canonical_filters = { ...primary.canonical_filters, subjects: [] };
-    primary.visual_concepts = unique([parsed.detected_subject.canonical_name, ...primary.visual_concepts]);
     return [primary];
   }
   const visualIdentity = {
@@ -361,7 +474,7 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
       if (parsed.intent.unrecognized_terms.length) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "unrecognized_terms", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
-      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.query_aliases.length;
+      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.query_aliases.length;
       if (!hasConstraint) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_supported_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
@@ -373,23 +486,42 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
           if (decisions.every((decision) => decision.matched)) aliasMatches.set(group.artwork_group_id, decisions);
         }
       }
-      const allowedGroupIds = parsed.intent.query_aliases.length ? [...aliasMatches.keys()] : [];
-      if (parsed.intent.query_aliases.length && !allowedGroupIds.length) {
+      let allowedGroupIds = parsed.intent.query_aliases.length ? new Set(aliasMatches.keys()) : null;
+      if (parsed.intent.query_aliases.length && !allowedGroupIds.size) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "alias_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
 
+      const roleMatches = new Map();
+      if (parsed.intent.visual_filters.subject_roles.length) {
+        for (const group of groups) {
+          const evidence = roleConstraintEvidence(parsed, group);
+          if (evidence.length) roleMatches.set(group.artwork_group_id, evidence);
+        }
+        if (!roleMatches.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "subject_role_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+        const roleGroupIds = new Set(roleMatches.keys());
+        allowedGroupIds = allowedGroupIds
+          ? new Set([...allowedGroupIds].filter((groupId) => roleGroupIds.has(groupId)))
+          : roleGroupIds;
+        if (!allowedGroupIds.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+      }
+
       const merged = new Map();
-      for (const intent of rankedIntentAlternatives(parsed, allowedGroupIds)) {
+      for (const intent of rankedIntentAlternatives(parsed, allowedGroupIds ? [...allowedGroupIds] : [])) {
         const ranked = rankVisualSearchQueryV1({ intent }, groups, { topK: groups.length, candidateIndex });
         for (const result of ranked.results) {
           const aliases = aliasMatches.get(result.artwork_group_id) ?? [];
           const aliasEvidence = aliases.flatMap((decision) => decision.evidence.map((entry) => ({ ...entry, query_concept: decision.alias, match_authority: "query_alias_evidence" })));
+          const boundRoleEvidence = roleMatches.get(result.artwork_group_id) ?? [];
           const existing = merged.get(result.artwork_group_id);
           const candidate = {
             ...result,
             score: result.score + aliases.length * 12,
             score_components: { ...result.score_components, alias_evidence: aliases.length * 12 },
-            matched_evidence: [...result.matched_evidence, ...aliasEvidence],
+            matched_evidence: [...result.matched_evidence, ...boundRoleEvidence, ...aliasEvidence],
             matched_aliases: aliases.map((decision) => ({ alias: decision.alias, decision_rule: decision.decision_rule })),
           };
           if (!existing || candidate.score > existing.score) merged.set(result.artwork_group_id, candidate);
