@@ -648,7 +648,7 @@ test("collector parser supports aliases, boolean subject groups, relationships, 
     { alias: "pika", canonical: "pikachu" },
   ]);
   assert.deepEqual(cookie.intent.visual_filters.representation_forms, [
-    "food shape",
+    "cookie",
   ]);
 
   const together = parseVisualSearchQueryV1(

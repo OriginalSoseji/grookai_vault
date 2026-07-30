@@ -793,16 +793,13 @@ export async function loadVisualSearchProjectionV1(projectionDir) {
   return { report, manifest, groups: [...groups.values()].sort((left, right) => left.artwork_group_id.localeCompare(right.artwork_group_id)), artworks, printings, documents };
 }
 
-export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardVisualSearchEvaluationBootstrapArgsV1([])) {
-  const git = currentGitState();
-  assertCardVisualCorpusBranchV1(git.branch);
-  if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
-  if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
-  const projectionDir = repoPath(args.projectionDir);
+export async function loadGovernedCollectorSearchEngineV1({
+  projectionDir,
+  cameoReference,
+  reviewedEvidence,
+  evidenceSuppressions,
+}) {
   const projection = await loadVisualSearchProjectionV1(projectionDir);
-  const cameoReference = repoPath(args.cameoReference);
-  const reviewedEvidence = repoPath(args.reviewedEvidence);
-  const evidenceSuppressions = repoPath(args.evidenceSuppressions);
   const [
     suppressionModule,
     curatedModule,
@@ -828,15 +825,38 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     suppressed.groups,
     [...curatedRows, ...reviewedRows],
   );
-  const effectiveGroups = curated.groups;
+  const engine = labModule.createVisualSearchLabEngineV1(curated.groups, {
+    curatedCameoStats: curated.stats,
+    evidenceSuppressionStats: suppressed.stats,
+  });
+  return {
+    projection,
+    groups: curated.groups,
+    engine,
+    suppression_stats: suppressed.stats,
+    curated_evidence_stats: curated.stats,
+  };
+}
+
+export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardVisualSearchEvaluationBootstrapArgsV1([])) {
+  const git = currentGitState();
+  assertCardVisualCorpusBranchV1(git.branch);
+  if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
+  if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
+  const projectionDir = repoPath(args.projectionDir);
+  const cameoReference = repoPath(args.cameoReference);
+  const reviewedEvidence = repoPath(args.reviewedEvidence);
+  const evidenceSuppressions = repoPath(args.evidenceSuppressions);
+  const governed = await loadGovernedCollectorSearchEngineV1({
+    projectionDir,
+    cameoReference,
+    reviewedEvidence,
+    evidenceSuppressions,
+  });
+  const projection = governed.projection;
+  const effectiveGroups = governed.groups;
   const candidateIndex = buildVisualSearchCandidateIndexV1(effectiveGroups);
-  const collectorEngine = labModule.createVisualSearchLabEngineV1(
-    effectiveGroups,
-    {
-      curatedCameoStats: curated.stats,
-      evidenceSuppressionStats: suppressed.stats,
-    },
-  );
+  const collectorEngine = governed.engine;
   const inputHashes = {
     projection_reconciliation: sha256Buffer(await fs.readFile(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"))),
     projection_artifact_manifest: sha256Buffer(await fs.readFile(path.join(projectionDir, "artifact_hashes.json"))),

@@ -90,6 +90,7 @@ const ALIAS_DEFINITIONS = Object.freeze({
 });
 
 const SUBJECT_ROLE_RULES = Object.freeze([
+  { role: "character_representation", filter: "representation_form", value: "cookie", pattern: /\bshaped cookies?\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bshaped (?:cookies?|cakes?|cand(?:y|ies)|pastr(?:y|ies)|desserts?|sweets?|ice creams?)\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bas (?:a |an )?food(?: item)?\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bfood shapes?\b/u },
@@ -118,6 +119,7 @@ const SUBJECT_ROLE_RULES = Object.freeze([
 
 const ROLE_FILTER_PATTERNS = Object.freeze({
   "food shape": /\bfood shapes?\b/u,
+  cookie: /\bcookies?\b/u,
   "ice cream": /\bice creams?\b/u,
   plush: /\bplush(?: toys?)?\b/u,
   pillow: /\bpillows?\b/u,
@@ -294,11 +296,28 @@ function parseVisualConcepts(tokens, consumed, parserIndex) {
   return { concepts: unique(concepts), unrecognized_terms: unique(unrecognized) };
 }
 
+function splitContrastiveClarificationV1(value) {
+  const match = String(value ?? "").match(/^(.+?)\s+not\s+(.+)$/u);
+  if (!match) {
+    return {
+      positive_text: value,
+      negative_text: null,
+    };
+  }
+  return {
+    positive_text: match[1].trim(),
+    negative_text: match[2].trim(),
+  };
+}
+
 export function parseVisualSearchQueryV1(queryText, parserIndex) {
   const originalQuery = String(queryText ?? "").trim();
   if (originalQuery.length < 2 || originalQuery.length > 180) throw new Error("query must contain 2 through 180 characters");
   const collectorAliases = normalizeCollectorQueryAliasesV1(originalQuery);
-  let working = collectorAliases.normalized;
+  const contrastive = splitContrastiveClarificationV1(
+    collectorAliases.normalized,
+  );
+  let working = contrastive.positive_text;
   const rawSetMatch = originalQuery.match(/\bset\s*:\s*([\p{L}\p{N}._-]+)\b/iu);
   const setCodes = [];
   if (rawSetMatch) {
@@ -382,6 +401,13 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
   const parsedConcepts = parseVisualConcepts(tokens, consumed, parserIndex);
   const unrecognizedTerms = [...parsedConcepts.unrecognized_terms];
   if (rawSetMatch && !setCodes.length) unrecognizedTerms.push(`set:${rawSetMatch[1]}`);
+  const hasHardPositiveDisambiguation =
+    Boolean(subjectRole) ||
+    Boolean(minimumPokemonCount.constraint) ||
+    countConstraints.length > 0;
+  if (contrastive.negative_text && !hasHardPositiveDisambiguation) {
+    unrecognizedTerms.push(`not ${contrastive.negative_text}`);
+  }
 
   return {
     parser_version: CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION,
@@ -410,7 +436,16 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
         evidence_sources: explicitCameo ? ["curated_cameo"] : [],
       },
       query_aliases: queryAliases,
-      negative_filters: [],
+      negative_filters:
+        contrastive.negative_text && hasHardPositiveDisambiguation
+          ? [
+              {
+                kind: "contrastive_clarification",
+                phrase: contrastive.negative_text,
+                enforcement: "positive_hard_constraint",
+              },
+            ]
+          : [],
       unrecognized_terms: unique(unrecognizedTerms),
     },
   };
@@ -515,8 +550,8 @@ function explicitRoleQualifierMatches(value, normalizedTerm, requestedIdentity, 
     return FOOD_APPEARANCE_PATTERN.test(normalizedTerm)
       && representationRelationshipSupportsIdentity(normalizedTerm, requestedIdentity, subjectClasses);
   }
-  if (value === "ice cream") {
-    return ROLE_FILTER_PATTERNS["ice cream"].test(normalizedTerm)
+  if (["cookie", "ice cream"].includes(value)) {
+    return ROLE_FILTER_PATTERNS[value].test(normalizedTerm)
       && representationRelationshipSupportsIdentity(normalizedTerm, requestedIdentity, subjectClasses);
   }
   return roleFilterMatches(value, [normalizedTerm]);

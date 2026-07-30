@@ -113,7 +113,7 @@ function fixtures() {
       entry("human-sleeping", "sleeping", "subject", { subject_role: "scene_subject", supporting_observation_ids: ["obs-mixed-human"] }),
     ]),
     group("017", "Pokemon Food Art", "trainer", [
-      entry("food-pikachu", "character_representation: Pikachu: food shape: decorated pastry", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+      entry("food-pikachu", "character_representation: Pikachu: food shape: cookie: decorated cookie", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
     ], ["character_representation"]),
     group("018", "Pokemon Ice Cream Art", "trainer", [
       entry("ice-cream-pikachu", "Pikachu-shaped ice cream dessert", "scene", { source_type: "observation", module: "objects_and_props" }),
@@ -251,6 +251,32 @@ test("representation forms and depicted surfaces remain strict bound constraints
   const absent = await engine.search("Pikachu logo");
   assert.equal(absent.total_matches, 0);
   assert.equal(absent.strict_zero_reason, "subject_role_evidence_not_found");
+});
+
+test("contrastive collector wording preserves the positive hard role constraint", async () => {
+  const engine = createVisualSearchLabEngineV1(fixtures());
+  const cookie = await engine.search(
+    "Pikachu-shaped cookie, not Pikachu eating a cookie",
+  );
+  assert.equal(cookie.total_matches, 1);
+  assert.equal(cookie.results[0].artwork_group_id, "group-017");
+  assert.deepEqual(cookie.parsed_query.intent.negative_filters, [
+    {
+      kind: "contrastive_clarification",
+      phrase: "pikachu eating a cookie",
+      enforcement: "positive_hard_constraint",
+    },
+  ]);
+
+  const poster = await engine.search(
+    "Pikachu on a poster, not a Pikachu plush",
+  );
+  assert.equal(poster.total_matches, 1);
+  assert.equal(poster.results[0].artwork_group_id, "group-011");
+
+  const unsupported = await engine.search("Pikachu not smiling");
+  assert.equal(unsupported.total_matches, 0);
+  assert.equal(unsupported.strict_zero_reason, "unrecognized_terms");
 });
 
 test("Pokemon subject-class queries cross card branches and bind subject-scoped facts", async () => {
