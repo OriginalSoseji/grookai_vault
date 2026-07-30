@@ -115,6 +115,30 @@ test("active asks refresh in the background and not inside product reads", () =>
   );
   assert.match(REFRESH_WORKER, /active-ask refresh apply requires a clean tracked working tree/i);
   assert.match(REFRESH_WORKER, /active_ask_cache_write:\s*args\.apply/i);
+  assert.match(
+    REFRESH_WORKER,
+    /select set_config\('statement_timeout', \$1, false\)/i,
+  );
+  assert.match(
+    REFRESH_WORKER,
+    /select set_config\('enable_nestloop', 'off', false\)/i,
+  );
+  assert.match(
+    REFRESH_WORKER,
+    /current_setting\('statement_timeout'\) as statement_timeout/i,
+  );
+  assert.match(
+    REFRESH_WORKER,
+    /current_setting\('enable_nestloop'\) as enable_nestloop/i,
+  );
+  assert.match(
+    REFRESH_WORKER,
+    /database_session_policy:\s*\{[\s\S]*statement_timeout:[\s\S]*enable_nestloop:\s*"off"/i,
+  );
+  assert.match(
+    REFRESH_WORKER,
+    /database_session:\s*databaseSession/i,
+  );
   assert.doesNotMatch(REFRESH_WORKER, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
   assert.match(PIPELINE, /phase:\s*"active_ask_refresh"/);
   assert.match(PIPELINE, /activationMode \? "--apply" : "--dry-run"/);
