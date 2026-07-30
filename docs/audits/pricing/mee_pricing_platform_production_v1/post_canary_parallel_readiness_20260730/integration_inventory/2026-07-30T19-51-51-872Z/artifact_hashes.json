@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "run_plan.json": "a3a9e8212d98761e935fb350f62bec321155bd76d89eeb6d4434c8e32877ded8",
+    "summary.json": "36cb7f58569bb6239a2f7f714130db2da965b8cf9124fa8f6e6779cba3bb580b",
+    "integration_files.jsonl": "0a0cc134beed780e0bb5039dd103eb12fa3da366e1f044ad78dfd28f48fbb18f",
+    "pricing_only_commits.jsonl": "1de3698c062a527e20125e95880b22e6ec179bac630d8877b626c8b8f1346b52",
+    "main_only_commits.jsonl": "bdd3684c3d119e7a84421cdb5fbc53527abd874b6031e8ce891b8edc17cfee9f",
+    "merge_conflicts.json": "05f31daa2e0ffc362bd09707d060b9d2f51f968e28f7d205a7afd0b660f776cd",
+    "surface_checklist.json": "190baa372cc0a2b04941f979503fe9aea2e5b4d843f67f77a12d6a8ac08adebc",
+    "REPORT.md": "3e18720c97629ecd8f7810e9e397b9ed0d22911625554033c31fa9c0ee1f49ad"
+  }
+}

@@ -1,0 +1,50 @@
+{"sha":"7b1bea5e564dc65fda38df851b6982ade550a653","subject":"ci(pricing): restart canary observer window"}
+{"sha":"d24f75dda3680f4ce8b8bbbd76345ae458f8842d","subject":"Repin pricing canary observer to shared RPC repair"}
+{"sha":"fee3958d1e4c78c3772860f42b7e69c8729abe2a","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"353ae14da63871bc2cc23413fde8d04aaf27c0c0","subject":"Restart pricing canary observation window"}
+{"sha":"2b75601f6c82eeff03b590bb9416035382e6e089","subject":"fix: pin canary observer to source repair"}
+{"sha":"4dca96f1f69881e64fc6783322bc776132a81043","subject":"chore: pin detailed canary diagnostics"}
+{"sha":"a0369323dab03868edfe8f3e82ee1cbf56e3a179","subject":"chore: pin canary source diagnostics"}
+{"sha":"932795093eb60b07d30d8939f65d31761c058040","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"7bb34ef4920ff047179fafe8b4993f9a2bc210f8","subject":"automate pricing canary observation"}
+{"sha":"b065ccfa975e33619ba1e1c1093d4bd8f8d56a63","subject":"fix contract legacy key guard"}
+{"sha":"8f3e35224eb855470c9058419c2c65687be1a602","subject":"feat(founder): add governed pricing visibility"}
+{"sha":"df5bc86f187121c405876cb8a0306e4f483d8483","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"c85126369344d614b2df4f98b1673533b5c0c781","subject":"Fix Binder activation backup handoff (#108)"}
+{"sha":"72bb84807a614d0e2f2d76c18c8aa64a6d1aa578","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"0423fbba8047a5b79447cf81bb2d700b31de2c20","subject":"Fix sealed Binder activation after safe main advance (#107)"}
+{"sha":"d01a2d818513175061db8b6e9280c9850319b5ab","subject":"docs: normalize Japanese index plan ending"}
+{"sha":"46280c419aae6a00314032e4226cbc59de874508","subject":"fix: preserve Japanese index evidence bytes"}
+{"sha":"67a33dbe0b69e930d064094ece9c8cf167fe6536","subject":"Harden Binder installation evidence handoff (#106)"}
+{"sha":"b308f789f92d1aa6e9853f21168973e9c5cdecb5","subject":"feat: complete Japanese master index v4"}
+{"sha":"f0b798f4e33e3200780822d658bd451fdfabf429","subject":"catalog: plan JPN card acquisition"}
+{"sha":"a725379a607807051a695d220ceba2b29288b73c","subject":"catalog: complete JPN release registry"}
+{"sha":"d5ac524f15f9812469ac3d9d0fdbe7880aa1c63b","subject":"fix: accept completed daily backup for Binder rollout"}
+{"sha":"35ff496355109cbc25c83e84ade0480af07e5019","subject":"catalog: build governed JPN set registry"}
+{"sha":"0eed99ac8ebfb922398a4f8ea253a4c392efad75","subject":"catalog: establish JPN master index baseline"}
+{"sha":"b95f291ef1ffcdd46fa7eeb361e293d2c0616bf3","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"4d86de27de27e3a120836f4ed2064430eb0f3d25","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"c88bc9e7b0fe6b6615bce3c1bfc46f3fad985330","subject":"fix: chain Binder installation evidence into activation"}
+{"sha":"5c12f1b6bf2deb2a054a7b69d5c7c9674675f560","subject":"feat: harden collaborative binder rollout"}
+{"sha":"9255f582834abb8207a5f7245ae98bb080170188","subject":"feat: establish mobile web native parity foundation"}
+{"sha":"d0c42a89241992648d4c8ef9364afcdd1d0828b9","subject":"chore: update founder ops dashboard snapshots"}
+{"sha":"6e77a88c5e02f0b1cf4e5d821bbcbd9f96decb89","subject":"Fix Binder rollout UTC timestamp guards"}
+{"sha":"0a6bd0cd93687790e753abde02a802855b12affc","subject":"build: preserve SQL byte identity on Windows"}
+{"sha":"593a7b3cfdee08f9dca91e704bfa232de5d501b1","subject":"test(binders): run rollout guards on Windows CI"}
+{"sha":"1906245372b28ac7f89829fb2369f91269ee5e0d","subject":"feat(binders): add guarded production rollout"}
+{"sha":"81971209a238a7db83327679a3663f46bdc34e12","subject":"fix: remove retired service-role key fallback"}
+{"sha":"a85c3b30a3cfb0b81a822f47c5002e7e76b5872e","subject":"ci: restore founder ops dashboard collection"}
+{"sha":"f78a16616849c480fa00ad54676ae7e10d400ef8","subject":"feat: add collaborative binders across web and mobile"}
+{"sha":"0b685d12b2653fd0e5948545f4b7af2e8e2923c8","subject":"feat(db): implement collaborative binders"}
+{"sha":"3f85874e17d8c2c908b742264581135035b68455","subject":"chore(db): restore applied migration ledger files"}
+{"sha":"89ce9d40f7157fa68e9d907c2108e60eb6e5cd5c","subject":"docs: activate collaborative binders contract"}
+{"sha":"cf7294aa01ae971c184bf89d2ded8036c8d3eaaa","subject":"feat: adopt Dex collection workflows across Vault"}
+{"sha":"887122784561dc39de52c495edea003c253c98c2","subject":"fix: complete performance and crawl repairs"}
+{"sha":"bc8eafc8b4dddfd933d5fb35c92bf1c77da1a751","subject":"fix: unblock set loading and warm network links"}
+{"sha":"7fe5e845e4be034e60ea0e89e50491fde8e799ae","subject":"feat: harden performance, hosted images, and printing truth"}
+{"sha":"08bff741d9a2c72fc8baf36420998cac84bb8438","subject":"fix: render canonical card images"}
+{"sha":"3eb16b541fd03e7281eb5047226e4ccdb1cda8f4","subject":"fix: unblock release validation and Vercel build"}
+{"sha":"a3a1ac708c956e3a09f33772101449b3d3363cb0","subject":"fix: register retired pricing edge handlers"}
+{"sha":"aca227763008b23a8f588c4204b5130e100b6fcd","subject":"chore: refresh public set count manifest"}
+{"sha":"02b683552c560b29858d4bf6379b3b97ef30ad87","subject":"perf: harden app and production data paths"}
+{"sha":"f2e57e476e8d68aa241d2b6a3afbc8480e9d7100","subject":"web: add read-only visual search review portal"}

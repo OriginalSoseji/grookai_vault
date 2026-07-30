@@ -1,0 +1,80 @@
+{"sha":"720ee3790447bcb7c05083dbd3198971c127e48f","subject":"docs(pricing): checkpoint canary runtime repair"}
+{"sha":"22f52b8c63414787a28a20d83a114e86ce6a37b3","subject":"fix(pricing): bound observer trace to active publication"}
+{"sha":"8787bdc66a4445227c8e83b473d4563abe00988b","subject":"fix(pricing): scope health trace to selected run"}
+{"sha":"de019a154f256d1b1b53edd1a341bf63e1b6895d","subject":"fix(pricing): harden active ask refresh session"}
+{"sha":"0135b8571dd0252457fa80d6d796763faabb9322","subject":"Observe pricing canary through shared read model"}
+{"sha":"77573336ad20a96b89d199da82dd41171528a165","subject":"Repair pricing canary governed read runtime"}
+{"sha":"2587bd8ca9ae626306226fd0d5f2143cb38a112a","subject":"docs(pricing): checkpoint canary incident repair (#117)"}
+{"sha":"ec8afc411299465dc67954d45de74b9d9e0fc594","subject":"Repair pricing canary retry and assignment preparation"}
+{"sha":"9abd4d398219f087002d2de2d126624bf4ed0d56","subject":"fix: remove legacy Supabase key fallbacks"}
+{"sha":"d02d52aeda9bd02826ea85c8624638e048b8372f","subject":"fix: retry transient TCGCSV acquisition failures"}
+{"sha":"8cc120b177bccdbdbe73b6fcc9dc4acbd52d11ec","subject":"chore: expose canary source failure payload"}
+{"sha":"10dc78bf4d7be4dbd58b29d0709c29c122c8b1de","subject":"chore: preserve canary source run evidence"}
+{"sha":"59944925761f5cb936cf7a45c15e2b2ba564bca2","subject":"document pricing canary handoff"}
+{"sha":"9335c2afada1468ce8a34e3cc67ba4820c86433f","subject":"Record 7.5-hour pricing canary health"}
+{"sha":"ef5499129a9b1bb49da051a3eb670fe8c17d00b5","subject":"Freeze Pricing Production V1 release scope"}
+{"sha":"0fbd7eb2bc85a2ab7402a7365c4097bca3eb1078","subject":"Complete pricing surface wiring"}
+{"sha":"1e1bdd85b4d43ebc08db5b46e0c98864f0f307e5","subject":"Record latest pricing canary health"}
+{"sha":"b1569dc818d324c47a40e143adb0644873a7b038","subject":"Add production pricing surface proof"}
+{"sha":"400fa365dee22693181069e7f6e685f59e947202","subject":"Reconcile pricing completion with pending migrations"}
+{"sha":"4ff65b3305a91de4f8524828dd1f72617cb92787","subject":"Lock pricing migration rollout manifest"}
+{"sha":"4d3fbd8fb43eef26dfa58a993258b2640eb5f225","subject":"Add exact Vault production verifier"}
+{"sha":"8ec29a5772a33a38fe585bb6b0fd07c0bb992d5a","subject":"Correct pricing rollout completion truth"}
+{"sha":"ae14ce43e30f0a95fcf0cf63eecf8b93ea5fac80","subject":"Record exact-printing Vault pricing proof"}
+{"sha":"e19e54b20d16f2262c16f3aac39a80f2649359ff","subject":"Stabilize Vault pricing target smoke"}
+{"sha":"7f59bc00870f348b470c8c77d16478e1311fa96c","subject":"Price Vault holdings by exact printing"}
+{"sha":"fb0cecd52f32f5859356508911f9bc8b20a997b9","subject":"Record pricing read model completion"}
+{"sha":"71f4d679c787634e3ffbc20c2ee29fe958064218","subject":"Complete pricing read model contract"}
+{"sha":"1687d992757d486d61553e8889b20dd530cea3a8","subject":"Record current pricing canary health"}
+{"sha":"8fc6ff412bba0579a3a8d6ab7e69c108114e0a86","subject":"Record full pricing rollout readiness"}
+{"sha":"098c7c7e82e4d95eae948720d7176501fc2597c4","subject":"Harden full pricing rollout operations"}
+{"sha":"eb820e0da6dfb6914e8cc1ffbd55146ba48898a7","subject":"Record pricing operations readiness checkpoint"}
+{"sha":"7c6150decb228a8256386f50820cf374e8b38b18","subject":"Add pricing operational controls and completion gate"}
+{"sha":"664f40a7007c64538091d4a89e0fa48e6c1a41df","subject":"Record first bounded TCGPlayer mapping apply"}
+{"sha":"2e1a3f5f8884df0aa46352372dabf4674f881df6","subject":"Tighten TCGPlayer scope and mapping apply gate"}
+{"sha":"d953b84e0577d88e0264ef61b569fa5a3b57ed2a","subject":"Add exact TCGPlayer mapping repair planner"}
+{"sha":"8ba4a4456e771e0baefa5caf1d35fd3112f69bf6","subject":"Fix TCGPlayer Product V1 scope policy"}
+{"sha":"3517d89c11dcf80d1c2249865e1f547dcd6214f8","subject":"docs(pricing): record production read performance gate"}
+{"sha":"fde6f6db675c4ca72d2eac9ac38ed9ad4467e6ec","subject":"Optimize shared market pricing reads"}
+{"sha":"77690928e750c7fa3b93e8ef9d99f0969eccb173","subject":"Add fixed TCGPlayer market coverage gate"}
+{"sha":"e625e16e41cfdd4085a406bb7c8d1cf645de1f03","subject":"Add governed market canary observation gate"}
+{"sha":"147c9992a9b53d8206531775b215d8e37488443b","subject":"Record pricing canary schedule activation"}
+{"sha":"c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d","subject":"Accept verified no-change market source checks"}
+{"sha":"24be3ea91a7583265ea1d13007c67e324daa20ba","subject":"Pin operations function authentication mode"}
+{"sha":"289c64ddffc26aa6cb477b6fda7d5ed5639454bd","subject":"Add durable founder operations alerts"}
+{"sha":"23c6f63c9ca0518e68b7b769ed8eba563f4d4e31","subject":"Run contract CI for goal registry changes"}
+{"sha":"8e8184a9a872c376b7305380a180d01ef5f018ea","subject":"Stabilize execution goal hash across platforms"}
+{"sha":"1ca81255e135d235696073b15daa03ae4a1f4074","subject":"Schedule exact TCGPlayer canary refreshes"}
+{"sha":"958b14eaff091919d344d39517890f7a1fcb57e4","subject":"Verify TCGPlayer market canary sample"}
+{"sha":"e0dded53306115188a44e046e3fda0801d4f9602","subject":"Use governed image source for canary repair"}
+{"sha":"ef76301cd0078bf16949fdb694fa38f7fd3f4eef","subject":"Build exact TCGPlayer canary verification"}
+{"sha":"6da82b498a3e91ddaac79e09d373baf46624557e","subject":"Harden market mapping repair casts"}
+{"sha":"2f3f82e7756c0ff25db2ea8863d9aefcc801135c","subject":"Fix market mapping repair readback"}
+{"sha":"d76c559341ab3d08279fc42b55e77b11e88be9d1","subject":"Correct Arceus Charizard market mapping"}
+{"sha":"212e6e47623de452419e5de3591af49054fb5901","subject":"Record TCGPlayer Market shadow lock"}
+{"sha":"4f249cdb1f320cd46119a6af5302a59d0bae450b","subject":"Short-circuit existing market assignments"}
+{"sha":"7a5a2392501fafc99d3d7e01879ba0a450f62c63","subject":"Skip existing market variant assignments"}
+{"sha":"d8347cf26d3179283c90fc960e6c901b7c3caed8","subject":"Preserve TCGCSV price artifact lineage"}
+{"sha":"1dfe65d97b2b53db6c126e7bff8a613f3a69fd3e","subject":"Make market database timeout operational"}
+{"sha":"283f7d8662d5e64bee64eec4ae8a301e2c258ddc","subject":"Optimize market qualification candidates"}
+{"sha":"79908a2991fcb924d9c47882d9464e8c8249f49d","subject":"Align market phase timeout with full sync"}
+{"sha":"3c06cc1c14d972ea32357ba6c1b02cf8a7896140","subject":"Raise market full-sync request ceiling"}
+{"sha":"9b9eaeee39b8055232dc2fca5226a016f2b37d27","subject":"Reconcile linked schema before pricing apply"}
+{"sha":"f0637218fde32ec91860791652c6d9f14c09ae84","subject":"Route product pricing through market read model"}
+{"sha":"cfe925facd4aa445acfcd9afa724f157ee7f23f7","subject":"Add governed TCGPlayer market scheduling"}
+{"sha":"a8bba1975e5c4d88fe73f992bc12e038f35bedf7","subject":"Verify pricing trace ACL through catalog"}
+{"sha":"4823ad22c875a657120e6b90f9c1df52829edc83","subject":"Isolate negative pricing smoke probes"}
+{"sha":"7b3a0e968576bb0048e12e7fb711c66286aa29dc","subject":"Return market price trace as JSON"}
+{"sha":"7a545214e316df7f43885875df7ba360ab87d8f8","subject":"Harden market price trace execution"}
+{"sha":"cc443b20dda8b3fd193f25ef5986a55e7aab66f2","subject":"Use explicit role transactions in pricing smoke"}
+{"sha":"ed60a4d925aa0f7cfb2578a76392c479f78c7fce","subject":"Fix pricing smoke product identity typing"}
+{"sha":"37030f73aae6e195e8a3264f0fa8978922d369b5","subject":"Make market publication smoke fixtures reusable"}
+{"sha":"fa59e36e8e934b55fbab9df780d5da3dfce5626b","subject":"Preserve reconciled state during publication activation"}
+{"sha":"b04539c8ba0e139c2776684e9bdbe4d326743423","subject":"Reconcile ordinary finish key migration seeds"}
+{"sha":"98f571f7ed4230e7d87d6b96636dbb2178fd98f4","subject":"Build durable TCGPlayer market publication pipeline"}
+{"sha":"95606a376eba5873d0465a2edcf0e4a1293ba5d1","subject":"docs(pricing): record production v1 baseline audit"}
+{"sha":"31b0615e676a0f2a8444ce0f5860e0a28f344adf","subject":"fix(pricing): reconcile baseline artifact hashes"}
+{"sha":"13b7524568a6fa40cd12b0d0de7bb680242bbeeb","subject":"chore(pricing): add production baseline audit"}
+{"sha":"a61a7cdaf36481135a3bf56f61bcef94ba52346c","subject":"chore(pricing): register production v1 execution goal"}
+{"sha":"a63961a086ccff0f0226c81c9ec599a407e08715","subject":"feat(pricing): ship TCGPlayer market product v1"}
+{"sha":"05fcbfe4bd38d5e459007abe3ed2cc06cbf1d8c7","subject":"chore(db): restore applied migration history"}
