@@ -1,0 +1,18 @@
+{
+  "worker_version": "TCGPLAYER_MARKET_PUBLICATION_ROLLBACK_V1",
+  "status": "passed",
+  "mode": "dry_run",
+  "rollback_run_id": "fdfdf9e1-b54f-4b16-a365-8a000983232d",
+  "committed": false,
+  "current_publication_set_id": "5b016262-764b-4b05-9e1e-df15971d0a7d",
+  "restore_publication_set_id": "1317e10a-c88f-4316-b062-bc5d62e297c9",
+  "current_snapshot_count": 100,
+  "restore_snapshot_count": 100,
+  "rollback_event_count": 0,
+  "database_writes": false,
+  "source_archive_writes": 0,
+  "qualification_writes": 0,
+  "snapshot_writes": 0,
+  "canonical_identity_writes": 0,
+  "vault_writes": 0
+}
