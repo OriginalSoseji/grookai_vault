@@ -15,6 +15,7 @@ import {
 } from "./card_visual_search_curated_cameo_v1.mjs";
 import {
   assertCardVisualExternalSourceRegistrySafeV1,
+  CARD_VISUAL_EXTERNAL_SOURCE_REGISTRY_V1,
   CARD_VISUAL_EXTERNAL_SOURCE_REGISTRY_VERSION,
   getCardVisualExternalSourceV1,
 } from "./card_visual_external_source_registry_v1.mjs";
@@ -52,6 +53,9 @@ const DEFAULT_EVIDENCE_SUPPRESSIONS =
   "docs/evidence/card_visual_search_founder_suppressions_v1.json";
 const DEFAULT_MIGRATION =
   "supabase/migrations/20260729173000_card_visual_search_persistence_v1.sql";
+const EXTERNAL_SOURCE_REGISTRY_MODULE = fileURLToPath(
+  new URL("./card_visual_external_source_registry_v1.mjs", import.meta.url),
+);
 const DEFAULT_OUTPUT_ROOT =
   `${DEFAULT_RELEASE_ROOT}/_rebuild/unified_collector_search_v2`;
 const EXPECTED_DOCUMENT_TYPES = Object.freeze([
@@ -366,6 +370,37 @@ function emptyLedger(artwork) {
   };
 }
 
+export function externalSourceRegistryLoadRowsV2(
+  registry = CARD_VISUAL_EXTERNAL_SOURCE_REGISTRY_V1,
+) {
+  return registry
+    .map((source) => ({
+      source_key: source.source_key,
+      display_name: source.display_name,
+      homepage_url: source.homepage_url,
+      acquisition_mode: source.acquisition_mode,
+      permission_status: source.permission_status,
+      current_allowed_uses: [...source.current_allowed_uses],
+      authority_ceiling: source.authority_ceiling,
+      network_acquisition_enabled: source.network_acquisition_allowed,
+      snapshot_import_enabled: source.snapshot_import_allowed,
+      rights_evidence: {
+        registry_version: CARD_VISUAL_EXTERNAL_SOURCE_REGISTRY_VERSION,
+        source_focus: source.source_focus,
+        candidate_domain: source.candidate_domain,
+        role_mapping: source.role_mapping,
+        potential_uses_after_permission: [
+          ...source.potential_uses_after_permission,
+        ],
+        requires_image_confirmation: source.requires_image_confirmation,
+        notes: source.notes,
+      },
+      terms_snapshot_sha256: null,
+      permission_reviewed_at: null,
+    }))
+    .sort((left, right) => left.source_key.localeCompare(right.source_key));
+}
+
 function markdownReport(report) {
   const c = report.reconciliation.counts;
   return `# Card Visual Search Corpus Release V2
@@ -384,6 +419,7 @@ Generated: ${report.created_at}
 - Searchable evidence after governed suppressions: \`${c.searchable_evidence}\`
 - Founder-confirmed evidence suppressions: \`${c.evidence_suppressions}\`
 - Deterministic TCG concepts: \`${c.tcg_concepts}\`
+- Governed external sources: \`${c.external_sources}\`
 - External candidate rows: \`${c.external_candidates}\`
 - Active governed external assertions: \`${c.external_assertions}\`
 - Materialized index entries: \`${c.index_entries}\`
@@ -711,6 +747,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     matched_evidence_entries:
       suppressionEvidenceMatches.get(record.suppression_id) ?? 0,
   }));
+  const externalSourceRegistryRows = externalSourceRegistryLoadRowsV2();
   const allAccountedIds = [
     ...printings.map((row) => row.card_print_id),
     ...coverageGaps.map((row) => row.card_print_id),
@@ -793,6 +830,9 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     curated_reference: await hashFile(cameoReference),
     reviewed_evidence: await hashFile(reviewedEvidence),
     evidence_suppressions: await hashFile(evidenceSuppressions),
+    external_source_registry_contract: await hashFile(
+      EXTERNAL_SOURCE_REGISTRY_MODULE,
+    ),
     migration: await hashFile(migrationPath),
   };
   const runKey = sha256JsonV1({
@@ -822,6 +862,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       ),
     evidence_suppressions: evidenceSuppressionRows.length,
     tcg_concepts: tcgConceptCount,
+    external_sources: externalSourceRegistryRows.length,
     external_candidates: externalCandidates.length,
     external_assertions: externalAssertions.length,
     index_entries: indexEntries.length,
@@ -958,6 +999,14 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
         rows: indexEntries.length,
         target_table: "public.card_visual_search_index_entries",
       },
+      external_sources: {
+        artifact_path: displayPath(
+          path.join(outputDir, "external_source_registry.jsonl"),
+        ),
+        artifact_sha256: null,
+        rows: externalSourceRegistryRows.length,
+        target_table: "public.card_visual_external_sources",
+      },
       external_candidates: {
         artifact_path: displayPath(
           path.join(outputDir, "external_evidence_candidates.jsonl"),
@@ -1027,6 +1076,10 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   await writeJsonl(path.join(outputDir, "repair_ledger.jsonl"), ledgerRows);
   await writeJsonl(path.join(outputDir, "coverage_gaps.jsonl"), coverageGaps);
   await writeJsonl(
+    path.join(outputDir, "external_source_registry.jsonl"),
+    externalSourceRegistryRows,
+  );
+  await writeJsonl(
     path.join(outputDir, "external_evidence_candidates.jsonl"),
     externalCandidates,
   );
@@ -1064,6 +1117,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     "run_plan.json",
     "repair_ledger.jsonl",
     "coverage_gaps.jsonl",
+    "external_source_registry.jsonl",
     "external_evidence_candidates.jsonl",
     "external_evidence_assertions.jsonl",
     "evidence_suppressions.jsonl",
@@ -1079,6 +1133,8 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   }
   loadPlan.source_inputs.index_entries.artifact_sha256 =
     hashes["visual_search_index_entries.jsonl"];
+  loadPlan.source_inputs.external_sources.artifact_sha256 =
+    hashes["external_source_registry.jsonl"];
   loadPlan.source_inputs.external_candidates.artifact_sha256 =
     hashes["external_evidence_candidates.jsonl"];
   loadPlan.source_inputs.external_assertions.artifact_sha256 =

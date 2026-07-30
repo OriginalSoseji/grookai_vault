@@ -9,6 +9,12 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V2_ZERO_AI_CORPUS_BUILD_20260730.md` - `2026-07-30` -
+  ZERO-AI BUILD COMPLETE THROUGH HUMAN CALIBRATION; MIGRATION UNAPPLIED -
+  Records the immutable `11,000`-source / `9,532`-artwork V2 release, zero
+  additional provider cost, `12/12` high-risk regressions, reconciled 200-query
+  reviewer packet with `678/678` images, `153/153` contracts, private
+  migration/load runbook, preserved sealed holdout, and human-calibration gate.
 - `VISUAL_SEARCH_V2_EXTERNAL_SOURCE_INCORPORATION_20260730.md` - `2026-07-30`
   - SOURCE GOVERNANCE IMPLEMENTED; ONLY EXISTING ROTOMAMITI SNAPSHOT
   AUTHORIZED FOR ROW-LEVEL PROCESSING - Records the six-source registry,
@@ -154,8 +160,10 @@ create canonical truth, or authorize downstream recommendation systems.
 16. Read `VISUAL_SEARCH_V1_COLLECTOR_QUERY_20260729.md`.
 17. Read `VISUAL_SEARCH_V2_UNIFIED_COLLECTOR_SEARCH_20260730.md`.
 18. Read `VISUAL_SEARCH_V2_EXTERNAL_SOURCE_INCORPORATION_20260730.md`.
-19. Confirm the current production `main` SHA and compare it with the checkpoint
+19. Read `VISUAL_SEARCH_V2_ZERO_AI_CORPUS_BUILD_20260730.md`.
+20. Read `docs/runbooks/CARD_VISUAL_SEARCH_PRIVATE_RELEASE_LOAD_V2.md`.
+21. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-20. Confirm pricing canary/release work remains isolated.
-21. Inspect the governed source branch at the recorded SHA.
-22. Resume only from the latest V2 checkpoint's exact next gate.
+22. Confirm pricing canary/release work remains isolated.
+23. Inspect the governed source branch at the recorded SHA.
+24. Resume only from the latest V2 checkpoint's exact next gate.

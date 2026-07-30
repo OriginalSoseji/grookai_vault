@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   CARD_VISUAL_SEARCH_CORPUS_RELEASE_VERSION,
   CARD_VISUAL_SEARCH_REPAIR_LEDGER_VERSION,
+  externalSourceRegistryLoadRowsV2,
   parseCardVisualSearchCorpusReleaseArgsV2,
 } from "../../backend/card_descriptions/card_visual_search_corpus_release_v2.mjs";
 import { readFileSync } from "node:fs";
@@ -67,5 +68,34 @@ test("Energy is blocked from searchable output but preserved as a coverage gap",
   assert.doesNotMatch(
     source,
     /eligibilityDecisions\.some\(\(row\) => row\.energy_card_detected\)\s*\|\|/u,
+  );
+});
+
+test("V2 release freezes the governed external-source registry as a load input", () => {
+  const rows = externalSourceRegistryLoadRowsV2();
+  assert.equal(rows.length, 6);
+  assert.deepEqual(
+    rows.map((row) => row.source_key),
+    [
+      "artchu",
+      "artfinder_tcg",
+      "binderbloom",
+      "rotomamiti_cameo_database",
+      "sightdex",
+      "tcg_curator",
+    ],
+  );
+  assert.ok(rows.every((row) => row.network_acquisition_enabled === false));
+  assert.equal(
+    rows.find((row) => row.source_key === "rotomamiti_cameo_database")
+      .snapshot_import_enabled,
+    true,
+  );
+  assert.ok(
+    rows.every(
+      (row) =>
+        row.rights_evidence.registry_version ===
+        "CARD_VISUAL_EXTERNAL_SOURCE_REGISTRY_V1",
+    ),
   );
 });
