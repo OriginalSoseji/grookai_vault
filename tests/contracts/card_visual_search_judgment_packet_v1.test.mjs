@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import path from "node:path";
 import test from "node:test";
 
 import {
@@ -7,6 +8,7 @@ import {
   buildCalibrationJudgmentRowsV1,
   grookaiImageUrlV1,
   renderCalibrationDashboardV1,
+  resolveReviewSourceArtifactPathV1,
   savedVisualRecordV1,
 } from "../../backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs";
 
@@ -49,6 +51,26 @@ test("Grookai image URLs accept governed storage paths only", () => {
   assert.equal(grookaiImageUrlV1("warehouse-derived/self-hosted-images-v1/cards/a b.png"), "https://grookaivault.com/api/canon/image?path=warehouse-derived%2Fself-hosted-images-v1%2Fcards%2Fa%20b.png");
   assert.equal(grookaiImageUrlV1("https://images.pokemontcg.io/set/1.png"), "https://grookaivault.com/_next/image?url=https%3A%2F%2Fimages.pokemontcg.io%2Fset%2F1.png&w=640&q=85");
   assert.equal(grookaiImageUrlV1("http://images.pokemontcg.io/set/1.png"), null);
+});
+
+test("review source artifacts resolve only inside an explicit immutable artifact root", () => {
+  const root = path.resolve("C:/immutable-card-visual-release");
+  assert.equal(
+    resolveReviewSourceArtifactPathV1("audits/run/generated_outputs.json", root),
+    path.join(root, "audits", "run", "generated_outputs.json"),
+  );
+  assert.equal(
+    resolveReviewSourceArtifactPathV1(path.join(root, "audits", "run", "generated_outputs.json"), root),
+    path.join(root, "audits", "run", "generated_outputs.json"),
+  );
+  assert.throws(
+    () => resolveReviewSourceArtifactPathV1("../outside.json", root),
+    /escapes artifact root/u,
+  );
+  assert.throws(
+    () => resolveReviewSourceArtifactPathV1("C:/outside/generated_outputs.json", root),
+    /escapes artifact root/u,
+  );
 });
 
 test("judgment rows contain exactly 200 calibration queries and no completed judgments", () => {

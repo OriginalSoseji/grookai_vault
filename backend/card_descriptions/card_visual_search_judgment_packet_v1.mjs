@@ -39,6 +39,7 @@ export function parseCardVisualSearchJudgmentPacketArgsV1(argv = []) {
   return {
     bootstrapDir: parseFlag(argv, "bootstrap-dir") ?? DEFAULT_BOOTSTRAP_DIR,
     corpusInventory: parseFlag(argv, "corpus-inventory") ?? DEFAULT_CORPUS_INVENTORY,
+    artifactRoot: parseFlag(argv, "artifact-root"),
     outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
     outputDir: parseFlag(argv, "output-dir"),
     resultLimit: Number.parseInt(parseFlag(argv, "result-limit") ?? "10", 10),
@@ -138,7 +139,21 @@ export function savedVisualRecordV1(record, sourceArtifactPath = null) {
   };
 }
 
-async function loadReviewSourceData(requiredCardIds, corpusInventoryPath) {
+export function resolveReviewSourceArtifactPathV1(sourceArtifactPath, artifactRoot = null) {
+  const source = String(sourceArtifactPath ?? "").trim();
+  if (!source) throw new Error("source artifact path is required");
+  if (!artifactRoot) return repoPath(source);
+
+  const root = path.resolve(artifactRoot);
+  const resolved = path.isAbsolute(source) ? path.resolve(source) : path.resolve(root, source);
+  const relative = path.relative(root, resolved);
+  if (relative === ".." || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    throw new Error(`source artifact path escapes artifact root: ${source}`);
+  }
+  return resolved;
+}
+
+async function loadReviewSourceData(requiredCardIds, corpusInventoryPath, artifactRoot = null) {
   const inventoryRows = await readJsonl(corpusInventoryPath);
   const sourceByCard = new Map(inventoryRows.map((row) => [row.card_print_id, row.source_artifact_path]));
   const idsBySource = new Map();
@@ -157,7 +172,7 @@ async function loadReviewSourceData(requiredCardIds, corpusInventoryPath) {
   const unreadableSources = [];
   for (const [source, ids] of idsBySource) {
     try {
-      const payload = await readJson(repoPath(source));
+      const payload = await readJson(resolveReviewSourceArtifactPathV1(source, artifactRoot));
       for (const record of sourceRecords(payload)) {
         const cardId = sourceRecordId(record);
         if (cardId && ids.has(cardId)) result.set(cardId, savedVisualRecordV1(record, source));
@@ -328,6 +343,7 @@ export async function runCardVisualSearchJudgmentPacketV1(args = parseCardVisual
   if (!Number.isInteger(args.resultLimit) || args.resultLimit !== 10) throw new Error("V1 judgment packet result-limit must equal 10");
   const bootstrapDir = repoPath(args.bootstrapDir);
   const corpusInventoryPath = repoPath(args.corpusInventory);
+  const artifactRoot = args.artifactRoot ? path.resolve(args.artifactRoot) : null;
   const report = await readJson(path.join(bootstrapDir, "BOOTSTRAP_EVALUATION_REPORT.json"));
   if (report.reconciliation?.reconciled !== true || report.query_suite?.holdout_executed !== false) throw new Error("bootstrap input must be reconciled with holdout unexecuted");
   const querySuite = await readJsonl(path.join(bootstrapDir, "query_suite.jsonl"));
@@ -355,10 +371,11 @@ export async function runCardVisualSearchJudgmentPacketV1(args = parseCardVisual
     const sourceCardPrintId = artworkByGroupId.get(expectedGroupId)?.representative_card_print_id;
     if (sourceCardPrintId) requiredCardIds.add(sourceCardPrintId);
   }
-  const sourceDataResult = await loadReviewSourceData(requiredCardIds, corpusInventoryPath);
+  const sourceDataResult = await loadReviewSourceData(requiredCardIds, corpusInventoryPath, artifactRoot);
   const imageByCardId = new Map([...sourceDataResult.source_by_card_id].map(([cardId, source]) => [cardId, source.image]));
   const queries = buildCalibrationJudgmentRowsV1(querySuite, rankedOutputs, imageByCardId, { resultLimit: args.resultLimit, artworkByGroupId });
-  const runKey = sha256JsonV1({ version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, commit_sha: git.commit_sha, bootstrap_run_key: report.run_plan.run_key, query_suite_hash: sha256Buffer(await fs.readFile(path.join(bootstrapDir, "query_suite.jsonl"))), ranked_outputs_hash: sha256Buffer(await fs.readFile(path.join(bootstrapDir, "ranked_outputs.jsonl"))), result_limit: args.resultLimit });
+  const corpusInventorySha256 = sha256Buffer(await fs.readFile(corpusInventoryPath));
+  const runKey = sha256JsonV1({ version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, commit_sha: git.commit_sha, bootstrap_run_key: report.run_plan.run_key, query_suite_hash: sha256Buffer(await fs.readFile(path.join(bootstrapDir, "query_suite.jsonl"))), ranked_outputs_hash: sha256Buffer(await fs.readFile(path.join(bootstrapDir, "ranked_outputs.jsonl"))), corpus_inventory_sha256: corpusInventorySha256, artifact_root: artifactRoot, result_limit: args.resultLimit });
   const outputDir = args.outputDir ? repoPath(args.outputDir) : path.join(repoPath(args.outputRoot), `${safeTimestamp()}_packet_${runKey.slice(0, 12)}`);
   const packet = {
     packet_version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION,
@@ -369,6 +386,9 @@ export async function runCardVisualSearchJudgmentPacketV1(args = parseCardVisual
     branch: git.branch,
     source_bootstrap_dir: posixRelative(bootstrapDir),
     source_bootstrap_run_key: report.run_plan.run_key,
+    source_corpus_inventory: posixRelative(corpusInventoryPath),
+    source_corpus_inventory_sha256: corpusInventorySha256,
+    source_artifact_root: artifactRoot,
     calibration_query_count: queries.length,
     holdout_query_count: 0,
     result_limit: args.resultLimit,
@@ -388,7 +408,7 @@ export async function runCardVisualSearchJudgmentPacketV1(args = parseCardVisual
   };
   const templateRows = queries.map((query) => ({ judgment_set_version: CARD_VISUAL_SEARCH_GOLD_JUDGMENT_VERSION, query_id: query.query_id, reviewer_key: null, query_decision: null, failure_labels: [], notes: null, completed_at: null, top_result_judgments: query.top_results.map((result) => ({ artwork_group_id: result.artwork_group_id, rank: result.rank, judgment: null, notes: null })), source_candidate_judgment: query.source_candidate && !query.source_candidate.present_in_top_results ? { artwork_group_id: query.source_candidate.artwork_group_id, judgment: null, notes: null } : null }));
   const files = ["run_plan.json", "calibration_review_packet.json", "calibration_judgment_template.jsonl", "CALIBRATION_REVIEW_DASHBOARD.html", "JUDGMENT_PACKET_REPORT.json"];
-  await writeJson(path.join(outputDir, "run_plan.json"), { packet_version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, created_at: packet.created_at, run_key: runKey, commit_sha: git.commit_sha, branch: git.branch, source_bootstrap_dir: packet.source_bootstrap_dir, source_bootstrap_run_key: packet.source_bootstrap_run_key, result_limit: args.resultLimit, boundaries: packet.boundaries });
+  await writeJson(path.join(outputDir, "run_plan.json"), { packet_version: CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION, created_at: packet.created_at, run_key: runKey, commit_sha: git.commit_sha, branch: git.branch, source_bootstrap_dir: packet.source_bootstrap_dir, source_bootstrap_run_key: packet.source_bootstrap_run_key, source_corpus_inventory: packet.source_corpus_inventory, source_corpus_inventory_sha256: packet.source_corpus_inventory_sha256, source_artifact_root: packet.source_artifact_root, result_limit: args.resultLimit, boundaries: packet.boundaries });
   await writeJson(path.join(outputDir, "calibration_review_packet.json"), packet);
   await writeJsonl(path.join(outputDir, "calibration_judgment_template.jsonl"), templateRows);
   await fs.writeFile(path.join(outputDir, "CALIBRATION_REVIEW_DASHBOARD.html"), renderCalibrationDashboardV1(packet));
