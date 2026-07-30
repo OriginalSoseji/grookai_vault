@@ -9,6 +9,14 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V2_PRE_POKEJAVI_HANDOFF_20260730.md` - `2026-07-30` -
+  ENGINEERING COMPLETE THROUGH FINAL REVIEW PACKET; HUMAN PARTIAL EXPORT
+  REQUIRED BEFORE PORTAL DEPLOYMENT - Records PR #118, the complete zero-AI
+  V2 corpus/search build, repaired CI, bounded correction staging, the final
+  `200`-query / `678`-image packet, hash-verified V2 portal bundle, separation
+  from PokeJavi's browser-local old-packet progress, `1,183/1,183` repository
+  contracts, all no-write boundaries, and the exact export-through-release
+  resume sequence.
 - `VISUAL_SEARCH_V2_ZERO_AI_CORPUS_BUILD_20260730.md` - `2026-07-30` -
   ZERO-AI BUILD COMPLETE THROUGH HUMAN CALIBRATION; MIGRATION UNAPPLIED -
   Records the immutable `11,000`-source / `9,532`-artwork V2 release, zero
@@ -161,9 +169,10 @@ create canonical truth, or authorize downstream recommendation systems.
 17. Read `VISUAL_SEARCH_V2_UNIFIED_COLLECTOR_SEARCH_20260730.md`.
 18. Read `VISUAL_SEARCH_V2_EXTERNAL_SOURCE_INCORPORATION_20260730.md`.
 19. Read `VISUAL_SEARCH_V2_ZERO_AI_CORPUS_BUILD_20260730.md`.
-20. Read `docs/runbooks/CARD_VISUAL_SEARCH_PRIVATE_RELEASE_LOAD_V2.md`.
-21. Confirm the current production `main` SHA and compare it with the checkpoint
+20. Read `VISUAL_SEARCH_V2_PRE_POKEJAVI_HANDOFF_20260730.md`.
+21. Read `docs/runbooks/CARD_VISUAL_SEARCH_PRIVATE_RELEASE_LOAD_V2.md`.
+22. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-22. Confirm pricing canary/release work remains isolated.
-23. Inspect the governed source branch at the recorded SHA.
-24. Resume only from the latest V2 checkpoint's exact next gate.
+23. Confirm pricing canary/release work remains isolated.
+24. Inspect the governed source branch at the recorded SHA.
+25. Resume only from the latest V2 checkpoint's exact next gate.
