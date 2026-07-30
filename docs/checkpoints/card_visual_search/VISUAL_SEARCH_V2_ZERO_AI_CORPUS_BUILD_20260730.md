@@ -93,11 +93,11 @@ authorize recharging the existing corpus.
 
 Release:
 
-`C:\grookai_visual_search_releases\card_visual_search_corpus_release_v1_1_20260721\_rebuild\unified_collector_search_v2\2026-07-30T15-22-40-652Z_release_240c7f4885b2`
+`C:\grookai_visual_search_releases\card_visual_search_corpus_release_v1_1_20260721\_rebuild\unified_collector_search_v2\2026-07-30T15-37-33-910Z_release_a88641e94742`
 
-- Release key: `card_visual_search_v2_240c7f4885b2c9ef`
+- Release key: `card_visual_search_v2_a88641e94742662e`
 - Producing commit:
-  `1d82cfd0830cf0d64e6eaf4308f5eb17829c9d82`
+  `469bdb11d2c06f0185c0f1eaca973610420a0a8e`
 - Source IDs accounted: `11,000`
 - Artworks: `9,532`
 - Searchable printings: `9,702`
@@ -216,7 +216,7 @@ data and creates no active pointer.
   worktree has no `SUPABASE_DB_URL`.
 - No Flutter suite was run; this build does not change Flutter.
 
-## Failed Artifacts Preserved
+## Prior Artifacts Preserved
 
 - Aborted projection:
   `...\projection\2026-07-30T14-57-32-105Z_projection_f407659f4d99`
@@ -224,6 +224,8 @@ data and creates no active pointer.
   `...\high_risk_regression\2026-07-30T15-20-03-043Z_high_risk_ddeb8143b1e9`
 - Initial reviewer packet with incorrect relative source resolution:
   `...\reviewer_packet\2026-07-30T15-25-46-549Z_packet_7446d354ffb5`
+- Superseded valid release lacking a hash-pinned source-registry load payload:
+  `...\2026-07-30T15-22-40-652Z_release_240c7f4885b2`
 
 These are audit history, not release inputs.
 

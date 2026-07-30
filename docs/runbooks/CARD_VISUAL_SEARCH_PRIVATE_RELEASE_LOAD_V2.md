@@ -17,10 +17,10 @@ the release, or activate it.
 - Packet-builder commit:
   `9d2e6dd91fd567762aa4e1dddf9c5457d44dceb1`
 - Release-producing commit:
-  `1d82cfd0830cf0d64e6eaf4308f5eb17829c9d82`
-- Release key: `card_visual_search_v2_240c7f4885b2c9ef`
+  `469bdb11d2c06f0185c0f1eaca973610420a0a8e`
+- Release key: `card_visual_search_v2_a88641e94742662e`
 - Release directory:
-  `C:\grookai_visual_search_releases\card_visual_search_corpus_release_v1_1_20260721\_rebuild\unified_collector_search_v2\2026-07-30T15-22-40-652Z_release_240c7f4885b2`
+  `C:\grookai_visual_search_releases\card_visual_search_corpus_release_v1_1_20260721\_rebuild\unified_collector_search_v2\2026-07-30T15-37-33-910Z_release_a88641e94742`
 - Load plan: `load_plan.json` in the release directory
 - Migration:
   `supabase/migrations/20260729173000_card_visual_search_persistence_v1.sql`
@@ -91,7 +91,7 @@ The migration itself must not load data or activate a release.
 
 ## Staged Load Gate
 
-Load only release `card_visual_search_v2_240c7f4885b2c9ef` and follow the
+Load only release `card_visual_search_v2_a88641e94742662e` and follow the
 frozen `load_plan.json`.
 
 Required load order:
