@@ -404,6 +404,16 @@ export function buildVisualSearchCandidateIndexV1(groups) {
     for (const role of roles) addPosting(rolePostings, role, group.artwork_group_id);
     for (const entry of groupEntries(group)) {
       indexedEntries += 1;
+      if (
+        ["curated_cameo", "curated_cameo_role"].includes(entry.source_type) &&
+        entry.cameo_identity
+      ) {
+        addPosting(
+          subjectPostings,
+          normalizeVisualSearchTextV1(entry.cameo_identity),
+          group.artwork_group_id,
+        );
+      }
       addPosting(exactTermPostings, entry.normalized_term, group.artwork_group_id);
       for (const token of new Set(entry.search_tokens)) addPosting(tokenPostings, token, group.artwork_group_id);
     }
@@ -514,6 +524,9 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateInd
         term: entry.term,
         subject_role: entry.subject_role,
         supporting_observation_ids: entry.supporting_observation_ids,
+        supporting_external_evidence_ids: entry.supporting_external_evidence_ids,
+        authority: entry.authority,
+        governance_status: entry.governance_status,
         confidence: entry.confidence,
       })));
     }
@@ -534,6 +547,9 @@ export function rankVisualSearchQueryV1(query, groups, { topK = 25, candidateInd
         term: entry.term,
         subject_role: entry.subject_role,
         supporting_observation_ids: entry.supporting_observation_ids,
+        supporting_external_evidence_ids: entry.supporting_external_evidence_ids,
+        authority: entry.authority,
+        governance_status: entry.governance_status,
         confidence: entry.confidence,
       })));
     }

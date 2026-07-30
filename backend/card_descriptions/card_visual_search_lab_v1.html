@@ -221,6 +221,7 @@
       for (const concept of parsed.intent.visual_filters.concepts) addChip(concept);
       for (const count of parsed.intent.visual_filters.counts) addChip(`count: ${count.exact_count} ${count.label}`);
       for (const alias of parsed.intent.query_aliases) addChip(`alias: ${alias}`);
+      for (const source of parsed.intent.visual_filters.evidence_sources || []) addChip(`source: ${source}`);
       for (const term of parsed.intent.unrecognized_terms) addChip(`unsupported: ${term}`, true);
     }
 
@@ -246,6 +247,9 @@
       body.append(heading);
       const card = result.representative_card;
       body.append(element("p", "meta", `${card?.set_code || "Unknown set"} #${card?.number || "?"} | Tier ${result.eligibility_tier} | ${result.prompt_branch}`));
+      if (result.why_matched?.length) {
+        body.append(element("p", "meta", result.why_matched.join(" + ")));
+      }
 
       const evidence = element("ul", "evidence");
       const seen = new Set();
@@ -255,8 +259,17 @@
         seen.add(key);
         const item = element("li");
         item.append(element("span", "evidence-term", match.term));
-        const refs = (match.supporting_observation_ids || []).join(", ");
-        item.append(element("span", "evidence-source", `${match.document_type} | ${refs}`));
+        const observationRefs = match.supporting_observation_ids || [];
+        const externalRefs = match.supporting_external_evidence_ids || [];
+        const refs = observationRefs.length
+          ? `observations: ${observationRefs.join(", ")}`
+          : externalRefs.length
+            ? `external evidence: ${externalRefs.join(", ")}`
+            : "canonical match";
+        const governance = match.governance_status
+          ? ` | ${match.governance_status}`
+          : "";
+        item.append(element("span", "evidence-source", `${match.document_type} | ${refs}${governance}`));
         evidence.append(item);
         if (seen.size === 6) break;
       }

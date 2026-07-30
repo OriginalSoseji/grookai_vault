@@ -18,9 +18,15 @@ import {
   loadPokemonVisualIdentityLexiconV1,
   pokemonIdentityMatchesTextV1,
 } from "./card_visual_search_pokemon_identity_v1.mjs";
+import {
+  attachCuratedCameoEvidenceV1,
+  loadCuratedCameoReferenceRowsV1,
+} from "./card_visual_search_curated_cameo_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_LAB_VERSION = "CARD_VISUAL_SEARCH_LAB_V1";
 export const CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION = "CARD_VISUAL_SEARCH_QUERY_PARSER_V1";
+export const CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_VERSION =
+  "CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_V1";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
@@ -56,6 +62,7 @@ const ALIAS_DEFINITIONS = Object.freeze({
 });
 
 const SUBJECT_ROLE_RULES = Object.freeze([
+  { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bshaped (?:cookies?|cakes?|cand(?:y|ies)|pastr(?:y|ies)|desserts?|sweets?|ice creams?)\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bas (?:a |an )?food(?: item)?\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bfood shapes?\b/u },
   { role: "character_representation", filter: "representation_form", value: "ice cream", pattern: /\bice creams?\b/u },
@@ -115,6 +122,10 @@ export function parseCardVisualSearchLabArgsV1(argv = []) {
     projectionDir: parseFlag(argv, "projection-dir") ?? DEFAULT_PROJECTION_DIR,
     corpusInventory: parseFlag(argv, "corpus-inventory") ?? DEFAULT_CORPUS_INVENTORY,
     artifactRoot: parseFlag(argv, "artifact-root"),
+    cameoReference:
+      parseFlag(argv, "cameo-reference") ??
+      process.env.CARD_VISUAL_SEARCH_CAMEO_REFERENCE ??
+      null,
     uiPath: parseFlag(argv, "ui-path") ?? DEFAULT_UI_PATH,
     host: parseFlag(argv, "host") ?? "127.0.0.1",
     port: Number.parseInt(parseFlag(argv, "port") ?? "4177", 10),
@@ -158,7 +169,23 @@ function aliasPhraseInQuery(normalizedQuery, phrase) {
 }
 
 export function buildVisualSearchParserIndexV1(groups, candidateIndex = buildVisualSearchCandidateIndexV1(groups)) {
-  const canonicalNameByNormalized = new Map(groups.map((group) => [normalizeVisualSearchTextV1(group.name), group.name]));
+  const canonicalNameByNormalized = new Map();
+  for (const group of groups) {
+    for (const entry of visualSearchGroupEntriesV1(group)) {
+      if (entry.cameo_identity) {
+        canonicalNameByNormalized.set(
+          normalizeVisualSearchTextV1(entry.cameo_identity),
+          entry.cameo_identity,
+        );
+      }
+    }
+  }
+  for (const group of groups) {
+    canonicalNameByNormalized.set(
+      normalizeVisualSearchTextV1(group.name),
+      group.name,
+    );
+  }
   const subjects = [...candidateIndex.postings.subject.keys()]
     .filter(Boolean)
     .map((normalized) => ({ normalized, canonical: canonicalNameByNormalized.get(normalized) ?? normalized }))
@@ -242,6 +269,11 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
     working = removePhrase(working, matchedPhrase);
   }
 
+  const explicitCameo = /\bcameos?\b/iu.test(working);
+  if (explicitCameo) {
+    working = working.replace(/\bcameos?\b/iu, " ").replace(/\s+/gu, " ").trim();
+  }
+
   let subjectRole = null;
   let representationForm = null;
   let depictedSurface = null;
@@ -293,7 +325,7 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
     normalized_query: queryNormalize(originalQuery),
     detected_subject: subject ? { canonical_name: subject.canonical, normalized_name: subject.normalized } : null,
     intent: {
-      canonical_filters: { subjects: subject && !subjectRole ? [subject.canonical] : [], set_codes: setCodes, branches, years: null, artist: [] },
+      canonical_filters: { subjects: subject && !subjectRole && !explicitCameo ? [subject.canonical] : [], set_codes: setCodes, branches, years: null, artist: [] },
       visual_filters: {
         subject_roles: subjectRole ? [subjectRole] : [],
         subject_classes: subjectClasses,
@@ -303,6 +335,7 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
         colors: [],
         counts: countConstraints,
         relationships: [],
+        evidence_sources: explicitCameo ? ["curated_cameo"] : [],
       },
       query_aliases: queryAliases,
       negative_filters: [],
@@ -312,7 +345,12 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
 }
 
 function parsedSubjectRoleEntry(entry) {
-  if (entry.source_type !== "subject_role" || !entry.subject_role) return null;
+  if (
+    !["subject_role", "curated_cameo_role"].includes(entry.source_type) ||
+    !entry.subject_role
+  ) {
+    return null;
+  }
   const normalizedRole = normalizeVisualSearchTextV1(entry.subject_role).replaceAll("_", " ");
   const rawParts = String(entry.term ?? "").split(/\s*:\s*/u);
   const parts = rawParts.map(normalizeVisualSearchTextV1);
@@ -337,16 +375,20 @@ function roleIdentityMatches(requestedIdentity, roleEntry) {
 }
 
 function subjectRoleEntries(group) {
-  const document = group.documents.subject;
-  if (!document) return [];
-  return document.structured_concepts
-    .filter((entry) => entry.source_type === "subject_role" && entry.subject_role)
-    .map((entry) => ({
-      ...entry,
-      document_type: document.document_type,
-      search_document_id: document.search_document_id,
-      normalized_term: normalizeVisualSearchTextV1(entry.term),
-    }));
+  return Object.values(group.documents).flatMap((document) =>
+    document.structured_concepts
+      .filter(
+        (entry) =>
+          ["subject_role", "curated_cameo_role"].includes(entry.source_type) &&
+          entry.subject_role,
+      )
+      .map((entry) => ({
+        ...entry,
+        document_type: document.document_type,
+        search_document_id: document.search_document_id,
+        normalized_term: normalizeVisualSearchTextV1(entry.term),
+      })),
+  );
 }
 
 function allStructuredEvidenceEntries(group) {
@@ -356,6 +398,13 @@ function allStructuredEvidenceEntries(group) {
     search_document_id: document.search_document_id,
     normalized_term: normalizeVisualSearchTextV1(entry.term),
   })));
+}
+
+function hasEvidenceReference(entry) {
+  return Boolean(
+    entry.supporting_observation_ids?.length ||
+      entry.supporting_external_evidence_ids?.length,
+  );
 }
 
 function explicitRoleCueScopeAllows(requestedRole, entry) {
@@ -411,7 +460,9 @@ function explicitRoleCueEvidence(parsed, group) {
   const requestedQualifiers = requestedRole === "character_representation" ? representationForms : depictedSurfaces;
   if (!requestedQualifiers.length) return [];
   return allStructuredEvidenceEntries(group)
-    .filter((entry) => entry.source_type !== "subject_role" && entry.supporting_observation_ids?.length)
+    .filter(
+      (entry) => entry.source_type !== "subject_role" && hasEvidenceReference(entry),
+    )
     .filter((entry) => explicitRoleCueScopeAllows(requestedRole, entry))
     .filter((entry) => requestedQualifiers.every((value) => explicitRoleQualifierMatches(value, entry.normalized_term, requestedIdentity, subjectClasses)))
     .filter((entry) => {
@@ -437,6 +488,7 @@ function explicitRoleCueEvidence(parsed, group) {
       term: entry.term,
       subject_role: requestedRole,
       supporting_observation_ids: entry.supporting_observation_ids,
+      supporting_external_evidence_ids: entry.supporting_external_evidence_ids,
       confidence: entry.confidence,
       match_authority: "explicit_role_cue_recovery",
     }));
@@ -450,7 +502,7 @@ function roleConstraintEvidence(parsed, group) {
   const representationForms = parsed.intent.visual_filters.representation_forms;
   const depictedSurfaces = parsed.intent.visual_filters.depicted_surfaces;
   const structured = subjectRoleEntries(group)
-    .filter((entry) => entry.supporting_observation_ids?.length)
+    .filter(hasEvidenceReference)
     .filter((entry) => {
       const roleEntry = parsedSubjectRoleEntry(entry);
       if (!roleEntry || roleEntry.role !== requestedRole) return false;
@@ -474,10 +526,64 @@ function roleConstraintEvidence(parsed, group) {
       term: entry.term,
       subject_role: entry.subject_role,
       supporting_observation_ids: entry.supporting_observation_ids,
+      supporting_external_evidence_ids: entry.supporting_external_evidence_ids,
+      authority: entry.authority,
+      governance_status: entry.governance_status,
       confidence: entry.confidence,
-      match_authority: "bound_subject_role_evidence",
+      match_authority:
+        entry.source_type === "curated_cameo_role"
+          ? "curated_cameo_display_mode_evidence"
+          : "bound_subject_role_evidence",
     }));
   return structured.length ? structured : explicitRoleCueEvidence(parsed, group);
+}
+
+function curatedCameoConstraintEvidence(parsed, group) {
+  if (
+    !parsed.intent.visual_filters.evidence_sources.includes("curated_cameo")
+  ) {
+    return [];
+  }
+  const requestedIdentity = parsed.detected_subject?.normalized_name ?? null;
+  const subjectClasses = parsed.intent.visual_filters.subject_classes;
+  return allStructuredEvidenceEntries(group)
+    .filter(
+      (entry) =>
+        entry.source_type === "curated_cameo" && hasEvidenceReference(entry),
+    )
+    .filter((entry) => {
+      const identity = normalizeVisualSearchTextV1(entry.cameo_identity);
+      if (requestedIdentity && identity !== requestedIdentity) return false;
+      if (
+        subjectClasses.includes("pokemon") &&
+        !pokemonIdentityMatchesTextV1(identity, POKEMON_IDENTITY_LEXICON)
+      ) {
+        return false;
+      }
+      return true;
+    })
+    .map((entry) => ({
+      query_concept: [
+        parsed.detected_subject?.canonical_name,
+        ...subjectClasses,
+        "cameo",
+      ]
+        .filter(Boolean)
+        .join(" "),
+      search_document_id: entry.search_document_id,
+      document_type: entry.document_type,
+      source_type: entry.source_type,
+      source_id: entry.source_id,
+      term: entry.term,
+      subject_role: "curated_cameo",
+      supporting_observation_ids: [],
+      supporting_external_evidence_ids:
+        entry.supporting_external_evidence_ids,
+      authority: entry.authority,
+      governance_status: entry.governance_status,
+      confidence: entry.confidence,
+      match_authority: "curated_cameo_association",
+    }));
 }
 
 function evidenceRows(group, pattern) {
@@ -567,12 +673,20 @@ function subjectClassConceptsAreBound(parsed, result, group, boundRoleEvidence) 
   const classRoleRows = roleRows.filter((row) => pokemonIdentityMatchesTextV1(row.parsed.identity, POKEMON_IDENTITY_LEXICON));
   if (!classRoleRows.length) return false;
   const everyRoleSubjectMatchesClass = roleRows.length === classRoleRows.length;
-  const subjectObservationIds = new Set(boundRoleEvidence.flatMap((entry) => entry.supporting_observation_ids));
+  const subjectObservationIds = new Set(
+    boundRoleEvidence.flatMap(
+      (entry) => entry.supporting_observation_ids ?? [],
+    ),
+  );
   for (const concept of parsed.intent.visual_filters.concepts) {
     const conceptEvidence = result.matched_evidence.filter((entry) => entry.query_concept === concept);
     if (!conceptEvidence.length) return false;
     if (conceptEvidence.some((entry) => entry.document_type !== "subject")) continue;
-    const directlyBound = conceptEvidence.some((entry) => entry.supporting_observation_ids.some((id) => subjectObservationIds.has(id)));
+    const directlyBound = conceptEvidence.some((entry) =>
+      (entry.supporting_observation_ids ?? []).some((id) =>
+        subjectObservationIds.has(id),
+      ),
+    );
     if (!directlyBound && !everyRoleSubjectMatchesClass) return false;
   }
   return true;
@@ -580,38 +694,161 @@ function subjectClassConceptsAreBound(parsed, result, group, boundRoleEvidence) 
 
 function rankedIntentAlternatives(parsed, artworkGroupIds) {
   const primary = baseRankIntent(parsed, artworkGroupIds);
-  if (!parsed.detected_subject) return [primary];
+  if (!parsed.detected_subject) {
+    return [{ intent: primary, retrieval_mode: "structured_constraints" }];
+  }
   if (parsed.intent.visual_filters.subject_roles.length) {
     primary.canonical_filters = { ...primary.canonical_filters, subjects: [] };
     primary.subject_roles = [];
-    return [primary];
+    return [{ intent: primary, retrieval_mode: "bound_subject_role" }];
   }
   const visualIdentity = {
     ...primary,
     canonical_filters: { ...primary.canonical_filters, subjects: [] },
     visual_concepts: unique([parsed.detected_subject.canonical_name, ...primary.visual_concepts]),
   };
-  return [primary, visualIdentity];
+  return [
+    { intent: primary, retrieval_mode: "canonical_identity" },
+    { intent: visualIdentity, retrieval_mode: "visual_identity" },
+  ];
 }
 
 function representativePrinting(result) {
   return result.matching_printings.find((printing) => printing.card_print_id === result.representative_card_print_id) ?? result.matching_printings[0] ?? null;
 }
 
-export function createVisualSearchLabEngineV1(groups, { imageResolver = null } = {}) {
+function evidenceIds(entry) {
+  return unique([
+    ...(entry.supporting_observation_ids ?? []),
+    ...(entry.supporting_external_evidence_ids ?? []),
+  ]);
+}
+
+function namedVisualIdentityConceptsAreBound(parsed, result, retrievalMode) {
+  if (
+    retrievalMode !== "visual_identity" ||
+    !parsed.detected_subject ||
+    !parsed.intent.visual_filters.concepts.length
+  ) {
+    return true;
+  }
+  const identityConcept = parsed.detected_subject.canonical_name;
+  const identityEvidence = result.matched_evidence.filter(
+    (entry) => entry.query_concept === identityConcept,
+  );
+  if (!identityEvidence.length) return false;
+  const identityIds = new Set(identityEvidence.flatMap(evidenceIds));
+
+  for (const concept of parsed.intent.visual_filters.concepts) {
+    const conceptEvidence = result.matched_evidence.filter(
+      (entry) => entry.query_concept === concept,
+    );
+    if (!conceptEvidence.length) return false;
+    const subjectScoped = conceptEvidence.every(
+      (entry) => entry.document_type === "subject",
+    );
+    if (!subjectScoped) continue;
+    const bound = conceptEvidence.some((entry) =>
+      evidenceIds(entry).some((id) => identityIds.has(id)),
+    );
+    if (!bound) return false;
+  }
+  return true;
+}
+
+function resultMatchSources(parsed, result, retrievalMode) {
+  const sources = [];
+  if (
+    retrievalMode === "canonical_identity" &&
+    parsed.intent.canonical_filters.subjects.length
+  ) {
+    sources.push("canonical_identity");
+  }
+  if (
+    parsed.intent.canonical_filters.set_codes.length ||
+    parsed.intent.canonical_filters.branches.length
+  ) {
+    sources.push("canonical_metadata");
+  }
+  if (
+    result.matched_evidence.some((entry) =>
+      ["curated_cameo", "curated_cameo_role"].includes(entry.source_type),
+    )
+  ) {
+    sources.push("curated_cameo");
+  }
+  if (
+    result.matched_evidence.some(
+      (entry) =>
+        !["curated_cameo", "curated_cameo_role"].includes(entry.source_type),
+    )
+  ) {
+    sources.push("visual_fact_graph");
+  }
+  return unique(sources);
+}
+
+function evidenceKey(entry) {
+  return [
+    entry.source_type,
+    entry.source_id,
+    entry.query_concept,
+    entry.match_authority,
+  ].join("|");
+}
+
+function mergeResultCandidates(existing, candidate) {
+  if (!existing) return candidate;
+  const best = candidate.score > existing.score ? candidate : existing;
+  const evidence = new Map();
+  for (const entry of [
+    ...existing.matched_evidence,
+    ...candidate.matched_evidence,
+  ]) {
+    evidence.set(evidenceKey(entry), entry);
+  }
+  const matchedSources = unique([
+    ...existing.matched_sources,
+    ...candidate.matched_sources,
+  ]);
+  const multiSourceBoost = Math.max(0, matchedSources.length - 1);
+  return {
+    ...best,
+    score: Math.max(existing.score, candidate.score) + multiSourceBoost,
+    matched_evidence: [...evidence.values()],
+    matched_sources: matchedSources,
+    retrieval_modes: unique([
+      ...existing.retrieval_modes,
+      ...candidate.retrieval_modes,
+    ]),
+    why_matched: matchedSources.map((source) => {
+      if (source === "canonical_identity") return "Direct canonical identity match";
+      if (source === "canonical_metadata") return "Canonical metadata match";
+      if (source === "curated_cameo") return "Curated cameo relationship";
+      return "Observable visual fact match";
+    }),
+  };
+}
+
+export function createVisualSearchLabEngineV1(
+  groups,
+  { imageResolver = null, curatedCameoStats = null } = {},
+) {
   const candidateIndex = buildVisualSearchCandidateIndexV1(groups);
   const parserIndex = buildVisualSearchParserIndexV1(groups, candidateIndex);
   return {
     version: CARD_VISUAL_SEARCH_LAB_VERSION,
+    unified_evidence_version: CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_VERSION,
     candidate_index: candidateIndex,
     parser_index: parserIndex,
+    curated_cameo_stats: curatedCameoStats,
     async search(queryText, { limit = 24 } = {}) {
       const started = performance.now();
       const parsed = parseVisualSearchQueryV1(queryText, parserIndex);
       if (parsed.intent.unrecognized_terms.length) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "unrecognized_terms", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
-      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.query_aliases.length;
+      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.visual_filters.evidence_sources.length || parsed.intent.query_aliases.length;
       if (!hasConstraint) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_supported_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
@@ -626,6 +863,26 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
       let allowedGroupIds = parsed.intent.query_aliases.length ? new Set(aliasMatches.keys()) : null;
       if (parsed.intent.query_aliases.length && !allowedGroupIds.size) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "alias_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+      }
+
+      const sourceMatches = new Map();
+      if (parsed.intent.visual_filters.evidence_sources.length) {
+        for (const group of groups) {
+          const evidence = curatedCameoConstraintEvidence(parsed, group);
+          if (evidence.length) {
+            sourceMatches.set(group.artwork_group_id, evidence);
+          }
+        }
+        if (!sourceMatches.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "curated_cameo_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+        const sourceGroupIds = new Set(sourceMatches.keys());
+        allowedGroupIds = allowedGroupIds
+          ? new Set([...allowedGroupIds].filter((groupId) => sourceGroupIds.has(groupId)))
+          : sourceGroupIds;
+        if (!allowedGroupIds.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
       }
 
       const roleMatches = new Map();
@@ -647,29 +904,70 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
       }
 
       const merged = new Map();
-      for (const intent of rankedIntentAlternatives(parsed, allowedGroupIds ? [...allowedGroupIds] : [])) {
+      for (const alternative of rankedIntentAlternatives(parsed, allowedGroupIds ? [...allowedGroupIds] : [])) {
+        const { intent, retrieval_mode: retrievalMode } = alternative;
         if (parsed.intent.visual_filters.subject_roles.length) intent.subject_roles = [];
         const ranked = rankVisualSearchQueryV1({ intent }, groups, { topK: groups.length, candidateIndex });
         for (const result of ranked.results) {
           const aliases = aliasMatches.get(result.artwork_group_id) ?? [];
           const aliasEvidence = aliases.flatMap((decision) => decision.evidence.map((entry) => ({ ...entry, query_concept: decision.alias, match_authority: "query_alias_evidence" })));
           const boundRoleEvidence = roleMatches.get(result.artwork_group_id) ?? [];
+          const curatedSourceEvidence = sourceMatches.get(result.artwork_group_id) ?? [];
           const resultGroup = candidateIndex.groups_by_id.get(result.artwork_group_id);
           if (!subjectClassConceptsAreBound(parsed, result, resultGroup, boundRoleEvidence)) continue;
-          const existing = merged.get(result.artwork_group_id);
-          const candidate = {
+          if (!namedVisualIdentityConceptsAreBound(parsed, result, retrievalMode)) continue;
+          const matchedEvidence = [
+            ...result.matched_evidence,
+            ...boundRoleEvidence,
+            ...aliasEvidence,
+            ...curatedSourceEvidence,
+          ];
+          const authorityAdjustment = matchedEvidence.some(
+            (entry) =>
+              entry.governance_status === "existing_approved" &&
+              ["curated_cameo", "curated_cameo_role"].includes(
+                entry.source_type,
+              ),
+          )
+            ? 2
+            : 0;
+          const resultWithEvidence = {
             ...result,
-            score: result.score + aliases.length * 12 + (parsed.intent.visual_filters.subject_roles.length ? 8 : 0),
+            matched_evidence: matchedEvidence,
+          };
+          const matchedSources = resultMatchSources(
+            parsed,
+            resultWithEvidence,
+            retrievalMode,
+          );
+          const candidate = {
+            ...resultWithEvidence,
+            score: result.score + aliases.length * 12 + (parsed.intent.visual_filters.subject_roles.length ? 8 : 0) + (parsed.intent.visual_filters.evidence_sources.length ? 8 : 0) + authorityAdjustment,
             score_components: {
               ...result.score_components,
               subject_role: parsed.intent.visual_filters.subject_roles.length ? 8 : 0,
               alias_evidence: aliases.length * 12,
+              curated_cameo_filter: parsed.intent.visual_filters.evidence_sources.length ? 8 : 0,
+              curated_cameo_authority: authorityAdjustment,
             },
             matched_subject_roles: parsed.intent.visual_filters.subject_roles,
-            matched_evidence: [...result.matched_evidence, ...boundRoleEvidence, ...aliasEvidence],
             matched_aliases: aliases.map((decision) => ({ alias: decision.alias, decision_rule: decision.decision_rule })),
+            matched_sources: matchedSources,
+            retrieval_modes: [retrievalMode],
+            why_matched: matchedSources.map((source) => {
+              if (source === "canonical_identity") return "Direct canonical identity match";
+              if (source === "canonical_metadata") return "Canonical metadata match";
+              if (source === "curated_cameo") return "Curated cameo relationship";
+              return "Observable visual fact match";
+            }),
           };
-          if (!existing || candidate.score > existing.score) merged.set(result.artwork_group_id, candidate);
+          merged.set(
+            result.artwork_group_id,
+            mergeResultCandidates(
+              merged.get(result.artwork_group_id),
+              candidate,
+            ),
+          );
         }
       }
 
@@ -793,9 +1091,12 @@ export function createVisualSearchLabServerV1({ engine, uiHtml, imageFetch = fet
           status: "ready",
           version: CARD_VISUAL_SEARCH_LAB_VERSION,
           parser_version: CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION,
+          unified_evidence_version:
+            CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_VERSION,
           index_version: engine.candidate_index.version,
           artwork_groups: engine.candidate_index.stats.artwork_groups,
           indexed_entries: engine.candidate_index.stats.indexed_entries,
+          curated_cameos: engine.curated_cameo_stats,
           boundaries: { local_only: true, provider_calls: false, database_connections: false, database_writes: false, approvals: false, embeddings: false, holdout_execution: false, public_release: false },
         });
       }
@@ -842,25 +1143,47 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
   if (!LOOPBACK_HOSTS.has(args.host)) throw new Error("search lab must bind to a loopback host");
   if (!Number.isInteger(args.port) || args.port < 1024 || args.port > 65535) throw new Error("port must be an integer from 1024 through 65535");
   const projection = await loadVisualSearchProjectionV1(repoPath(args.projectionDir));
-  const [imageResolver, uiHtml] = await Promise.all([
+  const [imageResolver, uiHtml, curatedCameoRows] = await Promise.all([
     createVisualSearchImageResolverV1(args.corpusInventory, {
       artifactRoot: args.artifactRoot,
     }),
     fs.readFile(repoPath(args.uiPath), "utf8"),
+    args.cameoReference
+      ? loadCuratedCameoReferenceRowsV1(repoPath(args.cameoReference))
+      : Promise.resolve([]),
   ]);
-  const engine = createVisualSearchLabEngineV1(projection.groups, { imageResolver });
+  const curatedCameos = args.cameoReference
+    ? attachCuratedCameoEvidenceV1(projection.groups, curatedCameoRows)
+    : {
+        groups: projection.groups,
+        stats: null,
+      };
+  const engine = createVisualSearchLabEngineV1(curatedCameos.groups, {
+    imageResolver,
+    curatedCameoStats: curatedCameos.stats,
+  });
   const server = createVisualSearchLabServerV1({ engine, uiHtml });
   await new Promise((resolve, reject) => {
     server.once("error", reject);
     server.listen(args.port, args.host, resolve);
   });
-  return { server, engine, url: `http://${args.host}:${args.port}`, projection, imageResolver };
+  return {
+    server,
+    engine,
+    url: `http://${args.host}:${args.port}`,
+    projection,
+    curatedCameos,
+    imageResolver,
+  };
 }
 
 export async function main() {
   const started = await startCardVisualSearchLabV1();
   console.log(`[card-visual-search-lab] ready=${started.url}`);
   console.log(`[card-visual-search-lab] artwork_groups=${started.engine.candidate_index.stats.artwork_groups}`);
+  console.log(
+    `[card-visual-search-lab] curated_cameo_relationships=${started.engine.curated_cameo_stats?.accepted_rows ?? 0}`,
+  );
   console.log("[card-visual-search-lab] boundaries=local-only,no-provider,no-db,no-embeddings,no-holdout");
 }
 
