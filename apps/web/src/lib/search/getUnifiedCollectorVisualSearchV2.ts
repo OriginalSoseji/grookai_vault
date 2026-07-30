@@ -154,6 +154,16 @@ type HydratedEvidenceAssertion = {
   evidence_payload?: Record<string, unknown> | null;
 };
 
+type HydratedEvidenceSuppression = {
+  suppression_id?: string | null;
+  target_observation_ids?: string[] | null;
+  target_source_ids?: string[] | null;
+  authority?: string | null;
+  decision?: string | null;
+  rationale?: string | null;
+  suppression_hash?: string | null;
+};
+
 type HydratedGroup = {
   artwork_group_id: string | null;
   representative_card_print_id: string | null;
@@ -161,6 +171,7 @@ type HydratedGroup = {
   prompt_branch: string | null;
   documents: HydratedDocument[] | null;
   evidence_assertions: HydratedEvidenceAssertion[] | null;
+  evidence_suppressions: HydratedEvidenceSuppression[] | null;
   printings: HydratedPrinting[] | null;
 };
 
@@ -526,9 +537,21 @@ function qualifiersMatch(
 }
 
 function allRoleEvidence(group: HydratedGroup) {
+  const suppressions = group.evidence_suppressions ?? [];
+  const conceptIsSuppressed = (concept: StructuredConcept) =>
+    suppressions.some(
+      (suppression) =>
+        (suppression.target_source_ids ?? []).includes(
+          normalize(concept.source_id),
+        ) ||
+        (suppression.target_observation_ids ?? []).some((observationId) =>
+          (concept.supporting_observation_ids ?? []).includes(observationId),
+        ),
+    );
   return [
     ...(group.documents ?? [])
       .flatMap((document) => document.structured_concepts ?? [])
+      .filter((concept) => !conceptIsSuppressed(concept))
       .map(parseRoleEvidence),
     ...(group.evidence_assertions ?? []).map(parseAssertionEvidence),
   ].filter((row): row is ParsedRoleEvidence => Boolean(row));

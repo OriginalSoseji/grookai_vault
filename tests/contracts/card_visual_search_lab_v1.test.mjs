@@ -126,6 +126,11 @@ function fixtures() {
       entry("snack-pikachu", "scene_subject: Pikachu", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
       entry("snack-ice-cream", "Pikachu holding an ice cream cone", "scene", { module: "objects_and_props" }),
     ]),
+    group("021", "Marowak ex", "pokemon", [
+      entry("marowak-subject", "scene_subject: Marowak", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("marowak-standing", "standing", "subject", { supporting_observation_ids: ["obs-marowak-subject"] }),
+      entry("bad-standing-role", "visual_resemblance_reference: standing", "subject", { source_type: "subject_role", subject_role: "visual_resemblance_reference" }),
+    ], ["scene_subject", "visual_resemblance_reference"]),
   ];
 }
 
@@ -175,6 +180,23 @@ test("parser separates canonical subject, visual facts, roles, branches, counts,
 
   const unknownQuery = parseVisualSearchQueryV1("Pikachu beside a quantum accordion", parser);
   assert.deepEqual(unknownQuery.intent.unrecognized_terms, ["quantum", "accordion"]);
+});
+
+test("pose terms cannot be promoted into a second subject identity", async () => {
+  const groups = fixtures();
+  const engine = createVisualSearchLabEngineV1(groups);
+  const parsed = parseVisualSearchQueryV1(
+    "Marowak standing",
+    engine.parser_index,
+  );
+  assert.deepEqual(
+    parsed.detected_subjects.map((row) => row.normalized_name),
+    ["marowak"],
+  );
+  assert.deepEqual(parsed.intent.visual_filters.concepts, ["standing"]);
+  const result = await engine.search("Marowak standing");
+  assert.equal(result.total_matches, 1);
+  assert.equal(result.results[0].artwork_group_id, "group-021");
 });
 
 test("search is strict, groups artwork first, expands printings, and preserves evidence references", async () => {

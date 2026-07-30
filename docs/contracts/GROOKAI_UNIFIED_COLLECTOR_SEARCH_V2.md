@@ -62,6 +62,11 @@ The active runtime hydrates release-scoped evidence assertions separately from
 Fact Graph documents. Assertion IDs remain external evidence IDs; they are
 never converted into observation IDs or copied into paid source graphs.
 
+Founder image-confirmed negative evidence is release-scoped and image-pinned.
+Suppressed source observations and every claim derived from them are excluded
+from candidate indexes, matching, and collector evidence panels. The original
+paid graph remains immutable for audit.
+
 ## Collector Response
 
 Collector-facing interpretation uses editable natural-language chips. Results
@@ -88,6 +93,9 @@ Signed-in collectors may report:
 
 Reports enter `card_visual_search_corrections`. They never alter active search,
 evidence assertions, or canonical identity.
+
+An accepted report becomes effective only after founder review and inclusion
+in a later immutable release as a governed assertion or suppression.
 
 ## Runtime Failure
 

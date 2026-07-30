@@ -25,6 +25,11 @@ import {
 import {
   CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_VERSION,
 } from "./card_visual_search_tcg_concepts_v1.mjs";
+import {
+  buildCardVisualSearchEvidenceSuppressionIndexV1,
+  evidenceEntrySuppressionV1,
+  loadCardVisualSearchEvidenceSuppressionsV1,
+} from "./card_visual_search_evidence_suppression_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_CORPUS_RELEASE_VERSION =
   "CARD_VISUAL_SEARCH_CORPUS_RELEASE_V2";
@@ -43,6 +48,8 @@ const DEFAULT_CAMEO_REFERENCE =
   `${DEFAULT_RELEASE_ROOT}/_analysis/card_visual_cameo_reference_import_v1/2026-07-30T05-21-18-311Z_import_0f9c53c4c02e/canonical_matches.jsonl`;
 const DEFAULT_REVIEWED_EVIDENCE =
   "docs/evidence/card_visual_search_founder_reviews_v1.json";
+const DEFAULT_EVIDENCE_SUPPRESSIONS =
+  "docs/evidence/card_visual_search_founder_suppressions_v1.json";
 const DEFAULT_MIGRATION =
   "supabase/migrations/20260729173000_card_visual_search_persistence_v1.sql";
 const DEFAULT_OUTPUT_ROOT =
@@ -75,6 +82,9 @@ export function parseCardVisualSearchCorpusReleaseArgsV2(argv = []) {
       parseFlag(argv, "cameo-reference") ?? DEFAULT_CAMEO_REFERENCE,
     reviewedEvidence:
       parseFlag(argv, "reviewed-evidence") ?? DEFAULT_REVIEWED_EVIDENCE,
+    evidenceSuppressions:
+      parseFlag(argv, "evidence-suppressions") ??
+      DEFAULT_EVIDENCE_SUPPRESSIONS,
     migration: parseFlag(argv, "migration") ?? DEFAULT_MIGRATION,
     outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
     outputDir: parseFlag(argv, "output-dir"),
@@ -341,6 +351,7 @@ function emptyLedger(artwork) {
     source_payload_mutated: false,
     projection_document_count: 0,
     projected_evidence_count: 0,
+    suppressed_evidence_count: 0,
     projection_exclusion_count: artwork.exclusion_count ?? 0,
     tcg_concept_count: 0,
     tcg_concept_families: [],
@@ -370,6 +381,8 @@ Generated: ${report.created_at}
 - Artwork groups: \`${c.artworks}\`
 - Projection documents: \`${c.documents}\`
 - Projected evidence: \`${c.evidence}\`
+- Searchable evidence after governed suppressions: \`${c.searchable_evidence}\`
+- Founder-confirmed evidence suppressions: \`${c.evidence_suppressions}\`
 - Deterministic TCG concepts: \`${c.tcg_concepts}\`
 - External candidate rows: \`${c.external_candidates}\`
 - Active governed external assertions: \`${c.external_assertions}\`
@@ -414,6 +427,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   const eligibilityDir = repoPath(args.eligibilityDir);
   const cameoReference = repoPath(args.cameoReference);
   const reviewedEvidence = repoPath(args.reviewedEvidence);
+  const evidenceSuppressions = repoPath(args.evidenceSuppressions);
   const migrationPath = repoPath(args.migration);
   const projectionManifest = await readJson(
     path.join(projectionDir, "artifact_hashes.json"),
@@ -441,12 +455,14 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     eligibilityDecisions,
     curatedRows,
     reviewedPayload,
+    suppressionRecords,
   ] = await Promise.all([
     readJsonl(path.join(projectionDir, "visual_search_artworks.jsonl")),
     readJsonl(path.join(projectionDir, "visual_search_printings.jsonl")),
     readJsonl(path.join(eligibilityDir, "eligibility_decisions.jsonl")),
     readJsonl(cameoReference),
     readJson(reviewedEvidence),
+    loadCardVisualSearchEvidenceSuppressionsV1(evidenceSuppressions),
   ]);
 
   const artworkById = new Map(
@@ -454,6 +470,26 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   );
   const groupByCardPrintId = new Map(
     printings.map((row) => [row.card_print_id, row.artwork_group_id]),
+  );
+  const printingsByGroup = new Map();
+  for (const printing of printings) {
+    const rows = printingsByGroup.get(printing.artwork_group_id) ?? [];
+    rows.push(printing);
+    printingsByGroup.set(printing.artwork_group_id, rows);
+  }
+  const suppressionByGroup =
+    buildCardVisualSearchEvidenceSuppressionIndexV1(
+      suppressionRecords,
+      artworks.map((artwork) => ({
+        ...artwork,
+        printings: printingsByGroup.get(artwork.artwork_group_id) ?? [],
+      })),
+    );
+  const suppressionDocumentMatches = new Map(
+    suppressionRecords.map((row) => [row.suppression_id, 0]),
+  );
+  const suppressionEvidenceMatches = new Map(
+    suppressionRecords.map((row) => [row.suppression_id, 0]),
   );
   const ledgerByGroup = new Map(
     artworks.map((row) => [row.artwork_group_id, emptyLedger(row)]),
@@ -508,6 +544,18 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       }
       for (const concept of document.structured_concepts ?? []) {
         structuredConceptCount += 1;
+        const suppression = evidenceEntrySuppressionV1(
+          concept,
+          suppressionByGroup.get(document.artwork_group_id),
+        );
+        if (suppression) {
+          ledger.suppressed_evidence_count += 1;
+          suppressionDocumentMatches.set(
+            suppression.suppression_id,
+            suppressionDocumentMatches.get(suppression.suppression_id) + 1,
+          );
+          continue;
+        }
         indexTerm(
           index,
           document.artwork_group_id,
@@ -533,6 +581,16 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       const ledger = ledgerByGroup.get(entry.artwork_group_id);
       if (!ledger) throw new Error(`evidence has unknown artwork ${entry.artwork_group_id}`);
       ledger.projected_evidence_count += 1;
+      const suppression = evidenceEntrySuppressionV1(
+        entry,
+        suppressionByGroup.get(entry.artwork_group_id),
+      );
+      if (suppression) {
+        suppressionEvidenceMatches.set(
+          suppression.suppression_id,
+          suppressionEvidenceMatches.get(suppression.suppression_id) + 1,
+        );
+      }
       if (
         !(entry.supporting_observation_ids ?? []).length &&
         !(entry.supporting_external_evidence_ids ?? []).length
@@ -646,6 +704,13 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       left.index_key.localeCompare(right.index_key) ||
       left.artwork_group_id.localeCompare(right.artwork_group_id),
   );
+  const evidenceSuppressionRows = suppressionRecords.map((record) => ({
+    ...record,
+    matched_document_entries:
+      suppressionDocumentMatches.get(record.suppression_id) ?? 0,
+    matched_evidence_entries:
+      suppressionEvidenceMatches.get(record.suppression_id) ?? 0,
+  }));
   const allAccountedIds = [
     ...printings.map((row) => row.card_print_id),
     ...coverageGaps.map((row) => row.card_print_id),
@@ -669,6 +734,13 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   }
   if (missingObservationReferences) {
     findings.push(`missing_evidence_references:${missingObservationReferences}`);
+  }
+  for (const row of evidenceSuppressionRows) {
+    if (!row.matched_document_entries || !row.matched_evidence_entries) {
+      findings.push(
+        `unresolved_evidence_suppression:${row.suppression_id}`,
+      );
+    }
   }
   if (duplicates(allAccountedIds).length) findings.push("duplicate_accounted_ids");
   if (allAccountedIds.length !== eligibilityDecisions.length) {
@@ -720,6 +792,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     ),
     curated_reference: await hashFile(cameoReference),
     reviewed_evidence: await hashFile(reviewedEvidence),
+    evidence_suppressions: await hashFile(evidenceSuppressions),
     migration: await hashFile(migrationPath),
   };
   const runKey = sha256JsonV1({
@@ -741,6 +814,13 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     coverage_gaps: coverageGaps.length,
     documents: documentCount,
     evidence: evidenceCount,
+    searchable_evidence:
+      evidenceCount -
+      evidenceSuppressionRows.reduce(
+        (sum, row) => sum + row.matched_evidence_entries,
+        0,
+      ),
+    evidence_suppressions: evidenceSuppressionRows.length,
     tcg_concepts: tcgConceptCount,
     external_candidates: externalCandidates.length,
     external_assertions: externalAssertions.length,
@@ -757,6 +837,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     eligibility_dir: displayPath(eligibilityDir),
     cameo_reference: displayPath(cameoReference),
     reviewed_evidence: displayPath(reviewedEvidence),
+    evidence_suppressions: displayPath(evidenceSuppressions),
     migration: displayPath(migrationPath),
     source_hashes_sha256: sourceHashes,
     boundaries: {
@@ -788,6 +869,10 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       assertion_roles: countBy(
         externalAssertions,
         (row) => row.appearance_role,
+      ),
+      suppression_decisions: countBy(
+        evidenceSuppressionRows,
+        (row) => row.decision,
       ),
       index_kinds: countBy(indexEntries, (row) => row.index_kind),
     },
@@ -889,6 +974,15 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
         rows: externalAssertions.length,
         target_table: "public.card_visual_evidence_assertions",
       },
+      evidence_suppressions: {
+        artifact_path: displayPath(
+          path.join(outputDir, "evidence_suppressions.jsonl"),
+        ),
+        artifact_sha256: null,
+        rows: evidenceSuppressionRows.length,
+        target_table:
+          "public.card_visual_search_evidence_suppressions",
+      },
     },
     load_order: [
       "card_visual_search_releases:staged",
@@ -897,6 +991,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       "card_visual_search_printings",
       "card_visual_search_documents",
       "card_visual_search_evidence",
+      "card_visual_search_evidence_suppressions",
       "card_visual_evidence_candidates",
       "card_visual_evidence_assertions",
       "card_visual_search_index_entries",
@@ -908,6 +1003,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
       exact_row_counts: true,
       source_hash_mismatches: 0,
       missing_evidence_references: 0,
+      unresolved_evidence_suppressions: 0,
       duplicate_primary_keys: 0,
       energy_rows: 0,
       active_release_pointer_rows: 0,
@@ -939,6 +1035,10 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     externalAssertions,
   );
   await writeJsonl(
+    path.join(outputDir, "evidence_suppressions.jsonl"),
+    evidenceSuppressionRows,
+  );
+  await writeJsonl(
     path.join(outputDir, "visual_search_index_entries.jsonl"),
     indexEntries,
   );
@@ -966,6 +1066,7 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     "coverage_gaps.jsonl",
     "external_evidence_candidates.jsonl",
     "external_evidence_assertions.jsonl",
+    "evidence_suppressions.jsonl",
     "visual_search_index_entries.jsonl",
     "release_manifest.json",
     "load_plan.json",
@@ -982,6 +1083,8 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     hashes["external_evidence_candidates.jsonl"];
   loadPlan.source_inputs.external_assertions.artifact_sha256 =
     hashes["external_evidence_assertions.jsonl"];
+  loadPlan.source_inputs.evidence_suppressions.artifact_sha256 =
+    hashes["evidence_suppressions.jsonl"];
   await writeJson(path.join(outputDir, "load_plan.json"), loadPlan);
   hashes["load_plan.json"] = await hashFile(path.join(outputDir, "load_plan.json"));
   await writeJson(path.join(outputDir, "artifact_hashes.json"), {

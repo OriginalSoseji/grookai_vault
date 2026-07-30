@@ -16,6 +16,7 @@ The release reuses the immutable V1.1 source package and builds:
 - a repair and coverage ledger;
 - private external-evidence candidates;
 - governed image-confirmed or role-confirmed assertions;
+- founder image-confirmed negative-evidence suppressions;
 - materialized lexical and structured index entries;
 - a no-write database load plan.
 
@@ -26,6 +27,10 @@ decision, artwork membership, and external snapshot hash must reconcile before
 the release can pass.
 
 The release never edits a paid Fact Graph.
+
+Founder-confirmed suppressions remove unsupported source observations and all
+derived terms from the release index. They are exact, image-hash-pinned,
+release-scoped decisions. They cannot introduce a replacement fact.
 
 ## Complete Accounting
 
@@ -84,6 +89,7 @@ The artifact release passes only with:
 - exact source-ID accounting;
 - zero source hash mismatch;
 - zero missing evidence reference;
+- zero unresolved or image-mismatched evidence suppression;
 - zero duplicate artwork, printing, document, candidate, assertion, or index
   identity;
 - four documents per artwork;

@@ -89,7 +89,10 @@ test("hard identity roles exclude candidates, unresolved authority, and resembla
 
 test("runtime hydrates governed release assertions without fabricating observations", () => {
   assert.match(adapter, /evidence_assertions/);
+  assert.match(adapter, /evidence_suppressions/);
   assert.match(adapter, /parseAssertionEvidence/);
+  assert.match(adapter, /target_observation_ids/);
+  assert.match(adapter, /conceptIsSuppressed/);
   assert.match(
     adapter,
     /human_image_confirmed[\s\S]+external_role_confirmed/,

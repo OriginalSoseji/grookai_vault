@@ -312,6 +312,54 @@ create index if not exists card_visual_search_evidence_observations_idx
   on public.card_visual_search_evidence
   using gin (supporting_observation_ids);
 
+create table if not exists public.card_visual_search_evidence_suppressions (
+  release_id uuid not null,
+  suppression_id text not null,
+  artwork_group_id text not null,
+  card_print_id uuid not null references public.card_prints(id) on delete restrict,
+  source_image_sha256 text not null,
+  target_observation_ids text[] not null default '{}'::text[],
+  target_source_ids text[] not null default '{}'::text[],
+  authority text not null,
+  decision text not null,
+  reviewed_at date not null,
+  reviewed_by text not null,
+  rationale text not null,
+  replacement_authorized boolean not null default false,
+  suppression_hash text not null,
+  matched_document_entries integer not null,
+  matched_evidence_entries integer not null,
+  created_at timestamptz not null default now(),
+  primary key (release_id, suppression_id),
+  foreign key (release_id, artwork_group_id)
+    references public.card_visual_search_artworks(release_id, artwork_group_id)
+    on delete restrict,
+  constraint card_visual_search_evidence_suppressions_authority_check
+    check (authority = 'founder_image_review'),
+  constraint card_visual_search_evidence_suppressions_decision_check
+    check (decision = 'unsupported_visual_evidence'),
+  constraint card_visual_search_evidence_suppressions_target_check
+    check (
+      cardinality(target_observation_ids) > 0
+      or cardinality(target_source_ids) > 0
+    ),
+  constraint card_visual_search_evidence_suppressions_image_hash_check
+    check (source_image_sha256 ~ '^[0-9a-f]{64}$'),
+  constraint card_visual_search_evidence_suppressions_hash_check
+    check (suppression_hash ~ '^[0-9a-f]{64}$'),
+  constraint card_visual_search_evidence_suppressions_replacement_check
+    check (not replacement_authorized),
+  constraint card_visual_search_evidence_suppressions_match_check
+    check (matched_document_entries > 0 and matched_evidence_entries > 0)
+);
+
+comment on table public.card_visual_search_evidence_suppressions is
+'Immutable release-scoped founder-confirmed negative evidence. It suppresses exact source observations and their derived claims without mutating the paid Fact Graph.';
+
+create index if not exists card_visual_search_evidence_suppressions_group_idx
+  on public.card_visual_search_evidence_suppressions
+  (release_id, artwork_group_id);
+
 create table if not exists public.card_visual_search_index_entries (
   release_id uuid not null,
   index_kind text not null,
@@ -397,6 +445,12 @@ drop trigger if exists trg_card_visual_search_evidence_release_guard
 on public.card_visual_search_evidence;
 create trigger trg_card_visual_search_evidence_release_guard
 before insert or update or delete on public.card_visual_search_evidence
+for each row execute function public.guard_card_visual_search_release_rows_v1();
+
+drop trigger if exists trg_card_visual_search_evidence_suppressions_release_guard
+on public.card_visual_search_evidence_suppressions;
+create trigger trg_card_visual_search_evidence_suppressions_release_guard
+before insert or update or delete on public.card_visual_search_evidence_suppressions
 for each row execute function public.guard_card_visual_search_release_rows_v1();
 
 drop trigger if exists trg_card_visual_search_index_entries_release_guard
@@ -806,6 +860,7 @@ returns table (
   prompt_branch text,
   documents jsonb,
   evidence_assertions jsonb,
+  evidence_suppressions jsonb,
   printings jsonb
 )
 language sql
@@ -873,6 +928,23 @@ as $$
     coalesce((
       select jsonb_agg(
         jsonb_build_object(
+          'suppression_id', suppression.suppression_id,
+          'target_observation_ids', suppression.target_observation_ids,
+          'target_source_ids', suppression.target_source_ids,
+          'authority', suppression.authority,
+          'decision', suppression.decision,
+          'rationale', suppression.rationale,
+          'suppression_hash', suppression.suppression_hash
+        )
+        order by suppression.suppression_id
+      )
+      from public.card_visual_search_evidence_suppressions suppression
+      where suppression.release_id = artwork.release_id
+        and suppression.artwork_group_id = artwork.artwork_group_id
+    ), '[]'::jsonb) as evidence_suppressions,
+    coalesce((
+      select jsonb_agg(
+        jsonb_build_object(
           'card_print_id', printing.card_print_id,
           'gv_id', printing.gv_id_snapshot,
           'name', printing.name_snapshot,
@@ -904,6 +976,7 @@ alter table public.card_visual_search_artworks enable row level security;
 alter table public.card_visual_search_printings enable row level security;
 alter table public.card_visual_search_documents enable row level security;
 alter table public.card_visual_search_evidence enable row level security;
+alter table public.card_visual_search_evidence_suppressions enable row level security;
 alter table public.card_visual_search_index_entries enable row level security;
 alter table public.card_visual_search_active_release enable row level security;
 alter table public.card_visual_external_sources enable row level security;
@@ -917,6 +990,7 @@ revoke all on table public.card_visual_search_artworks from public, anon, authen
 revoke all on table public.card_visual_search_printings from public, anon, authenticated;
 revoke all on table public.card_visual_search_documents from public, anon, authenticated;
 revoke all on table public.card_visual_search_evidence from public, anon, authenticated;
+revoke all on table public.card_visual_search_evidence_suppressions from public, anon, authenticated;
 revoke all on table public.card_visual_search_index_entries from public, anon, authenticated;
 revoke all on table public.card_visual_search_active_release from public, anon, authenticated;
 revoke all on table public.card_visual_external_sources from public, anon, authenticated;
@@ -930,6 +1004,7 @@ grant all on table public.card_visual_search_artworks to service_role;
 grant all on table public.card_visual_search_printings to service_role;
 grant all on table public.card_visual_search_documents to service_role;
 grant all on table public.card_visual_search_evidence to service_role;
+grant all on table public.card_visual_search_evidence_suppressions to service_role;
 grant all on table public.card_visual_search_index_entries to service_role;
 grant all on table public.card_visual_search_active_release to service_role;
 grant all on table public.card_visual_external_sources to service_role;

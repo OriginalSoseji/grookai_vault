@@ -1,0 +1,23 @@
+{
+  "version": "CARD_VISUAL_SEARCH_EVIDENCE_SUPPRESSION_V1",
+  "authority": "founder_image_review",
+  "records": [
+    {
+      "suppression_id": "founder_suppression_wingull_dx81_sky_v1",
+      "authority": "founder_image_review",
+      "decision": "unsupported_visual_evidence",
+      "reviewed_at": "2026-07-30",
+      "reviewed_by": "founder",
+      "artwork_group_id": "cvag_02f21badb2dec17f22f92675",
+      "card_print_id": "032def7e-e450-4766-bd9a-c17d7a6efa25",
+      "gv_id": "GV-PK-DX-81",
+      "source_image_sha256": "24765a7ee5184eeff57a27359f9c364c6d6454fc4593eeb71972c75a390c5785",
+      "target_observation_ids": [
+        "obs_environment_001"
+      ],
+      "target_source_ids": [],
+      "rationale": "Founder image review determined that the orange and purple artwork region with a visible cast shadow does not support the extracted sky claim.",
+      "replacement_authorized": false
+    }
+  ]
+}

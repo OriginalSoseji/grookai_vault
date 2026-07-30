@@ -26,6 +26,11 @@ const EXPECTED_DOCUMENT_TYPES = Object.freeze([
   "representation_cameo",
 ]);
 const STOP_WORDS = new Set(["a", "an", "and", "as", "at", "card", "cards", "for", "in", "is", "of", "on", "or", "the", "to", "with"]);
+const IDENTITY_BEARING_SUBJECT_ROLES = new Set([
+  "scene subject",
+  "depicted subject",
+  "character representation",
+]);
 
 export const CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS = Object.freeze({
   canonical_subject_visual_fact: 20,
@@ -405,6 +410,9 @@ function addPosting(postings, key, groupId) {
 function subjectRoleIdentity(entry) {
   if (!["subject_role", "curated_cameo_role"].includes(entry.source_type)) return null;
   const normalizedRole = normalizeVisualSearchTextV1(entry.subject_role);
+  if (!IDENTITY_BEARING_SUBJECT_ROLES.has(normalizedRole)) {
+    return null;
+  }
   const parts = String(entry.term ?? "").split(/\s*:\s*/u);
   if (parts.length < 2 || normalizeVisualSearchTextV1(parts[0]) !== normalizedRole) return null;
   return normalizeVisualSearchTextV1(parts[1]);

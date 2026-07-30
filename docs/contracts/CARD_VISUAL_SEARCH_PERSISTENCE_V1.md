@@ -25,6 +25,7 @@ release-scoped rows in:
 - `card_visual_search_printings`
 - `card_visual_search_documents`
 - `card_visual_search_evidence`
+- `card_visual_search_evidence_suppressions`
 - `card_visual_search_index_entries`
 - `card_visual_evidence_assertions`
 
@@ -64,7 +65,9 @@ candidate-index matches. It does not claim final relevance.
 
 `get_card_visual_search_groups_service_v1` hydrates at most 2,000 selected
 artwork groups for final ranking. Hydration includes both Fact Graph documents
-and immutable release-scoped evidence assertions.
+and immutable release-scoped evidence assertions and suppressions. The
+application removes suppressed source IDs and observation-backed derivatives
+before matching or presenting evidence.
 
 The document set has four isolated types:
 
@@ -105,6 +108,21 @@ Search-eligible authority is limited to:
 Approved but role-unresolved associations and `external_exact_candidate` rows
 remain review-only.
 
+## Negative Evidence
+
+Founder image-confirmed corrections may suppress an unsupported source
+observation in a later immutable release. Each suppression is pinned to:
+
+- artwork group;
+- canonical printing;
+- source image SHA-256;
+- exact source or observation IDs;
+- reviewer, rationale, and decision hash.
+
+Suppressions never edit or delete the paid Fact Graph and never authorize a
+replacement fact. The release index omits suppressed terms. Runtime hydration
+also returns the suppression set so source documents cannot reintroduce them.
+
 ## Security
 
 - Every persistence and staging table has RLS enabled.
@@ -133,6 +151,8 @@ calibration. Structured/lexical search must remain independently functional.
 - Every printing references a canonical `card_prints` row.
 - Every document references one release artwork.
 - Every evidence row references one document and one artwork.
+- Every suppression resolves to the pinned image and matches at least one
+  document concept and one evidence row.
 - Every search-facing evidence row references image observations or governed
   external evidence.
 - Appearance role and evidence authority remain explicit.
@@ -140,7 +160,8 @@ calibration. Structured/lexical search must remain independently functional.
 - Every external candidate references a governed source-registry row.
 - Network acquisition requires recorded permission evidence and a reviewed
   terms snapshot hash.
-- Corrections never alter the active release.
+- Staged corrections never alter the active release; founder-confirmed
+  suppressions take effect only through a later immutable release.
 - Every index entry is derived deterministically from the same projection and
   ranker version.
 - No Tier C or Energy row is loaded.

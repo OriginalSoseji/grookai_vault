@@ -159,6 +159,37 @@ test("projection produces four evidence-backed documents and keeps representatio
   assert.ok(result.evidence.every((row) => row.supporting_observation_ids.length > 0));
 });
 
+test("standing-like pose language cannot become a character resemblance role", () => {
+  const input = fixture();
+  input.generatedRow.visual_attributes.fact_graph.typed_facts.push({
+    fact_id: "fact-standing-like",
+    module: "creature_anatomy",
+    field_path: "pose",
+    claim: "pose",
+    value: "standing-like pose",
+    supporting_observation_ids: ["obs-pose"],
+    confidence: 0.94,
+    evidence_strength: "strong",
+  });
+  const result = projectArtworkGraphV1(input);
+  assert.ok(
+    result.evidence.some(
+      (row) =>
+        row.source_id === "fact-standing-like" &&
+        row.term.includes("standing-like pose"),
+    ),
+  );
+  assert.ok(
+    result.evidence.every(
+      (row) =>
+        !(
+          row.subject_role === "visual_resemblance_reference" &&
+          row.term.includes("standing")
+        ),
+    ),
+  );
+});
+
 test("card UI, depicted-on-UI identity, unsupported material, and missing references are excluded", () => {
   const result = projectArtworkGraphV1(fixture());
   assert.ok(result.exclusions.some((row) => row.source_id === "obs-ui" && row.exclusion_reasons.includes("card_ui_or_print_marker_observation")));

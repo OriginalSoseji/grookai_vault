@@ -265,3 +265,36 @@ V2 does not authorize:
 Energy cards are deferred from active visual fact extraction. Historical Energy calibration artifacts may remain for audit context, and the Energy prompt branch may remain available for a future deliberate re-enable, but current candidate selection, branch-stratified runs, stress runs, and production extraction must exclude Energy cards.
 
 The current V2 stress gate uses active non-Energy roles only: dense Pokemon artwork, Trainer/person artwork, environment-heavy Stadium, and object-heavy Item.
+
+## Future Extraction Standard
+
+Future paid extraction must remain TCG-centric and module-exhaustive. It must
+not fall back to a vague scene summary.
+
+For every new image, inspect and record:
+
+- every identifiable Pokemon or other character, including secondary,
+  background, depicted-surface, and character-shaped-object appearances;
+- subject count, pose, action, anatomy, visible face evidence, clothing,
+  accessories, held objects, and relationships;
+- foreground, midground, background, terrain, sky, weather cues, structures,
+  plants, repeated objects, and countable details;
+- collector-relevant objects and motifs such as Poke Balls, berries, food,
+  toys, plush, signs, screens, posters, tools, stadium features, and battle
+  effects;
+- composition, framing, lighting, palette, motion, repeated shapes, and
+  reliable surface or scan cues.
+
+The extraction sequence remains:
+
+```text
+raw observation label
+-> typed module fact
+-> normalized vocabulary term
+-> deterministic canonical visual concept
+```
+
+The original visible detail is preserved even when a controlled term is
+derived. Canonical metadata may guide inspection but cannot create a visual
+fact. If a possible identity or role is not provable, retain the visible
+appearance and an explicit abstention instead of guessing.

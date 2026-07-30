@@ -23,6 +23,7 @@ const tables = [
   "card_visual_search_printings",
   "card_visual_search_documents",
   "card_visual_search_evidence",
+  "card_visual_search_evidence_suppressions",
   "card_visual_search_index_entries",
   "card_visual_search_active_release",
   "card_visual_external_sources",
@@ -69,6 +70,7 @@ test("validated projection rows become immutable", () => {
     "printings",
     "documents",
     "evidence",
+    "evidence_suppressions",
     "index_entries",
   ]) {
     assert.match(
@@ -133,6 +135,25 @@ test("candidate, review, and assertion authority boundaries remain explicit", ()
   assert.match(
     migration,
     /get_card_visual_search_groups_service_v1[\s\S]+evidence_assertions jsonb[\s\S]+from public\.card_visual_evidence_assertions/iu,
+  );
+  assert.match(
+    migration,
+    /get_card_visual_search_groups_service_v1[\s\S]+evidence_suppressions jsonb[\s\S]+from public\.card_visual_search_evidence_suppressions/iu,
+  );
+});
+
+test("founder suppressions are release-scoped, image-pinned, and cannot add replacement facts", () => {
+  assert.match(
+    migration,
+    /card_visual_search_evidence_suppressions_target_check[\s\S]+target_observation_ids[\s\S]+target_source_ids/iu,
+  );
+  assert.match(
+    migration,
+    /card_visual_search_evidence_suppressions_replacement_check[\s\S]+not replacement_authorized/iu,
+  );
+  assert.match(
+    migration,
+    /source_image_sha256 text not null[\s\S]+source_image_sha256 ~ '\^\[0-9a-f\]\{64\}\$'/iu,
   );
 });
 

@@ -10,6 +10,9 @@ import {
   CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_VERSION,
   deriveTcgVisualConceptsV1,
 } from "./card_visual_search_tcg_concepts_v1.mjs";
+import {
+  loadPokemonVisualIdentityLexiconV1,
+} from "./card_visual_search_pokemon_identity_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V2";
 
@@ -24,6 +27,9 @@ const REPRESENTATION_ROLES = new Set([
   "character_representation",
   "visual_resemblance_reference",
 ]);
+const POKEMON_IDENTITY_SET = new Set(
+  loadPokemonVisualIdentityLexiconV1().names,
+);
 const KNOWN_GUARDS = new Set([
   "module_completeness",
   "counts",
@@ -138,9 +144,13 @@ function intrinsicResemblanceIdentity(term, module, category) {
   if (!/\b(?:subject|anatomy|physical feature|clothing|garment|costume|appearance)\b/u.test(scope)) return null;
   const text = normalizeTerm(term);
   const suffixMatch = text.match(/\b([a-z][a-z0-9.'’]{1,30})[- ]like\b/u);
-  if (suffixMatch) return suffixMatch[1];
+  if (suffixMatch && POKEMON_IDENTITY_SET.has(suffixMatch[1])) {
+    return suffixMatch[1];
+  }
   const phraseMatch = text.match(/\b(?:resembling|resembles|looks like|modeled after|inspired by)\s+(?:a|an|the)?\s*([a-z][a-z0-9.'’]{1,30})\b/u);
-  return phraseMatch?.[1] ?? null;
+  return phraseMatch && POKEMON_IDENTITY_SET.has(phraseMatch[1])
+    ? phraseMatch[1]
+    : null;
 }
 
 function documentTypeForKinds(kinds) {

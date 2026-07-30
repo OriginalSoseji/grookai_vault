@@ -24,6 +24,10 @@ import {
   loadReviewedVisualEvidenceV1,
 } from "./card_visual_search_curated_cameo_v1.mjs";
 import {
+  applyCardVisualSearchEvidenceSuppressionsV1,
+  loadCardVisualSearchEvidenceSuppressionsV1,
+} from "./card_visual_search_evidence_suppression_v1.mjs";
+import {
   detectCollectorSubjectGroupsV1,
   normalizeCollectorQueryAliasesV1,
   parseHoldingRelationshipV1,
@@ -55,6 +59,8 @@ const DEFAULT_CORPUS_INVENTORY = "docs/audits/card_visual_corpus_v1/2026-07-21T1
 const DEFAULT_UI_PATH = "backend/card_descriptions/card_visual_search_lab_v1.html";
 const DEFAULT_REVIEWED_EVIDENCE =
   "docs/evidence/card_visual_search_founder_reviews_v1.json";
+const DEFAULT_EVIDENCE_SUPPRESSIONS =
+  "docs/evidence/card_visual_search_founder_suppressions_v1.json";
 const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "::1"]);
 const QUERY_GRAMMAR = new Set([
   "a", "all", "an", "art", "artwork", "artworks", "as", "card", "cards", "depicting", "every", "featuring", "find", "for",
@@ -161,6 +167,10 @@ export function parseCardVisualSearchLabArgsV1(argv = []) {
       parseFlag(argv, "reviewed-evidence") ??
       process.env.CARD_VISUAL_SEARCH_REVIEWED_EVIDENCE ??
       DEFAULT_REVIEWED_EVIDENCE,
+    evidenceSuppressions:
+      parseFlag(argv, "evidence-suppressions") ??
+      process.env.CARD_VISUAL_SEARCH_EVIDENCE_SUPPRESSIONS ??
+      DEFAULT_EVIDENCE_SUPPRESSIONS,
     uiPath: parseFlag(argv, "ui-path") ?? DEFAULT_UI_PATH,
     host: parseFlag(argv, "host") ?? "127.0.0.1",
     port: Number.parseInt(parseFlag(argv, "port") ?? "4177", 10),
@@ -1396,7 +1406,11 @@ function finalizeCollectorSearchResponse(groups, parsed, payload) {
 
 export function createVisualSearchLabEngineV1(
   groups,
-  { imageResolver = null, curatedCameoStats = null } = {},
+  {
+    imageResolver = null,
+    curatedCameoStats = null,
+    evidenceSuppressionStats = null,
+  } = {},
 ) {
   const candidateIndex = buildVisualSearchCandidateIndexV1(groups);
   const parserIndex = buildVisualSearchParserIndexV1(groups, candidateIndex);
@@ -1406,6 +1420,7 @@ export function createVisualSearchLabEngineV1(
     candidate_index: candidateIndex,
     parser_index: parserIndex,
     curated_cameo_stats: curatedCameoStats,
+    evidence_suppression_stats: evidenceSuppressionStats,
     async search(queryText, { limit = 24 } = {}) {
       const started = performance.now();
       const parsed = parseVisualSearchQueryV1(queryText, parserIndex);
@@ -1802,6 +1817,7 @@ export function createVisualSearchLabServerV1({ engine, uiHtml, imageFetch = fet
           artwork_groups: engine.candidate_index.stats.artwork_groups,
           indexed_entries: engine.candidate_index.stats.indexed_entries,
           curated_cameos: engine.curated_cameo_stats,
+          evidence_suppressions: engine.evidence_suppression_stats,
           boundaries: { local_only: true, provider_calls: false, database_connections: false, database_writes: false, approvals: false, embeddings: false, holdout_execution: false, public_release: false },
         });
       }
@@ -1848,7 +1864,13 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
   if (!LOOPBACK_HOSTS.has(args.host)) throw new Error("search lab must bind to a loopback host");
   if (!Number.isInteger(args.port) || args.port < 1024 || args.port > 65535) throw new Error("port must be an integer from 1024 through 65535");
   const projection = await loadVisualSearchProjectionV1(repoPath(args.projectionDir));
-  const [imageResolver, uiHtml, curatedCameoRows, reviewedEvidenceRows] = await Promise.all([
+  const [
+    imageResolver,
+    uiHtml,
+    curatedCameoRows,
+    reviewedEvidenceRows,
+    evidenceSuppressionRows,
+  ] = await Promise.all([
     createVisualSearchImageResolverV1(args.corpusInventory, {
       artifactRoot: args.artifactRoot,
     }),
@@ -1859,20 +1881,33 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
     args.reviewedEvidence
       ? loadReviewedVisualEvidenceV1(repoPath(args.reviewedEvidence))
       : Promise.resolve([]),
+    args.evidenceSuppressions
+      ? loadCardVisualSearchEvidenceSuppressionsV1(
+        repoPath(args.evidenceSuppressions),
+      )
+      : Promise.resolve([]),
   ]);
+  const effectiveProjection = applyCardVisualSearchEvidenceSuppressionsV1(
+    projection.groups,
+    evidenceSuppressionRows,
+  );
   const combinedCuratedEvidence = [
     ...curatedCameoRows,
     ...reviewedEvidenceRows,
   ];
   const curatedCameos = combinedCuratedEvidence.length
-    ? attachCuratedCameoEvidenceV1(projection.groups, combinedCuratedEvidence)
+    ? attachCuratedCameoEvidenceV1(
+      effectiveProjection.groups,
+      combinedCuratedEvidence,
+    )
     : {
-        groups: projection.groups,
+        groups: effectiveProjection.groups,
         stats: null,
       };
   const engine = createVisualSearchLabEngineV1(curatedCameos.groups, {
     imageResolver,
     curatedCameoStats: curatedCameos.stats,
+    evidenceSuppressionStats: effectiveProjection.stats,
   });
   const server = createVisualSearchLabServerV1({ engine, uiHtml });
   await new Promise((resolve, reject) => {
@@ -1885,6 +1920,7 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
     url: `http://${args.host}:${args.port}`,
     projection,
     curatedCameos,
+    evidenceSuppressions: effectiveProjection,
     imageResolver,
   };
 }
