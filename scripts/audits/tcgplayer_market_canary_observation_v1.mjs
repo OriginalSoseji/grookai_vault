@@ -117,7 +117,94 @@ function sha256(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
 }
 
-async function queryEvidence(client, args, asOf) {
+function serializeError(error) {
+  return {
+    name: error?.name ?? "Error",
+    code: error?.code ?? null,
+    message: error?.message ?? String(error),
+  };
+}
+
+export function buildTcgplayerMarketCanaryRunPlanV1(args, asOf) {
+  return {
+    audit_version: AUDIT_VERSION,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    window_start: args.windowStart,
+    activation_run_id: args.activationRunId,
+    expected_commit_sha: args.expectedCommitSha,
+    as_of: asOf,
+    required_hours: args.requiredHours,
+    expected_count: args.expectedCount,
+    schedule_tolerance_minutes: args.scheduleToleranceMinutes,
+    boundaries: {
+      database_reads_only: true,
+      database_writes: false,
+      publication_activation: false,
+      grant_changes: false,
+    },
+  };
+}
+
+export async function writeTcgplayerMarketCanaryArtifactsV1(
+  runDir,
+  files,
+  existingHashes = {},
+) {
+  await fs.mkdir(runDir, { recursive: true });
+  const hashes = { ...existingHashes };
+  for (const [name, contents] of Object.entries(files)) {
+    await fs.writeFile(path.join(runDir, name), contents);
+    hashes[name] = sha256(Buffer.from(contents));
+  }
+  await fs.writeFile(
+    path.join(runDir, "artifact_hashes.json"),
+    `${JSON.stringify(hashes, null, 2)}\n`,
+  );
+  return hashes;
+}
+
+export function buildTcgplayerMarketCanaryFailureArtifactsV1({
+  runPlan,
+  stage,
+  error,
+  failedAt = new Date().toISOString(),
+}) {
+  const failure = {
+    audit_version: AUDIT_VERSION,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    status: "observer_error",
+    failed_at: failedAt,
+    stage,
+    error: serializeError(error),
+    window: {
+      started_at: runPlan.window_start,
+      as_of: runPlan.as_of,
+    },
+    boundaries: runPlan.boundaries,
+  };
+  const report = [
+    "# TCGPlayer Market Canary Observation Failure",
+    "",
+    `- Status: \`${failure.status}\``,
+    `- Stage: \`${failure.stage}\``,
+    `- Error code: \`${failure.error.code ?? "unavailable"}\``,
+    `- Error: ${failure.error.message}`,
+    `- Failed at: \`${failure.failed_at}\``,
+    "",
+    "The observer failed closed. No database writes, publication activation,",
+    "or grant changes were attempted.",
+    "",
+  ].join("\n");
+  const serialized = `${JSON.stringify(failure, null, 2)}\n`;
+  return {
+    "failure.json": serialized,
+    "summary.json": serialized,
+    "REPORT.md": `${report}\n`,
+  };
+}
+
+async function queryEvidence(client, args, asOf, onStage = () => {}) {
+  onStage("activation_run_read");
   const activationRun = (
     await client.query(
       `select *
@@ -127,6 +214,7 @@ async function queryEvidence(client, args, asOf) {
     )
   ).rows[0] ?? null;
 
+  onStage("scheduled_runs_read");
   const scheduledRuns = (
     await client.query(
       `select *
@@ -140,6 +228,7 @@ async function queryEvidence(client, args, asOf) {
     )
   ).rows;
 
+  onStage("terminal_alerts_read");
   const terminalAlerts = (
     await client.query(
       `select notification_id, event_type, severity, source_unit,
@@ -154,6 +243,7 @@ async function queryEvidence(client, args, asOf) {
     )
   ).rows;
 
+  onStage("current_read_model_read");
   const current = (
     await client.query(
       `with totals as (
@@ -198,6 +288,7 @@ async function queryEvidence(client, args, asOf) {
     )
   ).rows[0];
 
+  onStage("source_health_read");
   const sourceMetrics = (
     await client.query(
       `with latest_source as (
@@ -252,6 +343,7 @@ async function queryEvidence(client, args, asOf) {
     findings: sourceEvaluation.findings,
   };
 
+  onStage("access_grants_read");
   const grants = (
     await client.query(
       `select
@@ -274,6 +366,7 @@ async function queryEvidence(client, args, asOf) {
   ).rows[0];
 
   let authenticatedReadCount = 0;
+  onStage("authenticated_governed_read");
   await client.query("set role authenticated");
   try {
     authenticatedReadCount = Number(
@@ -291,6 +384,7 @@ async function queryEvidence(client, args, asOf) {
 
   let anonymousRuntimeDenied = false;
   let anonymousRuntimeCode = null;
+  onStage("anonymous_governed_read");
   await client.query("set role anon");
   try {
     await client.query(
@@ -385,16 +479,32 @@ async function main() {
   const asOf = args.asOf
     ? new Date(args.asOf).toISOString()
     : new Date().toISOString();
-  const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
-    connectionTimeoutMillis: 15_000,
-    statement_timeout: 120_000,
-    query_timeout: 120_000,
-  });
-  await client.connect();
+  const runDir = path.join(args.outRoot, stamp());
+  const runPlan = buildTcgplayerMarketCanaryRunPlanV1(args, asOf);
+  let artifactHashes = await writeTcgplayerMarketCanaryArtifactsV1(
+    runDir,
+    { "run_plan.json": `${JSON.stringify(runPlan, null, 2)}\n` },
+  );
+  let stage = "database_connect";
+  let client = null;
   try {
-    const evidence = await queryEvidence(client, args, asOf);
+    client = new Client({
+      connectionString: url,
+      ssl: sslConfig(url),
+      connectionTimeoutMillis: 15_000,
+      statement_timeout: 120_000,
+      query_timeout: 120_000,
+    });
+    await client.connect();
+    const evidence = await queryEvidence(
+      client,
+      args,
+      asOf,
+      (nextStage) => {
+        stage = nextStage;
+      },
+    );
+    stage = "policy_evaluation";
     const report = evaluateTcgplayerMarketCanaryObservationV1({
       windowStart: args.windowStart,
       asOf,
@@ -405,40 +515,16 @@ async function main() {
       ...evidence,
     });
 
-    const runDir = path.join(args.outRoot, stamp());
-    await fs.mkdir(runDir, { recursive: true });
-    const runPlan = {
-      audit_version: AUDIT_VERSION,
-      policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
-      window_start: args.windowStart,
-      activation_run_id: args.activationRunId,
-      expected_commit_sha: args.expectedCommitSha,
-      as_of: asOf,
-      required_hours: args.requiredHours,
-      expected_count: args.expectedCount,
-      schedule_tolerance_minutes: args.scheduleToleranceMinutes,
-      boundaries: {
-        database_reads_only: true,
-        database_writes: false,
-        publication_activation: false,
-        grant_changes: false,
-      },
-    };
+    stage = "artifact_write";
     const files = {
-      "run_plan.json": `${JSON.stringify(runPlan, null, 2)}\n`,
       "evidence.json": `${JSON.stringify(evidence, null, 2)}\n`,
       "summary.json": `${JSON.stringify(report, null, 2)}\n`,
       "REPORT.md": markdown(report),
     };
-    const hashes = {};
-    for (const [name, contents] of Object.entries(files)) {
-      const filePath = path.join(runDir, name);
-      await fs.writeFile(filePath, contents);
-      hashes[name] = sha256(Buffer.from(contents));
-    }
-    await fs.writeFile(
-      path.join(runDir, "artifact_hashes.json"),
-      `${JSON.stringify(hashes, null, 2)}\n`,
+    artifactHashes = await writeTcgplayerMarketCanaryArtifactsV1(
+      runDir,
+      files,
+      artifactHashes,
     );
 
     process.stdout.write(
@@ -455,12 +541,36 @@ async function main() {
     );
     if (report.status === "failed") process.exitCode = 1;
     if (args.requirePass && report.status !== "passed") process.exitCode = 1;
+  } catch (error) {
+    const failureFiles = buildTcgplayerMarketCanaryFailureArtifactsV1({
+      runPlan,
+      stage,
+      error,
+    });
+    await writeTcgplayerMarketCanaryArtifactsV1(
+      runDir,
+      failureFiles,
+      artifactHashes,
+    );
+    error.artifactRoot = path
+      .relative(REPO_ROOT, runDir)
+      .replace(/\\/g, "/");
+    throw error;
   } finally {
-    await client.end().catch(() => {});
+    await client?.end().catch(() => {});
   }
 }
 
-main().catch((error) => {
-  console.error(`[market-canary-observation] ${error.stack || error.message}`);
-  process.exitCode = 1;
-});
+if (path.resolve(process.argv[1] ?? "") === __filename) {
+  main().catch((error) => {
+    console.error(
+      `[market-canary-observation] ${error.stack || error.message}`,
+    );
+    if (error.artifactRoot) {
+      console.error(
+        `[market-canary-observation] failure artifacts: ${error.artifactRoot}`,
+      );
+    }
+    process.exitCode = 1;
+  });
+}

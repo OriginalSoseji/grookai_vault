@@ -197,6 +197,13 @@ An incomplete time window is `observing`, not passed. A missing elapsed schedule
 slot, broken trace, stale value, access-boundary regression, terminal alert, or
 run mismatch fails the gate.
 
+The observer must create and hash its frozen run plan before connecting to the
+database. A connection or query failure must still preserve a machine-readable
+`summary.json`, exact `failure.json`, human-readable report, failure stage, safe
+database error metadata, and artifact hashes. Observer failures remain
+read-only and must not be reported as pipeline publication failures without
+separate pipeline evidence.
+
 ## Health Gates
 
 Production health is critical when:
@@ -337,6 +344,10 @@ but they must not be described as end-user JWT measurements. A separate direct
 database proof must execute the same RPC under the `authenticated` role.
 
 The shared customer RPC must never aggregate the raw active-listing warehouse.
+Parent-summary reads must materialize the governed current publication once and
+reuse that bounded row set for deterministic parent ranking and active-ask
+aggregation; they must not independently expand the historical current-price
+view for each calculation.
 Exact-printing eBay active asks are maintained in
 `mv_market_listing_active_ask_current_v1` by a separately governed refresh
 phase. Refresh failures fail the activation pipeline closed, while shadow and
