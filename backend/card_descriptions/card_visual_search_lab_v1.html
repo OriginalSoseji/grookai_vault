@@ -205,8 +205,10 @@
     .evidence-image-stage img {
       display: block;
       width: auto;
-      max-width: none;
-      height: min(78vh, 820px);
+      max-width: 100%;
+      height: auto;
+      max-height: min(78vh, 820px);
+      object-fit: contain;
       transform-origin: center;
     }
     .evidence-panel { overflow: auto; max-height: calc(100vh - 82px); padding: 16px; }

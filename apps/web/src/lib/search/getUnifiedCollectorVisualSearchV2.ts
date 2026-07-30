@@ -662,6 +662,19 @@ function zeroState(
       ),
     ).length,
   }));
+  const relaxationMatchCount = (alternatives: string[]) => {
+    const relaxedIntent: UnifiedCollectorSearchIntentV2 = {
+      ...intent,
+      originalQuery: alternatives.join(" or "),
+      subjectGroups: [alternatives],
+      requestedRole: null,
+      representationForm: null,
+      depictedSurface: null,
+      chips: [],
+      aliases: [],
+    };
+    return groups.filter((group) => matchGroup(group, relaxedIntent)).length;
+  };
   const message =
     labels.length === 2
       ? `We found ${labels[0]} cards and ${labels[1]} cards, but none where both are independently visible in the same artwork.`
@@ -669,10 +682,10 @@ function zeroState(
   return {
     message,
     constraintCoverage,
-    relaxations: constraintCoverage.map((row) => ({
+    relaxations: constraintCoverage.map((row, index) => ({
       label: `Show ${row.label}`,
       query: row.label,
-      resultCount: row.artworkMatches,
+      resultCount: relaxationMatchCount(intent.subjectGroups[index]),
     })),
   };
 }
@@ -737,10 +750,10 @@ export async function getUnifiedCollectorVisualSearchV2(
     if (hydratedError) {
       return unavailableUnifiedCollectorSearchV2("visual_search_unavailable", activeIntent);
     }
-    const matched = ((hydratedData ?? []) as HydratedGroup[])
+    const allMatched = ((hydratedData ?? []) as HydratedGroup[])
       .map((group) => matchGroup(group, activeIntent))
-      .filter((row): row is UnifiedCollectorSearchResultV2 => Boolean(row))
-      .slice(0, Math.min(Math.max(limit, 1), 64));
+      .filter((row): row is UnifiedCollectorSearchResultV2 => Boolean(row));
+    const matched = allMatched.slice(0, Math.min(Math.max(limit, 1), 64));
     const grouped = new Map<
       UnifiedCollectorSearchResultV2["groupKey"],
       UnifiedCollectorSearchResultV2[]
@@ -760,7 +773,7 @@ export async function getUnifiedCollectorVisualSearchV2(
         label: GROUP_LABELS[key],
         results,
       })),
-      totalMatches: matched.length,
+      totalMatches: allMatched.length,
       zeroState: matched.length
         ? null
         : zeroState(activeIntent, (hydratedData ?? []) as HydratedGroup[]),

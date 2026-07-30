@@ -1385,6 +1385,21 @@ function independentSubjectCoverage(groups, parsed) {
   });
 }
 
+function relaxedIdentityMatchCount(groups, alternatives) {
+  const normalizedAlternatives = alternatives.map(normalizeVisualSearchTextV1);
+  return groups.filter((group) =>
+    normalizedAlternatives.some(
+      (identity) =>
+        normalizeVisualSearchTextV1(group.name) === identity ||
+        identityConstraintEvidence(
+          group,
+          identity,
+          UNQUALIFIED_IDENTITY_ROLES,
+        ).length > 0,
+    ),
+  ).length;
+}
+
 function collectorZeroState(groups, parsed, reason) {
   const coverage = independentSubjectCoverage(groups, parsed);
   const labels = coverage.map((row) => row.label);
@@ -1398,10 +1413,13 @@ function collectorZeroState(groups, parsed, reason) {
     reason,
     message,
     constraint_coverage: coverage,
-    relaxations: coverage.map((row) => ({
+    relaxations: coverage.map((row, index) => ({
       label: `Show ${row.label}`,
       query: row.label,
-      result_count: row.artwork_matches,
+      result_count: relaxedIdentityMatchCount(
+        groups,
+        parsed.intent.visual_filters.subject_groups[index],
+      ),
     })),
   };
 }

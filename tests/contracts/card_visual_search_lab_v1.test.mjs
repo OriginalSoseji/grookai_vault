@@ -131,6 +131,10 @@ function fixtures() {
       entry("marowak-standing", "standing", "subject", { supporting_observation_ids: ["obs-marowak-subject"] }),
       entry("bad-standing-role", "visual_resemblance_reference: standing", "subject", { source_type: "subject_role", subject_role: "visual_resemblance_reference" }),
     ], ["scene_subject", "visual_resemblance_reference"]),
+    group("022", "Mimikyu", "pokemon", [], []),
+    group("023", "Trainer Gallery", "trainer", [
+      entry("gallery-mimikyu", "scene_subject: Mimikyu", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+    ]),
   ];
 }
 
@@ -215,6 +219,25 @@ test("search is strict, groups artwork first, expands printings, and preserves e
   const unknown = await engine.search("Pikachu beside a quantum accordion");
   assert.equal(unknown.total_matches, 0);
   assert.equal(unknown.strict_zero_reason, "unrecognized_terms");
+});
+
+test("strict-zero relaxation counts match the broader query they open", async () => {
+  const engine = createVisualSearchLabEngineV1(fixtures());
+  const strict = await engine.search("Mimikyu and pika");
+  assert.equal(strict.total_matches, 0);
+  assert.equal(strict.strict_zero_reason, "multi_subject_evidence_not_found");
+
+  const mimikyuCoverage = strict.zero_state.constraint_coverage.find(
+    (row) => row.label === "Mimikyu",
+  );
+  const mimikyuRelaxation = strict.zero_state.relaxations.find(
+    (row) => row.query === "Mimikyu",
+  );
+  const relaxed = await engine.search("Mimikyu");
+
+  assert.equal(mimikyuCoverage.artwork_matches, 1);
+  assert.equal(relaxed.total_matches, 2);
+  assert.equal(mimikyuRelaxation.result_count, relaxed.total_matches);
 });
 
 test("explicit represented-subject role does not return a physically present subject", async () => {
