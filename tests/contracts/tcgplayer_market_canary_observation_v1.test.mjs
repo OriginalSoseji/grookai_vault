@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 import {
@@ -6,6 +9,11 @@ import {
   expectedTcgplayerMarketScheduleSlotsV1,
   TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
 } from "../../backend/pricing/tcgplayer_market_canary_observation_policy_v1.mjs";
+import {
+  buildTcgplayerMarketCanaryFailureArtifactsV1,
+  buildTcgplayerMarketCanaryRunPlanV1,
+  writeTcgplayerMarketCanaryArtifactsV1,
+} from "../../scripts/audits/tcgplayer_market_canary_observation_v1.mjs";
 
 const WINDOW_START = "2026-07-28T08:40:15.793Z";
 const COMMIT = "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d";
@@ -197,4 +205,66 @@ test("stale prices, broken access, and unavailable rollback fail closed", () => 
     result.findings.includes("anonymous_pricing_execute_unexpectedly_granted"),
   );
   assert.ok(result.findings.includes("publication_rollback_not_available"));
+});
+
+test("observer query failures preserve a run plan, summary, failure, and hashes", async () => {
+  const root = await fs.mkdtemp(
+    path.join(os.tmpdir(), "market-canary-observer-failure-"),
+  );
+  try {
+    const runPlan = buildTcgplayerMarketCanaryRunPlanV1(
+      {
+        windowStart: WINDOW_START,
+        activationRunId: "activation",
+        expectedCommitSha: COMMIT,
+        requiredHours: 72,
+        expectedCount: 100,
+        scheduleToleranceMinutes: 90,
+      },
+      "2026-07-30T14:34:51.000Z",
+    );
+    let hashes = await writeTcgplayerMarketCanaryArtifactsV1(root, {
+      "run_plan.json": `${JSON.stringify(runPlan, null, 2)}\n`,
+    });
+    const error = Object.assign(
+      new Error("canceling statement due to statement timeout"),
+      { code: "57014" },
+    );
+    hashes = await writeTcgplayerMarketCanaryArtifactsV1(
+      root,
+      buildTcgplayerMarketCanaryFailureArtifactsV1({
+        runPlan,
+        stage: "authenticated_governed_read",
+        error,
+        failedAt: "2026-07-30T14:34:51.000Z",
+      }),
+      hashes,
+    );
+
+    const summary = JSON.parse(
+      await fs.readFile(path.join(root, "summary.json"), "utf8"),
+    );
+    const failure = JSON.parse(
+      await fs.readFile(path.join(root, "failure.json"), "utf8"),
+    );
+    const storedHashes = JSON.parse(
+      await fs.readFile(path.join(root, "artifact_hashes.json"), "utf8"),
+    );
+
+    assert.equal(summary.status, "observer_error");
+    assert.equal(summary.stage, "authenticated_governed_read");
+    assert.equal(summary.error.code, "57014");
+    assert.deepEqual(summary, failure);
+    assert.deepEqual(storedHashes, hashes);
+    assert.deepEqual(Object.keys(storedHashes).sort(), [
+      "REPORT.md",
+      "failure.json",
+      "run_plan.json",
+      "summary.json",
+    ]);
+    assert.equal(runPlan.boundaries.database_reads_only, true);
+    assert.equal(runPlan.boundaries.database_writes, false);
+  } finally {
+    await fs.rm(root, { recursive: true, force: true });
+  }
 });
