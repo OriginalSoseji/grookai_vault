@@ -50,4 +50,3 @@ Fact Graph projection rows.
 
 Projection V2 is offline and deterministic. It makes no provider call,
 database connection, database write, approval, embedding, or public read.
-

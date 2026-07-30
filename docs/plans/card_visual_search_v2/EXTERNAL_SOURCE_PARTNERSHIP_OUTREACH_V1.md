@@ -168,4 +168,3 @@ adapter version
 
 No response, unclear rights, or a public website without an export agreement
 means research-only use. It does not authorize automated acquisition.
-

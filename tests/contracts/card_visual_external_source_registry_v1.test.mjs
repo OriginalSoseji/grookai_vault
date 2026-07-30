@@ -99,4 +99,3 @@ test("registry is policy-only and contains no scraper, provider, database, or mu
   );
   assert.match(contract, /No site is scraped into active search/iu);
 });
-

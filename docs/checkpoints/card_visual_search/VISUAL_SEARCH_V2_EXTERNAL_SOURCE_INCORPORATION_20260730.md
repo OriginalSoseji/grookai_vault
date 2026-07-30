@@ -88,4 +88,3 @@ is recorded, continue using SightDex, Artchu, TCG Curator, BinderBloom, and
 ArtFinderTCG only for the registered research lanes. Build the first new
 network/export adapter only after its source registry row contains permission
 evidence and the adapter has an immutable no-write import plan.
-

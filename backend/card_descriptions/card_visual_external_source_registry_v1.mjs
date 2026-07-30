@@ -251,4 +251,3 @@ export function assertCardVisualExternalSourceRegistrySafeV1() {
   }
   return true;
 }
-

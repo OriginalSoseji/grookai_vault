@@ -99,4 +99,3 @@ natively, including:
 
 Future extraction still records objective observations first. It does not write
 search concepts as unsupported image facts.
-
