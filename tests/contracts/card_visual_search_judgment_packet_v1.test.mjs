@@ -54,7 +54,8 @@ test("Grookai image URLs accept governed storage paths only", () => {
 });
 
 test("review source artifacts resolve only inside an explicit immutable artifact root", () => {
-  const root = path.resolve("C:/immutable-card-visual-release");
+  const root = path.resolve("immutable-card-visual-release");
+  const outside = path.resolve(root, "..", "outside", "generated_outputs.json");
   assert.equal(
     resolveReviewSourceArtifactPathV1("audits/run/generated_outputs.json", root),
     path.join(root, "audits", "run", "generated_outputs.json"),
@@ -68,7 +69,7 @@ test("review source artifacts resolve only inside an explicit immutable artifact
     /escapes artifact root/u,
   );
   assert.throws(
-    () => resolveReviewSourceArtifactPathV1("C:/outside/generated_outputs.json", root),
+    () => resolveReviewSourceArtifactPathV1(outside, root),
     /escapes artifact root/u,
   );
 });

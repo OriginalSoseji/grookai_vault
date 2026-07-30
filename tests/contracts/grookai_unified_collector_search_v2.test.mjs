@@ -122,7 +122,13 @@ test("signed-in correction actions only call bounded staging intake", () => {
     assert.match(panel, new RegExp(label));
   }
   assert.match(corrections, /auth\.getUser\(\)/);
+  assert.match(corrections, /createRouteHandlerClient/);
+  assert.match(corrections, /UUID_PATTERN\.test\(cardPrintId\)/);
+  assert.match(corrections, /createHash\("sha256"\)/);
+  assert.match(corrections, /MAX_EVIDENCE_BYTES/);
+  assert.match(corrections, /"Cache-Control": "private, no-store"/);
   assert.match(corrections, /submit_card_visual_search_correction_v2/);
+  assert.doesNotMatch(corrections, /createServerAdminClient|service_role/);
   assert.doesNotMatch(
     corrections,
     /card_visual_search_active_release|card_visual_evidence_assertions/,

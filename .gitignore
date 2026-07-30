@@ -139,6 +139,12 @@ apps/web/src/app/api/network/*
 !apps/web/src/app/api/network/contact-eligibility/route.ts
 !apps/web/src/app/api/card-pricing/
 !apps/web/src/app/api/card-pricing/route.ts
+!apps/web/src/app/api/search/
+apps/web/src/app/api/search/*
+!apps/web/src/app/api/search/visual/
+apps/web/src/app/api/search/visual/*
+!apps/web/src/app/api/search/visual/corrections/
+!apps/web/src/app/api/search/visual/corrections/route.ts
 !apps/web/src/app/api/assistant/
 apps/web/src/app/api/assistant/*
 !apps/web/src/app/api/assistant/search-interpretation/
