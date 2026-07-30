@@ -674,8 +674,17 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
   if (allAccountedIds.length !== eligibilityDecisions.length) {
     findings.push("source_candidate_accounting_mismatch");
   }
+  const searchableCardPrintIds = new Set(
+    printings.map((row) => row.card_print_id),
+  );
+  const searchableEnergyDecisionIds = eligibilityDecisions
+    .filter(
+      (row) =>
+        row.energy_card_detected && searchableCardPrintIds.has(row.card_print_id),
+    )
+    .map((row) => row.card_print_id);
   if (
-    eligibilityDecisions.some((row) => row.energy_card_detected) ||
+    searchableEnergyDecisionIds.length ||
     artworks.some((row) => row.prompt_branch === "energy")
   ) {
     findings.push("energy_row_in_release");
@@ -768,6 +777,9 @@ export async function buildCardVisualSearchCorpusReleaseV2(args) {
     distributions: {
       eligibility_tiers: countBy(eligibilityDecisions, (row) => row.tier),
       source_outcomes: countBy(eligibilityDecisions, (row) => row.source_outcome),
+      excluded_energy_coverage_gaps: coverageGaps.filter(
+        (row) => row.energy_card_detected,
+      ).length,
       review_statuses: countBy(artworks, (row) => row.review_status),
       external_candidate_statuses: countBy(
         externalCandidates,

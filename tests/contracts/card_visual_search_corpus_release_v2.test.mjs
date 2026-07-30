@@ -6,6 +6,7 @@ import {
   CARD_VISUAL_SEARCH_REPAIR_LEDGER_VERSION,
   parseCardVisualSearchCorpusReleaseArgsV2,
 } from "../../backend/card_descriptions/card_visual_search_corpus_release_v2.mjs";
+import { readFileSync } from "node:fs";
 
 test("V2 release builder defaults to the immutable paid source release", () => {
   const args = parseCardVisualSearchCorpusReleaseArgsV2([]);
@@ -45,4 +46,20 @@ test("V2 release builder accepts explicit immutable inputs", () => {
       "C:/grookai_visual_search_releases/card_visual_search_corpus_release_v1_1_20260721/_rebuild/unified_collector_search_v2",
     outputDir: "C:/release",
   });
+});
+
+test("Energy is blocked from searchable output but preserved as a coverage gap", () => {
+  const source = readFileSync(
+    new URL(
+      "../../backend/card_descriptions/card_visual_search_corpus_release_v2.mjs",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(source, /searchableEnergyDecisionIds/);
+  assert.match(source, /excluded_energy_coverage_gaps/);
+  assert.doesNotMatch(
+    source,
+    /eligibilityDecisions\.some\(\(row\) => row\.energy_card_detected\)\s*\|\|/u,
+  );
 });

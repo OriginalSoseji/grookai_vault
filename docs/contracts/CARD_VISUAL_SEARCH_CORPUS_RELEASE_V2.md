@@ -34,7 +34,9 @@ Every selected `card_print_id` appears exactly once as either:
 - an eligible printing linked to an artwork group; or
 - a Tier C coverage gap.
 
-Energy rows are prohibited.
+Energy rows are prohibited from searchable artwork and printing outputs.
+Previously paid Energy extractions may remain visible as excluded Tier C
+coverage-gap accounting; exclusion is not publication.
 
 Each eligible artwork has exactly these documents:
 
@@ -99,4 +101,3 @@ remain separate governed gates.
 
 The active pointer must remain empty until calibration, high-risk regressions,
 the sealed holdout, RLS/RPC smoke tests, and exact load reconciliation pass.
-
