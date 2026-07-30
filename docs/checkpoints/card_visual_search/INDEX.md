@@ -9,6 +9,12 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md` -
+  `2026-07-29` - COMPLETE; LOCAL SEARCH SEMANTICS REPAIRED, COVERAGE GAP
+  MEASURED - Records cross-branch Pokemon subject-class queries, strict
+  subject-fact binding, conservative object/surface evidence recovery, the
+  `10,376`-row representation coverage audit, real pose and food-form query
+  counts, and the targeted omission-review gate.
 - `VISUAL_SEARCH_V1_ROLE_QUALIFIER_REPAIR_20260729.md` - `2026-07-29` -
   COMPLETE; LOCAL LAB RELEVANCE GAP REPAIRED - Records the representation-form
   and depicted-surface role-collapse defect, same-evidence-row binding for
@@ -105,8 +111,10 @@ create canonical truth, or authorize downstream recommendation systems.
 10. Read `VISUAL_SEARCH_V1_REVIEWER_DEPENDENCY_STOP_20260729.md`.
 11. Read `VISUAL_SEARCH_V1_LAB_RUNTIME_FIX_20260729.md`.
 12. Read `VISUAL_SEARCH_V1_ROLE_QUALIFIER_REPAIR_20260729.md`.
-13. Confirm the current production `main` SHA and compare it with the checkpoint
+13. Read
+    `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md`.
+14. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-14. Confirm pricing canary/release work remains isolated.
-15. Inspect the governed source branch at the recorded SHA.
-16. Resume only from the reviewer-dependency checkpoint's exact sequence.
+15. Confirm pricing canary/release work remains isolated.
+16. Inspect the governed source branch at the recorded SHA.
+17. Resume only from the reviewer-dependency checkpoint's exact sequence.

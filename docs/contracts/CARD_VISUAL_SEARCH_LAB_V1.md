@@ -24,6 +24,7 @@ The lab must not read the sealed 50-query holdout or human judgment submissions.
 The parser keeps these dimensions separate:
 
 - canonical card subject
+- visual subject class, beginning with `pokemon`
 - card branch
 - explicit set code using `set:<code>`
 - visual concepts
@@ -37,6 +38,25 @@ The parser keeps these dimensions separate:
 Unrecognized terms remain visible. A strict query with an unrecognized term returns zero results rather than silently dropping that constraint.
 
 Canonical subject matching and image-derived subject matching are evaluated as separate deterministic alternatives. Explicit subject-role language disables canonical-name-only matching so a represented subject cannot be replaced by a physically present subject. When a query names a subject role, representation form, or depicted surface, the identity and every requested qualifier must be supported by the same `subject_role` evidence row. A broad character representation cannot satisfy a request for a specific plush, pillow, statue, or other form, and a depicted subject on one surface cannot satisfy a different requested surface.
+
+`Pokemon` means a visible subject class unless the query explicitly says
+`Pokemon card` or `Pokemon cards`. Therefore `sleeping Pokemon` can cross card
+branches, while `Pokemon cards with sleeping` remains branch-scoped. A
+subject-scoped visual fact must be directly linked to the matching Pokemon
+subject observation, or every subject in the requested role must independently
+classify as Pokemon.
+
+When a legacy Fact Graph contains an explicit evidence row such as
+`Pokemon plush toys` or `Pikachu-shaped ice cream` but omitted the typed
+character-representation row, the lab may recover that query match. Recovery
+requires the Pokemon identity or class and requested form/surface to coexist in
+one observation-backed object or surface entry. Creature anatomy, human
+appearance, pose, action, scene-subject identity, card UI, and ungrounded search
+terms cannot authorize recovery. Food-form recovery additionally requires an
+explicit representation relationship such as `Pikachu-shaped ice cream` or
+`ice cream resembling Vanillite`; a Pokemon merely holding food does not
+qualify. The response marks recovered evidence authority as
+`explicit_role_cue_recovery`.
 
 ## Alias Policy
 
@@ -59,6 +79,7 @@ Results are unique artwork groups. Each result includes:
 - decomposed score components
 - eligibility tier
 - matched subject roles
+- matched subject classes
 - matched representation forms or depicted surfaces when requested
 - matched evidence terms
 - source document, fact, and observation references

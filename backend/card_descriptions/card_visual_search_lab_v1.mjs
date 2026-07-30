@@ -14,6 +14,10 @@ import {
   visualSearchGroupEntriesV1,
 } from "./card_visual_search_evaluation_bootstrap_v1.mjs";
 import { grookaiImageUrlV1 } from "./card_visual_search_judgment_packet_v1.mjs";
+import {
+  loadPokemonVisualIdentityLexiconV1,
+  pokemonIdentityMatchesTextV1,
+} from "./card_visual_search_pokemon_identity_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_LAB_VERSION = "CARD_VISUAL_SEARCH_LAB_V1";
 export const CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION = "CARD_VISUAL_SEARCH_QUERY_PARSER_V1";
@@ -52,6 +56,7 @@ const ALIAS_DEFINITIONS = Object.freeze({
 });
 
 const SUBJECT_ROLE_RULES = Object.freeze([
+  { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bas (?:a |an )?food(?: item)?\b/u },
   { role: "character_representation", filter: "representation_form", value: "food shape", pattern: /\bfood shapes?\b/u },
   { role: "character_representation", filter: "representation_form", value: "ice cream", pattern: /\bice creams?\b/u },
   { role: "character_representation", filter: "representation_form", value: "plush", pattern: /\bplush(?: toys?)?\b/u },
@@ -91,6 +96,9 @@ const ROLE_FILTER_PATTERNS = Object.freeze({
   sign: /\bsigns?\b/u,
   book: /\bbooks?\b/u,
 });
+const CARD_UI_EVIDENCE_PATTERN = /\b(?:card ui|card interface|set symbol|edition stamp|rarity symbol|hp text|attack text|copyright|weakness|resistance|retreat|collector number)\b/u;
+const FOOD_APPEARANCE_PATTERN = /\b(?:food|ice cream|dessert|cake|cookie|pastry|bread|candy|chocolate|rice ball|sushi)\b/u;
+const POKEMON_IDENTITY_LEXICON = loadPokemonVisualIdentityLexiconV1();
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -247,8 +255,16 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
   }
 
   const branches = [];
+  const subjectClasses = [];
+  const explicitPokemonCardPattern = /\bpok[eé]mon cards?\b/iu;
+  if (explicitPokemonCardPattern.test(working)) {
+    branches.push("pokemon");
+    working = working.replace(explicitPokemonCardPattern, " ").replace(/\s+/gu, " ").trim();
+  } else if (/\bpok[eé]mon\b/iu.test(working)) {
+    subjectClasses.push("pokemon");
+    working = working.replace(/\bpok[eé]mon\b/iu, " ").replace(/\s+/gu, " ").trim();
+  }
   const branchRules = [
-    { branch: "pokemon", pattern: /\bpok[eé]mon\b/iu },
     { branch: "trainer", pattern: /\btrainers?\b/iu },
     { branch: "stadium", pattern: /\bstadiums?\b/iu },
     { branch: "item_tool_supporter", pattern: /\b(?:items?|tools?|supporters?)\b/iu },
@@ -258,6 +274,7 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
     branches.push(rule.branch);
     working = working.replace(rule.pattern, " ").replace(/\s+/gu, " ").trim();
   }
+  if (subjectClasses.length && !subjectRole) subjectRole = "scene_subject";
 
   const paddedWorking = ` ${working} `;
   const subject = parserIndex.subjects.find((candidate) => paddedWorking.includes(` ${candidate.normalized} `)) ?? null;
@@ -279,6 +296,7 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
       canonical_filters: { subjects: subject && !subjectRole ? [subject.canonical] : [], set_codes: setCodes, branches, years: null, artist: [] },
       visual_filters: {
         subject_roles: subjectRole ? [subjectRole] : [],
+        subject_classes: subjectClasses,
         representation_forms: representationForm ? [representationForm] : [],
         depicted_surfaces: depictedSurface ? [depictedSurface] : [],
         concepts: parsedConcepts.concepts,
@@ -331,18 +349,113 @@ function subjectRoleEntries(group) {
     }));
 }
 
+function allStructuredEvidenceEntries(group) {
+  return Object.values(group.documents).flatMap((document) => document.structured_concepts.map((entry) => ({
+    ...entry,
+    document_type: document.document_type,
+    search_document_id: document.search_document_id,
+    normalized_term: normalizeVisualSearchTextV1(entry.term),
+  })));
+}
+
+function explicitRoleCueScopeAllows(requestedRole, entry) {
+  if (!["observation", "typed_fact", "relationship"].includes(entry.source_type)) return false;
+  const scope = normalizeVisualSearchTextV1([
+    entry.module,
+    entry.field_path,
+    entry.category,
+    entry.document_type,
+  ].filter(Boolean).join(" "));
+  const context = `${scope} ${entry.normalized_term}`;
+  if (CARD_UI_EVIDENCE_PATTERN.test(context)) return false;
+  if (/\b(?:creature anatomy|human appearance|visible body|facial evidence|pose|action|scene subject|subject identity)\b/u.test(scope)) return false;
+  if (requestedRole === "character_representation") {
+    return /\b(?:character representations?|depicted subjects?|objects?|props?|food|desserts?|decorations?|accessories|accessory|logos?|stickers?|surfaces?|environment|relationships?)\b/u.test(scope);
+  }
+  return /\b(?:depicted subjects?|objects?|props?|surfaces?|posters?|screens?|signs?|books?|paintings?|photographs?|environment|relationships?)\b/u.test(scope);
+}
+
+function representationRelationshipSupportsIdentity(normalizedTerm, requestedIdentity, subjectClasses) {
+  const term = normalizedTerm.replace(/(?<=\p{L})-(?=\p{L})/gu, " ");
+  const identities = requestedIdentity
+    ? [requestedIdentity]
+    : subjectClasses.includes("pokemon")
+      ? POKEMON_IDENTITY_LEXICON.names.filter((name) => ` ${term} `.includes(` ${name} `))
+      : [];
+  if (/\bpok[eé]mon\s+shaped\b/u.test(term) || /\b(?:shaped like|resembling)\s+(?:a\s+)?pok[eé]mon\b/u.test(term)) return true;
+  return identities.some((identity) => {
+    const escaped = escapeRegex(identity);
+    return new RegExp(`\\b${escaped}\\s+shaped\\b|\\b(?:shaped like|shaped as|in the shape of|resembl(?:e|es|ing)|made to (?:look like|resemble)|modeled after|formed as|designed as)\\s+(?:a\\s+|an\\s+)?${escaped}\\b`, "u").test(term);
+  });
+}
+
+function explicitRoleQualifierMatches(value, normalizedTerm, requestedIdentity, subjectClasses) {
+  if (value === "food shape") {
+    return FOOD_APPEARANCE_PATTERN.test(normalizedTerm)
+      && representationRelationshipSupportsIdentity(normalizedTerm, requestedIdentity, subjectClasses);
+  }
+  if (value === "ice cream") {
+    return ROLE_FILTER_PATTERNS["ice cream"].test(normalizedTerm)
+      && representationRelationshipSupportsIdentity(normalizedTerm, requestedIdentity, subjectClasses);
+  }
+  return roleFilterMatches(value, [normalizedTerm]);
+}
+
+function explicitRoleCueEvidence(parsed, group) {
+  const requestedRole = parsed.intent.visual_filters.subject_roles[0] ?? null;
+  const requestedIdentity = parsed.detected_subject?.normalized_name ?? null;
+  const subjectClasses = parsed.intent.visual_filters.subject_classes;
+  const representationForms = parsed.intent.visual_filters.representation_forms;
+  const depictedSurfaces = parsed.intent.visual_filters.depicted_surfaces;
+  if (!requestedRole || (!requestedIdentity && !subjectClasses.length)) return [];
+  const requestedQualifiers = requestedRole === "character_representation" ? representationForms : depictedSurfaces;
+  if (!requestedQualifiers.length) return [];
+  return allStructuredEvidenceEntries(group)
+    .filter((entry) => entry.source_type !== "subject_role" && entry.supporting_observation_ids?.length)
+    .filter((entry) => explicitRoleCueScopeAllows(requestedRole, entry))
+    .filter((entry) => requestedQualifiers.every((value) => explicitRoleQualifierMatches(value, entry.normalized_term, requestedIdentity, subjectClasses)))
+    .filter((entry) => {
+      if (requestedIdentity) {
+        const padded = ` ${queryNormalize(entry.term)} `;
+        if (!padded.includes(` ${requestedIdentity} `)) return false;
+        if (new RegExp(`\\b${escapeRegex(requestedIdentity)}\\s*\\(`, "u").test(String(entry.term))) return false;
+      }
+      if (subjectClasses.includes("pokemon") && !pokemonIdentityMatchesTextV1(entry.normalized_term, POKEMON_IDENTITY_LEXICON) && !/\bpok[eé]mon\b/iu.test(entry.term)) return false;
+      return true;
+    })
+    .map((entry) => ({
+      query_concept: [
+        parsed.detected_subject?.canonical_name,
+        ...subjectClasses,
+        ...representationForms,
+        ...depictedSurfaces,
+      ].filter(Boolean).join(" "),
+      search_document_id: entry.search_document_id,
+      document_type: entry.document_type,
+      source_type: entry.source_type,
+      source_id: entry.source_id,
+      term: entry.term,
+      subject_role: requestedRole,
+      supporting_observation_ids: entry.supporting_observation_ids,
+      confidence: entry.confidence,
+      match_authority: "explicit_role_cue_recovery",
+    }));
+}
+
 function roleConstraintEvidence(parsed, group) {
   const requestedRole = parsed.intent.visual_filters.subject_roles[0] ?? null;
   if (!requestedRole) return [];
   const requestedIdentity = parsed.detected_subject?.normalized_name ?? null;
+  const subjectClasses = parsed.intent.visual_filters.subject_classes;
   const representationForms = parsed.intent.visual_filters.representation_forms;
   const depictedSurfaces = parsed.intent.visual_filters.depicted_surfaces;
-  return subjectRoleEntries(group)
+  const structured = subjectRoleEntries(group)
     .filter((entry) => entry.supporting_observation_ids?.length)
     .filter((entry) => {
       const roleEntry = parsedSubjectRoleEntry(entry);
       if (!roleEntry || roleEntry.role !== requestedRole) return false;
       if (requestedIdentity && !roleIdentityMatches(requestedIdentity, roleEntry)) return false;
+      if (subjectClasses.includes("pokemon") && (roleEntry.identity_has_parenthetical || !pokemonIdentityMatchesTextV1(roleEntry.identity, POKEMON_IDENTITY_LEXICON))) return false;
       if (representationForms.length && !representationForms.every((value) => roleFilterMatches(value, roleEntry.qualifiers))) return false;
       if (depictedSurfaces.length && !depictedSurfaces.every((value) => roleFilterMatches(value, roleEntry.qualifiers))) return false;
       return true;
@@ -350,6 +463,7 @@ function roleConstraintEvidence(parsed, group) {
     .map((entry) => ({
       query_concept: [
         parsed.detected_subject?.canonical_name,
+        ...subjectClasses,
         ...representationForms,
         ...depictedSurfaces,
       ].filter(Boolean).join(" "),
@@ -363,6 +477,7 @@ function roleConstraintEvidence(parsed, group) {
       confidence: entry.confidence,
       match_authority: "bound_subject_role_evidence",
     }));
+  return structured.length ? structured : explicitRoleCueEvidence(parsed, group);
 }
 
 function evidenceRows(group, pattern) {
@@ -442,11 +557,33 @@ function baseRankIntent(parsed, artworkGroupIds = []) {
   };
 }
 
+function subjectClassConceptsAreBound(parsed, result, group, boundRoleEvidence) {
+  if (!parsed.intent.visual_filters.subject_classes.length || !parsed.intent.visual_filters.concepts.length) return true;
+  const requestedRole = parsed.intent.visual_filters.subject_roles[0] ?? null;
+  if (!requestedRole) return true;
+  const roleRows = subjectRoleEntries(group)
+    .map((entry) => ({ entry, parsed: parsedSubjectRoleEntry(entry) }))
+    .filter((row) => row.parsed?.role === requestedRole && !row.parsed.identity_has_parenthetical);
+  const classRoleRows = roleRows.filter((row) => pokemonIdentityMatchesTextV1(row.parsed.identity, POKEMON_IDENTITY_LEXICON));
+  if (!classRoleRows.length) return false;
+  const everyRoleSubjectMatchesClass = roleRows.length === classRoleRows.length;
+  const subjectObservationIds = new Set(boundRoleEvidence.flatMap((entry) => entry.supporting_observation_ids));
+  for (const concept of parsed.intent.visual_filters.concepts) {
+    const conceptEvidence = result.matched_evidence.filter((entry) => entry.query_concept === concept);
+    if (!conceptEvidence.length) return false;
+    if (conceptEvidence.some((entry) => entry.document_type !== "subject")) continue;
+    const directlyBound = conceptEvidence.some((entry) => entry.supporting_observation_ids.some((id) => subjectObservationIds.has(id)));
+    if (!directlyBound && !everyRoleSubjectMatchesClass) return false;
+  }
+  return true;
+}
+
 function rankedIntentAlternatives(parsed, artworkGroupIds) {
   const primary = baseRankIntent(parsed, artworkGroupIds);
   if (!parsed.detected_subject) return [primary];
   if (parsed.intent.visual_filters.subject_roles.length) {
     primary.canonical_filters = { ...primary.canonical_filters, subjects: [] };
+    primary.subject_roles = [];
     return [primary];
   }
   const visualIdentity = {
@@ -474,7 +611,7 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
       if (parsed.intent.unrecognized_terms.length) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "unrecognized_terms", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
-      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.query_aliases.length;
+      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.query_aliases.length;
       if (!hasConstraint) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_supported_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
@@ -511,16 +648,24 @@ export function createVisualSearchLabEngineV1(groups, { imageResolver = null } =
 
       const merged = new Map();
       for (const intent of rankedIntentAlternatives(parsed, allowedGroupIds ? [...allowedGroupIds] : [])) {
+        if (parsed.intent.visual_filters.subject_roles.length) intent.subject_roles = [];
         const ranked = rankVisualSearchQueryV1({ intent }, groups, { topK: groups.length, candidateIndex });
         for (const result of ranked.results) {
           const aliases = aliasMatches.get(result.artwork_group_id) ?? [];
           const aliasEvidence = aliases.flatMap((decision) => decision.evidence.map((entry) => ({ ...entry, query_concept: decision.alias, match_authority: "query_alias_evidence" })));
           const boundRoleEvidence = roleMatches.get(result.artwork_group_id) ?? [];
+          const resultGroup = candidateIndex.groups_by_id.get(result.artwork_group_id);
+          if (!subjectClassConceptsAreBound(parsed, result, resultGroup, boundRoleEvidence)) continue;
           const existing = merged.get(result.artwork_group_id);
           const candidate = {
             ...result,
-            score: result.score + aliases.length * 12,
-            score_components: { ...result.score_components, alias_evidence: aliases.length * 12 },
+            score: result.score + aliases.length * 12 + (parsed.intent.visual_filters.subject_roles.length ? 8 : 0),
+            score_components: {
+              ...result.score_components,
+              subject_role: parsed.intent.visual_filters.subject_roles.length ? 8 : 0,
+              alias_evidence: aliases.length * 12,
+            },
+            matched_subject_roles: parsed.intent.visual_filters.subject_roles,
             matched_evidence: [...result.matched_evidence, ...boundRoleEvidence, ...aliasEvidence],
             matched_aliases: aliases.map((decision) => ({ alias: decision.alias, decision_rule: decision.decision_rule })),
           };

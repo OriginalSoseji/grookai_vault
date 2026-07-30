@@ -215,6 +215,7 @@
       for (const branch of parsed.intent.canonical_filters.branches) addChip(`branch: ${branch}`);
       for (const setCode of parsed.intent.canonical_filters.set_codes) addChip(`set: ${setCode}`);
       for (const role of parsed.intent.visual_filters.subject_roles) addChip(`role: ${role}`);
+      for (const subjectClass of parsed.intent.visual_filters.subject_classes) addChip(`subject class: ${subjectClass}`);
       for (const form of parsed.intent.visual_filters.representation_forms) addChip(`form: ${form}`);
       for (const surface of parsed.intent.visual_filters.depicted_surfaces) addChip(`surface: ${surface}`);
       for (const concept of parsed.intent.visual_filters.concepts) addChip(concept);

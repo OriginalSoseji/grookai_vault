@@ -103,6 +103,29 @@ function fixtures() {
     group("014", "Conflicting Identity Room", "trainer", [
       entry("conflicting-pikachu", "character_representation: Pikachu (Tepig): plush: yellow toy", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
     ], ["character_representation"]),
+    group("015", "Trainer Scene With Pikachu", "trainer", [
+      entry("trainer-scene-pikachu", "scene_subject: Pikachu", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("trainer-pikachu-sleeping", "sleeping", "subject", { subject_role: "scene_subject", supporting_observation_ids: ["obs-trainer-scene-pikachu"] }),
+    ]),
+    group("016", "Mixed Awake Scene", "trainer", [
+      entry("mixed-pikachu", "scene_subject: Pikachu", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("mixed-human", "scene_subject: human trainer", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("human-sleeping", "sleeping", "subject", { subject_role: "scene_subject", supporting_observation_ids: ["obs-mixed-human"] }),
+    ]),
+    group("017", "Pokemon Food Art", "trainer", [
+      entry("food-pikachu", "character_representation: Pikachu: food shape: decorated pastry", "subject", { source_type: "subject_role", subject_role: "character_representation" }),
+    ], ["character_representation"]),
+    group("018", "Pokemon Ice Cream Art", "trainer", [
+      entry("ice-cream-pikachu", "Pikachu-shaped ice cream dessert", "scene", { source_type: "observation", module: "objects_and_props" }),
+    ], []),
+    group("019", "Vanilluxe", "pokemon", [
+      entry("vanilluxe-subject", "scene_subject: Vanilluxe", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("vanilluxe-anatomy", "Vanilluxe has two connected ice cream cone shaped bodies", "subject", { source_type: "typed_fact", module: "creature_anatomy" }),
+    ]),
+    group("020", "Pikachu Eating Ice Cream", "trainer", [
+      entry("snack-pikachu", "scene_subject: Pikachu", "subject", { source_type: "subject_role", subject_role: "scene_subject" }),
+      entry("snack-ice-cream", "Pikachu holding an ice cream cone", "scene", { module: "objects_and_props" }),
+    ]),
   ];
 }
 
@@ -129,6 +152,23 @@ test("parser separates canonical subject, visual facts, roles, branches, counts,
   const trainerQuery = parseVisualSearchQueryV1("trainers wearing gloves", parser);
   assert.deepEqual(trainerQuery.intent.canonical_filters.branches, ["trainer"]);
   assert.deepEqual(trainerQuery.intent.visual_filters.concepts, ["glove"]);
+
+  const pokemonSubjectQuery = parseVisualSearchQueryV1("sleeping Pokemon", parser);
+  assert.deepEqual(pokemonSubjectQuery.intent.canonical_filters.branches, []);
+  assert.deepEqual(pokemonSubjectQuery.intent.visual_filters.subject_classes, ["pokemon"]);
+  assert.deepEqual(pokemonSubjectQuery.intent.visual_filters.subject_roles, ["scene_subject"]);
+  assert.deepEqual(pokemonSubjectQuery.intent.visual_filters.concepts, ["sleeping"]);
+
+  const pokemonCardQuery = parseVisualSearchQueryV1("Pokemon cards with sleeping", parser);
+  assert.deepEqual(pokemonCardQuery.intent.canonical_filters.branches, ["pokemon"]);
+  assert.deepEqual(pokemonCardQuery.intent.visual_filters.subject_classes, []);
+  assert.deepEqual(pokemonCardQuery.intent.visual_filters.subject_roles, []);
+
+  const foodRepresentationQuery = parseVisualSearchQueryV1("Pokemon as food", parser);
+  assert.deepEqual(foodRepresentationQuery.intent.canonical_filters.branches, []);
+  assert.deepEqual(foodRepresentationQuery.intent.visual_filters.subject_classes, ["pokemon"]);
+  assert.deepEqual(foodRepresentationQuery.intent.visual_filters.subject_roles, ["character_representation"]);
+  assert.deepEqual(foodRepresentationQuery.intent.visual_filters.representation_forms, ["food shape"]);
 
   const countQuery = parseVisualSearchQueryV1("cards with three visible lightning bolts", parser);
   assert.deepEqual(countQuery.intent.visual_filters.counts, [{ label: "lightning bolts", exact_count: 3 }]);
@@ -189,6 +229,29 @@ test("representation forms and depicted surfaces remain strict bound constraints
   const absent = await engine.search("Pikachu logo");
   assert.equal(absent.total_matches, 0);
   assert.equal(absent.strict_zero_reason, "subject_role_evidence_not_found");
+});
+
+test("Pokemon subject-class queries cross card branches and bind subject-scoped facts", async () => {
+  const engine = createVisualSearchLabEngineV1(fixtures());
+  const sleeping = await engine.search("sleeping Pokemon");
+  assert.equal(sleeping.total_matches, 2);
+  assert.deepEqual(sleeping.results.map((row) => row.artwork_group_id).sort(), ["group-001", "group-015"]);
+  assert.ok(sleeping.results.every((row) => row.matched_evidence.some((entry) => entry.match_authority === "bound_subject_role_evidence")));
+
+  const pokemonCards = await engine.search("Pokemon cards with sleeping");
+  assert.equal(pokemonCards.total_matches, 1);
+  assert.equal(pokemonCards.results[0].artwork_group_id, "group-001");
+
+  const foodShape = await engine.search("Pokemon as food");
+  assert.equal(foodShape.total_matches, 2);
+  assert.deepEqual(foodShape.results.map((row) => row.artwork_group_id).sort(), ["group-017", "group-018"]);
+  assert.ok(foodShape.results.some((row) => row.matched_evidence.some((entry) => entry.term.includes("food shape"))));
+
+  const iceCream = await engine.search("Pokemon as ice cream");
+  assert.equal(iceCream.total_matches, 1);
+  assert.equal(iceCream.results[0].artwork_group_id, "group-018");
+  assert.ok(iceCream.results[0].matched_evidence.some((entry) => entry.match_authority === "explicit_role_cue_recovery"));
+  assert.ok(iceCream.results.every((row) => !["group-019", "group-020"].includes(row.artwork_group_id)));
 });
 
 test("query aliases require objective multi-cue evidence and never store the alias as a fact", async () => {
