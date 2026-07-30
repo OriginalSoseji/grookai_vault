@@ -1,0 +1,26 @@
+{
+  "worker_version": "TCGPLAYER_MARKET_ACTIVE_ASK_REFRESH_V1",
+  "status": "passed",
+  "mode": "apply",
+  "started_at": "2026-07-30T18:06:01.418Z",
+  "finished_at": "2026-07-30T18:09:02.562Z",
+  "database_session": {
+    "statement_timeout": "20min",
+    "enable_nestloop": "off"
+  },
+  "before": {
+    "row_count": 0,
+    "invalid_row_count": 0,
+    "stale_row_count": 0,
+    "oldest_observed_at": null,
+    "newest_observed_at": null
+  },
+  "after": {
+    "row_count": 0,
+    "invalid_row_count": 0,
+    "stale_row_count": 0,
+    "oldest_observed_at": null,
+    "newest_observed_at": null
+  },
+  "findings": []
+}

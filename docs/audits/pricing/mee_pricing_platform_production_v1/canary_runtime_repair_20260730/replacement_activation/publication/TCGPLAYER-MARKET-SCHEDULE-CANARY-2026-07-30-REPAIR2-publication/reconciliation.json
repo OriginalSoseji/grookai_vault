@@ -1,0 +1,13 @@
+{
+  "mismatches": [],
+  "mapped_count": 100,
+  "delayed_count": 0,
+  "decision_count": 100,
+  "eligible_count": 100,
+  "excluded_count": 0,
+  "selected_count": 100,
+  "snapshot_count": 100,
+  "suppressed_count": 0,
+  "quarantined_count": 0,
+  "traced_snapshot_count": 100
+}

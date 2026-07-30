@@ -2,157 +2,191 @@
 
 ## Purpose
 
-This file exists to restart pricing work in a new chat without relying on conversational memory.
-
-It is an operational resume artifact, not a changelog. It captures the current checkpointed state of Grookai pricing, the invariants that now govern the system, what is complete, what is still blocked, and what the next logical step is.
+This file restarts Production V1 pricing work without relying on chat history.
+It records the current operational gate, frozen scope, active production
+commit, and exact next action.
 
 ## Governing Sources
 
-High-authority sources a future session must anchor to:
+Read these first:
 
-- `AXIOM_EXECUTION_INTERFACE_V4_FULL.md`
 - `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_01_READINESS_AND_RISK.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_02_OBSERVATION_LAYER_DECISION.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_03_CLASSIFIER_HARDENING_AND_OFFLINE_CERTIFICATION.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_04_COMPS_TRUST_SURFACE.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_05_TRUST_SYSTEM_V1.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_06_QUEUE_MODEL_V1.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_07_JUSTTCG_SOURCE_DECISION.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_08_PROJECTION_SYSTEM_V1.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_09_LIVE_SOURCE_CONSTRAINTS.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_10_REFERENCE_LANE_STRATEGY.md`
-- `docs/checkpoints/pricing/PRICING_CHECKPOINT_11_THREE_LANE_PRICING_MODEL.md`
-- `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`
-- `docs/audits/PRICING_READINESS_AUDIT_V1.md`
-- `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`
-- `docs/audits/PRICING_OBSERVATION_OFFLINE_VALIDATION_V1.md`
-- `docs/audits/PRICING_OBSERVATION_LIVE_VALIDATION_V1.md`
-- `docs/audits/JUSTTCG_SOURCE_AUDIT_V1.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_runtime_repair_20260730/REPORT.md`
 
-## Current Pricing State
+Checkpoint 38 is historical pre-incident context. Checkpoints 39 and 40
+supersede its canary timestamps.
 
-Current pricing state in plain language:
+## Frozen Production V1 Contract
 
-- the raw market-truth lane exists and is eBay-only
-- the observation layer exists and is the basis for persisted pricing evidence
-- classifier hardening passed offline certification
-- the card-detail comps surface exists
-- the card-detail trust system exists
-- the projection lane exists structurally
-- JustTCG is reference-only and non-authoritative
-- future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence is governed by `PRICING_EVIDENCE_ENGINE_V1`
-- the reference lane is implemented as a read-only non-authoritative helper
-- Market Evidence Engine work is now in hardening / ingestion-planning mode, not initial reference implementation mode
-- live eBay validation is still blocked by upstream throttle
-- the queue model is demand-driven and no longer broad-backfill by default
+Production V1 is:
 
-## What Is Complete
+- English Pokemon raw singles
+- exact canonical printing, language, and finish
+- TCGPlayer `marketPrice` as the market close
+- no Grookai Value inference
+- deterministic exclusion of ambiguous or unsupported rows
+- one governed shared pricing read model
+- signed-in publication first
+- anonymous publication blocked until licensing and display authority pass
 
-Completed and locked work:
+Japanese cards, slabs, sealed products, proprietary valuation, sold-history
+weighting, and other TCGs are outside Production V1.
 
-- pricing observation layer
-- accepted-lane and audit views
-- classifier hardening
-- offline certification harness and audit
-- comps trust surface on card detail
-- trust system on card detail
-- queue model with vault-first demand policy and cooldown semantics
-- JustTCG source audit
-- reference-lane strategy checkpoint
-- projection system lane contract
-- live source constraints checkpoint
-- three-lane pricing model checkpoint
+## Current Operational State
 
-## What Is Still Blocked Or Unproven
+The current gate is a fixed 100-printing signed-in production canary.
 
-What remains blocked or unproven:
+Valid replacement activation:
 
-- repeated first-call eBay Browse `429` continues to block a successful live proof run
-- live comp density is still unproven under normal source conditions
-- live accepted comp persistence is still unproven in a non-throttled window
-- JustTCG runtime reliability remains unproven at scale
-- pricing UI/source labels still need strict lane clarity where legacy display views expose generic primary prices
-- full slab-truth pricing remains future work
+- run key:
+  `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2`
+- publication run ID:
+  `421f40ab-2d2d-4411-a1b3-7420603c5b86`
+- publication set ID:
+  `5b016262-764b-4b05-9e1e-df15971d0a7d`
+- activation:
+  `2026-07-30T18:17:48.625Z`
+- required 72-hour end:
+  `2026-08-02T18:17:48.625Z`
+- production commit:
+  `456306bdb2a335286d513c1d612a97a58a1f01cc`
+- observer source:
+  `a2267285a236e89330f3002ee567ddce991c4232`
 
-## Pricing Lanes (Authoritative Summary)
+Initial observer run:
 
-### Market Truth
+`https://github.com/OriginalSoseji/grookai_vault/actions/runs/30571384711`
 
-- eBay only
-- accepted + mapped only
-- observation-backed
-- explainable comps only
-- current raw market value only
+Initial observer truth:
 
-### Reference
+- status `observing`
+- 100 current exact prices
+- 100 positive USD prices
+- zero stale rows
+- zero missing provenance
+- zero broken traces
+- source health `healthy`
+- source continuity `completed_sync`
+- zero terminal alerts
+- authenticated reads available
+- anonymous reads denied
+- zero findings
 
-- external non-authoritative reference only
-- optional
-- clearly labeled
-- never blended into market truth
+The timer is enabled and active. The next daily slot after the replacement
+activation is `2026-07-31T08:15:00Z`.
 
-### Projection
+## Incident History
 
-- modeled estimate only
-- may use reference inputs
-- clearly labeled as projected / modeled
-- never feeds back into market truth
+Do not count time from any earlier window.
 
-## Invariants That Must Never Break
+- The July 28 canary window failed its first unattended source cycle.
+- The July 29 replacement exposed source-resume and assignment-preparation
+  runtime defects.
+- The initial July 30 run completed its source warehouse but timed out during
+  active-ask refresh.
+- July 30 `REPAIR1` published and reconciled 100 rows but its outer health
+  phase timed out.
+- Only July 30 `REPAIR2` completed active-ask refresh, publication, and health.
 
-The following invariants are locked:
+Failed runs are permanent evidence. They must not be rewritten or treated as
+passing activations.
 
-- eBay = only market-truth lane
-- accepted + mapped only for pricing
-- JustTCG/reference never influences raw market price
-- projection never influences raw market price
-- empty market stays honestly empty
-- fail-closed under throttle
-- no silent fallback pricing
-- checkpoints must be respected before new changes
+## Current Proof
 
-## Current Operational Reality
+The valid replacement activation proved:
 
-Current operational reality:
+- completed source warehouse with 540,633 price rows and zero source failures
+- 100 selected, mapped, eligible, decided, snapshotted, and traced rows
+- zero reconciliation mismatches
+- zero exclusions, quarantines, delays, or suppressions
+- five of five required publication phases succeeded
+- current exact count 100
+- current parent count 99
+- zero broken source-to-publication traces
+- no canonical identity or Vault writes
 
-- source availability is the main blocker, not pricing architecture
-- fail-closed behavior under throttle is correct and must remain so
-- free-provider pricing can expand the reference evidence layer only; it cannot silently become market truth
-- demand-driven pricing is the correct operating model for this phase
-- broad backfill is not the current strategy
+The active-ask refresh produced zero current rows. That is a valid result for
+the available ask evidence and is separate from TCGPlayer market-close
+publication.
 
-## Next Logical Step
+## Pending Database Work
 
-Primary next step:
+No migration was applied during the July 30 runtime repair.
 
-- `MARKET_EVIDENCE_ENGINE_V1`
+These post-canary migrations remain blocked:
 
-That next step should:
+- `20260728130000`
+- `20260728133000`
+- `20260730180000`
 
-- obey `PRICING_EVIDENCE_ENGINE_V1`
-- reconcile pricing lane labels and stale resume/checkpoint pointers
-- keep the reference lane isolated from market truth
-- harden tests so `primary_price` cannot be displayed without source-specific labeling
-- plan the warehouse evidence ingestion layer before any migration or provider apply
-- preserve demand-driven queue behavior
+Do not apply any of them before the exact 72-hour observer gate passes.
 
-That next step must not:
+## Invariants
 
-- re-litigate truth / reference / projection separation
-- reopen broad backfill as the next move
-- add a new provider before the existing lane-label contract is enforced
+- do not count a failed outer pipeline as canary time
+- do not modify the frozen production commit during a healthy window
+- do not deploy observer-only code over the production pipeline commit
+- do not broaden beyond the fixed 100-printing canary
+- do not apply post-canary migrations early
+- do not enable anonymous pricing
+- do not write canonical identity, Vault, or Grookai Value from the pipeline
+- do not represent database publication as deployed client visibility
+- do not publish inferred, ambiguous, stale, or non-exact prices
 
-## Resume Prompt Block
+## Exact Next Gate
 
-Use this block to restart pricing work in a new chat:
+Wait through `2026-08-02T18:17:48.625Z`.
+
+Use the first observer run at or after that timestamp. It must prove:
+
+1. workflow conclusion `success`
+2. observer status `passed`
+3. at least 72 continuous hours
+4. every expected daily slot matched
+5. zero unhealthy scheduled runs
+6. zero terminal alerts
+7. healthy completed source continuity
+8. exactly 100 current exact positive-USD prices
+9. zero stale prices
+10. zero missing provenance
+11. zero broken traces
+12. authenticated access remains correct
+13. anonymous access remains denied
+14. a rollback target remains available
+
+If any condition fails, preserve evidence and stop.
+
+If all conditions pass:
+
+1. freeze and hash the final observer artifact
+2. run migration-history and schema-drift preflight
+3. build the integration candidate from current `origin/main`
+4. carry only reviewed Production V1 pricing changes
+5. run full contract and product-surface suites
+6. apply the frozen post-canary migration package atomically
+7. read back schema, grants, RLS, function definitions, and governed rows
+8. deploy integrated web and Flutter clients
+9. prove all 17 supported surfaces use the shared read model
+10. run fresh shadow publication and provenance reconciliation
+11. activate full signed-in publication only after all gates pass
+12. observe seven unattended full-production cycles
+13. produce the final Production V1 report
+14. keep anonymous pricing blocked until its separate licensing gate passes
+
+## Resume Prompt
 
 ```md
-Pricing is operating under AXIOM Execution Interface V4. Anchor to `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`, pricing checkpoints 01 through 12 and 14, the key pricing audits, and `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`. Current state: eBay is the only market-truth lane; pricing is observation-backed and `accepted + mapped` only; offline classifier hardening passed; comps and trust surfaces exist; projection exists as a separate modeled lane; JustTCG is reference-only and now has a read-only helper; future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence can expand reference evidence only and cannot silently become market truth; queue policy is demand-driven and vault-first; live eBay proof is still blocked by repeated first-call Browse 429s and must be treated as source constraint, not pricing-logic failure. Invariants: no silent fallback pricing, no reference/projection contamination of raw market truth, empty market stays honestly empty, fail closed under throttle, respect existing checkpoints before changes. Next objective: `MARKET_EVIDENCE_ENGINE_V1`: first reconcile lane labels and stale checkpoints, then plan warehouse evidence ingestion. Do not drift, do not re-litigate lane separation, do not add providers before lane labels are enforced, and do not reopen broad backfill as the next move.
+Continue Production V1 pricing from
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
+and `docs/system/RESUME_PRICING_V1.md`. The only valid active canary began at
+`2026-07-30T18:17:48.625Z` from production commit
+`456306bdb2a335286d513c1d612a97a58a1f01cc` and cannot pass before
+`2026-08-02T18:17:48.625Z`. Do not count earlier failed windows, change the
+frozen production runtime, apply pending migrations, broaden publication, or
+enable anonymous pricing. Inspect the first observer run at or after the exact
+end time and follow the fail-closed gate in Checkpoint 40.
 ```
-
-## Why This File Matters
-
-This file matters because pricing has accumulated enough architectural decisions and invariants that restarting from conversational memory is now unsafe.
-
-Repo-backed resume state is part of operating discipline. It prevents reset-to-zero reasoning, protects checkpointed decisions from drift, and lets future sessions start from the correct current state instead of re-deriving it imperfectly.

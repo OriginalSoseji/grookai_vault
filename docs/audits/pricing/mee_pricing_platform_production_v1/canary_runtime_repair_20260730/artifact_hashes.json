@@ -1,0 +1,216 @@
+{
+  "audit": "TCGPLAYER_MARKET_CANARY_RUNTIME_REPAIR_20260730",
+  "generated_at": "2026-07-30T18:52:14.5940602Z",
+  "artifacts": [
+    {
+      "path": "initial_scheduled_failure/active_ask_refresh.stderr.log",
+      "sha256": "d98e13ff5b9ba62bf71ebde1dcccd3c2a30713ffba97eaf4a0b9459a80145c2f",
+      "bytes": 372
+    },
+    {
+      "path": "initial_scheduled_failure/active_ask_refresh.stdout.log",
+      "sha256": "02c51ba89295dcb0e7cc311747f3b34a6d7f38b923486d8800d2144f0cad4ad9",
+      "bytes": 117
+    },
+    {
+      "path": "initial_scheduled_failure/artifact_hashes.json",
+      "sha256": "cfcbfb61cd2a707245e93c0631e4010745451fd98fa21755af0f0128ff2f46c8",
+      "bytes": 299
+    },
+    {
+      "path": "initial_scheduled_failure/pipeline_state.json",
+      "sha256": "473c367133e8ab021d4edfb8ea369aec723498d738aec8374affe0155216d7d4",
+      "bytes": 2859
+    },
+    {
+      "path": "initial_scheduled_failure/run_plan.json",
+      "sha256": "1afc75eedaeeb524c494a20da0c5b0707d1814a37c273c3e6d56d7649928c22a",
+      "bytes": 1012
+    },
+    {
+      "path": "initial_scheduled_failure/scheduled_attempts.jsonl",
+      "sha256": "b3a1aaccc6439e9e53a057ffef48b2c33cc0fad5f122eced967bcc9e3357f99c",
+      "bytes": 1450
+    },
+    {
+      "path": "initial_scheduled_failure/scheduled_run_plan.json",
+      "sha256": "2a105bec8c5fea5c39a918a41b58fd77c93118a33c6f22b36a9c7a318f55bbb1",
+      "bytes": 1204
+    },
+    {
+      "path": "initial_scheduled_failure/scheduled_summary.json",
+      "sha256": "ff90a2045729835565916a280dc5c54dd2a24ec287ff67ba69370fcd82d1679c",
+      "bytes": 1466
+    },
+    {
+      "path": "repair1_failed_outer_health/active_ask_refresh.stderr.log",
+      "sha256": "51c95c986de383d8593a430650de073990b28001de164772f6787e747637c1b3",
+      "bytes": 72
+    },
+    {
+      "path": "repair1_failed_outer_health/active_ask_refresh.stdout.log",
+      "sha256": "8a75bfd1c994efde6833c0e6143247756b5f491a3b3fee83527127d632025e3d",
+      "bytes": 966
+    },
+    {
+      "path": "repair1_failed_outer_health/health.stderr.log",
+      "sha256": "0b922bdd2d60d5e09f88f8219552f7c08cd6ee6fac2e6d6884245bea4d1aa88e",
+      "bytes": 329
+    },
+    {
+      "path": "repair1_failed_outer_health/health.stdout.log",
+      "sha256": "6fd8a844fa041cd220e2be5b702c21cb6844b52b8437b849ed2a457ec4753449",
+      "bytes": 131
+    },
+    {
+      "path": "repair1_failed_outer_health/pipeline_state.json",
+      "sha256": "5fa45c7007ececb9661e070d50579b4df900051048340445baa2988e6689413d",
+      "bytes": 4125
+    },
+    {
+      "path": "repair1_failed_outer_health/publication.stderr.log",
+      "sha256": "e5b3449179e23cd2501ba9bc24f9be56fe6f0e452337235d0de07f67f46c1e8f",
+      "bytes": 291
+    },
+    {
+      "path": "repair1_failed_outer_health/publication.stdout.log",
+      "sha256": "6d7dc83c8dc820d2df777f16bb1f6782da84afc543ff8c3a87f79a81bcc20dbf",
+      "bytes": 2218
+    },
+    {
+      "path": "repair1_failed_outer_health/run_plan.json",
+      "sha256": "48c166d1b18c6509ecce3e16e2fe3b8b3049c98ac02e68595dfd49f2697dc9d1",
+      "bytes": 991
+    },
+    {
+      "path": "replacement_activation/active_ask_refresh.stderr.log",
+      "sha256": "51c95c986de383d8593a430650de073990b28001de164772f6787e747637c1b3",
+      "bytes": 72
+    },
+    {
+      "path": "replacement_activation/active_ask_refresh.stdout.log",
+      "sha256": "305396cfd7002762cf179571a48d7548b55e41241d795699921b35c23e7d4cf7",
+      "bytes": 952
+    },
+    {
+      "path": "replacement_activation/active_ask_refresh/2026-07-30T18-06-00-559Z/artifact_hashes.json",
+      "sha256": "973754d2ac52ec95d07f332a0c404b0c7aed7e22e1a751711166837819566985",
+      "bytes": 176
+    },
+    {
+      "path": "replacement_activation/active_ask_refresh/2026-07-30T18-06-00-559Z/run_plan.json",
+      "sha256": "bbd76d1352ea6f4b49f22c567cb88055d725f10bf43db74b6815243d6e58b64a",
+      "bytes": 594
+    },
+    {
+      "path": "replacement_activation/active_ask_refresh/2026-07-30T18-06-00-559Z/summary.json",
+      "sha256": "ec5470fdb05031b5d27693b912c628c6482f61b5f549b9bca023f730ca09964a",
+      "bytes": 616
+    },
+    {
+      "path": "replacement_activation/artifact_hashes.json",
+      "sha256": "00923a67bc63674ba04f88a223c6209e976dc056ca27474b34f5c0072c3056eb",
+      "bytes": 187
+    },
+    {
+      "path": "replacement_activation/health.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "replacement_activation/health.stdout.log",
+      "sha256": "f72e5cad85dafaeaf2e311a8ea3ac3481deec0f5dec28d42ed7620969c74ad61",
+      "bytes": 2984
+    },
+    {
+      "path": "replacement_activation/health/tcgplayer_market_health_2026-07-30T18-28-56-076Z.json",
+      "sha256": "2a40b23e08d46291d7a02f7564c37bd876723e99b483494ad928c6f33e9b1a7a",
+      "bytes": 2619
+    },
+    {
+      "path": "replacement_activation/health/tcgplayer_market_health_2026-07-30T18-28-56-076Z.json.sha256",
+      "sha256": "194402549fb0454c6ff73cc5f9696326d5eeb5943a7c9cee601dbacf295f3199",
+      "bytes": 120
+    },
+    {
+      "path": "replacement_activation/pipeline_state.json",
+      "sha256": "cc61f3a97c228de16d5fe2821079d63587b9e97bf340330c92e11490f7af2cfd",
+      "bytes": 3452
+    },
+    {
+      "path": "replacement_activation/publication.stderr.log",
+      "sha256": "2fe2d3a1f5f181cf4e9bf248fb3fbdf2b41aecc9d6038e77cc63eb83e5f0e2cb",
+      "bytes": 291
+    },
+    {
+      "path": "replacement_activation/publication.stdout.log",
+      "sha256": "c4129dd6dac588b82937d7618e515ca5072ea9b5e48354c172b251e9170bc14f",
+      "bytes": 2214
+    },
+    {
+      "path": "replacement_activation/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication/artifact_hashes.json",
+      "sha256": "ca5720731b2e09b447263cacd58347344bd1a1f519d44b7c0be8b12c6e3fb7ce",
+      "bytes": 337
+    },
+    {
+      "path": "replacement_activation/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication/qualification_decisions.jsonl",
+      "sha256": "d611b501b159192ef526288028fcf1c4ae5a906705a54c37e0dd86611866dc77",
+      "bytes": 362392
+    },
+    {
+      "path": "replacement_activation/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication/reconciliation.json",
+      "sha256": "78ce884a891f54be92714a91282b51843717c93e9f0274931f0b659343b27ba0",
+      "bytes": 274
+    },
+    {
+      "path": "replacement_activation/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication/run_plan.json",
+      "sha256": "c727f27c296c5c02a497f5f8baca386910db4515c5bfca7a304fd30599a3d580",
+      "bytes": 19208
+    },
+    {
+      "path": "replacement_activation/publication/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication/summary.json",
+      "sha256": "bfe9bc904995a96dbc09ac138250c942536a587f56a84c73dc600e23dc47124c",
+      "bytes": 1122
+    },
+    {
+      "path": "replacement_activation/run_plan.json",
+      "sha256": "ec34ac9bf640dcfecbd67916c1e0954b33fa058b078c28dc51e7be8c197cae4d",
+      "bytes": 991
+    },
+    {
+      "path": "replacement_observer_initial/.gitattributes",
+      "sha256": "944cfef9a2ca775e676d0c46904dadc7b5e994017cab246a006bdb2c4ed043fc",
+      "bytes": 16
+    },
+    {
+      "path": "replacement_observer_initial/artifact_hashes.json",
+      "sha256": "015b4b05b2bf74300f83cc07a5ac6f2ce8cef45e027d3a0c8c9be98d1bfb89f8",
+      "bytes": 346
+    },
+    {
+      "path": "replacement_observer_initial/evidence.json",
+      "sha256": "56ce40e7944c04618a6982b0a962c10ac7359e37c1027f46f92f2be8c98e5911",
+      "bytes": 9285
+    },
+    {
+      "path": "replacement_observer_initial/REPORT.md",
+      "sha256": "6cfe371e8165e9ffa52cded3cc2904a24cb645b18a6678f06173059a3f0db5a2",
+      "bytes": 823
+    },
+    {
+      "path": "replacement_observer_initial/run_plan.json",
+      "sha256": "5389fc9226b475e133ae686078c86293bd27f62afb739a7c1cc9b8fe230cd863",
+      "bytes": 591
+    },
+    {
+      "path": "replacement_observer_initial/summary.json",
+      "sha256": "69f6e838a7986a03ec5501deaadb37d493bb2c1b942224bcaf9a93fca227ffbc",
+      "bytes": 6590
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "41964af0d759427d505612ebd4aa4ce23e3156ffd31a9ecf1caa527a74a458e6",
+      "bytes": 6639
+    }
+  ]
+}

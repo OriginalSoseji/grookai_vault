@@ -1,0 +1,41 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30",
+  "status": "failed",
+  "started_at": "2026-07-30T08:15:15.318Z",
+  "commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "phases": {
+    "warehouse_current_sync": {
+      "status": "completed",
+      "started_at": "2026-07-30T09:51:11.488Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "--mode=current",
+        "--apply",
+        "--resume-run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-warehouse",
+        "--request-ceiling=10000",
+        "--out-dir=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/warehouse"
+      ],
+      "finished_at": "2026-07-30T09:51:14.766Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/warehouse_current_sync.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/warehouse_current_sync.stderr.log"
+    },
+    "active_ask_refresh": {
+      "status": "failed",
+      "started_at": "2026-07-30T09:51:14.767Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+        "--apply",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/active_ask_refresh",
+        "--timeout-minutes=20"
+      ],
+      "finished_at": "2026-07-30T09:53:15.690Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/active_ask_refresh.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/active_ask_refresh.stderr.log",
+      "error": "Command failed: /usr/bin/node scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs --apply --out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/active_ask_refresh --timeout-minutes=20\n[active-ask-refresh] error: canceling statement due to statement timeout\n    at /opt/grookai_vault_mee_nightly/node_modules/pg/lib/client.js:631:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs:146:7)\n"
+    }
+  },
+  "finished_at": "2026-07-30T09:53:15.690Z"
+}
