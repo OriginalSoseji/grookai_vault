@@ -48,36 +48,82 @@ jobs:
           supabase functions list --project-ref ycdxbpibncqcchqiihfz
 
       - name: Diagnose wall_feed (anon)
-        continue-on-error: true
         run: |
+          $ErrorActionPreference = "Stop"
+          $artifactDir = "probe-artifacts"
+          Remove-Item -LiteralPath $artifactDir -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Path $artifactDir | Out-Null
+
           $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
           $h = @{
             apikey       = $env:SUPABASE_PUBLISHABLE_KEY
             Authorization= "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"
           }
+
+          $status = "ERR"
+          $body = ""
+          $transportError = $null
           try {
-            $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
-            $status = $r.StatusCode
-            $body   = $r.Content
+            $r = Invoke-WebRequest `
+              -Uri $url `
+              -Headers $h `
+              -Method GET `
+              -SkipHttpErrorCheck `
+              -TimeoutSec 30
+            $status = [int]$r.StatusCode
+            $body = [string]$r.Content
           } catch {
-            if ($_.Exception.Response) {
-              $status = [int]$_.Exception.Response.StatusCode.Value__
-              $sr = New-Object IO.StreamReader ($_.Exception.Response.GetResponseStream())
-              $body = $sr.ReadToEnd()
-            } else {
-              $status = "ERR"
-              $body   = $_.Exception.Message
-            }
+            $transportError = $_.Exception.Message
+            $body = $transportError
+          }
+
+          $decision = switch ($status) {
+            200 { "anonymous_accessible" }
+            401 { "anonymous_denied" }
+            403 { "anonymous_denied" }
+            default { "unexpected_response" }
           }
           $snippet = if ($body) { $body.Substring(0,[Math]::Min(300,$body.Length)) } else { "" }
-          "URL: $url"              | Out-File -Encoding UTF8 SUMMARY.md
-          "STATUS: $status"        | Out-File -Append -Encoding UTF8 SUMMARY.md
-          "BODY[0..300]: $snippet" | Out-File -Append -Encoding UTF8 SUMMARY.md
+          $observedAt = (Get-Date).ToUniversalTime().ToString("o")
+
+          @(
+            "# Production Edge Probe"
+            ""
+            "- Observed at: ``$observedAt``"
+            "- URL: ``$url``"
+            "- HTTP status: ``$status``"
+            "- Decision: ``$decision``"
+            "- Transport error: ``$($transportError ?? 'none')``"
+            ""
+            "## Response"
+            ""
+            '```text'
+            $snippet
+            '```'
+          ) | Out-File -LiteralPath "$artifactDir/SUMMARY.md" -Encoding UTF8
+
+          [ordered]@{
+            schema_version = "PROD_EDGE_PROBE_RESULT_V1"
+            observed_at = $observedAt
+            url = $url
+            http_status = $status
+            decision = $decision
+            transport_error = $transportError
+            response_snippet = $snippet
+          } | ConvertTo-Json -Depth 4 |
+            Out-File -LiteralPath "$artifactDir/probe.json" -Encoding UTF8
+
+          if ($transportError) {
+            throw "wall_feed transport probe failed: $transportError"
+          }
+          if ($decision -eq "unexpected_response") {
+            throw "wall_feed returned unexpected HTTP status $status"
+          }
 
       - name: Upload probe summary
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: prod-edge-probe
-          path: SUMMARY.md
-          if-no-files-found: warn
+          path: probe-artifacts
+          if-no-files-found: error
