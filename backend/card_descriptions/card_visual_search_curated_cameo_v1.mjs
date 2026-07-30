@@ -3,12 +3,19 @@ import fs from "node:fs/promises";
 import readline from "node:readline";
 
 export const CARD_VISUAL_SEARCH_CURATED_CAMEO_VERSION =
-  "CARD_VISUAL_SEARCH_CURATED_CAMEO_V1";
+  "CARD_VISUAL_SEARCH_CURATED_CAMEO_V2";
 
 const ACCEPTED_RECONCILIATION_STATUSES = new Set([
   "existing_approved_cameo_match",
   "exact_canonical_match",
   "founder_image_confirmed",
+  "role_confirmed_external_match",
+]);
+
+const SEARCHABLE_APPEARANCE_ROLES = new Set([
+  "scene_subject",
+  "depicted_subject",
+  "character_representation",
 ]);
 
 const REPRESENTATION_MODES = new Set([
@@ -44,11 +51,18 @@ function governanceStatus(row) {
   if (row.reconciliation_status === "founder_image_confirmed") {
     return "human_image_confirmed";
   }
+  if (row.reconciliation_status === "role_confirmed_external_match") {
+    return "external_role_confirmed";
+  }
   return "external_exact_candidate";
 }
 
 function evidenceStrength(row) {
-  return ["existing_approved", "human_image_confirmed"].includes(
+  return [
+    "existing_approved",
+    "human_image_confirmed",
+    "external_role_confirmed",
+  ].includes(
     governanceStatus(row),
   )
     ? "high"
@@ -56,7 +70,11 @@ function evidenceStrength(row) {
 }
 
 function evidenceConfidence(row) {
-  return ["existing_approved", "human_image_confirmed"].includes(
+  return [
+    "existing_approved",
+    "human_image_confirmed",
+    "external_role_confirmed",
+  ].includes(
     governanceStatus(row),
   )
     ? 1
@@ -69,7 +87,50 @@ function mappedSubjectRole(displayMode) {
   return null;
 }
 
-function sharedEvidence(row, cardPrintId) {
+function resolvedAppearanceRole(row) {
+  const explicitRole = row.appearance_role ?? row.subject_kind_candidate ?? null;
+  if (SEARCHABLE_APPEARANCE_ROLES.has(explicitRole)) return explicitRole;
+  const roles = unique((row.display_mode_terms ?? []).map(mappedSubjectRole));
+  return roles.length === 1 ? roles[0] : null;
+}
+
+export function curatedCameoEvidenceDecisionV2(row) {
+  const canonicalMatch = Boolean(row.canonical_match?.card_print_id);
+  const sourceComplete = Boolean(row.source_record_id && row.cameo_identity);
+  const reconciliationAccepted = ACCEPTED_RECONCILIATION_STATUSES.has(
+    row.reconciliation_status,
+  );
+  const governance = governanceStatus(row);
+  const appearanceRole = resolvedAppearanceRole(row);
+  const authorityAccepted = [
+    "existing_approved",
+    "human_image_confirmed",
+    "external_role_confirmed",
+  ].includes(governance);
+  const searchEligible =
+    canonicalMatch &&
+    sourceComplete &&
+    reconciliationAccepted &&
+    authorityAccepted &&
+    Boolean(appearanceRole);
+
+  let reason = "search_eligible";
+  if (!canonicalMatch) reason = "canonical_match_missing";
+  else if (!sourceComplete) reason = "source_identity_missing";
+  else if (!reconciliationAccepted) reason = "reconciliation_not_accepted";
+  else if (!authorityAccepted) reason = "external_candidate_requires_review";
+  else if (!appearanceRole) reason = "appearance_role_requires_review";
+
+  return {
+    governance_status: governance,
+    appearance_role: appearanceRole,
+    search_eligible: searchEligible,
+    review_required: !searchEligible,
+    reason,
+  };
+}
+
+function sharedEvidence(row, cardPrintId, decision) {
   return {
     source_id: row.source_record_id,
     module: "curated_cameos",
@@ -80,7 +141,8 @@ function sharedEvidence(row, cardPrintId) {
     evidence_strength: evidenceStrength(row),
     authority: row.authority ?? "external_curated_reference",
     source_name: row.source ?? null,
-    governance_status: governanceStatus(row),
+    governance_status: decision.governance_status,
+    appearance_role: decision.appearance_role,
     source_card_print_id: cardPrintId,
     cameo_identity: row.cameo_identity,
     cameo_identity_kind: row.cameo_identity_kind,
@@ -92,29 +154,27 @@ function sharedEvidence(row, cardPrintId) {
 
 export function curatedCameoEntriesV1(row) {
   const cardPrintId = row.canonical_match?.card_print_id ?? null;
-  if (
-    !cardPrintId ||
-    !row.source_record_id ||
-    !row.cameo_identity ||
-    !ACCEPTED_RECONCILIATION_STATUSES.has(row.reconciliation_status)
-  ) {
-    return [];
-  }
+  const decision = curatedCameoEvidenceDecisionV2(row);
+  if (!decision.search_eligible) return [];
 
-  const shared = sharedEvidence(row, cardPrintId);
+  const shared = sharedEvidence(row, cardPrintId, decision);
   const entries = [
     {
       ...shared,
       source_type: "curated_cameo",
       field_path: "curated_cameos.identity",
       term: `cameo subject: ${row.cameo_identity}`,
-      subject_role: "curated_cameo",
+      subject_role: decision.appearance_role,
     },
   ];
 
-  for (const displayMode of shared.display_mode_terms) {
-    const subjectRole = mappedSubjectRole(displayMode);
-    if (!subjectRole) continue;
+  const displayModes = shared.display_mode_terms.length
+    ? shared.display_mode_terms
+    : [decision.appearance_role];
+  for (const displayMode of displayModes) {
+    const subjectRole =
+      mappedSubjectRole(displayMode) ?? decision.appearance_role;
+    if (!SEARCHABLE_APPEARANCE_ROLES.has(subjectRole)) continue;
     const normalizedMode = displayMode === "food" ? "food shape" : displayMode;
     const details = shared.representation_details.length
       ? `: ${shared.representation_details.join(" ")}`
@@ -126,7 +186,10 @@ export function curatedCameoEntriesV1(row) {
         subjectRole === "character_representation"
           ? "curated_cameos.representation_form"
           : "curated_cameos.depicted_surface",
-      term: `${subjectRole}: ${row.cameo_identity}: ${normalizedMode}${details}`,
+      term:
+        displayMode === subjectRole
+          ? `${subjectRole}: ${row.cameo_identity}${details}`
+          : `${subjectRole}: ${row.cameo_identity}: ${normalizedMode}${details}`,
       subject_role: subjectRole,
       display_mode_term: displayMode,
     });
@@ -166,10 +229,25 @@ export function attachCuratedCameoEvidenceV1(groups, rows) {
   let acceptedRows = 0;
   let outsideProjectionRows = 0;
   let rejectedRows = 0;
+  let reviewOnlyRows = 0;
+  const reviewQueue = [];
   for (const row of rows) {
+    const decision = curatedCameoEvidenceDecisionV2(row);
     const entries = curatedCameoEntriesV1(row);
     if (!entries.length) {
-      rejectedRows += 1;
+      if (decision.review_required) {
+        reviewOnlyRows += 1;
+        reviewQueue.push({
+          source_record_id: row.source_record_id ?? null,
+          canonical_card_print_id: row.canonical_match?.card_print_id ?? null,
+          cameo_identity: row.cameo_identity ?? null,
+          governance_status: decision.governance_status,
+          appearance_role: decision.appearance_role,
+          reason: decision.reason,
+        });
+      } else {
+        rejectedRows += 1;
+      }
       continue;
     }
     const groupId = groupIdByCardPrintId.get(
@@ -196,10 +274,10 @@ export function attachCuratedCameoEvidenceV1(groups, rows) {
       search_entries_unique: undefined,
       documents: {
         ...group.documents,
-        curated_cameo: {
+        representation_cameo: {
           search_document_id: `curated-cameo-${group.artwork_group_id}`,
           artwork_group_id: group.artwork_group_id,
-          document_type: "curated_cameo",
+          document_type: "representation_cameo",
           projection_status: "runtime_external_evidence",
           canonical_context: {
             name: group.name,
@@ -234,6 +312,7 @@ export function attachCuratedCameoEvidenceV1(groups, rows) {
       input_rows: rows.length,
       accepted_rows: acceptedRows,
       rejected_rows: rejectedRows,
+      review_only_rows: reviewOnlyRows,
       outside_projection_rows: outsideProjectionRows,
       artwork_groups_with_cameos: entriesByGroupId.size,
       attached_entries: attachedEntries.length,
@@ -253,6 +332,9 @@ export function attachCuratedCameoEvidenceV1(groups, rows) {
           entry.governance_status === "human_image_confirmed",
       ).length,
     },
+    review_queue: reviewQueue.sort((left, right) =>
+      String(left.source_record_id).localeCompare(String(right.source_record_id)),
+    ),
     boundaries: {
       projection_mutated: false,
       fact_graph_mutated: false,

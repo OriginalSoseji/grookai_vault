@@ -12,6 +12,10 @@ import {
   rankVisualSearchQueryV1,
   tokenizeVisualSearchTextV1,
 } from "../../backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs";
+import {
+  buildCollectorVisualQueryDemandV1,
+  COLLECTOR_VISUAL_QUERY_DEMAND_VERSION,
+} from "../../backend/card_descriptions/card_visual_search_collector_demand_v1.mjs";
 
 function concept(sourceId, term, module, documentType, subjectRole = null) {
   return { source_type: subjectRole ? "subject_role" : "canonical_concept", source_id: sourceId, term, module, field_path: null, category: module, subject_role: subjectRole, supporting_observation_ids: [`obs-${sourceId}`], confidence: 0.95, evidence_strength: "strong", document_type: documentType };
@@ -68,7 +72,22 @@ test("candidate suite freezes exactly 250 queries with 200 calibration and 50 ho
   assert.equal(suite.filter((row) => row.split === "holdout").length, 50);
   assert.equal(new Set(suite.map((row) => row.query_id)).size, 250);
   for (const [family, expected] of Object.entries(CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS)) assert.equal(suite.filter((row) => row.family === family).length, expected, family);
+  const demandRows = suite.filter((row) => row.family === "collector_demand_source_backed");
+  assert.equal(demandRows.length, 75);
+  assert.ok(demandRows.every((row) => row.source_url.startsWith("https://")));
+  assert.ok(demandRows.every((row) => row.execution_mode === "collector_parser_v2"));
   assert.deepEqual(suite, buildEvaluationQuerySuiteV1(Array.from({ length: 320 }, (_, index) => syntheticGroup(index + 1))));
+});
+
+test("source-backed collector demand freezes 50 positive, 15 boundary, and 10 strict-zero queries", () => {
+  const demand = buildCollectorVisualQueryDemandV1();
+  assert.equal(COLLECTOR_VISUAL_QUERY_DEMAND_VERSION, "COLLECTOR_VISUAL_QUERY_DEMAND_V1");
+  assert.equal(demand.length, 75);
+  assert.equal(demand.filter((row) => row.demand_bucket === "demonstrated_positive").length, 50);
+  assert.equal(demand.filter((row) => row.demand_bucket === "compositional_boundary").length, 15);
+  assert.equal(demand.filter((row) => row.demand_bucket === "expected_strict_zero").length, 10);
+  assert.equal(new Set(demand.map((row) => row.demand_query_id)).size, 75);
+  assert.ok(demand.every((row) => row.source_url.startsWith("https://")));
 });
 
 test("structured lexical ranker keeps artwork identity unique and expands all group printings", () => {
@@ -138,6 +157,7 @@ test("in-memory candidate index preserves brute-force ranking semantics", () => 
   }
   assert.equal(index.stats.artwork_groups, 80);
   assert.ok(index.stats.indexed_entries > 0);
+  assert.ok(index.postings.subject.get("cameo 001")?.has("group-001"));
 });
 
 test("bootstrap implementation has no provider, database, embedding, or index-write path", () => {

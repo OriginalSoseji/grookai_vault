@@ -30,20 +30,23 @@ Pose, anatomy, clothing, objects, environment, composition, counts, depicted
 subjects, and character representations require observation-backed Fact Graph
 evidence.
 
-### Curated cameo reference
+### Curated and human-reviewed evidence
 
-An exact reconciled curated row proves a card-level association between the
-named cameo and the canonical card. It does not create an image observation.
+An exact canonical reconciliation proves only which card an external source
+references. It does not prove that the named character is visible or establish
+its appearance role.
 
-An explicit source Notes value may additionally prove a display mode such as
-`pillow`, `plush`, `statue`, `food`, `poster`, or `screen`. Blank or ambiguous
-Notes do not prove a role or display mode.
+Searchable external evidence must be human image-confirmed or explicitly
+role-confirmed. Approved but role-unresolved rows remain review-only.
+`external_exact_candidate` rows are reviewer-queue inputs and never reach
+collector results.
 
-Every curated result carries:
+Every external result carries:
 
 - external source record ID;
 - source authority;
-- reconciliation governance status;
+- evidence authority and governance status;
+- confirmed appearance role;
 - source card-print ID;
 - explicit display mode, when present;
 - `proves_fact_graph_observation: false`.
@@ -61,15 +64,15 @@ minimum-count grammar is governed by
 - canonical Pikachu cards;
 - cards with observation-backed Pikachu scene, depicted, or representation
   facts;
-- cards with exact curated Pikachu cameo relationships.
+- cards with human-confirmed or role-confirmed Pikachu appearances.
 
-Canonical identity ranks first. Results are deduplicated by artwork group and
-may expose multiple match sources.
+Results are grouped as canonical cards, independent artwork appearances,
+depictions on another surface, and verified character-shaped objects.
 
 ### Explicit cameo
 
-`Pikachu cameo` requires a curated Pikachu cameo association. A direct Pikachu
-card without that association does not satisfy the query.
+`Pikachu cameo` requires a search-eligible, role-confirmed appearance. A direct
+Pikachu card without separate artwork evidence does not satisfy the query.
 
 ### Explicit representation or depicted form
 
@@ -79,7 +82,11 @@ card without that association does not satisfy the query.
 That evidence may come from:
 
 - one observation-backed Fact Graph relationship; or
-- one curated source row whose Notes explicitly establish the display mode.
+- one human image-confirmed or explicitly role-confirmed external assertion.
+
+Intrinsic anatomy cannot become a separate represented identity. For example,
+Mimikyu's Pikachu-like costume is a `visual_resemblance_reference`; it does not
+prove that Pikachu is present in the artwork.
 
 ### Mixed semantic facts
 
@@ -107,9 +114,12 @@ The local deterministic order is:
 1. direct canonical identity;
 2. canonical metadata plus supported constraints;
 3. observation-backed visual evidence;
-4. existing-approved curated cameo evidence;
-5. exact-reconciled curated candidates;
-6. lower-confidence lexical evidence.
+4. human image-confirmed evidence;
+5. explicitly role-confirmed external evidence;
+6. lower-confidence observation-backed lexical evidence.
+
+Role-unresolved and candidate evidence has no collector-facing rank because it
+is not eligible for retrieval.
 
 Multiple independent evidence lanes may add a bounded score boost. They may not
 replace a missing required relationship.

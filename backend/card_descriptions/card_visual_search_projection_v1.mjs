@@ -6,15 +6,24 @@ import { fileURLToPath } from "node:url";
 
 import { assertCardVisualCorpusBranchV1, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
 import { CARD_VISUAL_ARTWORK_GROUPING_VERSION } from "./card_visual_artwork_grouping_v1.mjs";
+import {
+  CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_VERSION,
+  deriveTcgVisualConceptsV1,
+} from "./card_visual_search_tcg_concepts_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_5";
+export const CARD_VISUAL_SEARCH_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V2";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_GROUPING_DIR = "docs/audits/card_visual_artwork_grouping_v1_1/2026-07-21T16-45-14-932Z_grouping_424dbd1f2469";
 const DEFAULT_ELIGIBILITY_DIR = "docs/audits/card_visual_search_eligibility_v1_4/2026-07-21T16-32-41-129Z_eligibility_a206881f5a0b";
 const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_projection_v1_5";
-const DOCUMENT_TYPES = Object.freeze(["subject", "scene", "style_composition"]);
+const DOCUMENT_TYPES = Object.freeze(["subject", "scene", "style_composition", "representation_cameo"]);
+const REPRESENTATION_ROLES = new Set([
+  "depicted_subject",
+  "character_representation",
+  "visual_resemblance_reference",
+]);
 const KNOWN_GUARDS = new Set([
   "module_completeness",
   "counts",
@@ -124,6 +133,16 @@ function sourceId(sourceType, candidate, fallbackPayload) {
   return explicit ?? `${sourceType}_${sha256JsonV1(fallbackPayload).slice(0, 20)}`;
 }
 
+function intrinsicResemblanceIdentity(term, module, category) {
+  const scope = normalizeTerm(`${module ?? ""} ${category ?? ""}`);
+  if (!/\b(?:subject|anatomy|physical feature|clothing|garment|costume|appearance)\b/u.test(scope)) return null;
+  const text = normalizeTerm(term);
+  const suffixMatch = text.match(/\b([a-z][a-z0-9.'’]{1,30})[- ]like\b/u);
+  if (suffixMatch) return suffixMatch[1];
+  const phraseMatch = text.match(/\b(?:resembling|resembles|looks like|modeled after|inspired by)\s+(?:a|an|the)?\s*([a-z][a-z0-9.'’]{1,30})\b/u);
+  return phraseMatch?.[1] ?? null;
+}
+
 function documentTypeForKinds(kinds) {
   const text = normalizeTerm(kinds.join(" "));
   if (SUBJECT_PATTERN.test(text)) return "subject";
@@ -136,6 +155,7 @@ function documentTypeForEntry(entry, routingContext = {}) {
   const category = normalizeTerm(entry.category);
   const field = normalizeTerm(entry.field_path);
   const combined = `${module} ${category} ${field} ${normalizeTerm(entry.observation_kinds.join(" "))}`;
+  if (REPRESENTATION_ROLES.has(entry.subject_role)) return "representation_cameo";
   if (entry.source_type === "subject_role") return "subject";
   if (SUBJECT_PATTERN.test(combined)) return "subject";
   if (SCENE_PATTERN.test(combined)) return "scene";
@@ -151,6 +171,9 @@ function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null
   const ids = uniqueSorted(observationIds ?? []);
   const kinds = uniqueSorted(ids.map((id) => observationById.get(id)?.kind));
   const supportingCardUiObservationIds = ids.filter((id) => isCardUiObservationRecordV1(observationById.get(id)));
+  const resemblanceIdentity = subjectRole
+    ? null
+    : intrinsicResemblanceIdentity(normalized, module, category);
   const entry = {
     source_type: sourceType,
     source_id: explicitSourceId ?? sourceId(sourceType, null, { term: normalized, module, fieldPath, category, ids }),
@@ -159,12 +182,14 @@ function entryFrom({ sourceType, sourceId: explicitSourceId, term, module = null
     module,
     field_path: fieldPath,
     category,
-    subject_role: subjectRole,
+    subject_role: resemblanceIdentity ? "visual_resemblance_reference" : subjectRole,
     supporting_observation_ids: ids,
     observation_kinds: kinds,
     confidence: Number.isFinite(confidence) ? confidence : null,
     evidence_strength: evidenceStrength ?? null,
-    details,
+    details: resemblanceIdentity
+      ? { ...details, referenced_identity: resemblanceIdentity }
+      : details,
   };
   if (supportingCardUiObservationIds.length) entry.supporting_card_ui_observation_ids = supportingCardUiObservationIds;
   entry.document_type = documentTypeForEntry(entry, routingContext);
@@ -208,13 +233,20 @@ function buildEvidenceEntries(graph) {
   const entries = [];
 
   for (const observation of observations) {
+    const resemblanceIdentity = intrinsicResemblanceIdentity(
+      observation.label || observation.normalized_label,
+      observation.kind,
+      observation.kind,
+    );
     entries.push(entryFrom({
       sourceType: "observation",
       sourceId: observation.observation_id,
       term: observation.label || observation.normalized_label,
       module: observation.kind,
       category: observation.kind,
-      subjectRole: roleByObservation.get(observation.observation_id) ?? null,
+      subjectRole: resemblanceIdentity
+        ? "visual_resemblance_reference"
+        : roleByObservation.get(observation.observation_id) ?? null,
       observationIds: [observation.observation_id],
       observationById,
       routingContext,
@@ -228,10 +260,31 @@ function buildEvidenceEntries(graph) {
         salience: observation.salience ?? null,
       },
     }));
+    if (resemblanceIdentity) {
+      entries.push(entryFrom({
+        sourceType: "subject_role",
+        sourceId: sourceId("subject_role", observation, {
+          role: "visual_resemblance_reference",
+          identity: resemblanceIdentity,
+          observation_id: observation.observation_id,
+        }),
+        term: `visual_resemblance_reference: ${resemblanceIdentity}`,
+        module: "visual_resemblance_reference",
+        category: "subject_role",
+        subjectRole: "visual_resemblance_reference",
+        observationIds: [observation.observation_id],
+        observationById,
+        routingContext,
+        confidence: observation.confidence,
+        evidenceStrength: observation.evidence_strength,
+        details: { identity: resemblanceIdentity },
+      }));
+    }
   }
 
   for (const fact of graph.typed_facts ?? []) {
     const term = [fact.claim, valueText(fact.value)].filter(Boolean).join(": ");
+    const resemblanceIdentity = intrinsicResemblanceIdentity(term, fact.module, fact.field_path);
     entries.push(entryFrom({
       sourceType: "typed_fact",
       sourceId: fact.fact_id,
@@ -245,6 +298,26 @@ function buildEvidenceEntries(graph) {
       evidenceStrength: fact.evidence_strength,
       details: { claim: fact.claim ?? null, value: fact.value ?? null },
     }));
+    if (resemblanceIdentity) {
+      entries.push(entryFrom({
+        sourceType: "subject_role",
+        sourceId: sourceId("subject_role", fact, {
+          role: "visual_resemblance_reference",
+          identity: resemblanceIdentity,
+          fact_id: fact.fact_id,
+        }),
+        term: `visual_resemblance_reference: ${resemblanceIdentity}`,
+        module: "visual_resemblance_reference",
+        category: "subject_role",
+        subjectRole: "visual_resemblance_reference",
+        observationIds: fact.supporting_observation_ids,
+        observationById,
+        routingContext,
+        confidence: fact.confidence,
+        evidenceStrength: fact.evidence_strength,
+        details: { identity: resemblanceIdentity },
+      }));
+    }
   }
 
   const addRoleEntries = (rows, role, identityKey) => {
@@ -549,7 +622,15 @@ function buildDocument(group, membership, generatedRow, documentType, entries, e
       field_path: row.field_path,
       category: row.category,
       subject_role: row.subject_role,
+      appearance_role: row.appearance_role ?? row.subject_role ?? null,
       supporting_observation_ids: row.supporting_observation_ids,
+      supporting_external_evidence_ids: row.supporting_external_evidence_ids ?? [],
+      governance_status: row.governance_status ?? (
+        row.supporting_observation_ids.length ? "search_eligible" : null
+      ),
+      evidence_authority: row.evidence_authority ?? (
+        row.supporting_observation_ids.length ? "observation_backed" : null
+      ),
       confidence: row.confidence,
       evidence_strength: row.evidence_strength,
     })),
@@ -587,6 +668,44 @@ export function projectArtworkGraphV1({ group, membership, decisions, generatedR
     }
   }
 
+  const derivedConcepts = deriveTcgVisualConceptsV1(accepted);
+  for (const concept of derivedConcepts.concepts) {
+    const entry = entryFrom({
+      sourceType: "tcg_concept",
+      sourceId: concept.concept_id,
+      term: concept.concept,
+      module: "tcg_visual_concepts",
+      category: concept.family,
+      observationIds: concept.source_observation_ids,
+      observationById,
+      routingContext: observationRoutingContext(graph),
+      confidence: concept.confidence,
+      evidenceStrength: "derived",
+      details: {
+        concept_profile_version: CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_VERSION,
+        derivation: concept.derivation,
+        source_entry_ids: concept.source_entry_ids,
+        ...concept.details,
+      },
+    });
+    const globalReason = globallyBlocked(entry, observationById);
+    const matchingGuards = guardClassesForEntry(entry, context).filter((guard) =>
+      context.guards.has(guard),
+    );
+    if (globalReason || matchingGuards.length) {
+      exclusions.push(
+        exclusionRow(
+          group,
+          entry,
+          globalReason ? [globalReason] : [],
+          matchingGuards,
+        ),
+      );
+    } else {
+      accepted.push(entry);
+    }
+  }
+
   const documents = [];
   const evidence = [];
   for (const documentType of DOCUMENT_TYPES) {
@@ -615,6 +734,8 @@ export function projectArtworkGraphV1({ group, membership, decisions, generatedR
     included_projection_types: [...DOCUMENT_TYPES],
     projection_guard_keys: [...group.projection_guard_keys],
     prompt_branch: group.prompt_branch,
+    tcg_concept_profile_version:
+      CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_VERSION,
     document_ids: documents.map((row) => row.search_document_id),
     exclusion_count: exclusions.length,
   };

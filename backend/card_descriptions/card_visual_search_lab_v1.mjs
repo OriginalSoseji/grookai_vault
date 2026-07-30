@@ -30,10 +30,23 @@ import {
   parseMinimumPokemonCountV1,
 } from "./card_visual_search_collector_query_v1.mjs";
 
-export const CARD_VISUAL_SEARCH_LAB_VERSION = "CARD_VISUAL_SEARCH_LAB_V1";
-export const CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION = "CARD_VISUAL_SEARCH_QUERY_PARSER_V1";
+export const CARD_VISUAL_SEARCH_LAB_VERSION = "CARD_VISUAL_SEARCH_LAB_V2";
+export const CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION = "CARD_VISUAL_SEARCH_QUERY_PARSER_V2";
 export const CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_VERSION =
-  "CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_V1";
+  "CARD_VISUAL_SEARCH_UNIFIED_EVIDENCE_V2";
+export const UNIFIED_COLLECTOR_SEARCH_INTENT_VERSION =
+  "UNIFIED_COLLECTOR_SEARCH_INTENT_V2";
+export const UNIFIED_COLLECTOR_SEARCH_RESPONSE_VERSION =
+  "UNIFIED_COLLECTOR_SEARCH_RESPONSE_V2";
+
+const INDEPENDENT_APPEARANCE_ROLES = new Set([
+  "scene_subject",
+  "depicted_subject",
+]);
+const UNQUALIFIED_IDENTITY_ROLES = new Set([
+  ...INDEPENDENT_APPEARANCE_ROLES,
+  "character_representation",
+]);
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
@@ -79,6 +92,8 @@ const SUBJECT_ROLE_RULES = Object.freeze([
   { role: "character_representation", filter: "representation_form", value: "pillow", pattern: /\bpillows?\b/u },
   { role: "character_representation", filter: "representation_form", value: "statue", pattern: /\bstatues?\b/u },
   { role: "character_representation", filter: "representation_form", value: "toy", pattern: /\btoys?\b/u },
+  { role: "character_representation", filter: "representation_form", value: "pin", pattern: /\b(?:pins?|badges?|hair clips?)\b/u },
+  { role: "character_representation", filter: "representation_form", value: "costume", pattern: /\bcostumes?\b/u },
   { role: "character_representation", filter: "representation_form", value: "logo", pattern: /\blogos?\b/u },
   { role: "character_representation", filter: "representation_form", value: "sticker", pattern: /\bstickers?\b/u },
   { role: "character_representation", filter: "representation_form", value: "pattern", pattern: /\bpatterns?\b/u },
@@ -92,6 +107,7 @@ const SUBJECT_ROLE_RULES = Object.freeze([
   { role: "depicted_subject", filter: "depicted_surface", value: "book", pattern: /\bbooks?\b/u },
   { role: "depicted_subject", filter: null, value: null, pattern: /\bdepicted\b/u },
   { role: "scene_subject", filter: null, value: null, pattern: /\b(?:scene subject|physically present)\b/u },
+  { role: "visual_resemblance_reference", filter: null, value: null, pattern: /\b(?:lookalikes?|resemblances?|looks? like|inspired by)\b/u },
 ]);
 
 const ROLE_FILTER_PATTERNS = Object.freeze({
@@ -101,6 +117,8 @@ const ROLE_FILTER_PATTERNS = Object.freeze({
   pillow: /\bpillows?\b/u,
   statue: /\bstatues?\b/u,
   toy: /\btoys?\b/u,
+  pin: /\b(?:pins?|badges?|hair clips?)\b/u,
+  costume: /\bcostumes?\b/u,
   logo: /\blogos?\b/u,
   sticker: /\bstickers?\b/u,
   pattern: /\bpatterns?\b/u,
@@ -640,25 +658,25 @@ function exactIdentityInText(value, identity) {
   return ` ${queryNormalize(value)} `.includes(` ${identity} `);
 }
 
-function identityConstraintEvidence(group, identity) {
-  return allStructuredEvidenceEntries(group)
+function identityConstraintEvidence(
+  group,
+  identity,
+  allowedRoles = INDEPENDENT_APPEARANCE_ROLES,
+) {
+  return subjectRoleEntries(group)
     .filter(hasEvidenceReference)
     .filter((entry) => {
-      if (
-        entry.cameo_identity &&
-        normalizeVisualSearchTextV1(entry.cameo_identity) === identity
-      ) {
-        return true;
-      }
-      return exactIdentityInText(entry.term, identity);
+      const roleEntry = parsedSubjectRoleEntry(entry);
+      return (
+        roleEntry &&
+        allowedRoles.has(roleEntry.role) &&
+        roleIdentityMatches(identity, roleEntry)
+      );
     })
     .sort((left, right) => {
       const priority = {
-        curated_cameo: 0,
+        subject_role: 0,
         curated_cameo_role: 1,
-        subject_role: 2,
-        observation: 3,
-        typed_fact: 4,
       };
       return (
         (priority[left.source_type] ?? 9) -
@@ -681,9 +699,7 @@ function identityConstraintEvidence(group, identity) {
       authority: entry.authority,
       governance_status: entry.governance_status,
       confidence: entry.confidence,
-      match_authority: ["curated_cameo", "curated_cameo_role"].includes(
-        entry.source_type,
-      )
+      match_authority: entry.source_type === "curated_cameo_role"
         ? "curated_subject_cooccurrence"
         : "observed_subject_cooccurrence",
     }));
@@ -730,12 +746,18 @@ function pokemonIdentitiesInText(value) {
 
 function visiblePokemonIdentityEvidence(group) {
   const byIdentity = new Map();
-  for (const entry of allStructuredEvidenceEntries(group).filter(
+  for (const entry of subjectRoleEntries(group).filter(
     hasEvidenceReference,
   )) {
-    const identities = entry.cameo_identity
-      ? [normalizeVisualSearchTextV1(entry.cameo_identity)]
-      : pokemonIdentitiesInText(entry.term);
+    const roleEntry = parsedSubjectRoleEntry(entry);
+    if (
+      !roleEntry ||
+      !INDEPENDENT_APPEARANCE_ROLES.has(roleEntry.role) ||
+      roleEntry.identity_has_parenthetical
+    ) {
+      continue;
+    }
+    const identities = pokemonIdentitiesInText(roleEntry.identity);
     for (const identity of identities) {
       if (!POKEMON_IDENTITY_SET.has(identity)) continue;
       if (!byIdentity.has(identity)) byIdentity.set(identity, []);
@@ -1156,6 +1178,222 @@ function mergeResultCandidates(existing, candidate) {
   };
 }
 
+function collectorAuthorityLabel(entry) {
+  if (entry.governance_status === "human_image_confirmed") {
+    return "Image confirmed";
+  }
+  if (entry.governance_status === "external_role_confirmed") {
+    return "Role-confirmed reference";
+  }
+  if (entry.source_type === "curated_cameo_role") {
+    return "Approved curated evidence";
+  }
+  return "Observed artwork evidence";
+}
+
+function publicEvidenceSummary(entry) {
+  const roleEntry = parsedSubjectRoleEntry(entry);
+  return {
+    query_concept: entry.query_concept ?? null,
+    term: entry.term,
+    appearance_role: roleEntry?.role ?? entry.subject_role ?? null,
+    appearance_identity: roleEntry?.identity ?? null,
+    qualifiers: roleEntry?.qualifiers ?? [],
+    authority: collectorAuthorityLabel(entry),
+    confidence: Number.isFinite(entry.confidence) ? entry.confidence : null,
+    evidence_kind: entry.supporting_observation_ids?.length
+      ? "image_observation"
+      : "confirmed_external_evidence",
+  };
+}
+
+function resultAppearanceRoles(result) {
+  return unique(
+    result.matched_evidence
+      .map((entry) => parsedSubjectRoleEntry(entry)?.role ?? entry.subject_role)
+      .filter((role) => UNQUALIFIED_IDENTITY_ROLES.has(role)),
+  );
+}
+
+function resultGroupKey(parsed, result) {
+  if (parsed.intent.visual_filters.subject_groups.length > 1) {
+    return "exact_matches";
+  }
+  if (result.matched_sources.includes("canonical_identity")) {
+    return "cards_named";
+  }
+  const roles = resultAppearanceRoles(result);
+  if (roles.includes("scene_subject")) return "artwork_appearances";
+  if (roles.includes("depicted_subject")) return "depicted_appearances";
+  if (roles.includes("character_representation")) {
+    return "character_representations";
+  }
+  return "visual_matches";
+}
+
+function collectorReason(parsed, result) {
+  const subjects = parsed.detected_subjects.map(
+    (subject) => subject.canonical_name,
+  );
+  if (parsed.intent.visual_filters.subject_groups.length > 1) {
+    return `${subjects.join(" and ")} are independently visible in the same artwork.`;
+  }
+  if (result.matched_sources.includes("canonical_identity")) {
+    return `The card's canonical identity is ${subjects[0] ?? result.representative_name}.`;
+  }
+  const roleEvidence = result.matched_evidence
+    .map((entry) => ({ entry, role: parsedSubjectRoleEntry(entry) }))
+    .find((row) => row.role && UNQUALIFIED_IDENTITY_ROLES.has(row.role.role));
+  const identity =
+    subjects[0] ??
+    roleEvidence?.role?.identity ??
+    result.representative_name;
+  if (roleEvidence?.role?.role === "scene_subject") {
+    return `${identity} appears as an independent character in the artwork.`;
+  }
+  if (roleEvidence?.role?.role === "depicted_subject") {
+    const surface = roleEvidence.role.qualifiers[0] ?? "another visible surface";
+    return `${identity} is depicted on ${surface}.`;
+  }
+  if (roleEvidence?.role?.role === "character_representation") {
+    const form = roleEvidence.role.qualifiers[0] ?? "object";
+    return `A ${identity}-shaped ${form} is visible in the artwork.`;
+  }
+  return "The artwork contains evidence matching the requested visual facts.";
+}
+
+const RESULT_GROUP_LABELS = Object.freeze({
+  exact_matches: "Exact artwork matches",
+  cards_named: "Cards named for this character",
+  artwork_appearances: "Character appearances in artwork",
+  depicted_appearances: "Characters depicted on another surface",
+  character_representations: "Character-shaped objects",
+  visual_matches: "Other verified visual matches",
+});
+
+function collectorInterpretation(parsed) {
+  const subjectLabels = parsed.detected_subjects.map(
+    (subject) => subject.canonical_name,
+  );
+  const chips = subjectLabels.map((label) => ({
+    key: `subject:${normalizeVisualSearchTextV1(label)}`,
+    label,
+    kind: "character",
+    hard: true,
+  }));
+  if (parsed.intent.visual_filters.subject_groups.length > 1) {
+    chips.push({
+      key: "same_artwork",
+      label: "Both in the same artwork",
+      kind: "same_artwork",
+      hard: true,
+    });
+  }
+  for (const role of parsed.intent.visual_filters.subject_roles) {
+    chips.push({
+      key: `role:${role}`,
+      label:
+        role === "character_representation"
+          ? "Character-shaped object"
+          : role === "depicted_subject"
+            ? "Depicted on another surface"
+            : role === "visual_resemblance_reference"
+              ? "Visual resemblance only"
+              : "Independent character",
+      kind: "appearance_role",
+      hard: true,
+    });
+  }
+  return {
+    version: UNIFIED_COLLECTOR_SEARCH_INTENT_VERSION,
+    original_query: parsed.original_query,
+    aliases: parsed.query_subject_aliases,
+    chips,
+    hard_constraints: chips.filter((chip) => chip.hard),
+    optional_semantic_concepts: parsed.intent.visual_filters.concepts,
+    unrecognized_terms: parsed.intent.unrecognized_terms,
+  };
+}
+
+function independentSubjectCoverage(groups, parsed) {
+  return parsed.intent.visual_filters.subject_groups.map((alternatives) => {
+    const normalizedAlternatives = alternatives.map(normalizeVisualSearchTextV1);
+    let matches = 0;
+    for (const group of groups) {
+      if (
+        normalizedAlternatives.some(
+          (identity) =>
+            identityConstraintEvidence(
+              group,
+              identity,
+              INDEPENDENT_APPEARANCE_ROLES,
+            ).length > 0,
+        )
+      ) {
+        matches += 1;
+      }
+    }
+    return {
+      label: alternatives.join(" or "),
+      artwork_matches: matches,
+    };
+  });
+}
+
+function collectorZeroState(groups, parsed, reason) {
+  const coverage = independentSubjectCoverage(groups, parsed);
+  const labels = coverage.map((row) => row.label);
+  let message = "No artwork in the current visual index proves every requested constraint.";
+  if (labels.length === 2) {
+    message = `We found artwork evidence for ${labels[0]} and for ${labels[1]}, but none where both are independently visible in the same artwork.`;
+  } else if (reason === "unrecognized_terms") {
+    message = "We understood part of the search, but one or more terms are not supported yet.";
+  }
+  return {
+    reason,
+    message,
+    constraint_coverage: coverage,
+    relaxations: coverage.map((row) => ({
+      label: `Show ${row.label}`,
+      query: row.label,
+      result_count: row.artwork_matches,
+    })),
+  };
+}
+
+function finalizeCollectorSearchResponse(groups, parsed, payload) {
+  const enrichedResults = payload.results.map((result) => {
+    const matchGroup = resultGroupKey(parsed, result);
+    return {
+      ...result,
+      match_group: matchGroup,
+      collector_reason: collectorReason(parsed, result),
+      public_evidence: result.matched_evidence.map(publicEvidenceSummary),
+    };
+  });
+  const grouped = new Map();
+  for (const result of enrichedResults) {
+    const rows = grouped.get(result.match_group) ?? [];
+    rows.push(result);
+    grouped.set(result.match_group, rows);
+  }
+  return {
+    ...payload,
+    version: CARD_VISUAL_SEARCH_LAB_VERSION,
+    response_version: UNIFIED_COLLECTOR_SEARCH_RESPONSE_VERSION,
+    interpretation: collectorInterpretation(parsed),
+    results: enrichedResults,
+    result_groups: [...grouped.entries()].map(([key, results]) => ({
+      key,
+      label: RESULT_GROUP_LABELS[key],
+      results,
+    })),
+    zero_state: enrichedResults.length
+      ? null
+      : collectorZeroState(groups, parsed, payload.strict_zero_reason),
+  };
+}
+
 export function createVisualSearchLabEngineV1(
   groups,
   { imageResolver = null, curatedCameoStats = null } = {},
@@ -1171,12 +1409,21 @@ export function createVisualSearchLabEngineV1(
     async search(queryText, { limit = 24 } = {}) {
       const started = performance.now();
       const parsed = parseVisualSearchQueryV1(queryText, parserIndex);
+      const zero = (reason) =>
+        finalizeCollectorSearchResponse(groups, parsed, {
+          index_version: candidateIndex.version,
+          parsed_query: parsed,
+          strict_zero_reason: reason,
+          total_matches: 0,
+          results: [],
+          latency_ms: performance.now() - started,
+        });
       if (parsed.intent.unrecognized_terms.length) {
-        return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "unrecognized_terms", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        return zero("unrecognized_terms");
       }
       const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.subject_groups.length || parsed.intent.visual_filters.subject_count_constraints.length || parsed.intent.visual_filters.relationships.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.visual_filters.evidence_sources.length || parsed.intent.query_aliases.length;
       if (!hasConstraint) {
-        return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_supported_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        return zero("no_supported_constraints");
       }
 
       const aliasMatches = new Map();
@@ -1188,7 +1435,7 @@ export function createVisualSearchLabEngineV1(
       }
       let allowedGroupIds = parsed.intent.query_aliases.length ? new Set(aliasMatches.keys()) : null;
       if (parsed.intent.query_aliases.length && !allowedGroupIds.size) {
-        return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "alias_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        return zero("alias_evidence_not_found");
       }
 
       const sourceMatches = new Map();
@@ -1200,14 +1447,14 @@ export function createVisualSearchLabEngineV1(
           }
         }
         if (!sourceMatches.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "curated_cameo_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("curated_cameo_evidence_not_found");
         }
         const sourceGroupIds = new Set(sourceMatches.keys());
         allowedGroupIds = allowedGroupIds
           ? new Set([...allowedGroupIds].filter((groupId) => sourceGroupIds.has(groupId)))
           : sourceGroupIds;
         if (!allowedGroupIds.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("no_evidence_satisfies_all_constraints");
         }
       }
 
@@ -1220,14 +1467,33 @@ export function createVisualSearchLabEngineV1(
           }
         }
         if (!multiSubjectMatches.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "multi_subject_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("multi_subject_evidence_not_found");
         }
         const multiSubjectGroupIds = new Set(multiSubjectMatches.keys());
         allowedGroupIds = allowedGroupIds
           ? new Set([...allowedGroupIds].filter((groupId) => multiSubjectGroupIds.has(groupId)))
           : multiSubjectGroupIds;
         if (!allowedGroupIds.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("no_evidence_satisfies_all_constraints");
+        }
+      }
+
+      const singleIdentityMatches = new Map();
+      if (
+        parsed.detected_subjects.length === 1 &&
+        !parsed.intent.visual_filters.subject_roles.length &&
+        !parsed.intent.visual_filters.evidence_sources.length
+      ) {
+        const identity = parsed.detected_subjects[0].normalized_name;
+        for (const group of groups) {
+          const evidence = identityConstraintEvidence(
+            group,
+            identity,
+            UNQUALIFIED_IDENTITY_ROLES,
+          );
+          if (evidence.length) {
+            singleIdentityMatches.set(group.artwork_group_id, evidence);
+          }
         }
       }
 
@@ -1240,14 +1506,14 @@ export function createVisualSearchLabEngineV1(
           }
         }
         if (!subjectCountMatches.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "subject_count_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("subject_count_evidence_not_found");
         }
         const subjectCountGroupIds = new Set(subjectCountMatches.keys());
         allowedGroupIds = allowedGroupIds
           ? new Set([...allowedGroupIds].filter((groupId) => subjectCountGroupIds.has(groupId)))
           : subjectCountGroupIds;
         if (!allowedGroupIds.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("no_evidence_satisfies_all_constraints");
         }
       }
 
@@ -1258,14 +1524,14 @@ export function createVisualSearchLabEngineV1(
           if (evidence.length) roleMatches.set(group.artwork_group_id, evidence);
         }
         if (!roleMatches.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "subject_role_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("subject_role_evidence_not_found");
         }
         const roleGroupIds = new Set(roleMatches.keys());
         allowedGroupIds = allowedGroupIds
           ? new Set([...allowedGroupIds].filter((groupId) => roleGroupIds.has(groupId)))
           : roleGroupIds;
         if (!allowedGroupIds.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("no_evidence_satisfies_all_constraints");
         }
       }
 
@@ -1274,7 +1540,11 @@ export function createVisualSearchLabEngineV1(
         for (const group of groups) {
           const namedSubjectEvidence = (parsed.detected_subjects ?? []).flatMap(
             (subject) =>
-              identityConstraintEvidence(group, subject.normalized_name),
+              identityConstraintEvidence(
+                group,
+                subject.normalized_name,
+                new Set(["scene_subject"]),
+              ),
           );
           const bindingEvidence = [
             ...(roleMatches.get(group.artwork_group_id) ?? []),
@@ -1290,14 +1560,14 @@ export function createVisualSearchLabEngineV1(
           }
         }
         if (!relationshipMatches.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "relationship_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("relationship_evidence_not_found");
         }
         const relationshipGroupIds = new Set(relationshipMatches.keys());
         allowedGroupIds = allowedGroupIds
           ? new Set([...allowedGroupIds].filter((groupId) => relationshipGroupIds.has(groupId)))
           : relationshipGroupIds;
         if (!allowedGroupIds.size) {
-          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+          return zero("no_evidence_satisfies_all_constraints");
         }
       }
 
@@ -1307,6 +1577,15 @@ export function createVisualSearchLabEngineV1(
         if (parsed.intent.visual_filters.subject_roles.length) intent.subject_roles = [];
         const ranked = rankVisualSearchQueryV1({ intent }, groups, { topK: groups.length, candidateIndex });
         for (const result of ranked.results) {
+          const singleIdentityEvidence =
+            singleIdentityMatches.get(result.artwork_group_id) ?? [];
+          if (
+            retrievalMode === "visual_identity" &&
+            parsed.detected_subject &&
+            !singleIdentityEvidence.length
+          ) {
+            continue;
+          }
           const aliases = aliasMatches.get(result.artwork_group_id) ?? [];
           const aliasEvidence = aliases.flatMap((decision) => decision.evidence.map((entry) => ({ ...entry, query_concept: decision.alias, match_authority: "query_alias_evidence" })));
           const boundRoleEvidence = roleMatches.get(result.artwork_group_id) ?? [];
@@ -1323,6 +1602,7 @@ export function createVisualSearchLabEngineV1(
             ...aliasEvidence,
             ...curatedSourceEvidence,
             ...multiSubjectEvidence,
+            ...singleIdentityEvidence,
             ...subjectCountEvidence,
             ...relationshipEvidence,
           ];
@@ -1413,15 +1693,14 @@ export function createVisualSearchLabEngineV1(
           } : null,
         };
       });
-      return {
-        version: CARD_VISUAL_SEARCH_LAB_VERSION,
+      return finalizeCollectorSearchResponse(groups, parsed, {
         index_version: candidateIndex.version,
         parsed_query: parsed,
         strict_zero_reason: results.length ? null : "no_evidence_satisfies_all_constraints",
         total_matches: rankedResults.length,
         results,
         latency_ms: performance.now() - started,
-      };
+      });
     },
   };
 }

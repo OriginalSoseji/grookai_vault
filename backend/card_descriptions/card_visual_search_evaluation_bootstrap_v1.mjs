@@ -7,6 +7,7 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 
 import { assertCardVisualCorpusBranchV1, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
+import { buildCollectorVisualQueryDemandV1 } from "./card_visual_search_collector_demand_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_VERSION = "CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1";
 export const CARD_VISUAL_SEARCH_QUERY_SUITE_VERSION = "CARD_VISUAL_SEARCH_QUERY_SUITE_V1_CANDIDATE";
@@ -17,27 +18,34 @@ const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_PROJECTION_DIR = "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15";
 const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_evaluation_bootstrap_v1";
-const EXPECTED_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V1_5";
+const EXPECTED_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V2";
+const EXPECTED_DOCUMENT_TYPES = Object.freeze([
+  "subject",
+  "scene",
+  "style_composition",
+  "representation_cameo",
+]);
 const STOP_WORDS = new Set(["a", "an", "and", "as", "at", "card", "cards", "for", "in", "is", "of", "on", "or", "the", "to", "with"]);
 
 export const CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS = Object.freeze({
-  canonical_subject_visual_fact: 35,
-  visual_only_discovery: 30,
+  canonical_subject_visual_fact: 20,
+  visual_only_discovery: 15,
   subject_roles: 12,
   multi_subject_scenes: 8,
-  anatomy_features: 20,
-  human_appearance: 15,
-  pose_action_state: 15,
-  environment: 20,
-  objects_counts: 15,
+  anatomy_features: 10,
+  human_appearance: 8,
+  pose_action_state: 8,
+  environment: 10,
+  objects_counts: 8,
   color_light: 15,
   composition_style: 10,
-  effects: 10,
+  effects: 6,
   representation_cameo: 10,
   alias_intent: 5,
   metadata_visual: 5,
   printing_expansion: 10,
   negative_zero_result: 15,
+  collector_demand_source_backed: 75,
 });
 
 const FAMILY_PATTERNS = Object.freeze({
@@ -294,20 +302,20 @@ export function buildEvaluationQuerySuiteV1(groups) {
   };
 
   const canonicalPool = groups.flatMap((group) => groupEntries(group).filter((entry) => normalizeVisualSearchTextV1(entry.term) !== normalizeVisualSearchTextV1(group.name)).slice(0, 2).map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
-  add("canonical_subject_visual_fact", selectFamily(canonicalPool, "canonical_subject_visual_fact", 35, ({ group, entry }) => candidate(group, "canonical_subject_visual_fact", `${group.name} ${entry.term}`, baseIntent({ canonical_filters: { subjects: [group.name], set_codes: [], years: null, artist: [] }, visual_concepts: [entry.term] }), [entry])));
+  add("canonical_subject_visual_fact", selectFamily(canonicalPool, "canonical_subject_visual_fact", CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS.canonical_subject_visual_fact, ({ group, entry }) => candidate(group, "canonical_subject_visual_fact", `${group.name} ${entry.term}`, baseIntent({ canonical_filters: { subjects: [group.name], set_codes: [], years: null, artist: [] }, visual_concepts: [entry.term] }), [entry])));
 
   const visualPool = groups.flatMap((group) => {
     const entries = groupEntries(group).filter((entry) => !/scene subject/u.test(normalizeVisualSearchTextV1(entry.term)));
     if (entries.length < 2) return [];
     return [{ group, entries: [entries[0], entries.find((entry) => entry.document_type !== entries[0].document_type) ?? entries[1]], sort_key: group.artwork_group_id }];
   });
-  add("visual_only_discovery", selectFamily(visualPool, "visual_only_discovery", 30, ({ group, entries }) => candidate(group, "visual_only_discovery", entries.map((entry) => entry.term).join(" "), baseIntent({ visual_concepts: entries.map((entry) => entry.term) }), entries)));
+  add("visual_only_discovery", selectFamily(visualPool, "visual_only_discovery", CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS.visual_only_discovery, ({ group, entries }) => candidate(group, "visual_only_discovery", entries.map((entry) => entry.term).join(" "), baseIntent({ visual_concepts: entries.map((entry) => entry.term) }), entries)));
 
-  const rolePool = groups.flatMap((group) => groupEntries(group, "subject", (entry) => entry.source_type === "subject_role").map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
+  const rolePool = groups.flatMap((group) => groupEntries(group, null, (entry) => entry.source_type === "subject_role").map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
   add("subject_roles", selectFamily(rolePool, "subject_roles", 12, ({ group, entry }) => candidate(group, "subject_roles", `${group.name} ${entry.subject_role}`, baseIntent({ canonical_filters: { subjects: [group.name], set_codes: [], years: null, artist: [] }, subject_roles: [entry.subject_role] }), [entry])));
 
   const multiPool = groups.flatMap((group) => {
-    const entries = groupEntries(group, "subject", (entry) => entry.source_type === "subject_role");
+    const entries = groupEntries(group, null, (entry) => entry.source_type === "subject_role" && ["scene_subject", "depicted_subject"].includes(entry.subject_role));
     return entries.length >= 2 ? [{ group, entries: entries.slice(0, 2), sort_key: group.artwork_group_id }] : [];
   });
   add("multi_subject_scenes", selectFamily(multiPool, "multi_subject_scenes", 8, ({ group, entries }) => candidate(group, "multi_subject_scenes", entries.map((entry) => entry.term).join(" and "), baseIntent({ visual_concepts: entries.map((entry) => entry.term), subject_roles: uniqueSorted(entries.map((entry) => entry.subject_role)) }), entries)));
@@ -316,7 +324,7 @@ export function buildEvaluationQuerySuiteV1(groups) {
     add(family, selectFamily(familyPool(groups, family), family, CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS[family], ({ group, entry }) => candidate(group, family, entry.term, baseIntent({ visual_concepts: [entry.term] }), [entry])));
   }
 
-  const representationPool = groups.flatMap((group) => groupEntries(group, "subject", (entry) => ["depicted_subject", "character_representation"].includes(entry.subject_role)).map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
+  const representationPool = groups.flatMap((group) => groupEntries(group, null, (entry) => ["depicted_subject", "character_representation"].includes(entry.subject_role)).map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
   add("representation_cameo", selectFamily(representationPool, "representation_cameo", 10, ({ group, entry }) => candidate(group, "representation_cameo", entry.term, baseIntent({ visual_concepts: [entry.term], subject_roles: [entry.subject_role] }), [entry])));
 
   const aliasPool = groups.flatMap((group) => groupEntries(group, null, (entry) => /\b(?:ghost|spectral|wisps?|pumpkins?|bats?|tombstones?|candles?|smoke|vapor|haze|red eyes|half closed eyes|drooping eyelids)\b/u.test(normalizeVisualSearchTextV1(entry.term))).map((entry) => ({ group, entry, sort_key: `${group.artwork_group_id}:${entry.source_id}` })));
@@ -342,6 +350,30 @@ export function buildEvaluationQuerySuiteV1(groups) {
   add("printing_expansion", selectFamily(printingPool, "printing_expansion", 10, ({ group, entry }) => candidate(group, "printing_expansion", `${group.name} ${entry.term}`, baseIntent({ canonical_filters: { subjects: [group.name], set_codes: [], years: null, artist: [] }, visual_concepts: [entry.term], printing_filters: ["all_group_members"] }), [entry])));
 
   add("negative_zero_result", buildNegativeCandidates(groups));
+  add(
+    "collector_demand_source_backed",
+    buildCollectorVisualQueryDemandV1().map((row) => ({
+      family: "collector_demand_source_backed",
+      query_text: row.query_text,
+      intent: {
+        ...baseIntent(),
+        collector_demand: row.normalized_intent,
+      },
+      required_evidence_categories: [],
+      expected_artwork_group_id: null,
+      expected_printing_count: 0,
+      source_evidence: [],
+      valid_zero_result: row.demand_bucket === "expected_strict_zero",
+      execution_mode: "collector_parser_v2",
+      demand_query_id: row.demand_query_id,
+      demand_version: row.demand_version,
+      demand_bucket: row.demand_bucket,
+      source_url: row.source_url,
+      expected_result_behavior: row.expected_result_behavior,
+      current_support_state: row.current_support_state,
+      gap_class: row.gap_class,
+    })),
+  );
   return assignEvaluationSplitsV1(rows);
 }
 
@@ -368,6 +400,14 @@ function addPosting(postings, key, groupId) {
   if (!key) return;
   if (!postings.has(key)) postings.set(key, new Set());
   postings.get(key).add(groupId);
+}
+
+function subjectRoleIdentity(entry) {
+  if (!["subject_role", "curated_cameo_role"].includes(entry.source_type)) return null;
+  const normalizedRole = normalizeVisualSearchTextV1(entry.subject_role);
+  const parts = String(entry.term ?? "").split(/\s*:\s*/u);
+  if (parts.length < 2 || normalizeVisualSearchTextV1(parts[0]) !== normalizedRole) return null;
+  return normalizeVisualSearchTextV1(parts[1]);
 }
 
 function unionPostings(postings, keys) {
@@ -413,6 +453,10 @@ export function buildVisualSearchCandidateIndexV1(groups) {
           normalizeVisualSearchTextV1(entry.cameo_identity),
           group.artwork_group_id,
         );
+      }
+      const roleIdentity = subjectRoleIdentity(entry);
+      if (roleIdentity) {
+        addPosting(subjectPostings, roleIdentity, group.artwork_group_id);
       }
       addPosting(exactTermPostings, entry.normalized_term, group.artwork_group_id);
       for (const token of new Set(entry.search_tokens)) addPosting(tokenPostings, token, group.artwork_group_id);
@@ -629,7 +673,7 @@ function markdownReport(report) {
 
 export async function loadVisualSearchProjectionV1(projectionDir) {
   const report = await readJson(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"));
-  if (report.version !== EXPECTED_PROJECTION_VERSION || report.reconciliation?.reconciled !== true) throw new Error("projection input is not locked reconciled V1.5");
+  if (report.version !== EXPECTED_PROJECTION_VERSION || report.reconciliation?.reconciled !== true) throw new Error("projection input is not a locked reconciled V2 release");
   const manifest = await readJson(path.join(projectionDir, "artifact_hashes.json"));
   const hashMismatches = [];
   for (const [file, expected] of Object.entries(manifest.files ?? {})) {
@@ -669,7 +713,15 @@ export async function loadVisualSearchProjectionV1(projectionDir) {
   }
   for (const group of groups.values()) {
     group.printings.sort((left, right) => left.card_print_id.localeCompare(right.card_print_id));
-    if (!group.name || Object.keys(group.documents).length !== 3 || !group.printings.length) throw new Error(`incomplete projection group ${group.artwork_group_id}`);
+    const documentTypes = Object.keys(group.documents).sort();
+    if (
+      !group.name ||
+      documentTypes.length !== EXPECTED_DOCUMENT_TYPES.length ||
+      EXPECTED_DOCUMENT_TYPES.some((type) => !group.documents[type]) ||
+      !group.printings.length
+    ) {
+      throw new Error(`incomplete projection group ${group.artwork_group_id}`);
+    }
   }
   return { report, manifest, groups: [...groups.values()].sort((left, right) => left.artwork_group_id.localeCompare(right.artwork_group_id)), artworks, printings, documents };
 }
@@ -729,6 +781,19 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   const failures = [];
   const evaluations = [];
   for (const query of calibrationQueries) {
+    if (query.execution_mode === "collector_parser_v2") {
+      rankedOutputs.push({
+        query_id: query.query_id,
+        family: query.family,
+        query_text: query.query_text,
+        intent: query.intent,
+        execution_status: "not_executed_requires_unified_collector_parser_v2",
+        total_matches: null,
+        results: [],
+        bootstrap_evaluation: null,
+      });
+      continue;
+    }
     const ranked = rankVisualSearchQueryV1(query, projection.groups, { topK: args.topK, candidateIndex });
     const evaluation = evaluateCalibration(query, ranked);
     rankedOutputs.push({ query_id: query.query_id, family: query.family, query_text: query.query_text, intent: query.intent, latency_ms: ranked.latency_ms, candidate_groups_scanned: ranked.candidate_groups_scanned, total_matches: ranked.total_matches, results: ranked.results, bootstrap_evaluation: evaluation });
@@ -743,6 +808,9 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   const splitDistributions = countBy(suite, (row) => row.split);
   const metrics = {
     calibration_queries: calibrationQueries.length,
+    executed_structured_lexical_queries: evaluations.length,
+    source_backed_collector_queries: suite.filter((query) => query.family === "collector_demand_source_backed").length,
+    source_backed_collector_calibration_queries_pending_v2_execution: calibrationQueries.filter((query) => query.execution_mode === "collector_parser_v2").length,
     positive_calibration_queries: positive.length,
     negative_calibration_queries: negative.length,
     bootstrap_recall_at_10: positive.length ? positive.filter(({ evaluation }) => evaluation.recall_at_10).length / positive.length : null,

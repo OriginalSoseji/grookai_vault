@@ -7,9 +7,11 @@ import { fileURLToPath } from "node:url";
 export const CARD_VISUAL_CORPUS_SOURCE_INVENTORY_VERSION = "CARD_VISUAL_CORPUS_SOURCE_INVENTORY_V1";
 export const CARD_VISUAL_CORPUS_EXPECTED_BRANCH = "feature/card-visual-description-agent";
 export const CARD_VISUAL_CORPUS_PRODUCTIZATION_BRANCH = "feature/visual-search-v1-productization";
+export const CARD_VISUAL_CORPUS_RUNTIME_BRANCH = "agent/visual-search-lab-runtime-fix";
 export const CARD_VISUAL_CORPUS_ALLOWED_BRANCHES = Object.freeze([
   CARD_VISUAL_CORPUS_EXPECTED_BRANCH,
   CARD_VISUAL_CORPUS_PRODUCTIZATION_BRANCH,
+  CARD_VISUAL_CORPUS_RUNTIME_BRANCH,
 ]);
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));

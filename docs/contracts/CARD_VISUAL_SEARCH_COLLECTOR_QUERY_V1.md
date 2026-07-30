@@ -36,13 +36,20 @@ Examples:
 
 No result may satisfy different required identities using different cards.
 
-Subject evidence may come from:
+Independent character-presence evidence may come from:
 
 - observation-backed scene subjects;
 - observation-backed depicted subjects;
-- observation-backed character representations;
-- exact curated cameo associations;
-- human image-confirmed representation evidence.
+- human image-confirmed scene or depicted subjects;
+- explicitly role-confirmed external scene or depicted subjects.
+
+Character representations do not satisfy an unqualified multi-character
+presence requirement. They require explicit object language such as `Pikachu
+cookie`, `Pikachu pin`, or `Pikachu plush`.
+
+Intrinsic mimicry, disguises, lookalike anatomy, and species resemblance are
+`visual_resemblance_reference` evidence. They never prove a second character
+is independently present.
 
 Canonical card identity helps locate direct cards but does not fabricate a
 missing visual observation.
@@ -82,8 +89,11 @@ across:
 
 - scene subjects;
 - depicted subjects;
-- character representations;
-- curated cameo associations.
+
+Representations may be included only when the query explicitly requests
+represented characters or character-shaped objects. Resemblance references and
+role-unresolved curated associations are never counted as independently
+present Pokémon.
 
 Identities are deduplicated across duplicate evidence terms.
 
@@ -115,6 +125,14 @@ Results preserve:
 - observation or external evidence IDs;
 - derived visible Pokémon count;
 - governance status for curated or human-reviewed evidence.
+
+Ordinary collectors see concise reasons and editable interpretation chips.
+Observation IDs, governance codes, and internal tiers remain inside the
+expandable evidence panel or reviewer exports.
+
+When a hard multi-constraint query has no exact match, the UI explains which
+constraints were understood and offers explicit relaxations. Partial cards are
+not displayed until the collector chooses a relaxation.
 
 ## Boundaries
 

@@ -9,6 +9,21 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V2_EXTERNAL_SOURCE_INCORPORATION_20260730.md` - `2026-07-30`
+  - SOURCE GOVERNANCE IMPLEMENTED; ONLY EXISTING ROTOMAMITI SNAPSHOT
+  AUTHORIZED FOR ROW-LEVEL PROCESSING - Records the six-source registry,
+  source-specific candidate/research lanes, unknown-rights network guards,
+  partnership export requirements, source taxonomy mapping, persistence source
+  registry, no-repayment boundary, `18/18` focused contracts, and the owner
+  outreach gate.
+- `VISUAL_SEARCH_V2_UNIFIED_COLLECTOR_SEARCH_20260730.md` - `2026-07-30` -
+  IMPLEMENTED AND VERIFIED LOCALLY; PRODUCTION ACTIVATION NOT AUTHORIZED -
+  Records the five-role evidence authority repair, strict independent-character
+  conjunctions, isolated representation/resemblance search, signed-in
+  feature-gated web integration, strict-zero collector UX, image evidence
+  viewer, correction staging, 75-query source-backed demand suite, `128/128`
+  visual-search contracts, browser proof, unchanged paid Fact Graphs, and the
+  exact calibration-through-activation gates.
 - `VISUAL_SEARCH_V1_COLLECTOR_QUERY_20260729.md` - `2026-07-29` - COMPLETE
   FOR LOCAL LAB; PRODUCTION ACTIVATION NOT AUTHORIZED - Records aliases,
   same-artwork AND/OR subject groups, subject-bound holding relationships,
@@ -137,8 +152,10 @@ create canonical truth, or authorize downstream recommendation systems.
 14. Read `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md`.
 15. Read `VISUAL_SEARCH_V1_UNIFIED_EVIDENCE_20260729.md`.
 16. Read `VISUAL_SEARCH_V1_COLLECTOR_QUERY_20260729.md`.
-17. Confirm the current production `main` SHA and compare it with the checkpoint
+17. Read `VISUAL_SEARCH_V2_UNIFIED_COLLECTOR_SEARCH_20260730.md`.
+18. Read `VISUAL_SEARCH_V2_EXTERNAL_SOURCE_INCORPORATION_20260730.md`.
+19. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-18. Confirm pricing canary/release work remains isolated.
-19. Inspect the governed source branch at the recorded SHA.
-20. Resume only from the collector-query checkpoint's exact next gate.
+20. Confirm pricing canary/release work remains isolated.
+21. Inspect the governed source branch at the recorded SHA.
+22. Resume only from the latest V2 checkpoint's exact next gate.

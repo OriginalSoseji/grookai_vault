@@ -28,7 +28,7 @@ function entry(id, term, documentType, overrides = {}) {
 }
 
 function group(id, name, concepts, roles = []) {
-  const byType = { subject: [], scene: [], style_composition: [] };
+  const byType = { subject: [], scene: [], style_composition: [], representation_cameo: [] };
   for (const concept of concepts) {
     byType[concept.document_type].push(concept);
   }
@@ -69,6 +69,14 @@ function group(id, name, concepts, roles = []) {
         subject_role_keys: [],
         structured_concepts: byType.style_composition,
       },
+      representation_cameo: {
+        search_document_id: `doc-${id}-representation`,
+        document_type: "representation_cameo",
+        subject_role_keys: byType.representation_cameo
+          .map((row) => row.subject_role)
+          .filter(Boolean),
+        structured_concepts: byType.representation_cameo,
+      },
     },
   };
 }
@@ -78,6 +86,7 @@ function cameoRow(
   cardPrintId,
   identity,
   {
+    appearanceRole = null,
     displayModes = [],
     reconciliationStatus = "exact_canonical_match",
   } = {},
@@ -89,6 +98,7 @@ function cameoRow(
     cameo_identity_kind: "pokemon",
     cameo_identity: identity,
     display_mode_terms: displayModes,
+    appearance_role: appearanceRole,
     reconciliation_status: reconciliationStatus,
     canonical_match: { card_print_id: cardPrintId },
   };
@@ -153,9 +163,11 @@ function unifiedFixtures() {
   const rows = [
     cameoRow("approved", "print-cameo", "Pikachu", {
       reconciliationStatus: "existing_approved_cameo_match",
+      appearanceRole: "scene_subject",
     }),
     cameoRow("pillow", "print-pillow", "Pikachu", {
       displayModes: ["pillow"],
+      reconciliationStatus: "role_confirmed_external_match",
     }),
     cameoRow("unrelated", "print-unrelated-sleeping", "Pikachu"),
   ];
@@ -166,6 +178,7 @@ test("curated cameo projection preserves external authority without inventing ob
   const [association, role] = curatedCameoEntriesV1(
     cameoRow("pillow", "print-pillow", "Pikachu", {
       displayModes: ["pillow"],
+      reconciliationStatus: "role_confirmed_external_match",
     }),
   );
   assert.equal(association.term, "cameo subject: Pikachu");
@@ -184,7 +197,7 @@ test("plain identity search combines canonical, visual, and curated cameo eviden
     curatedCameoStats: decorated.stats,
   });
   const result = await engine.search("Pikachu");
-  assert.equal(result.total_matches, 4);
+  assert.equal(result.total_matches, 3);
   assert.equal(result.results[0].artwork_group_id, "group-direct");
   assert.ok(
     result.results[0].matched_sources.includes("canonical_identity"),
@@ -202,7 +215,7 @@ test("explicit cameo query returns curated relationships and excludes direct-onl
   const decorated = unifiedFixtures();
   const engine = createVisualSearchLabEngineV1(decorated.groups);
   const result = await engine.search("Pikachu cameo");
-  assert.equal(result.total_matches, 3);
+  assert.equal(result.total_matches, 2);
   assert.ok(
     result.results.every((row) =>
       row.matched_sources.includes("curated_cameo"),
@@ -253,6 +266,84 @@ test("curated association cannot bind an unrelated subject-scoped semantic fact"
   );
 });
 
+test("unresolved external candidates and intrinsic resemblance never prove a second character", async () => {
+  const cosmicMimikyu = group(
+    "cosmic-mimikyu",
+    "Mimikyu",
+    [
+      {
+        ...entry(
+          "cosmic-mimikyu-subject",
+          "scene_subject: Mimikyu",
+          "subject",
+          {
+            source_type: "subject_role",
+            subject_role: "scene_subject",
+          },
+        ),
+        document_type: "subject",
+      },
+    ],
+    ["scene_subject"],
+  );
+  const rocketMimikyu = group(
+    "rocket-mimikyu",
+    "Team Rocket's Mimikyu",
+    [
+      {
+        ...entry(
+          "rocket-mimikyu-subject",
+          "scene_subject: Team Rocket's Mimikyu",
+          "subject",
+          {
+            source_type: "subject_role",
+            subject_role: "scene_subject",
+          },
+        ),
+        document_type: "subject",
+      },
+      {
+        ...entry(
+          "rocket-pikachu-resemblance",
+          "visual_resemblance_reference: Pikachu",
+          "representation_cameo",
+          {
+            source_type: "subject_role",
+            subject_role: "visual_resemblance_reference",
+          },
+        ),
+        document_type: "representation_cameo",
+      },
+    ],
+    ["scene_subject", "visual_resemblance_reference"],
+  );
+  const decorated = attachCuratedCameoEvidenceV1(
+    [cosmicMimikyu, rocketMimikyu, group("isolated-pikachu-title", "Pikachu", [], [])],
+    [
+      {
+        ...cameoRow(
+          "cosmic-unconfirmed-pins",
+          "print-cosmic-mimikyu",
+          "Pikachu",
+        ),
+        notes: "pins",
+      },
+    ],
+  );
+  assert.equal(decorated.stats.accepted_rows, 0);
+  assert.equal(decorated.stats.review_only_rows, 1);
+  assert.equal(decorated.review_queue[0].reason, "external_candidate_requires_review");
+
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+  const result = await engine.search("Mimikyu and pika");
+  assert.equal(result.total_matches, 0);
+  assert.deepEqual(result.result_groups, []);
+  assert.match(
+    result.zero_state.message,
+    /none where both are independently visible/iu,
+  );
+});
+
 test("runtime cameo source remains optional and explicitly configurable", () => {
   const defaultArgs = parseCardVisualSearchLabArgsV1([]);
   assert.equal(defaultArgs.cameoReference, null);
@@ -277,11 +368,31 @@ function collectorFixtures() {
       "Mimikyu",
       [
         {
-          ...entry("mimikyu-visible", "Mimikyu ragged cloth body", "subject"),
+          ...entry(
+            "mimikyu-visible",
+            "scene_subject: Mimikyu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
           document_type: "subject",
         },
+        {
+          ...entry(
+            "pikachu-resemblance",
+            "visual_resemblance_reference: Pikachu",
+            "representation_cameo",
+            {
+              source_type: "subject_role",
+              subject_role: "visual_resemblance_reference",
+            },
+          ),
+          document_type: "representation_cameo",
+        },
       ],
-      [],
+      ["scene_subject", "visual_resemblance_reference"],
     ),
     group(
       "ghost-pair",
@@ -313,6 +424,37 @@ function collectorFixtures() {
         },
       ],
       ["scene_subject"],
+    ),
+    group(
+      "mimikyu-pikachu-poster",
+      "Gallery Visit",
+      [
+        {
+          ...entry(
+            "gallery-mimikyu",
+            "scene_subject: Mimikyu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "gallery-pikachu-poster",
+            "depicted_subject: Pikachu: poster: wall poster",
+            "representation_cameo",
+            {
+              source_type: "subject_role",
+              subject_role: "depicted_subject",
+            },
+          ),
+          document_type: "representation_cameo",
+        },
+      ],
+      ["scene_subject", "depicted_subject"],
     ),
     group(
       "yamper-ball",
@@ -575,14 +717,28 @@ test("multi-subject AND and OR groups require co-occurrence in one artwork", asy
   const engine = createVisualSearchLabEngineV1(decorated.groups);
   const mimikyu = await engine.search("Mimikyu and Pikachu together");
   assert.equal(mimikyu.total_matches, 3);
-  const mixedAuthority = mimikyu.results.find(
-    (row) => row.artwork_group_id === "group-mimikyu-pikachu",
-  );
-  assert.ok(mixedAuthority);
   assert.ok(
-    mixedAuthority.matched_sources.includes("visual_fact_graph"),
+    mimikyu.results.every(
+      (row) => row.artwork_group_id !== "group-mimikyu-pikachu",
+    ),
   );
-  assert.ok(mixedAuthority.matched_sources.includes("curated_cameo"));
+  assert.ok(
+    mimikyu.results.some(
+      (row) =>
+        row.artwork_group_id === "group-mimikyu-pikachu-poster" &&
+        row.collector_reason.includes("independently visible"),
+    ),
+  );
+  assert.ok(
+    mimikyu.results.every(
+      (row) =>
+        row.public_evidence.every(
+          (evidence) =>
+            !Object.hasOwn(evidence, "supporting_observation_ids") &&
+            !Object.hasOwn(evidence, "governance_status"),
+        ),
+    ),
+  );
 
   const ghosts = await engine.search("Gengar and Haunter or Ghastly");
   assert.equal(ghosts.total_matches, 1);

@@ -45,6 +45,9 @@ function fixture(overrides = {}) {
       { observation_id: "obs-sky-surface", kind: "environment_surface", label: "sky visible through dome", normalized_label: "sky", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-body-region", kind: "body_region", label: "pink torso", normalized_label: "pink torso", confidence: 0.96, evidence_strength: "strong" },
       { observation_id: "obs-object", kind: "objects_and_props", label: "metal object", normalized_label: "metal object", confidence: 0.9, evidence_strength: "medium" },
+      { observation_id: "obs-poster", kind: "depicted_subject", label: "Pichu printed on a poster", normalized_label: "pichu printed on poster", confidence: 0.94, evidence_strength: "strong" },
+      { observation_id: "obs-plush", kind: "character_representation", label: "Eevee-shaped plush", normalized_label: "eevee shaped plush", confidence: 0.93, evidence_strength: "strong" },
+      { observation_id: "obs-resemblance", kind: "creature_anatomy", label: "costume with Pikachu-like ears", normalized_label: "costume with pikachu-like ears", confidence: 0.92, evidence_strength: "strong" },
     ],
     typed_facts: [
       { fact_id: "fact-anatomy", module: "creature_anatomy", field_path: "ears", claim: "ear shape", value: "long and pointed", supporting_observation_ids: ["obs-anatomy"], confidence: 0.98, evidence_strength: "strong" },
@@ -56,8 +59,13 @@ function fixture(overrides = {}) {
       { fact_id: "fact-missing", module: "environment", field_path: "ground", claim: "ground", value: "grass", supporting_observation_ids: ["obs-missing"], confidence: 0.9, evidence_strength: "medium" },
     ],
     subjects: [{ observation_id: "obs-subject", subject_kind: "scene_subject", identity: "Pikachu", identity_confidence: 0.99 }],
-    depicted_subjects: [{ observation_id: "obs-ui", represented_identity: "Raichu", surface_type: "card", host_surface: "printed card", confidence: 0.8 }],
-    character_representations: [],
+    depicted_subjects: [
+      { observation_id: "obs-ui", represented_identity: "Raichu", surface_type: "card", host_surface: "printed card", confidence: 0.8 },
+      { observation_id: "obs-poster", represented_identity: "Pichu", surface_type: "poster", host_surface: "wall poster", confidence: 0.94 },
+    ],
+    character_representations: [
+      { observation_id: "obs-plush", represented_identity: "Eevee", representation_form: "plush", host_object: "plush toy", confidence: 0.93 },
+    ],
     counts: [{ count_id: "count-trees", normalized_label: "tree", count_type: "exact", exact_count: 10, supporting_observation_ids: ["obs-trees"], confidence: 0.94 }],
     relationships: [],
     semantic_visual_facts: [{ semantic_fact_id: "sem-sleeping", category: "state", label: "sleeping", subject_observation_id: "obs-subject", supporting_observation_ids: ["obs-pose"], confidence: 0.96 }, { semantic_fact_id: "sem-scene-context", category: "state", label: "visible with sky", subject_observation_id: "obs-subject", supporting_observation_ids: ["obs-sky-surface"], confidence: 0.8 }],
@@ -84,7 +92,7 @@ test("projection arguments remain pinned to locked grouping and eligibility", ()
   assert.match(args.groupingDir, /grouping_424dbd1f2469$/);
   assert.match(args.eligibilityDir, /eligibility_a206881f5a0b$/);
   assert.equal(args.concurrency, 32);
-  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V1_5");
+  assert.equal(CARD_VISUAL_SEARCH_PROJECTION_VERSION, "CARD_VISUAL_SEARCH_PROJECTION_V2");
 });
 
 test("projection parser accepts an external authoritative artifact root", () => {
@@ -127,13 +135,27 @@ test("card UI classification propagates from raw observations to derived concept
   assert.ok(result.evidence.every((row) => !row.supporting_observation_ids.includes("obs-overlay")));
 });
 
-test("projection produces three evidence-backed documents and keeps canonical context separate", () => {
+test("projection produces four evidence-backed documents and keeps representations isolated", () => {
   const result = projectArtworkGraphV1(fixture());
-  assert.equal(result.documents.length, 3);
+  assert.equal(result.documents.length, 4);
   assert.match(document(result, "subject").document_text, /long pointed ears/);
   assert.match(document(result, "scene").document_text, /dense forest/);
   assert.match(document(result, "style_composition").document_text, /yellow and green palette/);
+  assert.match(document(result, "representation_cameo").document_text, /Pichu/);
+  assert.match(document(result, "representation_cameo").document_text, /Eevee/);
+  assert.match(document(result, "representation_cameo").document_text, /visual_resemblance_reference: pikachu/);
+  assert.doesNotMatch(document(result, "subject").document_text, /depicted_subject: Pichu/);
+  assert.doesNotMatch(document(result, "subject").document_text, /character_representation: Eevee/);
   assert.equal(document(result, "subject").canonical_context.authority, "canonical_snapshot_not_visual_evidence");
+  assert.equal(
+    document(result, "representation_cameo").structured_concepts.every(
+      (concept) =>
+        concept.appearance_role
+        && concept.governance_status === "search_eligible"
+        && concept.evidence_authority === "observation_backed",
+    ),
+    true,
+  );
   assert.ok(result.evidence.every((row) => row.supporting_observation_ids.length > 0));
 });
 

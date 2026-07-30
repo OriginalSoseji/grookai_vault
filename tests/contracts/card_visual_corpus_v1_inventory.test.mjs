@@ -17,10 +17,15 @@ test("corpus tooling allows only governed source and productization branches", (
   assert.deepEqual(CARD_VISUAL_CORPUS_ALLOWED_BRANCHES, [
     "feature/card-visual-description-agent",
     "feature/visual-search-v1-productization",
+    "agent/visual-search-lab-runtime-fix",
   ]);
   assert.equal(
     assertCardVisualCorpusBranchV1("feature/visual-search-v1-productization"),
     "feature/visual-search-v1-productization",
+  );
+  assert.equal(
+    assertCardVisualCorpusBranchV1("agent/visual-search-lab-runtime-fix"),
+    "agent/visual-search-lab-runtime-fix",
   );
   assert.throws(
     () => assertCardVisualCorpusBranchV1("main"),
