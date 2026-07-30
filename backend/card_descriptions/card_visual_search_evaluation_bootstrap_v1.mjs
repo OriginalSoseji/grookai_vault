@@ -657,19 +657,65 @@ function percentile(values, value) {
   return sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * value) - 1)];
 }
 
-function evaluateCalibration(query, ranked) {
+export function evaluateCalibrationV1(query, ranked) {
   const expected = query.expected_artwork_group_id;
   const rank = expected ? ranked.results.findIndex((row) => row.artwork_group_id === expected) + 1 : 0;
-  const referenceFindings = ranked.results.flatMap((result) => result.matched_evidence.flatMap((evidence) => evidence.supporting_observation_ids?.length ? [] : [`missing_observation_reference:${result.artwork_group_id}:${evidence.source_id}`]));
+  const referenceFindings = ranked.results.flatMap((result) =>
+    result.matched_evidence.flatMap((evidence) =>
+      evidence.supporting_observation_ids?.length ||
+      evidence.supporting_external_evidence_ids?.length
+        ? []
+        : [
+            `missing_evidence_reference:${result.artwork_group_id}:${evidence.source_id}`,
+          ],
+    ),
+  );
   const printingResult = expected ? ranked.results.find((row) => row.artwork_group_id === expected) : null;
-  const printingExpansionCorrect = expected ? printingResult?.matching_printings.length === query.expected_printing_count : true;
+  const printingExpansionCorrect = expected
+    ? printingResult
+      ? printingResult.matching_printings.length === query.expected_printing_count
+      : null
+    : true;
   const zeroCorrect = query.valid_zero_result ? ranked.total_matches === 0 : null;
   const failures = [];
   if (expected && !rank) failures.push({ failure_class: "correct_result_missing", repair_lane: "structured_filtering_or_lexical_retrieval" });
   if (query.valid_zero_result && !zeroCorrect) failures.push({ failure_class: "incorrect_result_included", repair_lane: "query_parser_or_structured_filtering" });
-  if (!printingExpansionCorrect) failures.push({ failure_class: "correct_artwork_wrong_printing_expansion", repair_lane: "artwork_grouping_printing_mapping" });
+  if (printingExpansionCorrect === false) failures.push({ failure_class: "correct_artwork_wrong_printing_expansion", repair_lane: "artwork_grouping_printing_mapping" });
   if (referenceFindings.length) failures.push({ failure_class: "evidence_explanation_mismatch", repair_lane: "deterministic_projection", findings: referenceFindings });
   return { rank, recall_at_10: rank > 0 && rank <= 10, recall_at_25: rank > 0 && rank <= 25, reciprocal_rank: rank ? 1 / rank : 0, zero_result_correct: zeroCorrect, printing_expansion_correct: printingExpansionCorrect, explanation_references_valid: referenceFindings.length === 0, failures };
+}
+
+export function computeBootstrapCandidateMetricsV1(evaluations) {
+  const sourceCandidates = evaluations.filter(
+    ({ query }) => Boolean(query.expected_artwork_group_id),
+  );
+  const printingChecks = sourceCandidates.filter(
+    ({ evaluation }) =>
+      typeof evaluation.printing_expansion_correct === "boolean",
+  );
+  return {
+    source_candidate_calibration_queries: sourceCandidates.length,
+    bootstrap_recall_at_10: sourceCandidates.length
+      ? sourceCandidates.filter(({ evaluation }) => evaluation.recall_at_10)
+          .length / sourceCandidates.length
+      : null,
+    bootstrap_recall_at_25: sourceCandidates.length
+      ? sourceCandidates.filter(({ evaluation }) => evaluation.recall_at_25)
+          .length / sourceCandidates.length
+      : null,
+    bootstrap_mrr: sourceCandidates.length
+      ? sourceCandidates.reduce(
+          (sum, { evaluation }) => sum + evaluation.reciprocal_rank,
+          0,
+        ) / sourceCandidates.length
+      : null,
+    applicable_printing_expansion_checks: printingChecks.length,
+    printing_expansion_accuracy: printingChecks.length
+      ? printingChecks.filter(
+          ({ evaluation }) => evaluation.printing_expansion_correct,
+        ).length / printingChecks.length
+      : null,
+  };
 }
 
 function countBy(rows, selector) {
@@ -853,7 +899,7 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
         candidate_groups_scanned:
           collectorEngine.candidate_index.stats.artwork_groups,
       };
-      const evaluation = evaluateCalibration(query, ranked);
+      const evaluation = evaluateCalibrationV1(query, ranked);
       rankedOutputs.push({
         query_id: query.query_id,
         family: query.family,
@@ -878,14 +924,14 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
       continue;
     }
     const ranked = rankVisualSearchQueryV1(query, effectiveGroups, { topK: args.topK, candidateIndex });
-    const evaluation = evaluateCalibration(query, ranked);
+    const evaluation = evaluateCalibrationV1(query, ranked);
     rankedOutputs.push({ query_id: query.query_id, family: query.family, query_text: query.query_text, intent: query.intent, latency_ms: ranked.latency_ms, candidate_groups_scanned: ranked.candidate_groups_scanned, total_matches: ranked.total_matches, results: ranked.results, bootstrap_evaluation: evaluation });
     evaluations.push({ query, ranked, evaluation });
     failures.push(...evaluation.failures.map((failure) => ({ query_id: query.query_id, family: query.family, query_text: query.query_text, ...failure })));
   }
 
-  const positive = evaluations.filter(({ query }) => !query.valid_zero_result);
   const negative = evaluations.filter(({ query }) => query.valid_zero_result);
+  const candidateMetrics = computeBootstrapCandidateMetricsV1(evaluations);
   const latency = evaluations.map(({ ranked }) => ranked.latency_ms);
   const familyDistributions = countBy(suite, (row) => row.family);
   const splitDistributions = countBy(suite, (row) => row.split);
@@ -896,14 +942,12 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     source_backed_collector_queries: suite.filter((query) => query.family === "collector_demand_source_backed").length,
     source_backed_collector_calibration_queries_executed_v2: calibrationQueries.filter((query) => query.execution_mode === "collector_parser_v2").length,
     source_backed_collector_calibration_queries_pending_v2_execution: 0,
-    positive_calibration_queries: positive.length,
+    collector_demand_calibration_queries_without_human_gold: calibrationQueries.filter((query) => query.execution_mode === "collector_parser_v2" && !query.valid_zero_result).length,
+    positive_calibration_queries: candidateMetrics.source_candidate_calibration_queries,
     negative_calibration_queries: negative.length,
-    bootstrap_recall_at_10: positive.length ? positive.filter(({ evaluation }) => evaluation.recall_at_10).length / positive.length : null,
-    bootstrap_recall_at_25: positive.length ? positive.filter(({ evaluation }) => evaluation.recall_at_25).length / positive.length : null,
-    bootstrap_mrr: positive.length ? positive.reduce((sum, { evaluation }) => sum + evaluation.reciprocal_rank, 0) / positive.length : null,
+    ...candidateMetrics,
     valid_zero_result_accuracy: negative.length ? negative.filter(({ evaluation }) => evaluation.zero_result_correct).length / negative.length : null,
     explanation_reference_validity: evaluations.length ? evaluations.filter(({ evaluation }) => evaluation.explanation_references_valid).length / evaluations.length : null,
-    printing_expansion_accuracy: positive.length ? positive.filter(({ evaluation }) => evaluation.printing_expansion_correct).length / positive.length : null,
     failure_count: failures.length,
     candidate_index: candidateIndex.stats,
     candidate_groups_scanned: { p50: percentile(evaluations.map(({ ranked }) => ranked.candidate_groups_scanned), 0.5), p95: percentile(evaluations.map(({ ranked }) => ranked.candidate_groups_scanned), 0.95), max: Math.max(...evaluations.map(({ ranked }) => ranked.candidate_groups_scanned)) },

@@ -1,5 +1,5 @@
 export const COLLECTOR_VISUAL_QUERY_DEMAND_VERSION =
-  "COLLECTOR_VISUAL_QUERY_DEMAND_V1";
+  "COLLECTOR_VISUAL_QUERY_DEMAND_V1_1";
 
 const SOURCES = Object.freeze({
   appearances: "https://www.reddit.com/r/PokemonTCG/comments/10gzylo/",
@@ -82,6 +82,7 @@ const POSITIVE = [
   ["underwater cards", SOURCES.environment, ["underwater"]],
   ["cards set in a city at night", SOURCES.night, ["city", "night"]],
   ["Pikachu-shaped cookie", SOURCES.representations, ["pikachu", "character_representation", "cookie"]],
+  ["Pikachu plush", SOURCES.representations, ["pikachu", "character_representation", "plush"]],
   ["Pokemon as food", SOURCES.representations, ["pokemon", "character_representation", "food_shape"]],
   ["Pokemon eating dessert", SOURCES.food, ["pokemon", "eating", "dessert"]],
   ["cards with Pokemon plushies", SOURCES.representations, ["pokemon", "character_representation", "plush"]],
@@ -122,10 +123,9 @@ const BOUNDARY = [
 ];
 
 const STRICT_ZERO = [
-  ["Pikachu plush", SOURCES.representations, ["pikachu", "character_representation", "plush"]],
   ["Pikachu pillow", SOURCES.representations, ["pikachu", "character_representation", "pillow"]],
   ["Pikachu statue", SOURCES.appearances, ["pikachu", "character_representation", "statue"]],
-  ["Pikachu poster", SOURCES.appearances, ["pikachu", "depicted_subject", "poster"]],
+  ["Pikachu pin", SOURCES.representations, ["pikachu", "character_representation", "pin"]],
   ["Pikachu on a screen", SOURCES.appearances, ["pikachu", "depicted_subject", "screen"]],
   ["Mimikyu and Pikachu independently visible", SOURCES.counts, ["mimikyu", "pikachu", "independent_cooccurrence"]],
   ["Gengar and either Haunter or Gastly together", SOURCES.counts, ["gengar", "haunter_or_gastly", "independent_cooccurrence"]],

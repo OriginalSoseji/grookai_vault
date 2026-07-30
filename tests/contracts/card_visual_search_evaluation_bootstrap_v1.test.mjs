@@ -8,6 +8,8 @@ import {
   assignEvaluationSplitsV1,
   buildVisualSearchCandidateIndexV1,
   buildEvaluationQuerySuiteV1,
+  computeBootstrapCandidateMetricsV1,
+  evaluateCalibrationV1,
   normalizeVisualSearchTextV1,
   parseCardVisualSearchEvaluationBootstrapArgsV1,
   rankVisualSearchQueryV1,
@@ -93,15 +95,115 @@ test("bootstrap inputs include governed external evidence and founder suppressio
   );
 });
 
-test("source-backed collector demand freezes 50 positive, 15 boundary, and 10 strict-zero queries", () => {
+test("source-backed collector demand reflects governed positive and current-zero evidence", () => {
   const demand = buildCollectorVisualQueryDemandV1();
-  assert.equal(COLLECTOR_VISUAL_QUERY_DEMAND_VERSION, "COLLECTOR_VISUAL_QUERY_DEMAND_V1");
+  assert.equal(COLLECTOR_VISUAL_QUERY_DEMAND_VERSION, "COLLECTOR_VISUAL_QUERY_DEMAND_V1_1");
   assert.equal(demand.length, 75);
-  assert.equal(demand.filter((row) => row.demand_bucket === "demonstrated_positive").length, 50);
+  assert.equal(demand.filter((row) => row.demand_bucket === "demonstrated_positive").length, 51);
   assert.equal(demand.filter((row) => row.demand_bucket === "compositional_boundary").length, 15);
-  assert.equal(demand.filter((row) => row.demand_bucket === "expected_strict_zero").length, 10);
+  assert.equal(demand.filter((row) => row.demand_bucket === "expected_strict_zero").length, 9);
   assert.equal(new Set(demand.map((row) => row.demand_query_id)).size, 75);
+  assert.equal(
+    demand.find((row) => row.query_text === "Pikachu plush")?.demand_bucket,
+    "demonstrated_positive",
+  );
+  assert.equal(
+    demand.find((row) => row.query_text === "Pikachu on a poster")?.demand_bucket,
+    "demonstrated_positive",
+  );
+  assert.equal(
+    demand.find((row) => row.query_text === "Pikachu pin")?.demand_bucket,
+    "expected_strict_zero",
+  );
   assert.ok(demand.every((row) => row.source_url.startsWith("https://")));
+});
+
+test("calibration accepts governed external evidence references", () => {
+  const query = {
+    expected_artwork_group_id: "group-external",
+    expected_printing_count: 1,
+    valid_zero_result: false,
+  };
+  const ranked = {
+    total_matches: 1,
+    results: [
+      {
+        artwork_group_id: "group-external",
+        matching_printings: [{ card_print_id: "print-external" }],
+        matched_evidence: [
+          {
+            source_id: "external-evidence-1",
+            supporting_observation_ids: [],
+            supporting_external_evidence_ids: ["external-evidence-1"],
+          },
+        ],
+      },
+    ],
+  };
+  const evaluation = evaluateCalibrationV1(query, ranked);
+  assert.equal(evaluation.explanation_references_valid, true);
+  assert.equal(evaluation.failures.length, 0);
+});
+
+test("missing expected artwork is not double-counted as a printing expansion failure", () => {
+  const evaluation = evaluateCalibrationV1(
+    {
+      expected_artwork_group_id: "group-missing",
+      expected_printing_count: 3,
+      valid_zero_result: false,
+    },
+    { total_matches: 0, results: [] },
+  );
+  assert.equal(evaluation.printing_expansion_correct, null);
+  assert.deepEqual(
+    evaluation.failures.map((failure) => failure.failure_class),
+    ["correct_result_missing"],
+  );
+});
+
+test("bootstrap metrics exclude unjudged demand rows and non-applicable printing checks", () => {
+  const sourceHit = {
+    query: { expected_artwork_group_id: "group-hit" },
+    evaluation: {
+      recall_at_10: true,
+      recall_at_25: true,
+      reciprocal_rank: 0.5,
+      printing_expansion_correct: true,
+    },
+  };
+  const sourceMiss = {
+    query: { expected_artwork_group_id: "group-miss" },
+    evaluation: {
+      recall_at_10: false,
+      recall_at_25: false,
+      reciprocal_rank: 0,
+      printing_expansion_correct: null,
+    },
+  };
+  const unjudgedDemand = {
+    query: { expected_artwork_group_id: null },
+    evaluation: {
+      recall_at_10: false,
+      recall_at_25: false,
+      reciprocal_rank: 0,
+      printing_expansion_correct: true,
+    },
+  };
+  assert.deepEqual(
+    computeBootstrapCandidateMetricsV1([
+      sourceHit,
+      sourceMiss,
+      unjudgedDemand,
+    ]),
+    {
+      source_candidate_calibration_queries: 2,
+      bootstrap_recall_at_10: 0.5,
+      bootstrap_recall_at_25: 0.5,
+      bootstrap_mrr: 0.25,
+      applicable_printing_expansion_checks: 1,
+      printing_expansion_accuracy: 1,
+    },
+  );
 });
 
 test("structured lexical ranker keeps artwork identity unique and expands all group printings", () => {
@@ -182,6 +284,7 @@ test("bootstrap implementation has no provider, database, embedding, or index-wr
   assert.doesNotMatch(source, /embeddings?\.create|text-embedding|vector_store/i);
   assert.match(source, /index_writes:\s*false/);
   assert.match(source, /executed_unified_collector_parser_v2/);
+  assert.doesNotMatch(source, /\bevaluateCalibration\(/u);
   assert.doesNotMatch(
     source,
     /not_executed_requires_unified_collector_parser_v2/,
