@@ -107,3 +107,7 @@ remain separate governed gates.
 
 The active pointer must remain empty until calibration, high-risk regressions,
 the sealed holdout, RLS/RPC smoke tests, and exact load reconciliation pass.
+
+The offline calibration runner executes all 200 calibration queries, including
+collector-language queries through `UnifiedCollectorSearchIntentV2`. The 50
+holdout queries remain sealed and unexecuted until the separate holdout gate.

@@ -9,6 +9,7 @@ import {
   buildVisualSearchCandidateIndexV1,
   buildEvaluationQuerySuiteV1,
   normalizeVisualSearchTextV1,
+  parseCardVisualSearchEvaluationBootstrapArgsV1,
   rankVisualSearchQueryV1,
   tokenizeVisualSearchTextV1,
 } from "../../backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs";
@@ -77,6 +78,19 @@ test("candidate suite freezes exactly 250 queries with 200 calibration and 50 ho
   assert.ok(demandRows.every((row) => row.source_url.startsWith("https://")));
   assert.ok(demandRows.every((row) => row.execution_mode === "collector_parser_v2"));
   assert.deepEqual(suite, buildEvaluationQuerySuiteV1(Array.from({ length: 320 }, (_, index) => syntheticGroup(index + 1))));
+});
+
+test("bootstrap inputs include governed external evidence and founder suppressions", () => {
+  const args = parseCardVisualSearchEvaluationBootstrapArgsV1([]);
+  assert.match(args.cameoReference, /canonical_matches\.jsonl$/u);
+  assert.match(
+    args.reviewedEvidence,
+    /card_visual_search_founder_reviews_v1\.json$/u,
+  );
+  assert.match(
+    args.evidenceSuppressions,
+    /card_visual_search_founder_suppressions_v1\.json$/u,
+  );
 });
 
 test("source-backed collector demand freezes 50 positive, 15 boundary, and 10 strict-zero queries", () => {
@@ -167,4 +181,9 @@ test("bootstrap implementation has no provider, database, embedding, or index-wr
   assert.doesNotMatch(source, /insert\s+into|update\s+public\.|delete\s+from/i);
   assert.doesNotMatch(source, /embeddings?\.create|text-embedding|vector_store/i);
   assert.match(source, /index_writes:\s*false/);
+  assert.match(source, /executed_unified_collector_parser_v2/);
+  assert.doesNotMatch(
+    source,
+    /not_executed_requires_unified_collector_parser_v2/,
+  );
 });

@@ -18,6 +18,12 @@ const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_PROJECTION_DIR = "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15";
 const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_evaluation_bootstrap_v1";
+const DEFAULT_CAMEO_REFERENCE =
+  "C:/grookai_visual_search_releases/card_visual_search_corpus_release_v1_1_20260721/_analysis/card_visual_cameo_reference_import_v1/2026-07-30T05-21-18-311Z_import_0f9c53c4c02e/canonical_matches.jsonl";
+const DEFAULT_REVIEWED_EVIDENCE =
+  "docs/evidence/card_visual_search_founder_reviews_v1.json";
+const DEFAULT_EVIDENCE_SUPPRESSIONS =
+  "docs/evidence/card_visual_search_founder_suppressions_v1.json";
 const EXPECTED_PROJECTION_VERSION = "CARD_VISUAL_SEARCH_PROJECTION_V2";
 const EXPECTED_DOCUMENT_TYPES = Object.freeze([
   "subject",
@@ -81,6 +87,13 @@ function parseFlag(argv, name) {
 export function parseCardVisualSearchEvaluationBootstrapArgsV1(argv = []) {
   return {
     projectionDir: parseFlag(argv, "projection-dir") ?? DEFAULT_PROJECTION_DIR,
+    cameoReference:
+      parseFlag(argv, "cameo-reference") ?? DEFAULT_CAMEO_REFERENCE,
+    reviewedEvidence:
+      parseFlag(argv, "reviewed-evidence") ?? DEFAULT_REVIEWED_EVIDENCE,
+    evidenceSuppressions:
+      parseFlag(argv, "evidence-suppressions") ??
+      DEFAULT_EVIDENCE_SUPPRESSIONS,
     outputRoot: parseFlag(argv, "output-root") ?? DEFAULT_OUTPUT_ROOT,
     outputDir: parseFlag(argv, "output-dir"),
     topK: Number.parseInt(parseFlag(argv, "top-k") ?? "25", 10),
@@ -741,11 +754,50 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   if (!Number.isInteger(args.topK) || args.topK < 25 || args.topK > 100) throw new Error("top-k must be an integer from 25 through 100");
   const projectionDir = repoPath(args.projectionDir);
   const projection = await loadVisualSearchProjectionV1(projectionDir);
-  const candidateIndex = buildVisualSearchCandidateIndexV1(projection.groups);
+  const cameoReference = repoPath(args.cameoReference);
+  const reviewedEvidence = repoPath(args.reviewedEvidence);
+  const evidenceSuppressions = repoPath(args.evidenceSuppressions);
+  const [
+    suppressionModule,
+    curatedModule,
+    labModule,
+  ] = await Promise.all([
+    import("./card_visual_search_evidence_suppression_v1.mjs"),
+    import("./card_visual_search_curated_cameo_v1.mjs"),
+    import("./card_visual_search_lab_v1.mjs"),
+  ]);
+  const [suppressionRows, curatedRows, reviewedRows] = await Promise.all([
+    suppressionModule.loadCardVisualSearchEvidenceSuppressionsV1(
+      evidenceSuppressions,
+    ),
+    curatedModule.loadCuratedCameoReferenceRowsV1(cameoReference),
+    curatedModule.loadReviewedVisualEvidenceV1(reviewedEvidence),
+  ]);
+  const suppressed =
+    suppressionModule.applyCardVisualSearchEvidenceSuppressionsV1(
+      projection.groups,
+      suppressionRows,
+    );
+  const curated = curatedModule.attachCuratedCameoEvidenceV1(
+    suppressed.groups,
+    [...curatedRows, ...reviewedRows],
+  );
+  const effectiveGroups = curated.groups;
+  const candidateIndex = buildVisualSearchCandidateIndexV1(effectiveGroups);
+  const collectorEngine = labModule.createVisualSearchLabEngineV1(
+    effectiveGroups,
+    {
+      curatedCameoStats: curated.stats,
+      evidenceSuppressionStats: suppressed.stats,
+    },
+  );
   const inputHashes = {
     projection_reconciliation: sha256Buffer(await fs.readFile(path.join(projectionDir, "PROJECTION_RECONCILIATION.json"))),
     projection_artifact_manifest: sha256Buffer(await fs.readFile(path.join(projectionDir, "artifact_hashes.json"))),
     projection_documents: sha256Buffer(await fs.readFile(path.join(projectionDir, "visual_search_documents.jsonl"))),
+    cameo_reference: sha256Buffer(await fs.readFile(cameoReference)),
+    reviewed_evidence: sha256Buffer(await fs.readFile(reviewedEvidence)),
+    evidence_suppressions: sha256Buffer(await fs.readFile(evidenceSuppressions)),
   };
   const runKey = sha256JsonV1({ version: CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_VERSION, commit_sha: git.commit_sha, projection_version: projection.report.version, input_hashes: inputHashes, family_targets: CARD_VISUAL_SEARCH_QUERY_FAMILY_TARGETS, top_k: args.topK });
   const outputDir = args.outputDir ? repoPath(args.outputDir) : path.join(repoPath(args.outputRoot), `${safeTimestamp()}_bootstrap_${runKey.slice(0, 12)}`);
@@ -757,6 +809,9 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
     branch: git.branch,
     tracked_worktree_clean: true,
     projection_dir: posixRelative(projectionDir),
+    cameo_reference: posixRelative(cameoReference),
+    reviewed_evidence: posixRelative(reviewedEvidence),
+    evidence_suppressions: posixRelative(evidenceSuppressions),
     projection_version: projection.report.version,
     query_suite_version: CARD_VISUAL_SEARCH_QUERY_SUITE_VERSION,
     judgment_set_version: CARD_VISUAL_SEARCH_JUDGMENT_VERSION,
@@ -773,7 +828,7 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   await writeJson(path.join(outputDir, "run_plan.json"), runPlan);
   await writeJson(path.join(outputDir, "candidate_index_summary.json"), { version: candidateIndex.version, mode: "in_memory_read_only", ...candidateIndex.stats });
 
-  const suite = buildEvaluationQuerySuiteV1(projection.groups);
+  const suite = buildEvaluationQuerySuiteV1(effectiveGroups);
   const publicSuite = suite.map((query) => {
     const { expected_artwork_group_id, expected_printing_count, source_evidence, ...publicQuery } = query;
     return query.split === "holdout"
@@ -790,19 +845,39 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   const evaluations = [];
   for (const query of calibrationQueries) {
     if (query.execution_mode === "collector_parser_v2") {
+      const collectorResult = await collectorEngine.search(query.query_text, {
+        limit: args.topK,
+      });
+      const ranked = {
+        ...collectorResult,
+        candidate_groups_scanned:
+          collectorEngine.candidate_index.stats.artwork_groups,
+      };
+      const evaluation = evaluateCalibration(query, ranked);
       rankedOutputs.push({
         query_id: query.query_id,
         family: query.family,
         query_text: query.query_text,
         intent: query.intent,
-        execution_status: "not_executed_requires_unified_collector_parser_v2",
-        total_matches: null,
-        results: [],
-        bootstrap_evaluation: null,
+        execution_status: "executed_unified_collector_parser_v2",
+        latency_ms: ranked.latency_ms,
+        candidate_groups_scanned: ranked.candidate_groups_scanned,
+        total_matches: ranked.total_matches,
+        results: ranked.results,
+        bootstrap_evaluation: evaluation,
       });
+      evaluations.push({ query, ranked, evaluation });
+      failures.push(
+        ...evaluation.failures.map((failure) => ({
+          query_id: query.query_id,
+          family: query.family,
+          query_text: query.query_text,
+          ...failure,
+        })),
+      );
       continue;
     }
-    const ranked = rankVisualSearchQueryV1(query, projection.groups, { topK: args.topK, candidateIndex });
+    const ranked = rankVisualSearchQueryV1(query, effectiveGroups, { topK: args.topK, candidateIndex });
     const evaluation = evaluateCalibration(query, ranked);
     rankedOutputs.push({ query_id: query.query_id, family: query.family, query_text: query.query_text, intent: query.intent, latency_ms: ranked.latency_ms, candidate_groups_scanned: ranked.candidate_groups_scanned, total_matches: ranked.total_matches, results: ranked.results, bootstrap_evaluation: evaluation });
     evaluations.push({ query, ranked, evaluation });
@@ -816,9 +891,11 @@ export async function runCardVisualSearchEvaluationBootstrapV1(args = parseCardV
   const splitDistributions = countBy(suite, (row) => row.split);
   const metrics = {
     calibration_queries: calibrationQueries.length,
+    executed_calibration_queries: evaluations.length,
     executed_structured_lexical_queries: evaluations.length,
     source_backed_collector_queries: suite.filter((query) => query.family === "collector_demand_source_backed").length,
-    source_backed_collector_calibration_queries_pending_v2_execution: calibrationQueries.filter((query) => query.execution_mode === "collector_parser_v2").length,
+    source_backed_collector_calibration_queries_executed_v2: calibrationQueries.filter((query) => query.execution_mode === "collector_parser_v2").length,
+    source_backed_collector_calibration_queries_pending_v2_execution: 0,
     positive_calibration_queries: positive.length,
     negative_calibration_queries: negative.length,
     bootstrap_recall_at_10: positive.length ? positive.filter(({ evaluation }) => evaluation.recall_at_10).length / positive.length : null,
