@@ -249,6 +249,10 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
       `with totals as (
          select
            count(*)::integer as exact_price_count,
+           array_agg(
+             card_printing_id
+             order by card_printing_id
+           ) as current_printing_ids,
            count(*) filter (
              where currency = 'USD' and market_price > 0
            )::integer as positive_usd_count,
@@ -349,12 +353,12 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
       `select
          has_function_privilege(
            'authenticated',
-           'public.get_top_market_pricing_v1(integer)',
+           'public.get_market_pricing_read_model_v1(uuid[],uuid[])',
            'EXECUTE'
          ) as authenticated_execute_granted,
          has_function_privilege(
            'anon',
-           'public.get_top_market_pricing_v1(integer)',
+           'public.get_market_pricing_read_model_v1(uuid[],uuid[])',
            'EXECUTE'
          ) as anonymous_execute_granted,
          has_function_privilege(
@@ -373,8 +377,13 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
       (
         await client.query(
           `select count(*)::integer as row_count
-           from public.get_top_market_pricing_v1($1)`,
-          [args.expectedCount],
+           from public.get_market_pricing_read_model_v1(
+             '{}'::uuid[],
+             $1::uuid[]
+           )
+           where pricing_scope = 'card_printing'
+             and status = 'available'`,
+          [current.current_printing_ids ?? []],
         )
       ).rows[0]?.row_count ?? 0,
     );
@@ -389,8 +398,11 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
   try {
     await client.query(
       `select count(*)::integer
-       from public.get_top_market_pricing_v1($1)`,
-      [1],
+       from public.get_market_pricing_read_model_v1(
+         '{}'::uuid[],
+         $1::uuid[]
+       )`,
+      [[current.current_printing_ids?.[0]].filter(Boolean)],
     );
   } catch (error) {
     anonymousRuntimeCode = error.code ?? null;

@@ -193,6 +193,11 @@ must prove:
 - authenticated runtime reads succeed and anonymous runtime reads remain denied
 - rollback authority and a prior publication generation remain available
 
+Runtime access proof must call the request-scoped
+`get_market_pricing_read_model_v1` contract with the current exact-printing
+identities. The canary does not depend on the separately governed ranked
+discovery endpoint.
+
 An incomplete time window is `observing`, not passed. A missing elapsed schedule
 slot, broken trace, stale value, access-boundary regression, terminal alert, or
 run mismatch fails the gate.
