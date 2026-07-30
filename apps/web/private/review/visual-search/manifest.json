@@ -1,18 +1,18 @@
 {
-  "bundle_version": "CARD_VISUAL_SEARCH_REVIEW_PORTAL_BUNDLE_V1",
-  "created_at": "2026-07-22T05:22:39.163Z",
-  "source_packet_dir": "docs/audits/card_visual_search_judgment_packet_v1/2026-07-22T05-22-02-356Z_packet_13bc0f5043d5",
+  "bundle_version": "CARD_VISUAL_SEARCH_REVIEW_PORTAL_BUNDLE_V2",
+  "created_at": "2026-07-30T15:29:41.436Z",
+  "source_packet_dir": "C:/grookai_visual_search_releases/card_visual_search_corpus_release_v1_1_20260721/_rebuild/unified_collector_search_v2/reviewer_packet/2026-07-30T15-29-41-063Z_packet_03d35aae5757",
   "packet_version": "CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1",
-  "packet_run_key": "13bc0f5043d574246c739c89953b43c07df991d717ff1bdd39f991ba24cc5f0e",
-  "source_commit_sha": "bf0ac663e945460d77f1b506a329431c0671f0bb",
+  "packet_run_key": "03d35aae57572fdc183033fd682326bc1751506d098c2c2afc7f7543f7a2ba35",
+  "source_commit_sha": "9d2e6dd91fd567762aa4e1dddf9c5457d44dceb1",
   "calibration_query_count": 200,
   "holdout_query_count": 0,
-  "saved_visual_record_count": 753,
+  "saved_visual_record_count": 678,
   "server_writes": false,
   "browser_local_storage_only": true,
   "jsonl_export_only": true,
-  "source_html_sha256": "7ab735665eb1d25f14c2bbfc916d64179c1602d91cedaed6b7ea3bb654b998c3",
-  "source_html_bytes": 22179971,
-  "bundle_sha256": "2bbf5cd1fa816c0d6635a3c78416406a05bee6ca6ac4bc300eb1370891ee0316",
-  "bundle_bytes": 1358764
+  "source_html_sha256": "45b01a7024319ba17d868fdea8edf90997f003e5d59e5988d19a023519c4d751",
+  "source_html_bytes": 19975283,
+  "bundle_sha256": "04a71e5808872ab45f9e615df2fda4ed7f936f26f9ee8673b99918d22ee98435",
+  "bundle_bytes": 1232819
 }
