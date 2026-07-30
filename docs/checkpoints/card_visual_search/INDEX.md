@@ -9,6 +9,13 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_UNIFIED_EVIDENCE_20260729.md` - `2026-07-29` - COMPLETE
+  FOR LOCAL LAB; PRODUCTION ACTIVATION NOT AUTHORIZED - Records the unified
+  canonical, Fact Graph, and curated-cameo evidence contract, strict
+  subject-fact binding, `711` curated relationships attached to `463` eligible
+  artwork groups without paid regeneration, real `Pikachu`, cameo, pillow,
+  food, sleeping, and valid-zero query proofs, `113/113` focused contracts,
+  immutable authority boundaries, and the mixed-query calibration gate.
 - `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md` - `2026-07-29` -
   COMPLETE; CURRENT SOURCE FROZEN AND RECONCILED; NO WRITE - Records the
   zero-cost 4,020-row RotomAmiti workbook import, reuse of 1,421 existing
@@ -121,8 +128,9 @@ create canonical truth, or authorize downstream recommendation systems.
 13. Read
     `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md`.
 14. Read `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md`.
-15. Confirm the current production `main` SHA and compare it with the checkpoint
+15. Read `VISUAL_SEARCH_V1_UNIFIED_EVIDENCE_20260729.md`.
+16. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-16. Confirm pricing canary/release work remains isolated.
-17. Inspect the governed source branch at the recorded SHA.
-18. Resume only from the reviewer-dependency checkpoint's exact sequence.
+17. Confirm pricing canary/release work remains isolated.
+18. Inspect the governed source branch at the recorded SHA.
+19. Resume only from the unified-evidence checkpoint's exact sequence.
