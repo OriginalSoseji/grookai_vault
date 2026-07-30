@@ -356,4 +356,9 @@ view for each calculation.
 Exact-printing eBay active asks are maintained in
 `mv_market_listing_active_ask_current_v1` by a separately governed refresh
 phase. Refresh failures fail the activation pipeline closed, while shadow and
-dry-run modes inspect the cache without changing it.
+dry-run modes inspect the cache without changing it. The refresh worker must
+set its database statement timeout explicitly on the live session and use the
+hash-plan path (`enable_nestloop = off`) so production-scale evidence joins do
+not inherit the platform's shorter default timeout or regress to pathological
+random index lookups. The effective session settings must be preserved in the
+refresh artifact.
