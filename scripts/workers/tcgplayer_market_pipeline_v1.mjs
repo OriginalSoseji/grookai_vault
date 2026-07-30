@@ -427,6 +427,7 @@ async function main() {
     `--out-root=${path.join(runDir, "health")}`,
     `--max-source-age-hours=${args.freshnessHours}`,
     activationMode ? "--minimum-current-prices=1" : "--minimum-current-prices=0",
+    `--database-timeout-minutes=${args.databaseTimeoutMinutes}`,
   ];
   await runPhase({
     phase: "health",

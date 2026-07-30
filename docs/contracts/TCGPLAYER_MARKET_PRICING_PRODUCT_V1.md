@@ -362,3 +362,10 @@ hash-plan path (`enable_nestloop = off`) so production-scale evidence joins do
 not inherit the platform's shorter default timeout or regress to pathological
 random index lookups. The effective session settings must be preserved in the
 refresh artifact.
+
+Per-run health probes must validate source-to-publication traces only for the
+selected durable pipeline run. They must not rescan all historical snapshots
+or the full source observation warehouse during an ordinary activation check.
+The health worker must inherit the governed pipeline database timeout, apply
+it explicitly to the live session, and preserve the effective timeout in its
+artifact.

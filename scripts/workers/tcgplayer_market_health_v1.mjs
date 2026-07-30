@@ -22,6 +22,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "health",
 );
 const HEALTH_VERSION = "TCGPLAYER_MARKET_HEALTH_V1";
+const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 
 function parseArgs(argv) {
   const args = {
@@ -29,6 +30,11 @@ function parseArgs(argv) {
     outRoot: DEFAULT_OUT_ROOT,
     maxSourceAgeHours: 36,
     minimumCurrentPrices: 1,
+    databaseTimeoutMinutes: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES ||
+        String(DEFAULT_DATABASE_TIMEOUT_MINUTES),
+      10,
+    ),
   };
   for (const arg of argv) {
     if (arg.startsWith("--run-key=")) args.runKey = arg.slice(10).trim();
@@ -43,6 +49,11 @@ function parseArgs(argv) {
         arg.slice("--minimum-current-prices=".length),
         10,
       );
+    } else if (arg.startsWith("--database-timeout-minutes=")) {
+      args.databaseTimeoutMinutes = Number.parseInt(
+        arg.slice("--database-timeout-minutes=".length),
+        10,
+      );
     }
   }
   if (!Number.isFinite(args.maxSourceAgeHours) || args.maxSourceAgeHours <= 0) {
@@ -53,6 +64,15 @@ function parseArgs(argv) {
     args.minimumCurrentPrices < 0
   ) {
     throw new Error("--minimum-current-prices must be a non-negative integer");
+  }
+  if (
+    !Number.isInteger(args.databaseTimeoutMinutes) ||
+    args.databaseTimeoutMinutes < 1 ||
+    args.databaseTimeoutMinutes > 120
+  ) {
+    throw new Error(
+      "--database-timeout-minutes must be an integer from 1 through 120",
+    );
   }
   return args;
 }
@@ -88,12 +108,21 @@ async function main() {
     connectionString: url,
     ssl: sslConfig(url),
     connectionTimeoutMillis: 15_000,
-    query_timeout: 120_000,
-    statement_timeout: 120_000,
+    query_timeout: args.databaseTimeoutMinutes * 60_000 + 5_000,
+    statement_timeout: args.databaseTimeoutMinutes * 60_000,
   });
   await client.connect();
 
   try {
+    await client.query(
+      "select set_config('statement_timeout', $1, false)",
+      [`${args.databaseTimeoutMinutes}min`],
+    );
+    const databaseSession = (
+      await client.query(
+        "select current_setting('statement_timeout') as statement_timeout",
+      )
+    ).rows[0];
     const result = await client.query(
       `with latest_source as (
          select
@@ -194,9 +223,12 @@ async function main() {
        ),
        broken_trace as (
          select count(*)::integer as broken_trace_count
-         from public.market_price_publication_snapshots snapshot
+         from selected_run pipeline_run
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.run_id = pipeline_run.id
          left join public.market_price_qualification_decisions decision
            on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = pipeline_run.id
           and decision.eligible = true
           and decision.source_observation_id = snapshot.source_observation_id
          left join public.tcgcsv_source_price_daily_observations observation
@@ -336,7 +368,9 @@ async function main() {
       thresholds: {
         max_source_age_hours: args.maxSourceAgeHours,
         minimum_current_prices: args.minimumCurrentPrices,
+        database_timeout_minutes: args.databaseTimeoutMinutes,
       },
+      database_session: databaseSession,
       metrics: {
         ...metrics,
         source_continuity_mode: sourceHealth.continuity_mode,

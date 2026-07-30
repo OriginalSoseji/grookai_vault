@@ -1000,6 +1000,22 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
   assert.match(HEALTH, /minimum_current_prices/);
   assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
   assert.match(HEALTH, /current_publication_pointer_mismatch/);
+  assert.match(
+    HEALTH,
+    /from selected_run pipeline_run\s+join public\.market_price_publication_snapshots snapshot\s+on snapshot\.run_id = pipeline_run\.id/i,
+  );
+  assert.match(
+    HEALTH,
+    /select set_config\('statement_timeout', \$1, false\)/i,
+  );
+  assert.match(
+    HEALTH,
+    /database_timeout_minutes:\s*args\.databaseTimeoutMinutes/i,
+  );
+  assert.match(
+    PIPELINE,
+    /`--database-timeout-minutes=\$\{args\.databaseTimeoutMinutes\}`/,
+  );
 });
 
 test("publication rollback is guarded, dry-run-default, and read back before commit", () => {
