@@ -262,24 +262,27 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
            count(*) filter (
              where freshness <> 'fresh' or age_seconds > 36 * 60 * 60
            )::integer as stale_price_count
-         from public.v_market_price_current_v1
-       ),
-       broken_trace as (
-         select count(*)::integer as broken_trace_count
-         from public.market_price_publication_snapshots snapshot
-         left join public.market_price_qualification_decisions decision
-           on decision.id = snapshot.qualification_decision_id
-          and decision.eligible = true
-          and decision.source_observation_id = snapshot.source_observation_id
-         left join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = snapshot.source_observation_id
-         where decision.id is null or observation.id is null
+       from public.v_market_price_current_v1
        ),
        pointer as (
          select publication_set_id, run_id, previous_publication_set_id,
                 activated_at
          from public.market_price_current_publication
          where singleton = true
+       ),
+       broken_trace as (
+         select count(*)::integer as broken_trace_count
+         from pointer
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.run_id = pointer.run_id
+         left join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = pointer.run_id
+          and decision.eligible = true
+          and decision.source_observation_id = snapshot.source_observation_id
+         left join public.tcgcsv_source_price_daily_observations observation
+           on observation.id = snapshot.source_observation_id
+         where decision.id is null or observation.id is null
        )
        select totals.*, broken_trace.*,
               pointer.publication_set_id as current_publication_set_id,
