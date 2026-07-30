@@ -21,7 +21,14 @@ import {
 import {
   attachCuratedCameoEvidenceV1,
   loadCuratedCameoReferenceRowsV1,
+  loadReviewedVisualEvidenceV1,
 } from "./card_visual_search_curated_cameo_v1.mjs";
+import {
+  detectCollectorSubjectGroupsV1,
+  normalizeCollectorQueryAliasesV1,
+  parseHoldingRelationshipV1,
+  parseMinimumPokemonCountV1,
+} from "./card_visual_search_collector_query_v1.mjs";
 
 export const CARD_VISUAL_SEARCH_LAB_VERSION = "CARD_VISUAL_SEARCH_LAB_V1";
 export const CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION = "CARD_VISUAL_SEARCH_QUERY_PARSER_V1";
@@ -33,11 +40,13 @@ const REPO_ROOT = path.resolve(MODULE_DIR, "../..");
 const DEFAULT_PROJECTION_DIR = "docs/audits/card_visual_search_projection_v1_5/2026-07-21T17-23-42-102Z_projection_c3e708b1cd15";
 const DEFAULT_CORPUS_INVENTORY = "docs/audits/card_visual_corpus_v1/2026-07-21T15-51-01-795Z_inventory_3f72560c3b04/corpus_valid_candidates.jsonl";
 const DEFAULT_UI_PATH = "backend/card_descriptions/card_visual_search_lab_v1.html";
+const DEFAULT_REVIEWED_EVIDENCE =
+  "docs/evidence/card_visual_search_founder_reviews_v1.json";
 const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "::1"]);
 const QUERY_GRAMMAR = new Set([
   "a", "all", "an", "art", "artwork", "artworks", "as", "card", "cards", "depicting", "every", "featuring", "find", "for",
   "image", "images", "is", "looking", "me", "of", "or", "please", "show", "shown", "that", "the", "to", "visible", "where",
-  "with", "wearing", "shaped",
+  "with", "wearing", "shaped", "together",
 ]);
 const CONNECTORS = new Set(["and", "at", "behind", "beside", "by", "from", "in", "inside", "near", "on", "over", "under", "with"]);
 const NUMBER_WORDS = new Map([
@@ -106,6 +115,10 @@ const ROLE_FILTER_PATTERNS = Object.freeze({
 const CARD_UI_EVIDENCE_PATTERN = /\b(?:card ui|card interface|set symbol|edition stamp|rarity symbol|hp text|attack text|copyright|weakness|resistance|retreat|collector number)\b/u;
 const FOOD_APPEARANCE_PATTERN = /\b(?:food|ice cream|dessert|cake|cookie|pastry|bread|candy|chocolate|rice ball|sushi)\b/u;
 const POKEMON_IDENTITY_LEXICON = loadPokemonVisualIdentityLexiconV1();
+const POKEMON_IDENTITY_SET = new Set(POKEMON_IDENTITY_LEXICON.names);
+const POKEMON_IDENTITY_MAX_TOKENS = Math.max(
+  ...POKEMON_IDENTITY_LEXICON.names.map((name) => name.split(" ").length),
+);
 
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
@@ -126,6 +139,10 @@ export function parseCardVisualSearchLabArgsV1(argv = []) {
       parseFlag(argv, "cameo-reference") ??
       process.env.CARD_VISUAL_SEARCH_CAMEO_REFERENCE ??
       null,
+    reviewedEvidence:
+      parseFlag(argv, "reviewed-evidence") ??
+      process.env.CARD_VISUAL_SEARCH_REVIEWED_EVIDENCE ??
+      DEFAULT_REVIEWED_EVIDENCE,
     uiPath: parseFlag(argv, "ui-path") ?? DEFAULT_UI_PATH,
     host: parseFlag(argv, "host") ?? "127.0.0.1",
     port: Number.parseInt(parseFlag(argv, "port") ?? "4177", 10),
@@ -252,7 +269,8 @@ function parseVisualConcepts(tokens, consumed, parserIndex) {
 export function parseVisualSearchQueryV1(queryText, parserIndex) {
   const originalQuery = String(queryText ?? "").trim();
   if (originalQuery.length < 2 || originalQuery.length > 180) throw new Error("query must contain 2 through 180 characters");
-  let working = queryNormalize(originalQuery);
+  const collectorAliases = normalizeCollectorQueryAliasesV1(originalQuery);
+  let working = collectorAliases.normalized;
   const rawSetMatch = originalQuery.match(/\bset\s*:\s*([\p{L}\p{N}._-]+)\b/iu);
   const setCodes = [];
   if (rawSetMatch) {
@@ -274,6 +292,9 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
     working = working.replace(/\bcameos?\b/iu, " ").replace(/\s+/gu, " ").trim();
   }
 
+  const minimumPokemonCount = parseMinimumPokemonCountV1(working);
+  working = minimumPokemonCount.remaining_text;
+
   let subjectRole = null;
   let representationForm = null;
   let depictedSurface = null;
@@ -287,7 +308,7 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
   }
 
   const branches = [];
-  const subjectClasses = [];
+  const subjectClasses = minimumPokemonCount.constraint ? ["pokemon"] : [];
   const explicitPokemonCardPattern = /\bpok[eé]mon cards?\b/iu;
   if (explicitPokemonCardPattern.test(working)) {
     branches.push("pokemon");
@@ -306,11 +327,26 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
     branches.push(rule.branch);
     working = working.replace(rule.pattern, " ").replace(/\s+/gu, " ").trim();
   }
-  if (subjectClasses.length && !subjectRole) subjectRole = "scene_subject";
+  const holdingRelationship = parseHoldingRelationshipV1(working);
+  working = holdingRelationship.remaining_text;
+  if (
+    subjectClasses.length &&
+    !subjectRole &&
+    (!minimumPokemonCount.constraint || holdingRelationship.constraint)
+  ) {
+    subjectRole = "scene_subject";
+  }
 
-  const paddedWorking = ` ${working} `;
-  const subject = parserIndex.subjects.find((candidate) => paddedWorking.includes(` ${candidate.normalized} `)) ?? null;
-  if (subject) working = removePhrase(working, subject.normalized);
+  const detected = detectCollectorSubjectGroupsV1(
+    working,
+    parserIndex.subjects,
+  );
+  working = detected.remaining_text;
+  const detectedSubjects = detected.mentions.map((mention) => ({
+    canonical_name: mention.canonical_name,
+    normalized_name: mention.normalized_name,
+  }));
+  const subject = detectedSubjects[0] ?? null;
 
   const tokens = working.split(" ").filter(Boolean);
   const consumed = new Set();
@@ -322,19 +358,27 @@ export function parseVisualSearchQueryV1(queryText, parserIndex) {
   return {
     parser_version: CARD_VISUAL_SEARCH_QUERY_PARSER_VERSION,
     original_query: originalQuery,
-    normalized_query: queryNormalize(originalQuery),
-    detected_subject: subject ? { canonical_name: subject.canonical, normalized_name: subject.normalized } : null,
+    normalized_query: collectorAliases.normalized,
+    query_subject_aliases: collectorAliases.applied_aliases,
+    detected_subject: subject,
+    detected_subjects: detectedSubjects,
     intent: {
-      canonical_filters: { subjects: subject && !subjectRole && !explicitCameo ? [subject.canonical] : [], set_codes: setCodes, branches, years: null, artist: [] },
+      canonical_filters: { subjects: detectedSubjects.length === 1 && !subjectRole && !explicitCameo ? [subject.canonical_name] : [], set_codes: setCodes, branches, years: null, artist: [] },
       visual_filters: {
         subject_roles: subjectRole ? [subjectRole] : [],
         subject_classes: subjectClasses,
+        subject_groups: detected.subject_groups,
+        subject_count_constraints: minimumPokemonCount.constraint
+          ? [minimumPokemonCount.constraint]
+          : [],
         representation_forms: representationForm ? [representationForm] : [],
         depicted_surfaces: depictedSurface ? [depictedSurface] : [],
         concepts: parsedConcepts.concepts,
         colors: [],
         counts: countConstraints,
-        relationships: [],
+        relationships: holdingRelationship.constraint
+          ? [holdingRelationship.constraint]
+          : [],
         evidence_sources: explicitCameo ? ["curated_cameo"] : [],
       },
       query_aliases: queryAliases,
@@ -544,7 +588,11 @@ function curatedCameoConstraintEvidence(parsed, group) {
   ) {
     return [];
   }
-  const requestedIdentity = parsed.detected_subject?.normalized_name ?? null;
+  const requestedIdentities = new Set(
+    (parsed.detected_subjects ?? [])
+      .map((subject) => subject.normalized_name)
+      .filter(Boolean),
+  );
   const subjectClasses = parsed.intent.visual_filters.subject_classes;
   return allStructuredEvidenceEntries(group)
     .filter(
@@ -553,7 +601,9 @@ function curatedCameoConstraintEvidence(parsed, group) {
     )
     .filter((entry) => {
       const identity = normalizeVisualSearchTextV1(entry.cameo_identity);
-      if (requestedIdentity && identity !== requestedIdentity) return false;
+      if (requestedIdentities.size && !requestedIdentities.has(identity)) {
+        return false;
+      }
       if (
         subjectClasses.includes("pokemon") &&
         !pokemonIdentityMatchesTextV1(identity, POKEMON_IDENTITY_LEXICON)
@@ -584,6 +634,275 @@ function curatedCameoConstraintEvidence(parsed, group) {
       confidence: entry.confidence,
       match_authority: "curated_cameo_association",
     }));
+}
+
+function exactIdentityInText(value, identity) {
+  return ` ${queryNormalize(value)} `.includes(` ${identity} `);
+}
+
+function identityConstraintEvidence(group, identity) {
+  return allStructuredEvidenceEntries(group)
+    .filter(hasEvidenceReference)
+    .filter((entry) => {
+      if (
+        entry.cameo_identity &&
+        normalizeVisualSearchTextV1(entry.cameo_identity) === identity
+      ) {
+        return true;
+      }
+      return exactIdentityInText(entry.term, identity);
+    })
+    .sort((left, right) => {
+      const priority = {
+        curated_cameo: 0,
+        curated_cameo_role: 1,
+        subject_role: 2,
+        observation: 3,
+        typed_fact: 4,
+      };
+      return (
+        (priority[left.source_type] ?? 9) -
+          (priority[right.source_type] ?? 9) ||
+        left.term.length - right.term.length
+      );
+    })
+    .slice(0, 2)
+    .map((entry) => ({
+      query_concept: identity,
+      search_document_id: entry.search_document_id,
+      document_type: entry.document_type,
+      source_type: entry.source_type,
+      source_id: entry.source_id,
+      term: entry.term,
+      subject_role: entry.subject_role,
+      supporting_observation_ids: entry.supporting_observation_ids ?? [],
+      supporting_external_evidence_ids:
+        entry.supporting_external_evidence_ids ?? [],
+      authority: entry.authority,
+      governance_status: entry.governance_status,
+      confidence: entry.confidence,
+      match_authority: ["curated_cameo", "curated_cameo_role"].includes(
+        entry.source_type,
+      )
+        ? "curated_subject_cooccurrence"
+        : "observed_subject_cooccurrence",
+    }));
+}
+
+function multiSubjectConstraintEvidence(parsed, group) {
+  const groups = parsed.intent.visual_filters.subject_groups ?? [];
+  if (groups.length < 2) return [];
+  const evidence = [];
+  for (const alternatives of groups) {
+    const matches = alternatives.flatMap((identity) =>
+      identityConstraintEvidence(
+        group,
+        normalizeVisualSearchTextV1(identity),
+      ),
+    );
+    if (!matches.length) return [];
+    evidence.push(...matches);
+  }
+  return evidence;
+}
+
+function pokemonIdentitiesInText(value) {
+  const tokens = queryNormalize(value)
+    .split(" ")
+    .map((token) => token.replace(/'s$/u, ""))
+    .filter(Boolean);
+  const identities = [];
+  for (let start = 0; start < tokens.length; start += 1) {
+    for (
+      let length = Math.min(POKEMON_IDENTITY_MAX_TOKENS, tokens.length - start);
+      length >= 1;
+      length -= 1
+    ) {
+      const candidate = tokens.slice(start, start + length).join(" ");
+      if (!POKEMON_IDENTITY_SET.has(candidate)) continue;
+      identities.push(candidate);
+      start += length - 1;
+      break;
+    }
+  }
+  return unique(identities);
+}
+
+function visiblePokemonIdentityEvidence(group) {
+  const byIdentity = new Map();
+  for (const entry of allStructuredEvidenceEntries(group).filter(
+    hasEvidenceReference,
+  )) {
+    const identities = entry.cameo_identity
+      ? [normalizeVisualSearchTextV1(entry.cameo_identity)]
+      : pokemonIdentitiesInText(entry.term);
+    for (const identity of identities) {
+      if (!POKEMON_IDENTITY_SET.has(identity)) continue;
+      if (!byIdentity.has(identity)) byIdentity.set(identity, []);
+      byIdentity.get(identity).push(entry);
+    }
+  }
+  return byIdentity;
+}
+
+function exactIdentityCount(group, identity) {
+  let count = 1;
+  for (const entry of allStructuredEvidenceEntries(group)) {
+    if (entry.source_type !== "count") continue;
+    const match = queryNormalize(entry.term).match(
+      /^(.*?) count exact (\d+)$/u,
+    );
+    if (
+      match &&
+      normalizeVisualSearchTextV1(match[1]) === identity
+    ) {
+      count = Math.max(count, Number.parseInt(match[2], 10));
+    }
+  }
+  return count;
+}
+
+function pokemonCountConstraintEvidence(parsed, group) {
+  const constraints =
+    parsed.intent.visual_filters.subject_count_constraints ?? [];
+  if (!constraints.length) return [];
+  const identities = visiblePokemonIdentityEvidence(group);
+  const visibleCount = [...identities.keys()].reduce(
+    (sum, identity) => sum + exactIdentityCount(group, identity),
+    0,
+  );
+  if (
+    constraints.some(
+      (constraint) =>
+        constraint.subject_class !== "pokemon" ||
+        constraint.operator !== "gte" ||
+        visibleCount < constraint.minimum_count,
+    )
+  ) {
+    return [];
+  }
+  return [...identities.entries()].flatMap(([identity, entries]) =>
+    entries.slice(0, 1).map((entry) => ({
+      query_concept: `${visibleCount} visible Pokemon`,
+      search_document_id: entry.search_document_id,
+      document_type: entry.document_type,
+      source_type: entry.source_type,
+      source_id: entry.source_id,
+      term: entry.term,
+      subject_role: entry.subject_role,
+      supporting_observation_ids: entry.supporting_observation_ids ?? [],
+      supporting_external_evidence_ids:
+        entry.supporting_external_evidence_ids ?? [],
+      authority: entry.authority,
+      governance_status: entry.governance_status,
+      confidence: entry.confidence,
+      match_authority: "derived_visible_pokemon_count",
+      derived_visible_pokemon_count: visibleCount,
+      matched_identity: identity,
+    })),
+  );
+}
+
+function entriesShareEvidence(left, right) {
+  const rightIds = new Set(evidenceIds(right));
+  return evidenceIds(left).some((id) => rightIds.has(id));
+}
+
+function holdingPattern() {
+  return /\b(?:holding|holds?|held|carrying|carries)\b/u;
+}
+
+function relationshipObjectMatches(entry, object) {
+  const normalized = queryNormalize(entry.term);
+  if (object === "poke ball") {
+    return /\b(?:poke|poké)\s*ball\b|\bpokeball\b/u.test(normalized);
+  }
+  const tokens = tokenizeVisualSearchTextV1(object);
+  const entryTokens = new Set(tokenizeVisualSearchTextV1(normalized));
+  return (
+    tokens.length > 0 && tokens.every((token) => entryTokens.has(token))
+  );
+}
+
+function relationshipConstraintEvidence(parsed, group, boundRoleEvidence) {
+  const constraints = parsed.intent.visual_filters.relationships ?? [];
+  if (!constraints.length) return [];
+  const entries = allStructuredEvidenceEntries(group).filter(
+    hasEvidenceReference,
+  );
+  const matched = [];
+  for (const constraint of constraints) {
+    if (constraint.predicate !== "holding") return [];
+    const actionEntries = entries.filter((entry) =>
+      holdingPattern().test(entry.normalized_term),
+    );
+    const objectEntries = entries.filter((entry) =>
+      relationshipObjectMatches(entry, constraint.object),
+    );
+    const connected = uniqueEvidence([
+      ...actionEntries.filter((action) =>
+        objectEntries.some(
+          (object) =>
+            action.source_id === object.source_id ||
+            entriesShareEvidence(action, object),
+        ),
+      ),
+      ...objectEntries.filter((object) =>
+        actionEntries.some(
+          (action) =>
+            action.source_id === object.source_id ||
+            entriesShareEvidence(action, object),
+        ),
+      ),
+    ]);
+    if (!connected.length) return [];
+
+    const subjectIds = new Set(boundRoleEvidence.flatMap(evidenceIds));
+    const requestedIdentities = (parsed.detected_subjects ?? []).map(
+      (subject) => subject.normalized_name,
+    );
+    const subjectBound = connected.some((entry) => {
+      if (evidenceIds(entry).some((id) => subjectIds.has(id))) return true;
+      if (
+        requestedIdentities.some((identity) =>
+          exactIdentityInText(entry.term, identity),
+        )
+      ) {
+        return true;
+      }
+      return (
+        parsed.intent.visual_filters.subject_classes.includes("pokemon") &&
+        pokemonIdentitiesInText(entry.term).length > 0
+      );
+    });
+    if (!subjectBound) return [];
+    matched.push(
+      ...connected.map((entry) => ({
+        query_concept: `${constraint.predicate} ${constraint.object}`,
+        search_document_id: entry.search_document_id,
+        document_type: entry.document_type,
+        source_type: entry.source_type,
+        source_id: entry.source_id,
+        term: entry.term,
+        subject_role: entry.subject_role,
+        supporting_observation_ids: entry.supporting_observation_ids ?? [],
+        supporting_external_evidence_ids:
+          entry.supporting_external_evidence_ids ?? [],
+        confidence: entry.confidence,
+        match_authority: "bound_subject_object_relationship",
+      })),
+    );
+  }
+  return matched;
+}
+
+function uniqueEvidence(entries) {
+  const byKey = new Map();
+  for (const entry of entries) {
+    const key = `${entry.source_type}|${entry.source_id}`;
+    if (!byKey.has(key)) byKey.set(key, entry);
+  }
+  return [...byKey.values()];
 }
 
 function evidenceRows(group, pattern) {
@@ -694,6 +1013,13 @@ function subjectClassConceptsAreBound(parsed, result, group, boundRoleEvidence) 
 
 function rankedIntentAlternatives(parsed, artworkGroupIds) {
   const primary = baseRankIntent(parsed, artworkGroupIds);
+  if ((parsed.detected_subjects ?? []).length > 1) {
+    primary.canonical_filters = {
+      ...primary.canonical_filters,
+      subjects: [],
+    };
+    return [{ intent: primary, retrieval_mode: "multi_subject" }];
+  }
   if (!parsed.detected_subject) {
     return [{ intent: primary, retrieval_mode: "structured_constraints" }];
   }
@@ -848,7 +1174,7 @@ export function createVisualSearchLabEngineV1(
       if (parsed.intent.unrecognized_terms.length) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "unrecognized_terms", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
-      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.visual_filters.evidence_sources.length || parsed.intent.query_aliases.length;
+      const hasConstraint = parsed.detected_subject || parsed.intent.canonical_filters.set_codes.length || parsed.intent.canonical_filters.branches.length || parsed.intent.visual_filters.subject_roles.length || parsed.intent.visual_filters.subject_classes.length || parsed.intent.visual_filters.subject_groups.length || parsed.intent.visual_filters.subject_count_constraints.length || parsed.intent.visual_filters.relationships.length || parsed.intent.visual_filters.concepts.length || parsed.intent.visual_filters.counts.length || parsed.intent.visual_filters.evidence_sources.length || parsed.intent.query_aliases.length;
       if (!hasConstraint) {
         return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_supported_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
       }
@@ -885,6 +1211,46 @@ export function createVisualSearchLabEngineV1(
         }
       }
 
+      const multiSubjectMatches = new Map();
+      if (parsed.intent.visual_filters.subject_groups.length > 1) {
+        for (const group of groups) {
+          const evidence = multiSubjectConstraintEvidence(parsed, group);
+          if (evidence.length) {
+            multiSubjectMatches.set(group.artwork_group_id, evidence);
+          }
+        }
+        if (!multiSubjectMatches.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "multi_subject_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+        const multiSubjectGroupIds = new Set(multiSubjectMatches.keys());
+        allowedGroupIds = allowedGroupIds
+          ? new Set([...allowedGroupIds].filter((groupId) => multiSubjectGroupIds.has(groupId)))
+          : multiSubjectGroupIds;
+        if (!allowedGroupIds.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+      }
+
+      const subjectCountMatches = new Map();
+      if (parsed.intent.visual_filters.subject_count_constraints.length) {
+        for (const group of groups) {
+          const evidence = pokemonCountConstraintEvidence(parsed, group);
+          if (evidence.length) {
+            subjectCountMatches.set(group.artwork_group_id, evidence);
+          }
+        }
+        if (!subjectCountMatches.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "subject_count_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+        const subjectCountGroupIds = new Set(subjectCountMatches.keys());
+        allowedGroupIds = allowedGroupIds
+          ? new Set([...allowedGroupIds].filter((groupId) => subjectCountGroupIds.has(groupId)))
+          : subjectCountGroupIds;
+        if (!allowedGroupIds.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+      }
+
       const roleMatches = new Map();
       if (parsed.intent.visual_filters.subject_roles.length) {
         for (const group of groups) {
@@ -903,6 +1269,38 @@ export function createVisualSearchLabEngineV1(
         }
       }
 
+      const relationshipMatches = new Map();
+      if (parsed.intent.visual_filters.relationships.length) {
+        for (const group of groups) {
+          const namedSubjectEvidence = (parsed.detected_subjects ?? []).flatMap(
+            (subject) =>
+              identityConstraintEvidence(group, subject.normalized_name),
+          );
+          const bindingEvidence = [
+            ...(roleMatches.get(group.artwork_group_id) ?? []),
+            ...namedSubjectEvidence,
+          ];
+          const evidence = relationshipConstraintEvidence(
+            parsed,
+            group,
+            bindingEvidence,
+          );
+          if (evidence.length) {
+            relationshipMatches.set(group.artwork_group_id, evidence);
+          }
+        }
+        if (!relationshipMatches.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "relationship_evidence_not_found", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+        const relationshipGroupIds = new Set(relationshipMatches.keys());
+        allowedGroupIds = allowedGroupIds
+          ? new Set([...allowedGroupIds].filter((groupId) => relationshipGroupIds.has(groupId)))
+          : relationshipGroupIds;
+        if (!allowedGroupIds.size) {
+          return { version: CARD_VISUAL_SEARCH_LAB_VERSION, parsed_query: parsed, strict_zero_reason: "no_evidence_satisfies_all_constraints", total_matches: 0, results: [], latency_ms: performance.now() - started };
+        }
+      }
+
       const merged = new Map();
       for (const alternative of rankedIntentAlternatives(parsed, allowedGroupIds ? [...allowedGroupIds] : [])) {
         const { intent, retrieval_mode: retrievalMode } = alternative;
@@ -913,6 +1311,9 @@ export function createVisualSearchLabEngineV1(
           const aliasEvidence = aliases.flatMap((decision) => decision.evidence.map((entry) => ({ ...entry, query_concept: decision.alias, match_authority: "query_alias_evidence" })));
           const boundRoleEvidence = roleMatches.get(result.artwork_group_id) ?? [];
           const curatedSourceEvidence = sourceMatches.get(result.artwork_group_id) ?? [];
+          const multiSubjectEvidence = multiSubjectMatches.get(result.artwork_group_id) ?? [];
+          const subjectCountEvidence = subjectCountMatches.get(result.artwork_group_id) ?? [];
+          const relationshipEvidence = relationshipMatches.get(result.artwork_group_id) ?? [];
           const resultGroup = candidateIndex.groups_by_id.get(result.artwork_group_id);
           if (!subjectClassConceptsAreBound(parsed, result, resultGroup, boundRoleEvidence)) continue;
           if (!namedVisualIdentityConceptsAreBound(parsed, result, retrievalMode)) continue;
@@ -921,16 +1322,37 @@ export function createVisualSearchLabEngineV1(
             ...boundRoleEvidence,
             ...aliasEvidence,
             ...curatedSourceEvidence,
+            ...multiSubjectEvidence,
+            ...subjectCountEvidence,
+            ...relationshipEvidence,
           ];
           const authorityAdjustment = matchedEvidence.some(
             (entry) =>
-              entry.governance_status === "existing_approved" &&
+              ["existing_approved", "human_image_confirmed"].includes(
+                entry.governance_status,
+              ) &&
               ["curated_cameo", "curated_cameo_role"].includes(
                 entry.source_type,
               ),
           )
             ? 2
             : 0;
+          const derivedVisiblePokemonCount = Math.max(
+            0,
+            ...subjectCountEvidence
+              .map((entry) => entry.derived_visible_pokemon_count)
+              .filter(Number.isFinite),
+          );
+          const requestedMinimumPokemonCount =
+            parsed.intent.visual_filters.subject_count_constraints[0]
+              ?.minimum_count ?? 0;
+          const visiblePokemonCountBonus = Math.min(
+            6,
+            Math.max(
+              0,
+              derivedVisiblePokemonCount - requestedMinimumPokemonCount,
+            ),
+          );
           const resultWithEvidence = {
             ...result,
             matched_evidence: matchedEvidence,
@@ -942,12 +1364,16 @@ export function createVisualSearchLabEngineV1(
           );
           const candidate = {
             ...resultWithEvidence,
-            score: result.score + aliases.length * 12 + (parsed.intent.visual_filters.subject_roles.length ? 8 : 0) + (parsed.intent.visual_filters.evidence_sources.length ? 8 : 0) + authorityAdjustment,
+            score: result.score + aliases.length * 12 + (parsed.intent.visual_filters.subject_roles.length ? 8 : 0) + (parsed.intent.visual_filters.evidence_sources.length ? 8 : 0) + (parsed.intent.visual_filters.subject_groups.length > 1 ? parsed.intent.visual_filters.subject_groups.length * 6 : 0) + parsed.intent.visual_filters.subject_count_constraints.length * 10 + visiblePokemonCountBonus + parsed.intent.visual_filters.relationships.length * 10 + authorityAdjustment,
             score_components: {
               ...result.score_components,
               subject_role: parsed.intent.visual_filters.subject_roles.length ? 8 : 0,
               alias_evidence: aliases.length * 12,
               curated_cameo_filter: parsed.intent.visual_filters.evidence_sources.length ? 8 : 0,
+              multi_subject: parsed.intent.visual_filters.subject_groups.length > 1 ? parsed.intent.visual_filters.subject_groups.length * 6 : 0,
+              minimum_subject_count: parsed.intent.visual_filters.subject_count_constraints.length * 10,
+              visible_subject_count_bonus: visiblePokemonCountBonus,
+              relationship: parsed.intent.visual_filters.relationships.length * 10,
               curated_cameo_authority: authorityAdjustment,
             },
             matched_subject_roles: parsed.intent.visual_filters.subject_roles,
@@ -1143,7 +1569,7 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
   if (!LOOPBACK_HOSTS.has(args.host)) throw new Error("search lab must bind to a loopback host");
   if (!Number.isInteger(args.port) || args.port < 1024 || args.port > 65535) throw new Error("port must be an integer from 1024 through 65535");
   const projection = await loadVisualSearchProjectionV1(repoPath(args.projectionDir));
-  const [imageResolver, uiHtml, curatedCameoRows] = await Promise.all([
+  const [imageResolver, uiHtml, curatedCameoRows, reviewedEvidenceRows] = await Promise.all([
     createVisualSearchImageResolverV1(args.corpusInventory, {
       artifactRoot: args.artifactRoot,
     }),
@@ -1151,9 +1577,16 @@ export async function startCardVisualSearchLabV1(args = parseCardVisualSearchLab
     args.cameoReference
       ? loadCuratedCameoReferenceRowsV1(repoPath(args.cameoReference))
       : Promise.resolve([]),
+    args.reviewedEvidence
+      ? loadReviewedVisualEvidenceV1(repoPath(args.reviewedEvidence))
+      : Promise.resolve([]),
   ]);
-  const curatedCameos = args.cameoReference
-    ? attachCuratedCameoEvidenceV1(projection.groups, curatedCameoRows)
+  const combinedCuratedEvidence = [
+    ...curatedCameoRows,
+    ...reviewedEvidenceRows,
+  ];
+  const curatedCameos = combinedCuratedEvidence.length
+    ? attachCuratedCameoEvidenceV1(projection.groups, combinedCuratedEvidence)
     : {
         groups: projection.groups,
         stats: null,

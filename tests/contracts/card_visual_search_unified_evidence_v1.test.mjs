@@ -7,6 +7,7 @@ import {
 } from "../../backend/card_descriptions/card_visual_search_curated_cameo_v1.mjs";
 import {
   createVisualSearchLabEngineV1,
+  parseVisualSearchQueryV1,
   parseCardVisualSearchLabArgsV1,
 } from "../../backend/card_descriptions/card_visual_search_lab_v1.mjs";
 
@@ -261,5 +262,363 @@ test("runtime cameo source remains optional and explicitly configurable", () => 
   assert.equal(
     configured.cameoReference,
     "C:/tmp/canonical_matches.jsonl",
+  );
+});
+
+function collectorFixtures() {
+  const groups = [
+    group("mimikyu-title", "Mimikyu", [], []),
+    group("pikachu-title", "Pikachu", [], []),
+    group("gengar-title", "Gengar", [], []),
+    group("haunter-title", "Haunter", [], []),
+    group("gastly-title", "Gastly", [], []),
+    group(
+      "mimikyu-pikachu",
+      "Mimikyu",
+      [
+        {
+          ...entry("mimikyu-visible", "Mimikyu ragged cloth body", "subject"),
+          document_type: "subject",
+        },
+      ],
+      [],
+    ),
+    group(
+      "ghost-pair",
+      "Ghost Gathering",
+      [
+        {
+          ...entry(
+            "gengar-visible",
+            "scene_subject: Gengar",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "haunter-visible",
+            "scene_subject: Haunter",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+      ],
+      ["scene_subject"],
+    ),
+    group(
+      "yamper-ball",
+      "Yamper",
+      [
+        {
+          ...entry(
+            "yamper-subject",
+            "scene_subject: Yamper",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry("yamper-holding", "holding", "subject", {
+            source_type: "relationship",
+            module: "relationships",
+            supporting_observation_ids: [
+              "obs-yamper-subject",
+              "obs-yamper-ball",
+            ],
+          }),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "yamper-pokeball",
+            "red and white Poké Ball held in mouth",
+            "subject",
+            {
+              module: "objects_and_props",
+              supporting_observation_ids: ["obs-yamper-ball"],
+            },
+          ),
+          document_type: "subject",
+        },
+      ],
+      ["scene_subject"],
+    ),
+    group(
+      "unbound-trainer-ball",
+      "Trainer and Pikachu",
+      [
+        {
+          ...entry(
+            "unbound-pikachu",
+            "scene_subject: Pikachu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry("trainer-holding", "human trainer holding", "subject", {
+            source_type: "relationship",
+            module: "relationships",
+            supporting_observation_ids: [
+              "obs-human",
+              "obs-trainer-ball",
+            ],
+          }),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "trainer-pokeball",
+            "Poké Ball in trainer hand",
+            "subject",
+            {
+              module: "objects_and_props",
+              supporting_observation_ids: ["obs-trainer-ball"],
+            },
+          ),
+          document_type: "subject",
+        },
+      ],
+      ["scene_subject"],
+    ),
+    group(
+      "three-pokemon",
+      "Three Pokémon Scene",
+      [
+        {
+          ...entry(
+            "three-pikachu",
+            "scene_subject: Pikachu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "three-mimikyu",
+            "scene_subject: Mimikyu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "three-gastly",
+            "scene_subject: Gastly",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+      ],
+      ["scene_subject"],
+    ),
+    group(
+      "two-pokemon",
+      "Two Pokémon Scene",
+      [
+        {
+          ...entry(
+            "two-pikachu",
+            "scene_subject: Pikachu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+        {
+          ...entry(
+            "two-mimikyu",
+            "scene_subject: Mimikyu",
+            "subject",
+            {
+              source_type: "subject_role",
+              subject_role: "scene_subject",
+            },
+          ),
+          document_type: "subject",
+        },
+      ],
+      ["scene_subject"],
+    ),
+    group("slurpuff-cookie", "Slurpuff", [], []),
+  ];
+  const rows = [
+    cameoRow("mimikyu-pika", "print-mimikyu-pikachu", "Pikachu"),
+    {
+      ...cameoRow(
+        "slurpuff-pika-cookie",
+        "print-slurpuff-cookie",
+        "Pikachu",
+        {
+          displayModes: ["food"],
+          reconciliationStatus: "founder_image_confirmed",
+        },
+      ),
+      authority: "founder_image_review",
+      representation_details: ["cookie"],
+    },
+  ];
+  return attachCuratedCameoEvidenceV1(groups, rows);
+}
+
+test("collector parser supports aliases, boolean subject groups, relationships, and minimum counts", () => {
+  const decorated = collectorFixtures();
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+
+  const cookie = parseVisualSearchQueryV1(
+    "Pika shaped cookie",
+    engine.parser_index,
+  );
+  assert.equal(cookie.detected_subject.canonical_name, "Pikachu");
+  assert.deepEqual(cookie.query_subject_aliases, [
+    { alias: "pika", canonical: "pikachu" },
+  ]);
+  assert.deepEqual(cookie.intent.visual_filters.representation_forms, [
+    "food shape",
+  ]);
+
+  const together = parseVisualSearchQueryV1(
+    "Mimikyu and Pikachu together",
+    engine.parser_index,
+  );
+  assert.deepEqual(together.intent.visual_filters.subject_groups, [
+    ["Mimikyu"],
+    ["Pikachu"],
+  ]);
+
+  const alternatives = parseVisualSearchQueryV1(
+    "Gengar and Haunter or Ghastly",
+    engine.parser_index,
+  );
+  assert.deepEqual(alternatives.intent.visual_filters.subject_groups, [
+    ["Gengar"],
+    ["Haunter", "Gastly"],
+  ]);
+
+  const holding = parseVisualSearchQueryV1(
+    "Pokemon holding a pokeball",
+    engine.parser_index,
+  );
+  assert.deepEqual(holding.intent.visual_filters.relationships, [
+    {
+      predicate: "holding",
+      object: "poke ball",
+      subject_binding: "required",
+    },
+  ]);
+
+  const minimum = parseVisualSearchQueryV1(
+    "cards with 3 or more Pokemon",
+    engine.parser_index,
+  );
+  assert.deepEqual(minimum.intent.visual_filters.subject_count_constraints, [
+    {
+      subject_class: "pokemon",
+      operator: "gte",
+      minimum_count: 3,
+      scope: "all_visible_pokemon_appearances",
+    },
+  ]);
+});
+
+test("founder-confirmed Pikachu-shaped cookie returns Slurpuff without mutating observations", async () => {
+  const decorated = collectorFixtures();
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+  const result = await engine.search("Pika shaped cookie");
+  assert.equal(result.total_matches, 1);
+  assert.equal(result.results[0].artwork_group_id, "group-slurpuff-cookie");
+  const evidence = result.results[0].matched_evidence.find(
+    (row) => row.governance_status === "human_image_confirmed",
+  );
+  assert.ok(evidence);
+  assert.match(evidence.term, /Pikachu: food shape: cookie/u);
+  assert.deepEqual(evidence.supporting_observation_ids, []);
+  assert.deepEqual(evidence.supporting_external_evidence_ids, [
+    "cameo-slurpuff-pika-cookie",
+  ]);
+});
+
+test("multi-subject AND and OR groups require co-occurrence in one artwork", async () => {
+  const decorated = collectorFixtures();
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+  const mimikyu = await engine.search("Mimikyu and Pikachu together");
+  assert.equal(mimikyu.total_matches, 3);
+  const mixedAuthority = mimikyu.results.find(
+    (row) => row.artwork_group_id === "group-mimikyu-pikachu",
+  );
+  assert.ok(mixedAuthority);
+  assert.ok(
+    mixedAuthority.matched_sources.includes("visual_fact_graph"),
+  );
+  assert.ok(mixedAuthority.matched_sources.includes("curated_cameo"));
+
+  const ghosts = await engine.search("Gengar and Haunter or Ghastly");
+  assert.equal(ghosts.total_matches, 1);
+  assert.equal(ghosts.results[0].artwork_group_id, "group-ghost-pair");
+});
+
+test("holding query binds the Pokeball to the Pokemon rather than another subject", async () => {
+  const decorated = collectorFixtures();
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+  const result = await engine.search("Pokemon holding a pokeball");
+  assert.equal(result.total_matches, 1);
+  assert.equal(result.results[0].artwork_group_id, "group-yamper-ball");
+  assert.ok(
+    result.results[0].matched_evidence.some(
+      (row) =>
+        row.match_authority === "bound_subject_object_relationship",
+    ),
+  );
+  assert.ok(
+    result.results.every(
+      (row) => row.artwork_group_id !== "group-unbound-trainer-ball",
+    ),
+  );
+});
+
+test("minimum Pokemon count uses visible identity evidence and excludes lower counts", async () => {
+  const decorated = collectorFixtures();
+  const engine = createVisualSearchLabEngineV1(decorated.groups);
+  const result = await engine.search("card with 3 or more Pokemon");
+  assert.equal(result.total_matches, 1);
+  assert.equal(result.results[0].artwork_group_id, "group-three-pokemon");
+  assert.ok(
+    result.results[0].matched_evidence.some(
+      (row) =>
+        row.match_authority === "derived_visible_pokemon_count" &&
+        row.derived_visible_pokemon_count === 3,
+    ),
   );
 });

@@ -1,4 +1,5 @@
 import { createReadStream } from "node:fs";
+import fs from "node:fs/promises";
 import readline from "node:readline";
 
 export const CARD_VISUAL_SEARCH_CURATED_CAMEO_VERSION =
@@ -7,6 +8,7 @@ export const CARD_VISUAL_SEARCH_CURATED_CAMEO_VERSION =
 const ACCEPTED_RECONCILIATION_STATUSES = new Set([
   "existing_approved_cameo_match",
   "exact_canonical_match",
+  "founder_image_confirmed",
 ]);
 
 const REPRESENTATION_MODES = new Set([
@@ -36,17 +38,29 @@ function unique(values) {
 }
 
 function governanceStatus(row) {
-  return row.reconciliation_status === "existing_approved_cameo_match"
-    ? "existing_approved"
-    : "external_exact_candidate";
+  if (row.reconciliation_status === "existing_approved_cameo_match") {
+    return "existing_approved";
+  }
+  if (row.reconciliation_status === "founder_image_confirmed") {
+    return "human_image_confirmed";
+  }
+  return "external_exact_candidate";
 }
 
 function evidenceStrength(row) {
-  return governanceStatus(row) === "existing_approved" ? "high" : "medium";
+  return ["existing_approved", "human_image_confirmed"].includes(
+    governanceStatus(row),
+  )
+    ? "high"
+    : "medium";
 }
 
 function evidenceConfidence(row) {
-  return governanceStatus(row) === "existing_approved" ? 1 : 0.9;
+  return ["existing_approved", "human_image_confirmed"].includes(
+    governanceStatus(row),
+  )
+    ? 1
+    : 0.9;
 }
 
 function mappedSubjectRole(displayMode) {
@@ -71,6 +85,7 @@ function sharedEvidence(row, cardPrintId) {
     cameo_identity: row.cameo_identity,
     cameo_identity_kind: row.cameo_identity_kind,
     display_mode_terms: unique(row.display_mode_terms ?? []),
+    representation_details: unique(row.representation_details ?? []),
     proves_fact_graph_observation: false,
   };
 }
@@ -101,6 +116,9 @@ export function curatedCameoEntriesV1(row) {
     const subjectRole = mappedSubjectRole(displayMode);
     if (!subjectRole) continue;
     const normalizedMode = displayMode === "food" ? "food shape" : displayMode;
+    const details = shared.representation_details.length
+      ? `: ${shared.representation_details.join(" ")}`
+      : "";
     entries.push({
       ...shared,
       source_type: "curated_cameo_role",
@@ -108,7 +126,7 @@ export function curatedCameoEntriesV1(row) {
         subjectRole === "character_representation"
           ? "curated_cameos.representation_form"
           : "curated_cameos.depicted_surface",
-      term: `${subjectRole}: ${row.cameo_identity}: ${normalizedMode}`,
+      term: `${subjectRole}: ${row.cameo_identity}: ${normalizedMode}${details}`,
       subject_role: subjectRole,
       display_mode_term: displayMode,
     });
@@ -126,6 +144,14 @@ export async function loadCuratedCameoReferenceRowsV1(filePath) {
     if (line.trim()) rows.push(JSON.parse(line));
   }
   return rows;
+}
+
+export async function loadReviewedVisualEvidenceV1(filePath) {
+  const payload = JSON.parse(await fs.readFile(filePath, "utf8"));
+  if (!Array.isArray(payload.records)) {
+    throw new Error("reviewed visual evidence must contain records");
+  }
+  return payload.records;
 }
 
 export function attachCuratedCameoEvidenceV1(groups, rows) {
@@ -220,6 +246,11 @@ export function attachCuratedCameoEvidenceV1(groups, rows) {
         (entry) =>
           entry.source_type === "curated_cameo" &&
           entry.governance_status === "external_exact_candidate",
+      ).length,
+      human_confirmed_relationships: attachedEntries.filter(
+        (entry) =>
+          entry.source_type === "curated_cameo" &&
+          entry.governance_status === "human_image_confirmed",
       ).length,
     },
     boundaries: {

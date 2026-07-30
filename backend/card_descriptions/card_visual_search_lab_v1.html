@@ -211,7 +211,15 @@
 
     function renderParsed(parsed) {
       chipsNode.replaceChildren();
-      if (parsed.detected_subject) addChip(`subject: ${parsed.detected_subject.canonical_name}`);
+      const subjects = parsed.detected_subjects?.length
+        ? parsed.detected_subjects
+        : parsed.detected_subject
+          ? [parsed.detected_subject]
+          : [];
+      for (const subject of subjects) addChip(`subject: ${subject.canonical_name}`);
+      for (const group of parsed.intent.visual_filters.subject_groups || []) {
+        if (group.length > 1) addChip(`subject alternatives: ${group.join(" OR ")}`);
+      }
       for (const branch of parsed.intent.canonical_filters.branches) addChip(`branch: ${branch}`);
       for (const setCode of parsed.intent.canonical_filters.set_codes) addChip(`set: ${setCode}`);
       for (const role of parsed.intent.visual_filters.subject_roles) addChip(`role: ${role}`);
@@ -220,7 +228,10 @@
       for (const surface of parsed.intent.visual_filters.depicted_surfaces) addChip(`surface: ${surface}`);
       for (const concept of parsed.intent.visual_filters.concepts) addChip(concept);
       for (const count of parsed.intent.visual_filters.counts) addChip(`count: ${count.exact_count} ${count.label}`);
+      for (const count of parsed.intent.visual_filters.subject_count_constraints || []) addChip(`count: ${count.minimum_count}+ ${count.subject_class}`);
+      for (const relationship of parsed.intent.visual_filters.relationships || []) addChip(`${relationship.predicate}: ${relationship.object}`);
       for (const alias of parsed.intent.query_aliases) addChip(`alias: ${alias}`);
+      for (const alias of parsed.query_subject_aliases || []) addChip(`alias: ${alias.alias} → ${alias.canonical}`);
       for (const source of parsed.intent.visual_filters.evidence_sources || []) addChip(`source: ${source}`);
       for (const term of parsed.intent.unrecognized_terms) addChip(`unsupported: ${term}`, true);
     }

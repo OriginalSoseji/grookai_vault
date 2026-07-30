@@ -50,6 +50,10 @@ Every curated result carries:
 
 ## Query Behavior
 
+Collector-style multi-subject, representation, relationship, alias, and
+minimum-count grammar is governed by
+`CARD_VISUAL_SEARCH_COLLECTOR_QUERY_V1`.
+
 ### Unqualified identity
 
 `Pikachu` may return:
