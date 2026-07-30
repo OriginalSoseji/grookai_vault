@@ -1,0 +1,19 @@
+{
+  "worker_version": "TCGPLAYER_MARKET_ACTIVE_ASK_REFRESH_V1",
+  "mode": "apply",
+  "commit_sha": "456306bdb2a335286d513c1d612a97a58a1f01cc",
+  "branch": "pricing/mee-productization-v1",
+  "created_at": "2026-07-30T18:06:00.567Z",
+  "materialized_view": "public.mv_market_listing_active_ask_current_v1",
+  "timeout_minutes": 20,
+  "database_session_policy": {
+    "statement_timeout": "20min",
+    "enable_nestloop": "off"
+  },
+  "boundaries": {
+    "canonical_identity_writes": false,
+    "price_publication_writes": false,
+    "vault_writes": false,
+    "active_ask_cache_write": true
+  }
+}

@@ -33,6 +33,25 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
+
+This checkpoint records the production-scale active-ask and health-query
+failures found by the July 30 unattended cycle, the run-scoped runtime
+repairs, the clean replacement activation, and the newly anchored 72-hour
+observer window.
+
+Decision locked there:
+
+- only a replacement activation with completed active-ask, publication, and
+  health phases may start the canary clock; database publication from a failed
+  outer pipeline does not qualify
+
+Unresolved risk afterward:
+
+- the replacement window must remain healthy through
+  `2026-08-02T18:17:48.625Z`; post-canary migrations, client deployment, full
+  signed-in rollout, and seven unattended cycles remain pending
+
 ### `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
 
 This checkpoint records the automated read-only observation of the frozen
@@ -773,9 +792,15 @@ Recommended reading order for future maintainers:
       observation window
 
 37. `PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`
-    - finally read the source and publication incident, merged runtime repair,
+    - then read the source and publication incident, merged runtime repair,
       replacement activation, observer restart gate, and corrected
       post-72-hour execution sequence
+
+38. `PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
+    - finally read how the next production-scale cycle exposed active-ask and
+      health-query limits, how those queries were repaired without broadening
+      publication, and why only the July 30 `REPAIR2` activation starts the
+      current 72-hour window
 
 After those checkpoints, read the supporting audits in this order:
 

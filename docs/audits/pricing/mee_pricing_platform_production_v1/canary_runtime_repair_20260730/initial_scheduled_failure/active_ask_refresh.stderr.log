@@ -1,0 +1,4 @@
+[active-ask-refresh] error: canceling statement due to statement timeout
+    at /opt/grookai_vault_mee_nightly/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs:146:7)

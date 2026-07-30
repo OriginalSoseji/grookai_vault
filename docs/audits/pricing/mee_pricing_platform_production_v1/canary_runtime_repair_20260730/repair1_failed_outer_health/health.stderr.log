@@ -1,0 +1,4 @@
+[market-health] Error: Query read timeout
+    at /opt/grookai_vault_mee_nightly/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_health_v1.mjs:97:20)
