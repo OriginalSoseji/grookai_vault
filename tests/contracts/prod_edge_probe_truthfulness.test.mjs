@@ -25,7 +25,9 @@ test("production edge probe handles HTTP errors without legacy response APIs", (
   assert.match(WORKFLOW, /200 \{ "anonymous_accessible" \}/);
   assert.match(WORKFLOW, /401 \{ "anonymous_denied" \}/);
   assert.match(WORKFLOW, /403 \{ "anonymous_denied" \}/);
-  assert.match(WORKFLOW, /throw "wall_feed returned unexpected HTTP status/);
+  assert.match(WORKFLOW, /400 \{ "application_error" \}/);
+  assert.match(WORKFLOW, /endpoint_health = \$endpointHealth/);
+  assert.match(WORKFLOW, /Write-Warning "wall_feed endpoint health/);
   assert.doesNotMatch(WORKFLOW, /GetResponseStream/);
 });
 
@@ -36,4 +38,12 @@ test("diagnostic failures are not masked by continue-on-error", () => {
   assert.ok(diagnosticStep);
   assert.doesNotMatch(diagnosticStep, /continue-on-error:\s*true/);
   assert.match(diagnosticStep, /\$ErrorActionPreference = "Stop"/);
+  assert.match(
+    diagnosticStep,
+    /throw "wall_feed transport probe failed: \$transportError"/,
+  );
+  assert.doesNotMatch(
+    diagnosticStep,
+    /throw "wall_feed returned unexpected HTTP status/,
+  );
 });

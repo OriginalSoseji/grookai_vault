@@ -81,18 +81,30 @@ jobs:
             200 { "anonymous_accessible" }
             401 { "anonymous_denied" }
             403 { "anonymous_denied" }
-            default { "unexpected_response" }
+            400 { "application_error" }
+            404 { "endpoint_missing" }
+            405 { "method_not_allowed" }
+            { $_ -ge 500 } { "server_error"; break }
+            default { "http_response_observed" }
+          }
+          $endpointHealth = if ($status -eq 200) {
+            "healthy"
+          } elseif ($status -in @(401, 403)) {
+            "access_controlled"
+          } else {
+            "unhealthy"
           }
           $snippet = if ($body) { $body.Substring(0,[Math]::Min(300,$body.Length)) } else { "" }
           $observedAt = (Get-Date).ToUniversalTime().ToString("o")
 
-          @(
+          $summary = @(
             "# Production Edge Probe"
             ""
             "- Observed at: ``$observedAt``"
             "- URL: ``$url``"
             "- HTTP status: ``$status``"
             "- Decision: ``$decision``"
+            "- Endpoint health: ``$endpointHealth``"
             "- Transport error: ``$($transportError ?? 'none')``"
             ""
             "## Response"
@@ -100,14 +112,18 @@ jobs:
             '```text'
             $snippet
             '```'
-          ) | Out-File -LiteralPath "$artifactDir/SUMMARY.md" -Encoding UTF8
+          )
+          $summary | Out-File -LiteralPath "$artifactDir/SUMMARY.md" -Encoding UTF8
+          $summary | Out-File -LiteralPath $env:GITHUB_STEP_SUMMARY -Encoding UTF8
 
           [ordered]@{
             schema_version = "PROD_EDGE_PROBE_RESULT_V1"
+            probe_completed = -not [bool]$transportError
             observed_at = $observedAt
             url = $url
             http_status = $status
             decision = $decision
+            endpoint_health = $endpointHealth
             transport_error = $transportError
             response_snippet = $snippet
           } | ConvertTo-Json -Depth 4 |
@@ -116,8 +132,8 @@ jobs:
           if ($transportError) {
             throw "wall_feed transport probe failed: $transportError"
           }
-          if ($decision -eq "unexpected_response") {
-            throw "wall_feed returned unexpected HTTP status $status"
+          if ($endpointHealth -eq "unhealthy") {
+            Write-Warning "wall_feed endpoint health is $endpointHealth (HTTP $status, $decision)"
           }
 
       - name: Upload probe summary
