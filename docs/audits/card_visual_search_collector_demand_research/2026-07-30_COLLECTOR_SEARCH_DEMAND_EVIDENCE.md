@@ -591,6 +591,86 @@ Collector demand requires the following operators:
 
 ## Current Grookai Coverage
 
+### Existing Corpus Reuse Decision
+
+**Do not rerun OpenAI Vision over the existing corpus.**
+
+The immutable release contains:
+
+- `11,000` selected corpus IDs;
+- `10,376` valid Fact Graph rows;
+- `624` explicit source gaps;
+- `9,377` unique authoritative generated-row artifacts;
+- `9,532` eligible artwork groups;
+- `28,596` projected search documents;
+- approximately `321,937` structured search entries.
+
+An offline scan of the current projection found artwork-level evidence coverage
+for:
+
+- canonical visual concepts: `9,498` artworks;
+- grounded search terms: `9,496`;
+- creature anatomy: `8,530`;
+- scene subjects: `8,336`;
+- environment: `8,269`;
+- color and lighting: `4,531`;
+- objects and props: `3,090`;
+- counts: `1,960`;
+- human appearance: `921`;
+- clothing: `816`;
+- explicit relationships: `648`.
+
+The corpus already contains usable evidence for the major externally observed
+intent families. Current local search returns, for example:
+
+- sleeping Pokemon: `34` artworks;
+- jumping Pokemon: `125`;
+- flying Pokemon: `551`;
+- running Pokemon: `182`;
+- Pokemon in a forest: `1,286`;
+- flowers: `539`;
+- underwater: `271`;
+- cards with at least three visible Pokemon: `145`;
+- Pokemon carrying an object: `45`;
+- Pokemon plush: `14`;
+- Pokemon statue: `8`;
+- Pokemon poster: `1`.
+
+Some current zeros are parser or vocabulary failures rather than extraction
+failures. `Pokemon working`, for example, currently returns
+`unrecognized_terms`, even though offline projection evidence contains
+work/construction observations. Those cases require query-policy work, not
+another provider call.
+
+The evidence is not uniformly exhaustive:
+
+- only `5` valid source rows contain a typed character representation;
+- only `37` contain a typed depicted subject;
+- the existing representation audit found `92` omission candidates, including
+  `59` possible Pokemon representations and `13` possible Pokemon depicted
+  subjects;
+- explicit relationships cover `648` artworks and use inconsistent predicates;
+- exact counts and explicit foreground/background roles are under-recorded;
+- style and vibe vocabulary is materially less complete than subjects,
+  anatomy, and environments;
+- `624` selected rows have no valid source graph.
+
+These gaps do not justify paying to regenerate all existing artwork.
+
+Use this repair order:
+
+1. Rebuild parsers, aliases, controlled vocabulary, and derived concepts from
+   existing observations.
+2. Reconcile the curated cameo workbook and founder/reviewer image-confirmed
+   corrections without rewriting model observations.
+3. Audit likely omissions against the original self-hosted images.
+4. Add human-confirmed evidence for facts that are plainly visible.
+5. Use paid targeted re-extraction only when a high-value artwork remains
+   genuinely ambiguous or too dense for reliable human reconciliation.
+
+The default paid-retry scope must be the individual artwork identity, never the
+whole corpus or every printing that shares an artwork.
+
 ### Implemented in the local governed lab
 
 - canonical, Fact Graph, curated-cameo, and human-confirmed evidence lanes;
