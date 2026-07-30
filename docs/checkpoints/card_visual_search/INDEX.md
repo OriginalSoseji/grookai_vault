@@ -9,6 +9,13 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_COLLECTOR_QUERY_20260729.md` - `2026-07-29` - COMPLETE
+  FOR LOCAL LAB; PRODUCTION ACTIVATION NOT AUTHORIZED - Records aliases,
+  same-artwork AND/OR subject groups, subject-bound holding relationships,
+  visible-Pokemon count constraints, the founder-confirmed Slurpuff
+  Pikachu-cookie correction without paid regeneration, real corpus proofs for
+  five collector query classes, `118/118` focused contracts, and the frozen
+  mixed-query calibration gate.
 - `VISUAL_SEARCH_V1_UNIFIED_EVIDENCE_20260729.md` - `2026-07-29` - COMPLETE
   FOR LOCAL LAB; PRODUCTION ACTIVATION NOT AUTHORIZED - Records the unified
   canonical, Fact Graph, and curated-cameo evidence contract, strict
@@ -129,8 +136,9 @@ create canonical truth, or authorize downstream recommendation systems.
     `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md`.
 14. Read `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md`.
 15. Read `VISUAL_SEARCH_V1_UNIFIED_EVIDENCE_20260729.md`.
-16. Confirm the current production `main` SHA and compare it with the checkpoint
+16. Read `VISUAL_SEARCH_V1_COLLECTOR_QUERY_20260729.md`.
+17. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-17. Confirm pricing canary/release work remains isolated.
-18. Inspect the governed source branch at the recorded SHA.
-19. Resume only from the unified-evidence checkpoint's exact sequence.
+18. Confirm pricing canary/release work remains isolated.
+19. Inspect the governed source branch at the recorded SHA.
+20. Resume only from the collector-query checkpoint's exact next gate.
