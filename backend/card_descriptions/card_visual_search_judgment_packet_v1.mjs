@@ -6,7 +6,10 @@ import path from "node:path";
 import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 
-import { CARD_VISUAL_CORPUS_EXPECTED_BRANCH, sha256JsonV1 } from "./card_visual_corpus_v1_inventory.mjs";
+import {
+  assertCardVisualCorpusBranchV1,
+  sha256JsonV1,
+} from "./card_visual_corpus_v1_inventory.mjs";
 
 export const CARD_VISUAL_SEARCH_JUDGMENT_PACKET_VERSION = "CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1";
 export const CARD_VISUAL_SEARCH_GOLD_JUDGMENT_VERSION = "CARD_VISUAL_SEARCH_JUDGMENTS_V1_CALIBRATION_DRAFT";
@@ -18,11 +21,6 @@ const DEFAULT_CORPUS_INVENTORY = "docs/audits/card_visual_corpus_v1/2026-07-21T1
 const DEFAULT_OUTPUT_ROOT = "docs/audits/card_visual_search_judgment_packet_v1";
 const IMAGE_PATH_PREFIXES = ["warehouse-derived/self-hosted-images-v1/", "warehouse-derived/image-truth-v1/"];
 const REVIEW_IMAGE_HOST_ALLOWLIST = new Set(["assets.tcgdex.net", "images.pokemontcg.io"]);
-const JUDGMENT_PACKET_ALLOWED_BRANCHES = new Set([
-  CARD_VISUAL_CORPUS_EXPECTED_BRANCH,
-  "feature/card-visual-search-review-portal",
-]);
-
 function repoPath(value) {
   return path.isAbsolute(value) ? value : path.resolve(REPO_ROOT, value);
 }
@@ -325,9 +323,7 @@ async function hashManifest(outputDir, files) {
 
 export async function runCardVisualSearchJudgmentPacketV1(args = parseCardVisualSearchJudgmentPacketArgsV1([])) {
   const git = currentGitState();
-  if (!JUDGMENT_PACKET_ALLOWED_BRANCHES.has(git.branch)) {
-    throw new Error(`expected an approved card-visual branch, found ${git.branch}`);
-  }
+  assertCardVisualCorpusBranchV1(git.branch);
   if (git.tracked_status_short) throw new Error(`tracked working tree must be clean: ${git.tracked_status_short}`);
   if (!Number.isInteger(args.resultLimit) || args.resultLimit !== 10) throw new Error("V1 judgment packet result-limit must equal 10");
   const bootstrapDir = repoPath(args.bootstrapDir);

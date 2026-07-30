@@ -119,6 +119,8 @@ test("dashboard preserves packet provenance and excludes network or mutation cod
 
 test("implementation has no provider database embedding or holdout execution path", () => {
   const source = readFileSync(new URL("../../backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs", import.meta.url), "utf8");
+  assert.match(source, /assertCardVisualCorpusBranchV1\(git\.branch\)/u);
+  assert.doesNotMatch(source, /JUDGMENT_PACKET_ALLOWED_BRANCHES/u);
   assert.doesNotMatch(source, /OPENAI_API_KEY|responses\.create|embeddings?\.create|text-embedding/i);
   assert.doesNotMatch(source, /SUPABASE_DB_URL|DATABASE_URL|POSTGRES_URL|createClient\(/);
   assert.doesNotMatch(source, /insert\s+into|update\s+public\.|delete\s+from/i);
