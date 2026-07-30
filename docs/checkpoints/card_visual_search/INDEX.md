@@ -9,6 +9,13 @@ create canonical truth, or authorize downstream recommendation systems.
 
 ## Checkpoints
 
+- `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md` - `2026-07-29` -
+  COMPLETE; CURRENT SOURCE FROZEN AND RECONCILED; NO WRITE - Records the
+  zero-cost 4,020-row RotomAmiti workbook import, reuse of 1,421 existing
+  approved cameo relationships, 909 additional exact canonical candidates,
+  decoded formatting provenance, explicit representation-form counts,
+  Slurpuff ASC 094 and Pikachu-pillow proofs, immutable paid Fact Graph
+  boundaries, and the no-write merge-proposal gate.
 - `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md` -
   `2026-07-29` - COMPLETE; LOCAL SEARCH SEMANTICS REPAIRED, COVERAGE GAP
   MEASURED - Records cross-branch Pokemon subject-class queries, strict
@@ -113,8 +120,9 @@ create canonical truth, or authorize downstream recommendation systems.
 12. Read `VISUAL_SEARCH_V1_ROLE_QUALIFIER_REPAIR_20260729.md`.
 13. Read
     `VISUAL_SEARCH_V1_SUBJECT_CLASS_AND_REPRESENTATION_COVERAGE_20260729.md`.
-14. Confirm the current production `main` SHA and compare it with the checkpoint
+14. Read `VISUAL_SEARCH_V1_CAMEO_REFERENCE_IMPORT_20260729.md`.
+15. Confirm the current production `main` SHA and compare it with the checkpoint
    baseline.
-15. Confirm pricing canary/release work remains isolated.
-16. Inspect the governed source branch at the recorded SHA.
-17. Resume only from the reviewer-dependency checkpoint's exact sequence.
+16. Confirm pricing canary/release work remains isolated.
+17. Inspect the governed source branch at the recorded SHA.
+18. Resume only from the reviewer-dependency checkpoint's exact sequence.
