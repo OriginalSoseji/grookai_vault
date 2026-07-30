@@ -17,6 +17,13 @@ import {
 
 const WINDOW_START = "2026-07-28T08:40:15.793Z";
 const COMMIT = "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d";
+const OBSERVER_SOURCE = await fs.readFile(
+  new URL(
+    "../../scripts/audits/tcgplayer_market_canary_observation_v1.mjs",
+    import.meta.url,
+  ),
+  "utf8",
+);
 
 function exactRun({
   id,
@@ -205,6 +212,25 @@ test("stale prices, broken access, and unavailable rollback fail closed", () => 
     result.findings.includes("anonymous_pricing_execute_unexpectedly_granted"),
   );
   assert.ok(result.findings.includes("publication_rollback_not_available"));
+});
+
+test("observer proves the request-scoped shared client RPC without ranked discovery", () => {
+  assert.match(
+    OBSERVER_SOURCE,
+    /array_agg\(\s*card_printing_id\s*order by card_printing_id\s*\) as current_printing_ids/i,
+  );
+  assert.match(
+    OBSERVER_SOURCE,
+    /get_market_pricing_read_model_v1\(\s*'\{\}'::uuid\[\],\s*\$1::uuid\[\]\s*\)/i,
+  );
+  assert.match(
+    OBSERVER_SOURCE,
+    /where pricing_scope = 'card_printing'\s+and status = 'available'/i,
+  );
+  assert.doesNotMatch(
+    OBSERVER_SOURCE,
+    /get_top_market_pricing_v1/i,
+  );
 });
 
 test("observer query failures preserve a run plan, summary, failure, and hashes", async () => {
