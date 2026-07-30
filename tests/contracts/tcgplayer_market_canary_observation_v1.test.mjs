@@ -231,6 +231,18 @@ test("observer proves the request-scoped shared client RPC without ranked discov
     OBSERVER_SOURCE,
     /get_top_market_pricing_v1/i,
   );
+  assert.match(
+    OBSERVER_SOURCE,
+    /from pointer\s+join public\.market_price_publication_snapshots snapshot\s+on snapshot\.run_id = pointer\.run_id/i,
+  );
+  assert.match(
+    OBSERVER_SOURCE,
+    /decision\.run_id = pointer\.run_id/i,
+  );
+  assert.doesNotMatch(
+    OBSERVER_SOURCE,
+    /broken_trace as \(\s*select count\(\*\)::integer as broken_trace_count\s*from public\.market_price_publication_snapshots snapshot/i,
+  );
 });
 
 test("observer query failures preserve a run plan, summary, failure, and hashes", async () => {

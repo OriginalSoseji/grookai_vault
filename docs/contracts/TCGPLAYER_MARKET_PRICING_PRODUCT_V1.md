@@ -369,3 +369,7 @@ or the full source observation warehouse during an ordinary activation check.
 The health worker must inherit the governed pipeline database timeout, apply
 it explicitly to the live session, and preserve the effective timeout in its
 artifact.
+
+The canary observer applies the same bounded trace rule to the active
+publication pointer. Historical trace auditing is a separate offline audit
+and must not be expanded inside the recurring canary observer.
