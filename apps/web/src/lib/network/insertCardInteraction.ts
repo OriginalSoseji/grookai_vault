@@ -78,6 +78,17 @@ async function isBlocked(
   senderUserId: string,
   receiverUserId: string,
 ) {
+  const currentViewerResult = await client.rpc(
+    "trust_block_exists_for_current_viewer_v1",
+    { p_other_user_id: receiverUserId },
+  );
+
+  if (!currentViewerResult.error) {
+    return currentViewerResult.data !== false;
+  }
+
+  // The wrapper lands after the pricing canary migrations. Keep the existing
+  // fail-closed boundary available until that ordered migration is deployed.
   const { data, error } = await client.rpc("trust_block_exists_between_v1", {
     p_user_id: senderUserId,
     p_other_user_id: receiverUserId,
