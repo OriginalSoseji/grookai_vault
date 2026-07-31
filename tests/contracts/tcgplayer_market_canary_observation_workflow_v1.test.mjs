@@ -16,6 +16,10 @@ const WORKFLOW_PATH = path.join(
   "tcgplayer-market-canary-observation.yml",
 );
 const workflow = fs.readFileSync(WORKFLOW_PATH, "utf8");
+const observer = fs.readFileSync(
+  path.join(ROOT, "scripts", "audits", "tcgplayer_market_canary_observation_v1.mjs"),
+  "utf8",
+);
 
 test("scheduled canary observer is pinned to the reviewed source and canary", () => {
   assert.match(
@@ -65,4 +69,18 @@ test("scheduled canary observer is read-only and cannot apply migrations", () =>
   assert.doesNotMatch(workflow, /pricing:market:[^\s]*apply/i);
   assert.doesNotMatch(workflow, /tcgplayer_market_publication_worker_v1/i);
   assert.doesNotMatch(workflow, /tcgplayer_market_pipeline_v1/i);
+});
+
+test("canary runtime probe exercises the governed shared read model", () => {
+  assert.match(
+    observer,
+    /get_market_pricing_read_model_v1\(uuid\[\],uuid\[\]\)/,
+  );
+  assert.match(
+    observer,
+    /from public\.get_market_pricing_read_model_v1\([\s\S]*?\$1::uuid\[\][\s\S]*?'\{\}'::uuid\[\]/,
+  );
+  assert.match(observer, /authenticated_runtime_latency_ms/);
+  assert.match(observer, /sampled_card_print_ids/);
+  assert.doesNotMatch(observer, /from public\.get_top_market_pricing_v1\(/);
 });
