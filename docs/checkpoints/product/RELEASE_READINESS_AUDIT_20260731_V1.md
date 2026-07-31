@@ -71,7 +71,7 @@ The deployed `wall_feed` revision returned:
 The final merge's Vercel deployment, legacy-key guard, and production edge
 probe passed. Earlier read-only production checks also proved:
 
-- home, login, card detail, set grid, Dex, and Pulse network routes return 200
+- home, login, card detail, set grid, Dex, and the Network route (`/network`) return 200
 - canonical artwork delivery returns a non-empty WebP image
 - anonymous wall access redirects to login
 - anonymous card-pricing API access returns 401
