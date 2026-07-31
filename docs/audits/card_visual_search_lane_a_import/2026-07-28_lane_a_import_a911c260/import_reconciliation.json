@@ -1,0 +1,361 @@
+{
+  "reconciliation_version": "CARD_VISUAL_SEARCH_LANE_A_IMPORT_RECONCILIATION_V1",
+  "completed_on": "2026-07-28",
+  "branch": "feature/visual-search-v1-productization",
+  "pre_import_head_sha": "a911c260a1b333c3528edfb78b879138023d820a",
+  "governed_source_sha": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+  "manifest_payload_sha256": "7bd6f0c7d1f2826c981dde5431d2b9850adea264d6a51d9e24232558fe17658f",
+  "import_plan_payload_sha256": "57412fafc3285c145fd7e5f4af42e1dd5154e445fde5d7c41175ba6c9b7b87f0",
+  "planned_file_count": 38,
+  "written_file_count": 38,
+  "matching_file_count": 38,
+  "mismatched_file_count": 0,
+  "missing_file_count": 0,
+  "extra_imported_file_count": 0,
+  "status": "reconciled",
+  "outcomes": [
+    {
+      "source_path": "backend/card_descriptions/card_visual_artwork_grouping_audit_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_artwork_grouping_audit_v1.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "2e1646eafc259739d68d0408ec6496600848943ee7f0f362ac5e44efd915fe2f",
+      "destination_sha256": "2e1646eafc259739d68d0408ec6496600848943ee7f0f362ac5e44efd915fe2f",
+      "hash_match": true,
+      "bytes": 16853
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_artwork_grouping_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_artwork_grouping_v1.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "fc6cd4db0c958ac96e550cfa925760a20958b15cecad1bfbf111ac83cec86132",
+      "destination_sha256": "fc6cd4db0c958ac96e550cfa925760a20958b15cecad1bfbf111ac83cec86132",
+      "hash_match": true,
+      "bytes": 20218
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_corpus_v1_inventory.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_corpus_v1_inventory.mjs",
+      "component_id": "corpus_inventory",
+      "expected_sha256": "721dbfb5451800de3d5ce5d0f29af2b74d7a0fb3b5c027756731d658878d9176",
+      "destination_sha256": "721dbfb5451800de3d5ce5d0f29af2b74d7a0fb3b5c027756731d658878d9176",
+      "hash_match": true,
+      "bytes": 25394
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_eligibility_audit_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_eligibility_audit_v1.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "0e25a5a01c47b3a0a30c24e6e6e85ff9b036a27905383dac0022a1ba8cab8418",
+      "destination_sha256": "0e25a5a01c47b3a0a30c24e6e6e85ff9b036a27905383dac0022a1ba8cab8418",
+      "hash_match": true,
+      "bytes": 16152
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_eligibility_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_eligibility_v1.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "599dcd45d01793953451165e18b08960147f18a8ec29abad49a1b7ece86624e9",
+      "destination_sha256": "599dcd45d01793953451165e18b08960147f18a8ec29abad49a1b7ece86624e9",
+      "hash_match": true,
+      "bytes": 38215
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "7175ed30cf2e9abad52ec41712448379b71b575b203fdb25079b34f011f1bd4c",
+      "destination_sha256": "7175ed30cf2e9abad52ec41712448379b71b575b203fdb25079b34f011f1bd4c",
+      "hash_match": true,
+      "bytes": 45613
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_judgment_packet_v1.mjs",
+      "component_id": "judgment_packet_core_dependency",
+      "expected_sha256": "78fd56831d966106492a5494e2e839289968355bb83ea28f2cebdda3bd21eeff",
+      "destination_sha256": "78fd56831d966106492a5494e2e839289968355bb83ea28f2cebdda3bd21eeff",
+      "hash_match": true,
+      "bytes": 40151
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_lab_v1.html",
+      "destination_path": "backend/card_descriptions/card_visual_search_lab_v1.html",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "a15fbd079a1e26cf048707b23c8761685172eb055db09abd11ab9d86c740712c",
+      "destination_sha256": "a15fbd079a1e26cf048707b23c8761685172eb055db09abd11ab9d86c740712c",
+      "hash_match": true,
+      "bytes": 14117
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_lab_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_lab_v1.mjs",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "44c2dda03f2c9a11c41e795db00d33422d7668b900be03ec74c8789139b22ae5",
+      "destination_sha256": "44c2dda03f2c9a11c41e795db00d33422d7668b900be03ec74c8789139b22ae5",
+      "hash_match": true,
+      "bytes": 27278
+    },
+    {
+      "source_path": "backend/card_descriptions/card_visual_search_projection_v1.mjs",
+      "destination_path": "backend/card_descriptions/card_visual_search_projection_v1.mjs",
+      "component_id": "deterministic_projection",
+      "expected_sha256": "7f720bf7145b7136d2a510e510e882e0020578de47e250ff3440ea87dd8e8e56",
+      "destination_sha256": "7f720bf7145b7136d2a510e510e882e0020578de47e250ff3440ea87dd8e8e56",
+      "hash_match": true,
+      "bytes": 52407
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_ARTWORK_GROUPING_V1_1.md",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "eb471a77c9256f23302b8313e5e2db7f0cc0e969b0133638b7c48ba39845f2d5",
+      "destination_sha256": "eb471a77c9256f23302b8313e5e2db7f0cc0e969b0133638b7c48ba39845f2d5",
+      "hash_match": true,
+      "bytes": 3918
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_CONTROLLED_VOCABULARY_V1.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "ed25b1985f3da5136038e0479e8c54d5844dddb4a11a7dc65139b87dd5d8b170",
+      "destination_sha256": "ed25b1985f3da5136038e0479e8c54d5844dddb4a11a7dc65139b87dd5d8b170",
+      "hash_match": true,
+      "bytes": 8403
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_CORPUS_V1_BLUEPRINT.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "8db75538eb86fc5bd981076da6701e3802fd1f935b0eebdbd06cd91ed60d7d33",
+      "destination_sha256": "8db75538eb86fc5bd981076da6701e3802fd1f935b0eebdbd06cd91ed60d7d33",
+      "hash_match": true,
+      "bytes": 17131
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_FACT_GRAPH_V2.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "d2d8db266bcbc040229e3de85a12fe008349649fd6f79c88040f35ec4f0c6c92",
+      "destination_sha256": "d2d8db266bcbc040229e3de85a12fe008349649fd6f79c88040f35ec4f0c6c92",
+      "hash_match": true,
+      "bytes": 13526
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_CONTRACT_V1.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "62bdfb802bf2535b5b4bd0c77cd81691414c8fa969789bec13958cab9a770c97",
+      "destination_sha256": "62bdfb802bf2535b5b4bd0c77cd81691414c8fa969789bec13958cab9a770c97",
+      "hash_match": true,
+      "bytes": 12253
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_ELIGIBILITY_V1_4.md",
+      "component_id": "search_eligibility",
+      "expected_sha256": "6555eed9424d51729ec7cbb2d5ab80f21e4b03e451976343513ec64581a9e6b8",
+      "destination_sha256": "6555eed9424d51729ec7cbb2d5ab80f21e4b03e451976343513ec64581a9e6b8",
+      "hash_match": true,
+      "bytes": 3219
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_BOOTSTRAP_V1.md",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "73e79f60c8703e63d2c57329d9a8ed093e6dca4a381c990e3544e661cec7e731",
+      "destination_sha256": "73e79f60c8703e63d2c57329d9a8ed093e6dca4a381c990e3544e661cec7e731",
+      "hash_match": true,
+      "bytes": 2296
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_EVALUATION_V1.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "d3172fc018754a271ca7c31be55c3c8c1eb482fbbcad0cce833ef0f316fbe2de",
+      "destination_sha256": "d3172fc018754a271ca7c31be55c3c8c1eb482fbbcad0cce833ef0f316fbe2de",
+      "hash_match": true,
+      "bytes": 11383
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_INDEX_SCHEMA_V1.md",
+      "component_id": "governing_contracts",
+      "expected_sha256": "091bb9365e1658d40b38444b993bbaa192c2886b5b9de2c4e92914ab7558d18e",
+      "destination_sha256": "091bb9365e1658d40b38444b993bbaa192c2886b5b9de2c4e92914ab7558d18e",
+      "hash_match": true,
+      "bytes": 11804
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_JUDGMENT_PACKET_V1.md",
+      "component_id": "judgment_packet_core_dependency",
+      "expected_sha256": "fcfe371e01a15e5f89fb48a161b36565bd65fbd2003ea7a0a2db5dffcc24e2f0",
+      "destination_sha256": "fcfe371e01a15e5f89fb48a161b36565bd65fbd2003ea7a0a2db5dffcc24e2f0",
+      "hash_match": true,
+      "bytes": 1938
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_LAB_V1.md",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "e88590430b2bbbbb495da28dc50c676b60efda3f091da65fe0057cbbb54f1681",
+      "destination_sha256": "e88590430b2bbbbb495da28dc50c676b60efda3f091da65fe0057cbbb54f1681",
+      "hash_match": true,
+      "bytes": 3896
+    },
+    {
+      "source_path": "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+      "destination_path": "docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V1_5.md",
+      "component_id": "deterministic_projection",
+      "expected_sha256": "f8bbd51a73f178cf83063033b8d294e78dc8d1cb7358a054255dae5f9b776fa3",
+      "destination_sha256": "f8bbd51a73f178cf83063033b8d294e78dc8d1cb7358a054255dae5f9b776fa3",
+      "hash_match": true,
+      "bytes": 1483
+    },
+    {
+      "source_path": "scripts/audits/card_visual_artwork_grouping_audit_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_artwork_grouping_audit_v1.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "5ca10c1c43d73ec987760112329e350616b6c1cdfe73932dabf5980914993523",
+      "destination_sha256": "5ca10c1c43d73ec987760112329e350616b6c1cdfe73932dabf5980914993523",
+      "hash_match": true,
+      "bytes": 134
+    },
+    {
+      "source_path": "scripts/audits/card_visual_artwork_grouping_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_artwork_grouping_v1.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "c8d8dd71f23df12a985bbfc247c97c524c4fb74ce789ff6bad933bab4e05697f",
+      "destination_sha256": "c8d8dd71f23df12a985bbfc247c97c524c4fb74ce789ff6bad933bab4e05697f",
+      "hash_match": true,
+      "bytes": 128
+    },
+    {
+      "source_path": "scripts/audits/card_visual_corpus_v1_inventory.mjs",
+      "destination_path": "scripts/audits/card_visual_corpus_v1_inventory.mjs",
+      "component_id": "corpus_inventory",
+      "expected_sha256": "86742c59711873c5058d4b294bf22557a5277d8100f3418dee3f22b8b7057eda",
+      "destination_sha256": "86742c59711873c5058d4b294bf22557a5277d8100f3418dee3f22b8b7057eda",
+      "hash_match": true,
+      "bytes": 192
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_eligibility_audit_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_eligibility_audit_v1.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "7aa9499faa0f8051769bd19d8e9dd6fbb6bebd032912f1bbf6691c640723da35",
+      "destination_sha256": "7aa9499faa0f8051769bd19d8e9dd6fbb6bebd032912f1bbf6691c640723da35",
+      "hash_match": true,
+      "bytes": 200
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_eligibility_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_eligibility_v1.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "c1aa251e474c198a12301a308f982480d4cf2d7f2dae5260f3632cf7e0eabdb9",
+      "destination_sha256": "c1aa251e474c198a12301a308f982480d4cf2d7f2dae5260f3632cf7e0eabdb9",
+      "hash_match": true,
+      "bytes": 194
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_evaluation_bootstrap_v1.mjs",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "7a2f9139967e52e97dcf353114553137d5f75683e4cc84f7ee4a292443e31183",
+      "destination_sha256": "7a2f9139967e52e97dcf353114553137d5f75683e4cc84f7ee4a292443e31183",
+      "hash_match": true,
+      "bytes": 139
+    },
+    {
+      "source_path": "scripts/audits/card_visual_search_projection_v1.mjs",
+      "destination_path": "scripts/audits/card_visual_search_projection_v1.mjs",
+      "component_id": "deterministic_projection",
+      "expected_sha256": "d4b8f91e3b05e10922e31e0f261531403afeedc4dec0133f7ce34960d8594bf1",
+      "destination_sha256": "d4b8f91e3b05e10922e31e0f261531403afeedc4dec0133f7ce34960d8594bf1",
+      "hash_match": true,
+      "bytes": 129
+    },
+    {
+      "source_path": "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_artwork_grouping_audit_v1.test.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "f59663e7bdd066ee000d442c3f781eff75a4067303fb1e7d42b300e3ebc86bdc",
+      "destination_sha256": "f59663e7bdd066ee000d442c3f781eff75a4067303fb1e7d42b300e3ebc86bdc",
+      "hash_match": true,
+      "bytes": 4268
+    },
+    {
+      "source_path": "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_artwork_grouping_v1.test.mjs",
+      "component_id": "artwork_grouping",
+      "expected_sha256": "d32fb87473157ab8a666edd29f6c1efacf7adde13ee91373db36043835b02257",
+      "destination_sha256": "d32fb87473157ab8a666edd29f6c1efacf7adde13ee91373db36043835b02257",
+      "hash_match": true,
+      "bytes": 7478
+    },
+    {
+      "source_path": "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+      "destination_path": "tests/contracts/card_visual_corpus_v1_inventory.test.mjs",
+      "component_id": "corpus_inventory",
+      "expected_sha256": "16a6f0e7c713c3799e90dbf2d549af65f5d969c351130d289cb7bd13190c2099",
+      "destination_sha256": "16a6f0e7c713c3799e90dbf2d549af65f5d969c351130d289cb7bd13190c2099",
+      "hash_match": true,
+      "bytes": 5130
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_eligibility_audit_v1.test.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "34d9dbab00915df52c16e0d15c2c35d1a0aabd74910c05c3478b25b0113336c6",
+      "destination_sha256": "34d9dbab00915df52c16e0d15c2c35d1a0aabd74910c05c3478b25b0113336c6",
+      "hash_match": true,
+      "bytes": 3656
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_eligibility_v1.test.mjs",
+      "component_id": "search_eligibility",
+      "expected_sha256": "1b0fd57a4d6b352edd2930855154cb0105580fd56cd365a7c86364ce121bff2b",
+      "destination_sha256": "1b0fd57a4d6b352edd2930855154cb0105580fd56cd365a7c86364ce121bff2b",
+      "hash_match": true,
+      "bytes": 16625
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_evaluation_bootstrap_v1.test.mjs",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "1888005ce2a6b953608ba2005910a0206966b0bd0d7c4eccdd9640f1ecb8252c",
+      "destination_sha256": "1888005ce2a6b953608ba2005910a0206966b0bd0d7c4eccdd9640f1ecb8252c",
+      "hash_match": true,
+      "bytes": 11029
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_judgment_packet_v1.test.mjs",
+      "component_id": "judgment_packet_core_dependency",
+      "expected_sha256": "d6098e81330fcf32c6ad2e8446cdc833fcca6d33c7f1791289d27f774245d541",
+      "destination_sha256": "d6098e81330fcf32c6ad2e8446cdc833fcca6d33c7f1791289d27f774245d541",
+      "hash_match": true,
+      "bytes": 6965
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_lab_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_lab_v1.test.mjs",
+      "component_id": "query_candidate_core",
+      "expected_sha256": "a80ce1a8bffbd87a9384b2c8f9672f6c62ace10cb83eef94c566092ea798ff7d",
+      "destination_sha256": "a80ce1a8bffbd87a9384b2c8f9672f6c62ace10cb83eef94c566092ea798ff7d",
+      "hash_match": true,
+      "bytes": 9586
+    },
+    {
+      "source_path": "tests/contracts/card_visual_search_projection_v1.test.mjs",
+      "destination_path": "tests/contracts/card_visual_search_projection_v1.test.mjs",
+      "component_id": "deterministic_projection",
+      "expected_sha256": "24f55f404c9af998c753c85c41f3718eef3e21cd3a1c26ee5def53c2039a1fed",
+      "destination_sha256": "24f55f404c9af998c753c85c41f3718eef3e21cd3a1c26ee5def53c2039a1fed",
+      "hash_match": true,
+      "bytes": 17090
+    }
+  ],
+  "reconciliation_payload_sha256": "eab91b5bf6793a92827b3319ae481769ea6cd3a7f469f356c71134c64c259884"
+}

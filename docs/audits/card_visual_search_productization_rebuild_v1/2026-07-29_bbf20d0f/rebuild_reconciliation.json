@@ -1,0 +1,251 @@
+{
+  "reconciliation_version": "CARD_VISUAL_SEARCH_PRODUCTIZATION_REBUILD_RECONCILIATION_V1",
+  "created_on": "2026-07-29",
+  "status": "reconciled_with_documented_ranker_hardening",
+  "producing_branch": "feature/visual-search-v1-productization",
+  "producing_sha": "bbf20d0f4a59e61c4d529f523de0a9721c964dd9",
+  "release_root": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721",
+  "rebuild_root": "C:\\grookai_visual_search_releases\\card_visual_search_corpus_release_v1_1_20260721\\_rebuild\\productization_bbf20d0f",
+  "stage_counts": {
+    "eligibility": {
+      "locked": {
+        "source_ids": 11000,
+        "tier_a": 2687,
+        "tier_b": 7015,
+        "tier_c": 1298,
+        "search_eligible": 9702,
+        "energy_rows_eligible": 0
+      },
+      "rebuilt": {
+        "source_ids": 11000,
+        "tier_a": 2687,
+        "tier_b": 7015,
+        "tier_c": 1298,
+        "search_eligible": 9702,
+        "energy_rows_eligible": 0
+      },
+      "exact_match": true
+    },
+    "grouping": {
+      "locked": {
+        "eligible_rows": 9702,
+        "artwork_groups": 9532,
+        "memberships": 9702,
+        "conflict_rows": 0
+      },
+      "rebuilt": {
+        "eligible_rows": 9702,
+        "artwork_groups": 9532,
+        "memberships": 9702,
+        "conflict_rows": 0
+      },
+      "exact_match": true
+    },
+    "projection": {
+      "locked": {
+        "projected_artworks": 9532,
+        "documents": 28596,
+        "evidence_entries": 357413,
+        "exclusions": 168046,
+        "projection_failures": 0
+      },
+      "rebuilt": {
+        "projected_artworks": 9532,
+        "documents": 28596,
+        "evidence_entries": 357413,
+        "exclusions": 168046,
+        "projection_failures": 0
+      },
+      "exact_match": true
+    },
+    "bootstrap": {
+      "locked": {
+        "total_queries": 250,
+        "calibration_queries": 200,
+        "holdout_queries": 50,
+        "holdout_executed": false,
+        "failure_count": 142,
+        "indexed_entries": 321937
+      },
+      "rebuilt": {
+        "total_queries": 250,
+        "calibration_queries": 200,
+        "holdout_queries": 50,
+        "holdout_executed": false,
+        "failure_count": 142,
+        "indexed_entries": 321937
+      },
+      "exact_match": true
+    }
+  },
+  "file_comparisons": [
+    {
+      "stage": "eligibility",
+      "file": "eligibility_decisions.jsonl",
+      "locked_sha256": "d099d5602a54eacec7887b8e8624070f7b89726206609347a3916aec1e11daff",
+      "rebuilt_sha256": "d099d5602a54eacec7887b8e8624070f7b89726206609347a3916aec1e11daff",
+      "byte_identical": true
+    },
+    {
+      "stage": "grouping",
+      "file": "artwork_groups.jsonl",
+      "locked_sha256": "8fe68c81b8baaf06e716fbb92dd6e59bd3b760fdb3e24e894136986f50a82922",
+      "rebuilt_sha256": "8fe68c81b8baaf06e716fbb92dd6e59bd3b760fdb3e24e894136986f50a82922",
+      "byte_identical": true
+    },
+    {
+      "stage": "grouping",
+      "file": "artwork_group_memberships.jsonl",
+      "locked_sha256": "e8e4226ccafb90c69f6da7c991e41f0bde875a1749610463134f8fa64289cb06",
+      "rebuilt_sha256": "e8e4226ccafb90c69f6da7c991e41f0bde875a1749610463134f8fa64289cb06",
+      "byte_identical": true
+    },
+    {
+      "stage": "projection",
+      "file": "visual_search_artworks.jsonl",
+      "locked_sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16",
+      "rebuilt_sha256": "f709b8ce3804ba79474288b01b3fea6f65d780f05a8fb3803ca5627eebd52e16",
+      "byte_identical": true
+    },
+    {
+      "stage": "projection",
+      "file": "visual_search_documents.jsonl",
+      "locked_sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b",
+      "rebuilt_sha256": "663d4a8a2abdbc3cc3230e4208a3168a7eb92006a8bcfbe56fcf2a58527e721b",
+      "byte_identical": true
+    },
+    {
+      "stage": "projection",
+      "file": "visual_search_concept_evidence.jsonl",
+      "locked_sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f",
+      "rebuilt_sha256": "b8161741642d0433f1944dd425ac101e73018c28be94f36f87b32fc89d35d69f",
+      "byte_identical": true
+    },
+    {
+      "stage": "bootstrap",
+      "file": "query_suite.jsonl",
+      "locked_sha256": "76268725e798fdc8d5d7ec7af4220058d9877605d364493bb77867f7c72a2afc",
+      "rebuilt_sha256": "76268725e798fdc8d5d7ec7af4220058d9877605d364493bb77867f7c72a2afc",
+      "byte_identical": true
+    },
+    {
+      "stage": "bootstrap",
+      "file": "evaluation_failures.jsonl",
+      "locked_sha256": "42668007732c5cb5cf621271e8bc300ab84dcb724c167ce73784d2c168514e05",
+      "rebuilt_sha256": "42668007732c5cb5cf621271e8bc300ab84dcb724c167ce73784d2c168514e05",
+      "byte_identical": true
+    },
+    {
+      "stage": "bootstrap",
+      "file": "holdout_judgment_seals.jsonl",
+      "locked_sha256": "d02999d18454384e5d9c48fec9e64f5334e43186677df38b0eda693179cda866",
+      "rebuilt_sha256": "d02999d18454384e5d9c48fec9e64f5334e43186677df38b0eda693179cda866",
+      "byte_identical": true
+    },
+    {
+      "stage": "bootstrap",
+      "file": "ranked_outputs.jsonl",
+      "locked_sha256": "9288b00d72438669943d09835a54158ee39a08ae8f29b858e9a2f29ecbcdf498",
+      "rebuilt_sha256": "8a7b9fefc63db2364f1c76982534a0470fd15f9ccf1a6944eb94bf361f24bf7f",
+      "byte_identical": false
+    }
+  ],
+  "ranking_comparison": {
+    "compared_queries": 200,
+    "top_result_changes": 0,
+    "result_window_changes": 3,
+    "total_match_changes": 8,
+    "match_expansions": 0,
+    "match_reductions": 8,
+    "changes": [
+      {
+        "query_id": "vsq_0042",
+        "query_text": "terrain standing",
+        "locked_total_matches": 486,
+        "rebuilt_total_matches": 484,
+        "delta": -2,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0053",
+        "query_text": "sky smiling",
+        "locked_total_matches": 297,
+        "rebuilt_total_matches": 295,
+        "delta": -2,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0098",
+        "query_text": "eyes",
+        "locked_total_matches": 6902,
+        "rebuilt_total_matches": 6887,
+        "delta": -15,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0102",
+        "query_text": "eyes",
+        "locked_total_matches": 6902,
+        "rebuilt_total_matches": 6887,
+        "delta": -15,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0104",
+        "query_text": "wings",
+        "locked_total_matches": 1241,
+        "rebuilt_total_matches": 1239,
+        "delta": -2,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0116",
+        "query_text": "arms",
+        "locked_total_matches": 3050,
+        "rebuilt_total_matches": 3049,
+        "delta": -1,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0121",
+        "query_text": "standing",
+        "locked_total_matches": 2010,
+        "rebuilt_total_matches": 1993,
+        "delta": -17,
+        "top_result_unchanged": true
+      },
+      {
+        "query_id": "vsq_0127",
+        "query_text": "standing",
+        "locked_total_matches": 2010,
+        "rebuilt_total_matches": 1993,
+        "delta": -17,
+        "top_result_unchanged": true
+      }
+    ],
+    "documented_cause": {
+      "source_commit": "b6aa1b053192a83572e37e2d64d46d2aabeb3d45",
+      "source_commit_subject": "fix: reject negated visual search evidence",
+      "classification": "post-bootstrap ranker hardening"
+    }
+  },
+  "acceptance": {
+    "all_stage_counts_exact": true,
+    "core_semantic_files_identical": true,
+    "failure_classifications_identical": true,
+    "holdout_seals_identical": true,
+    "top_result_changes_zero": true,
+    "match_expansions_zero": true
+  },
+  "boundaries": {
+    "provider_calls": false,
+    "database_connection": false,
+    "database_writes": false,
+    "approvals": false,
+    "embeddings": false,
+    "holdout_execution": false,
+    "public_search_activation": false,
+    "pricing_changes": false
+  },
+  "reconciliation_payload_sha256": "1360867082d0eb970020a0165872daf06d3aa30fa9b7c89d6534d3504eb87011"
+}

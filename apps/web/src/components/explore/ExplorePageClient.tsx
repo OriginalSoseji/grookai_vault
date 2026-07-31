@@ -41,6 +41,8 @@ import {
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import type { UnifiedCollectorSearchResponseV2 } from "@/lib/search/unifiedCollectorSearchV2";
+import UnifiedCollectorVisualSearchPanel from "@/components/explore/UnifiedCollectorVisualSearchPanel";
 import {
   VARIANT_FAMILY_DISCOVERY_COPY,
   type VariantOriginFamilyCopy,
@@ -561,6 +563,8 @@ export default function ExplorePageClient({
   const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [smartSearchIntent, setSmartSearchIntent] = useState<SmartSearchIntent | null>(null);
+  const [visualSearch, setVisualSearch] =
+    useState<UnifiedCollectorSearchResponseV2 | null>(null);
   const [assistantPreview, setAssistantPreview] =
     useState<AssistantBoundaryPreview | null>(null);
   const [assistantPreviewLoading, setAssistantPreviewLoading] = useState(false);
@@ -590,6 +594,7 @@ export default function ExplorePageClient({
         setProvisionalRows([]);
         setResolverMeta(null);
         setSmartSearchIntent(null);
+        setVisualSearch(null);
         setError(null);
         setSortDegradedReason(null);
         setLoading(false);
@@ -683,6 +688,7 @@ export default function ExplorePageClient({
           requested_sort?: SortMode;
           applied_sort?: SortMode | null;
           sort_degraded_reason?: string | null;
+          visual_search?: UnifiedCollectorSearchResponseV2 | null;
         };
 
         setSortDegradedReason(payload.sort_degraded_reason ?? null);
@@ -694,6 +700,7 @@ export default function ExplorePageClient({
         setProvisionalRows(payload.provisional ?? []);
         setResolverMeta(payload.meta ?? null);
         setSmartSearchIntent(payload.smart_search ?? null);
+        setVisualSearch(payload.visual_search ?? null);
         setAssistantPreview(null);
       } catch (searchError) {
         if (controller.signal.aborted) return;
@@ -704,6 +711,7 @@ export default function ExplorePageClient({
         setProvisionalRows([]);
         setResolverMeta(null);
         setSmartSearchIntent(null);
+        setVisualSearch(null);
         setAssistantPreview(null);
       } finally {
         if (!controller.signal.aborted) {
@@ -868,6 +876,9 @@ export default function ExplorePageClient({
           );
   const visibleRows = displayRows.slice(0, visibleResultCount);
   const visibleResultGroups = buildContiguousSearchResultGroups(visibleRows);
+  const visualSearchOwnsResults = Boolean(
+    visualSearch?.available && visualSearch.intent,
+  );
   const hasMoreResults = visibleRows.length < displayRows.length;
   const getResultKey = (row: ExploreRow) =>
     row.search_card_printing_id ?? row.printing_gv_id ?? row.id;
@@ -1652,7 +1663,7 @@ export default function ExplorePageClient({
         </>
       ) : (
         <div className="gv-collector-search-results space-y-3">
-          {resolverSummary && displayRows.length === 0 ? (
+          {!visualSearchOwnsResults && resolverSummary && displayRows.length === 0 ? (
             <div
               className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}
             >
@@ -1663,7 +1674,7 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
-          {interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0 ? (
+          {!visualSearchOwnsResults && (interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0) ? (
             <div className="gv-soft-surface px-4 py-3">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
@@ -1968,7 +1979,12 @@ export default function ExplorePageClient({
           </details>
           ) : null}
 
-          {loading && displayRows.length === 0 ? (
+          {visualSearchOwnsResults && visualSearch ? (
+            <UnifiedCollectorVisualSearchPanel
+              query={q}
+              response={visualSearch}
+            />
+          ) : loading && displayRows.length === 0 ? (
             loadingState
           ) : viewMode === "list" ? (
             <div className="space-y-5">
@@ -2116,7 +2132,9 @@ export default function ExplorePageClient({
             </div>
           )}
 
-          <PublicProvisionalSearchSection cards={provisionalRows} />
+          {!visualSearchOwnsResults ? (
+            <PublicProvisionalSearchSection cards={provisionalRows} />
+          ) : null}
         </div>
       )}
 

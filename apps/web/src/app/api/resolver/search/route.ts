@@ -21,6 +21,11 @@ import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
+import {
+  getUnifiedCollectorVisualSearchV2,
+  isUnifiedCollectorSearchV2Enabled,
+} from "@/lib/search/getUnifiedCollectorVisualSearchV2";
+import { unavailableUnifiedCollectorSearchV2 } from "@/lib/search/unifiedCollectorSearchV2";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   getOwnedCardPrintIdsForUser,
@@ -370,6 +375,8 @@ export async function GET(request: NextRequest) {
   const pricingRequested =
     parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
     valueSortRequested;
+  const visualSearchBetaRequested =
+    isUnifiedCollectorSearchV2Enabled() && rawQuery.trim().length >= 2;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator")) ?? smartSearchIntent.artist;
   const effectiveSmartSearchIntent: SmartSearchIntent = {
@@ -436,7 +443,7 @@ export async function GET(request: NextRequest) {
     let userId: string | null = null;
     let requestSupabase: ReturnType<typeof createServerComponentClient> | null = null;
 
-    if (hasSmartOwnershipIntent || pricingRequested) {
+    if (hasSmartOwnershipIntent || pricingRequested || visualSearchBetaRequested) {
       requestSupabase = createServerComponentClient();
       const {
         data: { user },
@@ -564,7 +571,7 @@ export async function GET(request: NextRequest) {
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
             }));
-    const [resolved, provisionalResults] = await Promise.all([
+    const [resolved, provisionalResults, visualSearch] = await Promise.all([
       withTimeout(
         resolvedSearchPromise,
         RESOLVER_RESPONSE_TIMEOUT_MS,
@@ -577,6 +584,17 @@ export async function GET(request: NextRequest) {
             limit: 12,
           })
         : Promise.resolve([]),
+      visualSearchBetaRequested && userId
+        ? withTimeout(
+            getUnifiedCollectorVisualSearchV2(rawQuery, {
+              limit: resultLimit,
+            }),
+            1_800,
+            unavailableUnifiedCollectorSearchV2(
+              "visual_search_unavailable",
+            ),
+          )
+        : Promise.resolve(null),
     ]);
     if (valueSortRequested && resolved.degraded) {
       return NextResponse.json(
@@ -667,11 +685,14 @@ export async function GET(request: NextRequest) {
         source: resolved.degraded
           ? "web_ranked_resolver_v2_degraded_soft_timeout"
           : "web_ranked_resolver_v2",
+        visual_search: visualSearch,
       },
       {
         headers: {
           "Cache-Control":
-            pricingRequested || effectiveSmartSearchIntent.ownedState
+            pricingRequested ||
+            effectiveSmartSearchIntent.ownedState ||
+            visualSearchBetaRequested
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
         },

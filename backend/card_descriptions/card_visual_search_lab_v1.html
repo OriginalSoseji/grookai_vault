@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grookai Vault Visual Search</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f4f2ed;
+      --surface: #ffffff;
+      --ink: #181a18;
+      --muted: #666a64;
+      --line: #d9d8d1;
+      --accent: #176b4d;
+      --accent-strong: #0c5138;
+      --warning: #9a5a08;
+      --danger: #a12d27;
+      --tag: #e8eee9;
+      --focus: #f2c94c;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    button, input { font: inherit; letter-spacing: 0; }
+    button { cursor: pointer; }
+    .shell { min-height: 100vh; }
+    header {
+      background: #1b2420;
+      color: #fff;
+      border-bottom: 4px solid #d5ad33;
+    }
+    .header-inner, main { width: min(1480px, calc(100% - 32px)); margin: 0 auto; }
+    .header-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .brand strong { font-size: 18px; font-weight: 760; white-space: nowrap; }
+    .brand span { color: #cad2cc; font-size: 12px; white-space: nowrap; }
+    .status { display: flex; align-items: center; gap: 8px; color: #cad2cc; font-size: 12px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #65c18c; }
+    main { padding: 24px 0 48px; }
+    .search-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; }
+    .search-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border: 1px solid #aaa99f;
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(23, 107, 77, 0.16); }
+    .command {
+      min-height: 48px;
+      border: 1px solid var(--accent-strong);
+      border-radius: 6px;
+      padding: 0 20px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+    .command:hover { background: var(--accent-strong); }
+    .command.secondary { color: var(--ink); background: var(--surface); border-color: #aaa99f; font-weight: 600; }
+    .command.secondary:hover { background: #ecebe6; }
+    .command:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .query-state {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .result-count { font-size: 14px; color: var(--muted); white-space: nowrap; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      max-width: 100%;
+      padding: 4px 8px;
+      border: 1px solid #cbd5cc;
+      border-radius: 999px;
+      background: var(--tag);
+      color: #294437;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .chip.unknown { border-color: #e0afa9; background: #f8e7e4; color: var(--danger); }
+    .message {
+      margin: 28px 0;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .result-groups { display: grid; gap: 28px; padding-top: 18px; }
+    .result-group { min-width: 0; }
+    .result-group h2 { margin: 0 0 10px; font-size: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+      gap: 14px;
+    }
+    .result-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .image-wrap {
+      aspect-ratio: 2.5 / 3.5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #e5e4df;
+      border-bottom: 1px solid var(--line);
+    }
+    .image-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .image-fallback { padding: 16px; color: var(--muted); font-size: 13px; text-align: center; }
+    .result-body { padding: 12px; }
+    .result-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .result-heading h2 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+    .score { color: var(--accent-strong); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .meta { margin: 5px 0 10px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .evidence { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .evidence li { padding-left: 9px; border-left: 3px solid #8ab49f; }
+    .evidence-term { display: block; font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+    .evidence-source { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; overflow-wrap: anywhere; }
+    .reason { min-height: 38px; margin: 8px 0 10px; font-size: 12px; line-height: 1.45; }
+    .evidence-command {
+      min-height: 34px;
+      margin-top: 10px;
+      border: 1px solid #a7b7ad;
+      border-radius: 5px;
+      padding: 0 10px;
+      background: #f7faf8;
+      color: var(--accent-strong);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .relaxations { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    dialog {
+      width: min(1100px, calc(100% - 28px));
+      max-height: calc(100vh - 28px);
+      padding: 0;
+      border: 1px solid #69756e;
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+    dialog::backdrop { background: rgba(17, 22, 19, 0.72); }
+    .evidence-dialog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .evidence-dialog-head h2 { margin: 0; font-size: 16px; }
+    .icon-command {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #aaa99f;
+      border-radius: 5px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
+    }
+    .evidence-dialog-body {
+      display: grid;
+      grid-template-columns: minmax(320px, 1.2fr) minmax(280px, 0.8fr);
+      min-height: 0;
+    }
+    .evidence-image-stage {
+      min-height: 520px;
+      overflow: auto;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background: #252a27;
+    }
+    .evidence-image-stage img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: min(78vh, 820px);
+      object-fit: contain;
+      transform-origin: center;
+    }
+    .evidence-panel { overflow: auto; max-height: calc(100vh - 82px); padding: 16px; }
+    .evidence-panel h3 { margin: 18px 0 8px; font-size: 13px; }
+    .evidence-panel h3:first-child { margin-top: 0; }
+    .evidence-panel ul { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.5; }
+    .zoom-controls { display: flex; gap: 6px; }
+    details { margin-top: 10px; border-top: 1px solid #ecebe6; padding-top: 9px; }
+    summary { color: var(--accent-strong); font-size: 12px; font-weight: 650; cursor: pointer; }
+    .printing-list { margin: 8px 0 0; padding-left: 17px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .loading { opacity: 0.6; pointer-events: none; }
+    @media (max-width: 680px) {
+      .header-inner, main { width: min(100% - 20px, 1480px); }
+      .brand span { display: none; }
+      .search-row { grid-template-columns: 1fr auto; }
+      .command.secondary { grid-column: 1 / -1; }
+      .query-state { align-items: flex-start; flex-direction: column; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .result-body { padding: 9px; }
+      .result-heading { display: block; }
+      .score { display: block; margin-top: 4px; }
+      .evidence-dialog-body { grid-template-columns: 1fr; }
+      .evidence-image-stage { min-height: 380px; }
+      .evidence-panel { max-height: none; }
+    }
+    @media (max-width: 390px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand"><strong>Grookai Vault</strong><span>Visual Facts Lab</span></div>
+        <div class="status"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Loading index</span></div>
+      </div>
+    </header>
+    <main>
+      <form id="searchForm" class="search-row">
+        <input id="searchInput" class="search-input" type="search" minlength="2" maxlength="180" autocomplete="off" spellcheck="false" placeholder="Pikachu sleeping in a forest" aria-label="Search visible card artwork facts">
+        <button class="command" type="submit">Search</button>
+        <button id="copyJson" class="command secondary" type="button" disabled>Copy JSON</button>
+      </form>
+      <section class="query-state" aria-live="polite">
+        <div id="chips" class="chips"></div>
+        <div id="resultCount" class="result-count"></div>
+      </section>
+      <div id="message" class="message">Search the locked 9,532-artwork sandbox.</div>
+      <section id="results" class="result-groups" aria-label="Visual search results"></section>
+    </main>
+    <dialog id="evidenceDialog">
+      <div class="evidence-dialog-head">
+        <h2 id="evidenceTitle">Visual evidence</h2>
+        <div class="zoom-controls">
+          <button id="zoomOut" class="icon-command" type="button" title="Zoom out" aria-label="Zoom out">−</button>
+          <button id="zoomIn" class="icon-command" type="button" title="Zoom in" aria-label="Zoom in">+</button>
+          <button id="closeEvidence" class="icon-command" type="button" title="Close" aria-label="Close">×</button>
+        </div>
+      </div>
+      <div class="evidence-dialog-body">
+        <div id="evidenceImageStage" class="evidence-image-stage"></div>
+        <div id="evidencePanel" class="evidence-panel"></div>
+      </div>
+    </dialog>
+  </div>
+  <script>
+    const form = document.getElementById("searchForm");
+    const input = document.getElementById("searchInput");
+    const resultsNode = document.getElementById("results");
+    const messageNode = document.getElementById("message");
+    const chipsNode = document.getElementById("chips");
+    const countNode = document.getElementById("resultCount");
+    const statusNode = document.getElementById("statusText");
+    const copyButton = document.getElementById("copyJson");
+    const evidenceDialog = document.getElementById("evidenceDialog");
+    const evidenceTitle = document.getElementById("evidenceTitle");
+    const evidenceImageStage = document.getElementById("evidenceImageStage");
+    const evidencePanel = document.getElementById("evidencePanel");
+    const closeEvidence = document.getElementById("closeEvidence");
+    const zoomIn = document.getElementById("zoomIn");
+    const zoomOut = document.getElementById("zoomOut");
+    let lastPayload = null;
+    let evidenceZoom = 1;
+
+    function element(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function addChip(text, unknown = false) {
+      chipsNode.append(element("span", `chip${unknown ? " unknown" : ""}`, text));
+    }
+
+    function renderParsed(payload) {
+      chipsNode.replaceChildren();
+      for (const chip of payload.interpretation?.chips || []) addChip(chip.label);
+      for (const term of payload.interpretation?.unrecognized_terms || []) addChip(`Not understood: ${term}`, true);
+    }
+
+    function imageSource(result) {
+      return result.representative_card?.image_source_key
+        ? `/api/image?source=${encodeURIComponent(result.representative_card.image_source_key)}`
+        : null;
+    }
+
+    function applyEvidenceZoom() {
+      const image = evidenceImageStage.querySelector("img");
+      if (image) image.style.transform = `scale(${evidenceZoom})`;
+    }
+
+    function openEvidence(result) {
+      evidenceZoom = 1;
+      evidenceTitle.textContent = `${result.representative_name} evidence`;
+      evidenceImageStage.replaceChildren();
+      const source = imageSource(result);
+      if (source) {
+        const image = element("img");
+        image.src = source;
+        image.alt = `${result.representative_name} full card image`;
+        evidenceImageStage.append(image);
+      } else {
+        evidenceImageStage.append(element("span", "image-fallback", "Image unavailable"));
+      }
+      evidencePanel.replaceChildren();
+      evidencePanel.append(element("h3", "", "Why this matched"));
+      evidencePanel.append(element("p", "reason", result.collector_reason));
+      evidencePanel.append(element("h3", "", "Matched visible facts"));
+      const facts = element("ul");
+      for (const match of result.public_evidence || []) {
+        const authority = match.authority ? ` (${match.authority})` : "";
+        facts.append(element("li", "", `${match.term}${authority}`));
+      }
+      evidencePanel.append(facts);
+      evidencePanel.append(element("h3", "", "Appearance roles"));
+      const roles = element("ul");
+      const uniqueRoles = [...new Set((result.public_evidence || []).map((row) => row.appearance_role).filter(Boolean))];
+      if (uniqueRoles.length) {
+        for (const role of uniqueRoles) roles.append(element("li", "", role.replaceAll("_", " ")));
+      } else {
+        roles.append(element("li", "", "No character appearance role required"));
+      }
+      evidencePanel.append(roles);
+      evidenceDialog.showModal();
+    }
+
+    function resultCard(result) {
+      const article = element("article", "result-card");
+      const imageWrap = element("div", "image-wrap");
+      if (result.representative_card && result.representative_card.image_url) {
+        const image = element("img");
+        image.src = imageSource(result);
+        image.alt = `${result.representative_name} card artwork`;
+        image.loading = "lazy";
+        image.addEventListener("error", () => imageWrap.replaceChildren(element("span", "image-fallback", "Image unavailable")));
+        imageWrap.append(image);
+      } else {
+        imageWrap.append(element("span", "image-fallback", "Image unavailable"));
+      }
+      article.append(imageWrap);
+
+      const body = element("div", "result-body");
+      const heading = element("div", "result-heading");
+      heading.append(element("h2", "", result.representative_name));
+      body.append(heading);
+      const card = result.representative_card;
+      body.append(element("p", "meta", `${card?.set_code || "Unknown set"} #${card?.number || "?"} | Tier ${result.eligibility_tier} | ${result.prompt_branch}`));
+      body.append(element("p", "reason", result.collector_reason));
+
+      const evidence = element("ul", "evidence");
+      const seen = new Set();
+      for (const match of result.public_evidence || []) {
+        const key = `${match.term}|${match.appearance_role || ""}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const item = element("li");
+        item.append(element("span", "evidence-term", match.term));
+        item.append(element("span", "evidence-source", `${match.authority}${match.appearance_role ? ` | ${match.appearance_role.replaceAll("_", " ")}` : ""}`));
+        evidence.append(item);
+        if (seen.size === 3) break;
+      }
+      body.append(evidence);
+      const evidenceButton = element("button", "evidence-command", "View evidence");
+      evidenceButton.type = "button";
+      evidenceButton.addEventListener("click", () => openEvidence(result));
+      body.append(evidenceButton);
+
+      const details = element("details");
+      details.append(element("summary", "", `${result.matching_printings.length} matching printing${result.matching_printings.length === 1 ? "" : "s"}`));
+      const printingList = element("ul", "printing-list");
+      for (const printing of result.matching_printings) printingList.append(element("li", "", `${printing.gv_id} | ${printing.set_code} #${printing.number}`));
+      details.append(printingList);
+      body.append(details);
+      article.append(body);
+      return article;
+    }
+
+    function render(payload) {
+      lastPayload = payload;
+      copyButton.disabled = false;
+      renderParsed(payload);
+      countNode.textContent = `${payload.total_matches.toLocaleString()} artwork match${payload.total_matches === 1 ? "" : "es"} | ${payload.latency_ms.toFixed(1)} ms`;
+      const groupNodes = (payload.result_groups || []).map((group) => {
+        const section = element("section", "result-group");
+        section.append(element("h2", "", group.label));
+        const grid = element("div", "grid");
+        grid.append(...group.results.map(resultCard));
+        section.append(grid);
+        return section;
+      });
+      resultsNode.replaceChildren(...groupNodes);
+      if (payload.results.length) {
+        messageNode.hidden = true;
+      } else {
+        messageNode.hidden = false;
+        messageNode.replaceChildren(element("div", "", payload.zero_state?.message || "No exact matches."));
+        const relaxations = element("div", "relaxations");
+        for (const relaxation of payload.zero_state?.relaxations || []) {
+          const button = element("button", "evidence-command", `${relaxation.label} (${relaxation.result_count})`);
+          button.type = "button";
+          button.addEventListener("click", () => {
+            input.value = relaxation.query;
+            runSearch(relaxation.query);
+          });
+          relaxations.append(button);
+        }
+        messageNode.append(relaxations);
+      }
+    }
+
+    async function runSearch(query) {
+      document.body.classList.add("loading");
+      messageNode.hidden = false;
+      messageNode.textContent = "Searching visible facts...";
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&limit=24`);
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Search failed");
+        render(payload);
+        const url = new URL(window.location.href);
+        url.searchParams.set("q", query);
+        history.replaceState(null, "", url);
+      } catch (error) {
+        resultsNode.replaceChildren();
+        chipsNode.replaceChildren();
+        countNode.textContent = "";
+        messageNode.hidden = false;
+        messageNode.textContent = error.message;
+      } finally {
+        document.body.classList.remove("loading");
+      }
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = input.value.trim();
+      if (query.length >= 2) runSearch(query);
+    });
+
+    copyButton.addEventListener("click", async () => {
+      if (!lastPayload) return;
+      await navigator.clipboard.writeText(JSON.stringify(lastPayload, null, 2));
+      const previous = copyButton.textContent;
+      copyButton.textContent = "Copied";
+      setTimeout(() => { copyButton.textContent = previous; }, 1200);
+    });
+
+    closeEvidence.addEventListener("click", () => evidenceDialog.close());
+    evidenceDialog.addEventListener("click", (event) => {
+      if (event.target === evidenceDialog) evidenceDialog.close();
+    });
+    zoomIn.addEventListener("click", () => {
+      evidenceZoom = Math.min(2.5, evidenceZoom + 0.2);
+      applyEvidenceZoom();
+    });
+    zoomOut.addEventListener("click", () => {
+      evidenceZoom = Math.max(0.6, evidenceZoom - 0.2);
+      applyEvidenceZoom();
+    });
+
+    fetch("/api/health").then((response) => response.json()).then((health) => {
+      statusNode.textContent = `${health.artwork_groups.toLocaleString()} artworks ready`;
+    }).catch(() => { statusNode.textContent = "Index unavailable"; });
+
+    const initialQuery = new URL(window.location.href).searchParams.get("q");
+    if (initialQuery) {
+      input.value = initialQuery;
+      runSearch(initialQuery);
+    } else {
+      input.focus();
+    }
+  </script>
+</body>
+</html>

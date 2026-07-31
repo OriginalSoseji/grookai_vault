@@ -1,0 +1,44 @@
+{
+  "version": "CARD_VISUAL_SEARCH_FOUNDER_REVIEWS_V1",
+  "authority": "founder_image_review",
+  "records": [
+    {
+      "source_record_id": "founder_review_slurpuff_asc_094_pikachu_cookie_v1",
+      "source": "founder_image_review",
+      "reviewed_at": "2026-07-29",
+      "reviewed_by": "founder",
+      "cameo_identity_kind": "pokemon",
+      "cameo_identity": "Pikachu",
+      "card_name": "Slurpuff",
+      "set_name": "Ascended Heroes",
+      "card_number": "094",
+      "notes": "Pikachu-shaped cookie is visibly present. The identity of the cookie held by Slurpuff remains unconfirmed.",
+      "display_mode_terms": [
+        "food"
+      ],
+      "representation_details": [
+        "cookie"
+      ],
+      "subject_kind_candidate": "character_representation",
+      "reconciliation_status": "founder_image_confirmed",
+      "canonical_match": {
+        "card_print_id": "3da1fac3-bd99-49be-aa95-61e3ffe092c7",
+        "gv_id": "GV-PK-ASC-094",
+        "set_name": "Ascended Heroes",
+        "card_name": "Slurpuff",
+        "card_number": "094"
+      },
+      "evidence_boundary": {
+        "proves_card_cameo_association": true,
+        "proves_display_mode_only_when_notes_explicit": true,
+        "proves_character_representation": true,
+        "proves_representation_form": "food shape",
+        "proves_object_form": "cookie",
+        "proves_held_cookie_identity": false,
+        "proves_pixel_location": false,
+        "proves_fact_graph_observation": false,
+        "authorizes_fact_graph_mutation": false
+      }
+    }
+  ]
+}

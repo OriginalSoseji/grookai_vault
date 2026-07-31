@@ -114,6 +114,12 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
 | GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
+| GROOKAI_UNIFIED_COLLECTOR_SEARCH_V2 | Active | docs/contracts/GROOKAI_UNIFIED_COLLECTOR_SEARCH_V2.md — Governs signed-in unified canonical and visual search, strict appearance roles, evidence authority, collector-facing grouping, strict-zero behavior, corrections, and canonical fallback |
+| CARD_VISUAL_SEARCH_EVIDENCE_SUPPRESSION_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_EVIDENCE_SUPPRESSION_V1.md — Governs image-pinned founder negative evidence, immutable release application, zero source mutation, and fail-closed suppression reconciliation |
+| CARD_VISUAL_EXTERNAL_SOURCE_INCORPORATION_V1 | Active | docs/contracts/CARD_VISUAL_EXTERNAL_SOURCE_INCORPORATION_V1.md — Registers RotomAmiti, SightDex, Artchu, TCG Curator, BinderBloom, and ArtFinderTCG as bounded candidate, vocabulary, query-demand, or product-research lanes; forbids unpermitted scraping and direct search authority |
+| CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_V1 | Active | docs/contracts/CARD_VISUAL_SEARCH_TCG_CONCEPT_PROFILE_V1.md — Deterministically derives TCG-centric collector concepts from accepted observation-backed evidence without mutating or regenerating paid Fact Graphs |
+| CARD_VISUAL_SEARCH_PROJECTION_V2 | Active | docs/contracts/CARD_VISUAL_SEARCH_PROJECTION_V2.md — Governs four isolated evidence-backed documents, strict representation/resemblance routing, and guarded TCG-concept derivation |
+| CARD_VISUAL_SEARCH_CORPUS_RELEASE_V2 | Active | docs/contracts/CARD_VISUAL_SEARCH_CORPUS_RELEASE_V2.md — Governs the zero-AI four-document corpus rebuild, repair ledger, external candidate/assertion boundary, materialized index, reconciliation, and inactive load plan |
 
 ---
 

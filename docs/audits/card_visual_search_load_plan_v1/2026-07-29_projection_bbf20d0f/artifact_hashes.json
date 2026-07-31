@@ -1,0 +1,14 @@
+{
+  "hash_algorithm": "sha256",
+  "generated_on": "2026-07-29",
+  "artifacts": [
+    {
+      "path": "docs/audits/card_visual_search_load_plan_v1/2026-07-29_projection_bbf20d0f/load_plan.json",
+      "sha256": "f0b1931888178ed3810bd27a21e24b023457366317d44137550bf9114feae3da"
+    },
+    {
+      "path": "docs/audits/card_visual_search_load_plan_v1/2026-07-29_projection_bbf20d0f/LOAD_PLAN.md",
+      "sha256": "dfcff090b2b91705d517546e3a748589f944bee87ef822dd330f42d6185c93a5"
+    }
+  ]
+}
