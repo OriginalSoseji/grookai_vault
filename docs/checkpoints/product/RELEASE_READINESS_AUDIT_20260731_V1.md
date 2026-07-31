@@ -108,9 +108,22 @@ The Xcode Cloud build for deployed main revision
 The immediately preceding builds for `258215033d8ea35417fbba3f0766da91506344e4`
 and `8933fd73177b26eea8cc96b3e5f2b7d31b8eab3a` also failed. GitHub exposes
 the App Store Connect build link and final status but not the archive log.
-Local Flutter analysis and tests are green, so the Apple failure remains
-unclassified until its Xcode Cloud log is inspected. No successful TestFlight
-artifact from current `main` is proven.
+The Apple email for build 248 supplied the missing failure evidence:
+
+- `ios/Flutter/Release.xcconfig` could not include `Generated.xcconfig`
+- Xcode could not load the CocoaPods Runner framework output file list
+
+The repository did not contain Xcode Cloud's recognized
+`ios/ci_scripts/ci_post_clone.sh`, so the temporary macOS worker ran neither
+`flutter pub get` nor `pod install` before archive. This is a dependency
+bootstrap failure, not a Flutter test or application-code failure.
+
+The repair candidate adds the official post-clone integration point, pins the
+repository-tested Flutter `3.35.2` release, precaches iOS artifacts, resolves
+the locked Dart packages, installs CocoaPods when absent, and runs `pod
+install`. A new contract protects the complete bootstrap sequence. The repair
+is not production-proven until a fresh Xcode Cloud archive passes. No
+successful TestFlight artifact from current `main` is proven yet.
 
 Expanded beta requires:
 
@@ -171,9 +184,8 @@ missing core architecture.
 
 ## Exact Next Gate
 
-Inspect the failed Xcode Cloud archive log, repair the specific Apple build or
-signing failure, and produce a successful TestFlight artifact from current
-`main`. Then validate the clean-account journey on a physical iPhone.
-Independently, preserve the frozen pricing canary until
+Merge the Xcode Cloud dependency-bootstrap repair and require a successful
+archive and TestFlight artifact from the resulting `main`. Then validate the
+clean-account journey on a physical iPhone. Independently, preserve the frozen pricing canary until
 `2026-08-03T10:34:15.670Z`, then run its mandatory final pass before applying
 any post-canary pricing migration.
