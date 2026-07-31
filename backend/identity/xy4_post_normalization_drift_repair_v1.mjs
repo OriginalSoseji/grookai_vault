@@ -13,6 +13,7 @@
 import '../env.mjs';
 import { Client } from 'pg';
 
+import { normalizeTerminalCardSuffix } from './card_name_suffix_normalization_v1.mjs';
 import { installIdentityMaintenanceBoundaryV1 } from './identity_maintenance_boundary_v1.mjs';
 
 if (!process.env.ENABLE_IDENTITY_MAINTENANCE_MODE) {
@@ -60,9 +61,6 @@ const MAX_EXPECTED_DRIFT_ROWS = 1;
 
 const APOSTROPHE_VARIANTS_RE = /[\u2018\u2019`´]/g;
 const DASH_SEPARATOR_VARIANTS_RE = /[\u2013\u2014]/g;
-const TERMINAL_EX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)+EX$/i;
-const TERMINAL_GX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)+GX$/i;
-
 function normalizeCount(value) {
   return Number(value ?? 0);
 }
@@ -98,8 +96,8 @@ function toCanonicalDisplayNameV3(name) {
   value = value.replace(APOSTROPHE_VARIANTS_RE, "'");
   value = value.replace(DASH_SEPARATOR_VARIANTS_RE, ' ');
   value = collapseWhitespace(value);
-  value = value.replace(TERMINAL_GX_RE, '$1-GX');
-  value = value.replace(TERMINAL_EX_RE, '$1-EX');
+  value = normalizeTerminalCardSuffix(value, 'GX', '-');
+  value = normalizeTerminalCardSuffix(value, 'EX', '-');
   value = collapseWhitespace(value);
   return value;
 }
@@ -109,8 +107,8 @@ function toNameNormalizeV3Key(name) {
   value = value.replace(APOSTROPHE_VARIANTS_RE, "'");
   value = value.replace(DASH_SEPARATOR_VARIANTS_RE, ' ');
   value = collapseWhitespace(value);
-  value = value.replace(TERMINAL_GX_RE, '$1 GX');
-  value = value.replace(TERMINAL_EX_RE, '$1 EX');
+  value = normalizeTerminalCardSuffix(value, 'GX', ' ');
+  value = normalizeTerminalCardSuffix(value, 'EX', ' ');
   value = collapseWhitespace(value).toLowerCase();
   return value;
 }

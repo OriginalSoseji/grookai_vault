@@ -141,9 +141,8 @@ function fetchBuffer(url, redirects = 0, headers = {}) {
     const request = https.get(
       url,
       {
-        // The operator environment uses a local TLS inspection chain that Node
-        // cannot validate. Image bytes remain content-hashed in the audit.
-        rejectUnauthorized: false,
+        // Operator-specific trust roots must use NODE_EXTRA_CA_CERTS.
+        rejectUnauthorized: true,
         headers: {
           "user-agent": "Grookai-Market-Canary-Verifier/1.0",
           ...headers,

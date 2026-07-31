@@ -133,7 +133,7 @@ function hasRuntimeResolverDisplay(row) {
 }
 
 function fetchText(url) {
-  const agent = new https.Agent({ rejectUnauthorized: false });
+  const agent = new https.Agent({ rejectUnauthorized: true });
   return new Promise((resolve, reject) => {
     https
       .get(url, { agent, headers: { 'user-agent': 'grookai-image-audit/1.0' } }, (response) => {

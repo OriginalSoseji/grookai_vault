@@ -169,7 +169,7 @@ async function fetchText(url) {
         'user-agent': USER_AGENT,
       },
       timeout: 45000,
-      rejectUnauthorized: false,
+      rejectUnauthorized: true,
     }, (response) => {
       const status = response.statusCode ?? 0;
       if ([301, 302, 303, 307, 308].includes(status) && response.headers.location) {
@@ -203,7 +203,7 @@ async function fetchBuffer(url, redirectCount = 0) {
     const req = client.get(parsed, {
       headers: { 'user-agent': USER_AGENT },
       timeout: 45000,
-      rejectUnauthorized: false,
+      rejectUnauthorized: true,
     }, (response) => {
       const status = response.statusCode ?? 0;
       if ([301, 302, 303, 307, 308].includes(status) && response.headers.location) {

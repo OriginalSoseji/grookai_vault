@@ -197,7 +197,7 @@ async function headWithTlsFallback(url) {
       url,
       {
         method: 'HEAD',
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
       },
       (response) => {
         response.resume();

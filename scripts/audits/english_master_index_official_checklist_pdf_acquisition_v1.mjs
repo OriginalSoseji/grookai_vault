@@ -11,6 +11,7 @@ import {
   normalizeNumber,
   normalizeText,
 } from './verified_master_set_index_v1/shared.mjs';
+import { extractPdfTextItems } from './lib/pdf_text_operators_v1.mjs';
 
 const GAPS_PATH = 'docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json';
 const SETS_PATH = 'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json';
@@ -133,34 +134,6 @@ async function fetchPdf(set) {
   throw new Error(errors.join(' | '));
 }
 
-function decodePdfString(value) {
-  return String(value ?? '')
-    .replace(/\\\(/g, '(')
-    .replace(/\\\)/g, ')')
-    .replace(/\\\\/g, '\\')
-    .replace(/\\222/g, "'")
-    .replace(/\\226/g, '-')
-    .replace(/\\227/g, '-')
-    .replace(/\\251/g, '(c)')
-    .replace(/\\256/g, '(r)')
-    .replace(/\\351/g, 'é')
-    .replace(/\\034/g, '')
-    .replace(/\\035/g, '')
-    .replace(/\\036/g, '')
-    .replace(/\\037/g, '')
-    .replace(/\\[0-7]{1,3}/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function decodePdfArrayText(value) {
-  return [...String(value ?? '').matchAll(/\((?:\\.|[^\\)])*\)/g)]
-    .map((match) => decodePdfString(match[0].slice(1, -1)))
-    .join('')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function inflatePdfStreams(body) {
   const streams = [];
   let position = 0;
@@ -194,34 +167,12 @@ function inflatePdfStreams(body) {
   return streams;
 }
 
-function extractTextItems(streamText) {
-  if (!streamText.includes('Tj') && !streamText.includes('TJ')) return [];
-  const items = [];
-  let x = null;
-  let y = null;
-  const tokenRegex = /(-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+Tm)|(\[(?:\\.|[^\]])*\]TJ)|(\((?:\\.|[^\\)])*\)Tj)/g;
-  for (const match of streamText.matchAll(tokenRegex)) {
-    if (match[1]) {
-      x = Number(match[2]);
-      y = Number(match[3]);
-      continue;
-    }
-    const text = match[4]
-      ? decodePdfArrayText(match[4])
-      : decodePdfString(match[5].slice(1, -3));
-    if (text && Number.isFinite(x) && Number.isFinite(y)) {
-      items.push({ x, y, text });
-    }
-  }
-  return items;
-}
-
 function parseOfficialRows(body) {
   return parseOfficialRowsFromStreams(body);
 }
 
 function parseOfficialRowsFromStreams(body) {
-  const items = inflatePdfStreams(body).flatMap(extractTextItems);
+  const items = inflatePdfStreams(body).flatMap(extractPdfTextItems);
   const groups = new Map();
   for (const item of items) {
     const rowY = Math.round(item.y * 2) / 2;

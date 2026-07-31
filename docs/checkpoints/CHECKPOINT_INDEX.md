@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `CODEQL_TOOLING_REMEDIATION_20260731_V1` — `2026-07-31` — First governed default-branch CodeQL backlog pass: repairs 31 high-severity findings in owned maintenance/acquisition code, preserves full owned-code scanning, and classifies 46 downloaded HTML alerts as non-executable third-party evidence without weakening runtime coverage
 - `RELEASE_READINESS_AUDIT_20260731_V1` — `2026-07-31` — Controlled-beta release audit proving the deployed wall-feed, merged pricing/read boundaries, and TestFlight Build 258 while preserving physical-iPhone, 72-hour pricing, 17-surface, and unattended-cycle gates
 - `RELEASE_READINESS_AUDIT_20260731_V2` — `2026-07-31` — Current-main release audit proving live core/web/Edge security boundaries while preserving physical-iPhone, 72-hour pricing, ordered-migration, 17-surface, unattended-cycle, and licensing gates
 - `CAMEO_SEARCH_ROTOMAMITI_REFRESH_20260618_V1` — `2026-06-18` — Additive RotomAmiti cameo enrichment refresh: 60 logical-new `card_print_cameos` rows applied, active source count now 1,421, 38 preservation-review rows intentionally retained, and future refreshes locked to logical cameo identity instead of volatile sheet row hashes
