@@ -64,9 +64,14 @@ export async function detectOuterBorderAI({ imageBuffer, timeoutMs = 2000 }) {
   const notes = [];
   const enabled = process.env.GV_AI_BORDER_ENABLE === '1';
   const baseUrl = process.env.GV_AI_BORDER_URL || '';
+  const token = process.env.GV_AI_ENDPOINT_TOKEN || '';
 
   if (!enabled || !baseUrl) {
     return { ok: false, confidence: 0, notes, error: 'ai_disabled' };
+  }
+
+  if (!token) {
+    return { ok: false, confidence: 0, notes, error: 'ai_auth_not_configured' };
   }
 
   if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
@@ -85,7 +90,7 @@ export async function detectOuterBorderAI({ imageBuffer, timeoutMs = 2000 }) {
   try {
     response = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-gv-token': token },
       body: JSON.stringify({ image_b64: imageBuffer.toString('base64'), mode: 'polygon' }),
       signal: controller.signal,
     });
@@ -137,9 +142,14 @@ export async function warpCardQuadAI({ imageBuffer, quadNorm, outW, outH, timeou
   const notes = [];
   const enabled = process.env.GV_AI_BORDER_ENABLE === '1';
   const baseUrl = process.env.GV_AI_BORDER_URL || '';
+  const token = process.env.GV_AI_ENDPOINT_TOKEN || '';
 
   if (!enabled || !baseUrl) {
     return { ok: false, imageBuffer: null, notes, error: 'ai_disabled' };
+  }
+
+  if (!token) {
+    return { ok: false, imageBuffer: null, notes, error: 'ai_auth_not_configured' };
   }
 
   if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
@@ -166,7 +176,7 @@ export async function warpCardQuadAI({ imageBuffer, quadNorm, outW, outH, timeou
   try {
     response = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-gv-token': token },
       body: JSON.stringify({
         image_b64: imageBuffer.toString('base64'),
         quad_norm: quadNorm,
@@ -219,9 +229,14 @@ export async function ocrCardSignalsAI({ imageBuffer, timeoutMs = 4000 }) {
   const notes = [];
   const enabled = process.env.GV_AI_BORDER_ENABLE === '1';
   const baseUrl = process.env.GV_AI_BORDER_URL || '';
+  const token = process.env.GV_AI_ENDPOINT_TOKEN || '';
 
   if (!enabled || !baseUrl) {
     return { ok: false, notes: ['ai_disabled'], error: 'ai_disabled', result: null };
+  }
+
+  if (!token) {
+    return { ok: false, notes: ['ai_auth_not_configured'], error: 'ai_auth_not_configured', result: null };
   }
 
   if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
@@ -240,7 +255,7 @@ export async function ocrCardSignalsAI({ imageBuffer, timeoutMs = 4000 }) {
   try {
     response = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-gv-token': token },
       body: JSON.stringify({ image_b64: imageBuffer.toString('base64') }),
       signal: controller.signal,
     });

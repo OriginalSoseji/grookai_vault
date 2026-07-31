@@ -202,23 +202,23 @@ function applySpecialPhraseNormalizations(value: string) {
     appliedRules.add("special_family:swsh promo->swsh promo");
   }
 
-  if (/\bgold(?:\s+|-)+star\b/i.test(normalized)) {
-    normalized = normalized.replace(/\bgold(?:\s+|-)+star\b/gi, "★");
+  if (/\bgold[\s-]+star\b/i.test(normalized)) {
+    normalized = normalized.replace(/\bgold[\s-]+star\b/gi, "★");
     appliedRules.add("special_family:gold star->★");
   }
 
-  if (/\bfelt(?:\s+|-)+hat\b/i.test(normalized)) {
-    normalized = normalized.replace(/\bfelt(?:\s+|-)+hat\b/gi, "felt hat");
+  if (/\bfelt[\s-]+hat\b/i.test(normalized)) {
+    normalized = normalized.replace(/\bfelt[\s-]+hat\b/gi, "felt hat");
     appliedRules.add("special_phrase:felt hat");
   }
 
-  if (/\bbaby(?:\s+|-)+shiny\b/i.test(normalized)) {
-    normalized = normalized.replace(/\bbaby(?:\s+|-)+shiny\b/gi, "baby shiny");
+  if (/\bbaby[\s-]+shiny\b/i.test(normalized)) {
+    normalized = normalized.replace(/\bbaby[\s-]+shiny\b/gi, "baby shiny");
     appliedRules.add("special_phrase:baby shiny");
   }
 
-  if (/\balt(?:\s+|-)+art\b/i.test(normalized)) {
-    normalized = normalized.replace(/\balt(?:\s+|-)+art\b/gi, "alt art");
+  if (/\balt[\s-]+art\b/i.test(normalized)) {
+    normalized = normalized.replace(/\balt[\s-]+art\b/gi, "alt art");
     appliedRules.add("special_phrase:alt art");
   }
 
@@ -229,7 +229,24 @@ function applySpecialPhraseNormalizations(value: string) {
 }
 
 function cleanResolverToken(token: string) {
-  return token.replace(/^[^a-z0-9/.-]+|[^a-z0-9/.-]+$/gi, "");
+  let start = 0;
+  let end = token.length;
+
+  while (start < end && !isResolverTokenCharacter(token.charCodeAt(start))) {
+    start += 1;
+  }
+  while (end > start && !isResolverTokenCharacter(token.charCodeAt(end - 1))) {
+    end -= 1;
+  }
+
+  return token.slice(start, end);
+}
+
+function isResolverTokenCharacter(code: number) {
+  const isDigit = code >= 48 && code <= 57;
+  const isUppercase = code >= 65 && code <= 90;
+  const isLowercase = code >= 97 && code <= 122;
+  return isDigit || isUppercase || isLowercase || code === 47 || code === 46 || code === 45;
 }
 
 function normalizeResolverInput(value: string) {

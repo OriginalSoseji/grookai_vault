@@ -1,11 +1,12 @@
 ﻿from fastapi import FastAPI, Request
+from fastapi import HTTPException
 from pydantic import BaseModel
 import base64
 import cv2
 import numpy as np
 from PIL import Image
 import io
-import traceback
+import hmac
 import re
 import os
 import hashlib
@@ -454,13 +455,14 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
 def _require_gv_token(request: Request):
     expected = os.environ.get("GV_AI_ENDPOINT_TOKEN")
     if not expected:
-        raise RuntimeError("GV_AI_ENDPOINT_TOKEN not set")
+        raise HTTPException(status_code=503, detail="service_unconfigured")
     got = request.headers.get("x-gv-token")
-    if not got or got != expected:
-        raise RuntimeError("unauthorized")
+    if not got or not hmac.compare_digest(got, expected):
+        raise HTTPException(status_code=401, detail="unauthorized")
 
 @app.post("/detect-card-border")
 async def detect_card_border(request: Request):
+    _require_gv_token(request)
     try:
         body = await request.body()
 
@@ -540,11 +542,12 @@ async def detect_card_border(request: Request):
             "notes": ["center_seed_bbox", f"area={area_frac:.3f}"],
         }
 
-    except Exception as e:
-        return {"ok": False, "confidence": 0.0, "error": str(e), "notes": ["exception"]}
+    except Exception:
+        return {"ok": False, "confidence": 0.0, "error": "border_detection_failed", "notes": ["exception"]}
 
 @app.post("/ocr-card-signals")
 async def ocr_card_signals(request: Request):
+    _require_gv_token(request)
     try:
         body = await request.body()
         img_bytes = None
@@ -1068,10 +1071,9 @@ async def ocr_card_signals(request: Request):
             },
         }
 
-    except Exception as e:
+    except Exception:
         return {
-            "error": str(e),
-            "trace": traceback.format_exc(),
+            "error": "ocr_processing_failed",
             "name": None,
             "number_raw": None,
             "printed_total": None,
@@ -1088,7 +1090,8 @@ async def ocr_card_signals(request: Request):
         }
 
 @app.post("/warp-card-quad")
-async def warp_card_quad(req: WarpQuadRequest):
+async def warp_card_quad(request: Request, req: WarpQuadRequest):
+    _require_gv_token(request)
     try:
         img_rgb = _decode_image_b64(req.image_b64)
         H, W = img_rgb.shape[:2]
@@ -1129,19 +1132,18 @@ async def warp_card_quad(req: WarpQuadRequest):
             "height": out_h,
             "notes": ["perspective_warp_applied"],
         }
-    except Exception as e:
+    except Exception:
         return {
             "ok": False,
             "warped_jpg_b64": None,
-            "error": str(e),
+            "error": "warp_processing_failed",
             "notes": ["exception"],
         }
 
 @app.post("/ai-identify-warp")
 async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
+    _require_gv_token(request)
     try:
-        _require_gv_token(request)
-
         run_id = _run_id()
         dbg_dir = _debug_dir()
 
@@ -1234,21 +1236,8 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
             },
             "error": None,
         }
-    except Exception as e:
-        err = str(e)
-        if err == "unauthorized":
-            return {
-                "ok": False,
-                "cache_hit": False,
-                "run_id": _run_id(),
-                "trace_id": None,
-                "sha256": None,
-                "cached_at": None,
-                "result": None,
-                "error": "unauthorized",
-            }
-        if "cannot identify image file" in err.lower():
-            err = "invalid_image"
+    except Exception as error:
+        error_code = "invalid_image" if "cannot identify image file" in str(error).lower() else "identification_failed"
         return {
             "ok": False,
             "cache_hit": False,
@@ -1257,5 +1246,5 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
             "sha256": None,
             "cached_at": None,
             "result": None,
-            "error": err,
+            "error": error_code,
         }
