@@ -24,11 +24,13 @@
     "@tesseract.js-data/eng": "^1.0.0",
     "dotenv": "^17.2.3",
     "pg": "^8.11.5",
-    "sharp": "^0.33.2",
+    "sharp": "0.35.3",
     "tesseract.js": "^7.0.0"
   },
   "overrides": {
+    "adm-zip": "0.6.0",
     "protobufjs": "7.6.5",
+    "sharp": "0.35.3",
     "ws": "8.21.0"
   }
 }
