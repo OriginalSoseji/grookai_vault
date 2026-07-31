@@ -10,6 +10,7 @@ const CONFIG = readFileSync(
   "supabase/functions/wall_feed/config.toml",
   "utf8",
 );
+const ROOT_CONFIG = readFileSync("supabase/config.toml", "utf8");
 const KEY_RESOLVER = readFileSync(
   "supabase/functions/_shared/key_resolver.ts",
   "utf8",
@@ -17,6 +18,10 @@ const KEY_RESOLVER = readFileSync(
 
 test("wall_feed is a public fixed-shape read-only adapter", () => {
   assert.match(CONFIG, /^verify_jwt\s*=\s*false\s*$/m);
+  assert.match(
+    ROOT_CONFIG,
+    /\[functions\.wall_feed\][\s\S]*?enabled\s*=\s*true[\s\S]*?verify_jwt\s*=\s*false[\s\S]*?entrypoint\s*=\s*"\.\/functions\/wall_feed\/index\.ts"/,
+  );
   assert.match(SOURCE, /req\.method !== "GET"/);
   assert.match(SOURCE, /method:\s*"GET"/);
   assert.match(SOURCE, /\.from\(|\/rest\/v1\/wall_feed_view/);

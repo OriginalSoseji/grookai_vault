@@ -239,7 +239,10 @@ export async function handleWallFeed(
   }
   if (!upstream.ok) {
     const safeError = safeUpstreamError(upstreamBody);
-    if (upstream.status === 416 && safeError.upstream_code === "PGRST103") {
+    // The bounded GET is the only upstream operation. PostgREST may omit its
+    // JSON error body for an unsatisfiable offset, so status 416 is sufficient
+    // evidence that pagination reached the end of the feed.
+    if (upstream.status === 416) {
       const count = parseCount(upstream.headers.get("content-range"), 0);
       logger.log("wall_feed query completed beyond available range", {
         count,
