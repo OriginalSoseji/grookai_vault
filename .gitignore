@@ -165,6 +165,8 @@ apps/web/src/app/api/slabs/upgrade/*
 # temp / logs
 *.log
 *.err.log
+__pycache__/
+*.py[cod]
 
 # audit raw byproducts
 docs/audits/**/cache/
