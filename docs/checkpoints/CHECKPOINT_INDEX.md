@@ -1,6 +1,6 @@
 # CHECKPOINT_INDEX
 
-- `RELEASE_READINESS_AUDIT_20260731_V1` — `2026-07-31` — Controlled-beta release audit proving the deployed wall-feed and merged pricing/read boundaries while preserving Xcode Cloud, physical-iPhone, 72-hour pricing, 17-surface, and unattended-cycle gates
+- `RELEASE_READINESS_AUDIT_20260731_V1` — `2026-07-31` — Controlled-beta release audit proving the deployed wall-feed, merged pricing/read boundaries, and TestFlight Build 258 while preserving physical-iPhone, 72-hour pricing, 17-surface, and unattended-cycle gates
 - `CAMEO_SEARCH_ROTOMAMITI_REFRESH_20260618_V1` — `2026-06-18` — Additive RotomAmiti cameo enrichment refresh: 60 logical-new `card_print_cameos` rows applied, active source count now 1,421, 38 preservation-review rows intentionally retained, and future refreshes locked to logical cameo identity instead of volatile sheet row hashes
 - `DB_CANON_COMPLETE_BEFORE_WEB_CHANGES_RESTORE_POINT_V1` — `2026-06-16` — Restore instructions for git checkpoint `checkpoint/db-canon-complete-before-web-20260616` / commit `fb95dff5`, preserving the current DB canon, enrichment, image-truth, Pocket GV-ID, external mapping alias, and website baseline before further website changes
 - `LOCAL_COMMUNITY_FEED_V1_INTERNAL_PREVIEW_COMPLETE` — `2026-05-21` — Permanent project-memory checkpoint locking Local Community Feed V1 as accepted internal-preview infrastructure, with authenticated opt-in access, coarse locality only, block/mute safety, sanitized public-safe images, mobile drawer-only scope, and no public production enablement
