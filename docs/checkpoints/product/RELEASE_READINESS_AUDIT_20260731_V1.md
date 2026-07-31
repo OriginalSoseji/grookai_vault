@@ -173,6 +173,39 @@ configuration with `--no-codesign`; Xcode Cloud performs signing during the
 subsequent archive. The next candidate therefore keeps Release/config-only
 generation but explicitly disables signing discovery in the post-clone phase.
 
+That candidate merged as `c57a6acb96b08fd5804405b1db3b4ccc68abd765`.
+Build 256 (`dde40669-e0f2-4130-9301-0b4fdfcf3833`) still returned exit code
+`26`, but the authenticated Apple log supplied the underlying error. Flutter
+3.44.7 attempted its automatic Swift Package Manager migration and added
+`DKImagePickerController`; Xcode Cloud 26.6 requires a checked-in
+`Package.resolved` when automatic dependency resolution is disabled. Flutter,
+Dart packages, and CocoaPods had all completed before that deterministic input
+failure.
+
+Disposable macOS 15 run `30646861504` then completed the exact Flutter 3.44.7
+release-configuration command and captured the generated SwiftPM project,
+scheme, CocoaPods lock transition, and 19-package resolution. The captured
+`Package.resolved` SHA-256 is
+`c72e5ba8870d5bc1d227775634ac1f981d209fdbc6c5c8b06153b563236141ce`.
+The diagnostic workflow and branch are not release inputs and were deleted;
+only the generated, reviewable dependency state is carried into the next
+candidate. A fresh Xcode Cloud archive remains authoritative proof.
+
+The first disabled-resolution probe, run `30647485716`, then identified a
+second deterministic path boundary before any Apple rerun. Flutter's migration
+stored the lock under the project workspace, while an archive through
+`Runner.xcworkspace` requires the same resolved state under
+`ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved`. The candidate
+therefore tracks identical project-workspace and archive-workspace resolution
+files and contracts their equality. That failed diagnostic branch was deleted
+and is not a release input.
+
+Corrected macOS 15 probe `30647990469` then passed in 4m41s. It resolved the
+checked-in graph with Xcode's `-disableAutomaticPackageResolution`, reran
+Flutter's Release/config-only command, and proved zero drift across both
+resolution files, `Podfile.lock`, the Xcode project, and the shared scheme. Its
+diagnostic branch and workflow were deleted and were never merged.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build
