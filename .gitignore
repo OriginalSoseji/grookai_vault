@@ -96,6 +96,7 @@ tmp/
 
 # Flutter generated / local
 .flutter-plugins-dependencies
+test/grookai_objects/failures/
 linux/flutter/generated_plugin_registrant.cc
 linux/flutter/generated_plugins.cmake
 macos/Flutter/GeneratedPluginRegistrant.swift

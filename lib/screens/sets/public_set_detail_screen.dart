@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
@@ -494,7 +495,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
           onRefresh: _load,
           child: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
-            cacheExtent: 320,
+            scrollCacheExtent: const ScrollCacheExtent.pixels(320),
             slivers: _buildBodySlivers(context, detail),
           ),
         ),

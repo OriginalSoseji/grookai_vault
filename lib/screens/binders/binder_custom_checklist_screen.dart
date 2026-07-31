@@ -475,9 +475,8 @@ class _BinderCustomChecklistEditorScreenState
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 40),
               sliver: SliverReorderableList(
                 itemCount: _slots.length,
-                onReorder: (oldIndex, newIndex) {
+                onReorderItem: (oldIndex, newIndex) {
                   setState(() {
-                    if (newIndex > oldIndex) newIndex--;
                     final item = _slots.removeAt(oldIndex);
                     _slots.insert(newIndex, item);
                   });
