@@ -145,6 +145,16 @@ the current stable Flutter `3.44.7` SDK while preserving the migrated iOS
 lifecycle and custom scanner registration. The SDK tag is verified upstream;
 the next archive remains the authoritative macOS compile proof.
 
+The Flutter 3.44.7 candidate merged as
+`7cc8f2bf01d1e7ca6b0493b967428704b5d9b51c`. Builds 252 and 253 then failed
+inside `ci_post_clone.sh` before Xcode archive, including one automatic retry
+from unchanged iOS code. The script pinned 3.44.7 but reused the unversioned
+cache path `${HOME}/flutter` whenever any Flutter executable already existed.
+That made the requested SDK version unenforceable against an older Xcode Cloud
+cache. The next candidate uses a version-specific SDK cache, verifies the
+cached framework version before dependency resolution, and emits bounded phase
+markers so future custom-script failures identify the exact failed stage.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build
