@@ -6,6 +6,8 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 
+import { isHttpUrl, isUrlFromHostname } from './lib/url_authority_v1.mjs';
+
 dotenv.config({ path: '.env.local', quiet: true });
 dotenv.config({ quiet: true });
 
@@ -94,10 +96,6 @@ function normalizePathSegment(value, fallback = 'unknown') {
   return normalized || fallback;
 }
 
-function isHttpUrl(value) {
-  return /^https?:\/\//i.test(String(value ?? '').trim());
-}
-
 function storagePublicUrl(storagePath) {
   const base = clean(process.env.SUPABASE_URL);
   if (!base) return null;
@@ -115,25 +113,17 @@ function resolveImageUrl(value) {
   return storagePublicUrl(normalized);
 }
 
-function hostnameFor(url) {
-  try {
-    return new URL(url).hostname.toLowerCase();
-  } catch {
-    return null;
-  }
-}
-
 function sourceLane(value) {
   const normalized = clean(value);
   if (!normalized) return 'missing';
   if (!isHttpUrl(normalized)) return 'supabase_storage_path';
-  const host = hostnameFor(normalized);
-  if (host?.includes('supabase.co')) return 'supabase_public_url';
-  if (host?.includes('pokemontcg.io')) return 'external_pokemontcg';
-  if (host?.includes('tcgplayer')) return 'external_tcgplayer';
-  if (host?.includes('tcgcollector.com')) return 'external_tcgcollector';
-  if (host?.includes('malie.io')) return 'external_malie';
-  if (host?.includes('assets.tcgdex.net')) return 'external_tcgdex';
+  const from = (hostname) => isUrlFromHostname(normalized, hostname, { allowSubdomains: true });
+  if (from('supabase.co')) return 'supabase_public_url';
+  if (from('pokemontcg.io')) return 'external_pokemontcg';
+  if (from('tcgplayer.com')) return 'external_tcgplayer';
+  if (from('tcgcollector.com')) return 'external_tcgcollector';
+  if (from('malie.io')) return 'external_malie';
+  if (from('assets.tcgdex.net')) return 'external_tcgdex';
   return 'external_other';
 }
 

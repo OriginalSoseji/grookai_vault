@@ -12,10 +12,10 @@ const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/pkmnco
 const CACHE_DIR = path.join(REPORT_DIR, 'cache');
 
 const TARGETS = [
-  ['24a', 'M Manectric-EX', 'https://www.pkmncollectors.com/cards/m-manectric-ex-yellow-a-alternate-24a-rare'],
-  ['28a', 'Jolteon-EX', 'https://www.pkmncollectors.com/cards/jolteon-ex-yellow-a-alternate-28a-rare'],
-  ['54a', 'Zygarde-EX', 'https://www.pkmncollectors.com/cards/zygarde-ex-yellow-a-alternate-54a-rare'],
-  ['55a', 'M Lucario-EX', 'https://www.pkmncollectors.com/cards/m-lucario-ex-yellow-a-alternate-55a-rare'],
+  { cardNumber: '24a', cardName: 'M Manectric-EX', sourceUrl: 'https://www.pkmncollectors.com/cards/m-manectric-ex-yellow-a-alternate-24a-rare' },
+  { cardNumber: '28a', cardName: 'Jolteon-EX', sourceUrl: 'https://www.pkmncollectors.com/cards/jolteon-ex-yellow-a-alternate-28a-rare' },
+  { cardNumber: '54a', cardName: 'Zygarde-EX', sourceUrl: 'https://www.pkmncollectors.com/cards/zygarde-ex-yellow-a-alternate-54a-rare' },
+  { cardNumber: '55a', cardName: 'M Lucario-EX', sourceUrl: 'https://www.pkmncollectors.com/cards/m-lucario-ex-yellow-a-alternate-55a-rare' },
 ];
 
 function parseArgs(argv) {
@@ -77,10 +77,9 @@ function hasExactLabel(html, label) {
 }
 
 function validateTarget(html, target) {
-  const [cardNumber, cardName] = target;
   const checks = {
-    card_name: hasExactLabel(html, cardName),
-    card_number: html.includes(`#${cardNumber} of 6`),
+    card_name: hasExactLabel(html, target.cardName),
+    card_number: html.includes(`#${target.cardNumber} of 6`),
     set_name: hasExactLabel(html, 'Yellow A Alternate'),
     rarity_rare: hasExactLabel(html, 'Rare'),
     available_variants_normal: /Available\s+variants[\s\S]{0,600}>\s*Normal\s*</i.test(html),
@@ -92,22 +91,21 @@ function validateTarget(html, target) {
 }
 
 function recordFromTarget(target, generatedAt) {
-  const [cardNumber, cardName, sourceUrl] = target;
   return {
     source_key: 'pkmncollectors_xya',
     source_kind: 'collector_reference',
-    source_url: sourceUrl,
+    source_url: target.sourceUrl,
     set_key: 'xya',
     set_name: 'Yellow A Alternate',
-    card_number: cardNumber,
-    card_name: cardName,
+    card_number: target.cardNumber,
+    card_name: target.cardName,
     finish_key: 'normal',
     rarity: 'Rare',
     evidence_type: 'finish_presence',
     evidence_label: 'PKMN Collectors card page lists Available variants: Normal',
     language: 'en',
     retrieved_at: generatedAt,
-    raw_snapshot_ref: `pkmncollectors_xya:${cardNumber}:${slugFromUrl(sourceUrl)}`,
+    raw_snapshot_ref: `pkmncollectors_xya:${target.cardNumber}:${slugFromUrl(target.sourceUrl)}`,
     notes: 'Exact Yellow A Alternate card page with Available variants: Normal. Audit-only source evidence.',
   };
 }
@@ -128,12 +126,11 @@ async function main() {
   const records = [];
 
   for (const target of TARGETS) {
-    const [cardNumber, cardName, sourceUrl] = target;
     let status = 'source_unavailable';
     let validation = null;
     let error = null;
     try {
-      const html = await fetchHtmlCached(sourceUrl, options);
+      const html = await fetchHtmlCached(target.sourceUrl, options);
       validation = validateTarget(html, target);
       status = validation.ok ? 'generated' : 'validation_failed';
       if (validation.ok) records.push(recordFromTarget(target, generatedAt));
@@ -143,10 +140,10 @@ async function main() {
     results.push({
       set_key: 'xya',
       set_name: 'Yellow A Alternate',
-      card_number: cardNumber,
-      card_name: cardName,
+      card_number: target.cardNumber,
+      card_name: target.cardName,
       finish_key: 'normal',
-      source_url: sourceUrl,
+      source_url: target.sourceUrl,
       status,
       validation,
       error,

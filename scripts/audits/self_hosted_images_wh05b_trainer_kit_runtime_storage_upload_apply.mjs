@@ -2,8 +2,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import process from 'node:process';
-import http from 'node:http';
-import https from 'node:https';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 
@@ -68,14 +66,6 @@ function canonicalizeJson(value) {
 
 function proofHash(value) {
   return sha256Hex(JSON.stringify(canonicalizeJson(value)));
-}
-
-function hostnameFor(url) {
-  try {
-    return new URL(url).hostname.toLowerCase();
-  } catch {
-    return null;
-  }
 }
 
 function createStorageClient() {
@@ -250,64 +240,20 @@ function renderPlanMarkdown(plan) {
 `;
 }
 
-async function fetchBufferWithNodeClient(url, timeoutMs, options = {}, redirectCount = 0) {
-  if (redirectCount > 5) throw new Error(`too_many_redirects:${url}`);
-  const parsed = new URL(url);
-  const client = parsed.protocol === 'http:' ? http : https;
-  return new Promise((resolve, reject) => {
-    const request = client.get(parsed, {
-      headers: { 'user-agent': USER_AGENT },
-      timeout: timeoutMs,
-      rejectUnauthorized: options.rejectUnauthorized,
-    }, (response) => {
-      const location = response.headers.location;
-      if (response.statusCode >= 300 && response.statusCode < 400 && location) {
-        response.resume();
-        const nextUrl = new URL(location, parsed).toString();
-        fetchBufferWithNodeClient(nextUrl, timeoutMs, options, redirectCount + 1).then(resolve, reject);
-        return;
-      }
-      const chunks = [];
-      response.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
-      response.on('end', () => {
-        resolve({
-          ok: response.statusCode >= 200 && response.statusCode < 300,
-          status: response.statusCode,
-          final_url: url,
-          content_type: response.headers['content-type'] ?? null,
-          buffer: Buffer.concat(chunks),
-          transport_note: options.transportNote ?? null,
-        });
-      });
-    });
-    request.on('timeout', () => request.destroy(new Error(`request_timeout:${url}`)));
-    request.on('error', reject);
-  });
-}
-
 async function fetchBuffer(url, timeoutMs) {
-  try {
-    const response = await fetch(url, {
-      redirect: 'follow',
-      signal: AbortSignal.timeout(timeoutMs),
-      headers: { 'user-agent': USER_AGENT },
-    });
-    return {
-      ok: response.ok,
-      status: response.status,
-      final_url: response.url,
-      content_type: response.headers.get('content-type'),
-      buffer: Buffer.from(await response.arrayBuffer()),
-      transport_note: null,
-    };
-  } catch (error) {
-    const host = hostnameFor(url);
-    if (!host?.includes('malie.io') && !host?.includes('tcgcollector.com')) throw error;
-    return fetchBufferWithNodeClient(url, timeoutMs, {
-      rejectUnauthorized: false,
-      transportNote: `${host}_tls_verification_disabled_after_manifest_validation`,
-    });
-  }
+  const response = await fetch(url, {
+    redirect: 'follow',
+    signal: AbortSignal.timeout(timeoutMs),
+    headers: { 'user-agent': USER_AGENT },
+  });
+  return {
+    ok: response.ok,
+    status: response.status,
+    final_url: response.url,
+    content_type: response.headers.get('content-type'),
+    buffer: Buffer.from(await response.arrayBuffer()),
+    transport_note: null,
+  };
 }
 
 async function storageObjectExists(supabase, bucket, storagePath) {

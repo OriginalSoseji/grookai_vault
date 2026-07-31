@@ -6,6 +6,8 @@ import { promisify } from 'node:util';
 import pg from 'pg';
 import dotenv from 'dotenv';
 
+import { isUrlFromHostname } from './lib/url_authority_v1.mjs';
+
 dotenv.config({ path: '.env.local', quiet: true });
 dotenv.config({ quiet: true });
 
@@ -179,7 +181,9 @@ async function fetchJson(url) {
     '-s',
   ];
   const pokemonApiKey = String(process.env.POKEMONAPI_API_KEY ?? '').trim();
-  if (url.includes('api.pokemontcg.io') && pokemonApiKey) args.push('-H', `X-Api-Key: ${pokemonApiKey}`);
+  if (isUrlFromHostname(url, 'api.pokemontcg.io', { httpsOnly: true }) && pokemonApiKey) {
+    args.push('-H', `X-Api-Key: ${pokemonApiKey}`);
+  }
   args.push(url);
   const { stdout } = await execFileAsync('curl.exe', args, {
     encoding: 'utf8',

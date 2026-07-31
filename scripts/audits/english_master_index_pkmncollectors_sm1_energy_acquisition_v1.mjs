@@ -12,15 +12,15 @@ const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/pkmnco
 const CACHE_DIR = path.join(REPORT_DIR, 'cache');
 
 const TARGETS = [
-  ['164', 'Grass Energy', 'https://www.pkmncollectors.com/cards/grass-energy-sun-moon-164-common'],
-  ['165', 'Fire Energy', 'https://www.pkmncollectors.com/cards/fire-energy-sun-moon-165-common'],
-  ['166', 'Water Energy', 'https://www.pkmncollectors.com/cards/water-energy-sun-moon-166-common'],
-  ['167', 'Lightning Energy', 'https://www.pkmncollectors.com/cards/lightning-energy-sun-moon-167-common'],
-  ['168', 'Psychic Energy', 'https://www.pkmncollectors.com/cards/psychic-energy-sun-moon-168-common'],
-  ['169', 'Fighting Energy', 'https://www.pkmncollectors.com/cards/fighting-energy-sun-moon-169-common'],
-  ['170', 'Darkness Energy', 'https://www.pkmncollectors.com/cards/darkness-energy-sun-moon-170-common'],
-  ['171', 'Metal Energy', 'https://www.pkmncollectors.com/cards/metal-energy-sun-moon-171-common'],
-  ['172', 'Fairy Energy', 'https://www.pkmncollectors.com/cards/fairy-energy-sun-moon-172-common'],
+  { cardNumber: '164', cardName: 'Grass Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/grass-energy-sun-moon-164-common' },
+  { cardNumber: '165', cardName: 'Fire Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/fire-energy-sun-moon-165-common' },
+  { cardNumber: '166', cardName: 'Water Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/water-energy-sun-moon-166-common' },
+  { cardNumber: '167', cardName: 'Lightning Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/lightning-energy-sun-moon-167-common' },
+  { cardNumber: '168', cardName: 'Psychic Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/psychic-energy-sun-moon-168-common' },
+  { cardNumber: '169', cardName: 'Fighting Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/fighting-energy-sun-moon-169-common' },
+  { cardNumber: '170', cardName: 'Darkness Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/darkness-energy-sun-moon-170-common' },
+  { cardNumber: '171', cardName: 'Metal Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/metal-energy-sun-moon-171-common' },
+  { cardNumber: '172', cardName: 'Fairy Energy', sourceUrl: 'https://www.pkmncollectors.com/cards/fairy-energy-sun-moon-172-common' },
 ];
 
 function parseArgs(argv) {
@@ -82,10 +82,9 @@ function hasExactLabel(html, label) {
 }
 
 function validateTarget(html, target) {
-  const [cardNumber, cardName] = target;
   const checks = {
-    card_name: hasExactLabel(html, cardName),
-    card_number: html.includes(`#${cardNumber} of 149`),
+    card_name: hasExactLabel(html, target.cardName),
+    card_number: html.includes(`#${target.cardNumber} of 149`),
     set_name: hasExactLabel(html, 'Sun & Moon') || hasExactLabel(html, 'Sun &amp; Moon'),
     rarity_common: hasExactLabel(html, 'Common'),
     available_variants_normal: /Available\s+variants[\s\S]{0,600}>\s*Normal\s*</i.test(html),
@@ -97,22 +96,21 @@ function validateTarget(html, target) {
 }
 
 function recordFromTarget(target, generatedAt) {
-  const [cardNumber, cardName, sourceUrl] = target;
   return {
     source_key: 'pkmncollectors_sm1_energy',
     source_kind: 'collector_reference',
-    source_url: sourceUrl,
+    source_url: target.sourceUrl,
     set_key: 'sm1',
     set_name: 'Sun & Moon',
-    card_number: cardNumber,
-    card_name: cardName,
+    card_number: target.cardNumber,
+    card_name: target.cardName,
     finish_key: 'normal',
     rarity: 'Common',
     evidence_type: 'finish_presence',
     evidence_label: 'PKMN Collectors card page lists Available variants: Normal',
     language: 'en',
     retrieved_at: generatedAt,
-    raw_snapshot_ref: `pkmncollectors_sm1_energy:${cardNumber}:${slugFromUrl(sourceUrl)}`,
+    raw_snapshot_ref: `pkmncollectors_sm1_energy:${target.cardNumber}:${slugFromUrl(target.sourceUrl)}`,
     notes: 'Exact card page match for Sun & Moon numbered basic energy with Available variants: Normal. Audit-only source evidence.',
   };
 }
@@ -133,12 +131,11 @@ async function main() {
   const records = [];
 
   for (const target of TARGETS) {
-    const [cardNumber, cardName, sourceUrl] = target;
     let status = 'source_unavailable';
     let validation = null;
     let error = null;
     try {
-      const html = await fetchHtmlCached(sourceUrl, options);
+      const html = await fetchHtmlCached(target.sourceUrl, options);
       validation = validateTarget(html, target);
       status = validation.ok ? 'generated' : 'validation_failed';
       if (validation.ok) records.push(recordFromTarget(target, generatedAt));
@@ -148,10 +145,10 @@ async function main() {
     results.push({
       set_key: 'sm1',
       set_name: 'Sun & Moon',
-      card_number: cardNumber,
-      card_name: cardName,
+      card_number: target.cardNumber,
+      card_name: target.cardName,
       finish_key: 'normal',
-      source_url: sourceUrl,
+      source_url: target.sourceUrl,
       status,
       validation,
       error,

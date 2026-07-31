@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { normalizeFinishKey, normalizeNumber, normalizeText } from './verified_master_set_index_v1/shared.mjs';
+import { isUrlFromHostname } from './lib/url_authority_v1.mjs';
 
 const INDEX_DIR = 'docs/audits/verified_master_set_index_v1/english_master_index_v1';
 const FIXTURE_DIR = 'docs/audits/verified_master_set_index_v1/source_fixtures/generated_thepricedex_preservation_v1';
@@ -29,11 +30,11 @@ async function readJson(file) {
 function hasPriceDexSupport(row) {
   return (row.sources ?? []).includes(SOURCE_KEY)
     || (row.source_authorities ?? []).includes(SOURCE_AUTHORITY)
-    || (row.evidence_urls ?? []).some((url) => String(url).includes(SOURCE_AUTHORITY));
+    || (row.evidence_urls ?? []).some((url) => isUrlFromHostname(url, SOURCE_AUTHORITY, { allowSubdomains: true }));
 }
 
 function priceDexUrl(row) {
-  return (row.evidence_urls ?? []).find((url) => String(url).includes(SOURCE_AUTHORITY))
+  return (row.evidence_urls ?? []).find((url) => isUrlFromHostname(url, SOURCE_AUTHORITY, { allowSubdomains: true }))
     ?? 'https://www.thepricedex.com/';
 }
 
