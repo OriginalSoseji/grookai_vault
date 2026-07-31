@@ -38,6 +38,9 @@ on:
       - 'package-lock.json'
       - '.github/workflows/contracts-runtime-protection.yml'
 
+permissions:
+  contents: read
+
 jobs:
   runtime-protection:
     runs-on: ubuntu-latest

@@ -3,6 +3,9 @@ name: Staging Probe (read-only)
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   probe:
     runs-on: ubuntu-latest

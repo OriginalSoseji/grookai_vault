@@ -22,6 +22,9 @@ on:
       - 'package-lock.json'
       - '.github/workflows/contracts-drift-gate.yml'
 
+permissions:
+  contents: read
+
 jobs:
   drift-gate:
     runs-on: ubuntu-latest
