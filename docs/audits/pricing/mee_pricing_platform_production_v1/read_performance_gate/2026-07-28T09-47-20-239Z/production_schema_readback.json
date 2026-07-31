@@ -1,0 +1,57 @@
+{
+  "readback_at": "2026-07-28T09:50:55.635Z",
+  "migration": [
+    {
+      "version": "20260728060000",
+      "name": "tcgplayer_market_read_model_performance_v1",
+      "has_statements": true
+    }
+  ],
+  "relation": {
+    "relname": "mv_market_listing_active_ask_current_v1",
+    "relkind": "m",
+    "total_bytes": 24576,
+    "row_count": 0
+  },
+  "indexes": [
+    {
+      "indexname": "mv_market_listing_active_ask_current_parent_idx",
+      "indexdef": "CREATE INDEX mv_market_listing_active_ask_current_parent_idx ON public.mv_market_listing_active_ask_current_v1 USING btree (card_print_id)"
+    },
+    {
+      "indexname": "mv_market_listing_active_ask_current_printing_uidx",
+      "indexdef": "CREATE UNIQUE INDEX mv_market_listing_active_ask_current_printing_uidx ON public.mv_market_listing_active_ask_current_v1 USING btree (card_printing_id)"
+    }
+  ],
+  "access": {
+    "anon_execute": false,
+    "authenticated_execute": true,
+    "service_execute": true,
+    "anon_select": false,
+    "authenticated_select": false,
+    "service_select": true
+  },
+  "function_definition_sha256": "3a67a5253c6006389815053a0c6c6294f920d804a8838bd9963f17b84a052c2e",
+  "function_checks": {
+    "references_materialized_active_ask": true,
+    "security_definer": true,
+    "request_scoped_parent_cte": true,
+    "request_scoped_printing_cte": true
+  },
+  "current": {
+    "exact_price_count": 100,
+    "parent_count": 99,
+    "positive_usd_count": 100,
+    "missing_provenance_count": 0
+  },
+  "pointer": {
+    "publication_set_id": "ad858441-036d-4ec5-ad06-42d9936c7534",
+    "run_id": "87b13fc1-3639-47cb-843f-2f5d8b29d3b0",
+    "previous_publication_set_id": "94731fe5-5522-40f5-89b4-d07b8b08c149",
+    "activated_at": "2026-07-28T08:40:15.793Z"
+  },
+  "notes": [
+    "The materialized active-ask relation is intentionally empty because no exact active listing evidence met the current 72-hour freshness window.",
+    "The active publication pointer and all 100 exact current price rows remained unchanged after the migration."
+  ]
+}

@@ -1,0 +1,21 @@
+[Unit]
+Description=Grookai TCGPlayer Market Production V1 Pipeline
+Wants=network-online.target
+After=network-online.target grookai-mee-nightly.service
+Conflicts=grookai-tcgcsv-warehouse.service
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_vault_mee_nightly
+EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
+ExecStart=/usr/bin/flock -n /tmp/grookai-tcgplayer-market-pipeline.lock /usr/bin/env node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run
+TimeoutStartSec=8h
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

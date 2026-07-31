@@ -23,22 +23,73 @@ const CORS_HEADERS = {
   vary: "Origin",
 };
 
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 120;
+const RATE_LIMIT_STATE = new Map<
+  string,
+  { windowStartedAt: number; requestCount: number }
+>();
+
 type WallFeedDependencies = {
   fetchImpl?: typeof fetch;
   supabaseUrl?: string;
   secretKey?: string;
   logger?: Pick<Console, "error" | "log">;
+  nowMs?: () => number;
+  rateLimitState?: Map<
+    string,
+    { windowStartedAt: number; requestCount: number }
+  >;
 };
 
-function json(status: number, body: unknown): Response {
+function json(
+  status: number,
+  body: unknown,
+  additionalHeaders: HeadersInit = {},
+): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       ...CORS_HEADERS,
       "content-type": "application/json; charset=utf-8",
       "cache-control": status === 200 ? "public, max-age=30" : "no-store",
+      ...Object.fromEntries(new Headers(additionalHeaders)),
     },
   });
+}
+
+function clientRateLimitKey(req: Request): string {
+  return req.headers.get("cf-connecting-ip")?.trim() ||
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip")?.trim() ||
+    "unknown-client";
+}
+
+function consumeRateLimit(
+  key: string,
+  now: number,
+  state: Map<string, { windowStartedAt: number; requestCount: number }>,
+): { allowed: boolean; retryAfterSeconds: number } {
+  const current = state.get(key);
+  if (!current || now - current.windowStartedAt >= RATE_LIMIT_WINDOW_MS) {
+    state.set(key, { windowStartedAt: now, requestCount: 1 });
+    return { allowed: true, retryAfterSeconds: 0 };
+  }
+
+  if (current.requestCount >= RATE_LIMIT_MAX_REQUESTS) {
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(
+        1,
+        Math.ceil(
+          (RATE_LIMIT_WINDOW_MS - (now - current.windowStartedAt)) / 1000,
+        ),
+      ),
+    };
+  }
+
+  current.requestCount += 1;
+  return { allowed: true, retryAfterSeconds: 0 };
 }
 
 function boundedInteger(
@@ -52,6 +103,14 @@ function boundedInteger(
 
 function quotedPostgrestValue(value: string): string {
   return `"${value.replaceAll("\\", "\\\\").replaceAll('"', '\\"')}"`;
+}
+
+function escapedIlikePattern(value: string): string {
+  return value
+    .replaceAll("\\", "\\\\")
+    .replaceAll("%", "\\%")
+    .replaceAll("_", "\\_")
+    .replaceAll("*", "\\*");
 }
 
 function parseCount(contentRange: string | null, fallback: number): number {
@@ -99,6 +158,19 @@ export async function handleWallFeed(
     return json(500, { ok: false, error: "server_misconfigured" });
   }
 
+  const rateLimit = consumeRateLimit(
+    clientRateLimitKey(req),
+    (dependencies.nowMs ?? Date.now)(),
+    dependencies.rateLimitState ?? RATE_LIMIT_STATE,
+  );
+  if (!rateLimit.allowed) {
+    return json(
+      429,
+      { ok: false, error: "rate_limit_exceeded" },
+      { "retry-after": String(rateLimit.retryAfterSeconds) },
+    );
+  }
+
   const requestUrl = new URL(req.url);
   const limit = boundedInteger(requestUrl.searchParams.get("limit"), 50, 100);
   const offset = boundedInteger(
@@ -126,7 +198,7 @@ export async function handleWallFeed(
   restUrl.searchParams.set("limit", String(limit));
   restUrl.searchParams.set("offset", String(offset));
   if (q) {
-    restUrl.searchParams.append("title", `ilike.*${q}*`);
+    restUrl.searchParams.append("title", `ilike.*${escapedIlikePattern(q)}*`);
   }
   if (conditions.length > 0) {
     restUrl.searchParams.append(
@@ -150,7 +222,7 @@ export async function handleWallFeed(
       headers: {
         accept: "application/json",
         apikey: secretKey,
-        prefer: "count=exact",
+        prefer: "count=planned",
       },
     });
   } catch (error) {
@@ -158,9 +230,25 @@ export async function handleWallFeed(
     return json(502, { ok: false, error: "wall_feed_upstream_unavailable" });
   }
 
-  const upstreamBody = await upstream.text();
+  let upstreamBody: string;
+  try {
+    upstreamBody = await upstream.text();
+  } catch (error) {
+    logger.error("wall_feed response body read failure", error);
+    return json(502, { ok: false, error: "wall_feed_upstream_unavailable" });
+  }
   if (!upstream.ok) {
     const safeError = safeUpstreamError(upstreamBody);
+    if (upstream.status === 416 && safeError.upstream_code === "PGRST103") {
+      const count = parseCount(upstream.headers.get("content-range"), 0);
+      logger.log("wall_feed query completed beyond available range", {
+        count,
+        returned: 0,
+        limit,
+        offset,
+      });
+      return json(200, { items: [], count });
+    }
     logger.error("wall_feed query failure", {
       status: upstream.status,
       ...safeError,

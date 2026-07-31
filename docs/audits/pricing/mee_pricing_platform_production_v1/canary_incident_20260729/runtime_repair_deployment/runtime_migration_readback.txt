@@ -1,0 +1,8 @@
+Output format is unaligned.
+Field separator is "|".
+version|name|statement_count
+20260729190000|tcgplayer_market_assignment_prepare_runtime_repair_v1|1
+(1 row)
+function_signature|security_definer|proconfig|anon_execute|authenticated_execute|service_role_execute|materialized_slice_present|observed_day_guard_present|idempotent_guard_present
+prepare_tcgplayer_market_variant_assignments_v1(uuid)|t|{search_path=public,enable_nestloop=off}|f|f|t|t|t|t
+(1 row)

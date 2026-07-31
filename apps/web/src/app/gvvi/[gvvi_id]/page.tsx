@@ -12,8 +12,13 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentActionLabel, getVaultIntentLabel } from "@/lib/network/intent";
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
+import {
+  createServerComponentClient,
+  hasSupabaseServerAuthCookie,
+} from "@/lib/supabase/server";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function asAbsoluteUrl(origin: string, value: string | null | undefined) {
   const normalized = value?.trim();
@@ -84,7 +89,15 @@ export default async function PublicVaultInstancePage({
 }: {
   params: { gvvi_id: string };
 }) {
-  const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = hasSupabaseServerAuthCookie()
+    ? await supabase.auth.getUser()
+    : { data: { user: null } };
+  const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id, {
+    includeMarketPricing: Boolean(user),
+  });
   if (!detail) {
     notFound();
   }
@@ -276,6 +289,12 @@ export default async function PublicVaultInstancePage({
               marketReferencePrice={detail.marketReferencePrice}
               marketReferenceSource={detail.marketReferenceSource}
               marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
+              marketReferenceObservedAt={detail.marketReferenceObservedAt}
+              marketReferencePublishedAt={detail.marketReferencePublishedAt}
+              marketReferenceProvenanceId={detail.marketReferenceProvenanceId}
+              cardPrintId={detail.cardPrintId}
+              cardPrintingId={detail.cardPrintingId}
+              printingGvId={detail.marketReferencePrintingGvId}
               isGraded={detail.isGraded}
             />
           </PageSection>
@@ -299,7 +318,7 @@ export default async function PublicVaultInstancePage({
                   cardName={detail.cardName}
                   intent={contactIntent}
                   buttonLabel={getVaultIntentActionLabel(contactIntent)}
-                  isAuthenticated={false}
+                  isAuthenticated={Boolean(user)}
                   loginHref={loginHref}
                   currentPath={currentPath}
                   buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"

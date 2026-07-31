@@ -1,0 +1,26 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_PRODUCT_SURFACE_ROUTE_IDENTITY_V1",
+  "status": "passed",
+  "generated_at": "2026-07-28T15:51:39.600Z",
+  "branch": "pricing/mee-productization-v1",
+  "parent_commit_sha": "0fbd7eb2bc85a2ab7402a7365c4097bca3eb1078",
+  "required_surface_count": 17,
+  "route_identity_enforced": true,
+  "focused_contract_tests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "full_node_contract_suite": {
+    "passed": 869,
+    "failed": 0
+  },
+  "boundaries": {
+    "production_writes": 0,
+    "migrations_applied": 0,
+    "publication_changes": 0,
+    "deployments": 0,
+    "anonymous_access_changes": 0,
+    "canary_frozen": true
+  },
+  "production_capture_gate": "pending_post_canary"
+}

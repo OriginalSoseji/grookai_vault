@@ -1,0 +1,25 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_SURFACE_RELEASE_READINESS_HASHES_V1",
+  "files": [
+    {
+      "path": "REPORT.md",
+      "sha256": "bd29720894ceb2cb3082033d5f8309e596c3fec84201ece0677ae8d71e4f42a3",
+      "bytes": 4697
+    },
+    {
+      "path": "current_publication_readback.json",
+      "sha256": "33aeb31f085b4650de5457585475441997f3fa5a019af53e71381edff0ffdf5d",
+      "bytes": 804
+    },
+    {
+      "path": "run_plan.json",
+      "sha256": "0fe0e1256f6510843eae8da1879d7a60fbf256308d6e6bd2ea693a449e482127",
+      "bytes": 870
+    },
+    {
+      "path": "surface_inventory.json",
+      "sha256": "8858a06f6db2afd25e88f3208efa21e4d813ae3131e52614914f48c4316e70ce",
+      "bytes": 11264
+    }
+  ]
+}

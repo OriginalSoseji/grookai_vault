@@ -21,6 +21,7 @@ class PublicGvviData {
     required this.ownerSlug,
     required this.ownerDisplayName,
     required this.cardPrintId,
+    this.cardPrintingId,
     required this.gvId,
     required this.cardName,
     required this.setCode,
@@ -58,6 +59,7 @@ class PublicGvviData {
   final String ownerSlug;
   final String ownerDisplayName;
   final String cardPrintId;
+  final String? cardPrintingId;
   final String gvId;
   final String cardName;
   final String setCode;
@@ -161,6 +163,7 @@ class VaultGvviData {
     required this.vaultItemId,
     required this.activeCopyCount,
     required this.cardPrintId,
+    this.cardPrintingId,
     required this.gvId,
     required this.cardName,
     required this.setCode,
@@ -207,6 +210,7 @@ class VaultGvviData {
   final String vaultItemId;
   final int activeCopyCount;
   final String cardPrintId;
+  final String? cardPrintingId;
   final String gvId;
   final String cardName;
   final String setCode;
@@ -287,6 +291,7 @@ class VaultGvviData {
       vaultItemId: vaultItemId,
       activeCopyCount: activeCopyCount,
       cardPrintId: cardPrintId,
+      cardPrintingId: cardPrintingId,
       gvId: gvId,
       cardName: cardName,
       setCode: setCode,
@@ -396,6 +401,35 @@ class VaultGvviService {
     }
   }
 
+  static Future<({String cardPrintId, String? cardPrintingId, bool isGraded})?>
+  _loadInstancePricingTarget({
+    required SupabaseClient client,
+    required String gvviId,
+    required bool isPublic,
+  }) async {
+    final rawRows = await client.rpc(
+      isPublic
+          ? 'public_vault_instance_pricing_target_v1'
+          : 'vault_mobile_instance_pricing_target_v1',
+      params: {'p_gv_vi_id': gvviId},
+    );
+    final rows = rawRows is List<dynamic> ? rawRows : const <dynamic>[];
+    if (rows.isEmpty || rows.first is! Map) {
+      return null;
+    }
+
+    final row = Map<String, dynamic>.from(rows.first as Map);
+    final cardPrintId = _nullable(row['card_print_id']);
+    if (cardPrintId == null) {
+      return null;
+    }
+    return (
+      cardPrintId: cardPrintId,
+      cardPrintingId: _nullable(row['card_printing_id']),
+      isGraded: row['is_graded'] == true,
+    );
+  }
+
   static Future<PublicGvviData?> loadPublic({
     required SupabaseClient client,
     required String gvviId,
@@ -427,15 +461,25 @@ class VaultGvviService {
       return null;
     }
 
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+    final pricingTarget = await _loadInstancePricingTarget(
       client: client,
-      cardPrintIds: [cardPrintId],
+      gvviId: normalizedGvviId,
+      isPublic: true,
+    );
+    final cardPrintingId =
+        pricingTarget?.cardPrintId == cardPrintId &&
+            pricingTarget?.isGraded == false
+        ? pricingTarget?.cardPrintingId
+        : null;
+    final pricingById = await CardSurfacePricingService.fetchByCardPrintingIds(
+      client: client,
+      cardPrintingIds: [cardPrintingId ?? ''],
     );
     final identity = await _fetchCardIdentity(
       client: client,
       cardPrintId: cardPrintId,
     );
-    final pricing = pricingById[cardPrintId];
+    final pricing = cardPrintingId == null ? null : pricingById[cardPrintingId];
     final normalizedIntent = _normalizeIntent(data['intent']);
     return PublicGvviData(
       instanceId: _clean(data['id']),
@@ -445,6 +489,7 @@ class VaultGvviService {
       ownerSlug: ownerSlug,
       ownerDisplayName: ownerDisplayName,
       cardPrintId: cardPrintId,
+      cardPrintingId: cardPrintingId,
       gvId: _clean(data['card_gv_id']),
       cardName: _nullable(data['card_name']) ?? 'Unknown card',
       setCode: _nullable(data['card_set_code']) ?? 'Unknown set',
@@ -511,15 +556,25 @@ class VaultGvviService {
       return null;
     }
 
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+    final pricingTarget = await _loadInstancePricingTarget(
       client: client,
-      cardPrintIds: [cardPrintId],
+      gvviId: normalizedGvviId,
+      isPublic: false,
+    );
+    final cardPrintingId =
+        pricingTarget?.cardPrintId == cardPrintId &&
+            pricingTarget?.isGraded == false
+        ? pricingTarget?.cardPrintingId
+        : null;
+    final pricingById = await CardSurfacePricingService.fetchByCardPrintingIds(
+      client: client,
+      cardPrintingIds: [cardPrintingId ?? ''],
     );
     final identity = await _fetchCardIdentity(
       client: client,
       cardPrintId: cardPrintId,
     );
-    final pricing = pricingById[cardPrintId];
+    final pricing = cardPrintingId == null ? null : pricingById[cardPrintingId];
     final isArchived = data['archived_at'] != null;
     final outcomeRows = (data['outcomes'] as List<dynamic>? ?? const []);
 
@@ -530,6 +585,7 @@ class VaultGvviService {
           _nullable(data['legacy_vault_item_id']) ?? _clean(data['id']),
       activeCopyCount: _toInt(data['active_copy_count']) ?? 0,
       cardPrintId: cardPrintId,
+      cardPrintingId: cardPrintingId,
       gvId: _clean(data['card_gv_id']),
       cardName: _nullable(data['card_name']) ?? 'Unknown card',
       setCode: _nullable(data['card_set_code']) ?? 'Unknown set',

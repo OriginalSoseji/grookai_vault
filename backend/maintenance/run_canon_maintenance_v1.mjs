@@ -20,6 +20,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 
 export const CANON_MAINTENANCE_FILES_V1 = [
   'backend/maintenance/ascended_heroes_printing_truth_normalization_apply_v1.mjs',
+  'backend/maintenance/tcgplayer_market_exact_mapping_apply_v1.mjs',
   'backend/domain/domain_baseline_card_prints_v1.mjs',
   'backend/domain/domain_baseline_sets_v1.mjs',
   'backend/ingestion/justtcg_bridge_insert_only_apply_v1.mjs',

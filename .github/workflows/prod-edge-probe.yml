@@ -133,7 +133,7 @@ jobs:
             throw "wall_feed transport probe failed: $transportError"
           }
           if ($endpointHealth -eq "unhealthy") {
-            Write-Warning "wall_feed endpoint health is $endpointHealth (HTTP $status, $decision)"
+            throw "wall_feed returned unexpected HTTP status $status ($decision)"
           }
 
       - name: Upload probe summary

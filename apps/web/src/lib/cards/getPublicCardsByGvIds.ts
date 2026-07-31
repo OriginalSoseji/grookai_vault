@@ -8,6 +8,7 @@ import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 export type ComparePublicCard = {
   id: string;
@@ -33,6 +34,12 @@ export type ComparePublicCard = {
   raw_price?: number;
   raw_price_source?: string;
   raw_price_ts?: string;
+  raw_price_published_at?: string;
+  pricing_provenance_id?: string;
+  pricing_source_label?: string;
+  pricing_scope?: "parent" | "card_printing";
+  pricing_is_from_price?: boolean;
+  eligible_printing_count?: number;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
@@ -91,7 +98,10 @@ function getReleaseYear(releaseDate?: string | null) {
 
 export async function getPublicCardsByGvIds(
   gvIds: string[],
-  options: { includePricing?: boolean } = {},
+  options: {
+    includePricing?: boolean;
+    pricingClient?: SupabaseClient;
+  } = {},
 ) {
   const normalizedIds = normalizeCompareCardsParam(gvIds);
   if (normalizedIds.length === 0) {
@@ -137,7 +147,10 @@ export async function getPublicCardsByGvIds(
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
   const [pricesByCardId, childDisplayImageFallbacks] = await Promise.all([
     options.includePricing
-      ? getPublicPricingByCardIds(createServerComponentClient(), cardIds)
+      ? getPublicPricingByCardIds(
+          options.pricingClient ?? createServerComponentClient(),
+          cardIds,
+        )
       : Promise.resolve(new Map()),
     getChildDisplayImageFallbacks(supabase, rows),
   ]);
@@ -197,6 +210,24 @@ export async function getPublicCardsByGvIds(
       raw_price: row.id ? pricesByCardId.get(row.id)?.raw_price : undefined,
       raw_price_source: row.id ? pricesByCardId.get(row.id)?.raw_price_source : undefined,
       raw_price_ts: row.id ? pricesByCardId.get(row.id)?.raw_price_ts : undefined,
+      raw_price_published_at: row.id
+        ? pricesByCardId.get(row.id)?.raw_price_published_at
+        : undefined,
+      pricing_provenance_id: row.id
+        ? pricesByCardId.get(row.id)?.pricing_provenance_id
+        : undefined,
+      pricing_source_label: row.id
+        ? pricesByCardId.get(row.id)?.pricing_source_label
+        : undefined,
+      pricing_scope: row.id
+        ? pricesByCardId.get(row.id)?.pricing_scope
+        : undefined,
+      pricing_is_from_price: row.id
+        ? pricesByCardId.get(row.id)?.pricing_is_from_price
+        : undefined,
+      eligible_printing_count: row.id
+        ? pricesByCardId.get(row.id)?.eligible_printing_count
+        : undefined,
       latest_price: row.id ? pricesByCardId.get(row.id)?.latest_price : undefined,
       confidence: row.id ? pricesByCardId.get(row.id)?.confidence : undefined,
       listing_count: row.id ? pricesByCardId.get(row.id)?.listing_count : undefined,

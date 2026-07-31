@@ -1,0 +1,67 @@
+{
+  "migration_version": "20260728050000",
+  "tables": [
+    {
+      "relname": "notification_outbox",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "relname": "operations_notification_events",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    }
+  ],
+  "constraints": [
+    {
+      "conname": "notification_outbox_card_anchor_v2",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "conname": "operations_notification_events_notification_id_key",
+      "contype": "u",
+      "convalidated": true
+    }
+  ],
+  "policies": [
+    {
+      "tablename": "operations_notification_events",
+      "policyname": "operations_notification_events_service_role_all",
+      "roles": "{service_role}",
+      "cmd": "ALL"
+    }
+  ],
+  "functions": [
+    {
+      "proname": "enqueue_operations_notification_v1",
+      "prosecdef": true,
+      "owner": "postgres",
+      "anon_execute": false,
+      "authenticated_execute": false,
+      "service_execute": true
+    },
+    {
+      "proname": "notification_dispatcher_claim_operations_alert_v1",
+      "prosecdef": true,
+      "owner": "postgres",
+      "anon_execute": false,
+      "authenticated_execute": false,
+      "service_execute": true
+    }
+  ],
+  "append_only_triggers": [
+    {
+      "event_object_table": "operations_notification_events",
+      "trigger_name": "trg_operations_notification_events_append_only",
+      "event_manipulation": "DELETE",
+      "action_timing": "BEFORE"
+    },
+    {
+      "event_object_table": "operations_notification_events",
+      "trigger_name": "trg_operations_notification_events_append_only",
+      "event_manipulation": "UPDATE",
+      "action_timing": "BEFORE"
+    }
+  ]
+}

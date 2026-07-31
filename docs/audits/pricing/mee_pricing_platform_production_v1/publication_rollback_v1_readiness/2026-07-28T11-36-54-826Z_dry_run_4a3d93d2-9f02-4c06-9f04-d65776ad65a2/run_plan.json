@@ -1,0 +1,24 @@
+{
+  "worker_version": "TCGPLAYER_MARKET_PUBLICATION_ROLLBACK_V1",
+  "mode": "dry_run",
+  "rollback_run_id": "4a3d93d2-9f02-4c06-9f04-d65776ad65a2",
+  "producing_commit_sha": "7c6150decb228a8256386f50820cf374e8b38b18",
+  "branch": "pricing/mee-productization-v1",
+  "tracked_worktree_clean": true,
+  "expected_current_publication_set_id": "ad858441-036d-4ec5-ad06-42d9936c7534",
+  "expected_restore_publication_set_id": "94731fe5-5522-40f5-89b4-d07b8b08c149",
+  "reason": "dry-run precondition validation only",
+  "created_at": "2026-07-28T11:36:54.826Z",
+  "boundaries": {
+    "dry_run_default": true,
+    "publication_pointer_write": false,
+    "publication_state_write": false,
+    "pipeline_run_state_write": false,
+    "publication_event_write": false,
+    "source_archive_write": false,
+    "qualification_write": false,
+    "snapshot_write": false,
+    "canonical_identity_write": false,
+    "vault_write": false
+  }
+}

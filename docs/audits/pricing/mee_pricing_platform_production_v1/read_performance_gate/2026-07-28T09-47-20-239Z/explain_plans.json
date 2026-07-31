@@ -1,0 +1,302 @@
+[
+  {
+    "case_id": "parent_detail_1",
+    "role": "authenticated",
+    "row_count": 1,
+    "expected_row_count": 1,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 10.842,
+          "Actual Total Time": 10.842,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 517,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.052,
+        "Triggers": [],
+        "Execution Time": 11.174
+      }
+    ]
+  },
+  {
+    "case_id": "parent_grid_25",
+    "role": "authenticated",
+    "row_count": 25,
+    "expected_row_count": 25,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 14.64,
+          "Actual Total Time": 14.643,
+          "Actual Rows": 25,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 757,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.054,
+        "Triggers": [],
+        "Execution Time": 15.046
+      }
+    ]
+  },
+  {
+    "case_id": "parent_grid_all_current",
+    "role": "authenticated",
+    "row_count": 99,
+    "expected_row_count": 99,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 13.238,
+          "Actual Total Time": 13.245,
+          "Actual Rows": 99,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 1499,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.064,
+        "Triggers": [],
+        "Execution Time": 13.576
+      }
+    ]
+  },
+  {
+    "case_id": "printing_detail_1",
+    "role": "authenticated",
+    "row_count": 1,
+    "expected_row_count": 1,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 10.49,
+          "Actual Total Time": 10.49,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 521,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.041,
+        "Triggers": [],
+        "Execution Time": 10.77
+      }
+    ]
+  },
+  {
+    "case_id": "printing_batch_50",
+    "role": "authenticated",
+    "row_count": 50,
+    "expected_row_count": 50,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 11.975,
+          "Actual Total Time": 11.979,
+          "Actual Rows": 50,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 1207,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.041,
+        "Triggers": [],
+        "Execution Time": 12.298
+      }
+    ]
+  },
+  {
+    "case_id": "printing_batch_all_current",
+    "role": "authenticated",
+    "row_count": 100,
+    "expected_row_count": 100,
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Function Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Function Name": "get_market_pricing_read_model_v1",
+          "Alias": "get_market_pricing_read_model_v1",
+          "Startup Cost": 0.25,
+          "Total Cost": 10.25,
+          "Plan Rows": 1000,
+          "Plan Width": 585,
+          "Actual Startup Time": 15.419,
+          "Actual Total Time": 15.426,
+          "Actual Rows": 100,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 1907,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.048,
+        "Triggers": [],
+        "Execution Time": 15.756
+      }
+    ]
+  }
+]

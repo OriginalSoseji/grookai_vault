@@ -49,6 +49,9 @@ export type VaultCardInstanceData = {
   cert_number: string | null;
   notes: string | null;
   created_at: string | null;
+  market_price?: number | null;
+  pricing_observed_at?: string | null;
+  pricing_published_at?: string | null;
 };
 
 export type VaultCardData = {
@@ -79,6 +82,9 @@ export type VaultCardData = {
   slab_items: VaultCardSlabItemData[];
   copy_items: VaultCardInstanceData[];
   effective_price: number | null;
+  pricing_updated_at?: string | null;
+  priced_raw_copy_count: number;
+  unpriced_raw_copy_count: number;
   image_url?: string;
   canonical_image_url?: string;
   canonical_image_status?: string | null;
@@ -193,7 +199,22 @@ export function VaultCardTile({
   const closedSummary = (
     <div className="space-y-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        {cardValue ? <p className="gv-hi-price text-sm font-semibold tracking-tight">{cardValue}</p> : null}
+        {cardValue ? (
+          <p
+            className="gv-hi-price text-sm font-semibold tracking-tight"
+            data-pricing-proof="vault-exact-total"
+            data-pricing-scope="vault_group_total"
+            data-card-print-id={item.card_id}
+            data-vault-market-value-usd={item.effective_price}
+            data-priced-copy-count={item.priced_raw_copy_count}
+            data-unpriced-copy-count={item.unpriced_raw_copy_count}
+            data-published-at={item.pricing_updated_at}
+            data-source-name="tcgplayer"
+            data-source-label="TCGPlayer Market"
+          >
+            {cardValue}
+          </p>
+        ) : null}
         {messageSignal ? (
           <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
         ) : null}

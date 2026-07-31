@@ -1,0 +1,10 @@
+[Unit]
+Description=Grookai operations webhook for failed unit %i
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_vault_mee_nightly
+EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
+ExecStart=/usr/bin/env node scripts/ops/grookai_operations_webhook_v1.mjs --event=systemd_on_failure --unit=%i --state-dir=/var/lib/grookai/operations-notifications
+TimeoutStartSec=1min

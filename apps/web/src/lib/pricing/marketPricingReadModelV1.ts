@@ -66,26 +66,53 @@ function finite(value: number | null | undefined) {
     : undefined;
 }
 
+function validTimestamp(value: string | null | undefined) {
+  if (!value?.trim()) {
+    return undefined;
+  }
+
+  const parsed = new Date(value);
+  return Number.isFinite(parsed.getTime()) ? value : undefined;
+}
+
 function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
   const marketClose = finite(row.market_close);
+  const pricingScope =
+    row.pricing_scope === "parent" || row.pricing_scope === "card_printing"
+      ? row.pricing_scope
+      : null;
+  const cardPrintId = row.card_print_id?.trim() ?? "";
+  const cardPrintingId = row.card_printing_id?.trim() ?? "";
+  const observedAt = validTimestamp(row.observed_at);
+  const publishedAt = validTimestamp(row.published_at);
+  const provenanceId = row.provenance_id?.trim() ?? "";
+  const isFromPrice = row.is_from_price === true;
+  const expectedSourceLabel = isFromPrice
+    ? "From TCGPlayer Market"
+    : "TCGPlayer Market";
   if (
-    !row.card_print_id ||
+    !pricingScope ||
+    !cardPrintId ||
+    (pricingScope === "card_printing" && !cardPrintingId) ||
     marketClose === undefined ||
+    marketClose <= 0 ||
     row.status !== "available" ||
     row.currency !== "USD" ||
     row.source_name !== "tcgplayer" ||
+    row.source_label?.trim() !== expectedSourceLabel ||
     row.freshness !== "fresh" ||
-    !row.observed_at ||
-    !row.published_at
+    !observedAt ||
+    !publishedAt ||
+    !provenanceId ||
+    (pricingScope === "card_printing" && isFromPrice)
   ) {
     return null;
   }
 
   return {
-    pricing_scope:
-      row.pricing_scope === "card_printing" ? "card_printing" : "parent",
-    card_print_id: row.card_print_id,
-    card_printing_id: row.card_printing_id ?? undefined,
+    pricing_scope: pricingScope,
+    card_print_id: cardPrintId,
+    card_printing_id: cardPrintingId || undefined,
     gv_id: row.gv_id ?? undefined,
     printing_gv_id: row.printing_gv_id ?? undefined,
     finish_key: row.finish_key ?? undefined,
@@ -94,21 +121,21 @@ function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
     currency: "USD",
     market_close: marketClose,
     source_name: "tcgplayer",
-    source_label: row.source_label?.trim() || "TCGPlayer Market",
-    observed_at: row.observed_at,
-    published_at: row.published_at,
+    source_label: expectedSourceLabel,
+    observed_at: observedAt,
+    published_at: publishedAt,
     freshness: "fresh",
     low_price: finite(row.low_price),
     mid_price: finite(row.mid_price),
     high_price: finite(row.high_price),
     direct_low_price: finite(row.direct_low_price),
-    is_from_price: row.is_from_price === true,
+    is_from_price: isFromPrice,
     eligible_printing_count:
       finite(row.eligible_printing_count) ?? 1,
     lowest_active_ask: finite(row.lowest_active_ask),
     active_ask_listing_count: finite(row.active_ask_listing_count),
     active_ask_observed_at: row.active_ask_observed_at ?? undefined,
-    provenance_id: row.provenance_id ?? undefined,
+    provenance_id: provenanceId,
   };
 }
 
@@ -117,9 +144,11 @@ export async function getMarketPricingReadModelV1(
   {
     cardPrintIds = [],
     cardPrintingIds = [],
+    throwOnError = false,
   }: {
     cardPrintIds?: string[];
     cardPrintingIds?: string[];
+    throwOnError?: boolean;
   },
 ): Promise<MarketPricingRecordV1[]> {
   const parentIds = Array.from(
@@ -140,6 +169,9 @@ export async function getMarketPricingReadModelV1(
     },
   );
   if (error) {
+    if (throwOnError) {
+      throw error;
+    }
     console.error("[pricing:v1] shared read model failed", {
       code: error.code,
       message: error.message,

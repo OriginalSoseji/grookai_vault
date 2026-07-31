@@ -12,6 +12,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../services/vault/vault_exact_pricing.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -161,11 +162,26 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         fallbackNumber: bootstrap.number,
         fallbackImageUrl: bootstrap.imageUrl,
       );
-      final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
-        client: _client,
-        cardPrintIds: <String>[widget.cardPrintId],
-      );
-      final pricing = pricingById[widget.cardPrintId];
+      final rawPricingTargets = data.copies
+          .where((copy) => !copy.isGraded)
+          .map(
+            (copy) => VaultExactPricingTarget(
+              cardPrintId: data.cardPrintId,
+              cardPrintingId: copy.cardPrintingId,
+            ),
+          )
+          .toList(growable: false);
+      final pricingById =
+          await CardSurfacePricingService.fetchByCardPrintingIds(
+            client: _client,
+            cardPrintingIds: rawPricingTargets.map(
+              (target) => target.cardPrintingId ?? '',
+            ),
+          );
+      final pricing = summarizeVaultExactPricing(
+        targets: rawPricingTargets,
+        pricingByCardPrintingId: pricingById,
+      ).asSurfacePricing(data.cardPrintId);
       var copySectionMemberships =
           const <String, List<VaultManageCopySectionMembership>>{};
       try {
@@ -1316,7 +1332,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         : CardSurfacePriceText(
             pricing: _pricing,
             size: CardSurfacePriceSize.list,
-            mode: CardSurfacePriceMode.grookai,
+            mode: CardSurfacePriceMode.market,
           );
 
     return _ManageSurface(

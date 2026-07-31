@@ -2,7 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.48.0";
 import { json, requireUser } from "../_shared/auth.ts";
 import { getServiceRoleKey } from "../_shared/key_resolver.ts";
 
-console.log("[pricing-live-request] version=2025-11-26");
+console.log("[pricing-live-request] version=2026-07-27-market-v1");
 
 type LivePriceRequestBody = {
   card_print_id?: unknown;
@@ -17,10 +17,10 @@ function isUuid(v: string): boolean {
 
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
-const HOT_VALUE_THRESHOLD = 100;
+const HOT_MARKET_PRICE_THRESHOLD = 100;
 const HOT_VAULT_COUNT_THRESHOLD = 10;
 const HOT_LISTING_THRESHOLD = 10;
-const NORMAL_VALUE_THRESHOLD = 25;
+const NORMAL_MARKET_PRICE_THRESHOLD = 25;
 const NORMAL_VAULT_COUNT_THRESHOLD = 3;
 const NORMAL_LISTING_THRESHOLD = 25;
 
@@ -32,11 +32,14 @@ type CanonicalRawPriceMetadataRow = {
   last_snapshot_at: string | null;
 };
 
-type CanonicalRawPriceRow = {
-  card_id: string | null;
-  base_market: number | null;
-  base_source: string | null;
-  base_ts: string | null;
+type MarketPricingReadRow = {
+  pricing_scope: string | null;
+  card_print_id: string | null;
+  status: string | null;
+  market_close: number | null;
+  source_name: string | null;
+  observed_at: string | null;
+  freshness: string | null;
 };
 
 type PricingJobRow = {
@@ -66,12 +69,12 @@ function parseTimestamp(value?: string | null): number | null {
 function determineFreshnessTier(input: {
   listingCount: number;
   vaultCount: number;
-  grookaiValue: number | null;
+  marketClose: number | null;
 }): { tier: FreshnessTier; ttlMs: number } {
   if (
     (input.listingCount > 0 && input.listingCount <= HOT_LISTING_THRESHOLD) ||
     input.vaultCount >= HOT_VAULT_COUNT_THRESHOLD ||
-    (input.grookaiValue !== null && input.grookaiValue >= HOT_VALUE_THRESHOLD)
+    (input.marketClose !== null && input.marketClose >= HOT_MARKET_PRICE_THRESHOLD)
   ) {
     return { tier: "hot", ttlMs: 6 * HOUR_MS };
   }
@@ -79,12 +82,12 @@ function determineFreshnessTier(input: {
   if (
     (input.listingCount > HOT_LISTING_THRESHOLD && input.listingCount <= NORMAL_LISTING_THRESHOLD) ||
     input.vaultCount >= NORMAL_VAULT_COUNT_THRESHOLD ||
-    (input.grookaiValue !== null && input.grookaiValue >= NORMAL_VALUE_THRESHOLD)
+    (input.marketClose !== null && input.marketClose >= NORMAL_MARKET_PRICE_THRESHOLD)
   ) {
     return { tier: "normal", ttlMs: 24 * HOUR_MS };
   }
 
-  if (input.listingCount > NORMAL_LISTING_THRESHOLD || input.vaultCount > 0 || input.grookaiValue !== null) {
+  if (input.listingCount > NORMAL_LISTING_THRESHOLD || input.vaultCount > 0 || input.marketClose !== null) {
     return { tier: "long_tail", ttlMs: 72 * HOUR_MS };
   }
 
@@ -180,20 +183,18 @@ const handler = async (req: Request): Promise<Response> => {
 
   const client = createClient(supabaseUrl, serviceRole);
 
-  // Phase 1 canonical raw read seam:
-  // - v_best_prices_all_gv_v1 provides raw price/source/timestamp
-  // - card_print_active_prices provides optional freshness metadata
-  const [activePriceResult, compatibilityPriceResult, rawInstanceCountResult, slabCertResult] = await Promise.all([
+  // TCGPlayer Market is the governed freshness/value anchor. eBay active asks
+  // remain a separate listing-availability lane.
+  const [activePriceResult, marketPriceResult, rawInstanceCountResult, slabCertResult] = await Promise.all([
     client
       .from("card_print_active_prices")
       .select("card_print_id,listing_count,confidence,updated_at,last_snapshot_at")
       .eq("card_print_id", cardPrintId)
       .maybeSingle(),
-    client
-      .from("v_best_prices_all_gv_v1")
-      .select("card_id,base_market,base_source,base_ts")
-      .eq("card_id", cardPrintId)
-      .maybeSingle(),
+    client.rpc("get_market_pricing_read_model_v1", {
+      p_card_print_ids: [cardPrintId],
+      p_card_printing_ids: null,
+    }),
     client
       .from("vault_item_instances")
       .select("id", { count: "exact", head: true })
@@ -219,18 +220,18 @@ const handler = async (req: Request): Promise<Response> => {
     return json(500, { error: "freshness_lookup_failed", detail: "Failed to read active pricing state" });
   }
 
-  if (compatibilityPriceResult.error) {
+  if (marketPriceResult.error) {
     console.log(
       JSON.stringify({
         route: "pricing-live-request",
         request_id: requestId,
         user_id: userId,
         card_print_id: cardPrintId,
-        outcome: "compatibility_lookup_failed",
-        detail: compatibilityPriceResult.error.message,
+        outcome: "market_price_lookup_failed",
+        detail: marketPriceResult.error.message,
       }),
     );
-    return json(500, { error: "compatibility_lookup_failed", detail: "Failed to read pricing compatibility state" });
+    return json(500, { error: "market_price_lookup_failed", detail: "Failed to read governed market pricing state" });
   }
 
   if (rawInstanceCountResult.error) {
@@ -287,18 +288,25 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   const activePrice = activePriceResult.data as CanonicalRawPriceMetadataRow | null;
-  const compatibilityPrice = compatibilityPriceResult.data as CanonicalRawPriceRow | null;
+  const marketPrice = ((marketPriceResult.data ?? []) as MarketPricingReadRow[])
+    .find((row) =>
+      row.pricing_scope === "parent" &&
+      row.card_print_id === cardPrintId &&
+      row.status === "available" &&
+      row.source_name === "tcgplayer" &&
+      row.freshness === "fresh"
+    ) ?? null;
   const vaultCount = (rawInstanceCountResult.count ?? 0) + (slabInstanceCountResult.count ?? 0);
   const listingCount = typeof activePrice?.listing_count === "number" ? activePrice.listing_count : 0;
-  const grookaiValueNm = typeof compatibilityPrice?.base_market === "number" ? compatibilityPrice.base_market : null;
+  const marketClose = typeof marketPrice?.market_close === "number" ? marketPrice.market_close : null;
   const freshnessTs =
-    parseTimestamp(compatibilityPrice?.base_ts) ??
+    parseTimestamp(marketPrice?.observed_at) ??
     parseTimestamp(activePrice?.updated_at) ??
     parseTimestamp(activePrice?.last_snapshot_at);
   const freshnessTier = determineFreshnessTier({
     listingCount,
     vaultCount,
-    grookaiValue: grookaiValueNm,
+    marketClose,
   });
   const now = Date.now();
   const ageMs = freshnessTs === null ? null : Math.max(0, now - freshnessTs);

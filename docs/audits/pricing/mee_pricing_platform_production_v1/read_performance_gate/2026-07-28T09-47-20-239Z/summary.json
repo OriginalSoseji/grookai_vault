@@ -1,0 +1,160 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_PERFORMANCE_POLICY_V1",
+  "target_p95_ms": 500,
+  "status": "passed",
+  "case_count": 6,
+  "measurement_count": 180,
+  "request_error_count": 0,
+  "row_count_mismatch_count": 0,
+  "cases": [
+    {
+      "case_id": "parent_detail_1",
+      "scope": "parent",
+      "requested_id_count": 1,
+      "expected_row_count": 1,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 650,
+        "max": 650
+      },
+      "latency_ms": {
+        "min": 79.807,
+        "p50": 82.1,
+        "p95": 85.968,
+        "p99": 92.916,
+        "max": 92.916
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    },
+    {
+      "case_id": "parent_grid_25",
+      "scope": "parent",
+      "requested_id_count": 25,
+      "expected_row_count": 25,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 16199,
+        "max": 16199
+      },
+      "latency_ms": {
+        "min": 82.323,
+        "p50": 84.064,
+        "p95": 98.581,
+        "p99": 103.586,
+        "max": 103.586
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    },
+    {
+      "case_id": "parent_grid_all_current",
+      "scope": "parent",
+      "requested_id_count": 99,
+      "expected_row_count": 99,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 64121,
+        "max": 64121
+      },
+      "latency_ms": {
+        "min": 85.631,
+        "p50": 87.524,
+        "p95": 108.263,
+        "p99": 164.119,
+        "max": 164.119
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    },
+    {
+      "case_id": "printing_detail_1",
+      "scope": "card_printing",
+      "requested_id_count": 1,
+      "expected_row_count": 1,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 718,
+        "max": 718
+      },
+      "latency_ms": {
+        "min": 78.925,
+        "p50": 81.922,
+        "p95": 87.986,
+        "p99": 101.367,
+        "max": 101.367
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    },
+    {
+      "case_id": "printing_batch_50",
+      "scope": "card_printing",
+      "requested_id_count": 50,
+      "expected_row_count": 50,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 35529,
+        "max": 35529
+      },
+      "latency_ms": {
+        "min": 83.25,
+        "p50": 85.002,
+        "p95": 90.533,
+        "p99": 101.333,
+        "max": 101.333
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    },
+    {
+      "case_id": "printing_batch_all_current",
+      "scope": "card_printing",
+      "requested_id_count": 100,
+      "expected_row_count": 100,
+      "measurement_count": 30,
+      "success_count": 30,
+      "error_count": 0,
+      "row_count_mismatch_count": 0,
+      "response_bytes": {
+        "min": 71087,
+        "max": 71087
+      },
+      "latency_ms": {
+        "min": 86.583,
+        "p50": 88.953,
+        "p95": 106.88,
+        "p99": 120.386,
+        "max": 120.386
+      },
+      "target_p95_ms": 500,
+      "status": "passed",
+      "findings": []
+    }
+  ],
+  "findings": [],
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_role_readback": true
+  }
+}

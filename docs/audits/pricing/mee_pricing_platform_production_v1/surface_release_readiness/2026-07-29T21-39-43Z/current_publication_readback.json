@@ -1,0 +1,22 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_CURRENT_PUBLICATION_READBACK_V1",
+  "checked_at": "2026-07-29T21:39:43.000Z",
+  "method": "read_only_postgrest_get",
+  "source": "v_market_price_current_v1",
+  "row_count": 100,
+  "positive_usd_rows": 100,
+  "tcgplayer_market_rows": 100,
+  "fresh_rows": 100,
+  "missing_provenance_rows": 0,
+  "distinct_run_count": 1,
+  "distinct_publication_set_count": 1,
+  "latest_observed_at": "2026-07-29T20:25:11.146Z",
+  "latest_published_at": "2026-07-29T20:26:41.971498Z",
+  "customer_identifiers_preserved": false,
+  "database_writes": 0,
+  "limitations": [
+    "service read does not replace authenticated-role SQL verification",
+    "current state does not replace the 72-hour canary observer",
+    "current deployed clients do not contain this readiness branch"
+  ]
+}

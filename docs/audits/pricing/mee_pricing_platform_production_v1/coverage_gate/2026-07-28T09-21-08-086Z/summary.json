@@ -1,0 +1,2541 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_COVERAGE_POLICY_V1",
+  "status": "failed",
+  "threshold_percent": 95,
+  "counts": {
+    "selected_source_price_rows": 45082,
+    "denominator_rows": 34356,
+    "numerator_rows": 31165,
+    "gap_rows": 3191,
+    "excluded_rows": 10726,
+    "mapped_denominator_rows": 31337,
+    "exact_printing_denominator_rows": 31178,
+    "unclassified_gap_rows": 0
+  },
+  "coverage_percent": 90.712,
+  "rows_needed_for_threshold": 1474,
+  "decisions": {
+    "publish": 31528,
+    "quarantine": 11422,
+    "exclude": 2132
+  },
+  "gap_reasons": {
+    "missing_active_source_mapping": 3019,
+    "variant_assignment_not_exact_child_finish": 157,
+    "missing_mapping_method": 15
+  },
+  "exclusion_reasons": {
+    "unsupported_product_kind": 2132,
+    "world_championship_deck": 1921,
+    "unsupported_source_subtype": 1666,
+    "stamped_special_variant": 1548,
+    "deck_exclusive_special_variant": 1547,
+    "ambiguous_mixed_group": 813,
+    "oversized_object": 328,
+    "special_print_run": 203,
+    "distribution_special_variant": 191,
+    "missing_positive_market_price": 175,
+    "special_reprint_product": 103,
+    "special_distribution_set": 99
+  },
+  "by_set": {
+    "Aquapolis": {
+      "denominator": 330,
+      "numerator": 320,
+      "mapped": 328,
+      "exact_printing": 320,
+      "publish": 320,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 8,
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 96.97
+    },
+    "Arceus": {
+      "denominator": 204,
+      "numerator": 199,
+      "mapped": 201,
+      "exact_printing": 199,
+      "publish": 199,
+      "delay": 0,
+      "quarantine": 5,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3,
+        "variant_assignment_not_exact_child_finish": 2
+      },
+      "coverage_percent": 97.549
+    },
+    "Base Set": {
+      "denominator": 102,
+      "numerator": 100,
+      "mapped": 100,
+      "exact_printing": 100,
+      "publish": 100,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 98.039
+    },
+    "Base Set 2": {
+      "denominator": 131,
+      "numerator": 128,
+      "mapped": 128,
+      "exact_printing": 128,
+      "publish": 128,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3
+      },
+      "coverage_percent": 97.71
+    },
+    "Best of Promos": {
+      "denominator": 15,
+      "numerator": 5,
+      "mapped": 5,
+      "exact_printing": 5,
+      "publish": 5,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 33.333
+    },
+    "Black and White": {
+      "denominator": 220,
+      "numerator": 219,
+      "mapped": 219,
+      "exact_printing": 219,
+      "publish": 219,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 99.545
+    },
+    "Black and White Promos": {
+      "denominator": 120,
+      "numerator": 78,
+      "mapped": 78,
+      "exact_printing": 78,
+      "publish": 78,
+      "delay": 0,
+      "quarantine": 42,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 42
+      },
+      "coverage_percent": 65
+    },
+    "Boundaries Crossed": {
+      "denominator": 283,
+      "numerator": 283,
+      "mapped": 283,
+      "exact_printing": 283,
+      "publish": 283,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Burger King Promos": {
+      "denominator": 24,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 24,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 24
+      },
+      "coverage_percent": 0
+    },
+    "Call of Legends": {
+      "denominator": 198,
+      "numerator": 188,
+      "mapped": 193,
+      "exact_printing": 188,
+      "publish": 188,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 5,
+        "missing_active_source_mapping": 5
+      },
+      "coverage_percent": 94.949
+    },
+    "Celebrations": {
+      "denominator": 40,
+      "numerator": 25,
+      "mapped": 25,
+      "exact_printing": 25,
+      "publish": 25,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 15
+      },
+      "coverage_percent": 62.5
+    },
+    "Celebrations: Classic Collection": {
+      "denominator": 25,
+      "numerator": 22,
+      "mapped": 22,
+      "exact_printing": 22,
+      "publish": 22,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3
+      },
+      "coverage_percent": 88
+    },
+    "Champion's Path": {
+      "denominator": 142,
+      "numerator": 131,
+      "mapped": 131,
+      "exact_printing": 131,
+      "publish": 131,
+      "delay": 0,
+      "quarantine": 11,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 11
+      },
+      "coverage_percent": 92.254
+    },
+    "Countdown Calendar Promos": {
+      "denominator": 19,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 19,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 19
+      },
+      "coverage_percent": 0
+    },
+    "Dark Explorers": {
+      "denominator": 207,
+      "numerator": 207,
+      "mapped": 207,
+      "exact_printing": 207,
+      "publish": 207,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Detective Pikachu": {
+      "denominator": 24,
+      "numerator": 18,
+      "mapped": 18,
+      "exact_printing": 18,
+      "publish": 18,
+      "delay": 0,
+      "quarantine": 6,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 6
+      },
+      "coverage_percent": 75
+    },
+    "Diamond and Pearl": {
+      "denominator": 251,
+      "numerator": 251,
+      "mapped": 251,
+      "exact_printing": 251,
+      "publish": 251,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Diamond and Pearl Promos": {
+      "denominator": 58,
+      "numerator": 51,
+      "mapped": 51,
+      "exact_printing": 51,
+      "publish": 51,
+      "delay": 0,
+      "quarantine": 7,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 7
+      },
+      "coverage_percent": 87.931
+    },
+    "Double Crisis": {
+      "denominator": 66,
+      "numerator": 66,
+      "mapped": 66,
+      "exact_printing": 66,
+      "publish": 66,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Dragon Majesty": {
+      "denominator": 136,
+      "numerator": 131,
+      "mapped": 131,
+      "exact_printing": 131,
+      "publish": 131,
+      "delay": 0,
+      "quarantine": 5,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 5
+      },
+      "coverage_percent": 96.324
+    },
+    "Dragon Vault": {
+      "denominator": 21,
+      "numerator": 21,
+      "mapped": 21,
+      "exact_printing": 21,
+      "publish": 21,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Dragons Exalted": {
+      "denominator": 239,
+      "numerator": 235,
+      "mapped": 235,
+      "exact_printing": 235,
+      "publish": 235,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 98.326
+    },
+    "Emerging Powers": {
+      "denominator": 194,
+      "numerator": 194,
+      "mapped": 194,
+      "exact_printing": 194,
+      "publish": 194,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Crystal Guardians": {
+      "denominator": 189,
+      "numerator": 188,
+      "mapped": 188,
+      "exact_printing": 188,
+      "publish": 188,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 99.471
+    },
+    "EX Delta Species": {
+      "denominator": 220,
+      "numerator": 218,
+      "mapped": 220,
+      "exact_printing": 218,
+      "publish": 218,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 2
+      },
+      "coverage_percent": 99.091
+    },
+    "EX Deoxys": {
+      "denominator": 215,
+      "numerator": 202,
+      "mapped": 215,
+      "exact_printing": 202,
+      "publish": 202,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 13
+      },
+      "coverage_percent": 93.953
+    },
+    "EX Dragon": {
+      "denominator": 188,
+      "numerator": 188,
+      "mapped": 188,
+      "exact_printing": 188,
+      "publish": 188,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Dragon Frontiers": {
+      "denominator": 190,
+      "numerator": 180,
+      "mapped": 182,
+      "exact_printing": 180,
+      "publish": 180,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 8,
+        "variant_assignment_not_exact_child_finish": 2
+      },
+      "coverage_percent": 94.737
+    },
+    "EX Emerald": {
+      "denominator": 209,
+      "numerator": 197,
+      "mapped": 209,
+      "exact_printing": 197,
+      "publish": 197,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 12
+      },
+      "coverage_percent": 94.258
+    },
+    "EX FireRed & LeafGreen": {
+      "denominator": 238,
+      "numerator": 215,
+      "mapped": 232,
+      "exact_printing": 215,
+      "publish": 215,
+      "delay": 0,
+      "quarantine": 23,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 17,
+        "missing_active_source_mapping": 6
+      },
+      "coverage_percent": 90.336
+    },
+    "EX Hidden Legends": {
+      "denominator": 194,
+      "numerator": 194,
+      "mapped": 194,
+      "exact_printing": 194,
+      "publish": 194,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Holon Phantoms": {
+      "denominator": 207,
+      "numerator": 195,
+      "mapped": 197,
+      "exact_printing": 195,
+      "publish": 195,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10,
+        "variant_assignment_not_exact_child_finish": 2
+      },
+      "coverage_percent": 94.203
+    },
+    "EX Legend Maker": {
+      "denominator": 172,
+      "numerator": 172,
+      "mapped": 172,
+      "exact_printing": 172,
+      "publish": 172,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Power Keepers": {
+      "denominator": 199,
+      "numerator": 199,
+      "mapped": 199,
+      "exact_printing": 199,
+      "publish": 199,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Ruby and Sapphire": {
+      "denominator": 210,
+      "numerator": 210,
+      "mapped": 210,
+      "exact_printing": 210,
+      "publish": 210,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Sandstorm": {
+      "denominator": 193,
+      "numerator": 193,
+      "mapped": 193,
+      "exact_printing": 193,
+      "publish": 193,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Team Magma vs Team Aqua": {
+      "denominator": 185,
+      "numerator": 185,
+      "mapped": 185,
+      "exact_printing": 185,
+      "publish": 185,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "EX Team Rocket Returns": {
+      "denominator": 211,
+      "numerator": 203,
+      "mapped": 211,
+      "exact_printing": 203,
+      "publish": 203,
+      "delay": 0,
+      "quarantine": 8,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 8
+      },
+      "coverage_percent": 96.209
+    },
+    "EX Unseen Forces": {
+      "denominator": 244,
+      "numerator": 216,
+      "mapped": 216,
+      "exact_printing": 216,
+      "publish": 216,
+      "delay": 0,
+      "quarantine": 28,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 28
+      },
+      "coverage_percent": 88.525
+    },
+    "Expedition": {
+      "denominator": 322,
+      "numerator": 318,
+      "mapped": 318,
+      "exact_printing": 318,
+      "publish": 318,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 98.758
+    },
+    "First Partner Collection 2026": {
+      "denominator": 6,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 6,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 6
+      },
+      "coverage_percent": 0
+    },
+    "Generations": {
+      "denominator": 155,
+      "numerator": 152,
+      "mapped": 152,
+      "exact_printing": 152,
+      "publish": 152,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3
+      },
+      "coverage_percent": 98.065
+    },
+    "Generations: Radiant Collection": {
+      "denominator": 32,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 32,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 32
+      },
+      "coverage_percent": 0
+    },
+    "Great Encounters": {
+      "denominator": 206,
+      "numerator": 206,
+      "mapped": 206,
+      "exact_printing": 206,
+      "publish": 206,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "HeartGold SoulSilver": {
+      "denominator": 227,
+      "numerator": 223,
+      "mapped": 223,
+      "exact_printing": 223,
+      "publish": 223,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 98.238
+    },
+    "HGSS Promos": {
+      "denominator": 31,
+      "numerator": 22,
+      "mapped": 22,
+      "exact_printing": 22,
+      "publish": 22,
+      "delay": 0,
+      "quarantine": 9,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 9
+      },
+      "coverage_percent": 70.968
+    },
+    "Hidden Fates": {
+      "denominator": 135,
+      "numerator": 125,
+      "mapped": 125,
+      "exact_printing": 125,
+      "publish": 125,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 92.593
+    },
+    "Hidden Fates: Shiny Vault": {
+      "denominator": 94,
+      "numerator": 94,
+      "mapped": 94,
+      "exact_printing": 94,
+      "publish": 94,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Kalos Starter Set": {
+      "denominator": 53,
+      "numerator": 48,
+      "mapped": 48,
+      "exact_printing": 48,
+      "publish": 48,
+      "delay": 0,
+      "quarantine": 5,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 5
+      },
+      "coverage_percent": 90.566
+    },
+    "Legendary Collection": {
+      "denominator": 218,
+      "numerator": 214,
+      "mapped": 214,
+      "exact_printing": 214,
+      "publish": 214,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 98.165
+    },
+    "Legendary Treasures": {
+      "denominator": 216,
+      "numerator": 216,
+      "mapped": 216,
+      "exact_printing": 216,
+      "publish": 216,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Legendary Treasures: Radiant Collection": {
+      "denominator": 25,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 25,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 25
+      },
+      "coverage_percent": 0
+    },
+    "Legends Awakened": {
+      "denominator": 284,
+      "numerator": 284,
+      "mapped": 284,
+      "exact_printing": 284,
+      "publish": 284,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Majestic Dawn": {
+      "denominator": 195,
+      "numerator": 195,
+      "mapped": 195,
+      "exact_printing": 195,
+      "publish": 195,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's 25th Anniversary Promos": {
+      "denominator": 50,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 50,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 50
+      },
+      "coverage_percent": 0
+    },
+    "McDonald's Promos 2011": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2012": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2014": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2015": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2016": {
+      "denominator": 10,
+      "numerator": 10,
+      "mapped": 10,
+      "exact_printing": 10,
+      "publish": 10,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2017": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2018": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2019": {
+      "denominator": 12,
+      "numerator": 12,
+      "mapped": 12,
+      "exact_printing": 12,
+      "publish": 12,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "McDonald's Promos 2022": {
+      "denominator": 16,
+      "numerator": 15,
+      "mapped": 15,
+      "exact_printing": 15,
+      "publish": 15,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 93.75
+    },
+    "McDonald's Promos 2023": {
+      "denominator": 16,
+      "numerator": 15,
+      "mapped": 15,
+      "exact_printing": 15,
+      "publish": 15,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 93.75
+    },
+    "McDonald's Promos 2024": {
+      "denominator": 16,
+      "numerator": 15,
+      "mapped": 15,
+      "exact_printing": 15,
+      "publish": 15,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 93.75
+    },
+    "ME: 30th Celebration": {
+      "denominator": 17,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 17,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 17
+      },
+      "coverage_percent": 0
+    },
+    "ME: Ascended Heroes": {
+      "denominator": 635,
+      "numerator": 333,
+      "mapped": 333,
+      "exact_printing": 333,
+      "publish": 333,
+      "delay": 0,
+      "quarantine": 302,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 302
+      },
+      "coverage_percent": 52.441
+    },
+    "ME: Mega Evolution Promo": {
+      "denominator": 106,
+      "numerator": 30,
+      "mapped": 46,
+      "exact_printing": 36,
+      "publish": 30,
+      "delay": 0,
+      "quarantine": 76,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 60,
+        "variant_assignment_not_exact_child_finish": 8,
+        "missing_mapping_method": 8
+      },
+      "coverage_percent": 28.302
+    },
+    "ME01: Mega Evolution": {
+      "denominator": 324,
+      "numerator": 310,
+      "mapped": 310,
+      "exact_printing": 310,
+      "publish": 310,
+      "delay": 0,
+      "quarantine": 14,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 14
+      },
+      "coverage_percent": 95.679
+    },
+    "ME02: Phantasmal Flames": {
+      "denominator": 226,
+      "numerator": 214,
+      "mapped": 214,
+      "exact_printing": 214,
+      "publish": 214,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 12
+      },
+      "coverage_percent": 94.69
+    },
+    "ME03: Perfect Order": {
+      "denominator": 214,
+      "numerator": 202,
+      "mapped": 203,
+      "exact_printing": 202,
+      "publish": 202,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 11,
+        "variant_assignment_not_exact_child_finish": 1
+      },
+      "coverage_percent": 94.393
+    },
+    "ME04: Chaos Rising": {
+      "denominator": 210,
+      "numerator": 198,
+      "mapped": 198,
+      "exact_printing": 198,
+      "publish": 198,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 12
+      },
+      "coverage_percent": 94.286
+    },
+    "ME05: Pitch Black": {
+      "denominator": 206,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 206,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 206
+      },
+      "coverage_percent": 0
+    },
+    "MEE: Mega Evolution Energies": {
+      "denominator": 16,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 16,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 16
+      },
+      "coverage_percent": 0
+    },
+    "Mysterious Treasures": {
+      "denominator": 244,
+      "numerator": 242,
+      "mapped": 242,
+      "exact_printing": 242,
+      "publish": 242,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.18
+    },
+    "Next Destinies": {
+      "denominator": 190,
+      "numerator": 190,
+      "mapped": 190,
+      "exact_printing": 190,
+      "publish": 190,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Nintendo Promos": {
+      "denominator": 65,
+      "numerator": 18,
+      "mapped": 24,
+      "exact_printing": 18,
+      "publish": 18,
+      "delay": 0,
+      "quarantine": 47,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 6,
+        "missing_active_source_mapping": 41
+      },
+      "coverage_percent": 27.692
+    },
+    "Noble Victories": {
+      "denominator": 198,
+      "numerator": 198,
+      "mapped": 198,
+      "exact_printing": 198,
+      "publish": 198,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Pikachu World Collection Promos": {
+      "denominator": 14,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 14,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 14
+      },
+      "coverage_percent": 0
+    },
+    "Plasma Blast": {
+      "denominator": 190,
+      "numerator": 190,
+      "mapped": 190,
+      "exact_printing": 190,
+      "publish": 190,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Plasma Freeze": {
+      "denominator": 221,
+      "numerator": 217,
+      "mapped": 217,
+      "exact_printing": 217,
+      "publish": 217,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 98.19
+    },
+    "Plasma Storm": {
+      "denominator": 257,
+      "numerator": 257,
+      "mapped": 257,
+      "exact_printing": 257,
+      "publish": 257,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Platinum": {
+      "denominator": 253,
+      "numerator": 251,
+      "mapped": 252,
+      "exact_printing": 251,
+      "publish": 251,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 1,
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 99.209
+    },
+    "Pokemon GO": {
+      "denominator": 160,
+      "numerator": 145,
+      "mapped": 145,
+      "exact_printing": 145,
+      "publish": 145,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 15
+      },
+      "coverage_percent": 90.625
+    },
+    "POP Series 1": {
+      "denominator": 25,
+      "numerator": 22,
+      "mapped": 22,
+      "exact_printing": 22,
+      "publish": 22,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3
+      },
+      "coverage_percent": 88
+    },
+    "POP Series 2": {
+      "denominator": 25,
+      "numerator": 23,
+      "mapped": 23,
+      "exact_printing": 23,
+      "publish": 23,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 92
+    },
+    "POP Series 3": {
+      "denominator": 25,
+      "numerator": 23,
+      "mapped": 23,
+      "exact_printing": 23,
+      "publish": 23,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 92
+    },
+    "POP Series 4": {
+      "denominator": 23,
+      "numerator": 18,
+      "mapped": 18,
+      "exact_printing": 18,
+      "publish": 18,
+      "delay": 0,
+      "quarantine": 5,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 5
+      },
+      "coverage_percent": 78.261
+    },
+    "POP Series 5": {
+      "denominator": 21,
+      "numerator": 20,
+      "mapped": 20,
+      "exact_printing": 20,
+      "publish": 20,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 95.238
+    },
+    "POP Series 6": {
+      "denominator": 25,
+      "numerator": 24,
+      "mapped": 24,
+      "exact_printing": 24,
+      "publish": 24,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 96
+    },
+    "POP Series 7": {
+      "denominator": 24,
+      "numerator": 23,
+      "mapped": 23,
+      "exact_printing": 23,
+      "publish": 23,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 95.833
+    },
+    "POP Series 8": {
+      "denominator": 31,
+      "numerator": 29,
+      "mapped": 29,
+      "exact_printing": 29,
+      "publish": 29,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 93.548
+    },
+    "POP Series 9": {
+      "denominator": 23,
+      "numerator": 22,
+      "mapped": 22,
+      "exact_printing": 22,
+      "publish": 22,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 95.652
+    },
+    "Professor Program Promos": {
+      "denominator": 39,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 39,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 39
+      },
+      "coverage_percent": 0
+    },
+    "Rising Rivals": {
+      "denominator": 221,
+      "numerator": 209,
+      "mapped": 212,
+      "exact_printing": 209,
+      "publish": 209,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 3,
+        "missing_active_source_mapping": 9
+      },
+      "coverage_percent": 94.57
+    },
+    "Rumble": {
+      "denominator": 15,
+      "numerator": 15,
+      "mapped": 15,
+      "exact_printing": 15,
+      "publish": 15,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Secret Wonders": {
+      "denominator": 262,
+      "numerator": 260,
+      "mapped": 260,
+      "exact_printing": 260,
+      "publish": 260,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.237
+    },
+    "Shining Fates": {
+      "denominator": 133,
+      "numerator": 118,
+      "mapped": 118,
+      "exact_printing": 118,
+      "publish": 118,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 15
+      },
+      "coverage_percent": 88.722
+    },
+    "Shining Fates: Shiny Vault": {
+      "denominator": 122,
+      "numerator": 122,
+      "mapped": 122,
+      "exact_printing": 122,
+      "publish": 122,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Shining Legends": {
+      "denominator": 146,
+      "numerator": 137,
+      "mapped": 137,
+      "exact_printing": 137,
+      "publish": 137,
+      "delay": 0,
+      "quarantine": 9,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 9
+      },
+      "coverage_percent": 93.836
+    },
+    "Skyridge": {
+      "denominator": 287,
+      "numerator": 275,
+      "mapped": 283,
+      "exact_printing": 275,
+      "publish": 275,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 8,
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 95.819
+    },
+    "SM - Burning Shadows": {
+      "denominator": 292,
+      "numerator": 285,
+      "mapped": 285,
+      "exact_printing": 285,
+      "publish": 285,
+      "delay": 0,
+      "quarantine": 7,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 7
+      },
+      "coverage_percent": 97.603
+    },
+    "SM - Celestial Storm": {
+      "denominator": 323,
+      "numerator": 317,
+      "mapped": 317,
+      "exact_printing": 317,
+      "publish": 317,
+      "delay": 0,
+      "quarantine": 6,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 6
+      },
+      "coverage_percent": 98.142
+    },
+    "SM - Cosmic Eclipse": {
+      "denominator": 465,
+      "numerator": 464,
+      "mapped": 464,
+      "exact_printing": 464,
+      "publish": 464,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 99.785
+    },
+    "SM - Crimson Invasion": {
+      "denominator": 222,
+      "numerator": 216,
+      "mapped": 216,
+      "exact_printing": 216,
+      "publish": 216,
+      "delay": 0,
+      "quarantine": 6,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 6
+      },
+      "coverage_percent": 97.297
+    },
+    "SM - Forbidden Light": {
+      "denominator": 256,
+      "numerator": 243,
+      "mapped": 243,
+      "exact_printing": 243,
+      "publish": 243,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 94.922
+    },
+    "SM - Guardians Rising": {
+      "denominator": 300,
+      "numerator": 287,
+      "mapped": 287,
+      "exact_printing": 287,
+      "publish": 287,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 95.667
+    },
+    "SM - Lost Thunder": {
+      "denominator": 411,
+      "numerator": 393,
+      "mapped": 393,
+      "exact_printing": 393,
+      "publish": 393,
+      "delay": 0,
+      "quarantine": 18,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 18
+      },
+      "coverage_percent": 95.62
+    },
+    "SM - Team Up": {
+      "denominator": 359,
+      "numerator": 331,
+      "mapped": 331,
+      "exact_printing": 331,
+      "publish": 331,
+      "delay": 0,
+      "quarantine": 28,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 28
+      },
+      "coverage_percent": 92.201
+    },
+    "SM - Ultra Prism": {
+      "denominator": 304,
+      "numerator": 286,
+      "mapped": 286,
+      "exact_printing": 286,
+      "publish": 286,
+      "delay": 0,
+      "quarantine": 18,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 18
+      },
+      "coverage_percent": 94.079
+    },
+    "SM - Unbroken Bonds": {
+      "denominator": 418,
+      "numerator": 406,
+      "mapped": 406,
+      "exact_printing": 406,
+      "publish": 406,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 12
+      },
+      "coverage_percent": 97.129
+    },
+    "SM - Unified Minds": {
+      "denominator": 459,
+      "numerator": 454,
+      "mapped": 454,
+      "exact_printing": 454,
+      "publish": 454,
+      "delay": 0,
+      "quarantine": 5,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 5
+      },
+      "coverage_percent": 98.911
+    },
+    "SM Base Set": {
+      "denominator": 314,
+      "numerator": 289,
+      "mapped": 289,
+      "exact_printing": 289,
+      "publish": 289,
+      "delay": 0,
+      "quarantine": 25,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 25
+      },
+      "coverage_percent": 92.038
+    },
+    "SM Promos": {
+      "denominator": 306,
+      "numerator": 198,
+      "mapped": 198,
+      "exact_printing": 198,
+      "publish": 198,
+      "delay": 0,
+      "quarantine": 108,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 108
+      },
+      "coverage_percent": 64.706
+    },
+    "Southern Islands": {
+      "denominator": 19,
+      "numerator": 18,
+      "mapped": 18,
+      "exact_printing": 18,
+      "publish": 18,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 94.737
+    },
+    "Stormfront": {
+      "denominator": 201,
+      "numerator": 199,
+      "mapped": 199,
+      "exact_printing": 199,
+      "publish": 199,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.005
+    },
+    "Supreme Victors": {
+      "denominator": 293,
+      "numerator": 282,
+      "mapped": 293,
+      "exact_printing": 282,
+      "publish": 282,
+      "delay": 0,
+      "quarantine": 11,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 11
+      },
+      "coverage_percent": 96.246
+    },
+    "SV: Black Bolt": {
+      "denominator": 416,
+      "numerator": 89,
+      "mapped": 92,
+      "exact_printing": 89,
+      "publish": 89,
+      "delay": 0,
+      "quarantine": 327,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 324,
+        "variant_assignment_not_exact_child_finish": 3
+      },
+      "coverage_percent": 21.394
+    },
+    "SV: Paldean Fates": {
+      "denominator": 341,
+      "numerator": 326,
+      "mapped": 326,
+      "exact_printing": 326,
+      "publish": 326,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 15
+      },
+      "coverage_percent": 95.601
+    },
+    "SV: Prismatic Evolutions": {
+      "denominator": 471,
+      "numerator": 280,
+      "mapped": 280,
+      "exact_printing": 280,
+      "publish": 280,
+      "delay": 0,
+      "quarantine": 191,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 191
+      },
+      "coverage_percent": 59.448
+    },
+    "SV: Scarlet & Violet 151": {
+      "denominator": 377,
+      "numerator": 360,
+      "mapped": 360,
+      "exact_printing": 360,
+      "publish": 360,
+      "delay": 0,
+      "quarantine": 17,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 17
+      },
+      "coverage_percent": 95.491
+    },
+    "SV: Scarlet & Violet Promo Cards": {
+      "denominator": 278,
+      "numerator": 136,
+      "mapped": 147,
+      "exact_printing": 143,
+      "publish": 136,
+      "delay": 0,
+      "quarantine": 142,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 4,
+        "missing_active_source_mapping": 131,
+        "missing_mapping_method": 7
+      },
+      "coverage_percent": 48.921
+    },
+    "SV: Shrouded Fable": {
+      "denominator": 170,
+      "numerator": 0,
+      "mapped": 0,
+      "exact_printing": 0,
+      "publish": 0,
+      "delay": 0,
+      "quarantine": 170,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 170
+      },
+      "coverage_percent": 0
+    },
+    "SV: White Flare": {
+      "denominator": 412,
+      "numerator": 255,
+      "mapped": 255,
+      "exact_printing": 255,
+      "publish": 255,
+      "delay": 0,
+      "quarantine": 157,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 157
+      },
+      "coverage_percent": 61.893
+    },
+    "SV01: Scarlet & Violet Base Set": {
+      "denominator": 457,
+      "numerator": 442,
+      "mapped": 444,
+      "exact_printing": 442,
+      "publish": 442,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 2,
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 96.718
+    },
+    "SV02: Paldea Evolved": {
+      "denominator": 468,
+      "numerator": 420,
+      "mapped": 451,
+      "exact_printing": 420,
+      "publish": 420,
+      "delay": 0,
+      "quarantine": 48,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 17,
+        "variant_assignment_not_exact_child_finish": 31
+      },
+      "coverage_percent": 89.744
+    },
+    "SV03: Obsidian Flames": {
+      "denominator": 416,
+      "numerator": 406,
+      "mapped": 406,
+      "exact_printing": 406,
+      "publish": 406,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 97.596
+    },
+    "SV04: Paradox Rift": {
+      "denominator": 442,
+      "numerator": 428,
+      "mapped": 428,
+      "exact_printing": 428,
+      "publish": 428,
+      "delay": 0,
+      "quarantine": 14,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 14
+      },
+      "coverage_percent": 96.833
+    },
+    "SV05: Temporal Forces": {
+      "denominator": 368,
+      "numerator": 358,
+      "mapped": 358,
+      "exact_printing": 358,
+      "publish": 358,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 97.283
+    },
+    "SV06: Twilight Masquerade": {
+      "denominator": 384,
+      "numerator": 373,
+      "mapped": 373,
+      "exact_printing": 373,
+      "publish": 373,
+      "delay": 0,
+      "quarantine": 11,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 11
+      },
+      "coverage_percent": 97.135
+    },
+    "SV07: Stellar Crown": {
+      "denominator": 311,
+      "numerator": 296,
+      "mapped": 300,
+      "exact_printing": 296,
+      "publish": 296,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 11,
+        "variant_assignment_not_exact_child_finish": 4
+      },
+      "coverage_percent": 95.177
+    },
+    "SV08: Surging Sparks": {
+      "denominator": 430,
+      "numerator": 416,
+      "mapped": 417,
+      "exact_printing": 416,
+      "publish": 416,
+      "delay": 0,
+      "quarantine": 14,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13,
+        "variant_assignment_not_exact_child_finish": 1
+      },
+      "coverage_percent": 96.744
+    },
+    "SV09: Journey Together": {
+      "denominator": 346,
+      "numerator": 333,
+      "mapped": 333,
+      "exact_printing": 333,
+      "publish": 333,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 96.243
+    },
+    "SV10: Destined Rivals": {
+      "denominator": 424,
+      "numerator": 409,
+      "mapped": 409,
+      "exact_printing": 409,
+      "publish": 409,
+      "delay": 0,
+      "quarantine": 15,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 15
+      },
+      "coverage_percent": 96.462
+    },
+    "SVE: Scarlet & Violet Energies": {
+      "denominator": 57,
+      "numerator": 15,
+      "mapped": 16,
+      "exact_printing": 15,
+      "publish": 15,
+      "delay": 0,
+      "quarantine": 42,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 41,
+        "variant_assignment_not_exact_child_finish": 1
+      },
+      "coverage_percent": 26.316
+    },
+    "SWSH: Crown Zenith": {
+      "denominator": 291,
+      "numerator": 272,
+      "mapped": 272,
+      "exact_printing": 272,
+      "publish": 272,
+      "delay": 0,
+      "quarantine": 19,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 19
+      },
+      "coverage_percent": 93.471
+    },
+    "SWSH: Crown Zenith: Galarian Gallery": {
+      "denominator": 70,
+      "numerator": 70,
+      "mapped": 70,
+      "exact_printing": 70,
+      "publish": 70,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "SWSH: Sword & Shield Promo Cards": {
+      "denominator": 339,
+      "numerator": 277,
+      "mapped": 277,
+      "exact_printing": 277,
+      "publish": 277,
+      "delay": 0,
+      "quarantine": 62,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 62
+      },
+      "coverage_percent": 81.711
+    },
+    "SWSH01: Sword & Shield Base Set": {
+      "denominator": 407,
+      "numerator": 369,
+      "mapped": 369,
+      "exact_printing": 369,
+      "publish": 369,
+      "delay": 0,
+      "quarantine": 38,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 38
+      },
+      "coverage_percent": 90.663
+    },
+    "SWSH02: Rebel Clash": {
+      "denominator": 367,
+      "numerator": 356,
+      "mapped": 356,
+      "exact_printing": 356,
+      "publish": 356,
+      "delay": 0,
+      "quarantine": 11,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 11
+      },
+      "coverage_percent": 97.003
+    },
+    "SWSH03: Darkness Ablaze": {
+      "denominator": 368,
+      "numerator": 350,
+      "mapped": 350,
+      "exact_printing": 350,
+      "publish": 350,
+      "delay": 0,
+      "quarantine": 18,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 18
+      },
+      "coverage_percent": 95.109
+    },
+    "SWSH04: Vivid Voltage": {
+      "denominator": 354,
+      "numerator": 345,
+      "mapped": 345,
+      "exact_printing": 345,
+      "publish": 345,
+      "delay": 0,
+      "quarantine": 9,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 9
+      },
+      "coverage_percent": 97.458
+    },
+    "SWSH05: Battle Styles": {
+      "denominator": 316,
+      "numerator": 306,
+      "mapped": 306,
+      "exact_printing": 306,
+      "publish": 306,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 96.835
+    },
+    "SWSH06: Chilling Reign": {
+      "denominator": 379,
+      "numerator": 369,
+      "mapped": 369,
+      "exact_printing": 369,
+      "publish": 369,
+      "delay": 0,
+      "quarantine": 10,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 10
+      },
+      "coverage_percent": 97.361
+    },
+    "SWSH07: Evolving Skies": {
+      "denominator": 381,
+      "numerator": 369,
+      "mapped": 369,
+      "exact_printing": 369,
+      "publish": 369,
+      "delay": 0,
+      "quarantine": 12,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 12
+      },
+      "coverage_percent": 96.85
+    },
+    "SWSH08: Fusion Strike": {
+      "denominator": 518,
+      "numerator": 501,
+      "mapped": 501,
+      "exact_printing": 501,
+      "publish": 501,
+      "delay": 0,
+      "quarantine": 17,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 17
+      },
+      "coverage_percent": 96.718
+    },
+    "SWSH09: Brilliant Stars": {
+      "denominator": 341,
+      "numerator": 310,
+      "mapped": 310,
+      "exact_printing": 310,
+      "publish": 310,
+      "delay": 0,
+      "quarantine": 31,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 31
+      },
+      "coverage_percent": 90.909
+    },
+    "SWSH09: Brilliant Stars Trainer Gallery": {
+      "denominator": 30,
+      "numerator": 30,
+      "mapped": 30,
+      "exact_printing": 30,
+      "publish": 30,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "SWSH10: Astral Radiance": {
+      "denominator": 358,
+      "numerator": 344,
+      "mapped": 344,
+      "exact_printing": 344,
+      "publish": 344,
+      "delay": 0,
+      "quarantine": 14,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 14
+      },
+      "coverage_percent": 96.089
+    },
+    "SWSH10: Astral Radiance Trainer Gallery": {
+      "denominator": 30,
+      "numerator": 30,
+      "mapped": 30,
+      "exact_printing": 30,
+      "publish": 30,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "SWSH11: Lost Origin": {
+      "denominator": 387,
+      "numerator": 366,
+      "mapped": 366,
+      "exact_printing": 366,
+      "publish": 366,
+      "delay": 0,
+      "quarantine": 21,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 21
+      },
+      "coverage_percent": 94.574
+    },
+    "SWSH11: Lost Origin Trainer Gallery": {
+      "denominator": 30,
+      "numerator": 30,
+      "mapped": 30,
+      "exact_printing": 30,
+      "publish": 30,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "SWSH12: Silver Tempest": {
+      "denominator": 370,
+      "numerator": 357,
+      "mapped": 357,
+      "exact_printing": 357,
+      "publish": 357,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 96.486
+    },
+    "SWSH12: Silver Tempest Trainer Gallery": {
+      "denominator": 30,
+      "numerator": 30,
+      "mapped": 30,
+      "exact_printing": 30,
+      "publish": 30,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Triumphant": {
+      "denominator": 193,
+      "numerator": 189,
+      "mapped": 189,
+      "exact_printing": 189,
+      "publish": 189,
+      "delay": 0,
+      "quarantine": 4,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 4
+      },
+      "coverage_percent": 97.927
+    },
+    "Undaunted": {
+      "denominator": 171,
+      "numerator": 171,
+      "mapped": 171,
+      "exact_printing": 171,
+      "publish": 171,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "Unleashed": {
+      "denominator": 179,
+      "numerator": 179,
+      "mapped": 179,
+      "exact_printing": 179,
+      "publish": 179,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "WoTC Promo": {
+      "denominator": 66,
+      "numerator": 50,
+      "mapped": 50,
+      "exact_printing": 50,
+      "publish": 50,
+      "delay": 0,
+      "quarantine": 16,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 16
+      },
+      "coverage_percent": 75.758
+    },
+    "XY - Ancient Origins": {
+      "denominator": 172,
+      "numerator": 172,
+      "mapped": 172,
+      "exact_printing": 172,
+      "publish": 172,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "XY - BREAKpoint": {
+      "denominator": 220,
+      "numerator": 220,
+      "mapped": 220,
+      "exact_printing": 220,
+      "publish": 220,
+      "delay": 0,
+      "quarantine": 0,
+      "suppress_stale": 0,
+      "gap_reasons": {},
+      "coverage_percent": 100
+    },
+    "XY - BREAKthrough": {
+      "denominator": 302,
+      "numerator": 299,
+      "mapped": 300,
+      "exact_printing": 299,
+      "publish": 299,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 1,
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.007
+    },
+    "XY - Evolutions": {
+      "denominator": 207,
+      "numerator": 194,
+      "mapped": 194,
+      "exact_printing": 194,
+      "publish": 194,
+      "delay": 0,
+      "quarantine": 13,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 13
+      },
+      "coverage_percent": 93.72
+    },
+    "XY - Fates Collide": {
+      "denominator": 224,
+      "numerator": 222,
+      "mapped": 222,
+      "exact_printing": 222,
+      "publish": 222,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.107
+    },
+    "XY - Flashfire": {
+      "denominator": 200,
+      "numerator": 198,
+      "mapped": 198,
+      "exact_printing": 198,
+      "publish": 198,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99
+    },
+    "XY - Furious Fists": {
+      "denominator": 213,
+      "numerator": 210,
+      "mapped": 210,
+      "exact_printing": 210,
+      "publish": 210,
+      "delay": 0,
+      "quarantine": 3,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 3
+      },
+      "coverage_percent": 98.592
+    },
+    "XY - Phantom Forces": {
+      "denominator": 225,
+      "numerator": 216,
+      "mapped": 216,
+      "exact_printing": 216,
+      "publish": 216,
+      "delay": 0,
+      "quarantine": 9,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 9
+      },
+      "coverage_percent": 96
+    },
+    "XY - Primal Clash": {
+      "denominator": 296,
+      "numerator": 294,
+      "mapped": 294,
+      "exact_printing": 294,
+      "publish": 294,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.324
+    },
+    "XY - Roaring Skies": {
+      "denominator": 197,
+      "numerator": 196,
+      "mapped": 196,
+      "exact_printing": 196,
+      "publish": 196,
+      "delay": 0,
+      "quarantine": 1,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1
+      },
+      "coverage_percent": 99.492
+    },
+    "XY - Steam Siege": {
+      "denominator": 212,
+      "numerator": 206,
+      "mapped": 207,
+      "exact_printing": 206,
+      "publish": 206,
+      "delay": 0,
+      "quarantine": 6,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 5,
+        "variant_assignment_not_exact_child_finish": 1
+      },
+      "coverage_percent": 97.17
+    },
+    "XY Base Set": {
+      "denominator": 271,
+      "numerator": 269,
+      "mapped": 269,
+      "exact_printing": 269,
+      "publish": 269,
+      "delay": 0,
+      "quarantine": 2,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 2
+      },
+      "coverage_percent": 99.262
+    },
+    "XY Promos": {
+      "denominator": 235,
+      "numerator": 191,
+      "mapped": 191,
+      "exact_printing": 191,
+      "publish": 191,
+      "delay": 0,
+      "quarantine": 44,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 44
+      },
+      "coverage_percent": 81.277
+    }
+  },
+  "by_era": {
+    "middle": {
+      "denominator": 10409,
+      "numerator": 10095,
+      "mapped": 10149,
+      "exact_printing": 10095,
+      "publish": 10095,
+      "delay": 0,
+      "quarantine": 314,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 54,
+        "missing_active_source_mapping": 260
+      },
+      "coverage_percent": 96.983
+    },
+    "modern": {
+      "denominator": 21038,
+      "numerator": 18254,
+      "mapped": 18331,
+      "exact_printing": 18267,
+      "publish": 18254,
+      "delay": 0,
+      "quarantine": 2784,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 62,
+        "missing_active_source_mapping": 2707,
+        "missing_mapping_method": 15
+      },
+      "coverage_percent": 86.767
+    },
+    "vintage": {
+      "denominator": 2909,
+      "numerator": 2816,
+      "mapped": 2857,
+      "exact_printing": 2816,
+      "publish": 2816,
+      "delay": 0,
+      "quarantine": 93,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 52,
+        "variant_assignment_not_exact_child_finish": 41
+      },
+      "coverage_percent": 96.803
+    }
+  },
+  "by_finish": {
+    "holo": {
+      "denominator": 8517,
+      "numerator": 7230,
+      "mapped": 7273,
+      "exact_printing": 7238,
+      "publish": 7230,
+      "delay": 0,
+      "quarantine": 1287,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1244,
+        "variant_assignment_not_exact_child_finish": 33,
+        "missing_mapping_method": 10
+      },
+      "coverage_percent": 84.889
+    },
+    "normal": {
+      "denominator": 12741,
+      "numerator": 11530,
+      "mapped": 11621,
+      "exact_printing": 11535,
+      "publish": 11530,
+      "delay": 0,
+      "quarantine": 1211,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1120,
+        "variant_assignment_not_exact_child_finish": 86,
+        "missing_mapping_method": 5
+      },
+      "coverage_percent": 90.495
+    },
+    "reverse": {
+      "denominator": 13098,
+      "numerator": 12405,
+      "mapped": 12443,
+      "exact_printing": 12405,
+      "publish": 12405,
+      "delay": 0,
+      "quarantine": 693,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "variant_assignment_not_exact_child_finish": 38,
+        "missing_active_source_mapping": 655
+      },
+      "coverage_percent": 94.709
+    }
+  },
+  "by_value_band": {
+    "high": {
+      "denominator": 5430,
+      "numerator": 4279,
+      "mapped": 4344,
+      "exact_printing": 4286,
+      "publish": 4279,
+      "delay": 0,
+      "quarantine": 1151,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1086,
+        "variant_assignment_not_exact_child_finish": 58,
+        "missing_mapping_method": 7
+      },
+      "coverage_percent": 78.803
+    },
+    "low": {
+      "denominator": 18041,
+      "numerator": 16811,
+      "mapped": 16867,
+      "exact_printing": 16817,
+      "publish": 16811,
+      "delay": 0,
+      "quarantine": 1230,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 1174,
+        "variant_assignment_not_exact_child_finish": 48,
+        "missing_mapping_method": 8
+      },
+      "coverage_percent": 93.182
+    },
+    "medium": {
+      "denominator": 10885,
+      "numerator": 10075,
+      "mapped": 10126,
+      "exact_printing": 10075,
+      "publish": 10075,
+      "delay": 0,
+      "quarantine": 810,
+      "suppress_stale": 0,
+      "gap_reasons": {
+        "missing_active_source_mapping": 759,
+        "variant_assignment_not_exact_child_finish": 51
+      },
+      "coverage_percent": 92.559
+    }
+  },
+  "findings": [
+    "coverage_below_required_threshold"
+  ]
+}

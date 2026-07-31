@@ -1,0 +1,23 @@
+{
+  "plan_version": "TCGPLAYER_MARKET_SURFACE_RELEASE_READINESS_V1",
+  "started_at": "2026-07-29T21:39:43.000Z",
+  "branch": "agent/pricing-v1-surface-readiness",
+  "base_commit_sha": "2587bd8ca9ae626306226fd0d5f2143cb38a112a",
+  "production_runtime_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "required_canary_end": "2026-08-01T20:26:44.820Z",
+  "scope": [
+    "inventory and statically audit all 17 frozen pricing surfaces",
+    "repair only Production V1 client contract and proof gaps",
+    "perform a sanitized read-only current-publication check",
+    "prepare but do not execute the post-canary release plan"
+  ],
+  "boundaries": {
+    "database_writes": 0,
+    "migration_apply": false,
+    "deployment": false,
+    "publication_change": false,
+    "approval_change": false,
+    "anonymous_pricing_change": false,
+    "active_canary_change": false
+  }
+}

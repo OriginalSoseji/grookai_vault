@@ -13,6 +13,11 @@ import {
 import { getRecentlyConfirmedCanonicalCards } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import { getPublicSets } from "@/lib/publicSets";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
+import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
+import {
+  createServerComponentClient,
+  hasSupabaseServerAuthCookie,
+} from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -77,6 +82,13 @@ export default async function ExplorePage({
 }: {
   searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string };
 }) {
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = hasSupabaseServerAuthCookie()
+    ? await supabase.auth.getUser()
+    : { data: { user: null } };
+  const canViewPricing = Boolean(user);
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const isDiscoveryMode =
@@ -88,12 +100,22 @@ export default async function ExplorePage({
   let discoveryContent = null;
 
   if (isDiscoveryMode) {
-    const [featuredCards, allSets, recentlyConfirmedCards, provisionalCards] = await Promise.all([
+    const [featuredCardRows, allSets, recentlyConfirmedCards, provisionalCards] = await Promise.all([
       getFeaturedExploreCards().catch(() => []),
       getPublicSets().catch(() => []),
       getRecentlyConfirmedCanonicalCards().catch(() => []),
       getDiscoveryProvisionalCards().catch(() => []),
     ]);
+    const featuredPricing = canViewPricing
+      ? await getPublicPricingByCardIds(
+          supabase,
+          featuredCardRows.map((card) => card.id),
+        )
+      : new Map();
+    const featuredCards = featuredCardRows.map((card) => ({
+      ...card,
+      ...(featuredPricing.get(card.id) ?? {}),
+    }));
 
     discoveryContent = (
       <ExploreDiscoverySections
@@ -107,13 +129,14 @@ export default async function ExplorePage({
         )}
         provisionalCards={languageScope === "ja" ? [] : provisionalCards}
         currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
+        canViewPricing={canViewPricing}
       />
     );
   }
 
   return (
     <Suspense fallback={<LoadingCardGridSkeleton />}>
-      <ExplorePageClient discoveryContent={discoveryContent} canViewPricing={false} />
+      <ExplorePageClient discoveryContent={discoveryContent} canViewPricing={canViewPricing} />
     </Suspense>
   );
 }

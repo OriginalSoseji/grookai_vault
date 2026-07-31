@@ -38,6 +38,9 @@ type VaultHeaderValueSummary = {
   totalEstimatedValue: number | null;
   pricedGroupedCount: number;
   totalGroupedCount: number;
+  pricedCopyCount: number;
+  totalRawCopyCount: number;
+  unpricedCopyCount: number;
   latestPricingUpdateAt: string | null;
 };
 
@@ -294,7 +297,7 @@ export function VaultCollectionView({
     typeof valueSummary.totalEstimatedValue === "number"
       ? formatVaultCurrency(valueSummary.totalEstimatedValue)
       : null;
-  const coverageLabel = `${valueSummary.pricedGroupedCount} / ${valueSummary.totalGroupedCount}`;
+  const coverageLabel = `${valueSummary.pricedCopyCount} / ${valueSummary.totalRawCopyCount}`;
   const freshnessLabel = formatPricingFreshness(valueSummary.latestPricingUpdateAt);
 
   const recentItems = useMemo(
@@ -696,15 +699,30 @@ export function VaultCollectionView({
                   Estimated Vault Value
                 </p>
                 <div className="space-y-1">
-                  <p className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]">
+                  <p
+                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    data-pricing-proof="vault-exact-total"
+                    data-pricing-scope="vault_total"
+                    data-vault-market-value-usd={
+                      valueSummary.totalEstimatedValue ?? undefined
+                    }
+                    data-priced-copy-count={valueSummary.pricedCopyCount}
+                    data-unpriced-copy-count={valueSummary.unpricedCopyCount}
+                    data-total-raw-copy-count={valueSummary.totalRawCopyCount}
+                    data-published-at={
+                      valueSummary.latestPricingUpdateAt ?? undefined
+                    }
+                    data-source-name="tcgplayer"
+                    data-source-label="TCGPlayer Market"
+                  >
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
-                  <p className="text-xs text-slate-400">Best available pricing across your vault.</p>
+                  <p className="text-xs text-slate-400">TCGPlayer Market for exact raw printings.</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
                 <span>
-                  Priced cards <span className="font-medium text-slate-600">{coverageLabel}</span>
+                  Priced copies <span className="font-medium text-slate-600">{coverageLabel}</span>
                 </span>
                 <span className="hidden text-slate-300 sm:inline">•</span>
                 <span>{freshnessLabel}</span>

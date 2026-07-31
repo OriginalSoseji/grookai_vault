@@ -1,0 +1,15 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_PROVENANCE_LOOKUP_AUDIT_V1",
+  "status": "passed",
+  "printing_gv_id": "GV-PK-HP-101-HOLO",
+  "provenance_id": "3cead092-0e5a-473d-893d-10bbfbe7a5ff",
+  "provenance_relationship": "current",
+  "read_model_status": "available",
+  "market_close": 69.88,
+  "current_market_close": 69.88,
+  "currency": "USD",
+  "source_label": "TCGPlayer Market",
+  "findings": [],
+  "notices": [],
+  "database_writes": 0
+}

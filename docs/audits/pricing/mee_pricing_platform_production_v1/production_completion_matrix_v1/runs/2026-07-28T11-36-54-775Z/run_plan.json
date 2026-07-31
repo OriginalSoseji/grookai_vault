@@ -1,0 +1,16 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_COMPLETION_AUDIT_V1",
+  "policy_version": "TCGPLAYER_MARKET_COMPLETION_POLICY_V1",
+  "state_path": "docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/state.json",
+  "require_complete": false,
+  "commit_sha": "7c6150decb228a8256386f50820cf374e8b38b18",
+  "branch": "pricing/mee-productization-v1",
+  "tracked_worktree_clean": true,
+  "boundaries": {
+    "repository_reads_only": true,
+    "database_reads": false,
+    "database_writes": false,
+    "deployment_changes": false,
+    "goal_status_update": false
+  }
+}

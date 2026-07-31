@@ -880,6 +880,18 @@ async function buildExploreRows(
         raw_price_source:
           pricingByCardId.get(row.id)?.raw_price_source ?? undefined,
         raw_price_ts: pricingByCardId.get(row.id)?.raw_price_ts ?? undefined,
+        raw_price_published_at:
+          pricingByCardId.get(row.id)?.raw_price_published_at ?? undefined,
+        pricing_provenance_id:
+          pricingByCardId.get(row.id)?.pricing_provenance_id ?? undefined,
+        pricing_source_label:
+          pricingByCardId.get(row.id)?.pricing_source_label ?? undefined,
+        pricing_scope:
+          pricingByCardId.get(row.id)?.pricing_scope ?? undefined,
+        pricing_is_from_price:
+          pricingByCardId.get(row.id)?.pricing_is_from_price ?? undefined,
+        eligible_printing_count:
+          pricingByCardId.get(row.id)?.eligible_printing_count ?? undefined,
         latest_price: pricingByCardId.get(row.id)?.latest_price ?? undefined,
         confidence: pricingByCardId.get(row.id)?.confidence ?? undefined,
         listing_count: pricingByCardId.get(row.id)?.listing_count ?? undefined,

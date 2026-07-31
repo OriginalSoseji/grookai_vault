@@ -1,34 +1,21 @@
-/**
- * STABILIZATION RULE:
- *
- * Current active pricing authority:
- * - Engine: Market Evidence Engine evidence-anchored public bridge
- * - App-facing read surface: v_market_evidence_public_pricing_bridge_reference_anchored_v1
- *
- * Product-facing reads must continue through the bridge. Do not bypass this
- * surface to read lower-level pricing tables directly.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cache } from "react";
-
-type PublicBridgePriceRow = {
-  card_print_id: string | null;
-  grookai_value_mid: number | null;
-  active_ask_signal_at: string | null;
-  confidence_label: string | null;
-  active_ask_listing_count: number | null;
-  grookai_value_block_reason: string | null;
-  market_truth: boolean | null;
-  sold_comp: boolean | null;
-  publishable: boolean | null;
-  app_visible: boolean | null;
-};
+import {
+  getMarketPricingReadModelV1,
+  type MarketPricingRecordV1,
+} from "./marketPricingReadModelV1";
 
 export type CanonicalRawPricingRecord = {
   card_print_id: string;
   raw_price?: number;
   raw_price_source?: string;
   raw_price_ts?: string;
+  raw_price_published_at?: string;
+  pricing_provenance_id?: string;
+  pricing_source_label?: string;
+  pricing_scope?: "parent" | "card_printing";
+  pricing_is_from_price?: boolean;
+  eligible_printing_count?: number;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
@@ -39,8 +26,6 @@ export type CanonicalRawPricingRecord = {
 };
 
 export type PublicPricingRecord = CanonicalRawPricingRecord;
-
-type PricingClient = SupabaseClient;
 
 type PublicPricingQueryOptions = {
   requireComplete?: boolean;
@@ -66,7 +51,7 @@ export class PublicPricingSortUnavailableError extends Error {
       reason === "candidate_limit_exceeded"
         ? `Value sorting supports at most ${maximumCount} candidates; narrow the search and try again.`
         : reason === "pricing_values_unavailable"
-          ? "Value sorting could not be applied because these results do not have sortable Grookai Values."
+          ? "Value sorting could not be applied because these results do not have sortable TCGPlayer Market prices."
           : "Value sorting could not be completed because pricing is temporarily unavailable.",
     );
     this.name = "PublicPricingSortUnavailableError";
@@ -89,16 +74,10 @@ const PUBLIC_PRICING_QUERY_CHUNK_SIZE = 24;
 const PUBLIC_PRICING_MAX_CARD_IDS = 192;
 export const PUBLIC_PRICING_COMPLETE_SORT_MAX_CARD_IDS = 64;
 const PUBLIC_PRICING_QUERY_BUDGET_MS = 1800;
-const PUBLIC_PRICING_SELECT =
-  "card_print_id,grookai_value_mid,active_ask_signal_at,confidence_label,active_ask_listing_count,grookai_value_block_reason,market_truth,sold_comp,publishable,app_visible";
 
 function normalizeCardPrintIds(cardPrintIds: string[]) {
   return Array.from(
-    new Set(
-      cardPrintIds
-        .map((cardPrintId) => cardPrintId.trim())
-        .filter(Boolean),
-    ),
+    new Set(cardPrintIds.map((cardPrintId) => cardPrintId.trim()).filter(Boolean)),
   ).sort();
 }
 
@@ -110,49 +89,59 @@ function chunkValues<T>(values: T[], size: number) {
   return chunks;
 }
 
-function mapPublicBridgeRow(
-  row: PublicBridgePriceRow & { card_print_id: string },
+function mapParentMarketRecord(
+  record: MarketPricingRecordV1,
 ): PublicPricingRecord {
-  const rawPrice = typeof row.grookai_value_mid === "number" ? row.grookai_value_mid : undefined;
-  const rawPriceSource = rawPrice !== undefined ? "grookai_value" : undefined;
-  const rawPriceTs =
-    rawPrice !== undefined ? row.active_ask_signal_at ?? undefined : undefined;
-  const confidence =
-    row.confidence_label === "high"
-      ? 0.9
-      : row.confidence_label === "medium"
-        ? 0.75
-        : row.confidence_label === "limited"
-          ? 0.5
-          : undefined;
-
   return {
-    card_print_id: row.card_print_id,
-    raw_price: rawPrice,
-    raw_price_source: rawPriceSource,
-    raw_price_ts: rawPriceTs,
-    latest_price: rawPrice,
-    confidence,
-    listing_count:
-      typeof row.active_ask_listing_count === "number" &&
-      Number.isFinite(row.active_ask_listing_count)
-        ? row.active_ask_listing_count
-        : undefined,
-    price_source: rawPriceSource,
-    updated_at: rawPriceTs,
-    active_price_updated_at: rawPriceTs,
-    last_snapshot_at: rawPriceTs,
+    card_print_id: record.card_print_id,
+    raw_price: record.market_close,
+    raw_price_source: "tcgplayer_market",
+    raw_price_ts: record.observed_at,
+    raw_price_published_at: record.published_at,
+    pricing_provenance_id: record.provenance_id,
+    pricing_source_label: record.source_label,
+    pricing_scope: record.pricing_scope,
+    pricing_is_from_price: record.is_from_price,
+    eligible_printing_count: record.eligible_printing_count,
+    latest_price: record.market_close,
+    confidence: 1,
+    listing_count: record.active_ask_listing_count,
+    price_source: "tcgplayer_market",
+    updated_at: record.published_at,
+    active_price_updated_at: record.active_ask_observed_at,
+    last_snapshot_at: record.published_at,
   };
 }
 
-/**
- * React's server cache is request-scoped. The normalized string key makes
- * repeated reads for the same ID set share one bounded bridge read without
- * retaining signed-in pricing across requests.
- */
+function isTimeoutLike(error: unknown) {
+  return error instanceof Error &&
+    /timeout|timed out|abort|canceling statement/i.test(
+      `${error.name} ${error.message}`,
+    );
+}
+
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<T>((_resolve, reject) => {
+        timer = setTimeout(
+          () => reject(new Error("TCGPlayer market read timed out")),
+          timeoutMs,
+        );
+      }),
+    ]);
+  } finally {
+    if (timer) {
+      clearTimeout(timer);
+    }
+  }
+}
+
 const getPublicPricingForNormalizedIds = cache(
   async function getPublicPricingForNormalizedIds(
-    supabase: PricingClient,
+    supabase: SupabaseClient,
     normalizedIdsKey: string,
   ): Promise<PublicPricingQueryResult> {
     const requestedIds = normalizedIdsKey
@@ -164,8 +153,8 @@ const getPublicPricingForNormalizedIds = cache(
     let incompleteReason: PublicPricingQueryResult["incompleteReason"] =
       complete ? null : "pricing_read_incomplete";
 
-    if (requestedIds.length > boundedIds.length) {
-      console.warn("[pricing] public bridge read was bounded", {
+    if (!complete) {
+      console.warn("[pricing:v1] shared market read was bounded", {
         requested: requestedIds.length,
         maximum: PUBLIC_PRICING_MAX_CARD_IDS,
       });
@@ -180,75 +169,33 @@ const getPublicPricingForNormalizedIds = cache(
       if (remainingBudgetMs <= 0) {
         complete = false;
         incompleteReason = "pricing_timeout";
-        console.warn("[pricing] public bridge read exceeded its request budget", {
-          requested: boundedIds.length,
-          resolved: pricingByCardId.size,
-          budgetMs: PUBLIC_PRICING_QUERY_BUDGET_MS,
-        });
         break;
       }
 
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), remainingBudgetMs);
-
       try {
-        const { data, error } = await supabase
-          .from("v_market_evidence_public_pricing_bridge_reference_anchored_v1")
-          .select(PUBLIC_PRICING_SELECT)
-          .in("card_print_id", idChunk)
-          .limit(idChunk.length)
-          .abortSignal(controller.signal);
-
-        if (error) {
-          complete = false;
-          incompleteReason =
-            error.code === "57014" ||
-            /timeout|timed out|aborted|canceling statement/i.test(error.message)
-              ? "pricing_timeout"
-              : "pricing_read_incomplete";
-          console.warn(
-            "[pricing] public bridge read failed; the page will continue without remaining pricing enrichment",
-            {
-              message: error.message,
-              code: error.code,
-              requested: boundedIds.length,
-              resolved: pricingByCardId.size,
-              batchSize: idChunk.length,
-            },
-          );
-          break;
-        }
-
-        for (const row of (data ?? []) as PublicBridgePriceRow[]) {
-          const isSafePublicPrice =
-            row.grookai_value_block_reason === null &&
-            row.market_truth === false &&
-            row.sold_comp === false &&
-            row.publishable === false &&
-            row.app_visible === false;
-          if (!row.card_print_id || !isSafePublicPrice) {
+        const records = await withTimeout(
+          getMarketPricingReadModelV1(supabase, {
+            cardPrintIds: idChunk,
+            throwOnError: true,
+          }),
+          remainingBudgetMs,
+        );
+        for (const record of records) {
+          if (record.pricing_scope !== "parent") {
             continue;
           }
-
           pricingByCardId.set(
-            row.card_print_id,
-            mapPublicBridgeRow(
-              row as PublicBridgePriceRow & { card_print_id: string },
-            ),
+            record.card_print_id,
+            mapParentMarketRecord(record),
           );
         }
       } catch (error) {
         complete = false;
-        incompleteReason =
-          controller.signal.aborted ||
-          (error instanceof Error &&
-            /timeout|timed out|aborted|aborterror|canceling statement/i.test(
-              `${error.name} ${error.message}`,
-            ))
-            ? "pricing_timeout"
-            : "pricing_read_incomplete";
+        incompleteReason = isTimeoutLike(error)
+          ? "pricing_timeout"
+          : "pricing_read_incomplete";
         console.warn(
-          "[pricing] public bridge read was interrupted; the page will continue without remaining pricing enrichment",
+          "[pricing:v1] shared market read failed; the page will continue without remaining pricing enrichment",
           {
             message: error instanceof Error ? error.message : String(error),
             requested: boundedIds.length,
@@ -257,8 +204,6 @@ const getPublicPricingForNormalizedIds = cache(
           },
         );
         break;
-      } finally {
-        clearTimeout(timeout);
       }
     }
 
@@ -267,7 +212,7 @@ const getPublicPricingForNormalizedIds = cache(
 );
 
 export async function getPublicPricingByCardIds(
-  supabase: PricingClient,
+  supabase: SupabaseClient,
   cardPrintIds: string[],
   options: PublicPricingQueryOptions = {},
 ): Promise<Map<string, PublicPricingRecord>> {
@@ -280,10 +225,6 @@ export async function getPublicPricingByCardIds(
     options.requireComplete &&
     uniqueIds.length > PUBLIC_PRICING_COMPLETE_SORT_MAX_CARD_IDS
   ) {
-    console.warn("[pricing] complete bridge read refused an oversized candidate set", {
-      requested: uniqueIds.length,
-      maximum: PUBLIC_PRICING_COMPLETE_SORT_MAX_CARD_IDS,
-    });
     throw new PublicPricingSortUnavailableError(
       "candidate_limit_exceeded",
       uniqueIds.length,

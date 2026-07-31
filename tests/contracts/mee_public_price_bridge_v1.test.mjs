@@ -26,6 +26,9 @@ const publicPricingHelperPath = "apps/web/src/lib/pricing/getPublicPricingByCard
 const cardPricingRoutePath = "apps/web/src/app/api/card-pricing/route.ts";
 const pricingRailPath = "apps/web/src/components/pricing/CardPagePricingRail.tsx";
 const pricingDisclosurePath = "apps/web/src/components/common/PricingDisclosure.tsx";
+const marketAnalysisModelPath = "apps/web/src/lib/pricing/getCardMarketAnalysisModel.ts";
+const compareServicePath = "lib/services/public/compare_service.dart";
+const livePricingRequestPath = "supabase/functions/pricing-live-request/index.ts";
 
 test("MEE public price bridge reads only approved internal MEE price signals", () => {
   const sql = stripSqlComments(read(bridgeSqlPath));
@@ -72,56 +75,64 @@ test("MEE public price bridge SQL does not write legacy public pricing stores", 
   assert.doesNotMatch(sql, /\bjusttcg\b/i);
 });
 
-test("app pricing reads require bridge safety fields before showing price", () => {
+test("app pricing reads use the governed TCGPlayer market contract", () => {
   const cardHelper = read(cardPricingHelperPath);
   const publicHelper = read(publicPricingHelperPath);
 
-  assert.match(cardHelper, /get_market_evidence_public_pricing_bridge_variant_aware_v1/);
-  assert.match(publicHelper, /v_market_evidence_public_pricing_bridge_reference_anchored_v1/);
-
   for (const helper of [cardHelper, publicHelper]) {
-    assert.match(helper, /grookai_value_mid/);
-    assert.match(helper, /market_truth\s*={0,2}\s*false|market_truth\s*===\s*false/);
-    assert.match(helper, /sold_comp\s*={0,2}\s*false|sold_comp\s*===\s*false/);
-    assert.match(helper, /publishable\s*={0,2}\s*false|publishable\s*===\s*false/);
-    assert.match(helper, /app_visible\s*={0,2}\s*false|app_visible\s*===\s*false/);
+    assert.match(helper, /getMarketPricingReadModelV1/);
+    assert.match(helper, /market_close/);
+    assert.doesNotMatch(helper, /grookai_value/i);
+    assert.doesNotMatch(helper, /v_card_pricing_ui_v1/);
+    assert.doesNotMatch(helper, /v_best_prices_all_gv_v1/);
+    assert.doesNotMatch(helper, /card_print_active_prices/);
   }
-
-  assert.match(cardHelper, /active_ask_mid/);
-  assert.match(cardHelper, /grookai_value_block_reason/);
-  assert.match(publicHelper, /grookai_value_block_reason\s*===\s*null/);
-  assert.doesNotMatch(publicHelper, /v_market_evidence_public_price_bridge_v1/);
-  assert.doesNotMatch(publicHelper, /v_best_prices_all_gv_v1/);
-  assert.doesNotMatch(publicHelper, /card_print_active_prices/);
 });
 
-test("app pricing reads do not use active ask as Grookai Value", () => {
+test("app pricing reads keep active asks separate from the market close", () => {
   const cardHelper = read(cardPricingHelperPath);
   const publicHelper = read(publicPricingHelperPath);
 
   assert.doesNotMatch(cardHelper, /primary_source:\s*"ebay"/);
   assert.doesNotMatch(cardHelper, /pricing_basis:\s*"active_listing_market_estimate"/);
-  assert.match(cardHelper, /primary_source:\s*hasGrookaiValue\s*\?\s*"grookai_value"/);
-  assert.match(cardHelper, /ebay_median_price:\s*activeAskMid/);
-  assert.match(publicHelper, /const rawPrice = typeof row\.grookai_value_mid/);
-  assert.match(publicHelper, /rawPriceSource = rawPrice !== undefined \? "grookai_value"/);
+  assert.match(cardHelper, /primary_source:\s*"tcgplayer_market"/);
+  assert.match(cardHelper, /active_ask_listing_count/);
+  assert.match(publicHelper, /raw_price:\s*record\.market_close/);
+  assert.match(publicHelper, /raw_price_source:\s*"tcgplayer_market"/);
 });
 
-test("pricing UI copy separates Grookai Value and Lowest Available Today", () => {
+test("all supported pricing surfaces use the governed market read model", () => {
+  const cardHelper = read(cardPricingHelperPath);
+  const marketModel = read(marketAnalysisModelPath);
+  const compareService = read(compareServicePath);
+  const livePricingRequest = read(livePricingRequestPath);
+
+  assert.match(cardHelper, /\.from\("card_printings"\)/);
+  assert.match(cardHelper, /cardPrintingIds/);
+  assert.match(marketModel, /get_market_price_history_v1/);
+  assert.match(marketModel, /pricing_scope === "card_printing"/);
+  assert.match(marketModel, /usedCardFallback:\s*false/);
+  assert.match(compareService, /CardSurfacePricingService\.fetchByCardPrintIds/);
+  assert.match(livePricingRequest, /get_market_pricing_read_model_v1/);
+
+  for (const surface of [compareService, livePricingRequest, marketModel]) {
+    assert.doesNotMatch(surface, /v_best_prices_all_gv_v1/);
+    assert.doesNotMatch(surface, /\bgrookaiValue\b/i);
+  }
+});
+
+test("pricing UI copy separates TCGPlayer Market and exact active asks", () => {
   const rail = read(pricingRailPath);
   const disclosure = read(pricingDisclosurePath);
 
-  assert.match(rail, /Evidence-anchored Grookai Value/);
-  assert.match(rail, /Lowest Available Today/);
-  assert.match(rail, /eBay active ask/);
-  assert.match(rail, /Median active ask/);
-  assert.match(rail, /Ask Range/);
-  assert.match(rail, /Building confidence/);
-  assert.match(rail, /No trusted valuation exists yet\. Current market is shown below\./);
-  assert.match(rail, /Reference evidence is under review before Grookai Value can be shown\./);
-  assert.match(rail, /Active asks are asking-price evidence, not sold comps\./);
-  assert.match(disclosure, /Grookai Value is evidence-anchored/);
-  assert.match(disclosure, /Lowest Available Today uses active listing asks/);
+  assert.match(rail, /TCGPlayer Market/);
+  assert.match(rail, /Available Today/);
+  assert.match(rail, /Lowest exact-printing eBay active ask/);
+  assert.match(rail, /No qualified market price/);
+  assert.match(rail, /Asking-price evidence, not a sale or market close\./);
+  assert.match(disclosure, /TCGPlayer&apos;s latest qualified market price/);
+  assert.match(disclosure, /eBay active asks and remains separate from the market close/);
+  assert.doesNotMatch(`${rail}\n${disclosure}`, /Grookai Value/);
 });
 
 test("signed-in card pricing hydration route is tracked and auth-gated", () => {

@@ -7,6 +7,7 @@ import {
   POKEMON_CARD_DISCOVERY_GRID_CLASSNAME,
 } from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import VisiblePrice from "@/components/pricing/VisiblePrice";
 import PublicProvisionalDiscoverySection from "@/components/provisional/PublicProvisionalDiscoverySection";
 import RecentlyConfirmedDiscoverySection from "@/components/provisional/RecentlyConfirmedDiscoverySection";
 import PublicCardImage from "@/components/PublicCardImage";
@@ -47,7 +48,34 @@ type ExploreDiscoverySectionsProps = {
   provisionalCards: PublicProvisionalCard[];
   recentlyConfirmedCards: RecentlyConfirmedCanonicalCard[];
   currentView?: ExploreViewMode;
+  canViewPricing: boolean;
 };
+
+function FeaturedPrice({
+  card,
+  canViewPricing,
+}: {
+  card: FeaturedExploreCard;
+  canViewPricing: boolean;
+}) {
+  if (!canViewPricing || typeof card.raw_price !== "number") {
+    return null;
+  }
+
+  return (
+    <VisiblePrice
+      value={card.raw_price}
+      size="dense"
+      cardPrintId={card.id}
+      observedAt={card.raw_price_ts}
+      publishedAt={card.raw_price_published_at}
+      provenanceId={card.pricing_provenance_id}
+      sourceLabel={card.pricing_source_label}
+      pricingScope={card.pricing_scope}
+      isFromPrice={card.pricing_is_from_price}
+    />
+  );
+}
 
 function buildExploreQueryHref(query: string, compareCards: string[], currentView?: ExploreViewMode) {
   const params = new URLSearchParams({ q: query });
@@ -97,6 +125,7 @@ export default function ExploreDiscoverySections({
   provisionalCards,
   recentlyConfirmedCards,
   currentView,
+  canViewPricing,
 }: ExploreDiscoverySectionsProps) {
   const getDisplayName = (card: FeaturedExploreCard) =>
     resolveDisplayIdentity({
@@ -154,6 +183,7 @@ export default function ExploreDiscoverySections({
                 <div className="space-y-0.5">
                   <p className="text-[1.15rem] font-semibold tracking-tight text-slate-950">{spotlightCard.display_name}</p>
                   <p className="text-[13px] leading-5 text-slate-600">{buildCardMetaLine(spotlightCard)}</p>
+                  <FeaturedPrice card={spotlightCard} canViewPricing={canViewPricing} />
                 </div>
               </Link>
             </div>
@@ -208,6 +238,7 @@ export default function ExploreDiscoverySections({
                       <div className="space-y-0.5">
                         <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.display_name}</p>
                         <p className="line-clamp-2 text-[11px] leading-[1.125rem] text-slate-500">{buildCardMetaLine(card)}</p>
+                        <FeaturedPrice card={card} canViewPricing={canViewPricing} />
                       </div>
                     </Link>
                   </article>
@@ -253,6 +284,7 @@ export default function ExploreDiscoverySections({
                     </Link>
                   }
                   subtitle={<span className="line-clamp-2 block text-[11px] leading-[1.125rem]">{buildCardMetaLine(card)}</span>}
+                  summary={<FeaturedPrice card={card} canViewPricing={canViewPricing} />}
                 />
                   );
                 })()
@@ -403,6 +435,7 @@ export default function ExploreDiscoverySections({
                   meta={
                     <span>{[card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}</span>
                   }
+                  summary={<FeaturedPrice card={card} canViewPricing={canViewPricing} />}
                   footer={<span>{card.gv_id}</span>}
                 />
                   );

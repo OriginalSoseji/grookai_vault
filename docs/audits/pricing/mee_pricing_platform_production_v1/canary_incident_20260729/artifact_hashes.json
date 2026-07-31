@@ -1,0 +1,404 @@
+{
+  "schema_version": "pricing_canary_incident_artifact_hash_manifest_v1",
+  "algorithm": "sha256",
+  "hash_scope": "git_index_blob_bytes",
+  "generated_at": "2026-07-29T20:47:08.233Z",
+  "artifact_count": 79,
+  "files": [
+    {
+      "path": "github_actions_failure_inventory.json",
+      "size_bytes": 3413,
+      "sha256": "8fefffc7092d189bcb88c605f9fb5291f8c3ac941bac15b0c8153800d100fe60"
+    },
+    {
+      "path": "observer_diagnostic/artifact_hashes.json",
+      "size_bytes": 346,
+      "sha256": "3159167c168654a63258572f44cba4dd60dc7c83dde94d51d6a6f9eba2139771"
+    },
+    {
+      "path": "observer_diagnostic/evidence.json",
+      "size_bytes": 7681,
+      "sha256": "aa52e77e0c348b410d4bb67227d326c5425d406288fe0cb80557a3d7ae668875"
+    },
+    {
+      "path": "observer_diagnostic/REPORT.md",
+      "size_bytes": 1048,
+      "sha256": "d0693baf2b1529ca1a39437d5181be8a55d20d1548c3feae75c7ce4471616dcb"
+    },
+    {
+      "path": "observer_diagnostic/run_plan.json",
+      "size_bytes": 591,
+      "sha256": "f0de9472b6127cd450621257cb7a8f5fc5d9df4829bb71ea91ee8e0a907df908"
+    },
+    {
+      "path": "observer_diagnostic/summary.json",
+      "size_bytes": 2636,
+      "sha256": "eec65a7ee20ae45ce50026e620046c9665d02782f15e3930ef1f895ffa21abcf"
+    },
+    {
+      "path": "observer_initial_failure/artifact_hashes.json",
+      "size_bytes": 346,
+      "sha256": "ab6f9930c0b7a94c00c3cd36eb878c85568fe4604c42b7d08bbe80bb06fe9a48"
+    },
+    {
+      "path": "observer_initial_failure/evidence.json",
+      "size_bytes": 5327,
+      "sha256": "f30f8f2037d6f2f9bd8fb8b23cf5eb9623d6e70485621f34ad0449cdecf868f8"
+    },
+    {
+      "path": "observer_initial_failure/REPORT.md",
+      "size_bytes": 929,
+      "sha256": "2b591dec193b1738f3c01b168870fb7b42190ae51ea3a4e5273592bb8d459c3a"
+    },
+    {
+      "path": "observer_initial_failure/run_plan.json",
+      "size_bytes": 591,
+      "sha256": "a79d6cecb5d64125bb1969731dad20bfe58dee82959efcb42a7efc564f312fb3"
+    },
+    {
+      "path": "observer_initial_failure/summary.json",
+      "size_bytes": 2509,
+      "sha256": "9ff89f93c3bc9f32cf3ab8d512a3656bdd847705d181d03ee2b732cf71f5817f"
+    },
+    {
+      "path": "pre_repair3_publication_baseline.json",
+      "size_bytes": 1082,
+      "sha256": "da0f60db4a401b780919a44a120169f5cbdcccb400b72077dfff3d8cbe6cf270"
+    },
+    {
+      "path": "repair2_failed_activation/attempt_1.stderr.log",
+      "size_bytes": 1716,
+      "sha256": "d1a76ff2906a49f7b1b07a938e5b9973adfae5fa7c9d3d8cc37dceeba24dcdc2"
+    },
+    {
+      "path": "repair2_failed_activation/attempt_1.stdout.log",
+      "size_bytes": 243,
+      "sha256": "143b8e94c5908aa7810713cc90a485fbd78889cd011769411760025e2fbd04aa"
+    },
+    {
+      "path": "repair2_failed_activation/attempt_2.stderr.log",
+      "size_bytes": 1507,
+      "sha256": "c7d83b08da81c0f25b968b24d8de5b8c95ed3410f4c4ab9136cf61def867fc3c"
+    },
+    {
+      "path": "repair2_failed_activation/attempt_2.stdout.log",
+      "size_bytes": 229,
+      "sha256": "6cc1a81ad142bc9dc6d6bc21a3f6bd3ef171d45a240903e98ef5186479c260b3"
+    },
+    {
+      "path": "repair2_failed_activation/pipeline/pipeline_state.json",
+      "size_bytes": 4649,
+      "sha256": "253f4af5c95fd6dc71690b58c6a0dd6eb3d9e96f440d5fff28ecd745e4cb1d84"
+    },
+    {
+      "path": "repair2_failed_activation/pipeline/publication.stderr.log",
+      "size_bytes": 620,
+      "sha256": "42fca388cb4a5fd79100aa1b429c1dc08b3d4493543625777c863c6315b976a8"
+    },
+    {
+      "path": "repair2_failed_activation/pipeline/publication.stdout.log",
+      "size_bytes": 121,
+      "sha256": "1e98029c8475dd46e39498ce44314dffb0d13ea510fad37fb98be32606ed6061"
+    },
+    {
+      "path": "repair2_failed_activation/pipeline/run_plan.json",
+      "size_bytes": 1020,
+      "sha256": "d4adf2f6a2cbf8953aaccca10a0bd0f2600bffab66d674d5ed2d37756359c332"
+    },
+    {
+      "path": "repair2_failed_activation/publication/run_plan.json",
+      "size_bytes": 19216,
+      "sha256": "1cf11b7761708e21e7650f3e4ad2556cad3830f42c3e14ad353a0fc5c6f4561f"
+    },
+    {
+      "path": "repair2_failed_activation/scheduled_attempts.jsonl",
+      "size_bytes": 980,
+      "sha256": "355b178815ba7a49aab2df7aa4a4536b4391094724d25b3b5fa373cad377c223"
+    },
+    {
+      "path": "repair2_failed_activation/scheduled_run_plan.json",
+      "size_bytes": 1212,
+      "sha256": "ee3a4632b7d6a037de1a77cc0a1598071171d596cce948c598c01046266d1440"
+    },
+    {
+      "path": "repair2_failed_activation/scheduled_summary.json",
+      "size_bytes": 1476,
+      "sha256": "8bb2dcdfebc54399934f46e9820aa5b997ed5e4193f6b98eb61e184c98b755b0"
+    },
+    {
+      "path": "repair2_failed_activation/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR2-warehouse_summary.json",
+      "size_bytes": 994,
+      "sha256": "3e73d90b60ac7125886b190ed5f25815127e43efb0faff6e3aa58f7bebca292e"
+    },
+    {
+      "path": "repair3/artifact_hashes.json",
+      "size_bytes": 299,
+      "sha256": "a923d1f3301ec4b7703c1e498bfaddb7691b049ca488f630ed9fb065c4c507e7"
+    },
+    {
+      "path": "repair3/attempt_1.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/attempt_1.stdout.log",
+      "size_bytes": 743,
+      "sha256": "8aae61683542385f7c5e5cdd168a8245e9133c5ff4c5cd76de4f91ae883645cd"
+    },
+    {
+      "path": "repair3/deployment_readback.txt",
+      "size_bytes": 784,
+      "sha256": "1dd4711068d5cb77e5327bf8b7d66300c28c328132fe391df20395edffb9143c"
+    },
+    {
+      "path": "repair3/pipeline/run/active_ask_refresh.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/pipeline/run/active_ask_refresh.stdout.log",
+      "size_bytes": 862,
+      "sha256": "f57d2ef48f6dc70351d2a057e88abde320c0d7d11c6659124b0a200fa93013ef"
+    },
+    {
+      "path": "repair3/pipeline/run/active_ask_refresh/result/artifact_hashes.json",
+      "size_bytes": 176,
+      "sha256": "1e76ec4f2aa6744dba3c6b6da5027e40a2f64c27790854c236d67d52bc302435"
+    },
+    {
+      "path": "repair3/pipeline/run/active_ask_refresh/result/run_plan.json",
+      "size_bytes": 495,
+      "sha256": "647517a1e19309eacfc0209e2333ee573b0e90e8656d6b32e5f34ea19f8f4584"
+    },
+    {
+      "path": "repair3/pipeline/run/active_ask_refresh/result/summary.json",
+      "size_bytes": 524,
+      "sha256": "b90615bb7a574631a5a8677da8fa2e77e17d0a464279667fbabbb03c3c04e7c3"
+    },
+    {
+      "path": "repair3/pipeline/run/artifact_hashes.json",
+      "size_bytes": 187,
+      "sha256": "fb5aa1e86b479f56d3a1578a1369790bb66f6aed5349ed85fdb29f98bf4ec21c"
+    },
+    {
+      "path": "repair3/pipeline/run/health.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/pipeline/run/health.stdout.log",
+      "size_bytes": 2898,
+      "sha256": "c84d04cb758d27635099be7d4f7400fe7003e54f7f520f91e624a3d946775f6e"
+    },
+    {
+      "path": "repair3/pipeline/run/health/health.json",
+      "size_bytes": 2545,
+      "sha256": "3e1350dce583996767b04e82d3b3fff4e063b400f1ca4ea92c00e8a1226fc803"
+    },
+    {
+      "path": "repair3/pipeline/run/health/health.json.sha256",
+      "size_bytes": 120,
+      "sha256": "365ee0fc20926d7da8be87da808ce4c08bf2b9ba44ca309ea1193d75713f7d52"
+    },
+    {
+      "path": "repair3/pipeline/run/pipeline_state.json",
+      "size_bytes": 4465,
+      "sha256": "5634e8df5b29fedab21b69f016135f4bb9ef550a1fb344a70a251b22e57e3a9b"
+    },
+    {
+      "path": "repair3/pipeline/run/publication.stderr.log",
+      "size_bytes": 291,
+      "sha256": "327c8791895585ecc89525d5aa135c5f71b1b8fdf60b78a95a19c4fc6e79d041"
+    },
+    {
+      "path": "repair3/pipeline/run/publication.stdout.log",
+      "size_bytes": 2214,
+      "sha256": "ed873907c8b07df89b75ce70aa1693e15f27940a4976569fdbdb5c483df5f4ba"
+    },
+    {
+      "path": "repair3/pipeline/run/publication/result/artifact_hashes.json",
+      "size_bytes": 337,
+      "sha256": "ce7e313bd490f0fb98e7ea1a501ee9a993c17a831bf49cfb37371714d576ec16"
+    },
+    {
+      "path": "repair3/pipeline/run/publication/result/qualification_decisions.jsonl",
+      "size_bytes": 362495,
+      "sha256": "0d7f76c2a97fe8ff7804fdca97580d9ef738b037ae736ecc27fecc9ddf9edb45"
+    },
+    {
+      "path": "repair3/pipeline/run/publication/result/reconciliation.json",
+      "size_bytes": 274,
+      "sha256": "78ce884a891f54be92714a91282b51843717c93e9f0274931f0b659343b27ba0"
+    },
+    {
+      "path": "repair3/pipeline/run/publication/result/run_plan.json",
+      "size_bytes": 19216,
+      "sha256": "e683ab9002bc161ed96ec55691d497269c52be94f905c0eb302c0bca36bf6ed8"
+    },
+    {
+      "path": "repair3/pipeline/run/publication/result/summary.json",
+      "size_bytes": 1122,
+      "sha256": "51564385ff12595bc63b942d446c86421f110c3cbf8f5f036c891e1e970b2138"
+    },
+    {
+      "path": "repair3/pipeline/run/run_plan.json",
+      "size_bytes": 1020,
+      "sha256": "6dbe24dce5efb5bbe673301510b385858fbf48d3030c69959a37673c455c2663"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse_current_sync.stderr.log",
+      "size_bytes": 1014998,
+      "sha256": "72aa514e2b7d944d542701b2bc2bba7c1c9d831b1b76ad248f13d06dae8440c2"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse_current_sync.stdout.log",
+      "size_bytes": 664,
+      "sha256": "a66896b3a3a195b4ac841bcf398a724102330a2158a6a7524af168df9a29e8c9"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse/result/categories.json",
+      "size_bytes": 51682,
+      "sha256": "547151e2c1ba899c3dfc8aea783caebbb4facafb381214c9c8d760056149b2ab"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse/result/categories.json.headers",
+      "size_bytes": 530,
+      "sha256": "6b5cb493a51eac2a5fa25c596aa78b9ff0ed79599922bc1ee702016510867388"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse/result/last-updated.txt",
+      "size_bytes": 24,
+      "sha256": "2832985950241eec56d9fd236db835855139610423e219e8a0231bb60f0f25e0"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse/result/last-updated.txt.headers",
+      "size_bytes": 519,
+      "sha256": "44593f5772bfd18ac678527f1dff3512d55231968c43de16dceace75829b4cf5"
+    },
+    {
+      "path": "repair3/pipeline/run/warehouse/result/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+      "size_bytes": 1760,
+      "sha256": "3a2d4355b231f59f42f45474286d5aa5b4e391e4622e1d212feb5dbf8a57d21a"
+    },
+    {
+      "path": "repair3/post_activation_db_readback_execution.json",
+      "size_bytes": 89,
+      "sha256": "1a0c4e6ad017587117b2b0380ab9128072e5ae0427cf2bb6a7b8cec73a91749b"
+    },
+    {
+      "path": "repair3/post_activation_db_readback.txt",
+      "size_bytes": 3500,
+      "sha256": "b34d749c290c14d2770034cfb86a2e5fd13f96b25ab406f4c8e0b12619ddb854"
+    },
+    {
+      "path": "repair3/post_activation_readback_watcher.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/runtime_migration_readback.txt",
+      "size_bytes": 458,
+      "sha256": "f7dd3d62b193f5cdad6fd81e2a3df41d59ab71187143e7026a1650c809586ccc"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/execution.json",
+      "size_bytes": 170,
+      "sha256": "13948098c8a42c3714e7f0fe12ee010b446a5e3e50164a153dcbe60b31177ff2"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/output/result/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3-warehouse_summary.json",
+      "size_bytes": 2120,
+      "sha256": "bbc44953859d769b550930c097e1b2f033cf97fee011c2c11b5b3420c7d501b4"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/reconciliation.json",
+      "size_bytes": 2132,
+      "sha256": "2d8100c4f2198384f922ec2b9c64e83a2a47ecea2c215e1eea6d779e3fdafd83"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/watcher_started_at.txt",
+      "size_bytes": 21,
+      "sha256": "dcb4500f8f088c448475604ed25e2c4699b51b5d188e645cbb67cd36af713da0"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/worker.stderr.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/same_key_resume_proof/worker.stdout.log",
+      "size_bytes": 612,
+      "sha256": "7cbe65a2527cdbfcf6dc229b68d4d8f4f7550988234b923ae2b3e19e08641e41"
+    },
+    {
+      "path": "repair3/same_key_resume_watcher.log",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair3/scheduled_attempts.jsonl",
+      "size_bytes": 374,
+      "sha256": "893ee772017be272006fed56c34b671b8bd492daf26f61def8d70968f926fb19"
+    },
+    {
+      "path": "repair3/scheduled_run_plan.json",
+      "size_bytes": 1212,
+      "sha256": "3bd6a8dc2879dc57a8b9f0c3e0a63abda11ae2549b15c7877e1c47d58b4b6148"
+    },
+    {
+      "path": "repair3/scheduled_summary.json",
+      "size_bytes": 1455,
+      "sha256": "5205182caca3a284859a4acb43b490efe9483199b2b58a708d398e81134fea5b"
+    },
+    {
+      "path": "replacement_observer_initial/2026-07-29T20-35-44-482Z/artifact_hashes.json",
+      "size_bytes": 346,
+      "sha256": "65ce9225fd9f2b9359073080e25636de5263398088dae88e99d067120074be6d"
+    },
+    {
+      "path": "replacement_observer_initial/2026-07-29T20-35-44-482Z/evidence.json",
+      "size_bytes": 4672,
+      "sha256": "58cc68aa6b613195c8f00f2822f3709d384be3743c5e6cd7e8dc908985503cce"
+    },
+    {
+      "path": "replacement_observer_initial/2026-07-29T20-35-44-482Z/REPORT.md",
+      "size_bytes": 821,
+      "sha256": "ca92ea742990eb41cde5e015a9332cbc75901dd82aac98aac37aeb32b91db96f"
+    },
+    {
+      "path": "replacement_observer_initial/2026-07-29T20-35-44-482Z/run_plan.json",
+      "size_bytes": 591,
+      "sha256": "f9249da48d063ac0d3d45951f16b0a0baef5c91235e0f40974954012b41f67ae"
+    },
+    {
+      "path": "replacement_observer_initial/2026-07-29T20-35-44-482Z/summary.json",
+      "size_bytes": 1961,
+      "sha256": "a9a10f5912569b5ee2bf576c3477b98c78d4d1c30aef8de48017e199d50aab58"
+    },
+    {
+      "path": "replacement_observer_initial/github_workflow_metadata.json",
+      "size_bytes": 1315,
+      "sha256": "76876c315c4199c07a9aa4c519581793d347988e66582eb0627ff600b7ec932e"
+    },
+    {
+      "path": "REPORT.md",
+      "size_bytes": 3062,
+      "sha256": "debd02db79c2664764f515a20b45095991a852bf5ee43f176afcb25a2912b0b6"
+    },
+    {
+      "path": "runtime_repair_deployment/deployment_readback.txt",
+      "size_bytes": 784,
+      "sha256": "1dd4711068d5cb77e5327bf8b7d66300c28c328132fe391df20395edffb9143c"
+    },
+    {
+      "path": "runtime_repair_deployment/repair_verification.json",
+      "size_bytes": 2152,
+      "sha256": "01b3b8b79532436245dcdc1811c25fb5395e7d36fb511d0f3488b6af9d0f403a"
+    },
+    {
+      "path": "runtime_repair_deployment/runtime_migration_readback.txt",
+      "size_bytes": 458,
+      "sha256": "f7dd3d62b193f5cdad6fd81e2a3df41d59ab71187143e7026a1650c809586ccc"
+    }
+  ]
+}

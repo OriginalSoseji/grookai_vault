@@ -5,9 +5,10 @@ import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CollectorListRow from "@/components/public/CollectorListRow";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import { getOptionalServerUser } from "@/lib/auth/requireServerUser";
 import { getCollectorDiscoverRows } from "@/lib/network/getCollectorDiscoverRows";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 function normalizeSearchQuery(value: string | null | undefined) {
   if (typeof value !== "string") {
@@ -39,11 +40,13 @@ export default async function NetworkDiscoverPage({
 }: {
   searchParams?: { q?: string };
 }) {
+  const { user } = await getOptionalServerUser();
+  const viewerUserId = user?.id ?? null;
   const query = normalizeSearchQuery(searchParams?.q);
   const currentPath = query ? `/network/discover?q=${encodeURIComponent(query)}` : "/network/discover";
   const collectors = await getCollectorDiscoverRows({
     query,
-    excludeUserId: null,
+    excludeUserId: viewerUserId,
     limit: 30,
   });
 
@@ -113,8 +116,8 @@ export default async function NetworkDiscoverPage({
               <CollectorListRow
                 key={collector.userId}
                 collector={collector}
-                viewerUserId={null}
-                isAuthenticated={false}
+                viewerUserId={viewerUserId}
+                isAuthenticated={Boolean(user)}
                 initialIsFollowing={false}
                 loginHref={`/login?next=${encodeURIComponent(currentPath)}`}
                 metadata={formatJoinedAt(collector.createdAt)}

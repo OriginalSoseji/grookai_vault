@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getPublicSetCards } from "@/lib/publicSets";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
+import { enrichPublicSetCardsWithMarketPricingV1 } from "@/lib/pricing/enrichPublicSetCardsWithMarketPricingV1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -25,10 +26,16 @@ export async function GET(request: Request) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    const items = await applyOwnedPrintingCountsToSetCards(
+    const itemsWithOwnership = await applyOwnedPrintingCountsToSetCards(
       await getPublicSetCards(setCode, offset, limit),
       user?.id ?? null,
     );
+    const items = user?.id
+      ? await enrichPublicSetCardsWithMarketPricingV1(
+          supabase,
+          itemsWithOwnership,
+        )
+      : itemsWithOwnership;
     const json = NextResponse.json({ items });
     json.headers.set("Cache-Control", "no-store");
     return json;

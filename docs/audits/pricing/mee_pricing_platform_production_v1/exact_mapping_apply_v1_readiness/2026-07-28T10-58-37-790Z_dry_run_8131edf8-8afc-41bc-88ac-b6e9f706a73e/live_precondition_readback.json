@@ -1,0 +1,1854 @@
+{
+  "sourceRun": {
+    "id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+    "sync_mode": "current_full_sync",
+    "status": "completed",
+    "failed_count": 0,
+    "observed_on": "2026-07-28T06:00:00.000Z",
+    "finished_at": "2026-07-28T03:33:15.112Z",
+    "artifact_hash": "26ffd4ca212f18d0c32d41080987d02f2dd271ea4ec2f2fff4bb00f0e415e86b"
+  },
+  "sources": [
+    {
+      "product_id": 42399,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 604,
+      "source_group_name": "Base Set",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "055/102",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "40",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Horn Hazard (30)\r\n<br>Flip a coin. If tails, this attack does nothing.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 42534,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 605,
+      "source_group_name": "Base Set 2",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "083/130",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "40",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Horn Hazard (30)\r\n<br>Flip a coin. If tails, this attack does nothing.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 84162,
+      "source_product_name": "Champions Festival - BW95 (Worlds 13)",
+      "source_group_id": 1407,
+      "source_group_name": "Black and White Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "BW95",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Stadium",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "<em>This card stays in play when you play it. Discard this card if another Stadium card comes into play.  If another card with the same name is in play, you can't play this card.</em>\r\n<br>\r\nOnce during each player's turn, if that player has 6 Pokémon in play, he or she may heal 10 damage from each of his or her Pokémon.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 84293,
+      "source_product_name": "Chimecho - 024 (e-League)",
+      "source_group_id": 1423,
+      "source_group_name": "Nintendo Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "024",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "70",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Resonate\r\n<br>Your opponent switches each Defending Pokémon with his or her Benched Pokémon. If your opponent has only 1 Benched Pokémon, you choose the Defending Pokémon to switch.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Healing Sound\r\n<br>Remove 3 damage counters from each of your Active Pokémon. Each Defending Pokémon is now Asleep.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 85074,
+      "source_product_name": "Eevee",
+      "source_group_id": 1418,
+      "source_group_name": "WoTC Promo",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "11/53",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Colorless",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "30",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "CardText",
+          "value": "<strong>Pokémon Power: Chain Reaction</strong> This power can only be used when a Pokémon evolves. Search your deck for a card that evolves from Eevee and attach it to Eevee. This counts as evolving Eevee. Shuffle your deck afterward. This power can't be used if Eevee is Asleep, Confused, or Paralyzed.",
+          "displayName": "Card Text"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Bite (20)",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "F",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "P-30",
+          "displayName": "Resistance"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 85523,
+      "source_product_name": "Flygon - 025 (e-League)",
+      "source_group_id": 1423,
+      "source_group_name": "Nintendo Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "025",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Colorless",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "120",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Stage 2",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[2] Sand Pit (20)\r\n<br>The Defending Pokémon can't retreat until the end of your opponent's next turn.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2GL] Dragonbreath (80)\r\n<br>Flip a coin. If heads, the Defending Pokémon is now Paralyzed. If tails, this attack does nothing.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "C",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "LF",
+          "displayName": "Resistance"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "2",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87715,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1374,
+      "source_group_name": "Legendary Collection",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "082/110",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Fury Swipes (10x)\r\n<br>Flip 3 coins. This attack does 10 damage times the number of heads.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[GG] Call for Family\r\n<br>Search your deck for a Basic Pokémon named Nidoran M or Nidoran F and put it onto your Bench. Shuffle your deck afterward. <em>(You can't use this attack if your Bench is full.)</em>",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87717,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1419,
+      "source_group_name": "EX FireRed & LeafGreen",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "70/112",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Look for Friends \r\n<br>Reveal cards from your deck until you reveal a Basic Pokemon.  Show that card to your opponent and put it into your hand.  Shuffle the other revealed cards back into your deck. <i> (If you don't reveal a Basic Pokemon, shuffle all the revealed cards back into your deck.)</i>",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Bite (20)",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "None",
+          "displayName": "Resistance"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87718,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1368,
+      "source_group_name": "Mysterious Treasures",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "91/123",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Call for Family\r\n<br>\r\nSearch your deck for Nidoran M or Nidoran F and put it onto your Bench. Shuffle your deck afterward.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[1P] Poison Sting (20)\r\n<br>\r\nFlip a coin. If heads, the Defending Pokémon is now Poisoned.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P+10",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87719,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1367,
+      "source_group_name": "Rising Rivals",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "71/111",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[P] Scratch (10)",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Offer Help - Search your deck for a Supporter card, show it to your opponent, and put it into your hand.  Shuffle your deck afterward.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P+10",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87720,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1381,
+      "source_group_name": "Triumphant",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "69/102",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Friend Search - Look at the top 5 cards of your deck, choose 1 Pokemon you find there, show it to your opponent, and put it into your hand.  Shuffle the other cards back into your deck.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[1P] Double Kick (20x) Flip 2 coins.  This attack does 20 damage times the number of heads.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "Px2",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87721,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 1382,
+      "source_group_name": "Plasma Freeze",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "40/116",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1P] Poison Sting (20) Flip a coin.  If heads, the Defending Pokemon is now Poisoned.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "Px2",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87724,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1374,
+      "source_group_name": "Legendary Collection",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "083/110",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "40",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Horn Hazard (30)\r\n<br>Flip a coin. If tails, this attack does nothing.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87725,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1397,
+      "source_group_name": "Aquapolis",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "096/147",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Poison Horn\r\n<br>Flip a coin. If heads, the Defending Pokémon is now Poisoned.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Scratch (20)",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87726,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1419,
+      "source_group_name": "EX FireRed & LeafGreen",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "71/112",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Call for Family \r\n<br>Search your deck for a Nidoran F or a Nidoran M card and put it onto your Bench.  Shuffle your deck afterward.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[1] Double Stab (10x) \r\n<br>Flip 2 coins.  This attack does 10 damage times the number of heads.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "None",
+          "displayName": "Resistance"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87727,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1380,
+      "source_group_name": "Secret Wonders",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "97/132",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Collect\r\n<br>\r\nDraw a card.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[P] Poison Skin\r\n<br>\r\nFlip 2 coins. If either of them is heads, the Defending Pokémon is now Poisoned.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P+10",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87728,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1367,
+      "source_group_name": "Rising Rivals",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "72/111",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Leer - Flip a coin.  If heads, the Defending Pokemon can't attack during your opponent's next turn.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[1P] Horn Hazard (40) Flip a coin.  If tails, this attack does nothing.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P+10",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87729,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1381,
+      "source_group_name": "Triumphant",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "70/102",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "50",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Pheromone Poison (10) If Nidoran F is on your Bench, the Defending Pokemon is now Poisoned.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Horn Attack (20)",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "Px2",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 87730,
+      "source_product_name": "Nidoran M",
+      "source_group_id": 1382,
+      "source_group_name": "Plasma Freeze",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "43/116",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[P] Hit Back (30) If this Pokemon has no damage counters on it, this attack does nothing.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Weakness",
+          "value": "Px2",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 88229,
+      "source_product_name": "Pokemon Nurse",
+      "source_group_id": 1375,
+      "source_group_name": "Expedition",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "145/165",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Uncommon",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card.\r\n<br>\r\nRemove all damage counters from one of your Pokémon. Then discard all Energy cards attached to it, if any.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 88238,
+      "source_product_name": "Pokemon Reversal",
+      "source_group_id": 1375,
+      "source_group_name": "Expedition",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "146/165",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Uncommon",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Item",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Choose 1 of your opponent's Benched Pokémon. Flip a coin. If heads, switch that Pokémon with the Defending Pokémon.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 88786,
+      "source_product_name": "Rocket's Scizor - 4",
+      "source_group_id": 1455,
+      "source_group_name": "Best of Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "004/009",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Metal",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Focus \r\n<br>During your next turn, Rocket's Scizor's Agility attack's damage is doubled.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2M] Agility (20) \r\n<br>Flip a coin. If heads, during your opponent's next turn, prevent all effects, including damage, done to Rocket's Scizor.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "R",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "G",
+          "displayName": "Resistance"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "2",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 88793,
+      "source_product_name": "Rocket's Sneasel - 5",
+      "source_group_id": 1455,
+      "source_group_name": "Best of Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "005/009",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Darkness",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[D] Entrap \r\n<br>The Defending Pokémon can't retreat during your opponent's next turn.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[2] Continuous Scratch (10x) \r\n<br>Flip 4 coins. This attack does 10 damage times the number of heads.",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "F",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "Resistance",
+          "value": "P",
+          "displayName": "Resistance"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 95964,
+      "source_product_name": "Nidoran (F)",
+      "source_group_id": 1509,
+      "source_group_name": "XY - Primal Clash",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "66/160",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Psychic",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[1] Scratch (10)",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[P1] Bite (20)",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "Px2",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 106357,
+      "source_product_name": "Nidoran F",
+      "source_group_id": 605,
+      "source_group_name": "Base Set 2",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "082/130",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Common",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Grass",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "HP",
+          "value": "60",
+          "displayName": "HP"
+        },
+        {
+          "name": "Stage",
+          "value": "Basic",
+          "displayName": "Stage"
+        },
+        {
+          "name": "Attack 1",
+          "value": "[G] Fury Swipes (10x)\r\n<br>Flip 3 coins. This attack does 10 damage times the number of heads.",
+          "displayName": "Attack 1"
+        },
+        {
+          "name": "Attack 2",
+          "value": "[GG] Call for Family\r\n<br>\r\nSearch your deck for a Basic Pokémon named Nidoran F or Nidoran M and put it onto your Bench. Shuffle your deck afterward. <em>(You can't use this attack if your Bench is full.)</em>",
+          "displayName": "Attack 2"
+        },
+        {
+          "name": "Weakness",
+          "value": "P",
+          "displayName": "Weakness"
+        },
+        {
+          "name": "RetreatCost",
+          "value": "1",
+          "displayName": "Retreat Cost"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    }
+  ],
+  "targets": [
+    {
+      "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "gv_id": "GV-PK-RR-72",
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": "pl2",
+      "name": "Nidoran ♂",
+      "number": "72",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "0888ca47-d1b9-4acc-ab16-a8111da88d85",
+      "gv_id": "GV-PK-RG-70",
+      "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+      "set_code": "ex6",
+      "name": "Nidoran ♀",
+      "number": "70",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "0f2c5de7-7851-4dc2-87fa-b06bc83ccda0",
+      "gv_id": "GV-PK-TM-69",
+      "set_id": "27d9de8f-d55b-4ad7-ae10-938dec95e392",
+      "set_code": "hgss4",
+      "name": "Nidoran ♀",
+      "number": "69",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "1a78addd-00e8-4228-9056-b30a8f1adea0",
+      "gv_id": "GV-PK-SW-97",
+      "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+      "set_code": "dp3",
+      "name": "Nidoran ♂",
+      "number": "97",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "1fbbd5ec-659b-4066-b381-f237c20e3878",
+      "gv_id": "GV-PK-PR-11",
+      "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+      "set_code": "basep",
+      "name": "Eevee",
+      "number": "11",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "23876c04-08e3-47a9-b36d-73f761c51470",
+      "gv_id": "GV-PK-PRC-66",
+      "set_id": "90ad9e95-61b9-4869-9c7d-97f675f5e5c4",
+      "set_code": "xy5",
+      "name": "Nidoran ♀",
+      "number": "66",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "29588152-fe92-4f3b-b70b-404cce8ef843",
+      "gv_id": "GV-PK-RG-71",
+      "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+      "set_code": "ex6",
+      "name": "Nidoran ♂",
+      "number": "71",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "2cfbdcad-ab9e-4aab-9f8f-1160ce373110",
+      "gv_id": "GV-PK-AQ-96",
+      "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552",
+      "set_code": "ecard2",
+      "name": "Nidoran ♂",
+      "number": "96",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "4e0665d4-2a6a-4602-8799-db55cbb5f588",
+      "gv_id": "GV-PK-BOG-4",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Rocket’s Scizor",
+      "number": "4",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "54c7a89d-53f0-43f7-8e39-0ce10eb58558",
+      "gv_id": "GV-PK-PLF-40",
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "set_code": "bw9",
+      "name": "Nidoran ♀",
+      "number": "40",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "57e87ed1-769c-4f1e-8b06-a1070cfccbd0",
+      "gv_id": "GV-PK-PLF-43",
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "set_code": "bw9",
+      "name": "Nidoran ♂",
+      "number": "43",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "673b30d3-89c9-4f2f-8702-dbfb065e24b0",
+      "gv_id": "GV-PK-EX-146",
+      "set_id": "2ab53b6f-aed9-42e7-a335-49c6df539a31",
+      "set_code": "ecard1",
+      "name": "Pokémon Reversal",
+      "number": "146",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "7c92fb56-8a57-424e-b697-fedd39da0e73",
+      "gv_id": "GV-PK-LC-83",
+      "set_id": "1e2da55e-a5d6-463f-814e-3da6fd1fb6c4",
+      "set_code": "base6",
+      "name": "Nidoran ♂",
+      "number": "83",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "877e7440-9e64-474c-afee-0c9669f8e109",
+      "gv_id": "GV-PK-B2-82",
+      "set_id": "e4c6274f-51a7-4b4f-9cf1-57692c600d2b",
+      "set_code": "base4",
+      "name": "Nidoran ♀",
+      "number": "82",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "8f0b109b-1cf4-4577-b85c-80a9d03591dd",
+      "gv_id": "GV-PK-BS-55",
+      "set_id": "fe8f46d4-c078-4734-8fbc-6a62feb326e5",
+      "set_code": "base1",
+      "name": "Nidoran ♂",
+      "number": "55",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "9b38b12d-7d50-45ff-8bab-aa409a4779a7",
+      "gv_id": "GV-PK-PR-BLW-BW95",
+      "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "set_code": "bwp",
+      "name": "Champions Festival",
+      "number": "BW95",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "bae17190-bcfa-4090-b796-d761192d1699",
+      "gv_id": "GV-PK-B2-83",
+      "set_id": "e4c6274f-51a7-4b4f-9cf1-57692c600d2b",
+      "set_code": "base4",
+      "name": "Nidoran ♂",
+      "number": "83",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "ce28a0d1-40d7-46cb-becc-7310479ddbc8",
+      "gv_id": "GV-PK-MT-91",
+      "set_id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+      "set_code": "dp2",
+      "name": "Nidoran ♀",
+      "number": "91",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "ced4a7c4-34a4-4665-ad22-24d6db57eae2",
+      "gv_id": "GV-PK-LC-82",
+      "set_id": "1e2da55e-a5d6-463f-814e-3da6fd1fb6c4",
+      "set_code": "base6",
+      "name": "Nidoran ♀",
+      "number": "82",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "d01df782-5c69-491d-b828-68201315ad24",
+      "gv_id": "GV-PK-EX-145",
+      "set_id": "2ab53b6f-aed9-42e7-a335-49c6df539a31",
+      "set_code": "ecard1",
+      "name": "Pokémon Nurse",
+      "number": "145",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "da7a223c-b039-4fa0-99c1-c8e396f90f5f",
+      "gv_id": "GV-PK-BOG-5",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Rocket’s Sneasel",
+      "number": "5",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "daf712b1-90c2-4abd-898d-891735d47702",
+      "gv_id": "GV-PK-PR-NP-24",
+      "set_id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+      "set_code": "np",
+      "name": "Chimecho",
+      "number": "24",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "gv_id": "GV-PK-RR-71",
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": "pl2",
+      "name": "Nidoran ♀",
+      "number": "71",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+      "gv_id": "GV-PK-PR-NP-25",
+      "set_id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+      "set_code": "np",
+      "name": "Flygon",
+      "number": "25",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "ff28ddc8-bf84-4f26-a820-60427a8985a6",
+      "gv_id": "GV-PK-TM-70",
+      "set_id": "27d9de8f-d55b-4ad7-ae10-938dec95e392",
+      "set_code": "hgss4",
+      "name": "Nidoran ♂",
+      "number": "70",
+      "variant_key": "",
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    }
+  ],
+  "observations": [
+    {
+      "id": "048286f3-6260-4dbf-a49c-617db8142a0d",
+      "product_id": 87717,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "0b2acdff-9f78-4190-9ce0-a5a572282463",
+      "product_id": 88229,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "1340f069-b5c5-4514-8fe6-abec9775cf88",
+      "product_id": 42399,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "25fd7f1c-dcbf-4953-b88f-140d4251cdca",
+      "product_id": 85523,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "2b0a2ccd-8d2a-41d7-a6f5-523d4b3fa756",
+      "product_id": 88238,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "316123c6-cdf1-41b9-893c-b26cb415673a",
+      "product_id": 87719,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "327afa5c-524e-48d8-b4b1-0fbb94117b00",
+      "product_id": 87718,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "416947c4-8508-4ebc-af55-e563221d775f",
+      "product_id": 87727,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "4cbe7b07-a9f1-4bc8-b66c-3ead2d2ca607",
+      "product_id": 87727,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "5005506e-2721-408c-ab70-942ee080e168",
+      "product_id": 88229,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "5800b5e0-af8e-4e3b-bbef-c7209a57da0c",
+      "product_id": 87721,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "5a946caa-121e-4d2c-80fe-5b2211e578e2",
+      "product_id": 88238,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "6873d691-b95c-4534-808e-c422dac66807",
+      "product_id": 95964,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "6c85ed18-bc4c-4e41-8c42-e365df2138fc",
+      "product_id": 88786,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "6ca4acd8-4a1a-4519-aaf9-349c1a672621",
+      "product_id": 87725,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "6d72ff11-94cd-4e2a-8a6f-cdacaec9059f",
+      "product_id": 88793,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "716a53d8-facb-43c9-a335-d5b336264aa4",
+      "product_id": 87720,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "75487758-62fb-441a-a9fe-e0e3ea288bfc",
+      "product_id": 87726,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "8329048d-59f9-49e6-ba60-05ec2fe643c7",
+      "product_id": 85074,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "8b9b5e90-d0b7-449a-9865-b46d1b2628d6",
+      "product_id": 42534,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "9110949a-f269-49a1-a449-7981afdbc5a5",
+      "product_id": 87729,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "98f501d0-ec99-468a-aee7-b95cc16c0c38",
+      "product_id": 87720,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "a0ee43fc-7ece-4359-96f6-b547a80a4c7e",
+      "product_id": 87715,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "a1c22657-4cd2-4987-9eed-38a5617bfea2",
+      "product_id": 87730,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "b1b11e64-931c-4943-bc5c-30cca03b591f",
+      "product_id": 87726,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "b5a5b418-2962-41bf-9cd3-b1af4738cadf",
+      "product_id": 87729,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "b6826379-921b-4761-85d7-290206e3eba1",
+      "product_id": 87719,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "c1cd97aa-0361-4ae8-a6ce-9581148c4be6",
+      "product_id": 84293,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "c6fd84db-ed9a-407e-859d-2f45d03cd520",
+      "product_id": 87715,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "cc3744f5-3335-48f3-8a61-043ba90f1163",
+      "product_id": 87728,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "d867502b-071c-400b-bf66-9f5df6ec652d",
+      "product_id": 106357,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "dac110b1-b131-4fd1-81d3-d883d1c8c5d8",
+      "product_id": 87721,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "dc10f4fc-ffd5-4701-b936-044c68e6c365",
+      "product_id": 87725,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "df947600-90de-452a-aa71-8940579c096a",
+      "product_id": 87728,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "e570b795-86c7-4d57-9447-8d4cba6aad70",
+      "product_id": 87724,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "ef9c3a54-90a4-44bb-ad55-a4ee87d65cd2",
+      "product_id": 95964,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "f30ae7ce-4a9f-489f-a5a3-216c3f1bb87c",
+      "product_id": 87718,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "f4441f63-0bfa-422c-a059-5764347eca22",
+      "product_id": 87730,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "fd0e2293-4576-4124-b442-b747654a69a1",
+      "product_id": 84162,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "fe87cba9-9120-4aea-8476-40123c7f1c12",
+      "product_id": 87717,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    },
+    {
+      "id": "ff902528-5bbc-4762-91f4-bd2433c997c4",
+      "product_id": 87724,
+      "last_seen_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "observed_on": "2026-07-28T06:00:00.000Z"
+    }
+  ],
+  "activePublicationOverlap": []
+}

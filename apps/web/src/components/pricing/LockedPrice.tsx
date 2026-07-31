@@ -43,7 +43,7 @@ export default function LockedPrice({ href, size = "grid", className = "" }: Loc
   const classes = getClasses(size);
   const content = (
     <div className={`${classes.wrapper} ${className}`.trim()}>
-      <p className={classes.label}>Grookai Value</p>
+      <p className={classes.label}>TCGPlayer Market</p>
       <p className={classes.value}>Sign in to reveal</p>
       {size === "detail" ? (
         <p className={classes.note}>Account required to unlock pricing.</p>

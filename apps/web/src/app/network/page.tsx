@@ -8,6 +8,7 @@ import ContactEligibilityProvider, {
   type ContactEligibilityTarget,
 } from "@/components/network/ContactEligibilityProvider";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import { getOptionalServerUser } from "@/lib/auth/requireServerUser";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
 import {
   DISCOVERABLE_VAULT_INTENT_VALUES,
@@ -15,7 +16,7 @@ import {
   normalizeDiscoverableVaultIntent,
 } from "@/lib/network/intent";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 const NETWORK_STREAM_PAGE_LIMIT = 24;
 
 function buildCurrentPath(intent: string | null) {
@@ -33,11 +34,13 @@ export default async function NetworkPage({
 }: {
   searchParams?: { intent?: string };
 }) {
+  const { user } = await getOptionalServerUser();
+  const viewerUserId = user?.id ?? null;
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);
   const currentPath = buildCurrentPath(intent);
   const rows = await getCardStreamRows({
     intent,
-    excludeUserId: null,
+    excludeUserId: viewerUserId,
     limit: NETWORK_STREAM_PAGE_LIMIT,
   });
   const contactEligibilityTargets: ContactEligibilityTarget[] = rows.flatMap((row) => {
@@ -60,10 +63,10 @@ export default async function NetworkPage({
           description="Message collectors about cards marked Trade, Sell, or Showcase."
           actions={
             <Link
-              href="/login?next=%2Fnetwork"
+              href={user ? "/network/inbox" : "/login?next=%2Fnetwork"}
               className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Sign in to interact
+              {user ? "Open inbox" : "Sign in to interact"}
             </Link>
           }
         />
@@ -120,8 +123,8 @@ export default async function NetworkPage({
                 <NetworkStreamCard
                   key={row.vaultItemId}
                   row={row}
-                  isAuthenticated={false}
-                  viewerUserId={null}
+                  isAuthenticated={Boolean(user)}
+                  viewerUserId={viewerUserId}
                   currentPath={currentPath}
                 />
               ))}

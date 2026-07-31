@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
 import '../identity/catalog_artwork_resolution.dart';
+import '../vault/vault_exact_pricing.dart';
 import 'card_surface_pricing_service.dart';
 
 enum PublicCollectorSurfaceState { notFound, unavailable, empty, success }
@@ -67,6 +68,7 @@ class PublicCollectorCard {
     required this.gvId,
     required this.name,
     required this.number,
+    this.cardPrintingId,
     this.vaultItemId,
     this.gvviId,
     this.setName,
@@ -92,6 +94,7 @@ class PublicCollectorCard {
   });
 
   final String cardPrintId;
+  final String? cardPrintingId;
   final String gvId;
   final String name;
   final String number;
@@ -215,6 +218,7 @@ class PublicCollectorCopy {
     required this.vaultItemId,
     required this.intent,
     this.gvviId,
+    this.cardPrintingId,
     this.conditionLabel,
     this.isGraded = false,
     this.gradeCompany,
@@ -228,6 +232,7 @@ class PublicCollectorCopy {
   final String vaultItemId;
   final String intent;
   final String? gvviId;
+  final String? cardPrintingId;
   final String? conditionLabel;
   final bool isGraded;
   final String? gradeCompany;
@@ -592,7 +597,7 @@ class PublicCollectorService {
         .from('v_wall_cards_v1')
         // LOCK: Wall cards use public-safe instance rows and display_image_url first.
         .select(
-          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
+          'instance_id,gv_vi_id,vault_item_id,card_print_id,card_printing_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .order('created_at', ascending: false);
@@ -625,7 +630,7 @@ class PublicCollectorService {
         .from('v_section_cards_v1')
         // LOCK: Section cards are exact-copy public rows and load on demand.
         .select(
-          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
+          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,card_printing_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .eq('section_id', normalizedSectionId)
@@ -860,15 +865,16 @@ class PublicCollectorService {
       return const <PublicCollectorCard>[];
     }
 
-    final cardPrintIds = rows
-        .map((row) => _cleanText(row['card_print_id']))
+    final cardPrintingIds = rows
+        .map((row) => _cleanText(row['card_printing_id']))
         .where((value) => value.isNotEmpty)
         .toSet()
         .toList();
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
-      client: client,
-      cardPrintIds: cardPrintIds,
-    );
+    final pricingByPrintingId =
+        await CardSurfacePricingService.fetchByCardPrintingIds(
+          client: client,
+          cardPrintingIds: cardPrintingIds,
+        );
     final grouped = <String, PublicCollectorCard>{};
     final latestAtByCardId = <String, int>{};
 
@@ -891,10 +897,17 @@ class PublicCollectorService {
       final existing = grouped[cardPrintId];
 
       if (existing == null) {
+        final copies = copy == null
+            ? const <PublicCollectorCopy>[]
+            : <PublicCollectorCopy>[copy];
         grouped[cardPrintId] = _cardFromWallRow(
           row,
-          pricing: pricingById[cardPrintId],
-          copies: copy == null ? const <PublicCollectorCopy>[] : [copy],
+          pricing: _pricingForCopies(
+            cardPrintId: cardPrintId,
+            copies: copies,
+            pricingByPrintingId: pricingByPrintingId,
+          ),
+          copies: copies,
         );
         latestAtByCardId[cardPrintId] = createdMs;
         continue;
@@ -911,7 +924,11 @@ class PublicCollectorService {
 
       grouped[cardPrintId] = _cardFromWallRow(
         shouldUsePrimary ? row : _rowFromCard(existing),
-        pricing: pricingById[cardPrintId],
+        pricing: _pricingForCopies(
+          cardPrintId: cardPrintId,
+          copies: nextCopies,
+          pricingByPrintingId: pricingByPrintingId,
+        ),
         copies: nextCopies,
       );
     }
@@ -929,15 +946,16 @@ class PublicCollectorService {
       return const <PublicCollectorCard>[];
     }
 
-    final cardPrintIds = rows
-        .map((row) => _cleanText(row['card_print_id']))
+    final cardPrintingIds = rows
+        .map((row) => _cleanText(row['card_printing_id']))
         .where((value) => value.isNotEmpty)
         .toSet()
         .toList();
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
-      client: client,
-      cardPrintIds: cardPrintIds,
-    );
+    final pricingByPrintingId =
+        await CardSurfacePricingService.fetchByCardPrintingIds(
+          client: client,
+          cardPrintingIds: cardPrintingIds,
+        );
 
     return rows
         .map((row) {
@@ -946,12 +964,38 @@ class PublicCollectorService {
           final copy = intent == null ? null : _copyFromWallRow(row, intent);
           return _cardFromWallRow(
             row,
-            pricing: pricingById[cardPrintId],
-            copies: copy == null ? const <PublicCollectorCopy>[] : [copy],
+            pricing: _pricingForCopies(
+              cardPrintId: cardPrintId,
+              copies: copy == null
+                  ? const <PublicCollectorCopy>[]
+                  : <PublicCollectorCopy>[copy],
+              pricingByPrintingId: pricingByPrintingId,
+            ),
+            copies: copy == null
+                ? const <PublicCollectorCopy>[]
+                : <PublicCollectorCopy>[copy],
           );
         })
         .where((card) => card.cardPrintId.isNotEmpty && card.gvId.isNotEmpty)
         .toList();
+  }
+
+  static CardSurfacePricingData? _pricingForCopies({
+    required String cardPrintId,
+    required Iterable<PublicCollectorCopy> copies,
+    required Map<String, CardSurfacePricingData> pricingByPrintingId,
+  }) {
+    return summarizeVaultExactPricing(
+      targets: copies
+          .where((copy) => !copy.isGraded)
+          .map(
+            (copy) => VaultExactPricingTarget(
+              cardPrintId: cardPrintId,
+              cardPrintingId: copy.cardPrintingId,
+            ),
+          ),
+      pricingByCardPrintingId: pricingByPrintingId,
+    ).asSurfacePricing(cardPrintId);
   }
 
   static PublicCollectorCard _cardFromWallRow(
@@ -971,6 +1015,7 @@ class PublicCollectorService {
           : _cleanText(row['name']),
       vaultItemId: _normalizeOptionalText(row['vault_item_id']),
       gvviId: _normalizeOptionalText(row['gv_vi_id']),
+      cardPrintingId: _normalizeOptionalText(row['card_printing_id']),
       setName:
           _normalizeOptionalText(row['set_name']) ??
           _normalizeOptionalText(row['set_code']),
@@ -1007,6 +1052,7 @@ class PublicCollectorService {
       vaultItemId: vaultItemId,
       intent: intent,
       gvviId: _normalizeOptionalText(row['gv_vi_id']),
+      cardPrintingId: _normalizeOptionalText(row['card_printing_id']),
       conditionLabel: _normalizeOptionalText(row['condition_label']),
       isGraded: row['is_graded'] == true,
       gradeCompany: _normalizeOptionalText(row['grade_company']),
@@ -1023,6 +1069,7 @@ class PublicCollectorService {
   static Map<String, dynamic> _rowFromCard(PublicCollectorCard card) {
     return <String, dynamic>{
       'card_print_id': card.cardPrintId,
+      'card_printing_id': card.cardPrintingId,
       'gv_id': card.gvId,
       'name': card.name,
       'set_code': card.setCode,
@@ -1084,8 +1131,9 @@ class PublicCollectorService {
             'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,set:sets(name,identity_model)',
           )
           .inFilter('id', cardPrintIds),
-      CardSurfacePricingService.fetchByCardPrintIds(
+      _fetchPublicSharedPricingTargetsByCardId(
         client: client,
+        ownerUserId: userId,
         cardPrintIds: cardPrintIds,
       ),
       _fetchPrimarySharedGvviByCardId(
@@ -1096,8 +1144,20 @@ class PublicCollectorService {
     ]);
 
     final cardPrintRows = results[0] as List<dynamic>;
-    final pricingById = results[1] as Map<String, CardSurfacePricingData>;
+    final pricingTargetsByCardId =
+        results[1] as Map<String, List<VaultExactPricingTarget>>;
     final gvviByCardId = results[2] as Map<String, String>;
+    final cardPrintingIds = pricingTargetsByCardId.values
+        .expand((targets) => targets)
+        .map((target) => target.cardPrintingId ?? '')
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    final pricingByPrintingId =
+        await CardSurfacePricingService.fetchByCardPrintingIds(
+          client: client,
+          cardPrintingIds: cardPrintingIds,
+        );
     final manualPriceByGvviId = await _fetchPublicManualPricesByGvviId(
       client: client,
       gvviIds: normalizedRows
@@ -1171,7 +1231,12 @@ class PublicCollectorService {
             displayImageKind: _normalizeOptionalText(
               cardPrint['display_image_kind'],
             ),
-            pricing: pricingById[row.cardPrintId],
+            pricing: summarizeVaultExactPricing(
+              targets:
+                  pricingTargetsByCardId[row.cardPrintId] ??
+                  const <VaultExactPricingTarget>[],
+              pricingByCardPrintingId: pricingByPrintingId,
+            ).asSurfacePricing(row.cardPrintId),
             priceDisplayMode: row.priceDisplayMode,
             askingPriceAmount: manualPrice?.askingPriceAmount,
             askingPriceCurrency: manualPrice?.askingPriceCurrency,
@@ -1226,10 +1291,6 @@ class PublicCollectorService {
             'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,set:sets(identity_model)',
           )
           .inFilter('id', cardPrintIds),
-      CardSurfacePricingService.fetchByCardPrintIds(
-        client: client,
-        cardPrintIds: cardPrintIds,
-      ),
       _fetchPublicDiscoverableCopiesByCardId(
         client: client,
         ownerUserIds: <String>[ownerUserId],
@@ -1248,12 +1309,23 @@ class PublicCollectorService {
     ]);
 
     final cardPrintRows = results[0] as List<dynamic>;
-    final pricingById = results[1] as Map<String, CardSurfacePricingData>;
     final copiesByCardPrintId =
-        results[2] as Map<String, List<PublicCollectorCopy>>;
+        results[1] as Map<String, List<PublicCollectorCopy>>;
     final wallSettingsByCardPrintId =
-        results[3] as Map<String, _PublicCollectorWallCardSettings>;
-    final primarySharedGvviByCardPrintId = results[4] as Map<String, String>;
+        results[2] as Map<String, _PublicCollectorWallCardSettings>;
+    final primarySharedGvviByCardPrintId = results[3] as Map<String, String>;
+    final cardPrintingIds = copiesByCardPrintId.values
+        .expand((copies) => copies)
+        .where((copy) => !copy.isGraded)
+        .map((copy) => copy.cardPrintingId ?? '')
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    final pricingByPrintingId =
+        await CardSurfacePricingService.fetchByCardPrintingIds(
+          client: client,
+          cardPrintingIds: cardPrintingIds,
+        );
     final manualPriceByGvviId = await _fetchPublicManualPricesByGvviId(
       client: client,
       gvviIds: cardPrintIds
@@ -1331,7 +1403,11 @@ class PublicCollectorService {
             _normalizeOptionalText(cardPrint?['display_image_kind']),
         conditionLabel: _normalizeOptionalText(row['condition_label']),
         intent: _normalizePublicIntent(row['intent']),
-        pricing: pricingById[cardPrintId],
+        pricing: _pricingForCopies(
+          cardPrintId: cardPrintId,
+          copies: copies,
+          pricingByPrintingId: pricingByPrintingId,
+        ),
         priceDisplayMode: wallSettings?.priceDisplayMode,
         askingPriceAmount: manualPrice?.askingPriceAmount,
         askingPriceCurrency: manualPrice?.askingPriceCurrency,
@@ -1470,6 +1546,7 @@ class PublicCollectorService {
             vaultItemId: vaultItemId,
             intent: intent,
             gvviId: _normalizeOptionalText(row['gv_vi_id']),
+            cardPrintingId: _normalizeOptionalText(row['card_printing_id']),
             conditionLabel: _normalizeOptionalText(row['condition_label']),
             isGraded: row['is_graded'] == true,
             gradeCompany: _normalizeOptionalText(row['grade_company']),
@@ -1498,6 +1575,49 @@ class PublicCollectorService {
     } catch (_) {
       return const <String, List<PublicCollectorCopy>>{};
     }
+  }
+
+  static Future<Map<String, List<VaultExactPricingTarget>>>
+  _fetchPublicSharedPricingTargetsByCardId({
+    required SupabaseClient client,
+    required String ownerUserId,
+    required List<String> cardPrintIds,
+  }) async {
+    final normalizedOwnerUserId = _cleanText(ownerUserId);
+    final normalizedCardIds = cardPrintIds
+        .map(_cleanText)
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    if (normalizedOwnerUserId.isEmpty || normalizedCardIds.isEmpty) {
+      return const <String, List<VaultExactPricingTarget>>{};
+    }
+
+    final rows = await client.rpc(
+      'public_shared_card_pricing_targets_v1',
+      params: {
+        'p_owner_user_id': normalizedOwnerUserId,
+        'p_card_print_ids': normalizedCardIds,
+      },
+    );
+    final targetsByCardId = <String, List<VaultExactPricingTarget>>{};
+    for (final raw in rows as List<dynamic>) {
+      final row = Map<String, dynamic>.from(raw as Map);
+      final cardPrintId = _cleanText(row['card_print_id']);
+      if (cardPrintId.isEmpty || !normalizedCardIds.contains(cardPrintId)) {
+        continue;
+      }
+      final targets =
+          targetsByCardId[cardPrintId] ?? <VaultExactPricingTarget>[];
+      targets.add(
+        VaultExactPricingTarget(
+          cardPrintId: cardPrintId,
+          cardPrintingId: _normalizeOptionalText(row['card_printing_id']),
+        ),
+      );
+      targetsByCardId[cardPrintId] = targets;
+    }
+    return targetsByCardId;
   }
 
   static Future<Map<String, _PublicCollectorManualPrice>>

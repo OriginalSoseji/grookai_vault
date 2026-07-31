@@ -650,7 +650,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   gv_id: string,
   options: PublicCardDetailOptions = {},
 ): Promise<CardDetail | null> {
-  const includePricing = options.includePricing ?? true;
+  const includePricing = options.includePricing ?? false;
   const includeRelatedPrints = options.includeRelatedPrints ?? true;
   const includeCameos = options.includeCameos ?? true;
   const supabase = createServerSupabase();
@@ -726,10 +726,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
       getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
       includeCameos ? getCameosByGvId(supabase, row.gv_id) : Promise.resolve(undefined),
     ]);
-  // Pricing authority note:
-  // Current active engine = v_grookai_value_v1_1
-  // App-facing read surface = v_best_prices_all_gv_v1
-  // Keep product reads on the compatibility surface during stabilization.
+  // Public pricing is resolved by the governed TCGPlayer market read model.
   const pricingByCardId = includePricing && row.id
     ? await getPublicPricingByCardIds(supabase, [row.id])
     : new Map();
@@ -775,6 +772,12 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     raw_price: priceRow?.raw_price,
     raw_price_source: priceRow?.raw_price_source,
     raw_price_ts: priceRow?.raw_price_ts,
+    raw_price_published_at: priceRow?.raw_price_published_at,
+    pricing_provenance_id: priceRow?.pricing_provenance_id,
+    pricing_source_label: priceRow?.pricing_source_label,
+    pricing_scope: priceRow?.pricing_scope,
+    pricing_is_from_price: priceRow?.pricing_is_from_price,
+    eligible_printing_count: priceRow?.eligible_printing_count,
     latest_price: priceRow?.latest_price,
     confidence: priceRow?.confidence,
     listing_count: priceRow?.listing_count,

@@ -1,0 +1,208 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_ROLLBACK_MANIFEST_V1",
+  "maintenance_run_id": "f215e3b1-65b5-4d08-bfb3-b3ef98a0da77",
+  "batch_fingerprint": "431cfbba5acc81e4c13475369b8a4a90ee71bc81667383bf61d7447826a4cd64",
+  "operation": "deactivate_exact_inserted_mapping_ids",
+  "mapping_rows": [
+    {
+      "mapping_id": "134741",
+      "source": "tcgplayer",
+      "external_id": "42399",
+      "card_print_id": "8f0b109b-1cf4-4577-b85c-80a9d03591dd",
+      "expected_candidate_fingerprint": "cc1bc83debed9e5f60f1447d84fc6e659682ee69573e574ab2ab28e0452d4595",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134742",
+      "source": "tcgplayer",
+      "external_id": "42534",
+      "card_print_id": "bae17190-bcfa-4090-b796-d761192d1699",
+      "expected_candidate_fingerprint": "589cb27234be67481acb3aa949c510425f25635fdcee7d6c7bed3db908540698",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134743",
+      "source": "tcgplayer",
+      "external_id": "84162",
+      "card_print_id": "9b38b12d-7d50-45ff-8bab-aa409a4779a7",
+      "expected_candidate_fingerprint": "0dc8b6e77166cbc77c569b5e84d0d74c4762a632a4538fa257c1d6b861e57a69",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134744",
+      "source": "tcgplayer",
+      "external_id": "84293",
+      "card_print_id": "daf712b1-90c2-4abd-898d-891735d47702",
+      "expected_candidate_fingerprint": "9b6466b9c58c8fd8e86a6bffafeb0210e144f53e0b35f0222adad090116474f7",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134745",
+      "source": "tcgplayer",
+      "external_id": "85074",
+      "card_print_id": "1fbbd5ec-659b-4066-b381-f237c20e3878",
+      "expected_candidate_fingerprint": "7e3b3104b8d2daedea311ac7d71c698c53df82225897dd034191b74243af3d0c",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134746",
+      "source": "tcgplayer",
+      "external_id": "85523",
+      "card_print_id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+      "expected_candidate_fingerprint": "64c1bdf990238d60fd79edd84e66555811f0ece2cb51dd64dc0e490096e15d85",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134747",
+      "source": "tcgplayer",
+      "external_id": "87715",
+      "card_print_id": "ced4a7c4-34a4-4665-ad22-24d6db57eae2",
+      "expected_candidate_fingerprint": "7645852bf7c64ff5556e21491e3df5e59302fa8540b9b41f97b75dafabc4e959",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134748",
+      "source": "tcgplayer",
+      "external_id": "87717",
+      "card_print_id": "0888ca47-d1b9-4acc-ab16-a8111da88d85",
+      "expected_candidate_fingerprint": "b192d673749ede1bfce5aa38b0f718756827f2262a8653c11dd6375f4af61928",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134749",
+      "source": "tcgplayer",
+      "external_id": "87718",
+      "card_print_id": "ce28a0d1-40d7-46cb-becc-7310479ddbc8",
+      "expected_candidate_fingerprint": "1552e051036d44c5a2ab11593ca70d8f797d44acb99b7e35797b946c15227d64",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134750",
+      "source": "tcgplayer",
+      "external_id": "87719",
+      "card_print_id": "dd5bea69-e103-425d-9d45-adc5ff62d372",
+      "expected_candidate_fingerprint": "13c3c0fd1dd0d369b5fa2e74f5e7fdf74fbe62fcc7e9e3d8c0ae8c20dfe7b826",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134751",
+      "source": "tcgplayer",
+      "external_id": "87720",
+      "card_print_id": "0f2c5de7-7851-4dc2-87fa-b06bc83ccda0",
+      "expected_candidate_fingerprint": "1e92bc8f24dcb98172ed8c6e31526ba1e59b048ef617777b000ea2ae1db4873c",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134752",
+      "source": "tcgplayer",
+      "external_id": "87721",
+      "card_print_id": "54c7a89d-53f0-43f7-8e39-0ce10eb58558",
+      "expected_candidate_fingerprint": "613add062d1ff5d459acb1f4728dd4d4a4f777eb6dfa09414b2163bc230b4e59",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134753",
+      "source": "tcgplayer",
+      "external_id": "87724",
+      "card_print_id": "7c92fb56-8a57-424e-b697-fedd39da0e73",
+      "expected_candidate_fingerprint": "431cbf944727cc90930ea8b903242f676d78edb9d0455fc27dbe879b34eeba5b",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134754",
+      "source": "tcgplayer",
+      "external_id": "87725",
+      "card_print_id": "2cfbdcad-ab9e-4aab-9f8f-1160ce373110",
+      "expected_candidate_fingerprint": "7f55684bcca4a3644fb9f81c8626d66175847b67b5f670be6c6acc5e5bf3467f",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134755",
+      "source": "tcgplayer",
+      "external_id": "87726",
+      "card_print_id": "29588152-fe92-4f3b-b70b-404cce8ef843",
+      "expected_candidate_fingerprint": "e59489bfc49f483dfad8ba7013f9e9ede025f7bf804c944d1ba71278cc1abaff",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134756",
+      "source": "tcgplayer",
+      "external_id": "87727",
+      "card_print_id": "1a78addd-00e8-4228-9056-b30a8f1adea0",
+      "expected_candidate_fingerprint": "61856480a77d2c4fac202b5f954036d9072b41e06a4f347b567a4d6909909f3b",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134757",
+      "source": "tcgplayer",
+      "external_id": "87728",
+      "card_print_id": "0104fc59-640f-4470-8f46-17a8fea55b9a",
+      "expected_candidate_fingerprint": "1fac695921d553199251b94507e5b53a18b57beda379ffd4152d9563481b22ec",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134758",
+      "source": "tcgplayer",
+      "external_id": "87729",
+      "card_print_id": "ff28ddc8-bf84-4f26-a820-60427a8985a6",
+      "expected_candidate_fingerprint": "4370f38a0c43f54d21898a502f0b0f3b00838f8cb25f884eb6039e7ed70d46a9",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134759",
+      "source": "tcgplayer",
+      "external_id": "87730",
+      "card_print_id": "57e87ed1-769c-4f1e-8b06-a1070cfccbd0",
+      "expected_candidate_fingerprint": "4d39a10e51b357eca5fbabde32a7932b207b3b71a42a043438cc2bf6e87af718",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134760",
+      "source": "tcgplayer",
+      "external_id": "88229",
+      "card_print_id": "d01df782-5c69-491d-b828-68201315ad24",
+      "expected_candidate_fingerprint": "f10b3d0d468e882fa0449fcdcc5c0497e2ab15139e6c638528ef7122eb2adf7f",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134761",
+      "source": "tcgplayer",
+      "external_id": "88238",
+      "card_print_id": "673b30d3-89c9-4f2f-8702-dbfb065e24b0",
+      "expected_candidate_fingerprint": "d8bc49fc63d4ef92be243d6440952067ba39666566b84fba12429f4c1f8029e2",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134762",
+      "source": "tcgplayer",
+      "external_id": "88786",
+      "card_print_id": "4e0665d4-2a6a-4602-8799-db55cbb5f588",
+      "expected_candidate_fingerprint": "0f5ef1338f26b13768ad6301c285fd64acc249b4155ce9fd0b36bea1a1ae63e2",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134763",
+      "source": "tcgplayer",
+      "external_id": "88793",
+      "card_print_id": "da7a223c-b039-4fa0-99c1-c8e396f90f5f",
+      "expected_candidate_fingerprint": "add9d20eeb9e094e90b3c42b73f8b74ab8cfb572e0b9fb3b1a23881003481c57",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134764",
+      "source": "tcgplayer",
+      "external_id": "95964",
+      "card_print_id": "23876c04-08e3-47a9-b36d-73f761c51470",
+      "expected_candidate_fingerprint": "25ba5a11516ae29576f910aa8982e8a6490779d1e8bd612174c45ac20c8746cb",
+      "expected_active_state": true
+    },
+    {
+      "mapping_id": "134765",
+      "source": "tcgplayer",
+      "external_id": "106357",
+      "card_print_id": "877e7440-9e64-474c-afee-0c9669f8e109",
+      "expected_candidate_fingerprint": "5be02a8220b8ef19ec0c4763d1dc3fbb5f80c82a4669362a510b4f7083c40788",
+      "expected_active_state": true
+    }
+  ]
+}
