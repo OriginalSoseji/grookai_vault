@@ -257,12 +257,12 @@ async function queryEvidence(client, args, asOf) {
       `select
          has_function_privilege(
            'authenticated',
-           'public.get_top_market_pricing_v1(integer)',
+           'public.get_market_pricing_read_model_v1(uuid[],uuid[])',
            'EXECUTE'
          ) as authenticated_execute_granted,
          has_function_privilege(
            'anon',
-           'public.get_top_market_pricing_v1(integer)',
+           'public.get_market_pricing_read_model_v1(uuid[],uuid[])',
            'EXECUTE'
          ) as anonymous_execute_granted,
          has_function_privilege(
@@ -273,17 +273,38 @@ async function queryEvidence(client, args, asOf) {
     )
   ).rows[0];
 
+  const sampleCardPrintIds = (
+    await client.query(
+      `select distinct current_price.card_print_id
+       from public.v_market_price_current_v1 current_price
+       where current_price.card_print_id is not null
+       order by current_price.card_print_id
+       limit 1`,
+    )
+  ).rows.map((row) => row.card_print_id);
+  if (sampleCardPrintIds.length !== 1) {
+    throw new Error("No current card print is available for the authenticated read-model probe");
+  }
+
   let authenticatedReadCount = 0;
+  let authenticatedRuntimeLatencyMs = null;
   await client.query("set role authenticated");
   try {
+    const startedAt = performance.now();
     authenticatedReadCount = Number(
       (
         await client.query(
           `select count(*)::integer as row_count
-           from public.get_top_market_pricing_v1($1)`,
-          [args.expectedCount],
+           from public.get_market_pricing_read_model_v1(
+             $1::uuid[],
+             '{}'::uuid[]
+           )`,
+          [sampleCardPrintIds],
         )
       ).rows[0]?.row_count ?? 0,
+    );
+    authenticatedRuntimeLatencyMs = Number(
+      (performance.now() - startedAt).toFixed(3),
     );
   } finally {
     await client.query("reset role");
@@ -295,8 +316,11 @@ async function queryEvidence(client, args, asOf) {
   try {
     await client.query(
       `select count(*)::integer
-       from public.get_top_market_pricing_v1($1)`,
-      [1],
+       from public.get_market_pricing_read_model_v1(
+         $1::uuid[],
+         '{}'::uuid[]
+       )`,
+      [sampleCardPrintIds],
     );
   } catch (error) {
     anonymousRuntimeCode = error.code ?? null;
@@ -316,6 +340,8 @@ async function queryEvidence(client, args, asOf) {
       authenticated_execute_granted:
         grants.authenticated_execute_granted === true,
       authenticated_read_count: authenticatedReadCount,
+      authenticated_runtime_latency_ms: authenticatedRuntimeLatencyMs,
+      sampled_card_print_ids: sampleCardPrintIds,
       anonymous_execute_granted: grants.anonymous_execute_granted === true,
       anonymous_runtime_denied: anonymousRuntimeDenied,
       anonymous_runtime_code: anonymousRuntimeCode,
@@ -361,6 +387,7 @@ function markdown(report) {
     "## Access",
     "",
     `- Authenticated runtime rows: \`${report.access.authenticated_read_count}\``,
+    `- Authenticated runtime latency: \`${report.access.authenticated_runtime_latency_ms} ms\``,
     `- Anonymous runtime denied: \`${report.access.anonymous_runtime_denied}\``,
     `- Anonymous denial code: \`${report.access.anonymous_runtime_code}\``,
     "",
