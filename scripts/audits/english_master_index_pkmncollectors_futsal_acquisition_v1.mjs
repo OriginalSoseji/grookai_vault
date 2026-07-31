@@ -12,10 +12,10 @@ const REPORT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1/pkmnco
 const CACHE_DIR = path.join(REPORT_DIR, 'cache');
 
 const TARGETS = [
-  ['2', 'Eevee on the Ball', 'https://www.pkmncollectors.com/cards/eevee-on-the-ball-pokemon-futsal-2020-2-none'],
-  ['3', 'Grookey on the Ball', 'https://www.pkmncollectors.com/cards/grookey-on-the-ball-pokemon-futsal-2020-3-none'],
-  ['4', 'Scorbunny on the Ball', 'https://www.pkmncollectors.com/cards/scorbunny-on-the-ball-pokemon-futsal-2020-4-none'],
-  ['5', 'Sobble on the Ball', 'https://www.pkmncollectors.com/cards/sobble-on-the-ball-pokemon-futsal-2020-5-none'],
+  { cardNumber: '2', cardName: 'Eevee on the Ball', sourceUrl: 'https://www.pkmncollectors.com/cards/eevee-on-the-ball-pokemon-futsal-2020-2-none' },
+  { cardNumber: '3', cardName: 'Grookey on the Ball', sourceUrl: 'https://www.pkmncollectors.com/cards/grookey-on-the-ball-pokemon-futsal-2020-3-none' },
+  { cardNumber: '4', cardName: 'Scorbunny on the Ball', sourceUrl: 'https://www.pkmncollectors.com/cards/scorbunny-on-the-ball-pokemon-futsal-2020-4-none' },
+  { cardNumber: '5', cardName: 'Sobble on the Ball', sourceUrl: 'https://www.pkmncollectors.com/cards/sobble-on-the-ball-pokemon-futsal-2020-5-none' },
 ];
 
 function parseArgs(argv) {
@@ -73,10 +73,9 @@ function hasExactLabel(html, label) {
 }
 
 function validateTarget(html, target) {
-  const [cardNumber, cardName] = target;
   const checks = {
-    card_name: hasExactLabel(html, cardName),
-    card_number: html.includes(`#${cardNumber} of 5`),
+    card_name: hasExactLabel(html, target.cardName),
+    card_number: html.includes(`#${target.cardNumber} of 5`),
     set_name: hasExactLabel(html, 'Pokémon Futsal 2020') || hasExactLabel(html, 'Pokemon Futsal 2020'),
     available_variants_normal: /Available\s+variants[\s\S]{0,600}>\s*Normal\s*</i.test(html),
   };
@@ -87,22 +86,21 @@ function validateTarget(html, target) {
 }
 
 function recordFromTarget(target, generatedAt) {
-  const [cardNumber, cardName, sourceUrl] = target;
   return {
     source_key: 'pkmncollectors_futsal',
     source_kind: 'collector_reference',
-    source_url: sourceUrl,
+    source_url: target.sourceUrl,
     set_key: 'fut2020',
     set_name: 'Pokémon Futsal 2020',
-    card_number: cardNumber,
-    card_name: cardName,
+    card_number: target.cardNumber,
+    card_name: target.cardName,
     finish_key: 'normal',
     rarity: null,
     evidence_type: 'finish_presence',
     evidence_label: 'PKMN Collectors card page lists Available variants: Normal',
     language: 'en',
     retrieved_at: generatedAt,
-    raw_snapshot_ref: `pkmncollectors_futsal:${cardNumber}:${slugFromUrl(sourceUrl)}`,
+    raw_snapshot_ref: `pkmncollectors_futsal:${target.cardNumber}:${slugFromUrl(target.sourceUrl)}`,
     notes: 'Exact Pokémon Futsal 2020 card page with Available variants: Normal. Audit-only source evidence.',
   };
 }
@@ -123,12 +121,11 @@ async function main() {
   const records = [];
 
   for (const target of TARGETS) {
-    const [cardNumber, cardName, sourceUrl] = target;
     let status = 'source_unavailable';
     let validation = null;
     let error = null;
     try {
-      const html = await fetchHtmlCached(sourceUrl, options);
+      const html = await fetchHtmlCached(target.sourceUrl, options);
       validation = validateTarget(html, target);
       status = validation.ok ? 'generated' : 'validation_failed';
       if (validation.ok) records.push(recordFromTarget(target, generatedAt));
@@ -138,10 +135,10 @@ async function main() {
     results.push({
       set_key: 'fut2020',
       set_name: 'Pokémon Futsal 2020',
-      card_number: cardNumber,
-      card_name: cardName,
+      card_number: target.cardNumber,
+      card_name: target.cardName,
       finish_key: 'normal',
-      source_url: sourceUrl,
+      source_url: target.sourceUrl,
       status,
       validation,
       error,

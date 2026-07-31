@@ -8,6 +8,7 @@ import {
   normalizeNumber,
   normalizeText,
 } from './verified_master_set_index_v1/shared.mjs';
+import { isUrlFromHostname } from './lib/url_authority_v1.mjs';
 
 const ROOT = process.cwd();
 const AUDIT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
@@ -108,18 +109,19 @@ function evidenceText(record) {
 
 function sourceFamily(record) {
   const sourceKey = String(record.source_key ?? '').toLowerCase();
-  const url = String(record.source_url ?? '').toLowerCase();
-  if (sourceKey.includes('pricecharting') || url.includes('pricecharting.com')) return 'pricecharting';
-  if (sourceKey.includes('pokecardvalues') || url.includes('pokecardvalues.co.uk')) return 'pokecardvalues';
-  if (sourceKey.includes('cardtrader') || url.includes('cardtrader.com')) return 'cardtrader';
-  if (sourceKey.includes('tcgplayer') || url.includes('tcgplayer.com')) return 'tcgplayer';
-  if (sourceKey.includes('bulbapedia') || url.includes('bulbapedia.bulbagarden.net')) return 'bulbapedia';
-  if (sourceKey.includes('doubleholo') || url.includes('doubleholo.com')) return 'doubleholo';
-  if (sourceKey.includes('elitefourum') || url.includes('elitefourum.com')) return 'elitefourum';
-  if (sourceKey.includes('bigorbit') || url.includes('bigorbitcards.co.uk')) return 'bigorbit';
-  if (sourceKey.includes('beckett') || url.includes('beckett.com')) return 'beckett';
-  if (sourceKey.includes('pokumon') || url.includes('pokumon.com')) return 'pokumon';
-  if (sourceKey.includes('tcdb') || url.includes('tcdb.com')) return 'tcdb';
+  const url = record.source_url;
+  const from = (hostname) => isUrlFromHostname(url, hostname, { allowSubdomains: true });
+  if (sourceKey.includes('pricecharting') || from('pricecharting.com')) return 'pricecharting';
+  if (sourceKey.includes('pokecardvalues') || from('pokecardvalues.co.uk')) return 'pokecardvalues';
+  if (sourceKey.includes('cardtrader') || from('cardtrader.com')) return 'cardtrader';
+  if (sourceKey.includes('tcgplayer') || from('tcgplayer.com')) return 'tcgplayer';
+  if (sourceKey.includes('bulbapedia') || from('bulbapedia.bulbagarden.net')) return 'bulbapedia';
+  if (sourceKey.includes('doubleholo') || from('doubleholo.com')) return 'doubleholo';
+  if (sourceKey.includes('elitefourum') || from('elitefourum.com')) return 'elitefourum';
+  if (sourceKey.includes('bigorbit') || from('bigorbitcards.co.uk')) return 'bigorbit';
+  if (sourceKey.includes('beckett') || from('beckett.com')) return 'beckett';
+  if (sourceKey.includes('pokumon') || from('pokumon.com')) return 'pokumon';
+  if (sourceKey.includes('tcdb') || from('tcdb.com')) return 'tcdb';
   return sourceKey || 'unknown';
 }
 

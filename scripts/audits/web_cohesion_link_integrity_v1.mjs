@@ -5,6 +5,8 @@ import { performance } from "node:perf_hooks";
 import dotenv from "dotenv";
 import { createClient } from "@supabase/supabase-js";
 
+import { resolveSameOriginHttpUrl } from "./lib/url_authority_v1.mjs";
+
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "docs", "audits", "web_cohesion_link_integrity_v1");
 const OUT_JSON = path.join(OUT_DIR, "web_cohesion_link_integrity_v1.json");
@@ -267,16 +269,13 @@ function extractInternalLinks(html, baseUrl, currentPathname) {
   while ((match = linkPattern.exec(html))) {
     const rawHref = match[1] ?? match[2] ?? match[3] ?? "";
     const href = rawHref.trim();
-    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) {
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
       continue;
     }
 
     try {
-      const url = new URL(href, `${baseUrl}${currentPathname}`);
-      const base = new URL(baseUrl);
-      if (url.origin !== base.origin) {
-        continue;
-      }
+      const url = resolveSameOriginHttpUrl(href, baseUrl, currentPathname);
+      if (!url) continue;
       links.push({
         href,
         pathname: normalizePathname(url.pathname),

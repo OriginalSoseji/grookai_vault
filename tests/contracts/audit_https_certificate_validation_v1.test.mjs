@@ -10,6 +10,7 @@ const ACQUISITION_FILES = [
   "scripts/audits/jpn_pikachu_promo_end_to_end_apply_v1.mjs",
   "scripts/audits/jpn_pikachu_promo_gap_audit_v1.mjs",
   "scripts/audits/self_hosted_images_wh05a_trainer_kit_runtime_upload_dry_run.mjs",
+  "scripts/audits/self_hosted_images_wh05b_trainer_kit_runtime_storage_upload_apply.mjs",
   "scripts/audits/self_hosted_images_wh06a_mcdonalds_runtime_upload_dry_run.mjs",
   "scripts/audits/self_hosted_images_wh06b_mcdonalds_dextcg_upload_dry_run.mjs",
   "scripts/audits/self_hosted_images_wh06c_mcdonalds_dextcg_storage_upload_apply.mjs",

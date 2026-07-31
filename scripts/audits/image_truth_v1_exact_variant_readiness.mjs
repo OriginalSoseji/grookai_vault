@@ -3,6 +3,8 @@ import path from 'node:path';
 import pg from 'pg';
 import dotenv from 'dotenv';
 
+import { isUrlFromHostname } from './lib/url_authority_v1.mjs';
+
 dotenv.config({ path: '.env.local', quiet: true });
 dotenv.config({ quiet: true });
 
@@ -198,36 +200,40 @@ async function loadSourceRecords() {
 
 function classifySource(record) {
   const key = String(record.source_key ?? '').toLowerCase();
-  const url = String(record.source_url ?? '').toLowerCase();
-  if (key.includes('pricecharting') || url.includes('pricecharting.com/game/')) {
+  const url = record.source_url;
+  const from = (hostname, options = {}) => isUrlFromHostname(url, hostname, {
+    allowSubdomains: true,
+    ...options,
+  });
+  if (key.includes('pricecharting') || from('pricecharting.com', { pathPrefix: '/game/' })) {
     return {
       readiness_lane: 'exact_asset_probe_candidate',
       image_truth_limit: 'potential_exact_if_page_image_alt_matches_exact_card_finish',
       reason: 'PriceCharting product pages can expose a product image with exact alt/title evidence, but each asset must be probed before promotion.',
     };
   }
-  if (key.includes('cardtrader') || url.includes('cardtrader.com/')) {
+  if (key.includes('cardtrader') || from('cardtrader.com')) {
     return {
       readiness_lane: 'representative_only_unless_visual_manually_verified',
       image_truth_limit: 'representative',
       reason: 'CardTrader blueprint images are useful display coverage, but visual finish texture is not automatically proven.',
     };
   }
-  if (key.includes('reverseholo') || url.includes('reverseholo.app/')) {
+  if (key.includes('reverseholo') || from('reverseholo.app')) {
     return {
       readiness_lane: 'representative_only_unless_rendered_overlay_captured',
       image_truth_limit: 'representative',
       reason: 'ReverseHolo proves checklist finish facts; raw linked images may not contain the rendered finish overlay.',
     };
   }
-  if (key.includes('tcgcsv') || key.includes('tcgplayer') || url.includes('tcgplayer.com/')) {
+  if (key.includes('tcgcsv') || key.includes('tcgplayer') || from('tcgplayer.com')) {
     return {
       readiness_lane: 'representative_only_unless_visual_manually_verified',
       image_truth_limit: 'representative',
       reason: 'TCGplayer catalog/product images are product-associated but not automatically exact finish visual proof.',
     };
   }
-  if (key.includes('official') || url.includes('pokemon.com/')) {
+  if (key.includes('official') || from('pokemon.com')) {
     return {
       readiness_lane: 'base_display_only_for_parallel_rows',
       image_truth_limit: 'representative',
