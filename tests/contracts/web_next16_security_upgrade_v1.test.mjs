@@ -25,11 +25,14 @@ test("web runtime is pinned to the governed Next 16 and React 19 baseline", () =
 
 test("web dependency overrides retain the audited transitive security floor", () => {
   const packageJson = json("apps/web/package.json");
+  const packageLock = json("apps/web/package-lock.json");
 
   assert.equal(packageJson.overrides.postcss, "$postcss");
   assert.equal(packageJson.overrides.sharp, "0.35.3");
   assert.equal(packageJson.overrides["brace-expansion"], "5.0.9");
   assert.equal(packageJson.overrides.minimatch, "10.2.6");
+  assert.ok(packageLock.packages["node_modules/@emnapi/core"]);
+  assert.ok(packageLock.packages["node_modules/@emnapi/runtime"]);
 });
 
 test("Next 16 request interception uses proxy and no legacy middleware entrypoint", () => {
