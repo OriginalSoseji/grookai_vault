@@ -23,5 +23,15 @@ test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /flutter build ios --config-only --release/);
   assert.match(script, /command -v pod/);
   assert.match(script, /brew install cocoapods/);
-  assert.match(script, /cd ios\r?\npod install/);
+  assert.match(script, /cd ios\r?\n\s+pod install/);
+
+  const podAvailabilityIndex = script.indexOf("if ! command -v pod");
+  const podInstallIndex = script.indexOf("pod install", podAvailabilityIndex);
+  const releaseConfigIndex = script.indexOf(
+    "flutter build ios --config-only --release",
+  );
+
+  assert.ok(podAvailabilityIndex >= 0);
+  assert.ok(podInstallIndex > podAvailabilityIndex);
+  assert.ok(releaseConfigIndex > podInstallIndex);
 });

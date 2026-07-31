@@ -22,12 +22,15 @@ export PATH="${FLUTTER_HOME}/bin:${PATH}"
 flutter config --no-analytics
 flutter precache --ios
 flutter pub get
-flutter build ios --config-only --release
 
 if ! command -v pod >/dev/null 2>&1; then
   export HOMEBREW_NO_AUTO_UPDATE=1
   brew install cocoapods
 fi
 
-cd ios
-pod install
+(
+  cd ios
+  pod install
+)
+
+flutter build ios --config-only --release
