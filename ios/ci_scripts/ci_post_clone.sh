@@ -4,7 +4,7 @@ set -eu
 
 : "${CI_PRIMARY_REPOSITORY_PATH:?CI_PRIMARY_REPOSITORY_PATH is required}"
 
-FLUTTER_VERSION="${FLUTTER_VERSION:-3.44.7}"
+FLUTTER_VERSION="3.44.7"
 FLUTTER_HOME="${HOME}/flutter-${FLUTTER_VERSION}"
 
 cd "${CI_PRIMARY_REPOSITORY_PATH}"
@@ -21,7 +21,8 @@ if [ ! -x "${FLUTTER_HOME}/bin/flutter" ]; then
     --depth 1 \
     --branch "${FLUTTER_VERSION}" \
     https://github.com/flutter/flutter.git \
-    "${FLUTTER_HOME}"
+    "${FLUTTER_HOME}" \
+    || exit 20
 fi
 
 export PATH="${FLUTTER_HOME}/bin:${PATH}"
@@ -37,25 +38,25 @@ if [ "${ACTUAL_FLUTTER_VERSION}" != "${FLUTTER_VERSION}" ]; then
 fi
 
 echo "xcode-cloud-bootstrap phase=flutter-precache version=${ACTUAL_FLUTTER_VERSION}"
-flutter config --no-analytics
-flutter precache --ios
+flutter config --no-analytics || exit 21
+flutter precache --ios || exit 22
 
 echo "xcode-cloud-bootstrap phase=flutter-packages"
-flutter pub get --enforce-lockfile
+flutter pub get --enforce-lockfile || exit 23
 
 if ! command -v pod >/dev/null 2>&1; then
   echo "xcode-cloud-bootstrap phase=cocoapods-install"
   export HOMEBREW_NO_AUTO_UPDATE=1
-  brew install cocoapods
+  brew install cocoapods || exit 24
 fi
 
 echo "xcode-cloud-bootstrap phase=pod-install"
 (
   cd ios
   pod install
-)
+) || exit 25
 
 echo "xcode-cloud-bootstrap phase=release-config"
-flutter build ios --config-only --release
+flutter build ios --config-only --release || exit 26
 
 echo "xcode-cloud-bootstrap phase=complete"

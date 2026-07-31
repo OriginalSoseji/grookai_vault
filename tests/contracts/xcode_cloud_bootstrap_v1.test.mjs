@@ -14,7 +14,8 @@ test("Xcode Cloud bootstraps Flutter from the repository root", () => {
 });
 
 test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
-  assert.match(script, /FLUTTER_VERSION="\$\{FLUTTER_VERSION:-3\.44\.7\}"/);
+  assert.match(script, /FLUTTER_VERSION="3\.44\.7"/);
+  assert.doesNotMatch(script, /^FLUTTER_VERSION="\$\{/m);
   assert.match(script, /FLUTTER_HOME="\$\{HOME\}\/flutter-\$\{FLUTTER_VERSION\}"/);
   assert.match(script, /--branch "\$\{FLUTTER_VERSION\}"/);
   assert.match(script, /https:\/\/github\.com\/flutter\/flutter\.git/);
@@ -37,6 +38,9 @@ test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /phase=pod-install/);
   assert.match(script, /phase=release-config/);
   assert.match(script, /phase=complete/);
+  assert.match(script, /flutter pub get --enforce-lockfile \|\| exit 23/);
+  assert.match(script, /pod install\r?\n\) \|\| exit 25/);
+  assert.match(script, /flutter build ios --config-only --release \|\| exit 26/);
 
   const podAvailabilityIndex = script.indexOf("if ! command -v pod");
   const podInstallIndex = script.indexOf("pod install", podAvailabilityIndex);
