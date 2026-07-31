@@ -12,17 +12,26 @@ const WORKFLOW = readFileSync(
 
 test("production core API probe fails when required configuration is missing", () => {
   assert.match(WORKFLOW, /set -euo pipefail/);
-  assert.match(WORKFLOW, /\[\[ -z "\$REST" \|\| -z "\$ANON" \]\]/);
+  assert.match(
+    WORKFLOW,
+    /\[\[ -z "\$REST" \|\| -z "\$SUPABASE_URL" \|\| -z "\$ANON" \]\]/,
+  );
   assert.match(WORKFLOW, /PROD_REST is missing/);
+  assert.match(WORKFLOW, /PROD_SUPABASE_URL is missing/);
   assert.match(WORKFLOW, /PROD_PUBLISHABLE_KEY is missing/);
   assert.doesNotMatch(WORKFLOW, /Always succeed/);
 });
 
 test("production core API probe enforces HTTP and JSON response contracts", () => {
   assert.match(WORKFLOW, /test "\$rpc_code" = "200"/);
-  assert.match(WORKFLOW, /test "\$view_code" = "200"/);
+  assert.match(WORKFLOW, /test "\$wall_code" = "200"/);
   assert.match(WORKFLOW, /jq -e 'type == "array"' "\$artifact_dir\/search_cards\.json"/);
-  assert.match(WORKFLOW, /jq -e 'type == "array"' "\$artifact_dir\/wall_feed\.json"/);
+  assert.match(
+    WORKFLOW,
+    /jq -e '\(\.items \| type == "array"\) and \(\.count \| type == "number"\)'/,
+  );
+  assert.match(WORKFLOW, /\/functions\/v1\/wall_feed\?limit=1/);
+  assert.doesNotMatch(WORKFLOW, /\/v_wall_feed\?/);
   assert.doesNotMatch(WORKFLOW, /\|\| echo N\/A/);
 });
 
