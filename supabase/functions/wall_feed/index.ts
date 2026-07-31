@@ -222,7 +222,7 @@ export async function handleWallFeed(
       headers: {
         accept: "application/json",
         apikey: secretKey,
-        prefer: "count=planned",
+        prefer: "count=estimated",
       },
     });
   } catch (error) {

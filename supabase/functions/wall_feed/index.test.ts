@@ -59,7 +59,7 @@ Deno.test("wall_feed issues one fixed-shape read without bearer authorization", 
   const headers = new Headers(capturedInit?.headers);
   assertEquals(headers.get("apikey"), "sb_secret_test");
   assertEquals(headers.get("authorization"), null);
-  assertEquals(headers.get("prefer"), "count=planned");
+  assertEquals(headers.get("prefer"), "count=estimated");
 
   const restUrl = new URL(capturedUrl);
   assertEquals(restUrl.pathname, "/rest/v1/wall_feed_view");
