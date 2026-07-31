@@ -7,7 +7,7 @@ import test from "node:test";
 import {
   evaluateTcgplayerMarketCanaryObservationV1,
   expectedTcgplayerMarketScheduleSlotsV1,
-  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
 } from "../../backend/pricing/tcgplayer_market_canary_observation_policy_v1.mjs";
 import {
   buildTcgplayerMarketCanaryFailureArtifactsV1,
@@ -73,12 +73,28 @@ function scheduledRun(day) {
   });
 }
 
+function scheduledSourceRun(day, { status = "completed", commit = COMMIT } = {}) {
+  return {
+    id: `source-${day}`,
+    run_key: `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-${day}-warehouse`,
+    sync_mode: "current_full_sync",
+    status,
+    git_commit_sha: commit,
+    started_at: `2026-07-${day}T08:15:01.000Z`,
+    finished_at:
+      status === "completed" ? `2026-07-${day}T09:40:00.000Z` : null,
+    failed_count: status === "failed" ? 1 : 0,
+    error: status === "failed" ? "source failed" : null,
+  };
+}
+
 function baseInput(overrides = {}) {
   return {
     windowStart: WINDOW_START,
     asOf: "2026-07-28T08:57:00.000Z",
     expectedCommitSha: COMMIT,
     activationRun,
+    scheduledSourceRuns: [],
     scheduledRuns: [],
     terminalAlerts: [],
     current: {
@@ -126,11 +142,97 @@ test("a healthy incomplete window remains observing", () => {
   const result = evaluateTcgplayerMarketCanaryObservationV1(baseInput());
   assert.equal(
     result.policy_version,
-    TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
   );
   assert.equal(result.status, "observing");
   assert.equal(result.window.elapsed, false);
   assert.deepEqual(result.findings, []);
+});
+
+test("an on-time source phase still running is pending rather than missing", () => {
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T09:17:00.000Z",
+      scheduledSourceRuns: [
+        scheduledSourceRun("29", { status: "running" }),
+      ],
+    }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.schedule.pending_slots.length, 1);
+  assert.equal(
+    result.schedule.pending_slots[0].state,
+    "source_pipeline_in_progress",
+  );
+  assert.deepEqual(result.schedule.missing_slots, []);
+});
+
+test("a source trigger remains pending until its trigger tolerance expires", () => {
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({ asOf: "2026-07-29T09:17:00.000Z" }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.schedule.pending_slots[0].state, "awaiting_source_trigger");
+});
+
+test("a publication run is matched by its exact schedule key after source work", () => {
+  const publication = scheduledRun("29");
+  publication.started_at = "2026-07-29T09:45:46.000Z";
+  publication.completed_at = "2026-07-29T09:47:00.000Z";
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T10:00:00.000Z",
+      scheduledSourceRuns: [scheduledSourceRun("29")],
+      scheduledRuns: [publication],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-29",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.schedule.matched_slots.length, 1);
+  assert.equal(
+    result.schedule.matched_slots[0].source_offset_minutes,
+    0.017,
+  );
+});
+
+test("a scheduled cycle missing beyond completion grace fails closed", () => {
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T16:16:00.000Z",
+      scheduledSourceRuns: [scheduledSourceRun("29")],
+    }),
+  );
+
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("expected_schedule_slot_missing"));
+  assert.equal(
+    result.schedule.missing_slots[0].reason,
+    "publication_missing_after_completion_grace",
+  );
+});
+
+test("a failed scheduled source run fails immediately", () => {
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T08:30:00.000Z",
+      scheduledSourceRuns: [
+        scheduledSourceRun("29", { status: "failed" }),
+      ],
+    }),
+  );
+
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("scheduled_run_not_exact_and_healthy"));
+  assert.equal(result.schedule.unhealthy_slots[0].reason, "source_run_failed");
 });
 
 test("the exact three scheduled slots pass after 72 hours", () => {
@@ -138,6 +240,11 @@ test("the exact three scheduled slots pass after 72 hours", () => {
   const result = evaluateTcgplayerMarketCanaryObservationV1(
     baseInput({
       asOf: "2026-07-31T08:40:15.793Z",
+      scheduledSourceRuns: [
+        scheduledSourceRun("29"),
+        scheduledSourceRun("30"),
+        scheduledSourceRun("31"),
+      ],
       scheduledRuns: runs,
       current: {
         ...baseInput().current,
@@ -156,6 +263,10 @@ test("a missing elapsed schedule slot fails the gate", () => {
   const result = evaluateTcgplayerMarketCanaryObservationV1(
     baseInput({
       asOf: "2026-07-31T08:40:15.793Z",
+      scheduledSourceRuns: [
+        scheduledSourceRun("29"),
+        scheduledSourceRun("31"),
+      ],
       scheduledRuns: runs,
       current: {
         ...baseInput().current,
@@ -173,6 +284,7 @@ test("terminal alerts and wrong producing commits fail the gate", () => {
   const result = evaluateTcgplayerMarketCanaryObservationV1(
     baseInput({
       asOf: "2026-07-29T09:00:00.000Z",
+      scheduledSourceRuns: [scheduledSourceRun("29")],
       scheduledRuns: [badRun],
       terminalAlerts: [{ notification_id: "alert-1" }],
       current: {
@@ -217,6 +329,12 @@ test("stale prices, broken access, and unavailable rollback fail closed", () => 
 test("observer proves the request-scoped shared client RPC without ranked discovery", () => {
   assert.match(
     OBSERVER_SOURCE,
+    /from public\.tcgcsv_source_sync_runs[\s\S]*run_key like 'TCGPLAYER-MARKET-SCHEDULE-CANARY-%-warehouse'/i,
+  );
+  assert.match(OBSERVER_SOURCE, /scheduledSourceRuns/);
+  assert.match(OBSERVER_SOURCE, /scheduleCompletionGraceMinutes/);
+  assert.match(
+    OBSERVER_SOURCE,
     /array_agg\(\s*card_printing_id\s*order by card_printing_id\s*\) as current_printing_ids/i,
   );
   assert.match(
@@ -258,6 +376,7 @@ test("observer query failures preserve a run plan, summary, failure, and hashes"
         requiredHours: 72,
         expectedCount: 100,
         scheduleToleranceMinutes: 90,
+        scheduleCompletionGraceMinutes: 480,
       },
       "2026-07-30T14:34:51.000Z",
     );
@@ -302,6 +421,7 @@ test("observer query failures preserve a run plan, summary, failure, and hashes"
     ]);
     assert.equal(runPlan.boundaries.database_reads_only, true);
     assert.equal(runPlan.boundaries.database_writes, false);
+    assert.equal(runPlan.schedule_completion_grace_minutes, 480);
   } finally {
     await fs.rm(root, { recursive: true, force: true });
   }

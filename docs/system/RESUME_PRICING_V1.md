@@ -6,6 +6,9 @@ This file restarts Production V1 pricing work without relying on chat history.
 It records the current operational gate, frozen scope, active production
 commit, and exact next action.
 
+The Market Evidence Engine remains an internal evidence subsystem. It does not
+authorize inferred prices or bypass the exact TCGPlayer publication contract.
+
 ## Governing Sources
 
 Read these first:

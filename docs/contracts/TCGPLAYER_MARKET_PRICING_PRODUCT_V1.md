@@ -180,11 +180,13 @@ pipeline shadow verification. Historical backfill remains independently
 governed and must continue to yield during the current-price window.
 
 The signed-in canary observation window is evaluated by
-`TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1`. The evaluator is read-only and
+`TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2`. The evaluator is read-only and
 must prove:
 
-- the activation run and every expected daily schedule slot use the frozen
+- the activation run and every expected daily source trigger use the frozen
   producing commit
+- each expected source trigger begins inside the schedule tolerance and its
+  exact publication run completes inside the bounded pipeline grace period
 - every run selects, maps, qualifies, snapshots, and traces the exact verified
   canary count
 - no delayed, suppressed, quarantined, or excluded canary row appears
@@ -198,9 +200,17 @@ Runtime access proof must call the request-scoped
 identities. The canary does not depend on the separately governed ranked
 discovery endpoint.
 
-An incomplete time window is `observing`, not passed. A missing elapsed schedule
-slot, broken trace, stale value, access-boundary regression, terminal alert, or
-run mismatch fails the gate.
+An incomplete time window or an on-time pipeline still inside its completion
+grace is `observing`, not failed or passed. A missing source trigger after its
+tolerance, an incomplete publication after its completion grace, broken trace,
+stale value, access-boundary regression, terminal alert, or run mismatch fails
+the gate. Publication start time is not used as the schedule trigger because
+source acquisition legitimately precedes publication.
+
+The scheduled failure classifier must not interpret bare three-digit values in
+JavaScript stack locations as HTTP status codes. Exact canary source-identity
+absence or drift is non-retryable definition drift and must stop without
+repeating the paid or database-intensive cycle.
 
 The observer must create and hash its frozen run plan before connecting to the
 database. A connection or query failure must still preserve a machine-readable

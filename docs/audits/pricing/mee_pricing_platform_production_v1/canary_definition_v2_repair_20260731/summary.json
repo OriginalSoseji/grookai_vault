@@ -1,0 +1,18 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_CANARY_DEFINITION_REPAIR_V2",
+  "status": "passed",
+  "source_definition": "backend/pricing/canaries/tcgplayer_market_canary_100_v1.json",
+  "source_sha256": "9e4893a8f5e9b22a5ad894358274ea9171584a1a098fb5e388405470c066b7f3",
+  "repaired_definition": "backend/pricing/canaries/tcgplayer_market_canary_100_v2.json",
+  "repaired_sha256": "861b9dd97baaa0c93a6bcdd94c5f9ef903388bbc87a31923cfee3fbeb8cfc3d2",
+  "replaced_ordinal": 7,
+  "replaced_source_identity": "tcgplayer:168245:normal",
+  "replacement_source_identity": "tcgplayer:168245:holofoil",
+  "expected_count": 100,
+  "boundaries": {
+    "database_reads": false,
+    "database_writes": false,
+    "publication_activation": false,
+    "canonical_identity_writes": false
+  }
+}

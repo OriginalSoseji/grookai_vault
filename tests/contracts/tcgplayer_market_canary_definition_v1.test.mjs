@@ -5,6 +5,12 @@ import test from "node:test";
 import {
   validateTcgplayerMarketCanaryDefinitionV1,
 } from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
+import {
+  buildTcgplayerMarketCanaryDefinitionV2,
+} from "../../scripts/audits/tcgplayer_market_canary_definition_repair_v2.mjs";
+import {
+  evaluateTcgplayerMarketCanaryContinuityV1,
+} from "../../scripts/audits/tcgplayer_market_canary_continuity_v1.mjs";
 
 const WORKER = fs.readFileSync(
   new URL(
@@ -19,6 +25,24 @@ const PIPELINE = fs.readFileSync(
     import.meta.url,
   ),
   "utf8",
+);
+const CANARY_V1 = JSON.parse(
+  fs.readFileSync(
+    new URL(
+      "../../backend/pricing/canaries/tcgplayer_market_canary_100_v1.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+);
+const CANARY_V2 = JSON.parse(
+  fs.readFileSync(
+    new URL(
+      "../../backend/pricing/canaries/tcgplayer_market_canary_100_v2.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
 );
 
 function printing(overrides = {}) {
@@ -142,4 +166,59 @@ test("canary runtime is exact-definition-only and records definition provenance"
     /--canary-definition is only valid in dry_run or canary mode/,
   );
   assert.match(PIPELINE, /--canary-definition=\$\{args\.canaryDefinitionPath\}/);
+});
+
+test("canary V2 replaces only the disappeared Normal source subtype", () => {
+  validateTcgplayerMarketCanaryDefinitionV1(CANARY_V2);
+  assert.deepEqual(buildTcgplayerMarketCanaryDefinitionV2(CANARY_V1), CANARY_V2);
+  assert.equal(CANARY_V2.canary_id, "TCGPLAYER_MARKET_CANARY_100_V2");
+  assert.equal(CANARY_V2.printings.length, 100);
+
+  const oldPrintingIds = new Set(
+    CANARY_V1.printings.map((row) => row.card_printing_id),
+  );
+  const newPrintingIds = new Set(
+    CANARY_V2.printings.map((row) => row.card_printing_id),
+  );
+  const removed = [...oldPrintingIds].filter((id) => !newPrintingIds.has(id));
+  const added = [...newPrintingIds].filter((id) => !oldPrintingIds.has(id));
+  assert.deepEqual(removed, ["15994d81-d30d-48fb-a484-75a7a07bc974"]);
+  assert.deepEqual(added, ["69886a4a-0514-40ac-85f4-3a8aabac1750"]);
+
+  const repaired = CANARY_V2.printings.find((row) => row.ordinal === 7);
+  assert.equal(repaired.source_product_id, 168245);
+  assert.equal(repaired.source_subtype_name, "Holofoil");
+  assert.equal(repaired.expected_finish, "holo");
+  assert.equal(
+    repaired.provenance_verification.qualification_decision_id,
+    "5eee1506-2a86-4f15-a096-eebef59676dc",
+  );
+  assert.equal(repaired.visual_data_verification.status, "passed");
+});
+
+test("canary continuity fails a missing source identity before publication", () => {
+  const rows = CANARY_V2.printings.map((row) => ({
+    source_product_id: row.source_product_id,
+    source_subtype_name: row.source_subtype_name,
+    card_print_id: row.card_print_id,
+    card_printing_id: row.card_printing_id,
+    gv_id: row.gv_id,
+    printing_gv_id: row.printing_gv_id,
+    finish_key: row.expected_finish,
+  }));
+  const passed = evaluateTcgplayerMarketCanaryContinuityV1(CANARY_V2, rows);
+  assert.equal(passed.status, "passed");
+  assert.equal(passed.exact_source_identity_count, 100);
+
+  const failed = evaluateTcgplayerMarketCanaryContinuityV1(
+    CANARY_V2,
+    rows.filter((row) => row.source_product_id !== 168245),
+  );
+  assert.equal(failed.status, "failed");
+  assert.deepEqual(failed.findings, ["canary_source_identity_missing"]);
+  assert.equal(failed.missing.length, 1);
+  assert.equal(
+    failed.missing[0].source_key,
+    "168245:Holofoil:69886a4a-0514-40ac-85f4-3a8aabac1750",
+  );
 });

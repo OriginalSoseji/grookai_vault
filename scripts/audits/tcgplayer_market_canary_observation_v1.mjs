@@ -8,7 +8,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   evaluateTcgplayerMarketCanaryObservationV1,
-  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
 } from "../../backend/pricing/tcgplayer_market_canary_observation_policy_v1.mjs";
 import {
   evaluateTcgplayerCurrentSourceHealthV1,
@@ -24,7 +24,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "canary_observation",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_CANARY_OBSERVATION_AUDIT_V1";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_CANARY_OBSERVATION_AUDIT_V2";
 
 function parseArgs(argv) {
   const args = {
@@ -37,6 +37,7 @@ function parseArgs(argv) {
     requiredHours: 72,
     expectedCount: 100,
     scheduleToleranceMinutes: 90,
+    scheduleCompletionGraceMinutes: 480,
     outRoot: DEFAULT_OUT_ROOT,
     requirePass: false,
   };
@@ -61,6 +62,10 @@ function parseArgs(argv) {
     } else if (arg.startsWith("--schedule-tolerance-minutes=")) {
       args.scheduleToleranceMinutes = Number(
         arg.slice("--schedule-tolerance-minutes=".length),
+      );
+    } else if (arg.startsWith("--schedule-completion-grace-minutes=")) {
+      args.scheduleCompletionGraceMinutes = Number(
+        arg.slice("--schedule-completion-grace-minutes=".length),
       );
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
@@ -90,6 +95,14 @@ function parseArgs(argv) {
     args.scheduleToleranceMinutes < 1
   ) {
     throw new Error("--schedule-tolerance-minutes must be positive");
+  }
+  if (
+    !Number.isFinite(args.scheduleCompletionGraceMinutes) ||
+    args.scheduleCompletionGraceMinutes < args.scheduleToleranceMinutes
+  ) {
+    throw new Error(
+      "--schedule-completion-grace-minutes must be at least the schedule tolerance",
+    );
   }
   return args;
 }
@@ -128,7 +141,7 @@ function serializeError(error) {
 export function buildTcgplayerMarketCanaryRunPlanV1(args, asOf) {
   return {
     audit_version: AUDIT_VERSION,
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
     window_start: args.windowStart,
     activation_run_id: args.activationRunId,
     expected_commit_sha: args.expectedCommitSha,
@@ -136,6 +149,8 @@ export function buildTcgplayerMarketCanaryRunPlanV1(args, asOf) {
     required_hours: args.requiredHours,
     expected_count: args.expectedCount,
     schedule_tolerance_minutes: args.scheduleToleranceMinutes,
+    schedule_completion_grace_minutes:
+      args.scheduleCompletionGraceMinutes,
     boundaries: {
       database_reads_only: true,
       database_writes: false,
@@ -171,7 +186,7 @@ export function buildTcgplayerMarketCanaryFailureArtifactsV1({
 }) {
   const failure = {
     audit_version: AUDIT_VERSION,
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
     status: "observer_error",
     failed_at: failedAt,
     stage,
@@ -223,6 +238,21 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
          and started_at > $1::timestamptz
          and started_at <= $2::timestamptz
          and run_key like 'TCGPLAYER-MARKET-SCHEDULE-CANARY-%-publication'
+       order by started_at, id`,
+      [args.windowStart, asOf],
+    )
+  ).rows;
+
+  onStage("scheduled_source_runs_read");
+  const scheduledSourceRuns = (
+    await client.query(
+      `select id, run_key, sync_mode, status, git_commit_sha,
+              started_at, finished_at, failed_count, error, created_at
+       from public.tcgcsv_source_sync_runs
+       where sync_mode = 'current_full_sync'
+         and started_at > $1::timestamptz
+         and started_at <= $2::timestamptz
+         and run_key like 'TCGPLAYER-MARKET-SCHEDULE-CANARY-%-warehouse'
        order by started_at, id`,
       [args.windowStart, asOf],
     )
@@ -416,6 +446,7 @@ async function queryEvidence(client, args, asOf, onStage = () => {}) {
 
   return {
     activationRun,
+    scheduledSourceRuns,
     scheduledRuns,
     terminalAlerts,
     current,
@@ -444,7 +475,7 @@ function markdown(report) {
     "# TCGPlayer Market 72-Hour Canary Observation",
     "",
     `- Audit version: \`${AUDIT_VERSION}\``,
-    `- Policy version: \`${TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1}\``,
+    `- Policy version: \`${TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2}\``,
     `- Status: \`${report.status}\``,
     `- Window start: \`${report.window.started_at}\``,
     `- Required end: \`${report.window.required_end_at}\``,
@@ -456,8 +487,11 @@ function markdown(report) {
     "",
     `- Expected slots through this check: \`${report.schedule.expected_slots.length}\``,
     `- Matched slots: \`${report.schedule.matched_slots.length}\``,
+    `- Pending slots: \`${report.schedule.pending_slots.length}\``,
     `- Missing slots: \`${report.schedule.missing_slots.length}\``,
-    `- Unmatched canary runs: \`${report.schedule.unmatched_run_keys.length}\``,
+    `- Unhealthy slots: \`${report.schedule.unhealthy_slots.length}\``,
+    `- Unmatched source runs: \`${report.schedule.unmatched_source_run_keys.length}\``,
+    `- Unmatched publication runs: \`${report.schedule.unmatched_publication_run_keys.length}\``,
     "",
     "## Current Read Model",
     "",
@@ -525,6 +559,8 @@ async function main() {
       asOf,
       requiredHours: args.requiredHours,
       scheduleToleranceMinutes: args.scheduleToleranceMinutes,
+      scheduleCompletionGraceMinutes:
+        args.scheduleCompletionGraceMinutes,
       expectedCount: args.expectedCount,
       expectedCommitSha: args.expectedCommitSha,
       ...evidence,
