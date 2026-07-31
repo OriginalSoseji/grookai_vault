@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REST: ${{ secrets.PROD_REST }}
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       ANON: ${{ secrets.PROD_PUBLISHABLE_KEY }}
     steps:
       - name: Validate probe configuration
@@ -18,18 +19,19 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p probe-artifacts
-          if [[ -z "$REST" || -z "$ANON" ]]; then
+          if [[ -z "$REST" || -z "$SUPABASE_URL" || -z "$ANON" ]]; then
             {
               echo "# Production Core API Probe"
               echo
               echo "Probe configuration is incomplete."
-              [[ -n "$REST" ]] || echo "- PROD_REST is missing"
-              [[ -n "$ANON" ]] || echo "- PROD_PUBLISHABLE_KEY is missing"
+            [[ -n "$REST" ]] || echo "- PROD_REST is missing"
+            [[ -n "$SUPABASE_URL" ]] || echo "- PROD_SUPABASE_URL is missing"
+            [[ -n "$ANON" ]] || echo "- PROD_PUBLISHABLE_KEY is missing"
             } | tee probe-artifacts/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
-      - name: Probe public search RPC and wall view
+      - name: Probe public search RPC and wall feed edge function
         shell: bash
         run: |
           set -euo pipefail
@@ -49,26 +51,26 @@ jobs:
             -d "$rpc_body" \
             "$REST/rpc/search_cards")
 
-          view_code=$(curl --silent --show-error \
+          wall_code=$(curl --silent --show-error \
             --output "$artifact_dir/wall_feed.json" \
             --write-out "%{http_code}" \
             --connect-timeout 10 \
             --max-time 30 \
             -H "apikey: $ANON" \
-            -H "Accept-Profile: public" \
-            "$REST/v_wall_feed?select=card_id&limit=1")
+            --oauth2-bearer "$ANON" \
+            "${SUPABASE_URL%/}/functions/v1/wall_feed?limit=1")
 
           jq -n \
             --arg rpc_code "$rpc_code" \
-            --arg view_code "$view_code" \
-            '{schema_version:"PROD_CORE_API_PROBE_RESULT_V1",search_cards_http_status:($rpc_code|tonumber),wall_feed_http_status:($view_code|tonumber)}' \
+            --arg wall_code "$wall_code" \
+            '{schema_version:"PROD_CORE_API_PROBE_RESULT_V1",search_cards_http_status:($rpc_code|tonumber),wall_feed_edge_http_status:($wall_code|tonumber)}' \
             > "$artifact_dir/probe.json"
 
           {
             echo "# Production Core API Probe"
             echo
             echo "- search_cards RPC: HTTP $rpc_code"
-            echo "- v_wall_feed view: HTTP $view_code"
+            echo "- wall_feed Edge Function: HTTP $wall_code"
           } | tee "$artifact_dir/SUMMARY.md" >> "$GITHUB_STEP_SUMMARY"
 
           test "$rpc_code" = "200" || {
@@ -76,13 +78,14 @@ jobs:
             cat "$artifact_dir/search_cards.json" >&2
             exit 1
           }
-          test "$view_code" = "200" || {
-            echo "v_wall_feed returned HTTP $view_code" >&2
+          test "$wall_code" = "200" || {
+            echo "wall_feed Edge Function returned HTTP $wall_code" >&2
             cat "$artifact_dir/wall_feed.json" >&2
             exit 1
           }
           jq -e 'type == "array"' "$artifact_dir/search_cards.json" > /dev/null
-          jq -e 'type == "array"' "$artifact_dir/wall_feed.json" > /dev/null
+          jq -e '(.items | type == "array") and (.count | type == "number")' \
+            "$artifact_dir/wall_feed.json" > /dev/null
 
       - name: Upload probe evidence
         if: ${{ always() }}
