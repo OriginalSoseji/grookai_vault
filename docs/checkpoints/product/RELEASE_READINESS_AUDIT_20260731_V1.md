@@ -134,6 +134,17 @@ The follow-up candidate adds that exact release-configuration step before the
 Xcode archive. This is a new, narrower bootstrap class; live proof remains the
 next Xcode Cloud build from the follow-up merge.
 
+The dependency-order follow-up was merged as
+`6bb118e54bf5bfa9314bc4ca3f82de4401775a87`. Build 251 then completed the
+Flutter and CocoaPods setup and reached Swift compilation. The app's iOS host
+uses `FlutterImplicitEngineDelegate`, `FlutterImplicitEngineBridge`, and
+`FlutterSceneDelegate`, which belong to Flutter's UIScene lifecycle supported
+by Flutter 3.41 and newer. The Xcode bootstrap still pinned Flutter `3.35.2`,
+so those SDK types were unavailable. The next candidate aligns Xcode Cloud to
+the current stable Flutter `3.44.7` SDK while preserving the migrated iOS
+lifecycle and custom scanner registration. The SDK tag is verified upstream;
+the next archive remains the authoritative macOS compile proof.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build

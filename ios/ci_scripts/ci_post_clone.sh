@@ -4,7 +4,7 @@ set -eu
 
 : "${CI_PRIMARY_REPOSITORY_PATH:?CI_PRIMARY_REPOSITORY_PATH is required}"
 
-FLUTTER_VERSION="${FLUTTER_VERSION:-3.35.2}"
+FLUTTER_VERSION="${FLUTTER_VERSION:-3.44.7}"
 FLUTTER_HOME="${HOME}/flutter"
 
 cd "${CI_PRIMARY_REPOSITORY_PATH}"
@@ -21,7 +21,7 @@ export PATH="${FLUTTER_HOME}/bin:${PATH}"
 
 flutter config --no-analytics
 flutter precache --ios
-flutter pub get
+flutter pub get --enforce-lockfile
 
 if ! command -v pod >/dev/null 2>&1; then
   export HOMEBREW_NO_AUTO_UPDATE=1
