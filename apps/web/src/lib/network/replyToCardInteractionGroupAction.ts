@@ -63,7 +63,7 @@ export async function replyToCardInteractionGroupAction(
   formData: FormData,
 ): Promise<CreateCardInteractionActionResult> {
   const submissionKey = Date.now();
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

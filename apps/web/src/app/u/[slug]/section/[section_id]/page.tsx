@@ -19,13 +19,14 @@ import {
 export const revalidate = 60;
 
 type PublicSectionPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
     section_id: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: PublicSectionPageProps): Promise<Metadata> {
+export async function generateMetadata(props: PublicSectionPageProps): Promise<Metadata> {
+  const params = await props.params;
   const model = await getPublicSectionBySlugAndId(params.slug, params.section_id);
 
   if (!model) {
@@ -61,7 +62,8 @@ export async function generateMetadata({ params }: PublicSectionPageProps): Prom
   };
 }
 
-export default async function PublicSectionPage({ params }: PublicSectionPageProps) {
+export default async function PublicSectionPage(props: PublicSectionPageProps) {
+  const params = await props.params;
   const model = await getPublicSectionBySlugAndId(params.slug, params.section_id);
 
   if (!model) {

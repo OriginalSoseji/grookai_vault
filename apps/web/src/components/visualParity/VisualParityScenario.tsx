@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
 import type {
   MobileParityScenario,
@@ -137,7 +138,7 @@ function WallPopulated() {
 
 function BinderActionCard() {
   return (
-    <a
+    <Link
       href="/binders"
       className={styles.binderPanel}
       data-parity-feature-gate="binders"
@@ -178,7 +179,7 @@ function BinderActionCard() {
       >
         <path d="m9 5 7 7-7 7" />
       </svg>
-    </a>
+    </Link>
   );
 }
 

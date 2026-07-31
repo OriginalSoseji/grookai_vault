@@ -8,7 +8,7 @@
     "build": "node ../../scripts/ci/run_next_build_with_system_ca.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "lint": "next lint",
+    "lint": "eslint . --max-warnings=0",
     "rls:probe": "node scripts/rls_probe.mjs",
     "test:parity": "playwright test",
     "test:parity:visual": "playwright test tests/parity/mobile.visual.spec.ts",
@@ -17,30 +17,34 @@
     "test:parity:report": "playwright show-report"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "^14.2.35",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.45.0",
     "@vercel/analytics": "^1.6.1",
     "dotenv": "^16.4.5",
-    "next": "^14.2.35",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "16.2.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.12.1",
     "@playwright/test": "1.61.1",
     "@types/node": "^20.11.5",
-    "@types/react": "^18.2.33",
-    "@types/react-dom": "^18.2.14",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.55.0",
-    "eslint-config-next": "^14.2.35",
-    "postcss": "^8.4.32",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.12",
+    "postcss": "^8.5.25",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3"
   },
   "overrides": {
-    "glob": "10.5.0"
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "brace-expansion": "5.0.9",
+    "minimatch": "10.2.6",
+    "postcss": "$postcss",
+    "sharp": "0.35.3"
   }
 }

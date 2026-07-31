@@ -12,7 +12,11 @@ const nodeOptions = existingNodeOptions
 
 const result = spawnSync(
   process.execPath,
-  [path.join("node_modules", "next", "dist", "bin", "next"), "build"],
+  [
+    path.join("node_modules", "next", "dist", "bin", "next"),
+    "build",
+    "--webpack",
+  ],
   {
     cwd: webRoot,
     env: {

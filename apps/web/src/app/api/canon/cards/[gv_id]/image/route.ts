@@ -21,12 +21,11 @@ function getContentTypeForPath(path: string) {
 
 export async function GET(
   _request: NextRequest,
-  {
-    params,
-  }: {
-    params: { gv_id: string };
-  },
+  props: {
+    params: Promise<{ gv_id: string }>;
+  }
 ) {
+  const params = await props.params;
   const gvId = normalizeCanonImageGvId(params.gv_id);
   if (!gvId) {
     return NextResponse.json({ error: "Invalid card id." }, { status: 400 });

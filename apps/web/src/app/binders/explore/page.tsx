@@ -21,16 +21,17 @@ export const metadata: Metadata = {
   description: "Discover public collection goals built by the Grookai community.",
 };
 
-export default async function BinderExplorePage({
-  searchParams,
-}: {
-  searchParams: { cursor?: string };
-}) {
+export default async function BinderExplorePage(
+  props: {
+    searchParams: Promise<{ cursor?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.publicBinders || !flags.community) {
     notFound();
   }
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   let result;
   let templates = [];
   try {

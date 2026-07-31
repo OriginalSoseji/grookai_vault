@@ -2,10 +2,9 @@ import {
   getPublicCardSitemapPageCount,
   getSitemapOrigin,
   sitemapIndexResponse,
-  SITEMAP_REVALIDATE_SECONDS,
 } from "@/lib/seo/sitemaps";
 
-export const revalidate = SITEMAP_REVALIDATE_SECONDS;
+export const revalidate = 300;
 
 export async function GET() {
   const origin = getSitemapOrigin();

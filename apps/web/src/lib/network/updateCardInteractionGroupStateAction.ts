@@ -52,7 +52,7 @@ async function getLatestGroupInteractionCreatedAt(
   userId: string,
   target: CardInteractionGroupStateTarget,
 ) {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const participantFilter = [
     `and(sender_user_id.eq.${userId},receiver_user_id.eq.${target.counterpartUserId})`,
     `and(sender_user_id.eq.${target.counterpartUserId},receiver_user_id.eq.${userId})`,
@@ -81,7 +81,7 @@ async function upsertGroupState(
   action: CardInteractionGroupStateAction,
   latestMessageAt: string,
 ) {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const now = new Date().toISOString();
   const nextState =
     action === "archived"
@@ -116,7 +116,7 @@ async function applyGroupStateAction(
   targets: CardInteractionGroupStateTarget[],
   returnPath: string,
 ): Promise<CardInteractionGroupStateActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

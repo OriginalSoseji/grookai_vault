@@ -65,7 +65,7 @@ function GenericInvitation({
 export default async function BinderInvitationReviewPage() {
   const flags = getBinderFeatureFlags();
   const transientState = unsealBinderInviteTransientState(
-    cookies().get(BINDER_INVITE_TRANSIENT_COOKIE)?.value,
+    (await cookies()).get(BINDER_INVITE_TRANSIENT_COOKIE)?.value,
   );
   const { supabase, user } = await getOptionalServerUser();
 

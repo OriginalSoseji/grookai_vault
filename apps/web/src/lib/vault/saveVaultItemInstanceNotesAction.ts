@@ -34,7 +34,7 @@ function normalizeNotes(value: string) {
 export async function saveVaultItemInstanceNotesAction(
   input: SaveVaultItemInstanceNotesInput,
 ): Promise<SaveVaultItemInstanceNotesResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

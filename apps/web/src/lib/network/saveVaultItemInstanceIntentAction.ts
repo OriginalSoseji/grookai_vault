@@ -25,7 +25,7 @@ export type SaveVaultItemInstanceIntentResult =
 export async function saveVaultItemInstanceIntentAction(
   input: SaveVaultItemInstanceIntentInput,
 ): Promise<SaveVaultItemInstanceIntentResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

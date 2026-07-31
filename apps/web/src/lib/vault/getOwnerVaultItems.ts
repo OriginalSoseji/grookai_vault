@@ -183,7 +183,7 @@ function normalizeVaultItems(
 }
 
 async function getOwnerPublicProfileHrefs(userId: string) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const { data: profileData, error: profileError } = await supabase
     .from("public_profiles")
     .select("slug,public_profile_enabled,vault_sharing_enabled")

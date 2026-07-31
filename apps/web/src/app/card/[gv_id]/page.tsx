@@ -308,7 +308,8 @@ function logCardPageServerPerf(
   });
 }
 
-export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ gv_id: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const card = await getPublicCardByGvId(params.gv_id, {
     includePricing: false,
     includeRelatedPrints: false,
@@ -656,7 +657,7 @@ async function CardPageContent({
     const selectedPrintingId =
       typeof _formData.get("card_printing_id") === "string" ? String(_formData.get("card_printing_id")).trim() : "";
 
-    const actionClient = createServerComponentClient();
+    const actionClient = await createServerComponentClient();
     const { data: { user } } = await actionClient.auth.getUser();
     const submissionKey = Date.now();
     if (!user) return { ok: false, status: "login-required", submissionKey };
@@ -711,7 +712,7 @@ async function CardPageContent({
     formData: FormData,
   ): Promise<AddSlabActionResult> {
     "use server";
-    const actionClient = createServerComponentClient();
+    const actionClient = await createServerComponentClient();
     const { data: { user: actionUser } } = await actionClient.auth.getUser();
     const submissionKey = Date.now();
     if (!actionUser) return { ok: false, status: "login-required", message: "Sign in required.", submissionKey };
@@ -778,9 +779,9 @@ async function CardPageContent({
     };
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const authStartedAt = performance.now();
-  const shouldReadAuthenticatedState = hasSupabaseServerAuthCookie();
+  const shouldReadAuthenticatedState = await hasSupabaseServerAuthCookie();
   const {
     data: { user },
   } = shouldReadAuthenticatedState
@@ -1659,13 +1660,14 @@ async function NearbyCardsSection({
   );
 }
 
-export default async function CardPage({
-  params,
-  searchParams,
-}: {
-  params: { gv_id: string };
-  searchParams?: CardPageSearchParams;
-}) {
+export default async function CardPage(
+  props: {
+    params: Promise<{ gv_id: string }>;
+    searchParams?: Promise<CardPageSearchParams>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const pageStartedAt = performance.now();
   const cardLookupStartedAt = performance.now();
   const card = await getPublicCardByGvId(params.gv_id, {

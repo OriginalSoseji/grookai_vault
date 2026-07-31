@@ -351,11 +351,12 @@ function InteractionGroupCard({
   );
 }
 
-export default async function NetworkInboxPage({
-  searchParams,
-}: {
-  searchParams?: { view?: string | string[]; card?: string | string[] };
-}) {
+export default async function NetworkInboxPage(
+  props: {
+    searchParams?: Promise<{ view?: string | string[]; card?: string | string[] }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const { user } = await requireServerUser("/network/inbox");
 
   const currentView = normalizeInboxView(searchParams?.view);

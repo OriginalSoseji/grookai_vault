@@ -148,7 +148,7 @@ export async function getPublicCardsByGvIds(
   const [pricesByCardId, childDisplayImageFallbacks] = await Promise.all([
     options.includePricing
       ? getPublicPricingByCardIds(
-          options.pricingClient ?? createServerComponentClient(),
+          options.pricingClient ?? await createServerComponentClient(),
           cardIds,
         )
       : Promise.resolve(new Map()),

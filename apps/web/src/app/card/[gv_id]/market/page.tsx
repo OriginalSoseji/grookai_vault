@@ -124,15 +124,16 @@ function MarketPrintingSelector({
   );
 }
 
-export default async function MarketAnalysisPage({
-  params,
-  searchParams,
-}: {
-  params: { gv_id: string };
-  searchParams?: { duration?: string; printing?: string };
-}) {
+export default async function MarketAnalysisPage(
+  props: {
+    params: Promise<{ gv_id: string }>;
+    searchParams?: Promise<{ duration?: string; printing?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const marketPath = `/card/${encodeURIComponent(params.gv_id)}/market`;
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

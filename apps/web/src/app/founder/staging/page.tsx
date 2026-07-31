@@ -44,11 +44,12 @@ function formatTimestamp(value: string | null | undefined) {
   });
 }
 
-export default async function FounderStagingPage({
-  searchParams,
-}: {
-  searchParams?: { status?: string };
-}) {
+export default async function FounderStagingPage(
+  props: {
+    searchParams?: Promise<{ status?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   await requireFounderAccess("/founder/staging");
 
   const { rows, statusFilter } = await getFounderStagingQueue({

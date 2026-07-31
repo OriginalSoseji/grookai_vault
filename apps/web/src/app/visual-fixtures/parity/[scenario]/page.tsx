@@ -15,11 +15,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function VisualParityFixturePage({
-  params,
-}: {
-  params: { scenario: string };
-}) {
+export default async function VisualParityFixturePage(
+  props: {
+    params: Promise<{ scenario: string }>;
+  }
+) {
+  const params = await props.params;
   if (
     !isLocalVisualParityFixtureMode() ||
     !isMobileParityScenario(params.scenario)

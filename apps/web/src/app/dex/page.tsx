@@ -117,16 +117,17 @@ function PokemonSprite({
   );
 }
 
-export default async function GrookaiDexPage({
-  searchParams,
-}: {
-  searchParams?: { page?: string | string[]; q?: string | string[] };
-}) {
+export default async function GrookaiDexPage(
+  props: {
+    searchParams?: Promise<{ page?: string | string[]; q?: string | string[] }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   if (!isGrookaiDexEnabled()) {
     notFound();
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

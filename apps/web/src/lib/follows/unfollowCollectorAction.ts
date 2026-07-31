@@ -34,7 +34,7 @@ function normalizeId(value: string | null | undefined) {
 export async function unfollowCollectorAction(
   input: UnfollowCollectorInput,
 ): Promise<UnfollowCollectorResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

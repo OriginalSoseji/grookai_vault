@@ -182,11 +182,12 @@ function EmptyState({ message }: { message: string }) {
   );
 }
 
-export default async function FounderEntitlementsPage({
-  searchParams,
-}: {
-  searchParams?: { status?: string; message?: string };
-}) {
+export default async function FounderEntitlementsPage(
+  props: {
+    searchParams?: Promise<{ status?: string; message?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   await requireFounderAccess("/founder/entitlements");
   const admin = createServerAdminClient();
   const notice = statusMessage(searchParams);

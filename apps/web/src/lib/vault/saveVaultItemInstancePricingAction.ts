@@ -39,7 +39,7 @@ export type SaveVaultItemInstancePricingResult =
 export async function saveVaultItemInstancePricingAction(
   input: SaveVaultItemInstancePricingInput,
 ): Promise<SaveVaultItemInstancePricingResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

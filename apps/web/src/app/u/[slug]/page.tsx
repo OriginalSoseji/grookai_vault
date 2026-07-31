@@ -34,7 +34,8 @@ function dedupePublicWallCards(cards: PublicWallCard[]) {
   return [...cardByKey.values()];
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile || !profile.vault_sharing_enabled) {
     return {
@@ -79,15 +80,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PublicProfilePage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const supabase = createServerComponentClient();
+export default async function PublicProfilePage(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
-  } = hasSupabaseServerAuthCookie()
+  } = await hasSupabaseServerAuthCookie()
     ? await supabase.auth.getUser()
     : { data: { user: null } };
   const profile = await getPublicProfileBySlug(params.slug);

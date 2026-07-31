@@ -67,15 +67,16 @@ function CompareUnderfilledState({ cards }: { cards: ComparePublicCard[] }) {
   );
 }
 
-export default async function ComparePage({
-  searchParams,
-}: {
-  searchParams?: { cards?: string };
-}) {
-  const supabase = createServerComponentClient();
+export default async function ComparePage(
+  props: {
+    searchParams?: Promise<{ cards?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
-  } = hasSupabaseServerAuthCookie()
+  } = await hasSupabaseServerAuthCookie()
     ? await supabase.auth.getUser()
     : { data: { user: null } };
   const requestedCards = normalizeCompareCardsParam(searchParams?.cards);

@@ -3,15 +3,12 @@ import {
   getCardSitemapEntries,
   getPublicCardSitemapPageCount,
   urlSetResponse,
-  SITEMAP_REVALIDATE_SECONDS,
 } from "@/lib/seo/sitemaps";
 
-export const revalidate = SITEMAP_REVALIDATE_SECONDS;
+export const revalidate = 300;
 
-export async function GET(
-  _request: Request,
-  { params }: { params: { page: string } },
-) {
+export async function GET(_request: Request, props: { params: Promise<{ page: string }> }) {
+  const params = await props.params;
   const pageIndex = Number(params.page);
   const pageCount = await getPublicCardSitemapPageCount();
 

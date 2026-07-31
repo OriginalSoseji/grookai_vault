@@ -49,7 +49,7 @@ type InstanceRow = {
 export async function assignConditionSnapshotAction(
   input: AssignConditionSnapshotInput,
 ): Promise<AssignConditionSnapshotResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

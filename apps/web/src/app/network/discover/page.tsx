@@ -35,11 +35,12 @@ function formatJoinedAt(value: string | null) {
   })}`;
 }
 
-export default async function NetworkDiscoverPage({
-  searchParams,
-}: {
-  searchParams?: { q?: string };
-}) {
+export default async function NetworkDiscoverPage(
+  props: {
+    searchParams?: Promise<{ q?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
   const query = normalizeSearchQuery(searchParams?.q);

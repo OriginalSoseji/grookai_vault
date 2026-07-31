@@ -106,26 +106,27 @@ function formatPercent(owned: number, total: number) {
   return Math.round((owned / total) * 100);
 }
 
-export default async function GrookaiDexSpeciesPage({
-  params,
-  searchParams,
-}: {
-  params: { speciesSlug: string };
-  searchParams?: {
-    view?: string | string[];
-    page?: string | string[];
-    set?: string | string[];
-    rarity?: string | string[];
-    finish?: string | string[];
-    sort?: string | string[];
-    layout?: string | string[];
-  };
-}) {
+export default async function GrookaiDexSpeciesPage(
+  props: {
+    params: Promise<{ speciesSlug: string }>;
+    searchParams?: Promise<{
+      view?: string | string[];
+      page?: string | string[];
+      set?: string | string[];
+      rarity?: string | string[];
+      finish?: string | string[];
+      sort?: string | string[];
+      layout?: string | string[];
+    }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   if (!isGrookaiDexEnabled()) {
     notFound();
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

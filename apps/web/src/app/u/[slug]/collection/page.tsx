@@ -5,7 +5,8 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     return {
@@ -28,7 +29,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PublicCollectionCompatibilityPage({ params }: { params: { slug: string } }) {
+export default async function PublicCollectionCompatibilityPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
 
   if (!profile) {

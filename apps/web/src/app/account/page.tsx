@@ -27,9 +27,9 @@ type PublicProfileRow = {
 };
 
 type AccountPageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     tab?: string | string[];
-  };
+  }>;
 };
 
 function cx(...classes: Array<string | false | null | undefined>) {
@@ -58,9 +58,8 @@ function getAccountTabHref(tab: AccountTab) {
   return `/account?tab=${encodeURIComponent(tab)}`;
 }
 
-export default async function AccountPage({
-  searchParams,
-}: AccountPageProps) {
+export default async function AccountPage(props: AccountPageProps) {
+  const searchParams = await props.searchParams;
   const { supabase, user } = await requireServerUser("/account");
 
   const { data: profile, error: profileError } = await supabase

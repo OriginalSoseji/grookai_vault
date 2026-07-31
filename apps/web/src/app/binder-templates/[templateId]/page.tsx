@@ -17,15 +17,16 @@ export const revalidate = 0;
 
 const PUBLIC_ID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const getTemplate = cache((publicId: string, cursor: string | null = null) =>
-  getBinderTemplateDetail(createServerComponentClient(), publicId, cursor),
+const getTemplate = cache(async (publicId: string, cursor: string | null = null) =>
+  getBinderTemplateDetail(await createServerComponentClient(), publicId, cursor),
 );
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { templateId: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ templateId: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.templates || !PUBLIC_ID_PATTERN.test(params.templateId)) {
     return { title: "Binder Template | Grookai Vault", robots: { index: false, follow: false } };
@@ -41,13 +42,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function BinderTemplatePage({
-  params,
-  searchParams,
-}: {
-  params: { templateId: string };
-  searchParams: { result?: string; cursor?: string };
-}) {
+export default async function BinderTemplatePage(
+  props: {
+    params: Promise<{ templateId: string }>;
+    searchParams: Promise<{ result?: string; cursor?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.templates || !PUBLIC_ID_PATTERN.test(params.templateId)) {
     notFound();

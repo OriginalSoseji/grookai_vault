@@ -301,7 +301,7 @@ export async function getUnreadCardInteractionGroupCount(userId: string): Promis
     return 0;
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const { count, error } = await client
     .from("card_interaction_group_states")
     .select("user_id", { head: true, count: "exact" })
@@ -323,7 +323,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     return [];
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const adminClient = createServerAdminClient();
   const { data, error } = await client
     .from("card_interactions")

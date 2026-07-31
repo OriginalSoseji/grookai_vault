@@ -77,15 +77,16 @@ function getNotableExploreSets(sets: PublicSetSummary[]) {
   return notableSets.slice(0, 8);
 }
 
-export default async function ExplorePage({
-  searchParams,
-}: {
-  searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string };
-}) {
-  const supabase = createServerComponentClient();
+export default async function ExplorePage(
+  props: {
+    searchParams?: Promise<{ q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
-  } = hasSupabaseServerAuthCookie()
+  } = await hasSupabaseServerAuthCookie()
     ? await supabase.auth.getUser()
     : { data: { user: null } };
   const canViewPricing = Boolean(user);

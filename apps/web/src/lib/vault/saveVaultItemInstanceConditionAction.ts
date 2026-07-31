@@ -33,7 +33,7 @@ function normalizeConditionLabel(value: string) {
 export async function saveVaultItemInstanceConditionAction(
   input: SaveVaultItemInstanceConditionInput,
 ): Promise<SaveVaultItemInstanceConditionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

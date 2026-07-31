@@ -434,10 +434,10 @@ export async function GET(request: NextRequest) {
 
   try {
     let userId: string | null = null;
-    let requestSupabase: ReturnType<typeof createServerComponentClient> | null = null;
+    let requestSupabase: Awaited<ReturnType<typeof createServerComponentClient>> | null = null;
 
     if (hasSmartOwnershipIntent || pricingRequested) {
-      requestSupabase = createServerComponentClient();
+      requestSupabase = await createServerComponentClient();
       const {
         data: { user },
       } = await requestSupabase.auth.getUser();

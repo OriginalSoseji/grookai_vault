@@ -46,7 +46,7 @@ async function requireCustomBinderEditor() {
   if (!flags.schemaRpc || !flags.customBinders) {
     return null;
   }
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -54,7 +54,7 @@ async function requireCustomBinderEditor() {
 }
 
 async function getFinishOptions(
-  supabase: ReturnType<typeof createServerComponentClient>,
+  supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
   cardPrintIds: string[],
 ) {
   const rows: FinishRow[] = [];

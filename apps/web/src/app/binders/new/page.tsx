@@ -24,11 +24,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function NewBinderPage({
-  searchParams,
-}: {
-  searchParams: { q?: string };
-}) {
+export default async function NewBinderPage(
+  props: {
+    searchParams: Promise<{ q?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   if (!isBinderLibraryEnabled()) {
     notFound();
   }

@@ -34,7 +34,7 @@ async function loadOwnedRemovalTargets(input: {
   vaultItemInstanceId: string;
   userId: string;
 }) {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
 
   const [{ data: sectionRow, error: sectionError }, { data: instanceRow, error: instanceError }] =
     await Promise.all([
@@ -83,7 +83,7 @@ async function loadOwnedRemovalTargets(input: {
 export async function removeWallSectionMembershipAction(
   input: RemoveWallSectionMembershipInput,
 ): Promise<WallSectionMembershipActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

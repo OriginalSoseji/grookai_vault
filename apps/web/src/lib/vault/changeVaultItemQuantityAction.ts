@@ -15,7 +15,7 @@ export type VaultQuantityMutationInput = {
 export async function changeVaultItemQuantityAction(
   input: VaultQuantityMutationInput,
 ): Promise<UpdateVaultItemQuantityResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

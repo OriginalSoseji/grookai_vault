@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   const limit = Number.isFinite(limitInput) && limitInput > 0 ? Math.min(limitInput, 48) : 36;
 
   try {
-    const supabase = createServerComponentClient();
+    const supabase = await createServerComponentClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();

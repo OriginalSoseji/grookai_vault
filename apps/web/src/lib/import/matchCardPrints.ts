@@ -78,7 +78,7 @@ async function fetchCandidateCardPrintRows(
     return [];
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const candidateSetIds = Array.from(
     new Set(
       rows.flatMap((row) => {
@@ -156,7 +156,7 @@ async function fetchExistingVaultQuantities(
 }
 
 export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardPrintsPreviewResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

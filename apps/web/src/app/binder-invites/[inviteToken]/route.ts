@@ -41,10 +41,8 @@ function clearTransientCookie(response: NextResponse, secure: boolean) {
  * token is moved directly into an encrypted HttpOnly transient cookie and the
  * browser is redirected to the fixed, token-free review route.
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { inviteToken: string } },
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ inviteToken: string }> }) {
+  const params = await props.params;
   const response = secureRedirect(request);
   const secure =
     process.env.NODE_ENV === "production" ||

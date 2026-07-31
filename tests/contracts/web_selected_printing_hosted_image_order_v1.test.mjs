@@ -5,7 +5,7 @@ import test from "node:test";
 import { buildCanonCardImageProxyUrl } from "../../apps/web/src/lib/canon/canonImageProxy.ts";
 
 function source(relativePath) {
-  return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
+  return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8").replaceAll("\r\n", "\n");
 }
 
 function indexAfter(contents, needle, startIndex = 0) {

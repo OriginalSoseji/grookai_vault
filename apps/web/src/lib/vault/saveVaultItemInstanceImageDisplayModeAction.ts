@@ -47,7 +47,7 @@ type CardPrintRow = {
 export async function saveVaultItemInstanceImageDisplayModeAction(
   input: SaveVaultItemInstanceImageDisplayModeInput,
 ): Promise<SaveVaultItemInstanceImageDisplayModeResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

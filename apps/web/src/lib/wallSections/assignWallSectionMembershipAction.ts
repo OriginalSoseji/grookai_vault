@@ -39,7 +39,7 @@ async function loadOwnedAssignmentTargets(input: {
   vaultItemInstanceId: string;
   userId: string;
 }) {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
 
   const [{ data: sectionRow, error: sectionError }, { data: instanceRow, error: instanceError }] =
     await Promise.all([
@@ -88,7 +88,7 @@ async function loadOwnedAssignmentTargets(input: {
 export async function assignWallSectionMembershipAction(
   input: AssignWallSectionMembershipInput,
 ): Promise<WallSectionMembershipActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();
