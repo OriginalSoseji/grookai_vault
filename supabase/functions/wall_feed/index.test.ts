@@ -111,16 +111,10 @@ Deno.test("wall_feed returns an empty page for an out-of-range PostgREST request
       secretKey: "sb_secret_test",
       fetchImpl: () =>
         Promise.resolve(
-          new Response(
-            JSON.stringify({
-              code: "PGRST103",
-              message: "Requested range not satisfiable",
-            }),
-            {
-              status: 416,
-              headers: { "content-range": "*/17" },
-            },
-          ),
+          new Response("", {
+            status: 416,
+            headers: { "content-range": "*/17" },
+          }),
         ),
       logger: { log() {}, error() {} },
     },

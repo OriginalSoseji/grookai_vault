@@ -388,3 +388,8 @@ entrypoint = "./functions/notification-dispatcher/index.ts"
 enabled = true
 verify_jwt = false
 entrypoint = "./functions/operations-webhook-v1/index.ts"
+
+[functions.wall_feed]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/wall_feed/index.ts"
