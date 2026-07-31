@@ -1,0 +1,19 @@
+{
+  "script_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_V1",
+  "status": "passed",
+  "mode": "dry_run",
+  "maintenance_run_id": "8131edf8-8afc-41bc-88ac-b6e9f706a73e",
+  "committed": false,
+  "candidate_count": 276,
+  "selected_count": 25,
+  "inserted_count": 0,
+  "readback_count": 0,
+  "canary_excluded_count": 0,
+  "active_publication_overlap_count": 0,
+  "batch_fingerprint": "431cfbba5acc81e4c13475369b8a4a90ee71bc81667383bf61d7447826a4cd64",
+  "source_sync_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+  "candidate_artifact_sha256": "a179937025ab0c06a8df0b184a204027a70648bc328b47e0644c575644cc8584",
+  "database_writes": 0,
+  "publication_writes": 0,
+  "customer_state_writes": 0
+}

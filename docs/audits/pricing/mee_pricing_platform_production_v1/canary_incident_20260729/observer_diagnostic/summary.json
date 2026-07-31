@@ -1,0 +1,81 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1",
+  "status": "failed",
+  "window": {
+    "started_at": "2026-07-28T08:40:15.793Z",
+    "required_end_at": "2026-07-31T08:40:15.793Z",
+    "as_of": "2026-07-29T16:36:07.536Z",
+    "required_hours": 72,
+    "observed_hours": 31.931,
+    "elapsed": false
+  },
+  "schedule": {
+    "hour_utc": 8,
+    "minute_utc": 15,
+    "tolerance_minutes": 90,
+    "expected_slots": [
+      "2026-07-29T08:15:00.000Z"
+    ],
+    "matched_slots": [
+      {
+        "slot": "2026-07-29T08:15:00.000Z",
+        "run_id": "df59aeb2-8999-4fa9-a47f-8926957f904c",
+        "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-publication",
+        "started_at": "2026-07-29T09:29:46.181Z",
+        "completed_at": "2026-07-29T09:30:08.926Z",
+        "offset_minutes": 74.77
+      }
+    ],
+    "missing_slots": [],
+    "unmatched_run_keys": []
+  },
+  "run_evidence": {
+    "expected_commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+    "expected_count": 100,
+    "activation_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1-publication",
+    "scheduled_run_count": 1,
+    "unhealthy_run_keys": []
+  },
+  "terminal_alert_count": 1,
+  "current": {
+    "exact_price_count": 0,
+    "positive_usd_count": 0,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "c72743ef-0f47-4439-8e1d-4a6235ff7b23",
+    "current_publication_run_id": "df59aeb2-8999-4fa9-a47f-8926957f904c",
+    "previous_publication_set_id": "ad858441-036d-4ec5-ad06-42d9936c7534",
+    "current_publication_activated_at": "2026-07-29T09:30:08.926Z"
+  },
+  "source_health": {
+    "status": "critical",
+    "source_continuity_mode": "unverified",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse",
+    "effective_source_status": "partial_success",
+    "effective_source_price_row_count": 540321,
+    "source_age_hours": 7.12,
+    "findings": [
+      "latest_current_source_sync_not_completed"
+    ]
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 0,
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  },
+  "findings": [
+    "terminal_operations_alert_in_window",
+    "current_exact_price_count_mismatch",
+    "current_positive_usd_count_mismatch",
+    "current_source_health_not_healthy",
+    "current_source_continuity_unproven",
+    "authenticated_pricing_runtime_read_empty"
+  ]
+}

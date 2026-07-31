@@ -1,0 +1,63 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_READ_PERFORMANCE_AUDIT_V1",
+  "policy_version": "TCGPLAYER_MARKET_PERFORMANCE_POLICY_V1",
+  "commit_sha": "fde6f6db675c4ca72d2eac9ac38ed9ad4467e6ec",
+  "branch": "pricing/mee-productization-v1",
+  "started_at": "2026-07-28T09:47:20.362Z",
+  "endpoint_host": "ycdxbpibncqcchqiihfz.supabase.co",
+  "rpc": "get_market_pricing_read_model_v1",
+  "http_credential_mode": "service_role_transport",
+  "direct_database_role": "authenticated",
+  "iterations": 30,
+  "warmups": 3,
+  "target_p95_ms": 500,
+  "parent_sample_count": 99,
+  "printing_sample_count": 100,
+  "function_definition_sha256": "3a67a5253c6006389815053a0c6c6294f920d804a8838bd9963f17b84a052c2e",
+  "cases": [
+    {
+      "case_id": "parent_detail_1",
+      "scope": "parent",
+      "requested_id_count": 1,
+      "expected_row_count": 1
+    },
+    {
+      "case_id": "parent_grid_25",
+      "scope": "parent",
+      "requested_id_count": 25,
+      "expected_row_count": 25
+    },
+    {
+      "case_id": "parent_grid_all_current",
+      "scope": "parent",
+      "requested_id_count": 99,
+      "expected_row_count": 99
+    },
+    {
+      "case_id": "printing_detail_1",
+      "scope": "card_printing",
+      "requested_id_count": 1,
+      "expected_row_count": 1
+    },
+    {
+      "case_id": "printing_batch_50",
+      "scope": "card_printing",
+      "requested_id_count": 50,
+      "expected_row_count": 50
+    },
+    {
+      "case_id": "printing_batch_all_current",
+      "scope": "card_printing",
+      "requested_id_count": 100,
+      "expected_row_count": 100
+    }
+  ],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "publication_writes": false,
+    "mapping_writes": false,
+    "customer_state_writes": false,
+    "secrets_persisted": false
+  }
+}

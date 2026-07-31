@@ -1,0 +1,9 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "backend/pricing/rollout/tcgplayer_market_production_v1_migration_manifest.json": "829eb29fa0e30a1a1871beca9739eaa73bd984ee530a2447b32cedb9d63be90b",
+    "docs/audits/pricing/mee_pricing_platform_production_v1/migration_apply_readiness_v1/2026-07-28T14-26-53-090Z/summary.json": "97ae4a1d7ee23f52c939184a304d7f6c449a4eeffcd84586f2cdf69af66da74f",
+    "docs/audits/pricing/mee_pricing_platform_production_v1/migration_apply_readiness_v1/2026-07-28T14-26-53-090Z/REPORT.md": "668fcc4e3ac8875721955f22928bed3d15788b94097d5017ed2e6b9da85492eb",
+    "docs/checkpoints/pricing/PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md": "55149235165d0f783229681baf422d8728f00e92e7393affda46b6fc4281c1fc"
+  }
+}

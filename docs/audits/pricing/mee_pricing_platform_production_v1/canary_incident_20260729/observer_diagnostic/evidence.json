@@ -1,0 +1,209 @@
+{
+  "activationRun": {
+    "id": "87b13fc1-3639-47cb-843f-2f5d8b29d3b0",
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1-publication",
+    "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+    "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1",
+    "run_mode": "canary",
+    "source_name": "tcgplayer",
+    "source_observed_on": "2026-07-28T00:00:00.000Z",
+    "source_sync_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+    "source_artifact_id": null,
+    "source_artifact_hash": "26ffd4ca212f18d0c32d41080987d02f2dd271ea4ec2f2fff4bb00f0e415e86b",
+    "source_marker": "2026-07-27T20:09:27+0000",
+    "state": "verified",
+    "current_phase": "activate",
+    "reconciliation_state": "reconciled",
+    "selected_count": 100,
+    "mapped_count": 100,
+    "excluded_count": 0,
+    "quarantined_count": 0,
+    "delayed_count": 0,
+    "suppressed_count": 0,
+    "eligible_count": 100,
+    "snapshot_count": 100,
+    "required_phase_count": 5,
+    "succeeded_phase_count": 5,
+    "git_commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+    "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_1",
+    "schema_version": "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1",
+    "started_at": "2026-07-28T08:39:53.963Z",
+    "completed_at": "2026-07-28T08:40:15.793Z",
+    "failed_at": null,
+    "error_classification": null,
+    "error": null,
+    "resumability_data": {},
+    "reconciliation": {
+      "mismatches": [],
+      "mapped_count": 100,
+      "delayed_count": 0,
+      "decision_count": 100,
+      "eligible_count": 100,
+      "excluded_count": 0,
+      "selected_count": 100,
+      "snapshot_count": 100,
+      "suppressed_count": 0,
+      "quarantined_count": 0,
+      "traced_snapshot_count": 100
+    },
+    "created_at": "2026-07-28T08:39:53.963Z",
+    "updated_at": "2026-07-28T08:40:16.250Z"
+  },
+  "scheduledRuns": [
+    {
+      "id": "df59aeb2-8999-4fa9-a47f-8926957f904c",
+      "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-publication",
+      "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+      "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1",
+      "run_mode": "canary",
+      "source_name": "tcgplayer",
+      "source_observed_on": "2026-07-28T00:00:00.000Z",
+      "source_sync_run_id": "52068f31-2f07-4ad4-9000-83c4054d5b4a",
+      "source_artifact_id": null,
+      "source_artifact_hash": "26ffd4ca212f18d0c32d41080987d02f2dd271ea4ec2f2fff4bb00f0e415e86b",
+      "source_marker": "2026-07-27T20:09:27+0000",
+      "state": "verified",
+      "current_phase": "activate",
+      "reconciliation_state": "reconciled",
+      "selected_count": 100,
+      "mapped_count": 100,
+      "excluded_count": 0,
+      "quarantined_count": 0,
+      "delayed_count": 0,
+      "suppressed_count": 0,
+      "eligible_count": 100,
+      "snapshot_count": 100,
+      "required_phase_count": 5,
+      "succeeded_phase_count": 5,
+      "git_commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+      "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_1",
+      "schema_version": "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1",
+      "started_at": "2026-07-29T09:29:46.181Z",
+      "completed_at": "2026-07-29T09:30:08.926Z",
+      "failed_at": null,
+      "error_classification": null,
+      "error": null,
+      "resumability_data": {},
+      "reconciliation": {
+        "mismatches": [],
+        "mapped_count": 100,
+        "delayed_count": 0,
+        "decision_count": 100,
+        "eligible_count": 100,
+        "excluded_count": 0,
+        "selected_count": 100,
+        "snapshot_count": 100,
+        "suppressed_count": 0,
+        "quarantined_count": 0,
+        "traced_snapshot_count": 100
+      },
+      "created_at": "2026-07-29T09:29:46.181Z",
+      "updated_at": "2026-07-29T09:30:09.399Z"
+    }
+  ],
+  "terminalAlerts": [
+    {
+      "notification_id": "9f09611979999c5121ab1ba9c4fb6c49354c292dbc9d24bc05ccd85b9305da21",
+      "event_type": "systemd_on_failure",
+      "severity": "critical",
+      "source_unit": "grookai-tcgplayer-market-pipeline.service",
+      "source_commit_sha": "c0cdce5500c96cdc5b1d689e5178d9fa4e117e1d",
+      "received_at": "2026-07-29T09:30:39.292Z"
+    }
+  ],
+  "current": {
+    "exact_price_count": 0,
+    "positive_usd_count": 0,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "c72743ef-0f47-4439-8e1d-4a6235ff7b23",
+    "current_publication_run_id": "df59aeb2-8999-4fa9-a47f-8926957f904c",
+    "previous_publication_set_id": "ad858441-036d-4ec5-ad06-42d9936c7534",
+    "current_publication_activated_at": "2026-07-29T09:30:08.926Z"
+  },
+  "sourceHealth": {
+    "status": "critical",
+    "source_continuity_mode": "unverified",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse",
+    "effective_source_status": "partial_success",
+    "effective_source_price_row_count": 540321,
+    "source_age_hours": 7.12,
+    "findings": [
+      "latest_current_source_sync_not_completed"
+    ]
+  },
+  "sourceRunEvidence": {
+    "latest_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse",
+    "latest_source_status": "partial_success",
+    "latest_source_marker": "2026-07-28T20:12:27+0000",
+    "latest_source_finished_at": "2026-07-29T09:28:56.391Z",
+    "latest_source_price_row_count": 540321,
+    "latest_source_failed_count": 1,
+    "latest_source_error": null,
+    "latest_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9197
+      },
+      "failed_fetches": [
+        {
+          "error": "Command failed: curl --ssl-no-revoke --silent --show-error --location --max-time 180 --user-agent GrookaiVaultTCGCSVWarehouse/1.0 --dump-header /var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse/current/16/24389/prices.json.headers --output /var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse/current/16/24389/prices.json https://tcgcsv.com/tcgplayer/16/24389/prices\ncurl: (35) Recv failure: Connection reset by peer\n",
+          "group_id": 24389,
+          "category_id": 16
+        }
+      ],
+      "missing_marked": null,
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    },
+    "completed_source_run_key": "TCGPLAYER-MARKET-SHADOW-GATE1-CYCLE1-20260728T0144Z-warehouse",
+    "completed_source_status": "completed",
+    "completed_source_marker": "2026-07-27T20:09:27+0000",
+    "completed_source_finished_at": "2026-07-28T03:33:15.112Z",
+    "completed_source_price_row_count": 540037,
+    "completed_source_failed_count": 0,
+    "completed_source_error": null,
+    "completed_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9192
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 1,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    }
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 0,
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  }
+}

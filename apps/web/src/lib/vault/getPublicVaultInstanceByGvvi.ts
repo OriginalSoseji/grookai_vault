@@ -8,7 +8,7 @@ import {
   normalizeVaultIntent,
   type VaultIntent,
 } from "@/lib/network/intent";
-import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
+import { getExactMarketPricingByCardPrintingIds } from "@/lib/pricing/marketPricingReadModelV1";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import {
@@ -157,10 +157,17 @@ export type PublicVaultInstanceDetail = {
   marketReferencePrice: number | null;
   marketReferenceSource: string | null;
   marketReferenceUpdatedAt: string | null;
+  marketReferenceObservedAt: string | null;
+  marketReferencePublishedAt: string | null;
+  marketReferenceProvenanceId: string | null;
+  marketReferencePrintingGvId: string | null;
 };
 
 export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultInstanceByGvvi(
   gvviId: string,
+  options: {
+    includeMarketPricing?: boolean;
+  } = {},
 ): Promise<PublicVaultInstanceDetail | null> {
   const normalizedGvviId = gvviId.trim();
   if (!normalizedGvviId) {
@@ -246,11 +253,13 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
 
   const card = cardData as CardPrintRow;
   const cardPrintingId = normalizeOptionalText(instance.card_printing_id);
-  const [cardImageFields, frontImageUrl, backImageUrl, pricingByCardId, printingResult] = await Promise.all([
+  const [cardImageFields, frontImageUrl, backImageUrl, pricingByPrintingId, printingResult] = await Promise.all([
     resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
-    getPublicPricingByCardIds(admin, [cardPrintId]),
+    options.includeMarketPricing && cardPrintingId
+      ? getExactMarketPricingByCardPrintingIds(admin, [cardPrintingId])
+      : Promise.resolve(new Map()),
     cardPrintingId
       ? admin
           .from("card_printings")
@@ -263,7 +272,10 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
   if (printingResult.error) {
     throw new Error(`[public-gvvi] card printing finish query failed: ${printingResult.error.message}`);
   }
-  const pricingRecord = !instance.slab_cert_id ? pricingByCardId.get(cardPrintId) : undefined;
+  const pricingRecord =
+    !instance.slab_cert_id && cardPrintingId
+      ? pricingByPrintingId.get(cardPrintingId)
+      : undefined;
   const printingRow = (printingResult.data ?? null) as CardPrintingFinishRow | null;
   const finishRecord = Array.isArray(printingRow?.finish_keys) ? printingRow?.finish_keys[0] : printingRow?.finish_keys;
   const finishLabel = cardPrintingId
@@ -309,14 +321,15 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
     askingPriceCurrency: normalizeVaultInstancePricingCurrency(instance.asking_price_currency),
     askingPriceNote: normalizeVaultInstancePricingNote(instance.asking_price_note),
     marketReferencePrice:
-      typeof pricingRecord?.raw_price === "number" && Number.isFinite(pricingRecord.raw_price)
-        ? pricingRecord.raw_price
+      typeof pricingRecord?.market_close === "number" && Number.isFinite(pricingRecord.market_close)
+        ? pricingRecord.market_close
         : null,
     marketReferenceSource:
-      typeof pricingRecord?.raw_price_source === "string" ? pricingRecord.raw_price_source.trim() : null,
-    marketReferenceUpdatedAt:
-      typeof pricingRecord?.raw_price_ts === "string" && pricingRecord.raw_price_ts.trim().length > 0
-        ? pricingRecord.raw_price_ts
-        : null,
+      typeof pricingRecord?.source_name === "string" ? pricingRecord.source_name.trim() : null,
+    marketReferenceUpdatedAt: pricingRecord?.published_at ?? null,
+    marketReferenceObservedAt: pricingRecord?.observed_at ?? null,
+    marketReferencePublishedAt: pricingRecord?.published_at ?? null,
+    marketReferenceProvenanceId: pricingRecord?.provenance_id ?? null,
+    marketReferencePrintingGvId: pricingRecord?.printing_gv_id ?? null,
   };
 });

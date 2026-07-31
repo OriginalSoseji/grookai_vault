@@ -3,19 +3,39 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class CardSurfacePricingData {
   const CardSurfacePricingData({
     required this.cardPrintId,
-    this.grookaiValue,
-    this.primaryPrice,
+    required this.pricingScope,
+    this.marketClose,
+    this.cardPrintingId,
+    this.printingGvId,
+    this.finishKey,
+    this.isFromPrice = false,
     this.primarySource,
+    this.sourceLabel,
+    this.observedAt,
+    this.publishedAt,
+    this.provenanceId,
+    this.proofPricedCopyCount,
+    this.proofUnpricedCopyCount,
   });
 
   final String cardPrintId;
-  final double? grookaiValue;
-  final double? primaryPrice;
+  final String pricingScope;
+  final double? marketClose;
+  final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishKey;
+  final bool isFromPrice;
   final String? primarySource;
+  final String? sourceLabel;
+  final DateTime? observedAt;
+  final DateTime? publishedAt;
+  final String? provenanceId;
+  final int? proofPricedCopyCount;
+  final int? proofUnpricedCopyCount;
 
-  double? get visibleValue => grookaiValue ?? primaryPrice;
+  double? get visibleValue => marketClose;
 
-  String get compactLabel => grookaiValue != null ? 'Value' : 'Market';
+  String get compactLabel => 'Market';
 
   bool get hasVisibleValue => visibleValue != null;
 }
@@ -43,45 +63,133 @@ class CardSurfacePricingService {
           ? normalizedIds.length
           : start + _chunkSize;
       final chunk = normalizedIds.sublist(start, end);
-      final rows = await client
-          .from('v_card_pricing_ui_v1')
-          .select('card_print_id,grookai_value,primary_price,primary_source')
-          .inFilter('card_print_id', chunk);
+      final rows = await client.rpc(
+        'get_market_pricing_read_model_v1',
+        params: {'p_card_print_ids': chunk, 'p_card_printing_ids': null},
+      );
 
       for (final rawRow in rows as List<dynamic>) {
         final row = Map<String, dynamic>.from(rawRow as Map);
-        final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
-        if (cardPrintId.isEmpty) {
+        if ((row['pricing_scope'] ?? '').toString() != 'parent') {
+          continue;
+        }
+        final pricing = cardSurfacePricingDataFromReadModelRow(row);
+        if (pricing == null) {
           continue;
         }
 
-        pricingById[cardPrintId] = CardSurfacePricingData(
-          cardPrintId: cardPrintId,
-          grookaiValue: _toDouble(row['grookai_value']),
-          primaryPrice: _toDouble(row['primary_price']),
-          primarySource: _normalizeSource(row['primary_source']),
-        );
+        pricingById[pricing.cardPrintId] = pricing;
       }
     }
 
     return pricingById;
   }
 
-  static double? _toDouble(dynamic value) {
-    if (value is num) {
-      final doubleValue = value.toDouble();
-      if (doubleValue.isFinite) {
-        return doubleValue;
+  static Future<Map<String, CardSurfacePricingData>> fetchByCardPrintingIds({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintingIds,
+  }) async {
+    final normalizedIds = cardPrintingIds
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+
+    if (normalizedIds.isEmpty) {
+      return const <String, CardSurfacePricingData>{};
+    }
+
+    final pricingById = <String, CardSurfacePricingData>{};
+    for (var start = 0; start < normalizedIds.length; start += _chunkSize) {
+      final end = (start + _chunkSize) > normalizedIds.length
+          ? normalizedIds.length
+          : start + _chunkSize;
+      final chunk = normalizedIds.sublist(start, end);
+      final rows = await client.rpc(
+        'get_market_pricing_read_model_v1',
+        params: {'p_card_print_ids': null, 'p_card_printing_ids': chunk},
+      );
+
+      for (final rawRow in rows as List<dynamic>) {
+        final row = Map<String, dynamic>.from(rawRow as Map);
+        if ((row['pricing_scope'] ?? '').toString() != 'card_printing') {
+          continue;
+        }
+        final pricing = cardSurfacePricingDataFromReadModelRow(row);
+        final cardPrintingId = pricing?.cardPrintingId;
+        if (pricing == null ||
+            cardPrintingId == null ||
+            !normalizedIds.contains(cardPrintingId)) {
+          continue;
+        }
+        pricingById[cardPrintingId] = pricing;
       }
     }
+
+    return pricingById;
+  }
+}
+
+CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
+  Map<String, dynamic> row,
+) {
+  final cardPrintId = _cleanPricingValue(row['card_print_id']);
+  final pricingScope = _cleanPricingValue(row['pricing_scope']);
+  final cardPrintingId = _cleanPricingValue(row['card_printing_id']);
+  final marketClose = _pricingDouble(row['market_close']);
+  final observedAt = DateTime.tryParse((row['observed_at'] ?? '').toString());
+  final publishedAt = DateTime.tryParse((row['published_at'] ?? '').toString());
+  final provenanceId = _cleanPricingValue(row['provenance_id']);
+  final isFromPrice = row['is_from_price'] == true;
+  final expectedSourceLabel = isFromPrice
+      ? 'From TCGPlayer Market'
+      : 'TCGPlayer Market';
+
+  if (cardPrintId == null ||
+      (pricingScope != 'parent' && pricingScope != 'card_printing') ||
+      (pricingScope == 'card_printing' && cardPrintingId == null) ||
+      marketClose == null ||
+      marketClose <= 0 ||
+      row['status'] != 'available' ||
+      row['currency'] != 'USD' ||
+      row['freshness'] != 'fresh' ||
+      (row['source_name'] ?? '').toString().trim().toLowerCase() !=
+          'tcgplayer' ||
+      _cleanPricingValue(row['source_label']) != expectedSourceLabel ||
+      observedAt == null ||
+      publishedAt == null ||
+      provenanceId == null ||
+      (pricingScope == 'card_printing' && isFromPrice)) {
     return null;
   }
 
-  static String? _normalizeSource(dynamic value) {
-    final normalized = (value ?? '').toString().trim().toLowerCase();
-    if (normalized == 'justtcg' || normalized == 'ebay') {
-      return normalized;
+  return CardSurfacePricingData(
+    cardPrintId: cardPrintId,
+    pricingScope: pricingScope!,
+    cardPrintingId: cardPrintingId,
+    printingGvId: _cleanPricingValue(row['printing_gv_id']),
+    finishKey: _cleanPricingValue(row['finish_key']),
+    isFromPrice: isFromPrice,
+    marketClose: marketClose,
+    primarySource: 'tcgplayer',
+    sourceLabel: expectedSourceLabel,
+    observedAt: observedAt,
+    publishedAt: publishedAt,
+    provenanceId: provenanceId,
+  );
+}
+
+double? _pricingDouble(dynamic value) {
+  if (value is num) {
+    final doubleValue = value.toDouble();
+    if (doubleValue.isFinite) {
+      return doubleValue;
     }
-    return null;
   }
+  return null;
+}
+
+String? _cleanPricingValue(dynamic value) {
+  final normalized = (value ?? '').toString().trim();
+  return normalized.isEmpty ? null : normalized;
 }

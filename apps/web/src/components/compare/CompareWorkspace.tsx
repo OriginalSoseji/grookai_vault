@@ -44,7 +44,7 @@ const ATTRIBUTE_SECTIONS: AttributeSection[] = [
       { key: "number", label: "Number" },
       { key: "rarity", label: "Rarity" },
       { key: "variant", label: "Variant" },
-      { key: "raw_price", label: "Grookai Value" },
+      { key: "raw_price", label: "TCGPlayer Market" },
     ],
   },
   {
@@ -94,7 +94,19 @@ function renderAttributeContent(
 ) {
   if (key === "raw_price") {
     return canViewPricing
-      ? <VisiblePrice value={card.raw_price} size="dense" />
+      ? (
+          <VisiblePrice
+            value={card.raw_price}
+            size="dense"
+            cardPrintId={card.id}
+            observedAt={card.raw_price_ts}
+            publishedAt={card.raw_price_published_at}
+            provenanceId={card.pricing_provenance_id}
+            sourceLabel={card.pricing_source_label}
+            pricingScope={card.pricing_scope}
+            isFromPrice={card.pricing_is_from_price}
+          />
+        )
       : <LockedPrice href={pricingSignInHref} size="dense" />;
   }
 
@@ -252,7 +264,17 @@ export default function CompareWorkspace({
                     <p className="truncate text-lg font-semibold text-slate-950">{displayIdentity.display_name}</p>
                     <p className="text-sm text-slate-600">{card.set_name ?? "Unknown set"}</p>
                     {effectiveCanViewPricing ? (
-                      <VisiblePrice value={card.raw_price} size="list" />
+                      <VisiblePrice
+                        value={card.raw_price}
+                        size="list"
+                        cardPrintId={card.id}
+                        observedAt={card.raw_price_ts}
+                        publishedAt={card.raw_price_published_at}
+                        provenanceId={card.pricing_provenance_id}
+                        sourceLabel={card.pricing_source_label}
+                        pricingScope={card.pricing_scope}
+                        isFromPrice={card.pricing_is_from_price}
+                      />
                     ) : (
                       <LockedPrice href={pricingSignInHref} size="list" />
                     )}

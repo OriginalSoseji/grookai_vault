@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import { PublicWallCardVisiblePrice } from "@/components/public/PublicWallCardVisiblePrice";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
@@ -94,6 +95,7 @@ export function PublicCollectionGrid({
                     {card.public_note ? <p className="line-clamp-2 pt-1 text-xs leading-5 text-slate-500">{card.public_note}</p> : null}
                   </>
                 }
+                summary={<PublicWallCardVisiblePrice card={card} />}
                 footer={gvviId ? <span>GVVI: {gvviId}</span> : null}
               />
             );

@@ -1,0 +1,13 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[market-pipeline] phase=warehouse_current_sync status=completed
+[market-pipeline] phase=active_ask_refresh status=completed
+[market-pipeline] phase=publication status=completed
+[market-pipeline] phase=health status=completed
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3",
+  "status": "completed",
+  "mode": "canary",
+  "commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
+  "artifact_dir": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3"
+}

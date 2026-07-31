@@ -10,6 +10,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSetByCode, getPublicSetCards, getPublicWorldChampionshipDecklist } from "@/lib/publicSets";
 import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
+import { enrichPublicSetCardsWithMarketPricingV1 } from "@/lib/pricing/enrichPublicSetCardsWithMarketPricingV1";
 import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -103,6 +104,16 @@ async function SetPageContent({
   const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
   const isSignedIn = Boolean(user?.id);
   const printRunExplanation = getBaseSetPrintRunLaneExplanation(setDetail.code);
+  const initialCardsWithOwnership = await applyOwnedPrintingCountsToSetCards(
+    initialCards,
+    user?.id ?? null,
+  );
+  const initialCardsWithPricing = user?.id
+    ? await enrichPublicSetCardsWithMarketPricingV1(
+        supabase,
+        initialCardsWithOwnership,
+      )
+    : initialCardsWithOwnership;
 
   return (
     <main className="gv-page-shell gv-mobile-safe-content">
@@ -291,7 +302,7 @@ async function SetPageContent({
         </div>
         <PublicSetCardGrid
           setCode={setDetail.code}
-          initialCards={await applyOwnedPrintingCountsToSetCards(initialCards, user?.id ?? null)}
+          initialCards={initialCardsWithPricing}
           totalCount={setDetail.card_count}
           chunkSize={INITIAL_CARD_CHUNK}
         />

@@ -443,12 +443,11 @@ export async function GET(request: NextRequest) {
       } = await requestSupabase.auth.getUser();
       userId = user?.id ?? null;
     }
-
     if (valueSortRequested && !userId) {
       return NextResponse.json(
         {
           ok: false,
-          error: "Sign in to sort search results by Grookai Value.",
+          error: "Sign in to sort search results by TCGPlayer Market.",
           requested_sort: sortMode,
           applied_sort: null,
           sort_degraded_reason: "authentication_required",
@@ -464,8 +463,9 @@ export async function GET(request: NextRequest) {
     // bridge read until after filtering and the response limit are applied.
     // Value sorts still enrich the whole bounded candidate set so ordering
     // remains correct.
-    const includePricing = pricingRequested && Boolean(userId);
-    const includePricingDuringResolution = includePricing && valueSortRequested;
+    const authenticatedIncludePricing = pricingRequested && Boolean(userId);
+    const includePricingDuringResolution =
+      authenticatedIncludePricing && valueSortRequested;
 
     const includeProvisional =
       languageScope !== "ja" &&
@@ -615,7 +615,9 @@ export async function GET(request: NextRequest) {
     const limitedCanonicalResultsWithoutDeferredPricing =
       smartFilteredCanonicalResults.slice(0, resultLimit);
     const limitedCanonicalResults =
-      includePricing && !includePricingDuringResolution && requestSupabase
+      authenticatedIncludePricing &&
+      !includePricingDuringResolution &&
+      requestSupabase
         ? mergePublicPricingIntoRows(
             limitedCanonicalResultsWithoutDeferredPricing,
             await getPublicPricingByCardIds(

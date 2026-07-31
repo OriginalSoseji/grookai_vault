@@ -8,6 +8,7 @@ type DispatchRequest = {
   limit?: number;
   mock_fcm?: boolean;
   force_fcm_result?: "success" | "transient" | "unregistered" | "not_found";
+  operations_notification_id?: string;
 };
 
 type OutboxRow = {
@@ -489,13 +490,27 @@ function formatMatchCount(value: unknown): number {
 
 function formatNotification(
   outbox: OutboxRow,
-  card: CardPrint,
+  card: CardPrint | null,
   actorName: string | null,
 ): FormattedNotification {
-  if (!outbox.card_print_id) throw new Error("missing_card_print_id");
+  const notificationId = crypto.randomUUID();
+  if (outbox.event_type === "operations_alert") {
+    const unit = cleanString(outbox.payload.unit) ?? "pricing pipeline";
+    const host = cleanString(outbox.payload.host) ?? "production";
+    return {
+      notificationId,
+      title: `Grookai operations alert · ${unit}`,
+      body: `${host} reported a critical pipeline failure. Open Founder Ops for details.`,
+      deepLink: "grookai://",
+      webUrl: "https://grookaivault.com/founder",
+    };
+  }
+
+  if (!outbox.card_print_id || !card) {
+    throw new Error("missing_card_print_id");
+  }
   if (!cleanString(card.gv_id)) throw new Error("missing_card_gv_id");
 
-  const notificationId = crypto.randomUUID();
   const actor = actorName || "A collector";
   let title: string;
   let body: string;
@@ -611,6 +626,7 @@ async function dispatchOne(
   invocationSignal: AbortSignal,
 ) {
   let formatted: FormattedNotification | null = null;
+  const isOperationsAlert = row.event_type === "operations_alert";
   const rowDeadlineAtMs = Math.min(
     workDeadlineAtMs,
     Date.now() + ROW_DISPATCH_DEADLINE_MS,
@@ -618,18 +634,20 @@ async function dispatchOne(
   assertDeadline(rowDeadlineAtMs);
   const rowSignal = deadlineSignal(rowDeadlineAtMs);
 
-  if (!row.card_print_id) {
+  if (!isOperationsAlert && !row.card_print_id) {
     await markSkipped(sb, row, null, "missing_card_anchor", rowSignal);
     return { id: row.id, status: "skipped", reason: "missing_card_anchor" };
   }
 
-  const cardQuery = sb
-    .from("card_prints")
-    .select("id, gv_id, name, set_code, number")
-    .eq("id", row.card_print_id)
-    .maybeSingle()
-    .abortSignal(rowSignal);
-  const profileQuery = row.actor_user_id
+  const cardQuery = isOperationsAlert
+    ? Promise.resolve({ data: null, error: null })
+    : sb
+      .from("card_prints")
+      .select("id, gv_id, name, set_code, number")
+      .eq("id", row.card_print_id)
+      .maybeSingle()
+      .abortSignal(rowSignal);
+  const profileQuery = !isOperationsAlert && row.actor_user_id
     ? sb
       .from("public_profiles")
       .select("display_name, slug")
@@ -637,14 +655,16 @@ async function dispatchOne(
       .maybeSingle()
       .abortSignal(rowSignal)
     : Promise.resolve({ data: null, error: null });
-  const prefsQuery = sb
-    .from("notification_prefs")
-    .select(
-      "instant_enabled, daily_pulse_enabled, weekly_enabled, quiet_hours_start, quiet_hours_end, timezone",
-    )
-    .eq("user_id", row.recipient_user_id)
-    .maybeSingle()
-    .abortSignal(rowSignal);
+  const prefsQuery = isOperationsAlert
+    ? Promise.resolve({ data: null, error: null })
+    : sb
+      .from("notification_prefs")
+      .select(
+        "instant_enabled, daily_pulse_enabled, weekly_enabled, quiet_hours_start, quiet_hours_end, timezone",
+      )
+      .eq("user_id", row.recipient_user_id)
+      .maybeSingle()
+      .abortSignal(rowSignal);
 
   const [cardResult, profileResult, prefsResult] = await Promise.all([
     cardQuery,
@@ -653,7 +673,7 @@ async function dispatchOne(
   ]);
 
   const { data: card, error: cardError } = cardResult;
-  if (cardError || !card) {
+  if (!isOperationsAlert && (cardError || !card)) {
     await markSkipped(sb, row, null, "card_lookup_failed", rowSignal);
     return { id: row.id, status: "skipped", reason: "card_lookup_failed" };
   }
@@ -668,45 +688,50 @@ async function dispatchOne(
   const profile = profileResult.data;
   const actorName = cleanString(profile?.display_name) ??
     cleanString(profile?.slug);
-  formatted = formatNotification(row, card as CardPrint, actorName);
+  formatted = formatNotification(
+    row,
+    card ? card as CardPrint : null,
+    actorName,
+  );
 
   const prefsRow = prefsResult.data;
   const prefs = { ...DEFAULT_PREFS, ...(prefsRow ?? {}) } as Prefs;
 
-  const preferenceDisabled = disabledPreferenceReason(row.tier, prefs);
-  if (preferenceDisabled) {
-    await markFolded(sb, row, formatted, preferenceDisabled, rowSignal);
-    return { id: row.id, status: "folded", reason: preferenceDisabled };
-  }
+  if (!isOperationsAlert) {
+    const preferenceDisabled = disabledPreferenceReason(row.tier, prefs);
+    if (preferenceDisabled) {
+      await markFolded(sb, row, formatted, preferenceDisabled, rowSignal);
+      return { id: row.id, status: "folded", reason: preferenceDisabled };
+    }
 
-  const now = new Date();
-  if (isInsideQuietHours(now, prefs)) {
-    await rpc(sb, "notification_dispatcher_defer_outbox_v1", {
-      p_outbox_id: row.id,
-      p_available_at: nextQuietEnd(now, prefs).toISOString(),
-      p_reason: "quiet_hours",
-    }, rowSignal);
-    return { id: row.id, status: "deferred", reason: "quiet_hours" };
-  }
+    const now = new Date();
+    if (isInsideQuietHours(now, prefs)) {
+      await rpc(sb, "notification_dispatcher_defer_outbox_v1", {
+        p_outbox_id: row.id,
+        p_available_at: nextQuietEnd(now, prefs).toISOString(),
+        p_reason: "quiet_hours",
+      }, rowSignal);
+      return { id: row.id, status: "deferred", reason: "quiet_hours" };
+    }
 
-  const mutedWatchResult = await sb
-    .from("watches")
-    .select("id")
-    .eq("user_id", row.recipient_user_id)
-    .eq("subject_type", "card")
-    .eq("subject_id", row.card_print_id)
-    .not("muted_at", "is", null)
-    .limit(1)
-    .maybeSingle()
-    .abortSignal(rowSignal);
-  if (mutedWatchResult.error) {
-    throw new Error(`watch_lookup_failed:${mutedWatchResult.error.message}`);
-  }
-
-  const mutedWatch = mutedWatchResult.data;
-  if (mutedWatch) {
-    await markSkipped(sb, row, formatted, "watch_muted", rowSignal);
-    return { id: row.id, status: "skipped", reason: "watch_muted" };
+    const mutedWatchResult = await sb
+      .from("watches")
+      .select("id")
+      .eq("user_id", row.recipient_user_id)
+      .eq("subject_type", "card")
+      .eq("subject_id", row.card_print_id)
+      .not("muted_at", "is", null)
+      .limit(1)
+      .maybeSingle()
+      .abortSignal(rowSignal);
+    if (mutedWatchResult.error) {
+      throw new Error(`watch_lookup_failed:${mutedWatchResult.error.message}`);
+    }
+    const mutedWatch = mutedWatchResult.data;
+    if (mutedWatch) {
+      await markSkipped(sb, row, formatted, "watch_muted", rowSignal);
+      return { id: row.id, status: "skipped", reason: "watch_muted" };
+    }
   }
 
   const tokenResult = await sb
@@ -733,20 +758,24 @@ async function dispatchOne(
     return { id: row.id, status: "skipped", reason: "no_active_device_tokens" };
   }
 
-  const budgetDate = dateInTimezone(new Date(), prefs.timezone);
-  const reserved = await rpc(sb, "notification_dispatcher_reserve_budget_v1", {
-    p_user_id: row.recipient_user_id,
-    p_budget_date: budgetDate,
-  }, rowSignal);
-  if (!reserved) {
-    await markFolded(
-      sb,
-      row,
-      formatted,
-      "daily_budget_exhausted",
-      rowSignal,
-    );
-    return { id: row.id, status: "folded", reason: "daily_budget_exhausted" };
+  const budgetDate = isOperationsAlert
+    ? null
+    : dateInTimezone(new Date(), prefs.timezone);
+  if (!isOperationsAlert) {
+    const reserved = await rpc(sb, "notification_dispatcher_reserve_budget_v1", {
+      p_user_id: row.recipient_user_id,
+      p_budget_date: budgetDate,
+    }, rowSignal);
+    if (!reserved) {
+      await markFolded(
+        sb,
+        row,
+        formatted,
+        "daily_budget_exhausted",
+        rowSignal,
+      );
+      return { id: row.id, status: "folded", reason: "daily_budget_exhausted" };
+    }
   }
 
   let successToken: DeviceToken | null = null;
@@ -805,10 +834,12 @@ async function dispatchOne(
       }
     }
   } catch (error) {
-    await rpc(sb, "notification_dispatcher_release_budget_v1", {
-      p_user_id: row.recipient_user_id,
-      p_budget_date: budgetDate,
-    }, invocationSignal).catch(() => null);
+    if (!isOperationsAlert) {
+      await rpc(sb, "notification_dispatcher_release_budget_v1", {
+        p_user_id: row.recipient_user_id,
+        p_budget_date: budgetDate,
+      }, invocationSignal).catch(() => null);
+    }
     throw error;
   }
 
@@ -838,10 +869,12 @@ async function dispatchOne(
   if (hasDeferredFallback) failureReasons.push("fcm_fallback_deferred");
   const reason = failureReasons.join(";") || "fcm_send_failed";
 
-  await rpc(sb, "notification_dispatcher_release_budget_v1", {
-    p_user_id: row.recipient_user_id,
-    p_budget_date: budgetDate,
-  }, invocationSignal);
+  if (!isOperationsAlert) {
+    await rpc(sb, "notification_dispatcher_release_budget_v1", {
+      p_user_id: row.recipient_user_id,
+      p_budget_date: budgetDate,
+    }, invocationSignal);
+  }
 
   if (!hasTransient) {
     await rpc(sb, "notification_dispatcher_mark_skipped_v1", {
@@ -853,7 +886,6 @@ async function dispatchOne(
     }, invocationSignal);
     return { id: row.id, status: "skipped", reason };
   }
-
   const retryStatus = await rpc(
     sb,
     "notification_dispatcher_mark_retry_or_failed_v1",
@@ -908,9 +940,16 @@ serve(async (req) => {
     const invocationSignal = deadlineSignal(invocationDeadlineAtMs);
     const requestBody = (await req.json().catch(() => ({}))) as DispatchRequest;
     const sb = createServiceRoleClient();
-    const rows = await rpc(sb, "notification_dispatcher_claim_batch_v1", {
-      p_limit: normalizeLimit(requestBody.limit),
-    }, invocationSignal) as OutboxRow[];
+    const operationsNotificationId = cleanString(
+      requestBody.operations_notification_id,
+    );
+    const rows = operationsNotificationId
+      ? await rpc(sb, "notification_dispatcher_claim_operations_alert_v1", {
+        p_notification_id: operationsNotificationId,
+      }, invocationSignal) as OutboxRow[]
+      : await rpc(sb, "notification_dispatcher_claim_batch_v1", {
+        p_limit: normalizeLimit(requestBody.limit),
+      }, invocationSignal) as OutboxRow[];
 
     const results = [];
     for (let offset = 0; offset < rows.length; offset += DISPATCH_CONCURRENCY) {

@@ -574,6 +574,8 @@ class VaultPageState extends State<VaultPage> {
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
+  Map<String, VaultExactPricingSummary> _pricingSummaryByCardPrintId =
+      const <String, VaultExactPricingSummary>{};
   Map<String, VaultSharedCardState> _sharedStateByCardPrintId =
       const <String, VaultSharedCardState>{};
   String _search = '';
@@ -612,6 +614,9 @@ class VaultPageState extends State<VaultPage> {
     if (_uid == null) {
       setState(() {
         _items = const [];
+        _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
+        _pricingSummaryByCardPrintId =
+            const <String, VaultExactPricingSummary>{};
         _derivedData = const _VaultDerivedData.empty();
         _selectedLotCardPrintIds.clear();
       });
@@ -627,18 +632,60 @@ class VaultPageState extends State<VaultPage> {
           .map((row) => (row['card_id'] ?? '').toString())
           .where((value) => value.isNotEmpty)
           .toList();
+      final rawPricingTargets = await supabase
+          .from('v_vault_mobile_pricing_targets_v1')
+          .select('instance_id,card_print_id,card_printing_id');
+      final pricingTargets = (rawPricingTargets as List<dynamic>)
+          .whereType<Map>()
+          .map((raw) => Map<String, dynamic>.from(raw))
+          .map(
+            (row) => VaultExactPricingTarget(
+              cardPrintId: (row['card_print_id'] ?? '').toString().trim(),
+              cardPrintingId:
+                  (row['card_printing_id'] ?? '').toString().trim().isEmpty
+                  ? null
+                  : row['card_printing_id'].toString().trim(),
+            ),
+          )
+          .where((target) => target.cardPrintId.isNotEmpty)
+          .toList(growable: false);
       final results = await Future.wait<dynamic>([
-        CardSurfacePricingService.fetchByCardPrintIds(
+        CardSurfacePricingService.fetchByCardPrintingIds(
           client: supabase,
-          cardPrintIds: cardPrintIds,
+          cardPrintingIds: pricingTargets.map(
+            (target) => target.cardPrintingId ?? '',
+          ),
         ).catchError((_) => const <String, CardSurfacePricingData>{}),
         VaultCardService.getSharedStatesByCardPrintIds(
           client: supabase,
           cardPrintIds: cardPrintIds,
         ).catchError((_) => const <String, VaultSharedCardState>{}),
       ]);
-      final pricing = results[0] as Map<String, CardSurfacePricingData>;
+      final exactPricing = results[0] as Map<String, CardSurfacePricingData>;
       final sharedStates = results[1] as Map<String, VaultSharedCardState>;
+      final pricingTargetsByCardPrintId =
+          <String, List<VaultExactPricingTarget>>{};
+      for (final target in pricingTargets) {
+        pricingTargetsByCardPrintId
+            .putIfAbsent(target.cardPrintId, () => <VaultExactPricingTarget>[])
+            .add(target);
+      }
+      final pricingSummaries = <String, VaultExactPricingSummary>{
+        for (final cardPrintId in cardPrintIds)
+          cardPrintId: summarizeVaultExactPricing(
+            targets:
+                pricingTargetsByCardPrintId[cardPrintId] ??
+                const <VaultExactPricingTarget>[],
+            pricingByCardPrintingId: exactPricing,
+          ),
+      };
+      final pricing = <String, CardSurfacePricingData>{};
+      for (final entry in pricingSummaries.entries) {
+        final surfacePricing = entry.value.asSurfacePricing(entry.key);
+        if (surfacePricing != null) {
+          pricing[entry.key] = surfacePricing;
+        }
+      }
 
       if (!mounted) {
         return;
@@ -647,6 +694,7 @@ class VaultPageState extends State<VaultPage> {
       setState(() {
         _items = rows;
         _pricingByCardPrintId = pricing;
+        _pricingSummaryByCardPrintId = pricingSummaries;
         _sharedStateByCardPrintId = sharedStates;
         _selectedLotCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
@@ -750,17 +798,39 @@ class VaultPageState extends State<VaultPage> {
     var estimatedValue = 0.0;
     var pricedUniqueCount = 0;
     var pricedCopyCount = 0;
+    var unpricedCopyCount = 0;
+    DateTime? latestPricingObservedAt;
+    DateTime? latestPricingPublishedAt;
     for (final row in _items) {
       final cardPrintId = (row['card_id'] ?? '').toString().trim();
-      final visiblePrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
-      final ownedCount = _ownedCountForRow(row);
-      if (visiblePrice == null || ownedCount <= 0) {
+      final pricingSummary = _pricingSummaryByCardPrintId[cardPrintId];
+      final visiblePrice = pricingSummary?.totalMarketValue;
+      if (visiblePrice == null || pricingSummary == null) {
+        if (pricingSummary != null) {
+          unpricedCopyCount += pricingSummary.unpricedCopyCount;
+        }
         continue;
       }
-      estimatedValue += visiblePrice * ownedCount;
+      estimatedValue += visiblePrice;
       pricedUniqueCount += 1;
-      pricedCopyCount += ownedCount;
+      pricedCopyCount += pricingSummary.pricedCopyCount;
+      unpricedCopyCount += pricingSummary.unpricedCopyCount;
+      latestPricingObservedAt = _latestVaultPricingTimestamp(
+        latestPricingObservedAt,
+        pricingSummary.latestObservedAt,
+      );
+      latestPricingPublishedAt = _latestVaultPricingTimestamp(
+        latestPricingPublishedAt,
+        pricingSummary.latestPublishedAt,
+      );
     }
+    final vaultPricingSummary = VaultExactPricingSummary(
+      totalMarketValue: pricedUniqueCount == 0 ? null : estimatedValue,
+      pricedCopyCount: pricedCopyCount,
+      unpricedCopyCount: unpricedCopyCount,
+      latestObservedAt: latestPricingObservedAt,
+      latestPublishedAt: latestPricingPublishedAt,
+    );
 
     _derivedData = _VaultDerivedData(
       sortedRows: sortedRows,
@@ -776,6 +846,7 @@ class VaultPageState extends State<VaultPage> {
       lastAddedLabel: _lastAddedLabel(_items),
       estimatedValue: pricedUniqueCount == 0 ? null : estimatedValue,
       pricedCopyCount: pricedCopyCount,
+      vaultPricingSummary: vaultPricingSummary,
     );
   }
 
@@ -2214,15 +2285,27 @@ class VaultPageState extends State<VaultPage> {
                       ),
                     ),
                   ],
-                  Text(
-                    derivedData.estimatedValue == null
-                        ? 'Grookai Value'
+                  Semantics(
+                    identifier:
+                        derivedData.vaultPricingSummary.totalMarketValue == null
+                        ? null
+                        : vaultExactPricingTotalProofKey(
+                            derivedData.vaultPricingSummary,
+                          ),
+                    label: 'TCGPlayer Market Vault total',
+                    value: derivedData.estimatedValue == null
+                        ? 'Unavailable'
                         : _formatVaultValue(derivedData.estimatedValue!),
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      color: theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w700,
-                      height: 1.0,
-                      letterSpacing: 0,
+                    child: Text(
+                      derivedData.estimatedValue == null
+                          ? 'TCGPlayer Market'
+                          : _formatVaultValue(derivedData.estimatedValue!),
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                        fontWeight: FontWeight.w700,
+                        height: 1.0,
+                        letterSpacing: 0,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -2414,6 +2497,7 @@ class _VaultDerivedData {
     required this.lastAddedLabel,
     required this.estimatedValue,
     required this.pricedCopyCount,
+    required this.vaultPricingSummary,
   });
 
   const _VaultDerivedData.empty()
@@ -2429,7 +2513,14 @@ class _VaultDerivedData {
       setCount = 0,
       lastAddedLabel = 'No cards yet',
       estimatedValue = null,
-      pricedCopyCount = 0;
+      pricedCopyCount = 0,
+      vaultPricingSummary = const VaultExactPricingSummary(
+        totalMarketValue: null,
+        pricedCopyCount: 0,
+        unpricedCopyCount: 0,
+        latestObservedAt: null,
+        latestPublishedAt: null,
+      );
 
   final List<Map<String, dynamic>> sortedRows;
   final List<Map<String, dynamic>> searchedRows;
@@ -2444,6 +2535,13 @@ class _VaultDerivedData {
   final String lastAddedLabel;
   final double? estimatedValue;
   final int pricedCopyCount;
+  final VaultExactPricingSummary vaultPricingSummary;
+}
+
+DateTime? _latestVaultPricingTimestamp(DateTime? left, DateTime? right) {
+  if (left == null) return right;
+  if (right == null) return left;
+  return left.isAfter(right) ? left : right;
 }
 
 int _ownedCountForRow(Map<String, dynamic> row) {

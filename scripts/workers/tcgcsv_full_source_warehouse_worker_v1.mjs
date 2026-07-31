@@ -9,6 +9,14 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {
+  isRetryableTcgcsvSourceFetchErrorV1,
+  tcgcsvSourceRetryDelayMsV1,
+} from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
+import {
+  evaluateTcgcsvSourceRunResumeV1,
+  TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
+} from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +31,8 @@ const PARSER_VERSION = "TCGCSV_FULL_SOURCE_PARSER_V1";
 const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
 const DEFAULT_REQUEST_DELAY_MS = 100;
+const DEFAULT_REQUEST_RETRIES = 3;
+const DEFAULT_RETRY_BASE_DELAY_MS = 1_000;
 const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
 const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
@@ -37,6 +47,16 @@ function positiveIntFromEnv(name, fallback) {
   if (raw === undefined || raw === "") return fallback;
   const parsed = Number.parseInt(raw, 10);
   if (!Number.isInteger(parsed) || parsed < 1) throw new Error(`${name} must be a positive integer`);
+  return parsed;
+}
+
+function nonNegativeIntFromEnv(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === "") return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isInteger(parsed) || parsed < 0) {
+    throw new Error(`${name} must be a non-negative integer`);
+  }
   return parsed;
 }
 
@@ -66,6 +86,8 @@ function parseArgs(argv) {
     cacheDir: DEFAULT_CACHE_DIR,
     requestCeiling: Number.parseInt(process.env.TCGCSV_FULL_SYNC_REQUEST_CEILING ?? String(DEFAULT_REQUEST_CEILING), 10),
     requestDelayMs: Number.parseInt(process.env.TCGCSV_REQUEST_DELAY_MS ?? String(DEFAULT_REQUEST_DELAY_MS), 10),
+    requestRetries: nonNegativeIntFromEnv("TCGCSV_REQUEST_RETRIES", DEFAULT_REQUEST_RETRIES),
+    retryBaseDelayMs: positiveIntFromEnv("TCGCSV_RETRY_BASE_DELAY_MS", DEFAULT_RETRY_BASE_DELAY_MS),
     includeEmptyCategories: false,
     limitCategories: null,
     limitGroups: null,
@@ -88,6 +110,8 @@ function parseArgs(argv) {
     else if (arg.startsWith("--cache-dir=")) args.cacheDir = path.resolve(arg.slice("--cache-dir=".length));
     else if (arg.startsWith("--request-ceiling=")) args.requestCeiling = Number.parseInt(arg.slice("--request-ceiling=".length), 10);
     else if (arg.startsWith("--request-delay-ms=")) args.requestDelayMs = Number.parseInt(arg.slice("--request-delay-ms=".length), 10);
+    else if (arg.startsWith("--request-retries=")) args.requestRetries = Number.parseInt(arg.slice("--request-retries=".length), 10);
+    else if (arg.startsWith("--retry-base-delay-ms=")) args.retryBaseDelayMs = Number.parseInt(arg.slice("--retry-base-delay-ms=".length), 10);
     else if (arg === "--include-empty-categories") args.includeEmptyCategories = true;
     else if (arg.startsWith("--limit-categories=")) args.limitCategories = Number.parseInt(arg.slice("--limit-categories=".length), 10);
     else if (arg.startsWith("--limit-groups=")) args.limitGroups = Number.parseInt(arg.slice("--limit-groups=".length), 10);
@@ -98,6 +122,8 @@ function parseArgs(argv) {
   if (!["current", "historical"].includes(args.mode)) throw new Error("--mode must be current or historical");
   if (!Number.isInteger(args.requestCeiling) || args.requestCeiling < 1) throw new Error("--request-ceiling must be positive");
   if (!Number.isInteger(args.requestDelayMs) || args.requestDelayMs < 0) throw new Error("--request-delay-ms must be non-negative");
+  if (!Number.isInteger(args.requestRetries) || args.requestRetries < 0) throw new Error("--request-retries must be non-negative");
+  if (!Number.isInteger(args.retryBaseDelayMs) || args.retryBaseDelayMs < 1) throw new Error("--retry-base-delay-ms must be positive");
   if (args.limitCategories !== null && (!Number.isInteger(args.limitCategories) || args.limitCategories < 1)) {
     throw new Error("--limit-categories must be positive");
   }
@@ -180,22 +206,23 @@ async function sleep(ms) {
 }
 
 class Fetcher {
-  constructor({ requestCeiling, requestDelayMs, artifactRoot }) {
+  constructor({
+    requestCeiling,
+    requestDelayMs,
+    requestRetries,
+    retryBaseDelayMs,
+    artifactRoot,
+  }) {
     this.requestCeiling = requestCeiling;
     this.requestDelayMs = requestDelayMs;
+    this.requestRetries = requestRetries;
+    this.retryBaseDelayMs = retryBaseDelayMs;
     this.artifactRoot = artifactRoot;
     this.requestCount = 0;
     this.artifacts = [];
   }
 
   async fetchBuffer(url, artifactKind, relativePath, meta = {}) {
-    if (this.requestCount + 1 > this.requestCeiling) {
-      const err = new Error(`request ceiling exceeded before ${url}`);
-      err.code = "REQUEST_CEILING";
-      throw err;
-    }
-    this.requestCount += 1;
-    await sleep(this.requestDelayMs);
     const fullPath = path.join(this.artifactRoot, relativePath);
     await fs.mkdir(path.dirname(fullPath), { recursive: true });
     const headerPath = `${fullPath}.headers`;
@@ -204,6 +231,7 @@ class Fetcher {
       "--silent",
       "--show-error",
       "--location",
+      "--fail-with-body",
       "--max-time",
       "180",
       "--user-agent",
@@ -214,7 +242,43 @@ class Fetcher {
       fullPath,
       url,
     ];
-    await execFileAsync(CURL_BIN, args, { timeout: 240_000, maxBuffer: 2 * 1024 * 1024 });
+
+    for (let retry = 0; ; retry += 1) {
+      if (this.requestCount + 1 > this.requestCeiling) {
+        const err = new Error(`request ceiling exceeded before ${url}`);
+        err.code = "REQUEST_CEILING";
+        throw err;
+      }
+      this.requestCount += 1;
+      const delayMs =
+        retry === 0
+          ? this.requestDelayMs
+          : tcgcsvSourceRetryDelayMsV1({
+              retryNumber: retry,
+              baseDelayMs: this.retryBaseDelayMs,
+              requestDelayMs: this.requestDelayMs,
+            });
+      await sleep(delayMs);
+      try {
+        await execFileAsync(CURL_BIN, args, {
+          timeout: 240_000,
+          maxBuffer: 2 * 1024 * 1024,
+        });
+        break;
+      } catch (error) {
+        if (
+          !isRetryableTcgcsvSourceFetchErrorV1(error) ||
+          retry >= this.requestRetries
+        ) {
+          error.message = `${error.message} (failed after ${retry + 1} attempts)`;
+          throw error;
+        }
+        console.error(
+          `[tcgcsv-full] transient fetch failure retry=${retry + 1}/${this.requestRetries} url=${url} error=${String(error.message).split("\n")[0]}`,
+        );
+      }
+    }
+
     const buffer = await fs.readFile(fullPath);
     const headersText = await fs.readFile(headerPath, "utf8").catch(() => "");
     const httpStatus = Number(headersText.match(/HTTP\/\S+\s+(\d+)/g)?.at(-1)?.match(/(\d+)$/)?.[1] ?? 200);
@@ -382,6 +446,10 @@ async function upsertRun(client, run) {
        finished_at = excluded.finished_at,
        error = excluded.error,
        payload = excluded.payload
+     where not (
+       tcgcsv_source_sync_runs.status in ('completed', 'skipped_no_change')
+       and tcgcsv_source_sync_runs.failed_count = 0
+     )
      returning id`,
     [
       run.run_key,
@@ -412,6 +480,11 @@ async function upsertRun(client, run) {
       JSON.stringify(run.payload ?? {}),
     ],
   );
+  if (!result.rowCount) {
+    throw new Error(
+      `refusing to overwrite successful terminal source run ${run.run_key}`,
+    );
+  }
   return result.rows[0].id;
 }
 
@@ -449,9 +522,38 @@ async function insertArtifacts(client, runId, runKey, artifacts) {
            observed_on, category_id, group_id, coalesce(payload, '{}'::jsonb)
          from input_rows
          on conflict (run_key, artifact_kind, local_path, sha256) do nothing
-         returning 1
+         returning id, artifact_kind, local_path, sha256
+       ), resolved_rows as (
+         select
+           inserted_row.id,
+           inserted_row.artifact_kind,
+           inserted_row.local_path,
+           inserted_row.sha256,
+           true as inserted
+         from inserted_rows inserted_row
+         union all
+         select
+           existing.id,
+           input_row.artifact_kind,
+           input_row.local_path,
+           input_row.sha256,
+           false as inserted
+         from input_rows input_row
+         join public.tcgcsv_source_artifacts existing
+           on existing.run_key = $3
+          and existing.artifact_kind = input_row.artifact_kind
+          and existing.local_path = input_row.local_path
+          and existing.sha256 = input_row.sha256
+         where not exists (
+           select 1
+           from inserted_rows inserted_row
+           where inserted_row.artifact_kind = input_row.artifact_kind
+             and inserted_row.local_path = input_row.local_path
+             and inserted_row.sha256 = input_row.sha256
+         )
        )
-       select count(*)::int as inserted from inserted_rows`,
+       select id, artifact_kind, local_path, sha256, inserted
+       from resolved_rows`,
       [JSON.stringify(chunk.map((artifact) => ({
         artifact_kind: artifact.artifact_kind,
         request_url: artifact.request_url ?? null,
@@ -467,7 +569,31 @@ async function insertArtifacts(client, runId, runKey, artifacts) {
         payload: artifact.payload ?? {},
       }))), runId, runKey],
     );
-    inserted += Number(result.rows[0]?.inserted ?? 0);
+    const resolvedIds = new Map(
+      result.rows.map((row) => [
+        [
+          row.artifact_kind,
+          row.local_path,
+          row.sha256,
+        ].join("\u0000"),
+        row,
+      ]),
+    );
+    for (const artifact of chunk) {
+      const key = [
+        artifact.artifact_kind,
+        artifact.local_path,
+        artifact.sha256,
+      ].join("\u0000");
+      const resolved = resolvedIds.get(key);
+      if (!resolved?.id) {
+        throw new Error(
+          `artifact id resolution failed for ${artifact.local_path}`,
+        );
+      }
+      artifact.database_id = resolved.id;
+      if (resolved.inserted) inserted += 1;
+    }
     const processed = Math.min(offset + chunk.length, artifacts.length);
     if (processed === artifacts.length || processed % (chunkSize * 10) === 0) {
       console.error(`[tcgcsv-full] artifacts processed=${processed}/${artifacts.length} inserted=${inserted}`);
@@ -783,6 +909,9 @@ async function upsertPriceObservations(client, rows) {
             or public.tcgcsv_source_price_daily_observations.group_id is distinct from coalesce(excluded.group_id, public.tcgcsv_source_price_daily_observations.group_id)
             or public.tcgcsv_source_price_daily_observations.subtype_name is distinct from excluded.subtype_name
             or public.tcgcsv_source_price_daily_observations.subtype_name_normalized is distinct from excluded.subtype_name_normalized
+            or public.tcgcsv_source_price_daily_observations.source_archive_path is distinct from excluded.source_archive_path
+            or public.tcgcsv_source_price_daily_observations.source_artifact_id is distinct from excluded.source_artifact_id
+            or public.tcgcsv_source_price_daily_observations.last_seen_run_id is distinct from excluded.last_seen_run_id
          returning (xmax = 0) as inserted
        )
        select
@@ -903,6 +1032,57 @@ async function latestCompletedCurrentMarker(client) {
   return result.rows[0]?.source_marker ?? null;
 }
 
+async function sourceRunByKey(client, runKey) {
+  const result = await client.query(
+    `select
+       sync_run.*,
+       (
+         select count(*)::integer
+         from public.tcgcsv_source_artifacts artifact
+         where artifact.run_key = sync_run.run_key
+       ) as artifact_count
+     from public.tcgcsv_source_sync_runs sync_run
+     where sync_run.run_key = $1
+     limit 1`,
+    [runKey],
+  );
+  return result.rows[0] ?? null;
+}
+
+async function resumeSuccessfulCurrentRun(args, runKey) {
+  if (!args.apply) return null;
+
+  const client = await connectDb();
+  try {
+    const existingRun = await sourceRunByKey(client, runKey);
+    const decision = evaluateTcgcsvSourceRunResumeV1(existingRun, {
+      sync_mode: "current_full_sync",
+      git_commit_sha: await gitCommitSha(),
+      worker_version: WORKER_VERSION,
+      parser_version: PARSER_VERSION,
+      schema_contract_version: SCHEMA_CONTRACT_VERSION,
+    });
+    if (decision.action === "reject") {
+      throw new Error(
+        `resume refused because source run provenance changed: ${JSON.stringify(decision.mismatches)}`,
+      );
+    }
+    if (decision.action !== "resume_terminal") return null;
+
+    return {
+      run: existingRun,
+      summary: {
+        resumed_existing_terminal_run: true,
+        resume_policy_version: TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
+      },
+      artifacts: [],
+      artifact_count: Number(existingRun.artifact_count ?? 0),
+    };
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function discover7z() {
   const candidates = os.platform() === "win32" ? ["7z.exe", "7za.exe", "7zz.exe"] : ["7z", "7za", "7zz"];
   for (const candidate of candidates) {
@@ -946,7 +1126,16 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
 }
 
 async function runCurrentSync(args, runKey, artifactRoot) {
-  const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
+  const resumedRun = await resumeSuccessfulCurrentRun(args, runKey);
+  if (resumedRun) return resumedRun;
+
+  const fetcher = new Fetcher({
+    requestCeiling: args.requestCeiling,
+    requestDelayMs: args.requestDelayMs,
+    requestRetries: args.requestRetries,
+    retryBaseDelayMs: args.retryBaseDelayMs,
+    artifactRoot,
+  });
   const observedOn = isoDate();
   const startedAt = new Date().toISOString();
   const { text: sourceMarker } = await fetcher.fetchText(`${BASE_URL}/last-updated.txt`, "last_updated", "last-updated.txt");
@@ -1097,7 +1286,10 @@ async function runCurrentSync(args, runKey, artifactRoot) {
               totals.updated += productsResult.updated;
               totals.noOp += productsResult.noOp;
 
-              const { json: pricesPayload } = await fetcher.fetchJson(
+              const {
+                json: pricesPayload,
+                artifact: pricesArtifact,
+              } = await fetcher.fetchJson(
                 `${TCGPLAYER_BASE}/${categoryId}/${groupId}/prices`,
                 "prices",
                 `current/${categoryId}/${groupId}/prices.json`,
@@ -1109,7 +1301,8 @@ async function runCurrentSync(args, runKey, artifactRoot) {
               const priceResult = await upsertPriceObservations(client, prices.map((row) => priceObservationRow(row, {
                 observedOn,
                 runId,
-                artifactPath: path.relative(REPO_ROOT, artifactRoot).replace(/\\/g, "/"),
+                artifactId: pricesArtifact.database_id,
+                artifactPath: pricesArtifact.local_path,
                 categoryId: row.categoryId,
                 groupId: row.groupId,
               })));
@@ -1280,7 +1473,13 @@ async function runCurrentSync(args, runKey, artifactRoot) {
 }
 
 async function runHistoricalSync(args, runKey, artifactRoot) {
-  const fetcher = new Fetcher({ requestCeiling: args.requestCeiling, requestDelayMs: args.requestDelayMs, artifactRoot });
+  const fetcher = new Fetcher({
+    requestCeiling: args.requestCeiling,
+    requestDelayMs: args.requestDelayMs,
+    requestRetries: args.requestRetries,
+    retryBaseDelayMs: args.retryBaseDelayMs,
+    artifactRoot,
+  });
   const dates = dateRange(args.dateFrom, args.dateTo)
     .filter((date) => !args.completedHistoricalDates?.has(date));
   const allPrices = [];
@@ -1352,10 +1551,17 @@ async function runHistoricalSync(args, runKey, artifactRoot) {
     try {
       const runId = await upsertRun(client, { ...run, status: "running", finished_at: null });
       const artifactCount = await insertArtifacts(client, runId, runKey, fetcher.artifacts);
+      const artifactIdsByPath = new Map(
+        fetcher.artifacts.map((artifact) => [
+          artifact.local_path,
+          artifact.database_id,
+        ]),
+      );
       const placeholderProducts = await ensureHistoricalProducts(client, allPrices, runId);
       const priceRows = allPrices.map((row) => priceObservationRow(row, {
         observedOn: row.observedOn,
         runId,
+        artifactId: artifactIdsByPath.get(row.archivePath) ?? null,
         artifactPath: row.archivePath,
         categoryId: row.categoryId,
         groupId: row.groupId,
@@ -1563,7 +1769,7 @@ async function main() {
     },
     run: result.run,
     summary: result.summary,
-    artifact_count: result.artifacts.length,
+    artifact_count: result.artifact_count ?? result.artifacts.length,
   });
 
   console.log(`[tcgcsv-full] mode=${args.mode} apply=${args.apply}`);
@@ -1574,6 +1780,9 @@ async function main() {
   console.log(`[tcgcsv-full] products=${result.run.product_count ?? 0}`);
   console.log(`[tcgcsv-full] price_rows=${result.run.price_row_count ?? 0}`);
   console.log(`[tcgcsv-full] summary=${path.relative(REPO_ROOT, summaryPath).replace(/\\/g, "/")}`);
+  if (["partial_success", "failed", "aborted_request_ceiling"].includes(result.run.status)) {
+    process.exitCode = 1;
+  }
 }
 
 await main();

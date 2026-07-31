@@ -1,0 +1,7 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_ROLLBACK_MANIFEST_V1",
+  "maintenance_run_id": "5ee5010c-3f2e-416b-80bb-b4beb4d1ca07",
+  "batch_fingerprint": "431cfbba5acc81e4c13475369b8a4a90ee71bc81667383bf61d7447826a4cd64",
+  "operation": "deactivate_exact_inserted_mapping_ids",
+  "mapping_rows": []
+}

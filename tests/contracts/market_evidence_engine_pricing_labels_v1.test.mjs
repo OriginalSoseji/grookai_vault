@@ -6,16 +6,16 @@ function source(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("card pricing rail labels reference and market lanes explicitly", () => {
+test("card pricing rail labels TCGPlayer close and active asks explicitly", () => {
   const pricingRail = source("apps/web/src/components/pricing/CardPagePricingRail.tsx");
 
   assert.doesNotMatch(pricingRail, /JustTCG/);
-  assert.match(pricingRail, /Evidence-anchored Grookai Value/);
-  assert.match(pricingRail, /Lowest Available Today/);
-  assert.match(pricingRail, /eBay active ask/);
-  assert.match(pricingRail, /Median active ask/);
-  assert.match(pricingRail, /Ask Range/);
-  assert.match(pricingRail, /Active asks are asking-price evidence, not sold comps\./);
+  assert.match(pricingRail, /TCGPlayer Market/);
+  assert.match(pricingRail, /Available Today/);
+  assert.match(pricingRail, /Lowest exact-printing eBay active ask/);
+  assert.match(pricingRail, /Asking-price evidence, not a sale or market close\./);
+  assert.match(pricingRail, /No qualified market price/);
+  assert.doesNotMatch(pricingRail, /Grookai Value/);
   assert.doesNotMatch(pricingRail, /source=\{pricing\?\.primary_source\}/);
   assert.doesNotMatch(pricingRail, />\* Market reference</);
 });

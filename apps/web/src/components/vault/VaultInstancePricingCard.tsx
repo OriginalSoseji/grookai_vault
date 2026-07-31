@@ -20,6 +20,12 @@ type VaultInstancePricingCardProps = {
   marketReferencePrice: number | null;
   marketReferenceSource: string | null;
   marketReferenceUpdatedAt: string | null;
+  marketReferenceObservedAt: string | null;
+  marketReferencePublishedAt: string | null;
+  marketReferenceProvenanceId: string | null;
+  cardPrintId: string;
+  cardPrintingId: string | null;
+  printingGvId: string | null;
 };
 
 function formatPricingTimestamp(value: string | null) {
@@ -50,6 +56,12 @@ export default function VaultInstancePricingCard({
   marketReferencePrice,
   marketReferenceSource,
   marketReferenceUpdatedAt,
+  marketReferenceObservedAt,
+  marketReferencePublishedAt,
+  marketReferenceProvenanceId,
+  cardPrintId,
+  cardPrintingId,
+  printingGvId,
 }: VaultInstancePricingCardProps) {
   const router = useRouter();
   const [pricingMode, setPricingMode] = useState<VaultInstancePricingMode>(initialPricingMode);
@@ -155,7 +167,23 @@ export default function VaultInstancePricingCard({
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reference pricing</p>
           {marketReferenceAvailable ? (
             <>
-              <p className="text-xl font-semibold tracking-tight text-slate-950">
+              <p
+                className="text-xl font-semibold tracking-tight text-slate-950"
+                data-pricing-proof="tcgplayer-market"
+                data-pricing-status="available"
+                data-pricing-scope="card_printing"
+                data-card-print-id={cardPrintId}
+                data-card-printing-id={cardPrintingId ?? undefined}
+                data-printing-gv-id={printingGvId ?? undefined}
+                data-market-close-usd={marketReferencePrice}
+                data-currency="USD"
+                data-source-name="tcgplayer"
+                data-source-label="TCGPlayer Market"
+                data-observed-at={marketReferenceObservedAt ?? undefined}
+                data-published-at={marketReferencePublishedAt ?? undefined}
+                data-provenance-id={marketReferenceProvenanceId ?? undefined}
+                data-is-from-price="false"
+              >
                 {formatVaultInstancePrice(marketReferencePrice, "USD")}
               </p>
               <p className="text-sm text-slate-600">

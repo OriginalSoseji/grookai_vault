@@ -7,6 +7,7 @@ import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import {
   CARD_MARKET_ANALYSIS_DURATIONS,
   getCardMarketAnalysisModel,
+  type MarketAnalysisAvailableSlice,
 } from "@/lib/pricing/getCardMarketAnalysisModel";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -69,12 +70,66 @@ function MarketInsightCard({
   );
 }
 
+function buildMarketHref({
+  marketPath,
+  duration,
+  printing,
+}: {
+  marketPath: string;
+  duration: string;
+  printing?: string | null;
+}) {
+  const query = new URLSearchParams();
+  if (duration !== "30d") query.set("duration", duration);
+  if (printing) query.set("printing", printing);
+  return query.toString() ? `${marketPath}?${query.toString()}` : marketPath;
+}
+
+function MarketPrintingSelector({
+  marketPath,
+  duration,
+  selectedVariantId,
+  slices,
+}: {
+  marketPath: string;
+  duration: string;
+  selectedVariantId?: string | null;
+  slices: MarketAnalysisAvailableSlice[];
+}) {
+  if (slices.length <= 1) return null;
+
+  return (
+    <div className="flex flex-wrap gap-2" aria-label="Exact printing">
+      {slices.map((slice) => {
+        const isSelected = slice.cardPrintingId === selectedVariantId;
+        return (
+          <Link
+            key={slice.cardPrintingId}
+            href={buildMarketHref({
+              marketPath,
+              duration,
+              printing: slice.printingGvId ?? slice.cardPrintingId,
+            })}
+            className={`inline-flex px-3 py-1.5 text-xs font-medium transition ${
+              isSelected
+                ? "border border-slate-950 bg-slate-950 text-white"
+                : "border border-slate-200 bg-white text-slate-600 hover:border-slate-400"
+            }`}
+          >
+            {slice.label}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
 export default async function MarketAnalysisPage({
   params,
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { duration?: string };
+  searchParams?: { duration?: string; printing?: string };
 }) {
   const marketPath = `/card/${encodeURIComponent(params.gv_id)}/market`;
   const supabase = createServerComponentClient();
@@ -95,11 +150,18 @@ export default async function MarketAnalysisPage({
     if (searchParams?.duration) {
       nextUrl.set("duration", searchParams.duration);
     }
+    if (searchParams?.printing) {
+      nextUrl.set("printing", searchParams.printing);
+    }
     const canonicalPath = `/card/${encodeURIComponent(card.gv_id)}/market`;
     redirect(nextUrl.toString() ? `${canonicalPath}?${nextUrl.toString()}` : canonicalPath);
   }
 
-  const model = await getCardMarketAnalysisModel(card.id, searchParams?.duration);
+  const model = await getCardMarketAnalysisModel(
+    card.id,
+    searchParams?.duration,
+    searchParams?.printing,
+  );
   const historyPoints = model.history?.points ?? [];
   const freshnessLabel = formatTimeAgo(model.heroUpdatedAt);
 
@@ -142,11 +204,20 @@ export default async function MarketAnalysisPage({
                   ) : null}
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <MarketPrintingSelector
+                    marketPath={marketPath}
+                    duration={model.duration}
+                    selectedVariantId={model.selectedSlice?.variantId}
+                    slices={model.availableSlices}
+                  />
                   {CARD_MARKET_ANALYSIS_DURATIONS.map((duration) => {
                     const isActive = duration === model.duration;
-                    const href =
-                      duration === "30d" ? marketPath : `${marketPath}?duration=${encodeURIComponent(duration)}`;
+                    const href = buildMarketHref({
+                      marketPath,
+                      duration,
+                      printing: model.selectedSlice?.variantId,
+                    });
 
                     return (
                       <Link
@@ -167,7 +238,25 @@ export default async function MarketAnalysisPage({
 
               <div className="space-y-4">
                 {typeof model.heroPrice === "number" ? (
-                  <p className="text-5xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
+                  <p
+                    className="text-5xl font-semibold tracking-tight text-slate-950"
+                    data-pricing-proof="tcgplayer-market"
+                    data-pricing-status="available"
+                    data-pricing-scope="card_printing"
+                    data-card-print-id={model.selectedSlice?.cardPrintId}
+                    data-card-printing-id={model.selectedSlice?.variantId}
+                    data-printing-gv-id={model.selectedSlice?.printingGvId ?? undefined}
+                    data-market-close-usd={model.heroPrice}
+                    data-currency="USD"
+                    data-source-name="tcgplayer"
+                    data-source-label={model.selectedSlice?.sourceLabel}
+                    data-observed-at={model.selectedSlice?.updatedAt ?? undefined}
+                    data-published-at={model.selectedSlice?.publishedAt ?? undefined}
+                    data-provenance-id={model.selectedSlice?.provenanceId ?? undefined}
+                    data-is-from-price="false"
+                  >
+                    {formatUsdPrice(model.heroPrice)}
+                  </p>
                 ) : null}
                 <MarketHistoryChart points={historyPoints} />
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
@@ -190,10 +279,19 @@ export default async function MarketAnalysisPage({
                 </div>
 
                 <div className="flex flex-wrap gap-2">
+                  <MarketPrintingSelector
+                    marketPath={marketPath}
+                    duration={model.duration}
+                    selectedVariantId={model.selectedSlice?.variantId}
+                    slices={model.availableSlices}
+                  />
                   {CARD_MARKET_ANALYSIS_DURATIONS.map((duration) => {
                     const isActive = duration === model.duration;
-                    const href =
-                      duration === "30d" ? marketPath : `${marketPath}?duration=${encodeURIComponent(duration)}`;
+                    const href = buildMarketHref({
+                      marketPath,
+                      duration,
+                      printing: model.selectedSlice?.variantId,
+                    });
 
                     return (
                       <Link
@@ -218,7 +316,25 @@ export default async function MarketAnalysisPage({
                   Historical chart data is not available for this market slice yet.
                 </p>
                 {typeof model.heroPrice === "number" ? (
-                  <p className="pt-2 text-lg font-medium text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
+                  <p
+                    className="pt-2 text-lg font-medium text-slate-950"
+                    data-pricing-proof="tcgplayer-market"
+                    data-pricing-status="available"
+                    data-pricing-scope="card_printing"
+                    data-card-print-id={model.selectedSlice?.cardPrintId}
+                    data-card-printing-id={model.selectedSlice?.variantId}
+                    data-printing-gv-id={model.selectedSlice?.printingGvId ?? undefined}
+                    data-market-close-usd={model.heroPrice}
+                    data-currency="USD"
+                    data-source-name="tcgplayer"
+                    data-source-label={model.selectedSlice?.sourceLabel}
+                    data-observed-at={model.selectedSlice?.updatedAt ?? undefined}
+                    data-published-at={model.selectedSlice?.publishedAt ?? undefined}
+                    data-provenance-id={model.selectedSlice?.provenanceId ?? undefined}
+                    data-is-from-price="false"
+                  >
+                    {formatUsdPrice(model.heroPrice)}
+                  </p>
                 ) : null}
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
               </div>
@@ -288,9 +404,9 @@ export default async function MarketAnalysisPage({
             Pricing &amp; Data Sources
           </h2>
           <p className="mb-2">
-            Market insights are derived from third-party pricing data and summarized by Grookai for easier interpretation.
+            Current and historical values are qualified TCGPlayer Market prices for the exact printing shown above.
           </p>
-          <p>Data may be delayed and should not be treated as a guaranteed real-time market quote.</p>
+          <p>Printing histories are never blended. Data may be delayed and is not a guaranteed real-time quote.</p>
         </section>
       ) : null}
     </div>

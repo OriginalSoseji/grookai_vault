@@ -33,6 +33,406 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
+
+This checkpoint records the automated read-only observation of the frozen
+100-printing canary and the complete execution handoff for the first enforcing
+run after the 72-hour deadline.
+
+Decision locked there:
+
+- the canary must pass before the exact two-migration package moves, and the
+  post-canary rollout must integrate from current production `main` rather
+  than deploy the divergent pricing branch wholesale
+
+Unresolved risk afterward:
+
+- the time gate, exact migration apply/readback, current-main integration,
+  fresh V1.2 shadow, full signed-in activation, 17-surface proof, and seven
+  unattended cycles remain incomplete
+
+### `PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
+
+This checkpoint freezes Production V1 scope and acceptance criteria, limits
+the release branch to defects and release proof, and parks future pricing ideas
+outside the V1 execution path.
+
+Decision locked there:
+
+- release management replaces product design; every branch change must close
+  an existing frozen Definition of Done requirement
+
+Unresolved risk afterward:
+
+- the 72-hour canary, post-canary deployment, full signed-in rollout, and seven
+  unattended cycles remain unproven
+
+### `PRICING_CHECKPOINT_35_PRODUCT_SURFACE_ROUTE_IDENTITY.md`
+
+This checkpoint binds each of the 17 production pricing captures to an
+explicit web route or canonical Flutter screen identity so one working surface
+cannot impersonate another.
+
+Decision locked there:
+
+- correct price evidence only proves the surface from which it was actually
+  captured; route identity mismatches fail closed
+
+Unresolved risk afterward:
+
+- final route-bound production captures remain pending until the frozen canary
+  and post-canary deployment pass
+
+### `PRICING_CHECKPOINT_34_PRODUCT_SURFACE_WIRING_CORRECTION.md`
+
+This checkpoint corrects three source-to-render gaps found after the initial
+readiness audit: web Set grids had no pricing path, while Flutter Compare and
+Network rendered prices without preserving complete machine-readable
+evidence.
+
+Decision locked there:
+
+- every required surface must retain the governed pricing record through
+  render; visible dollar text and documentation claims are not substitutes
+
+Unresolved risk afterward:
+
+- final same-commit authenticated production captures remain pending until the
+  frozen canary and post-canary rollout gates pass
+
+### `PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md`
+
+This checkpoint records the 17-surface production proof contract, deployed
+web evidence attributes, Flutter accessibility identifiers, exact Vault
+total distinction, capture tooling, and fail-closed source-to-render
+reconciliation.
+
+Decision locked there:
+
+- all-surface completion requires same-commit authenticated production
+  captures reconciled to the shared RPC and exact-copy Vault evidence
+
+Unresolved risk afterward:
+
+- final captures remain pending until the frozen canary passes and the exact
+  rollout clients are deployed
+
+### `PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md`
+
+This checkpoint freezes the exact two-migration post-canary apply set, hashes,
+strict preflight evidence, forbidden history shortcuts, and enforcing
+post-apply checks.
+
+Decision locked there:
+
+- only the two manifest migrations may be applied after the 72-hour canary
+  passes, and production schema parity requires an empty linked diff plus
+  production readback
+
+Unresolved risk afterward:
+
+- the migrations remain intentionally unapplied until the canary gate passes
+
+### `PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md`
+
+This checkpoint records the read-only exact-Vault production verifier and its
+expected failing pre-deployment baseline. The verifier closes schema,
+ACL/RLS, owner-isolation, exact-scope, copy-count, and independent-total proof
+in one hashed package without preserving customer identifiers.
+
+Decision locked there:
+
+- exact-Vault production completion requires a clean-SHA enforcing verifier
+  run after deployment, not a migration command or local smoke alone
+
+Unresolved risk afterward:
+
+- the target view remains absent until the frozen canary passes and the
+  post-canary rollout is deployed
+
+### `PRICING_CHECKPOINT_30_PRE_ROLLOUT_COMPLETION_TRUTH.md`
+
+This checkpoint corrects the Production V1 completion matrix after
+exact-printing Vault work was committed but intentionally left undeployed
+during the frozen authenticated canary. It also preserves the current
+`95.247%` V1.2 coverage baseline, deterministic gap ledger, and passing
+read-model latency proof.
+
+Decision locked there:
+
+- committed and locally verified pricing work remains pending until production
+  schema and source-to-render evidence prove the deployed state
+
+Unresolved risk afterward:
+
+- the 72-hour canary, exact-Vault deployment/readback, fresh full shadow,
+  signed-in activation, seven unattended cycles, and public licensing
+  authority remain open
+
+### `PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md`
+
+This checkpoint records the migration of private/public, web/Flutter Vault
+pricing to exact raw-copy identity, explicit unresolved-copy coverage, slab
+exclusion, the owner-filtered read boundary, and the clean-SHA publication,
+security, provenance, and rollback proof.
+
+Decision locked there:
+
+- Vault total is the sum of eligible exact raw-copy market closes; a parent
+  `From` amount is never multiplied by quantity
+
+Unresolved risk afterward:
+
+- the migration remains local until the frozen 72-hour canary passes; corrected
+  deployment, fresh full shadow, signed-in full rollout, seven unattended
+  cycles, and public licensing authority remain open
+
+### `PRICING_CHECKPOINT_28_READ_MODEL_CONTRACT_COMPLETION.md`
+
+This checkpoint records the completion of the shared pricing read contract:
+separate source-observation and publication timestamps, deterministic parent
+minimums that retain their exact-printing identity and provenance, governed
+top-market reads, and exact/parent client selection semantics.
+
+Decision locked there:
+
+- every displayed parent amount remains traceable to one selected exact
+  eligible printing, and product reads do not aggregate the raw listing
+  warehouse
+
+Unresolved risk afterward:
+
+- the migration remains local until the frozen 72-hour canary passes; corrected
+  deployment, fresh full shadow, signed-in full rollout, seven unattended
+  cycles, and public licensing authority remain open
+
+### `PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md`
+
+This checkpoint records the fail-closed full-production scope guards, exact
+deployed-commit schedule enforcement, bounded representative performance
+policy, separate shadow/current coverage gates, and the read-only seven-cycle
+full-rollout observer.
+
+Decision locked there:
+
+- full production means the complete eligible signed-in scope, produced and
+  observed from exact clean commits through seven reconciled unattended cycles
+
+Unresolved risk afterward:
+
+- the frozen authenticated canary must finish, then fresh corrected shadow,
+  full signed-in activation, seven-cycle evidence, and licensing authority
+  must pass before anonymous rollout
+
+### `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
+
+This checkpoint records the guarded publication rollback worker, exact GV-ID
+provenance diagnostic, expanded incident runbook, clean-SHA readiness evidence,
+and the first deterministic 30-requirement production completion matrix.
+
+Decision locked there:
+
+- Production V1 completion is a governed evidence decision: every required
+  operational, product, rollout, and licensing gate must be represented, and
+  pending or externally blocked rows prevent a completion claim
+
+Unresolved risk afterward:
+
+- the authenticated 72-hour canary, corrected V1.2 full shadow and signed-in
+  rollout, seven unattended full-eligible cycles, final deterministic gap
+  ledger, checkpoint closeout, and public licensing authority remain open
+
+### `PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md`
+
+This checkpoint records the first bounded canonical mapping apply: exactly 25
+collision-free source products were inserted and read back without publication,
+qualification, customer, or vault writes.
+
+Decision locked there:
+
+- exact mapping changes are append-only canon-maintenance actions produced from
+  a hashed clean-commit plan and reconciled before any new pricing publication
+
+Unresolved risk afterward:
+
+- a fresh corrected full shadow must prove the launch denominator and gap
+  ledger after the canary; no mapping apply itself authorizes rollout
+
+### `PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md`
+
+This checkpoint records the year-qualified Staff scope defect found before
+mapping apply, the V1.2 policy repair, corrected `95.247%` coverage, and the
+maintenance-only 25-row apply readiness proof.
+
+Decision locked there:
+
+- source claims are classified from explicit evidence rather than exact phrase
+  shape, and any mapping write must revalidate a hashed one-to-one plan from a
+  clean producing commit inside the canon-maintenance boundary
+
+Unresolved risk afterward:
+
+- the first bounded mapping apply/readback, 72-hour canary, corrected V1.2 full
+  shadow, broader signed-in rollout, unattended cycles, and anonymous licensing
+  authority remain open
+
+### `PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md`
+
+This checkpoint records the read-only exact-mapping planner, its one-to-one
+evidence requirements, and the production classification of `1,066` unmapped
+source products into `274` exact candidates and `792` blocked cases.
+
+Decision locked there:
+
+- exact mappings require name, collector number, set authority, active standard
+  identity, and collision-free source/target evidence; planning never writes
+
+Unresolved risk afterward:
+
+- candidates still require a bounded append-only apply/readback gate, while
+  blocked identities, the 72-hour canary, corrected V1.1 shadow, broader
+  signed-in rollout, and anonymous licensing authority remain open
+
+### `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
+
+This checkpoint centralizes the ordinary-single versus product-object and
+special-print boundary, preserves the failed V1 baseline, and proves corrected
+V1.1 coverage at `95.177%` over the same `45,082` source rows.
+
+Decision locked there:
+
+- coverage and publication share one evidence-aware product-scope classifier;
+  missing ordinary mappings remain gaps while explicit V1.1 variants and
+  unsupported product objects receive versioned exclusions
+
+Unresolved risk afterward:
+
+- the repaired policy still needs a new full shadow after the canary window;
+  remaining exact mapping gaps, broader signed-in rollout, unattended cycles,
+  and anonymous licensing authority remain open
+
+### `PRICING_CHECKPOINT_21_TCGPLAYER_MARKET_READ_PERFORMANCE.md`
+
+This checkpoint records the production read-path repair that moved active-list
+aggregation out of customer requests, preserved the shared pricing contract,
+and proved all detail and representative batch cases below the `500 ms` p95
+target.
+
+Decision locked there:
+
+- product reads never scan the raw listing warehouse; current prices use
+  request-scoped queries and available-today evidence comes from a separately
+  refreshed indexed snapshot
+
+Unresolved risk afterward:
+
+- the 72-hour canary, `95%` fixed-denominator coverage, full eligible signed-in
+  rollout, seven unattended cycles, and anonymous licensing gate remain
+
+### `PRICING_CHECKPOINT_20_TCGPLAYER_MARKET_COVERAGE_BASELINE.md`
+
+This checkpoint fixes the Production V1 coverage denominator, preserves the
+first read-only production baseline, and records the real `90.712%` result
+without excluding missing mappings.
+
+Decision locked there:
+
+- ordinary V1 coverage uses a versioned source product/subtype denominator;
+  missing mappings remain gaps, and the signed-in rollout cannot expand until
+  coverage reaches at least `95%`
+
+Unresolved risk afterward:
+
+- at least `1,474` additional exact rows, concentrated in modern, holo, and
+  high-value lanes, must be repaired and proven through a new full shadow run
+
+### `PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md`
+
+This checkpoint records the production operations migration, durable founder
+alert route, guarded systemd schedule, first fail-closed run, narrow verified
+no-change health repair, and successful 100-printing signed-in canary run.
+
+Decision locked there:
+
+- the signed-in canary may run unattended only through the guarded scheduler,
+  with evidence-backed source continuity, durable failure alerts, and exact
+  source-to-client reconciliation
+
+Unresolved risk afterward:
+
+- the full 72-hour scheduled observation window, full eligible signed-in
+  rollout, seven daily cycles, and anonymous licensing/display gate remain
+
+### `PRICING_CHECKPOINT_18_TCGPLAYER_MARKET_CANARY_VERIFICATION.md`
+
+This checkpoint records the genuine stratified 100-printing verification
+canary, the Arceus Charizard assignment correction, the wrong Here Comes Team
+Rocket image caught by visual review, and the final `100/100` result with no
+customer activation.
+
+Decision locked there:
+
+- signed-in canary activation may use only the exact verified 100-printing
+  allowlist after a same-SHA shadow and exact-definition dry-run proof
+
+Unresolved risk afterward:
+
+- final same-SHA shadow cycles, exact-definition dry-run, authenticated
+  activation, telemetry, rollback proof, and the 72-hour observation window
+  remain required
+
+### `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
+
+This checkpoint records the first complete production shadow lock for
+TCGPlayer Market Product V1. It preserves the production performance and
+artifact-lineage repairs, three identical same-SHA cycles, complete snapshot
+provenance, and proof that no customer publication was activated.
+
+Decision locked there:
+
+- production qualification is deterministic and traceable enough to advance
+  from shadow publication into a fixed 100-printing verification canary
+
+Unresolved risk afterward:
+
+- the stratified 100-printing sample still requires image/data verification,
+  signed-in activation, telemetry, and the full 72-hour canary window
+
+### `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
+
+This checkpoint records the historical linked-schema reconciliation required
+before TCGPlayer Market V1 could advance through the normal migration path. It
+locks replay-safe reconstruction, exact security metadata, the synthetic pull
+provenance, and the safe renumbering of the still-unapplied pricing migration.
+
+Decision locked there:
+
+- historical schema state must be reproducible without migration repair or
+  `--include-all`, and physical column position is not a product contract
+
+Unresolved risk afterward:
+
+- production pricing migration apply and schema/security readback remain
+  pending, followed by the required shadow and canary gates
+
+### `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
+
+This checkpoint records the production pivot from a synthetic app-facing value
+to exact TCGPlayer Market publication for ordinary English Pokemon printings.
+It locks the shared read model, append-only qualification/publication ledgers,
+source-to-UI traceability, and the signed-in canary rollout boundary.
+
+Decision locked there:
+
+- Production V1 displays source TCGPlayer `marketPrice`; active asks and
+  proprietary valuation research remain separate lanes
+
+Unresolved risk afterward:
+
+- the linked migration drift, remote apply, three shadow cycles, bounded
+  publication apply, and signed-in production canary still require their
+  explicit deployment gates
+
 ### `PRICING_CHECKPOINT_01_READINESS_AND_RISK.md`
 
 This checkpoint records the moment pricing work stopped being “keep building” and became “audit before scale.” It explains why `NOT READY` and `AT RISK` were the correct classifications, why mapping-first ingestion became the main blocker, and why broader eBay connection was intentionally paused.
@@ -276,9 +676,130 @@ Recommended reading order for future maintainers:
 13. `PRICING_CHECKPOINT_14_WAREHOUSE_CONTRACT_V1.md`
    - then read how warehouse-first ingestion was locked so replayable listing storage never bypasses the observation truth gate
 
-After those thirteen checkpoints, read the supporting audits in this order:
+14. `PRICING_CHECKPOINT_15_TCGPLAYER_MARKET_PRODUCT_V1.md`
+   - then read how exact TCGPlayer Market publication became the Production V1 app-facing price contract and was routed through supported web and Flutter surfaces
+
+15. `PRICING_CHECKPOINT_16_SCHEMA_RECONCILIATION_V1.md`
+   - then read how historical linked drift was converted into replayable repository authority before the production pricing migration
+
+16. `PRICING_CHECKPOINT_17_TCGPLAYER_MARKET_SHADOW_GATE_1.md`
+   - then read how the production pipeline completed three deterministic
+     same-SHA shadow cycles with complete provenance and no customer activation
+
+17. `PRICING_CHECKPOINT_18_TCGPLAYER_MARKET_CANARY_VERIFICATION.md`
+   - then read how a genuine fixed 100-printing sample caught and repaired
+     canonical assignment and image defects before any signed-in activation
+
+18. `PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md`
+   - then read how the exact canary became a guarded scheduled production
+     operation with durable alerts, verified no-change health policy, and
+     signed-in source-to-client readback
+
+19. `PRICING_CHECKPOINT_20_TCGPLAYER_MARKET_COVERAGE_BASELINE.md`
+   - then read how the fixed Production V1 denominator exposed the real
+     `90.712%` baseline and the concentrated exact-mapping work required before
+     broad signed-in rollout
+
+20. `PRICING_CHECKPOINT_21_TCGPLAYER_MARKET_READ_PERFORMANCE.md`
+   - then read how customer pricing reads were separated from the raw listing
+     warehouse and proven below the Product V1 latency target in production
+
+21. `PRICING_CHECKPOINT_22_TCGPLAYER_MARKET_SCOPE_V1_1.md`
+    - then read how the Product V1 scope boundary was corrected without hiding
+      ordinary mapping gaps or discarding the original failed baseline
+
+22. `PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md`
+    - then read how unmapped source products were classified into collision-free
+      exact candidates and explicit blockers without changing canonical state
+
+23. `PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md`
+    - then read how a year-qualified Staff variant was removed from Product V1
+      and the first bounded mapping writer was proven read-only before apply
+
+24. `PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md`
+    - then read how the first 25 exact mappings were applied from a clean
+      committed plan, read back exactly, and kept isolated from publication
+
+25. `PRICING_CHECKPOINT_26_OPERATIONAL_CONTROLS_AND_COMPLETION_MATRIX.md`
+    - then read how rollback, provenance lookup, incident handling, and the
+      fail-closed production completion matrix became permanent operations
+
+26. `PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md`
+    - then read how full signed-in publication became fail-closed on complete
+      scope, exact deployed commit, fresh shadow evidence, and seven reconciled
+      unattended cycles
+
+27. `PRICING_CHECKPOINT_28_READ_MODEL_CONTRACT_COMPLETION.md`
+    - then read how publication timestamps, backing exact-printing identity,
+      parent minimum provenance, and governed top-market reads completed the
+      shared product contract
+
+28. `PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md`
+    - then read how Vault totals became sums of exact raw-copy prices, with
+      unresolved copies and slabs excluded and private ownership targets
+      constrained to an authenticated read-only view
+
+29. `PRICING_CHECKPOINT_30_PRE_ROLLOUT_COMPLETION_TRUTH.md`
+    - then read why committed pricing code, unapplied migrations, deployed
+      clients, and verified rendering remain separate completion states
+
+30. `PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md`
+    - then read how exact-copy Vault schema, ACL/RLS, ownership isolation,
+      scope, totals, and clean-SHA deployment are proven together
+
+31. `PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md`
+    - then read the frozen two-migration package, hashes, strict preflight,
+      forbidden history shortcuts, and enforcing post-apply readback
+
+32. `PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md`
+    - then read how the 17-surface source-to-render proof binds each captured
+      amount to shared RPC evidence from the exact deployed commit
+
+33. `PRICING_CHECKPOINT_34_PRODUCT_SURFACE_WIRING_CORRECTION.md`
+    - then read how Set grids, Flutter Compare, and Flutter Network were
+      corrected to preserve governed pricing evidence through render
+
+34. `PRICING_CHECKPOINT_35_PRODUCT_SURFACE_ROUTE_IDENTITY.md`
+    - then read how each proof is bound to an explicit web route or canonical
+      Flutter screen so one working surface cannot impersonate another
+
+35. `PRICING_CHECKPOINT_36_PRODUCTION_V1_FEATURE_FREEZE.md`
+    - then read the immutable Production V1 product contract, release gates,
+      feature freeze, and post-V1 parking lot
+
+36. `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
+    - read the original canary handoff as historical pre-incident context; it
+      is superseded because the first unattended source cycle invalidated that
+      observation window
+
+37. `PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`
+    - finally read the source and publication incident, merged runtime repair,
+      replacement activation, observer restart gate, and corrected
+      post-72-hour execution sequence
+
+38. `PRICING_CHECKPOINT_40_PRODUCT_SURFACE_RELEASE_READINESS.md`
+    - then read the executable 17-surface registry, shared-client corrections,
+      visible-text proof, read-only 100-row check, and frozen post-canary
+      migration/deployment/rollback sequence
+
+After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`
 - `docs/audits/PRICING_OBSERVATION_OFFLINE_VALIDATION_V1.md`
 - `docs/audits/PRICING_OBSERVATION_LIVE_VALIDATION_V1.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_PUBLICATION_LOCAL_PROOF_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_SCHEMA_RECONCILIATION_V1_20260727.md`
+- `docs/audits/pricing/TCGPLAYER_MARKET_SHADOW_GATE_1_20260728.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/2026-07-28T08-40-41Z_canary_schedule_activation/DEPLOYMENT_REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/read_performance_gate/2026-07-28T09-47-20-239Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_1/2026-07-28T10-25-50-424Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1/2026-07-28T10-38-25-697Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2/2026-07-28T10-49-27-107Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_plan_v1_1/2026-07-28T10-50-02-909Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/exact_mapping_apply_v1/2026-07-28T11-10-00-900Z_apply_f215e3b1-65b5-4d08-bfb3-b3ef98a0da77/post_apply_reconciliation.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T11-38-04-675Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/provenance_lookup_v1_readiness/2026-07-28T11-36-54-825Z/summary.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`

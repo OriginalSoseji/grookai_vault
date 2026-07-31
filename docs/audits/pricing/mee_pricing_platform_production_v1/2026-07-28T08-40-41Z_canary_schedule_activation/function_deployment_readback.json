@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "notification-dispatcher",
+    "status": "ACTIVE",
+    "verify_jwt": false,
+    "version": 12,
+    "updated_at": 1785226972251,
+    "ezbr_sha256": "58c879c9da06dd5392dfb3d0896e72059953dd477c98cecd4b919dd353417943"
+  },
+  {
+    "slug": "operations-webhook-v1",
+    "status": "ACTIVE",
+    "verify_jwt": false,
+    "version": 1,
+    "updated_at": 1785226703442,
+    "ezbr_sha256": "4a1e1070513b3b789037b120b8ebfcc27d2403ca9e3b8af088230b8e556fa51d"
+  }
+]

@@ -109,6 +109,28 @@
     "tcgcsv:warehouse:historical:dry-run": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --dry-run",
     "tcgcsv:warehouse:historical:apply": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --apply",
     "jpn-master-index:finalize": "node scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
+    "pricing:market:publish:dry-run": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --dry-run",
+    "pricing:market:publish:apply": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --apply",
+    "pricing:market:health": "node scripts/workers/tcgplayer_market_health_v1.mjs",
+    "pricing:market:canary:observe": "node scripts/audits/tcgplayer_market_canary_observation_v1.mjs",
+    "pricing:market:full-rollout:observe": "node scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs",
+    "pricing:market:completion": "node scripts/audits/tcgplayer_market_completion_v1.mjs",
+    "pricing:market:completion:require": "node scripts/audits/tcgplayer_market_completion_v1.mjs --require-complete",
+    "pricing:market:coverage": "node scripts/audits/tcgplayer_market_coverage_v1.mjs",
+    "pricing:market:performance": "node scripts/audits/tcgplayer_market_read_performance_v1.mjs",
+    "pricing:market:provenance": "node scripts/audits/tcgplayer_market_provenance_lookup_v1.mjs",
+    "pricing:market:vault:verify": "node scripts/audits/tcgplayer_market_vault_production_readback_v1.mjs",
+    "pricing:market:surfaces:verify": "node scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs",
+    "pricing:market:surfaces:manifest": "node scripts/audits/tcgplayer_market_product_surface_manifest_v1.mjs",
+    "pricing:market:surfaces:web:capture": "node scripts/audits/tcgplayer_market_web_surface_capture_v2.mjs",
+    "pricing:market:active-ask:refresh": "node scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+    "pricing:market:rollback:dry-run": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --dry-run",
+    "pricing:market:rollback:apply": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --apply",
+    "pricing:market:pipeline:dry-run": "node scripts/workers/tcgplayer_market_pipeline_v1.mjs --dry-run --skip-ingest",
+    "pricing:market:pipeline:apply": "node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply",
+    "pricing:market:schedule:dry-run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --dry-run",
+    "pricing:market:schedule:run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run",
+    "ops:webhook:dry-run": "node scripts/ops/grookai_operations_webhook_v1.mjs --dry-run",
     "mee:reference-warehouse-automated-apply-plan": "node scripts/audits/market_reference_warehouse_automated_apply_plan_v1.mjs",
     "mee:reference-warehouse-delta-writer:dry-run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run",
     "mee:reference-warehouse-delta-writer:run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --run",
@@ -117,6 +139,7 @@
     "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "typescript": "^5.9.3"
   }
 }

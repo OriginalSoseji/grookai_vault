@@ -27,6 +27,9 @@ function readTree(relativePath) {
 const helper = read(
   "apps/web/src/lib/pricing/getPublicPricingByCardIds.ts",
 );
+const readModel = read(
+  "apps/web/src/lib/pricing/marketPricingReadModelV1.ts",
+);
 const exploreRows = read("apps/web/src/lib/explore/getExploreRows.ts");
 const searchRoute = read(
   "apps/web/src/app/api/resolver/search/route.ts",
@@ -36,7 +39,7 @@ const exploreClient = read(
   "apps/web/src/components/explore/ExplorePageClient.tsx",
 );
 
-test("public pricing bridge reads are normalized, bounded, chunked, and cancellable", () => {
+test("governed public pricing reads are normalized, bounded, chunked, and deadline-limited", () => {
   const chunkSize = Number(
     helper.match(/PUBLIC_PRICING_QUERY_CHUNK_SIZE\s*=\s*(\d+)/)?.[1],
   );
@@ -53,25 +56,28 @@ test("public pricing bridge reads are normalized, bounded, chunked, and cancella
   assert.ok(maximumIds >= discoveryLimit);
   assert.match(helper, /new Set\([\s\S]*?\.trim\(\)[\s\S]*?\.filter\(Boolean\)[\s\S]*?\.sort\(\)/);
   assert.match(helper, /for \(const idChunk of chunkValues\(/);
-  assert.match(helper, /\.in\("card_print_id", idChunk\)/);
-  assert.match(helper, /\.limit\(idChunk\.length\)/);
-  assert.match(helper, /\.abortSignal\(controller\.signal\)/);
+  assert.match(
+    helper,
+    /getMarketPricingReadModelV1\(supabase, \{[\s\S]*?cardPrintIds: idChunk,[\s\S]*?throwOnError: true/,
+  );
+  assert.match(readModel, /get_market_pricing_read_model_v1/);
   assert.match(helper, /PUBLIC_PRICING_QUERY_BUDGET_MS/);
+  assert.match(helper, /withTimeout\(/);
   assert.match(helper, /const getPublicPricingForNormalizedIds = cache\(/);
   assert.doesNotMatch(helper, /Promise\.all\([\s\S]*?chunkValues/);
 });
 
-test("pricing safety and correctness gates remain on every returned bridge row", () => {
-  assert.match(
-    helper,
-    /v_market_evidence_public_pricing_bridge_reference_anchored_v1/,
-  );
-  assert.match(helper, /row\.grookai_value_block_reason === null/);
-  assert.match(helper, /row\.market_truth === false/);
-  assert.match(helper, /row\.sold_comp === false/);
-  assert.match(helper, /row\.publishable === false/);
-  assert.match(helper, /row\.app_visible === false/);
-  assert.match(helper, /rawPriceSource = rawPrice !== undefined \? "grookai_value"/);
+test("pricing safety and correctness gates remain on every governed read-model row", () => {
+  assert.match(readModel, /row\.status !== "available"/);
+  assert.match(readModel, /row\.currency !== "USD"/);
+  assert.match(readModel, /row\.source_name !== "tcgplayer"/);
+  assert.match(readModel, /row\.freshness !== "fresh"/);
+  assert.match(readModel, /!observedAt/);
+  assert.match(readModel, /!publishedAt/);
+  assert.match(readModel, /!provenanceId/);
+  assert.match(helper, /record\.pricing_scope !== "parent"/);
+  assert.match(helper, /raw_price_source: "tcgplayer_market"/);
+  assert.match(helper, /price_source: "tcgplayer_market"/);
 });
 
 test("value sorting is bounded and rejects partial pricing reads", () => {
@@ -153,11 +159,11 @@ test("ordinary Explore pricing is auth-gated and deferred until after result lim
   );
   assert.match(
     searchRoute,
-    /const includePricing = pricingRequested && Boolean\(userId\)/,
+    /const authenticatedIncludePricing = pricingRequested && Boolean\(userId\)/,
   );
   assert.match(
     searchRoute,
-    /const includePricingDuringResolution = includePricing && valueSortRequested/,
+    /const includePricingDuringResolution =[\s\S]*?authenticatedIncludePricing && valueSortRequested/,
   );
   assert.ok(sliceIndex >= 0 && deferredReadIndex > sliceIndex);
   assert.match(
@@ -166,9 +172,14 @@ test("ordinary Explore pricing is auth-gated and deferred until after result lim
   );
 });
 
-test("public list first paint does not invoke signed-in pricing enrichment", () => {
-  assert.doesNotMatch(explorePage, /getPublicPricingByCardIds/);
-  assert.match(explorePage, /canViewPricing=\{false\}/);
+test("public list first paint enriches pricing only for a verified signed-in viewer", () => {
+  assert.match(explorePage, /supabase\.auth\.getUser\(\)/);
+  assert.match(explorePage, /const canViewPricing = Boolean\(user\)/);
+  assert.match(
+    explorePage,
+    /const featuredPricing = canViewPricing[\s\S]*?getPublicPricingByCardIds\(\s*supabase/,
+  );
+  assert.match(explorePage, /canViewPricing=\{canViewPricing\}/);
   assert.doesNotMatch(read("apps/web/src/lib/publicSets.ts"), /getPublicPricingByCardIds/);
   assert.doesNotMatch(readTree("apps/web/src/app/network"), /getPublicPricingByCardIds/);
 

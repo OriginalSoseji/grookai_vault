@@ -19,7 +19,9 @@ The existing Pokemon-mapped `tcgcsv_reference` lane remains unchanged. That lane
 
 ## Tables
 
-- `tcgcsv_source_sync_runs`: mutable run row for a sync/backfill execution, with status, provenance, parser versions, counts, artifact root, and errors.
+- `tcgcsv_source_sync_runs`: mutable while an execution is in progress, then
+  immutable after successful terminal completion, with status, provenance,
+  parser versions, counts, artifact root, and errors.
 - `tcgcsv_source_artifacts`: immutable artifact metadata: URL, local path, SHA-256, byte size, fetched timestamp, HTTP status, headers, run ID, category/group/date context.
 - `tcgcsv_source_categories`: latest source category dimension with `first_seen_at`, `last_seen_at`, `last_seen_run_id`, `source_active`, and `source_missing_since`.
 - `tcgcsv_source_groups`: latest source group dimension with the same disappearance fields.
@@ -61,13 +63,16 @@ The current sync checks `last-updated.txt` as an optimization, not as sole truth
 
 Current sync behavior:
 
-1. Fetch `last-updated.txt`.
-2. Fetch categories.
-3. Fetch groups for each non-empty category.
-4. Fetch products and prices for each group.
-5. Upsert latest category/group/product dimensions.
-6. Upsert current-day price observations.
-7. If the run is complete, mark dimensions not seen in the run as `missing_from_latest_source`; never delete them.
+1. If the exact run key already completed with matching code and contract
+   provenance, return that terminal result without a source request or database
+   mutation.
+2. Fetch `last-updated.txt`.
+3. Fetch categories.
+4. Fetch groups for each non-empty category.
+5. Fetch products and prices for each group.
+6. Upsert latest category/group/product dimensions.
+7. Upsert current-day price observations.
+8. If the run is complete, mark dimensions not seen in the run as `missing_from_latest_source`; never delete them.
 
 ## Historical Backfill
 
@@ -99,6 +104,13 @@ A run with some failed categories/groups is `partial_success`, not `completed`.
 - `--apply` is required for database writes.
 - Request ceiling defaults to `10,000`.
 - Request delay defaults to `100ms`.
+- Transient source fetches retry three times by default with bounded
+  exponential delay; every attempt counts against the request ceiling.
+- Exhausted fetch failures produce `partial_success` and a nonzero process
+  exit so a scheduler cannot treat incomplete acquisition as successful.
+- Reusing a successful terminal run key is idempotent. The worker must preserve
+  its status, counts, artifact hash, and source-run identity.
+- Reusing a run key with changed code or contract provenance fails closed.
 - Every request uses a Grookai-specific User-Agent.
 - Historical extraction requires 7zip.
 - No writes to `pricing_observations`, `ebay_active_prices_latest`, public pricing views, identity tables, vault tables, images, or storage.

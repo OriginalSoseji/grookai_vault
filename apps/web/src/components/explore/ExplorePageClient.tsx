@@ -1386,7 +1386,7 @@ export default function ExplorePageClient({
           title={
             effectiveCanViewPricing
               ? undefined
-              : "Sign in to sort by Grookai Value"
+              : "Sign in to sort by TCGPlayer Market"
           }
         >
           <option value="relevance">Relevance</option>
@@ -2038,7 +2038,7 @@ export default function ExplorePageClient({
                           Variant
                         </th>
                         <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          Grookai Value
+                          TCGPlayer Market
                         </th>
                         <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                           Compare

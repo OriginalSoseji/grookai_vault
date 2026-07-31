@@ -322,6 +322,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _relatedVersionOwnershipByCardPrintId =
             relatedVersionOwnershipByCardPrintId;
       });
+      unawaited(_loadPricing());
     } catch (_) {
       if (!mounted) {
         return;
@@ -481,19 +482,37 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<Map<String, dynamic>?> _fetchPricingUi() async {
-    final row = await supabase
-        .from('v_card_pricing_ui_v1')
-        .select(
-          'card_print_id,primary_price,primary_source,grookai_value,min_price,max_price,variant_count,ebay_median_price,ebay_listing_count',
-        )
-        .eq('card_print_id', widget.cardPrintId)
-        .maybeSingle();
-
-    if (row == null) {
+    if (supabase.auth.currentUser == null) {
       return null;
     }
 
-    return Map<String, dynamic>.from(row);
+    final selectedCardPrintingId = _cleanText(_selectedCardPrintingId);
+    final response = await supabase.rpc(
+      'get_market_pricing_read_model_v1',
+      params: {
+        'p_card_print_ids': [widget.cardPrintId],
+        'p_card_printing_ids': selectedCardPrintingId.isEmpty
+            ? null
+            : [selectedCardPrintingId],
+      },
+    );
+    final rows = (response as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+    if (selectedCardPrintingId.isNotEmpty) {
+      for (final row in rows) {
+        if (row['pricing_scope'] == 'card_printing' &&
+            _cleanText(row['card_printing_id']) == selectedCardPrintingId) {
+          return row;
+        }
+      }
+    }
+    for (final row in rows) {
+      if (row['pricing_scope'] == 'parent') {
+        return row;
+      }
+    }
+    return rows.isEmpty ? null : rows.first;
   }
 
   Future<void> _loadPricing() async {
@@ -2679,6 +2698,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       _selectedCardPrintingId = option.id;
                       _printingSelectionTouched = true;
                     });
+                    unawaited(_loadPricing());
                   },
                   theme: theme,
                   colorScheme: colorScheme,
@@ -3029,7 +3049,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          _buildSectionLabel('TCGPlayer Market', theme, colorScheme),
           const SizedBox(height: 7),
           Row(
             children: [
@@ -3055,7 +3075,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          _buildSectionLabel('TCGPlayer Market', theme, colorScheme),
           const SizedBox(height: 5),
           Text(
             _priceError!,
@@ -3082,7 +3102,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+          _buildSectionLabel('TCGPlayer Market', theme, colorScheme),
           const SizedBox(height: 5),
           Text(
             'No pricing data available',
@@ -3102,34 +3122,41 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     final data = _priceData!;
-    final primaryPrice = (data['primary_price'] as num?)?.toDouble();
-    final grookaiValue = (data['grookai_value'] as num?)?.toDouble();
-    final minPrice = (data['min_price'] as num?)?.toDouble();
-    final maxPrice = (data['max_price'] as num?)?.toDouble();
-    final ebayMedianPrice = (data['ebay_median_price'] as num?)?.toDouble();
-    final primaryValue = primaryPrice ?? grookaiValue;
-    final primarySource = _pricingSourceName(data['primary_source'] as String?);
+    final marketClose = (data['market_close'] as num?)?.toDouble();
+    final lowPrice = (data['low_price'] as num?)?.toDouble();
+    final midPrice = (data['mid_price'] as num?)?.toDouble();
+    final highPrice = (data['high_price'] as num?)?.toDouble();
+    final directLowPrice = (data['direct_low_price'] as num?)?.toDouble();
+    final lowestActiveAsk = (data['lowest_active_ask'] as num?)?.toDouble();
+    final sourceLabel = _cleanText(data['source_label']).isEmpty
+        ? 'TCGPlayer Market'
+        : _cleanText(data['source_label']);
+    final isFromPrice = data['is_from_price'] == true;
+    final eligiblePrintingCount = (data['eligible_printing_count'] as num?)
+        ?.toInt();
+    final observedAt = DateTime.tryParse(_cleanText(data['observed_at']));
     final pricingFooterParts = <String>[];
-    if (primarySource != null) {
-      pricingFooterParts.add(primarySource);
+    if (observedAt != null) {
+      pricingFooterParts.add(
+        'Updated ${observedAt.toLocal().month}/${observedAt.toLocal().day}',
+      );
     }
     if (_hasVaultContext) {
       pricingFooterParts.add('In your vault');
     }
     final pricingContext = <String>[
-      if (minPrice != null) 'Low ${_formatMoney(minPrice)}',
-      if (primaryPrice != null) 'Market ${_formatMoney(primaryPrice)}',
-      if (maxPrice != null) 'High ${_formatMoney(maxPrice)}',
-      if (grookaiValue != null && primaryPrice != null)
-        'Value ${_formatMoney(grookaiValue)}',
-      if (ebayMedianPrice != null) 'eBay ${_formatMoney(ebayMedianPrice)}',
+      if (lowPrice != null) 'Low ${_formatMoney(lowPrice)}',
+      if (midPrice != null) 'Mid ${_formatMoney(midPrice)}',
+      if (highPrice != null) 'High ${_formatMoney(highPrice)}',
+      if (directLowPrice != null) 'Direct low ${_formatMoney(directLowPrice)}',
+      if (lowestActiveAsk != null) 'eBay ask ${_formatMoney(lowestActiveAsk)}',
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (primaryValue == null) ...[
-          _buildSectionLabel('Grookai Value · Raw', theme, colorScheme),
+        if (marketClose == null) ...[
+          _buildSectionLabel('TCGPlayer Market', theme, colorScheme),
           const SizedBox(height: 5),
           Text(
             'No pricing data available',
@@ -3152,14 +3179,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildSectionLabel(
-                      'Grookai Value · Raw',
-                      theme,
-                      colorScheme,
-                    ),
+                    _buildSectionLabel(sourceLabel, theme, colorScheme),
                     const SizedBox(height: 4),
                     Text(
-                      _formatMoney(primaryValue),
+                      '${isFromPrice ? 'From ' : ''}${_formatMoney(marketClose)}',
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w800,
                         height: 1.0,
@@ -3172,6 +3195,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurface.withValues(alpha: 0.58),
                           fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                    if (eligiblePrintingCount != null &&
+                        eligiblePrintingCount > 1) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        '$eligiblePrintingCount exact printings',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.58),
                         ),
                       ),
                     ],
@@ -3209,17 +3242,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   String _formatMoney(double value) {
     return '\$${value.toStringAsFixed(2)}';
-  }
-
-  String? _pricingSourceName(String? source) {
-    switch ((source ?? '').trim().toLowerCase()) {
-      case 'justtcg':
-        return 'JustTCG';
-      case 'ebay':
-        return 'eBay';
-      default:
-        return null;
-    }
   }
 
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {

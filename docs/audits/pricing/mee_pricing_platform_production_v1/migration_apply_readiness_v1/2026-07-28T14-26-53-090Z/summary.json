@@ -1,0 +1,31 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_PRODUCTION_V1_MIGRATION_APPLY_READINESS_V1",
+  "status": "passed_pre_apply_canary_blocked",
+  "observed_at": "2026-07-28T14:26:53.090Z",
+  "branch": "pricing/mee-productization-v1",
+  "commit_sha": "4d3fbd8fb43eef26dfa58a993258b2640eb5f225",
+  "target_project_ref": "ycdxbpibncqcchqiihfz",
+  "migration_ledger": {
+    "local_only_ids": [
+      "20260728130000",
+      "20260728133000"
+    ],
+    "remote_only_ids": [],
+    "expected_set_match": true
+  },
+  "strict_pre_push": {
+    "status": "passed",
+    "duplicate_pending_object_scan": "passed",
+    "local_reset_replay": "passed"
+  },
+  "linked_schema_audit": {
+    "status": "expected_pending_delta",
+    "reason": "The two intended local-only migrations are not applied while the 72-hour canary remains active."
+  },
+  "production": {
+    "schema_changed": false,
+    "database_writes": 0,
+    "canary_changed": false
+  },
+  "next_gate": "After the 72-hour canary observer passes, rerun strict PrePush for the exact two IDs, apply with supabase db push, and require an empty linked schema audit plus enforcing schema/security readback."
+}

@@ -1,0 +1,5 @@
+[tcgplayer-market-publication] Error: resume refused because the frozen run provenance does not match
+    at ensureRun (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:500:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async runDurable (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1344:11)
+    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1665:23)
