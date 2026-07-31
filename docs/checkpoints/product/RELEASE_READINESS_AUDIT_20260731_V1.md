@@ -125,6 +125,15 @@ install`. A new contract protects the complete bootstrap sequence. The repair
 is not production-proven until a fresh Xcode Cloud archive passes. No
 successful TestFlight artifact from current `main` is proven yet.
 
+The first repair was merged as
+`ac8a32290513702ef0870be231763d40a7006137`. Xcode Cloud build 250 then
+advanced beyond both missing-input failures and reached Flutter's archive
+configuration guard. It failed because the generated iOS settings were still
+Debug and explicitly required `flutter build ios --config-only --release`.
+The follow-up candidate adds that exact release-configuration step before the
+Xcode archive. This is a new, narrower bootstrap class; live proof remains the
+next Xcode Cloud build from the follow-up merge.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build
