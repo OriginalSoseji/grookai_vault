@@ -166,6 +166,13 @@ and uses distinct non-secret exit codes for clone, precache, package, pod, and
 release-configuration phases. The disposable diagnostic branch is not part of
 the release and must not be merged.
 
+Build 255 returned the new phase-specific exit code `26`, proving Flutter SDK
+setup, package resolution, and CocoaPods completed and the failure occurred in
+the release-configuration command. Flutter's current iOS CI guidance generates
+configuration with `--no-codesign`; Xcode Cloud performs signing during the
+subsequent archive. The next candidate therefore keeps Release/config-only
+generation but explicitly disables signing discovery in the post-clone phase.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build

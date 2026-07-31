@@ -30,7 +30,7 @@ test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
 
 test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /flutter pub get --enforce-lockfile/);
-  assert.match(script, /flutter build ios --config-only --release/);
+  assert.match(script, /flutter build ios --release --no-codesign --config-only/);
   assert.match(script, /command -v pod/);
   assert.match(script, /brew install cocoapods/);
   assert.match(script, /cd ios\r?\n\s+pod install/);
@@ -40,12 +40,15 @@ test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /phase=complete/);
   assert.match(script, /flutter pub get --enforce-lockfile \|\| exit 23/);
   assert.match(script, /pod install\r?\n\) \|\| exit 25/);
-  assert.match(script, /flutter build ios --config-only --release \|\| exit 26/);
+  assert.match(
+    script,
+    /flutter build ios --release --no-codesign --config-only \|\| exit 26/,
+  );
 
   const podAvailabilityIndex = script.indexOf("if ! command -v pod");
   const podInstallIndex = script.indexOf("pod install", podAvailabilityIndex);
   const releaseConfigIndex = script.indexOf(
-    "flutter build ios --config-only --release",
+    "flutter build ios --release --no-codesign --config-only",
   );
 
   assert.ok(podAvailabilityIndex >= 0);
