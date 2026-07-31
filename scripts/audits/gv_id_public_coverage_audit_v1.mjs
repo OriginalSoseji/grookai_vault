@@ -32,7 +32,7 @@ const PUBLIC_VIEW_NAMES = [
 ];
 
 const TLS_NOTE =
-  'Node fetch required NODE_TLS_REJECT_UNAUTHORIZED=0 in this local environment due local certificate chain verification failure. Browser-facing HTTPS responses were still fetched from https://grookaivault.com.';
+  'Node fetch uses normal certificate validation. Operator-specific trust roots must be supplied through NODE_EXTRA_CA_CERTS rather than disabling TLS verification.';
 
 function quoteIdent(identifier) {
   if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(identifier)) {
@@ -487,10 +487,6 @@ function rowMatchesSearchResult(row, result) {
 }
 
 async function verifyWebsiteSample(rows) {
-  if (!process.env.NODE_TLS_REJECT_UNAUTHORIZED) {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  }
-
   const checks = [];
   for (const row of rows) {
     const searchQuery = buildSampleSearchQuery(row);

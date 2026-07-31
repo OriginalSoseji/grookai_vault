@@ -206,7 +206,7 @@ async function fetchBuffer(url, timeoutMs, redirectCount = 0) {
     const request = client.get(parsed, {
       headers: { 'user-agent': USER_AGENT },
       timeout: timeoutMs,
-      rejectUnauthorized: false,
+      rejectUnauthorized: true,
     }, (response) => {
       const statusCode = response.statusCode ?? 0;
       const location = response.headers.location;

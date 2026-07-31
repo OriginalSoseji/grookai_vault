@@ -90,7 +90,7 @@ function httpsGetBuffer(url) {
     const request = https.get(
       url,
       {
-        rejectUnauthorized: false,
+      rejectUnauthorized: true,
         headers: {
           'user-agent': 'Mozilla/5.0 GrookaiVaultImageIngestion/1.0',
           accept: 'text/html,image/avif,image/webp,image/apng,image/*,*/*;q=0.8',

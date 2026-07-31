@@ -120,7 +120,7 @@ async function fetchHtml(url) {
               'user-agent': 'GrookaiVaultAudit/1.0 read-only gap analysis',
               accept: 'text/html',
             },
-            rejectUnauthorized: false,
+      rejectUnauthorized: true,
           },
           (response) => {
             if ((response.statusCode ?? 500) >= 400) {

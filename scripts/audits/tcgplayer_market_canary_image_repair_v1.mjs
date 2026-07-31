@@ -70,7 +70,7 @@ function fetchBuffer(url) {
     const request = https.get(
       url,
       {
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
         headers: { "user-agent": "Grookai-Market-Canary-Image-Repair/1.0" },
         timeout: 20_000,
       },

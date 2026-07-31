@@ -445,7 +445,7 @@ async function bootstrapPostgresTlsChain(descriptor) {
   const secureSocket = tls.connect({
     socket: plainSocket,
     servername: descriptor.host,
-    rejectUnauthorized: false,
+    rejectUnauthorized: true,
   });
   await new Promise((resolve, reject) => {
     secureSocket.setTimeout(FETCH_TIMEOUT_MS, () => secureSocket.destroy(new Error('postgres_tls_handshake_timeout')));
@@ -526,7 +526,7 @@ export async function targetBindingFromEnvironment() {
       port: descriptor.port,
       database_name: descriptor.database_name,
       username: descriptor.username,
-      tls_verification: 'bootstrap_no_credentials_then_verified_ca_reconnect',
+      tls_verification: 'verified_no_credentials_then_pinned_ca_reconnect',
       approved_chain: publicTlsChain(chain),
     },
   };
