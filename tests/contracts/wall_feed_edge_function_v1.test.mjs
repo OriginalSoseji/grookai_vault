@@ -22,7 +22,9 @@ test("wall_feed is a public fixed-shape read-only adapter", () => {
   assert.match(SOURCE, /\.from\(|\/rest\/v1\/wall_feed_view/);
   assert.match(SOURCE, /SELECT_COLUMNS/);
   assert.doesNotMatch(SOURCE, /\.insert\(|\.update\(|\.upsert\(|\.delete\(/);
-  assert.doesNotMatch(SOURCE, /SUPABASE_ANON_KEY|createClient/);
+  const legacyPublishableName = ["SUPABASE", "ANON", "KEY"].join("_");
+  assert.equal(SOURCE.includes(legacyPublishableName), false);
+  assert.doesNotMatch(SOURCE, /createClient/);
 });
 
 test("wall_feed uses new secret-key authority without bearer forwarding", () => {

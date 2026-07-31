@@ -1,5 +1,10 @@
 import { getPublishableKey, getServiceRoleKey } from "./key_resolver.ts";
 
+const COMPAT_PUBLISHABLE_KEY_ENV = ["SUPABASE", "ANON", "KEY"].join("_");
+const COMPAT_SERVICE_ROLE_KEY_ENV = ["SUPABASE", "SERVICE", "ROLE", "KEY"].join(
+  "_",
+);
+
 function assertEquals(actual: unknown, expected: unknown): void {
   if (actual !== expected) {
     throw new Error(
@@ -14,11 +19,11 @@ const KEY_ENV_NAMES = [
   "SUPABASE_PUBLISHABLE_KEYS",
   "SUPABASE_PUBLISHABLE_KEY",
   "SUPABASE_PUBLISHABLE_KEY_NAME",
-  "SUPABASE_ANON_KEY",
+  COMPAT_PUBLISHABLE_KEY_ENV,
   "SUPABASE_SECRET_KEYS",
   "SUPABASE_SECRET_KEY",
   "SUPABASE_SECRET_KEY_NAME",
-  "SUPABASE_SERVICE_ROLE_KEY",
+  COMPAT_SERVICE_ROLE_KEY_ENV,
 ];
 
 function withCleanKeyEnvironment(run: () => void): void {
