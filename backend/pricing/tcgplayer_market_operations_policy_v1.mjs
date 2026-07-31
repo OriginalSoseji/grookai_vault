@@ -14,9 +14,15 @@ const NON_RETRYABLE_PATTERNS = [
   /canonical.*ambigu/i,
 ];
 
+const CANARY_DEFINITION_DRIFT_PATTERNS = [
+  /canary source identity .* resolved \d+ rows/i,
+  /canary identity .* drifted/i,
+];
+
 const RETRYABLE_PATTERNS = [
   /\b429\b/,
-  /\b5\d\d\b/,
+  /\b(?:http(?: status)?|status(?: code)?|response)\s*[:=]?\s*5\d\d\b/i,
+  /\b5\d\d\s+(?:internal server error|bad gateway|service unavailable|gateway timeout)\b/i,
   /econnreset/i,
   /econnrefused/i,
   /enotfound/i,
@@ -36,6 +42,12 @@ export function classifyMarketPipelineFailureV1({
   errorText = "",
 } = {}) {
   const text = String(errorText ?? "");
+  if (CANARY_DEFINITION_DRIFT_PATTERNS.some((pattern) => pattern.test(text))) {
+    return {
+      classification: "non_retryable_canary_definition_drift",
+      retryable: false,
+    };
+  }
   if (NON_RETRYABLE_PATTERNS.some((pattern) => pattern.test(text))) {
     return {
       classification: "non_retryable_invariant_failure",

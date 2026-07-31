@@ -1,8 +1,25 @@
+export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2 =
+  "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2";
+
+// Preserve the original export name for callers pinned to the V1 module path.
 export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1 =
-  "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1";
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2;
 
 const HOUR_MS = 60 * 60 * 1000;
 const MINUTE_MS = 60 * 1000;
+const SOURCE_TERMINAL_FAILURE_STATES = new Set([
+  "failed",
+  "partial_success",
+  "aborted_request_ceiling",
+]);
+const SOURCE_COMPLETED_STATES = new Set([
+  "completed",
+  "skipped_no_change",
+]);
+const PUBLICATION_TERMINAL_FAILURE_STATES = new Set([
+  "failed",
+  "rolled_back",
+]);
 
 function instant(value, label) {
   const date = new Date(value);
@@ -86,44 +103,255 @@ export function expectedTcgplayerMarketScheduleSlotsV1({
   return slots;
 }
 
-function matchRunsToSlots({
+function scheduledKeys(slot) {
+  const date = slot.slice(0, 10);
+  const base = `TCGPLAYER-MARKET-SCHEDULE-CANARY-${date}`;
+  return {
+    source: `${base}-warehouse`,
+    publication: `${base}-publication`,
+  };
+}
+
+function runIdentity(run) {
+  return run?.run_key || run?.id || null;
+}
+
+function indexUniqueRunsByKey(runs) {
+  const byKey = new Map();
+  const duplicateKeys = [];
+  for (const run of runs) {
+    const key = string(run?.run_key);
+    if (!key) continue;
+    if (byKey.has(key)) duplicateKeys.push(key);
+    else byKey.set(key, run);
+  }
+  return { byKey, duplicateKeys };
+}
+
+function evaluateScheduleEvidence({
   slots,
-  runs,
-  scheduleToleranceMinutes,
+  sourceRuns,
+  publicationRuns,
+  asOf,
+  triggerToleranceMinutes,
+  completionGraceMinutes,
+  expectedCount,
+  expectedCommitSha,
 }) {
-  const toleranceMs = scheduleToleranceMinutes * MINUTE_MS;
-  const available = [...runs];
-  const matches = [];
+  const endMs = asOf.getTime();
+  const triggerToleranceMs = triggerToleranceMinutes * MINUTE_MS;
+  const completionGraceMs = completionGraceMinutes * MINUTE_MS;
+  const sourceIndex = indexUniqueRunsByKey(sourceRuns);
+  const publicationIndex = indexUniqueRunsByKey(publicationRuns);
+  const expectedSourceKeys = new Set();
+  const expectedPublicationKeys = new Set();
+  const matched = [];
+  const pending = [];
   const missing = [];
+  const unhealthy = [];
 
   for (const slot of slots) {
     const slotMs = new Date(slot).getTime();
-    let bestIndex = -1;
-    let bestDistance = Number.POSITIVE_INFINITY;
-    for (let index = 0; index < available.length; index += 1) {
-      const startedMs = new Date(available[index]?.started_at).getTime();
-      const distance = Math.abs(startedMs - slotMs);
-      if (Number.isFinite(startedMs) && distance <= toleranceMs && distance < bestDistance) {
-        bestIndex = index;
-        bestDistance = distance;
+    const triggerDeadline = slotMs + triggerToleranceMs;
+    let completionDeadline = slotMs + completionGraceMs;
+    const keys = scheduledKeys(slot);
+    expectedSourceKeys.add(keys.source);
+    expectedPublicationKeys.add(keys.publication);
+
+    const sourceRun = sourceIndex.byKey.get(keys.source) ?? null;
+    const publicationRun =
+      publicationIndex.byKey.get(keys.publication) ?? null;
+    const sourceStartedMs = new Date(sourceRun?.started_at).getTime();
+    const sourceOffsetMinutes = Number.isFinite(sourceStartedMs)
+      ? Number(((sourceStartedMs - slotMs) / MINUTE_MS).toFixed(3))
+      : null;
+
+    if (!sourceRun) {
+      if (endMs <= triggerDeadline) {
+        pending.push({
+          slot,
+          state: "awaiting_source_trigger",
+          source_run_key: keys.source,
+          publication_run_key: keys.publication,
+          trigger_deadline: new Date(triggerDeadline).toISOString(),
+          completion_deadline: new Date(completionDeadline).toISOString(),
+        });
+      } else {
+        missing.push({
+          slot,
+          reason: "source_trigger_missing",
+          source_run_key: keys.source,
+          publication_run_key: keys.publication,
+          trigger_deadline: new Date(triggerDeadline).toISOString(),
+        });
       }
-    }
-    if (bestIndex === -1) {
-      missing.push(slot);
       continue;
     }
-    const [run] = available.splice(bestIndex, 1);
-    matches.push({
-      slot,
-      run_id: run.id,
-      run_key: run.run_key,
-      started_at: run.started_at,
-      completed_at: run.completed_at,
-      offset_minutes: Number((bestDistance / MINUTE_MS).toFixed(3)),
-    });
+
+    if (
+      !Number.isFinite(sourceStartedMs) ||
+      Math.abs(sourceStartedMs - slotMs) > triggerToleranceMs
+    ) {
+      unhealthy.push({
+        slot,
+        reason: "source_trigger_outside_tolerance",
+        source_run_key: keys.source,
+        source_status: sourceRun.status ?? null,
+        source_started_at: sourceRun.started_at ?? null,
+        source_offset_minutes: sourceOffsetMinutes,
+      });
+      continue;
+    }
+    completionDeadline = sourceStartedMs + completionGraceMs;
+
+    if (string(sourceRun.git_commit_sha) !== expectedCommitSha) {
+      unhealthy.push({
+        slot,
+        reason: "source_commit_mismatch",
+        source_run_key: keys.source,
+        source_status: sourceRun.status ?? null,
+        source_started_at: sourceRun.started_at ?? null,
+        source_offset_minutes: sourceOffsetMinutes,
+      });
+      continue;
+    }
+
+    if (SOURCE_TERMINAL_FAILURE_STATES.has(sourceRun.status)) {
+      unhealthy.push({
+        slot,
+        reason: "source_run_failed",
+        source_run_key: keys.source,
+        source_status: sourceRun.status ?? null,
+        source_started_at: sourceRun.started_at ?? null,
+        source_offset_minutes: sourceOffsetMinutes,
+      });
+      continue;
+    }
+
+    if (!publicationRun) {
+      if (endMs <= completionDeadline) {
+        pending.push({
+          slot,
+          state: SOURCE_COMPLETED_STATES.has(sourceRun.status)
+            ? "awaiting_publication"
+            : "source_pipeline_in_progress",
+          source_run_key: keys.source,
+          source_status: sourceRun.status ?? null,
+          source_started_at: sourceRun.started_at ?? null,
+          source_offset_minutes: sourceOffsetMinutes,
+          publication_run_key: keys.publication,
+          completion_deadline: new Date(completionDeadline).toISOString(),
+        });
+      } else {
+        missing.push({
+          slot,
+          reason: "publication_missing_after_completion_grace",
+          source_run_key: keys.source,
+          source_status: sourceRun.status ?? null,
+          publication_run_key: keys.publication,
+          completion_deadline: new Date(completionDeadline).toISOString(),
+        });
+      }
+      continue;
+    }
+
+    if (string(publicationRun.git_commit_sha) !== expectedCommitSha) {
+      unhealthy.push({
+        slot,
+        reason: "publication_commit_mismatch",
+        source_run_key: keys.source,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_state: publicationRun.state ?? null,
+      });
+      continue;
+    }
+
+    if (PUBLICATION_TERMINAL_FAILURE_STATES.has(publicationRun.state)) {
+      unhealthy.push({
+        slot,
+        reason: "publication_run_failed",
+        source_run_key: keys.source,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_state: publicationRun.state ?? null,
+      });
+      continue;
+    }
+
+    if (
+      runIsHealthy(publicationRun, {
+        expectedCount,
+        expectedCommitSha,
+      })
+    ) {
+      matched.push({
+        slot,
+        source_run_key: keys.source,
+        source_status: sourceRun.status ?? null,
+        source_started_at: sourceRun.started_at ?? null,
+        source_offset_minutes: sourceOffsetMinutes,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_started_at: publicationRun.started_at ?? null,
+        publication_completed_at: publicationRun.completed_at ?? null,
+      });
+      continue;
+    }
+
+    if (publicationRun.state === "verified") {
+      unhealthy.push({
+        slot,
+        reason: "publication_verified_but_not_healthy",
+        source_run_key: keys.source,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_state: publicationRun.state,
+      });
+      continue;
+    }
+
+    if (endMs <= completionDeadline) {
+      pending.push({
+        slot,
+        state: "publication_in_progress",
+        source_run_key: keys.source,
+        source_status: sourceRun.status ?? null,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_state: publicationRun.state ?? null,
+        completion_deadline: new Date(completionDeadline).toISOString(),
+      });
+    } else {
+      unhealthy.push({
+        slot,
+        reason: "publication_not_healthy_after_completion_grace",
+        source_run_key: keys.source,
+        publication_run_id: publicationRun.id ?? null,
+        publication_run_key: keys.publication,
+        publication_state: publicationRun.state ?? null,
+        completion_deadline: new Date(completionDeadline).toISOString(),
+      });
+    }
   }
 
-  return { matches, missing, unmatchedRuns: available };
+  const unmatchedSourceRuns = sourceRuns.filter(
+    (run) => !expectedSourceKeys.has(string(run?.run_key)),
+  );
+  const unmatchedPublicationRuns = publicationRuns.filter(
+    (run) => !expectedPublicationKeys.has(string(run?.run_key)),
+  );
+
+  return {
+    matched,
+    pending,
+    missing,
+    unhealthy,
+    unmatchedSourceRuns,
+    unmatchedPublicationRuns,
+    duplicateSourceKeys: sourceIndex.duplicateKeys,
+    duplicatePublicationKeys: publicationIndex.duplicateKeys,
+  };
 }
 
 export function evaluateTcgplayerMarketCanaryObservationV1({
@@ -133,9 +361,11 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   scheduleHourUtc = 8,
   scheduleMinuteUtc = 15,
   scheduleToleranceMinutes = 90,
+  scheduleCompletionGraceMinutes = 480,
   expectedCount = 100,
   expectedCommitSha,
   activationRun,
+  scheduledSourceRuns = [],
   scheduledRuns = [],
   terminalAlerts = [],
   current = {},
@@ -153,9 +383,26 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   if (!Number.isInteger(expectedCount) || expectedCount < 1) {
     throw new Error("expectedCount must be a positive integer");
   }
+  if (
+    !Number.isFinite(scheduleToleranceMinutes) ||
+    scheduleToleranceMinutes < 1
+  ) {
+    throw new Error("scheduleToleranceMinutes must be positive");
+  }
+  if (
+    !Number.isFinite(scheduleCompletionGraceMinutes) ||
+    scheduleCompletionGraceMinutes < scheduleToleranceMinutes
+  ) {
+    throw new Error(
+      "scheduleCompletionGraceMinutes must be at least scheduleToleranceMinutes",
+    );
+  }
 
   const requiredEnd = new Date(start.getTime() + requiredHours * HOUR_MS);
-  const observationHours = Math.max(0, (end.getTime() - start.getTime()) / HOUR_MS);
+  const observationHours = Math.max(
+    0,
+    (end.getTime() - start.getTime()) / HOUR_MS,
+  );
   const elapsed = end >= requiredEnd;
   const slotsThrough = end < requiredEnd ? end : requiredEnd;
   const expectedSlots = expectedTcgplayerMarketScheduleSlotsV1({
@@ -165,14 +412,23 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     minuteUtc: scheduleMinuteUtc,
   });
 
-  const runs = scheduledRuns.filter((run) => {
+  const sourceRuns = scheduledSourceRuns.filter((run) => {
     const startedAt = new Date(run?.started_at).getTime();
     return Number.isFinite(startedAt) && startedAt > start.getTime();
   });
-  const slotResult = matchRunsToSlots({
+  const publicationRuns = scheduledRuns.filter((run) => {
+    const startedAt = new Date(run?.started_at).getTime();
+    return Number.isFinite(startedAt) && startedAt > start.getTime();
+  });
+  const scheduleResult = evaluateScheduleEvidence({
     slots: expectedSlots,
-    runs,
-    scheduleToleranceMinutes,
+    sourceRuns,
+    publicationRuns,
+    asOf: end,
+    triggerToleranceMinutes: scheduleToleranceMinutes,
+    completionGraceMinutes: scheduleCompletionGraceMinutes,
+    expectedCount,
+    expectedCommitSha: commitSha,
   });
   const findings = [];
 
@@ -187,19 +443,23 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     findings.push("activation_run_not_exact_and_healthy");
   }
 
-  const unhealthyRuns = runs
-    .filter(
-      (run) =>
-        !runIsHealthy(run, {
-          expectedCount,
-          expectedCommitSha: commitSha,
-        }),
-    )
-    .map((run) => run.run_key || run.id);
-  if (unhealthyRuns.length) findings.push("scheduled_run_not_exact_and_healthy");
-  if (slotResult.missing.length) findings.push("expected_schedule_slot_missing");
-  if (slotResult.unmatchedRuns.length) {
+  if (scheduleResult.unhealthy.length) {
+    findings.push("scheduled_run_not_exact_and_healthy");
+  }
+  if (scheduleResult.missing.length) {
+    findings.push("expected_schedule_slot_missing");
+  }
+  if (
+    scheduleResult.unmatchedSourceRuns.length ||
+    scheduleResult.unmatchedPublicationRuns.length
+  ) {
     findings.push("unexpected_extra_canary_run");
+  }
+  if (
+    scheduleResult.duplicateSourceKeys.length ||
+    scheduleResult.duplicatePublicationKeys.length
+  ) {
+    findings.push("duplicate_scheduled_run_key");
   }
   if (terminalAlerts.length) findings.push("terminal_operations_alert_in_window");
 
@@ -219,12 +479,14 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     findings.push("broken_source_to_publication_trace");
   }
 
-  const healthyRuns = [activationRun, ...runs].filter(Boolean).filter((run) =>
-    runIsHealthy(run, {
-      expectedCount,
-      expectedCommitSha: commitSha,
-    }),
-  );
+  const healthyRuns = [activationRun, ...publicationRuns]
+    .filter(Boolean)
+    .filter((run) =>
+      runIsHealthy(run, {
+        expectedCount,
+        expectedCommitSha: commitSha,
+      }),
+    );
   const latestHealthyRun = healthyRuns
     .slice()
     .sort(
@@ -242,8 +504,10 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   if (sourceHealth.status !== "healthy") {
     findings.push("current_source_health_not_healthy");
   }
-  if (sourceHealth.source_continuity_mode !== "verified_no_change" &&
-      sourceHealth.source_continuity_mode !== "completed_sync") {
+  if (
+    sourceHealth.source_continuity_mode !== "verified_no_change" &&
+    sourceHealth.source_continuity_mode !== "completed_sync"
+  ) {
     findings.push("current_source_continuity_unproven");
   }
   if (
@@ -265,18 +529,21 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   if (!access.anonymous_runtime_denied) {
     findings.push("anonymous_pricing_runtime_read_not_denied");
   }
-  if (!rollback.service_execute_granted || !rollback.prior_publication_available) {
+  if (
+    !rollback.service_execute_granted ||
+    !rollback.prior_publication_available
+  ) {
     findings.push("publication_rollback_not_available");
   }
 
   const status = findings.length
     ? "failed"
-    : elapsed
+    : elapsed && scheduleResult.pending.length === 0
       ? "passed"
       : "observing";
 
   return {
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
     status,
     window: {
       started_at: start.toISOString(),
@@ -289,20 +556,31 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     schedule: {
       hour_utc: scheduleHourUtc,
       minute_utc: scheduleMinuteUtc,
-      tolerance_minutes: scheduleToleranceMinutes,
+      trigger_tolerance_minutes: scheduleToleranceMinutes,
+      completion_grace_minutes: scheduleCompletionGraceMinutes,
       expected_slots: expectedSlots,
-      matched_slots: slotResult.matches,
-      missing_slots: slotResult.missing,
-      unmatched_run_keys: slotResult.unmatchedRuns.map(
-        (run) => run.run_key || run.id,
+      matched_slots: scheduleResult.matched,
+      pending_slots: scheduleResult.pending,
+      missing_slots: scheduleResult.missing,
+      unhealthy_slots: scheduleResult.unhealthy,
+      unmatched_source_run_keys: scheduleResult.unmatchedSourceRuns.map(
+        runIdentity,
       ),
+      unmatched_publication_run_keys:
+        scheduleResult.unmatchedPublicationRuns.map(runIdentity),
+      duplicate_source_run_keys: scheduleResult.duplicateSourceKeys,
+      duplicate_publication_run_keys:
+        scheduleResult.duplicatePublicationKeys,
     },
     run_evidence: {
       expected_commit_sha: commitSha,
       expected_count: expectedCount,
       activation_run_key: activationRun?.run_key ?? null,
-      scheduled_run_count: runs.length,
-      unhealthy_run_keys: unhealthyRuns,
+      scheduled_source_run_count: sourceRuns.length,
+      scheduled_publication_run_count: publicationRuns.length,
+      unhealthy_run_keys: scheduleResult.unhealthy.map(
+        (entry) => entry.publication_run_key || entry.source_run_key,
+      ),
     },
     terminal_alert_count: terminalAlerts.length,
     current,

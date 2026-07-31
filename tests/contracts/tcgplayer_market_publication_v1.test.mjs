@@ -905,6 +905,29 @@ test("scheduled failure policy retries source transport failures but stops invar
       retryable: false,
     },
   );
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "publication",
+      errorText:
+        "canary source identity 168245:Normal:printing resolved 0 rows\n" +
+        "at genericNodeError (node:internal/errors:984:15)\n" +
+        "at wrappedFn (node:internal/errors:538:14)",
+    }),
+    {
+      classification: "non_retryable_canary_definition_drift",
+      retryable: false,
+    },
+  );
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "publication",
+      errorText: "at wrappedFn (node:internal/errors:538:14)",
+    }),
+    {
+      classification: "non_retryable_publication_failure",
+      retryable: false,
+    },
+  );
   assert.deepEqual(parseRetryDelaysV1("60, 300"), [60, 300]);
   assert.equal(retryDelayMsV1([60, 300], 1), 60_000);
   assert.equal(retryDelayMsV1([60, 300], 3), 300_000);
@@ -981,6 +1004,10 @@ test("schedule installation cannot retire the old timer before replacement proof
     /systemctl disable --now "\$\{LEGACY_TIMER\}" "\$\{LEGACY_SERVICE\}"/,
   );
   assert.match(SCHEDULE_INSTALLER, /systemctl enable --now "\$\{TIMER_NAME\}"/);
+  assert.match(
+    SCHEDULE_INSTALLER,
+    /tcgplayer_market_canary_continuity_v1\.mjs[\s\S]*--definition="\$\{canary_definition_path\}"/,
+  );
   assert.match(SCHEDULE_VERIFIER, /legacy_current_sync_timer_still_enabled/);
   assert.match(SCHEDULE_VERIFIER, /missing_operations_webhook_route/);
   assert.match(SCHEDULE_VERIFIER, /schedule_mode_not_canary/);

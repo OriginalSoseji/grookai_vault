@@ -38,6 +38,7 @@ require_env_value() {
 
 for required_file in \
   scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs \
+  scripts/audits/tcgplayer_market_canary_continuity_v1.mjs \
   scripts/ops/grookai_operations_webhook_v1.mjs \
   "deploy/systemd/${SERVICE_NAME}" \
   "deploy/systemd/${TIMER_NAME}" \
@@ -137,6 +138,8 @@ case "${schedule_mode}" in
       echo "Verified canary definition not found: ${canary_definition_path}" >&2
       exit 1
     fi
+    node scripts/audits/tcgplayer_market_canary_continuity_v1.mjs \
+      --definition="${canary_definition_path}"
     ;;
   production)
     if [[ "$(env_value TCGPLAYER_MARKET_REPLACEMENT_VERIFIED)" != "1" ]]; then
