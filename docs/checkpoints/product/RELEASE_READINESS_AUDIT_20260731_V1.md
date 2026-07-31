@@ -2,9 +2,9 @@
 
 ## Status
 
-Controlled beta ready. Expanded beta remains gated by the current Xcode Cloud
-result and clean-account physical-iPhone journey proof. Public launch is not
-yet authorized.
+Controlled beta ready. The Xcode Cloud and internal TestFlight distribution
+gate is closed. Expanded beta remains gated by clean-account physical-iPhone
+journey proof. Public launch is not yet authorized.
 
 This checkpoint supersedes the release-readiness facts in the assessment of
 commit `91ab3c198d6c1fb300cd3f28cf463f72c62e79f6`. The wall-feed defects and
@@ -32,6 +32,8 @@ change was deployment of the read-only `wall_feed` function from merged code.
 - Wall-feed deployment-contract merge: `258215033d8ea35417fbba3f0766da91506344e4`
 - Wall-feed count-quality merge and deployed revision:
   `40457c1f8c0f80cd91cbb6f92ca6c1d7fb1e30c2`
+- Xcode Cloud SwiftPM dependency-state merge:
+  `35c8bff9cc4368dec05e61b3739322c2f0c524f1`
 
 ## Findings
 
@@ -79,7 +81,7 @@ probe passed. Earlier read-only production checks also proved:
 
 | Suite | Result |
 | --- | ---: |
-| Node contracts | 1,182 / 1,182 passed |
+| Node contracts | 1,186 / 1,186 passed |
 | Flutter tests | 541 / 541 passed |
 | Flutter analysis | no issues |
 | Web TypeScript | passed |
@@ -98,7 +100,38 @@ recorded separately and do not convert that skipped local check into a pass.
 
 ## Open Gates
 
-### Xcode Cloud And TestFlight
+### Xcode Cloud And TestFlight (Closed)
+
+The repository and Apple distribution path are now production-proven from
+merged `main` revision `35c8bff9cc4368dec05e61b3739322c2f0c524f1`.
+
+Xcode Cloud Build 257 (`0fc97222-bdd8-4f42-8ce8-5effb744b1ba`) first proved
+the complete dependency bootstrap and archive path on Xcode 26.6 and macOS
+Tahoe 26.6. The archive succeeded in eight minutes, including the post-clone
+script, Swift package resolution, `xcodebuild archive`, and ad-hoc, App Store,
+and development exports. Its action ID was
+`96b5fa98-497e-41b1-8504-ab62790b29b1`.
+
+Build 257 did not reach TestFlight because the Xcode Cloud workflow's
+Distribution Preparation setting was `None`. On 2026-07-31, that setting was
+changed to `TestFlight (Internal Testing Only)` without changing repository
+inputs. Manual Build 258 (`4015e605-076b-4771-92cc-8ed573b442f1`) then ran
+from the same merged revision and succeeded. Its archive action
+`75eff77d-122c-4365-a576-4410e5295faa` passed:
+
+- `ci_post_clone.sh` in 2m22.8s
+- Swift package resolution in 21.7s
+- `xcodebuild archive` in 2m16.2s
+- ad-hoc, App Store, and development exports
+- `Prepare Build for App Store Connect` in 26.3s
+
+App Store Connect records upload `1.0.0 (258)` as complete. TestFlight lists
+Build 258 as `Testing`, expiring in 90 days, and assigned to the internal
+Friends and Family group. This closes the archive, upload, processing, and
+internal distribution gates. It does not prove the clean-account product
+journey on a physical iPhone.
+
+#### Historical Repair Record
 
 The Xcode Cloud build for deployed main revision
 `40457c1f8c0f80cd91cbb6f92ca6c1d7fb1e30c2` failed:
@@ -206,11 +239,10 @@ Flutter's Release/config-only command, and proved zero drift across both
 resolution files, `Podfile.lock`, the Xcode project, and the shared scheme. Its
 diagnostic branch and workflow were deleted and were never merged.
 
-Expanded beta requires:
+Expanded beta still requires:
 
-1. a successful Xcode Cloud archive and distributable TestFlight build
-2. clean-account validation on a physical iPhone
-3. the core journey: sign up, find a card, own it, create a binder, add an
+1. clean-account validation on a physical iPhone using TestFlight Build 258
+2. the core journey: sign up, find a card, own it, create a binder, add an
    intent or listing, and observe the resulting activity
 
 ### Pricing Canary
@@ -245,7 +277,7 @@ After the canary passes:
 | --- | ---: | --- |
 | Product foundation | 9.2 / 10 | strong canonical, security, and contract base |
 | Controlled beta readiness | 9 / 10 | authorized with current signed-in boundaries |
-| Expanded beta readiness | 8 / 10 | waits on Apple/TestFlight and physical-device proof |
+| Expanded beta readiness | 8.7 / 10 | Apple/TestFlight is closed; waits on physical-device proof |
 | Public launch readiness | 7 / 10 | pricing duration and public/licensing gates remain |
 | Operational confidence | 8 / 10 | substantially improved; final duration gates remain |
 
@@ -265,8 +297,8 @@ missing core architecture.
 
 ## Exact Next Gate
 
-Merge the Xcode Cloud dependency-bootstrap repair and require a successful
-archive and TestFlight artifact from the resulting `main`. Then validate the
-clean-account journey on a physical iPhone. Independently, preserve the frozen pricing canary until
-`2026-08-03T10:34:15.670Z`, then run its mandatory final pass before applying
-any post-canary pricing migration.
+Install TestFlight Build 258 on a physical iPhone and validate the clean-account
+core journey: sign up, find a card, own it, create a binder, add an intent or
+listing, and verify the resulting activity. Independently, preserve the frozen
+pricing canary until `2026-08-03T10:34:15.670Z`, then run its mandatory final
+pass before applying any post-canary pricing migration.
