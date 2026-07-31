@@ -68,11 +68,12 @@ function formatMessageSummary(activeCount: number, unreadCount: number) {
   return `${activeCount} ${activeCount === 1 ? "active message" : "active messages"} about this card`;
 }
 
-export default async function VaultInstancePage({
-  params,
-}: {
-  params: { gvvi_id: string };
-}) {
+export default async function VaultInstancePage(
+  props: {
+    params: Promise<{ gvvi_id: string }>;
+  }
+) {
+  const params = await props.params;
   const { user } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
 
   const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id);

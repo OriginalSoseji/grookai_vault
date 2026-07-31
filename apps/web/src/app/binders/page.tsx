@@ -26,16 +26,17 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function BindersPage({
-  searchParams,
-}: {
-  searchParams: {
-    notice?: string;
-    cursor?: string;
-    invitationCursor?: string;
-    suspendedCursor?: string;
-  };
-}) {
+export default async function BindersPage(
+  props: {
+    searchParams: Promise<{
+      notice?: string;
+      cursor?: string;
+      invitationCursor?: string;
+      suspendedCursor?: string;
+    }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   if (!isBinderLibraryEnabled()) {
     notFound();
   }

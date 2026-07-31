@@ -3,7 +3,7 @@ import { buildLoginHref, normalizeNextPath } from "@/lib/auth/routeAccess";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export async function getOptionalServerUser() {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

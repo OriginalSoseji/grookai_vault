@@ -37,11 +37,12 @@ function formatTimestamp(value: string) {
   });
 }
 
-export default async function FounderWarehousePage({
-  searchParams,
-}: {
-  searchParams?: { state?: string; intent?: string };
-}) {
+export default async function FounderWarehousePage(
+  props: {
+    searchParams?: Promise<{ state?: string; intent?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   // Placement note: founder already owns the strongest internal/private namespace in web, so
   // warehouse review lives under /founder/warehouse instead of introducing a disconnected admin tree.
   await requireFounderAccess("/founder/warehouse");

@@ -58,7 +58,7 @@ export async function getOwnerWallSectionMemberships(
     };
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
 
   const { data: instanceRow, error: instanceError } = await client
     .from("vault_item_instances")
@@ -131,7 +131,7 @@ export async function getOwnerWallSectionMembershipsBatch(
     }));
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const [
     { data: instanceRows, error: instanceError },
     { data: sectionRows, error: sectionError },

@@ -107,18 +107,19 @@ function buildInitialSubmissionValues(searchParams?: {
   };
 }
 
-export default async function SubmitPage({
-  searchParams,
-}: {
-  searchParams?: {
-    intent?: string | string[];
-    card?: string | string[];
-    printing?: string | string[];
-    finish?: string | string[];
-    reason?: string | string[];
-    returnTo?: string | string[];
-  };
-}) {
+export default async function SubmitPage(
+  props: {
+    searchParams?: Promise<{
+      intent?: string | string[];
+      card?: string | string[];
+      printing?: string | string[];
+      finish?: string | string[];
+      reason?: string | string[];
+      returnTo?: string | string[];
+    }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const { user } = await requireServerUser(buildSubmitLoginNext(searchParams));
   const initialValues = buildInitialSubmissionValues(searchParams);
 

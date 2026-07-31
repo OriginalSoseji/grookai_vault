@@ -366,7 +366,7 @@ export async function importVaultItemsForUser({
 }
 
 export async function importVaultItems(rows: MatchResult[]): Promise<ImportVaultItemsResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

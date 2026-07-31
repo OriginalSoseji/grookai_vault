@@ -825,7 +825,7 @@ async function buildExploreRows(
   const childDisplayImageFallbacks = options.skipChildDisplayImageFallbacks
     ? new Map()
     : await getChildDisplayImageFallbacks(
-        createServerComponentClient(),
+        await createServerComponentClient(),
         rows,
       );
 
@@ -2132,7 +2132,7 @@ function sortRows(
 }
 
 async function fetchRpcIds(query: ResolverQuery) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const rpcPromises = [
     supabase.rpc("search_card_prints_v1", {
       q: query.normalized,
@@ -2187,7 +2187,7 @@ async function fetchRpcIds(query: ResolverQuery) {
 }
 
 async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const primaryNumberToken = query.numberTokens[0] ?? query.numberDigitTokens[0] ?? null;
   const exactSetCode =
     query.expectedSetCodes.length === 1 ? query.expectedSetCodes[0] : null;
@@ -2308,7 +2308,7 @@ function rowMatchesScopedTextTokens(
 }
 
 async function fetchReprintAnthologySetCodes() {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const { data, error } = await supabase
     .from("sets")
     .select("code")
@@ -2340,7 +2340,7 @@ async function addIdentityFilterRequests(
     return;
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const variantKey = getVariantKeyForFilter(normalizedFilter);
   if (variantKey) {
     addRequest(
@@ -2385,7 +2385,7 @@ async function fetchNameFamilyRows(query: ResolverQuery, selectClause: string) {
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const normalizedExpectedSetCodes = normalizeExpectedSetCodes(
     query.expectedSetCodes,
   );
@@ -2458,7 +2458,7 @@ async function fetchIntentScopedRows(
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   type LookupQueryResult = {
     data: CardPrintLookupRow[] | null;
     error: { message: string } | null;
@@ -2686,7 +2686,7 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
     };
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const { data: setRows, error: setError } = await supabase
     .from("tcgdex_sets")
     .select("tcgdex_set_id,name");
@@ -2779,7 +2779,7 @@ async function fetchExactCardRows(
   expectedSetCodes: string[],
   query: ResolverQuery,
 ) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const normalizedExpectedSetCodes =
@@ -2929,7 +2929,7 @@ async function fetchExactCardRows(
 }
 
 async function fetchCardRowsBySetCode(setCode: string) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
@@ -2946,7 +2946,7 @@ async function fetchCardRowsBySetCode(setCode: string) {
 }
 
 async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
@@ -3004,7 +3004,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
 
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const results = new Map<string, CardPrintLookupRow>();
 
   const variantKey = getVariantKeyForFilter(normalizedFilter);
@@ -3060,7 +3060,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
 }
 
 async function fetchCardRowsByIllustrator(illustrator: string) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
@@ -3077,7 +3077,7 @@ async function fetchCardRowsByIllustrator(illustrator: string) {
 }
 
 async function fetchSetCodesByReleaseYear(year: number) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const start = `${year}-01-01`;
   const end = `${year + 1}-01-01`;
   const { data, error } = await supabase
@@ -3100,7 +3100,7 @@ async function fetchSetCodesByReleaseYear(year: number) {
 async function fetchSetCodesByReleaseYearRange(minYear?: number, maxYear?: number) {
   const startYear = typeof minYear === "number" ? minYear : 1999;
   const endYear = typeof maxYear === "number" ? maxYear : new Date().getFullYear() + 1;
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const { data, error } = await supabase
     .from("sets")
     .select("code")
@@ -3119,7 +3119,7 @@ async function fetchSetCodesByReleaseYearRange(minYear?: number, maxYear?: numbe
 }
 
 async function fetchCardRowsByReleaseYear(year: number) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const setCodes = await fetchSetCodesByReleaseYear(year);
   if (setCodes.length === 0) {
     return [] as CardPrintLookupRow[];
@@ -3141,7 +3141,7 @@ async function fetchCardRowsByReleaseYear(year: number) {
 }
 
 async function fetchCardRowsByReleaseYearRange(minYear?: number, maxYear?: number) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const setCodes = await fetchSetCodesByReleaseYearRange(minYear, maxYear);
   if (setCodes.length === 0) {
     return [] as CardPrintLookupRow[];
@@ -3168,7 +3168,7 @@ async function fetchCardRowsByIds(cardPrintIds: string[]) {
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
@@ -3480,7 +3480,7 @@ async function fetchSpeciesFamilyRows(
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const speciesBySlug = new Map<string, DexSpeciesSearchRow>();
 
   for (const token of tokens) {
@@ -3639,7 +3639,7 @@ async function fetchLanguageScopedTextRows(
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
@@ -3760,7 +3760,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const pricingByCardId =
     includePricing
       ? await getPublicPricingByCardIds(
@@ -3794,7 +3794,7 @@ async function fetchCardRowsBySmartText(textQuery?: string) {
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
@@ -3837,7 +3837,7 @@ async function fetchCardRowsByStampLabels(stampLabels: string[]) {
     return [] as CardPrintLookupRow[];
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
@@ -4045,7 +4045,7 @@ async function fetchSmartDiscoveryChildRows(
   options: SmartFilterDiscoveryOptions,
   parentRows: CardPrintLookupRow[],
 ) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const selectClause =
     "id,card_print_id,printing_gv_id,finish_key,image_source,image_path,image_url,image_alt_url,image_status,image_note,card_prints(id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants)";
   const finishKeys = normalizeFinishKeys(options.finishKeys);
@@ -4123,7 +4123,7 @@ export async function getExploreRowsForSmartFilterDiscovery(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(
         supabase,
@@ -4200,7 +4200,7 @@ export async function getExploreRowsForSmartStructuredTextSearch(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(
         supabase,
@@ -4264,7 +4264,7 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(
         supabase,
@@ -4291,7 +4291,7 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
     return new Map<string, PublicSetMetadata>();
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const { data, error } = await supabase
     .from("sets")
     .select("code,name,printed_total,release_date,identity_model")
@@ -4538,7 +4538,7 @@ export async function getExploreRowsPacketWithTiming(
   Object.assign(fetchSetMetadataStage, timedSetMetadata.timing);
   const setMetadataByCode = timedSetMetadata.value;
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const timedPricing = await measureStage(() =>
     includePricing
       ? getPublicPricingByCardIds(

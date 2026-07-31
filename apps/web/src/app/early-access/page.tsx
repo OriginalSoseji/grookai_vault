@@ -8,9 +8,9 @@ export const metadata = {
 };
 
 type EarlyAccessPageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     status?: string;
-  };
+  }>;
 };
 
 const STATUS_COPY: Record<string, { title: string; detail: string; tone: string }> = {
@@ -60,7 +60,8 @@ const proofStats = [
   { value: "0", label: "open conflicts" },
 ];
 
-export default function EarlyAccessPage({ searchParams }: EarlyAccessPageProps) {
+export default async function EarlyAccessPage(props: EarlyAccessPageProps) {
+  const searchParams = await props.searchParams;
   const status = searchParams?.status ? STATUS_COPY[searchParams.status] : null;
 
   return (

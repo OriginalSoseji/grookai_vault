@@ -27,8 +27,8 @@ export const revalidate = 0;
 
 const PUBLIC_ID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const getPublicBinder = cache((publicId: string, cursor: string | null = null) =>
-  getBinderPublicDetail(createServerComponentClient(), publicId, cursor),
+const getPublicBinder = cache(async (publicId: string, cursor: string | null = null) =>
+  getBinderPublicDetail(await createServerComponentClient(), publicId, cursor),
 );
 
 function parseTab(value?: string): BinderTab {
@@ -37,11 +37,12 @@ function parseTab(value?: string): BinderTab {
     : "checklist";
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { publicId: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ publicId: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.publicBinders || !PUBLIC_ID_PATTERN.test(params.publicId)) {
     return {
@@ -78,22 +79,23 @@ export async function generateMetadata({
   }
 }
 
-export default async function BinderDetailPage({
-  params,
-  searchParams,
-}: {
-  params: { publicId: string };
-  searchParams: {
-    tab?: string;
-    result?: string;
-    cursor?: string;
-    queueCursor?: string;
-    add?: string;
-    bulk?: string;
-    edit?: string;
-    filter?: string;
-  };
-}) {
+export default async function BinderDetailPage(
+  props: {
+    params: Promise<{ publicId: string }>;
+    searchParams: Promise<{
+      tab?: string;
+      result?: string;
+      cursor?: string;
+      queueCursor?: string;
+      add?: string;
+      bulk?: string;
+      edit?: string;
+      filter?: string;
+    }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   if (!isBinderLibraryEnabled() || !PUBLIC_ID_PATTERN.test(params.publicId)) {
     notFound();
   }

@@ -347,7 +347,7 @@ export async function getLocalCommunityFeedRows({
     return { status: "disabled", rows: [], setting: null };
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
 
   try {
     const setting = await getViewerLocalDiscoverySetting(supabase);

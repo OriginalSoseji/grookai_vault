@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

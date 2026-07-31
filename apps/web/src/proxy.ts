@@ -424,7 +424,7 @@ async function applyProtectedRouteAuth(request: NextRequest) {
   return response;
 }
 
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const abuseResponse = await applyAbuseProtection(request, event);
   if (abuseResponse) {
     return abuseResponse;

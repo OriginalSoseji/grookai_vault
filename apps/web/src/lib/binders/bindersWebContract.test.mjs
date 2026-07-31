@@ -203,7 +203,7 @@ test("web uses only the locked Binder RPC family and never raw Binder tables", (
 });
 
 test("secret routes are no-referrer, private no-store, noindex, and analytics-free", () => {
-  const middleware = read("middleware.ts");
+  const middleware = read("proxy.ts");
   const analytics = read("components/analytics/SafeAnalytics.tsx");
   const actions = read("lib/binders/actions.ts");
   const inviteHandoff = read("app/binder-invites/[inviteToken]/route.ts");

@@ -5,9 +5,9 @@ import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
 
-export function createServerComponentClient() {
+export async function createServerComponentClient() {
   const { url, publishableKey } = getSupabaseServerConfig();
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return createServerClient(url, publishableKey, {
     cookies: {
@@ -27,8 +27,8 @@ export function createServerComponentClient() {
   });
 }
 
-export function hasSupabaseServerAuthCookie() {
-  const cookieStore = cookies();
+export async function hasSupabaseServerAuthCookie() {
+  const cookieStore = await cookies();
   const { url } = getSupabaseServerConfig();
   const projectRef = (() => {
     try {

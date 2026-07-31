@@ -29,11 +29,12 @@ function buildCurrentPath(intent: string | null) {
   return query ? `/network?${query}` : "/network";
 }
 
-export default async function NetworkPage({
-  searchParams,
-}: {
-  searchParams?: { intent?: string };
-}) {
+export default async function NetworkPage(
+  props: {
+    searchParams?: Promise<{ intent?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);

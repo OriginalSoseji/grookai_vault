@@ -311,7 +311,7 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   const layout = readSource("app", "layout.tsx");
   const robots = readSource("app", "robots.ts");
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
-  const middleware = readSource("middleware.ts");
+  const middleware = readSource("proxy.ts");
   const telemetryEvents = readSource("lib", "telemetry", "events.ts");
   const founderPage = readSource("app", "founder", "page.tsx");
 

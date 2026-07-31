@@ -307,7 +307,7 @@ async function createSlabInstanceUncheckedV1(
     };
   }
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   await assertAuthenticatedVaultUser(client, userId);
 
   const verification = await verifyPsaCert(certNumber);

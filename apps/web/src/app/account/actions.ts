@@ -36,7 +36,7 @@ function formatPublicProfileError(error: PostgrestError) {
 export async function savePublicProfileSettings(
   values: PublicProfileSettingsValues,
 ): Promise<SavePublicProfileSettingsResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

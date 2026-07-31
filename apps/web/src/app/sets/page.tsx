@@ -10,9 +10,9 @@ import {
 export const revalidate = 300;
 
 type SetsPageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     lang?: string;
-  };
+  }>;
 };
 
 function isSpecialSetName(name: string, code: string) {
@@ -32,7 +32,8 @@ function isSpecialSetName(name: string, code: string) {
   );
 }
 
-export default async function SetsPage({ searchParams }: SetsPageProps) {
+export default async function SetsPage(props: SetsPageProps) {
+  const searchParams = await props.searchParams;
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const allSets = await getPublicSets();
   const sets = allSets.filter((setInfo) =>

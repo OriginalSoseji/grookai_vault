@@ -149,11 +149,12 @@ function parseSpeciesFilter(value: string | string[] | undefined) {
   return (raw ?? "").trim().toLowerCase().slice(0, 80);
 }
 
-export default async function VaultPage({
-  searchParams,
-}: {
-  searchParams?: { species?: string | string[] };
-}) {
+export default async function VaultPage(
+  props: {
+    searchParams?: Promise<{ species?: string | string[] }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const bindersEnabled = isBinderLibraryEnabled();
   const { supabase, user } = await requireServerUser("/vault");
   const requestedSpeciesSlug = parseSpeciesFilter(searchParams?.species);

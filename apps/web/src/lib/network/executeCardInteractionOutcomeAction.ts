@@ -113,7 +113,7 @@ export async function executeCardInteractionOutcomeAction(
   formData: FormData,
 ): Promise<ExecuteCardInteractionOutcomeActionResult> {
   const submissionKey = Date.now();
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

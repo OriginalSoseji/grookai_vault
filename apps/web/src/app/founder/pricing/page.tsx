@@ -19,14 +19,13 @@ export const metadata: Metadata = {
 };
 
 type FounderPricingPageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     gv_id?: string | string[];
-  };
+  }>;
 };
 
-export default async function FounderPricingPage({
-  searchParams,
-}: FounderPricingPageProps) {
+export default async function FounderPricingPage(props: FounderPricingPageProps) {
+  const searchParams = await props.searchParams;
   await requireFounderAccess("/founder/pricing");
   const admin = createServerAdminClient();
   const summary = await getFounderGovernedPricingPlatformSummary(admin);

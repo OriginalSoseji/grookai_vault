@@ -31,11 +31,12 @@ function asAbsoluteUrl(origin: string, value: string | null | undefined) {
   }
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { gvvi_id: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ gvvi_id: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
   if (!detail) {
     notFound();
@@ -84,15 +85,16 @@ function formatTimestamp(value: string | null) {
   });
 }
 
-export default async function PublicVaultInstancePage({
-  params,
-}: {
-  params: { gvvi_id: string };
-}) {
-  const supabase = createServerComponentClient();
+export default async function PublicVaultInstancePage(
+  props: {
+    params: Promise<{ gvvi_id: string }>;
+  }
+) {
+  const params = await props.params;
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
-  } = hasSupabaseServerAuthCookie()
+  } = await hasSupabaseServerAuthCookie()
     ? await supabase.auth.getUser()
     : { data: { user: null } };
   const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id, {

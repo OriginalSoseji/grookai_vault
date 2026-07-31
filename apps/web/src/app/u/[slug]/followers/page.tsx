@@ -15,7 +15,8 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     return {
@@ -55,7 +56,8 @@ function formatFollowerSince(value: string | null) {
   })}`;
 }
 
-export default async function PublicFollowersPage({ params }: { params: { slug: string } }) {
+export default async function PublicFollowersPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     notFound();

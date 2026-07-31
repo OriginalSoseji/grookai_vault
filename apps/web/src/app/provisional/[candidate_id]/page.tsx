@@ -12,11 +12,12 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { candidate_id: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ candidate_id: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const continuity = await getProvisionalPromotionContinuity(params.candidate_id);
   const card = continuity.kind === "provisional" ? continuity.candidate : null;
 
@@ -33,11 +34,12 @@ export async function generateMetadata({
 // LOCK: Do not add vault, pricing, provenance, ownership, or GV-ID here.
 // LOCK: Promoted provisional routes must continue to canonical truth when explicit linkage exists.
 // LOCK: Do not keep promoted rows alive as non-canonical detail pages.
-export default async function ProvisionalCardPage({
-  params,
-}: {
-  params: { candidate_id: string };
-}) {
+export default async function ProvisionalCardPage(
+  props: {
+    params: Promise<{ candidate_id: string }>;
+  }
+) {
+  const params = await props.params;
   const continuity = await getProvisionalPromotionContinuity(params.candidate_id);
   const redirectHref = buildProvisionalContinuityRedirectHref(continuity);
   if (redirectHref) {

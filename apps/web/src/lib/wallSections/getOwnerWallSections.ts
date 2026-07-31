@@ -46,7 +46,7 @@ export async function getOwnerWallSectionLimitState(_userId: string): Promise<Ow
 }
 
 export async function getOwnerWallSections(userId: string): Promise<WallSectionsSettingsModel> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const limitState = await getOwnerWallSectionLimitState(userId);
 
   const { data: sectionRows, error: sectionError } = await client

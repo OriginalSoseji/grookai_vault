@@ -430,11 +430,12 @@ function EvidenceCard({ row }: { row: FounderWarehouseEvidenceDetailRow }) {
   );
 }
 
-export default async function FounderWarehouseCandidatePage({
-  params,
-}: {
-  params: { candidateId: string };
-}) {
+export default async function FounderWarehouseCandidatePage(
+  props: {
+    params: Promise<{ candidateId: string }>;
+  }
+) {
+  const params = await props.params;
   await requireFounderAccess(`/founder/warehouse/${encodeURIComponent(params.candidateId)}`);
 
   const detail = await getFounderWarehouseCandidateById(params.candidateId);

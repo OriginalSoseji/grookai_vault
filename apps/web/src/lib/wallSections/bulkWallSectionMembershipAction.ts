@@ -63,7 +63,7 @@ function normalizeBulkInstanceIds(values: unknown[]): string[] {
 export async function bulkWallSectionMembershipAction(
   input: BulkWallSectionMembershipInput,
 ): Promise<BulkWallSectionMembershipResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

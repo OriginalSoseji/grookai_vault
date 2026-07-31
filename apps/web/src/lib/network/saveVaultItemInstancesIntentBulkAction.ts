@@ -45,7 +45,7 @@ function normalizeBulkInstanceIds(values: unknown[]): string[] {
 export async function saveVaultItemInstancesIntentBulkAction(
   input: SaveVaultItemInstancesIntentBulkInput,
 ): Promise<SaveVaultItemInstancesIntentBulkResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

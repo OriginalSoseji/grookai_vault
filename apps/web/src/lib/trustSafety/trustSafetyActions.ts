@@ -62,7 +62,7 @@ export async function reportTrustSafetySurfaceAction(args: {
   details?: string | null;
   returnPath?: string | null;
 }): Promise<TrustSafetyActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();
@@ -102,7 +102,7 @@ export async function blockTrustSafetyUserAction(args: {
   cardPrintId?: string | null;
   returnPath?: string | null;
 }): Promise<TrustSafetyActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

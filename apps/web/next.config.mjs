@@ -42,10 +42,8 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    cpus: 1,
-    outputFileTracingRoot: repoRoot,
-    outputFileTracingIncludes: {
+  outputFileTracingRoot: repoRoot,
+  outputFileTracingIncludes: {
       "/u/[slug]/opengraph-image": [
         "./public/grookai-logo-512.png",
       ],
@@ -68,7 +66,9 @@ const nextConfig = {
       "/api/review/visual-search/dashboard": [
         "./private/review/visual-search/**",
       ],
-    },
+  },
+  experimental: {
+    cpus: 1,
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,

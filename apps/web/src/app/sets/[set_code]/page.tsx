@@ -22,11 +22,12 @@ const INITIAL_CARD_CHUNK = 24;
 const getCachedPublicSetByCode = cache(getPublicSetByCode);
 type PublicSetDetail = NonNullable<Awaited<ReturnType<typeof getPublicSetByCode>>>;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { set_code: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ set_code: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const setDetail = await getCachedPublicSetByCode(params.set_code);
   if (!setDetail) {
     notFound();
@@ -87,7 +88,7 @@ async function SetPageContent({
   params: { set_code: string };
   setDetail: PublicSetDetail;
 }) {
-  const supabase = createServerComponentClient();
+  const supabase = await createServerComponentClient();
   const [authResponse, initialCards] = await Promise.all([
     supabase.auth.getUser(),
     getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
@@ -312,11 +313,12 @@ async function SetPageContent({
   );
 }
 
-export default async function SetPage({
-  params,
-}: {
-  params: { set_code: string };
-}) {
+export default async function SetPage(
+  props: {
+    params: Promise<{ set_code: string }>;
+  }
+) {
+  const params = await props.params;
   const setDetail = await getCachedPublicSetByCode(params.set_code);
   if (!setDetail) {
     notFound();

@@ -33,7 +33,7 @@ export type SaveVaultItemInstanceMediaResult =
 export async function saveVaultItemInstanceMediaAction(
   input: SaveVaultItemInstanceMediaInput,
 ): Promise<SaveVaultItemInstanceMediaResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

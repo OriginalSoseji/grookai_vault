@@ -36,7 +36,7 @@ function normalizeId(value: string | null | undefined) {
 export async function followCollectorAction(
   input: FollowCollectorInput,
 ): Promise<FollowCollectorResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

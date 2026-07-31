@@ -7,7 +7,7 @@ export async function revalidateOwnerWallSectionPaths(userId: string) {
   revalidatePath("/account");
   revalidatePath("/wall");
 
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const { data: profile } = await client
     .from("public_profiles")
     .select("slug")

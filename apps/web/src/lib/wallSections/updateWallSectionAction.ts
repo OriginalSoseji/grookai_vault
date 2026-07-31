@@ -32,7 +32,7 @@ function normalizeSectionId(value: unknown): string {
 }
 
 export async function updateWallSectionAction(input: UpdateWallSectionInput): Promise<WallSectionActionResult> {
-  const client = createServerComponentClient();
+  const client = await createServerComponentClient();
   const {
     data: { user },
   } = await client.auth.getUser();

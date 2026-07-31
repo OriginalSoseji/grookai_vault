@@ -20,11 +20,12 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 
 export const revalidate = 60;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; pokemon: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string; pokemon: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   const pokemonLabel = formatPokemonSlugLabel(params.pokemon);
 
@@ -62,11 +63,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function PublicPokemonCollectionPage({
-  params,
-}: {
-  params: { slug: string; pokemon: string };
-}) {
+export default async function PublicPokemonCollectionPage(
+  props: {
+    params: Promise<{ slug: string; pokemon: string }>;
+  }
+) {
+  const params = await props.params;
   const profile = await getPublicProfileBySlug(params.slug);
   const pokemonLabel = formatPokemonSlugLabel(params.pokemon);
   const normalizedPokemon = normalizePokemonSlug(params.pokemon);

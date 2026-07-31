@@ -19,13 +19,14 @@ export const metadata: Metadata = {
 
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{20,256}$/;
 
-export default async function BinderViewLinkPage({
-  params,
-  searchParams,
-}: {
-  params: { viewToken: string };
-  searchParams: { cursor?: string };
-}) {
+export default async function BinderViewLinkPage(
+  props: {
+    params: Promise<{ viewToken: string }>;
+    searchParams: Promise<{ cursor?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.viewLinks || !TOKEN_PATTERN.test(params.viewToken)) {
     return <UnavailableViewLink />;

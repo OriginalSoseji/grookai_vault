@@ -32,12 +32,13 @@ function getSingleCopyHref(copyItems: Array<{ gv_vi_id: string | null }>) {
   return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
 }
 
-export default async function VaultManageCardPage({
-  params,
-}: {
-  params: { cardId: string };
-}) {
-  const supabase = createServerComponentClient();
+export default async function VaultManageCardPage(
+  props: {
+    params: Promise<{ cardId: string }>;
+  }
+) {
+  const params = await props.params;
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
