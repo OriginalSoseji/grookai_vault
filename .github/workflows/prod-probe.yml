@@ -57,7 +57,7 @@ jobs:
             --connect-timeout 10 \
             --max-time 30 \
             -H "apikey: $ANON" \
-            -H "Authorization: Bearer $ANON" \
+            --oauth2-bearer "$ANON" \
             "${SUPABASE_URL%/}/functions/v1/wall_feed?limit=1")
 
           jq -n \

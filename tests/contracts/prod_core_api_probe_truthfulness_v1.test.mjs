@@ -31,6 +31,8 @@ test("production core API probe enforces HTTP and JSON response contracts", () =
     /jq -e '\(\.items \| type == "array"\) and \(\.count \| type == "number"\)'/,
   );
   assert.match(WORKFLOW, /\/functions\/v1\/wall_feed\?limit=1/);
+  assert.match(WORKFLOW, /--oauth2-bearer "\$ANON"/);
+  assert.doesNotMatch(WORKFLOW, /Authorization:\s*Bearer/);
   assert.doesNotMatch(WORKFLOW, /\/v_wall_feed\?/);
   assert.doesNotMatch(WORKFLOW, /\|\| echo N\/A/);
 });
