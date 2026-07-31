@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
+
+This checkpoint records the July 31 observer false alarm, the real current-feed
+canary subtype drift, the stack-line retry-classification defect, canary V2,
+source-trigger-aware observation policy V2, and the clean replacement window.
+
+Decision locked there:
+
+- scheduled source trigger and publication completion are separate evidence;
+  current-source drift fails closed without retry, and only the fully healthy
+  July 31 `REPAIR3` activation starts canary time
+
+Unresolved risk afterward:
+
+- the replacement window must remain healthy through the nominal
+  `2026-08-03T10:34:15.670Z` end and any bounded final-slot completion grace;
+  post-canary migrations and broader rollout remain pending
+
 ### `PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
 
 This checkpoint records the production-scale active-ask and health-query
@@ -800,7 +818,13 @@ Recommended reading order for future maintainers:
     - finally read how the next production-scale cycle exposed active-ask and
       health-query limits, how those queries were repaired without broadening
       publication, and why only the July 30 `REPAIR2` activation starts the
-      current 72-hour window
+      superseded July 30 window
+
+39. `PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
+    - then read why the July 30 window failed, how source-trigger evidence,
+      current canary continuity, retry classification, and final completion
+      grace were repaired, and why only July 31 `REPAIR3` starts the active
+      72-hour window
 
 After those checkpoints, read the supporting audits in this order:
 

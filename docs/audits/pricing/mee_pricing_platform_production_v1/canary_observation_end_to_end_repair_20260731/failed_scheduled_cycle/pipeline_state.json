@@ -1,0 +1,58 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31",
+  "status": "failed",
+  "started_at": "2026-07-31T08:15:02.336Z",
+  "commit_sha": "456306bdb2a335286d513c1d612a97a58a1f01cc",
+  "phases": {
+    "warehouse_current_sync": {
+      "status": "completed",
+      "started_at": "2026-07-31T10:08:56.717Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "--mode=current",
+        "--apply",
+        "--resume-run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-warehouse",
+        "--request-ceiling=10000",
+        "--out-dir=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/warehouse"
+      ],
+      "finished_at": "2026-07-31T10:09:20.180Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/warehouse_current_sync.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/warehouse_current_sync.stderr.log"
+    },
+    "active_ask_refresh": {
+      "status": "completed",
+      "started_at": "2026-07-31T10:09:20.181Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+        "--apply",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/active_ask_refresh",
+        "--timeout-minutes=20"
+      ],
+      "finished_at": "2026-07-31T10:12:09.308Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/active_ask_refresh.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/active_ask_refresh.stderr.log"
+    },
+    "publication": {
+      "status": "failed",
+      "started_at": "2026-07-31T10:12:09.309Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+        "--mode=canary",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/publication",
+        "--freshness-hours=36",
+        "--database-timeout-minutes=20",
+        "--canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v1.json"
+      ],
+      "finished_at": "2026-07-31T10:19:33.161Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/publication.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/publication.stderr.log",
+      "error": "Command failed: /usr/bin/node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --mode=canary --run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-publication --out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31/publication --freshness-hours=36 --database-timeout-minutes=20 --canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v1.json\n[tcgplayer-market-publication] Error: canary source identity 168245:Normal:15994d81-d30d-48fb-a484-75a7a07bc974 resolved 0 rows\n    at file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:286:15\n    at Array.map (<anonymous>)\n    at candidateRows (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:282:39)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async operation (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1357:22)\n    at async runPhase (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:629:21)\n    at async runDurable (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1352:5)\n    at async main (file:///home/grookai/grookai_vault_mee_productization_v1/scripts/workers/tcgplayer_market_publication_worker_v1.mjs:1622:23)\n"
+    }
+  },
+  "finished_at": "2026-07-31T10:19:33.161Z"
+}
