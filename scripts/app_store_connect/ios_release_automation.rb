@@ -140,6 +140,8 @@ class AppStoreConnectClient
 end
 
 class IosReleaseAutomation
+  APPLE_UPLOAD_HOST_SUFFIX = ".blobstore.apple.com"
+
   def initialize(config, client = nil)
     @config = config
     @client = client
@@ -821,7 +823,7 @@ class IosReleaseAutomation
 
   def upload_asset_part(operation, bytes)
     method_name = operation.fetch("method")
-    uri = URI(operation.fetch("url"))
+    uri = validated_asset_upload_uri(operation.fetch("url"))
     offset = operation.fetch("offset").to_i
     length = operation.fetch("length").to_i
     body = bytes.byteslice(offset, length)
@@ -846,6 +848,19 @@ class IosReleaseAutomation
     return if response.is_a?(Net::HTTPSuccess)
 
     raise AppStoreConnectError, "Asset upload failed: HTTP #{response.code} #{response.body}"
+  end
+
+  def validated_asset_upload_uri(value)
+    uri = URI.parse(value.to_s)
+    host = uri.host.to_s.downcase
+    trusted_host = host.end_with?(APPLE_UPLOAD_HOST_SUFFIX) && host.length > APPLE_UPLOAD_HOST_SUFFIX.length
+    unless uri.is_a?(URI::HTTPS) && uri.scheme == "https" && uri.userinfo.nil? && uri.port == 443 && trusted_host
+      raise AppStoreConnectError, "Apple returned an untrusted asset upload URL"
+    end
+
+    uri
+  rescue URI::InvalidURIError
+    raise AppStoreConnectError, "Apple returned an invalid asset upload URL"
   end
 
   def json_api(type, id, attributes)

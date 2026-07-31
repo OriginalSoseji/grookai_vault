@@ -40,6 +40,20 @@ function normalizeSearchQuery(value: string | null | undefined) {
   return normalized.startsWith("@") ? normalized.slice(1).trim() || null : normalized;
 }
 
+function buildQuotedIlikePattern(value: string) {
+  let escaped = "";
+  for (const character of value) {
+    if (character === "\\" || character === '"') {
+      escaped += "\\";
+    }
+    if (character === "%" || character === "_") {
+      escaped += "\\";
+    }
+    escaped += character;
+  }
+  return `"%${escaped}%"`;
+}
+
 export async function getCollectorDiscoverRows({
   query,
   excludeUserId,
@@ -67,8 +81,8 @@ export async function getCollectorDiscoverRows({
   }
 
   if (normalizedQuery) {
-    const escapedQuery = normalizedQuery.replace(/[%_]/g, "\\$&");
-    request = request.or(`display_name.ilike.%${escapedQuery}%,slug.ilike.%${escapedQuery}%`);
+    const quotedPattern = buildQuotedIlikePattern(normalizedQuery);
+    request = request.or(`display_name.ilike.${quotedPattern},slug.ilike.${quotedPattern}`);
   }
 
   const { data, error } = await request;
