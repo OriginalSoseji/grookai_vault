@@ -155,6 +155,17 @@ cache. The next candidate uses a version-specific SDK cache, verifies the
 cached framework version before dependency resolution, and emits bounded phase
 markers so future custom-script failures identify the exact failed stage.
 
+Build 254 still failed inside the custom script. The same merged script then
+passed end to end on a disposable GitHub macOS 15 runner in 4m42s, including
+Flutter package resolution, CocoaPods installation, and release configuration.
+That isolates the remaining failure to Xcode Cloud-specific state rather than
+portable script behavior. The candidate still allowed a hidden
+`FLUTTER_VERSION` workflow variable to override the repository default. The
+next candidate removes that override path, freezes Flutter 3.44.7 in source,
+and uses distinct non-secret exit codes for clone, precache, package, pod, and
+release-configuration phases. The disposable diagnostic branch is not part of
+the release and must not be merged.
+
 Expanded beta requires:
 
 1. a successful Xcode Cloud archive and distributable TestFlight build
