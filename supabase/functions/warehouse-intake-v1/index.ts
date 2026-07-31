@@ -215,7 +215,6 @@ serve(async (req) => {
     if (error || !data) {
       return corsJson(500, {
         error: "warehouse_intake_failed",
-        detail: error?.message ?? "unknown",
       });
     }
 
@@ -224,8 +223,6 @@ serve(async (req) => {
       candidate_id: data,
     });
   } catch (err) {
-    const detail = String((err as Error)?.message ?? err);
-
     switch ((err as { code?: string })?.code) {
       case "notes_required":
       case "invalid_submission_intent":
@@ -239,9 +236,10 @@ serve(async (req) => {
       case "missing_image_storage_path":
       case "evidence_required":
       case "missing_image_requires_reference":
-        return corsJson(400, { error: (err as { code?: string }).code, detail });
+        return corsJson(400, { error: (err as { code?: string }).code });
       default:
-        return corsJson(500, { error: "internal_error", detail });
+        console.error("[warehouse-intake-v1] request failed", err);
+        return corsJson(500, { error: "internal_error" });
     }
   }
 });

@@ -21,7 +21,6 @@ function sanitizeBrokenCharacters(value) {
 function normalizeForDistance(value) {
   return collapseWhitespace(sanitizeBrokenCharacters(value))
     .toLowerCase()
-    .replace(/\bex\b/g, 'ex')
     .trim();
 }
 

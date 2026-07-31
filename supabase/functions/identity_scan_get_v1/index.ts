@@ -23,9 +23,12 @@ serve(async (req) => {
       sb = auth.sb;
       userId = auth.userId;
     } catch (err) {
-      if (err?.code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
-      if (err?.code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
-      if (err?.code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
+      const code = (typeof err === "object" && err !== null && "code" in err)
+        ? String((err as { code?: unknown }).code ?? "")
+        : "";
+      if (code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
+      if (code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
+      if (code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
       throw err;
     }
 
@@ -45,7 +48,7 @@ serve(async (req) => {
         .eq("user_id", userId)
         .maybeSingle();
 
-      if (error) return json(500, { error: "fetch_failed", detail: error.message });
+      if (error) return json(500, { error: "fetch_failed" });
       if (!data) return json(404, { error: "not_found" });
       return json(200, { event: data });
     }
@@ -58,9 +61,10 @@ serve(async (req) => {
       .order("id", { ascending: false })
       .range(offset, offset + limit - 1);
 
-    if (error) return json(500, { error: "fetch_failed", detail: error.message });
+    if (error) return json(500, { error: "fetch_failed" });
     return json(200, { events: data ?? [] });
   } catch (e) {
-    return json(500, { error: "internal_error", detail: String((e as Error)?.message ?? e) });
+    console.error("[identity_scan_get_v1] request failed", e);
+    return json(500, { error: "internal_error" });
   }
 });

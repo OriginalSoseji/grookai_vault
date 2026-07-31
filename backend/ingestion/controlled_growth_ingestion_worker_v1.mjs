@@ -24,8 +24,8 @@ if (HAS_APPLY && HAS_DRY_RUN) {
 
 const APOSTROPHE_VARIANTS_RE = /[\u2018\u2019`´]/g;
 const DASH_SEPARATOR_VARIANTS_RE = /[\u2013\u2014]/g;
-const TERMINAL_EX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)+EX$/i;
-const TERMINAL_GX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)+GX$/i;
+const TERMINAL_EX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)EX$/i;
+const TERMINAL_GX_RE = /([A-Za-z0-9])(?:\s*-\s*|\s+)GX$/i;
 const PRODUCT_NOISE_RE = /\bcode\s*card\b/i;
 
 function normalizeTextOrNull(value) {

@@ -78,7 +78,7 @@ const handler = async (req: Request): Promise<Response> => {
     .single();
 
   if (error || !data) {
-    return json(500, { error: "enqueue_failed", detail: error?.message ?? "Failed to enqueue job" });
+    return json(500, { error: "enqueue_failed" });
   }
 
   return json(201, {

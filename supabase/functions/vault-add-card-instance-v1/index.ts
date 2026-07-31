@@ -79,7 +79,6 @@ serve(async (req) => {
     if (error || !data) {
       return corsJson(500, {
         error: "vault_add_failed",
-        detail: error?.message ?? "unknown",
       });
     }
 
@@ -88,9 +87,9 @@ serve(async (req) => {
       result: data,
     });
   } catch (err) {
+    console.error("[vault-add-card-instance-v1] request failed", err);
     return corsJson(500, {
       error: "internal_error",
-      detail: String((err as Error)?.message ?? err),
     });
   }
 });

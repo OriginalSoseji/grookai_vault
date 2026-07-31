@@ -5,7 +5,6 @@ import { getServiceRoleKey } from "../_shared/key_resolver.ts";
 type ReqBody = {
   vault_item_id: string;
   slots: string[];
-  debug?: boolean;
 };
 
 const ALLOWED_SLOTS = new Set([
@@ -43,46 +42,12 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = getServiceRoleKey();
     if (!supabaseUrl || !serviceRoleKey) {
-      return new Response(
-        JSON.stringify({ code: 500, message: "Server misconfigured: missing Supabase env vars" }),
-        { status: 500 },
-      );
+      return json(500, { error: "server_misconfigured" });
     }
 
     const body = (await req.json()) as Partial<ReqBody>;
     const vaultItemId = (body.vault_item_id ?? "").trim();
     const slots = Array.isArray(body.slots) ? body.slots.map((s) => String(s).trim()) : [];
-    const debug = body.debug === true;
-
-    if (debug) {
-      const authHeader = req.headers.get("authorization") ?? req.headers.get("Authorization") ?? "";
-      const apikey = req.headers.get("apikey") ?? req.headers.get("x-apikey") ?? "";
-      const token = extractBearerToken(req);
-      const hasAuth = authHeader.length > 0;
-      const bearerExtracted = !!token;
-      const keys: string[] = [];
-      for (const [k] of req.headers.entries()) {
-        if (["authorization", "apikey", "x-apikey"].includes(k.toLowerCase())) {
-          keys.push(k);
-        }
-      }
-      return json(200, {
-        debug: true,
-        has_authorization_header: hasAuth,
-        authorization_header_prefix: authHeader.slice(0, 20),
-        bearer_extracted: bearerExtracted,
-        token_len: token?.length ?? 0,
-        token_prefix: token ? token.slice(0, 12) : null,
-        token_suffix: token ? token.slice(-6) : null,
-        token_has_whitespace: token ? /\s/.test(token) : false,
-        has_apikey: apikey.length > 0,
-        apikey_prefix: apikey.slice(0, 8),
-        auth_header_keys: keys,
-        env_has_supabase_url: !!supabaseUrl,
-        env_has_supabase_secret_key: !!serviceRoleKey,
-        supabase_url_prefix: supabaseUrl ? supabaseUrl.slice(0, 24) : null,
-      });
-    }
 
     const token = extractBearerToken(req);
     if (!token) return json(401, { error: "missing_bearer_token" });
@@ -93,16 +58,7 @@ serve(async (req) => {
 
     const { data: userData, error: userErr } = await sb.auth.getUser(token);
     if (userErr || !userData?.user) {
-      return new Response(
-        JSON.stringify({
-          code: 401,
-          message: "Invalid JWT",
-          detail: userErr?.message ?? null,
-          token_prefix: token.slice(0, 12),
-          token_len: token.length,
-        }),
-        { status: 401 },
-      );
+      return json(401, { error: "invalid_jwt" });
     }
     const userId = userData.user.id;
 
@@ -135,7 +91,6 @@ serve(async (req) => {
         return json(403, {
           error: "signed_upload_denied",
           slot,
-          details: error?.message ?? "unknown",
         });
       }
 
@@ -152,6 +107,7 @@ serve(async (req) => {
       },
     });
   } catch (e) {
-    return json(500, { error: "internal_error", details: String((e as Error)?.message ?? e) });
+    console.error("[scan-upload-plan] request failed", e);
+    return json(500, { error: "internal_error" });
   }
 });

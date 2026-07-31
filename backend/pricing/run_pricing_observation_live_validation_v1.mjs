@@ -34,7 +34,7 @@ function buildRunId(explicitRunId = null) {
   if (explicitRunId && String(explicitRunId).trim()) {
     return String(explicitRunId).trim();
   }
-  return `live_validation_v1_${new Date().toISOString().replace(/[-:.]/g, '').replace('Z', 'Z')}`;
+  return `live_validation_v1_${new Date().toISOString().replace(/[-:.]/g, '')}`;
 }
 
 function printJsonBlock(label, value) {
