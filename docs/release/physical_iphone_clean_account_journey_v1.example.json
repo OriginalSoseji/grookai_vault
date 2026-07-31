@@ -1,0 +1,21 @@
+{
+  "platform": "iOS",
+  "physical_device": false,
+  "installed_from_testflight": false,
+  "device_model_family": "iPhone",
+  "testflight_build": "258",
+  "app_commit_sha": "35c8bff9cc4368dec05e61b3739322c2f0c524f1",
+  "tested_at": "2026-07-31T00:00:00.000Z",
+  "confirmations": {
+    "signup_completed": false,
+    "card_search_rendered": false,
+    "owned_card_visible": false,
+    "binder_visible": false,
+    "intent_or_listing_visible": false,
+    "activity_visible": false,
+    "no_blocking_error": false
+  },
+  "artifact_paths": [
+    "path/to/continuous-screen-recording.mov"
+  ]
+}

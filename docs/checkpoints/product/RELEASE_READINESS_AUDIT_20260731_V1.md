@@ -81,7 +81,7 @@ probe passed. Earlier read-only production checks also proved:
 
 | Suite | Result |
 | --- | ---: |
-| Node contracts | 1,186 / 1,186 passed |
+| Node contracts | 1,193 / 1,193 passed |
 | Flutter tests | 541 / 541 passed |
 | Flutter analysis | no issues |
 | Web TypeScript | passed |
@@ -299,6 +299,9 @@ missing core architecture.
 
 Install TestFlight Build 258 on a physical iPhone and validate the clean-account
 core journey: sign up, find a card, own it, create a binder, add an intent or
-listing, and verify the resulting activity. Independently, preserve the frozen
-pricing canary until `2026-08-03T10:34:15.670Z`, then run its mandatory final
-pass before applying any post-canary pricing migration.
+listing, and verify the resulting activity. Follow
+`docs/release/PHYSICAL_IPHONE_CLEAN_ACCOUNT_JOURNEY_V1.md`, then require the
+read-only `release:journey:verify` reconciliation to pass before closing the
+device gate. Independently, preserve the frozen pricing canary until
+`2026-08-03T10:34:15.670Z`, then run its mandatory final pass before applying
+any post-canary pricing migration.
