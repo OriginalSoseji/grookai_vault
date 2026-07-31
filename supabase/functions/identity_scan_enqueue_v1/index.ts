@@ -17,23 +17,6 @@ function isUuid(v: string | undefined | null): boolean {
 
 serve(async (req) => {
   try {
-    const authHeader = req.headers.get("authorization") ?? "";
-    const xbear = req.headers.get("x-gv-bearer") ?? "";
-    console.log(
-      JSON.stringify(
-        {
-          stage: "auth_probe",
-          has_auth: !!authHeader,
-          auth_len: authHeader.length,
-          auth_prefix: authHeader.slice(0, 20),
-          has_xbear: !!xbear,
-          xbear_len: xbear.length,
-          xbear_prefix: xbear.slice(0, 20),
-        },
-        null,
-        0,
-      ),
-    );
     if (req.method === "OPTIONS") {
       return new Response("ok", { status: 200 });
     }
@@ -82,7 +65,7 @@ serve(async (req) => {
       .eq("id", candidateId)
       .eq("user_id", userId)
       .maybeSingle();
-    if (identityErr) return json(500, { error: "snapshot_lookup_failed", detail: identityErr.message });
+    if (identityErr) return json(500, { error: "snapshot_lookup_failed" });
     if (identitySnap) {
       resolvedSnapshotId = identitySnap.id;
       snapshotUserId = identitySnap.user_id ?? null;
@@ -95,7 +78,7 @@ serve(async (req) => {
         .eq("id", candidateId)
         .eq("user_id", userId)
         .maybeSingle();
-      if (snapErr) return json(500, { error: "snapshot_lookup_failed", detail: snapErr.message });
+      if (snapErr) return json(500, { error: "snapshot_lookup_failed" });
       if (!snap) return json(404, { error: "snapshot_not_found" });
       resolvedSnapshotId = snap.id;
       snapshotUserId = snap.user_id ?? null;
@@ -141,11 +124,12 @@ serve(async (req) => {
       .maybeSingle();
 
     if (insErr || !inserted?.id) {
-      return json(500, { error: "enqueue_failed", detail: insErr?.message ?? "unknown" });
+      return json(500, { error: "enqueue_failed" });
     }
 
     return json(200, { identity_scan_event_id: inserted.id, status: "pending" });
   } catch (e) {
-    return json(500, { error: "internal_error", detail: String((e as Error)?.message ?? e) });
+    console.error("[identity_scan_enqueue_v1] request failed", e);
+    return json(500, { error: "internal_error" });
   }
 });

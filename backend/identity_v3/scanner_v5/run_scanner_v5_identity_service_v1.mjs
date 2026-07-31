@@ -77,9 +77,10 @@ async function main() {
   };
   const server = createServer((request, response) => {
     handleRequest(request, response, service).catch((error) => {
+      console.error('[scanner-v5] unhandled request failure', error);
       writeJson(response, 500, {
         ok: false,
-        error: error?.message || String(error),
+        error: 'internal_error',
       });
     });
   });
@@ -235,7 +236,7 @@ async function handleRequest(request, response, service) {
         rectification: null,
         rectified_debug_path: null,
         retake_hint: 'Retake with the full card centered, in focus, and evenly lit.',
-        error: error?.message || String(error),
+        error: 'scan_processing_failed',
       });
     }
     return;

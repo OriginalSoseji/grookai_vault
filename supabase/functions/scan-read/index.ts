@@ -20,7 +20,7 @@ serve(async (req) => {
 
     const url = Deno.env.get("SUPABASE_URL");
     const publishableKey = getPublishableKey();
-    if (!url || !publishableKey) return json(500, { error: "missing_env", details: "SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY" });
+    if (!url || !publishableKey) return json(500, { error: "server_misconfigured" });
 
     const authHeader = req.headers.get("authorization") ?? "";
     if (!authHeader.toLowerCase().startsWith("bearer ")) return json(401, { error: "missing_bearer_token" });
@@ -43,7 +43,7 @@ serve(async (req) => {
       .eq("user_id", userId)
       .maybeSingle();
 
-    if (snapErr) return json(500, { error: "db_error", details: snapErr.message });
+    if (snapErr) return json(500, { error: "snapshot_lookup_failed" });
     if (!snap) return json(404, { error: "not_found" });
 
     const images = snap.images as any;
@@ -85,6 +85,7 @@ serve(async (req) => {
       expires_in: expiresIn,
     });
   } catch (e) {
-    return json(500, { error: "internal_error", details: String((e as Error)?.message ?? e) });
+    console.error("[scan-read] request failed", e);
+    return json(500, { error: "internal_error" });
   }
 });

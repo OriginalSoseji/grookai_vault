@@ -121,10 +121,10 @@ serve(async (req) => {
       dispatch,
     });
   } catch (error) {
+    console.error("[operations-webhook-v1] request failed", error);
     return corsJson(500, {
       ok: false,
       error: "operations_webhook_failed",
-      detail: String((error as Error)?.message ?? error),
     });
   }
 });

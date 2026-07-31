@@ -990,7 +990,7 @@ serve(async (req) => {
                 .toISOString(),
             }, invocationSignal),
           ]);
-          return { id: row.id, status: "error", reason };
+          return { id: row.id, status: "error", reason: "dispatch_failed" };
         }
       }));
       results.push(...chunkResults);
@@ -1003,10 +1003,10 @@ serve(async (req) => {
       fcm_mode: shouldUseMockFcm(requestBody) ? "mock" : "real",
     });
   } catch (error) {
+    console.error("[notification-dispatcher] request failed", error);
     return corsJson(500, {
       ok: false,
       error: "notification_dispatcher_failed",
-      detail: String((error as Error)?.message ?? error),
     });
   }
 });
