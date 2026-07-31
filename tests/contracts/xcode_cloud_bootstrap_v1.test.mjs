@@ -20,6 +20,7 @@ test("Xcode Cloud uses the repository-tested Flutter release", () => {
 
 test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /flutter pub get/);
+  assert.match(script, /flutter build ios --config-only --release/);
   assert.match(script, /command -v pod/);
   assert.match(script, /brew install cocoapods/);
   assert.match(script, /cd ios\r?\npod install/);
