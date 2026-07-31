@@ -1,0 +1,201 @@
+// Supabase Edge Function: wall_feed (public, fixed-shape, read-only)
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+import { getServiceRoleKey } from "../_shared/key_resolver.ts";
+
+const SELECT_COLUMNS = [
+  "listing_id",
+  "owner_id",
+  "card_id",
+  "title",
+  "price_cents",
+  "currency",
+  "condition",
+  "status",
+  "created_at",
+  "thumb_url",
+].join(",");
+
+const CORS_HEADERS = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, OPTIONS",
+  "access-control-allow-headers":
+    "authorization, x-client-info, apikey, content-type",
+  vary: "Origin",
+};
+
+type WallFeedDependencies = {
+  fetchImpl?: typeof fetch;
+  supabaseUrl?: string;
+  secretKey?: string;
+  logger?: Pick<Console, "error" | "log">;
+};
+
+function json(status: number, body: unknown): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      ...CORS_HEADERS,
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": status === 200 ? "public, max-age=30" : "no-store",
+    },
+  });
+}
+
+function boundedInteger(
+  raw: string | null,
+  fallback: number,
+  maximum: number,
+): number {
+  if (raw === null || !/^\d+$/.test(raw)) return fallback;
+  return Math.min(maximum, Number(raw));
+}
+
+function quotedPostgrestValue(value: string): string {
+  return `"${value.replaceAll("\\", "\\\\").replaceAll('"', '\\"')}"`;
+}
+
+function parseCount(contentRange: string | null, fallback: number): number {
+  const total = contentRange?.split("/").at(-1);
+  if (!total || total === "*") return fallback;
+  const parsed = Number(total);
+  return Number.isSafeInteger(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function safeUpstreamError(body: string): {
+  upstream_code: string | null;
+  upstream_message: string | null;
+} {
+  try {
+    const parsed = JSON.parse(body) as {
+      code?: unknown;
+      message?: unknown;
+    };
+    return {
+      upstream_code: typeof parsed.code === "string" ? parsed.code : null,
+      upstream_message: typeof parsed.message === "string"
+        ? parsed.message.slice(0, 300)
+        : null,
+    };
+  } catch {
+    return { upstream_code: null, upstream_message: null };
+  }
+}
+
+export async function handleWallFeed(
+  req: Request,
+  dependencies: WallFeedDependencies = {},
+): Promise<Response> {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { status: 200, headers: CORS_HEADERS });
+  }
+  if (req.method !== "GET") {
+    return json(405, { ok: false, error: "method_not_allowed" });
+  }
+
+  const supabaseUrl = dependencies.supabaseUrl ??
+    Deno.env.get("SUPABASE_URL");
+  const secretKey = dependencies.secretKey ?? getServiceRoleKey();
+  if (!supabaseUrl || !secretKey) {
+    return json(500, { ok: false, error: "server_misconfigured" });
+  }
+
+  const requestUrl = new URL(req.url);
+  const limit = boundedInteger(requestUrl.searchParams.get("limit"), 50, 100);
+  const offset = boundedInteger(
+    requestUrl.searchParams.get("offset"),
+    0,
+    100_000,
+  );
+  const q = requestUrl.searchParams.get("q")?.trim().slice(0, 120) ?? "";
+  const conditions = [
+    ...new Set(
+      [
+        ...requestUrl.searchParams.getAll("condition").flatMap((value) =>
+          value.split(",")
+        ),
+        ...(requestUrl.searchParams.get("conditions") ?? "").split(","),
+      ].map((value) => value.trim()).filter(Boolean),
+    ),
+  ].slice(0, 10);
+  const minPrice = requestUrl.searchParams.get("min_price_cents");
+  const maxPrice = requestUrl.searchParams.get("max_price_cents");
+
+  const restUrl = new URL("/rest/v1/wall_feed_view", supabaseUrl);
+  restUrl.searchParams.set("select", SELECT_COLUMNS);
+  restUrl.searchParams.set("order", "created_at.desc");
+  restUrl.searchParams.set("limit", String(limit));
+  restUrl.searchParams.set("offset", String(offset));
+  if (q) {
+    restUrl.searchParams.append("title", `ilike.*${q}*`);
+  }
+  if (conditions.length > 0) {
+    restUrl.searchParams.append(
+      "condition",
+      `in.(${conditions.map(quotedPostgrestValue).join(",")})`,
+    );
+  }
+  if (minPrice && /^\d+$/.test(minPrice)) {
+    restUrl.searchParams.append("price_cents", `gte.${Number(minPrice)}`);
+  }
+  if (maxPrice && /^\d+$/.test(maxPrice)) {
+    restUrl.searchParams.append("price_cents", `lte.${Number(maxPrice)}`);
+  }
+
+  const fetchImpl = dependencies.fetchImpl ?? fetch;
+  const logger = dependencies.logger ?? console;
+  let upstream: Response;
+  try {
+    upstream = await fetchImpl(restUrl, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        apikey: secretKey,
+        prefer: "count=exact",
+      },
+    });
+  } catch (error) {
+    logger.error("wall_feed transport failure", error);
+    return json(502, { ok: false, error: "wall_feed_upstream_unavailable" });
+  }
+
+  const upstreamBody = await upstream.text();
+  if (!upstream.ok) {
+    const safeError = safeUpstreamError(upstreamBody);
+    logger.error("wall_feed query failure", {
+      status: upstream.status,
+      ...safeError,
+    });
+    return json(502, {
+      ok: false,
+      error: "wall_feed_query_failed",
+      upstream_status: upstream.status,
+      upstream_code: safeError.upstream_code,
+    });
+  }
+
+  let rows: unknown;
+  try {
+    rows = JSON.parse(upstreamBody);
+  } catch {
+    logger.error("wall_feed returned invalid JSON");
+    return json(502, { ok: false, error: "wall_feed_invalid_response" });
+  }
+  if (!Array.isArray(rows)) {
+    logger.error("wall_feed returned a non-array payload");
+    return json(502, { ok: false, error: "wall_feed_invalid_response" });
+  }
+
+  const count = parseCount(upstream.headers.get("content-range"), rows.length);
+  logger.log("wall_feed query completed", {
+    count,
+    returned: rows.length,
+    limit,
+    offset,
+    filtered: Boolean(q || conditions.length || minPrice || maxPrice),
+  });
+  return json(200, { items: rows, count });
+}
+
+if (import.meta.main) {
+  serve((req) => handleWallFeed(req));
+}
