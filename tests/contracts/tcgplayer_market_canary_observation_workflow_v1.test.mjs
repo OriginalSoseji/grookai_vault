@@ -34,12 +34,23 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
   assert.match(workflow, /ref: \$\{\{ env\.OBSERVER_SOURCE_SHA \}\}/);
 });
 
-test("scheduled canary observer requires the terminal pass after 72 hours", () => {
+test("scheduled canary observer allows final-slot completion before requiring a terminal pass", () => {
   assert.match(workflow, /CANARY_WINDOW_START: "2026-07-31T10:34:15\.670Z"/);
   assert.match(workflow, /CANARY_REQUIRED_END: "2026-08-03T10:34:15\.670Z"/);
+  assert.match(workflow, /CANARY_COMPLETION_GRACE_SECONDS: "28800"/);
   assert.match(workflow, /--required-hours=72/);
   assert.match(workflow, /--schedule-tolerance-minutes=90/);
   assert.match(workflow, /--schedule-completion-grace-minutes=480/);
+  assert.match(
+    workflow,
+    /final_completion_deadline="\$\(\(required_end_epoch \+ CANARY_COMPLETION_GRACE_SECONDS\)\)"/,
+  );
+  assert.match(
+    workflow,
+    /final_observation_deadline="\$\(\(final_completion_deadline \+ 21600\)\)"/,
+  );
+  assert.match(workflow, /now_epoch >= final_completion_deadline/);
+  assert.doesNotMatch(workflow, /now_epoch >= required_end_epoch/);
   assert.match(workflow, /require_pass=\(--require-pass\)/);
   assert.match(workflow, /"\$\{require_pass\[@\]\}"/);
 });

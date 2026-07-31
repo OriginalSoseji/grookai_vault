@@ -22,6 +22,7 @@ jobs:
       CANARY_ACTIVATION_RUN_ID: "0c23045d-8141-4b9c-ba41-2f8c44522921"
       CANARY_EXPECTED_COMMIT_SHA: "416c4691d1c1d6be8a1461c148deebe627e813f8"
       CANARY_EXPECTED_COUNT: "100"
+      CANARY_COMPLETION_GRACE_SECONDS: "28800"
       OBSERVER_SOURCE_SHA: "416c4691d1c1d6be8a1461c148deebe627e813f8"
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
 
@@ -48,7 +49,8 @@ jobs:
 
           now_epoch="$(date -u +%s)"
           required_end_epoch="$(date -u -d "${CANARY_REQUIRED_END}" +%s)"
-          final_observation_deadline="$((required_end_epoch + 21600))"
+          final_completion_deadline="$((required_end_epoch + CANARY_COMPLETION_GRACE_SECONDS))"
+          final_observation_deadline="$((final_completion_deadline + 21600))"
 
           if (( now_epoch > final_observation_deadline )); then
             echo "The frozen canary observation window is complete; no further scheduled reads are required."
@@ -57,7 +59,7 @@ jobs:
           fi
 
           require_pass=()
-          if (( now_epoch >= required_end_epoch )); then
+          if (( now_epoch >= final_completion_deadline )); then
             require_pass=(--require-pass)
           fi
 
