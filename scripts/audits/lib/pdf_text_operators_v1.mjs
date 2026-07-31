@@ -1,5 +1,17 @@
 const PDF_NUMBER_RE = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
 const TEXT_OPERATOR_RE = /(?:Tm|TJ|Tj)\b/g;
+const PDF_OCTAL_REPLACEMENTS = new Map([
+  ["222", "'"],
+  ["226", "-"],
+  ["227", "-"],
+  ["251", "(c)"],
+  ["256", "(r)"],
+  ["351", "é"],
+  ["034", ""],
+  ["035", ""],
+  ["036", ""],
+  ["037", ""],
+]);
 
 function isEscapedAt(text, index) {
   let slashCount = 0;
@@ -37,23 +49,34 @@ function textMatrixCoordinates(text, operatorIndex) {
 }
 
 export function decodePdfString(value) {
-  return String(value ?? "")
-    .replace(/\\\(/g, "(")
-    .replace(/\\\)/g, ")")
-    .replace(/\\\\/g, "\\")
-    .replace(/\\222/g, "'")
-    .replace(/\\226/g, "-")
-    .replace(/\\227/g, "-")
-    .replace(/\\251/g, "(c)")
-    .replace(/\\256/g, "(r)")
-    .replace(/\\351/g, "é")
-    .replace(/\\034/g, "")
-    .replace(/\\035/g, "")
-    .replace(/\\036/g, "")
-    .replace(/\\037/g, "")
-    .replace(/\\[0-7]{1,3}/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  const input = String(value ?? "");
+  let decoded = "";
+  for (let cursor = 0; cursor < input.length; cursor += 1) {
+    const character = input[cursor];
+    if (character !== "\\" || cursor + 1 >= input.length) {
+      decoded += character;
+      continue;
+    }
+
+    const escaped = input[cursor + 1];
+    if (escaped === "(" || escaped === ")" || escaped === "\\") {
+      decoded += escaped;
+      cursor += 1;
+      continue;
+    }
+    if (/[0-7]/.test(escaped)) {
+      let end = cursor + 1;
+      while (end < input.length && end <= cursor + 3 && /[0-7]/.test(input[end])) {
+        end += 1;
+      }
+      const octal = input.slice(cursor + 1, end);
+      decoded += PDF_OCTAL_REPLACEMENTS.get(octal) ?? "";
+      cursor = end - 1;
+      continue;
+    }
+    decoded += character;
+  }
+  return decoded.replace(/\s+/g, " ").trim();
 }
 
 export function decodePdfArrayText(value) {

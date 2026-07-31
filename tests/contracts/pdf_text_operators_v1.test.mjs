@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   decodePdfArrayText,
+  decodePdfString,
   extractPdfTextItems,
 } from "../../scripts/audits/lib/pdf_text_operators_v1.mjs";
 
@@ -19,6 +20,8 @@ test("PDF text operators preserve matrix coordinates and decoded strings", () =>
     { x: 340, y: 500, text: "Mr.Mime" },
   ]);
   assert.equal(decodePdfArrayText("[(Farfetch\\'d)]"), "Farfetch\\'d");
+  assert.equal(decodePdfString(String.raw`\\222`), String.raw`\222`);
+  assert.equal(decodePdfString(String.raw`\222`), "'");
 });
 
 test("PDF text extraction handles nested and escaped delimiters", () => {
