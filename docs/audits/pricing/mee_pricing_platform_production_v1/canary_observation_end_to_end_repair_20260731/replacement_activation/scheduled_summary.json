@@ -1,0 +1,39 @@
+{
+  "runner_version": "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1",
+  "operations_policy_version": "TCGPLAYER_MARKET_OPERATIONS_POLICY_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-REPAIR3",
+  "mode": "canary",
+  "live": true,
+  "commit_sha": "416c4691d1c1d6be8a1461c148deebe627e813f8",
+  "expected_commit_sha": "416c4691d1c1d6be8a1461c148deebe627e813f8",
+  "branch": "pricing/mee-productization-v1",
+  "tracked_worktree_clean": true,
+  "created_at": "2026-07-31T10:24:41.649Z",
+  "max_attempts": 3,
+  "retry_delays_seconds": [
+    60,
+    300
+  ],
+  "request_ceiling": 10000,
+  "phase_timeout_minutes": 120,
+  "database_timeout_minutes": 20,
+  "freshness_hours": 36,
+  "publication_limit": null,
+  "canary_definition_path": "backend/pricing/canaries/tcgplayer_market_canary_100_v2.json",
+  "canary_definition_sha256": "861b9dd97baaa0c93a6bcdd94c5f9ef903388bbc87a31923cfee3fbeb8cfc3d2",
+  "canary_id": "TCGPLAYER_MARKET_CANARY_100_V2",
+  "canary_expected_count": 100,
+  "boundaries": {
+    "source_sync": true,
+    "qualification_and_snapshot_writes": true,
+    "publication_activation": true,
+    "canonical_identity_writes": false,
+    "vault_writes": false,
+    "modeled_value_writes": false
+  },
+  "status": "completed",
+  "final_classification": "success",
+  "attempt_count": 1,
+  "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-REPAIR3",
+  "finished_at": "2026-07-31T10:52:19.448Z"
+}
