@@ -24,7 +24,7 @@
     "@tesseract.js-data/eng": "^1.0.0",
     "dotenv": "^17.2.3",
     "pg": "^8.11.5",
-    "sharp": "^0.33.2",
+    "sharp": "^0.35.0",
     "tesseract.js": "^7.0.0"
   },
   "overrides": {
