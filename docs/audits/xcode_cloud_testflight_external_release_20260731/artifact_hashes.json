@@ -1,0 +1,22 @@
+{
+  "algorithm": "SHA256",
+  "generated_at_utc": "2026-08-01T03:52:53Z",
+  "artifacts": [
+    {
+      "path": "after_state.json",
+      "sha256": "29b4febab278d25a790ed3108a737a74cd651b2757c9b19bcadc4d069936f03c"
+    },
+    {
+      "path": "before_state.json",
+      "sha256": "b4b3efdfc3ae68fcfe8e81d2ed4d0884202ffb1d26482205d29f04ecf15b7b96"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ad7a5cdfb0bd1108e9e4e44ce707c0a05fa90baff3384ea3babab646ac4aaec6"
+    },
+    {
+      "path": "run_plan.json",
+      "sha256": "e444c485124ab71703578b1615a4e27c47fd61811946f002ca4fee875a49a1af"
+    }
+  ]
+}

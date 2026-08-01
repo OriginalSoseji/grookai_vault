@@ -2,8 +2,8 @@
 
 ## Status
 
-Apple-side root cause proven. A governed TestFlight external-distribution repair
-is planned on `release/xcode-cloud-mac-handoff-v1`.
+Complete. Xcode Cloud Build 276 is available through the existing internal and
+external TestFlight groups.
 
 The handoff branch starts from `origin/main` commit
 `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`. It contains no pricing-warehouse
@@ -32,6 +32,20 @@ or uncommitted Windows worktree changes.
   groups. The latest externally eligible build assigned to those groups is 23.
 - The governed repair plan is recorded under
   `docs/audits/xcode_cloud_testflight_external_release_20260731/`.
+- The workflow archive audience was changed to `APP_STORE_ELIGIBLE` and verified
+  by API readback.
+- Exactly one controlled build was started. Build 276 succeeded from frozen
+  `main` commit `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`.
+- Build 276 processed as `VALID` and `APP_STORE_ELIGIBLE`, with
+  `usesNonExemptEncryption: false`.
+- The existing TestFlight localization was carried forward from the last
+  approved external build.
+- Beta App Review approved Build 276, and its external state is
+  `IN_BETA_TESTING`.
+- Both external groups contain Build 276. The internal group has all-build
+  access.
+- No public App Store release, bundle identity, signing owner, or capability
+  change occurred.
 
 ## Repository Inputs
 
@@ -86,7 +100,7 @@ explicit decision.
 
 ## Exact Next Gate
 
-Change only the workflow archive audience from `INTERNAL_ONLY` to
-`APP_STORE_ELIGIBLE`, verify the readback, and start one controlled Xcode Cloud
-build from the frozen `main` commit. Stop before a second build or a public App
-Store release.
+Perform a physical-device TestFlight smoke test of Build 276. Separately decide
+whether the Xcode Cloud workflow should become manual-only or path-filtered;
+it currently starts for every `main` change and can consume unnecessary build
+minutes.

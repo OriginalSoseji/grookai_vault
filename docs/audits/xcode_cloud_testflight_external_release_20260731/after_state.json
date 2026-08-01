@@ -1,0 +1,76 @@
+{
+  "verified_at_utc": "2026-08-01T03:52:53Z",
+  "workflow": {
+    "id": "65343711-FA40-44BE-898F-FD40ADC82B82",
+    "archive_distribution_audience": "APP_STORE_ELIGIBLE",
+    "last_modified_date": "2026-08-01T03:38:52.838Z",
+    "is_enabled": true,
+    "branch_trigger": "main"
+  },
+  "build_run": {
+    "id": "1a45fcef-c9db-41a6-94c1-da73a351bde7",
+    "number": 276,
+    "start_reason": "MANUAL",
+    "source_commit_sha": "06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0",
+    "started_date": "2026-08-01T03:40:02.956Z",
+    "finished_date": "2026-08-01T03:49:29.157Z",
+    "completion_status": "SUCCEEDED",
+    "new_build_runs_created": 1
+  },
+  "processed_build": {
+    "id": "210a7ac6-0767-452f-a8a7-bd8cb607200c",
+    "version": "276",
+    "processing_state": "VALID",
+    "build_audience_type": "APP_STORE_ELIGIBLE",
+    "uses_non_exempt_encryption": false,
+    "internal_build_state": "READY_FOR_BETA_TESTING",
+    "external_build_state": "IN_BETA_TESTING",
+    "beta_review_state": "APPROVED",
+    "testflight_localization_present": true,
+    "testflight_localization_sha256": "fc5a487f17159af7de46ff8dbe1e0cf76588361455c6dc5d9756239217c5d2c2"
+  },
+  "testflight_groups": [
+    {
+      "id": "23f9d065-b536-46ab-95f1-41e3cda6498e",
+      "name": "Friends and Family",
+      "kind": "internal",
+      "has_access_to_all_builds": true,
+      "tester_count": 3,
+      "tester_states": {
+        "INSTALLED": 3
+      }
+    },
+    {
+      "id": "05d1bcca-b42e-498a-a5d9-7204b55f26ec",
+      "name": "friends and family",
+      "kind": "external",
+      "build_276_present": true,
+      "public_link_enabled": true,
+      "tester_count": 10,
+      "tester_states": {
+        "INSTALLED": 5,
+        "INVITED": 5
+      }
+    },
+    {
+      "id": "7d7f607e-823b-427b-8757-d72d12712dc5",
+      "name": "beta",
+      "kind": "external",
+      "build_276_present": true,
+      "public_link_enabled": true,
+      "tester_count": 4,
+      "tester_states": {
+        "INSTALLED": 4
+      }
+    }
+  ],
+  "boundaries_verified": {
+    "testflight_only": true,
+    "public_app_store_release_performed": false,
+    "bundle_identity_changed": false,
+    "signing_owner_changed": false,
+    "capabilities_changed": false,
+    "second_build_started": false,
+    "secrets_written_to_artifacts": false
+  }
+}

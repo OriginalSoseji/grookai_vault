@@ -33,4 +33,18 @@ for internal testing but ineligible for the two external TestFlight groups.
 
 ## Status
 
-Pre-run plan recorded. Apple-side mutation has not yet occurred.
+Complete.
+
+- Workflow audience changed and read back as `APP_STORE_ELIGIBLE`.
+- Exactly one controlled run was created: Xcode Cloud Build 276.
+- Build 276 succeeded from frozen `main` commit
+  `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`.
+- The processed build is `VALID` and `APP_STORE_ELIGIBLE`.
+- Beta App Review is `APPROVED`.
+- The external build state is `IN_BETA_TESTING`.
+- Build 276 is assigned to both external groups. The internal group retains
+  all-build access.
+- No public App Store release or application identity change occurred.
+
+The active workflow still starts for every `main` change. Converting it to a
+manual-only or path-filtered release workflow is a separate cost-control gate.
