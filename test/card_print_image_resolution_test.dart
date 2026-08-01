@@ -100,25 +100,18 @@ void main() {
     expect(buildCanonicalCardImageUrl('not-a-gv-id'), isNull);
   });
 
-  test(
-    'hosted card thumbnails use Grookai derivatives while full art stays raw',
-    () {
-      const hosted =
-          'https://grookaivault.com/api/canon/cards/GV-PK-CRI-120/image';
+  test('hosted card thumbnails stay on the native-safe canonical endpoint', () {
+    const hosted =
+        'https://grookaivault.com/api/canon/cards/GV-PK-CRI-120/image';
 
-      expect(normalizeDisplayImageUrl(hosted), hosted);
+    expect(normalizeDisplayImageUrl(hosted), hosted);
 
-      final thumbnail = normalizeDisplayImageUrl(hosted, width: 220);
-      expect(thumbnail, startsWith('https://grookaivault.com/_next/image?'));
-      expect(
-        thumbnail,
-        contains('url=%2Fapi%2Fcanon%2Fcards%2FGV-PK-CRI-120%2Fimage'),
-      );
-      expect(thumbnail, contains('w=220'));
-    },
-  );
+    final thumbnail = normalizeDisplayImageUrl(hosted, width: 220);
+    expect(thumbnail, hosted);
+    expect(thumbnail, isNot(contains('/_next/image')));
+  });
 
-  test('immutable warehouse thumbnails also use Grookai derivatives', () {
+  test('immutable warehouse thumbnails stay on the immutable endpoint', () {
     const hosted =
         'https://grookaivault.com/api/canon/image?'
         'path=warehouse-derived%2Fself-hosted-images-v1%2Fcard_prints%2F'
@@ -127,9 +120,8 @@ void main() {
     expect(normalizeDisplayImageUrl(hosted), hosted);
 
     final thumbnail = normalizeDisplayImageUrl(hosted, width: 220);
-    expect(thumbnail, startsWith('https://grookaivault.com/_next/image?'));
-    expect(thumbnail, contains('url=%2Fapi%2Fcanon%2Fimage%3Fpath%3D'));
-    expect(thumbnail, contains('w=220'));
+    expect(thumbnail, hosted);
+    expect(thumbnail, isNot(contains('/_next/image')));
   });
 
   test('invalid and missing image fields resolve to null', () {
@@ -146,7 +138,7 @@ void main() {
     expect(card.displayImage, isNull);
   });
 
-  test('public Supabase storage images are routed through Grookai optimizer', () {
+  test('public Supabase storage images remain direct for native clients', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-6',
       'name': 'Pikachu',
@@ -157,35 +149,27 @@ void main() {
 
     expect(
       card.displayImage,
-      startsWith('https://grookaivault.com/_next/image?'),
+      'https://example.supabase.co/storage/v1/object/public/'
+      'public-card-images/jpn/pikachu.webp',
     );
-    expect(card.displayImage, contains('w=828'));
+    expect(card.displayImage, isNot(contains('/_next/image')));
   });
 
-  test('optimized image URLs snap thumbnail widths to supported web sizes', () {
+  test('native decode width hints do not rewrite the network URL', () {
     const original =
         'https://example.supabase.co/storage/v1/object/public/public-card-images/jpn/pikachu.webp';
     final large = normalizeDisplayImageUrl(original);
     final thumbnail = normalizeDisplayImageUrl(large, width: 256);
 
-    expect(large, contains('w=828'));
-    expect(thumbnail, contains('w=320'));
-    expect(thumbnail, contains(Uri.encodeQueryComponent(original)));
+    expect(large, original);
+    expect(thumbnail, original);
   });
 
   test('TCGdex base image URLs resolve to the high WebP asset', () {
     const original = 'https://assets.tcgdex.net/en/me/me04/120';
     final resolved = normalizeDisplayImageUrl(original);
 
-    expect(resolved, startsWith('https://grookaivault.com/_next/image?'));
-    expect(
-      resolved,
-      contains(
-        Uri.encodeQueryComponent(
-          'https://assets.tcgdex.net/en/me/me04/120/high.webp',
-        ),
-      ),
-    );
+    expect(resolved, 'https://assets.tcgdex.net/en/me/me04/120/high.webp');
   });
 
   test('TCGdex high image suffix is not duplicated', () {
@@ -199,7 +183,7 @@ void main() {
     const original = 'https://assets.tcgdex.net/en/me/me04/logo.png';
     final resolved = normalizeDisplayImageUrl(original);
 
-    expect(resolved, contains(Uri.encodeQueryComponent(original)));
+    expect(resolved, original);
     expect(resolved, isNot(contains('logo.png%2Fhigh.webp')));
   });
 

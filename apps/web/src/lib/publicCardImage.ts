@@ -105,10 +105,23 @@ export function shouldBypassNextImageOptimization(value: string | null | undefin
     return false;
   }
 
+  const normalized = normalizePublicCardImageUrl(value);
+  if (
+    normalized.startsWith("/api/canon/image?") ||
+    /^\/api\/canon\/cards\/[^/?#]+\/image$/.test(normalized)
+  ) {
+    return true;
+  }
+
   try {
-    const url = new URL(normalizePublicCardImageUrl(value));
+    const url = new URL(normalized);
     return (
+      (url.hostname === "grookaivault.com" &&
+        (url.pathname === "/api/canon/image" ||
+          /^\/api\/canon\/cards\/[^/?#]+\/image$/.test(url.pathname))) ||
       url.hostname === "assets.tcgdex.net" ||
+      url.hostname === "images.pokemontcg.io" ||
+      url.hostname.endsWith(".supabase.co") ||
       (url.hostname === "raw.githubusercontent.com" &&
         url.pathname.startsWith("/PokeAPI/sprites/master/sprites/pokemon/"))
     );

@@ -23,12 +23,17 @@ test("public card image URLs unwrap nested Next optimizer sources before renderi
   assert.match(publicCardImage, /normalizePublicCardImageSrc\(fallbackSrc\)/);
 });
 
-test("fragile external image hosts bypass Next image optimization", () => {
+test("canonical and fragile external image hosts bypass Next image optimization", () => {
   const imageHelper = readSource("apps", "web", "src", "lib", "publicCardImage.ts");
   const publicCardImage = readSource("apps", "web", "src", "components", "PublicCardImage.tsx");
 
   assert.match(imageHelper, /shouldBypassNextImageOptimization/);
+  assert.match(imageHelper, /normalized\.startsWith\("\/api\/canon\/image\?"\)/);
+  assert.match(imageHelper, /\/api\\\/canon\\\/cards/);
+  assert.match(imageHelper, /url\.hostname === "grookaivault\.com"/);
   assert.match(imageHelper, /url\.hostname === "assets\.tcgdex\.net"/);
+  assert.match(imageHelper, /url\.hostname === "images\.pokemontcg\.io"/);
+  assert.match(imageHelper, /url\.hostname\.endsWith\("\.supabase\.co"\)/);
   assert.match(imageHelper, /url\.hostname === "raw\.githubusercontent\.com"/);
   assert.match(imageHelper, /\/PokeAPI\/sprites\/master\/sprites\/pokemon\//);
   assert.match(publicCardImage, /const renderUnoptimized = unoptimized \|\| shouldBypassNextImageOptimization\(activeSrc\)/);

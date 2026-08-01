@@ -24,10 +24,9 @@ void main() {
       card.hostedImageUrl,
       endsWith('/api/canon/cards/GV-PK-ME04-120/image'),
     );
-    expect(card.providerFallbackImageUrl, contains('/_next/image?'));
     expect(
       card.providerFallbackImageUrl,
-      contains('assets.tcgdex.net%2Fen%2Fme%2Fme04%2F120%2Fhigh.webp'),
+      'https://assets.tcgdex.net/en/me/me04/120/high.webp',
     );
   });
 
@@ -41,10 +40,9 @@ void main() {
     );
 
     expect(card.hostedImageUrl, endsWith('/api/canon/cards/GV-PK-CEL-1/image'));
-    expect(card.providerFallbackImageUrl, contains('/_next/image?'));
     expect(
       card.providerFallbackImageUrl,
-      contains('images.pokemontcg.io%2Fcel25%2F1_hires.png'),
+      'https://images.pokemontcg.io/cel25/1_hires.png',
     );
   });
 
@@ -137,6 +135,23 @@ void main() {
       );
     },
   );
+
+  test('catalog cards prefer immutable image paths over GV-ID lookups', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-path-first',
+      'gv_id': 'GV-PK-ME04-120',
+      'name': 'Mega Gardevoir ex',
+      'set_code': 'me04',
+      'image_path':
+          'warehouse-derived/self-hosted-images-v1/card_prints/me04/'
+          'gv-pk-me04-120/art.webp',
+      'image_url': 'https://assets.tcgdex.net/en/me/me04/120',
+    });
+
+    expect(card.hostedImageUrl, contains('/api/canon/image?path='));
+    expect(card.hostedImageUrl, isNot(contains('/api/canon/cards/')));
+    expect(card.catalogImageUrl, card.hostedImageUrl);
+  });
 
   test('zoom gallery keeps provider art dormant behind hosted primary', () {
     const item = CardZoomGalleryItem(
