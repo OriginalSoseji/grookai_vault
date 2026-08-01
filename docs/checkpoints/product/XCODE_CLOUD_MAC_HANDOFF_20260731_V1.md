@@ -2,8 +2,8 @@
 
 ## Status
 
-Ready for Mac-only verification and repair on
-`release/xcode-cloud-mac-handoff-v1`.
+Apple-side root cause proven. A governed TestFlight external-distribution repair
+is planned on `release/xcode-cloud-mac-handoff-v1`.
 
 The handoff branch starts from `origin/main` commit
 `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`. It contains no pricing-warehouse
@@ -24,8 +24,14 @@ or uncommitted Windows worktree changes.
 - Xcode Cloud Build 257 proved archive and export from the merged dependency
   state. Build 258 proved internal TestFlight distribution after the workflow
   distribution setting was changed to `TestFlight (Internal Testing Only)`.
-- No new Xcode Cloud defect is asserted by this checkpoint. The Mac and Apple
-  consoles are the authority for any newer failure.
+- Xcode Cloud Build 275 succeeded from `main` commit
+  `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`.
+- The active workflow archive action is configured with
+  `buildDistributionAudience: INTERNAL_ONLY`.
+- Build 275 is valid but cannot be assigned to the two external TestFlight
+  groups. The latest externally eligible build assigned to those groups is 23.
+- The governed repair plan is recorded under
+  `docs/audits/xcode_cloud_testflight_external_release_20260731/`.
 
 ## Repository Inputs
 
@@ -80,7 +86,7 @@ explicit decision.
 
 ## Exact Next Gate
 
-On the Mac, inspect the latest Xcode Cloud or App Store Connect failure first.
-Classify it as repository bootstrap, dependency resolution, compilation,
-signing, archive, export, or distribution. Preserve the evidence, then repair
-only that class on `release/xcode-cloud-mac-handoff-v1`.
+Change only the workflow archive audience from `INTERNAL_ONLY` to
+`APP_STORE_ELIGIBLE`, verify the readback, and start one controlled Xcode Cloud
+build from the frozen `main` commit. Stop before a second build or a public App
+Store release.

@@ -1,0 +1,37 @@
+{
+  "recorded_at_utc": "2026-08-01T03:37:04Z",
+  "workflow": {
+    "id": "65343711-FA40-44BE-898F-FD40ADC82B82",
+    "name": "Grookai Vault",
+    "is_enabled": true,
+    "is_locked_for_editing": false,
+    "clean": true,
+    "container_file_path": "ios/Runner.xcworkspace",
+    "branch_trigger": "main",
+    "auto_cancel": true,
+    "manual_branch_start_condition": null,
+    "archive_action": {
+      "name": "Archive - iOS",
+      "action_type": "ARCHIVE",
+      "scheme": "Runner",
+      "platform": "IOS",
+      "is_required_to_pass": true,
+      "build_distribution_audience": "INTERNAL_ONLY"
+    },
+    "last_modified_date": "2026-07-31T17:02:03.692Z"
+  },
+  "latest_successful_build_run": {
+    "number": 275,
+    "id": "90f61957-56f5-477d-9b09-034eae8cc118",
+    "source_commit_sha": "06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0",
+    "status": "SUCCEEDED"
+  },
+  "latest_processed_build": {
+    "id": "2783d449-f01c-4b16-a926-bafe9279948c",
+    "version": "275",
+    "processing_state": "VALID",
+    "build_audience_type": "INTERNAL_ONLY"
+  },
+  "external_groups_latest_build": "23",
+  "root_cause": "The archive action creates INTERNAL_ONLY builds, which cannot be assigned to external TestFlight groups."
+}
