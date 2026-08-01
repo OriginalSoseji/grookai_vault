@@ -597,7 +597,7 @@ class PublicCollectorService {
         .from('v_wall_cards_v1')
         // LOCK: Wall cards use public-safe instance rows and display_image_url first.
         .select(
-          'instance_id,gv_vi_id,vault_item_id,card_print_id,card_printing_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
+          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .order('created_at', ascending: false);
@@ -630,7 +630,7 @@ class PublicCollectorService {
         .from('v_section_cards_v1')
         // LOCK: Section cards are exact-copy public rows and load on demand.
         .select(
-          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,card_printing_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
+          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,display_image_kind,image_status,image_note,image_display_mode,public_note',
         )
         .eq('owner_slug', normalizedSlug)
         .eq('section_id', normalizedSectionId)
