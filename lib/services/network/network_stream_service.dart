@@ -283,6 +283,7 @@ class NetworkStreamService {
   static const Duration _selectedCollectorHydrationBudget = Duration(
     milliseconds: 1800,
   );
+  static const Duration _discoverySourceBudget = Duration(milliseconds: 1800);
   static const bool _kNetworkFeedDiagnostics = false;
   static const int _sessionExposureMemory = 72;
   static const int _firstViewportFreshnessCount = 8;
@@ -1304,18 +1305,24 @@ class NetworkStreamService {
     // NETWORK_DISCOVERY_PARALLEL_FETCH_V1
     // These sources are independent. Fetch them together and deduplicate after
     // both complete instead of adding a full network round trip to Discover.
+    // Each lane is fail-open so an optional pricing timeout cannot blank the
+    // collector stream or suppress the other canonical discovery source.
     final results = await Future.wait<List<NetworkStreamRow>>([
-      _fetchHighEndDiscoveryRows(
-        client: client,
-        session: session,
-        excludeCardPrintIds: excludedIds,
-        limit: _clampedInt(normalizedTargetCount * 2, 8, 36),
+      _bestEffortDiscoverySource(
+        _fetchHighEndDiscoveryRows(
+          client: client,
+          session: session,
+          excludeCardPrintIds: excludedIds,
+          limit: _clampedInt(normalizedTargetCount * 2, 8, 36),
+        ),
       ),
-      _fetchRandomExploreRows(
-        client: client,
-        session: session,
-        excludeCardPrintIds: excludedIds,
-        limit: _clampedInt(normalizedTargetCount, 4, 12),
+      _bestEffortDiscoverySource(
+        _fetchRandomExploreRows(
+          client: client,
+          session: session,
+          excludeCardPrintIds: excludedIds,
+          limit: _clampedInt(normalizedTargetCount, 4, 12),
+        ),
       ),
     ]);
     final rowsByCardPrintId = <String, NetworkStreamRow>{};
@@ -1667,6 +1674,19 @@ class NetworkStreamService {
       );
     } catch (_) {
       return fallback;
+    }
+  }
+
+  static Future<List<NetworkStreamRow>> _bestEffortDiscoverySource(
+    Future<List<NetworkStreamRow>> operation,
+  ) async {
+    try {
+      return await operation.timeout(
+        _discoverySourceBudget,
+        onTimeout: () => const <NetworkStreamRow>[],
+      );
+    } catch (_) {
+      return const <NetworkStreamRow>[];
     }
   }
 

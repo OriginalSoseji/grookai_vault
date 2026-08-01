@@ -38,6 +38,12 @@ void main() {
       expect(collectorService, contains('_resolveVaultInstanceMediaSignedUrl'));
       expect(collectorService, contains('createSignedUrl'));
       expect(collectorService, contains('vault-instances'));
+      expect(
+        collectorService,
+        isNot(
+          contains('card_print_id,card_printing_id,intent,condition_label'),
+        ),
+      );
     },
   );
 
@@ -51,6 +57,26 @@ void main() {
     expect(networkStreamService, contains('createSignedUrl'));
     expect(networkStreamService, contains('user-card-images'));
   });
+
+  test(
+    'Pulse discovery sources fail independently within a bounded budget',
+    () {
+      expect(networkStreamService, contains('_discoverySourceBudget'));
+      expect(networkStreamService, contains('_bestEffortDiscoverySource('));
+      expect(
+        RegExp(
+          r'_bestEffortDiscoverySource\(\s*_fetchHighEndDiscoveryRows\(',
+        ).hasMatch(networkStreamService),
+        isTrue,
+      );
+      expect(
+        RegExp(
+          r'_bestEffortDiscoverySource\(\s*_fetchRandomExploreRows\(',
+        ).hasMatch(networkStreamService),
+        isTrue,
+      );
+    },
+  );
 
   test(
     'app public collector rail renders Wall first and lazy-loads sections',
