@@ -65,6 +65,23 @@ or uncommitted Windows worktree changes.
   login route at 1.017 seconds. Backend requests returned HTTP 200.
 - The repaired release AOT binary contains the exact expected Supabase URL and
   publishable key. Only SHA-256 fingerprints are retained in audit artifacts.
+- Xcode Cloud Build 277 was the first replacement attempt. It failed before
+  archive because `ci_post_clone.sh` exited with code 27; no TestFlight build
+  was produced.
+- The Xcode Cloud workflow is disabled so no further paid run can start while
+  its required runtime values remain unavailable.
+- Production Binder flag readback proves eight active phases: schema, personal,
+  shared, view links, public, community, custom, and templates. Notifications,
+  Pulse sharing, and set Binders remain disabled.
+- The prior iOS release writer omitted every Binder compile-time gate, causing
+  the emulator and release app to hide Binders despite the active backend.
+- The repaired writer now emits the exact production Binder phase vector while
+  preserving environment override authority. Binders is also visible in the
+  signed-in mobile drawer and desktop rail, in addition to its existing Vault
+  entry.
+- A clean Flutter 3.44.7 simulator build succeeded with all runtime and Binder
+  defines present. The signed-in shell rendered, 39 focused contracts passed,
+  and the release-specific Binder vector test passed.
 
 ## Repository Inputs
 
@@ -119,8 +136,11 @@ explicit decision.
 
 ## Exact Next Gate
 
-Create exactly one replacement App Store-eligible TestFlight canary from the
-proven repair commit. Verify the shipped AOT binary contains the expected
-configuration, then install and smoke-test it on a physical device before any
-external group assignment. Separately decide whether the workflow should
-become manual-only or path-filtered.
+Provide the required public Supabase runtime values to Xcode Cloud, or establish
+a proven local signing path, without exposing private credentials. Then create
+exactly one replacement App Store-eligible TestFlight canary from the frozen
+repair commit. Verify the shipped AOT binary contains the expected runtime and
+Binder configuration, then install and smoke-test startup, Vault Binders, and
+the Binder library on a physical device before any external group assignment.
+Separately decide whether the workflow should become manual-only or
+path-filtered.

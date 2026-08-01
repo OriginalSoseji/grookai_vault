@@ -9,6 +9,7 @@ const secretWriter = readFileSync(
 );
 const releaseConfig = readFileSync("ios/Flutter/Release.xcconfig", "utf8");
 const mainDart = readFileSync("lib/main.dart", "utf8");
+const mainShell = readFileSync("lib/main_shell.dart", "utf8");
 const appDelegate = readFileSync("ios/Runner/AppDelegate.swift", "utf8");
 const infoPlist = readFileSync("ios/Runner/Info.plist", "utf8");
 const project = readFileSync("ios/Runner.xcodeproj/project.pbxproj", "utf8");
@@ -94,12 +95,45 @@ test("Xcode Cloud injects required release configuration before archive", () => 
   assert.match(secretWriter, /value = ENV\[key\]\.to_s/);
   assert.match(secretWriter, /env\[key\] = value unless value\.strip\.empty\?/);
   assert.match(secretWriter, /DART_DEFINES=#\{encoded\}/);
+  assert.match(secretWriter, /binder_keys = %w\[/);
+  for (const key of [
+    "BINDERS_SCHEMA_V1",
+    "BINDERS_PERSONAL_V1",
+    "BINDERS_SHARED_V1",
+    "BINDERS_VIEW_LINKS_V1",
+    "BINDERS_PUBLIC_V1",
+    "BINDERS_COMMUNITY_V1",
+    "BINDERS_TEMPLATES_V1",
+    "BINDERS_CUSTOM_TARGET_V1",
+  ]) {
+    assert.match(secretWriter, new RegExp(`'${key}' => 'true'`));
+  }
+  for (const key of [
+    "BINDERS_NOTIFICATIONS_V1",
+    "BINDERS_PULSE_SHARING_V1",
+    "BINDERS_SET_TARGET_V1",
+  ]) {
+    assert.match(secretWriter, new RegExp(`'${key}' => 'false'`));
+  }
   assert.match(
     secretWriter,
     /Missing required local Xcode secrets: #\{missing\.join\(', '\)\}/,
   );
   assert.doesNotMatch(secretWriter, /puts .*SUPABASE_/);
   assert.match(releaseConfig, /#include\? "ReleaseSecrets\.xcconfig"/);
+});
+
+test("enabled personal Binders have a visible signed-in navigation entry", () => {
+  assert.match(mainShell, /Future<void> _openBinderLibrary\(\)/);
+  assert.match(mainShell, /label: 'Binders'/);
+  assert.match(
+    mainShell,
+    /BinderFeatureFlags\.production\.personalAvailable/,
+  );
+  assert.match(
+    mainShell,
+    /BinderLibraryScreen\(featureFlags: BinderFeatureFlags\.production\)/,
+  );
 });
 
 test("startup configuration failure renders an explicit app state", () => {

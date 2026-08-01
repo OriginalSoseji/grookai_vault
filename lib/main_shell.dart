@@ -966,6 +966,12 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const GrookaiObjectsHubScreen());
   }
 
+  Future<void> _openBinderLibrary() async {
+    await _pushPage<void>(
+      const BinderLibraryScreen(featureFlags: BinderFeatureFlags.production),
+    );
+  }
+
   Future<void> _openMessages() async {
     await _pushPage<void>(const NetworkInboxScreen());
   }
@@ -1415,6 +1421,7 @@ class _AppShellState extends State<AppShell> {
                 onOpenSets: () => unawaited(_openSets()),
                 onOpenCompare: () => unawaited(_openCompare()),
                 onOpenGrookaiObjects: () => unawaited(_openGrookaiObjectsHub()),
+                onOpenBinders: () => unawaited(_openBinderLibrary()),
                 onOpenMessages: () => unawaited(_openMessages()),
                 onOpenAccount: () => unawaited(_openAccountHub()),
                 onOpenGettingStarted: () => unawaited(_openGettingStarted()),
@@ -1454,6 +1461,7 @@ class _AppShellState extends State<AppShell> {
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
         onOpenGrookaiObjects: _openGrookaiObjectsHub,
+        onOpenBinders: _openBinderLibrary,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
@@ -1735,6 +1743,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenSets,
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
+    required this.onOpenBinders,
     required this.onOpenMessages,
     required this.onOpenAccount,
     required this.onOpenGettingStarted,
@@ -1751,6 +1760,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenSets;
   final VoidCallback onOpenCompare;
   final VoidCallback onOpenGrookaiObjects;
+  final VoidCallback onOpenBinders;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
   final VoidCallback onOpenGettingStarted;
@@ -1846,6 +1856,12 @@ class _GrookaiDesktopRail extends StatelessWidget {
               label: 'Objects',
               onTap: onOpenGrookaiObjects,
             ),
+            if (BinderFeatureFlags.production.personalAvailable)
+              _GrookaiRailTile(
+                icon: Icons.bookmarks_rounded,
+                label: 'Binders',
+                onTap: onOpenBinders,
+              ),
             const Spacer(),
             _GrookaiRailTile(
               icon: Icons.mail_rounded,
@@ -1939,6 +1955,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenSets,
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
+    required this.onOpenBinders,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
@@ -1955,6 +1972,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenGrookaiObjects;
+  final Future<void> Function() onOpenBinders;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
@@ -2028,6 +2046,12 @@ class _GrookaiAppDrawer extends StatelessWidget {
           label: 'Grookai Objects',
           onTap: () => _closeThenAsync(context, onOpenGrookaiObjects),
         ),
+        if (signedIn && BinderFeatureFlags.production.personalAvailable)
+          _GrookaiDrawerTile(
+            icon: Icons.bookmarks_rounded,
+            label: 'Binders',
+            onTap: () => _closeThenAsync(context, onOpenBinders),
+          ),
         if (signedIn)
           _GrookaiDrawerTile(
             icon: Icons.group_outlined,

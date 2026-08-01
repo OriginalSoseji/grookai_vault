@@ -1,6 +1,6 @@
 {
   "algorithm": "SHA256",
-  "generated_at_utc": "2026-08-01T04:52:45Z",
+  "generated_at_utc": "2026-08-01T05:37:06Z",
   "artifacts": [
     {
       "path": "after_state.json",
@@ -11,8 +11,16 @@
       "sha256": "b4b3efdfc3ae68fcfe8e81d2ed4d0884202ffb1d26482205d29f04ecf15b7b96"
     },
     {
+      "path": "binder_runtime_repair.json",
+      "sha256": "e87a152fe2ba52fa9047081b0bef1a6b798792a5074cf9d5aa74c67d0b1bb609"
+    },
+    {
+      "path": "local_runtime_proof.json",
+      "sha256": "5f00c7c43d66b6dd78f1e543313315b0ec5d0dbf9652ce6e9354395d8664b24f"
+    },
+    {
       "path": "README.md",
-      "sha256": "38249d2ef8c480b9279f483d4635f8ceb89808e24ab32f4658b15627eec36381"
+      "sha256": "2e8669829b33941d74f7c38a7f1617a9898608a1386e6592270be72125c78b37"
     },
     {
       "path": "rollback_state.json",
@@ -23,8 +31,12 @@
       "sha256": "e444c485124ab71703578b1615a4e27c47fd61811946f002ca4fee875a49a1af"
     },
     {
-      "path": "local_runtime_proof.json",
-      "sha256": "5f00c7c43d66b6dd78f1e543313315b0ec5d0dbf9652ce6e9354395d8664b24f"
+      "path": "runtime_repair_binder_deeplink_confirmation.png",
+      "sha256": "d67b931a17fc325fecc77bb528eeabc2bb7b1103f44123d34e55019555c793cb"
+    },
+    {
+      "path": "runtime_repair_binders_signed_in_shell.png",
+      "sha256": "d676fa984347bd992faadd543f84fba64bbf7c2e8cda9428a204987e0cdbf1db"
     },
     {
       "path": "runtime_repair_first_frame.png",

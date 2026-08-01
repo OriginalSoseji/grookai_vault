@@ -1,0 +1,72 @@
+{
+  "verified_at_utc": "2026-08-01T05:37:06Z",
+  "source_commit_sha": "cdc8df727ad09283fa48fc1cb8940ca4c1375ba7",
+  "production_backend_readback": {
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "enabled": [
+      "schema_internal",
+      "personal",
+      "shared",
+      "view_links",
+      "public",
+      "community",
+      "custom",
+      "templates"
+    ],
+    "disabled": [
+      "notifications",
+      "pulse_milestones",
+      "set_binders"
+    ]
+  },
+  "ios_compile_time_repair": {
+    "enabled": [
+      "BINDERS_SCHEMA_V1",
+      "BINDERS_PERSONAL_V1",
+      "BINDERS_SHARED_V1",
+      "BINDERS_VIEW_LINKS_V1",
+      "BINDERS_PUBLIC_V1",
+      "BINDERS_COMMUNITY_V1",
+      "BINDERS_CUSTOM_TARGET_V1",
+      "BINDERS_TEMPLATES_V1"
+    ],
+    "disabled": [
+      "BINDERS_NOTIFICATIONS_V1",
+      "BINDERS_PULSE_SHARING_V1",
+      "BINDERS_SET_TARGET_V1"
+    ],
+    "environment_override_preserved": true,
+    "secret_values_recorded": false
+  },
+  "navigation_repair": {
+    "vault_entry_existing_and_enabled_by_release_flags": true,
+    "signed_in_mobile_drawer_entry_added": true,
+    "desktop_rail_entry_added": true
+  },
+  "verification": {
+    "ruby_syntax": "passed_on_mac",
+    "flutter_analyze_main_shell": "passed_no_issues",
+    "focused_node_contracts": {
+      "passed": 39,
+      "failed": 0
+    },
+    "focused_flutter_binder_contracts": {
+      "passed": 71,
+      "failed": 0
+    },
+    "release_feature_vector_test": "passed",
+    "ios_simulator_debug_build": "passed",
+    "simulator_signed_in_shell_rendered": true,
+    "compiled_binder_define_count": 11,
+    "compiled_runtime_config_key_count": 2
+  },
+  "xcode_cloud_containment": {
+    "workflow_id": "65343711-FA40-44BE-898F-FD40ADC82B82",
+    "workflow_enabled": false,
+    "build_277_run_id": "3940b383-bc2a-4011-a96a-c0c6f87e285f",
+    "build_277_result": "failed_before_archive",
+    "build_277_issue": "ci_post_clone.sh exited with code 27",
+    "testflight_build_created": false
+  },
+  "remaining_gate": "Provide the required public runtime values to Xcode Cloud or use a proven local signing path, then create exactly one replacement canary and smoke-test it physically before external assignment."
+}

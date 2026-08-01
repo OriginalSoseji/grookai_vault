@@ -27,12 +27,43 @@ end
 
 required_keys = %w[SUPABASE_URL SUPABASE_PUBLISHABLE_KEY]
 optional_keys = %w[GROOKAI_WEB_BASE_URL NEXT_PUBLIC_SITE_URL SITE_URL]
-env = load_env_file('.env').merge(load_env_file('.env.local'))
+binder_keys = %w[
+  BINDERS_SCHEMA_V1
+  BINDERS_PERSONAL_V1
+  BINDERS_SHARED_V1
+  BINDERS_VIEW_LINKS_V1
+  BINDERS_PUBLIC_V1
+  BINDERS_COMMUNITY_V1
+  BINDERS_TEMPLATES_V1
+  BINDERS_NOTIFICATIONS_V1
+  BINDERS_PULSE_SHARING_V1
+  BINDERS_SET_TARGET_V1
+  BINDERS_CUSTOM_TARGET_V1
+]
+
+# These public compile-time gates mirror the production Binder activation
+# readback. Process or dotenv values may still override them for containment.
+release_defaults = {
+  'BINDERS_SCHEMA_V1' => 'true',
+  'BINDERS_PERSONAL_V1' => 'true',
+  'BINDERS_SHARED_V1' => 'true',
+  'BINDERS_VIEW_LINKS_V1' => 'true',
+  'BINDERS_PUBLIC_V1' => 'true',
+  'BINDERS_COMMUNITY_V1' => 'true',
+  'BINDERS_TEMPLATES_V1' => 'true',
+  'BINDERS_NOTIFICATIONS_V1' => 'false',
+  'BINDERS_PULSE_SHARING_V1' => 'false',
+  'BINDERS_SET_TARGET_V1' => 'false',
+  'BINDERS_CUSTOM_TARGET_V1' => 'true'
+}
+env = release_defaults
+      .merge(load_env_file('.env'))
+      .merge(load_env_file('.env.local'))
 
 # Xcode Cloud supplies release configuration as workflow environment variables.
 # Process values take precedence over local dotenv files without ever being
 # written to a tracked file or printed to the build log.
-(required_keys + optional_keys).each do |key|
+(required_keys + optional_keys + binder_keys).each do |key|
   value = ENV[key].to_s
   env[key] = value unless value.strip.empty?
 end
@@ -48,7 +79,7 @@ unless missing.empty?
   exit 1
 end
 
-encoded = (required_keys + ['GROOKAI_WEB_BASE_URL']).map do |key|
+encoded = (required_keys + ['GROOKAI_WEB_BASE_URL'] + binder_keys).map do |key|
   value = env[key].to_s
   value.empty? ? nil : Base64.strict_encode64("#{key}=#{value}")
 end.compact.join(',')

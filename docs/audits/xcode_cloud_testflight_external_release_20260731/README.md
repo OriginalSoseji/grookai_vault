@@ -72,7 +72,24 @@ Local runtime proof is complete from a clean Mac worktree at repair commit
 - a no-codesign release device build succeeded; and
 - the release AOT binary contains the exact expected configuration values.
 
-No replacement TestFlight build has been started.
+The first replacement attempt, Xcode Cloud Build 277, stopped safely before
+archive because `ci_post_clone.sh` exited with code 27. App Store Connect issue
+readback confirms the failure occurred in the post-clone bootstrap. No Build
+277 TestFlight artifact was created. The Xcode Cloud workflow is disabled to
+prevent additional paid runs while runtime configuration is unresolved.
 
-The active workflow still starts for every `main` change. Converting it to a
-manual-only or path-filtered release workflow is a separate cost-control gate.
+The subsequent Binder audit found that the shipped release writer also omitted
+all 11 public Binder compile-time gates. Every Binder gate therefore defaulted
+to false even though production readback proves schema, personal, shared, view
+links, public, community, custom, and templates are active. The iOS writer now
+mirrors that exact production vector while preserving process/dotenv override
+authority. Notifications, Pulse sharing, and set Binders remain false.
+
+Binders already has a feature-gated card and action inside Vault. The repair
+also adds a visible signed-in mobile drawer entry and desktop rail entry. A
+clean pinned-Flutter simulator build succeeded, rendered an existing signed-in
+session, and passed a release-specific feature-vector test. The screenshots and
+structured readback are retained in this directory.
+
+The workflow is currently disabled. Converting it to a manual-only or
+path-filtered release workflow remains a separate cost-control gate.
