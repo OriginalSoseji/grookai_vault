@@ -632,10 +632,15 @@ class VaultPageState extends State<VaultPage> {
           .map((row) => (row['card_id'] ?? '').toString())
           .where((value) => value.isNotEmpty)
           .toList();
-      final rawPricingTargets = await supabase
-          .from('v_vault_mobile_pricing_targets_v1')
-          .select('instance_id,card_print_id,card_printing_id');
-      final pricingTargets = (rawPricingTargets as List<dynamic>)
+      List<dynamic> rawPricingTargets;
+      try {
+        rawPricingTargets = await supabase
+            .from('v_vault_mobile_pricing_targets_v1')
+            .select('instance_id,card_print_id,card_printing_id');
+      } catch (_) {
+        rawPricingTargets = const <dynamic>[];
+      }
+      final pricingTargets = rawPricingTargets
           .whereType<Map>()
           .map((raw) => Map<String, dynamic>.from(raw))
           .map(
