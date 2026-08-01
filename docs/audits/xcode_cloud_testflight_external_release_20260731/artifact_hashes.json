@@ -1,6 +1,6 @@
 {
   "algorithm": "SHA256",
-  "generated_at_utc": "2026-08-01T04:35:37Z",
+  "generated_at_utc": "2026-08-01T04:52:45Z",
   "artifacts": [
     {
       "path": "after_state.json",
@@ -12,15 +12,23 @@
     },
     {
       "path": "README.md",
-      "sha256": "bc96b3ace263de9eee45f977a74bb2d8db5ff8c2b564f80e94f98f37d65cb72d"
+      "sha256": "38249d2ef8c480b9279f483d4635f8ceb89808e24ab32f4658b15627eec36381"
     },
     {
       "path": "rollback_state.json",
-      "sha256": "1c42d1d4a1e177f8a92a1aefd499c0c5eba8566ecbf0349080e0b81a028059a5"
+      "sha256": "74d15fdb32c743b65f3d52e90cf1bd0912b32322b17edb6e1bd93336e2818d41"
     },
     {
       "path": "run_plan.json",
       "sha256": "e444c485124ab71703578b1615a4e27c47fd61811946f002ca4fee875a49a1af"
+    },
+    {
+      "path": "local_runtime_proof.json",
+      "sha256": "5f00c7c43d66b6dd78f1e543313315b0ec5d0dbf9652ce6e9354395d8664b24f"
+    },
+    {
+      "path": "runtime_repair_first_frame.png",
+      "sha256": "e301f01f98f974756e4d92127aecd8e1810684cb705622c6413c15615ff0b8e2"
     }
   ]
 }

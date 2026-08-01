@@ -2,8 +2,8 @@
 
 ## Status
 
-Runtime repair in progress. Build 276 was removed from both external groups
-after a persistent white-screen startup failure.
+Local runtime repair proven. Build 276 remains removed from both external
+groups; one replacement TestFlight canary is the next gate.
 
 The handoff branch starts from `origin/main` commit
 `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`. It contains no pricing-warehouse
@@ -57,6 +57,14 @@ or uncommitted Windows worktree changes.
   `ci_post_clone.sh`, consumes workflow process environment values, fails closed
   before archive when required values are absent, and renders a visible startup
   failure state as a final defense.
+- A clean Mac worktree at repair commit
+  `9496af3ab965cde75d32965aef9fd6f1eed1486f` passed six targeted contracts,
+  Flutter analysis, process-environment writer verification, simulator compile
+  and startup, and a no-codesign release device compile.
+- The simulator reached Flutter's first post-frame callback at 471 ms and the
+  login route at 1.017 seconds. Backend requests returned HTTP 200.
+- The repaired release AOT binary contains the exact expected Supabase URL and
+  publishable key. Only SHA-256 fingerprints are retained in audit artifacts.
 
 ## Repository Inputs
 
@@ -111,8 +119,8 @@ explicit decision.
 
 ## Exact Next Gate
 
-Prove the repaired application starts and renders from a clean Mac worktree on
-an iOS simulator. Only after that proof may one replacement Xcode Cloud build
-be started. The replacement must be installed and smoke-tested before external
-group assignment. Separately decide whether the workflow should become
-manual-only or path-filtered.
+Create exactly one replacement App Store-eligible TestFlight canary from the
+proven repair commit. Verify the shipped AOT binary contains the expected
+configuration, then install and smoke-test it on a physical device before any
+external group assignment. Separately decide whether the workflow should
+become manual-only or path-filtered.

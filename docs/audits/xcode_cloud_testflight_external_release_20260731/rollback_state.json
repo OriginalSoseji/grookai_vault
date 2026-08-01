@@ -27,5 +27,5 @@
     "mac_writer_test_passed": true,
     "contract_tests_passed": 6
   },
-  "next_gate": "Prove the repaired build locally on an iOS simulator before starting one replacement Xcode Cloud build."
+  "next_gate": "Create one replacement TestFlight canary, verify its shipped AOT binary and physical-device startup, then assign it to external groups."
 }

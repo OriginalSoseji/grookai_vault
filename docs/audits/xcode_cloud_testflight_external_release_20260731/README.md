@@ -57,8 +57,22 @@ app therefore threw before `runApp()` and never rendered a Flutter frame.
 The repository repair makes the Xcode Cloud bootstrap invoke the ignored iOS
 secret writer, gives workflow process environment precedence, fails the build
 before archive when required values are absent, and renders a visible startup
-error if configuration is ever missing again. A Mac process-environment test
-and six targeted contracts pass. No replacement build has been started.
+error if configuration is ever missing again.
+
+Local runtime proof is complete from a clean Mac worktree at repair commit
+`9496af3ab965cde75d32965aef9fd6f1eed1486f`:
+
+- six targeted contracts passed;
+- `flutter analyze lib/main.dart` passed with no issues;
+- the process-environment writer test passed;
+- the iOS simulator app rendered the Grookai login screen;
+- the first Flutter post-frame callback occurred at 471 ms;
+- the login route rendered at 1.017 seconds;
+- live backend requests returned HTTP 200;
+- a no-codesign release device build succeeded; and
+- the release AOT binary contains the exact expected configuration values.
+
+No replacement TestFlight build has been started.
 
 The active workflow still starts for every `main` change. Converting it to a
 manual-only or path-filtered release workflow is a separate cost-control gate.

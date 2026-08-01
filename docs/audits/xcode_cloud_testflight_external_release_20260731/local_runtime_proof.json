@@ -1,0 +1,35 @@
+{
+  "verified_at_utc": "2026-08-01T04:52:45Z",
+  "repair_commit_sha": "9496af3ab965cde75d32965aef9fd6f1eed1486f",
+  "mac_worktree": "/Users/cesarcabral/grookai_xcode_runtime_repair",
+  "flutter_version": "3.44.7",
+  "dart_version": "3.12.2",
+  "xcode_version": "26.6",
+  "verification": {
+    "targeted_contract_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "flutter_analyze_main": "passed_no_issues",
+    "process_environment_writer_test": "passed",
+    "ios_simulator_debug_build": "passed",
+    "simulator_device": "iPhone 17 Pro",
+    "app_process_remained_running": true,
+    "root_first_post_frame_ms": 471,
+    "first_login_route_ms": 1017,
+    "backend_http_200_observed": true,
+    "startup_failure_log_observed": false,
+    "ios_release_no_codesign_build": "passed",
+    "release_aot_contains_expected_supabase_url": true,
+    "release_aot_contains_expected_publishable_key": true
+  },
+  "secret_value_fingerprints": {
+    "supabase_url_sha256": "cc65fe6f15993bfa65eae6793f84032abb6c80d892f726e4c822759b0c4fd0a8",
+    "supabase_publishable_key_sha256": "6786e4cf75184e0535e68146d05ba9f6bb8082008ef1581c3c3b2ce4f2401cb5"
+  },
+  "screenshot": {
+    "path": "runtime_repair_first_frame.png",
+    "sha256": "e301f01f98f974756e4d92127aecd8e1810684cb705622c6413c15615ff0b8e2"
+  },
+  "next_gate": "Create one replacement TestFlight canary, verify its shipped AOT binary and physical-device startup, then assign it to external groups."
+}
