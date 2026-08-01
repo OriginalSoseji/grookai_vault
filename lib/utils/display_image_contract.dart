@@ -40,12 +40,11 @@ String? normalizeDisplayImageUrl(
     return null;
   }
 
-  return _nativeSafeCardImageUrl(
-    parsed,
-    resolved,
-    width: width,
-    quality: quality,
-  );
+  // Native clients already bound decode size through CachedNetworkImage. The
+  // Next.js image optimizer is a web rendering implementation detail and may
+  // reject API-backed or remote card sources. Keep the validated source URL
+  // intact so native image requests reach the canonical endpoint directly.
+  return resolved;
 }
 
 String? normalizeWarehouseDisplayImagePath(dynamic value) {
@@ -142,104 +141,10 @@ String _normalizeTcgdexAssetUrl(String value) {
   return parsed.replace(path: '$basePath/high.webp').toString();
 }
 
-String _nativeSafeCardImageUrl(
-  Uri parsed,
-  String originalUrl, {
-  int? width,
-  int quality = 85,
-}) {
-  if (_isGrookaiCanonImage(parsed) && width != null) {
-    final relativeUrl = Uri(
-      path: parsed.path,
-      query: parsed.hasQuery ? parsed.query : null,
-    ).toString();
-    return _grookaiOptimizedImageUrl(
-      relativeUrl,
-      width: width,
-      quality: quality,
-    );
-  }
-
-  if (_isGrookaiOptimizedImage(parsed)) {
-    return _grookaiOptimizedImageUrl(
-      parsed.queryParameters['url'] ?? originalUrl,
-      width: width,
-      quality: quality,
-    );
-  }
-
-  if (!_needsGrookaiImageProxy(parsed)) {
-    return originalUrl;
-  }
-
-  return _grookaiOptimizedImageUrl(originalUrl, width: width, quality: quality);
-}
-
-bool _isGrookaiCanonImage(Uri parsed) {
-  if (parsed.host.toLowerCase() != 'grookaivault.com') {
-    return false;
-  }
-
-  if (RegExp(r'^/api/canon/cards/GV-[A-Z0-9-]+/image$').hasMatch(parsed.path)) {
-    return true;
-  }
-
-  return parsed.path == '/api/canon/image' &&
-      _normalizeWarehouseImagePath(parsed.queryParameters['path']) != null;
-}
-
-String _grookaiOptimizedImageUrl(
-  String imageUrl, {
-  int? width,
-  int quality = 85,
-}) {
-  final optimizedWidth = _nearestGrookaiImageWidth(width ?? 828).toString();
-  final optimizedQuality = quality.clamp(40, 95).toString();
-
-  return Uri.https('grookaivault.com', '/_next/image', {
-    'url': imageUrl,
-    'w': optimizedWidth,
-    'q': optimizedQuality,
-  }).toString();
-}
-
-int _nearestGrookaiImageWidth(int requestedWidth) {
-  const allowedWidths = <int>[
-    48,
-    64,
-    74,
-    96,
-    128,
-    160,
-    220,
-    320,
-    640,
-    750,
-    828,
-    1080,
-    1200,
-  ];
-  final normalized = requestedWidth.clamp(48, 1200);
-  for (final allowedWidth in allowedWidths) {
-    if (normalized <= allowedWidth) {
-      return allowedWidth;
-    }
-  }
-  return allowedWidths.last;
-}
-
 bool _isGrookaiOptimizedImage(Uri parsed) {
   return parsed.host.toLowerCase() == 'grookaivault.com' &&
       parsed.path == '/_next/image' &&
       (parsed.queryParameters['url'] ?? '').trim().isNotEmpty;
-}
-
-bool _needsGrookaiImageProxy(Uri parsed) {
-  final host = parsed.host.toLowerCase();
-  return host == 'assets.tcgdex.net' ||
-      host == 'images.pokemontcg.io' ||
-      (host.endsWith('.supabase.co') &&
-          parsed.path.startsWith('/storage/v1/object/public/'));
 }
 
 bool _isBrokenPublicUserCardImageUrl(Uri parsed) {

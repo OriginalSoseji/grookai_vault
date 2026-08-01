@@ -17,24 +17,25 @@ String? _vaultProviderImageUrl(Map<String, dynamic> row) {
 
 CatalogArtworkResolution _vaultArtwork(Map<String, dynamic> row) {
   final sourceImageUrl = _vaultDisplayImageUrl(row);
-  final hostedImageUrl = buildCanonicalCardImageUrl(row['gv_id']);
+  final hostedImageUrl =
+      normalizeWarehouseDisplayImagePath(row['image_path']) ??
+      buildCanonicalCardImageUrl(row['gv_id']);
   if (isCollectorUploadedCardImage(sourceImageUrl)) {
     return CatalogArtworkResolution(
       primaryImageUrl: sourceImageUrl,
       fallbackImageUrl: hostedImageUrl,
     );
   }
-  final catalogArtwork = resolveCatalogArtwork(
-    gvId: row['gv_id'],
-    providerImageUrl: _vaultProviderImageUrl(row),
+  final providerImageUrl = _vaultProviderImageUrl(row);
+  final primaryImageUrl = hostedImageUrl ?? sourceImageUrl ?? providerImageUrl;
+  final fallbackImageUrl =
+      providerImageUrl == null || providerImageUrl == primaryImageUrl
+      ? null
+      : providerImageUrl;
+  return CatalogArtworkResolution(
+    primaryImageUrl: primaryImageUrl,
+    fallbackImageUrl: fallbackImageUrl,
   );
-  if (catalogArtwork.primaryImageUrl == null && sourceImageUrl != null) {
-    return CatalogArtworkResolution(
-      primaryImageUrl: sourceImageUrl,
-      fallbackImageUrl: null,
-    );
-  }
-  return catalogArtwork;
 }
 
 class _VaultItemTile extends StatelessWidget {
@@ -571,6 +572,7 @@ class VaultPageState extends State<VaultPage> {
   final SupabaseClient supabase = Supabase.instance.client;
   late final TextEditingController _searchController;
   bool _loading = false;
+  int _reloadRequestVersion = 0;
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
@@ -611,6 +613,7 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<void> reload() async {
+    final requestVersion = ++_reloadRequestVersion;
     if (_uid == null) {
       setState(() {
         _items = const [];
@@ -628,89 +631,116 @@ class VaultPageState extends State<VaultPage> {
       final rows = await VaultCardService.getCanonicalCollectorRows(
         client: supabase,
       );
-      final cardPrintIds = rows
-          .map((row) => (row['card_id'] ?? '').toString())
-          .where((value) => value.isNotEmpty)
-          .toList();
-      List<dynamic> rawPricingTargets;
-      try {
-        rawPricingTargets = await supabase
-            .from('v_vault_mobile_pricing_targets_v1')
-            .select('instance_id,card_print_id,card_printing_id');
-      } catch (_) {
-        rawPricingTargets = const <dynamic>[];
-      }
-      final pricingTargets = rawPricingTargets
-          .whereType<Map>()
-          .map((raw) => Map<String, dynamic>.from(raw))
-          .map(
-            (row) => VaultExactPricingTarget(
-              cardPrintId: (row['card_print_id'] ?? '').toString().trim(),
-              cardPrintingId:
-                  (row['card_printing_id'] ?? '').toString().trim().isEmpty
-                  ? null
-                  : row['card_printing_id'].toString().trim(),
-            ),
-          )
-          .where((target) => target.cardPrintId.isNotEmpty)
-          .toList(growable: false);
-      final results = await Future.wait<dynamic>([
-        CardSurfacePricingService.fetchByCardPrintingIds(
-          client: supabase,
-          cardPrintingIds: pricingTargets.map(
-            (target) => target.cardPrintingId ?? '',
-          ),
-        ).catchError((_) => const <String, CardSurfacePricingData>{}),
-        VaultCardService.getSharedStatesByCardPrintIds(
-          client: supabase,
-          cardPrintIds: cardPrintIds,
-        ).catchError((_) => const <String, VaultSharedCardState>{}),
-      ]);
-      final exactPricing = results[0] as Map<String, CardSurfacePricingData>;
-      final sharedStates = results[1] as Map<String, VaultSharedCardState>;
-      final pricingTargetsByCardPrintId =
-          <String, List<VaultExactPricingTarget>>{};
-      for (final target in pricingTargets) {
-        pricingTargetsByCardPrintId
-            .putIfAbsent(target.cardPrintId, () => <VaultExactPricingTarget>[])
-            .add(target);
-      }
-      final pricingSummaries = <String, VaultExactPricingSummary>{
-        for (final cardPrintId in cardPrintIds)
-          cardPrintId: summarizeVaultExactPricing(
-            targets:
-                pricingTargetsByCardPrintId[cardPrintId] ??
-                const <VaultExactPricingTarget>[],
-            pricingByCardPrintingId: exactPricing,
-          ),
-      };
-      final pricing = <String, CardSurfacePricingData>{};
-      for (final entry in pricingSummaries.entries) {
-        final surfacePricing = entry.value.asSurfacePricing(entry.key);
-        if (surfacePricing != null) {
-          pricing[entry.key] = surfacePricing;
-        }
-      }
-
-      if (!mounted) {
+      if (!mounted || requestVersion != _reloadRequestVersion) {
         return;
       }
 
       setState(() {
         _items = rows;
-        _pricingByCardPrintId = pricing;
-        _pricingSummaryByCardPrintId = pricingSummaries;
-        _sharedStateByCardPrintId = sharedStates;
         _selectedLotCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
         );
         _recomputeDerivedData();
+        _loading = false;
       });
+
+      // Pricing and sharing are supplemental. They must never delay the
+      // collector's inventory or make the Vault appear empty.
+      unawaited(
+        _loadSupplementalVaultState(rows: rows, requestVersion: requestVersion),
+      );
+    } catch (error) {
+      debugPrint('vault.reload.failed: $error');
     } finally {
-      if (mounted) {
+      if (mounted && requestVersion == _reloadRequestVersion && _loading) {
         setState(() => _loading = false);
       }
     }
+  }
+
+  Future<void> _loadSupplementalVaultState({
+    required List<Map<String, dynamic>> rows,
+    required int requestVersion,
+  }) async {
+    final cardPrintIds = rows
+        .map((row) => (row['card_id'] ?? '').toString())
+        .where((value) => value.isNotEmpty)
+        .toList(growable: false);
+
+    final initialResults = await Future.wait<dynamic>([
+      _loadVaultPricingTargets(),
+      VaultCardService.getSharedStatesByCardPrintIds(
+        client: supabase,
+        cardPrintIds: cardPrintIds,
+      ).catchError((_) => const <String, VaultSharedCardState>{}),
+    ]);
+    final pricingTargets = initialResults[0] as List<VaultExactPricingTarget>;
+    final sharedStates = initialResults[1] as Map<String, VaultSharedCardState>;
+    final exactPricing = await CardSurfacePricingService.fetchByCardPrintingIds(
+      client: supabase,
+      cardPrintingIds: pricingTargets.map(
+        (target) => target.cardPrintingId ?? '',
+      ),
+    ).catchError((_) => const <String, CardSurfacePricingData>{});
+
+    final pricingTargetsByCardPrintId =
+        <String, List<VaultExactPricingTarget>>{};
+    for (final target in pricingTargets) {
+      pricingTargetsByCardPrintId
+          .putIfAbsent(target.cardPrintId, () => <VaultExactPricingTarget>[])
+          .add(target);
+    }
+    final pricingSummaries = <String, VaultExactPricingSummary>{
+      for (final cardPrintId in cardPrintIds)
+        cardPrintId: summarizeVaultExactPricing(
+          targets:
+              pricingTargetsByCardPrintId[cardPrintId] ??
+              const <VaultExactPricingTarget>[],
+          pricingByCardPrintingId: exactPricing,
+        ),
+    };
+    final pricing = <String, CardSurfacePricingData>{};
+    for (final entry in pricingSummaries.entries) {
+      final surfacePricing = entry.value.asSurfacePricing(entry.key);
+      if (surfacePricing != null) {
+        pricing[entry.key] = surfacePricing;
+      }
+    }
+
+    if (!mounted || requestVersion != _reloadRequestVersion) {
+      return;
+    }
+    setState(() {
+      _pricingByCardPrintId = pricing;
+      _pricingSummaryByCardPrintId = pricingSummaries;
+      _sharedStateByCardPrintId = sharedStates;
+      _recomputeDerivedData();
+    });
+  }
+
+  Future<List<VaultExactPricingTarget>> _loadVaultPricingTargets() async {
+    List<dynamic> rawPricingTargets;
+    try {
+      rawPricingTargets = await supabase
+          .from('v_vault_mobile_pricing_targets_v1')
+          .select('instance_id,card_print_id,card_printing_id');
+    } catch (_) {
+      rawPricingTargets = const <dynamic>[];
+    }
+    return rawPricingTargets
+        .whereType<Map>()
+        .map((raw) => Map<String, dynamic>.from(raw))
+        .map(
+          (row) => VaultExactPricingTarget(
+            cardPrintId: (row['card_print_id'] ?? '').toString().trim(),
+            cardPrintingId:
+                (row['card_printing_id'] ?? '').toString().trim().isEmpty
+                ? null
+                : row['card_printing_id'].toString().trim(),
+          ),
+        )
+        .where((target) => target.cardPrintId.isNotEmpty)
+        .toList(growable: false);
   }
 
   Future<void> openSpeciesFilter({

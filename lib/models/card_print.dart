@@ -134,9 +134,11 @@ class CardPrint {
   ///
   /// A selected printing is preferred when search resolved an exact variant;
   /// otherwise the parent card identity remains the canonical boundary.
-  String? get hostedImageUrl => buildCanonicalCardImageUrl(
-    _firstNonEmpty(<String?>[selectedPrintingGvId, printingGvId, gvId]),
-  );
+  String? get hostedImageUrl =>
+      normalizeWarehouseDisplayImagePath(imagePath) ??
+      buildCanonicalCardImageUrl(
+        _firstNonEmpty(<String?>[selectedPrintingGvId, printingGvId, gvId]),
+      );
 
   /// Provider or legacy artwork retained strictly for an image-load failure.
   String? get providerFallbackImageUrl {
