@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-08-01T04:35:37Z",
+  "incident": "Build 276 displayed a persistent white screen and did not render the Flutter application.",
+  "containment": {
+    "build_276_removed_from_external_group_ids": [
+      "05d1bcca-b42e-498a-a5d9-7204b55f26ec",
+      "7d7f607e-823b-427b-8757-d72d12712dc5"
+    ],
+    "external_groups_latest_assigned_build": "23",
+    "second_xcode_cloud_build_started": false,
+    "build_276_expired": false
+  },
+  "root_cause_proof": {
+    "build_276_artifact_id": "e53945a5-91fa-42f8-ab13-e4cae3ab509c",
+    "artifact_type": "ARCHIVE_EXPORT",
+    "expected_supabase_url_present_in_binary": false,
+    "expected_supabase_publishable_key_present_in_binary": false,
+    "bundled_dotenv_files": [],
+    "startup_behavior": "lib/main.dart threw before runApp when required configuration was absent",
+    "bootstrap_gap": "ci_post_clone.sh did not invoke scripts/write_ios_xcode_secrets.rb"
+  },
+  "repair": {
+    "xcode_cloud_process_environment_is_consumed": true,
+    "required_values_are_encoded_as_dart_defines": true,
+    "missing_values_fail_the_build_before_archive": true,
+    "startup_failure_renders_an_explicit_state": true,
+    "mac_writer_test_passed": true,
+    "contract_tests_passed": 6
+  },
+  "next_gate": "Prove the repaired build locally on an iOS simulator before starting one replacement Xcode Cloud build."
+}

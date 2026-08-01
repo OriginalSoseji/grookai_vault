@@ -44,6 +44,9 @@ flutter precache --ios || exit 22
 echo "xcode-cloud-bootstrap phase=flutter-packages"
 flutter pub get --enforce-lockfile || exit 23
 
+echo "xcode-cloud-bootstrap phase=release-secrets"
+ruby scripts/write_ios_xcode_secrets.rb || exit 27
+
 if ! command -v pod >/dev/null 2>&1; then
   echo "xcode-cloud-bootstrap phase=cocoapods-install"
   export HOMEBREW_NO_AUTO_UPDATE=1

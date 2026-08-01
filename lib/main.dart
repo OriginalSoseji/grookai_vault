@@ -2233,42 +2233,95 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _configureAppImageCache();
   AppBootTiming.mark('main_start');
-  await GrookaiCrashReportingService.initialize();
-  AppBootTiming.mark('crash_reporting_ready');
-  PlatformDispatcher.instance.onError = (error, stackTrace) {
-    if (_isInvalidRefreshTokenRecoveryError(error)) {
-      debugPrint(
-        '[AUTH_STARTUP_V1] clearing invalid persisted session after failed recovery',
-      );
-      unawaited(_clearInvalidPersistedSession());
-      return true;
-    }
-    if (GrookaiCrashReportingService.recordFatalError(error, stackTrace)) {
-      return true;
-    }
-    return false;
-  };
-  AppBootTiming.mark('platform_error_handler_ready');
-  await _loadEnv();
-  AppBootTiming.mark('env_loaded');
+  try {
+    await GrookaiCrashReportingService.initialize();
+    AppBootTiming.mark('crash_reporting_ready');
+    PlatformDispatcher.instance.onError = (error, stackTrace) {
+      if (_isInvalidRefreshTokenRecoveryError(error)) {
+        debugPrint(
+          '[AUTH_STARTUP_V1] clearing invalid persisted session after failed recovery',
+        );
+        unawaited(_clearInvalidPersistedSession());
+        return true;
+      }
+      if (GrookaiCrashReportingService.recordFatalError(error, stackTrace)) {
+        return true;
+      }
+      return false;
+    };
+    AppBootTiming.mark('platform_error_handler_ready');
+    await _loadEnv();
+    AppBootTiming.mark('env_loaded');
 
-  final url = supabaseUrl;
-  final key = supabasePublishableKey;
-  if (url.isEmpty || key.isEmpty) {
-    throw Exception(
-      'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Pass release values with --dart-define or use local dotenv only for development.',
+    final url = supabaseUrl;
+    final key = supabasePublishableKey;
+    if (url.isEmpty || key.isEmpty) {
+      throw Exception(
+        'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Pass release values with --dart-define or use local dotenv only for development.',
+      );
+    }
+
+    AppBootTiming.mark('supabase_initialize_start');
+    await Supabase.initialize(
+      url: url,
+      publishableKey: key,
+      authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
+    );
+    AppBootTiming.mark('supabase_initialize_complete');
+    AppBootTiming.mark('runApp');
+    runApp(const MyApp());
+  } catch (error, stackTrace) {
+    GrookaiCrashReportingService.recordFatalError(error, stackTrace);
+    debugPrint('[APP_STARTUP] failed error=$error');
+    runApp(const _GrookaiStartupFailureApp());
+  }
+}
+
+class _GrookaiStartupFailureApp extends StatelessWidget {
+  const _GrookaiStartupFailureApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Color(0xFF05070A),
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.error_outline, size: 42, color: Color(0xFFFBBF24)),
+                  SizedBox(height: 18),
+                  Text(
+                    'Grookai Vault could not start',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'This build is missing required startup configuration. Install the latest TestFlight build.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFB8C0CC),
+                      fontSize: 15,
+                      height: 1.45,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
-
-  AppBootTiming.mark('supabase_initialize_start');
-  await Supabase.initialize(
-    url: url,
-    publishableKey: key,
-    authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
-  );
-  AppBootTiming.mark('supabase_initialize_complete');
-  AppBootTiming.mark('runApp');
-  runApp(const MyApp());
 }
 
 void _configureAppImageCache() {

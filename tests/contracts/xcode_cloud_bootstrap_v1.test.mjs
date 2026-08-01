@@ -3,6 +3,12 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 const script = readFileSync("ios/ci_scripts/ci_post_clone.sh", "utf8");
+const secretWriter = readFileSync(
+  "scripts/write_ios_xcode_secrets.rb",
+  "utf8",
+);
+const releaseConfig = readFileSync("ios/Flutter/Release.xcconfig", "utf8");
+const mainDart = readFileSync("lib/main.dart", "utf8");
 const appDelegate = readFileSync("ios/Runner/AppDelegate.swift", "utf8");
 const infoPlist = readFileSync("ios/Runner/Info.plist", "utf8");
 const project = readFileSync("ios/Runner.xcodeproj/project.pbxproj", "utf8");
@@ -47,6 +53,8 @@ test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
 
 test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /flutter pub get --enforce-lockfile/);
+  assert.match(script, /phase=release-secrets/);
+  assert.match(script, /ruby scripts\/write_ios_xcode_secrets\.rb \|\| exit 27/);
   assert.match(script, /flutter build ios --release --no-codesign --config-only/);
   assert.match(script, /command -v pod/);
   assert.match(script, /brew install cocoapods/);
@@ -63,14 +71,42 @@ test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   );
 
   const podAvailabilityIndex = script.indexOf("if ! command -v pod");
+  const releaseSecretsIndex = script.indexOf(
+    "ruby scripts/write_ios_xcode_secrets.rb",
+  );
   const podInstallIndex = script.indexOf("pod install", podAvailabilityIndex);
   const releaseConfigIndex = script.indexOf(
     "flutter build ios --release --no-codesign --config-only",
   );
 
   assert.ok(podAvailabilityIndex >= 0);
+  assert.ok(releaseSecretsIndex >= 0);
+  assert.ok(releaseSecretsIndex < podAvailabilityIndex);
   assert.ok(podInstallIndex > podAvailabilityIndex);
   assert.ok(releaseConfigIndex > podInstallIndex);
+});
+
+test("Xcode Cloud injects required release configuration before archive", () => {
+  assert.match(
+    secretWriter,
+    /required_keys = %w\[SUPABASE_URL SUPABASE_PUBLISHABLE_KEY\]/,
+  );
+  assert.match(secretWriter, /value = ENV\[key\]\.to_s/);
+  assert.match(secretWriter, /env\[key\] = value unless value\.strip\.empty\?/);
+  assert.match(secretWriter, /DART_DEFINES=#\{encoded\}/);
+  assert.match(
+    secretWriter,
+    /Missing required local Xcode secrets: #\{missing\.join\(', '\)\}/,
+  );
+  assert.doesNotMatch(secretWriter, /puts .*SUPABASE_/);
+  assert.match(releaseConfig, /#include\? "ReleaseSecrets\.xcconfig"/);
+});
+
+test("startup configuration failure renders an explicit app state", () => {
+  assert.match(mainDart, /catch \(error, stackTrace\)/);
+  assert.match(mainDart, /runApp\(const _GrookaiStartupFailureApp\(\)\)/);
+  assert.match(mainDart, /Grookai Vault could not start/);
+  assert.match(mainDart, /missing required startup configuration/);
 });
 
 test("Xcode Cloud uses a checked-in SwiftPM migration and resolution", () => {

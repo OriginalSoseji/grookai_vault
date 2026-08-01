@@ -1,6 +1,6 @@
 {
   "algorithm": "SHA256",
-  "generated_at_utc": "2026-08-01T03:52:53Z",
+  "generated_at_utc": "2026-08-01T04:35:37Z",
   "artifacts": [
     {
       "path": "after_state.json",
@@ -12,7 +12,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "ad7a5cdfb0bd1108e9e4e44ce707c0a05fa90baff3384ea3babab646ac4aaec6"
+      "sha256": "bc96b3ace263de9eee45f977a74bb2d8db5ff8c2b564f80e94f98f37d65cb72d"
+    },
+    {
+      "path": "rollback_state.json",
+      "sha256": "1c42d1d4a1e177f8a92a1aefd499c0c5eba8566ecbf0349080e0b81a028059a5"
     },
     {
       "path": "run_plan.json",

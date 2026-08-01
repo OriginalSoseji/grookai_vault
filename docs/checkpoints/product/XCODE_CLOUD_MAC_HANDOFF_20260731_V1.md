@@ -2,8 +2,8 @@
 
 ## Status
 
-Complete. Xcode Cloud Build 276 is available through the existing internal and
-external TestFlight groups.
+Runtime repair in progress. Build 276 was removed from both external groups
+after a persistent white-screen startup failure.
 
 The handoff branch starts from `origin/main` commit
 `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`. It contains no pricing-warehouse
@@ -26,10 +26,9 @@ or uncommitted Windows worktree changes.
   distribution setting was changed to `TestFlight (Internal Testing Only)`.
 - Xcode Cloud Build 275 succeeded from `main` commit
   `06f83b8542cf8fb7dbbc17180eefad5eaf4e5ac0`.
-- The active workflow archive action is configured with
-  `buildDistributionAudience: INTERNAL_ONLY`.
-- Build 275 is valid but cannot be assigned to the two external TestFlight
-  groups. The latest externally eligible build assigned to those groups is 23.
+- Before the distribution repair, the workflow archive action used
+  `buildDistributionAudience: INTERNAL_ONLY` and Build 275 could not be
+  assigned to the two external TestFlight groups.
 - The governed repair plan is recorded under
   `docs/audits/xcode_cloud_testflight_external_release_20260731/`.
 - The workflow archive audience was changed to `APP_STORE_ELIGIBLE` and verified
@@ -42,10 +41,22 @@ or uncommitted Windows worktree changes.
   approved external build.
 - Beta App Review approved Build 276, and its external state is
   `IN_BETA_TESTING`.
-- Both external groups contain Build 276. The internal group has all-build
-  access.
+- Build 276 was initially assigned to both external groups. The internal group
+  retained all-build access.
 - No public App Store release, bundle identity, signing owner, or capability
   change occurred.
+- Runtime smoke testing then proved Build 276 did not render Flutter. The build
+  was removed from both external groups, restoring Build 23 as their latest
+  assignment.
+- Inspection of the Build 276 App Store export proved the expected Supabase URL
+  and publishable key were absent from the AOT binary and no dotenv file was
+  bundled.
+- `lib/main.dart` therefore threw before `runApp()`. Xcode Cloud had archived a
+  package successfully without proving runtime configuration.
+- The repair invokes `scripts/write_ios_xcode_secrets.rb` from
+  `ci_post_clone.sh`, consumes workflow process environment values, fails closed
+  before archive when required values are absent, and renders a visible startup
+  failure state as a final defense.
 
 ## Repository Inputs
 
@@ -100,7 +111,8 @@ explicit decision.
 
 ## Exact Next Gate
 
-Perform a physical-device TestFlight smoke test of Build 276. Separately decide
-whether the Xcode Cloud workflow should become manual-only or path-filtered;
-it currently starts for every `main` change and can consume unnecessary build
-minutes.
+Prove the repaired application starts and renders from a clean Mac worktree on
+an iOS simulator. Only after that proof may one replacement Xcode Cloud build
+be started. The replacement must be installed and smoke-tested before external
+group assignment. Separately decide whether the workflow should become
+manual-only or path-filtered.

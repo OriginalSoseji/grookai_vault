@@ -25,8 +25,18 @@ def load_env_file(path)
   values
 end
 
-env = load_env_file('.env').merge(load_env_file('.env.local'))
 required_keys = %w[SUPABASE_URL SUPABASE_PUBLISHABLE_KEY]
+optional_keys = %w[GROOKAI_WEB_BASE_URL NEXT_PUBLIC_SITE_URL SITE_URL]
+env = load_env_file('.env').merge(load_env_file('.env.local'))
+
+# Xcode Cloud supplies release configuration as workflow environment variables.
+# Process values take precedence over local dotenv files without ever being
+# written to a tracked file or printed to the build log.
+(required_keys + optional_keys).each do |key|
+  value = ENV[key].to_s
+  env[key] = value unless value.strip.empty?
+end
+
 web_base = env['GROOKAI_WEB_BASE_URL'] ||
            env['NEXT_PUBLIC_SITE_URL'] ||
            env['SITE_URL']

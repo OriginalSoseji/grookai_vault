@@ -33,7 +33,7 @@ for internal testing but ineligible for the two external TestFlight groups.
 
 ## Status
 
-Complete.
+Rolled back after runtime failure.
 
 - Workflow audience changed and read back as `APP_STORE_ELIGIBLE`.
 - Exactly one controlled run was created: Xcode Cloud Build 276.
@@ -45,6 +45,20 @@ Complete.
 - Build 276 is assigned to both external groups. The internal group retains
   all-build access.
 - No public App Store release or application identity change occurred.
+
+After installation, Build 276 displayed a persistent white screen. It was
+removed from both external groups immediately; Build 23 is again their latest
+assigned build. Build 276 was not expired so its evidence remains available.
+
+Binary inspection proved the exact production Supabase URL and publishable key
+were absent from the shipped AOT application. No dotenv file was bundled. The
+app therefore threw before `runApp()` and never rendered a Flutter frame.
+
+The repository repair makes the Xcode Cloud bootstrap invoke the ignored iOS
+secret writer, gives workflow process environment precedence, fails the build
+before archive when required values are absent, and renders a visible startup
+error if configuration is ever missing again. A Mac process-environment test
+and six targeted contracts pass. No replacement build has been started.
 
 The active workflow still starts for every `main` change. Converting it to a
 manual-only or path-filtered release workflow is a separate cost-control gate.
