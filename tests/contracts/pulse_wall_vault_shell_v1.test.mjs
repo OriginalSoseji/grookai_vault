@@ -107,6 +107,29 @@ test("app startup does not prewarm the scanner", () => {
   assert.doesNotMatch(init, /_prewarmScanCardSurface/);
 });
 
+test("app startup preloads the first route beneath a blocking branded cover", () => {
+  const main = readSource("lib/main.dart");
+  const shell = readSource("lib/main_shell.dart");
+
+  assert.match(main, /APP_STARTUP_PARALLEL_BOOT_V1/);
+  assert.match(
+    main,
+    /Future\.wait<void>\(\[[\s\S]*GrookaiCrashReportingService\.initialize\(\)[\s\S]*_loadEnv\(\)/,
+  );
+  assert.match(main, /APP_STARTUP_COVERED_PRELOAD_V1/);
+  assert.match(
+    main,
+    /children: \[[\s\S]*root,[\s\S]*if \(_bootWarmupVisible\)[\s\S]*AbsorbPointer\(child: _GrookaiBootWarmupScreen\(\)\)/,
+  );
+  assert.doesNotMatch(main, /if \(!_bootWarmupVisible\) \{\s*return root;/);
+  assert.match(
+    shell,
+    /children: \[[\s\S]*widget\.child,[\s\S]*child: _loading \? AbsorbPointer\(child: gate\) : gate/,
+  );
+  assert.match(shell, /_startDeferredOnboardingProbe/);
+  assert.match(main, /_startDeferredPushNotifications/);
+});
+
 test("mobile image and off-screen animation budgets stay bounded", () => {
   const main = readSource("lib/main.dart");
   const shell = readSource("lib/main_shell.dart");

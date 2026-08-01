@@ -109,7 +109,8 @@ const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment(
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
-const Duration _kBootWarmupMinimumDuration = Duration(milliseconds: 520);
+const Duration _kBootWarmupMinimumDuration = Duration(milliseconds: 360);
+const Duration _kDeferredStartupServiceDelay = Duration(milliseconds: 900);
 const Duration _kMicroPressDownDuration = Duration(milliseconds: 96);
 const Duration _kMicroReleaseDuration = Duration(milliseconds: 172);
 const Duration _kActionFeedbackDuration = Duration(milliseconds: 320);
@@ -2234,8 +2235,6 @@ Future<void> main() async {
   _configureAppImageCache();
   AppBootTiming.mark('main_start');
   try {
-    await GrookaiCrashReportingService.initialize();
-    AppBootTiming.mark('crash_reporting_ready');
     PlatformDispatcher.instance.onError = (error, stackTrace) {
       if (_isInvalidRefreshTokenRecoveryError(error)) {
         debugPrint(
@@ -2250,8 +2249,18 @@ Future<void> main() async {
       return false;
     };
     AppBootTiming.mark('platform_error_handler_ready');
-    await _loadEnv();
-    AppBootTiming.mark('env_loaded');
+    // APP_STARTUP_PARALLEL_BOOT_V1
+    // Firebase/Crashlytics and local configuration are independent startup
+    // dependencies. Resolve them together while the native launch screen is
+    // still visible instead of paying their latency serially.
+    await Future.wait<void>([
+      GrookaiCrashReportingService.initialize().then((_) {
+        AppBootTiming.mark('crash_reporting_ready');
+      }),
+      _loadEnv().then((_) {
+        AppBootTiming.mark('env_loaded');
+      }),
+    ]);
 
     final url = supabaseUrl;
     final key = supabasePublishableKey;
@@ -2519,7 +2528,7 @@ class _MyAppState extends State<MyApp> {
       AppBootTiming.markOnce('root_first_post_frame');
       unawaited(_completeBootWarmup());
       unawaited(_attachCanonicalLinkListeners());
-      unawaited(_startPushNotifications());
+      unawaited(_startDeferredPushNotifications());
       if (kDebugMode) {
         unawaited(_attachDebugIntentBridge());
       }
@@ -2539,6 +2548,17 @@ class _MyAppState extends State<MyApp> {
     await GrookaiPushNotificationService.instance.start(
       onRoute: _queueCanonicalRoute,
     );
+  }
+
+  Future<void> _startDeferredPushNotifications() async {
+    // Push registration initializes Firebase messaging and platform channels.
+    // Give the first app surface priority; notification routing remains ready
+    // within the first second after the initial Flutter frame.
+    await Future<void>.delayed(_kDeferredStartupServiceDelay);
+    if (!mounted) {
+      return;
+    }
+    await _startPushNotifications();
   }
 
   Future<void> _loadThemeModePreference() async {
@@ -2816,96 +2836,110 @@ class _MyAppState extends State<MyApp> {
             'recoveryPending=$_authRecoveryPending '
             'pendingCanonicalLink=${_pendingCanonicalLink != null}',
           );
-          if (_bootWarmupVisible) {
-            AppBootTiming.markOnce('first_route_warmup');
-            return const _GrookaiBootWarmupScreen();
-          }
+          late final Widget root;
           if (_authRecoveryPending) {
             AppBootTiming.markOnce('first_route_auth_recovery');
-            return const Scaffold(
+            root = const Scaffold(
               body: Center(child: CircularProgressIndicator.adaptive()),
             );
-          }
-          if (kDebugMode &&
+          } else if (kDebugMode &&
               !shellReady &&
               pendingDebugAction?.action == _scannerV4AutoTestAction) {
-            return const ConditionCameraScreen(
+            root = const ConditionCameraScreen(
               title: 'Scan Card',
               hintText: 'Align card inside the frame',
               autoStartScannerV4DiagnosticTest: true,
             );
-          }
-          return shellReady
-              ? () {
-                  AppBootTiming.markOnce('first_route_shell');
-                  return RequiredProfileSetupGate(
-                    key: ValueKey('profile-gate-${session.user.id}'),
-                    child: AppShell(
-                      pendingCanonicalLink: _pendingCanonicalLink,
-                      onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
-                      pendingDebugAction: _pendingDebugAction,
-                      onDebugActionHandled: _handleDebugActionConsumed,
-                      themeMode: _themeMode,
-                      onThemeModeChanged: _setThemeMode,
-                    ),
-                  );
-                }()
-              : () {
-                  final pendingRoute = _pendingCanonicalLink?.route;
-                  if (pendingRoute != null) {
-                    switch (pendingRoute.kind) {
-                      case GrookaiCanonicalRouteKind.binder:
-                        if (BinderFeatureFlags.production.publicAvailable) {
-                          AppBootTiming.markOnce(
-                            'first_route_public_binder_link',
-                          );
-                          return BinderExternalProjectionScreen.public(
-                            publicId: pendingRoute.value,
-                            featureFlags: BinderFeatureFlags.production,
-                          );
-                        }
-                        break;
-                      case GrookaiCanonicalRouteKind.binderViewLink:
-                        if (BinderFeatureFlags.production.viewLinksAvailable) {
-                          AppBootTiming.markOnce(
-                            'first_route_binder_view_link',
-                          );
-                          return BinderExternalProjectionScreen.viewLink(
-                            token: pendingRoute.value,
-                            featureFlags: BinderFeatureFlags.production,
-                          );
-                        }
-                        break;
-                      case GrookaiCanonicalRouteKind.binderExplore:
-                        if (BinderFeatureFlags.production.communityAvailable) {
-                          return const BinderExploreScreen(
-                            featureFlags: BinderFeatureFlags.production,
-                          );
-                        }
-                        break;
-                      case GrookaiCanonicalRouteKind.binderTemplate:
-                        if (BinderFeatureFlags.production.templatesAvailable) {
-                          return BinderTemplatesScreen(
-                            initialTemplateId: pendingRoute.value,
-                            featureFlags: BinderFeatureFlags.production,
-                          );
-                        }
-                        break;
-                      case GrookaiCanonicalRouteKind.card:
-                      case GrookaiCanonicalRouteKind.collector:
-                      case GrookaiCanonicalRouteKind.collectorSection:
-                      case GrookaiCanonicalRouteKind.set:
-                      case GrookaiCanonicalRouteKind.gvvi:
-                      case GrookaiCanonicalRouteKind.dex:
-                      case GrookaiCanonicalRouteKind.feed:
-                      case GrookaiCanonicalRouteKind.binderLibrary:
-                      case GrookaiCanonicalRouteKind.binderInvitation:
-                        break;
-                    }
+          } else if (shellReady) {
+            AppBootTiming.markOnce('first_route_shell');
+            root = RequiredProfileSetupGate(
+              key: ValueKey('profile-gate-${session.user.id}'),
+              child: AppShell(
+                pendingCanonicalLink: _pendingCanonicalLink,
+                onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
+                pendingDebugAction: _pendingDebugAction,
+                onDebugActionHandled: _handleDebugActionConsumed,
+                themeMode: _themeMode,
+                onThemeModeChanged: _setThemeMode,
+              ),
+            );
+          } else {
+            final pendingRoute = _pendingCanonicalLink?.route;
+            Widget? publicRoute;
+            if (pendingRoute != null) {
+              switch (pendingRoute.kind) {
+                case GrookaiCanonicalRouteKind.binder:
+                  if (BinderFeatureFlags.production.publicAvailable) {
+                    AppBootTiming.markOnce('first_route_public_binder_link');
+                    publicRoute = BinderExternalProjectionScreen.public(
+                      publicId: pendingRoute.value,
+                      featureFlags: BinderFeatureFlags.production,
+                    );
                   }
-                  AppBootTiming.markOnce('first_route_login');
-                  return const LoginPage();
-                }();
+                  break;
+                case GrookaiCanonicalRouteKind.binderViewLink:
+                  if (BinderFeatureFlags.production.viewLinksAvailable) {
+                    AppBootTiming.markOnce('first_route_binder_view_link');
+                    publicRoute = BinderExternalProjectionScreen.viewLink(
+                      token: pendingRoute.value,
+                      featureFlags: BinderFeatureFlags.production,
+                    );
+                  }
+                  break;
+                case GrookaiCanonicalRouteKind.binderExplore:
+                  if (BinderFeatureFlags.production.communityAvailable) {
+                    publicRoute = const BinderExploreScreen(
+                      featureFlags: BinderFeatureFlags.production,
+                    );
+                  }
+                  break;
+                case GrookaiCanonicalRouteKind.binderTemplate:
+                  if (BinderFeatureFlags.production.templatesAvailable) {
+                    publicRoute = BinderTemplatesScreen(
+                      initialTemplateId: pendingRoute.value,
+                      featureFlags: BinderFeatureFlags.production,
+                    );
+                  }
+                  break;
+                case GrookaiCanonicalRouteKind.card:
+                case GrookaiCanonicalRouteKind.collector:
+                case GrookaiCanonicalRouteKind.collectorSection:
+                case GrookaiCanonicalRouteKind.set:
+                case GrookaiCanonicalRouteKind.gvvi:
+                case GrookaiCanonicalRouteKind.dex:
+                case GrookaiCanonicalRouteKind.feed:
+                case GrookaiCanonicalRouteKind.binderLibrary:
+                case GrookaiCanonicalRouteKind.binderInvitation:
+                  break;
+              }
+            }
+            if (publicRoute != null) {
+              root = publicRoute;
+            } else {
+              AppBootTiming.markOnce('first_route_login');
+              root = const LoginPage();
+            }
+          }
+
+          // APP_STARTUP_COVERED_PRELOAD_V1
+          // Keep the real first route mounted beneath the branded cover so
+          // profile checks and first-surface data loading overlap the startup
+          // window instead of beginning after it. The Stack remains mounted
+          // after reveal so removing the cover does not recreate the shell and
+          // discard its preloaded state.
+          if (_bootWarmupVisible) {
+            AppBootTiming.markOnce('first_route_warmup');
+          }
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              root,
+              if (_bootWarmupVisible)
+                const Positioned.fill(
+                  child: AbsorbPointer(child: _GrookaiBootWarmupScreen()),
+                ),
+            ],
+          );
         },
       ),
     );
