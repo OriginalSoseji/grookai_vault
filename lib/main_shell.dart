@@ -63,13 +63,14 @@ class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
 
   @override
   Widget build(BuildContext context) {
+    Widget? gate;
     if (_loading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator.adaptive()),
-      );
-    }
-    if (_error != null) {
-      return Scaffold(
+      // APP_STARTUP_COVERED_PRELOAD_V1
+      // Keep the app shell mounted while the required profile check runs. Its
+      // first surface can fetch and render beneath this opaque, blocking cover.
+      gate = const _GrookaiBootWarmupScreen();
+    } else if (_error != null) {
+      gate = Scaffold(
         body: SafeArea(
           child: Center(
             child: Padding(
@@ -94,15 +95,21 @@ class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
           ),
         ),
       );
-    }
-    final profile = _profile;
-    if (_needsSetup && profile != null) {
-      return _RequiredProfileSetupScreen(
-        profile: profile,
+    } else if (_needsSetup && _profile != null) {
+      gate = _RequiredProfileSetupScreen(
+        profile: _profile!,
         onCreated: _handleProfileCreated,
       );
     }
-    return widget.child;
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        widget.child,
+        if (gate != null)
+          Positioned.fill(child: _loading ? AbsorbPointer(child: gate) : gate),
+      ],
+    );
   }
 }
 
@@ -474,9 +481,17 @@ class _AppShellState extends State<AppShell> {
       // APP_STARTUP_NO_CAMERA_CONTENTION_V1
       // Camera startup competes with the first network surface for CPU, memory,
       // and platform-channel time. Scan initializes on demand when tapped.
-      unawaited(_maybeShowOnboardingForLanding());
+      unawaited(_startDeferredOnboardingProbe());
     });
     AppBootTiming.mark('app_shell_init_state_complete');
+  }
+
+  Future<void> _startDeferredOnboardingProbe() async {
+    await Future<void>.delayed(_kDeferredStartupServiceDelay);
+    if (!mounted) {
+      return;
+    }
+    await _maybeShowOnboardingForLanding();
   }
 
   @override
