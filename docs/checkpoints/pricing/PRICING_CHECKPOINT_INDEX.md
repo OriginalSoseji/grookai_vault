@@ -33,6 +33,25 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_43_CANARY_SOURCE_GAP_DEPLOYMENT_AND_RESTART.md`
+
+This checkpoint records deployment of the bounded source-gap policy, the
+REPAIR4 recovery that restored all 100 prices but exposed missing live
+coverage artifacts, the narrow coverage-result wiring repair, the fully
+reconciled REPAIR5 activation, and the V3 observer restart.
+
+Decision locked there:
+
+- the only active window begins at `2026-08-02T22:29:17.856Z` from runtime
+  commit `6b729441...`; every activation must preserve all 100 coverage
+  outcomes, and REPAIR4 remains non-qualifying historical evidence
+
+Unresolved risk afterward:
+
+- the window must pass through `2026-08-05T22:29:17.856Z` plus any bounded
+  final-slot grace; disk retention, post-canary migrations, integrated client
+  rollout, 17-surface proof, and seven unattended full cycles remain pending
+
 ### `PRICING_CHECKPOINT_42_CANARY_SOURCE_GAP_POLICY_REPAIR.md`
 
 This checkpoint records the August 1 and August 2 canary failures caused by a
@@ -842,8 +861,17 @@ Recommended reading order for future maintainers:
 39. `PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
     - then read why the July 30 window failed, how source-trigger evidence,
       current canary continuity, retry classification, and final completion
-      grace were repaired, and why only July 31 `REPAIR3` starts the active
-      72-hour window
+      grace were repaired, and why July 31 `REPAIR3` started a later failed
+      observation window
+
+40. `PRICING_CHECKPOINT_42_CANARY_SOURCE_GAP_POLICY_REPAIR.md`
+    - then read why a transient missing source row must be accounted for
+      without mutating the fixed canary denominator or substituting evidence
+
+41. `PRICING_CHECKPOINT_43_CANARY_SOURCE_GAP_DEPLOYMENT_AND_RESTART.md`
+    - finally read the deployed source-gap policy, live coverage wiring
+      repair, REPAIR5 activation, current V3 observer evidence, and the exact
+      post-72-hour handoff
 
 After those checkpoints, read the supporting audits in this order:
 
@@ -866,3 +894,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/provenance_lookup_v1_readiness/2026-07-28T11-36-54-825Z/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_source_gap_repair5_20260802/REPORT.md`
