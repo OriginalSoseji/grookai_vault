@@ -7,8 +7,11 @@ import test from "node:test";
 import {
   evaluateTcgplayerMarketCanaryObservationV1,
   expectedTcgplayerMarketScheduleSlotsV1,
-  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
 } from "../../backend/pricing/tcgplayer_market_canary_observation_policy_v1.mjs";
+import {
+  TCGPLAYER_MARKET_CANARY_SOURCE_COVERAGE_V1,
+} from "../../backend/pricing/tcgplayer_market_canary_source_coverage_v1.mjs";
 import {
   buildTcgplayerMarketCanaryFailureArtifactsV1,
   buildTcgplayerMarketCanaryRunPlanV1,
@@ -31,17 +34,25 @@ function exactRun({
   startedAt,
   completedAt,
   commit = COMMIT,
+  sourceMissing = 0,
 } = {}) {
+  const resolved = 100 - sourceMissing;
+  const outcomes = Array.from({ length: 100 }, (_, index) => ({
+    ordinal: index + 1,
+    outcome: index < resolved ? "resolved" : "source_missing",
+    source_observation_id:
+      index < resolved ? `source-observation-${index + 1}` : null,
+  }));
   return {
     id,
     run_key: runKey,
     run_mode: "canary",
     state: "verified",
     reconciliation_state: "reconciled",
-    selected_count: 100,
-    mapped_count: 100,
-    eligible_count: 100,
-    snapshot_count: 100,
+    selected_count: resolved,
+    mapped_count: resolved,
+    eligible_count: resolved,
+    snapshot_count: resolved,
     delayed_count: 0,
     suppressed_count: 0,
     quarantined_count: 0,
@@ -53,7 +64,16 @@ function exactRun({
     completed_at: completedAt,
     failed_at: null,
     error: null,
-    reconciliation: { mismatches: [] },
+    reconciliation: {
+      canary_source_coverage_policy_version:
+        TCGPLAYER_MARKET_CANARY_SOURCE_COVERAGE_V1,
+      canary_source_coverage_reconciled: true,
+      canary_expected_count: 100,
+      canary_resolved_count: resolved,
+      canary_source_missing_count: sourceMissing,
+      canary_source_outcomes: outcomes,
+      mismatches: [],
+    },
   };
 }
 
@@ -64,12 +84,13 @@ const activationRun = exactRun({
   completedAt: WINDOW_START,
 });
 
-function scheduledRun(day) {
+function scheduledRun(day, options = {}) {
   return exactRun({
     id: `run-${day}`,
     runKey: `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-${day}-publication`,
     startedAt: `2026-07-${day}T08:15:03.000Z`,
     completedAt: `2026-07-${day}T08:16:10.000Z`,
+    ...options,
   });
 }
 
@@ -142,7 +163,7 @@ test("a healthy incomplete window remains observing", () => {
   const result = evaluateTcgplayerMarketCanaryObservationV1(baseInput());
   assert.equal(
     result.policy_version,
-    TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+    TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
   );
   assert.equal(result.status, "observing");
   assert.equal(result.window.elapsed, false);
@@ -256,6 +277,66 @@ test("the exact three scheduled slots pass after 72 hours", () => {
   assert.equal(result.window.elapsed, true);
   assert.equal(result.schedule.matched_slots.length, 3);
   assert.deepEqual(result.findings, []);
+});
+
+test("a bounded source gap reconciles and expects only resolved current rows", () => {
+  const activation = exactRun({
+    id: "activation-gap",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-GAP-publication",
+    startedAt: "2026-07-28T08:39:53.963Z",
+    completedAt: WINDOW_START,
+    sourceMissing: 1,
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      activationRun: activation,
+      current: {
+        ...baseInput().current,
+        exact_price_count: 99,
+        positive_usd_count: 99,
+        current_publication_run_id: "activation-gap",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.run_evidence.expected_count, 100);
+  assert.equal(result.run_evidence.expected_current_count, 99);
+  assert.equal(result.run_evidence.max_source_missing_count, 5);
+});
+
+test("source gaps beyond the bounded ceiling fail the gate", () => {
+  const activation = exactRun({
+    id: "activation-too-many-gaps",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-GAP-publication",
+    startedAt: "2026-07-28T08:39:53.963Z",
+    completedAt: WINDOW_START,
+    sourceMissing: 6,
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({ activationRun: activation }),
+  );
+
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("activation_run_not_exact_and_healthy"));
+});
+
+test("missing source coverage reconciliation fails even when row counts align", () => {
+  const activation = exactRun({
+    id: "activation-bad-coverage",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-GAP-publication",
+    startedAt: "2026-07-28T08:39:53.963Z",
+    completedAt: WINDOW_START,
+    sourceMissing: 1,
+  });
+  activation.reconciliation.canary_source_outcomes.pop();
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({ activationRun: activation }),
+  );
+
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("activation_run_not_exact_and_healthy"));
 });
 
 test("a missing elapsed schedule slot fails the gate", () => {
@@ -375,6 +456,7 @@ test("observer query failures preserve a run plan, summary, failure, and hashes"
         expectedCommitSha: COMMIT,
         requiredHours: 72,
         expectedCount: 100,
+        maxSourceMissingCount: 5,
         scheduleToleranceMinutes: 90,
         scheduleCompletionGraceMinutes: 480,
       },
@@ -422,6 +504,7 @@ test("observer query failures preserve a run plan, summary, failure, and hashes"
     assert.equal(runPlan.boundaries.database_reads_only, true);
     assert.equal(runPlan.boundaries.database_writes, false);
     assert.equal(runPlan.schedule_completion_grace_minutes, 480);
+    assert.equal(runPlan.max_source_missing_count, 5);
   } finally {
     await fs.rm(root, { recursive: true, force: true });
   }

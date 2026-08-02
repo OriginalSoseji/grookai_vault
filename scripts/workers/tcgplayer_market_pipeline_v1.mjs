@@ -23,6 +23,7 @@ const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT = 5;
 
 function parseArgs(argv) {
   const args = {
@@ -44,6 +45,11 @@ function parseArgs(argv) {
     freshnessHours: 36,
     publicationLimit: null,
     canaryDefinitionPath: null,
+    maxCanarySourceMissingCount: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT ||
+        String(DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT),
+      10,
+    ),
   };
 
   for (const arg of argv) {
@@ -88,6 +94,11 @@ function parseArgs(argv) {
       args.canaryDefinitionPath = path.resolve(
         arg.slice("--canary-definition=".length),
       );
+    } else if (arg.startsWith("--max-canary-source-missing-count=")) {
+      args.maxCanarySourceMissingCount = Number.parseInt(
+        arg.slice("--max-canary-source-missing-count=".length),
+        10,
+      );
     }
   }
 
@@ -123,6 +134,14 @@ function parseArgs(argv) {
   }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
     throw new Error("--freshness-hours must be positive");
+  }
+  if (
+    !Number.isInteger(args.maxCanarySourceMissingCount) ||
+    args.maxCanarySourceMissingCount < 0
+  ) {
+    throw new Error(
+      "--max-canary-source-missing-count must be a non-negative integer",
+    );
   }
   if (
     args.publicationLimit !== null &&
@@ -308,6 +327,8 @@ async function main() {
         ? relative(args.canaryDefinitionPath)
         : null,
       freshness_hours: args.freshnessHours,
+      max_canary_source_missing_count:
+        args.maxCanarySourceMissingCount,
       phase_state_authority: "database",
     },
     boundaries: {
@@ -402,6 +423,7 @@ async function main() {
     `--out-root=${path.join(runDir, "publication")}`,
     `--freshness-hours=${args.freshnessHours}`,
     `--database-timeout-minutes=${args.databaseTimeoutMinutes}`,
+    `--max-canary-source-missing-count=${args.maxCanarySourceMissingCount}`,
   ];
   if (args.publicationLimit !== null) {
     publicationArgs.push(`--limit=${args.publicationLimit}`);

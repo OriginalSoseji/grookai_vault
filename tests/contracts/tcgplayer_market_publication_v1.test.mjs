@@ -743,6 +743,19 @@ test("worker is dry-run by default and writes only governed pricing tables in wr
   assert.doesNotMatch(WORKER, /insert\s+into\s+public\.vault/i);
 });
 
+test("canary publication reconciles bounded current-source gaps without substituting variants", () => {
+  assert.match(WORKER, /resolveTcgplayerMarketCanarySourceCoverageV1/);
+  assert.match(
+    WORKER,
+    /observation\.last_seen_run_id = \$1[\s\S]*observation\.observed_on = \$2/,
+  );
+  assert.match(WORKER, /DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT = 5/);
+  assert.match(WORKER, /canary source_missing ceiling exceeded/);
+  assert.match(WORKER, /canary_source_outcomes\.jsonl/);
+  assert.match(WORKER, /canary_resolved_selected_count/);
+  assert.match(WORKER, /canary_source_coverage_reconciled/);
+});
+
 test("all active web and Flutter pricing consumers use the shared read model", () => {
   assert.match(WEB_READ_MODEL, /get_market_pricing_read_model_v1/);
   assert.match(WEB_VAULT, /getExactMarketPricingByCardPrintingIds/);
@@ -897,6 +910,28 @@ test("scheduled failure policy retries source transport failures but stops invar
   );
   assert.deepEqual(
     classifyMarketPipelineFailureV1({
+      failedPhase: "publication",
+      errorText:
+        "canary source_missing ceiling exceeded actual=6 maximum=5",
+    }),
+    {
+      classification: "non_retryable_canary_source_degradation",
+      retryable: false,
+    },
+  );
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "publication",
+      errorText:
+        "canary source identity 168245:Holofoil:printing exists in the current source run but resolved 0 candidate rows",
+    }),
+    {
+      classification: "non_retryable_canary_definition_drift",
+      retryable: false,
+    },
+  );
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
       failedPhase: "health",
       errorText: "eligible snapshot reconciliation mismatch",
     }),
@@ -962,6 +997,14 @@ test("scheduled runner is safe by default and preserves one durable run key acro
     /--canary-definition=\$\{loadedCanary\.absolutePath\}/,
   );
   assert.match(SCHEDULED_RUNNER, /canary_definition_sha256/);
+  assert.match(
+    SCHEDULED_RUNNER,
+    /--max-canary-source-missing-count=\$\{args\.maxCanarySourceMissingCount\}/,
+  );
+  assert.match(
+    PIPELINE,
+    /--max-canary-source-missing-count=\$\{args\.maxCanarySourceMissingCount\}/,
+  );
   assert.match(SCHEDULED_RUNNER, /classification\.retryable/);
   assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);

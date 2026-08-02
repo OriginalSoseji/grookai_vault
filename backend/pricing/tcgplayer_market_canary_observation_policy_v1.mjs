@@ -1,9 +1,11 @@
-export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2 =
-  "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2";
+export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3 =
+  "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3";
 
-// Preserve the original export name for callers pinned to the V1 module path.
+// Preserve historical export names for callers pinned to the V1 module path.
+export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2 =
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3;
 export const TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1 =
-  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2;
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3;
 
 const HOUR_MS = 60 * 60 * 1000;
 const MINUTE_MS = 60 * 1000;
@@ -44,12 +46,72 @@ function reconciliationMismatches(run) {
     : [];
 }
 
-function runIsExact(run, expectedCount) {
+function canarySourceCoverage(run, expectedCount, maxSourceMissingCount) {
+  const reconciliation = run?.reconciliation ?? {};
+  const expected = integer(reconciliation.canary_expected_count);
+  const resolved = integer(reconciliation.canary_resolved_count);
+  const sourceMissing = integer(
+    reconciliation.canary_source_missing_count,
+  );
+  const outcomes = Array.isArray(reconciliation.canary_source_outcomes)
+    ? reconciliation.canary_source_outcomes
+    : [];
+  const resolvedOutcomes = outcomes.filter(
+    (outcome) => outcome?.outcome === "resolved",
+  ).length;
+  const missingOutcomes = outcomes.filter(
+    (outcome) => outcome?.outcome === "source_missing",
+  ).length;
+  const unknownOutcomes = outcomes.length - resolvedOutcomes - missingOutcomes;
+  const ordinals = outcomes.map((outcome) => integer(outcome?.ordinal));
+  const ordinalSet = new Set(ordinals);
+  const ordinalsAreComplete =
+    ordinalSet.size === expectedCount &&
+    Array.from({ length: expectedCount }, (_, index) => index + 1).every(
+      (ordinal) => ordinalSet.has(ordinal),
+    );
+  const outcomeEvidenceIsCoherent = outcomes.every((outcome) =>
+    outcome?.outcome === "resolved"
+      ? Boolean(string(outcome?.source_observation_id))
+      : outcome?.outcome === "source_missing"
+        ? outcome?.source_observation_id === null
+        : false,
+  );
+  const valid =
+    reconciliation.canary_source_coverage_policy_version ===
+      TCGPLAYER_MARKET_CANARY_SOURCE_COVERAGE_V1 &&
+    reconciliation.canary_source_coverage_reconciled === true &&
+    expected === expectedCount &&
+    resolved !== null &&
+    sourceMissing !== null &&
+    sourceMissing >= 0 &&
+    sourceMissing <= maxSourceMissingCount &&
+    resolved + sourceMissing === expectedCount &&
+    outcomes.length === expectedCount &&
+    resolvedOutcomes === resolved &&
+    missingOutcomes === sourceMissing &&
+    unknownOutcomes === 0 &&
+    ordinalsAreComplete &&
+    outcomeEvidenceIsCoherent;
+  return { expected, resolved, sourceMissing, outcomes, valid };
+}
+
+function runIsExact(
+  run,
+  expectedCount,
+  maxSourceMissingCount,
+) {
+  const coverage = canarySourceCoverage(
+    run,
+    expectedCount,
+    maxSourceMissingCount,
+  );
   return (
-    integer(run?.selected_count) === expectedCount &&
-    integer(run?.mapped_count) === expectedCount &&
-    integer(run?.eligible_count) === expectedCount &&
-    integer(run?.snapshot_count) === expectedCount &&
+    coverage.valid &&
+    integer(run?.selected_count) === coverage.resolved &&
+    integer(run?.mapped_count) === coverage.resolved &&
+    integer(run?.eligible_count) === coverage.resolved &&
+    integer(run?.snapshot_count) === coverage.resolved &&
     integer(run?.delayed_count) === 0 &&
     integer(run?.suppressed_count) === 0 &&
     integer(run?.quarantined_count) === 0 &&
@@ -57,7 +119,10 @@ function runIsExact(run, expectedCount) {
   );
 }
 
-function runIsHealthy(run, { expectedCount, expectedCommitSha }) {
+function runIsHealthy(
+  run,
+  { expectedCount, expectedCommitSha, maxSourceMissingCount },
+) {
   return (
     run?.run_mode === "canary" &&
     run?.state === "verified" &&
@@ -68,7 +133,7 @@ function runIsHealthy(run, { expectedCount, expectedCommitSha }) {
     !run?.failed_at &&
     !run?.error &&
     reconciliationMismatches(run).length === 0 &&
-    runIsExact(run, expectedCount)
+    runIsExact(run, expectedCount, maxSourceMissingCount)
   );
 }
 
@@ -137,6 +202,7 @@ function evaluateScheduleEvidence({
   completionGraceMinutes,
   expectedCount,
   expectedCommitSha,
+  maxSourceMissingCount,
 }) {
   const endMs = asOf.getTime();
   const triggerToleranceMs = triggerToleranceMinutes * MINUTE_MS;
@@ -283,6 +349,7 @@ function evaluateScheduleEvidence({
       runIsHealthy(publicationRun, {
         expectedCount,
         expectedCommitSha,
+        maxSourceMissingCount,
       })
     ) {
       matched.push({
@@ -295,6 +362,8 @@ function evaluateScheduleEvidence({
         publication_run_key: keys.publication,
         publication_started_at: publicationRun.started_at ?? null,
         publication_completed_at: publicationRun.completed_at ?? null,
+        source_missing_count:
+          publicationRun.reconciliation?.canary_source_missing_count ?? null,
       });
       continue;
     }
@@ -363,6 +432,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   scheduleToleranceMinutes = 90,
   scheduleCompletionGraceMinutes = 480,
   expectedCount = 100,
+  maxSourceMissingCount = 5,
   expectedCommitSha,
   activationRun,
   scheduledSourceRuns = [],
@@ -382,6 +452,15 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   }
   if (!Number.isInteger(expectedCount) || expectedCount < 1) {
     throw new Error("expectedCount must be a positive integer");
+  }
+  if (
+    !Number.isInteger(maxSourceMissingCount) ||
+    maxSourceMissingCount < 0 ||
+    maxSourceMissingCount >= expectedCount
+  ) {
+    throw new Error(
+      "maxSourceMissingCount must be a non-negative integer below expectedCount",
+    );
   }
   if (
     !Number.isFinite(scheduleToleranceMinutes) ||
@@ -429,6 +508,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     completionGraceMinutes: scheduleCompletionGraceMinutes,
     expectedCount,
     expectedCommitSha: commitSha,
+    maxSourceMissingCount,
   });
   const findings = [];
 
@@ -438,6 +518,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     !runIsHealthy(activationRun, {
       expectedCount,
       expectedCommitSha: commitSha,
+      maxSourceMissingCount,
     })
   ) {
     findings.push("activation_run_not_exact_and_healthy");
@@ -463,10 +544,33 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   }
   if (terminalAlerts.length) findings.push("terminal_operations_alert_in_window");
 
-  if (integer(current.exact_price_count) !== expectedCount) {
+  const healthyRuns = [activationRun, ...publicationRuns]
+    .filter(Boolean)
+    .filter((run) =>
+      runIsHealthy(run, {
+        expectedCount,
+        expectedCommitSha: commitSha,
+        maxSourceMissingCount,
+      }),
+    );
+  const latestHealthyRun = healthyRuns
+    .slice()
+    .sort(
+      (left, right) =>
+        new Date(right.completed_at).getTime() -
+        new Date(left.completed_at).getTime(),
+    )[0];
+  const expectedCurrentCount = latestHealthyRun
+    ? canarySourceCoverage(
+        latestHealthyRun,
+        expectedCount,
+        maxSourceMissingCount,
+      ).resolved
+    : expectedCount;
+  if (integer(current.exact_price_count) !== expectedCurrentCount) {
     findings.push("current_exact_price_count_mismatch");
   }
-  if (integer(current.positive_usd_count) !== expectedCount) {
+  if (integer(current.positive_usd_count) !== expectedCurrentCount) {
     findings.push("current_positive_usd_count_mismatch");
   }
   if (integer(current.missing_provenance_count) !== 0) {
@@ -478,22 +582,6 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   if (integer(current.broken_trace_count) !== 0) {
     findings.push("broken_source_to_publication_trace");
   }
-
-  const healthyRuns = [activationRun, ...publicationRuns]
-    .filter(Boolean)
-    .filter((run) =>
-      runIsHealthy(run, {
-        expectedCount,
-        expectedCommitSha: commitSha,
-      }),
-    );
-  const latestHealthyRun = healthyRuns
-    .slice()
-    .sort(
-      (left, right) =>
-        new Date(right.completed_at).getTime() -
-        new Date(left.completed_at).getTime(),
-    )[0];
   if (
     latestHealthyRun &&
     string(current.current_publication_run_id) !== string(latestHealthyRun.id)
@@ -543,7 +631,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
       : "observing";
 
   return {
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
     status,
     window: {
       started_at: start.toISOString(),
@@ -575,6 +663,8 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     run_evidence: {
       expected_commit_sha: commitSha,
       expected_count: expectedCount,
+      max_source_missing_count: maxSourceMissingCount,
+      expected_current_count: expectedCurrentCount,
       activation_run_key: activationRun?.run_key ?? null,
       scheduled_source_run_count: sourceRuns.length,
       scheduled_publication_run_count: publicationRuns.length,
@@ -590,3 +680,6 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     findings,
   };
 }
+import {
+  TCGPLAYER_MARKET_CANARY_SOURCE_COVERAGE_V1,
+} from "./tcgplayer_market_canary_source_coverage_v1.mjs";

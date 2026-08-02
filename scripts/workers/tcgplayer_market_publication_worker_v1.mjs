@@ -16,8 +16,10 @@ import {
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import {
   loadTcgplayerMarketCanaryDefinitionV1,
-  tcgplayerMarketCanarySourceKeyV1,
 } from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
+import {
+  resolveTcgplayerMarketCanarySourceCoverageV1,
+} from "../../backend/pricing/tcgplayer_market_canary_source_coverage_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -29,7 +31,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_3";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -45,6 +47,7 @@ const WRITE_MODES = new Set(["shadow", "canary", "production"]);
 const ACTIVATION_MODES = new Set(["canary", "production"]);
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT = 5;
 
 function parseArgs(argv) {
   const args = {
@@ -56,6 +59,11 @@ function parseArgs(argv) {
     freshnessHours: TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
     suppressionHours: TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
     batchSize: 500,
+    maxCanarySourceMissingCount: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT ||
+        String(DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT),
+      10,
+    ),
     databaseTimeoutMinutes: Number.parseInt(
       process.env.TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES ||
         String(DEFAULT_DATABASE_TIMEOUT_MINUTES),
@@ -99,6 +107,11 @@ function parseArgs(argv) {
         arg.slice("--database-timeout-minutes=".length),
         10,
       );
+    } else if (arg.startsWith("--max-canary-source-missing-count=")) {
+      args.maxCanarySourceMissingCount = Number.parseInt(
+        arg.slice("--max-canary-source-missing-count=".length),
+        10,
+      );
     }
   }
 
@@ -130,6 +143,14 @@ function parseArgs(argv) {
     args.databaseTimeoutMinutes < 1
   ) {
     throw new Error("--database-timeout-minutes must be a positive integer");
+  }
+  if (
+    !Number.isInteger(args.maxCanarySourceMissingCount) ||
+    args.maxCanarySourceMissingCount < 0
+  ) {
+    throw new Error(
+      "--max-canary-source-missing-count must be a non-negative integer",
+    );
   }
   if (
     WRITE_MODES.has(args.runMode) &&
@@ -260,7 +281,37 @@ async function latestSourceRun(client) {
   return result.rows[0];
 }
 
-async function candidateRows(client, { limit, canaryDefinition }) {
+async function currentCanarySourceRows(client, sourceRun, canaryDefinition) {
+  const productIds = [
+    ...new Set(
+      canaryDefinition.printings.map((printing) =>
+        Number(printing.source_product_id),
+      ),
+    ),
+  ];
+  const result = await client.query(
+    `select
+       observation.id as source_observation_id,
+       observation.last_seen_run_id as source_sync_run_id,
+       observation.source_price_row_identity,
+       observation.product_id as source_product_id,
+       observation.subtype_name as source_subtype_name
+     from public.tcgcsv_source_price_daily_observations observation
+     where observation.last_seen_run_id = $1
+       and observation.observed_on = $2
+       and observation.category_id = 3
+       and observation.product_id = any($3::integer[])
+     order by observation.product_id, observation.subtype_name,
+              observation.source_price_row_identity`,
+    [sourceRun.id, sourceRun.observed_on, productIds],
+  );
+  return result.rows;
+}
+
+async function candidateRows(
+  client,
+  { limit, canaryDefinition, sourceRun, maxCanarySourceMissingCount },
+) {
   if (canaryDefinition) {
     const printingIds = canaryDefinition.printings.map(
       (printing) => printing.card_printing_id,
@@ -272,37 +323,25 @@ async function candidateRows(client, { limit, canaryDefinition }) {
         order by source_product_id, source_subtype_name, source_observation_id`,
       [printingIds],
     );
-    const rowsBySourceKey = new Map();
-    for (const row of result.rows) {
-      const key = tcgplayerMarketCanarySourceKeyV1(row);
-      const matches = rowsBySourceKey.get(key) ?? [];
-      matches.push(row);
-      rowsBySourceKey.set(key, matches);
-    }
-    return canaryDefinition.printings.map((printing) => {
-      const key = tcgplayerMarketCanarySourceKeyV1(printing);
-      const matches = rowsBySourceKey.get(key) ?? [];
-      if (matches.length !== 1) {
-        throw new Error(
-          `canary source identity ${key} resolved ${matches.length} rows`,
-        );
-      }
-      const row = matches[0];
-      const mismatches = [
-        ["card_print_id", printing.card_print_id],
-        ["gv_id", printing.gv_id],
-        ["printing_gv_id", printing.printing_gv_id],
-        ["finish_key", printing.expected_finish],
-      ].filter(([field, expected]) => row[field] !== expected);
-      if (mismatches.length) {
-        throw new Error(
-          `canary identity ${key} drifted: ${mismatches
-            .map(([field, expected]) => `${field}=${row[field]} expected=${expected}`)
-            .join(",")}`,
-        );
-      }
-      return row;
+    const rawSourceRows = await currentCanarySourceRows(
+      client,
+      sourceRun,
+      canaryDefinition,
+    );
+    const selection = resolveTcgplayerMarketCanarySourceCoverageV1({
+      canaryDefinition,
+      candidateRows: result.rows,
+      currentSourceRows: rawSourceRows,
+      sourceRun,
     });
+    if (
+      selection.coverage.source_missing_count > maxCanarySourceMissingCount
+    ) {
+      throw new Error(
+        `canary source_missing ceiling exceeded actual=${selection.coverage.source_missing_count} maximum=${maxCanarySourceMissingCount}`,
+      );
+    }
+    return selection;
   }
   const params = [];
   const limitSql = limit === null ? "" : "limit $1";
@@ -314,7 +353,7 @@ async function candidateRows(client, { limit, canaryDefinition }) {
       ${limitSql}`,
     params,
   );
-  return result.rows;
+  return { rows: result.rows, coverage: null };
 }
 
 function buildCandidate(row, runId) {
@@ -480,16 +519,16 @@ async function ensureRun(client, {
 
 async function completedPhase(client, runId, phaseName) {
   const result = await client.query(
-    `select exists (
-       select 1
+    `select resumability_data
        from public.market_price_pipeline_phase_attempts
-       where run_id = $1
-         and phase_name = $2
-         and state = 'succeeded'
-     ) as completed`,
+      where run_id = $1
+        and phase_name = $2
+        and state = 'succeeded'
+      order by attempt desc, completed_at desc, id desc
+      limit 1`,
     [runId, phaseName],
   );
-  return result.rows[0].completed === true;
+  return result.rows[0] ?? null;
 }
 
 async function nextPhaseAttempt(client, runId, phaseName) {
@@ -594,11 +633,15 @@ async function runPhase(client, {
   phaseName,
   operation,
 }) {
-  if (await completedPhase(client, run.id, phaseName)) {
+  const completed = await completedPhase(client, run.id, phaseName);
+  if (completed) {
     process.stdout.write(
       `[tcgplayer-market-publication] phase=${phaseName} status=resumed\n`,
     );
-    return { resumed: true };
+    return {
+      resumed: true,
+      resumability_data: completed.resumability_data ?? {},
+    };
   }
   const attempt = await nextPhaseAttempt(client, run.id, phaseName);
   const startedAt = new Date().toISOString();
@@ -1038,7 +1081,7 @@ async function decisionCounts(client, runId) {
   );
 }
 
-async function reconcileRun(client, runId) {
+async function reconcileRun(client, runId, canaryCoverage = null) {
   const result = await client.query(
     `with candidate_totals as (
        select
@@ -1104,7 +1147,39 @@ async function reconcileRun(client, runId) {
   ) {
     mismatches.push("decision_lane_count");
   }
-  return { ...reconciliation, mismatches };
+  if (canaryCoverage) {
+    if (!canaryCoverage.reconciled) {
+      mismatches.push("canary_source_coverage_not_reconciled");
+    }
+    if (
+      canaryCoverage.resolved_count +
+        canaryCoverage.source_missing_count !==
+      canaryCoverage.expected_count
+    ) {
+      mismatches.push("canary_expected_source_coverage_count");
+    }
+    if (reconciliation.selected_count !== canaryCoverage.resolved_count) {
+      mismatches.push("canary_resolved_selected_count");
+    }
+    if (
+      canaryCoverage.outcomes.length !== canaryCoverage.expected_count
+    ) {
+      mismatches.push("canary_source_outcome_count");
+    }
+  }
+  return {
+    ...reconciliation,
+    canary_source_coverage_policy_version:
+      canaryCoverage?.policy_version ?? null,
+    canary_source_coverage_reconciled:
+      canaryCoverage?.reconciled ?? null,
+    canary_expected_count: canaryCoverage?.expected_count ?? null,
+    canary_resolved_count: canaryCoverage?.resolved_count ?? null,
+    canary_source_missing_count:
+      canaryCoverage?.source_missing_count ?? null,
+    canary_source_outcomes: canaryCoverage?.outcomes ?? [],
+    mismatches,
+  };
 }
 
 async function persistReconciliation(client, runId, reconciliation) {
@@ -1242,6 +1317,15 @@ async function writeArtifacts(outDir, {
     decisions: path.join(outDir, "qualification_decisions.jsonl"),
     reconciliation: path.join(outDir, "reconciliation.json"),
   };
+  if (
+    reconciliation.canary_source_coverage_policy_version &&
+    Array.isArray(reconciliation.canary_source_outcomes)
+  ) {
+    files.canary_source_outcomes = path.join(
+      outDir,
+      "canary_source_outcomes.jsonl",
+    );
+  }
   await writeJson(files.run_plan, runPlan);
   await writeJson(files.summary, summary);
   await fs.writeFile(
@@ -1250,6 +1334,15 @@ async function writeArtifacts(outDir, {
       (decisions.length ? "\n" : ""),
   );
   await writeJson(files.reconciliation, reconciliation);
+  if (files.canary_source_outcomes) {
+    await fs.writeFile(
+      files.canary_source_outcomes,
+      reconciliation.canary_source_outcomes
+        .map((outcome) => JSON.stringify(outcome))
+        .join("\n") +
+        (reconciliation.canary_source_outcomes.length ? "\n" : ""),
+    );
+  }
   const hashes = {};
   for (const [name, filePath] of Object.entries(files)) {
     hashes[name] = sha256(await fs.readFile(filePath));
@@ -1281,10 +1374,13 @@ function decisionSummary(decisions) {
 }
 
 async function runDryRun(client, args, sourceRun, runPlan) {
-  const rows = await candidateRows(client, {
+  const selection = await candidateRows(client, {
     limit: args.limit,
     canaryDefinition: args.canaryDefinition,
+    sourceRun,
+    maxCanarySourceMissingCount: args.maxCanarySourceMissingCount,
   });
+  const { rows, coverage: canaryCoverage } = selection;
   const evaluatedAt = new Date().toISOString();
   const decisions = rows.map((row, index) =>
     buildDecision(
@@ -1302,7 +1398,17 @@ async function runDryRun(client, args, sourceRun, runPlan) {
   const counts = decisionSummary(decisions);
   const reconciliation = {
     ...counts,
+    mapped_count: counts.selected_count,
     source_sync_run_id: sourceRun.id,
+    canary_source_coverage_policy_version:
+      canaryCoverage?.policy_version ?? null,
+    canary_source_coverage_reconciled:
+      canaryCoverage?.reconciled ?? null,
+    canary_expected_count: canaryCoverage?.expected_count ?? null,
+    canary_resolved_count: canaryCoverage?.resolved_count ?? null,
+    canary_source_missing_count:
+      canaryCoverage?.source_missing_count ?? null,
+    canary_source_outcomes: canaryCoverage?.outcomes ?? [],
     writes: false,
     mismatches: [],
   };
@@ -1326,7 +1432,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
       return artifactRows(client, run.id);
     }
 
-    await runPhase(client, {
+    const stageResult = await runPhase(client, {
       run,
       sourceRun,
       phaseName: "prepare_variant_assignments",
@@ -1354,10 +1460,13 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "stage_candidates",
       operation: async () => {
-        const rows = await candidateRows(client, {
+        const selection = await candidateRows(client, {
           limit: args.limit,
           canaryDefinition: args.canaryDefinition,
+          sourceRun,
+          maxCanarySourceMissingCount: args.maxCanarySourceMissingCount,
         });
+        const { rows, coverage: canaryCoverage } = selection;
         const candidates = rows.map((row) => buildCandidate(row, run.id));
         await insertCandidates(client, candidates, args.batchSize);
         const staged = await stagedCandidates(client, run.id);
@@ -1375,10 +1484,13 @@ async function runDurable(client, args, sourceRun, runPlan) {
               rows[0]?.source_observation_id ?? null,
             last_source_observation_id:
               rows.at(-1)?.source_observation_id ?? null,
+            canary_source_coverage: canaryCoverage,
           },
         };
       },
     });
+    const canaryCoverage =
+      stageResult.resumability_data?.canary_source_coverage ?? null;
 
     await runPhase(client, {
       run,
@@ -1465,7 +1577,11 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "reconcile",
       operation: async () => {
-        const reconciliation = await reconcileRun(client, run.id);
+        const reconciliation = await reconcileRun(
+          client,
+          run.id,
+          canaryCoverage,
+        );
         await persistReconciliation(client, run.id, reconciliation);
         if (reconciliation.mismatches.length) {
           throw new Error(
@@ -1518,6 +1634,13 @@ async function main() {
     loadedCanary = await loadTcgplayerMarketCanaryDefinitionV1(
       args.canaryDefinitionPath,
     );
+    if (
+      args.maxCanarySourceMissingCount >= loadedCanary.definition.expected_count
+    ) {
+      throw new Error(
+        "--max-canary-source-missing-count must be below canary expected_count",
+      );
+    }
     args.canaryDefinition = loadedCanary.definition;
   } else {
     args.canaryDefinition = null;
@@ -1583,6 +1706,8 @@ async function main() {
         canary_id: loadedCanary?.definition.canary_id ?? null,
         canary_expected_count:
           loadedCanary?.definition.expected_count ?? null,
+        max_canary_source_missing_count:
+          args.maxCanarySourceMissingCount,
         freshness_hours: args.freshnessHours,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
@@ -1647,6 +1772,14 @@ async function main() {
       canary_definition_sha256: loadedCanary
         ? sha256(loadedCanary.raw)
         : null,
+      canary_expected_count:
+        reconciliation.canary_expected_count ?? null,
+      canary_resolved_count:
+        reconciliation.canary_resolved_count ?? null,
+      canary_source_missing_count:
+        reconciliation.canary_source_missing_count ?? null,
+      max_canary_source_missing_count:
+        args.maxCanarySourceMissingCount,
       writes_canonical_identity: false,
       writes_vault: false,
     };

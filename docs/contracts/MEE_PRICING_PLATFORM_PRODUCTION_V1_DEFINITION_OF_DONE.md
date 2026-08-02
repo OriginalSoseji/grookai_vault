@@ -44,6 +44,10 @@ Production V1 is releasable only when every applicable gate passes:
 
 1. The authenticated 100-printing canary completes an uninterrupted,
    reconciled 72-hour observation window.
+   The 100 printings remain the fixed identity denominator. Each daily cycle
+   must reconcile every identity as exactly `resolved` or `source_missing`;
+   bounded source absence may not be replaced with historical or sibling
+   pricing, and any resolved row must retain exact printing provenance.
 2. The frozen production migrations apply in their manifest order with zero
    schema, function, view, grant, RLS, or migration-ledger drift.
 3. Authenticated pricing access works and anonymous access remains denied

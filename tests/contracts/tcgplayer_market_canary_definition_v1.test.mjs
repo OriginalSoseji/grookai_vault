@@ -155,7 +155,12 @@ test("canary runtime is exact-definition-only and records definition provenance"
   );
   assert.match(WORKER, /card_printing_id = any\(\$1::uuid\[\]\)/);
   assert.match(WORKER, /canary_definition_sha256/);
-  assert.match(WORKER, /resolved \$\{matches\.length\} rows/);
+  assert.match(WORKER, /resolveTcgplayerMarketCanarySourceCoverageV1/);
+  assert.match(
+    WORKER,
+    /observation\.last_seen_run_id = \$1[\s\S]*observation\.observed_on = \$2/,
+  );
+  assert.match(WORKER, /canary_source_outcomes\.jsonl/);
   assert.match(PIPELINE, /canary mode requires --canary-definition/);
   assert.match(
     PIPELINE,
