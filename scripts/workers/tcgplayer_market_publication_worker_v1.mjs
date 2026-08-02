@@ -1432,7 +1432,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
       return artifactRows(client, run.id);
     }
 
-    const stageResult = await runPhase(client, {
+    await runPhase(client, {
       run,
       sourceRun,
       phaseName: "prepare_variant_assignments",
@@ -1455,7 +1455,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
       },
     });
 
-    await runPhase(client, {
+    const stageResult = await runPhase(client, {
       run,
       sourceRun,
       phaseName: "stage_candidates",
