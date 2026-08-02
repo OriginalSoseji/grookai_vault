@@ -754,6 +754,14 @@ test("canary publication reconciles bounded current-source gaps without substitu
   assert.match(WORKER, /canary_source_outcomes\.jsonl/);
   assert.match(WORKER, /canary_resolved_selected_count/);
   assert.match(WORKER, /canary_source_coverage_reconciled/);
+  assert.match(
+    WORKER,
+    /const stageResult = await runPhase\(client, \{[\s\S]*?phaseName: "stage_candidates"/,
+  );
+  assert.match(
+    WORKER,
+    /const canaryCoverage =\s*stageResult\.resumability_data\?\.canary_source_coverage \?\? null/,
+  );
 });
 
 test("all active web and Flutter pricing consumers use the shared read model", () => {
