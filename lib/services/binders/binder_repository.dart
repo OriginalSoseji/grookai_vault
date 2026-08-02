@@ -778,6 +778,9 @@ class SupabaseBinderRepository implements BinderRepository {
               number: card.displayNumber.trim().isEmpty
                   ? null
                   : card.displayNumber.trim(),
+              variantKey: _nullable(card.variantKey),
+              printedIdentityModifier: _nullable(card.printedIdentityModifier),
+              rarity: _nullable(card.rarity),
               hostedImageUrl: card.hostedImageUrl,
               fallbackImageUrl:
                   card.providerFallbackImageUrl ?? card.displayImage,

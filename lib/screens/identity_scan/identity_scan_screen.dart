@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -178,6 +179,10 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         final res = await _service.pollOnce(eventId);
         final resultStatus = res.status;
         if (resultStatus == 'ai_hint_ready') {
+          final candidates = await _service.hydrateCandidateDisplayIdentity(
+            res.candidates,
+          );
+          if (!mounted) return;
           final ai = res.signals?['ai'];
           final aiMap = ai is Map ? ai : null;
           final name = (aiMap?['name'] ?? '').toString();
@@ -187,7 +192,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
           final conf = aiMap?['confidence'];
           setState(() {
             _step = _IdentityScanStep.hintReady;
-            _candidates = res.candidates;
+            _candidates = candidates;
             _selectedIndex = 0;
             _error = res.error;
             _signals = res.signals;
@@ -454,6 +459,17 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     final name = (c['name'] ?? '').toString();
                     final setCode = (c['set_code'] ?? '').toString();
                     final number = (c['number'] ?? '').toString();
+                    final displayIdentity = resolveDisplayIdentityFromFields(
+                      name: name,
+                      variantKey: c['variant_key']?.toString(),
+                      printedIdentityModifier: c['printed_identity_modifier']
+                          ?.toString(),
+                      setCode: setCode,
+                      number: number,
+                    );
+                    final displayName = name.isEmpty
+                        ? 'Candidate'
+                        : displayIdentity.displayName;
                     final artwork = resolveCatalogArtwork(
                       gvId: c['gv_id'] ?? c['gvid'],
                       providerImageUrl: c['image_url'] ?? c['image_best'],
@@ -461,7 +477,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     final selected = _selectedIndex == index;
                     return ListTile(
                       leading: CardSurfaceArtwork(
-                        label: name.isEmpty ? 'Candidate' : name,
+                        label: displayName,
                         imageUrl: artwork.primaryImageUrl,
                         fallbackImageUrl: artwork.fallbackImageUrl,
                         width: 44,
@@ -471,7 +487,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                         enableTapToZoom: false,
                         showShadow: false,
                       ),
-                      title: Text(name.isEmpty ? 'Candidate' : name),
+                      title: Text(displayName),
                       subtitle: Text(
                         [
                           setCode,

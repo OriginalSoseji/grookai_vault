@@ -112,6 +112,22 @@ void main() {
     );
     expect(formatPrintedIdentityModifier('first_edition'), 'First Edition');
     expect(formatVariantKey('play_pokemon_stamp'), 'Play Pokémon Stamp');
+    expect(
+      resolveDisplayIdentityFromFields(
+        name: 'Pikachu',
+        variantKey: 'first_edition_red_cheeks',
+        printedIdentityModifier:
+            'edition:first_edition;print_run:shadowless;color:red_cheeks',
+      ).displayName,
+      'Pikachu · First Edition Red Cheeks',
+    );
+    expect(
+      resolveDisplayIdentityFromFields(
+        name: 'Pikachu',
+        printedIdentityModifier: 'stamp:e3_yellow_cheeks',
+      ).displayName,
+      'Pikachu · E3 Stamp Yellow Cheeks',
+    );
   });
 
   test(

@@ -693,7 +693,7 @@ class _SearchResultRow extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: _SoftRow(
         leading: _CardThumb(card: card, width: 38, height: 53),
-        title: card.name,
+        title: card.collectorDisplayName,
         subtitle: card.meta,
         trailing: TextButton(
           onPressed: busy ? null : onAdd,
@@ -829,7 +829,7 @@ class _CardThumb extends StatelessWidget {
       providerImageUrl: card?.imageUrl,
     );
     return CardSurfaceArtwork(
-      label: card?.name ?? 'Card',
+      label: card?.collectorDisplayName ?? 'Card',
       imageUrl: artwork.primaryImageUrl,
       fallbackImageUrl: artwork.fallbackImageUrl,
       width: width,

@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../identity/display_identity.dart';
+
 const bool kOnboardingLadderEnabled = bool.fromEnvironment(
   'ONBOARDING_LADDER_ENABLED',
   defaultValue: true,
@@ -117,6 +119,8 @@ class OnboardingSearchCard {
     this.gvId,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.imageUrl,
   });
 
@@ -125,7 +129,15 @@ class OnboardingSearchCard {
   final String? gvId;
   final String? setCode;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
   final String? imageUrl;
+
+  String get collectorDisplayName => resolveDisplayIdentityFromFields(
+    name: name,
+    variantKey: variantKey,
+    printedIdentityModifier: printedIdentityModifier,
+  ).displayName;
 
   String get meta {
     final parts = <String>[
@@ -143,6 +155,8 @@ class OnboardingSearchCard {
       setCode: _optionalText(json['set_code']),
       number:
           _optionalText(json['number']) ?? _optionalText(json['number_plain']),
+      variantKey: _optionalText(json['variant_key']),
+      printedIdentityModifier: _optionalText(json['printed_identity_modifier']),
       imageUrl:
           _httpUrl(json['display_image_url']) ??
           _httpUrl(json['image_url']) ??
@@ -235,7 +249,7 @@ class OnboardingLadderService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
+          'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url',
         )
         .ilike('name', '%$normalized%')
         .limit(6);
@@ -261,7 +275,7 @@ class OnboardingLadderService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,number_plain,image_url,image_alt_url,representative_image_url',
+          'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url',
         )
         .inFilter('id', ids);
     final cards = <String, OnboardingSearchCard>{};

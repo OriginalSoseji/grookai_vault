@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/scanner/condition_scan_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import 'condition_camera_screen.dart';
@@ -756,6 +757,18 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     final cardPrintId =
         _matchCardRow?['best_candidate_card_print_id']?.toString() ?? '';
     final cardName = _matchCardRow?['best_candidate_name']?.toString() ?? '';
+    final displayIdentity = resolveDisplayIdentityFromFields(
+      name: cardName,
+      variantKey: _matchCardRow?['best_candidate_variant_key']?.toString(),
+      printedIdentityModifier:
+          _matchCardRow?['best_candidate_printed_identity_modifier']
+              ?.toString(),
+      setCode: _matchCardRow?['best_candidate_set_code']?.toString(),
+      number: _matchCardRow?['best_candidate_number']?.toString(),
+    );
+    final displayName = cardName.isEmpty
+        ? 'Matched card'
+        : displayIdentity.displayName;
     final gvId = _matchCardRow?['best_candidate_gv_id']?.toString() ?? '';
     final setCode = _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
     final number = _matchCardRow?['best_candidate_number']?.toString() ?? '';
@@ -813,7 +826,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     return Card(
       child: ListTile(
         leading: CardSurfaceArtwork(
-          label: cardName.isNotEmpty ? cardName : 'Matched card',
+          label: displayName,
           imageUrl: artwork.primaryImageUrl,
           fallbackImageUrl: artwork.fallbackImageUrl,
           width: 48,
@@ -823,7 +836,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
           enableTapToZoom: false,
           showShadow: false,
         ),
-        title: Text(cardName.isNotEmpty ? cardName : 'Matched card'),
+        title: Text(displayName),
         subtitle: Text(
           [setCode, number].where((p) => p.isNotEmpty).join(' • '),
         ),
@@ -834,7 +847,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               builder: (_) => CardDetailScreen(
                 cardPrintId: cardPrintId,
                 gvId: gvId.isEmpty ? null : gvId,
-                name: cardName.isNotEmpty ? cardName : null,
+                name: displayName,
                 number: number.isNotEmpty ? number : null,
                 imageUrl: artwork.primaryImageUrl,
                 fallbackImageUrl: artwork.fallbackImageUrl,

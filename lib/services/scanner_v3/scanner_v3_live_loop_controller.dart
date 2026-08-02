@@ -3297,6 +3297,8 @@ class ScannerV3LiveLoopController {
             name: candidate.name,
             setCode: candidate.setCode,
             number: candidate.number,
+            variantKey: candidate.variantKey,
+            printedIdentityModifier: candidate.printedIdentityModifier,
             gvId: candidate.gvId,
             imageUrl: candidate.imageUrl,
             contributingCropTypes: candidate.contributingCropTypes.toList()

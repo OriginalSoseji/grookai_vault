@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../identity/catalog_artwork_resolution.dart';
+import '../identity/display_identity.dart';
 
 const bool kCollectorMemoriesEnabled = bool.fromEnvironment(
   'COLLECTOR_MEMORIES_ENABLED',
@@ -141,11 +142,12 @@ class OwnerCollectorMemory {
   OwnerCollectorMemory withCatalogIdentity({
     String? gvId,
     String? providerImageUrl,
+    String? cardName,
   }) {
     return OwnerCollectorMemory(
       memory: memory,
       cardPrintId: cardPrintId,
-      cardName: cardName,
+      cardName: _optionalText(cardName) ?? this.cardName,
       setName: setName,
       gvId: _optionalText(gvId) ?? this.gvId,
       cardImageUrl: _optionalText(providerImageUrl) ?? cardImageUrl,
@@ -302,6 +304,13 @@ class CollectorMemoryService {
             }
             return memory.withCatalogIdentity(
               gvId: _optionalText(row['gv_id']),
+              cardName: resolveDisplayIdentityFromFields(
+                name: _optionalText(row['name']) ?? memory.cardName,
+                variantKey: _optionalText(row['variant_key']),
+                printedIdentityModifier: _optionalText(
+                  row['printed_identity_modifier'],
+                ),
+              ).displayName,
               providerImageUrl:
                   _optionalText(row['image_url']) ??
                   _optionalText(row['image_alt_url']) ??
@@ -326,7 +335,10 @@ class CollectorMemoryService {
 
     final response = await _requiredClient()
         .from('card_prints')
-        .select('id,gv_id,image_url,image_alt_url,representative_image_url')
+        .select(
+          'id,gv_id,name,variant_key,printed_identity_modifier,'
+          'image_url,image_alt_url,representative_image_url',
+        )
         .inFilter('id', cardPrintIds);
     return (response as List<dynamic>)
         .whereType<Map>()

@@ -18,11 +18,7 @@ void main() {
     );
     expect(
       item.fallbackImageUrl,
-      contains(
-        Uri.encodeQueryComponent(
-          'https://assets.tcgdex.net/en/me/me04/120/high.webp',
-        ),
-      ),
+      'https://assets.tcgdex.net/en/me/me04/120/high.webp',
     );
   });
 
@@ -37,5 +33,21 @@ void main() {
     expect(item, isNotNull);
     expect(item!.displayImageUrl, 'https://example.com/card.webp');
     expect(item.fallbackImageUrl, isNull);
+  });
+
+  test('Pulse display identity includes the canonical variant', () {
+    final item = PulseItem.fromJson(<String, dynamic>{
+      'pulse_item_id': 'card_event:event-3',
+      'card_event_id': 'event-3',
+      'card_print_id': 'card-print-3',
+      'card_name': 'Pikachu',
+      'set_code': 'base1',
+      'card_number': '58',
+      'variant_key': 'first_edition_red_cheeks',
+      'payload': <String, dynamic>{},
+    });
+
+    expect(item, isNotNull);
+    expect(item!.displayCardName, 'Pikachu · First Edition Red Cheeks');
   });
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../controllers/binders/binder_controllers.dart';
 import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_display_identity.dart';
 import '../../services/binders/binder_feature_flags.dart';
 import '../../services/binders/binder_realtime_service.dart';
 import '../../services/binders/binder_repository.dart';
@@ -445,6 +446,11 @@ class _BinderChecklistTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = controller.checklist.items;
+    final identityGroupCounts = <String, int>{};
+    for (final item in items) {
+      final key = _checklistIdentityGroupKey(item);
+      identityGroupCounts[key] = (identityGroupCounts[key] ?? 0) + 1;
+    }
     return RefreshIndicator(
       onRefresh: () => controller.load(preserveContent: true),
       child: ListView(
@@ -503,6 +509,10 @@ class _BinderChecklistTab extends StatelessWidget {
             for (final item in items)
               _BinderChecklistTile(
                 item: item,
+                distinguishStandardPrinting:
+                    (identityGroupCounts[_checklistIdentityGroupKey(item)] ??
+                        0) >
+                    1,
                 canApprove: controller.detail?.permissions.canApprove ?? false,
                 onAddCopy: onAddCopy,
                 onWithdraw: onWithdraw,
@@ -522,9 +532,18 @@ class _BinderChecklistTab extends StatelessWidget {
   }
 }
 
+String _checklistIdentityGroupKey(BinderChecklistItem item) {
+  return <String>[
+    item.name,
+    item.setLabel ?? '',
+    item.number ?? '',
+  ].map((value) => value.trim().toLowerCase()).join('|');
+}
+
 class _BinderChecklistTile extends StatelessWidget {
   const _BinderChecklistTile({
     required this.item,
+    required this.distinguishStandardPrinting,
     required this.canApprove,
     required this.onAddCopy,
     required this.onWithdraw,
@@ -535,6 +554,7 @@ class _BinderChecklistTile extends StatelessWidget {
   });
 
   final BinderChecklistItem item;
+  final bool distinguishStandardPrinting;
   final bool canApprove;
   final VoidCallback? onAddCopy;
   final ValueChanged<String> onWithdraw;
@@ -545,9 +565,12 @@ class _BinderChecklistTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayIdentity = resolveBinderChecklistItemIdentity(item);
+    final variantLabel = displayIdentity.suffix;
     final subtitle = <String>[
       if ((item.setLabel ?? '').isNotEmpty) item.setLabel!,
       if ((item.number ?? '').isNotEmpty) '#${item.number}',
+      if ((item.rarity ?? '').isNotEmpty) item.rarity!,
       if ((item.finishLabel ?? '').isNotEmpty) item.finishLabel!,
       '${item.activeQuantity}/${item.requiredQuantity} linked',
       if (item.pendingCount > 0) '${item.pendingCount} pending',
@@ -602,7 +625,7 @@ class _BinderChecklistTile extends StatelessWidget {
                       const SizedBox(width: 6),
                       Expanded(
                         child: Text(
-                          item.name,
+                          displayIdentity.baseName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.titleSmall
@@ -612,6 +635,14 @@ class _BinderChecklistTile extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 3),
+                  if (variantLabel != null || distinguishStandardPrinting)
+                    Text(
+                      variantLabel ?? 'Standard printing',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   Text(
                     subtitle.join(' · '),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -1471,7 +1502,8 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
     }
     final coverCandidates = candidatesByCard.values.toList(growable: false)
       ..sort((left, right) {
-        final byName = left.name.compareTo(right.name);
+        final byName = resolveBinderChecklistItemIdentity(left).displayName
+            .compareTo(resolveBinderChecklistItemIdentity(right).displayName);
         if (byName != 0) return byName;
         return (left.number ?? '').compareTo(right.number ?? '');
       });
@@ -1544,7 +1576,9 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
                           value: item.cardPrintId,
                           child: Text(
                             [
-                              item.name,
+                              resolveBinderChecklistItemIdentity(
+                                item,
+                              ).displayName,
                               if ((item.number ?? '').isNotEmpty)
                                 '#${item.number}',
                               if (item.hasHostedImage) 'Grookai hosted',

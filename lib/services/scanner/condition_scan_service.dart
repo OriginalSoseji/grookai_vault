@@ -289,13 +289,20 @@ class ConditionScanService {
     try {
       final cardRow = await _client
           .from('card_prints')
-          .select('gv_id')
+          .select('gv_id,name,variant_key,printed_identity_modifier')
           .eq('id', cardPrintId)
           .maybeSingle();
       final gvId = (cardRow?['gv_id'] ?? '').toString().trim();
       if (gvId.isNotEmpty) {
         match['best_candidate_gv_id'] = gvId;
       }
+      final canonicalName = (cardRow?['name'] ?? '').toString().trim();
+      if (canonicalName.isNotEmpty) {
+        match['best_candidate_name'] = canonicalName;
+      }
+      match['best_candidate_variant_key'] = cardRow?['variant_key'];
+      match['best_candidate_printed_identity_modifier'] =
+          cardRow?['printed_identity_modifier'];
     } catch (error) {
       if (kDebugMode) {
         debugPrint('[condition_scan] match GV-ID lookup skipped: $error');

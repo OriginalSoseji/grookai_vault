@@ -21,11 +21,7 @@ void main() {
     );
     expect(
       artwork.fallbackImageUrl,
-      contains(
-        Uri.encodeQueryComponent(
-          'https://assets.tcgdex.net/en/me/me04/120/high.webp',
-        ),
-      ),
+      'https://assets.tcgdex.net/en/me/me04/120/high.webp',
     );
   });
 

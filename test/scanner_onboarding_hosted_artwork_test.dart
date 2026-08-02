@@ -56,8 +56,12 @@ void main() {
 
     expect(overlay, contains('gvId: candidate?.gvId'));
     expect(conditionCamera, contains('gvId: candidate?.gvId'));
-    expect(conditionService, contains(".select('gv_id')"));
+    expect(
+      conditionService,
+      contains(".select('gv_id,name,variant_key,printed_identity_modifier')"),
+    );
     expect(conditionService, contains("match['best_candidate_gv_id']"));
+    expect(conditionService, contains("match['best_candidate_variant_key']"));
     expect(nativeScanner, contains("'id,gv_id,name,set_code"));
     expect(nativeScanner, contains("'gv_id': (card['gv_id']"));
   });

@@ -1553,6 +1553,8 @@ class CandidateVoteRecord {
     this.name,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.gvId,
     this.imageUrl,
     Set<String>? contributingCropTypes,
@@ -1578,6 +1580,8 @@ class CandidateVoteRecord {
   String? name;
   String? setCode;
   String? number;
+  String? variantKey;
+  String? printedIdentityModifier;
   String? gvId;
   String? imageUrl;
   final Set<String> contributingCropTypes;
@@ -1596,6 +1600,8 @@ class CandidateVoteRecord {
     name ??= candidate.name;
     setCode ??= candidate.setCode;
     number ??= candidate.number;
+    variantKey ??= candidate.variantKey;
+    printedIdentityModifier ??= candidate.printedIdentityModifier;
     gvId ??= candidate.gvId;
     imageUrl ??= candidate.imageUrl;
   }

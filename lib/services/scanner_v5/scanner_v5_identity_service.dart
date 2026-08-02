@@ -175,6 +175,8 @@ class ScannerV5Candidate {
     this.displayName,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.imageUrl,
     this.confidence,
     this.rank,
@@ -200,6 +202,10 @@ class ScannerV5Candidate {
           'Unknown card',
       setCode: _trimmedOrNull(json['set_code']) ?? _trimmedOrNull(json['set']),
       number: _trimmedOrNull(json['number']),
+      variantKey: _trimmedOrNull(json['variant_key']),
+      printedIdentityModifier: _trimmedOrNull(
+        json['printed_identity_modifier'],
+      ),
       imageUrl: _trimmedOrNull(json['image_url']),
       confidence: _numToDouble(json['confidence']),
       rank: _numToInt(json['rank']),
@@ -216,6 +222,8 @@ class ScannerV5Candidate {
   final String name;
   final String? setCode;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
   final String? imageUrl;
   final double? confidence;
   final int? rank;
@@ -233,6 +241,8 @@ class ScannerV5Candidate {
     'name': name,
     'set_code': setCode,
     'number': number,
+    'variant_key': variantKey,
+    'printed_identity_modifier': printedIdentityModifier,
     'confidence': confidence,
     'rank': rank,
     'distance': distance,

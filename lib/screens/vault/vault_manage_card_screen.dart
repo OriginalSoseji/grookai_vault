@@ -1027,7 +1027,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           sourceInstanceId: copy.instanceId,
           cardPrintId: data.cardPrintId,
           gvId: gvId,
-          cardName: data.name,
+          cardName: _manageCardDisplayIdentity(data).displayName,
           setName: data.setName,
           imageUrl:
               _preferredExactCopyImageUrl ?? _manageCardProviderImageUrl(data),

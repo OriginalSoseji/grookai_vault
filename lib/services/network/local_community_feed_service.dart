@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../identity/catalog_artwork_resolution.dart';
+import '../identity/display_identity.dart';
 import '../../utils/display_image_contract.dart';
 
 const bool kLocalCommunityFeedV1Enabled = bool.fromEnvironment(
@@ -160,13 +161,57 @@ class LocalCommunityFeedService {
       return const LocalCommunityFeedPage(rows: [], isAuthenticated: true);
     }
 
-    final rows = response
+    final rawRows = response
         .whereType<Map>()
-        .map((row) => LocalCommunityFeedRow.fromJson(Map.from(row)))
+        .map((row) => Map<String, dynamic>.from(row))
+        .toList(growable: false);
+    final identityByGvId = await _loadIdentityByGvId(rawRows);
+    final rows = rawRows
+        .map((row) {
+          final gvId = _text(row['gv_id']);
+          final identity = identityByGvId[gvId];
+          if (identity != null) {
+            row['card_name'] = resolveDisplayIdentityFromFields(
+              name: identity['name'] ?? row['card_name'],
+              variantKey: _text(identity['variant_key']),
+              printedIdentityModifier: _text(
+                identity['printed_identity_modifier'],
+              ),
+            ).displayName;
+          } else if (gvId.isNotEmpty) {
+            final baseName = _text(row['card_name']);
+            row['card_name'] = baseName.isEmpty ? gvId : '$baseName · $gvId';
+          }
+          return LocalCommunityFeedRow.fromJson(row);
+        })
         .whereType<LocalCommunityFeedRow>()
         .toList(growable: false);
 
     return LocalCommunityFeedPage(rows: rows, isAuthenticated: true);
+  }
+
+  Future<Map<String, Map<String, dynamic>>> _loadIdentityByGvId(
+    List<Map<String, dynamic>> rows,
+  ) async {
+    final gvIds = rows
+        .map((row) => _text(row['gv_id']))
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (gvIds.isEmpty) return const <String, Map<String, dynamic>>{};
+    try {
+      final result = await _client
+          .from('card_prints')
+          .select('gv_id,name,variant_key,printed_identity_modifier')
+          .inFilter('gv_id', gvIds);
+      return <String, Map<String, dynamic>>{
+        for (final raw in result.whereType<Map>())
+          if (_text(raw['gv_id']).isNotEmpty)
+            _text(raw['gv_id']): Map<String, dynamic>.from(raw),
+      };
+    } catch (_) {
+      return const <String, Map<String, dynamic>>{};
+    }
   }
 }
 

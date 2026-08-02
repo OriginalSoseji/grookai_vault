@@ -19,6 +19,8 @@ class CandidateState {
     this.name,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.gvId,
     this.imageUrl,
     this.contributingCropTypes = const <String>[],
@@ -43,6 +45,8 @@ class CandidateState {
   final String? name;
   final String? setCode;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
   final String? gvId;
   final String? imageUrl;
   final List<String> contributingCropTypes;

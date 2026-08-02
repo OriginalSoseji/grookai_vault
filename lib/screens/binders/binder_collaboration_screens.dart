@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_display_identity.dart';
 import '../../services/binders/binder_feature_flags.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
@@ -295,12 +296,15 @@ class _BinderExactCopyPickerScreenState
                           );
                         }
                         final copy = _page!.items[index];
+                        final identity = resolveBinderEligibleCopyIdentity(
+                          copy,
+                        );
                         final selected = _selected.contains(copy.instanceId);
                         return Semantics(
                           button: copy.isEligible,
                           selected: selected,
                           label:
-                              '${copy.name}, '
+                              '${identity.displayName}, '
                               '${copy.finishLabel ?? 'finish unresolved'}, '
                               '${copy.isEligible ? 'eligible' : copy.reason ?? copy.eligibility}',
                           child: Card(
@@ -314,13 +318,15 @@ class _BinderExactCopyPickerScreenState
                                 size: 50,
                                 icon: Icons.style_outlined,
                               ),
-                              title: Text(copy.name),
+                              title: Text(identity.displayName),
                               subtitle: Text(
                                 [
                                   if ((copy.setLabel ?? '').isNotEmpty)
                                     copy.setLabel,
                                   if ((copy.number ?? '').isNotEmpty)
                                     '#${copy.number}',
+                                  if ((copy.rarity ?? '').isNotEmpty)
+                                    copy.rarity,
                                   copy.finishLabel ?? 'Finish needs review',
                                   if (!copy.isEligible)
                                     copy.reason ?? copy.eligibility,

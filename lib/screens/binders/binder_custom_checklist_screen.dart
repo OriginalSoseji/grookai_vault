@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_display_identity.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../widgets/binders/binder_widgets.dart';
 
@@ -41,6 +42,7 @@ Future<bool> showBinderCustomChecklistPreview(
                 itemCount: slots.length,
                 itemBuilder: (context, index) {
                   final slot = slots[index];
+                  final identity = resolveBinderCatalogCardIdentity(slot.card);
                   return ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
@@ -48,9 +50,9 @@ Future<bool> showBinderCustomChecklistPreview(
                       imageUrl: slot.card.hostedImageUrl,
                       fallbackImageUrl: slot.card.fallbackImageUrl,
                       size: 44,
-                      semanticLabel: slot.card.name,
+                      semanticLabel: identity.displayName,
                     ),
-                    title: Text(slot.card.name),
+                    title: Text(identity.displayName),
                     subtitle: Text(
                       [
                         if (slot.card.setLabel.isNotEmpty) slot.card.setLabel,
@@ -179,6 +181,7 @@ class _BinderCustomChecklistEditorScreenState
   }
 
   Future<void> _chooseCard(BinderCatalogCard card, {int? editingIndex}) async {
+    final identity = resolveBinderCatalogCardIdentity(card);
     List<BinderFinishOption> finishes;
     try {
       finishes = await widget.repository.loadCardFinishOptions(
@@ -207,7 +210,7 @@ class _BinderCustomChecklistEditorScreenState
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setDialogState) => AlertDialog(
-          title: Text(card.name),
+          title: Text(identity.displayName),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -219,7 +222,7 @@ class _BinderCustomChecklistEditorScreenState
                       imageUrl: card.hostedImageUrl,
                       fallbackImageUrl: card.fallbackImageUrl,
                       size: 72,
-                      semanticLabel: card.name,
+                      semanticLabel: identity.displayName,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -417,19 +420,21 @@ class _BinderCustomChecklistEditorScreenState
               itemCount: _results.length,
               itemBuilder: (context, index) {
                 final card = _results[index];
+                final identity = resolveBinderCatalogCardIdentity(card);
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   leading: BinderArtwork(
                     imageUrl: card.hostedImageUrl,
                     fallbackImageUrl: card.fallbackImageUrl,
                     size: 52,
-                    semanticLabel: card.name,
+                    semanticLabel: identity.displayName,
                   ),
-                  title: Text(card.name),
+                  title: Text(identity.displayName),
                   subtitle: Text(
                     [
                       if (card.setLabel.isNotEmpty) card.setLabel,
                       if ((card.number ?? '').isNotEmpty) '#${card.number}',
+                      if ((card.rarity ?? '').isNotEmpty) card.rarity!,
                     ].join(' · '),
                   ),
                   trailing: const Icon(Icons.add_circle_outline_rounded),
@@ -483,6 +488,7 @@ class _BinderCustomChecklistEditorScreenState
                 },
                 itemBuilder: (context, index) {
                   final slot = _slots[index];
+                  final identity = resolveBinderCatalogCardIdentity(slot.card);
                   return Card(
                     key: ValueKey('custom-slot-${slot.displayKey}-$index'),
                     margin: const EdgeInsets.only(bottom: 8),
@@ -491,7 +497,7 @@ class _BinderCustomChecklistEditorScreenState
                         index: index,
                         child: const Icon(Icons.drag_handle_rounded),
                       ),
-                      title: Text(slot.card.name),
+                      title: Text(identity.displayName),
                       subtitle: Text(
                         [
                           slot.finish.label,
@@ -501,7 +507,7 @@ class _BinderCustomChecklistEditorScreenState
                       ),
                       onTap: () => _chooseCard(slot.card, editingIndex: index),
                       trailing: IconButton(
-                        tooltip: 'Remove ${slot.card.name}',
+                        tooltip: 'Remove ${identity.displayName}',
                         onPressed: () => setState(() => _slots.removeAt(index)),
                         icon: const Icon(Icons.close_rounded),
                       ),

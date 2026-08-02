@@ -374,8 +374,16 @@ class _CardArtwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayName = resolveDisplayIdentityFromFields(
+      name: row.name,
+      variantKey: row.variantKey,
+      printedIdentityModifier: row.printedIdentityModifier,
+      setIdentityModel: row.setIdentityModel,
+      setCode: row.setCode,
+      number: row.number,
+    ).displayName;
     return CardSurfaceArtwork(
-      label: row.name,
+      label: displayName,
       imageUrl: row.catalogImageUrl,
       fallbackImageUrl: row.providerFallbackImageUrl,
       width: 52,

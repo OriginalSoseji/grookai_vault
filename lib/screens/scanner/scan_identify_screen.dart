@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/ownership_state.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -282,7 +283,12 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         final cand = _candidates[index];
         final selected = _selectedIndex == index;
         final confidence = (cand['confidence'] ?? '').toString();
-        final name = (cand['name'] ?? 'Card').toString();
+        final name = resolveDisplayIdentityFromFields(
+          name: (cand['name'] ?? 'Card').toString(),
+          variantKey: cand['variant_key']?.toString(),
+          printedIdentityModifier: cand['printed_identity_modifier']
+              ?.toString(),
+        ).displayName;
         final setName = (cand['set'] ?? '').toString();
         final artwork = resolveCatalogArtwork(
           gvId: cand['gv_id'] ?? cand['gvid'],
