@@ -180,15 +180,22 @@ pipeline shadow verification. Historical backfill remains independently
 governed and must continue to yield during the current-price window.
 
 The signed-in canary observation window is evaluated by
-`TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2`. The evaluator is read-only and
+`TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3`. The evaluator is read-only and
 must prove:
 
 - the activation run and every expected daily source trigger use the frozen
   producing commit
 - each expected source trigger begins inside the schedule tolerance and its
   exact publication run completes inside the bounded pipeline grace period
-- every run selects, maps, qualifies, snapshots, and traces the exact verified
-  canary count
+- every fixed canary identity reconciles to exactly one governed outcome:
+  `resolved` or `source_missing`
+- every resolved identity selects, maps, qualifies, snapshots, and traces
+  exactly once
+- every `source_missing` outcome proves that the exact product and subtype are
+  absent from the frozen current source run; an alternate subtype is evidence,
+  not a substitute
+- no more than five of the 100 fixed identities are `source_missing` in one
+  canary cycle
 - no delayed, suppressed, quarantined, or excluded canary row appears
 - no terminal pricing operations alert occurs inside the observation window
 - current prices remain fresh, positive USD values with complete provenance
@@ -202,15 +209,22 @@ discovery endpoint.
 
 An incomplete time window or an on-time pipeline still inside its completion
 grace is `observing`, not failed or passed. A missing source trigger after its
-tolerance, an incomplete publication after its completion grace, broken trace,
-stale value, access-boundary regression, terminal alert, or run mismatch fails
-the gate. Publication start time is not used as the schedule trigger because
-source acquisition legitimately precedes publication.
+tolerance, an incomplete publication after its completion grace, source gaps
+above the bounded ceiling, broken trace, stale value, access-boundary
+regression, terminal alert, or run mismatch fails the gate. The current read
+model must contain exactly the latest healthy run's resolved count, not stale
+rows carried forward from an earlier source day. Publication start time is not
+used as the schedule trigger because source acquisition legitimately precedes
+publication.
 
 The scheduled failure classifier must not interpret bare three-digit values in
-JavaScript stack locations as HTTP status codes. Exact canary source-identity
-absence or drift is non-retryable definition drift and must stop without
-repeating the paid or database-intensive cycle.
+JavaScript stack locations as HTTP status codes. A raw current source row that
+cannot resolve through the candidate view, duplicate source evidence,
+canonical identity drift, provenance drift, or source gaps above the bounded
+ceiling is non-retryable and must stop without repeating the paid or
+database-intensive cycle. Exact current-source absence inside the ceiling is a
+governed availability outcome, not permission to use historical or sibling
+evidence.
 
 The observer must create and hash its frozen run plan before connecting to the
 database. A connection or query failure must still preserve a machine-readable

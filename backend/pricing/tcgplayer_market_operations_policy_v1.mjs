@@ -16,7 +16,15 @@ const NON_RETRYABLE_PATTERNS = [
 
 const CANARY_DEFINITION_DRIFT_PATTERNS = [
   /canary source identity .* resolved \d+ rows/i,
+  /canary source identity .* resolved \d+ candidate rows/i,
+  /canary raw source identity .* resolved \d+ rows/i,
+  /canary source identity .* exists in the current source run but resolved \d+ candidate rows/i,
+  /canary source identity .* provenance drifted/i,
   /canary identity .* drifted/i,
+];
+
+const CANARY_SOURCE_DEGRADATION_PATTERNS = [
+  /canary source_missing ceiling exceeded/i,
 ];
 
 const RETRYABLE_PATTERNS = [
@@ -42,6 +50,12 @@ export function classifyMarketPipelineFailureV1({
   errorText = "",
 } = {}) {
   const text = String(errorText ?? "");
+  if (CANARY_SOURCE_DEGRADATION_PATTERNS.some((pattern) => pattern.test(text))) {
+    return {
+      classification: "non_retryable_canary_source_degradation",
+      retryable: false,
+    };
+  }
   if (CANARY_DEFINITION_DRIFT_PATTERNS.some((pattern) => pattern.test(text))) {
     return {
       classification: "non_retryable_canary_definition_drift",

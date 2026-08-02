@@ -8,7 +8,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   evaluateTcgplayerMarketCanaryObservationV1,
-  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+  TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
 } from "../../backend/pricing/tcgplayer_market_canary_observation_policy_v1.mjs";
 import {
   evaluateTcgplayerCurrentSourceHealthV1,
@@ -24,7 +24,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "canary_observation",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_CANARY_OBSERVATION_AUDIT_V2";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_CANARY_OBSERVATION_AUDIT_V3";
 
 function parseArgs(argv) {
   const args = {
@@ -36,6 +36,10 @@ function parseArgs(argv) {
     asOf: null,
     requiredHours: 72,
     expectedCount: 100,
+    maxSourceMissingCount: Number.parseInt(
+      process.env.TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT || "5",
+      10,
+    ),
     scheduleToleranceMinutes: 90,
     scheduleCompletionGraceMinutes: 480,
     outRoot: DEFAULT_OUT_ROOT,
@@ -57,6 +61,11 @@ function parseArgs(argv) {
     } else if (arg.startsWith("--expected-count=")) {
       args.expectedCount = Number.parseInt(
         arg.slice("--expected-count=".length),
+        10,
+      );
+    } else if (arg.startsWith("--max-source-missing-count=")) {
+      args.maxSourceMissingCount = Number.parseInt(
+        arg.slice("--max-source-missing-count=".length),
         10,
       );
     } else if (arg.startsWith("--schedule-tolerance-minutes=")) {
@@ -89,6 +98,15 @@ function parseArgs(argv) {
   }
   if (!Number.isInteger(args.expectedCount) || args.expectedCount < 1) {
     throw new Error("--expected-count must be a positive integer");
+  }
+  if (
+    !Number.isInteger(args.maxSourceMissingCount) ||
+    args.maxSourceMissingCount < 0 ||
+    args.maxSourceMissingCount >= args.expectedCount
+  ) {
+    throw new Error(
+      "--max-source-missing-count must be a non-negative integer below expected-count",
+    );
   }
   if (
     !Number.isFinite(args.scheduleToleranceMinutes) ||
@@ -141,13 +159,14 @@ function serializeError(error) {
 export function buildTcgplayerMarketCanaryRunPlanV1(args, asOf) {
   return {
     audit_version: AUDIT_VERSION,
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
     window_start: args.windowStart,
     activation_run_id: args.activationRunId,
     expected_commit_sha: args.expectedCommitSha,
     as_of: asOf,
     required_hours: args.requiredHours,
     expected_count: args.expectedCount,
+    max_source_missing_count: args.maxSourceMissingCount,
     schedule_tolerance_minutes: args.scheduleToleranceMinutes,
     schedule_completion_grace_minutes:
       args.scheduleCompletionGraceMinutes,
@@ -186,7 +205,7 @@ export function buildTcgplayerMarketCanaryFailureArtifactsV1({
 }) {
   const failure = {
     audit_version: AUDIT_VERSION,
-    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2,
+    policy_version: TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3,
     status: "observer_error",
     failed_at: failedAt,
     stage,
@@ -475,13 +494,15 @@ function markdown(report) {
     "# TCGPlayer Market 72-Hour Canary Observation",
     "",
     `- Audit version: \`${AUDIT_VERSION}\``,
-    `- Policy version: \`${TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V2}\``,
+    `- Policy version: \`${TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V3}\``,
     `- Status: \`${report.status}\``,
     `- Window start: \`${report.window.started_at}\``,
     `- Required end: \`${report.window.required_end_at}\``,
     `- As of: \`${report.window.as_of}\``,
     `- Observed hours: \`${report.window.observed_hours}\``,
     `- Expected commit: \`${report.run_evidence.expected_commit_sha}\``,
+    `- Allowed source gaps: \`${report.run_evidence.max_source_missing_count}\``,
+    `- Expected current rows: \`${report.run_evidence.expected_current_count}\``,
     "",
     "## Schedule",
     "",
@@ -562,6 +583,7 @@ async function main() {
       scheduleCompletionGraceMinutes:
         args.scheduleCompletionGraceMinutes,
       expectedCount: args.expectedCount,
+      maxSourceMissingCount: args.maxSourceMissingCount,
       expectedCommitSha: args.expectedCommitSha,
       ...evidence,
     });

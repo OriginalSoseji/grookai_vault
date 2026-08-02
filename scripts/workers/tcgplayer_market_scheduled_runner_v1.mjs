@@ -36,6 +36,7 @@ const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT = 5;
 
 function parseArgs(argv) {
   const live = argv.includes("--run");
@@ -88,6 +89,17 @@ function parseArgs(argv) {
   );
   const freshnessHours = Number(
     process.env.TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS || "36",
+  );
+  const maxCanarySourceMissingArg = argv.find((arg) =>
+    arg.startsWith("--max-canary-source-missing-count="),
+  );
+  const maxCanarySourceMissingCount = Number.parseInt(
+    maxCanarySourceMissingArg?.slice(
+      "--max-canary-source-missing-count=".length,
+    ) ||
+      process.env.TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT ||
+      String(DEFAULT_MAX_CANARY_SOURCE_MISSING_COUNT),
+    10,
   );
   const expectedCommitSha =
     argv
@@ -149,6 +161,14 @@ function parseArgs(argv) {
     throw new Error("freshness hours must be positive");
   }
   if (
+    !Number.isInteger(maxCanarySourceMissingCount) ||
+    maxCanarySourceMissingCount < 0
+  ) {
+    throw new Error(
+      "scheduled max canary source missing count must be a non-negative integer",
+    );
+  }
+  if (
     publicationLimit !== null &&
     (!Number.isInteger(publicationLimit) || publicationLimit < 1)
   ) {
@@ -187,6 +207,7 @@ function parseArgs(argv) {
     phaseTimeoutMinutes,
     databaseTimeoutMinutes,
     freshnessHours,
+    maxCanarySourceMissingCount,
     expectedCommitSha,
   };
 }
@@ -272,6 +293,14 @@ async function main() {
         args.canaryDefinitionPath,
       )
     : null;
+  if (
+    loadedCanary &&
+    args.maxCanarySourceMissingCount >= loadedCanary.definition.expected_count
+  ) {
+    throw new Error(
+      "scheduled max canary source missing count must be below canary expected_count",
+    );
+  }
   const commitSha = await git(["rev-parse", "HEAD"]);
   const branch = await git(["branch", "--show-current"]);
   const trackedWorktreeClean =
@@ -319,6 +348,8 @@ async function main() {
     phase_timeout_minutes: args.phaseTimeoutMinutes,
     database_timeout_minutes: args.databaseTimeoutMinutes,
     freshness_hours: args.freshnessHours,
+    max_canary_source_missing_count:
+      args.maxCanarySourceMissingCount,
     publication_limit: args.publicationLimit,
     canary_definition_path: loadedCanary
       ? relative(loadedCanary.absolutePath)
@@ -353,6 +384,7 @@ async function main() {
       "request_ceiling",
       "phase_timeout_minutes",
       "freshness_hours",
+      "max_canary_source_missing_count",
       "publication_limit",
       "canary_definition_path",
       "canary_definition_sha256",
@@ -438,6 +470,7 @@ async function main() {
         `--phase-timeout-minutes=${args.phaseTimeoutMinutes}`,
         `--database-timeout-minutes=${args.databaseTimeoutMinutes}`,
         `--freshness-hours=${args.freshnessHours}`,
+        `--max-canary-source-missing-count=${args.maxCanarySourceMissingCount}`,
       ];
       if (args.publicationLimit !== null) {
         pipelineArgs.push(`--publication-limit=${args.publicationLimit}`);
