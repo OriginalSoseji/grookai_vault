@@ -778,6 +778,9 @@ class _ScannerBottomPanel extends StatelessWidget {
                               candidateName: candidate?.name,
                               setCode: candidate?.setCode,
                               number: candidate?.number,
+                              variantKey: candidate?.variantKey,
+                              printedIdentityModifier:
+                                  candidate?.printedIdentityModifier,
                               gvId: candidate?.gvId,
                               imageUrl: candidate?.imageUrl,
                               locked: tone.locked,

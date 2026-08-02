@@ -303,7 +303,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           cardPrintId: data.cardPrintId,
           ownedCount: data.activeCopyCount,
           gvId: data.gvId,
-          name: data.cardName,
+          name: _gvviDisplayIdentity(data).displayName,
           setName: data.setName,
           number: data.number,
           imageUrl: data.primaryImageUrl,
@@ -324,7 +324,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         builder: (_) => CardDetailScreen(
           cardPrintId: data.cardPrintId,
           gvId: data.gvId,
-          name: data.cardName,
+          name: _gvviDisplayIdentity(data).displayName,
           setName: data.setName,
           setCode: data.setCode,
           number: data.number,
@@ -357,7 +357,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           sourceInstanceId: data.instanceId,
           cardPrintId: data.cardPrintId,
           gvId: data.gvId,
-          cardName: data.cardName,
+          cardName: _gvviDisplayIdentity(data).displayName,
           setName: data.setName,
           imageUrl: data.primaryImageUrl,
           fallbackImageUrl: data.fallbackImageUrl,
@@ -445,7 +445,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
 
     final uri = GrookaiWebRouteService.buildUri(_publicGvviPath(data.gvviId));
     await SharePlus.instance.share(
-      ShareParams(uri: uri, subject: data.cardName),
+      ShareParams(uri: uri, subject: _gvviDisplayIdentity(data).displayName),
     );
   }
 

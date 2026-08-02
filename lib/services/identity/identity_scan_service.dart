@@ -80,6 +80,8 @@ class IdentityScanCandidate {
     this.setName,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
   });
 
   factory IdentityScanCandidate.fromJson(Map<String, dynamic> json) {
@@ -93,6 +95,8 @@ class IdentityScanCandidate {
       setName: clean('set_name'),
       setCode: clean('set_code'),
       number: clean('number') ?? clean('collector_number'),
+      variantKey: clean('variant_key'),
+      printedIdentityModifier: clean('printed_identity_modifier'),
     );
   }
 
@@ -100,6 +104,8 @@ class IdentityScanCandidate {
   final String? setName;
   final String? setCode;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
 }
 
 class IdentityScanSignal {
@@ -363,5 +369,58 @@ class IdentityScanService {
       candidates: candidates,
       signals: signals,
     );
+  }
+
+  Future<List<dynamic>> hydrateCandidateDisplayIdentity(
+    List<dynamic> candidates,
+  ) async {
+    final ids = candidates
+        .whereType<Map>()
+        .map(
+          (candidate) => (candidate['card_print_id'] ?? '').toString().trim(),
+        )
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (ids.isEmpty) {
+      return candidates;
+    }
+
+    try {
+      final rows = await _client
+          .from('card_prints')
+          .select('id,name,variant_key,printed_identity_modifier')
+          .inFilter('id', ids);
+      final identityById = <String, Map<String, dynamic>>{
+        for (final row in rows.whereType<Map>())
+          if ((row['id'] ?? '').toString().trim().isNotEmpty)
+            (row['id'] ?? '').toString().trim(): Map<String, dynamic>.from(row),
+      };
+      return candidates
+          .map((candidate) {
+            if (candidate is! Map) {
+              return candidate;
+            }
+            final merged = Map<String, dynamic>.from(candidate);
+            final id = (merged['card_print_id'] ?? '').toString().trim();
+            final identity = identityById[id];
+            if (identity == null) {
+              return merged;
+            }
+            merged['name'] = identity['name'] ?? merged['name'];
+            merged['variant_key'] = identity['variant_key'];
+            merged['printed_identity_modifier'] =
+                identity['printed_identity_modifier'];
+            return merged;
+          })
+          .toList(growable: false);
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint(
+          '[identity_scan] candidate identity hydration skipped: $error',
+        );
+      }
+      return candidates;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../services/identity/catalog_artwork_resolution.dart';
+import '../../../services/identity/display_identity.dart';
 import '../../../widgets/card_surface_artwork.dart';
 
 class ScannerPrimaryCardTile extends StatelessWidget {
@@ -14,6 +15,8 @@ class ScannerPrimaryCardTile extends StatelessWidget {
     required this.locked,
     required this.accent,
     this.gvId,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.onScanAgain,
   });
 
@@ -23,6 +26,8 @@ class ScannerPrimaryCardTile extends StatelessWidget {
   final String? number;
   final String? imageUrl;
   final String? gvId;
+  final String? variantKey;
+  final String? printedIdentityModifier;
   final bool locked;
   final Color accent;
   final VoidCallback? onScanAgain;
@@ -109,7 +114,13 @@ class ScannerPrimaryCardTile extends StatelessWidget {
 
   String _displayTitle() {
     final name = candidateName?.trim() ?? '';
-    if (name.isNotEmpty) return name;
+    if (name.isNotEmpty) {
+      return resolveDisplayIdentityFromFields(
+        name: name,
+        variantKey: variantKey,
+        printedIdentityModifier: printedIdentityModifier,
+      ).displayName;
+    }
     if (candidateId == null || candidateId!.isEmpty) return 'Detecting...';
     return locked ? 'Match locked' : 'Possible match';
   }

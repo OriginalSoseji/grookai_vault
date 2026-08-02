@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../identity/display_identity.dart';
 
 const bool kPulseSurfaceEnabled = bool.fromEnvironment(
   'PULSE_SURFACE_ENABLED',
@@ -64,6 +65,9 @@ class PulseItem {
     required this.setCode,
     required this.setName,
     required this.cardNumber,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     required this.displayImageUrl,
     required this.fallbackImageUrl,
     required this.ownershipContext,
@@ -93,6 +97,9 @@ class PulseItem {
   final String setCode;
   final String setName;
   final String cardNumber;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? displayImageUrl;
   final String? fallbackImageUrl;
   final String ownershipContext;
@@ -131,9 +138,20 @@ class PulseItem {
   }
 
   String get displayCardName {
-    final payloadName = _text(payload['card_name']);
-    if (payloadName.isNotEmpty) return payloadName;
-    return cardName.isEmpty ? 'Card' : cardName;
+    final baseName = cardName.isNotEmpty
+        ? cardName
+        : _text(payload['card_name']);
+    return resolveDisplayIdentityFromFields(
+      name: baseName.isEmpty ? 'Card' : baseName,
+      variantKey: variantKey ?? _nullableText(payload['variant_key']),
+      printedIdentityModifier:
+          printedIdentityModifier ??
+          _nullableText(payload['printed_identity_modifier']),
+      setIdentityModel:
+          setIdentityModel ?? _nullableText(payload['set_identity_model']),
+      setCode: setCode,
+      number: cardNumber,
+    ).displayName;
   }
 
   String get displayActorName {
@@ -172,6 +190,9 @@ class PulseItem {
       setCode: setCode,
       setName: setName,
       cardNumber: cardNumber,
+      variantKey: variantKey,
+      printedIdentityModifier: printedIdentityModifier,
+      setIdentityModel: setIdentityModel,
       displayImageUrl: displayImageUrl,
       fallbackImageUrl: fallbackImageUrl,
       ownershipContext: ownershipContext,
@@ -183,6 +204,52 @@ class PulseItem {
       primaryActionLabel: primaryActionLabel,
       primaryActionRoute: route,
       payload: enrichedPayload ?? payload,
+      nextCursorCreatedAt: nextCursorCreatedAt,
+      nextCursorEventId: nextCursorEventId,
+    );
+  }
+
+  PulseItem copyWithCardIdentity(Map<String, dynamic>? identity) {
+    if (identity == null) {
+      return this;
+    }
+    final setRecord = identity['sets'];
+    final setIdentityModel = setRecord is Map
+        ? _nullableText(setRecord['identity_model'])
+        : null;
+    return PulseItem(
+      pulseItemId: pulseItemId,
+      cardEventId: cardEventId,
+      eventType: eventType,
+      rankBucket: rankBucket,
+      createdAt: createdAt,
+      actorUserId: actorUserId,
+      actorSlug: actorSlug,
+      actorDisplayName: actorDisplayName,
+      cardPrintId: cardPrintId,
+      gvId: gvId,
+      cardName: _text(identity['name']).isEmpty
+          ? cardName
+          : _text(identity['name']),
+      setCode: setCode,
+      setName: setName,
+      cardNumber: cardNumber,
+      variantKey: _nullableText(identity['variant_key']),
+      printedIdentityModifier: _nullableText(
+        identity['printed_identity_modifier'],
+      ),
+      setIdentityModel: setIdentityModel,
+      displayImageUrl: displayImageUrl,
+      fallbackImageUrl: fallbackImageUrl,
+      ownershipContext: ownershipContext,
+      distanceBucket: distanceBucket,
+      localityLabel: localityLabel,
+      completionSubjectType: completionSubjectType,
+      completionSubjectLabel: completionSubjectLabel,
+      completionThreshold: completionThreshold,
+      primaryActionLabel: primaryActionLabel,
+      primaryActionRoute: primaryActionRoute,
+      payload: payload,
       nextCursorCreatedAt: nextCursorCreatedAt,
       nextCursorEventId: nextCursorEventId,
     );
@@ -226,6 +293,9 @@ class PulseItem {
       setCode: _text(json['set_code']),
       setName: _text(json['set_name']),
       cardNumber: _text(json['card_number']),
+      variantKey: _nullableText(json['variant_key']),
+      printedIdentityModifier: _nullableText(json['printed_identity_modifier']),
+      setIdentityModel: _nullableText(json['set_identity_model']),
       displayImageUrl: hostedImageUrl ?? fallbackImageUrl,
       fallbackImageUrl: hostedImageUrl == null ? null : fallbackImageUrl,
       ownershipContext: _text(json['ownership_context']),
@@ -288,13 +358,48 @@ class PulseService {
         .map((row) => PulseItem.fromJson(Map<String, dynamic>.from(row)))
         .whereType<PulseItem>()
         .toList(growable: false);
-    final resolvedItems = await _resolveDexCompletionRoutes(items);
+    final identityItems = await _resolveCardDisplayIdentities(items);
+    final resolvedItems = await _resolveDexCompletionRoutes(identityItems);
     final tail = resolvedItems.isEmpty ? null : resolvedItems.last;
     return PulsePage(
       items: resolvedItems,
       nextCursorCreatedAt: tail?.nextCursorCreatedAt,
       nextCursorEventId: tail?.nextCursorEventId,
     );
+  }
+
+  Future<List<PulseItem>> _resolveCardDisplayIdentities(
+    List<PulseItem> items,
+  ) async {
+    final cardPrintIds = items
+        .map((item) => item.cardPrintId)
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (cardPrintIds.isEmpty) {
+      return items;
+    }
+
+    try {
+      final response = await _client
+          .from('card_prints')
+          .select(
+            'id,name,variant_key,printed_identity_modifier,sets(identity_model)',
+          )
+          .inFilter('id', cardPrintIds);
+      final identityById = <String, Map<String, dynamic>>{
+        for (final row in response.whereType<Map>())
+          if (_text(row['id']).isNotEmpty)
+            _text(row['id']): Map<String, dynamic>.from(row),
+      };
+      return items
+          .map(
+            (item) => item.copyWithCardIdentity(identityById[item.cardPrintId]),
+          )
+          .toList(growable: false);
+    } catch (_) {
+      return items;
+    }
   }
 
   Future<void> markSeen(PulseUnreadSnapshot snapshot) async {

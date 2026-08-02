@@ -274,6 +274,36 @@ void main() {
       expect(item.hasHostedImage, isTrue);
     });
 
+    test(
+      'checklist parses governed printing context from nested card data',
+      () {
+        final item = BinderChecklistItem.fromJson(<String, dynamic>{
+          'slot_id': 'slot-variant-1',
+          'required_quantity': 1,
+          'active_quantity': 0,
+          'card': <String, dynamic>{
+            'card_print_id': 'canonical-card-variant-1',
+            'name': 'Pikachu',
+            'set_name': 'Base Set',
+            'number': '58',
+            'variant_key': 'first_edition_red_cheeks',
+            'printed_identity_modifier':
+                'edition:first_edition;print_run:shadowless;color:red_cheeks',
+            'rarity': 'Common',
+            'finish_label': 'Normal',
+          },
+        });
+
+        expect(item.variantKey, 'first_edition_red_cheeks');
+        expect(
+          item.printedIdentityModifier,
+          'edition:first_edition;print_run:shadowless;color:red_cheeks',
+        );
+        expect(item.rarity, 'Common');
+        expect(item.finishLabel, 'Normal');
+      },
+    );
+
     test('owner transfer can explicitly leave the former owner out', () {
       final offer = BinderOwnerTransferOffer.fromJson(<String, dynamic>{
         'offer_id': 'offer-1',

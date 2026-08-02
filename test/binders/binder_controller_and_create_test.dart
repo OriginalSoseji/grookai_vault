@@ -484,6 +484,57 @@ void main() {
     expect(find.byTooltip('Checklist slot actions'), findsNothing);
   });
 
+  testWidgets('duplicate checklist identities show governed variant context', (
+    tester,
+  ) async {
+    final repository = _FlowRepository(
+      detailValue: _detail(
+        role: 'viewer',
+        permissions: const BinderPermissions(),
+      ),
+      checklistPage: const BinderChecklistPage(
+        items: <BinderChecklistItem>[
+          BinderChecklistItem(
+            slotId: 'slot-base',
+            cardPrintId: 'print-base',
+            name: 'Pikachu',
+            setLabel: 'Base Set',
+            number: '58',
+            rarity: 'Common',
+            requiredQuantity: 1,
+            activeQuantity: 0,
+          ),
+          BinderChecklistItem(
+            slotId: 'slot-first-edition',
+            cardPrintId: 'print-first-edition',
+            name: 'Pikachu',
+            setLabel: 'Base Set',
+            number: '58',
+            variantKey: 'first_edition_red_cheeks',
+            rarity: 'Common',
+            requiredQuantity: 1,
+            activeQuantity: 0,
+          ),
+        ],
+      ),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BinderDetailScreen(
+          publicId: 'binder-public-1',
+          repository: repository,
+          featureFlags: const BinderFeatureFlags.allEnabled(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Standard printing'), findsOneWidget);
+    expect(find.text('First Edition Red Cheeks'), findsOneWidget);
+    expect(find.text('Base Set · #58 · Common · 0/1 linked'), findsNWidgets(2));
+  });
+
   testWidgets('authorized checklist row actions remain available', (
     tester,
   ) async {

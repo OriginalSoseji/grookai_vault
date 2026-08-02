@@ -12,6 +12,8 @@ class Candidate {
     this.name,
     this.setCode,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
     this.gvId,
     this.imageUrl,
     this.sourcePath,
@@ -35,6 +37,8 @@ class Candidate {
   final String? name;
   final String? setCode;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
   final String? gvId;
   final String? imageUrl;
   final String? sourcePath;
@@ -77,6 +81,8 @@ class Candidate {
       name: name,
       setCode: setCode,
       number: number,
+      variantKey: variantKey,
+      printedIdentityModifier: printedIdentityModifier,
       gvId: gvId,
       imageUrl: imageUrl,
       sourcePath: sourcePath,
@@ -201,6 +207,10 @@ class ScannerV3VectorCandidateServiceV1 {
           name: _optionalString(raw['name']),
           setCode: _optionalString(raw['set_code'] ?? raw['setCode']),
           number: _optionalString(raw['number']),
+          variantKey: _optionalString(raw['variant_key'] ?? raw['variantKey']),
+          printedIdentityModifier: _optionalString(
+            raw['printed_identity_modifier'] ?? raw['printedIdentityModifier'],
+          ),
           gvId: _optionalString(raw['gv_id'] ?? raw['gvId']),
           imageUrl: _optionalString(raw['image_url'] ?? raw['imageUrl']),
           sourcePath: _optionalString(raw['source_path'] ?? raw['sourcePath']),

@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/image_presentation.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -13,6 +14,17 @@ import '../../widgets/contact_owner_button.dart';
 import '../network/network_inbox_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
+
+ResolvedDisplayIdentity _publicGvviDisplayIdentity(PublicGvviData data) {
+  return resolveDisplayIdentityFromFields(
+    name: data.cardName,
+    variantKey: data.variantKey,
+    printedIdentityModifier: data.printedIdentityModifier,
+    setIdentityModel: data.setIdentityModel,
+    setCode: data.setCode,
+    number: data.number == '—' ? null : data.number,
+  );
+}
 
 class PublicGvviScreen extends StatefulWidget {
   const PublicGvviScreen({
@@ -170,7 +182,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     ? null
                     : state.primaryGvviId,
                 gvId: data.gvId,
-                name: data.cardName,
+                name: _publicGvviDisplayIdentity(data).displayName,
                 setName: data.setName,
                 number: data.number == '—' ? null : data.number,
                 imageUrl: data.imageUrl,
@@ -255,12 +267,13 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
       return;
     }
 
+    final displayName = _publicGvviDisplayIdentity(data).displayName;
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CardDetailScreen(
           cardPrintId: data.cardPrintId,
           gvId: data.gvId,
-          name: data.cardName,
+          name: displayName,
           setName: data.setName,
           setCode: data.setCode,
           number: data.number,
@@ -281,6 +294,9 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final displayName = _data == null
+        ? null
+        : _publicGvviDisplayIdentity(_data!).displayName;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Copy'),
@@ -319,7 +335,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                   _PublicGvviHero(data: _data!),
                   const SizedBox(height: 14),
                   Text(
-                    _data!.cardName,
+                    displayName!,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
                       letterSpacing: 0,
@@ -377,7 +393,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                         cardPrintId: _data!.cardPrintId,
                         ownerUserId: _data!.ownerUserId,
                         ownerDisplayName: _data!.ownerDisplayName,
-                        cardName: _data!.cardName,
+                        cardName: displayName,
                         intent: _data!.intent,
                         buttonLabel: intent_presentation
                             .getVaultIntentActionLabel(_data!.intent),
@@ -547,6 +563,7 @@ class _PublicGvviHero extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePresentation = _publicGvviImagePresentation(data);
+    final displayName = _publicGvviDisplayIdentity(data).displayName;
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 250),
@@ -556,7 +573,7 @@ class _PublicGvviHero extends StatelessWidget {
             AspectRatio(
               aspectRatio: 3 / 4,
               child: CardSurfaceArtwork(
-                label: data.cardName,
+                label: displayName,
                 imageUrl: data.primaryImageUrl,
                 fallbackImageUrl: data.fallbackImageUrl,
                 borderRadius: 22,
@@ -960,7 +977,8 @@ class _PublicGvviPhotos extends StatelessWidget {
                     AspectRatio(
                       aspectRatio: 3 / 4,
                       child: CardSurfaceArtwork(
-                        label: '${data.cardName} ${photos[index].label}',
+                        label:
+                            '${_publicGvviDisplayIdentity(data).displayName} ${photos[index].label}',
                         imageUrl: photos[index].url,
                         borderRadius: 18,
                         padding: const EdgeInsets.all(6),

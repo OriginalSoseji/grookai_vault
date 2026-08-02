@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../services/identity/catalog_artwork_resolution.dart';
+import '../../../services/identity/display_identity.dart';
 import '../../../services/scanner_v5/scanner_v5_identity_service.dart';
 import '../../../widgets/card_surface_artwork.dart';
 import 'scanner_candidate_row.dart';
@@ -116,6 +117,11 @@ class _ExactMatchSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayIdentity = resolveDisplayIdentityFromFields(
+      name: candidate.name,
+      variantKey: candidate.variantKey,
+      printedIdentityModifier: candidate.printedIdentityModifier,
+    );
     final artwork = resolveCatalogArtwork(
       gvId: candidate.gvId,
       providerImageUrl: candidate.imageUrl,
@@ -148,7 +154,7 @@ class _ExactMatchSheet extends StatelessWidget {
         Row(
           children: [
             CardSurfaceArtwork(
-              label: candidate.name,
+              label: displayIdentity.displayName,
               imageUrl: artwork.primaryImageUrl,
               fallbackImageUrl: artwork.fallbackImageUrl,
               width: 92,
@@ -166,7 +172,7 @@ class _ExactMatchSheet extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    candidate.name,
+                    displayIdentity.displayName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(

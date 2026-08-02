@@ -30,6 +30,9 @@ class PublicGvviData {
     required this.intent,
     required this.isDiscoverable,
     required this.isGraded,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     required this.pricingMode,
     this.imageUrl,
     this.canonicalImageUrl,
@@ -68,6 +71,9 @@ class PublicGvviData {
   final String intent;
   final bool isDiscoverable;
   final bool isGraded;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? imageUrl;
   final String? canonicalImageUrl;
   final String? representativeImageUrl;
@@ -510,6 +516,9 @@ class VaultGvviService {
       imageDisplayMode: _normalizeImageDisplayMode(data['image_display_mode']),
       intent: normalizedIntent,
       isDiscoverable: data['is_discoverable'] == true,
+      variantKey: identity?.variantKey,
+      printedIdentityModifier: identity?.printedIdentityModifier,
+      setIdentityModel: identity?.setIdentityModel,
       conditionLabel: _nullable(data['condition_label']),
       isGraded: _nullable(data['cert_number']) != null,
       grader: _nullable(data['grade_company']),

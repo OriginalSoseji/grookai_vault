@@ -292,6 +292,8 @@ function normalizeCandidates(candidates) {
       set: candidate.set ?? candidate.set_code ?? null,
       set_code: candidate.set_code ?? candidate.set ?? null,
       number: candidate.number ?? null,
+      variant_key: candidate.variant_key ?? null,
+      printed_identity_modifier: candidate.printed_identity_modifier ?? null,
       image_url: candidate.image_url ?? null,
       confidence,
       rank: positiveInt(candidate.rank, index + 1),

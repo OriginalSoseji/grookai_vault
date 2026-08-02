@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/grookai_memory_card.dart';
 import '../../models/grookai_sale_listing.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -756,7 +757,11 @@ String _gvviIdForRow(Map<String, dynamic> row) {
 
 String _cardNameForRow(Map<String, dynamic> row) {
   final value = (row['name'] ?? '').toString().trim();
-  return value.isEmpty ? 'Card' : value;
+  return resolveDisplayIdentityFromFields(
+    name: value.isEmpty ? 'Card' : value,
+    variantKey: row['variant_key']?.toString(),
+    printedIdentityModifier: row['printed_identity_modifier']?.toString(),
+  ).displayName;
 }
 
 String _setLineForRow(Map<String, dynamic> row) {

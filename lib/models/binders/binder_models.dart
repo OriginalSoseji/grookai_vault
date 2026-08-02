@@ -913,6 +913,9 @@ class BinderChecklistItem {
     this.gvId,
     this.setLabel,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.rarity,
     this.finishLabel,
     this.imageUrl,
     this.hasHostedImage = false,
@@ -966,8 +969,20 @@ class BinderChecklistItem {
         json['number'] ?? card['number'],
         maxLength: 40,
       ),
+      variantKey: _nullablePlainText(
+        json['variant_key'] ?? card['variant_key'],
+        maxLength: 160,
+      ),
+      printedIdentityModifier: _nullablePlainText(
+        json['printed_identity_modifier'] ?? card['printed_identity_modifier'],
+        maxLength: 240,
+      ),
+      rarity: _nullablePlainText(
+        json['rarity'] ?? card['rarity'],
+        maxLength: 120,
+      ),
       finishLabel: _nullablePlainText(
-        json['finish_label'] ?? card['finish_name'],
+        json['finish_label'] ?? card['finish_label'] ?? card['finish_name'],
         maxLength: 100,
       ),
       imageUrl: _nullableText(
@@ -1027,6 +1042,9 @@ class BinderChecklistItem {
   final String name;
   final String? setLabel;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? rarity;
   final String? finishLabel;
   final String? imageUrl;
   final bool hasHostedImage;
@@ -1352,21 +1370,46 @@ class BinderEligibleCopy {
     this.finishLabel,
     this.setLabel,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.rarity,
     this.imageUrl,
     this.contributionId,
     this.reason,
   });
 
   factory BinderEligibleCopy.fromJson(Map<String, dynamic> json) {
+    final card = _map(json['card']);
     return BinderEligibleCopy(
       instanceId: _text(json['vault_item_instance_id'] ?? json['instance_id']),
       cardPrintId: _text(json['card_print_id']),
       cardPrintingId: _nullableText(json['card_printing_id']),
-      name: _plainText(json['name'], maxLength: 160),
-      finishLabel: _nullablePlainText(json['finish_label'], maxLength: 100),
-      setLabel: _nullablePlainText(json['set_label'], maxLength: 120),
-      number: _nullablePlainText(json['number'], maxLength: 40),
-      imageUrl: _nullableText(json['image_url']),
+      name: _plainText(json['name'] ?? card['name'], maxLength: 160),
+      finishLabel: _nullablePlainText(
+        json['finish_label'] ?? card['finish_label'],
+        maxLength: 100,
+      ),
+      setLabel: _nullablePlainText(
+        json['set_label'] ?? card['set_name'],
+        maxLength: 120,
+      ),
+      number: _nullablePlainText(
+        json['number'] ?? card['number'],
+        maxLength: 40,
+      ),
+      variantKey: _nullablePlainText(
+        json['variant_key'] ?? card['variant_key'],
+        maxLength: 160,
+      ),
+      printedIdentityModifier: _nullablePlainText(
+        json['printed_identity_modifier'] ?? card['printed_identity_modifier'],
+        maxLength: 240,
+      ),
+      rarity: _nullablePlainText(
+        json['rarity'] ?? card['rarity'],
+        maxLength: 120,
+      ),
+      imageUrl: _nullableText(json['image_url'] ?? card['image_url']),
       eligibility: _text(json['eligibility'] ?? 'eligible'),
       contributionId: _nullableText(json['contribution_id']),
       reason: _nullablePlainText(
@@ -1383,6 +1426,9 @@ class BinderEligibleCopy {
   final String? finishLabel;
   final String? setLabel;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? rarity;
   final String? imageUrl;
   final String eligibility;
   final String? contributionId;
@@ -1705,6 +1751,9 @@ class BinderCatalogCard {
     required this.name,
     required this.setLabel,
     this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.rarity,
     this.hostedImageUrl,
     this.fallbackImageUrl,
     this.preferredCardPrintingId,
@@ -1714,6 +1763,9 @@ class BinderCatalogCard {
   final String name;
   final String setLabel;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? rarity;
   final String? hostedImageUrl;
   final String? fallbackImageUrl;
   final String? preferredCardPrintingId;
@@ -1747,6 +1799,9 @@ class BinderCustomSlotDraft {
         name: item.name,
         setLabel: item.setLabel ?? '',
         number: item.number,
+        variantKey: item.variantKey,
+        printedIdentityModifier: item.printedIdentityModifier,
+        rarity: item.rarity,
         hostedImageUrl: item.imageUrl,
       ),
       finish: BinderFinishOption(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../services/identity/catalog_artwork_resolution.dart';
+import '../../../services/identity/display_identity.dart';
 import '../../../services/scanner_v5/scanner_v5_identity_service.dart';
 import '../../../widgets/card_surface_artwork.dart';
 import 'scanner_v5_palette.dart';
@@ -21,6 +22,11 @@ class ScannerCandidateRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayIdentity = resolveDisplayIdentityFromFields(
+      name: candidate.name,
+      variantKey: candidate.variantKey,
+      printedIdentityModifier: candidate.printedIdentityModifier,
+    );
     final artwork = resolveCatalogArtwork(
       gvId: candidate.gvId,
       providerImageUrl: candidate.imageUrl,
@@ -47,7 +53,7 @@ class ScannerCandidateRow extends StatelessWidget {
             child: Row(
               children: [
                 CardSurfaceArtwork(
-                  label: candidate.name,
+                  label: displayIdentity.displayName,
                   imageUrl: artwork.primaryImageUrl,
                   fallbackImageUrl: artwork.fallbackImageUrl,
                   width: 54,
@@ -69,7 +75,7 @@ class ScannerCandidateRow extends StatelessWidget {
                         const SizedBox(height: 7),
                       ],
                       Text(
-                        candidate.name,
+                        displayIdentity.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

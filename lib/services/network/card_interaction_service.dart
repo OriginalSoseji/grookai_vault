@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
 import '../identity/catalog_artwork_resolution.dart';
+import '../identity/display_identity.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 enum CardInteractionInboxView { inbox, unread, sent, closed }
@@ -426,7 +427,7 @@ class CardInteractionService {
           : client
                 .from('card_prints')
                 .select(
-                  'id,gv_id,name,set_code,number,image_url,image_alt_url,representative_image_url,sets(name)',
+                  'id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name)',
                 )
                 .inFilter('id', cardPrintIds),
       counterpartUserIds.isEmpty
@@ -512,6 +513,13 @@ class CardInteractionService {
         Map<String, dynamic> row => row,
         _ => null,
       };
+      final cardDisplayName = resolveDisplayIdentityFromFields(
+        name: _clean(card['name']).isEmpty
+            ? 'Unknown card'
+            : _clean(card['name']),
+        variantKey: _nullable(card['variant_key']),
+        printedIdentityModifier: _nullable(card['printed_identity_modifier']),
+      ).displayName;
 
       final accumulator = grouped.putIfAbsent(
         key,
@@ -519,9 +527,7 @@ class CardInteractionService {
           groupKey: key,
           cardPrintId: cardPrintId,
           gvId: gvId,
-          cardName: _clean(card['name']).isEmpty
-              ? 'Unknown card'
-              : _clean(card['name']),
+          cardName: cardDisplayName,
           setName: _clean(setRecord?['name']).isEmpty
               ? (_clean(card['set_code']).isEmpty
                     ? 'Unknown set'

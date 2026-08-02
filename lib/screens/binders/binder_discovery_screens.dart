@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_display_identity.dart';
 import '../../services/binders/binder_feature_flags.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../widgets/binders/binder_widgets.dart';
@@ -638,44 +639,15 @@ class _BinderExternalProjectionScreenState
                     const Text('No public checklist details are available.')
                   else
                     for (final item in checklist.items)
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: BinderArtwork(
-                          imageUrl: item.imageUrl,
-                          size: 48,
-                          icon: Icons.style_outlined,
-                        ),
-                        title: Text(item.name),
-                        subtitle: Text(
-                          [
-                            if ((item.setLabel ?? '').isNotEmpty)
-                              item.setLabel!,
-                            if ((item.number ?? '').isNotEmpty)
-                              '#${item.number}',
-                            if ((item.finishLabel ?? '').isNotEmpty)
-                              item.finishLabel!,
-                          ].join(' · '),
-                        ),
-                        trailing:
+                      _PublicBinderChecklistTile(
+                        item: item,
+                        showSafetyActions:
                             !_isViewLink &&
-                                _repository.currentUserId != null &&
-                                item.publicContributionActions.isNotEmpty
-                            ? IconButton(
-                                tooltip: 'Contribution safety actions',
-                                onPressed: _busy
-                                    ? null
-                                    : () =>
-                                          _showPublicContributionActions(item),
-                                icon: const Icon(Icons.more_vert_rounded),
-                              )
-                            : Icon(
-                                item.isSatisfied
-                                    ? Icons.check_circle_rounded
-                                    : Icons.radio_button_unchecked_rounded,
-                                color: item.isSatisfied
-                                    ? Theme.of(context).colorScheme.primary
-                                    : null,
-                              ),
+                            _repository.currentUserId != null &&
+                            item.publicContributionActions.isNotEmpty,
+                        busy: _busy,
+                        onShowSafetyActions: () =>
+                            _showPublicContributionActions(item),
                       ),
                   if (checklist?.hasMore ?? false)
                     Padding(
@@ -1210,28 +1182,7 @@ class _BinderTemplatePreviewSheetState
                           )
                         else
                           for (final item in checklist!.items)
-                            ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              leading: BinderArtwork(
-                                imageUrl: item.imageUrl,
-                                size: 48,
-                                semanticLabel: item.name,
-                              ),
-                              title: Text(item.name),
-                              subtitle: Text(
-                                [
-                                  if ((item.setLabel ?? '').isNotEmpty)
-                                    item.setLabel!,
-                                  if ((item.number ?? '').isNotEmpty)
-                                    '#${item.number}',
-                                  if ((item.finishLabel ?? '').isNotEmpty)
-                                    item.finishLabel!,
-                                ].join(' · '),
-                              ),
-                              trailing: item.requiredQuantity > 1
-                                  ? Text('×${item.requiredQuantity}')
-                                  : null,
-                            ),
+                            _BinderTemplateChecklistTile(item: item),
                         if (checklist?.hasMore ?? false)
                           OutlinedButton(
                             onPressed: _loadingMore ? null : _loadMore,
@@ -1454,6 +1405,88 @@ class _BinderLegacyConversionScreenState
                     ),
               ],
             ),
+    );
+  }
+}
+
+class _PublicBinderChecklistTile extends StatelessWidget {
+  const _PublicBinderChecklistTile({
+    required this.item,
+    required this.showSafetyActions,
+    required this.busy,
+    required this.onShowSafetyActions,
+  });
+
+  final BinderChecklistItem item;
+  final bool showSafetyActions;
+  final bool busy;
+  final VoidCallback onShowSafetyActions;
+
+  @override
+  Widget build(BuildContext context) {
+    final identity = resolveBinderChecklistItemIdentity(item);
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: BinderArtwork(
+        imageUrl: item.imageUrl,
+        size: 48,
+        icon: Icons.style_outlined,
+        semanticLabel: identity.displayName,
+      ),
+      title: Text(identity.displayName),
+      subtitle: Text(
+        [
+          if ((item.setLabel ?? '').isNotEmpty) item.setLabel!,
+          if ((item.number ?? '').isNotEmpty) '#${item.number}',
+          if ((item.rarity ?? '').isNotEmpty) item.rarity!,
+          if ((item.finishLabel ?? '').isNotEmpty) item.finishLabel!,
+        ].join(' · '),
+      ),
+      trailing: showSafetyActions
+          ? IconButton(
+              tooltip: 'Contribution safety actions',
+              onPressed: busy ? null : onShowSafetyActions,
+              icon: const Icon(Icons.more_vert_rounded),
+            )
+          : Icon(
+              item.isSatisfied
+                  ? Icons.check_circle_rounded
+                  : Icons.radio_button_unchecked_rounded,
+              color: item.isSatisfied
+                  ? Theme.of(context).colorScheme.primary
+                  : null,
+            ),
+    );
+  }
+}
+
+class _BinderTemplateChecklistTile extends StatelessWidget {
+  const _BinderTemplateChecklistTile({required this.item});
+
+  final BinderChecklistItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final identity = resolveBinderChecklistItemIdentity(item);
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: BinderArtwork(
+        imageUrl: item.imageUrl,
+        size: 48,
+        semanticLabel: identity.displayName,
+      ),
+      title: Text(identity.displayName),
+      subtitle: Text(
+        [
+          if ((item.setLabel ?? '').isNotEmpty) item.setLabel!,
+          if ((item.number ?? '').isNotEmpty) '#${item.number}',
+          if ((item.rarity ?? '').isNotEmpty) item.rarity!,
+          if ((item.finishLabel ?? '').isNotEmpty) item.finishLabel!,
+        ].join(' · '),
+      ),
+      trailing: item.requiredQuantity > 1
+          ? Text('×${item.requiredQuantity}')
+          : null,
     );
   }
 }

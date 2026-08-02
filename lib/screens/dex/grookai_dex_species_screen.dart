@@ -49,6 +49,14 @@ String _cardRarityLabel(GrookaiDexCardPrint card) {
   return value.isEmpty ? 'Unspecified rarity' : value;
 }
 
+ResolvedDisplayIdentity _dexCardDisplayIdentity(GrookaiDexCardPrint card) {
+  return resolveDisplayIdentityFromFields(
+    name: card.name,
+    variantKey: card.variantKey,
+    printedIdentityModifier: card.printedIdentityModifier,
+  );
+}
+
 int _compareSetAndNumber(GrookaiDexCardPrint left, GrookaiDexCardPrint right) {
   final setResult = _cardSetLabel(
     left,
@@ -281,7 +289,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
           publicId: binder.publicId,
           repository: _binderRepository,
           cardPrintId: card.cardPrintId,
-          contextLabel: card.name,
+          contextLabel: _dexCardDisplayIdentity(card).displayName,
         ),
       ),
     );
@@ -517,6 +525,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
   }
 
   Future<void> _addCard(GrookaiDexCardPrint card) async {
+    final displayName = _dexCardDisplayIdentity(card).displayName;
     final userId = _client.auth.currentUser?.id;
     if (userId == null || userId.isEmpty) {
       _showMessage('Sign in to add cards to your Vault.');
@@ -547,7 +556,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${card.name} has ${card.printings.length} collectible options. Your Vault copy will keep the finish you choose.',
+                  '$displayName has ${card.printings.length} collectible options. Your Vault copy will keep the finish you choose.',
                 ),
                 const SizedBox(height: 12),
                 Flexible(
@@ -596,8 +605,8 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       }
       _showMessage(
         selectedPrinting == null
-            ? 'Added ${card.name} to your Vault.'
-            : 'Added ${card.name} · ${selectedPrinting.finishName}.',
+            ? 'Added $displayName to your Vault.'
+            : 'Added $displayName · ${selectedPrinting.finishName}.',
       );
       await _load();
     } catch (error) {
@@ -697,7 +706,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
           uri: GrookaiWebRouteService.buildUri(
             '/card/${Uri.encodeComponent(gvId)}',
           ),
-          subject: card.name,
+          subject: _dexCardDisplayIdentity(card).displayName,
         ),
       );
     } catch (_) {
@@ -708,6 +717,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
   }
 
   Future<void> _showCardActions(GrookaiDexCardPrint card) async {
+    final displayName = _dexCardDisplayIdentity(card).displayName;
     final wantState = await _loadWantState(card);
     if (!mounted) {
       return;
@@ -717,7 +727,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
     );
     await showVaultQuickActionSheet(
       context: context,
-      title: card.name,
+      title: displayName,
       subtitle: [
         card.setName ?? card.setCode,
         if ((card.number ?? '').trim().isNotEmpty) '#${card.number}',

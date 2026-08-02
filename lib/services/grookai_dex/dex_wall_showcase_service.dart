@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
 import '../identity/catalog_artwork_resolution.dart';
+import '../identity/display_identity.dart';
 
 const Set<String> kDexWallDiscoverableIntents = <String>{
   'showcase',
@@ -818,7 +819,8 @@ class DexWallShowcaseService {
       final data = await client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,image_url,image_alt_url,'
+            'id,gv_id,name,set_code,number,variant_key,'
+            'printed_identity_modifier,image_url,image_alt_url,'
             'representative_image_url,sets(name)',
           )
           .inFilter('id', chunk);
@@ -839,7 +841,13 @@ class DexWallShowcaseService {
             : null;
         values[id] = _DexWallCardMetadata(
           gvId: gvId,
-          name: _nullable(row['name']) ?? 'Unknown card',
+          name: resolveDisplayIdentityFromFields(
+            name: _nullable(row['name']) ?? 'Unknown card',
+            variantKey: _nullable(row['variant_key']),
+            printedIdentityModifier: _nullable(
+              row['printed_identity_modifier'],
+            ),
+          ).displayName,
           setName:
               _nullable(setRow?['name']) ??
               _nullable(row['set_code']) ??
