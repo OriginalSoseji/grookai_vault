@@ -33,6 +33,25 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_42_CANARY_SOURCE_GAP_POLICY_REPAIR.md`
+
+This checkpoint records the August 1 and August 2 canary failures caused by a
+single disappeared exact source identity and the bounded, evidence-backed
+source-gap policy that prevents one unavailable row from invalidating the
+other current prices.
+
+Decision locked there:
+
+- preserve all 100 frozen canonical identities, reconcile each to `resolved`
+  or proven `source_missing`, allow at most five current-source gaps, and
+  forbid subtype, finish, product, printing, or historical substitution
+
+Unresolved risk afterward:
+
+- the repair is not deployed and no replacement window is active; it must be
+  integrated into the production runner, activated under a new run key, and
+  prove a fresh uninterrupted 72-hour canary before post-canary release work
+
 ### `PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
 
 This checkpoint records the July 31 observer false alarm, the real current-feed
