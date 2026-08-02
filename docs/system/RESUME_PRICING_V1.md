@@ -19,10 +19,12 @@ Read these first:
 - `docs/checkpoints/pricing/PRICING_CHECKPOINT_39_CANARY_INCIDENT_REPAIR_AND_RESTART.md`
 - `docs/checkpoints/pricing/PRICING_CHECKPOINT_40_CANARY_RUNTIME_SCALE_REPAIR_AND_RESTART.md`
 - `docs/checkpoints/pricing/PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
-- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_end_to_end_repair_20260731/REPORT.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_42_CANARY_SOURCE_GAP_POLICY_REPAIR.md`
+- `docs/checkpoints/pricing/PRICING_CHECKPOINT_43_CANARY_SOURCE_GAP_DEPLOYMENT_AND_RESTART.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_source_gap_repair5_20260802/REPORT.md`
 
-Checkpoints 38 through 40 are historical pre-incident context. Checkpoint 41
-supersedes their canary timestamps.
+Checkpoints 38 through 42 are historical context. Checkpoint 43 supersedes all
+earlier canary timestamps and identifies the only active window.
 
 ## Frozen Production V1 Contract
 
@@ -47,25 +49,25 @@ The current gate is a fixed 100-printing signed-in production canary.
 Valid replacement activation:
 
 - run key:
-  `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-31-REPAIR3`
+  `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-02-REPAIR5`
 - publication run ID:
-  `0c23045d-8141-4b9c-ba41-2f8c44522921`
+  `01610cfc-df72-412f-bc21-a526044d35bc`
 - publication set ID:
-  `78bbabbb-3968-4ad1-81db-00d4417cfcc4`
+  `f7996805-24f3-4da4-9ea7-00acb59fc16a`
 - activation:
-  `2026-07-31T10:34:15.670Z`
+  `2026-08-02T22:29:17.856Z`
 - required 72-hour end:
-  `2026-08-03T10:34:15.670Z`
+  `2026-08-05T22:29:17.856Z`
 - production commit:
-  `416c4691d1c1d6be8a1461c148deebe627e813f8`
+  `6b729441bf8944048885ade5d9905e23166d9d46`
 - observer policy source:
-  `416c4691d1c1d6be8a1461c148deebe627e813f8`
+  `6b729441bf8944048885ade5d9905e23166d9d46`
 - observer workflow:
-  `72df4539e8698ed37276502b7a605f37c864ec26`
+  `3aaf580f3ea40babe55854a833ac535c59ca417c`
 
 Final wrapper proof run:
 
-`https://github.com/OriginalSoseji/grookai_vault/actions/runs/30626600755`
+`https://github.com/OriginalSoseji/grookai_vault/actions/runs/30770886697`
 
 Current observer truth:
 
@@ -76,17 +78,15 @@ Current observer truth:
 - zero missing provenance
 - zero broken traces
 - source health `healthy`
-- source continuity `verified_no_change`
-- zero terminal alerts
-- observer policy V2 with zero pending, missing, unhealthy, extra, or duplicate
-  run keys
+- source continuity `completed_sync`
+- observer policy V3
+- 100 expected, 100 resolved, and zero source-missing outcomes
+- zero terminal alerts or findings
 - authenticated reads available
 - anonymous reads denied
-- zero findings
 
-The timer is enabled and active. The next daily slot is
-`2026-08-01T08:15:00Z`. The remaining expected slots are August 1, 2, and 3
-at 08:15 UTC.
+The timer is enabled and active. Expected unattended slots are August 3, 4,
+and 5 at `08:15 UTC`.
 
 ## Incident History
 
@@ -107,17 +107,24 @@ Do not count time from any earlier window.
   `Normal` subtype disappeared from the current TCGPlayer feed.
 - The old retry classifier repeated that deterministic error three times after
   mistaking stack location `errors:538:14` for HTTP 538.
-- Only July 31 `REPAIR3`, using canary V2, starts the active window.
+- The August 1 and August 2 cycles then found the exact replacement Holofoil
+  row absent from the current feed. The old worker aborted all current prices.
+- REPAIR4 fetched a fresh feed where that exact row had returned and restored
+  100 prices, but a live result-wiring defect omitted source-coverage evidence
+  from its artifacts.
+- Only August 2 `REPAIR5`, using observer policy V3 and complete coverage
+  evidence, starts the active window.
 
 Failed runs are permanent evidence. They must not be rewritten or treated as
 passing activations.
 
 ## Current Proof
 
-The valid replacement activation proved:
+The active REPAIR5 activation proved:
 
-- read-only current-source continuity for all 100 exact canary identities
-- verified reuse of the completed 540,870-row July 31 source warehouse
+- one reconciled source outcome for every frozen canary identity
+- verified reuse of the completed 541,472-row August 2 source warehouse
+- 100 resolved and zero source-missing outcomes
 - 100 selected, mapped, eligible, decided, snapshotted, and traced rows
 - zero reconciliation mismatches
 - zero exclusions, quarantines, delays, or suppressions
@@ -131,20 +138,19 @@ The active-ask refresh produced zero current rows. That is a valid result for
 the available ask evidence and is separate from TCGPlayer market-close
 publication.
 
-Observer policy V2 separately proves the scheduled source trigger and its
-exact publication completion. Source triggers have a 90-minute tolerance and
-on-time pipelines have a 480-minute completion grace. Pending work remains
-`observing` until the grace expires.
+Observer policy V3 separately proves the scheduled source trigger, source-gap
+coverage, and exact publication completion. Source triggers have a 90-minute
+tolerance and on-time pipelines have a 480-minute completion grace. Pending
+work remains `observing` until the grace expires.
 
 ## Pending Database Work
 
-No migration was applied during the July 31 repair.
+No migration was applied during the August 2 source-gap repair.
 
 These post-canary migrations remain blocked:
 
 - `20260728130000`
 - `20260728133000`
-- `20260730180000`
 
 Do not apply any of them before the exact 72-hour observer gate passes.
 
@@ -165,9 +171,9 @@ Do not apply any of them before the exact 72-hour observer gate passes.
 
 ## Exact Next Gate
 
-Wait through the nominal end `2026-08-03T10:34:15.670Z`.
+Wait through the nominal end `2026-08-05T22:29:17.856Z`.
 
-If the August 3 slot is still running, allow its bounded 480-minute completion
+If the August 5 slot is still running, allow its bounded 480-minute completion
 grace. The workflow keeps observing and requires a terminal pass only after
 that grace expires.
 
@@ -178,16 +184,18 @@ Use the first observer run at or after that timestamp. It must prove:
 3. at least 72 continuous hours
 4. every expected daily source trigger matched its exact key within tolerance
 5. every exact publication completed within grace
-6. zero missing, duplicate, extra, or unhealthy scheduled run keys
-7. zero terminal alerts
-8. healthy completed source continuity
-9. exactly 100 current exact positive-USD prices
-10. zero stale prices
-11. zero missing provenance
-12. zero broken traces
-13. authenticated access remains correct
-14. anonymous access remains denied
-15. a rollback target remains available
+6. every publication preserves all 100 reconciled source outcomes
+7. zero missing, duplicate, extra, or unhealthy scheduled run keys
+8. zero terminal alerts
+9. healthy completed source continuity
+10. exactly 100 current exact positive-USD prices, unless a bounded source gap
+   is proven and all current counts reconcile to the resolved total
+11. zero stale prices
+12. zero missing provenance
+13. zero broken traces
+14. authenticated access remains correct
+15. anonymous access remains denied
+16. a rollback target remains available
 
 If any condition fails, preserve evidence and stop.
 
@@ -212,13 +220,13 @@ If all conditions pass:
 
 ```md
 Continue Production V1 pricing from
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_41_CANARY_OBSERVATION_AND_SOURCE_CONTINUITY_REPAIR.md`
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_43_CANARY_SOURCE_GAP_DEPLOYMENT_AND_RESTART.md`
 and `docs/system/RESUME_PRICING_V1.md`. The only valid active canary began at
-`2026-07-31T10:34:15.670Z` from production commit
-`416c4691d1c1d6be8a1461c148deebe627e813f8` and cannot pass before
-`2026-08-03T10:34:15.670Z` plus any bounded final-slot completion grace. Do not
-count earlier failed windows, change the frozen production runtime, apply
+`2026-08-02T22:29:17.856Z` from production commit
+`6b729441bf8944048885ade5d9905e23166d9d46` and cannot pass before
+`2026-08-05T22:29:17.856Z` plus any bounded final-slot completion grace. Do
+not count earlier failed windows, change the frozen production runtime, apply
 pending migrations, broaden publication, or enable anonymous pricing. Inspect
-the terminal policy V2 observer artifact and follow the fail-closed gate in
-Checkpoint 41.
+the terminal policy V3 observer artifact and follow the fail-closed gate in
+Checkpoint 43.
 ```
