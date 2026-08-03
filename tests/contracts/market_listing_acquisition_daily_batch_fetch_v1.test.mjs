@@ -36,6 +36,13 @@ function batchPlan() {
         strategy: "strict_identity",
         query_text: "Pokemon Pikachu PSA 10",
         query_filters: { limit: 200 },
+        card_printing_id: "00000000-0000-0000-0000-000000000002",
+        printing_gv_id: "GV-PK-TEST-1-HOLOFOIL",
+        target_hints: {
+          set_code: "me05",
+          set_name: "Mega Evolution: Pitch Black",
+          coverage_lane: "new_release_unqueried",
+        },
       },
     ],
   };
@@ -85,6 +92,10 @@ test("MEE-11L streams approved daily batch fetch artifacts without DB writes", a
     assert.equal(report.boundary.db_writes, false);
     assert.equal(report.boundary.market_listing_writes, false);
     assert.match(readFileSync(report.artifacts.projected_observations_jsonl, "utf8"), /"listing_evidence_class":"slab"/);
+    const requestResult = JSON.parse(readFileSync(report.artifacts.request_results_jsonl, "utf8").trim());
+    assert.equal(requestResult.card_print_id, batchPlan().acquisition_requests[0].card_print_id);
+    assert.equal(requestResult.printing_gv_id, "GV-PK-TEST-1-HOLOFOIL");
+    assert.equal(requestResult.target_hints.set_code, "me05");
   } finally {
     rmSync(artifactDir, { recursive: true, force: true });
   }

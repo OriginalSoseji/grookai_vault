@@ -81,6 +81,11 @@ function normalizeCard(row) {
     acquisition_priority: compact(row.acquisition_priority) || null,
     identity_domain: compact(row.identity_domain) || null,
     printed_identity_modifier: compact(row.printed_identity_modifier) || null,
+    game: compact(row.game) || null,
+    release_date: compact(row.release_date) || null,
+    last_queried_at: compact(row.last_queried_at) || null,
+    coverage_lane: compact(row.coverage_lane) || null,
+    target_selection_version: compact(row.target_selection_version) || null,
   };
 }
 
@@ -117,6 +122,10 @@ function acquisitionPriorityScore(card) {
   const rarity = card.rarity ?? "";
   let score = 100;
 
+  if (card.coverage_lane === "new_release_unqueried") score += 5000;
+  if (card.coverage_lane === "unqueried") score += 2500;
+  if (card.coverage_lane === "new_release_refresh") score += 1500;
+
   if (priority === "priority_variant_special_finish") score += 1200;
   if (priority === "priority_variant_finish") score += 1100;
   if (priority === "priority_set_shelf") score += 1150;
@@ -151,8 +160,16 @@ function cardPriorityScoreForSet(cards) {
 }
 
 function setShelfBaseScore(set) {
+  const coverageScore = set.coverage_lane === "new_release_unqueried"
+    ? 5000
+    : set.coverage_lane === "unqueried"
+      ? 2500
+      : set.coverage_lane === "new_release_refresh"
+        ? 1500
+        : 0;
   return Math.round(
-    200 // expected_results: broad set shelves should often fill a 200-result page.
+    coverageScore
+    + 200 // expected_results: broad set shelves should often fill a 200-result page.
     + Math.min(250, set.card_count * 2)
     + Math.min(250, set.collector_count * 12)
     + cardPriorityScoreForSet(set.cards)
@@ -173,12 +190,28 @@ function buildSetShelves(cards, { pageBudget, maxPagesPerSet, maxResultsPerCall 
       set_code: card.set_code,
       set_name: setName,
       printed_set_abbrev: card.printed_set_abbrev,
+      game: card.game,
+      release_date: card.release_date,
+      coverage_lane: card.coverage_lane,
+      target_selection_version: card.target_selection_version,
       card_count: 0,
       collector_count: 0,
       special_lane_count: 0,
       weak_name: setName.length < 3,
       cards: [],
     };
+    const laneRank = {
+      new_release_unqueried: 0,
+      unqueried: 1,
+      new_release_refresh: 2,
+      stale_refresh: 3,
+    };
+    if ((laneRank[card.coverage_lane] ?? 99) < (laneRank[group.coverage_lane] ?? 99)) {
+      group.coverage_lane = card.coverage_lane;
+    }
+    if (card.release_date && (!group.release_date || card.release_date > group.release_date)) {
+      group.release_date = card.release_date;
+    }
     group.card_count += 1;
     if (isCollectorRarity(card.rarity)) group.collector_count += 1;
     if (priorityFor(card).startsWith("priority_")) group.special_lane_count += 1;
@@ -315,6 +348,11 @@ function buildRequest(card, strategy, ordinal, options) {
     rarity: card.rarity,
     variant_key: card.variant_key,
     finish_key: card.finish_key,
+    game: card.game,
+    release_date: card.release_date,
+    last_queried_at: card.last_queried_at,
+    coverage_lane: card.coverage_lane,
+    target_selection_version: card.target_selection_version,
     priority: priorityFor(card),
     acquisition_priority_score: acquisitionPriorityScore(card),
     query_score: card.query_score ?? null,
@@ -480,6 +518,8 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
       priority_counts: countBy(normalizedTargets, priorityFor),
       rarity_priority_counts: countBy(normalizedTargets, (card) => isLowPriorityRarity(card.rarity) ? "low_priority_common_rare" : "normal_or_collector_priority"),
       strategy_counts: countBy(acquisitionRequests, (request) => request.strategy),
+      coverage_lane_counts: countBy(normalizedTargets, (card) => card.coverage_lane || "unclassified"),
+      selected_set_counts: countBy(normalizedTargets, (card) => card.set_code || "unknown_set"),
     },
     boundary: {
       provider_calls: false,
