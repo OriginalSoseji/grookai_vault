@@ -156,7 +156,8 @@ async function loadTargets(limit) {
       target.gv_id,
       target.finish_key nulls last,
       target.card_printing_id nulls last,
-      target.card_print_id
+      target.card_print_id,
+      target.ebay_query_text
     limit ${limit};
   `;
   return runSupabaseQuery(sql);

@@ -394,6 +394,7 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
       || (left.finish_key ?? "").localeCompare(right.finish_key ?? "")
       || (left.card_printing_id ?? "").localeCompare(right.card_printing_id ?? "")
       || (left.card_print_id ?? "").localeCompare(right.card_print_id ?? "")
+      || (left.ebay_query_text ?? "").localeCompare(right.ebay_query_text ?? "")
     )
     .slice(0, dryRunTargetLimit);
 

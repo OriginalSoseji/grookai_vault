@@ -74,7 +74,7 @@ test("V2 accepts only a frozen manifest that exactly matches the incomplete curs
 });
 
 test("request ordering is deterministic for otherwise tied printing targets", () => {
-  const target = (cardPrintingId, finishKey) => ({
+  const target = (cardPrintingId, finishKey, queryText = `Pokemon Test Card ${finishKey}`) => ({
     card_print_id: "00000000-0000-0000-0000-000000000001",
     card_printing_id: cardPrintingId,
     gv_id: "GV-TEST-1",
@@ -82,12 +82,13 @@ test("request ordering is deterministic for otherwise tied printing targets", ()
     name: "Test Card",
     set_code: "test",
     finish_key: finishKey,
-    ebay_query_text: `Pokemon Test Card ${finishKey}`,
+    ebay_query_text: queryText,
     acquisition_priority: "priority_variant_finish",
   });
   const targets = [
     target("00000000-0000-0000-0000-000000000012", "reverse_holo"),
     target("00000000-0000-0000-0000-000000000011", "holo"),
+    target("00000000-0000-0000-0000-000000000011", "holo", "Pokemon Test Card alternate holo"),
   ];
   const left = buildMarketListingAcquisitionDryRunPlanV1({ targets, setShelfPageBudget: 0 });
   const right = buildMarketListingAcquisitionDryRunPlanV1({ targets: [...targets].reverse(), setShelfPageBudget: 0 });
