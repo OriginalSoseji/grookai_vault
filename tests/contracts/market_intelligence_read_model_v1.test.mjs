@@ -76,7 +76,8 @@ test("card rail exposes evidence density without calling asks market value", () 
   assert.match(rail, /Available Today/);
   assert.match(rail, /Lowest exact-printing eBay active ask/);
   assert.match(rail, /Median ask/);
-  assert.match(rail, /active listings across/);
+  assert.match(rail, /listing_count === 1 \? "listing" : "listings"/);
+  assert.match(rail, /seller_count === 1 \? "seller" : "sellers"/);
   assert.match(rail, /Lowest-to-median spread/);
   assert.match(rail, /evidence_strength/);
   assert.match(rail, /not a sale or market close\. It is not a market value\./);
