@@ -64,6 +64,7 @@ No market evidence was deleted, truncated, remapped, or published during baselin
 - The August 2 candidate projection failed from a statement timeout.
 - The recovery migration and runtime are implemented locally but are not considered production-proven until apply/readback and canary gates complete.
 - Existing MEE evidence remains internal and does not authorize a public or app-visible price.
+- Production migration history contains `20260801153800` and `20260801160000`, originally applied from `fix/mobile-runtime-performance-images-v1`. Their exact SQL files are carried forward in this branch to close repository-history drift; they are already applied and are not part of the MEE write gate.
 
 ## Invariants
 
