@@ -5,6 +5,11 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
 export const PACKAGE_ID = "MARKET-LISTING-CARD-CANDIDATE-ROLLUP-APPLY-V1";
@@ -15,7 +20,7 @@ export const EXPECTED_SOURCE_READBACK_FINGERPRINT = "3ecef7a22b6209c5a68fc591d58
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PLAN_PREFIX = "mee_11s_market_listing_card_candidate_rollup_plan_";
 
 function parseArgs(argv) {
@@ -28,7 +33,7 @@ function parseArgs(argv) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function sleep(ms) {
@@ -57,7 +62,7 @@ async function supabaseRequest(factory, attempts = 4) {
 }
 
 async function latestPlanPath() {
-  const dir = path.join(REPO_ROOT, AUDIT_DIR);
+  const dir = AUDIT_DIR;
   const files = await fs.readdir(dir);
   const candidates = files
     .filter((fileName) => fileName.startsWith(PLAN_PREFIX) && fileName.endsWith(".json"))
@@ -68,10 +73,10 @@ async function latestPlanPath() {
 }
 
 async function readPlan(filePath) {
-  const resolved = path.resolve(REPO_ROOT, filePath ?? await latestPlanPath());
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, filePath ?? await latestPlanPath());
   const data = JSON.parse(await fs.readFile(resolved, "utf8"));
   data.row_files = Object.fromEntries(Object.entries(data.row_files ?? {})
-    .map(([key, value]) => [key, path.resolve(REPO_ROOT, value)]));
+    .map(([key, value]) => [key, resolveMeeArtifactInputV1(REPO_ROOT, value)]));
   return { path: resolved, data };
 }
 
@@ -400,8 +405,8 @@ async function main() {
     readback_counts: readback,
   };
 
-  const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11t_market_listing_card_candidate_rollup_apply_${stamp}.json`);
-  const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11t_market_listing_card_candidate_rollup_apply_${stamp}.md`);
+  const jsonPath = path.join(AUDIT_DIR, `mee_11t_market_listing_card_candidate_rollup_apply_${stamp}.json`);
+  const mdPath = path.join(AUDIT_DIR, `mee_11t_market_listing_card_candidate_rollup_apply_${stamp}.md`);
   await fs.writeFile(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   await fs.writeFile(mdPath, renderMarkdown(report));
 

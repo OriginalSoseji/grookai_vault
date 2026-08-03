@@ -5,6 +5,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
 export const PACKAGE_ID = "MARKET-LISTING-STRICT-FILTERED-ROLLUP-APPLY-V1";
@@ -15,7 +20,7 @@ export const EXPECTED_ROLLUP_COUNT = 2243;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PLAN_PREFIX = "mee_11y_market_listing_strict_filtered_rollup_plan_";
 
 const BASE_ROLLUP_VERSION_BY_EVIDENCE_CLASS = {
@@ -46,7 +51,7 @@ function deterministicUuid(input) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {
@@ -85,7 +90,7 @@ function rollupVersionMap(args) {
 }
 
 async function latestPlanPath() {
-  const dir = path.join(REPO_ROOT, AUDIT_DIR);
+  const dir = AUDIT_DIR;
   const files = await fs.readdir(dir);
   const candidates = files
     .filter((fileName) => fileName.startsWith(PLAN_PREFIX) && fileName.endsWith(".json"))
@@ -96,9 +101,9 @@ async function latestPlanPath() {
 }
 
 async function readPlan(filePath) {
-  const resolved = path.resolve(REPO_ROOT, filePath ?? await latestPlanPath());
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, filePath ?? await latestPlanPath());
   const plan = JSON.parse(await fs.readFile(resolved, "utf8"));
-  const rollupsPath = path.resolve(REPO_ROOT, plan.artifacts?.strict_filtered_rollups_json_path ?? "");
+  const rollupsPath = resolveMeeArtifactInputV1(REPO_ROOT, plan.artifacts?.strict_filtered_rollups_json_path ?? "");
   if (!rollupsPath) throw new Error("[strict-filtered-rollup-apply] plan missing strict_filtered_rollups_json_path");
   const rollups = JSON.parse(await fs.readFile(rollupsPath, "utf8"));
   return { path: resolved, plan, rollupsPath, rollups };
@@ -106,9 +111,9 @@ async function readPlan(filePath) {
 
 async function readApprovedReport(filePath) {
   if (!filePath) return null;
-  const resolved = path.resolve(REPO_ROOT, filePath);
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, filePath);
   const report = JSON.parse(await fs.readFile(resolved, "utf8"));
-  const rowPath = path.resolve(REPO_ROOT, report.row_file_path ?? "");
+  const rowPath = resolveMeeArtifactInputV1(REPO_ROOT, report.row_file_path ?? "");
   if (!rowPath) throw new Error("[strict-filtered-rollup-apply] approved report missing row_file_path");
   const rows = (await fs.readFile(rowPath, "utf8"))
     .split(/\r?\n/)
@@ -334,11 +339,11 @@ async function main() {
   };
   const packageFingerprint = sha256(packagePayload);
 
-  mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+  mkdirSync(AUDIT_DIR, { recursive: true });
   const stamp = generatedAt.replace(/[:.]/g, "-");
   const rowPath = approved
     ? source.rowPath
-    : path.join(REPO_ROOT, AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_rows_${stamp}.jsonl`);
+    : path.join(AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_rows_${stamp}.jsonl`);
   if (!approved) writeFileSync(rowPath, `${dbRows.map((row) => JSON.stringify(row)).join("\n")}\n`);
 
   const supabase = createBackendClient();
@@ -403,8 +408,8 @@ async function main() {
   };
   report.approval_prompt_for_next_step = approvalPrompt(report);
 
-  const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_${stamp}.json`);
-  const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_${stamp}.md`);
+  const jsonPath = path.join(AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_${stamp}.json`);
+  const mdPath = path.join(AUDIT_DIR, `mee_12b_market_listing_strict_filtered_rollup_apply_${stamp}.md`);
   writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   writeFileSync(mdPath, renderMarkdown(report));
 

@@ -5,15 +5,20 @@ import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
 import { buildMarketListingAcquisitionDailyBatchFetchV1 } from "../../backend/pricing/market_listing_acquisition_daily_batch_fetch_v1.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const BATCH_PREFIX = "mee_11k_market_listing_acquisition_daily_batch_plan_";
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {
@@ -25,7 +30,7 @@ function parseArgs(argv) {
 }
 
 function latestBatchPlanPath() {
-  const dir = path.join(REPO_ROOT, AUDIT_DIR);
+  const dir = AUDIT_DIR;
   const candidates = readdirSync(dir)
     .filter((fileName) => fileName.startsWith(BATCH_PREFIX) && fileName.endsWith(".json"))
     .sort();
@@ -35,7 +40,7 @@ function latestBatchPlanPath() {
 }
 
 function readBatchPlan(filePath) {
-  const resolved = path.resolve(REPO_ROOT, filePath ?? latestBatchPlanPath());
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, filePath ?? latestBatchPlanPath());
   return JSON.parse(readFileSync(resolved, "utf8"));
 }
 
@@ -136,8 +141,8 @@ function renderMarkdown(report) {
 }
 
 function writeReport(report, stamp, artifactDir) {
-  const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}.json`);
-  const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}.md`);
+  const jsonPath = path.join(AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}.json`);
+  const mdPath = path.join(AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}.md`);
   const output = {
     ...report,
     artifacts: Object.fromEntries(Object.entries(report.artifacts).map(([key, value]) => [key, rel(value)])),
@@ -156,7 +161,7 @@ if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.res
   try {
     const args = parseArgs(process.argv.slice(2));
     const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const artifactDir = path.join(REPO_ROOT, AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}`);
+    const artifactDir = path.join(AUDIT_DIR, `mee_11l_market_listing_acquisition_daily_batch_fetch_${stamp}`);
     mkdirSync(artifactDir, { recursive: true });
     ensureBrowseToken();
     const batchPlan = readBatchPlan(args.batchPlanPath);

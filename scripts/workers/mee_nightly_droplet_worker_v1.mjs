@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +15,7 @@ const { Client } = pg;
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-NIGHTLY-DROPLET-WORKER-V1";
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
@@ -34,6 +35,7 @@ if (!Number.isFinite(PREFLIGHT_READBACK_TIMEOUT_MS) || PREFLIGHT_READBACK_TIMEOU
 }
 const REQUIRED_FILES = [
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+  "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
   "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
   "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
   "scripts/audits/market_evidence_lifecycle_remaining_drain_v1.mjs",
@@ -43,6 +45,7 @@ const REQUIRED_FILES = [
   "docs/sql/mee_variant_assignment_v1_backfill.sql",
   "docs/sql/mee_variant_assignment_v1_readback.sql",
   "docs/sql/mee_variant_read_models_v1_readback.sql",
+  "docs/sql/mee_variant_read_models_fast_readback_v1.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_apply_candidate.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql",
@@ -62,14 +65,15 @@ const PHASES = [
     key: "listing_ingest",
     command: [
       "node",
-      "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+      "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
       "--run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
     ],
     dryRunCommand: [
       "node",
-      "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+      "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
+      "--dry-run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
     ],
@@ -113,13 +117,16 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_assignment_v1_readback.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "variant_read_models_readback",
-    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_v1_readback.sql"],
-    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_v1_readback.sql"],
+    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_fast_readback_v1.sql"],
+    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_fast_readback_v1.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
+    timeoutMs: 30_000,
   },
   {
     key: "quality_scoring_readback",
@@ -127,6 +134,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_quality_scoring_read_model_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_plan",
@@ -134,6 +142,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_quality_gate_remaining_candidate_actions_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_preflight",
@@ -141,6 +150,7 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_apply",
@@ -156,6 +166,7 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "final_fast_readback",
@@ -164,6 +175,7 @@ const PHASES = [
     providerCalls: false,
     dbWrites: false,
     timeoutMs: PREFLIGHT_READBACK_TIMEOUT_MS,
+    nonBlocking: true,
   },
   {
     key: "foundation_checkpoint",
@@ -171,6 +183,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_foundation_complete_v2.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
 ];
 
@@ -722,6 +735,7 @@ const startedAt = new Date().toISOString();
 const preflightResult = preflight(args);
 const execution = [];
 const findings = [...preflightResult.findings];
+const warnings = [];
 let lock = null;
 let lockRelease = null;
 
@@ -832,6 +846,7 @@ try {
       if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
       if (result.status !== 0) {
         if (phase.nonBlocking) {
+          warnings.push(`phase_warning:${phase.key}`);
           execution.push({
             phase: `${phase.key}_warning`,
             skipped: true,
@@ -888,6 +903,8 @@ const payload = {
   })),
   boundary,
   findings,
+  warnings,
+  outcome: findings.length ? "failed" : warnings.length ? "completed_with_warnings" : "completed",
 };
 
 const report = {

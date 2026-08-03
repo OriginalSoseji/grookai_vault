@@ -7,11 +7,12 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-READBACK-V1";
@@ -37,7 +38,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 async function runSql(sql) {
@@ -418,10 +419,10 @@ const report = {
       : "Resolve readback findings before building or running the nightly wrapper.",
 };
 
-mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+mkdirSync(AUDIT_DIR, { recursive: true });
 const stamp = report.generated_at.replace(/[:.]/g, "-");
-const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.json`);
-const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.md`);
+const jsonPath = path.join(AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.json`);
+const mdPath = path.join(AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.md`);
 writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
 writeFileSync(mdPath, renderMarkdown(report));
 

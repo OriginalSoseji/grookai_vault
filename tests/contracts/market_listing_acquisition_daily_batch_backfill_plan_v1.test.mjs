@@ -136,6 +136,8 @@ test("MEE-11M prepares streamed daily batch warehouse rows without writes", asyn
     assert.equal(plan.proposed_table_row_counts.market_listing_observations, 1);
     assert.equal(plan.proposed_table_row_counts.market_listing_card_candidates, 0);
     assert.equal(plan.proposed_table_row_counts.market_listing_rollups, 0);
+    assert.match(plan.source_acquisition_run.run_key, /^MEE-11L-DAILY-BATCH-/);
+    assert.match(plan.source_acquisition_run.id, /^[0-9a-f-]{36}$/);
     assert.equal(plan.summary.evidence_class_counts.slab, 1);
     assert.equal(plan.boundary.db_writes, false);
     assert.match(readFileSync(plan.row_files.priceEventRows, "utf8"), /"listing_evidence_class":"slab"/);
