@@ -53,6 +53,9 @@ async function runSql(sql) {
     });
     await client.connect();
     try {
+      // Supabase role defaults can override startup parameters; bind this audit's
+      // bounded read-only allowance to the established five-minute client limit.
+      await client.query("set statement_timeout = '300s'");
       const result = await client.query(sql);
       return JSON.stringify(result.rows);
     } finally {
