@@ -87,6 +87,24 @@ Strict apply and run-scoped readback must use the source acquisition run key, no
 
 The first V2 canary advanced the cursor from `0` to `50`. The next canary must begin at `50`; silently returning to zero is a rotation failure.
 
+## Legacy Artifact Preservation
+
+Historical fetch and backfill directories in the inactive mutable checkout may be archived only through `scripts/ops/mee_legacy_artifact_archive_v1.sh`. The tool is plan-only by default and accepts only direct-child `mee_11l...fetch` and `mee_11m...backfill_plan` directories under the governed legacy audit root.
+
+Before source removal, the apply path requires the timer and service to be inactive, enforces an inactivity window, hashes every source file, creates a compressed tar archive, runs `zstd --test`, compares the archive against the live source with GNU tar, records archive and manifest hashes, and verifies the final archive hash. Source removal is restricted to the exact allowlisted path and occurs only after those checks pass.
+
+Restore is also plan-only by default:
+
+```bash
+bash scripts/ops/mee_legacy_artifact_restore_v1.sh \
+  --archive=/var/lib/grookai/mee/archive/legacy_mutable_checkout/<artifact>.tar.zst \
+  --manifest=/var/lib/grookai/mee/archive/legacy_mutable_checkout/<artifact>.files.sha256 \
+  --destination-root=/opt/grookai_vault_mee_nightly/docs/audits/market_evidence_engine_v1 \
+  --apply
+```
+
+Never archive the current runtime artifact root, the active immutable release, incomplete/recent output, or a directory outside the explicit fetch/backfill allowlist. Expansion of this retention policy requires a separately reviewed contract.
+
 ## Failure Handling
 
 - Provider phase failed or indeterminate: preserve artifacts and use a new gate; do not reuse the run key.
