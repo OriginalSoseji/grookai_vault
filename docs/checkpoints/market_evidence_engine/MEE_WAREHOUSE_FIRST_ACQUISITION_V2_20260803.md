@@ -78,13 +78,13 @@ Evidence:
 ## Current Truths
 
 - Existing production/nightly behavior remains V1 and unchanged.
-- The V2 implementation has made no provider Browse calls and no database writes.
+- The bounded V2 canary made nine provider Browse calls and preserved all results in local artifacts; it made no database writes.
 - Current TCGPlayer Product V1 remains English Pokemon raw singles only.
 - Warehouse V2 may retain graded and sealed evidence, but it cannot publish either through the raw-single read model.
 - Exact raw/graded card printing assignment is deferred.
 - A canonical sealed-product identity model is still a downstream project.
-- Official eBay pages identify candidate sealed categories for packs (`183456`), boxes (`261044`), decks/kits (`183457`), and cases (`261045`); they remain inactive until Taxonomy API version proof is captured.
-- An isolated Taxonomy attempt from frozen SHA `2d867db4be13f495265314dbccf90802cbb11408` stopped before any provider call because eBay credentials are available only to the protected systemd service environment.
+- Official eBay Taxonomy tree `0`, version `134`, confirms and freezes sealed categories for packs (`183456`), boxes (`261044`), decks/kits (`183457`), and cases (`261045`).
+- The first protected-host attempt stopped before any provider call; the completed taxonomy and Browse canary used the existing local protected environment with system CA verification enabled.
 
 ## Invariants
 
@@ -108,18 +108,14 @@ Evidence:
 
 ## Remaining Work
 
-1. Run official eBay Taxonomy discovery in an isolated environment with existing credentials.
-2. Review and freeze sealed category IDs from that artifact.
-3. Generate a real V2 plan from the current set target corpus.
-4. Run a bounded local-artifact-only canary across raw, graded, and sealed routes.
-5. Reconcile product-kind precision, lane yield, duplicates, provider totals, and manifests.
-6. Approve a separate append-only warehouse apply only after the canary passes.
-7. Build downstream assignment resolvers:
+1. Approve and execute the separately gated append-only warehouse apply and readback.
+2. Run an older high-volume set canary to prove graded/slab yield before nightly scale.
+3. Build downstream assignment resolvers:
    - raw single -> card printing;
    - graded single -> card printing + grade dimensions;
    - sealed product -> sealed-product identity.
-8. Integrate V2 into nightly orchestration only after readback and rollback proof.
+4. Integrate V2 into nightly orchestration only after readback and rollback proof.
 
 ## Explicit Next Gate
 
-Run official taxonomy discovery only. Freeze candidates in an audit artifact, review the sealed route, and stop before Browse acquisition or database apply.
+The taxonomy and bounded no-write canary are complete. Continue from the [live canary checkpoint](MEE_WAREHOUSE_FIRST_ACQUISITION_V2_CANARY_20260803.md). The next gate is a separately approved bounded append-only apply and readback; stop before candidate generation, rollups, canonical assignment, publication, or nightly integration.

@@ -1,0 +1,16 @@
+{
+  "package_id": "MARKET-LISTING-WAREHOUSE-APPLY-PREFLIGHT-V2",
+  "generated_at": "2026-08-03T22:38:00.000Z",
+  "mode": "local_preflight_no_db_writes",
+  "plan_path": "docs/audits/market_listing_warehouse_v2/warehouse_backfill_plan_2026-08-03T22-37-43-599Z/summary.json",
+  "plan_package_fingerprint_sha256": "ab3462b7fa61a523f6f2efa1f8e98eec911adb650de1a774247d2a5c62ae487e",
+  "row_manifest_hash_sha256": "47808d4b8085865f3cc2fee32dc6972da13c405dcf061a4d8f840daeb4f556ff",
+  "findings": [],
+  "ready_for_separate_apply_approval": true,
+  "boundary": {
+    "provider_calls": false,
+    "db_writes": false,
+    "canonical_assignment_writes": false,
+    "public_pricing": false
+  }
+}

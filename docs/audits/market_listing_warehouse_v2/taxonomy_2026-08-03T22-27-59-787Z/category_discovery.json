@@ -1,0 +1,1267 @@
+{
+  "package_id": "MARKET-LISTING-PROVIDER-CATEGORY-DISCOVERY-V2",
+  "version": "MEE_PROVIDER_CATEGORY_DISCOVERY_V2",
+  "generated_at": "2026-08-03T22:28:00.216Z",
+  "marketplace_id": "EBAY_US",
+  "category_tree_id": "0",
+  "category_tree_version": "134",
+  "queries": [
+    "Pokemon trading card single",
+    "Pokemon graded trading card",
+    "Pokemon sealed booster box",
+    "Pokemon elite trainer box",
+    "Pokemon booster pack",
+    "Pokemon sealed deck kit",
+    "Pokemon sealed case"
+  ],
+  "results": [
+    {
+      "query": "Pokemon trading card single",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon trading card single",
+          "rank": 1,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 2,
+          "category_id": "183050",
+          "category_name": "Trading Card Singles",
+          "ancestor_categories": [
+            {
+              "category_id": "182982",
+              "category_name": "Non-Sport Trading Cards",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 3,
+          "category_id": "183455",
+          "category_name": "CCG Mixed Card Lots",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 4,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 5,
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 6,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 7,
+          "category_id": "183461",
+          "category_name": "CCG Card Sleeves",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 8,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon trading card single",
+          "rank": 9,
+          "category_id": "183051",
+          "category_name": "Trading Card Lots",
+          "ancestor_categories": [
+            {
+              "category_id": "182982",
+              "category_name": "Non-Sport Trading Cards",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "8a103f430b39f57b9436a1db93debe000a966bdc902073217ea94bea9298b89f"
+    },
+    {
+      "query": "Pokemon graded trading card",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 1,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 2,
+          "category_id": "69528",
+          "category_name": "Other Animation Merchandise",
+          "ancestor_categories": [
+            {
+              "category_id": "1344",
+              "category_name": "Animation Merchandise",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "13658",
+              "category_name": "Animation Art & Merchandise",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 3,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 4,
+          "category_id": "13837",
+          "category_name": "Boxes, Jars & Tins",
+          "ancestor_categories": [
+            {
+              "category_id": "13777",
+              "category_name": "Decorative Collectibles",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 5,
+          "category_id": "309",
+          "category_name": "VHS Tapes",
+          "ancestor_categories": [
+            {
+              "category_id": "11232",
+              "category_name": "Movies & TV",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 6,
+          "category_id": "42633",
+          "category_name": "Other Tool Storage",
+          "ancestor_categories": [
+            {
+              "category_id": "130140",
+              "category_name": "Tool Boxes & Storage",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "631",
+              "category_name": "Tools & Workshop Equipment",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "11700",
+              "category_name": "Home & Garden",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 7,
+          "category_id": "24410",
+          "category_name": "Baseball-MLB",
+          "ancestor_categories": [
+            {
+              "category_id": "24409",
+              "category_name": "Fan Apparel & Souvenirs",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "64482",
+              "category_name": "Sports Mem, Cards & Fan Shop",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 8,
+          "category_id": "27263",
+          "category_name": "Index Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "27259",
+              "category_name": "Baseball-MLB",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "51",
+              "category_name": "Autographs-Original",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "64482",
+              "category_name": "Sports Mem, Cards & Fan Shop",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon graded trading card",
+          "rank": 9,
+          "category_id": "11704",
+          "category_name": "Other Tools & Workshop Equipment",
+          "ancestor_categories": [
+            {
+              "category_id": "631",
+              "category_name": "Tools & Workshop Equipment",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "11700",
+              "category_name": "Home & Garden",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "22b284d83cd00e997963206c3092c5f2a67fd0176f5defa9f05cb386a9cf7c14"
+    },
+    {
+      "query": "Pokemon sealed booster box",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 1,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 2,
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 3,
+          "category_id": "261035",
+          "category_name": "Sealed Trading Card Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "182982",
+              "category_name": "Non-Sport Trading Cards",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 4,
+          "category_id": "183462",
+          "category_name": "CCG Deck Boxes, Storage Cases & Dividers",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 5,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 6,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 7,
+          "category_id": "234",
+          "category_name": "Other Games",
+          "ancestor_categories": [
+            {
+              "category_id": "233",
+              "category_name": "Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 8,
+          "category_id": "183459",
+          "category_name": "CCG Sets",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed booster box",
+          "rank": 9,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "1779e30aaed3af407ddd690a34337db52bc36ffe2972779cb9fffb3aef3b68b7"
+    },
+    {
+      "query": "Pokemon elite trainer box",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 1,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 2,
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 3,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 4,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 5,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 6,
+          "category_id": "183461",
+          "category_name": "CCG Card Sleeves",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 7,
+          "category_id": "261066",
+          "category_name": "Stickers & Decals",
+          "ancestor_categories": [
+            {
+              "category_id": "1344",
+              "category_name": "Animation Merchandise",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "13658",
+              "category_name": "Animation Art & Merchandise",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 8,
+          "category_id": "183462",
+          "category_name": "CCG Deck Boxes, Storage Cases & Dividers",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon elite trainer box",
+          "rank": 9,
+          "category_id": "60594",
+          "category_name": "Display Cases",
+          "ancestor_categories": [
+            {
+              "category_id": "51",
+              "category_name": "Autographs-Original",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "64482",
+              "category_name": "Sports Mem, Cards & Fan Shop",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "60b98e41cb02bfacf3d34504f0d424002449a5b4f7e78566ecf47b92c4650156"
+    },
+    {
+      "query": "Pokemon booster pack",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon booster pack",
+          "rank": 1,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 2,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 3,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 4,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 5,
+          "category_id": "183455",
+          "category_name": "CCG Mixed Card Lots",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 6,
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 7,
+          "category_id": "183462",
+          "category_name": "CCG Deck Boxes, Storage Cases & Dividers",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 8,
+          "category_id": "16204",
+          "category_name": "Toner Cartridges",
+          "ancestor_categories": [
+            {
+              "category_id": "11195",
+              "category_name": "Printer Ink, Toner & Paper",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "171961",
+              "category_name": "Printers, Scanners & Supplies",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "58058",
+              "category_name": "Computers/Tablets & Networking",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon booster pack",
+          "rank": 9,
+          "category_id": "767",
+          "category_name": "Fast Food",
+          "ancestor_categories": [
+            {
+              "category_id": "19077",
+              "category_name": "Fast Food & Cereal Premiums",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "b5af5e7ae86e068eb81c75396f3bca992545118a1ea291811be394dbc39ce0f7"
+    },
+    {
+      "query": "Pokemon sealed deck kit",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 1,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 2,
+          "category_id": "2535",
+          "category_name": "Other CCG Items",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 3,
+          "category_id": "1438",
+          "category_name": "Playing Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "124",
+              "category_name": "Paper",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 4,
+          "category_id": "234",
+          "category_name": "Other Games",
+          "ancestor_categories": [
+            {
+              "category_id": "233",
+              "category_name": "Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 5,
+          "category_id": "1529",
+          "category_name": "Animation Art",
+          "ancestor_categories": [
+            {
+              "category_id": "13658",
+              "category_name": "Animation Art & Merchandise",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1",
+              "category_name": "Collectibles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 6,
+          "category_id": "16263",
+          "category_name": "Decks",
+          "ancestor_categories": [
+            {
+              "category_id": "159073",
+              "category_name": "Skateboard Parts",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "16262",
+              "category_name": "Skateboarding & Longboarding",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "159043",
+              "category_name": "Outdoor Sports",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "888",
+              "category_name": "Sporting Goods",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 7,
+          "category_id": "183458",
+          "category_name": "CCG Player-Built Decks",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 8,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed deck kit",
+          "rank": 9,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "721197503fcf6cf2699691c1f0542dedcfe1cba1dbc248c1f8c4cb723f4ab351"
+    },
+    {
+      "query": "Pokemon sealed case",
+      "response_category_tree_id": "0",
+      "response_category_tree_version": "134",
+      "suggestions": [
+        {
+          "query": "Pokemon sealed case",
+          "rank": 1,
+          "category_id": "182175",
+          "category_name": "Original Game Cases & Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "1249",
+              "category_name": "Video Games & Consoles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 2,
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 3,
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 4,
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 5,
+          "category_id": "261039",
+          "category_name": "CCG Coins",
+          "ancestor_categories": [
+            {
+              "category_id": "183460",
+              "category_name": "CCG Supplies & Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 6,
+          "category_id": "171831",
+          "category_name": "Bags, Skins & Travel Cases",
+          "ancestor_categories": [
+            {
+              "category_id": "54968",
+              "category_name": "Video Game Accessories",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "1249",
+              "category_name": "Video Games & Consoles",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 7,
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 8,
+          "category_id": "261045",
+          "category_name": "CCG Sealed Cases",
+          "ancestor_categories": [
+            {
+              "category_id": "2536",
+              "category_name": "Collectible Card Games",
+              "category_subtree_node_level": null
+            },
+            {
+              "category_id": "220",
+              "category_name": "Toys & Hobbies",
+              "category_subtree_node_level": null
+            }
+          ]
+        },
+        {
+          "query": "Pokemon sealed case",
+          "rank": 9,
+          "category_id": "139973",
+          "category_name": "Video Games",
+          "ancestor_categories": [
+            {
+              "category_id": "1249",
+              "category_name": "Video Games & Consoles",
+              "category_subtree_node_level": null
+            }
+          ]
+        }
+      ],
+      "response_hash_sha256": "6b6c567f61329c20e164bb7fb395f4b92323ece06b2ea37d869a5000297ad29f"
+    }
+  ],
+  "package_fingerprint_sha256": "ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+  "boundary": {
+    "provider_taxonomy_calls": true,
+    "provider_browse_calls": false,
+    "db_writes": false,
+    "category_registry_activation": false
+  },
+  "ready_for_human_category_review": true
+}

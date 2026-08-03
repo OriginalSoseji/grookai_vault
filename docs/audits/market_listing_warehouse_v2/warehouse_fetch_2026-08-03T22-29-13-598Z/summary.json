@@ -1,0 +1,74 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-WAREHOUSE-FETCH-V2",
+  "version": "MEE_MARKET_LISTING_ACQUISITION_WAREHOUSE_FETCH_V2",
+  "generated_at": "2026-08-03T22:29:13.599Z",
+  "mode": "approved_provider_fetch_local_artifacts_only",
+  "source_package_fingerprint_sha256": "f9cff2f497a5cf3246659fba72dc08c4a2c1aab680c7840ce8e7256af482c91b",
+  "source_request_manifest_hash_sha256": "49871a63ea35457954ff280794a9b1607094db7e6945434d40e6b0f722918f68",
+  "schema_migration_hash_sha256": "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4",
+  "package_fingerprint_sha256": "710cf2f5971e8efd649aa7a46714bed5396b589d4b4e28b2f006710c020aad5b",
+  "request_results_manifest_hash_sha256": "5dc8901d691699b5f0dadbfdc25d8474c8185db2363645ccc6c0ab2d0684dcdf",
+  "skipped_requests_manifest_hash_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "raw_snapshot_manifest_hash_sha256": "1dbd9b6c458be288c0ca4e2b4305f197e20eb91f292c9d08daa9a97da4810704",
+  "projected_observation_manifest_hash_sha256": "4fec68bf3027bd200bc5612088905aa13be012e1173bf47712106a70ee8a677f",
+  "summary": {
+    "candidate_request_count": 9,
+    "processed_candidate_count": 9,
+    "provider_call_ceiling": 9,
+    "provider_call_count": 9,
+    "attempted_request_count": 9,
+    "fetch_status_counts": {
+      "fetched_success": 9
+    },
+    "fetched_item_count": 630,
+    "projected_observation_count": 630,
+    "unique_listing_count": 630,
+    "product_kind_counts": {
+      "accessory": 2,
+      "graded_single": 1,
+      "lot_or_bundle": 29,
+      "raw_single": 186,
+      "sealed_product": 343,
+      "unknown": 69
+    },
+    "acquisition_lane_call_counts": {
+      "graded_single": 4,
+      "raw_single": 1,
+      "sealed_product": 4
+    },
+    "acquisition_lane_unique_yield": {
+      "raw_single": 200,
+      "graded_single": 0,
+      "sealed_product": 430
+    },
+    "skipped_request_count": 0,
+    "skipped_reason_counts": {},
+    "exclusion_flag_counts": {
+      "exclude_from_card_single_pricing": 443,
+      "product_kind_accessory": 2,
+      "product_kind_lot_or_bundle": 29,
+      "product_kind_sealed_product": 343,
+      "product_kind_unknown": 69
+    },
+    "canonical_assignment_deferred": true
+  },
+  "artifacts": {
+    "request_results_jsonl": "C:\\grookai_vault_market_intelligence_main\\docs\\audits\\market_listing_warehouse_v2\\warehouse_fetch_2026-08-03T22-29-13-598Z\\request_results.jsonl",
+    "skipped_requests_jsonl": "C:\\grookai_vault_market_intelligence_main\\docs\\audits\\market_listing_warehouse_v2\\warehouse_fetch_2026-08-03T22-29-13-598Z\\skipped_requests.jsonl",
+    "raw_snapshots_jsonl": "C:\\grookai_vault_market_intelligence_main\\docs\\audits\\market_listing_warehouse_v2\\warehouse_fetch_2026-08-03T22-29-13-598Z\\raw_snapshots.jsonl",
+    "projected_observations_jsonl": "C:\\grookai_vault_market_intelligence_main\\docs\\audits\\market_listing_warehouse_v2\\warehouse_fetch_2026-08-03T22-29-13-598Z\\projected_observations.jsonl"
+  },
+  "boundary": {
+    "provider_calls": true,
+    "source_fetches": true,
+    "local_artifacts_only": true,
+    "db_writes": false,
+    "canonical_assignment_writes": false,
+    "card_candidate_writes": false,
+    "sealed_product_identity_writes": false,
+    "public_pricing": false,
+    "app_visible_pricing": false
+  },
+  "findings": [],
+  "ready_for_local_db_backfill_plan": true
+}

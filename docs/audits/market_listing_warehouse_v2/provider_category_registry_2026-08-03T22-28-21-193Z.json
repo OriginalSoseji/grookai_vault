@@ -1,0 +1,90 @@
+{
+  "package_id": "MARKET-LISTING-PROVIDER-CATEGORY-REGISTRY-V2",
+  "version": "MEE_PROVIDER_CATEGORY_REGISTRY_V2",
+  "generated_at": "2026-08-03T22:28:21.186Z",
+  "marketplace_id": "EBAY_US",
+  "category_tree_id": "0",
+  "category_tree_version": "134",
+  "routes": {
+    "raw_single": {
+      "product_kind": "raw_single",
+      "categories": [
+        {
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards"
+        }
+      ],
+      "category_ids": [
+        "183454"
+      ],
+      "category_names": [
+        "CCG Individual Cards"
+      ],
+      "query_suffixes": [],
+      "provenance": "provider_observed_existing_production_artifact",
+      "reviewed": true
+    },
+    "graded_single": {
+      "product_kind": "graded_single",
+      "categories": [
+        {
+          "category_id": "183454",
+          "category_name": "CCG Individual Cards"
+        }
+      ],
+      "category_ids": [
+        "183454"
+      ],
+      "category_names": [
+        "CCG Individual Cards"
+      ],
+      "query_suffixes": [
+        "graded card",
+        "PSA",
+        "CGC",
+        "BGS"
+      ],
+      "provenance": "provider_observed_existing_production_artifact",
+      "reviewed": true
+    },
+    "sealed_product": {
+      "product_kind": "sealed_product",
+      "categories": [
+        {
+          "category_id": "183456",
+          "category_name": "CCG Sealed Packs"
+        },
+        {
+          "category_id": "183457",
+          "category_name": "CCG Sealed Decks & Kits"
+        },
+        {
+          "category_id": "261044",
+          "category_name": "CCG Sealed Boxes"
+        },
+        {
+          "category_id": "261045",
+          "category_name": "CCG Sealed Cases"
+        }
+      ],
+      "category_ids": [
+        "183456",
+        "183457",
+        "261044",
+        "261045"
+      ],
+      "category_names": [
+        "CCG Sealed Packs",
+        "CCG Sealed Decks & Kits",
+        "CCG Sealed Boxes",
+        "CCG Sealed Cases"
+      ],
+      "query_suffixes": [],
+      "provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+      "reviewed": true
+    }
+  },
+  "package_fingerprint_sha256": "be20b131e2602b7a3f181ed46c6efa5428c6afbdb1da8c8b7d61b3fed6657d0b",
+  "findings": [],
+  "ready_for_live_acquisition": true
+}

@@ -1,0 +1,19 @@
+{
+  "package_id": "MARKET-LISTING-WAREHOUSE-V2-CANARY-TARGET",
+  "generated_at": "2026-08-03T22:30:00.000Z",
+  "source_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json",
+  "selection_reason": "Newest released English Pokemon set in the verified master set index with a governed release record.",
+  "targets": [
+    {
+      "set_code": "me05",
+      "set_name": "Mega Evolution: Pitch Black",
+      "release_date": "2026-07-17"
+    }
+  ],
+  "boundary": {
+    "provider_calls": false,
+    "db_writes": false,
+    "canonical_assignment_writes": false,
+    "publication_writes": false
+  }
+}

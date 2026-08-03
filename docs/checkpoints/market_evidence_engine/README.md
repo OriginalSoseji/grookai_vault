@@ -2,6 +2,7 @@
 
 ## Active Acquisition Track
 
+- [Warehouse-First Acquisition V2 Live Canary](MEE_WAREHOUSE_FIRST_ACQUISITION_V2_CANARY_20260803.md)
 - [Warehouse-First Acquisition V2](MEE_WAREHOUSE_FIRST_ACQUISITION_V2_20260803.md)
 - [Adaptive Acquisition Yield V1](MEE_ADAPTIVE_ACQUISITION_YIELD_V1_20260803.md) - prior candidate, superseded for product-family routing by V2
 

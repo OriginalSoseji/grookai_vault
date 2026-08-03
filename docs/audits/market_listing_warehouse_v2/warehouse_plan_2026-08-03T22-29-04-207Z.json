@@ -1,0 +1,565 @@
+{
+  "package_id": "MARKET-LISTING-ACQUISITION-WAREHOUSE-PLAN-V2",
+  "version": "MEE_MARKET_LISTING_ACQUISITION_WAREHOUSE_PLAN_V2",
+  "generated_at": "2026-08-03T22:29:04.199Z",
+  "mode": "warehouse_first_plan_only_no_provider_calls_no_writes",
+  "package_fingerprint_sha256": "f9cff2f497a5cf3246659fba72dc08c4a2c1aab680c7840ce8e7256af482c91b",
+  "request_manifest_hash_sha256": "49871a63ea35457954ff280794a9b1607094db7e6945434d40e6b0f722918f68",
+  "category_registry_fingerprint_sha256": "be20b131e2602b7a3f181ed46c6efa5428c6afbdb1da8c8b7d61b3fed6657d0b",
+  "category_registry": {
+    "package_id": "MARKET-LISTING-PROVIDER-CATEGORY-REGISTRY-V2",
+    "version": "MEE_PROVIDER_CATEGORY_REGISTRY_V2",
+    "generated_at": "2026-08-03T22:28:21.186Z",
+    "marketplace_id": "EBAY_US",
+    "category_tree_id": "0",
+    "category_tree_version": "134",
+    "routes": {
+      "raw_single": {
+        "product_kind": "raw_single",
+        "categories": [
+          {
+            "category_id": "183454",
+            "category_name": "CCG Individual Cards"
+          }
+        ],
+        "category_ids": [
+          "183454"
+        ],
+        "category_names": [
+          "CCG Individual Cards"
+        ],
+        "query_suffixes": [],
+        "provenance": "provider_observed_existing_production_artifact",
+        "reviewed": true
+      },
+      "graded_single": {
+        "product_kind": "graded_single",
+        "categories": [
+          {
+            "category_id": "183454",
+            "category_name": "CCG Individual Cards"
+          }
+        ],
+        "category_ids": [
+          "183454"
+        ],
+        "category_names": [
+          "CCG Individual Cards"
+        ],
+        "query_suffixes": [
+          "graded card",
+          "PSA",
+          "CGC",
+          "BGS"
+        ],
+        "provenance": "provider_observed_existing_production_artifact",
+        "reviewed": true
+      },
+      "sealed_product": {
+        "product_kind": "sealed_product",
+        "categories": [
+          {
+            "category_id": "183456",
+            "category_name": "CCG Sealed Packs"
+          },
+          {
+            "category_id": "183457",
+            "category_name": "CCG Sealed Decks & Kits"
+          },
+          {
+            "category_id": "261044",
+            "category_name": "CCG Sealed Boxes"
+          },
+          {
+            "category_id": "261045",
+            "category_name": "CCG Sealed Cases"
+          }
+        ],
+        "category_ids": [
+          "183456",
+          "183457",
+          "261044",
+          "261045"
+        ],
+        "category_names": [
+          "CCG Sealed Packs",
+          "CCG Sealed Decks & Kits",
+          "CCG Sealed Boxes",
+          "CCG Sealed Cases"
+        ],
+        "query_suffixes": [],
+        "provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+        "reviewed": true
+      }
+    },
+    "package_fingerprint_sha256": "be20b131e2602b7a3f181ed46c6efa5428c6afbdb1da8c8b7d61b3fed6657d0b",
+    "findings": [],
+    "ready_for_live_acquisition": true
+  },
+  "acquisition_requests": [
+    {
+      "ordinal": 1,
+      "query_key": "ae89fbd1905470f8714233d69e5e4710c9dae9d1c4b2f1d221030ece4044fa30",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "raw_single",
+      "provider_call_lane": "raw_single",
+      "strategy": "warehouse_raw_single_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\"",
+      "query_filters": {
+        "category_ids": [
+          "183454"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "raw_single",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "provider_observed_existing_production_artifact",
+        "provider_category_id": "183454",
+        "provider_category_name": "CCG Individual Cards",
+        "query_suffix": null
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 2,
+      "query_key": "2e482bf4b2734ce2630c64319211caf5522b362fd2627961135ae8b276fd9ce6",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "graded_single",
+      "provider_call_lane": "graded_single",
+      "strategy": "warehouse_graded_single_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\" graded card",
+      "query_filters": {
+        "category_ids": [
+          "183454"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "graded_single",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "provider_observed_existing_production_artifact",
+        "provider_category_id": "183454",
+        "provider_category_name": "CCG Individual Cards",
+        "query_suffix": "graded card"
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 3,
+      "query_key": "2edfddb62e28e670f6d2fd68c69c075ed981076707cd0219ad6d2f371b7ce5ce",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "graded_single",
+      "provider_call_lane": "graded_single",
+      "strategy": "warehouse_graded_single_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\" PSA",
+      "query_filters": {
+        "category_ids": [
+          "183454"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "graded_single",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "provider_observed_existing_production_artifact",
+        "provider_category_id": "183454",
+        "provider_category_name": "CCG Individual Cards",
+        "query_suffix": "PSA"
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 4,
+      "query_key": "36a928fa31798fca47c20285803740a31ada3aa09826d9fed60f70ef6cc8b5bd",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "graded_single",
+      "provider_call_lane": "graded_single",
+      "strategy": "warehouse_graded_single_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\" CGC",
+      "query_filters": {
+        "category_ids": [
+          "183454"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "graded_single",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "provider_observed_existing_production_artifact",
+        "provider_category_id": "183454",
+        "provider_category_name": "CCG Individual Cards",
+        "query_suffix": "CGC"
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 5,
+      "query_key": "397598c4604c34600ec1f10f9f64676b3597518e8212bff9f4c1c171ce2cb428",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "graded_single",
+      "provider_call_lane": "graded_single",
+      "strategy": "warehouse_graded_single_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\" BGS",
+      "query_filters": {
+        "category_ids": [
+          "183454"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "graded_single",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "provider_observed_existing_production_artifact",
+        "provider_category_id": "183454",
+        "provider_category_name": "CCG Individual Cards",
+        "query_suffix": "BGS"
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 6,
+      "query_key": "c2c4d3f4e7a97da0865fc2f94d19fcfcf40e2af6f5333f0f89e22db2c117acd6",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "sealed_product",
+      "provider_call_lane": "sealed_product",
+      "strategy": "warehouse_sealed_product_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\"",
+      "query_filters": {
+        "category_ids": [
+          "183456"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "sealed_product",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+        "provider_category_id": "183456",
+        "provider_category_name": "CCG Sealed Packs",
+        "query_suffix": null
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 7,
+      "query_key": "4df4c0c393228b6282ca4043fb6fa617fd566b8ec2b80fa1ff82f96c4483405f",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "sealed_product",
+      "provider_call_lane": "sealed_product",
+      "strategy": "warehouse_sealed_product_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\"",
+      "query_filters": {
+        "category_ids": [
+          "183457"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "sealed_product",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+        "provider_category_id": "183457",
+        "provider_category_name": "CCG Sealed Decks & Kits",
+        "query_suffix": null
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 8,
+      "query_key": "21b9432cf921a017998bfc894b4f25cff97f12f6c11f9a6072e78cb8f4510297",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "sealed_product",
+      "provider_call_lane": "sealed_product",
+      "strategy": "warehouse_sealed_product_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\"",
+      "query_filters": {
+        "category_ids": [
+          "261044"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "sealed_product",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+        "provider_category_id": "261044",
+        "provider_category_name": "CCG Sealed Boxes",
+        "query_suffix": null
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    },
+    {
+      "ordinal": 9,
+      "query_key": "ee580a32787c3463eae0ee037517d6f0038a4a5617cbe2fad5c97df0a60e42ba",
+      "source": "ebay_active",
+      "provider_route": "ebay_browse_api",
+      "request_status": "planned_not_fetched",
+      "acquisition_mode": "warehouse_first",
+      "acquisition_product_kind": "sealed_product",
+      "provider_call_lane": "sealed_product",
+      "strategy": "warehouse_sealed_product_discovery",
+      "query_text": "Pokemon \"Mega Evolution: Pitch Black\"",
+      "query_filters": {
+        "category_ids": [
+          "261045"
+        ],
+        "limit": 200,
+        "buying_options": [
+          "FIXED_PRICE",
+          "AUCTION"
+        ],
+        "fieldgroups": [
+          "MATCHING_ITEMS"
+        ]
+      },
+      "offset": 0,
+      "card_print_id": null,
+      "card_printing_id": null,
+      "gv_id": null,
+      "printing_gv_id": null,
+      "target_hints": {
+        "target_kind": "provider_category_shelf",
+        "set_code": "me05",
+        "set_name": "Mega Evolution: Pitch Black",
+        "release_date": "2026-07-17",
+        "acquisition_product_kind": "sealed_product",
+        "canonical_assignment_status": "deferred",
+        "card_matching_deferred": true,
+        "provider_category_provenance": "ebay_taxonomy:ad27bea02e6a3e1fa8c3c39186d14fc0c02df16ebc19d9312567dfe24d770f68",
+        "provider_category_id": "261045",
+        "provider_category_name": "CCG Sealed Cases",
+        "query_suffix": null
+      },
+      "expected_max_result_count": 200,
+      "expected_call_count": 1,
+      "can_publish_price_directly": false,
+      "market_truth": false,
+      "app_visible": false
+    }
+  ],
+  "summary": {
+    "set_count": 1,
+    "candidate_request_count": 9,
+    "coverage_request_count": 9,
+    "provider_call_ceiling": 9,
+    "result_limit": 200,
+    "max_pages_per_family": 1,
+    "minimum_provider_calls_by_product_kind": {
+      "raw_single": 1,
+      "graded_single": 1,
+      "sealed_product": 1
+    },
+    "product_kind_candidate_counts": {
+      "graded_single": 4,
+      "raw_single": 1,
+      "sealed_product": 4
+    },
+    "exact_printing_request_count": 0,
+    "canonical_assignment_deferred": true
+  },
+  "boundary": {
+    "provider_calls": false,
+    "source_fetches": false,
+    "db_writes": false,
+    "canonical_assignment_writes": false,
+    "card_candidate_writes": false,
+    "sealed_product_identity_writes": false,
+    "public_pricing": false,
+    "app_visible_pricing": false
+  },
+  "findings": [],
+  "ready_for_acquisition_approval": true
+}
