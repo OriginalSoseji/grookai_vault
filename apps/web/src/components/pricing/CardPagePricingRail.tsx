@@ -182,8 +182,12 @@ function ActiveAskBlock({
             </div>
           </div>
           <p className="text-xs leading-5 text-slate-500">
-            {marketIntelligence.listing_count} active listings across{" "}
-            {marketIntelligence.seller_count} sellers · Lowest-to-median spread{" "}
+            {marketIntelligence.listing_count} active{" "}
+            {marketIntelligence.listing_count === 1 ? "listing" : "listings"}{" "}
+            across{" "}
+            {marketIntelligence.seller_count}{" "}
+            {marketIntelligence.seller_count === 1 ? "seller" : "sellers"}{" "}
+            · Lowest-to-median spread{" "}
             {formatUsdPrice(marketIntelligence.ask_spread)} ({marketIntelligence.ask_spread_pct.toFixed(2)}%)
           </p>
           <p className="text-[11px] leading-5 text-slate-400">
