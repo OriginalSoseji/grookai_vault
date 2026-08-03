@@ -19,6 +19,7 @@ import {
   resolveMeeArtifactInputV1,
   resolveMeeAuditRootV1,
 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
+import { computeMarketListingRequestManifestHashV1 } from "../../backend/pricing/market_listing_acquisition_dry_run_plan_v1.mjs";
 
 const { Client } = pg;
 const __filename = fileURLToPath(import.meta.url);
@@ -61,6 +62,8 @@ function parseArgs(argv) {
     run: argv.includes("--run"),
     requestedRunKey: argv.find((arg) => arg.startsWith("--run-key="))?.slice("--run-key=".length)
       ?? `MEE-NIGHTLY-${new Date().toISOString().slice(0, 10)}`,
+    frozenDryRunPath: argv.find((arg) => arg.startsWith("--frozen-dry-run="))?.slice("--frozen-dry-run=".length)
+      ?? null,
     callCeiling,
     acquisitionMode: process.env.MEE_NIGHTLY_ACQUISITION_MODE ?? "rotating_cycle",
     minimumFreeBytes: Number.parseInt(
@@ -233,6 +236,40 @@ function childReportPath(parsed) {
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
+function resolveFrozenDryRunPathV2(inputPath) {
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, inputPath);
+  const relative = path.relative(AUDIT_ROOT, resolved);
+  if (!resolved || relative.startsWith("..") || path.isAbsolute(relative)) {
+    throw new Error("frozen dry-run plan must be inside the governed MEE artifact root");
+  }
+  if (!existsSync(resolved)) throw new Error(`frozen dry-run plan is missing: ${resolved}`);
+  return resolved;
+}
+
+export function validateFrozenDryRunPlanV2({ plan, previousCursor } = {}) {
+  const findings = [];
+  const requests = Array.isArray(plan?.acquisition_requests) ? plan.acquisition_requests : [];
+  if (plan?.package_id !== "MARKET-LISTING-ACQUISITION-DRY-RUN-PLAN-V1") findings.push("package_id_mismatch");
+  if (plan?.ready_for_acquisition_approval !== true) findings.push("plan_not_ready");
+  if (!Array.isArray(plan?.acquisition_requests)) findings.push("missing_acquisition_requests");
+  if (Number(plan?.summary?.acquisition_request_count) !== requests.length) findings.push("summary_request_count_mismatch");
+  if (new Set(requests.map((request) => request.query_key)).size !== requests.length) findings.push("duplicate_query_key");
+  const recomputedHash = computeMarketListingRequestManifestHashV1(requests);
+  if (recomputedHash !== plan?.request_manifest_hash_sha256) findings.push("manifest_hash_mismatch");
+  if (previousCursor) {
+    if (previousCursor.cycle_complete === true) findings.push("previous_cycle_already_complete");
+    if (previousCursor.source_manifest_hash !== plan?.request_manifest_hash_sha256) findings.push("cursor_manifest_mismatch");
+    if (Number(previousCursor.source_request_count) !== requests.length) findings.push("cursor_request_count_mismatch");
+  }
+  if (findings.length > 0) {
+    throw new Error(`frozen dry-run plan rejected: ${findings.join(",")}`);
+  }
+  return {
+    request_manifest_hash: recomputedHash,
+    request_count: requests.length,
+  };
 }
 
 function saveState(statePath, state) {
@@ -445,6 +482,17 @@ async function main() {
       findings: [],
     };
 
+  const frozenDryRunPath = args.frozenDryRunPath
+    ? resolveFrozenDryRunPathV2(args.frozenDryRunPath)
+    : null;
+  if (
+    frozenDryRunPath
+    && state.phases?.dry_run_plan?.report_path
+    && path.resolve(state.phases.dry_run_plan.report_path) !== path.resolve(frozenDryRunPath)
+  ) {
+    throw new Error("frozen dry-run plan does not match the existing pipeline state");
+  }
+
   if (!args.run) {
     const report = {
       package_id: PACKAGE_ID,
@@ -497,10 +545,33 @@ async function main() {
     throw new Error("provider phase was already attempted but its local resume result is missing; refusing to refetch");
   }
 
+  let previousCursor = state.cursor ? null : await latestCursor();
   let resumed = phaseSucceeded(state, "dry_run_plan");
   if (!resumed) {
-    const phase = executeChild("dry_run_plan", ["node", "scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs"]);
+    const phase = frozenDryRunPath
+      ? (() => {
+          const startedAt = new Date().toISOString();
+          const validation = validateFrozenDryRunPlanV2({
+            plan: readJson(frozenDryRunPath),
+            previousCursor,
+          });
+          return {
+            phase: "dry_run_plan",
+            command: `frozen artifact ${frozenDryRunPath}`,
+            status: 0,
+            signal: null,
+            started_at: startedAt,
+            finished_at: new Date().toISOString(),
+            stdout_tail: JSON.stringify(validation),
+            stderr_tail: "",
+            child_output: validation,
+            report_path: frozenDryRunPath,
+            frozen: true,
+          };
+        })()
+      : executeChild("dry_run_plan", ["node", "scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs"]);
     state.phases.dry_run_plan = phase;
+    if (phase.frozen) state.frozen_dry_run_plan = phase.report_path;
     saveState(statePath, state);
     await appendPhaseLedger(state.run_key, phase, statePath);
     if (phase.status !== 0) throw new Error("dry_run_plan failed");
@@ -509,7 +580,7 @@ async function main() {
   if (!state.cursor) {
     const dryRun = readJson(artifactFrom(state, "dry_run_plan"));
     state.cursor = resolveAcquisitionCursorV1({
-      previous: await latestCursor(),
+      previous: previousCursor ?? await latestCursor(),
       sourceManifestHash: dryRun.request_manifest_hash_sha256,
       sourceRequestCount: dryRun.acquisition_requests.length,
       acquisitionMode: args.acquisitionMode,

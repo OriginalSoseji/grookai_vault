@@ -2,7 +2,13 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { phaseReportSupportsResumeV2 } from "../../scripts/workers/market_listing_nightly_pipeline_v2.mjs";
+import {
+  phaseReportSupportsResumeV2,
+  validateFrozenDryRunPlanV2,
+} from "../../scripts/workers/market_listing_nightly_pipeline_v2.mjs";
+import {
+  buildMarketListingAcquisitionDryRunPlanV1,
+} from "../../backend/pricing/market_listing_acquisition_dry_run_plan_v1.mjs";
 
 function read(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
@@ -23,6 +29,74 @@ test("V2 pipeline uses exact artifact handoffs and run-scoped projection", () =>
   assert.match(script, /cursor_recorded/);
   assert.match(script, /--run-key=\$\{acquisitionRunKey\(\)\}/);
   assert.match(script, /phaseReportSupportsResumeV2/);
+  assert.match(script, /--frozen-dry-run=/);
+  assert.match(script, /frozen dry-run plan must be inside the governed MEE artifact root/);
+});
+
+test("V2 accepts only a frozen manifest that exactly matches the incomplete cursor", () => {
+  const plan = buildMarketListingAcquisitionDryRunPlanV1({
+    targets: [{
+      card_print_id: "00000000-0000-0000-0000-000000000001",
+      card_printing_id: "00000000-0000-0000-0000-000000000011",
+      gv_id: "GV-TEST-1",
+      printing_gv_id: "GV-TEST-1-HOLO",
+      name: "Test Card",
+      set_code: "test",
+      finish_key: "holo",
+      ebay_query_text: "Pokemon Test Card holo",
+      acquisition_priority: "priority_variant_finish",
+    }],
+    setShelfPageBudget: 0,
+  });
+  const previousCursor = {
+    cycle_complete: false,
+    source_manifest_hash: plan.request_manifest_hash_sha256,
+    source_request_count: plan.acquisition_requests.length,
+  };
+
+  assert.deepEqual(validateFrozenDryRunPlanV2({ plan, previousCursor }), {
+    request_manifest_hash: plan.request_manifest_hash_sha256,
+    request_count: plan.acquisition_requests.length,
+  });
+  assert.throws(() => validateFrozenDryRunPlanV2({
+    plan,
+    previousCursor: { ...previousCursor, source_manifest_hash: "different" },
+  }), /cursor_manifest_mismatch/);
+  assert.throws(() => validateFrozenDryRunPlanV2({
+    plan: {
+      ...plan,
+      acquisition_requests: plan.acquisition_requests.map((request, index) => (
+        index === 0 ? { ...request, query_text: `${request.query_text} changed` } : request
+      )),
+    },
+    previousCursor,
+  }), /manifest_hash_mismatch/);
+});
+
+test("request ordering is deterministic for otherwise tied printing targets", () => {
+  const target = (cardPrintingId, finishKey) => ({
+    card_print_id: "00000000-0000-0000-0000-000000000001",
+    card_printing_id: cardPrintingId,
+    gv_id: "GV-TEST-1",
+    printing_gv_id: `GV-TEST-1-${finishKey}`,
+    name: "Test Card",
+    set_code: "test",
+    finish_key: finishKey,
+    ebay_query_text: `Pokemon Test Card ${finishKey}`,
+    acquisition_priority: "priority_variant_finish",
+  });
+  const targets = [
+    target("00000000-0000-0000-0000-000000000012", "reverse_holo"),
+    target("00000000-0000-0000-0000-000000000011", "holo"),
+  ];
+  const left = buildMarketListingAcquisitionDryRunPlanV1({ targets, setShelfPageBudget: 0 });
+  const right = buildMarketListingAcquisitionDryRunPlanV1({ targets: [...targets].reverse(), setShelfPageBudget: 0 });
+
+  assert.equal(left.request_manifest_hash_sha256, right.request_manifest_hash_sha256);
+  assert.deepEqual(
+    left.acquisition_requests.map((request) => request.query_key),
+    right.acquisition_requests.map((request) => request.query_key),
+  );
 });
 
 test("V2 resume rejects mismatched strict versions and readback findings", () => {

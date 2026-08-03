@@ -154,7 +154,9 @@ async function loadTargets(limit) {
       end,
       target.updated_at desc nulls last,
       target.gv_id,
-      target.finish_key nulls last
+      target.finish_key nulls last,
+      target.card_printing_id nulls last,
+      target.card_print_id
     limit ${limit};
   `;
   return runSupabaseQuery(sql);

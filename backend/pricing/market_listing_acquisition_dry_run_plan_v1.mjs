@@ -36,6 +36,23 @@ function sha256(value) {
   return createHash("sha256").update(text).digest("hex");
 }
 
+export function computeMarketListingRequestManifestHashV1(requests = []) {
+  if (!Array.isArray(requests)) {
+    throw new Error("[market-listing-dry-run] requests must be an array");
+  }
+  return sha256(requests.map((request) => ({
+    query_key: request.query_key,
+    card_print_id: request.card_print_id,
+    card_printing_id: request.card_printing_id,
+    gv_id: request.gv_id,
+    printing_gv_id: request.printing_gv_id,
+    strategy: request.strategy,
+    query_text: request.query_text,
+    query_filters: request.query_filters,
+    offset: request.offset ?? 0,
+  })));
+}
+
 function compact(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }
@@ -374,6 +391,9 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
       || (left.set_code ?? "").localeCompare(right.set_code ?? "")
       || left.name.localeCompare(right.name)
       || (left.gv_id ?? "").localeCompare(right.gv_id ?? "")
+      || (left.finish_key ?? "").localeCompare(right.finish_key ?? "")
+      || (left.card_printing_id ?? "").localeCompare(right.card_printing_id ?? "")
+      || (left.card_print_id ?? "").localeCompare(right.card_print_id ?? "")
     )
     .slice(0, dryRunTargetLimit);
 
@@ -402,17 +422,7 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
     }
   }
 
-  const requestManifestHash = sha256(acquisitionRequests.map((request) => ({
-    query_key: request.query_key,
-    card_print_id: request.card_print_id,
-    card_printing_id: request.card_printing_id,
-    gv_id: request.gv_id,
-    printing_gv_id: request.printing_gv_id,
-    strategy: request.strategy,
-    query_text: request.query_text,
-    query_filters: request.query_filters,
-    offset: request.offset ?? 0,
-  })));
+  const requestManifestHash = computeMarketListingRequestManifestHashV1(acquisitionRequests);
   const plannedCallCount = acquisitionRequests.reduce((sum, request) => sum + request.expected_call_count, 0);
   const estimatedMaxListingEnvelope = plannedCallCount * maxResultsPerCall;
   const dayCountAtCeiling = plannedCallCount === 0 ? 0 : Math.ceil(plannedCallCount / dailyCallCeiling);
