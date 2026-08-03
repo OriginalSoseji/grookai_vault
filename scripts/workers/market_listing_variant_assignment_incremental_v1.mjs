@@ -507,7 +507,10 @@ async function main() {
         projected_or_inserted_by_status: byStatus,
       });
       processed += candidateIds.length;
-      if (!args.apply) break;
+      if (!args.apply) {
+        complete = candidateIds.length < batchLimit;
+        break;
+      }
     }
 
     if (args.apply && !complete) {

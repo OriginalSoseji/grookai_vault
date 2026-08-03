@@ -39,6 +39,7 @@ test("incremental assignment worker is idempotent and reconciles every selected 
   assert.match(worker, /incremental assignment apply requires a clean tracked working tree/);
   assert.match(worker, /selected_candidates_/);
   assert.match(worker, /selected_sha256/);
+  assert.match(worker, /complete = candidateIds\.length < batchLimit/);
 });
 
 test("incremental assignment worker preserves the governed variant ontology", () => {
