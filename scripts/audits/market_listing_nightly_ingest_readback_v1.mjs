@@ -468,3 +468,4 @@ console.log(JSON.stringify({
   },
   recommended_next_step: report.recommended_next_step,
 }, null, 2));
+if (report.findings.length > 0) process.exitCode = 1;

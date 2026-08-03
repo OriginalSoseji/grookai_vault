@@ -241,6 +241,36 @@ function saveState(statePath, state) {
   renameSync(tempPath, statePath);
 }
 
+function normalizeRollupVersionSuffixV2(raw) {
+  return String(raw ?? "")
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80);
+}
+
+export function phaseReportSupportsResumeV2({ phase, report, sourceAcquisitionRunKey }) {
+  if (phase === "strict_filtered_rollup_apply") {
+    const suffix = normalizeRollupVersionSuffixV2(sourceAcquisitionRunKey);
+    return Boolean(
+      suffix
+      && Array.isArray(report?.rollup_versions)
+      && report.rollup_versions.length > 0
+      && report.rollup_versions.every((version) => String(version).endsWith(`__${suffix}`)),
+    );
+  }
+  if (phase === "run_scoped_readback") {
+    return Boolean(
+      sourceAcquisitionRunKey
+      && report?.run_key === sourceAcquisitionRunKey
+      && Array.isArray(report?.findings)
+      && report.findings.length === 0,
+    );
+  }
+  return true;
+}
+
 function executeChild(phase, command) {
   const startedAt = new Date().toISOString();
   const result = spawnSync(command[0], command.slice(1), {
@@ -272,6 +302,16 @@ function phaseSucceeded(state, phase) {
   if (saved.report_path && !existsSync(saved.report_path)) {
     throw new Error(`resume artifact missing for phase ${phase}: ${saved.report_path}`);
   }
+  if (
+    saved.report_path
+    && !phaseReportSupportsResumeV2({
+      phase,
+      report: readJson(saved.report_path),
+      sourceAcquisitionRunKey: state.source_acquisition_run?.run_key,
+    })
+  ) {
+    return null;
+  }
   return { ...saved, resumed: true };
 }
 
@@ -281,7 +321,7 @@ function artifactFrom(state, phase) {
   return reportPath;
 }
 
-export function phaseDefinitionsV2({ callCeiling, runKey, state, cursor }) {
+export function phaseDefinitionsV2({ callCeiling, state, cursor }) {
   const acquisitionRunKey = () => {
     const value = state.source_acquisition_run?.run_key;
     if (!value) throw new Error("source acquisition run identity is not available");
@@ -365,7 +405,7 @@ export function phaseDefinitionsV2({ callCeiling, runKey, state, cursor }) {
         "scripts/audits/market_listing_strict_filtered_rollup_apply_v1.mjs",
         `--plan=${artifactFrom(state, "strict_filtered_rollup_plan")}`,
         "--allow-dynamic-plan",
-        `--run-key=${runKey}`,
+        `--run-key=${acquisitionRunKey()}`,
         "--apply",
       ],
     },
@@ -477,7 +517,7 @@ async function main() {
     saveState(statePath, state);
   }
 
-  let definitions = phaseDefinitionsV2({ callCeiling: args.callCeiling, runKey: state.run_key, state, cursor: state.cursor });
+  let definitions = phaseDefinitionsV2({ callCeiling: args.callCeiling, state, cursor: state.cursor });
   for (const definition of definitions.slice(1)) {
     resumed = phaseSucceeded(state, definition.key);
     if (resumed) continue;

@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { phaseReportSupportsResumeV2 } from "../../scripts/workers/market_listing_nightly_pipeline_v2.mjs";
+
 function read(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
 }
@@ -19,6 +21,40 @@ test("V2 pipeline uses exact artifact handoffs and run-scoped projection", () =>
   assert.match(script, /ledger_status:\s*"started"/);
   assert.match(script, /latestUnfinishedPipeline/);
   assert.match(script, /cursor_recorded/);
+  assert.match(script, /--run-key=\$\{acquisitionRunKey\(\)\}/);
+  assert.match(script, /phaseReportSupportsResumeV2/);
+});
+
+test("V2 resume rejects mismatched strict versions and readback findings", () => {
+  const sourceAcquisitionRunKey = "MEE-11L-DAILY-BATCH-b040d39fa851";
+  assert.equal(phaseReportSupportsResumeV2({
+    phase: "strict_filtered_rollup_apply",
+    sourceAcquisitionRunKey,
+    report: {
+      rollup_versions: [
+        "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1__MEE_11L_DAILY_BATCH_B040D39FA851",
+      ],
+    },
+  }), true);
+  assert.equal(phaseReportSupportsResumeV2({
+    phase: "strict_filtered_rollup_apply",
+    sourceAcquisitionRunKey,
+    report: {
+      rollup_versions: [
+        "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1__MEE_V2_CANARY_50_20260803T0415Z",
+      ],
+    },
+  }), false);
+  assert.equal(phaseReportSupportsResumeV2({
+    phase: "run_scoped_readback",
+    sourceAcquisitionRunKey,
+    report: { run_key: sourceAcquisitionRunKey, findings: [] },
+  }), true);
+  assert.equal(phaseReportSupportsResumeV2({
+    phase: "run_scoped_readback",
+    sourceAcquisitionRunKey,
+    report: { run_key: sourceAcquisitionRunKey, findings: ["strict_filtered_rollups_missing"] },
+  }), false);
 });
 
 test("V2 pipeline preserves non-public and non-destructive boundaries", () => {

@@ -23,6 +23,7 @@ test("nightly ingest readback is read-only and proves public pricing boundary", 
   assert.match(script, /Price-event aggregation runs separately/);
   assert.match(script, /query_timeout:\s*300_000/);
   assert.match(script, /set statement_timeout = '300s'/);
+  assert.match(script, /if \(report\.findings\.length > 0\) process\.exitCode = 1/);
   assert.match(script, /provider_calls:\s*false/);
   assert.match(script, /db_writes:\s*false/);
   assert.doesNotMatch(script, /\binsert\s+into\b/i);
