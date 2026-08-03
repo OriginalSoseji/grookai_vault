@@ -214,6 +214,7 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
     ssl: pgSslConfig(connectionString),
   });
   const rows = [];
+  let lastObservationId = null;
   let lastCandidateId = null;
   await client.connect();
   try {
@@ -221,6 +222,7 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
       const result = await client.query(
         `select
            candidate.id,
+           observation.id as source_observation_id,
            candidate.card_print_id,
            candidate.gv_id,
            candidate.source_listing_id,
@@ -239,12 +241,16 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
            on candidate.observation_id = observation.id
         where observation.acquisition_run_id = $1::uuid
           and candidate.match_version = $2
-          and ($3::uuid is null or candidate.id > $3::uuid)
-        order by candidate.id asc
-        limit $4`,
-        [acquisitionRunId, CANDIDATE_VERSION, lastCandidateId, PAGE_SIZE],
+          and (
+            $3::uuid is null
+            or (observation.id, candidate.id) > ($3::uuid, $4::uuid)
+          )
+        order by observation.id asc, candidate.id asc
+        limit $5`,
+        [acquisitionRunId, CANDIDATE_VERSION, lastObservationId, lastCandidateId, PAGE_SIZE],
       );
       if (!result.rows.length) break;
+      lastObservationId = result.rows.at(-1).source_observation_id;
       lastCandidateId = result.rows.at(-1).id;
       rows.push(...result.rows);
       if (result.rows.length < PAGE_SIZE) break;
