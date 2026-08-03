@@ -159,7 +159,7 @@ async function selectMissingCandidateIds(client, acquisitionRunId, limit) {
            and existing.source_row_id = candidate.id
            and existing.variant_assignment_version = $2
        )
-     order by candidate.id
+     order by observation.id, candidate.id
      limit $3`,
     [acquisitionRunId, ASSIGNMENT_VERSION, limit],
   );
