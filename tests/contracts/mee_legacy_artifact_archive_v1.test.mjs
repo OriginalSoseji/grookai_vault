@@ -63,6 +63,8 @@ test("restore is plan-only, path-safe, and verifies restored file hashes", () =>
   assert.match(restoreScript, /archive contains an unsafe path/);
   assert.match(restoreScript, /restore target already exists/);
   assert.match(restoreScript, /zstd --test --quiet/);
+  assert.match(restoreScript, /archive_entries="\$\(tar --zstd --list/);
+  assert.doesNotMatch(restoreScript, /tar --zstd --list[^\n]*\|\s*head/);
   assert.match(restoreScript, /sha256sum --check --status/);
   assert.match(restoreScript, /status=restored_and_manifest_verified/);
 });

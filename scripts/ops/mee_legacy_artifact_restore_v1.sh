@@ -42,9 +42,11 @@ restored_path="$destination_real/$source_name"
 [[ ! -e "$restored_path" ]] || fail "restore target already exists: $restored_path"
 
 zstd --test --quiet "$archive_path"
-first_entry="$(tar --zstd --list --file="$archive_path" | head -1 | sed 's#/$##')"
+archive_entries="$(tar --zstd --list --file="$archive_path")"
+first_entry="${archive_entries%%$'\n'*}"
+first_entry="${first_entry%/}"
 [[ "$first_entry" == "$source_name" ]] || fail "archive root does not match expected source name"
-if tar --zstd --list --file="$archive_path" | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
+if grep -Eq '(^/|(^|/)\.\.(/|$))' <<< "$archive_entries"; then
   fail "archive contains an unsafe path"
 fi
 
