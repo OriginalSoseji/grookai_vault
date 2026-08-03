@@ -24,9 +24,12 @@ const GRADE_PATTERN = /\b(?:gem\s*mint|mint|nm-mt|pristine)?\s*(10|9\.5|9|8\.5|8
 const GRADED_LANGUAGE = /\b(graded|slab|slabbed|encased|cert(?:ified|ification)?|graded card)\b/i;
 const ACCESSORY_LANGUAGE = /\b(sleeves?|binder|top ?loader|deck box|playmat|card guard|display stand|storage case)\b/i;
 const LOT_LANGUAGE = /\b(bulk|lot|bundle|collection of|complete set|master set|full set|you pick|choose your|pick your)\b/i;
-const SEALED_PRODUCT_LANGUAGE = /\b(?:factory\s+sealed|brand\s+new\s+sealed|unopened)\b|\b(?:booster|blister|theme|battle|starter|build\s*&?\s*battle)\s+(?:box|pack|bundle|deck|kit)\b|\b(?:elite\s+trainer|collection|trainer\s+toolkit|premium\s+collection|collector)\s+box\b|\b(?:etb|tin)\b/i;
-const EXPLICIT_CARD_LANGUAGE = /\b(single\s+card|promo\s+card|trading\s+card|pokemon\s+card)\b|\b\d{1,4}\s*\/\s*\d{1,4}\b/i;
-const FALSE_SEALED_CONTEXT = /\b(pack\s+fresh|fresh\s+from\s+(?:a\s+)?pack|etb\s+promo|box\s+topper\s+card|tin\s+promo)\b/i;
+const AD_HOC_LOT_LANGUAGE = /\b(bulk|lot|collection of|complete set|master set|full set|you pick|choose your|pick your)\b/i;
+const SEALED_PRODUCT_LANGUAGE = /\b(?:factory\s+sealed|brand\s+new\s+sealed|unopened)\b|\bbooster(?:\s+display)?\s+(?:box(?:es)?|packs?|bundles?)\b|\b(?:sleeved\s+)?packs?\b|\b(?:\d+[-\s]?pack\s+|(?:premium\s+)?checklane\s+)?blisters?\b|\b(?:theme|battle|starter)\s+(?:box(?:es)?|packs?|bundles?|decks?|kits?)\b|\bbuild\s*(?:&|and)?\s*battle(?:\s+display)?(?:\s+box)?\b|\b(?:elite\s+trainer|collection|trainer\s+toolkit|premium\s+collection|collector)\s+box(?:es)?\b|\b(?:booster|blister|box|pack|etb|elite\s+trainer|sleeved\s+booster)\b[^\r\n]{0,40}\bcases?\b|\b(?:etb|tins?)\b/i;
+const SEALED_CONTAINER_LANGUAGE = /\bbooster(?:\s+display)?\s+(?:box(?:es)?|packs?|bundles?)\b|\b(?:sleeved\s+)?packs?\b|\b(?:\d+[-\s]?pack\s+|(?:premium\s+)?checklane\s+)?blisters?\b|\bbuild\s*(?:&|and)?\s*battle\s+(?:display|box)\b|\b(?:elite\s+trainer|collection|trainer\s+toolkit|premium\s+collection|collector)\s+box(?:es)?\b|\b(?:booster|blister|box|pack|etb|elite\s+trainer|sleeved\s+booster)\b[^\r\n]{0,40}\bcases?\b|\betb\b/i;
+const SEALED_ROUTE_PRODUCT_HINT = /\b(?:booster|blister|checklane|display\s+box|build\s*(?:&|and)?\s*battle|elite\s+trainer|collection|decks?|kits?|cases?|tins?)\b/i;
+const EXPLICIT_CARD_LANGUAGE = /\b(single\s+card|promo\s+card|trading\s+card(?!\s+game)|pokemon\s+card|non[-\s]?holo|reverse[-\s]?holo|holofoil|illustration\s+rare|secret\s+rare)\b|\b\d{1,4}\s*\/\s*\d{1,4}\b/i;
+const FALSE_SEALED_CONTEXT = /\b(pack\s+fresh|fresh\s+from\s+(?:a\s+)?pack|(?:etb|elite\s+trainer\s+box)[^\r\n]{0,40}promo(?:\s+card)?|promo(?:\s+card)?[^\r\n]{0,40}(?:etb|elite\s+trainer\s+box)|box\s+topper\s+card|tin\s+promo)\b/i;
 const SEALED_PACKAGING_LANGUAGE = /\b(factory\s+sealed|brand\s+new\s+sealed|sealed|unopened)\b/i;
 
 function compact(value) {
@@ -125,11 +128,15 @@ export function classifyMarketListingProductKindV2({
   ].filter(Boolean));
   const graders = graderFeatures(haystack);
   const evidence = [];
-  const packaging = SEALED_PACKAGING_LANGUAGE.test(normalizedTitle)
+  const titleShowsSealedPackaging = SEALED_PACKAGING_LANGUAGE.test(normalizedTitle);
+  const conditionShowsSealedPackaging = SEALED_PACKAGING_LANGUAGE.test(normalizedCondition);
+  const packaging = titleShowsSealedPackaging || conditionShowsSealedPackaging
     ? {
         state: "sealed",
-        confidence: 0.92,
-        evidence: [{ signal: "sealed_packaging_title_language", strength: "high" }],
+        confidence: conditionShowsSealedPackaging ? 0.99 : 0.92,
+        evidence: [conditionShowsSealedPackaging
+          ? { signal: "provider_sealed_condition", value: normalizedCondition, strength: "high" }
+          : { signal: "sealed_packaging_title_language", strength: "high" }],
       }
     : {
         state: "not_observed",
@@ -140,6 +147,10 @@ export function classifyMarketListingProductKindV2({
   if (ACCESSORY_LANGUAGE.test(normalizedTitle)) {
     evidence.push({ signal: "accessory_title_language", strength: "high" });
     return result({ productKind: "accessory", confidence: 0.98, evidence, graders, categories, packaging });
+  }
+  if (AD_HOC_LOT_LANGUAGE.test(normalizedTitle)) {
+    evidence.push({ signal: "ad_hoc_lot_title_language", strength: "high" });
+    return result({ productKind: "lot_or_bundle", confidence: 0.98, evidence, graders, categories, packaging });
   }
   if (LOT_LANGUAGE.test(normalizedTitle) && !SEALED_PRODUCT_LANGUAGE.test(normalizedTitle)) {
     evidence.push({ signal: "lot_or_bundle_title_language", strength: "high" });
@@ -157,10 +168,18 @@ export function classifyMarketListingProductKindV2({
   const sealedLanguage = SEALED_PRODUCT_LANGUAGE.test(normalizedTitle);
   const falseSealedContext = FALSE_SEALED_CONTEXT.test(normalizedTitle);
   const explicitCard = EXPLICIT_CARD_LANGUAGE.test(normalizedTitle);
+  const sealedContainer = SEALED_CONTAINER_LANGUAGE.test(normalizedTitle);
   const sealedRoute = acquisitionProductKind === "sealed_product";
   const sealedCategory = categoryMatchesProductKind(categories, "sealed_product");
-  if (sealedLanguage && !falseSealedContext && !explicitCard) {
-    evidence.push({ signal: "sealed_product_title_language", strength: "high" });
+  const sealedRouteProductHint = SEALED_ROUTE_PRODUCT_HINT.test(normalizedTitle);
+  const providerBackedSealedProduct = sealedRoute
+    && sealedCategory
+    && conditionShowsSealedPackaging
+    && sealedRouteProductHint;
+  const explicitCardBlocksSealed = explicitCard && !sealedContainer;
+  if ((sealedLanguage || providerBackedSealedProduct) && !falseSealedContext && !explicitCardBlocksSealed) {
+    if (sealedLanguage) evidence.push({ signal: "sealed_product_title_language", strength: "high" });
+    if (providerBackedSealedProduct) evidence.push({ signal: "provider_sealed_condition", value: normalizedCondition, strength: "high" });
     if (sealedRoute) evidence.push({ signal: "sealed_acquisition_route", strength: "medium" });
     if (sealedCategory) evidence.push({ signal: "provider_sealed_category", strength: "high" });
     return result({ productKind: "sealed_product", confidence: sealedCategory ? 0.99 : sealedRoute ? 0.96 : 0.9, evidence, graders, categories, packaging });

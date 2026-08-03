@@ -74,9 +74,77 @@ test("product-kind V2 does not mistake card titles or freshness language for sea
     title: "Pokemon Center ETB Promo Card Sealed",
     acquisitionCategoryIds: ["183454"],
   });
+  const verboseEtbPromo = classifyMarketListingProductKindV2({
+    title: "Pokemon TCG Zarude Mega Evolution Pitch Black ETB Black Star Promo Card",
+    conditionText: "Ungraded",
+    acquisitionCategoryIds: ["183454"],
+  });
   assert.equal(suspiciousFoodTin.product_kind, "raw_single");
   assert.equal(etbPromo.product_kind, "raw_single");
   assert.equal(etbPromo.packaging_state, "sealed");
+  assert.equal(verboseEtbPromo.product_kind, "raw_single");
+});
+
+test("product-kind V2 recognizes plural sealed forms and provider-backed sealed-category products", () => {
+  const pluralPacks = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Booster Packs New Sealed",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "183456", categoryName: "CCG Sealed Packs" }],
+  });
+  const checklane = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Checklane Blister",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "183456", categoryName: "CCG Sealed Packs" }],
+  });
+  const sealedCase = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Booster 6-Box Case",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "261045", categoryName: "CCG Sealed Cases" }],
+  });
+  const vagueCategoryRow = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Slow Poke New",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "183456", categoryName: "CCG Sealed Packs" }],
+  });
+  const datedPresale = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Elite Trainer Box New Sealed Presale 7/18",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "261044", categoryName: "CCG Sealed Boxes" }],
+  });
+  const blisterWithPromo = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black 3-Pack Blister with Binacle Promo Card",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "183456", categoryName: "CCG Sealed Packs" }],
+  });
+  const buildAndBattleCard = classifyMarketListingProductKindV2({
+    title: "Pokemon Mega Evolution Pitch Black Build & Battle Non Holo Voltaic Energy 084",
+    conditionText: "Ungraded",
+    acquisitionProductKind: "raw_single",
+    itemCategories: [{ categoryId: "183454", categoryName: "CCG Individual Cards" }],
+  });
+  const sealedPackLot = classifyMarketListingProductKindV2({
+    title: "Lot of 4 Pokemon Trading Card Game Mega Evolution Pitch Black Booster Packs",
+    conditionText: "New/Factory Sealed",
+    acquisitionProductKind: "sealed_product",
+    itemCategories: [{ categoryId: "183456", categoryName: "CCG Sealed Packs" }],
+  });
+
+  for (const row of [pluralPacks, checklane, sealedCase, datedPresale, blisterWithPromo]) {
+    assert.equal(row.product_kind, "sealed_product");
+    assert.equal(row.packaging_state, "sealed");
+    assert.ok(row.product_kind_evidence.some((entry) => entry.signal === "provider_sealed_category"));
+  }
+  assert.equal(vagueCategoryRow.product_kind, "unknown");
+  assert.equal(vagueCategoryRow.packaging_state, "sealed");
+  assert.equal(buildAndBattleCard.product_kind, "raw_single");
+  assert.equal(sealedPackLot.product_kind, "lot_or_bundle");
+  assert.equal(sealedPackLot.packaging_state, "sealed");
 });
 
 test("provider category registry refuses live planning until sealed taxonomy is reviewed", () => {
