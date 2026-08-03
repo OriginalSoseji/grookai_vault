@@ -782,6 +782,12 @@ Recommended reading order for future maintainers:
       visible-text proof, read-only 100-row check, and frozen post-canary
       migration/deployment/rollback sequence
 
+39. `PRICING_CHECKPOINT_41_MARKET_INTELLIGENCE_READ_MODEL_V1.md`
+    - then read how existing exact-printing active-listing evidence became a
+      separate signed-in market-intelligence lane, including the bounded
+      assignment repair, production readback, authority boundaries, and the
+      remaining web and scheduler rollout gates
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
