@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   getCardPricingUiRowsByCardPrintIdWithClient,
 } from "@/lib/pricing/getCardPricingUiByCardPrintId";
+import { getMarketIntelligenceReadModelV1 } from "@/lib/pricing/marketIntelligenceReadModelV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 
@@ -49,13 +50,19 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const pricingRecords = await getCardPricingUiRowsByCardPrintIdWithClient(adminClient, cardPrintId);
+  const [pricingRecords, marketIntelligenceRecords] = await Promise.all([
+    getCardPricingUiRowsByCardPrintIdWithClient(adminClient, cardPrintId),
+    getMarketIntelligenceReadModelV1(adminClient, {
+      cardPrintIds: [cardPrintId],
+    }),
+  ]);
 
   return NextResponse.json(
     {
       ok: true,
       pricing: pricingRecords.find((record) => record.pricing_scope === "parent") ?? pricingRecords[0] ?? null,
       pricingRecords,
+      marketIntelligenceRecords,
     },
     { headers: { "Cache-Control": "private, no-store" } },
   );

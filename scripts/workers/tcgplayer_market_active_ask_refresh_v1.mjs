@@ -85,7 +85,11 @@ async function readback(client) {
          count(*) filter (
            where currency <> 'USD'
               or lowest_active_ask is null
-              or lowest_active_ask < 0
+              or lowest_active_ask <= 0
+              or median_active_ask is null
+              or round(median_active_ask, 2) < round(lowest_active_ask, 2)
+              or listing_count < 1
+              or seller_count < 0
          )::integer as invalid_row_count,
          count(*) filter (
            where observed_at < now() - interval '72 hours'
@@ -93,6 +97,23 @@ async function readback(client) {
          min(observed_at) as oldest_observed_at,
          max(observed_at) as newest_observed_at
        from public.mv_market_listing_active_ask_current_v1`,
+    )
+  ).rows[0];
+}
+
+async function configureRefreshSession(client, timeoutMinutes) {
+  await client.query(
+    "select set_config('statement_timeout', $1, false)",
+    [`${timeoutMinutes}min`],
+  );
+  await client.query(
+    "select set_config('enable_nestloop', 'off', false)",
+  );
+  return (
+    await client.query(
+      `select
+         current_setting('statement_timeout') as statement_timeout,
+         current_setting('enable_nestloop') as enable_nestloop`,
     )
   ).rows[0];
 }
@@ -121,6 +142,10 @@ async function main() {
     created_at: new Date().toISOString(),
     materialized_view: MATERIALIZED_VIEW,
     timeout_minutes: args.timeoutMinutes,
+    database_session_policy: {
+      statement_timeout: `${args.timeoutMinutes}min`,
+      enable_nestloop: "off",
+    },
     boundaries: {
       canonical_identity_writes: false,
       price_publication_writes: false,
@@ -140,6 +165,10 @@ async function main() {
   });
   await client.connect();
   try {
+    const databaseSession = await configureRefreshSession(
+      client,
+      args.timeoutMinutes,
+    );
     const before = await readback(client);
     const startedAt = new Date().toISOString();
     if (args.apply) {
@@ -158,6 +187,7 @@ async function main() {
       mode: runPlan.mode,
       started_at: startedAt,
       finished_at: new Date().toISOString(),
+      database_session: databaseSession,
       before,
       after,
       findings: [
