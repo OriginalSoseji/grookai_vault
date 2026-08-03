@@ -81,11 +81,25 @@ node scripts/workers/market_listing_nightly_pipeline_v2.mjs \
   --run-key=MEE-V2-CANARY-<timestamp>
 ```
 
+If an incomplete cursor is bound to a prior immutable source plan, preserve that order explicitly:
+
+```bash
+MEE_NIGHTLY_ALLOW_RUN=1 \
+MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1 \
+node scripts/workers/market_listing_nightly_pipeline_v2.mjs \
+  --run \
+  --call-ceiling=<bounded-count> \
+  --run-key=MEE-V2-CANARY-<timestamp> \
+  --frozen-dry-run=/var/lib/grookai/mee/audits/<exact-plan>.json
+```
+
+The frozen plan must be under the governed runtime artifact root. Its request count and recomputed manifest must exactly match the incomplete cursor. Never use this option to bypass a manifest mismatch, reset a completed cycle, substitute requests, or accept duplicates.
+
 Advance to 500 and then 4,000 only after selected calls, acquired rows, warehouse rows, candidate rows, rollups, cursor movement, retries, failures, disk use, and phase ledgers reconcile.
 
 Strict apply and run-scoped readback must use the source acquisition run key, not the outer pipeline run key. A run-scoped readback with any finding is a critical failure even when its SQL completed successfully.
 
-The first V2 canary advanced the cursor from `0` to `50`. The next canary must begin at `50`; silently returning to zero is a rotation failure.
+The first V2 canary advanced the cursor from `0` to `50`. The 500-call canary then advanced it exactly once from `50` to `550`. The 4,000-call canary must begin at `550`; silently returning to zero or regenerating a differently ordered source plan is a rotation failure.
 
 ## Legacy Artifact Preservation
 
@@ -127,4 +141,4 @@ Never archive the current runtime artifact root, the active immutable release, i
 
 Operational recovery is complete only after three unattended rotating-cycle runs finish without provider replay, reconciliation mismatch, blocking timeout, disk breach, or public-boundary violation.
 
-The 50-call canary is complete. The timer must remain disabled until storage capacity, the 500-call canary, the 4,000-call canary, and three unattended cycles all pass.
+The 50-call and 500-call canaries are complete. The timer must remain disabled until the 4,000-call canary and three unattended cycles all pass.
