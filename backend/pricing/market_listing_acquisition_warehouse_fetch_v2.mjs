@@ -14,6 +14,7 @@ import {
 import { classifyMarketListingProductKindV2 } from "./market_listing_product_kind_v2.mjs";
 
 export const MARKET_LISTING_ACQUISITION_WAREHOUSE_FETCH_VERSION = "MEE_MARKET_LISTING_ACQUISITION_WAREHOUSE_FETCH_V2";
+export const MARKET_LISTING_WAREHOUSE_SCHEMA_HASH_V1 = "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4";
 const PRODUCT_KINDS = ["raw_single", "graded_single", "sealed_product"];
 
 function stable(value) {
@@ -287,7 +288,7 @@ export async function buildMarketListingAcquisitionWarehouseFetchV2({
     mode: "approved_provider_fetch_local_artifacts_only",
     source_package_fingerprint_sha256: warehousePlan?.package_fingerprint_sha256 ?? null,
     source_request_manifest_hash_sha256: warehousePlan?.request_manifest_hash_sha256 ?? null,
-    schema_migration_hash_sha256: null,
+    schema_migration_hash_sha256: MARKET_LISTING_WAREHOUSE_SCHEMA_HASH_V1,
     package_fingerprint_sha256: packageFingerprint,
     request_results_manifest_hash_sha256: manifests.request_results,
     skipped_requests_manifest_hash_sha256: manifests.skipped_requests,

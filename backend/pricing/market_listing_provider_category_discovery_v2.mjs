@@ -7,6 +7,8 @@ export const DEFAULT_CATEGORY_DISCOVERY_QUERIES = Object.freeze([
   "Pokemon sealed booster box",
   "Pokemon elite trainer box",
   "Pokemon booster pack",
+  "Pokemon sealed deck kit",
+  "Pokemon sealed case",
 ]);
 
 function stable(value) {

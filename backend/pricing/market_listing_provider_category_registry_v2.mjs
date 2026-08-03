@@ -18,11 +18,22 @@ function sha256(value) {
 }
 
 function normalizeRoute(route, expectedProductKind) {
-  const categoryIds = [...new Set((route?.category_ids ?? []).map(String).filter(Boolean))].sort();
+  const categoryRows = Array.isArray(route?.categories)
+    ? route.categories.map((entry) => ({
+        category_id: String(entry?.category_id ?? entry?.categoryId ?? "").trim(),
+        category_name: String(entry?.category_name ?? entry?.categoryName ?? "").trim() || null,
+      }))
+    : (route?.category_ids ?? []).map((categoryId, index) => ({
+        category_id: String(categoryId).trim(),
+        category_name: String(route?.category_names?.[index] ?? "").trim() || null,
+      }));
+  const categories = [...new Map(categoryRows.filter((entry) => entry.category_id).map((entry) => [entry.category_id, entry])).values()]
+    .sort((left, right) => left.category_id.localeCompare(right.category_id));
   return {
     product_kind: expectedProductKind,
-    category_ids: categoryIds,
-    category_names: [...new Set((route?.category_names ?? []).map(String).filter(Boolean))].sort(),
+    categories,
+    category_ids: categories.map((entry) => entry.category_id),
+    category_names: categories.map((entry) => entry.category_name).filter(Boolean),
     query_suffixes: [...new Set((route?.query_suffixes ?? []).map(String).filter(Boolean))],
     provenance: route?.provenance ?? null,
     reviewed: route?.reviewed === true,

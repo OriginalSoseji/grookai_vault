@@ -108,6 +108,8 @@ It must propose zero rows for:
 - public pricing tables/views
 - identity tables
 
+The guarded apply wrapper is dry-run/preflight by default. A real append-only apply additionally requires `--apply`, `MEE_WAREHOUSE_V2_ALLOW_APPLY=1`, a valid V2 plan, matching row hashes, and the existing idempotent warehouse writer. This gate does not authorize a database apply by itself.
+
 ## Publication Boundary
 
 Warehouse acceptance does not authorize pricing display.

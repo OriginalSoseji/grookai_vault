@@ -73,6 +73,7 @@ The zero sealed-product count is expected and does not prove no sealed products 
 Evidence:
 
 - [Offline replay](../../audits/market_listing_warehouse_v2/product_kind_replay_2026-08-03T21-55-14-213Z.md)
+- [Official eBay category-page candidates](../../audits/market_listing_warehouse_v2/provider_category_candidates_official_web_20260803.md)
 
 ## Current Truths
 
@@ -82,6 +83,8 @@ Evidence:
 - Warehouse V2 may retain graded and sealed evidence, but it cannot publish either through the raw-single read model.
 - Exact raw/graded card printing assignment is deferred.
 - A canonical sealed-product identity model is still a downstream project.
+- Official eBay pages identify candidate sealed categories for packs (`183456`), boxes (`261044`), decks/kits (`183457`), and cases (`261045`); they remain inactive until Taxonomy API version proof is captured.
+- An isolated Taxonomy attempt from frozen SHA `2d867db4be13f495265314dbccf90802cbb11408` stopped before any provider call because eBay credentials are available only to the protected systemd service environment.
 
 ## Invariants
 

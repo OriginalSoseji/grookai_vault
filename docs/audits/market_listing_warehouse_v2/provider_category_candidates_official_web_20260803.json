@@ -1,0 +1,36 @@
+{
+  "package_id": "MARKET-LISTING-PROVIDER-CATEGORY-WEB-CANDIDATES-V2",
+  "generated_at": "2026-08-03T22:00:00.000Z",
+  "marketplace_id": "EBAY_US",
+  "source_authority": "official_ebay_category_pages",
+  "candidates": [
+    {
+      "category_id": "183456",
+      "category_name": "Sealed Collectible Card Game Packs",
+      "source_url": "https://www.ebay.com/b/Pokemon-TCG-Sealed-Collectible-Card-Game-Packs/183456/bn_1890391"
+    },
+    {
+      "category_id": "261044",
+      "category_name": "Sealed Collectible Card Game Boxes",
+      "source_url": "https://www.ebay.com/b/Pokemon-TCG-Collectible-Card-Game-Sealed-Boxes/261044/bn_7117796177"
+    },
+    {
+      "category_id": "183457",
+      "category_name": "Sealed Collectible Card Game Decks & Kits",
+      "source_url": "https://www.ebay.com/b/Pokemon-TCG-Sealed-Collectible-Card-Game-Decks-Kits/183457/bn_55163205"
+    },
+    {
+      "category_id": "261045",
+      "category_name": "Sealed Collectible Card Game Cases",
+      "source_url": "https://www.ebay.com/b/Pokemon-TCG-Sealed-Collectible-Card-Game-Cases/261045/bn_73165474"
+    }
+  ],
+  "boundary": {
+    "provider_api_calls": false,
+    "provider_browse_calls": false,
+    "db_writes": false,
+    "category_registry_activation": false
+  },
+  "ready_for_registry_activation": false,
+  "blocking_reason": "official_taxonomy_tree_version_and_suggestion_artifact_not_yet_captured"
+}

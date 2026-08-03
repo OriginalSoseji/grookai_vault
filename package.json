@@ -104,6 +104,7 @@
     "mee:nightly:post-ingest:readbacks": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --dry-run --execute-readbacks",
     "mee:nightly:post-ingest:run": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --run",
     "mee:warehouse:v2": "node scripts/audits/market_listing_warehouse_v2.mjs",
+    "mee:warehouse:v2:apply": "node scripts/audits/market_listing_warehouse_apply_v2.mjs",
     "mee:reference-refresh:dry-run": "node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run",
     "mee:reference-refresh:run": "node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --run",
     "tcgcsv:warehouse:current:dry-run": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=current --dry-run",

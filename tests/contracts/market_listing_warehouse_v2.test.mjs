@@ -10,6 +10,7 @@ import { buildMarketListingAcquisitionWarehousePlanV2 } from "../../backend/pric
 import { classifyMarketListingProductKindV2 } from "../../backend/pricing/market_listing_product_kind_v2.mjs";
 import { buildMarketListingProviderCategoryRegistryV2 } from "../../backend/pricing/market_listing_provider_category_registry_v2.mjs";
 import { buildEbayBrowseSearchUrl } from "../../backend/pricing/market_listing_acquisition_smoke_fetch_v1.mjs";
+import { validateMarketListingWarehouseApplyPlanV2 } from "../../scripts/audits/market_listing_warehouse_apply_v2.mjs";
 import {
   discoverMarketListingProviderCategoriesV2,
   sealedCategoryRouteFromReviewedDiscoveryV2,
@@ -196,6 +197,7 @@ test("warehouse V2 fetch covers all product kinds, classifies evidence, and writ
       generatedAt: "2026-08-03T00:05:00.000Z",
     });
     assert.equal(backfill.ready_for_apply_approval, true);
+    assert.equal(backfill.schema_migration_hash_sha256, "2ee4623c3e22e5d67cba9016113e9e9f999dc808aab1f03b665bcb25a72f2af4");
     assert.equal(backfill.proposed_table_row_counts.market_listing_observations, 3);
     assert.equal(backfill.proposed_table_row_counts.market_listing_card_candidates, 0);
     assert.deepEqual(backfill.summary.product_kind_counts, { graded_single: 1, raw_single: 1, sealed_product: 1 });
@@ -204,6 +206,7 @@ test("warehouse V2 fetch covers all product kinds, classifies evidence, and writ
     const eventRows = readFileSync(backfill.row_files.priceEventRows, "utf8").trim().split("\n").map(JSON.parse);
     assert.ok(eventRows.every((row) => row.event_payload.canonical_assignment_status === "deferred"));
     assert.ok(eventRows.every((row) => row.event_payload.pricing_publication_eligible === false));
+    assert.deepEqual(await validateMarketListingWarehouseApplyPlanV2({ plan: backfill }), []);
   } finally {
     rmSync(artifactDir, { recursive: true, force: true });
   }
@@ -215,6 +218,7 @@ test("warehouse V2 implementation contains no database write client", () => {
     "../../backend/pricing/market_listing_acquisition_warehouse_fetch_v2.mjs",
     "../../backend/pricing/market_listing_acquisition_warehouse_backfill_plan_v2.mjs",
     "../../backend/pricing/market_listing_provider_category_discovery_v2.mjs",
+    "../../scripts/audits/market_listing_warehouse_apply_v2.mjs",
   ]) {
     const source = readFileSync(new URL(relativePath, import.meta.url), "utf8");
     assert.doesNotMatch(source, /createClient|\.from\(|\binsert\s+into\b|\bupdate\s+public\.|\bdelete\s+from\b/i);

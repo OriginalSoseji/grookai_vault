@@ -57,7 +57,7 @@ function normalizeSets(targets) {
     || left.set_name.localeCompare(right.set_name));
 }
 
-function requestFor({ set, productKind, route, querySuffix, offset, ordinal, resultLimit }) {
+function requestFor({ set, productKind, route, categoryId, categoryName, querySuffix, offset, ordinal, resultLimit }) {
   const suffix = querySuffix ?? "";
   const queryText = compact(`Pokemon ${quote(set.set_name)} ${suffix}`);
   const queryKey = sha256({
@@ -65,7 +65,7 @@ function requestFor({ set, productKind, route, querySuffix, offset, ordinal, res
     product_kind: productKind,
     set_code: set.set_code,
     query_text: queryText,
-    category_ids: route.category_ids,
+    category_ids: [categoryId],
     offset,
   });
   return {
@@ -80,7 +80,7 @@ function requestFor({ set, productKind, route, querySuffix, offset, ordinal, res
     strategy: `warehouse_${productKind}_discovery`,
     query_text: queryText,
     query_filters: {
-      category_ids: route.category_ids,
+      category_ids: [categoryId],
       limit: resultLimit,
       buying_options: ["FIXED_PRICE", "AUCTION"],
       fieldgroups: ["MATCHING_ITEMS"],
@@ -99,6 +99,8 @@ function requestFor({ set, productKind, route, querySuffix, offset, ordinal, res
       canonical_assignment_status: "deferred",
       card_matching_deferred: true,
       provider_category_provenance: route.provenance,
+      provider_category_id: categoryId,
+      provider_category_name: categoryName ?? null,
       query_suffix: suffix || null,
     },
     expected_max_result_count: resultLimit,
@@ -133,16 +135,23 @@ export function buildMarketListingAcquisitionWarehousePlanV2({
         for (const productKind of productKinds) {
           const route = categoryRegistry.routes[productKind];
           const suffixes = route.query_suffixes?.length ? route.query_suffixes : [""];
-          for (const querySuffix of suffixes) {
-            requests.push(requestFor({
-              set,
-              productKind,
-              route,
-              querySuffix,
-              offset: page * limit,
-              ordinal: requests.length + 1,
-              resultLimit: limit,
-            }));
+          const categories = route.categories?.length
+            ? route.categories
+            : route.category_ids.map((categoryId, index) => ({ category_id: categoryId, category_name: route.category_names?.[index] ?? null }));
+          for (const category of categories) {
+            for (const querySuffix of suffixes) {
+              requests.push(requestFor({
+                set,
+                productKind,
+                route,
+                categoryId: category.category_id,
+                categoryName: category.category_name,
+                querySuffix,
+                offset: page * limit,
+                ordinal: requests.length + 1,
+                resultLimit: limit,
+              }));
+            }
           }
         }
       }
