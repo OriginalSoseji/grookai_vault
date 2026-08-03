@@ -2,15 +2,15 @@
 
 ## Status
 
-`BOUNDED_500_CANARY_PASSED_TIMER_DISABLED_4000_GATE_READY`
+`BOUNDED_4000_CANARY_PASSED_UNATTENDED_OBSERVATION_SCHEDULED`
 
-Production repair is proven through historical recovery, a 50-call live canary, governed artifact retention, and a clean 500-call rotating canary. The timer remains disabled. A 4,000-call canary and three unattended rotating cycles remain required before operational completion.
+Production repair is proven through historical recovery, 50-, 500-, and 4,000-call live canaries, two governed retention passes, and an immutable scheduler-compatible release. The production timer remains disabled until the scheduled activation handoff at `2026-08-04 03:31:00 UTC`. Three unattended rotating cycles remain required before operational completion.
 
 ## Context
 
 The Market Evidence Engine had accumulated production-only hotfixes in a mutable checkout. Raw acquisition continued to succeed, but downstream projection repeatedly failed at production scale. The timer was disabled after partial failures and disk pressure.
 
-The preserved production baseline began at deployed SHA `00206f724946ad6842f32185376886cd4c5bca10`. The repair was developed on `agent/mee-operational-recovery-v1`. The code that produced the corrected 50-call canary readback is `4c006483ace43be075a22570008b8107a662438d`. The frozen code that produced the 500-call canary is `7c7f3bb41ec0c590f091495c6ba8e55720b8af41`.
+The preserved production baseline began at deployed SHA `00206f724946ad6842f32185376886cd4c5bca10`. The repair was developed on `agent/mee-operational-recovery-v1`. The code that produced the corrected 50-call canary readback is `4c006483ace43be075a22570008b8107a662438d`. The frozen code that produced the 500- and 4,000-call canaries is `7c7f3bb41ec0c590f091495c6ba8e55720b8af41`. The immutable scheduler-compatible release is `1dd67566a41deb83d21ec0b0d8febac97936f09d`.
 
 ## Why It Kept Failing
 
@@ -26,6 +26,7 @@ The recurring failures were a chain, not one defect:
 - readback findings returned exit code zero, allowing a false `completed` pipeline outcome;
 - the host retained about 82 GB of legacy in-checkout audit artifacts, leaving insufficient margin for larger canaries.
 - equivalent acquisition plans were not totally ordered, so tied printing targets and alternate eBay query text could change the manifest hash between processes.
+- the systemd worker could not supply the original frozen plan only while an old cursor remained incomplete, so an unattended run would regenerate a different manifest and fail before acquisition.
 
 ## Risk
 
@@ -47,6 +48,7 @@ Repair without deleting or rewriting market evidence:
 - bind strict rollup versions to the source acquisition run;
 - keep every candidate and rollup internal, non-publishable, and review-only;
 - keep the timer disabled until larger canaries and unattended cycles pass.
+- let the scheduler use the original frozen plan only while the latest cursor is incomplete, then automatically return to fresh deterministic plans.
 
 ## Alternatives Rejected
 
@@ -190,23 +192,92 @@ Artifacts:
 - Artifact manifest SHA-256: `96be749cb8be58b8e82d306aebdf8447a7f6c7c6925a7bebb599623bde62110d`
 - Hash-validation output SHA-256: `07a4e4ceae453e7ca79b12cb4aa198afe01520d0def453672082606dbddd9d19`
 
+## 4,000-Call Canary Proof
+
+Frozen code SHA: `7c7f3bb41ec0c590f091495c6ba8e55720b8af41`
+
+Pipeline run key: `MEE-V2-CANARY-4000-20260803T145536Z`
+
+Source acquisition run: `MEE-11L-DAILY-BATCH-7dfe6b69233f`
+
+- frozen request slice: indices `550..4549`, exactly `4,000` unique query keys;
+- selected request manifest SHA-256: `a37cd45687e158336567704ee7c5a3c6d793d03c7064e7793ba18091ce29f3fb`;
+- exactly `4,000/4,000` provider requests succeeded with `0` provider errors;
+- observed provider listings: `284,384`;
+- deduplicated observation plan rows: `268,946`;
+- run-owned observations and price events: `243,084` each;
+- seller snapshots: `30,956`;
+- review-only candidates: `173,045`;
+- strict internal rollups: `13,326`;
+- review-ready: `7,651`;
+- needs more evidence: `5,675`;
+- cursor advanced exactly once from `550` to `4,550` of `8,400`;
+- phase ledger: `9` started, `11` succeeded, `0` failed;
+- final run-scoped and independent DB readback findings: `0`;
+- candidate direct-publish rows: `0`;
+- public, app-visible, market-truth, canonical, vault, image, and delete boundaries: `0` writes;
+- worker duration: approximately `2h 18m`;
+- runtime artifact footprint: `2,627,870,733` bytes.
+
+The initial shell wrapper failed before any provider, state, cursor, ledger, or database activity because its nested quoting truncated the frozen plan filename. The preserved pre-provider proof records zero side effects. The completed relaunch returned a successful stored worker exit code and a completed pipeline state. A CRLF on the outer SSH wrapper's final `exit 0` produced a transport-only nonzero after completion; the independent state, phase ledger, and database reconciliation all agree that the worker succeeded.
+
+Artifacts:
+
+- Gate directory: `/var/lib/grookai/mee/audits/mee_operational_recovery_v1_20260803/canary_4000_20260803T145536Z`
+- Final reconciliation SHA-256: `6a3dad109bf27940dc92b1739eca82317edd9ea71b9f3033fce163967e4ef318`
+- Independent DB reconciliation SHA-256: `68ccfb140ec5783d4d95b5263f25989621adbe55fb0b63b1d31c94bf6220bdbb`
+- Artifact manifest SHA-256: `c4eecfdf3fa46b1cddda68d13a22b7e3d38c4e495c2e28b1a51beb62fdf163ea`
+- Hash-validation output SHA-256: `6946e81cb120373af36e88dc121d7e24020b10210ac9a450b1f5d627bb4962b5`
+
+## Post-Canary Retention Proof
+
+After the measured 2.63 GB canary footprint, the next three unattended cycles required additional storage margin. A second frozen retention plan selected exactly `16` completed inactive legacy fetch directories from July 10 through July 25. Every source was hashed and archived, each archive passed `zstd --test` and tar comparison, and source removal occurred only after verification.
+
+- source bytes preserved: `23,962,217,893`;
+- compressed archive bytes: `1,560,717,622`;
+- bytes reclaimed: `22,401,500,271`;
+- verified archives: `16/16`;
+- partial archives: `0`;
+- free bytes after retention: `44,534,034,432`;
+- margin above the 12 GiB provider floor: `31,649,132,544` bytes.
+
+Artifacts:
+
+- Gate directory: `/var/lib/grookai/mee/audits/mee_operational_recovery_v1_20260803/retention_v2_after_canary_4000`
+- Retention reconciliation SHA-256: `5f2f68a47368c1e6c024842c58c7de33fd4b93cf70aaf91d29b8afeba746d09b`
+- Artifact manifest SHA-256: `1377f019637040c0a18fd13c346c2470e0149d33a4294517d485d4b70509c100`
+- Validation output SHA-256: `0b7816ffdbc5b2d3c7fb5a98a279a9c0dfa2b0d8763bb1aeaf9289e144cb7428`
+
+## Scheduler Compatibility And Activation
+
+Release `1dd67566a41deb83d21ec0b0d8febac97936f09d` adds a conditional frozen-plan option. The protected worker environment points to the original plan with manifest `96a150e7d99cd994fcee945147d879b0bf8398992fe8246daad3814611dc54aa`. The option is selected only while the latest cursor has `cycle_complete=false`; after completion it is ignored without resolving the old file.
+
+Production dry-run proof:
+
+- active symlink: `/opt/grookai/releases/mee/1dd67566a`;
+- protected plan file SHA-256: `92eaea7c98cb3e3f75fe973c180da33f5566e7fd688c79c55c1ec7830f5c4e0d`;
+- protected plan manifest: `96a150e7d99cd994fcee945147d879b0bf8398992fe8246daad3814611dc54aa`;
+- plan request count: `8,400`;
+- latest cursor: `4,550/8,400`, incomplete, same manifest;
+- full droplet dry run: completed with zero findings, zero provider calls, and zero database writes;
+- GitHub `Contracts Runtime Protection` run `30837724139`: passed.
+
+The normal timer remains disabled and inactive until a transient one-shot at `2026-08-04 03:31:00 UTC`. Activation is deliberately after the timer's 03:15 UTC plus 15-minute randomized window. Enabling the persistent timer then produces one immediate unattended run instead of a near-duplicate trigger. The next normal calendar event is the following day.
+
 ## Runtime State
 
 - Current symlink: `/opt/grookai_mee_current`
 - Runtime artifacts: `/var/lib/grookai/mee/audits`
-- Timer: disabled and inactive
+- Active release SHA: `1dd67566a41deb83d21ec0b0d8febac97936f09d`
+- Timer: disabled and inactive until the scheduled activation handoff
 - Service: inactive
 - Matching workers: `0`
-- Available disk after the 500-call canary: `24,936,148,992` bytes
+- Available disk after post-canary retention: `44,534,034,432` bytes
 - Required provider-call floor: `12,884,901,888` bytes
-- Current margin above floor: `12,051,247,104` bytes
-- Measured 500-call artifact footprint: `945,378,228` bytes
-- Conservative projected 4,000-call artifact footprint with 25% margin: `9,453,782,280` bytes
-- Conservative projected free bytes after 4,000 calls: `15,482,366,712`
-- Conservative projected margin above floor: `2,597,464,824` bytes
-- Remaining legacy mutable checkout audit footprint after governed retention: approximately `62 GB`
+- Current margin above floor: `31,649,132,544` bytes
+- Measured 4,000-call artifact footprint: `2,627,870,733` bytes
 
-The measured capacity is sufficient for one bounded 4,000-call canary under the current floor, but not for concurrent work or unattended repetition. The timer must remain disabled and retention must run again before any subsequent provider cycle if the post-run margin is inadequate.
+The measured capacity has more than three canary-sized footprints above the hard provider floor. Every unattended run still performs its own disk preflight and must stop before provider calls if the floor is breached.
 
 ## Invariants
 
@@ -223,17 +294,17 @@ The measured capacity is sufficient for one bounded 4,000-call canary under the 
 
 ## Verification
 
-- Latest affected MEE/market-listing contract suite: `513/513` passed.
-- Latest focused frozen-plan/manifest suite: `12/12` passed.
+- Latest affected MEE/market-listing contract suite: `514/514` passed.
+- Latest focused scheduler/frozen-plan suite: `14/14` passed.
 - Latest Node syntax checks: passed.
 - Latest `git diff --check`: passed.
 - Earlier full repository contract suite on the recovery line: `1,259/1,259` passed.
 - The full repository suite was not rerun after the final manifest-order repair; the complete affected MEE suite and focused tests were rerun.
-- GitHub `Contracts Runtime Protection` run `30786648456`: passed.
-- GitHub `Contracts Drift Gate` run `30786648498`: passed.
+- GitHub `Contracts Runtime Protection` run `30837724139`: passed.
+- GitHub `Contracts Drift Gate` run `30786648498`: passed on the prior frozen runtime; this documentation-only checkpoint update does not change runtime behavior.
 - Activated-release no-provider dry run: passed.
 - Historical production readback: passed with zero findings.
-- 50-call production canary: passed after downstream-only repair, with zero refetch.
+- 50-, 500-, and 4,000-call production canaries: passed, with zero unintended refetch.
 
 ## What Must Never Be Broken
 
@@ -245,11 +316,11 @@ The measured capacity is sufficient for one bounded 4,000-call canary under the 
 
 ## Exact Next Gate
 
-1. Keep the timer disabled and confirm no MEE worker is active.
-2. Freeze the exact current cursor (`550`), source manifest (`96a150e7d99cd994fcee945147d879b0bf8398992fe8246daad3814611dc54aa`), release SHA, 4,000-request slice, and disk projection before any provider call.
-3. Run one bounded 4,000-call rotating canary from cursor index `550` using the frozen source plan and a unique outer run key.
-4. Reconcile provider calls, retries, source rows, run-owned warehouse rows, collisions, candidates, strict rollups, cursor movement, phase ledger, artifact hashes, disk use, and all publication boundaries.
-5. Stop on any provider ambiguity, duplicate cursor event, reconciliation mismatch, disk-floor breach, or boundary leak. Do not restart or refetch in the same gate.
-6. If clean, perform governed retention as needed, then enable the timer for exactly three observed unattended rotating cycles.
+1. At `2026-08-04 03:31:00 UTC`, the one-shot activation unit enables the normal persistent timer. Do not manually start the service before this handoff.
+2. Observe and reconcile the first unattended run. It must resume the original manifest at cursor `4,550`, consume no more than the remaining `3,850` requests, and complete the old cycle exactly once.
+3. Observe the next two unattended daily runs. They must use fresh deterministic planning after the old cycle is complete and must not resolve or reuse the conditional frozen plan.
+4. For every run, reconcile provider calls, retries, source rows, run-owned warehouse rows, collisions, candidates, strict rollups, cursor movement, phase ledger, artifact hashes, disk use, and all publication boundaries.
+5. Stop the timer on any provider ambiguity, duplicate cursor event, reconciliation mismatch, disk-floor breach, boundary leak, or attempt to replay a completed slice. Preserve artifacts and do not refetch automatically.
+6. After three clean unattended cycles, remove the conditional frozen-plan environment entry, retire the one-shot activation unit, produce the final operational recovery report, and declare the recovery complete.
 
-Do not enable the timer before the 4,000-call gate and its independent reconciliation pass.
+Operational recovery is not complete until all three unattended cycles reconcile cleanly.
