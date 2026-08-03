@@ -272,9 +272,9 @@ The normal timer remains disabled and inactive until a transient one-shot at `20
 - Timer: disabled and inactive until the scheduled activation handoff
 - Service: inactive
 - Matching workers: `0`
-- Available disk after post-canary retention: `44,534,034,432` bytes
+- Available disk after immutable release deployment: `41,528,569,856` bytes
 - Required provider-call floor: `12,884,901,888` bytes
-- Current margin above floor: `31,649,132,544` bytes
+- Current margin above floor: `28,643,667,968` bytes
 - Measured 4,000-call artifact footprint: `2,627,870,733` bytes
 
 The measured capacity has more than three canary-sized footprints above the hard provider floor. Every unattended run still performs its own disk preflight and must stop before provider calls if the floor is breached.
