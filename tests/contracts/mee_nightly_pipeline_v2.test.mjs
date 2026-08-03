@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   phaseReportSupportsResumeV2,
+  selectFrozenDryRunPathV2,
   validateFrozenDryRunPlanV2,
 } from "../../scripts/workers/market_listing_nightly_pipeline_v2.mjs";
 import {
@@ -30,7 +31,32 @@ test("V2 pipeline uses exact artifact handoffs and run-scoped projection", () =>
   assert.match(script, /--run-key=\$\{acquisitionRunKey\(\)\}/);
   assert.match(script, /phaseReportSupportsResumeV2/);
   assert.match(script, /--frozen-dry-run=/);
+  assert.match(script, /--frozen-dry-run-if-incomplete=/);
   assert.match(script, /frozen dry-run plan must be inside the governed MEE artifact root/);
+});
+
+test("V2 conditionally selects a frozen plan only for an incomplete cursor", () => {
+  assert.equal(selectFrozenDryRunPathV2({
+    conditionalPath: "/audit/original-plan.json",
+    previousCursor: { cycle_complete: false },
+  }), "/audit/original-plan.json");
+  assert.equal(selectFrozenDryRunPathV2({
+    conditionalPath: "/audit/original-plan.json",
+    previousCursor: { cycle_complete: true },
+  }), null);
+  assert.equal(selectFrozenDryRunPathV2({
+    conditionalPath: "/audit/original-plan.json",
+    previousCursor: null,
+  }), null);
+  assert.equal(selectFrozenDryRunPathV2({
+    strictPath: "/audit/strict-plan.json",
+    previousCursor: { cycle_complete: true },
+  }), "/audit/strict-plan.json");
+  assert.throws(() => selectFrozenDryRunPathV2({
+    strictPath: "/audit/strict-plan.json",
+    conditionalPath: "/audit/original-plan.json",
+    previousCursor: { cycle_complete: false },
+  }), /cannot be used together/);
 });
 
 test("V2 accepts only a frozen manifest that exactly matches the incomplete cursor", () => {

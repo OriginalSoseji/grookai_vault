@@ -95,6 +95,14 @@ node scripts/workers/market_listing_nightly_pipeline_v2.mjs \
 
 The frozen plan must be under the governed runtime artifact root. Its request count and recomputed manifest must exactly match the incomplete cursor. Never use this option to bypass a manifest mismatch, reset a completed cycle, substitute requests, or accept duplicates.
 
+For unattended recovery of one incomplete cycle, set the protected worker environment to the exact original plan:
+
+```text
+MEE_NIGHTLY_FROZEN_DRY_RUN_IF_INCOMPLETE=/var/lib/grookai/mee/audits/<exact-plan>.json
+```
+
+The droplet worker passes this as `--frozen-dry-run-if-incomplete`. The pipeline uses it only while the latest cursor exists and has `cycle_complete=false`. Once that cycle completes, the option is ignored and the next scheduled run creates a fresh deterministic plan. The conditional and strict frozen-plan options cannot be combined.
+
 Advance to 500 and then 4,000 only after selected calls, acquired rows, warehouse rows, candidate rows, rollups, cursor movement, retries, failures, disk use, and phase ledgers reconcile.
 
 Strict apply and run-scoped readback must use the source acquisition run key, not the outer pipeline run key. A run-scoped readback with any finding is a critical failure even when its SQL completed successfully.

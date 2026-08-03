@@ -64,6 +64,9 @@ function parseArgs(argv) {
       ?? `MEE-NIGHTLY-${new Date().toISOString().slice(0, 10)}`,
     frozenDryRunPath: argv.find((arg) => arg.startsWith("--frozen-dry-run="))?.slice("--frozen-dry-run=".length)
       ?? null,
+    frozenDryRunIfIncompletePath: argv
+      .find((arg) => arg.startsWith("--frozen-dry-run-if-incomplete="))
+      ?.slice("--frozen-dry-run-if-incomplete=".length) ?? null,
     callCeiling,
     acquisitionMode: process.env.MEE_NIGHTLY_ACQUISITION_MODE ?? "rotating_cycle",
     minimumFreeBytes: Number.parseInt(
@@ -246,6 +249,15 @@ function resolveFrozenDryRunPathV2(inputPath) {
   }
   if (!existsSync(resolved)) throw new Error(`frozen dry-run plan is missing: ${resolved}`);
   return resolved;
+}
+
+export function selectFrozenDryRunPathV2({ strictPath, conditionalPath, previousCursor } = {}) {
+  if (strictPath && conditionalPath) {
+    throw new Error("--frozen-dry-run and --frozen-dry-run-if-incomplete cannot be used together");
+  }
+  if (strictPath) return strictPath;
+  if (conditionalPath && previousCursor && previousCursor.cycle_complete === false) return conditionalPath;
+  return null;
 }
 
 export function validateFrozenDryRunPlanV2({ plan, previousCursor } = {}) {
@@ -482,16 +494,15 @@ async function main() {
       findings: [],
     };
 
-  const frozenDryRunPath = args.frozenDryRunPath
+  const strictFrozenDryRunPath = args.frozenDryRunPath
     ? resolveFrozenDryRunPathV2(args.frozenDryRunPath)
     : null;
-  if (
-    frozenDryRunPath
-    && state.phases?.dry_run_plan?.report_path
-    && path.resolve(state.phases.dry_run_plan.report_path) !== path.resolve(frozenDryRunPath)
-  ) {
-    throw new Error("frozen dry-run plan does not match the existing pipeline state");
-  }
+  const conditionalFrozenDryRunInput = args.frozenDryRunIfIncompletePath;
+  selectFrozenDryRunPathV2({
+    strictPath: strictFrozenDryRunPath,
+    conditionalPath: conditionalFrozenDryRunInput,
+    previousCursor: null,
+  });
 
   if (!args.run) {
     const report = {
@@ -500,6 +511,8 @@ async function main() {
       run_key: state.run_key,
       artifact_root: AUDIT_ROOT,
       call_ceiling: args.callCeiling,
+      strict_frozen_dry_run_present: Boolean(strictFrozenDryRunPath),
+      conditional_frozen_dry_run_present: Boolean(conditionalFrozenDryRunInput),
       provider_calls: false,
       db_writes: false,
       phases: [
@@ -546,6 +559,21 @@ async function main() {
   }
 
   let previousCursor = state.cursor ? null : await latestCursor();
+  const selectedFrozenDryRunInput = selectFrozenDryRunPathV2({
+    strictPath: strictFrozenDryRunPath,
+    conditionalPath: conditionalFrozenDryRunInput,
+    previousCursor,
+  });
+  const frozenDryRunPath = selectedFrozenDryRunInput
+    ? resolveFrozenDryRunPathV2(selectedFrozenDryRunInput)
+    : null;
+  if (
+    frozenDryRunPath
+    && state.phases?.dry_run_plan?.report_path
+    && path.resolve(state.phases.dry_run_plan.report_path) !== path.resolve(frozenDryRunPath)
+  ) {
+    throw new Error("frozen dry-run plan does not match the existing pipeline state");
+  }
   let resumed = phaseSucceeded(state, "dry_run_plan");
   if (!resumed) {
     const phase = frozenDryRunPath

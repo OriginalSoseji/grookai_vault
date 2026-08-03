@@ -69,6 +69,7 @@ const PHASES = [
       "--run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
+      "{frozenDryRunIfIncomplete}",
     ],
     dryRunCommand: [
       "node",
@@ -76,6 +77,7 @@ const PHASES = [
       "--dry-run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
+      "{frozenDryRunIfIncomplete}",
     ],
     providerCalls: true,
     dbWrites: true,
@@ -236,17 +238,23 @@ function parseArgs(argv) {
     enableRunOnlyMaintenance:
       argv.includes("--enable-run-only-maintenance") || process.env.MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE === "1",
     providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
+    frozenDryRunIfIncomplete: process.env.MEE_NIGHTLY_FROZEN_DRY_RUN_IF_INCOMPLETE?.trim() || null,
     maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
   };
 }
 
 function fillCommand(command, args) {
-  return command.map((part) =>
-    part
+  return command.flatMap((part) => {
+    if (part === "{frozenDryRunIfIncomplete}") {
+      return args.frozenDryRunIfIncomplete
+        ? [`--frozen-dry-run-if-incomplete=${args.frozenDryRunIfIncomplete}`]
+        : [];
+    }
+    return [part
       .replace("{callCeiling}", String(args.callCeiling))
       .replace("{referenceLimit}", String(args.referenceLimit))
-      .replace("{runKey}", args.runKey),
-  );
+      .replace("{runKey}", args.runKey)];
+  });
 }
 
 function executionCommand(command) {
@@ -671,6 +679,7 @@ function preflight(args) {
       SUPABASE_SECRET_KEY_present: Boolean(process.env.SUPABASE_SECRET_KEY),
       SUPABASE_DB_URL_present: Boolean(process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL),
       MEE_NIGHTLY_PROVIDER_CALLS_ENABLED: args.providerCallsEnabled,
+      MEE_NIGHTLY_FROZEN_DRY_RUN_IF_INCOMPLETE_present: Boolean(args.frozenDryRunIfIncomplete),
       MEE_NIGHTLY_NORMALIZATION_ONLY: args.normalizationOnly,
       MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE: args.enableRunOnlyMaintenance,
       MEE_NIGHTLY_MAX_CALL_CEILING: args.maxCallCeiling,
