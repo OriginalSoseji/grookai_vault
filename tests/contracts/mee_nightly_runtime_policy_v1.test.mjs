@@ -112,6 +112,20 @@ test("operational recovery indexes price events by their observation backbone", 
   assert.doesNotMatch(migration, /\bdrop\s+table\b/i);
 });
 
+test("operational recovery supports index-only event evidence readback", () => {
+  const migration = readFileSync(
+    new URL("../../supabase/migrations/20260803021000_mee_price_event_readback_index_v1.sql", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(migration, /market_listing_price_events_observation_evidence_idx/);
+  assert.match(migration, /observation_id/);
+  assert.match(migration, /event_payload ->> 'listing_evidence_class'/);
+  assert.doesNotMatch(migration, /\bdelete\s+from\b/i);
+  assert.doesNotMatch(migration, /\btruncate\b/i);
+  assert.doesNotMatch(migration, /\bdrop\s+table\b/i);
+});
+
 test("operational recovery includes a read-only schema and security readback", () => {
   const readback = readFileSync(
     new URL("../../docs/sql/mee_operational_recovery_v1_readback.sql", import.meta.url),
@@ -119,6 +133,7 @@ test("operational recovery includes a read-only schema and security readback", (
   );
   assert.match(readback, /market_listing_observations_run_id_idx/);
   assert.match(readback, /market_listing_price_events_observation_idx/);
+  assert.match(readback, /market_listing_price_events_observation_evidence_idx/);
   assert.match(readback, /market_listing_acquisition_cursor_events/);
   assert.match(readback, /has_table_privilege\('anon'/);
   assert.match(readback, /has_table_privilege\('service_role'/);
