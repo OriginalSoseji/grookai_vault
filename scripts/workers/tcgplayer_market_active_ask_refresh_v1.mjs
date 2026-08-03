@@ -85,7 +85,11 @@ async function readback(client) {
          count(*) filter (
            where currency <> 'USD'
               or lowest_active_ask is null
-              or lowest_active_ask < 0
+              or lowest_active_ask <= 0
+              or median_active_ask is null
+              or round(median_active_ask, 2) < round(lowest_active_ask, 2)
+              or listing_count < 1
+              or seller_count < 0
          )::integer as invalid_row_count,
          count(*) filter (
            where observed_at < now() - interval '72 hours'

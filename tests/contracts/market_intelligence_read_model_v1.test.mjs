@@ -9,6 +9,9 @@ function source(relativePath) {
 const migration = source(
   "supabase/migrations/20260803183000_market_intelligence_read_model_v1.sql",
 );
+const precisionMigration = source(
+  "supabase/migrations/20260803190000_active_ask_currency_precision_v1.sql",
+);
 const readback = source("docs/sql/market_intelligence_read_model_v1_readback.sql");
 const contract = source("docs/contracts/MARKET_INTELLIGENCE_READ_MODEL_V1.md");
 const helper = source(
@@ -95,4 +98,17 @@ test("active-ask snapshot refresh uses a bounded hardened database session", () 
   assert.match(refreshWorker, /statement_timeout/);
   assert.match(refreshWorker, /enable_nestloop/);
   assert.match(refreshWorker, /refresh materialized view concurrently public\.mv_market_listing_active_ask_current_v1/i);
+  assert.match(refreshWorker, /round\(median_active_ask, 2\) < round\(lowest_active_ask, 2\)/);
+});
+
+test("active asks are normalized to positive USD currency precision before snapshotting", () => {
+  assert.match(precisionMigration, /observation\.total_ask_price > 0/);
+  assert.match(
+    precisionMigration,
+    /round\(min\(total_active_ask_price\)|round\(min\(total_ask_price\)::numeric, 2\)/,
+  );
+  assert.match(precisionMigration, /round\([\s\S]*percentile_cont\(0\.5\)/);
+  assert.doesNotMatch(precisionMigration, /update public\./i);
+  assert.doesNotMatch(precisionMigration, /delete from public\./i);
+  assert.doesNotMatch(precisionMigration, /insert into public\./i);
 });

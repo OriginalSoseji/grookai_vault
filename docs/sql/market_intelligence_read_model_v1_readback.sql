@@ -27,7 +27,7 @@ select
     where lowest_active_ask is null
        or median_active_ask is null
        or lowest_active_ask <= 0
-       or median_active_ask < lowest_active_ask
+       or round(median_active_ask, 2) < round(lowest_active_ask, 2)
        or listing_count < 1
        or seller_count < 0
   )::bigint as invalid_rows,
