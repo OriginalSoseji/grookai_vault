@@ -47,8 +47,8 @@ async function runSql(sql) {
     const client = new Client({
       connectionString: process.env.SUPABASE_DB_URL,
       connectionTimeoutMillis: 15_000,
-      query_timeout: 180_000,
-      statement_timeout: 180_000,
+      query_timeout: 300_000,
+      statement_timeout: 300_000,
       ssl: { rejectUnauthorized: false },
     });
     await client.connect();
@@ -183,6 +183,24 @@ const queryJoinFilter = args.runKey
   ? `join scoped_run sr on sr.id = qc.acquisition_run_id`
   : "";
 
+const eventSql = `
+with scoped_run as (
+  select id
+  from public.market_listing_acquisition_runs
+  ${runFilter}
+)
+select jsonb_build_object(
+  'total', count(*),
+  'raw_single', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'raw_single'),
+  'slab', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'slab'),
+  'excluded_or_ambiguous', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'excluded_or_ambiguous'),
+  'without_evidence_class', count(*) filter (where pe.event_payload->>'listing_evidence_class' is null)
+) as payload
+from public.market_listing_price_events pe
+join public.market_listing_observations o on o.id = pe.observation_id
+${runJoinFilter};
+`;
+
 const sql = `
 with scoped_run as (
   select *
@@ -209,12 +227,9 @@ run_counts as (
   ) s
 ),
 event_base as (
-  select
-    pe.*,
-    pe.event_payload->>'listing_evidence_class' as evidence_class
-  from public.market_listing_price_events pe
-  join public.market_listing_observations o on o.id = pe.observation_id
-  ${runJoinFilter}
+  -- Price-event aggregation runs separately so this boundary query remains bounded.
+  select null::text as evidence_class
+  where false
 ),
 candidate_base as (
   select candidate.*
@@ -340,10 +355,15 @@ select jsonb_build_object(
 )::text as report;
 `;
 
+const eventResultRows = parseSupabaseRows(await runSql(eventSql));
+const eventCounts = eventResultRows?.[0]?.payload;
+if (!eventCounts) throw new Error("[market-listing-nightly-readback] failed to parse event SQL report");
 const queryResultRows = parseSupabaseRows(await runSql(sql));
 const rawReport = queryResultRows?.[0]?.report;
 if (!rawReport) throw new Error("[market-listing-nightly-readback] failed to parse SQL report");
 const parsed = JSON.parse(rawReport);
+parsed.event_counts = typeof eventCounts === "string" ? JSON.parse(eventCounts) : eventCounts;
+parsed.warehouse_counts.market_listing_price_events = parsed.event_counts.total;
 
 const findings = [];
 const strict = parsed.strict_rollup_state;
