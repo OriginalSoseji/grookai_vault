@@ -140,15 +140,17 @@ function invokePowerShellJson(script, input) {
   });
 }
 
-function buildSearchUrl(request, { resultLimit }) {
+export function buildEbayBrowseSearchUrl(request, { resultLimit }) {
   const url = new URL("/buy/browse/v1/item_summary/search", browseBaseUrl());
   url.searchParams.set("q", request.query_text);
   url.searchParams.set("limit", String(Math.max(1, Math.min(Number(resultLimit) || DEFAULT_SMOKE_RESULT_LIMIT, MAX_EBAY_BROWSE_RESULT_LIMIT))));
   if (Number.isFinite(Number(request.offset)) && Number(request.offset) > 0) {
     url.searchParams.set("offset", String(Number(request.offset)));
   }
-  url.searchParams.set("category_ids", "183454");
-  url.searchParams.set("fieldgroups", "MATCHING_ITEMS");
+  const categoryIds = [...new Set((request?.query_filters?.category_ids ?? []).map(String).filter(Boolean))];
+  if (categoryIds.length > 0) url.searchParams.set("category_ids", categoryIds.join(","));
+  const fieldgroups = request?.query_filters?.fieldgroups ?? ["MATCHING_ITEMS"];
+  if (fieldgroups.length > 0) url.searchParams.set("fieldgroups", fieldgroups.join(","));
   return url;
 }
 
@@ -173,7 +175,9 @@ if ($env:EBAY_BROWSE_ACCESS_TOKEN) {
 }
 $encodedQuery = [uri]::EscapeDataString([string]$payload.query)
 $offsetPart = if ($payload.offset -and $payload.offset -gt 0) { "&offset=$($payload.offset)" } else { "" }
-$searchUrl = "$base/buy/browse/v1/item_summary/search?q=$encodedQuery&limit=$($payload.limit)$offsetPart&category_ids=183454&fieldgroups=MATCHING_ITEMS"
+$categoryPart = if ($payload.category_ids -and $payload.category_ids.Count -gt 0) { "&category_ids=$([uri]::EscapeDataString(($payload.category_ids -join ',')))" } else { "" }
+$fieldgroupPart = if ($payload.fieldgroups -and $payload.fieldgroups.Count -gt 0) { "&fieldgroups=$([uri]::EscapeDataString(($payload.fieldgroups -join ',')))" } else { "" }
+$searchUrl = "$base/buy/browse/v1/item_summary/search?q=$encodedQuery&limit=$($payload.limit)$offsetPart$categoryPart$fieldgroupPart"
 $statusFormat = [Environment]::NewLine + '__HTTP_STATUS__:%{http_code}'
 $curlArgs = @(
   '-sS',
@@ -212,6 +216,8 @@ $payloadBase64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($conte
     query: request.query_text,
     offset: Number.isFinite(Number(request.offset)) ? Number(request.offset) : 0,
     limit: Math.max(1, Math.min(Number(resultLimit) || DEFAULT_SMOKE_RESULT_LIMIT, MAX_EBAY_BROWSE_RESULT_LIMIT)),
+    category_ids: request?.query_filters?.category_ids ?? [],
+    fieldgroups: request?.query_filters?.fieldgroups ?? ["MATCHING_ITEMS"],
   });
   return {
     source_fetch_url: fallback.source_fetch_url,
@@ -247,6 +253,11 @@ function projectObservation({ request, item, observedAt }) {
     total_ask_price: total,
     currency: price.currency ?? shipping.currency ?? null,
     condition_text: item?.condition ?? item?.conditionDescription ?? null,
+    provider_condition_id: item?.conditionId ? String(item.conditionId) : null,
+    provider_categories: Array.isArray(item?.categories) ? item.categories.map((category) => ({
+      category_id: category?.categoryId ? String(category.categoryId) : null,
+      category_name: category?.categoryName ?? null,
+    })) : [],
     item_location: item?.itemLocation?.country ?? null,
     seller_key: item?.seller?.username ?? item?.seller?.sellerAccountType ?? null,
     observed_at: observedAt,
@@ -269,12 +280,15 @@ function projectObservation({ request, item, observedAt }) {
       set_name: request.target_hints?.set_name ?? null,
       shelf_intelligence_allowed: request.target_hints?.shelf_intelligence_allowed === true,
       query_score: request.target_hints?.query_score ?? null,
+      acquisition_product_kind: request.acquisition_product_kind ?? request.target_hints?.acquisition_product_kind ?? null,
+      canonical_assignment_status: request.target_hints?.canonical_assignment_status ?? null,
+      provider_category_ids: request.query_filters?.category_ids ?? [],
     },
   };
 }
 
 export async function fetchEbayBrowseSummary(request, { resultLimit, observedAt }) {
-  const searchUrl = buildSearchUrl(request, { resultLimit });
+  const searchUrl = buildEbayBrowseSearchUrl(request, { resultLimit });
   let payload = null;
   let responseStatus = null;
   let sourceFetchUrl = searchUrl.toString();

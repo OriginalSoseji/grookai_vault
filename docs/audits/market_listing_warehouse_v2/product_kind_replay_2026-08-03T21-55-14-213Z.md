@@ -1,0 +1,343 @@
+# Market Listing Product Kind V2 Offline Replay
+
+- Source rows: `1000`
+- Provider calls: `0`
+- Database writes: `0`
+- Canonical assignments: `0`
+
+## Product Kinds
+
+```json
+{
+  "accessory": 36,
+  "graded_single": 18,
+  "lot_or_bundle": 186,
+  "raw_single": 760
+}
+```
+
+## Sealed Phrase Repair
+
+- V1 rows carrying a sealed exclusion flag: `56`
+- Reclassified as raw/graded card evidence: `49`
+- Reclassified as sealed product evidence: `0`
+- Rows with independently preserved sealed-packaging evidence: `43`
+
+## Boundary
+
+- This replay does not prove sealed-category coverage because the V1 source used the individual-card category.
+- It proves the V2 classifier preserves likely sealed products without treating every sealed phrase as a sealed product.
+- Exact card printing, grade identity, and sealed product identity remain deferred.
+
+## Samples
+
+```json
+{
+  "raw_single": [
+    {
+      "source_listing_id": "v1|377169644388|0",
+      "title": "Hoopa 155/XY-P Movie Promo Full Art Holo Foil Japanese Pokemon Single Card VG",
+      "product_kind": "raw_single",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "individual_card_acquisition_context",
+          "value": "183454",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|157999291863|0",
+      "title": "Pokemon TCG Fernando Mendoza V Basic English Standard Card 999 HP Single",
+      "product_kind": "raw_single",
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "signal": "individual_card_acquisition_context",
+          "value": "183454",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|127920720665|0",
+      "title": "Pokemon TCG Archeops 051/086 (Single Card)- PokAcmon Fossil Musuem Promo-Unopened",
+      "product_kind": "raw_single",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "individual_card_acquisition_context",
+          "value": "183454",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|116952578763|0",
+      "title": "Espurr Pokemon Single Strike Master card Japanese 025/070",
+      "product_kind": "raw_single",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "individual_card_acquisition_context",
+          "value": "183454",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|157989185355|0",
+      "title": "Tyranitar V 077/070 SR Full Art S5I Single Strike Pokemon Card Korean LP/MP",
+      "product_kind": "raw_single",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "individual_card_acquisition_context",
+          "value": "183454",
+          "strength": "medium"
+        }
+      ]
+    }
+  ],
+  "lot_or_bundle": [
+    {
+      "source_listing_id": "v1|145302991518|444499562167",
+      "title": "Pokemon VMAX - Choose Your Card - All Available, Ultra Rare, Full Art Holo TCG",
+      "product_kind": "lot_or_bundle",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "signal": "lot_or_bundle_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|227146440373|526580677918",
+      "title": "Pokemon Trading Card Sword & Shield VMax: Choose Your Card",
+      "product_kind": "lot_or_bundle",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "signal": "lot_or_bundle_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|116639780882|416940108647",
+      "title": "Japanese Pokemon Art Rare, RRR, VMAX, VStar: Choose Your Card! [US SELLER]",
+      "product_kind": "lot_or_bundle",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "signal": "lot_or_bundle_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|145272939298|444460561756",
+      "title": "Pokemon V - Choose Your Card - Ultra Rare, Full Art Holo TCG - All Available NM",
+      "product_kind": "lot_or_bundle",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "signal": "lot_or_bundle_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|156937951391|458396615395",
+      "title": "Pokemon Card VMAX VSTAR - Choose Your Card! Full Art Ultra Rare Cards! NM",
+      "product_kind": "lot_or_bundle",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "signal": "lot_or_bundle_title_language",
+          "strength": "high"
+        }
+      ]
+    }
+  ],
+  "accessory": [
+    {
+      "source_listing_id": "v1|236511964371|0",
+      "title": "Single Pokemon Card Sleeve (1) - 2025 Pokemon Center Kagawa Japan Original",
+      "product_kind": "accessory",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "accessory_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|275229275626|0",
+      "title": "1X Single 2021 Pokemon Center Dragon Takeover Dragonite Goodra TCG Card Sleeve",
+      "product_kind": "accessory",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "accessory_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|275229277199|0",
+      "title": "1X Single 2021 Pokemon Center Eevee Breakaway Eeveelutions TCG Card Sleeve",
+      "product_kind": "accessory",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "accessory_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|137208705832|0",
+      "title": "Pokemon Etc.. Single Card Guard! ������",
+      "product_kind": "accessory",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "accessory_title_language",
+          "strength": "high"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|275684730238|0",
+      "title": "1X Single Official 2016 Steam Siege ETB Volcanion Pokemon Card Sleeve",
+      "product_kind": "accessory",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "signal": "accessory_title_language",
+          "strength": "high"
+        }
+      ]
+    }
+  ],
+  "graded_single": [
+    {
+      "source_listing_id": "v1|366502252908|0",
+      "title": "Pokemon TCG Trading Card Single - Back Shown - Pokemon Franchise Collectible",
+      "product_kind": "graded_single",
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "signal": "provider_graded_condition",
+          "value": "2750",
+          "strength": "high"
+        },
+        {
+          "signal": "graded_title_language",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|358460091312|0",
+      "title": "PSA 10 Tyranitar V 077/070 SR SA Single Strike Master 2021 Pokemon Card Japanese",
+      "product_kind": "graded_single",
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "signal": "provider_graded_condition",
+          "value": "2750",
+          "strength": "high"
+        },
+        {
+          "signal": "recognized_grader",
+          "value": [
+            "psa"
+          ],
+          "strength": "high"
+        },
+        {
+          "signal": "graded_title_language",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|168366641817|0",
+      "title": "CGC 10 Pokemon Graded Card Mystery Slab Bag Pristine 10 Hits + Holo",
+      "product_kind": "graded_single",
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "signal": "provider_graded_condition",
+          "value": "2750",
+          "strength": "high"
+        },
+        {
+          "signal": "recognized_grader",
+          "value": [
+            "cgc"
+          ],
+          "strength": "high"
+        },
+        {
+          "signal": "graded_title_language",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|358499988910|0",
+      "title": "PSA 10 Gengar Reverse Holo 094/165 SV2a Pokemon Card 151 Game Japanese #4",
+      "product_kind": "graded_single",
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "signal": "provider_graded_condition",
+          "value": "2750",
+          "strength": "high"
+        },
+        {
+          "signal": "recognized_grader",
+          "value": [
+            "psa"
+          ],
+          "strength": "high"
+        },
+        {
+          "signal": "graded_title_language",
+          "strength": "medium"
+        }
+      ]
+    },
+    {
+      "source_listing_id": "v1|188560537200|0",
+      "title": "2020 Pokemon IDN SM Promo Toys Kingdom Card #172 Pikachu CGC Pristine 10 ",
+      "product_kind": "graded_single",
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "signal": "provider_graded_condition",
+          "value": "2750",
+          "strength": "high"
+        },
+        {
+          "signal": "recognized_grader",
+          "value": [
+            "cgc"
+          ],
+          "strength": "high"
+        },
+        {
+          "signal": "graded_title_language",
+          "strength": "medium"
+        }
+      ]
+    }
+  ]
+}
+```
