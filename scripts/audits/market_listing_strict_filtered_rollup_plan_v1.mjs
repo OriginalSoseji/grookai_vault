@@ -18,6 +18,7 @@ const PACKAGE_ID = "MARKET-LISTING-STRICT-FILTERED-ROLLUP-PLAN-V1";
 const SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT = "7f5e73c2c9504291194b6f7ff269a3145ad6c9c1e075ceb012a79d3fa1417eec";
 const CANDIDATE_VERSION = "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1";
 const PAGE_SIZE = 1000;
+const DIRECT_FETCH_SIZE = 5000;
 const { Client } = pg;
 
 function parseArgs(argv) {
@@ -214,47 +215,49 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
     ssl: pgSslConfig(connectionString),
   });
   const rows = [];
-  let lastObservationId = null;
-  let lastCandidateId = null;
   await client.connect();
   try {
+    await client.query("begin read only");
+    await client.query(
+      `declare strict_candidate_rows_cursor no scroll cursor for
+       select
+         candidate.id,
+         observation.id as source_observation_id,
+         candidate.card_print_id,
+         candidate.gv_id,
+         candidate.source_listing_id,
+         candidate.title_features,
+         candidate.exclusion_flags,
+         candidate.match_confidence,
+         jsonb_build_object(
+           'listing_title', observation.listing_title,
+           'total_ask_price', observation.total_ask_price,
+           'currency', observation.currency,
+           'seller_key', observation.seller_key,
+           'condition_text', observation.condition_text
+         ) as obs
+       from public.market_listing_observations observation
+       join public.market_listing_card_candidates candidate
+         on candidate.observation_id = observation.id
+      where observation.acquisition_run_id = $1::uuid
+        and candidate.match_version = $2
+      order by observation.id asc, candidate.id asc`,
+      [acquisitionRunId, CANDIDATE_VERSION],
+    );
     for (;;) {
-      const result = await client.query(
-        `select
-           candidate.id,
-           observation.id as source_observation_id,
-           candidate.card_print_id,
-           candidate.gv_id,
-           candidate.source_listing_id,
-           candidate.title_features,
-           candidate.exclusion_flags,
-           candidate.match_confidence,
-           jsonb_build_object(
-             'listing_title', observation.listing_title,
-             'total_ask_price', observation.total_ask_price,
-             'currency', observation.currency,
-             'seller_key', observation.seller_key,
-             'condition_text', observation.condition_text
-           ) as obs
-         from public.market_listing_observations observation
-         join public.market_listing_card_candidates candidate
-           on candidate.observation_id = observation.id
-        where observation.acquisition_run_id = $1::uuid
-          and candidate.match_version = $2
-          and (
-            $3::uuid is null
-            or (observation.id, candidate.id) > ($3::uuid, $4::uuid)
-          )
-        order by observation.id asc, candidate.id asc
-        limit $5`,
-        [acquisitionRunId, CANDIDATE_VERSION, lastObservationId, lastCandidateId, PAGE_SIZE],
-      );
+      const result = await client.query(`fetch forward ${DIRECT_FETCH_SIZE} from strict_candidate_rows_cursor`);
       if (!result.rows.length) break;
-      lastObservationId = result.rows.at(-1).source_observation_id;
-      lastCandidateId = result.rows.at(-1).id;
       rows.push(...result.rows);
-      if (result.rows.length < PAGE_SIZE) break;
+      if (rows.length % 50_000 === 0) {
+        console.error(`[market-listing-strict-filtered-rollup-plan] loaded ${rows.length} run-scoped candidates`);
+      }
+      if (result.rows.length < DIRECT_FETCH_SIZE) break;
     }
+    await client.query("close strict_candidate_rows_cursor");
+    await client.query("commit");
+  } catch (error) {
+    await client.query("rollback").catch(() => {});
+    throw error;
   } finally {
     await client.end();
   }
@@ -320,10 +323,49 @@ async function fetchCandidateRows(supabase, acquisitionRunId) {
   ));
 }
 
+async function fetchCardMetadataWithPg(ids) {
+  const connectionString = directDbUrl();
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: pgSslConfig(connectionString),
+  });
+  await client.connect();
+  try {
+    const result = await client.query(
+      `select
+         card.id,
+         card.gv_id,
+         card.name,
+         card.set_code,
+         card.number,
+         card.number_plain,
+         card.printed_set_abbrev,
+         card.printed_identity_modifier,
+         card.identity_domain,
+         set_row.name as set_name
+       from public.card_prints card
+       left join public.sets set_row on set_row.id = card.set_id
+      where card.id = any($1::uuid[])`,
+      [ids],
+    );
+    return result.rows;
+  } finally {
+    await client.end();
+  }
+}
+
 async function fetchCardMetadata(candidateRows) {
-  const supabase = createBackendClient();
   const ids = [...new Set(candidateRows.map((row) => row.card_print_id).filter(Boolean))];
   const map = new Map();
+  if (directDbUrl()) {
+    for (const row of await fetchCardMetadataWithPg(ids)) map.set(row.id, row);
+    return map;
+  }
+
+  const supabase = createBackendClient();
   for (let index = 0; index < ids.length; index += 200) {
     const chunk = ids.slice(index, index + 200);
     const { data } = await supabaseReadWithRetry(`card metadata page ${index}-${index + chunk.length - 1}`, () => supabase
