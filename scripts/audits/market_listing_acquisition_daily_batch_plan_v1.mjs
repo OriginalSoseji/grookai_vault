@@ -27,6 +27,15 @@ function parseArgs(argv) {
     batchOrdinal: value("batch-ordinal", 1),
     startIndex: value("start-index", 0),
     callLimit: value("call-limit", null),
+    adaptiveYield: argv.includes("--adaptive-yield"),
+    candidateMultiplier: value("candidate-multiplier", 3),
+    discoveryCallShare: (() => {
+      const raw = argv.find((arg) => arg.startsWith("--discovery-call-share="))?.slice("--discovery-call-share=".length);
+      if (raw === undefined) return 0.9;
+      const parsed = Number.parseFloat(raw);
+      if (!Number.isFinite(parsed) || parsed < 0 || parsed > 1) throw new Error("[market-listing-daily-batch] --discovery-call-share must be between 0 and 1");
+      return parsed;
+    })(),
   };
 }
 
@@ -46,7 +55,7 @@ function readDryRunPlan(filePath) {
 }
 
 function approvalPrompt(report) {
-  return `Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-FETCH-V1 acquisition only. Package fingerprint: ${report.package_fingerprint_sha256}. Request manifest hash: ${report.request_manifest_hash_sha256}. Source dry-run fingerprint: ${report.source_package_fingerprint_sha256}. Schema migration hash: ${report.schema_migration_hash_sha256}. Scope: fetch ${report.summary.batch_request_count} prioritized ebay_active Browse API request pages from the local MEE-11K daily batch plan only and write local acquisition artifacts only, including slab listings classified separately from raw singles. No DB writes. No market_listing_* writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.`;
+  return `Approve real MARKET-LISTING-ACQUISITION-DAILY-BATCH-FETCH-V1 acquisition only. Package fingerprint: ${report.package_fingerprint_sha256}. Request manifest hash: ${report.request_manifest_hash_sha256}. Source dry-run fingerprint: ${report.source_package_fingerprint_sha256}. Schema migration hash: ${report.schema_migration_hash_sha256}. Scope: inspect ${report.summary.candidate_request_count} frozen ebay_active candidate pages, make no more than ${report.summary.provider_call_ceiling} Browse API calls, stop exhausted query families, and write local acquisition artifacts only. No DB writes. No market_listing_* writes. No pricing_observations writes. No ebay_active_prices_latest writes. No public pricing views. No app-visible pricing. No public price rollups. No identity-table writes. No vault writes. No image writes. No deletes. No merges. No global apply.`;
 }
 
 function renderMarkdown(report) {
@@ -62,6 +71,9 @@ function renderMarkdown(report) {
     `- Start index: \`${report.summary.start_index}\``,
     `- Next start index: \`${report.summary.next_start_index}\``,
     `- Batch request count: \`${report.summary.batch_request_count}\``,
+    `- Provider call ceiling: \`${report.summary.provider_call_ceiling}\``,
+    `- Adaptive yield: \`${report.summary.adaptive_yield}\``,
+    `- Discovery call share: \`${report.summary.discovery_call_share}\``,
     `- Remaining request count: \`${report.summary.remaining_request_count}\``,
     `- Estimated max listing envelope: \`${report.summary.estimated_max_listing_envelope}\``,
     "",
@@ -122,6 +134,9 @@ if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.res
       batchOrdinal: args.batchOrdinal,
       startIndex: args.startIndex,
       callLimit: args.callLimit,
+      adaptiveYield: args.adaptiveYield,
+      candidateMultiplier: args.candidateMultiplier,
+      discoveryCallShare: args.discoveryCallShare,
     });
     const artifacts = writeReport(report);
     console.log(JSON.stringify({

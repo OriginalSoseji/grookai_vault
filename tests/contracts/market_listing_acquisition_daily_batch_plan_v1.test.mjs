@@ -87,6 +87,37 @@ test("MEE-11K can continue from a later start index", () => {
   assert.equal(report.summary.rarity_priority_counts.low_priority_common_rare, 2);
 });
 
+test("MEE-11K adaptive mode freezes extra candidates while preserving the provider call ceiling", () => {
+  const source = dryRunPlan();
+  source.summary.daily_call_ceiling = 4;
+  source.acquisition_requests = [
+    request(1, { strategy: "set_shelf_broad", offset: 0 }),
+    request(2, { strategy: "set_shelf_broad", offset: 200 }),
+    request(3, { strategy: "set_shelf_singles", offset: 0 }),
+    request(4, { strategy: "set_shelf_sealed", offset: 0 }),
+    request(5, { strategy: "strict_identity", offset: 0 }),
+    request(6, { strategy: "variant_finish", offset: 0 }),
+  ];
+
+  const report = buildMarketListingAcquisitionDailyBatchPlanV1({
+    dryRunPlan: source,
+    callLimit: 4,
+    adaptiveYield: true,
+    candidateMultiplier: 2,
+    discoveryCallShare: 0.75,
+    generatedAt: "2026-08-03T00:00:00.000Z",
+  });
+
+  assert.equal(report.mode, "adaptive_daily_batch_plan_only_no_provider_calls_no_writes");
+  assert.equal(report.summary.provider_call_ceiling, 4);
+  assert.equal(report.summary.candidate_request_count, 5);
+  assert.equal(report.summary.provider_call_lane_ceilings.discovery, 3);
+  assert.equal(report.summary.provider_call_lane_ceilings.precision, 1);
+  assert.equal(report.summary.disabled_strategy_counts.set_shelf_sealed, 1);
+  assert.equal(report.acquisition_requests.some((entry) => entry.strategy === "set_shelf_sealed"), false);
+  assert.equal(report.summary.estimated_max_listing_envelope, 800);
+});
+
 test("MEE-11K audit script does not fetch providers or write pricing surfaces", () => {
   const script = readFileSync(new URL("../../scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs", import.meta.url), "utf8");
 

@@ -28,7 +28,7 @@ const PHASES = [
   },
   {
     key: "daily_batch_plan",
-    command: ["node", "scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs", "--call-limit={callCeiling}"],
+    command: ["node", "scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs", "--call-limit={callCeiling}", "--adaptive-yield", "--candidate-multiplier=3", "--discovery-call-share=0.9"],
     provider_calls: false,
     db_writes: false,
   },

@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `MEE_ADAPTIVE_ACQUISITION_YIELD_V1_20260803` — `2026-08-03` — Offline-proven adaptive market-listing scheduler: exhausted-page replacement, 90/10 discovery/precision budgets, low-yield shelf removal, 7,031 real-corpus candidates behind a 4,000-call ceiling, and a 714,081-row / 89.26% projected envelope before the required 200-call provider canary
 - `CODEQL_URL_AUTHORITY_REMEDIATION_20260731_V1` — `2026-07-31` — Governed repair for 43 high-severity URL/hostname findings: exact parsed authority checks, HTTPS-only API-key forwarding, explicit web-scheme resolution, tuple-safe PKMNCollectors fields, and removal of a legacy certificate-verification bypass
 - `CODEQL_TOOLING_REMEDIATION_20260731_V1_READBACK` — `2026-07-31` — Authoritative default-branch readback proving 32 owned-code findings closed, 46 immutable third-party HTML evidence findings were individually adjudicated, and 448 owned-code alerts remain without weakening scan coverage
 - `CODEQL_TOOLING_REMEDIATION_20260731_V1` — `2026-07-31` — First governed default-branch CodeQL backlog pass: repairs 31 high-severity findings in owned maintenance/acquisition code, preserves full owned-code scanning, and classifies 46 downloaded HTML alerts as non-executable third-party evidence without weakening runtime coverage

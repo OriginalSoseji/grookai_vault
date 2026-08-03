@@ -145,7 +145,7 @@ const phasePlan = [
     ordinal: 2,
     name: "Slice one bounded daily/nightly batch",
     status: "available",
-    command: `node scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs --call-limit=${args.callCeiling}`,
+    command: `node scripts/audits/market_listing_acquisition_daily_batch_plan_v1.mjs --call-limit=${args.callCeiling} --adaptive-yield --candidate-multiplier=3 --discovery-call-share=0.9`,
     boundary: "local artifact only; no provider calls; no DB writes",
   },
   {

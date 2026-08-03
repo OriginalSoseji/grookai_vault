@@ -171,3 +171,125 @@ test("MEE-11L allows dynamic nightly batch hashes only when explicitly requested
     rmSync(artifactDir, { recursive: true, force: true });
   }
 });
+
+test("MEE-11L adaptive fetch skips exhausted pages and spends the saved call on another candidate", async () => {
+  const artifactDir = mkdtempSync(path.join(tmpdir(), "mee-11l-adaptive-"));
+  try {
+    const base = batchPlan();
+    const discoveryRequest = (ordinal, queryKey, queryText, offset) => ({
+      ...base.acquisition_requests[0],
+      ordinal,
+      query_key: queryKey,
+      strategy: "set_shelf_broad",
+      query_text: queryText,
+      offset,
+      provider_call_lane: "discovery",
+      card_print_id: null,
+      card_printing_id: null,
+      gv_id: null,
+      printing_gv_id: null,
+    });
+    const precisionRequest = {
+      ...base.acquisition_requests[0],
+      ordinal: 4,
+      query_key: "precision-1",
+      provider_call_lane: "precision",
+      offset: 0,
+    };
+    const plan = {
+      ...base,
+      package_fingerprint_sha256: "dynamic-package",
+      request_manifest_hash_sha256: "dynamic-request-manifest",
+      source_package_fingerprint_sha256: "dynamic-source",
+      summary: {
+        adaptive_yield: true,
+        provider_call_ceiling: 3,
+        provider_call_lane_ceilings: { discovery: 2, precision: 1 },
+      },
+      acquisition_requests: [
+        discoveryRequest(1, "set-a-0", "Pokemon Set A", 0),
+        discoveryRequest(2, "set-a-200", "Pokemon Set A", 200),
+        discoveryRequest(3, "set-b-0", "Pokemon Set B", 0),
+        precisionRequest,
+      ],
+    };
+    const called = [];
+    const report = await buildMarketListingAcquisitionDailyBatchFetchV1({
+      batchPlan: plan,
+      artifactDir,
+      allowDynamicPlan: true,
+      generatedAt: "2026-08-03T00:00:00.000Z",
+      fetchListing: async (request) => {
+        called.push(request.query_key);
+        const shortFamily = request.query_text === "Pokemon Set A";
+        const itemCount = shortFamily ? 1 : 200;
+        return {
+          query_key: request.query_key,
+          source: "ebay_active",
+          provider_route: "ebay_browse_api",
+          response_status: 200,
+          provider_total: shortFamily ? 1 : 500,
+          fetched_item_count: itemCount,
+          payload_hash: `payload-${request.query_key}`,
+          raw_payload: { total: shortFamily ? 1 : 500 },
+          projected_observations: Array.from({ length: itemCount }, (_, index) => ({
+            source: "ebay_active",
+            source_listing_id: `${request.query_key}-${index}`,
+            listing_evidence_class: "raw_single",
+            ingestion_exclusion_flags: [],
+            target: request.card_print_id ? { card_print_id: request.card_print_id } : null,
+          })),
+        };
+      },
+    });
+
+    assert.deepEqual(called, ["set-a-0", "precision-1", "set-b-0"]);
+    assert.equal(report.summary.provider_call_count, 3);
+    assert.equal(report.summary.skipped_request_count, 1);
+    assert.equal(report.summary.skipped_reason_counts.short_page_exhausted, 1);
+    assert.equal(report.summary.provider_call_lane_counts.discovery, 2);
+    assert.equal(report.summary.provider_call_lane_counts.precision, 1);
+    assert.equal(readFileSync(report.artifacts.request_results_jsonl, "utf8").trim().split("\n").length, 3);
+    assert.match(readFileSync(report.artifacts.skipped_requests_jsonl, "utf8"), /"provider_call_made":false/);
+  } finally {
+    rmSync(artifactDir, { recursive: true, force: true });
+  }
+});
+
+test("MEE-11L adaptive fetch refuses disabled shelf strategies before provider calls", async () => {
+  const artifactDir = mkdtempSync(path.join(tmpdir(), "mee-11l-adaptive-disabled-"));
+  try {
+    const base = batchPlan();
+    const plan = {
+      ...base,
+      package_fingerprint_sha256: "dynamic-package",
+      request_manifest_hash_sha256: "dynamic-request-manifest",
+      source_package_fingerprint_sha256: "dynamic-source",
+      summary: {
+        adaptive_yield: true,
+        provider_call_ceiling: 1,
+        provider_call_lane_ceilings: { discovery: 1, precision: 0 },
+      },
+      acquisition_requests: [{
+        ...base.acquisition_requests[0],
+        strategy: "set_shelf_sealed",
+      }],
+    };
+    let providerCalls = 0;
+    const report = await buildMarketListingAcquisitionDailyBatchFetchV1({
+      batchPlan: plan,
+      artifactDir,
+      allowDynamicPlan: true,
+      fetchListing: async () => {
+        providerCalls += 1;
+        throw new Error("should not fetch");
+      },
+    });
+
+    assert.equal(providerCalls, 0);
+    assert.equal(report.summary.provider_call_count, 0);
+    assert.ok(report.findings.includes("adaptive_disabled_strategy_candidate_detected"));
+  } finally {
+    rmSync(artifactDir, { recursive: true, force: true });
+  }
+});

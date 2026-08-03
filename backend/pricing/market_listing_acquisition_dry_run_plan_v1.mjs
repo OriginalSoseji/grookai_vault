@@ -7,7 +7,7 @@ export const MARKET_LISTING_SCHEMA_PACKAGE_FINGERPRINT_V1 = "8d8f44b084cb19b4d6a
 export const DEFAULT_DAILY_CALL_CEILING = 4000;
 export const DEFAULT_MAX_RESULTS_PER_CALL = 200;
 export const DEFAULT_DRY_RUN_TARGET_LIMIT = 6000;
-export const DEFAULT_SET_SHELF_PAGE_BUDGET = 2400;
+export const DEFAULT_SET_SHELF_PAGE_BUDGET = 12000;
 export const DEFAULT_SET_SHELF_MAX_PAGES_PER_SET = 50;
 
 const HIGH_PRIORITY_SET_CODE_PATTERNS = [
@@ -217,24 +217,14 @@ function buildSetShelves(cards, { pageBudget, maxPagesPerSet, maxResultsPerCall 
   const requests = [];
   for (const set of shelves) {
     if (requests.length >= pageBudget) break;
-    const pageCount = Math.max(
-      1,
-      Math.min(
-        maxPagesPerSet,
-        Math.ceil((set.query_score + set.card_count * 8 + set.collector_count * 25) / 100),
-      ),
-    );
+    // Candidate planning is intentionally deeper than the call budget. The adaptive
+    // fetcher stops each family from provider totals and spends saved calls elsewhere.
+    const pageCount = maxPagesPerSet;
     const setQuery = compact(`Pokemon ${quote(set.set_name)}`);
     const setCardQuery = compact(`Pokemon ${quote(set.set_name)} card`);
-    const slabQuery = compact(`Pokemon ${quote(set.set_name)} PSA BGS CGC`);
-    const sealedQuery = compact(`Pokemon ${quote(set.set_name)} sealed booster box etb pack`);
-    const languageQuery = compact(`Pokemon ${quote(set.set_name)} Japanese Korean Chinese Spanish German`);
     const templates = [
-      { lane: "set_shelf_broad", query_text: setQuery, weight: 0.55 },
-      { lane: "set_shelf_singles", query_text: setCardQuery, weight: 0.25 },
-      { lane: "set_shelf_slabs", query_text: slabQuery, weight: 0.1 },
-      { lane: "set_shelf_sealed", query_text: sealedQuery, weight: 0.05 },
-      { lane: "set_shelf_language", query_text: languageQuery, weight: 0.05 },
+      { lane: "set_shelf_broad", query_text: setQuery, weight: 0.65 },
+      { lane: "set_shelf_singles", query_text: setCardQuery, weight: 0.35 },
     ].filter((template) => template.query_text);
 
     for (const template of templates) {
@@ -417,7 +407,7 @@ export function buildMarketListingAcquisitionDryRunPlanV1({
 
   const acquisitionRequests = [];
   const setShelfPlans = buildSetShelves(normalizedTargets, {
-    pageBudget: Math.max(0, Math.min(Number(setShelfPageBudget) || 0, dailyCallCeiling)),
+    pageBudget: Math.max(0, Number(setShelfPageBudget) || 0),
     maxPagesPerSet: Math.max(1, Number(setShelfMaxPagesPerSet) || DEFAULT_SET_SHELF_MAX_PAGES_PER_SET),
     maxResultsPerCall,
   });

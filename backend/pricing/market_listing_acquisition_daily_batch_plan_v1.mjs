@@ -1,5 +1,12 @@
 import { createHash } from "node:crypto";
 
+import {
+  DEFAULT_ADAPTIVE_CANDIDATE_MULTIPLIER,
+  DEFAULT_DISCOVERY_CALL_SHARE,
+  MARKET_LISTING_ACQUISITION_ADAPTIVE_YIELD_VERSION,
+  buildAdaptiveCandidateSelectionV1,
+} from "./market_listing_acquisition_adaptive_yield_v1.mjs";
+
 export const MARKET_LISTING_ACQUISITION_DAILY_BATCH_PLAN_VERSION = "MEE_11K_MARKET_LISTING_ACQUISITION_DAILY_BATCH_PLAN_V1";
 
 function stable(value) {
@@ -42,6 +49,9 @@ export function buildMarketListingAcquisitionDailyBatchPlanV1({
   batchOrdinal = 1,
   startIndex = 0,
   callLimit,
+  adaptiveYield = false,
+  candidateMultiplier = DEFAULT_ADAPTIVE_CANDIDATE_MULTIPLIER,
+  discoveryCallShare = DEFAULT_DISCOVERY_CALL_SHARE,
 } = {}) {
   const findings = [];
   validateDryRunPlan(dryRunPlan, findings);
@@ -50,12 +60,24 @@ export function buildMarketListingAcquisitionDailyBatchPlanV1({
   const dailyCeiling = Number(dryRunPlan?.summary?.daily_call_ceiling) || 4000;
   const resolvedCallLimit = Math.max(1, Math.min(Number(callLimit) || dailyCeiling, dailyCeiling));
   const resolvedStartIndex = Math.max(0, Number(startIndex) || 0);
-  const batchRequests = sourceRequests.slice(resolvedStartIndex, resolvedStartIndex + resolvedCallLimit);
-  const nextStartIndex = resolvedStartIndex + batchRequests.length;
-  const remainingRequestCount = Math.max(0, sourceRequests.length - nextStartIndex);
+  const sourceWindow = sourceRequests.slice(resolvedStartIndex);
+  const adaptiveSelection = adaptiveYield
+    ? buildAdaptiveCandidateSelectionV1({
+      requests: sourceWindow,
+      providerCallCeiling: resolvedCallLimit,
+      candidateMultiplier,
+      discoveryCallShare,
+    })
+    : null;
+  const batchRequests = adaptiveSelection?.candidates
+    ?? sourceWindow.slice(0, resolvedCallLimit);
+  const nextStartIndex = adaptiveYield ? null : resolvedStartIndex + batchRequests.length;
+  const remainingRequestCount = adaptiveYield
+    ? Math.max(0, sourceWindow.length - batchRequests.length)
+    : Math.max(0, sourceRequests.length - nextStartIndex);
 
   if (batchRequests.length === 0) findings.push("empty_batch");
-  if (batchRequests.length > dailyCeiling) findings.push("batch_exceeds_daily_ceiling");
+  if (!adaptiveYield && batchRequests.length > dailyCeiling) findings.push("batch_exceeds_daily_ceiling");
   if (batchRequests.some((request) => request.source !== "ebay_active")) findings.push("unexpected_source");
   if (batchRequests.some((request) => request.provider_route !== "ebay_browse_api")) findings.push("unexpected_provider_route");
   if (batchRequests.some((request) => request.can_publish_price_directly !== false)) findings.push("direct_publish_detected");
@@ -79,6 +101,11 @@ export function buildMarketListingAcquisitionDailyBatchPlanV1({
     batch_ordinal: batchOrdinal,
     start_index: resolvedStartIndex,
     call_limit: resolvedCallLimit,
+    adaptive_yield: adaptiveYield,
+    adaptive_yield_version: adaptiveYield ? MARKET_LISTING_ACQUISITION_ADAPTIVE_YIELD_VERSION : null,
+    candidate_multiplier: adaptiveSelection?.candidate_multiplier ?? 1,
+    discovery_call_share: adaptiveSelection?.discovery_call_share ?? null,
+    provider_call_lane_ceilings: adaptiveSelection?.provider_call_lane_ceilings ?? null,
     request_count: batchRequests.length,
     request_manifest_hash: requestManifestHash,
     boundary: {
@@ -94,7 +121,9 @@ export function buildMarketListingAcquisitionDailyBatchPlanV1({
     package_id: "MARKET-LISTING-ACQUISITION-DAILY-BATCH-PLAN-V1",
     version: MARKET_LISTING_ACQUISITION_DAILY_BATCH_PLAN_VERSION,
     generated_at: generatedAt,
-    mode: "daily_batch_plan_only_no_provider_calls_no_writes",
+    mode: adaptiveYield
+      ? "adaptive_daily_batch_plan_only_no_provider_calls_no_writes"
+      : "daily_batch_plan_only_no_provider_calls_no_writes",
     source_package_fingerprint_sha256: dryRunPlan?.package_fingerprint_sha256 ?? null,
     source_request_manifest_hash_sha256: dryRunPlan?.request_manifest_hash_sha256 ?? null,
     schema_migration_hash_sha256: dryRunPlan?.schema_migration_hash_sha256 ?? null,
@@ -107,10 +136,23 @@ export function buildMarketListingAcquisitionDailyBatchPlanV1({
       next_start_index: nextStartIndex,
       source_request_count: sourceRequests.length,
       batch_request_count: batchRequests.length,
+      candidate_request_count: batchRequests.length,
       remaining_request_count: remainingRequestCount,
+      continuation_mode: adaptiveYield ? "regenerate_from_fresh_target_plan" : "sequential_start_index",
       daily_call_ceiling: dailyCeiling,
       call_limit: resolvedCallLimit,
-      estimated_max_listing_envelope: batchRequests.reduce((sum, request) => sum + (Number(request.expected_max_result_count) || 0), 0),
+      provider_call_ceiling: resolvedCallLimit,
+      estimated_max_listing_envelope: adaptiveYield
+        ? resolvedCallLimit * Math.max(0, ...batchRequests.map((request) => Number(request.expected_max_result_count) || 0))
+        : batchRequests.reduce((sum, request) => sum + (Number(request.expected_max_result_count) || 0), 0),
+      adaptive_yield: adaptiveYield,
+      adaptive_yield_version: adaptiveYield ? MARKET_LISTING_ACQUISITION_ADAPTIVE_YIELD_VERSION : null,
+      candidate_multiplier: adaptiveSelection?.candidate_multiplier ?? 1,
+      discovery_call_share: adaptiveSelection?.discovery_call_share ?? null,
+      provider_call_lane_ceilings: adaptiveSelection?.provider_call_lane_ceilings ?? null,
+      candidate_lane_ceilings: adaptiveSelection?.candidate_lane_ceilings ?? null,
+      candidate_lane_counts: adaptiveSelection?.candidate_lane_counts ?? null,
+      disabled_strategy_counts: adaptiveSelection?.disabled_strategy_counts ?? {},
       priority_counts: countBy(batchRequests, (request) => request.target_hints?.priority),
       rarity_priority_counts: countBy(batchRequests, (request) => request.target_hints?.priority === "deprioritized_common_rare" ? "low_priority_common_rare" : "normal_or_collector_priority"),
       strategy_counts: countBy(batchRequests, (request) => request.strategy),
