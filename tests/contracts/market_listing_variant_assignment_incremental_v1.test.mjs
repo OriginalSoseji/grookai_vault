@@ -17,6 +17,8 @@ test("incremental assignment worker is dry-run by default and acquisition-bounde
   assert.match(worker, /--max-candidates=/);
   assert.match(worker, /--batch-size=/);
   assert.match(worker, /limit \$3/);
+  assert.match(worker, /order by observation\.id, candidate\.id/);
+  assert.doesNotMatch(worker, /order by candidate\.id\s+limit \$3/);
   assert.doesNotMatch(worker, /\[1-5\]\[0-9a-f\]\{3\}/);
 });
 
