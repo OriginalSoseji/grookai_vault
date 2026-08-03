@@ -21,6 +21,16 @@ test("market listing nightly ingest contract blocks public pricing and requires 
   assert.equal(contract.required_row_flags.publishable, false);
   assert.equal(contract.required_row_flags.app_visible, false);
   assert.equal(contract.required_row_flags.market_truth, false);
+  assert.equal(contract.target_selection.scope, "released_english_pokemon");
+  assert.equal(contract.target_selection.future_releases_allowed, false);
+  assert.equal(contract.target_selection.full_target_provenance_required, true);
+  assert.equal(contract.target_selection.fixed_top_queue_allowed, false);
+  assert.deepEqual(contract.target_selection.coverage_order, [
+    "new_release_unqueried",
+    "unqueried",
+    "new_release_refresh",
+    "stale_refresh",
+  ]);
 
   for (const blocked of [
     "pricing_observations",
@@ -53,6 +63,7 @@ test("market listing nightly ingest contract blocks public pricing and requires 
   assert.match(md, /No ebay_active_prices_latest writes/);
   assert.match(md, /No card_prints\/card_printings writes/);
   assert.match(md, /No migrations/);
+  assert.match(md, /The acquisition queue must evolve with the canonical English Pokemon catalog/);
   assert.match(md, /Contract hash: \{contract_hash\}/);
   assert.match(sha256(jsonText), /^[a-f0-9]{64}$/);
 });

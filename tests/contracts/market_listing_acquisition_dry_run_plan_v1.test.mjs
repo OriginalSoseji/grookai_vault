@@ -121,6 +121,34 @@ test("MEE-11D plans set-shelf pages before exact card requests for broad acquisi
   assert.equal(report.summary.estimated_max_listing_envelope, report.summary.acquisition_request_count * 200);
 });
 
+test("MEE-11D preserves coverage lanes and prioritizes a newly released set shelf", () => {
+  const report = buildMarketListingAcquisitionDryRunPlanV1({
+    targets: [
+      target(1, {
+        set_code: "base1",
+        set_name: "Base Set",
+        coverage_lane: "stale_refresh",
+        release_date: "1999-01-09",
+      }),
+      target(2, {
+        set_code: "me05",
+        set_name: "Mega Evolution: Pitch Black",
+        coverage_lane: "new_release_unqueried",
+        release_date: "2026-07-17",
+      }),
+    ],
+    generatedAt: "2026-08-03T00:00:00.000Z",
+    dailyCallCeiling: 10,
+    setShelfPageBudget: 2,
+    setShelfMaxPagesPerSet: 1,
+  });
+
+  assert.equal(report.summary.coverage_lane_counts.new_release_unqueried, 1);
+  assert.equal(report.summary.selected_set_counts.me05, 1);
+  assert.equal(report.acquisition_requests[0].target_hints.set_code, "me05");
+  assert.equal(report.acquisition_requests[0].target_hints.coverage_lane, "new_release_unqueried");
+});
+
 test("MEE-11D audit script does not contain provider fetches or pricing writes", () => {
   const script = readFileSync(new URL("../../scripts/audits/market_listing_acquisition_dry_run_plan_v1.mjs", import.meta.url), "utf8");
 

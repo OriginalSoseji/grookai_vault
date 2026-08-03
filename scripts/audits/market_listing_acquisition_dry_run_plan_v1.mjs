@@ -10,6 +10,11 @@ import {
   DEFAULT_MAX_RESULTS_PER_CALL,
   buildMarketListingAcquisitionDryRunPlanV1,
 } from "../../backend/pricing/market_listing_acquisition_dry_run_plan_v1.mjs";
+import {
+  DEFAULT_NEW_SET_WINDOW_DAYS,
+  MARKET_LISTING_ACQUISITION_TARGET_SELECTION_VERSION,
+  selectMarketListingAcquisitionTargetsV1,
+} from "../../backend/pricing/market_listing_acquisition_target_selection_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +40,7 @@ function parseArgs(argv) {
     maxResultsPerCall: getNumber("max-results-per-call", DEFAULT_MAX_RESULTS_PER_CALL),
     setShelfPageBudget: getNumber("set-shelf-page-budget", null),
     setShelfMaxPagesPerSet: getNumber("set-shelf-max-pages-per-set", null),
+    newSetWindowDays: getNumber("new-set-window-days", DEFAULT_NEW_SET_WINDOW_DAYS),
   };
 }
 
@@ -76,9 +82,25 @@ async function runSupabaseQuery(sql) {
   return Array.isArray(parsed) ? parsed : parsed.rows ?? [];
 }
 
-async function loadTargets(limit) {
+async function loadTargets() {
   const sql = `
-    with parent_without_child as (
+    with parent_query_freshness as (
+      select
+        nullif(target_hints->>'gv_id', '') as gv_id,
+        max(observed_at) as last_queried_at
+      from public.market_listing_query_cache
+      where nullif(target_hints->>'gv_id', '') is not null
+      group by 1
+    ),
+    printing_query_freshness as (
+      select
+        nullif(target_hints->>'printing_gv_id', '') as printing_gv_id,
+        max(observed_at) as last_queried_at
+      from public.market_listing_query_cache
+      where nullif(target_hints->>'printing_gv_id', '') is not null
+      group by 1
+    ),
+    parent_without_child as (
       select
         cp.id as card_print_id,
         null::uuid as card_printing_id,
@@ -97,11 +119,16 @@ async function loadTargets(limit) {
         null::text as acquisition_priority,
         cp.identity_domain,
         cp.printed_identity_modifier,
+        s.game,
+        s.release_date,
+        freshness.last_queried_at,
         cp.updated_at
       from public.card_prints cp
-      left join public.sets s on s.id = cp.set_id
+      join public.sets s on s.id = cp.set_id
+      left join parent_query_freshness freshness on freshness.gv_id = cp.gv_id
       where cp.gv_id is not null
         and cp.name is not null
+        and lower(coalesce(s.game, '')) = 'pokemon'
         and not exists (
           select 1
           from public.card_printings child
@@ -127,11 +154,21 @@ async function loadTargets(limit) {
         target.acquisition_priority,
         null::text as identity_domain,
         null::text as printed_identity_modifier,
-        now() as updated_at
+        s.game,
+        s.release_date,
+        coalesce(printing_freshness.last_queried_at, parent_freshness.last_queried_at) as last_queried_at,
+        cp.updated_at
       from public.v_market_listing_variant_query_targets_v1 target
+      join public.card_prints cp on cp.id = target.card_print_id
+      join public.sets s on s.id = cp.set_id
+      left join printing_query_freshness printing_freshness
+        on printing_freshness.printing_gv_id = target.printing_gv_id
+      left join parent_query_freshness parent_freshness
+        on parent_freshness.gv_id = target.gv_id
       where target.gv_id is not null
         and target.name is not null
         and target.ebay_query_text is not null
+        and lower(coalesce(s.game, '')) = 'pokemon'
     )
     select *
     from (
@@ -139,22 +176,7 @@ async function loadTargets(limit) {
       union all
       select * from parent_without_child
     ) target
-    order by
-      case
-        when target.acquisition_priority = 'priority_variant_special_finish' then -2
-        when target.acquisition_priority = 'priority_variant_finish' then -1
-        when target.set_code ~* '^(wcd|tk-|base-|mcd|mep|bwp|np|ex)' then 0
-        else 1
-      end,
-      case
-        when lower(coalesce(target.rarity, '')) in ('common', 'uncommon', 'rare') then 2
-        when target.rarity is null or btrim(target.rarity) = '' then 1
-        else 0
-      end,
-      target.updated_at desc nulls last,
-      target.gv_id,
-      target.finish_key nulls last
-    limit ${limit};
+    order by target.gv_id, target.finish_key nulls last;
   `;
   return runSupabaseQuery(sql);
 }
@@ -180,6 +202,9 @@ function renderMarkdown(report) {
     `- Max results per call: \`${report.summary.max_results_per_call}\``,
     `- Estimated max listing envelope: \`${report.summary.estimated_max_listing_envelope}\``,
     `- Estimated day count at ceiling: \`${report.summary.estimated_day_count_at_ceiling}\``,
+    `- Target selector: \`${report.target_selection?.version ?? "legacy_unversioned"}\``,
+    `- Eligible targets: \`${report.target_selection?.eligible_target_count ?? report.summary.input_target_count}\``,
+    `- Selected targets: \`${report.target_selection?.selected_target_count ?? report.summary.planned_target_count}\``,
     "",
     "## Boundary",
     "",
@@ -195,6 +220,12 @@ function renderMarkdown(report) {
     "| Priority | Targets |",
     "| --- | ---: |",
     ...Object.entries(report.summary.priority_counts).map(([key, value]) => `| ${key} | ${value} |`),
+    "",
+    "## Coverage Lanes",
+    "",
+    "| Lane | Targets |",
+    "| --- | ---: |",
+    ...Object.entries(report.summary.coverage_lane_counts ?? {}).map(([key, value]) => `| ${key} | ${value} |`),
     "",
     "## Strategy Counts",
     "",
@@ -241,15 +272,31 @@ function writeReport(report) {
 if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.resolve(process.argv[1])) {
   try {
     const args = parseArgs(process.argv.slice(2));
-    const targets = await loadTargets(args.targetLimit);
-    const report = buildMarketListingAcquisitionDryRunPlanV1({
-      targets,
-      dryRunTargetLimit: args.targetLimit,
-      dailyCallCeiling: args.dailyCallCeiling,
-      maxResultsPerCall: args.maxResultsPerCall,
-      ...(args.setShelfPageBudget === null ? {} : { setShelfPageBudget: args.setShelfPageBudget }),
-      ...(args.setShelfMaxPagesPerSet === null ? {} : { setShelfMaxPagesPerSet: args.setShelfMaxPagesPerSet }),
+    const generatedAt = new Date().toISOString();
+    const eligibleTargets = await loadTargets();
+    const targets = selectMarketListingAcquisitionTargetsV1({
+      targets: eligibleTargets,
+      limit: args.targetLimit,
+      asOf: generatedAt,
+      newSetWindowDays: args.newSetWindowDays,
     });
+    const report = {
+      ...buildMarketListingAcquisitionDryRunPlanV1({
+        targets,
+        generatedAt,
+        dryRunTargetLimit: args.targetLimit,
+        dailyCallCeiling: args.dailyCallCeiling,
+        maxResultsPerCall: args.maxResultsPerCall,
+        ...(args.setShelfPageBudget === null ? {} : { setShelfPageBudget: args.setShelfPageBudget }),
+        ...(args.setShelfMaxPagesPerSet === null ? {} : { setShelfMaxPagesPerSet: args.setShelfMaxPagesPerSet }),
+      }),
+      target_selection: {
+        version: MARKET_LISTING_ACQUISITION_TARGET_SELECTION_VERSION,
+        eligible_target_count: eligibleTargets.length,
+        selected_target_count: targets.length,
+        new_set_window_days: args.newSetWindowDays,
+      },
+    };
     const artifacts = writeReport(report);
     console.log(JSON.stringify({
       package_id: report.package_id,
@@ -257,6 +304,7 @@ if (process.argv[1] && path.resolve(fileURLToPath(import.meta.url)) === path.res
       package_fingerprint_sha256: report.package_fingerprint_sha256,
       request_manifest_hash_sha256: report.request_manifest_hash_sha256,
       summary: report.summary,
+      target_selection: report.target_selection,
       findings: report.findings,
       artifacts,
       approval_prompt_for_next_step: approvalPrompt(report),

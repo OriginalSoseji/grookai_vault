@@ -28,6 +28,14 @@ function fetchArtifact(dir) {
       query_text: "Pokemon Pikachu PSA 10",
       gv_id: "GV-PK-TEST-1",
       strategy: "strict_identity",
+      card_print_id: "00000000-0000-0000-0000-000000000001",
+      card_printing_id: "00000000-0000-0000-0000-000000000002",
+      printing_gv_id: "GV-PK-TEST-1-HOLOFOIL",
+      target_hints: {
+        set_code: "me05",
+        set_name: "Mega Evolution: Pitch Black",
+        coverage_lane: "new_release_unqueried",
+      },
       fetch_status: "fetched_success",
       fetched_item_count: 1,
       payload_hash: "payload-hash",
@@ -139,6 +147,10 @@ test("MEE-11M prepares streamed daily batch warehouse rows without writes", asyn
     assert.equal(plan.summary.evidence_class_counts.slab, 1);
     assert.equal(plan.boundary.db_writes, false);
     assert.match(readFileSync(plan.row_files.priceEventRows, "utf8"), /"listing_evidence_class":"slab"/);
+    const queryCacheRow = JSON.parse(readFileSync(plan.row_files.queryCacheRows, "utf8").trim());
+    assert.equal(queryCacheRow.target_hints.set_code, "me05");
+    assert.equal(queryCacheRow.target_hints.card_printing_id, "00000000-0000-0000-0000-000000000002");
+    assert.equal(queryCacheRow.target_hints.printing_gv_id, "GV-PK-TEST-1-HOLOFOIL");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
