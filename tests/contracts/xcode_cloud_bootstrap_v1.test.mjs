@@ -95,6 +95,9 @@ test("Xcode Cloud injects required release configuration before archive", () => 
   assert.match(secretWriter, /value = ENV\[key\]\.to_s/);
   assert.match(secretWriter, /env\[key\] = value unless value\.strip\.empty\?/);
   assert.match(secretWriter, /DART_DEFINES=#\{encoded\}/);
+  assert.match(secretWriter, /firebase_options_path = File\.join\('lib', 'firebase_options\.dart'\)/);
+  assert.match(secretWriter, /firebase_ios_app_id = ios_options/);
+  assert.match(secretWriter, /FIREBASE_IOS_APP_ID=#\{firebase_ios_app_id\}/);
   assert.match(secretWriter, /binder_keys = %w\[/);
   for (const key of [
     "BINDERS_SCHEMA_V1",
@@ -165,4 +168,59 @@ test("Xcode Cloud uses a checked-in SwiftPM migration and resolution", () => {
     branch: "4.3.9",
     revision: "0bdfeacefa308545adde07bef86e349186335915",
   });
+});
+
+test("Xcode Cloud uploads release dSYMs to Firebase Crashlytics", () => {
+  const runnerTarget = project.match(
+    /97C146ED1CF9000F007C117D \/\* Runner \*\/ = \{[\s\S]*?\n\t\t\};/,
+  )?.[0];
+
+  assert.ok(runnerTarget, "Runner target must exist");
+  assert.match(
+    runnerTarget,
+    /45A8DC11EE67A4129EBB6F70 \/\* \[CP\] Embed Pods Frameworks \*\/,\s+D5A9C0E7B3F14A829D6E7101 \/\* \[firebase_crashlytics\] Upload Symbols \*\/,\s+\);/,
+    "Crashlytics symbol upload must be the final Runner build phase",
+  );
+
+  const uploadPhase = project.match(
+    /D5A9C0E7B3F14A829D6E7101 \/\* \[firebase_crashlytics\] Upload Symbols \*\/ = \{[\s\S]*?\n\t\t\};/,
+  )?.[0];
+
+  assert.ok(uploadPhase, "Crashlytics upload phase must exist");
+  assert.match(
+    uploadPhase,
+    /SourcePackages\/checkouts\/firebase-ios-sdk\/Crashlytics\/run/,
+  );
+  assert.match(
+    uploadPhase,
+    /\$\{DWARF_DSYM_FOLDER_PATH\}\/\$\{DWARF_DSYM_FILE_NAME\}/,
+  );
+  assert.match(
+    uploadPhase,
+    /Contents\/Resources\/DWARF\/\$\{PRODUCT_NAME\}/,
+  );
+  assert.match(
+    uploadPhase,
+    /Contents\/Resources\/DWARF\/\$\{PRODUCT_NAME\}\.debug\.dylib/,
+  );
+  assert.match(uploadPhase, /Contents\/Info\.plist/);
+  assert.match(
+    uploadPhase,
+    /\$\(TARGET_BUILD_DIR\)\/\$\(EXECUTABLE_PATH\)/,
+  );
+  assert.match(uploadPhase, /FIREBASE_IOS_APP_ID is required/);
+  assert.match(uploadPhase, /--app-id/);
+  assert.doesNotMatch(uploadPhase, /GoogleService-Info\.plist/);
+  assert.match(uploadPhase, /CONFIGURATION/);
+  assert.match(uploadPhase, /Debug/);
+  assert.match(uploadPhase, /Skipping Crashlytics symbol upload/);
+
+  const releaseDsymConfigs = project.match(
+    /DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";/g,
+  );
+  assert.equal(
+    releaseDsymConfigs?.length,
+    2,
+    "Profile and Release must both emit dSYMs",
+  );
 });

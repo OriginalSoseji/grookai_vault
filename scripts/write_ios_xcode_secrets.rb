@@ -79,6 +79,17 @@ unless missing.empty?
   exit 1
 end
 
+firebase_options_path = File.join('lib', 'firebase_options.dart')
+firebase_options = File.read(firebase_options_path)
+ios_options = firebase_options.match(
+  /static const FirebaseOptions ios = FirebaseOptions\((.*?)\n\s*\);/m
+)&.[](1)
+firebase_ios_app_id = ios_options&.match(/appId:\s*'([^']+)'/)&.[](1)
+if firebase_ios_app_id.to_s.strip.empty?
+  warn "Missing iOS Firebase app ID in #{firebase_options_path}"
+  exit 1
+end
+
 encoded = (required_keys + ['GROOKAI_WEB_BASE_URL'] + binder_keys).map do |key|
   value = env[key].to_s
   value.empty? ? nil : Base64.strict_encode64("#{key}=#{value}")
@@ -87,6 +98,7 @@ end.compact.join(',')
 content = <<~XCCONFIG
   // Local generated file. Do not commit.
   DART_DEFINES=#{encoded}
+  FIREBASE_IOS_APP_ID=#{firebase_ios_app_id}
 XCCONFIG
 
 %w[DebugSecrets.xcconfig ReleaseSecrets.xcconfig].each do |name|
