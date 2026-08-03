@@ -36,8 +36,10 @@ The eBay credential remains in the protected environment file. Do not print or c
 3. Confirm no MEE Node worker or orphaned SQL process is active.
 4. Capture the migration-history and schema baseline.
 5. Apply `20260803010000_mee_operational_recovery_v1.sql` once.
-6. Run `docs/sql/mee_operational_recovery_v1_readback.sql`.
-7. Stop if any index, table, view, RLS, policy, grant, or migration-history check disagrees.
+6. Apply `20260803020000_mee_price_event_observation_index_v1.sql` once.
+7. Apply `20260803021000_mee_price_event_readback_index_v1.sql` once.
+8. Run `docs/sql/mee_operational_recovery_v1_readback.sql`.
+9. Stop if any index, table, view, RLS, policy, grant, or migration-history check disagrees.
 
 The migration is additive. Code rollback does not require dropping its indexes, cursor table, or view.
 
@@ -52,6 +54,8 @@ bash deploy/scripts/install-mee-nightly-release-v2.sh
 ```
 
 The installer refuses tracked changes, installs dependencies, runs a no-provider preflight, atomically switches the current symlink, and leaves the timer disabled.
+
+The release directory basename should match the deployed Git SHA prefix. Confirm both `git rev-parse HEAD` and `readlink -f /opt/grookai_mee_current` after installation.
 
 ## Historical Partial-Run Recovery
 
@@ -79,13 +83,18 @@ node scripts/workers/market_listing_nightly_pipeline_v2.mjs \
 
 Advance to 500 and then 4,000 only after selected calls, acquired rows, warehouse rows, candidate rows, rollups, cursor movement, retries, failures, disk use, and phase ledgers reconcile.
 
+Strict apply and run-scoped readback must use the source acquisition run key, not the outer pipeline run key. A run-scoped readback with any finding is a critical failure even when its SQL completed successfully.
+
+The first V2 canary advanced the cursor from `0` to `50`. The next canary must begin at `50`; silently returning to zero is a rotation failure.
+
 ## Failure Handling
 
 - Provider phase failed or indeterminate: preserve artifacts and use a new gate; do not reuse the run key.
 - Warehouse apply failed: inspect state and resume the same run; the apply is idempotent.
 - Candidate or strict rollup failed: resume from existing warehouse evidence; do not fetch again.
-- Optional readback failed: record a warning and run its bounded readback separately.
-- Disk floor failed: stop before provider calls and expand or clean artifact storage through a separately reviewed retention action.
+- Critical run-scoped readback failed or returned findings: preserve artifacts, repair downstream only, and resume without provider refetch.
+- Supplementary operational readback failed: record a warning and run its bounded readback separately.
+- Disk floor failed or has inadequate run-size margin: stop before provider calls and expand storage or use a separately reviewed, hash-preserving retention action.
 - Source manifest changed mid-cycle: stop and reconcile the manifest; do not silently reset the cursor.
 
 ## Rollback
@@ -99,3 +108,5 @@ Advance to 500 and then 4,000 only after selected calls, acquired rows, warehous
 ## Completion Standard
 
 Operational recovery is complete only after three unattended rotating-cycle runs finish without provider replay, reconciliation mismatch, blocking timeout, disk breach, or public-boundary violation.
+
+The 50-call canary is complete. The timer must remain disabled until storage capacity, the 500-call canary, the 4,000-call canary, and three unattended cycles all pass.
