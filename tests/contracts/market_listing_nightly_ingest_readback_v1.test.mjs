@@ -17,6 +17,8 @@ test("nightly ingest readback is read-only and proves public pricing boundary", 
   assert.match(script, /public_pricing_view_references_justtcg/);
   assert.match(script, /strict_rollups_app_visible_boundary_leak/);
   assert.match(script, /candidate_direct_publish_boundary_leak/);
+  assert.match(script, /candidate_base as/);
+  assert.match(script, /candidate\.match_version = \$\{sqlString\(CANDIDATE_VERSION\)\}/);
   assert.match(script, /provider_calls:\s*false/);
   assert.match(script, /db_writes:\s*false/);
   assert.doesNotMatch(script, /\binsert\s+into\b/i);

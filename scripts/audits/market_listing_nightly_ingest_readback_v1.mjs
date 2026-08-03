@@ -18,6 +18,7 @@ const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-READBACK-V1";
 const BASE_STRICT_RAW_ROLLUP_VERSION = "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
 const BASE_STRICT_SLAB_ROLLUP_VERSION = "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
+const CANDIDATE_VERSION = "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1";
 const { Client } = pg;
 
 function stable(value) {
@@ -215,6 +216,13 @@ event_base as (
   join public.market_listing_observations o on o.id = pe.observation_id
   ${runJoinFilter}
 ),
+candidate_base as (
+  select candidate.*
+  from public.market_listing_card_candidates candidate
+  join public.market_listing_observations o on o.id = candidate.observation_id
+  ${runJoinFilter}
+  where candidate.match_version = ${sqlString(CANDIDATE_VERSION)}
+),
 warehouse_counts as (
   select jsonb_build_object(
     'market_listing_acquisition_runs', (select count(*) from scoped_run),
@@ -223,7 +231,7 @@ warehouse_counts as (
     'market_listing_observations', (select count(*) from public.market_listing_observations o ${runJoinFilter}),
     'market_listing_seller_snapshots', (select count(*) from public.market_listing_seller_snapshots ss ${sellerJoinFilter}),
     'market_listing_price_events', (select count(*) from event_base),
-    'market_listing_card_candidates_total', (select count(*) from public.market_listing_card_candidates),
+    'market_listing_card_candidates_total', (select count(*) from candidate_base),
     'market_listing_rollups_total', (select count(*) from public.market_listing_rollups)
   ) as payload
 ),
@@ -247,12 +255,12 @@ candidate_state as (
       select jsonb_object_agg(match_version, version_count)
       from (
         select match_version, count(*) as version_count
-        from public.market_listing_card_candidates
+        from candidate_base
         group by match_version
       ) v
     ), '{}'::jsonb)
   ) as payload
-  from public.market_listing_card_candidates
+  from candidate_base
 ),
 strict_rollups as (
   select *

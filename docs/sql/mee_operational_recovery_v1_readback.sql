@@ -7,6 +7,8 @@ select
     as seller_snapshots_run_index_exists,
   to_regclass('public.market_listing_card_candidates_observation_idx') is not null
     as candidates_observation_index_exists,
+  to_regclass('public.market_listing_price_events_observation_idx') is not null
+    as price_events_observation_index_exists,
   to_regclass('public.market_listing_acquisition_cursor_events') is not null
     as cursor_table_exists,
   to_regclass('public.v_market_listing_acquisition_cursor_latest_v1') is not null
@@ -38,5 +40,5 @@ from public.market_listing_acquisition_cursor_events;
 
 select version
 from supabase_migrations.schema_migrations
-where version in ('20260712090000', '20260803010000')
+where version in ('20260712090000', '20260803010000', '20260803020000')
 order by version;

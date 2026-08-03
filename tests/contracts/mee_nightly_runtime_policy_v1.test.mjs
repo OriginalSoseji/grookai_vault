@@ -100,12 +100,25 @@ test("operational recovery migration is additive and keeps new state private", (
   assert.doesNotMatch(migration, /\bdrop\s+table\b/i);
 });
 
+test("operational recovery indexes price events by their observation backbone", () => {
+  const migration = readFileSync(
+    new URL("../../supabase/migrations/20260803020000_mee_price_event_observation_index_v1.sql", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(migration, /market_listing_price_events \(observation_id, id\)/);
+  assert.doesNotMatch(migration, /\bdelete\s+from\b/i);
+  assert.doesNotMatch(migration, /\btruncate\b/i);
+  assert.doesNotMatch(migration, /\bdrop\s+table\b/i);
+});
+
 test("operational recovery includes a read-only schema and security readback", () => {
   const readback = readFileSync(
     new URL("../../docs/sql/mee_operational_recovery_v1_readback.sql", import.meta.url),
     "utf8",
   );
   assert.match(readback, /market_listing_observations_run_id_idx/);
+  assert.match(readback, /market_listing_price_events_observation_idx/);
   assert.match(readback, /market_listing_acquisition_cursor_events/);
   assert.match(readback, /has_table_privilege\('anon'/);
   assert.match(readback, /has_table_privilege\('service_role'/);
