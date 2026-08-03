@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 import "../../backend/env.mjs";
 import {
@@ -11,6 +12,8 @@ import {
   resolveMeeAuditRootV1,
 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
+
+const { Client } = pg;
 
 export const PACKAGE_ID = "MARKET-LISTING-STRICT-FILTERED-ROLLUP-APPLY-V1";
 export const EXPECTED_SOURCE_PLAN_FINGERPRINT = "969085b81bd0397cc82c08c336720ef285aef04a4b32f9cbae16d37c351ff42f";
@@ -22,6 +25,13 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PLAN_PREFIX = "mee_11y_market_listing_strict_filtered_rollup_plan_";
+const ROLLUP_COLUMNS = [
+  "id", "card_print_id", "gv_id", "source", "rollup_version", "rollup_window", "currency",
+  "listing_count", "seller_count", "minimum_active_ask", "median_active_ask", "maximum_active_ask",
+  "trimmed_low_active_ask", "trimmed_high_active_ask", "stale_listing_count",
+  "reviewed_candidate_count", "needs_review", "publishable", "app_visible", "market_truth",
+  "exclusion_counts", "rollup_payload", "generated_at", "created_at",
+];
 
 const BASE_ROLLUP_VERSION_BY_EVIDENCE_CLASS = {
   raw_single: "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1",
@@ -52,6 +62,18 @@ function deterministicUuid(input) {
 
 function rel(filePath) {
   return meeArtifactReferenceV1(REPO_ROOT, filePath);
+}
+
+function directDbUrl() {
+  return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;
+}
+
+function pgSslConfig(connectionString) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString) ? false : { rejectUnauthorized: false };
+}
+
+function quotedColumns(columns) {
+  return columns.map((column) => `"${column}"`).join(", ");
 }
 
 function parseArgs(argv) {
@@ -195,11 +217,12 @@ async function existingRollupCollisions(supabase, rows) {
   };
 }
 
-function validatePlan(plan, dbRows, collision, args) {
+function validatePlan(plan, sourceRollups, dbRows, collision, args) {
   const findings = [];
   if (!args.allowDynamicPlan && plan.package_fingerprint_sha256 !== EXPECTED_SOURCE_PLAN_FINGERPRINT) findings.push("source_plan_fingerprint_mismatch");
   if (plan.source_strict_title_audit_fingerprint_sha256 !== EXPECTED_SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT) findings.push("source_strict_title_audit_fingerprint_mismatch");
   if (!args.allowDynamicPlan && dbRows.length !== EXPECTED_ROLLUP_COUNT) findings.push(`rollup_count_mismatch:${dbRows.length}`);
+  if (sha256(sourceRollups) !== plan.strict_filtered_rollups_hash_sha256) findings.push("source_rollup_rows_hash_mismatch");
   if ((plan.findings ?? []).filter((finding) => finding !== "strict_title_filter_excluded_candidate_rows").length > 0) findings.push("source_plan_contains_unexpected_findings");
   if (dbRows.some((row) => row.needs_review !== true || row.publishable !== false || row.app_visible !== false || row.market_truth !== false)) {
     findings.push("rollup_visibility_boundary_violation");
@@ -251,6 +274,134 @@ async function insertRows(supabase, rows) {
     inserted += data?.length ?? chunk.length;
   }
   return inserted;
+}
+
+async function insertTempRollupChunk(client, rows) {
+  if (!rows.length) return;
+  const values = [];
+  const tuples = rows.map((row) => {
+    const placeholders = ROLLUP_COLUMNS.map((column) => {
+      values.push(row[column] ?? null);
+      return `$${values.length}`;
+    });
+    return `(${placeholders.join(", ")})`;
+  });
+  await client.query(
+    `insert into tmp_market_listing_strict_rollups (${quotedColumns(ROLLUP_COLUMNS)}) values ${tuples.join(", ")}`,
+    values,
+  );
+}
+
+async function directRollupCollisionSummary(client) {
+  const result = await client.query(
+    `select jsonb_build_object(
+       'checked', true,
+       'rollup_id_collision_count', (
+         select count(*) from tmp_market_listing_strict_rollups planned
+         join public.market_listing_rollups live using (id)
+       ),
+       'rollup_key_collision_count', (
+         select count(*) from tmp_market_listing_strict_rollups planned
+         join public.market_listing_rollups live
+           on live.source = planned.source
+          and live.rollup_version = planned.rollup_version
+          and live.rollup_window = planned.rollup_window
+          and live.card_print_id = planned.card_print_id
+       ),
+       'rollup_id_collision_samples', coalesce((
+         select jsonb_agg(id) from (
+           select planned.id from tmp_market_listing_strict_rollups planned
+           join public.market_listing_rollups live using (id) limit 10
+         ) sample
+       ), '[]'::jsonb),
+       'rollup_key_collision_samples', coalesce((
+         select jsonb_agg(id) from (
+           select live.id from tmp_market_listing_strict_rollups planned
+           join public.market_listing_rollups live
+             on live.source = planned.source
+            and live.rollup_version = planned.rollup_version
+            and live.rollup_window = planned.rollup_window
+            and live.card_print_id = planned.card_print_id
+           limit 10
+         ) sample
+       ), '[]'::jsonb)
+     ) as summary`,
+  );
+  return result.rows[0].summary;
+}
+
+async function directRollupReadbackCount(client) {
+  const result = await client.query(
+    `select count(*)::int as count
+       from tmp_market_listing_strict_rollups planned
+       join public.market_listing_rollups live using (id)`,
+  );
+  return Number(result.rows[0].count);
+}
+
+async function insertRowsWithPg(rows) {
+  const connectionString = directDbUrl();
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 1000 * 60 * 20,
+    statement_timeout: 1000 * 60 * 15,
+    ssl: pgSslConfig(connectionString),
+  });
+  await client.connect();
+  let committed = false;
+  try {
+    await client.query("begin");
+    await client.query("set local lock_timeout = '10s'");
+    await client.query("set local statement_timeout = '15min'");
+    await client.query(
+      "create temp table tmp_market_listing_strict_rollups (like public.market_listing_rollups including defaults) on commit preserve rows",
+    );
+    for (let index = 0; index < rows.length; index += 500) {
+      await insertTempRollupChunk(client, rows.slice(index, index + 500));
+    }
+    const stagedCount = await client.query("select count(*)::int as count from tmp_market_listing_strict_rollups");
+    if (Number(stagedCount.rows[0].count) !== rows.length) {
+      throw new Error("strict rollup temp row count does not match the plan");
+    }
+    await client.query("create index tmp_market_listing_strict_rollups_id_idx on tmp_market_listing_strict_rollups (id)");
+    await client.query("create index tmp_market_listing_strict_rollups_key_idx on tmp_market_listing_strict_rollups (source, rollup_version, rollup_window, card_print_id)");
+    await client.query("analyze tmp_market_listing_strict_rollups");
+
+    const collision = await directRollupCollisionSummary(client);
+    if (Number(collision.rollup_id_collision_count) > 0 || Number(collision.rollup_key_collision_count) > 0) {
+      throw new Error(`strict rollup collision detected: ${JSON.stringify(collision)}`);
+    }
+
+    const inserted = await client.query(
+      `with inserted as (
+         insert into public.market_listing_rollups (${quotedColumns(ROLLUP_COLUMNS)})
+         select ${quotedColumns(ROLLUP_COLUMNS)} from tmp_market_listing_strict_rollups
+         returning 1
+       ) select count(*)::int as count from inserted`,
+    );
+    const precommitReadback = await directRollupReadbackCount(client);
+    if (precommitReadback !== rows.length) {
+      throw new Error("strict rollup direct apply readback does not match the plan; rolling back");
+    }
+    await client.query("commit");
+    committed = true;
+    const durableReadback = await directRollupReadbackCount(client);
+    if (durableReadback !== rows.length) {
+      throw new Error("committed strict rollup direct apply readback does not match the plan");
+    }
+    return {
+      inserted: Number(inserted.rows[0].count),
+      readback: durableReadback,
+      precommit_readback: precommitReadback,
+      collision,
+    };
+  } catch (error) {
+    if (!committed) await client.query("rollback").catch(() => {});
+    throw error;
+  } finally {
+    await client.end();
+  }
 }
 
 async function readbackCount(supabase, rows) {
@@ -347,17 +498,27 @@ async function main() {
   if (!approved) writeFileSync(rowPath, `${dbRows.map((row) => JSON.stringify(row)).join("\n")}\n`);
 
   const supabase = createBackendClient();
-  const collisionSummary = await existingRollupCollisions(supabase, dbRows);
+  let collisionSummary = args.apply && directDbUrl()
+    ? { checked: true, deferred_to_atomic_direct_apply: true }
+    : await existingRollupCollisions(supabase, dbRows);
   const approvedValidation = approved ? validateApprovedReport(source, dbRows, collisionSummary, args) : null;
-  const findings = approvedValidation?.findings ?? validatePlan(plan, dbRows, collisionSummary, args);
+  const findings = approvedValidation?.findings
+    ?? validatePlan(plan, source.rollups.rows, dbRows, collisionSummary, args);
   const readyForApplyApproval = findings.length === 1 && findings[0] === "apply_flag_missing";
   let inserted = 0;
   let readback = { market_listing_rollups: 0 };
 
   if (args.apply) {
     if (findings.length) throw new Error(`[strict-filtered-rollup-apply] blocked by findings: ${findings.join(", ")}`);
-    inserted = await insertRows(supabase, dbRows);
-    readback = { market_listing_rollups: await readbackCount(supabase, dbRows) };
+    if (directDbUrl()) {
+      const directResult = await insertRowsWithPg(dbRows);
+      inserted = directResult.inserted;
+      readback = { market_listing_rollups: directResult.readback };
+      collisionSummary = directResult.collision;
+    } else {
+      inserted = await insertRows(supabase, dbRows);
+      readback = { market_listing_rollups: await readbackCount(supabase, dbRows) };
+    }
     if (readback.market_listing_rollups !== dbRows.length) findings.push("readback_count_mismatch");
   } else if (args.readbackOnly) {
     readback = { market_listing_rollups: await readbackCount(supabase, dbRows) };

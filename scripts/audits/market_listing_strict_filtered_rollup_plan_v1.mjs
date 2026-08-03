@@ -468,9 +468,11 @@ if (!rollups.length) findings.push("no_strict_filtered_rollups");
 if (candidateCounts.strict_title_excluded > 0) findings.push("strict_title_filter_excluded_candidate_rows");
 
 const generatedAt = new Date().toISOString();
+const strictFilteredRollupsHash = sha256(rollups);
 const reportPayloadForHash = {
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
   title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
+  strict_filtered_rollups_hash_sha256: strictFilteredRollupsHash,
   candidate_counts: candidateCounts,
   rollup_bucket_counts: bucketCounts,
   evidence_bucket_counts: evidenceBucketCounts,
@@ -492,6 +494,7 @@ const report = {
   source_acquisition_run: acquisitionRun,
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
   title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
+  strict_filtered_rollups_hash_sha256: strictFilteredRollupsHash,
   package_fingerprint_sha256: sha256(reportPayloadForHash),
   summary: {
     candidate_rows_total: candidateCounts.total,

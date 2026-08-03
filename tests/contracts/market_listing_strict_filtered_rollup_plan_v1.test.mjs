@@ -23,6 +23,7 @@ test("strict filtered rollup plan is local-only and filters before medians", () 
   assert.match(script, /order by observation\.id asc, candidate\.id asc/);
   assert.match(script, /left join public\.sets set_row on set_row\.id = card\.set_id/);
   assert.match(script, /where card\.id = any\(\$1::uuid\[\]\)/);
+  assert.match(script, /strict_filtered_rollups_hash_sha256/);
   assert.match(script, /source_acquisition_run:\s*acquisitionRun/);
   assert.match(script, /app_visible_pricing:\s*false/);
   assert.match(script, /public_price_rollups:\s*false/);
