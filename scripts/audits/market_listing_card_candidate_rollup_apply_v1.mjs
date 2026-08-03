@@ -1,8 +1,10 @@
 import { createReadStream } from "node:fs";
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import readline from "node:readline";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 import "../../backend/env.mjs";
 import {
@@ -11,6 +13,8 @@ import {
   resolveMeeAuditRootV1,
 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
+
+const { Client } = pg;
 
 export const PACKAGE_ID = "MARKET-LISTING-CARD-CANDIDATE-ROLLUP-APPLY-V1";
 export const EXPECTED_PACKAGE_FINGERPRINT = "c2c4a7de394de8abbc3b4f6361e648f2741a6995eef03bfc505cda737e2edbd9";
@@ -22,6 +26,44 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PLAN_PREFIX = "mee_11s_market_listing_card_candidate_rollup_plan_";
+const DIRECT_TABLE_COLUMNS = {
+  market_listing_card_candidates: [
+    "id", "observation_id", "raw_snapshot_id", "card_print_id", "gv_id", "source",
+    "source_listing_id", "match_version", "match_status", "match_confidence", "title_features",
+    "set_features", "number_features", "finish_features", "condition_features", "exclusion_flags",
+    "needs_review", "can_publish_price_directly", "candidate_hash", "created_at",
+  ],
+  market_listing_rollups: [
+    "id", "card_print_id", "gv_id", "source", "rollup_version", "rollup_window", "currency",
+    "listing_count", "seller_count", "minimum_active_ask", "median_active_ask", "maximum_active_ask",
+    "trimmed_low_active_ask", "trimmed_high_active_ask", "stale_listing_count",
+    "reviewed_candidate_count", "needs_review", "publishable", "app_visible", "market_truth",
+    "exclusion_counts", "rollup_payload", "generated_at", "created_at",
+  ],
+};
+
+function directDbUrl() {
+  return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;
+}
+
+function pgSslConfig(connectionString) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString) ? false : { rejectUnauthorized: false };
+}
+
+function stable(value) {
+  if (Array.isArray(value)) return value.map(stable);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, nested]) => [key, stable(nested)]));
+  }
+  return value;
+}
+
+function sha256(value) {
+  const text = typeof value === "string" ? value : JSON.stringify(stable(value));
+  return createHash("sha256").update(text).digest("hex");
+}
 
 function parseArgs(argv) {
   return {
@@ -89,6 +131,50 @@ async function* readJsonLines(filePath) {
     if (!line.trim()) continue;
     yield JSON.parse(line);
   }
+}
+
+async function hashJsonlRows(filePath) {
+  const hash = createHash("sha256");
+  let count = 0;
+  for await (const row of readJsonLines(filePath)) {
+    hash.update(`${JSON.stringify(stable(row))}\n`);
+    count += 1;
+  }
+  return { count, sha256: hash.digest("hex") };
+}
+
+async function verifyPlanFiles(plan) {
+  const candidates = await hashJsonlRows(plan.row_files.cardCandidateRows);
+  const rollups = await hashJsonlRows(plan.row_files.rollupRows);
+  const actualHashes = {
+    cardCandidateRows: candidates.sha256,
+    rollupRows: rollups.sha256,
+  };
+  const actualCounts = {
+    market_listing_card_candidates: candidates.count,
+    market_listing_rollups: rollups.count,
+  };
+  const actualManifestHash = sha256({
+    row_file_hashes: actualHashes,
+    candidate_count: candidates.count,
+    rollup_count: rollups.count,
+    source_run_key: plan.source_run_key,
+  });
+  const findings = [];
+  for (const [key, actual] of Object.entries(actualHashes)) {
+    if (actual !== plan.row_file_hashes_sha256?.[key]) findings.push(`${key}_sha256_mismatch`);
+  }
+  for (const [table, actual] of Object.entries(actualCounts)) {
+    if (actual !== plan.proposed_table_row_counts?.[table]) findings.push(`${table}_row_count_mismatch`);
+  }
+  if (actualManifestHash !== plan.row_manifest_hash_sha256) findings.push("computed_row_manifest_hash_mismatch");
+  return {
+    verified: findings.length === 0,
+    findings,
+    actual_row_file_hashes_sha256: actualHashes,
+    actual_row_counts: actualCounts,
+    actual_row_manifest_hash_sha256: actualManifestHash,
+  };
 }
 
 async function collectColumn(filePath, getValue) {
@@ -220,6 +306,208 @@ async function insertJsonlRows(supabase, table, filePath, chunkSize, options = {
   }
   await flush();
   return { inserted, skipped };
+}
+
+function quotedColumns(columns) {
+  return columns.map((column) => `"${column}"`).join(", ");
+}
+
+async function insertTempChunk(client, tempTable, columns, rows) {
+  if (!rows.length) return;
+  const values = [];
+  const tuples = rows.map((row) => {
+    const placeholders = columns.map((column) => {
+      values.push(row[column] ?? null);
+      return `$${values.length}`;
+    });
+    return `(${placeholders.join(", ")})`;
+  });
+  await client.query(
+    `insert into ${tempTable} (${quotedColumns(columns)}) values ${tuples.join(", ")}`,
+    values,
+  );
+}
+
+async function loadJsonlIntoTemp(client, tempTable, table, filePath, chunkSize = 500) {
+  const columns = DIRECT_TABLE_COLUMNS[table];
+  if (!columns) throw new Error(`unsupported direct-apply table: ${table}`);
+  let loaded = 0;
+  let chunk = [];
+  for await (const row of readJsonLines(filePath)) {
+    chunk.push(row);
+    if (chunk.length < chunkSize) continue;
+    await insertTempChunk(client, tempTable, columns, chunk);
+    loaded += chunk.length;
+    chunk = [];
+  }
+  await insertTempChunk(client, tempTable, columns, chunk);
+  loaded += chunk.length;
+  return loaded;
+}
+
+async function directCollisionSummary(client) {
+  const result = await client.query(
+    `select jsonb_build_object(
+       'checked', true,
+       'candidate_id_collision_count', (select count(*) from tmp_market_listing_card_candidates planned join public.market_listing_card_candidates live using (id)),
+       'rollup_id_collision_count', (select count(*) from tmp_market_listing_rollups planned join public.market_listing_rollups live using (id)),
+       'candidate_hash_collision_count', (
+         select count(*) from tmp_market_listing_card_candidates planned
+         join public.market_listing_card_candidates live
+           on live.source = planned.source and live.candidate_hash = planned.candidate_hash
+       ),
+       'rollup_key_collision_count', (
+         select count(*) from tmp_market_listing_rollups planned
+         join public.market_listing_rollups live
+           on live.source = planned.source
+          and live.rollup_version = planned.rollup_version
+          and live.rollup_window = planned.rollup_window
+          and live.card_print_id = planned.card_print_id
+       ),
+       'candidate_id_collision_samples', coalesce((
+         select jsonb_agg(id) from (
+           select planned.id from tmp_market_listing_card_candidates planned
+           join public.market_listing_card_candidates live using (id) limit 10
+         ) sample
+       ), '[]'::jsonb),
+       'rollup_id_collision_samples', coalesce((
+         select jsonb_agg(id) from (
+           select planned.id from tmp_market_listing_rollups planned
+           join public.market_listing_rollups live using (id) limit 10
+         ) sample
+       ), '[]'::jsonb)
+     ) as summary`,
+  );
+  return result.rows[0].summary;
+}
+
+function hasCollision(collision) {
+  return [
+    "candidate_id_collision_count",
+    "rollup_id_collision_count",
+    "candidate_hash_collision_count",
+    "rollup_key_collision_count",
+  ].some((field) => Number(collision?.[field] ?? 0) > 0);
+}
+
+async function directReadbackCounts(client) {
+  const result = await client.query(
+    `select jsonb_build_object(
+       'market_listing_card_candidates', (
+         select count(*) from tmp_market_listing_card_candidates planned
+         join public.market_listing_card_candidates live using (id)
+       ),
+       'market_listing_rollups', (
+         select count(*) from tmp_market_listing_rollups planned
+         join public.market_listing_rollups live using (id)
+       )
+     ) as counts`,
+  );
+  return Object.fromEntries(Object.entries(result.rows[0].counts)
+    .map(([key, value]) => [key, Number(value)]));
+}
+
+async function applyRowsWithPg(plan, args) {
+  const connectionString = directDbUrl();
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 1000 * 60 * 35,
+    statement_timeout: 1000 * 60 * 30,
+    ssl: pgSslConfig(connectionString),
+  });
+  await client.connect();
+  let committed = false;
+  try {
+    await client.query("begin");
+    await client.query("set local lock_timeout = '10s'");
+    await client.query("set local statement_timeout = '30min'");
+    await client.query(
+      "create temp table tmp_market_listing_card_candidates (like public.market_listing_card_candidates including defaults) on commit preserve rows",
+    );
+    await client.query(
+      "create temp table tmp_market_listing_rollups (like public.market_listing_rollups including defaults) on commit preserve rows",
+    );
+
+    const loadedCandidates = await loadJsonlIntoTemp(
+      client,
+      "tmp_market_listing_card_candidates",
+      "market_listing_card_candidates",
+      plan.row_files.cardCandidateRows,
+    );
+    const loadedRollups = await loadJsonlIntoTemp(
+      client,
+      "tmp_market_listing_rollups",
+      "market_listing_rollups",
+      plan.row_files.rollupRows,
+    );
+    if (loadedCandidates !== plan.proposed_table_row_counts.market_listing_card_candidates) {
+      throw new Error("candidate temp row count does not match the plan");
+    }
+    if (loadedRollups !== plan.proposed_table_row_counts.market_listing_rollups) {
+      throw new Error("rollup temp row count does not match the plan");
+    }
+
+    await client.query("create index tmp_market_listing_card_candidates_id_idx on tmp_market_listing_card_candidates (id)");
+    await client.query("create index tmp_market_listing_card_candidates_hash_idx on tmp_market_listing_card_candidates (source, candidate_hash)");
+    await client.query("create index tmp_market_listing_rollups_id_idx on tmp_market_listing_rollups (id)");
+    await client.query("create index tmp_market_listing_rollups_key_idx on tmp_market_listing_rollups (source, rollup_version, rollup_window, card_print_id)");
+    await client.query("analyze tmp_market_listing_card_candidates");
+    await client.query("analyze tmp_market_listing_rollups");
+
+    const collision = await directCollisionSummary(client);
+    if (!args.allowDynamicPlan && hasCollision(collision)) {
+      throw new Error("direct apply found collisions for a fixed plan");
+    }
+
+    const candidateColumns = DIRECT_TABLE_COLUMNS.market_listing_card_candidates;
+    const rollupColumns = DIRECT_TABLE_COLUMNS.market_listing_rollups;
+    const candidateInsert = await client.query(
+      `with inserted as (
+         insert into public.market_listing_card_candidates (${quotedColumns(candidateColumns)})
+         select ${quotedColumns(candidateColumns)} from tmp_market_listing_card_candidates
+         on conflict do nothing returning 1
+       ) select count(*)::int as count from inserted`,
+    );
+    const rollupInsert = await client.query(
+      `with inserted as (
+         insert into public.market_listing_rollups (${quotedColumns(rollupColumns)})
+         select ${quotedColumns(rollupColumns)} from tmp_market_listing_rollups
+         on conflict do nothing returning 1
+       ) select count(*)::int as count from inserted`,
+    );
+    const precommitReadback = await directReadbackCounts(client);
+    const expected = expectedReadbackCounts(plan);
+    if (!readbackMatchesExpected(precommitReadback, expected)) {
+      throw new Error("direct apply readback does not match the plan; rolling back");
+    }
+    await client.query("commit");
+    committed = true;
+    const durableReadback = await directReadbackCounts(client);
+    if (!readbackMatchesExpected(durableReadback, expected)) {
+      throw new Error("committed direct apply readback does not match the plan");
+    }
+    return {
+      inserted: {
+        market_listing_card_candidates: {
+          inserted: Number(candidateInsert.rows[0].count),
+          skipped: loadedCandidates - Number(candidateInsert.rows[0].count),
+        },
+        market_listing_rollups: {
+          inserted: Number(rollupInsert.rows[0].count),
+          skipped: loadedRollups - Number(rollupInsert.rows[0].count),
+        },
+      },
+      readback: durableReadback,
+      precommit_readback: precommitReadback,
+      collision,
+    };
+  } catch (error) {
+    if (!committed) await client.query("rollback").catch(() => {});
+    throw error;
+  } finally {
+    await client.end();
+  }
 }
 
 function buildDynamicSkipState(collision) {
@@ -354,17 +642,32 @@ async function main() {
   const generatedAt = new Date().toISOString();
   const stamp = generatedAt.replace(/[:.]/g, "-");
   const plan = await readPlan(args.planPath);
+  const planFileVerification = await verifyPlanFiles(plan.data);
   const supabase = createBackendClient();
-  const collision = args.readbackOnly ? { checked: false } : await collisionSummary(supabase, plan.data);
-  const findings = validatePlan(plan.data, collision, args);
+  let collision = args.readbackOnly
+    ? { checked: false }
+    : directDbUrl()
+      ? { checked: true, deferred_to_atomic_direct_apply: true }
+      : await collisionSummary(supabase, plan.data);
+  const findings = [
+    ...planFileVerification.findings,
+    ...validatePlan(plan.data, collision, args),
+  ];
   let applyResult = null;
   let readback = null;
   const expectedReadback = expectedReadbackCounts(plan.data);
 
   if (args.apply && findings.length === 0) {
-    const inserted = await applyRows(supabase, plan.data, args, collision);
-    applyResult = { inserted };
-    readback = await readbackCounts(supabase, plan.data);
+    if (directDbUrl()) {
+      const directResult = await applyRowsWithPg(plan.data, args);
+      applyResult = { inserted: directResult.inserted };
+      readback = directResult.readback;
+      collision = directResult.collision;
+    } else {
+      const inserted = await applyRows(supabase, plan.data, args, collision);
+      applyResult = { inserted };
+      readback = await readbackCounts(supabase, plan.data);
+    }
   } else if (args.readbackOnly) {
     readback = await readbackCounts(supabase, plan.data);
   }
@@ -379,6 +682,7 @@ async function main() {
     package_fingerprint_sha256: plan.data.package_fingerprint_sha256,
     row_manifest_hash_sha256: plan.data.row_manifest_hash_sha256,
     source_readback_fingerprint_sha256: plan.data.source_readback_fingerprint_sha256,
+    plan_file_verification: planFileVerification,
     proposed_table_row_counts: plan.data.proposed_table_row_counts,
     expected_readback_counts: expectedReadback,
     remote_collision_summary: publicCollisionSummary(collision),
