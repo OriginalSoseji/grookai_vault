@@ -1,0 +1,70 @@
+{
+  "recorded_at": "2026-08-04T03:52:00-06:00",
+  "branch": "fix/testflight-public-relationship-readback",
+  "code_commit_sha": "77760caf4c2f71c352ac19a65d234752362b2662",
+  "migration": {
+    "version": "20260804210000",
+    "status": "applied_production"
+  },
+  "card": {
+    "card_print_id": "02e11652-ab5a-466b-858b-8e7b8fb322b0",
+    "gv_id": "GV-PK-CEC-215",
+    "name": "Blastoise & Piplup-GX",
+    "set": "Cosmic Eclipse",
+    "number": "215"
+  },
+  "governed_printings": [
+    {
+      "id": "ef48f5c4-c5db-47ec-8c86-0b2bfab02a35",
+      "printing_gv_id": "GV-PK-CEC-215-HOLO",
+      "finish": "holo",
+      "publicly_selectable": true
+    },
+    {
+      "id": "467efb22-34ee-4122-a783-e45ff5798ee7",
+      "printing_gv_id": "GV-PK-CEC-215-STD",
+      "finish": "normal",
+      "publicly_selectable": false,
+      "review_status": "conflicting",
+      "public_visibility": "hidden_pending_review",
+      "expected_finish": "holo"
+    }
+  ],
+  "rpc_readback": {
+    "service_role": ["GV-PK-CEC-215-HOLO"],
+    "anonymous": ["GV-PK-CEC-215-HOLO"],
+    "authenticated": ["GV-PK-CEC-215-HOLO"]
+  },
+  "diagnostic_instances": [
+    {
+      "gv_vi_id": "GVVI-065CAB28-001326",
+      "card_printing_id": null,
+      "archived_at": "2026-08-04T03:17:06.377929-06:00"
+    },
+    {
+      "gv_vi_id": "GVVI-065CAB28-001327",
+      "card_printing_id": null,
+      "archived_at": "2026-08-04T03:23:47.207784-06:00"
+    },
+    {
+      "gv_vi_id": "GVVI-065CAB28-001328",
+      "card_printing_id": "ef48f5c4-c5db-47ec-8c86-0b2bfab02a35",
+      "archived_at": "2026-08-04T03:38:26.508172-06:00"
+    }
+  ],
+  "samsung": {
+    "serial": "R5CT3291F6E",
+    "model": "SM-S908U",
+    "stay_on_while_plugged_in": 15,
+    "screen_off_timeout": 2147483647,
+    "configured_build_started": true,
+    "search_showed_holo": true,
+    "action_sheet_showed_selected_holo": true
+  },
+  "boundaries": {
+    "vercel_deploy_triggered": false,
+    "xcode_cloud_triggered": false,
+    "testflight_build_created": false,
+    "preexisting_user_data_changed": false
+  }
+}
