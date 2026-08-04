@@ -15,6 +15,18 @@ These checkpoints should be read as institutional memory for the printing system
 
 ## Checkpoint Sequence
 
+### `SPECIAL_VARIANT_PRINTING_HIDDEN_APPLY_CLOSEOUT_V1.md`
+
+This checkpoint records the completed hidden apply and pricing quarantine for the `143` authority-qualified special-variant printings.
+
+Current result:
+
+- `143` durable child candidates exist with exact `hidden_pending_review` sidecars
+- `0` are approved or publicly exposed
+- hidden-child pricing qualification was reduced from `9` pre-migration candidates to `0`
+- `420` authority failures remain blocked and untouched
+- human review, source acquisition, and exact-image acquisition are the next operational gates
+
 ### `SPECIAL_VARIANT_PRINTING_AUTHORITY_V1.md`
 
 This checkpoint records the authoritative reconciliation of the `563` reference-only special-variant printing gaps left by the cross-client release repair.
@@ -26,11 +38,11 @@ Decision locked there:
 
 Current result:
 
-- `143` prospective child rows are evidence-ready and collision-free
+- `143` prospective child rows were evidence-ready and collision-free and are now durably applied under hidden review
 - `420` rows remain blocked
-- no child was applied
+- no child is approved or publicly visible
 - the `143`-row rollback-only proof passed through frozen GitHub runner evidence with identical durable before/after fingerprints
-- the next gate is a separately approved real apply of at most `25` hidden, unapproved child rows
+- the apply completed in bounded batches and reconciled `143/143`; current state is governed by `SPECIAL_VARIANT_PRINTING_HIDDEN_APPLY_CLOSEOUT_V1.md`
 
 ### `VARIANT_SEARCH_PRINTING_COVERAGE_RELEASE_REPAIR_V1.md`
 

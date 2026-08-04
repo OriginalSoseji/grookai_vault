@@ -1,0 +1,11 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_PRICING_BOUNDARY_MIGRATION_GITHUB_V1",
+  "generated_at": "2026-08-04T21:44:19.904Z",
+  "github_sha": "5e48bead73ace5f025c09e840da249f06df5c40c",
+  "github_run_id": "30953545635",
+  "github_run_attempt": "1",
+  "mode": "dry_run",
+  "target_migration": "20260804220000",
+  "db_row_writes_performed": false,
+  "migration_changes_read_models_only": true
+}
