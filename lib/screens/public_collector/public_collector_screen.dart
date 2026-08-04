@@ -1186,7 +1186,9 @@ class _PublicCollectorHeader extends StatelessWidget {
                   children: [
                     _ProfileStatChip(
                       icon: Icons.group_outlined,
-                      label: '${profile.followerCount} followers',
+                      label:
+                          '${profile.followerCount} '
+                          '${profile.followerCount == 1 ? 'follower' : 'followers'}',
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute<void>(

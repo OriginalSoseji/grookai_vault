@@ -9,6 +9,10 @@ const service = fs.readFileSync(
   "lib/services/public/public_collector_service.dart",
   "utf8",
 );
+const screen = fs.readFileSync(
+  "lib/screens/public_collector/public_collector_screen.dart",
+  "utf8",
+);
 
 test("public relationship reads restore a bounded definer boundary", () => {
   assert.match(
@@ -58,3 +62,10 @@ test("Flutter continues to consume the repaired RPCs", () => {
   assert.match(service, /followingCount: _toCount\(row\['following_count'\]\)/);
 });
 
+test("public profile uses correct singular follower copy", () => {
+  assert.match(
+    screen,
+    /profile\.followerCount == 1 \? 'follower' : 'followers'/,
+  );
+  assert.doesNotMatch(screen, /label: '\$\{profile\.followerCount\} followers'/);
+});
