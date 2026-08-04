@@ -23,6 +23,7 @@ import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
+import 'vault_gvvi_screen.dart';
 
 ResolvedDisplayIdentity _manageCardDisplayIdentity(VaultManageCardData data) {
   return resolveDisplayIdentityFromFields(
@@ -361,6 +362,23 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _copyIntentSavingId = null;
       });
       _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _openExactCopy(VaultManageCardCopy copy) async {
+    final gvviId = (copy.gvviId ?? '').trim();
+    if (gvviId.isEmpty) {
+      _showStatus('Copy ID is unavailable.');
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => VaultGvviScreen(gvviId: gvviId),
+      ),
+    );
+    if (mounted) {
+      await _load();
     }
   }
 
@@ -1679,6 +1697,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               _copySectionMemberships[copy.instanceId] ??
               const <VaultManageCopySectionMembership>[],
           busySectionKey: _copySectionSavingKey,
+          onTap: () => _openExactCopy(copy),
           onSelectionChanged: null,
           onIntentSelected: _copyIntentSavingId == null
               ? (intent) => _saveCopyIntent(copy, intent)
@@ -1787,7 +1806,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                             .instanceId] ??
                         const <VaultManageCopySectionMembership>[],
                     busySectionKey: _copySectionSavingKey,
-                    onTap: null,
+                    onTap: () => _openExactCopy(data.copies[index]),
                     onSelectionChanged: (selected) =>
                         _toggleCopySelection(data.copies[index], selected),
                     onIntentSelected: _copyIntentSavingId == null

@@ -1,0 +1,43 @@
+{
+  "version": "PIKACHU_SSP057_PLAY_STAMP_PRINTING_REPAIR_V1",
+  "generated_at": "2026-08-04T17:37:16.023Z",
+  "mode": "apply",
+  "target": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "finish_key": "holo",
+    "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "source": "justtcg",
+    "external_id": "pokemon-prize-pack-series-cards-pikachu-ex-057-191-double-rare",
+    "evidence_type": "variant_printing_label",
+    "evidence_ref": "Holofoil"
+  },
+  "preflight": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "name": "Pikachu ex",
+    "number": "057",
+    "set_code": "sv08",
+    "variant_key": "play_pokemon_stamp",
+    "existing_child_count": 0,
+    "target_finish_child_count": 0,
+    "printing_gv_collision_count": 0,
+    "exact_parent_mapping_count": 1,
+    "exact_holofoil_payload_count": 1
+  },
+  "db_writes_performed": true,
+  "readback": [
+    {
+      "card_printing_id": "0c231887-95a8-4f86-9c60-91b36e56ac2f",
+      "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+      "is_provisional": false,
+      "provenance_source": "justtcg",
+      "provenance_ref": "pokemon-prize-pack-series-cards-pikachu-ex-057-191-double-rare",
+      "finish_is_active": true,
+      "passes_truth_visibility": true
+    }
+  ],
+  "fingerprint_sha256": "49050a6826d83a0abdbc115299eb37d942ca9e4337bc6a0644a0d44bcfe3baae"
+}

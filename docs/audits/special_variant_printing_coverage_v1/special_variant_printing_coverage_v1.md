@@ -1,26 +1,26 @@
 # Special Variant Printing Coverage V1
 
-Generated: 2026-08-04T17:31:11.070Z
+Generated: 2026-08-04T18:07:55.108Z
 
 - Mode: read-only
 - Database writes: none
 - Canonical or child rows changed: none
 - Special-variant parents: 3858
-- Parents with public governed children: 888
-- Parents without any child: 2970
-- Evidence-backed repair candidates: 564
-- Fingerprint: `8e1a4487086e91e1a8a8526a14287e4e97380cce93b2245b5facf79641704574`
+- Parents with public governed children: 889
+- Parents without any child: 2969
+- Authoritative repair candidates: 0
+- Fingerprint: `bd9958e16339d90e71c4b229a1a4b18ab635bf0f00a71359d5a689ad2380dba5`
 
 ## Status Distribution
 
-- governed_child_ready: 828
+- governed_child_ready: 829
 - missing_child_no_source_finish_evidence: 2406
-- missing_child_source_evidence_available: 564
+- missing_child_reference_finish_evidence_review_required: 563
 - public_child_identity_incomplete: 60
 
 ## Pikachu Search Fixture
 
-- `GV-PK-SSP-057-PLAY-POKEMON-STAMP`: missing_child_source_evidence_available; children=0; public=0; source-backed finishes=holo
+- `GV-PK-SSP-057-PLAY-POKEMON-STAMP`: governed_child_ready; children=1; public=1; source-backed finishes=none
 
 ## Follow-Up Sample
 
@@ -127,14 +127,15 @@ Generated: 2026-08-04T17:31:11.070Z
 | GV-PK-BASE1-96-1999-2000 | Double Colorless Energy 96 | 1999_2000 | missing_child_no_source_finish_evidence |  |
 | GV-PK-BASE1-97-1999-2000 | Fighting Energy 97 | 1999_2000 | missing_child_no_source_finish_evidence |  |
 
-_2930 additional rows are preserved in the JSON artifact._
+_2929 additional rows are preserved in the JSON artifact._
 
 ## Governed Repair Workflow
 
 1. Keep canonical parent identity unchanged.
-2. Require exact active parent mapping plus stored source payload finish evidence.
-3. Produce a bounded candidate plan; never infer a finish from a variant label or image alone.
-4. Run the existing printing upsert gate in rollback mode and verify parent, finish, printing GV-ID, provenance, and collision checks.
-5. Apply only an explicitly approved evidence-backed plan.
-6. Read back the child and the public printing-options RPC, then smoke-test selection on web and mobile.
-7. Leave no-evidence rows quarantined as coverage gaps.
+2. Require exact active parent mapping plus stored finish evidence from an approved printing authority.
+3. Treat JustTCG-only finish labels as discovery/review evidence; they never authorize a child write.
+4. Produce a bounded candidate plan; never infer a finish from a variant label or image alone.
+5. Run the existing printing upsert gate in rollback mode and verify parent, finish, printing GV-ID, provenance, and collision checks.
+6. Apply only an explicitly approved evidence-backed plan.
+7. Read back the child and the public printing-options RPC, then smoke-test selection on web and mobile.
+8. Leave no-evidence and reference-only rows quarantined as coverage gaps.

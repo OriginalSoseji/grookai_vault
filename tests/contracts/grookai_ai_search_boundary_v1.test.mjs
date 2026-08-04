@@ -117,6 +117,10 @@ test('smart structured variant search uses number and set aware candidate discov
     source,
     /getExploreRowsForSmartStructuredTextSearch[\s\S]*fetchLanguageScopedTextRows\(\s*query,\s*options\.languageScope \?\? "all",\s*\)/,
   );
+  assert.match(
+    source,
+    /getExploreRowsForSmartStructuredTextSearch[\s\S]*textFilteredRows = releaseFilteredRows\.filter\(\(row\) =>[\s\S]*rowMatchesSmartDiscoveryText\(row, rawQuery\)/,
+  );
 });
 
 test('Grookai Search keeps canonical variants discoverable when printing coverage is incomplete', () => {
@@ -155,6 +159,39 @@ test('Grookai Search keeps canonical variants discoverable when printing coverag
       ),
     ).map((row) => `${row.gv_id}:${row.search_object_type}`),
     ['GV-PK-ONE:child_printing'],
+  );
+});
+
+test('a unique fully applied structured variant result is not labeled approximate', () => {
+  const { classifySmartVariantResolverState } = loadTsModule(
+    '../../apps/web/src/lib/search/smartVariantSearchPolicy.ts',
+  );
+  const intent = {
+    residualQuery: 'Pikachu ex Surging Sparks 057',
+    finishKeys: [],
+    stampLabels: ['Play Pokemon Stamp'],
+    unappliedLabels: [],
+  };
+
+  assert.equal(
+    classifySmartVariantResolverState(1, intent, 'structured_text'),
+    'DIRECT_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(2, intent, 'structured_text'),
+    'WEAK_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(1, intent, 'generic'),
+    'WEAK_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(
+      1,
+      { ...intent, unappliedLabels: ['Unapplied constraint'] },
+      'structured_text',
+    ),
+    'WEAK_MATCH',
   );
 });
 

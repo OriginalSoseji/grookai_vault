@@ -891,7 +891,7 @@ class _CatalogCardTile extends StatelessWidget {
       ..._catalogMetadataParts(card, compact: compact),
       if ((printingSummary ?? '').trim().isNotEmpty) printingSummary!.trim(),
     ];
-    final subtitle = subtitleParts.join(' • ');
+    final subtitle = _dedupeCatalogLabels(subtitleParts).join(' • ');
     final thumbWidth = compact ? 56.0 : 60.0;
     final thumbHeight = compact ? 81.0 : 86.0;
 
@@ -1164,7 +1164,7 @@ class _CatalogCardGridTile extends StatelessWidget {
       ..._catalogMetadataParts(card, compact: false, includeRarity: false),
       if ((printingSummary ?? '').trim().isNotEmpty) printingSummary!.trim(),
     ];
-    final subtitle = subtitleParts.join(' • ');
+    final subtitle = _dedupeCatalogLabels(subtitleParts).join(' • ');
 
     return _CatalogFeedImpressionObserver(
       cardId: card.id,
@@ -1627,6 +1627,14 @@ bool _canOpenOwnedSurface(OwnershipState? state) {
 String _searchContextLabel(CardPrint card) {
   final label = (card.displayDiscriminator ?? card.finishLabel ?? '').trim();
   return label;
+}
+
+List<String> _dedupeCatalogLabels(Iterable<String> labels) {
+  final seen = <String>{};
+  return labels.where((label) {
+    final normalized = label.trim().toLowerCase();
+    return normalized.isNotEmpty && seen.add(normalized);
+  }).toList(growable: false);
 }
 
 List<String> _catalogMetadataParts(

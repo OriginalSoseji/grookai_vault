@@ -17,6 +17,7 @@ const VERSION = 'SPECIAL_VARIANT_PRINTING_COVERAGE_V1';
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'special_variant_printing_coverage_v1');
 const OUT_JSON = path.join(OUT_DIR, 'special_variant_printing_coverage_v1.json');
 const OUT_MD = path.join(OUT_DIR, 'special_variant_printing_coverage_v1.md');
+const AUTHORITATIVE_PRINTING_SOURCES = new Set(['tcgdex', 'pokemonapi']);
 
 function getDbUrl() {
   return process.env.SUPABASE_DB_URL
@@ -94,6 +95,10 @@ function extractFinishEvidence(source, payload) {
   return evidence;
 }
 
+function isAuthoritativeFinishEvidence(evidence) {
+  return AUTHORITATIVE_PRINTING_SOURCES.has(normalizeKey(evidence?.source));
+}
+
 function classify(row, finishEvidence) {
   const children = Array.isArray(row.children) ? row.children : [];
   const publicChildren = children.filter((child) => child.public_visible === true);
@@ -108,8 +113,11 @@ function classify(row, finishEvidence) {
   if (children.length > 0) {
     return { status: 'child_quarantined_or_inactive', repair_eligible: false };
   }
+  if (finishEvidence.some(isAuthoritativeFinishEvidence)) {
+    return { status: 'missing_child_authoritative_finish_evidence_available', repair_eligible: true };
+  }
   if (finishEvidence.length > 0) {
-    return { status: 'missing_child_source_evidence_available', repair_eligible: true };
+    return { status: 'missing_child_reference_finish_evidence_review_required', repair_eligible: false };
   }
   return { status: 'missing_child_no_source_finish_evidence', repair_eligible: false };
 }
@@ -247,6 +255,7 @@ async function main() {
       ),
     ).map((item) => JSON.parse(item));
     const classification = classify(row, finishEvidence);
+    const authoritativeFinishEvidence = finishEvidence.filter(isAuthoritativeFinishEvidence);
     const children = Array.isArray(row.children) ? row.children : [];
     const publicChildren = children.filter((child) => child.public_visible === true);
 
@@ -266,7 +275,15 @@ async function main() {
       children,
       parent_mappings: row.parent_mappings ?? [],
       source_finish_evidence: finishEvidence,
-      evidence_backed_candidate_finishes: unique(finishEvidence.map((item) => item.finish_key)),
+      authoritative_finish_evidence: authoritativeFinishEvidence,
+      evidence_backed_candidate_finishes: unique(
+        authoritativeFinishEvidence.map((item) => item.finish_key),
+      ),
+      reference_only_candidate_finishes: unique(
+        finishEvidence
+          .filter((item) => !isAuthoritativeFinishEvidence(item))
+          .map((item) => item.finish_key),
+      ),
     };
   });
 
@@ -278,7 +295,7 @@ async function main() {
     db_writes_performed: false,
     canonical_rows_changed: 0,
     child_rows_changed: 0,
-    authority_rule: 'Missing child printings are repair candidates only when exact mapped source payloads expose a bounded finish. No evidence means no write.',
+    authority_rule: 'Missing child printings are repair candidates only when an approved printing authority exposes a bounded finish. JustTCG-only finish labels remain review evidence and never authorize a child write.',
     summary: {
       special_variant_parents: rows.length,
       by_status: countBy(rows, (row) => row.status),
@@ -305,7 +322,7 @@ async function main() {
     `- Special-variant parents: ${report.summary.special_variant_parents}`,
     `- Parents with public governed children: ${report.summary.parents_with_public_children}`,
     `- Parents without any child: ${report.summary.parents_without_children}`,
-    `- Evidence-backed repair candidates: ${report.summary.evidence_backed_repair_candidates}`,
+    `- Authoritative repair candidates: ${report.summary.evidence_backed_repair_candidates}`,
     `- Fingerprint: \`${fingerprint}\``,
     '',
     '## Status Distribution',
@@ -331,12 +348,13 @@ async function main() {
     '## Governed Repair Workflow',
     '',
     '1. Keep canonical parent identity unchanged.',
-    '2. Require exact active parent mapping plus stored source payload finish evidence.',
-    '3. Produce a bounded candidate plan; never infer a finish from a variant label or image alone.',
-    '4. Run the existing printing upsert gate in rollback mode and verify parent, finish, printing GV-ID, provenance, and collision checks.',
-    '5. Apply only an explicitly approved evidence-backed plan.',
-    '6. Read back the child and the public printing-options RPC, then smoke-test selection on web and mobile.',
-    '7. Leave no-evidence rows quarantined as coverage gaps.',
+    '2. Require exact active parent mapping plus stored finish evidence from an approved printing authority.',
+    '3. Treat JustTCG-only finish labels as discovery/review evidence; they never authorize a child write.',
+    '4. Produce a bounded candidate plan; never infer a finish from a variant label or image alone.',
+    '5. Run the existing printing upsert gate in rollback mode and verify parent, finish, printing GV-ID, provenance, and collision checks.',
+    '6. Apply only an explicitly approved evidence-backed plan.',
+    '7. Read back the child and the public printing-options RPC, then smoke-test selection on web and mobile.',
+    '8. Leave no-evidence and reference-only rows quarantined as coverage gaps.',
   ].join('\n');
 
   await fs.mkdir(OUT_DIR, { recursive: true });

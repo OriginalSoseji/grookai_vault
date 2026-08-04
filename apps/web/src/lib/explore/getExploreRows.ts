@@ -3328,7 +3328,7 @@ function getSmartDiscoveryTextTokens(textQuery?: string) {
 }
 
 function rowMatchesSmartDiscoveryText(
-  row: CardPrintLookupRow,
+  row: Partial<CardPrintLookupRow> & { set_name?: string | null },
   textQuery?: string,
 ) {
   const tokens = getSmartDiscoveryTextTokens(textQuery);
@@ -3340,6 +3340,7 @@ function rowMatchesSmartDiscoveryText(
     [
       row.name,
       row.number,
+      row.set_name,
       row.gv_id,
       row.set_code,
       row.printed_set_abbrev,
@@ -4298,7 +4299,11 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return true;
   });
 
-  return sortRows(releaseFilteredRows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+  const textFilteredRows = releaseFilteredRows.filter((row) =>
+    rowMatchesSmartDiscoveryText(row, rawQuery),
+  );
+
+  return sortRows(textFilteredRows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 export async function getExploreRowsForOwnedSmartFilterDiscovery(
