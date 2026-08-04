@@ -1,7 +1,9 @@
 /// Independent, compile-time Binder rollout gates.
 ///
-/// Every gate is deliberately off by default. Enabling a later phase without
-/// its prerequisites does not make it available.
+/// Activated production phases default on so local, CI, Android, and Xcode
+/// Cloud builds expose the same shipped Binder surface. Future phases remain
+/// off until their release gate is approved. Compile-time values can still
+/// disable an activated phase for rollback.
 class BinderFeatureFlags {
   const BinderFeatureFlags({
     required this.schema,
@@ -18,25 +20,19 @@ class BinderFeatureFlags {
   });
 
   static const BinderFeatureFlags production = BinderFeatureFlags(
-    schema: bool.fromEnvironment('BINDERS_SCHEMA_V1', defaultValue: false),
-    personal: bool.fromEnvironment('BINDERS_PERSONAL_V1', defaultValue: false),
-    shared: bool.fromEnvironment('BINDERS_SHARED_V1', defaultValue: false),
+    schema: bool.fromEnvironment('BINDERS_SCHEMA_V1', defaultValue: true),
+    personal: bool.fromEnvironment('BINDERS_PERSONAL_V1', defaultValue: true),
+    shared: bool.fromEnvironment('BINDERS_SHARED_V1', defaultValue: true),
     viewLinks: bool.fromEnvironment(
       'BINDERS_VIEW_LINKS_V1',
-      defaultValue: false,
+      defaultValue: true,
     ),
     publicBinders: bool.fromEnvironment(
       'BINDERS_PUBLIC_V1',
-      defaultValue: false,
+      defaultValue: true,
     ),
-    community: bool.fromEnvironment(
-      'BINDERS_COMMUNITY_V1',
-      defaultValue: false,
-    ),
-    templates: bool.fromEnvironment(
-      'BINDERS_TEMPLATES_V1',
-      defaultValue: false,
-    ),
+    community: bool.fromEnvironment('BINDERS_COMMUNITY_V1', defaultValue: true),
+    templates: bool.fromEnvironment('BINDERS_TEMPLATES_V1', defaultValue: true),
     notifications: bool.fromEnvironment(
       'BINDERS_NOTIFICATIONS_V1',
       defaultValue: false,
@@ -51,7 +47,7 @@ class BinderFeatureFlags {
     ),
     customBinders: bool.fromEnvironment(
       'BINDERS_CUSTOM_TARGET_V1',
-      defaultValue: false,
+      defaultValue: true,
     ),
   );
 
@@ -67,6 +63,19 @@ class BinderFeatureFlags {
       pulseSharing = true,
       setBinders = true,
       customBinders = true;
+
+  const BinderFeatureFlags.noneEnabled()
+    : schema = false,
+      personal = false,
+      shared = false,
+      viewLinks = false,
+      publicBinders = false,
+      community = false,
+      templates = false,
+      notifications = false,
+      pulseSharing = false,
+      setBinders = false,
+      customBinders = false;
 
   final bool schema;
   final bool personal;
