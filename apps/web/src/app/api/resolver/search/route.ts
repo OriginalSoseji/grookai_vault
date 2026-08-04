@@ -20,6 +20,7 @@ import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
@@ -151,14 +152,6 @@ function buildExplicitFilterLabels(payload: {
 
 function normalizeOptionalText(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
-}
-
-function normalizeSearchText(value: unknown) {
-  return normalizeOptionalText(value)
-    .toLowerCase()
-    .replace(/[_-]+/g, " ")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
 }
 
 function rowMatchesFinish(row: ExploreResultCard, finishKeys: string[]) {

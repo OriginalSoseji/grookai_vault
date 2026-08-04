@@ -21,6 +21,7 @@ export async function upsertPrinting({
   supabase,
   card_print_id,
   finish_key,
+  printing_gv_id = null,
   source,
   ref,
   evidence,
@@ -31,6 +32,7 @@ export async function upsertPrinting({
   const payloadSnapshot = {
     card_print_id,
     finish_key,
+    printing_gv_id,
     source: source ?? null,
     ref: ref ?? null,
     evidence: evidence ?? null,
@@ -70,6 +72,14 @@ export async function upsertPrinting({
         reason: `printing_upsert_v1 received unsupported finish_key ${finish_key}.`,
       },
       {
+        ok:
+          printing_gv_id === null ||
+          (typeof printing_gv_id === 'string' && printing_gv_id.trim().length > 0),
+        contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+        violation_type: 'invalid_printing_gv_id',
+        reason: 'printing_upsert_v1 received an empty or invalid printing_gv_id.',
+      },
+      {
         ok: hasProofEvidence(evidence),
         contract_name: 'PRINTING_TRUTH_CONTRACT_V1',
         violation_type: 'missing_printing_proof',
@@ -83,12 +93,15 @@ export async function upsertPrinting({
         contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
         violation_type: 'post_write_printing_missing',
         async run() {
-          const { data, error: selectError } = await supabase
+          let request = supabase
             .from('card_printings')
             .select('card_print_id,finish_key')
             .eq('card_print_id', card_print_id)
-            .eq('finish_key', finish_key)
-            .limit(1);
+            .eq('finish_key', finish_key);
+          if (printing_gv_id) {
+            request = request.eq('printing_gv_id', printing_gv_id);
+          }
+          const { data, error: selectError } = await request.limit(1);
 
           if (selectError) {
             return {
@@ -109,6 +122,7 @@ export async function upsertPrinting({
         {
           card_print_id,
           finish_key,
+          ...(printing_gv_id ? { printing_gv_id } : {}),
           is_provisional,
           provenance_source: source ?? null,
           provenance_ref: ref ?? null,
