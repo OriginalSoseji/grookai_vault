@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
@@ -355,6 +356,9 @@ class VaultManageCardCopy {
     required this.intent,
     this.gvviId,
     this.cardPrintingId,
+    this.printingGvId,
+    this.finishKey,
+    this.finishLabel,
     this.note,
     this.createdAt,
     this.grader,
@@ -366,6 +370,9 @@ class VaultManageCardCopy {
   final String instanceId;
   final String? gvviId;
   final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishKey;
+  final String? finishLabel;
   final String conditionLabel;
   final String intent;
   final String? note;
@@ -380,6 +387,9 @@ class VaultManageCardCopy {
       instanceId: instanceId,
       gvviId: gvviId,
       cardPrintingId: cardPrintingId,
+      printingGvId: printingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
       conditionLabel: conditionLabel,
       intent: intent ?? this.intent,
       note: note,
@@ -410,6 +420,13 @@ class VaultManageCardCopy {
       instanceId: (json['instance_id'] ?? json['id'] ?? '').toString(),
       gvviId: _trimmedOrNull(json['gv_vi_id']),
       cardPrintingId: _trimmedOrNull(json['card_printing_id']),
+      printingGvId: _trimmedOrNull(json['printing_gv_id']),
+      finishKey: _trimmedOrNull(json['finish_key']),
+      finishLabel:
+          _trimmedOrNull(json['finish_label']) ??
+          (json['finish_keys'] is Map
+              ? _trimmedOrNull((json['finish_keys'] as Map)['label'])
+              : null),
       conditionLabel: _trimmedOrNull(json['condition_label']) ?? 'NM',
       intent: normalizeVaultIntentValue(json['intent']),
       note: _trimmedOrNull(json['notes']),
@@ -420,6 +437,41 @@ class VaultManageCardCopy {
       isGraded: isGraded,
     );
   }
+
+  VaultManageCardCopy withPrintingIdentity({
+    required String? cardPrintingId,
+    String? printingGvId,
+    String? finishKey,
+    String? finishLabel,
+  }) {
+    return VaultManageCardCopy(
+      instanceId: instanceId,
+      gvviId: gvviId,
+      cardPrintingId: cardPrintingId,
+      printingGvId: printingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
+      conditionLabel: conditionLabel,
+      intent: intent,
+      note: note,
+      createdAt: createdAt,
+      grader: grader,
+      grade: grade,
+      certNumber: certNumber,
+      isGraded: isGraded,
+    );
+  }
+
+  VaultPrintingIdentityPresentation get printingIdentity =>
+      resolveVaultPrintingIdentityPresentation({
+        'printing_identity_status': cardPrintingId == null
+            ? 'unassigned'
+            : 'exact',
+        'printing_gv_id': printingGvId,
+        'finish_label': finishLabel,
+      });
+
+  String get printingIdentityLabel => printingIdentity.label;
 }
 
 class VaultManageCopySectionMembership {
@@ -519,6 +571,39 @@ class VaultManageCardData {
       (publicSlug?.isNotEmpty ?? false) &&
       publicProfileEnabled &&
       vaultSharingEnabled;
+
+  VaultPrintingIdentityPresentation get printingIdentity {
+    if (copies.isEmpty) {
+      return resolveVaultPrintingIdentityPresentation(const {});
+    }
+
+    final assignedCopies = copies
+        .where((copy) => (copy.cardPrintingId ?? '').trim().isNotEmpty)
+        .toList(growable: false);
+    if (assignedCopies.isEmpty) {
+      return resolveVaultPrintingIdentityPresentation({
+        'printing_identity_status': 'unassigned',
+      });
+    }
+    if (assignedCopies.length != copies.length) {
+      return resolveVaultPrintingIdentityPresentation({
+        'printing_identity_status': 'partially_unassigned',
+      });
+    }
+
+    final printingIds = assignedCopies
+        .map((copy) => copy.cardPrintingId!.trim())
+        .toSet();
+    if (printingIds.length != 1) {
+      return resolveVaultPrintingIdentityPresentation({
+        'printing_identity_status': 'mixed',
+      });
+    }
+
+    return assignedCopies.first.printingIdentity;
+  }
+
+  String get printingIdentityLabel => printingIdentity.label;
 }
 
 class VaultSharedCardState {
@@ -2180,7 +2265,10 @@ class VaultCardService {
             .where((copy) => copy.instanceId.isNotEmpty)
             .toList();
         if (fallbackOwnedCount <= 0 || copies.length >= fallbackOwnedCount) {
-          return copies;
+          return _enrichManageCardCopiesWithPrintingIdentity(
+            client: client,
+            copies: copies,
+          );
         }
       }
     } catch (_) {
@@ -2189,10 +2277,89 @@ class VaultCardService {
       // mobile Copies tab look empty.
     }
 
-    return _loadManageCardCopiesFromInstances(
+    final fallbackCopies = await _loadManageCardCopiesFromInstances(
       client: client,
       cardPrintId: cardPrintId,
     );
+    return _enrichManageCardCopiesWithPrintingIdentity(
+      client: client,
+      copies: fallbackCopies,
+    );
+  }
+
+  static Future<List<VaultManageCardCopy>>
+  _enrichManageCardCopiesWithPrintingIdentity({
+    required SupabaseClient client,
+    required List<VaultManageCardCopy> copies,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (copies.isEmpty || userId == null || userId.isEmpty) {
+      return copies;
+    }
+
+    final instanceIds = copies
+        .map((copy) => copy.instanceId.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (instanceIds.isEmpty) {
+      return copies;
+    }
+
+    final instanceRows = await client
+        .from('vault_item_instances')
+        .select('id,card_printing_id')
+        .eq('user_id', userId)
+        .inFilter('id', instanceIds)
+        .filter('archived_at', 'is', null);
+    final printingIdByInstanceId = <String, String?>{};
+    for (final row in instanceRows.whereType<Map>()) {
+      final instanceId = _trimmedOrNull(row['id']);
+      if (instanceId != null) {
+        printingIdByInstanceId[instanceId] = _trimmedOrNull(
+          row['card_printing_id'],
+        );
+      }
+    }
+    final printingIds = {
+      ...copies.map((copy) => copy.cardPrintingId),
+      ...printingIdByInstanceId.values,
+    }.whereType<String>().where((id) => id.isNotEmpty).toList(growable: false);
+
+    final printingById = <String, Map<String, dynamic>>{};
+    if (printingIds.isNotEmpty) {
+      final printingRows = await client
+          .from('card_printings')
+          .select('id,printing_gv_id,finish_key,finish_keys(label)')
+          .inFilter('id', printingIds);
+      for (final rawRow in printingRows.whereType<Map>()) {
+        final row = Map<String, dynamic>.from(rawRow);
+        final printingId = _trimmedOrNull(row['id']);
+        if (printingId != null) {
+          printingById[printingId] = row;
+        }
+      }
+    }
+
+    return copies
+        .map((copy) {
+          final printingId =
+              printingIdByInstanceId[copy.instanceId] ?? copy.cardPrintingId;
+          if (printingId == null) {
+            return copy.withPrintingIdentity(cardPrintingId: null);
+          }
+          final printing = printingById[printingId];
+          final finishRecord = printing?['finish_keys'];
+          return copy.withPrintingIdentity(
+            cardPrintingId: printingId,
+            printingGvId: _trimmedOrNull(printing?['printing_gv_id']),
+            finishKey: _trimmedOrNull(printing?['finish_key']),
+            finishLabel: finishRecord is Map
+                ? _trimmedOrNull(finishRecord['label'])
+                : null,
+          );
+        })
+        .toList(growable: false);
   }
 
   static Future<List<VaultManageCardCopy>> _loadManageCardCopiesFromInstances({
@@ -2290,7 +2457,12 @@ class VaultCardService {
     if (row['archived_at'] != null) {
       return null;
     }
-    return VaultManageCardCopy.fromJson(row);
+    final copy = VaultManageCardCopy.fromJson(row);
+    final enriched = await _enrichManageCardCopiesWithPrintingIdentity(
+      client: client,
+      copies: [copy],
+    );
+    return enriched.single;
   }
 
   static Future<VaultOwnedCopyTarget?> _resolveOwnedTargetFromCollectorRow({

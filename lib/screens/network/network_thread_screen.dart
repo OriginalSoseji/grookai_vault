@@ -287,6 +287,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
     final subtitleParts = <String>[
       _thread.setName,
       if (_thread.number != '—') '#${_thread.number}',
+      _thread.printingIdentityLabel,
     ];
     final counterpartLabel = _thread.counterpartSlug == null
         ? _thread.counterpartDisplayName

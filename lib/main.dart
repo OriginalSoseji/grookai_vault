@@ -76,6 +76,7 @@ import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/identity_search.dart';
 import 'theme/gv_grid_constants.dart';
 import 'utils/display_image_contract.dart';
+import 'utils/vault_printing_identity.dart';
 import 'widgets/gv_surface.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';

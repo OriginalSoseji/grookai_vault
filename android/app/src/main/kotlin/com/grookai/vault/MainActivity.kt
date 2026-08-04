@@ -16,7 +16,10 @@ class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!BuildConfig.LOCKED_ACCEPTANCE_ENABLED) return
+        // Local debug builds are used for unattended physical-device smoke
+        // tests. Release builds retain normal lock-screen behavior unless the
+        // explicit locked-acceptance variant is requested.
+        if (!BuildConfig.DEBUG && !BuildConfig.LOCKED_ACCEPTANCE_ENABLED) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true)
