@@ -416,10 +416,17 @@ void main() {
     },
   );
 
-  testWidgets('default-off screens issue no Binder RPCs', (tester) async {
+  testWidgets('explicitly disabled screens issue no Binder RPCs', (
+    tester,
+  ) async {
     final libraryRepository = _FlowRepository();
     await tester.pumpWidget(
-      MaterialApp(home: BinderLibraryScreen(repository: libraryRepository)),
+      MaterialApp(
+        home: BinderLibraryScreen(
+          repository: libraryRepository,
+          featureFlags: const BinderFeatureFlags.noneEnabled(),
+        ),
+      ),
     );
     await tester.pump();
     expect(find.text('Binders are not enabled'), findsOneWidget);
@@ -427,7 +434,12 @@ void main() {
 
     final createRepository = _FlowRepository();
     await tester.pumpWidget(
-      MaterialApp(home: BinderCreateScreen(repository: createRepository)),
+      MaterialApp(
+        home: BinderCreateScreen(
+          repository: createRepository,
+          featureFlags: const BinderFeatureFlags.noneEnabled(),
+        ),
+      ),
     );
     await tester.pump();
     expect(find.text('Binders are not enabled'), findsOneWidget);
@@ -439,6 +451,7 @@ void main() {
         home: BinderDetailScreen(
           publicId: 'binder-public-1',
           repository: detailRepository,
+          featureFlags: const BinderFeatureFlags.noneEnabled(),
         ),
       ),
     );

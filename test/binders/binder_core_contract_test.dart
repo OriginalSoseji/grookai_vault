@@ -43,8 +43,8 @@ Map<String, dynamic> _summaryJson({
 
 void main() {
   group('Binder rollout gates', () {
-    test('all production gates default off', () {
-      const flags = BinderFeatureFlags.production;
+    test('explicit rollback gate disables every Binder phase', () {
+      const flags = BinderFeatureFlags.noneEnabled();
 
       expect(flags.schema, isFalse);
       expect(flags.personalAvailable, isFalse);

@@ -71,6 +71,28 @@ test('copy, social, dex, onboarding, and object surfaces use governed identity',
   }
 });
 
+test('all primary collector card surfaces use governed display identity', () => {
+  const required = [
+    ['lib/main.dart', /resolveCardPrintDisplayIdentity/],
+    ['lib/card_detail_screen.dart', /_displayIdentity\.displayName/],
+    ['lib/screens/compare/compare_screen.dart', /_compareDisplayIdentity/],
+    ['lib/screens/sets/public_set_detail_screen.dart', /_setCardDisplayIdentity/],
+    ['lib/screens/public_collector/public_collector_screen.dart', /_publicCollectorDisplayIdentity/],
+    ['lib/screens/network/network_screen.dart', /_networkDisplayIdentity/],
+    ['lib/screens/network/network_inbox_screen.dart', /group\.cardName/],
+    ['lib/screens/binders/binder_detail_screen.dart', /resolveBinderChecklistItemIdentity/],
+    ['lib/screens/vault/vault_gvvi_screen.dart', /_gvviDisplayIdentity/],
+    ['lib/screens/vault/vault_manage_card_screen.dart', /_manageCardDisplayIdentity/],
+    ['lib/screens/dex/grookai_dex_species_screen.dart', /_dexCardDisplayIdentity/],
+    ['lib/screens/scanner/scan_capture_screen.dart', /resolveDisplayIdentityFromFields/],
+    ['lib/screens/scanner_v5/widgets/scanner_result_sheet.dart', /resolveDisplayIdentityFromFields/],
+  ];
+
+  for (const [path, pattern] of required) {
+    assert.match(source(path), pattern, `${path} must render governed identity`);
+  }
+});
+
 test('known direct card labels no longer render an unqualified raw candidate name', () => {
   const forbidden = [
     ['lib/screens/scanner/scan_capture_screen.dart', /title:\s*Text\(cardName/],
