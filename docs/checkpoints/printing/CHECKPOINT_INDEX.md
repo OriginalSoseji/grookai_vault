@@ -15,6 +15,37 @@ These checkpoints should be read as institutional memory for the printing system
 
 ## Checkpoint Sequence
 
+### `SPECIAL_VARIANT_PRINTING_AUTHORITY_V1.md`
+
+This checkpoint records the authoritative reconciliation of the `563` reference-only special-variant printing gaps left by the cross-client release repair.
+
+Decision locked there:
+
+- JustTCG remains discovery-only
+- only exact active TCGCSV/TCGplayer catalog identity, explicit variant title, exact finish subtype, verified set/Index consistency, and clean live invariants may enter a guarded child manifest
+
+Current result:
+
+- `143` prospective child rows are evidence-ready and collision-free
+- `420` rows remain blocked
+- no child was applied
+- the `143`-row rollback-only proof passed through frozen GitHub runner evidence with identical durable before/after fingerprints
+- the next gate is a separately approved real apply of at most `25` hidden, unapproved child rows
+
+### `VARIANT_SEARCH_PRINTING_COVERAGE_RELEASE_REPAIR_V1.md`
+
+This checkpoint records the bounded cross-client repair that made exact structured variant search deterministic, exposed the existing exact-copy media controls, and restored the printing authority boundary for coverage repair.
+
+Decision locked there:
+
+- exact search may promote only a unique, fully applied structured result
+- JustTCG-only finish evidence remains reviewer-only and cannot authorize automatic child creation
+
+Unresolved work afterward:
+
+- `563` reference-only finish gaps still need authoritative source acquisition or human confirmation
+- exact variant imagery remains separate from governed printing identity
+
 ### `PRINTING_MODEL_V2_IMPLEMENTATION_CHECKPOINT.md`
 
 This checkpoint records the first lawful implementation phase of Printing Model V2. It captures the transition from under-governed child-printing behavior into a contract-bound, provenance-aware, deterministic finish layer without reopening canon.

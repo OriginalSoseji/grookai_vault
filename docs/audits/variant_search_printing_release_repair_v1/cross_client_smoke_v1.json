@@ -1,0 +1,52 @@
+{
+  "version": "VARIANT_SEARCH_PRINTING_RELEASE_REPAIR_CROSS_CLIENT_SMOKE_V1",
+  "recorded_at": "2026-08-04T18:40:00.000Z",
+  "branch": "fix/variant-search-printing-coverage-v1",
+  "source_head_before_final_commit": "bded498b1e05f3f9a5ee1f1020ce0845660a636a",
+  "query": "Pikachu ex Surging Sparks 057 Play Pokemon stamp holo",
+  "expected": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "card_printing_id": "0c231887-95a8-4f86-9c60-91b36e56ac2f",
+    "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "finish_key": "holo"
+  },
+  "web": {
+    "endpoint": "http://127.0.0.1:3210/api/resolver/search",
+    "ok": true,
+    "resolver_state": "DIRECT_MATCH",
+    "returned_count": 1,
+    "unapplied_labels": [],
+    "matched_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "matched_printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "display_discriminator": "Holo",
+    "image_status": "representative_missing_variant_visual"
+  },
+  "samsung": {
+    "device": "SM_S908U",
+    "serial": "R5CT3291F6E",
+    "build_type": "debug",
+    "returned_count": 1,
+    "approximate_banner_visible": false,
+    "matched_title": "Pikachu ex · Holo",
+    "matched_subtitle": "Surging Sparks • #057 • Holo",
+    "duplicate_adjacent_finish_label": false,
+    "representative_image_disclosure_visible": true,
+    "screenshot": "samsung_final_variant_search.png"
+  },
+  "exact_copy_media_lifecycle": {
+    "temporary_instance_id": "2030695b-2f37-4102-a641-897ce40771bc",
+    "temporary_gvvi": "GVVI-065CAB28-001331",
+    "upload_readback": "uploaded image path and uploaded display mode round-tripped",
+    "remove_readback": "front and back paths cleared and canonical display mode restored",
+    "archive_readback": "temporary exact copy archived",
+    "final_storage_front_objects": 0,
+    "final_storage_back_objects": 0,
+    "screenshot": "samsung_uploaded_copy_pass.png"
+  },
+  "database_boundary": {
+    "canonical_identity_changed": false,
+    "user_collection_data_remaining_from_smoke": false,
+    "printing_provenance_after": "tcgplayer_catalog_corroborated"
+  }
+}

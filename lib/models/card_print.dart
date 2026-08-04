@@ -293,6 +293,7 @@ enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
 
 ResolverSearchState? _parseResolverSearchState(String? value) {
   switch (value) {
+    case 'DIRECT_MATCH':
     case 'STRONG_MATCH':
       return ResolverSearchState.strongMatch;
     case 'AMBIGUOUS_MATCH':

@@ -1,0 +1,55 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_TRANSACTIONAL_ROLLBACK_V1",
+  "generated_at": "2026-08-04T20:23:10.605Z",
+  "mode": "transactional_rollback_dry_run",
+  "transaction_committed": false,
+  "durable_db_writes_performed": false,
+  "approvals_performed": false,
+  "public_visibility_changed": false,
+  "source_manifest_version": "SPECIAL_VARIANT_PRINTING_GUARDED_MANIFEST_V1",
+  "source_manifest_fingerprint_sha256": "2437a727bf53ba62752067b55eddacbfc4a99f98e3564e11ce5b5d1c8a306c9c",
+  "summary": {
+    "target_count": 143,
+    "transient_child_count": 143,
+    "transient_review_count": 143,
+    "durable_child_count": 0,
+    "durable_review_count": 0
+  },
+  "simulation": {
+    "before": {
+      "rows": [],
+      "count": 0,
+      "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "guard": {
+      "target_count": 143,
+      "distinct_child_ids": 143,
+      "distinct_review_ids": 143,
+      "distinct_printing_gv_ids": 143,
+      "exact_parent_count": 143,
+      "active_finish_count": 143,
+      "active_identity_count": 143,
+      "exact_discovery_mapping_count": 143,
+      "existing_finish_collision_count": 0,
+      "printing_gv_collision_count": 0,
+      "child_id_collision_count": 0,
+      "review_id_collision_count": 0,
+      "forbidden_stamped_finish_count": 0,
+      "exact_hidden_review_policy_count": 143
+    },
+    "transient": {
+      "child_insert_count": 143,
+      "review_insert_count": 143,
+      "exact_transient_child_count": 143,
+      "exact_transient_review_count": 143,
+      "exact_current_view_count": 143
+    },
+    "after": {
+      "rows": [],
+      "count": 0,
+      "fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "durable_state_unchanged": true
+  },
+  "fingerprint_sha256": "185dd7a9229f999d61be513f3dc41fc92856ff4e43db27df498f13560c9e424e"
+}

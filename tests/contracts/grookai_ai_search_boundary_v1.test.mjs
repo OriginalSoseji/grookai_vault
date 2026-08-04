@@ -98,6 +98,103 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
   assert.ok(missingImages.interpretedLabels.includes('Image: Missing exact image'));
 });
 
+test('Grookai Search normalization preserves accented collector labels', () => {
+  const { normalizeSearchText } = loadTsModule(
+    '../../apps/web/src/lib/search/normalizeSearchText.ts',
+  );
+
+  assert.equal(normalizeSearchText('Play Pokémon Stamp'), 'play pokemon stamp');
+  assert.equal(normalizeSearchText('Pokémon_Together-Stamp'), 'pokemon together stamp');
+});
+
+test('smart structured variant search uses number and set aware candidate discovery', () => {
+  const source = readFileSync(
+    new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(
+    source,
+    /getExploreRowsForSmartStructuredTextSearch[\s\S]*fetchLanguageScopedTextRows\(\s*query,\s*options\.languageScope \?\? "all",\s*\)/,
+  );
+  assert.match(
+    source,
+    /getExploreRowsForSmartStructuredTextSearch[\s\S]*textFilteredRows = releaseFilteredRows\.filter\(\(row\) =>[\s\S]*rowMatchesSmartDiscoveryText\(row, rawQuery\)/,
+  );
+});
+
+test('Grookai Search keeps canonical variants discoverable when printing coverage is incomplete', () => {
+  const { mergeSmartVariantScopeRows } = loadTsModule(
+    '../../apps/web/src/lib/search/smartVariantSearchPolicy.ts',
+  );
+  const parentWithChild = {
+    gv_id: 'GV-PK-ONE',
+    search_object_type: 'parent_print',
+  };
+  const parentWithoutChild = {
+    gv_id: 'GV-PK-TWO',
+    search_object_type: 'parent_print',
+  };
+  const child = {
+    gv_id: 'GV-PK-ONE',
+    search_object_type: 'child_printing',
+  };
+
+  assert.deepEqual(
+    Array.from(
+      mergeSmartVariantScopeRows(
+        [parentWithChild, parentWithoutChild],
+        [child],
+        false,
+      ),
+    ).map((row) => `${row.gv_id}:${row.search_object_type}`),
+    ['GV-PK-TWO:parent_print', 'GV-PK-ONE:child_printing'],
+  );
+  assert.deepEqual(
+    Array.from(
+      mergeSmartVariantScopeRows(
+        [parentWithChild, parentWithoutChild],
+        [child],
+        true,
+      ),
+    ).map((row) => `${row.gv_id}:${row.search_object_type}`),
+    ['GV-PK-ONE:child_printing'],
+  );
+});
+
+test('a unique fully applied structured variant result is not labeled approximate', () => {
+  const { classifySmartVariantResolverState } = loadTsModule(
+    '../../apps/web/src/lib/search/smartVariantSearchPolicy.ts',
+  );
+  const intent = {
+    residualQuery: 'Pikachu ex Surging Sparks 057',
+    finishKeys: [],
+    stampLabels: ['Play Pokemon Stamp'],
+    unappliedLabels: [],
+  };
+
+  assert.equal(
+    classifySmartVariantResolverState(1, intent, 'structured_text'),
+    'DIRECT_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(2, intent, 'structured_text'),
+    'WEAK_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(1, intent, 'generic'),
+    'WEAK_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(
+      1,
+      { ...intent, unappliedLabels: ['Unapplied constraint'] },
+      'structured_text',
+    ),
+    'WEAK_MATCH',
+  );
+});
+
 test('Grookai Search recognizes governed special-case identity families deterministically', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
   const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');

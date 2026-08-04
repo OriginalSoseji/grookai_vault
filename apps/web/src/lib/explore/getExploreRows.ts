@@ -38,6 +38,8 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
+import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 
 const SEARCH_LIMIT = 64;
 const TOKEN_SEARCH_LIMIT = 32;
@@ -538,7 +540,7 @@ function getReleaseYear(releaseDate?: string | null) {
 }
 
 function normalizeTextForMatch(value?: string | null) {
-  return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+  return normalizeSearchText(value);
 }
 
 function normalizeCollectorToken(value?: string | null) {
@@ -3326,7 +3328,7 @@ function getSmartDiscoveryTextTokens(textQuery?: string) {
 }
 
 function rowMatchesSmartDiscoveryText(
-  row: CardPrintLookupRow,
+  row: Partial<CardPrintLookupRow> & { set_name?: string | null },
   textQuery?: string,
 ) {
   const tokens = getSmartDiscoveryTextTokens(textQuery);
@@ -3338,6 +3340,7 @@ function rowMatchesSmartDiscoveryText(
     [
       row.name,
       row.number,
+      row.set_name,
       row.gv_id,
       row.set_code,
       row.printed_set_abbrev,
@@ -4156,12 +4159,13 @@ export async function getExploreRowsForSmartFilterDiscovery(
   const shouldRequireChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
     Boolean(options.imageState && options.imageState !== "any");
+  const scopedRows = mergeSmartVariantScopeRows(
+    parentRows,
+    childScopedRows,
+    shouldRequireChildScope,
+  );
   const exactRows = await filterSmartDiscoveryRowsByScope(
-    childScopedRows.length > 0
-      ? childScopedRows
-      : shouldRequireChildScope
-        ? []
-        : parentRows,
+    scopedRows,
     options,
   );
   const query = await buildResolverQuery(normalizeQuery(""));
@@ -4207,9 +4211,9 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return getExploreRowsForSmartFilterDiscovery(options);
   }
 
-  let parentRows = applyLanguageScopeRows(
-    await fetchCardRowsByStructuredTextQuery(query),
-    options.languageScope,
+  let parentRows = await fetchLanguageScopedTextRows(
+    query,
+    options.languageScope ?? "all",
   );
 
   const exactSetCode = normalizeSetCode(options.exactSetCode);
@@ -4238,12 +4242,20 @@ export async function getExploreRowsForSmartStructuredTextSearch(
   parentRows = applySmartStampParentFilter(parentRows, options.stampLabels);
 
   const childScopedRows = await fetchSmartDiscoveryChildRows(options, parentRows);
-  if (childScopedRows.length === 0) {
+  const shouldRequireChildScope =
+    normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const scopedRows = mergeSmartVariantScopeRows(
+    parentRows,
+    childScopedRows,
+    shouldRequireChildScope,
+  );
+  if (scopedRows.length === 0) {
     return [];
   }
 
   const enrichmentRows = limitRowsBeforeEnrichment(
-    childScopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT),
+    scopedRows.slice(0, SMART_FILTER_DISCOVERY_LIMIT),
     query,
     options.sortMode,
   );
@@ -4287,7 +4299,11 @@ export async function getExploreRowsForSmartStructuredTextSearch(
     return true;
   });
 
-  return sortRows(releaseFilteredRows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+  const textFilteredRows = releaseFilteredRows.filter((row) =>
+    rowMatchesSmartDiscoveryText(row, rawQuery),
+  );
+
+  return sortRows(textFilteredRows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 export async function getExploreRowsForOwnedSmartFilterDiscovery(

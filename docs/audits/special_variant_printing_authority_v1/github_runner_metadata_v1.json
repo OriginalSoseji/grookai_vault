@@ -1,0 +1,13 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_GITHUB_RUNNER_METADATA_V1",
+  "generated_at": "2026-08-04T20:23:10.657Z",
+  "github_sha": "bf1ecb6913688913e84e3774fd7c4f3eccbc66d1",
+  "github_ref": "refs/tags/special-variant-printing-rollback-proof-v1",
+  "github_run_id": "30947529006",
+  "github_run_attempt": "1",
+  "evidence_source_sha": "26e11d580767eb0f52ee2319039235c5641e12a7",
+  "proof_step_outcome": "success",
+  "workflow": "Special Variant Printing Rollback Proof Temporary Runner",
+  "durable_db_writes_authorized": false,
+  "apply_mode_available": false
+}

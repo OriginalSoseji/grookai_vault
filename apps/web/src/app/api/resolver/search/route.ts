@@ -20,6 +20,8 @@ import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
 import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
@@ -153,14 +155,6 @@ function normalizeOptionalText(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function normalizeSearchText(value: unknown) {
-  return normalizeOptionalText(value)
-    .toLowerCase()
-    .replace(/[_-]+/g, " ")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
-
 function rowMatchesFinish(row: ExploreResultCard, finishKeys: string[]) {
   if (finishKeys.length === 0) {
     return true;
@@ -215,9 +209,14 @@ function rowMatchesImageState(row: ExploreResultCard, imageState: SmartSearchInt
 function buildSmartFilterDiscoveryMeta(
   rows: ExploreResultCard[],
   smartSearchIntent: SmartSearchIntent,
+  mode: "generic" | "structured_text" = "generic",
 ): ResolverMeta {
   return {
-    resolverState: rows.length > 0 ? "WEAK_MATCH" : "NO_MATCH",
+    resolverState: classifySmartVariantResolverState(
+      rows.length,
+      smartSearchIntent,
+      mode,
+    ),
     topScore: null,
     candidateCount: rows.length,
     autoResolved: false,
@@ -544,7 +543,11 @@ export async function GET(request: NextRequest) {
               includePricing: includePricingDuringResolution,
             }).then((rows) => ({
               rows,
-              meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+              meta: buildSmartFilterDiscoveryMeta(
+                rows,
+                effectiveSmartSearchIntent,
+                "structured_text",
+              ),
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
             }))

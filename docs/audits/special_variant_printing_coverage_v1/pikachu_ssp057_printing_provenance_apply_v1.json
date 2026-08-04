@@ -1,0 +1,96 @@
+{
+  "version": "PIKACHU_SSP057_PLAY_STAMP_PRINTING_PROVENANCE_REPAIR_V1",
+  "generated_at": "2026-08-04T18:33:46.295Z",
+  "mode": "apply",
+  "target": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "card_printing_id": "0c231887-95a8-4f86-9c60-91b36e56ac2f",
+    "finish_key": "holo",
+    "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "tcgplayer_product_id": "648703",
+    "tcgplayer_sku_id": "8882935",
+    "master_fact_key": "surging sparks|57|pikachu ex|holo"
+  },
+  "authority_decision": "JustTCG remains discovery evidence only. The persisted child provenance is the independently corroborated TCGplayer product/SKU, supported by the master-verified base finish and official Prize Pack identity.",
+  "provenance": {
+    "source": "tcgplayer_catalog_corroborated",
+    "ref": "product:648703|sku:8882935|master:surging sparks|57|pikachu ex|holo",
+    "official_prize_pack_gallery": "https://play.pokemon.com/en-us/rewards/gallery/?filter=series7",
+    "tcgplayer_search": "https://www.tcgplayer.com/search/pokemon/product?q=Pikachu+ex+-+057%2F191"
+  },
+  "master_fact": {
+    "fact_type": "printing_finish",
+    "key": "surging sparks|57|pikachu ex|holo",
+    "status": "master_verified",
+    "set_key": "sv08",
+    "set_name": "Surging Sparks",
+    "card_number": "57",
+    "card_name": "Pikachu ex",
+    "finish_key": "holo",
+    "rarity_values": [
+      "Double Rare",
+      "Double rare"
+    ],
+    "source_count": 5,
+    "sources": [
+      "pokemontcg_api",
+      "reverseholo_set_checklist",
+      "tcgdex",
+      "tcgplayer_price_guide",
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "api.pokemontcg.io",
+      "api.tcgdex.net",
+      "prices.pokemontcg.io",
+      "reverseholo.app",
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "collector_reference",
+      "marketplace_checklist",
+      "structured_api"
+    ],
+    "evidence_count": 5,
+    "evidence_urls": [
+      "https://api.pokemontcg.io/v2/cards/sv8-57",
+      "https://api.tcgdex.net/v2/en/cards/sv08-057",
+      "https://prices.pokemontcg.io/tcgplayer/sv8-57",
+      "https://reverseholo.app/sets/sv08",
+      "https://www.thepricedex.com/set/sv8/surging-sparks/price-list"
+    ]
+  },
+  "before": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "name": "Pikachu ex",
+    "number": "057",
+    "set_code": "sv08",
+    "variant_key": "play_pokemon_stamp",
+    "card_printing_id": "0c231887-95a8-4f86-9c60-91b36e56ac2f",
+    "finish_key": "holo",
+    "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "provenance_source": "justtcg",
+    "provenance_ref": "pokemon-prize-pack-series-cards-pikachu-ex-057-191-double-rare",
+    "tcgplayer_product_id": "648703",
+    "exact_holofoil_sku_present": true
+  },
+  "after": {
+    "card_print_id": "1a243678-bb93-4845-b979-b43a74d8a007",
+    "gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP",
+    "name": "Pikachu ex",
+    "number": "057",
+    "set_code": "sv08",
+    "variant_key": "play_pokemon_stamp",
+    "card_printing_id": "0c231887-95a8-4f86-9c60-91b36e56ac2f",
+    "finish_key": "holo",
+    "printing_gv_id": "GV-PK-SSP-057-PLAY-POKEMON-STAMP-HOLO",
+    "provenance_source": "tcgplayer_catalog_corroborated",
+    "provenance_ref": "product:648703|sku:8882935|master:surging sparks|57|pikachu ex|holo",
+    "tcgplayer_product_id": "648703",
+    "exact_holofoil_sku_present": true
+  },
+  "db_writes_performed": true,
+  "fingerprint_sha256": "1fa325a87e459b40ebecf3f1e4fa83cb624ce648e64af128249ca997cee6d136"
+}
