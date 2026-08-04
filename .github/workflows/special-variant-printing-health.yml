@@ -1,0 +1,53 @@
+name: Special Variant Printing Health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 10 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: special-variant-printing-health-v1
+  cancel-in-progress: false
+
+jobs:
+  read-only-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SPECIAL_VARIANT_PRINTING_HEALTH_OUTPUT: docs/audits/special_variant_printing_authority_v1/health/special_variant_printing_health_v1.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify read-only contracts
+        run: |
+          node --check scripts/audits/special_variant_printing_health_v1.mjs
+          node --test \
+            tests/contracts/special_variant_printing_health_v1.test.mjs \
+            tests/contracts/special_variant_printing_pricing_quarantine_v1.test.mjs
+
+      - name: Verify production hidden-printing boundary
+        run: node scripts/audits/special_variant_printing_health_v1.mjs
+
+      - name: Upload health evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: special-variant-printing-health-${{ github.run_id }}
+          path: docs/audits/special_variant_printing_authority_v1/health
+          if-no-files-found: error
+          retention-days: 90

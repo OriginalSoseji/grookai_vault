@@ -1,0 +1,44 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_BOUNDED_APPLY_RECONCILIATION_V1",
+  "generated_at": "2026-08-04T21:24:46.310Z",
+  "producing_commit_sha": "7817209cd164513e3a9277caae6b1ec4b75c3a81",
+  "source_manifest_fingerprint_sha256": "2437a727bf53ba62752067b55eddacbfc4a99f98e3564e11ce5b5d1c8a306c9c",
+  "github_runs": [
+    "30949811535",
+    "30949971750",
+    "30950141182"
+  ],
+  "batch_files": [
+    "special_variant_printing_bounded_apply_v1_000_025.json",
+    "special_variant_printing_bounded_apply_v1_025_025.json",
+    "special_variant_printing_bounded_apply_v1_050_025.json",
+    "special_variant_printing_bounded_apply_v1_075_025.json",
+    "special_variant_printing_bounded_apply_v1_100_025.json",
+    "special_variant_printing_bounded_apply_v1_125_018.json"
+  ],
+  "summary": {
+    "manifest_rows": 143,
+    "apply_batches": 6,
+    "selected_rows": 143,
+    "unique_selected_rows": 143,
+    "selected_exactly_matches_manifest": true,
+    "transaction_child_inserts": 143,
+    "transaction_review_inserts": 143,
+    "transaction_readbacks": 143,
+    "durable_readbacks": 143,
+    "transaction_public_leaks": 0,
+    "durable_public_leaks": 0,
+    "full_reconcile_rows": 143,
+    "full_reconcile_public_leaks": 0,
+    "canonical_parent_rows_changed": 0,
+    "approvals_performed": false,
+    "public_visibility_changed": false
+  },
+  "checks": {
+    "all_batches_same_commit": true,
+    "all_batches_same_manifest": true,
+    "all_batches_hidden": true,
+    "reconciliation_passed": true
+  },
+  "fingerprint_sha256": "2099c9c0030831b560e8e92713ca152a56a08464883d4364f8e6500959dc9d04"
+}

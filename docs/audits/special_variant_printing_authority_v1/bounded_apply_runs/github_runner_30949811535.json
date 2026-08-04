@@ -1,0 +1,14 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_BOUNDED_APPLY_GITHUB_METADATA_V1",
+  "generated_at": "2026-08-04T20:52:49.477Z",
+  "github_sha": "7817209cd164513e3a9277caae6b1ec4b75c3a81",
+  "github_ref": "refs/heads/main",
+  "github_run_id": "30949811535",
+  "github_run_attempt": "1",
+  "scope": "first_25",
+  "governed_step_outcome": "success",
+  "workflow": "Special Variant Printing Bounded Apply",
+  "manifest_fingerprint_sha256": "2437a727bf53ba62752067b55eddacbfc4a99f98e3564e11ce5b5d1c8a306c9c",
+  "approvals_performed": false,
+  "public_visibility_changed": false
+}

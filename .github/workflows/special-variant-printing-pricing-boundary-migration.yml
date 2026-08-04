@@ -1,0 +1,104 @@
+name: Special Variant Printing Pricing Boundary Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect or apply the frozen pricing-boundary migration
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+      expected_sha:
+        description: Exact merged commit SHA that must be checked out
+        required: true
+        type: string
+      approval_phrase:
+        description: Enter APPLY_SPECIAL_VARIANT_PRICING_BOUNDARY_V1 for apply
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: special-variant-printing-pricing-boundary-migration-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: '20260804220000'
+
+    steps:
+      - name: Check out frozen ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "${GITHUB_SHA}" = "${{ inputs.expected_sha }}"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/${TARGET_MIGRATION}_tcgplayer_market_printing_truth_quarantine_v1.sql"
+          if [[ "${{ inputs.mode }}" = "apply" ]]; then
+            test "${{ inputs.approval_phrase }}" = "APPLY_SPECIAL_VARIANT_PRICING_BOUNDARY_V1"
+          fi
+
+      - name: Inspect pending migrations
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+
+      - name: Apply frozen migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+
+      - name: Record migration evidence
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
+          const report = {
+            version: 'SPECIAL_VARIANT_PRINTING_PRICING_BOUNDARY_MIGRATION_GITHUB_V1',
+            generated_at: new Date().toISOString(),
+            github_sha: process.env.GITHUB_SHA,
+            github_run_id: process.env.GITHUB_RUN_ID,
+            github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
+            mode: '${{ inputs.mode }}',
+            target_migration: process.env.TARGET_MIGRATION,
+            db_row_writes_performed: false,
+            migration_changes_read_models_only: true
+          };
+          await fs.mkdir('docs/audits/special_variant_printing_authority_v1/migration', { recursive: true });
+          await fs.writeFile(
+            'docs/audits/special_variant_printing_authority_v1/migration/github_migration_evidence.json',
+            `${JSON.stringify(report, null, 2)}\n`
+          );
+          NODE
+
+      - name: Upload migration evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: special-variant-pricing-boundary-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            docs/audits/special_variant_printing_authority_v1/migration
+          if-no-files-found: error
+          retention-days: 90
