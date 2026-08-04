@@ -29,7 +29,8 @@ Current result:
 - `143` prospective child rows are evidence-ready and collision-free
 - `420` rows remain blocked
 - no child was applied
-- the required rollback-only remote proof is blocked by this host's PostgreSQL connectivity and must pass before any real apply
+- the `143`-row rollback-only proof passed through frozen GitHub runner evidence with identical durable before/after fingerprints
+- the next gate is a separately approved real apply of at most `25` hidden, unapproved child rows
 
 ### `VARIANT_SEARCH_PRINTING_COVERAGE_RELEASE_REPAIR_V1.md`
 

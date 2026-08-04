@@ -1,35 +1,37 @@
-name: Special Variant Printing Rollback Proof Temporary Runner
+name: TCGPlayer Market Canary Observation
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: read
 
 concurrency:
-  group: special-variant-printing-rollback-proof
+  group: tcgplayer-market-canary-observation
   cancel-in-progress: false
 
 jobs:
-  rollback-proof:
+  observe:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
+      CANARY_WINDOW_START: "2026-08-02T22:29:17.856Z"
+      CANARY_REQUIRED_END: "2026-08-05T22:29:17.856Z"
+      CANARY_ACTIVATION_RUN_ID: "01610cfc-df72-412f-bc21-a526044d35bc"
+      CANARY_EXPECTED_COMMIT_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"
+      CANARY_EXPECTED_COUNT: "100"
+      TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"
+      CANARY_COMPLETION_GRACE_SECONDS: "28800"
+      OBSERVER_SOURCE_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
-      EVIDENCE_SOURCE_SHA: 26e11d580767eb0f52ee2319039235c5641e12a7
 
     steps:
-      - name: Check out frozen proof ref
+      - name: Check out frozen pricing release
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-
-      - name: Verify evidence ancestry
-        shell: bash
-        run: |
-          set -euo pipefail
-          git merge-base --is-ancestor "$EVIDENCE_SOURCE_SHA" HEAD
-          test -n "$SUPABASE_DB_URL"
+          ref: ${{ env.OBSERVER_SOURCE_SHA }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -40,47 +42,62 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Run rollback-proof contracts
-        run: |
-          node --test \
-            tests/contracts/special_variant_printing_authority_v1.test.mjs \
-            tests/contracts/special_variant_printing_guarded_manifest_v1.test.mjs \
-            tests/contracts/special_variant_printing_transactional_rollback_v1.test.mjs
-
-      - name: Execute transactionally rolled-back proof
-        id: proof
-        run: node scripts/audits/special_variant_printing_transactional_rollback_v1.mjs
-
-      - name: Record runner provenance
-        if: ${{ always() }}
+      - name: Observe frozen canary
+        id: observe
         shell: bash
         run: |
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs/promises';
-          const output = {
-            version: 'SPECIAL_VARIANT_PRINTING_GITHUB_RUNNER_METADATA_V1',
-            generated_at: new Date().toISOString(),
-            github_sha: process.env.GITHUB_SHA,
-            github_ref: process.env.GITHUB_REF,
-            github_run_id: process.env.GITHUB_RUN_ID,
-            github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
-            evidence_source_sha: process.env.EVIDENCE_SOURCE_SHA,
-            proof_step_outcome: '${{ steps.proof.outcome }}',
-            workflow: process.env.GITHUB_WORKFLOW,
-            durable_db_writes_authorized: false,
-            apply_mode_available: false
-          };
-          await fs.writeFile(
-            'docs/audits/special_variant_printing_authority_v1/github_runner_metadata_v1.json',
-            `${JSON.stringify(output, null, 2)}\n`
-          );
-          NODE
+          set -euo pipefail
 
-      - name: Upload rollback evidence
-        if: ${{ always() }}
+          now_epoch="$(date -u +%s)"
+          required_end_epoch="$(date -u -d "${CANARY_REQUIRED_END}" +%s)"
+          final_completion_deadline="$((required_end_epoch + CANARY_COMPLETION_GRACE_SECONDS))"
+          final_observation_deadline="$((final_completion_deadline + 21600))"
+
+          if (( now_epoch > final_observation_deadline )); then
+            echo "The frozen canary observation window is complete; no further scheduled reads are required."
+            echo "skipped_after_final_window=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          require_pass=()
+          if (( now_epoch >= final_completion_deadline )); then
+            require_pass=(--require-pass)
+          fi
+
+          node scripts/audits/tcgplayer_market_canary_observation_v1.mjs \
+            "--window-start=${CANARY_WINDOW_START}" \
+            "--activation-run-id=${CANARY_ACTIVATION_RUN_ID}" \
+            "--expected-commit-sha=${CANARY_EXPECTED_COMMIT_SHA}" \
+            --required-hours=72 \
+            "--expected-count=${CANARY_EXPECTED_COUNT}" \
+            --schedule-tolerance-minutes=90 \
+            --schedule-completion-grace-minutes=480 \
+            --out-root="$RUNNER_TEMP/tcgplayer-market-canary-observation" \
+            "${require_pass[@]}"
+
+          latest_summary="$(
+            find "$RUNNER_TEMP/tcgplayer-market-canary-observation" \
+              -type f \
+              -name summary.json \
+              -print \
+              | sort \
+              | tail -1
+          )"
+          test -n "$latest_summary"
+
+          {
+            echo "## TCGPlayer Market canary"
+            echo
+            echo '```json'
+            cat "$latest_summary"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload observation evidence
+        if: ${{ always() && steps.observe.outputs.skipped_after_final_window != 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: special-variant-printing-rollback-proof-${{ github.run_id }}
-          path: docs/audits/special_variant_printing_authority_v1
+          name: tcgplayer-market-canary-observation-${{ github.run_id }}
+          path: ${{ runner.temp }}/tcgplayer-market-canary-observation
           if-no-files-found: error
           retention-days: 30

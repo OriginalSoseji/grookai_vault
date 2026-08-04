@@ -98,7 +98,7 @@ The rollback-only script was implemented with these controls:
 - unconditional rollback;
 - durable before/after fingerprint comparison.
 
-The remote proof could not run from this Windows host because both direct PostgreSQL and the linked Supabase pooler timed out on port `5432` before a session opened.
+The first remote proof attempt could not run from this Windows host because both direct PostgreSQL and the linked Supabase pooler timed out on port `5432` before a session opened.
 
 Recorded attempt:
 
@@ -110,7 +110,22 @@ Recorded attempt:
 - approvals: `0`
 - public visibility changes: `0`
 
-This is an infrastructure blocker, not an evidence or contract failure.
+The identical frozen proof then ran successfully through GitHub Actions run `30947529006` at runner SHA `bf1ecb6913688913e84e3774fd7c4f3eccbc66d1`.
+
+Successful rollback proof:
+
+- targets: `143`
+- transient child inserts: `143`
+- transient hidden review inserts: `143`
+- exact transient current-view readbacks: `143`
+- transaction committed: `false`
+- durable child writes: `0`
+- durable review writes: `0`
+- before fingerprint: `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`
+- after fingerprint: `4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`
+- durable state unchanged: `true`
+
+The temporary GitHub runner workflow was tag-only and was restored immediately after the proof. No Vercel branch deployment was created.
 
 ## Migration Applied
 
@@ -118,7 +133,7 @@ None. This gate created no migration and changed no schema.
 
 ## Database Writes
 
-None. Authority acquisition and manifest generation used service-role SELECT requests only. The rollback attempt timed out before opening a transaction.
+No durable writes. Authority acquisition and manifest generation used service-role SELECT requests only. The successful remote proof transiently inserted `143` children and `143` hidden review sidecars inside one transaction, read them back, and rolled the transaction back. Durable before/after fingerprints are identical.
 
 ## Current Truths
 
@@ -127,6 +142,7 @@ None. Authority acquisition and manifest generation used service-role SELECT req
 - JustTCG remains discovery-only.
 - TCGCSV/TCGplayer catalog evidence can qualify an exact external printing only when identity, variant, finish, source health, and Master Index checks all pass.
 - `143` rows are evidence-ready but not applied.
+- The complete `143`-row rollback-only simulation passed.
 - `420` rows remain blocked and must not be silently broadened.
 - All prospective children remain absent from the database.
 - No candidate is approved or publicly visible.
@@ -141,7 +157,7 @@ None. Authority acquisition and manifest generation used service-role SELECT req
 - Never change canonical parent identity to make a child fit.
 - Never apply a candidate without preserving exact source IDs, titles, payload hashes, finish evidence, and authority fingerprint.
 - Never make a newly applied special-variant child public before human review.
-- Never proceed to real apply before the rollback-only proof passes and durable before/after state is identical.
+- Never proceed to real apply unless the rollback-only proof remains reproducible with identical durable before/after state.
 
 ## Verification
 
@@ -152,7 +168,9 @@ None. Authority acquisition and manifest generation used service-role SELECT req
 - `git diff --check`: passed
 - read-only authority reconciliation: passed
 - read-only live manifest reconciliation: `143/143` passed
-- remote transactionally rolled-back simulation: blocked by PostgreSQL connectivity before transaction start
+- Windows remote transaction attempt: blocked by PostgreSQL connectivity before transaction start, with zero writes
+- GitHub Actions transactionally rolled-back simulation: passed `143/143` children and `143/143` hidden review sidecars
+- durable before/after fingerprint equality: passed
 - full pre-commit shipcheck: attempted; release secret guard passed, then repository runtime preflight stopped on the same direct PostgreSQL `ETIMEDOUT` before later full-suite stages ran
 
 ## Artifacts
@@ -163,6 +181,9 @@ None. Authority acquisition and manifest generation used service-role SELECT req
 - `docs/audits/special_variant_printing_authority_v1/special_variant_printing_guarded_manifest_v1.md`
 - `docs/audits/special_variant_printing_authority_v1/special_variant_printing_transactional_rollback_attempt_v1.json`
 - `docs/audits/special_variant_printing_authority_v1/special_variant_printing_transactional_rollback_attempt_v1.md`
+- `docs/audits/special_variant_printing_authority_v1/special_variant_printing_transactional_rollback_v1.json`
+- `docs/audits/special_variant_printing_authority_v1/special_variant_printing_transactional_rollback_v1.md`
+- `docs/audits/special_variant_printing_authority_v1/github_runner_metadata_v1.json`
 - `docs/audits/special_variant_printing_authority_v1/artifact_hashes.sha256`
 
 ## What Must Never Be Broken
@@ -171,6 +192,6 @@ Evidence authority is a chain, not a label. Discovery may locate a candidate, bu
 
 ## Explicit Next Gate
 
-Run `scripts/audits/special_variant_printing_transactional_rollback_v1.mjs` unchanged from a host with working PostgreSQL connectivity, using the frozen manifest fingerprint. Require `143` transient child inserts, `143` transient hidden review inserts, exact transient readback, unconditional rollback, and identical durable before/after fingerprints.
+Prepare a separately approved bounded real apply for at most `25` candidates. The apply must atomically insert each child with its `quarantined_candidate` and `hidden_pending_review` sidecar, preserve the exact frozen authority and manifest fingerprints, perform exact post-commit readback, and stop before approval or public visibility.
 
-Only after that proof passes may a separately approved bounded real apply be planned. Start with at most `25` candidates, atomically insert each child with its `quarantined_candidate` and `hidden_pending_review` sidecar, perform exact readback, and stop before approval or public visibility.
+The remaining `118` evidence-ready candidates stay untouched until the first bounded apply reconciles cleanly. The `420` blocked rows remain outside the apply set.
