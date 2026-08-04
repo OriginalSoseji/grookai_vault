@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
+import 'public_card_printing_options_service.dart';
 import '../vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
 
@@ -948,73 +949,41 @@ class PublicSetsService {
     required Iterable<String> cardPrintIds,
     required Map<String, int> ownedCountsByPrintingId,
   }) async {
-    const pageSize = 1000;
     final values = <String, List<_SortablePublicSetPrintingOption>>{};
-    for (final chunk in _chunks(cardPrintIds, 250)) {
-      for (var offset = 0; ; offset += pageSize) {
-        late final List<dynamic> data;
-        try {
-          data =
-              await client
-                      .from('card_printings')
-                      .select(
-                        'id,card_print_id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
-                      )
-                      .inFilter('card_print_id', chunk)
-                      .order('id', ascending: true)
-                      .range(offset, offset + pageSize - 1)
-                  as List<dynamic>;
-        } catch (_) {
-          try {
-            data =
-                await client
-                        .from('card_printings')
-                        .select('id,card_print_id,printing_gv_id,finish_key')
-                        .inFilter('card_print_id', chunk)
-                        .order('id', ascending: true)
-                        .range(offset, offset + pageSize - 1)
-                    as List<dynamic>;
-          } catch (_) {
-            return values.map((cardPrintId, options) {
-              return MapEntry(
-                cardPrintId,
-                options.map((value) => value.option).toList(growable: false),
-              );
-            });
-          }
-        }
-        for (final raw in data) {
-          final row = Map<String, dynamic>.from(raw as Map);
-          final id = _cleanText(row['id']);
-          final cardPrintId = _cleanText(row['card_print_id']);
-          if (id.isEmpty || cardPrintId.isEmpty) {
-            continue;
-          }
-
-          final finishRecord = _firstNestedRecord(row['finish_keys']);
-          final finishName =
-              _finishLabel(
-                finishKey: _normalizeOptionalText(row['finish_key']),
-                finishLabel: _normalizeOptionalText(finishRecord?['label']),
-              ) ??
-              'Standard';
-          (values[cardPrintId] ??= <_SortablePublicSetPrintingOption>[]).add(
-            _SortablePublicSetPrintingOption(
-              option: PublicSetPrintingOption(
-                id: id,
-                printingGvId: _normalizeOptionalText(row['printing_gv_id']),
-                finishKey: _normalizeOptionalText(row['finish_key']),
-                finishName: finishName,
-                ownedCount: ownedCountsByPrintingId[id] ?? 0,
-              ),
-              sortOrder: _intValue(finishRecord?['sort_order'], fallback: 9999),
-            ),
-          );
-        }
-        if (data.length < pageSize) {
-          break;
-        }
+    late final List<Map<String, dynamic>> data;
+    try {
+      data = await PublicCardPrintingOptionsService.fetch(
+        client: client,
+        cardPrintIds: cardPrintIds,
+      );
+    } catch (_) {
+      return const <String, List<PublicSetPrintingOption>>{};
+    }
+    for (final row in data) {
+      final id = _cleanText(row['id']);
+      final cardPrintId = _cleanText(row['card_print_id']);
+      if (id.isEmpty || cardPrintId.isEmpty) {
+        continue;
       }
+
+      final finishName =
+          _finishLabel(
+            finishKey: _normalizeOptionalText(row['finish_key']),
+            finishLabel: _normalizeOptionalText(row['finish_label']),
+          ) ??
+          'Standard';
+      (values[cardPrintId] ??= <_SortablePublicSetPrintingOption>[]).add(
+        _SortablePublicSetPrintingOption(
+          option: PublicSetPrintingOption(
+            id: id,
+            printingGvId: _normalizeOptionalText(row['printing_gv_id']),
+            finishKey: _normalizeOptionalText(row['finish_key']),
+            finishName: finishName,
+            ownedCount: ownedCountsByPrintingId[id] ?? 0,
+          ),
+          sortOrder: _intValue(row['finish_sort_order'], fallback: 9999),
+        ),
+      );
     }
 
     return values.map((cardPrintId, options) {
@@ -1068,24 +1037,6 @@ class PublicSetsService {
         return 'Rocket Reverse Holo';
     }
     return _normalizeOptionalText(finishLabel);
-  }
-
-  static List<List<String>> _chunks(Iterable<String> values, int size) {
-    final normalized = values
-        .map(_cleanText)
-        .where((value) => value.isNotEmpty)
-        .toSet()
-        .toList(growable: false);
-    final chunks = <List<String>>[];
-    for (var index = 0; index < normalized.length; index += size) {
-      chunks.add(
-        normalized.sublist(
-          index,
-          index + size > normalized.length ? normalized.length : index + size,
-        ),
-      );
-    }
-    return chunks;
   }
 
   static int _intValue(dynamic value, {int fallback = 0}) {

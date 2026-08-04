@@ -215,17 +215,16 @@ void main() {
                 _parentImageRow(_cardPrintId),
                 _parentImageRow(_rc5CardPrintId),
               ];
-            case '/rest/v1/card_printings':
+            case '/rest/v1/rpc/get_public_card_printing_options_v1':
               body = <Map<String, dynamic>>[
                 <String, dynamic>{
                   'id': _printingId,
                   'card_print_id': _cardPrintId,
                   'printing_gv_id': 'GV-PK-TEST-025-R',
                   'finish_key': 'reverse',
-                  'finish_keys': <String, dynamic>{
-                    'label': 'Reverse Holo',
-                    'sort_order': 3,
-                  },
+                  'finish_label': 'Reverse Holo',
+                  'finish_sort_order': 3,
+                  'finish_is_active': true,
                   'image_path': null,
                   'image_url': 'https://provider.example/pikachu-reverse.png',
                   'image_alt_url': null,
@@ -237,10 +236,9 @@ void main() {
                   'card_print_id': _rc5CardPrintId,
                   'printing_gv_id': 'GV-PK-LTR-RC5-N',
                   'finish_key': 'normal',
-                  'finish_keys': <String, dynamic>{
-                    'label': 'Normal',
-                    'sort_order': 1,
-                  },
+                  'finish_label': 'Normal',
+                  'finish_sort_order': 1,
+                  'finish_is_active': true,
                   'image_path': null,
                   'image_url': 'https://images.pokemontcg.io/bw11/5_hires.png',
                   'image_alt_url': null,
@@ -287,94 +285,89 @@ void main() {
       expect(rc5.imageUrl, isNull);
 
       final printingRequests = requests
-          .where((request) => request.url.path == '/rest/v1/card_printings')
+          .where(
+            (request) =>
+                request.url.path ==
+                '/rest/v1/rpc/get_public_card_printing_options_v1',
+          )
           .toList(growable: false);
       expect(printingRequests, hasLength(1));
-      final select = printingRequests.single.url.queryParameters['select'];
-      expect(select, contains('finish_keys(label,sort_order)'));
-      expect(select, contains('image_path'));
-      expect(select, contains('image_status'));
+      final params = jsonDecode(printingRequests.single.body);
+      expect(params['p_card_print_ids'], contains(_cardPrintId));
+      expect(params['p_card_print_ids'], contains(_rc5CardPrintId));
+      expect(params['p_limit'], 1000);
+      expect(params['p_offset'], 0);
     },
   );
 
-  test('combined printing read retains the finish-key fallback', () async {
-    final requests = <http.Request>[];
-    final client = SupabaseClient(
-      'https://example.supabase.co',
-      'public-anon-key',
-      httpClient: MockClient((request) async {
-        requests.add(request);
-        switch (request.url.path) {
-          case '/rest/v1/v_grookai_dex_card_prints_v1':
-            return _jsonResponse(request, <Map<String, dynamic>>[
-              _speciesDetailRow(
-                cardPrintId: _cardPrintId,
-                name: 'Pikachu',
-                setName: 'Test Set',
-                number: '25',
-              ),
-            ]);
-          case '/rest/v1/card_prints':
-            return _jsonResponse(request, <Map<String, dynamic>>[
-              _parentImageRow(_cardPrintId),
-            ]);
-          case '/rest/v1/card_printings':
-            final select = request.url.queryParameters['select'] ?? '';
-            if (select.contains('finish_keys(')) {
+  test(
+    'governed printing read fails closed without a raw-table fallback',
+    () async {
+      final requests = <http.Request>[];
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          requests.add(request);
+          switch (request.url.path) {
+            case '/rest/v1/v_grookai_dex_card_prints_v1':
+              return _jsonResponse(request, <Map<String, dynamic>>[
+                _speciesDetailRow(
+                  cardPrintId: _cardPrintId,
+                  name: 'Pikachu',
+                  setName: 'Test Set',
+                  number: '25',
+                ),
+              ]);
+            case '/rest/v1/card_prints':
+              return _jsonResponse(request, <Map<String, dynamic>>[
+                _parentImageRow(_cardPrintId),
+              ]);
+            case '/rest/v1/rpc/get_public_card_printing_options_v1':
               return http.Response(
                 jsonEncode(<String, dynamic>{
-                  'code': 'PGRST200',
-                  'message': 'Relationship unavailable',
+                  'code': 'PGRST202',
+                  'message': 'Governed read unavailable',
                   'details': null,
                   'hint': null,
                 }),
-                400,
+                404,
                 request: request,
                 headers: const <String, String>{
                   'content-type': 'application/json',
                 },
               );
-            }
-            return _jsonResponse(request, <Map<String, dynamic>>[
-              <String, dynamic>{
-                'id': _printingId,
-                'card_print_id': _cardPrintId,
-                'printing_gv_id': 'GV-PK-TEST-025-R',
-                'finish_key': 'reverse',
-                'image_path': null,
-                'image_url': 'https://provider.example/fallback.png',
-                'image_alt_url': null,
-                'image_status': 'exact',
-                'image_note': null,
-              },
-            ]);
-          default:
-            fail('Unexpected request: ${request.url}');
-        }
-      }),
-    );
-    addTearDown(client.dispose);
+            default:
+              fail('Unexpected request: ${request.url}');
+          }
+        }),
+      );
+      addTearDown(client.dispose);
 
-    final detail = await GrookaiDexService.fetchSpeciesDetail(
-      client: client,
-      speciesSlug: 'pikachu',
-    );
+      final detail = await GrookaiDexService.fetchSpeciesDetail(
+        client: client,
+        speciesSlug: 'pikachu',
+      );
 
-    expect(detail, isNotNull);
-    expect(detail!.cards.single.printings.single.finishName, 'Reverse Holo');
-    expect(
-      detail.cards.single.imageUrl,
-      'https://provider.example/fallback.png',
-    );
-    final printingRequests = requests
-        .where((request) => request.url.path == '/rest/v1/card_printings')
-        .toList(growable: false);
-    expect(printingRequests, hasLength(2));
-    expect(
-      printingRequests.last.url.queryParameters['select'],
-      isNot(contains('finish_keys(')),
-    );
-  });
+      expect(detail, isNotNull);
+      expect(detail!.cards.single.printings, isEmpty);
+      expect(detail.cards.single.imageUrl, isNull);
+      final printingRequests = requests
+          .where(
+            (request) =>
+                request.url.path ==
+                '/rest/v1/rpc/get_public_card_printing_options_v1',
+          )
+          .toList(growable: false);
+      expect(printingRequests, hasLength(1));
+      expect(
+        requests.where(
+          (request) => request.url.path == '/rest/v1/card_printings',
+        ),
+        isEmpty,
+      );
+    },
+  );
 }
 
 Map<String, dynamic> _speciesSummaryRow() {

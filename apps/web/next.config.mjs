@@ -84,6 +84,13 @@ const nextConfig = {
     // LOCK: Public read helpers should be cacheable by default.
     return [
       {
+        source: "/.well-known/apple-app-site-association",
+        headers: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "Cache-Control", value: setPublicCache },
+        ],
+      },
+      {
         source: "/",
         headers: [{ key: "Cache-Control", value: setPublicCache }],
       },

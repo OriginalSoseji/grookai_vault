@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicSets } from "@/lib/publicSets";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
@@ -594,7 +595,7 @@ async function resolveExactChildPrintingGvId(
 ) {
   const { data, error } = await supabase
     .from("card_printings")
-    .select("printing_gv_id,card_prints(gv_id)")
+    .select("id,card_print_id,printing_gv_id,card_prints(gv_id)")
     .eq("printing_gv_id", gvId)
     .limit(2);
 
@@ -611,6 +612,8 @@ async function resolveExactChildPrintingGvId(
   }
 
   const rows = (data ?? []) as Array<{
+    id?: string | null;
+    card_print_id?: string | null;
     printing_gv_id?: string | null;
     card_prints?: { gv_id?: string | null } | Array<{ gv_id?: string | null }> | null;
   }>;
@@ -620,8 +623,15 @@ async function resolveExactChildPrintingGvId(
 
   const parent = Array.isArray(rows[0].card_prints) ? rows[0].card_prints[0] : rows[0].card_prints;
   const parentGvId = parent?.gv_id;
+  const cardPrintId = rows[0].card_print_id;
+  const cardPrintingId = rows[0].id;
   const printingGvId = rows[0].printing_gv_id;
-  if (!parentGvId || !printingGvId) {
+  if (!parentGvId || !cardPrintId || !cardPrintingId || !printingGvId) {
+    return null;
+  }
+
+  const publicOptions = await getPublicCardPrintingOptions(supabase, [cardPrintId]);
+  if (!publicOptions.some((option) => option.id === cardPrintingId)) {
     return null;
   }
 

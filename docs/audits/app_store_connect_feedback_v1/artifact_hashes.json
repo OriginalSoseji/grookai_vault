@@ -1,0 +1,41 @@
+{
+  "algorithm": "sha256",
+  "generated_at": "2026-08-04T03:55:00-06:00",
+  "artifacts": [
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/APP_STORE_CONNECT_FEEDBACK_AUDIT_V1.md",
+      "sha256": "514d75590ff70c9bbf2cfab3e79815f88707cfef3a657e100c2b90a31f6fe109",
+      "bytes": 8398
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/evidence/samsung_action_sheet_exact_holo.jpg",
+      "sha256": "48f385250eeadfd992a63d92c7b1ba52a56b9b9ca6b5834c2e4065de27bbcd16",
+      "bytes": 217959
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/evidence/samsung_exact_holo_copy_created.jpg",
+      "sha256": "f4cb2cd3fee456ee28c28a10782f18adbc91b4906e68ace0922b74504c249fdf",
+      "bytes": 190197
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/evidence/samsung_follower_list_repair.jpg",
+      "sha256": "88bf20faa1ea2a9acd1e65a19cae9c793c77b79ccceeab9d2cb9fa1e0b50dd17",
+      "bytes": 61737
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/evidence/samsung_search_exact_holo.jpg",
+      "sha256": "a06dc5eee80e35be1defac11e9d8b8cc942efc05eb835b0bf5e729d01659a6b7",
+      "bytes": 339874
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/evidence/samsung_wall_follower_repair.jpg",
+      "sha256": "08a0616727efe46a20fef75a61c600cf62160c1487a4a19c72f5e1e0004c9ed6",
+      "bytes": 262419
+    },
+    {
+      "path": "docs/audits/app_store_connect_feedback_v1/production_readback_20260804.json",
+      "sha256": "8201b707909dde43f4fa1961ef29370e9a2b03b11f8659de76eeb73d9860d55f",
+      "bytes": 2042
+    }
+  ]
+}

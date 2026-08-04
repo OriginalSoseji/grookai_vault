@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
+import '../public/public_card_printing_options_service.dart';
 import '../vault/vault_card_service.dart';
 
 @visibleForTesting
@@ -789,110 +790,65 @@ class GrookaiDexService {
     required SupabaseClient client,
     required Iterable<String> cardPrintIds,
   }) async {
-    const pageSize = 1000;
     final optionsByCardPrintId = <String, List<_SortablePrintingOption>>{};
     final childImageMetadata = <String, _CardPrintChildImageMetadata>{};
-    for (final chunk in _chunks(cardPrintIds, 250)) {
-      for (var offset = 0; ; offset += pageSize) {
-        late final List<dynamic> data;
-        try {
-          data =
-              await client
-                      .from('card_printings')
-                      .select(
-                        'id,card_print_id,printing_gv_id,finish_key,finish_keys(label,sort_order),image_path,image_url,image_alt_url,image_status,image_note',
-                      )
-                      .inFilter('card_print_id', chunk)
-                      .order('id', ascending: true)
-                      .range(offset, offset + pageSize - 1)
-                  as List<dynamic>;
-        } catch (_) {
-          try {
-            data =
-                await client
-                        .from('card_printings')
-                        .select(
-                          'id,card_print_id,printing_gv_id,finish_key,image_path,image_url,image_alt_url,image_status,image_note',
-                        )
-                        .inFilter('card_print_id', chunk)
-                        .order('id', ascending: true)
-                        .range(offset, offset + pageSize - 1)
-                    as List<dynamic>;
-          } catch (_) {
-            try {
-              data =
-                  await client
-                          .from('card_printings')
-                          .select('id,card_print_id,printing_gv_id,finish_key')
-                          .inFilter('card_print_id', chunk)
-                          .order('id', ascending: true)
-                          .range(offset, offset + pageSize - 1)
-                      as List<dynamic>;
-            } catch (_) {
-              return _CardPrintingReadResult(
-                optionsByCardPrintId: optionsByCardPrintId,
-                childImageMetadata: childImageMetadata,
-              );
-            }
-          }
-        }
-        for (final raw in data) {
-          final row = Map<String, dynamic>.from(raw as Map);
-          final id = _clean(row['id']);
-          final cardPrintId = _clean(row['card_print_id']);
-          if (id.isEmpty || cardPrintId.isEmpty) {
-            continue;
-          }
+    late final List<Map<String, dynamic>> data;
+    try {
+      data = await PublicCardPrintingOptionsService.fetch(
+        client: client,
+        cardPrintIds: cardPrintIds,
+      );
+    } catch (_) {
+      return _CardPrintingReadResult(
+        optionsByCardPrintId: optionsByCardPrintId,
+        childImageMetadata: childImageMetadata,
+      );
+    }
+    for (final row in data) {
+      final id = _clean(row['id']);
+      final cardPrintId = _clean(row['card_print_id']);
+      if (id.isEmpty || cardPrintId.isEmpty) {
+        continue;
+      }
 
-          final finishRecord = _firstNestedRecord(row['finish_keys']);
-          final finishName =
-              _finishLabel(
-                finishKey: _optional(row['finish_key']),
-                finishLabel: _optional(finishRecord?['label']),
-              ) ??
-              'Standard';
-          (optionsByCardPrintId[cardPrintId] ??= <_SortablePrintingOption>[])
-              .add(
-                _SortablePrintingOption(
-                  option: GrookaiDexPrintingOption(
-                    id: id,
-                    printingGvId: _optional(row['printing_gv_id']),
-                    finishKey: _optional(row['finish_key']),
-                    finishName: finishName,
-                  ),
-                  sortOrder: _intValue(
-                    finishRecord?['sort_order'],
-                    fallback: 9999,
-                  ),
-                ),
-              );
-          if (_isKnownWrongLegendaryTreasuresRc5ChildImage(row)) {
-            continue;
-          }
-
-          final metadata = _CardPrintChildImageMetadata(
+      final finishName =
+          _finishLabel(
             finishKey: _optional(row['finish_key']),
-            imageUrl:
-                normalizeWarehouseDisplayImagePath(row['image_path']) ??
-                normalizeDisplayImageUrl(row['image_url']) ??
-                normalizeDisplayImageUrl(row['image_alt_url']),
-            imageStatus: _optional(row['image_status']),
-            imageNote: _optional(row['image_note']),
-          );
-          if ((metadata.imageUrl ?? '').isEmpty) {
-            continue;
-          }
+            finishLabel: _optional(row['finish_label']),
+          ) ??
+          'Standard';
+      (optionsByCardPrintId[cardPrintId] ??= <_SortablePrintingOption>[]).add(
+        _SortablePrintingOption(
+          option: GrookaiDexPrintingOption(
+            id: id,
+            printingGvId: _optional(row['printing_gv_id']),
+            finishKey: _optional(row['finish_key']),
+            finishName: finishName,
+          ),
+          sortOrder: _intValue(row['finish_sort_order'], fallback: 9999),
+        ),
+      );
+      if (_isKnownWrongLegendaryTreasuresRc5ChildImage(row)) {
+        continue;
+      }
 
-          final current = childImageMetadata[cardPrintId];
-          if (current == null ||
-              _childImagePreference(metadata) >
-                  _childImagePreference(current)) {
-            childImageMetadata[cardPrintId] = metadata;
-          }
-        }
-        if (data.length < pageSize) {
-          break;
-        }
+      final metadata = _CardPrintChildImageMetadata(
+        finishKey: _optional(row['finish_key']),
+        imageUrl:
+            normalizeWarehouseDisplayImagePath(row['image_path']) ??
+            normalizeDisplayImageUrl(row['image_url']) ??
+            normalizeDisplayImageUrl(row['image_alt_url']),
+        imageStatus: _optional(row['image_status']),
+        imageNote: _optional(row['image_note']),
+      );
+      if ((metadata.imageUrl ?? '').isEmpty) {
+        continue;
+      }
+
+      final current = childImageMetadata[cardPrintId];
+      if (current == null ||
+          _childImagePreference(metadata) > _childImagePreference(current)) {
+        childImageMetadata[cardPrintId] = metadata;
       }
     }
     return _CardPrintingReadResult(
@@ -1107,16 +1063,6 @@ class GrookaiDexService {
       score += 4;
     }
     return score;
-  }
-
-  static Map<String, dynamic>? _firstNestedRecord(dynamic value) {
-    if (value is Map) {
-      return Map<String, dynamic>.from(value);
-    }
-    if (value is List && value.isNotEmpty && value.first is Map) {
-      return Map<String, dynamic>.from(value.first as Map);
-    }
-    return null;
   }
 
   static String? _finishLabel({String? finishKey, String? finishLabel}) {

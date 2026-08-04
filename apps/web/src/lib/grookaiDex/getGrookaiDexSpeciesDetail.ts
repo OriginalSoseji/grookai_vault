@@ -4,9 +4,9 @@ import { createServerAdminClient } from "@/lib/supabase/admin";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
 import {
-  getCardPrintingsSelectColumns,
-  hasChildPrintingPublicIdentityColumn,
-} from "@/lib/cards/childPrintingPublicIdentity";
+  getPublicCardPrintingOptions,
+  type PublicCardPrintingOptionRow,
+} from "@/lib/cards/getPublicCardPrintingOptions";
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
@@ -66,16 +66,7 @@ export type GrookaiDexCardPrintingOption = {
   ownedCount: number;
 };
 
-type CardPrintingRow = {
-  id: string | null;
-  card_print_id: string | null;
-  printing_gv_id?: string | null;
-  finish_key: string | null;
-  finish_keys:
-    | { label: string | null; sort_order: number | null }
-    | { label: string | null; sort_order: number | null }[]
-    | null;
-};
+type CardPrintingRow = PublicCardPrintingOptionRow;
 
 type CameoViewRow = {
   gv_id: string | null;
@@ -291,36 +282,7 @@ export async function getGrookaiDexSpeciesDetail(
         },
       ];
   const ownedPrintingCounts = ownedPrintingOwnership.countsByCardPrintId;
-  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(admin);
-  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
-  const printingRowGroups = await mapWithBoundedConcurrency(
-    cardPrintIdChunks,
-    SUPABASE_QUERY_CONCURRENCY,
-    async (cardPrintIdChunk) => {
-      const chunkRows: CardPrintingRow[] = [];
-      for (let printingFrom = 0; ; printingFrom += SUPABASE_DETAIL_PAGE_SIZE) {
-        const printingTo = printingFrom + SUPABASE_DETAIL_PAGE_SIZE - 1;
-        const { data, error } = await admin
-          .from("card_printings")
-          .select(printingSelect)
-          .in("card_print_id", cardPrintIdChunk)
-          .order("id", { ascending: true })
-          .range(printingFrom, printingTo);
-
-        if (error) {
-          throw new Error(`[grookai-dex:species-detail-printings] ${error.message}`);
-        }
-
-        const pageRows = (data ?? []) as unknown as CardPrintingRow[];
-        chunkRows.push(...pageRows);
-        if (pageRows.length < SUPABASE_DETAIL_PAGE_SIZE) {
-          break;
-        }
-      }
-      return chunkRows;
-    },
-  );
-  const printingRows = printingRowGroups.flat();
+  const printingRows = await getPublicCardPrintingOptions(admin, cardPrintIds);
 
   const printingOptionsByCardPrintId = new Map<string, Array<GrookaiDexCardPrintingOption & { sortOrder: number }>>();
   for (const row of (printingRows ?? []) as unknown as CardPrintingRow[]) {
@@ -329,10 +291,9 @@ export async function getGrookaiDexSpeciesDetail(
     if (!printingId || !cardPrintId) {
       continue;
     }
-    const finishRecord = Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys;
     const label = getCardPrintingFinishLabel({
       finishKey: row.finish_key,
-      finishLabel: finishRecord?.label,
+      finishLabel: row.finish_label,
     });
     if (label) {
       const options = printingOptionsByCardPrintId.get(cardPrintId) ?? [];
@@ -342,7 +303,7 @@ export async function getGrookaiDexSpeciesDetail(
         finishKey: clean(row.finish_key),
         finishName: label,
         ownedCount: ownedPrintingCounts.get(cardPrintId)?.get(printingId) ?? 0,
-        sortOrder: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : Number.MAX_SAFE_INTEGER,
+        sortOrder: typeof row.finish_sort_order === "number" ? row.finish_sort_order : Number.MAX_SAFE_INTEGER,
       });
       printingOptionsByCardPrintId.set(cardPrintId, options);
     }

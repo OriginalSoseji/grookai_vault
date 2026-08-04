@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('search result tiles expose direct add without removing action hub', () {
+  test('search result tiles quick-add only one governed printing', () {
     final search = File('lib/main.dart').readAsStringSync();
 
     expect(search, contains('class _CatalogQuickAddButton'));
@@ -13,9 +13,11 @@ void main() {
       contains("label: isBusy ? 'Adding to vault' : 'Add to Vault'"),
     );
     expect(search, contains('Future<void> _quickAddSearchResultToVault'));
+    expect(search, contains('printingOptions.length != 1'));
+    expect(search, contains('await _openSearchCardActionHub(card)'));
     expect(
       search,
-      contains('final gvviId = await _addToVaultFromSearch(card)'),
+      contains('cardPrintingId: _resolveInitialCatalogPrintingId'),
     );
     expect(search, contains("surface: 'search_result_tile'"));
     expect(search, contains("label: 'View copy'"));
