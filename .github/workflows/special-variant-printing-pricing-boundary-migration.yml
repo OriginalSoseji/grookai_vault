@@ -33,6 +33,9 @@ jobs:
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       TARGET_MIGRATION: '20260804220000'
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
 
     steps:
       - name: Check out frozen ref
@@ -45,11 +48,11 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$SUPABASE_DB_URL"
-          test "${GITHUB_SHA}" = "${{ inputs.expected_sha }}"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
           test -z "$(git status --porcelain --untracked-files=no)"
           test -f "supabase/migrations/${TARGET_MIGRATION}_tcgplayer_market_printing_truth_quarantine_v1.sql"
-          if [[ "${{ inputs.mode }}" = "apply" ]]; then
-            test "${{ inputs.approval_phrase }}" = "APPLY_SPECIAL_VARIANT_PRICING_BOUNDARY_V1"
+          if [[ "$DISPATCH_MODE" = "apply" ]]; then
+            test "$APPROVAL_PHRASE" = "APPLY_SPECIAL_VARIANT_PRICING_BOUNDARY_V1"
           fi
 
       - name: Inspect pending migrations
@@ -80,7 +83,7 @@ jobs:
             github_sha: process.env.GITHUB_SHA,
             github_run_id: process.env.GITHUB_RUN_ID,
             github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
-            mode: '${{ inputs.mode }}',
+            mode: process.env.DISPATCH_MODE,
             target_migration: process.env.TARGET_MIGRATION,
             db_row_writes_performed: false,
             migration_changes_read_models_only: true

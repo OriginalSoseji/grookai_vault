@@ -83,7 +83,11 @@ test('migration apply workflow is manual, SHA-bound, and dry-runs first', async 
   assert.doesNotMatch(workflow, /\bpush:/);
   assert.doesNotMatch(workflow, /\bschedule:/);
   assert.match(workflow, /APPLY_SPECIAL_VARIANT_PRICING_BOUNDARY_V1/);
-  assert.match(workflow, /test "\$\{GITHUB_SHA\}" = "\$\{\{ inputs\.expected_sha \}\}"/);
+  assert.match(workflow, /EXPECTED_SHA: \$\{\{ inputs\.expected_sha \}\}/);
+  assert.match(workflow, /APPROVAL_PHRASE: \$\{\{ inputs\.approval_phrase \}\}/);
+  assert.match(workflow, /test "\$GITHUB_SHA" = "\$EXPECTED_SHA"/);
+  assert.doesNotMatch(workflow, /run:[\s\S]*\$\{\{ inputs\.expected_sha \}\}/);
+  assert.doesNotMatch(workflow, /run:[\s\S]*\$\{\{ inputs\.approval_phrase \}\}/);
   assert.match(workflow, /db push[\s\S]*--dry-run[\s\S]*Apply frozen migration/);
   assert.match(workflow, /20260804220000/);
 });
