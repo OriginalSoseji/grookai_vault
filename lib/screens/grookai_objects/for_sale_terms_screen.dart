@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/grookai_sale_listing.dart';
+import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/grookai_objects/sale_listing_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -196,6 +197,8 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
       _error = null;
       _exportDestination = destination;
     });
+    final sharePositionOrigin =
+        GrookaiObjectExportService.sharePositionOriginFor(context);
 
     try {
       final object = _previewObject;
@@ -212,8 +215,21 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
         ),
         subject: 'Grookai sale card',
         text: 'Shared from Grookai Vault',
+        sharePositionOrigin: sharePositionOrigin,
       );
-    } catch (error) {
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'grookai_object_share_failed',
+        context: <String, Object?>{
+          'operation': 'share_png',
+          'stage': 'for_sale_terms',
+          'surface': 'for_sale',
+          'object_type': 'sale',
+          'destination': _exportDestination.slug,
+        },
+      );
       if (!mounted) {
         return;
       }
