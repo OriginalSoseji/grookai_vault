@@ -589,6 +589,7 @@ class _InboxThreadTile extends StatelessWidget {
     final metaParts = <String>[
       group.setName,
       if (group.number != '—') '#${group.number}',
+      group.printingIdentityLabel,
     ];
 
     return Material(

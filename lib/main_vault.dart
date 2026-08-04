@@ -81,6 +81,7 @@ class _VaultItemTile extends StatelessWidget {
     final cardPrintId = (row['card_id'] ?? '').toString();
     final number = (row['number'] ?? '').toString();
     final artwork = _vaultArtwork(row);
+    final printingIdentity = resolveVaultPrintingIdentityPresentation(row);
 
     final subtitleParts = <String>[];
     if ((displayIdentity.suffix ?? '').trim().isNotEmpty) {
@@ -174,6 +175,19 @@ class _VaultItemTile extends StatelessWidget {
                             ),
                           ),
                         ],
+                        const SizedBox(height: 2),
+                        Text(
+                          printingIdentity.label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: printingIdentity.isExact
+                                ? colorScheme.primary
+                                : colorScheme.onSurface.withValues(alpha: 0.7),
+                            fontWeight: FontWeight.w600,
+                            fontSize: compact ? 11.5 : null,
+                          ),
+                        ),
                         if (pricing?.hasVisibleValue == true) ...[
                           SizedBox(height: compact ? 4 : 5),
                           CardSurfacePriceText(
@@ -305,7 +319,9 @@ class _VaultGridTile extends StatelessWidget {
     final artwork = _vaultArtwork(row);
     final quantity = _ownedCountForRow(row);
     final condition = (row['condition_label'] ?? 'NM').toString();
+    final printingIdentity = resolveVaultPrintingIdentityPresentation(row);
     final metaParts = <String>[
+      printingIdentity.label,
       if ((displayIdentity.suffix ?? '').trim().isNotEmpty)
         displayIdentity.suffix!.trim(),
       if (setCode.isNotEmpty) setCode,

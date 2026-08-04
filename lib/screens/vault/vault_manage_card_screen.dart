@@ -1071,6 +1071,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               ? data.copies.first.gvviId
               : null,
           exactCopyOwnerUserId: _client.auth.currentUser?.id,
+          selectedPrintingGvId: data.copies.length == 1
+              ? data.copies.first.printingGvId
+              : null,
+          selectedFinishLabel: data.copies.length == 1
+              ? data.copies.first.finishLabel
+              : null,
           openedFromCopyDetail: true,
         ),
       ),
@@ -1404,6 +1410,13 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               tone: colorScheme.secondary.withValues(alpha: 0.9),
             ),
           ],
+          const SizedBox(height: 7),
+          GvChip(
+            label: data.printingIdentityLabel,
+            tone: data.printingIdentity.isExact
+                ? colorScheme.primary
+                : colorScheme.onSurface.withValues(alpha: 0.7),
+          ),
           if (heroPrice != null) ...[const SizedBox(height: 10), heroPrice],
           const SizedBox(height: 8),
           Wrap(
@@ -2549,6 +2562,16 @@ class _CopyRow extends StatelessWidget {
           copyTitle.trim().isEmpty ? 'Vault copy' : copyTitle.trim(),
           style: theme.textTheme.bodyMedium?.copyWith(
             color: colorScheme.onSurface.withValues(alpha: 0.76),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          copy.printingIdentityLabel,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: copy.printingIdentity.isExact
+                ? colorScheme.primary
+                : colorScheme.onSurface.withValues(alpha: 0.66),
             fontWeight: FontWeight.w600,
           ),
         ),

@@ -9,6 +9,17 @@ declare
   v_disputed_id constant uuid := '77e73dcd-34f9-49a5-8807-efca3b2c3e6c';
   v_canonical_id constant uuid := 'a7e71718-4ffd-5da2-9275-2ff77c94b591';
 begin
+  -- Fresh and shadow databases do not contain the production catalog rows
+  -- repaired below. Keep replay deterministic without weakening the
+  -- production preconditions when either target identity is present.
+  if not exists (
+    select 1 from public.card_prints where id = v_disputed_id
+  ) and not exists (
+    select 1 from public.card_prints where id = v_canonical_id
+  ) then
+    return;
+  end if;
+
   if not exists (
     select 1
     from public.card_prints
