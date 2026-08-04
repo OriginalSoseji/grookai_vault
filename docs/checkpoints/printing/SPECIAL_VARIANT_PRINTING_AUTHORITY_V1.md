@@ -1,5 +1,7 @@
 # Special Variant Printing Authority V1
 
+> Historical authority checkpoint. The bounded hidden apply and pricing closeout are complete. See `SPECIAL_VARIANT_PRINTING_HIDDEN_APPLY_CLOSEOUT_V1.md` for current production truth. The body below preserves the pre-apply decision record unchanged.
+
 ## Context
 
 The prior printing coverage audit identified `563` special-variant parents with no child printing and only reference-level finish evidence. Most were stamped promotional printings discovered through JustTCG. The frozen printing contract prohibits treating that discovery transport as automatic child-printing authority.

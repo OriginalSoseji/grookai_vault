@@ -1,0 +1,23 @@
+SPECIAL VARIANT PRINTING PRICING BOUNDARY MIGRATION APPLY
+
+GitHub run: 30953639769
+Frozen Git SHA: 5e48bead73ace5f025c09e840da249f06df5c40c
+Mode: apply
+Target migration: 20260804220000_tcgplayer_market_printing_truth_quarantine_v1.sql
+
+Preflight:
+DRY RUN: migrations will not be pushed to the database.
+Connecting to remote database...
+Would push these migrations:
+ - 20260804220000_tcgplayer_market_printing_truth_quarantine_v1.sql
+Finished supabase db push.
+
+Apply:
+Connecting to remote database...
+Applying migration 20260804220000_tcgplayer_market_printing_truth_quarantine_v1.sql...
+Finished supabase db push.
+
+Result: success
+Migration changes read models only: true
+Database row writes performed by migration workflow: false
+
