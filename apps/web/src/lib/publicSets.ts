@@ -1,10 +1,13 @@
 import "server-only";
 
 import { cache } from "react";
-import { hasChildPrintingPublicIdentityColumn } from "@/lib/cards/childPrintingPublicIdentity";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
-import { hasChildPrintingImageStorageColumns } from "@/lib/cards/childPrintingImageStorage";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import {
+  getPublicCardPrintingOptions,
+  groupPublicCardPrintingOptionsByCardPrintId,
+  type PublicCardPrintingOptionRow,
+} from "@/lib/cards/getPublicCardPrintingOptions";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
   getBaseSetPrintRunLaneCardCountAdjustment,
@@ -102,32 +105,6 @@ function createServerSupabase() {
   return createPublicServerClient();
 }
 
-type PublicSetCardPrinting = NonNullable<
-  PublicSetCardRow["card_printings"]
->[number];
-
-function getCardPrintingsSelectColumns(
-  includePublicIdentity: boolean,
-  includeImageColumns: boolean,
-) {
-  const columns = ["id", "finish_key"];
-  if (includePublicIdentity) {
-    columns.push("printing_gv_id");
-  }
-  if (includeImageColumns) {
-    columns.push(
-      "image_source",
-      "image_path",
-      "image_url",
-      "image_alt_url",
-      "image_status",
-      "image_note",
-    );
-  }
-  columns.push("finish_keys(label,sort_order)");
-  return columns.join(",\n");
-}
-
 function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
 }
@@ -176,17 +153,14 @@ function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
 }
 
 async function mapPublicSetCardPrintings(
-  rows?: PublicSetCardRow["card_printings"],
+  rows?: PublicCardPrintingOptionRow[],
 ) {
   const mapped = (
     await Promise.all(
-      (rows ?? []).map(async (printing: PublicSetCardPrinting) => {
-        const finishRecord = Array.isArray(printing.finish_keys)
-          ? printing.finish_keys[0]
-          : printing.finish_keys;
+      (rows ?? []).map(async (printing) => {
         const finishName = getCardPrintingFinishLabel({
           finishKey: printing.finish_key,
-          finishLabel: finishRecord?.label,
+          finishLabel: printing.finish_label,
         });
         const imageFields = await resolveCardImageFieldsV1(printing);
 
@@ -204,8 +178,8 @@ async function mapPublicSetCardPrintings(
             imageFields.external_image_fallback_url ?? undefined,
           display_image_kind: imageFields.display_image_kind,
           finish_sort_order:
-            typeof finishRecord?.sort_order === "number"
-              ? finishRecord.sort_order
+            typeof printing.finish_sort_order === "number"
+              ? printing.finish_sort_order
               : Number.MAX_SAFE_INTEGER,
         };
       }),
@@ -381,15 +355,6 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   }
 
   const supabase = createServerSupabase();
-  const [includePrintingPublicIdentity, includeChildPrintingImageFields] =
-    await Promise.all([
-      hasChildPrintingPublicIdentityColumn(supabase),
-      hasChildPrintingImageStorageColumns(supabase),
-    ]);
-  const cardPrintingsSelect = getCardPrintingsSelectColumns(
-    includePrintingPublicIdentity,
-    includeChildPrintingImageFields,
-  );
 
   const selectClause = `
       id,
@@ -408,9 +373,6 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       representative_image_url,
       image_status,
       image_note,
-      card_printings(
-        ${cardPrintingsSelect}
-      ),
       sets(identity_model)
     `;
   const specialVariantKeys =
@@ -454,7 +416,14 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       .sort(comparePublicSetCardRows)
       .slice(offset, offset + limit);
 
-    return mapPublicSetCardRows(rows);
+    const printingRows = await getPublicCardPrintingOptions(
+      supabase,
+      rows.map((row) => row.id ?? ""),
+    );
+    return mapPublicSetCardRows(
+      rows,
+      groupPublicCardPrintingOptionsByCardPrintId(printingRows),
+    );
   }
 
   const { data, error } = await supabase
@@ -475,7 +444,14 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     (row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id),
   );
 
-  return mapPublicSetCardRows(rows);
+  const printingRows = await getPublicCardPrintingOptions(
+    supabase,
+    rows.map((row) => row.id ?? ""),
+  );
+  return mapPublicSetCardRows(
+    rows,
+    groupPublicCardPrintingOptionsByCardPrintId(printingRows),
+  );
 });
 
 export const getPublicWorldChampionshipDecklist = cache(
@@ -569,7 +545,10 @@ function comparePublicSetCardRows(left: PublicSetCardRow, right: PublicSetCardRo
   ].find((value) => value !== 0) ?? 0;
 }
 
-async function mapPublicSetCardRows(rows: Array<PublicSetCardRow & { gv_id: string }>) {
+async function mapPublicSetCardRows(
+  rows: Array<PublicSetCardRow & { gv_id: string }>,
+  printingRowsByCardPrintId: Map<string, PublicCardPrintingOptionRow[]>,
+) {
   return Promise.all(
     rows.map(async (row) => {
       const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
@@ -596,7 +575,9 @@ async function mapPublicSetCardRows(rows: Array<PublicSetCardRow & { gv_id: stri
         external_image_fallback_url:
           imageFields.external_image_fallback_url ?? undefined,
         display_image_kind: imageFields.display_image_kind,
-        printings: await mapPublicSetCardPrintings(row.card_printings),
+        printings: await mapPublicSetCardPrintings(
+          printingRowsByCardPrintId.get(row.id ?? ""),
+        ),
       };
     }),
   );

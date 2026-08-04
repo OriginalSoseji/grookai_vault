@@ -51,9 +51,25 @@ test("Dex and child-image reads apply stable paging to every unbounded row set",
     path.join(repositoryRoot, "apps", "web", "src", "lib", "cards", "childDisplayImageFallbacks.ts"),
     "utf8",
   );
+  const printingOptionsSource = fs.readFileSync(
+    path.join(
+      repositoryRoot,
+      "apps",
+      "web",
+      "src",
+      "lib",
+      "cards",
+      "getPublicCardPrintingOptions.ts",
+    ),
+    "utf8",
+  );
 
   assert.match(detailSource, /chunkValues\(cardPrintIds, SUPABASE_IN_FILTER_CHUNK_SIZE\)/);
-  assert.match(detailSource, /\.range\(printingFrom, printingTo\)/);
+  assert.match(detailSource, /getPublicCardPrintingOptions\(admin, cardPrintIds\)/);
+  assert.match(printingOptionsSource, /MAX_IDS_PER_REQUEST = 250/);
+  assert.match(printingOptionsSource, /PAGE_SIZE = 1000/);
+  assert.match(printingOptionsSource, /p_offset: offset/);
+  assert.match(printingOptionsSource, /if \(page\.length < PAGE_SIZE\)/);
   assert.match(detailSource, /\.range\(cameoFrom, cameoTo\)/);
   assert.match(overviewSource, /getRemainingPageIndexes/);
   assert.match(overviewSource, /mapWithBoundedConcurrency/);

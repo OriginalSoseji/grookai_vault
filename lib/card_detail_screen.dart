@@ -27,6 +27,7 @@ import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
+import 'services/public/public_card_printing_options_service.dart';
 import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -347,51 +348,32 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return const <_CardDetailPrintingOption>[];
     }
 
-    late final List<dynamic> rows;
+    late final List<Map<String, dynamic>> rows;
     try {
-      rows =
-          await supabase
-                  .from('card_printings')
-                  .select(
-                    'id,printing_gv_id,finish_key,image_url,image_alt_url,finish_keys(label,sort_order)',
-                  )
-                  .eq('card_print_id', normalizedCardPrintId)
-              as List<dynamic>;
+      rows = await PublicCardPrintingOptionsService.fetch(
+        client: supabase,
+        cardPrintIds: <String>[normalizedCardPrintId],
+      );
     } catch (_) {
-      try {
-        rows =
-            await supabase
-                    .from('card_printings')
-                    .select(
-                      'id,printing_gv_id,finish_key,image_url,image_alt_url',
-                    )
-                    .eq('card_print_id', normalizedCardPrintId)
-                as List<dynamic>;
-      } catch (_) {
-        return const <_CardDetailPrintingOption>[];
-      }
+      return const <_CardDetailPrintingOption>[];
     }
 
     final options = <_CardDetailPrintingOption>[];
     for (final raw in rows) {
-      if (raw is! Map) {
-        continue;
-      }
-      final row = Map<String, dynamic>.from(raw);
+      final row = raw;
       final id = _cleanText(row['id']);
       if (id.isEmpty) {
         continue;
       }
 
-      final finishRecord = _extractRecord(row['finish_keys']);
       final finishKey = _cleanText(row['finish_key']);
       final finishName =
           formatFinishLabel(
             finishKey: finishKey,
-            finishLabel: _cleanText(finishRecord?['label']),
+            finishLabel: _cleanText(row['finish_label']),
           ) ??
           'Standard';
-      final sortOrderRaw = finishRecord?['sort_order'];
+      final sortOrderRaw = row['finish_sort_order'];
       final sortOrder = sortOrderRaw is num
           ? sortOrderRaw.toInt()
           : int.tryParse(_cleanText(sortOrderRaw?.toString())) ?? 9999;

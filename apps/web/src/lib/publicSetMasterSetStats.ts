@@ -3,6 +3,7 @@ import "server-only";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
+import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
   getBaseSetPrintRunLaneSpecialVariantKeys,
@@ -10,11 +11,6 @@ import {
 
 type CardPrintIdRow = {
   id: string | null;
-};
-
-type CardPrintingRow = {
-  id: string | null;
-  card_print_id: string | null;
 };
 
 type VaultInstanceRow = {
@@ -109,22 +105,12 @@ async function fetchCardPrintings(cardPrintIds: string[]) {
   const supabase = createPublicServerClient();
   const printings: Array<{ id: string; cardPrintId: string }> = [];
 
-  for (const chunk of chunkValues(cardPrintIds)) {
-    const { data, error } = await supabase
-      .from("card_printings")
-      .select("id,card_print_id")
-      .in("card_print_id", chunk);
-
-    if (error) {
-      throw new Error(`[card_printings.master-set-options] ${error.message}`);
-    }
-
-    for (const row of (data ?? []) as CardPrintingRow[]) {
-      const id = row.id?.trim();
-      const cardPrintId = row.card_print_id?.trim();
-      if (id && cardPrintId) {
-        printings.push({ id, cardPrintId });
-      }
+  const rows = await getPublicCardPrintingOptions(supabase, cardPrintIds);
+  for (const row of rows) {
+    const id = row.id?.trim();
+    const cardPrintId = row.card_print_id?.trim();
+    if (id && cardPrintId) {
+      printings.push({ id, cardPrintId });
     }
   }
 

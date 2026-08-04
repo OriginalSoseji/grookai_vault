@@ -64,7 +64,7 @@ void main() {
     });
 
     test(
-      'pages large finish option reads without losing reverse holo labels',
+      'uses governed finish option reads without losing reverse holo labels',
       () {
         final start = publicSetsService.indexOf('_fetchPrintingOptions(');
         final end = publicSetsService.indexOf(
@@ -73,16 +73,12 @@ void main() {
         );
         final options = publicSetsService.substring(start, end);
 
-        expect(options, contains('const pageSize = 1000;'));
-        expect(options, contains(".order('id', ascending: true)"));
-        expect(options, contains('.range(offset, offset + pageSize - 1)'));
+        expect(options, contains('PublicCardPrintingOptionsService.fetch'));
+        expect(options, isNot(contains("from('card_printings')")));
         expect(publicSetsService, contains("case 'reverse':"));
         expect(publicSetsService, contains("return 'Reverse Holo';"));
-        expect(options, contains("finish_keys(label,sort_order)"));
-        expect(
-          options,
-          contains("select('id,card_print_id,printing_gv_id,finish_key')"),
-        );
+        expect(options, contains("row['finish_label']"));
+        expect(options, contains("row['finish_sort_order']"));
       },
     );
   });

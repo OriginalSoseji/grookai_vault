@@ -88,6 +88,15 @@ test("authorized iOS universal links cover Binder routes without claiming Androi
     false,
     "Android HTTPS App Links remain unclaimed until a certificate fingerprint is authorized",
   );
+
+  const nextConfig = fs.readFileSync(
+    path.join(webRoot, "next.config.mjs"),
+    "utf8",
+  );
+  assert.match(
+    nextConfig,
+    /source: "\/\.well-known\/apple-app-site-association"[\s\S]*?"Content-Type", value: "application\/json"/,
+  );
 });
 
 test("all nine release gates fail closed and require literal true", () => {
@@ -798,7 +807,8 @@ test("custom checklist editing is visual and open-Binder refresh uses only the s
   assert.match(editor, /Review and confirm/);
   assert.match(editor, /type="hidden" name=\{inputName\}/);
   assert.match(cardOptions, /getExploreRowsForLanguageScopedTextSearch/);
-  assert.match(cardOptions, /finish_keys!inner\(label,sort_order,is_active\)/);
+  assert.match(cardOptions, /getPublicCardPrintingOptions/);
+  assert.doesNotMatch(cardOptions, /\.from\("card_printings"\)/);
   assert.match(actions, /customChecklistConfirmation/);
 
   assert.match(liveRefresh, /table: "binder_refresh_signals"/);

@@ -35,6 +35,7 @@ import {
 } from "@/lib/resolver/nameFamily";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
@@ -166,6 +167,8 @@ type PrintIdentitySearchRpcRow = {
 };
 
 type DirectChildPrintingLookupRow = {
+  id: string | null;
+  card_print_id: string | null;
   printing_gv_id: string | null;
   finish_key: string | null;
   card_prints:
@@ -2216,9 +2219,37 @@ async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
     throw new Error(error.message);
   }
 
-  const rows = ((data ?? []) as PrintIdentitySearchRpcRow[]).filter((row) =>
+  const candidateRows = ((data ?? []) as PrintIdentitySearchRpcRow[]).filter((row) =>
     Boolean(row.parent_gv_id),
   );
+  const childRows = candidateRows.filter(
+    (row) => row.object_type === "child_printing" && Boolean(row.printing_gv_id),
+  );
+  let rows = candidateRows;
+  if (childRows.length > 0) {
+    const parentGvIds = uniqueValues(
+      childRows.map((row) => row.parent_gv_id ?? "").filter(Boolean),
+    );
+    const { data: parentRows, error: parentError } = await supabase
+      .from("card_prints")
+      .select("id,gv_id")
+      .in("gv_id", parentGvIds);
+    if (parentError) {
+      throw new Error(parentError.message);
+    }
+    const parentIds = ((parentRows ?? []) as Array<{ id?: string | null }>)
+      .map((row) => row.id?.trim() ?? "")
+      .filter(Boolean);
+    const publicOptions = await getPublicCardPrintingOptions(supabase, parentIds);
+    const publicPrintingGvIds = new Set(
+      publicOptions.map((option) => option.printing_gv_id?.trim()).filter(Boolean),
+    );
+    rows = candidateRows.filter(
+      (row) =>
+        row.object_type !== "child_printing" ||
+        publicPrintingGvIds.has(row.printing_gv_id?.trim() ?? ""),
+    );
+  }
 
   if (rows.length > 0 || !query.directGvId) {
     return rows;
@@ -2226,7 +2257,7 @@ async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
 
   const { data: directChildRows, error: directChildError } = await supabase
     .from("card_printings")
-    .select("printing_gv_id,finish_key,card_prints(gv_id,name)")
+    .select("id,card_print_id,printing_gv_id,finish_key,card_prints(gv_id,name)")
     .eq("printing_gv_id", query.directGvId)
     .limit(1);
 
@@ -2244,8 +2275,16 @@ async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
     ? directChild.card_prints[0]
     : directChild?.card_prints;
   const parentGvId = parent?.gv_id?.trim();
+  const cardPrintId = directChild?.card_print_id?.trim();
+  const cardPrintingId = directChild?.id?.trim();
   const printingGvId = directChild?.printing_gv_id?.trim();
-  if (!parentGvId || !printingGvId) {
+  if (!parentGvId || !cardPrintId || !cardPrintingId || !printingGvId) {
+    return rows;
+  }
+  const directPublicOptions = await getPublicCardPrintingOptions(supabase, [
+    cardPrintId,
+  ]);
+  if (!directPublicOptions.some((option) => option.id === cardPrintingId)) {
     return rows;
   }
 
@@ -4074,7 +4113,18 @@ async function fetchSmartDiscoveryChildRows(
       throw new Error(error.message);
     }
 
-    for (const childRow of (data ?? []) as CardPrintingSmartLookupRow[]) {
+    const childRows = (data ?? []) as CardPrintingSmartLookupRow[];
+    const publicOptions = await getPublicCardPrintingOptions(
+      supabase,
+      childRows
+        .map((row) => row.card_print_id?.trim() ?? "")
+        .filter(Boolean),
+    );
+    const publicOptionIds = new Set(publicOptions.map((row) => row.id));
+    for (const childRow of childRows) {
+      if (!publicOptionIds.has(childRow.id)) {
+        continue;
+      }
       const mapped = mapSmartChildRowToCardPrintLookupRow(childRow);
       if (!mapped) {
         continue;

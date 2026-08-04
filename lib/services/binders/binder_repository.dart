@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/card_print.dart';
 import '../../models/binders/binder_models.dart';
+import '../public/public_card_printing_options_service.dart';
 import 'binder_rpc_contract.dart';
 
 enum BinderFailureKind {
@@ -799,45 +800,37 @@ class SupabaseBinderRepository implements BinderRepository {
   ) async {
     final id = _required(cardPrintId);
     try {
-      final raw = await _client
-          .from('card_printings')
-          .select(
-            'id,card_print_id,finish_key,'
-            'finish:finish_keys(label,sort_order,is_active)',
-          )
-          .eq('card_print_id', id)
-          .limit(100);
+      final raw = await PublicCardPrintingOptionsService.fetch(
+        client: _client,
+        cardPrintIds: <String>[id],
+      );
       final rows =
           _jsonMaps(raw)
               .where((row) {
-                final finish = _jsonMap(row['finish']);
-                return finish.isEmpty || finish['is_active'] != false;
+                return row['finish_is_active'] != false;
               })
               .toList(growable: false)
             ..sort((left, right) {
-              final leftFinish = _jsonMap(left['finish']);
-              final rightFinish = _jsonMap(right['finish']);
               final byOrder = _asInt(
-                leftFinish['sort_order'],
-              ).compareTo(_asInt(rightFinish['sort_order']));
+                left['finish_sort_order'],
+              ).compareTo(_asInt(right['finish_sort_order']));
               if (byOrder != 0) return byOrder;
-              return (leftFinish['label'] ?? left['finish_key'] ?? '')
+              return (left['finish_label'] ?? left['finish_key'] ?? '')
                   .toString()
                   .compareTo(
-                    (rightFinish['label'] ?? right['finish_key'] ?? '')
+                    (right['finish_label'] ?? right['finish_key'] ?? '')
                         .toString(),
                   );
             });
       return <BinderFinishOption>[
         const BinderFinishOption(label: 'Any governed finish'),
         ...rows.map((row) {
-          final finish = _jsonMap(row['finish']);
           final key = _nullable(row['finish_key']);
           return BinderFinishOption(
             cardPrintingId: _nullable(row['id']),
             finishKey: key,
             label:
-                _nullable(finish['label']) ??
+                _nullable(row['finish_label']) ??
                 (key == null ? 'Governed finish' : key.replaceAll('_', ' ')),
           );
         }),

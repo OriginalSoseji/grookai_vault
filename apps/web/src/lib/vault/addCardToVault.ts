@@ -1,5 +1,7 @@
 import "server-only";
 
+import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
+
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { createVaultInstanceActiveProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
@@ -110,18 +112,13 @@ export async function addCardToVault({
       const normalizedImageUrl = imageUrl ?? null;
       const adminClient = createServerAdminClient();
       if (normalizedCardPrintingId) {
-        const { data: printingRow, error: printingError } = await adminClient
-          .from("card_printings")
-          .select("id,card_print_id")
-          .eq("id", normalizedCardPrintingId)
-          .maybeSingle();
-
-        if (printingError) {
-          throw new Error(formatVaultWriteError("card_printings.validate-selected", printingError));
-        }
-
-        if (!printingRow || printingRow.card_print_id !== normalizedCardPrintId) {
-          throw new Error("GVVI create failed: selected card_printing_id does not belong to this card_print_id.");
+        const publicOptions = await getPublicCardPrintingOptions(adminClient, [
+          normalizedCardPrintId,
+        ]);
+        if (!publicOptions.some((option) => option.id === normalizedCardPrintingId)) {
+          throw new Error(
+            "GVVI create failed: selected card_printing_id is not an active governed finish for this card_print_id.",
+          );
         }
       }
       const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({

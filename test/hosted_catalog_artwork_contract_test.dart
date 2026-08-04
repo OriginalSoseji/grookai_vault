@@ -202,7 +202,13 @@ void main() {
         r'CatalogArtworkResolution get _cardArtworkResolution[\s\S]*?String get _resolvedSetName',
       ).firstMatch(detail)!.group(0)!;
 
-      expect(printingLoader, contains('image_url,image_alt_url'));
+      expect(printingLoader, contains("row['image_url']"));
+      expect(printingLoader, contains("row['image_alt_url']"));
+      expect(
+        printingLoader,
+        contains('PublicCardPrintingOptionsService.fetch'),
+      );
+      expect(printingLoader, isNot(contains("from('card_printings')")));
       expect(printingLoader, isNot(contains('representative_image_url')));
       expect(
         artworkResolver,

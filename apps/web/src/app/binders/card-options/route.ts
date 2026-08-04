@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getExploreRowsForLanguageScopedTextSearch } from "@/lib/explore/getExploreRows";
 import { getBinderFeatureFlags } from "@/lib/binders/featureFlags";
+import {
+  getPublicCardPrintingOptions,
+  type PublicCardPrintingOptionRow,
+} from "@/lib/cards/getPublicCardPrintingOptions";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -10,19 +14,7 @@ export const revalidate = 0;
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-type FinishRow = {
-  id?: string | null;
-  card_print_id?: string | null;
-  finish_key?: string | null;
-  finish_keys?:
-    | { label?: string | null; sort_order?: number | null; is_active?: boolean | null }
-    | Array<{
-        label?: string | null;
-        sort_order?: number | null;
-        is_active?: boolean | null;
-      }>
-    | null;
-};
+type FinishRow = PublicCardPrintingOptionRow;
 
 type FinishOption = {
   cardPrintingId: string;
@@ -57,22 +49,10 @@ async function getFinishOptions(
   supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
   cardPrintIds: string[],
 ) {
-  const rows: FinishRow[] = [];
-  for (let index = 0; index < cardPrintIds.length; index += 100) {
-    const chunk = cardPrintIds.slice(index, index + 100);
-    const { data, error } = await supabase
-      .from("card_printings")
-      .select(
-        "id,card_print_id,finish_key,finish_keys!inner(label,sort_order,is_active)",
-      )
-      .in("card_print_id", chunk)
-      .eq("finish_keys.is_active", true)
-      .order("id", { ascending: true });
-    if (error) {
-      throw new Error("Canonical finish options are temporarily unavailable.");
-    }
-    rows.push(...((data ?? []) as FinishRow[]));
-  }
+  const rows: FinishRow[] = await getPublicCardPrintingOptions(
+    supabase,
+    cardPrintIds,
+  );
 
   const byCardPrintId = new Map<
     string,
@@ -84,13 +64,10 @@ async function getFinishOptions(
     if (!UUID_PATTERN.test(cardPrintingId) || !UUID_PATTERN.test(cardPrintId)) {
       continue;
     }
-    const finish =
-      (Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys) ??
-      null;
     const label =
       getCardPrintingFinishLabel({
         finishKey: row.finish_key,
-        finishLabel: finish?.label,
+        finishLabel: row.finish_label,
       }) ||
       text(row.finish_key).replaceAll("_", " ") ||
       "Governed finish";
@@ -99,8 +76,8 @@ async function getFinishOptions(
       cardPrintingId,
       label,
       sortOrder:
-        typeof finish?.sort_order === "number"
-          ? finish.sort_order
+        typeof row.finish_sort_order === "number"
+          ? row.finish_sort_order
           : Number.MAX_SAFE_INTEGER,
     });
     byCardPrintId.set(cardPrintId, options);
