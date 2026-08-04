@@ -1,0 +1,21 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_TRANSACTIONAL_ROLLBACK_V1",
+  "generated_at": "2026-08-04T20:00:32.962Z",
+  "status": "blocked_database_connectivity_before_transaction",
+  "error_code": "ETIMEDOUT",
+  "error_name": "AggregateError",
+  "error_message": "",
+  "source_manifest_version": "SPECIAL_VARIANT_PRINTING_GUARDED_MANIFEST_V1",
+  "source_manifest_fingerprint_sha256": "2437a727bf53ba62752067b55eddacbfc4a99f98e3564e11ce5b5d1c8a306c9c",
+  "target_count": 143,
+  "transaction_started": false,
+  "transaction_committed": false,
+  "transient_child_count": 0,
+  "transient_review_count": 0,
+  "durable_db_writes_performed": false,
+  "approvals_performed": false,
+  "public_visibility_changed": false,
+  "retry_safe": true,
+  "next_gate": "Retry this identical rollback-only proof from a host with working PostgreSQL connectivity. Do not apply child rows before the rollback proof passes.",
+  "fingerprint_sha256": "615ba61fc8ec01edb5ad572b5b25072c9ffc3dead03fcffa535b1dc0c3952ef6"
+}

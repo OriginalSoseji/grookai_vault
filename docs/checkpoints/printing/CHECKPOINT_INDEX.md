@@ -15,6 +15,22 @@ These checkpoints should be read as institutional memory for the printing system
 
 ## Checkpoint Sequence
 
+### `SPECIAL_VARIANT_PRINTING_AUTHORITY_V1.md`
+
+This checkpoint records the authoritative reconciliation of the `563` reference-only special-variant printing gaps left by the cross-client release repair.
+
+Decision locked there:
+
+- JustTCG remains discovery-only
+- only exact active TCGCSV/TCGplayer catalog identity, explicit variant title, exact finish subtype, verified set/Index consistency, and clean live invariants may enter a guarded child manifest
+
+Current result:
+
+- `143` prospective child rows are evidence-ready and collision-free
+- `420` rows remain blocked
+- no child was applied
+- the required rollback-only remote proof is blocked by this host's PostgreSQL connectivity and must pass before any real apply
+
 ### `VARIANT_SEARCH_PRINTING_COVERAGE_RELEASE_REPAIR_V1.md`
 
 This checkpoint records the bounded cross-client repair that made exact structured variant search deterministic, exposed the existing exact-copy media controls, and restored the printing authority boundary for coverage repair.
