@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../screens/network/network_inbox_screen.dart';
 import '../screens/network/network_thread_screen.dart';
+import '../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../services/network/card_interaction_service.dart';
 import '../services/network/intent_presentation.dart' as intent_presentation;
 
@@ -253,7 +254,17 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
     late final CardInteractionSendResult result;
     try {
       result = await _sendMessage(_controller.text);
-    } catch (_) {
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'collector_message_send_failed',
+        context: const <String, Object?>{
+          'operation': 'send_message',
+          'stage': 'contact_owner_composer',
+          'surface': 'collector_message',
+        },
+      );
       if (!mounted) {
         return;
       }
@@ -272,7 +283,17 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
     if (result.ok) {
       try {
         thread = await _resolveThread(result);
-      } catch (_) {
+      } catch (error, stackTrace) {
+        GrookaiCrashReportingService.recordNonFatalError(
+          error,
+          stackTrace,
+          reason: 'collector_message_thread_resolution_failed',
+          context: const <String, Object?>{
+            'operation': 'resolve_thread',
+            'stage': 'contact_owner_composer',
+            'surface': 'collector_message',
+          },
+        );
         thread = null;
       }
       if (!mounted) {

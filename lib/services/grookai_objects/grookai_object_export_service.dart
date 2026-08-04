@@ -113,6 +113,7 @@ class GrookaiObjectExportService {
     required String fileName,
     String? text,
     String? subject,
+    Rect? sharePositionOrigin,
   }) {
     return SharePlus.instance.share(
       ShareParams(
@@ -120,7 +121,26 @@ class GrookaiObjectExportService {
         fileNameOverrides: [fileName],
         text: text,
         subject: subject,
+        sharePositionOrigin: sharePositionOrigin,
       ),
+    );
+  }
+
+  static Rect sharePositionOriginFor(BuildContext context) {
+    final renderObject = context.findRenderObject();
+    if (renderObject is RenderBox && renderObject.hasSize) {
+      final origin = renderObject.localToGlobal(Offset.zero);
+      final size = renderObject.size;
+      if (size.width > 0 && size.height > 0) {
+        return origin & size;
+      }
+    }
+
+    final mediaSize = MediaQuery.sizeOf(context);
+    return Rect.fromCenter(
+      center: mediaSize.center(Offset.zero),
+      width: 1,
+      height: 1,
     );
   }
 

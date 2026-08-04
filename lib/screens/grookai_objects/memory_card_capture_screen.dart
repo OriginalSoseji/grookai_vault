@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/grookai_memory_card.dart';
+import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/vault/collector_memory_service.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
@@ -206,6 +207,8 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
       _error = null;
       _exportDestination = destination;
     });
+    final sharePositionOrigin =
+        GrookaiObjectExportService.sharePositionOriginFor(context);
 
     try {
       final object = _previewObject;
@@ -222,8 +225,21 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
         ),
         subject: 'Grookai memory card',
         text: 'Shared from Grookai Vault',
+        sharePositionOrigin: sharePositionOrigin,
       );
-    } catch (error) {
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'grookai_object_share_failed',
+        context: <String, Object?>{
+          'operation': 'share_png',
+          'stage': 'memory_card',
+          'surface': 'memory_capture',
+          'object_type': 'memory',
+          'destination': _exportDestination.slug,
+        },
+      );
       if (!mounted) {
         return;
       }

@@ -63,6 +63,38 @@ class GrookaiCrashReportingService {
     return true;
   }
 
+  static bool recordNonFatalError(
+    Object error,
+    StackTrace stackTrace, {
+    required String reason,
+    Map<String, Object?> context = const <String, Object?>{},
+  }) {
+    final normalizedReason = _diagnosticValue(reason);
+    final information = <Object>[
+      for (final entry in context.entries)
+        if (_allowedContextKeys.contains(entry.key) && entry.value != null)
+          '${entry.key}=${_diagnosticValue(entry.value)}',
+    ];
+    _debug(
+      'non_fatal reason=$normalizedReason error_type=${error.runtimeType}',
+    );
+
+    if (!_ready || kIsWeb) {
+      return false;
+    }
+
+    unawaited(
+      FirebaseCrashlytics.instance.recordError(
+        error,
+        stackTrace,
+        reason: normalizedReason,
+        information: information,
+        fatal: false,
+      ),
+    );
+    return true;
+  }
+
   static Future<void> _runSelfTest(FirebaseCrashlytics crashlytics) async {
     await Future<void>.delayed(const Duration(seconds: 2));
     if (_fatalSelfTest) {
@@ -82,5 +114,26 @@ class GrookaiCrashReportingService {
     if (kDebugMode) {
       debugPrint('[CRASH_REPORTING] $message');
     }
+  }
+
+  static const Set<String> _allowedContextKeys = <String>{
+    'destination',
+    'object_type',
+    'operation',
+    'platform',
+    'send_status',
+    'stage',
+    'surface',
+  };
+
+  static String _diagnosticValue(Object? value) {
+    final normalized = (value ?? 'unknown')
+        .toString()
+        .replaceAll(RegExp(r'[\r\n\t]+'), ' ')
+        .trim();
+    if (normalized.length <= 120) {
+      return normalized;
+    }
+    return normalized.substring(0, 120);
   }
 }

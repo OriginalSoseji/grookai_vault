@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/grookai_sale_listing.dart';
+import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
@@ -144,6 +145,8 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
       _error = null;
       _exportDestination = destination;
     });
+    final sharePositionOrigin =
+        GrookaiObjectExportService.sharePositionOriginFor(context);
 
     try {
       final object = _previewObject;
@@ -160,8 +163,21 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
         ),
         subject: 'Grookai lot card',
         text: 'Shared from Grookai Vault',
+        sharePositionOrigin: sharePositionOrigin,
       );
-    } catch (error) {
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'grookai_object_share_failed',
+        context: <String, Object?>{
+          'operation': 'share_png',
+          'stage': 'lot_pricing',
+          'surface': 'price_lot',
+          'object_type': 'lot',
+          'destination': _exportDestination.slug,
+        },
+      );
       if (!mounted) {
         return;
       }

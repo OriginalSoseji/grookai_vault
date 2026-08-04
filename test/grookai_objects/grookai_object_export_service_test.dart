@@ -140,6 +140,32 @@ void main() {
     expect(find.byKey(key), findsOneWidget);
   });
 
+  testWidgets('share origin is non-zero and inside the rendered surface', (
+    tester,
+  ) async {
+    final key = GlobalKey();
+    await tester.binding.setSurfaceSize(const Size(440, 600));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(child: SizedBox(key: key, width: 220, height: 300)),
+        ),
+      ),
+    );
+
+    final context = tester.element(find.byKey(key));
+    final origin = GrookaiObjectExportService.sharePositionOriginFor(context);
+
+    expect(origin.width, greaterThan(0));
+    expect(origin.height, greaterThan(0));
+    expect(origin.left, greaterThanOrEqualTo(0));
+    expect(origin.top, greaterThanOrEqualTo(0));
+    expect(origin.right, lessThanOrEqualTo(440));
+    expect(origin.bottom, lessThanOrEqualTo(600));
+  });
+
   testWidgets('ebay lot export shows multiple lot card images', (tester) async {
     final key = GlobalKey();
     await tester.binding.setSurfaceSize(const Size(420, 420));
@@ -204,6 +230,8 @@ void main() {
       expect(source, contains('showGrookaiObjectShareDestinationSheet'));
       expect(source, contains('exportObjectPng('));
       expect(source, contains('sharePng('));
+      expect(source, contains('sharePositionOriginFor('));
+      expect(source, contains('recordNonFatalError('));
     }
   });
 }
