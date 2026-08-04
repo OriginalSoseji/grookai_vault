@@ -24,23 +24,27 @@ const observer = fs.readFileSync(
 test("scheduled canary observer is pinned to the reviewed source and canary", () => {
   assert.match(
     workflow,
-    /OBSERVER_SOURCE_SHA: "416c4691d1c1d6be8a1461c148deebe627e813f8"/,
+    /OBSERVER_SOURCE_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"/,
   );
   assert.match(
     workflow,
-    /CANARY_EXPECTED_COMMIT_SHA: "416c4691d1c1d6be8a1461c148deebe627e813f8"/,
+    /CANARY_EXPECTED_COMMIT_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"/,
   );
   assert.match(
     workflow,
-    /CANARY_ACTIVATION_RUN_ID: "0c23045d-8141-4b9c-ba41-2f8c44522921"/,
+    /CANARY_ACTIVATION_RUN_ID: "01610cfc-df72-412f-bc21-a526044d35bc"/,
   );
   assert.match(workflow, /CANARY_EXPECTED_COUNT: "100"/);
+  assert.match(
+    workflow,
+    /TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"/,
+  );
   assert.match(workflow, /ref: \$\{\{ env\.OBSERVER_SOURCE_SHA \}\}/);
 });
 
 test("scheduled canary observer allows final-slot completion before requiring a terminal pass", () => {
-  assert.match(workflow, /CANARY_WINDOW_START: "2026-07-31T10:34:15\.670Z"/);
-  assert.match(workflow, /CANARY_REQUIRED_END: "2026-08-03T10:34:15\.670Z"/);
+  assert.match(workflow, /CANARY_WINDOW_START: "2026-08-02T22:29:17\.856Z"/);
+  assert.match(workflow, /CANARY_REQUIRED_END: "2026-08-05T22:29:17\.856Z"/);
   assert.match(workflow, /CANARY_COMPLETION_GRACE_SECONDS: "28800"/);
   assert.match(workflow, /--required-hours=72/);
   assert.match(workflow, /--schedule-tolerance-minutes=90/);

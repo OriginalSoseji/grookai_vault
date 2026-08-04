@@ -6,6 +6,7 @@ import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
+import type { MarketIntelligenceRecordV1 } from "@/lib/pricing/marketIntelligenceReadModelV1";
 
 type CardPagePricingRailProps = {
   isAuthenticated: boolean;
@@ -124,33 +125,78 @@ function MarketPriceBlock({
 }
 
 function ActiveAskBlock({
-  pricing,
+  marketIntelligence,
+  isLoading,
 }: {
-  pricing: CardPricingUiRecord | null;
+  marketIntelligence: MarketIntelligenceRecordV1 | null;
+  isLoading: boolean;
 }) {
+  const observedAt = marketIntelligence
+    ? formatObservedAt(marketIntelligence.observed_at)
+    : null;
+
   return (
-    <div className="space-y-1.5 border-t border-slate-200/70 pt-4 dark:border-slate-800">
+    <div
+      className="space-y-1.5 border-t border-slate-200/70 pt-4 dark:border-slate-800"
+      data-market-intelligence-proof="exact-printing-active-asks"
+      data-market-intelligence-status={marketIntelligence ? "available" : "unavailable"}
+      data-card-printing-id={marketIntelligence?.card_printing_id}
+      data-printing-gv-id={marketIntelligence?.printing_gv_id}
+      data-source-name={marketIntelligence?.source_name}
+      data-evidence-strength={marketIntelligence?.evidence_strength}
+      data-is-market-value={marketIntelligence?.is_market_value ? "true" : "false"}
+      data-is-completed-sale={marketIntelligence?.is_completed_sale ? "true" : "false"}
+    >
       <p className="text-[11px] font-semibold uppercase text-slate-500">
         Available Today
       </p>
-      {pricing && typeof pricing.lowest_active_ask === "number" ? (
+      {isLoading ? (
+        <p className="text-xs leading-5 text-slate-500">
+          Loading active asking prices...
+        </p>
+      ) : marketIntelligence ? (
         <>
           <p className="text-2xl font-semibold text-slate-950 dark:text-slate-100">
-            {formatUsdPrice(pricing.lowest_active_ask)}
+            {formatUsdPrice(marketIntelligence.lowest_active_ask)}
           </p>
           <p className="text-xs leading-5 text-slate-500">
             Lowest exact-printing eBay active ask
-            {pricing.active_ask_listing_count
-              ? ` · ${pricing.active_ask_listing_count} listings`
-              : ""}
+            {observedAt ? ` · Updated ${observedAt}` : ""}
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-3 border-t border-slate-200/70 pt-3 dark:border-slate-800">
+            <div>
+              <p className="text-[11px] font-semibold uppercase text-slate-400">
+                Median ask
+              </p>
+              <p className="mt-1 text-sm font-medium text-slate-900 dark:text-slate-100">
+                {formatUsdPrice(marketIntelligence.median_active_ask)}
+              </p>
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase text-slate-400">
+                Coverage
+              </p>
+              <p className="mt-1 text-sm font-medium capitalize text-slate-900 dark:text-slate-100">
+                {marketIntelligence.evidence_strength}
+              </p>
+            </div>
+          </div>
+          <p className="text-xs leading-5 text-slate-500">
+            {marketIntelligence.listing_count} active{" "}
+            {marketIntelligence.listing_count === 1 ? "listing" : "listings"}{" "}
+            across{" "}
+            {marketIntelligence.seller_count}{" "}
+            {marketIntelligence.seller_count === 1 ? "seller" : "sellers"}{" "}
+            · Lowest-to-median spread{" "}
+            {formatUsdPrice(marketIntelligence.ask_spread)} ({marketIntelligence.ask_spread_pct.toFixed(2)}%)
           </p>
           <p className="text-[11px] leading-5 text-slate-400">
-            Asking-price evidence, not a sale or market close.
+            Asking-price evidence, not a sale or market close. It is not a market value.
           </p>
         </>
       ) : (
         <p className="text-xs leading-5 text-slate-500">
-          No exact-printing active ask is available.
+          No fresh exact-printing active asks are available.
         </p>
       )}
     </div>
@@ -186,11 +232,15 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
 function AuthenticatedPricingState({
   gvId,
   pricing,
+  marketIntelligence,
   isLoading,
+  isLoadingMarketIntelligence,
 }: {
   gvId: string;
   pricing: CardPricingUiRecord | null;
+  marketIntelligence: MarketIntelligenceRecordV1 | null;
   isLoading: boolean;
+  isLoadingMarketIntelligence: boolean;
 }) {
   return (
     <div className="gv-card-pricing-panel px-1 py-1">
@@ -205,7 +255,12 @@ function AuthenticatedPricingState({
             <MarketPriceBlock pricing={pricing} />
           )}
         </div>
-        {!isLoading ? <ActiveAskBlock pricing={pricing} /> : null}
+        {!isLoading ? (
+          <ActiveAskBlock
+            marketIntelligence={marketIntelligence}
+            isLoading={isLoadingMarketIntelligence}
+          />
+        ) : null}
         {!isLoading ? (
           <Link
             href={`/card/${encodeURIComponent(gvId)}/market`}
@@ -254,6 +309,28 @@ function selectPricingRecord({
   );
 }
 
+function selectMarketIntelligenceRecord({
+  records,
+  selectedCardPrintingId,
+  selectedPrintingGvId,
+}: {
+  records: MarketIntelligenceRecordV1[];
+  selectedCardPrintingId?: string | null;
+  selectedPrintingGvId?: string | null;
+}) {
+  if (selectedCardPrintingId) {
+    return records.find(
+      (record) => record.card_printing_id === selectedCardPrintingId,
+    ) ?? null;
+  }
+  if (selectedPrintingGvId) {
+    return records.find(
+      (record) => record.printing_gv_id === selectedPrintingGvId,
+    ) ?? null;
+  }
+  return records[0] ?? null;
+}
+
 export default function CardPagePricingRail({
   isAuthenticated,
   loginHref,
@@ -268,8 +345,13 @@ export default function CardPagePricingRail({
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
   const [clientPricingRecords, setClientPricingRecords] =
     useState<CardPricingUiRecord[]>(pricingRecords);
+  const [clientMarketIntelligenceRecords, setClientMarketIntelligenceRecords] =
+    useState<MarketIntelligenceRecordV1[]>([]);
+  const [hasLoadedPricingBundle, setHasLoadedPricingBundle] = useState(
+    !cardPrintId,
+  );
   const [isLoadingPricing, setIsLoadingPricing] = useState(
-    effectiveIsAuthenticated && pricingRecords.length === 0 && Boolean(cardPrintId),
+    effectiveIsAuthenticated && Boolean(cardPrintId),
   );
   const selectedPricing = selectPricingRecord({
     records: clientPricingRecords,
@@ -277,11 +359,16 @@ export default function CardPagePricingRail({
     selectedPrintingGvId,
     fallbackPricing: pricing,
   });
+  const selectedMarketIntelligence = selectMarketIntelligenceRecord({
+    records: clientMarketIntelligenceRecords,
+    selectedCardPrintingId,
+    selectedPrintingGvId,
+  });
 
   useEffect(() => {
     if (
       !effectiveIsAuthenticated ||
-      clientPricingRecords.length > 0 ||
+      hasLoadedPricingBundle ||
       !cardPrintId
     ) {
       return;
@@ -309,18 +396,25 @@ export default function CardPagePricingRail({
         ? ((await response.json()) as {
             pricing?: CardPricingUiRecord | null;
             pricingRecords?: CardPricingUiRecord[];
+            marketIntelligenceRecords?: MarketIntelligenceRecordV1[];
           })
         : null;
-      setClientPricingRecords(
-        payload?.pricingRecords ??
-          (payload?.pricing ? [payload.pricing] : []),
-      );
+      if (payload) {
+        setClientPricingRecords(
+          payload.pricingRecords ??
+            (payload.pricing ? [payload.pricing] : []),
+        );
+        setClientMarketIntelligenceRecords(
+          payload.marketIntelligenceRecords ?? [],
+        );
+      }
+      setHasLoadedPricingBundle(true);
       setIsLoadingPricing(false);
     }
 
     loadPricing().catch(() => setIsLoadingPricing(false));
     return () => controller.abort();
-  }, [cardPrintId, clientPricingRecords.length, effectiveIsAuthenticated]);
+  }, [cardPrintId, effectiveIsAuthenticated, hasLoadedPricingBundle]);
 
   if (!effectiveIsAuthenticated) {
     return <LockedPricingState loginHref={loginHref} />;
@@ -329,7 +423,9 @@ export default function CardPagePricingRail({
     <AuthenticatedPricingState
       gvId={gvId}
       pricing={selectedPricing}
+      marketIntelligence={selectedMarketIntelligence}
       isLoading={isLoadingPricing && !selectedPricing}
+      isLoadingMarketIntelligence={isLoadingPricing}
     />
   );
 }
