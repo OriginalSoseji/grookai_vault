@@ -57,6 +57,7 @@ import 'services/grookai_dex/grookai_dex_service.dart';
 import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
+import 'services/public/public_card_printing_options_service.dart';
 import 'services/public/public_collector_service.dart';
 import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_condition_camera_bridge.dart';
@@ -862,6 +863,7 @@ class _CatalogCardTile extends StatelessWidget {
   final SmartFeedCandidateDebug? feedDebug;
   final bool showFeedDebugOverlay;
   final AppCardViewMode viewMode;
+  final String? printingSummary;
 
   const _CatalogCardTile({
     required this.card,
@@ -874,6 +876,7 @@ class _CatalogCardTile extends StatelessWidget {
     this.onImpressionCandidate,
     this.feedDebug,
     this.showFeedDebugOverlay = false,
+    this.printingSummary,
   });
 
   @override
@@ -886,6 +889,7 @@ class _CatalogCardTile extends StatelessWidget {
       if ((displayIdentity.printedName ?? '').isNotEmpty)
         displayIdentity.printedName!,
       ..._catalogMetadataParts(card, compact: compact),
+      if ((printingSummary ?? '').trim().isNotEmpty) printingSummary!.trim(),
     ];
     final subtitle = subtitleParts.join(' • ');
     final thumbWidth = compact ? 56.0 : 60.0;
@@ -1135,6 +1139,7 @@ class _CatalogCardGridTile extends StatelessWidget {
     this.onImpressionCandidate,
     this.feedDebug,
     this.showFeedDebugOverlay = false,
+    this.printingSummary,
   });
 
   final CardPrint card;
@@ -1146,6 +1151,7 @@ class _CatalogCardGridTile extends StatelessWidget {
   final VoidCallback? onImpressionCandidate;
   final SmartFeedCandidateDebug? feedDebug;
   final bool showFeedDebugOverlay;
+  final String? printingSummary;
 
   @override
   Widget build(BuildContext context) {
@@ -1156,6 +1162,7 @@ class _CatalogCardGridTile extends StatelessWidget {
       if ((displayIdentity.printedName ?? '').isNotEmpty)
         displayIdentity.printedName!,
       ..._catalogMetadataParts(card, compact: false, includeRarity: false),
+      if ((printingSummary ?? '').trim().isNotEmpty) printingSummary!.trim(),
     ];
     final subtitle = subtitleParts.join(' • ');
 
@@ -1653,6 +1660,42 @@ List<String> _catalogMetadataParts(
   return parts;
 }
 
+class _CatalogPrintingOption {
+  const _CatalogPrintingOption({
+    required this.id,
+    required this.cardPrintId,
+    required this.finishLabel,
+    this.printingGvId,
+  });
+
+  final String id;
+  final String cardPrintId;
+  final String finishLabel;
+  final String? printingGvId;
+
+  static _CatalogPrintingOption? fromRow(Map<String, dynamic> row) {
+    final id = (row['id'] ?? '').toString().trim();
+    final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
+    if (id.isEmpty || cardPrintId.isEmpty) {
+      return null;
+    }
+    final finishKey = (row['finish_key'] ?? '').toString().trim();
+    final finishLabel =
+        formatFinishLabel(
+          finishKey: finishKey,
+          finishLabel: (row['finish_label'] ?? '').toString().trim(),
+        ) ??
+        'Printing';
+    final printingGvId = (row['printing_gv_id'] ?? '').toString().trim();
+    return _CatalogPrintingOption(
+      id: id,
+      cardPrintId: cardPrintId,
+      finishLabel: finishLabel,
+      printingGvId: printingGvId.isEmpty ? null : printingGvId,
+    );
+  }
+}
+
 class _SearchResultActionSheet extends StatelessWidget {
   const _SearchResultActionSheet({
     required this.card,
@@ -1663,6 +1706,9 @@ class _SearchResultActionSheet extends StatelessWidget {
     required this.onViewCard,
     required this.onViewYourCopy,
     required this.onRemoveFromVault,
+    required this.printingOptions,
+    required this.selectedPrintingId,
+    required this.onPrintingSelected,
     this.ownershipState,
     this.justAdded = false,
     this.pricing,
@@ -1681,6 +1727,9 @@ class _SearchResultActionSheet extends StatelessWidget {
   final VoidCallback onViewCard;
   final VoidCallback onViewYourCopy;
   final VoidCallback onRemoveFromVault;
+  final List<_CatalogPrintingOption> printingOptions;
+  final String? selectedPrintingId;
+  final ValueChanged<String> onPrintingSelected;
   final OwnershipState? ownershipState;
   final bool justAdded;
   final bool isAdding;
@@ -1701,9 +1750,16 @@ class _SearchResultActionSheet extends StatelessWidget {
         isOpeningOwnedCopy ||
         isOpeningManageCard ||
         isRemoving;
+    final printingSelectionRequired =
+        printingOptions.length > 1 && (selectedPrintingId ?? '').trim().isEmpty;
+    final isAddAction =
+        action == OwnershipAction.addToVault ||
+        action == OwnershipAction.addAnotherCopy ||
+        action == OwnershipAction.none;
+    final printingUnavailable = isAddAction && printingOptions.isEmpty;
     final normalizedCompareId = normalizeCompareCardId(card.gvId ?? '');
     final gvid = (card.gvId ?? '').trim();
-    final primaryLabel = switch (action) {
+    final ownershipPrimaryLabel = switch (action) {
       OwnershipAction.viewYourCopy =>
         isOpeningOwnedCopy ? 'Opening your copy...' : 'View your copy',
       OwnershipAction.openManageCard =>
@@ -1721,6 +1777,11 @@ class _SearchResultActionSheet extends StatelessWidget {
             ? 'Added ✓'
             : 'Add to Vault',
     };
+    final primaryLabel = printingUnavailable
+        ? 'Printing unavailable'
+        : printingSelectionRequired
+        ? 'Choose printing'
+        : ownershipPrimaryLabel;
     final showOwnedShortcut =
         _canOpenOwnedSurface(ownershipState) &&
         action != OwnershipAction.viewYourCopy &&
@@ -1802,6 +1863,47 @@ class _SearchResultActionSheet extends StatelessWidget {
                     if ((card.rarity ?? '').isNotEmpty)
                       _ActionSheetMetadataText(label: card.rarity!),
                   ],
+                ),
+              ),
+            ],
+            if (printingOptions.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              Text(
+                printingOptions.length == 1
+                    ? 'Printing'
+                    : 'Choose the exact printing',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Center(
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  runSpacing: 6,
+                  children: [
+                    for (final option in printingOptions)
+                      ChoiceChip(
+                        label: Text(option.finishLabel),
+                        selected: option.id == selectedPrintingId,
+                        onSelected: interactionLocked
+                            ? null
+                            : (_) => onPrintingSelected(option.id),
+                      ),
+                  ],
+                ),
+              ),
+            ] else if (isAddAction) ...[
+              const SizedBox(height: 10),
+              Text(
+                'Exact printing unavailable. Try again before adding.',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: colorScheme.error,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
@@ -1940,7 +2042,12 @@ class _SearchResultActionSheet extends StatelessWidget {
             ],
             const SizedBox(height: 12),
             _ActionSheetPrimaryButton(
-              onPressed: interactionLocked ? null : onPrimaryAction,
+              onPressed:
+                  interactionLocked ||
+                      printingSelectionRequired ||
+                      printingUnavailable
+                  ? null
+                  : onPrimaryAction,
               successState:
                   justAdded &&
                   (action == OwnershipAction.addToVault ||
@@ -2977,6 +3084,9 @@ class HomePageState extends State<HomePage> {
       const <String, OwnershipState>{};
   Map<String, CardSurfacePricingData> _resultPricing = const {};
   Map<String, CardSurfacePricingData> _trendingPricing = const {};
+  Map<String, List<_CatalogPrintingOption>>
+  _catalogPrintingOptionsByCardPrintId =
+      const <String, List<_CatalogPrintingOption>>{};
   Map<String, SmartFeedCandidateDebug> _trendingDebugByCardId =
       const <String, SmartFeedCandidateDebug>{};
   CardSearchResolverMeta? _resolverMeta;
@@ -3002,6 +3112,97 @@ class HomePageState extends State<HomePage> {
       return List<CardPrint>.of(cards, growable: false);
     }
     return cards.sublist(0, limit);
+  }
+
+  Future<Map<String, List<_CatalogPrintingOption>>>
+  _fetchCatalogPrintingOptions(Iterable<CardPrint> cards) async {
+    final cardPrintIds = cards
+        .map((card) => card.id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (cardPrintIds.isEmpty) {
+      return const <String, List<_CatalogPrintingOption>>{};
+    }
+
+    final rows = await PublicCardPrintingOptionsService.fetch(
+      client: supabase,
+      cardPrintIds: cardPrintIds,
+    );
+    final optionsByCardPrintId = <String, List<_CatalogPrintingOption>>{
+      for (final id in cardPrintIds) id: <_CatalogPrintingOption>[],
+    };
+    for (final row in rows) {
+      final option = _CatalogPrintingOption.fromRow(row);
+      if (option == null) {
+        continue;
+      }
+      (optionsByCardPrintId[option.cardPrintId] ??= <_CatalogPrintingOption>[])
+          .add(option);
+    }
+    return {
+      for (final entry in optionsByCardPrintId.entries)
+        entry.key: List<_CatalogPrintingOption>.unmodifiable(entry.value),
+    };
+  }
+
+  Future<List<_CatalogPrintingOption>> _ensureCatalogPrintingOptions(
+    CardPrint card,
+  ) async {
+    final cardPrintId = card.id.trim();
+    if (cardPrintId.isEmpty) {
+      return const <_CatalogPrintingOption>[];
+    }
+    final cached = _catalogPrintingOptionsByCardPrintId[cardPrintId];
+    if (cached != null) {
+      return cached;
+    }
+
+    final loaded = await _fetchCatalogPrintingOptions(<CardPrint>[card]);
+    final options = loaded[cardPrintId] ?? const <_CatalogPrintingOption>[];
+    if (mounted) {
+      setState(() {
+        _catalogPrintingOptionsByCardPrintId = {
+          ..._catalogPrintingOptionsByCardPrintId,
+          ...loaded,
+        };
+      });
+    }
+    return options;
+  }
+
+  String? _resolveInitialCatalogPrintingId(
+    CardPrint card,
+    List<_CatalogPrintingOption> options,
+  ) {
+    final requestedIds = <String>{
+      card.searchCardPrintingId ?? '',
+      card.selectedPrintingGvId ?? '',
+      card.printingGvId ?? '',
+    }.map((value) => value.trim()).where((value) => value.isNotEmpty).toSet();
+    for (final option in options) {
+      if (requestedIds.contains(option.id) ||
+          requestedIds.contains(option.printingGvId)) {
+        return option.id;
+      }
+    }
+    return options.length == 1 ? options.single.id : null;
+  }
+
+  String? _catalogPrintingSummary(CardPrint card) {
+    final exactLabel = (card.displayDiscriminator ?? card.finishLabel ?? '')
+        .trim();
+    if (exactLabel.isNotEmpty) {
+      return exactLabel;
+    }
+    final options = _catalogPrintingOptionsByCardPrintId[card.id.trim()];
+    if (options == null || options.isEmpty) {
+      return null;
+    }
+    if (options.length == 1) {
+      return options.single.finishLabel;
+    }
+    return '${options.length} printings';
   }
 
   bool _shouldShowCuratedLanding([String? query]) {
@@ -3174,11 +3375,21 @@ class HomePageState extends State<HomePage> {
       } catch (_) {
         pricing = const <String, CardSurfacePricingData>{};
       }
+      var printingOptions = const <String, List<_CatalogPrintingOption>>{};
+      try {
+        printingOptions = await _fetchCatalogPrintingOptions(rows);
+      } catch (_) {
+        printingOptions = const <String, List<_CatalogPrintingOption>>{};
+      }
       final ownershipStates = await _primeCatalogOwnershipStates(rows);
       if (!mounted) return;
       setState(() {
         _trending = rows;
         _trendingPricing = pricing;
+        _catalogPrintingOptionsByCardPrintId = {
+          ..._catalogPrintingOptionsByCardPrintId,
+          ...printingOptions,
+        };
         _trendingDebugByCardId = debugByCardId;
         _catalogOwnershipByCardPrintId = <String, OwnershipState>{
           ..._catalogOwnershipByCardPrintId,
@@ -3504,8 +3715,21 @@ class HomePageState extends State<HomePage> {
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
+      var printingOptions = const <String, List<_CatalogPrintingOption>>{};
+      try {
+        printingOptions = await _fetchCatalogPrintingOptions(resolved.rows);
+      } catch (_) {
+        printingOptions = const <String, List<_CatalogPrintingOption>>{};
+      }
+      if (!mounted || requestVersion != _searchRequestVersion) {
+        return;
+      }
       setState(() {
         _resultPricing = pricing;
+        _catalogPrintingOptionsByCardPrintId = {
+          ..._catalogPrintingOptionsByCardPrintId,
+          ...printingOptions,
+        };
         _catalogOwnershipByCardPrintId = <String, OwnershipState>{
           ..._catalogOwnershipByCardPrintId,
           ...ownershipStates,
@@ -3658,6 +3882,16 @@ class HomePageState extends State<HomePage> {
   // expected behavior: card-first action hub
   Future<void> _openSearchCardActionHub(CardPrint card) async {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
+    List<_CatalogPrintingOption> printingOptions;
+    try {
+      printingOptions = await _ensureCatalogPrintingOptions(card);
+    } catch (_) {
+      printingOptions = const <_CatalogPrintingOption>[];
+    }
+    var selectedPrintingId = _resolveInitialCatalogPrintingId(
+      card,
+      printingOptions,
+    );
     // PERFORMANCE_P6_MAIN_SYNC_OWNERSHIP_CLOSEOUT
     // Remaining main.dart ownership signals render from precomputed snapshot state only.
     var ownershipState = await _ensureCatalogOwnershipState(card.id);
@@ -3694,7 +3928,10 @@ class HomePageState extends State<HomePage> {
               justAdded = false;
             });
 
-            final gvviId = await _addToVaultFromSearch(card);
+            final gvviId = await _addToVaultFromSearch(
+              card,
+              cardPrintingId: selectedPrintingId,
+            );
             if (!mounted || gvviId == null || gvviId.isEmpty) {
               return;
             }
@@ -4120,13 +4357,23 @@ class HomePageState extends State<HomePage> {
             onViewCard: handleViewCard,
             onViewYourCopy: handleViewYourCopy,
             onRemoveFromVault: handleRemoveFromVault,
+            printingOptions: printingOptions,
+            selectedPrintingId: selectedPrintingId,
+            onPrintingSelected: (value) {
+              setSheetState(() {
+                selectedPrintingId = value;
+              });
+            },
           );
         },
       ),
     );
   }
 
-  Future<String?> _addToVaultFromSearch(CardPrint card) async {
+  Future<String?> _addToVaultFromSearch(
+    CardPrint card, {
+    String? cardPrintingId,
+  }) async {
     if (_addingCardIds.contains(card.id)) {
       return null;
     }
@@ -4135,6 +4382,16 @@ class HomePageState extends State<HomePage> {
     if (userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Sign in to add cards to your vault.')),
+      );
+      return null;
+    }
+    if ((cardPrintingId ?? '').trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Exact printing is unavailable. Try again before adding.',
+          ),
+        ),
       );
       return null;
     }
@@ -4152,6 +4409,7 @@ class HomePageState extends State<HomePage> {
         fallbackName: card.name,
         fallbackSetName: card.displaySet.isEmpty ? null : card.displaySet,
         fallbackImageUrl: card.displayImage,
+        cardPrintingId: cardPrintingId,
       );
 
       if (!mounted) {
@@ -4193,7 +4451,20 @@ class HomePageState extends State<HomePage> {
       return;
     }
 
-    final gvviId = await _addToVaultFromSearch(card);
+    List<_CatalogPrintingOption> printingOptions;
+    try {
+      printingOptions = await _ensureCatalogPrintingOptions(card);
+    } catch (_) {
+      printingOptions = const <_CatalogPrintingOption>[];
+    }
+    if (printingOptions.length != 1) {
+      await _openSearchCardActionHub(card);
+      return;
+    }
+    final gvviId = await _addToVaultFromSearch(
+      card,
+      cardPrintingId: _resolveInitialCatalogPrintingId(card, printingOptions),
+    );
     if (!mounted || gvviId == null || gvviId.isEmpty) {
       return;
     }
@@ -4315,6 +4586,7 @@ class HomePageState extends State<HomePage> {
     bool showFeedDebugOverlay = false,
   }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
+    final printingSummary = _catalogPrintingSummary(card);
     final ownershipState = _catalogOwnershipStateForCard(card.id);
     final showQuickAdd = !(ownershipState?.owned ?? false);
     final isAdding = _addingCardIds.contains(card.id);
@@ -4338,6 +4610,7 @@ class HomePageState extends State<HomePage> {
         onImpressionCandidate: onImpressionCandidate,
         feedDebug: feedDebug,
         showFeedDebugOverlay: showFeedDebugOverlay,
+        printingSummary: printingSummary,
       );
     }
 
@@ -4354,6 +4627,7 @@ class HomePageState extends State<HomePage> {
       onImpressionCandidate: onImpressionCandidate,
       feedDebug: feedDebug,
       showFeedDebugOverlay: showFeedDebugOverlay,
+      printingSummary: printingSummary,
     );
   }
 

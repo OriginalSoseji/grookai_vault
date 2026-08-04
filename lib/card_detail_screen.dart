@@ -341,21 +341,33 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<List<_CardDetailPrintingOption>> _fetchPrintingOptions(
-    String cardPrintId,
-  ) async {
+    String cardPrintId, {
+    bool swallowErrors = true,
+  }) async {
     final normalizedCardPrintId = _cleanText(cardPrintId);
     if (normalizedCardPrintId.isEmpty) {
       return const <_CardDetailPrintingOption>[];
     }
 
+    debugPrint('card.detail.printings.fetch.begin: $normalizedCardPrintId');
     late final List<Map<String, dynamic>> rows;
     try {
       rows = await PublicCardPrintingOptionsService.fetch(
         client: supabase,
         cardPrintIds: <String>[normalizedCardPrintId],
       );
-    } catch (_) {
-      return const <_CardDetailPrintingOption>[];
+      debugPrint(
+        'card.detail.printings.fetch.complete: '
+        '$normalizedCardPrintId (${rows.length})',
+      );
+    } catch (error) {
+      debugPrint(
+        'card.detail.printings.fetch.failed: $normalizedCardPrintId ($error)',
+      );
+      if (swallowErrors) {
+        return const <_CardDetailPrintingOption>[];
+      }
+      rethrow;
     }
 
     final options = <_CardDetailPrintingOption>[];
@@ -406,6 +418,54 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return options;
   }
 
+  Future<_CardDetailPrintingOption> _resolvePrintingOptionForVaultAdd() async {
+    final selected = _selectedPrintingOption;
+    if (selected != null && _hasExplicitPrintingContext) {
+      return selected;
+    }
+
+    final contextCardPrintId = _cleanText(_cardContextData?['id']);
+    final cardPrintId = contextCardPrintId.isNotEmpty
+        ? contextCardPrintId
+        : widget.cardPrintId;
+    final options = _printingOptions.isNotEmpty
+        ? _printingOptions
+        : await _fetchPrintingOptions(cardPrintId, swallowErrors: false);
+    debugPrint(
+      'card.detail.printings.add.resolve: $cardPrintId (${options.length})',
+    );
+    if (options.isEmpty) {
+      throw Exception(
+        'Exact printing is unavailable. Try again before adding this card.',
+      );
+    }
+    if (options.length > 1 && !_hasExplicitPrintingContext) {
+      if (mounted) {
+        setState(() {
+          _printingOptions = options;
+        });
+      }
+      throw Exception('Choose the exact printing before adding this card.');
+    }
+
+    final selectedId = _resolveInitialPrintingSelection(options);
+    final resolved = options
+        .where((option) => option.id == selectedId)
+        .firstOrNull;
+    if (resolved == null) {
+      throw Exception(
+        'The selected printing is unavailable. Choose another printing.',
+      );
+    }
+    if (mounted) {
+      setState(() {
+        _printingOptions = options;
+        _selectedCardPrintingId = resolved.id;
+      });
+    }
+    return resolved;
+  }
+
   String? _resolveInitialPrintingSelection(
     List<_CardDetailPrintingOption> options,
   ) {
@@ -423,7 +483,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       }
     }
 
-    return options.first.id;
+    final requestedFinish = _cleanText(
+      widget.selectedFinishLabel,
+    ).toLowerCase();
+    if (requestedFinish.isNotEmpty) {
+      for (final option in options) {
+        if (_cleanText(option.finishName).toLowerCase() == requestedFinish) {
+          return option.id;
+        }
+      }
+    }
+
+    return options.length == 1 ? options.single.id : null;
   }
 
   Future<Map<String, OwnershipState>> _primeRelatedVersionOwnership(
@@ -633,6 +704,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   bool get _hasExplicitPrintingContext =>
       _printingSelectionTouched ||
+      _printingOptions.length == 1 ||
       _cleanText(widget.selectedPrintingGvId).isNotEmpty ||
       _cleanText(widget.selectedFinishLabel).isNotEmpty;
 
@@ -1214,6 +1286,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
+      final printingOption = await _resolvePrintingOptionForVaultAdd();
       final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: supabase,
         userId: userId,
@@ -1224,7 +1297,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         fallbackImageUrl: _cleanText(widget.imageUrl).isEmpty
             ? null
             : widget.imageUrl,
-        cardPrintingId: _selectedPrintingOption?.id,
+        cardPrintingId: printingOption.id,
       );
 
       if (!mounted) {

@@ -117,4 +117,63 @@ void main() {
       expect(block, isNot(contains("from('card_printings')")));
     }
   });
+
+  test(
+    'card detail refreshes governed printings before a vault write and displays a sole finish',
+    () {
+      final detail = File('lib/card_detail_screen.dart').readAsStringSync();
+      final addBlock = _methodBlock(
+        detail,
+        'Future<void> _addToVault() async',
+        'Map<String, dynamic>? _extractRecord',
+      );
+      final resolverBlock = _methodBlock(
+        detail,
+        '_resolvePrintingOptionForVaultAdd() async',
+        'String? _resolveInitialPrintingSelection',
+      );
+
+      expect(
+        resolverBlock,
+        contains('_fetchPrintingOptions(cardPrintId, swallowErrors: false)'),
+      );
+      expect(resolverBlock, contains('Exact printing is unavailable.'));
+      expect(
+        resolverBlock,
+        contains('Choose the exact printing before adding this card.'),
+      );
+      expect(resolverBlock, contains('_selectedCardPrintingId = resolved.id'));
+      expect(addBlock, contains('final printingOption = await'));
+      expect(addBlock, contains('cardPrintingId: printingOption.id'));
+      expect(detail, contains('_printingOptions.length == 1'));
+    },
+  );
+
+  test('mobile search preserves exact printing identity on vault adds', () {
+    final main = File('lib/main.dart').readAsStringSync();
+    final addBlock = _methodBlock(
+      main,
+      'Future<String?> _addToVaultFromSearch',
+      'Future<void> _quickAddSearchResultToVault',
+    );
+    final quickAddBlock = _methodBlock(
+      main,
+      'Future<void> _quickAddSearchResultToVault',
+      '// VIEW_YOUR_COPY_RESOLUTION_V1',
+    );
+
+    expect(main, contains('PublicCardPrintingOptionsService.fetch'));
+    expect(main, contains('_ensureCatalogPrintingOptions'));
+    expect(main, contains(r"return '${options.length} printings';"));
+    expect(main, contains("'Choose the exact printing'"));
+    expect(main, contains('ChoiceChip('));
+    expect(main, contains("'Printing unavailable'"));
+    expect(
+      main,
+      contains('Exact printing is unavailable. Try again before adding.'),
+    );
+    expect(addBlock, contains('cardPrintingId: cardPrintingId'));
+    expect(quickAddBlock, contains('printingOptions.length != 1'));
+    expect(quickAddBlock, contains('_openSearchCardActionHub(card)'));
+  });
 }
