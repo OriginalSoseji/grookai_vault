@@ -300,45 +300,47 @@ function translatedCommand(command) {
 }
 
 function ensureSupabaseShimDir() {
-  const shimDir = path.join(os.tmpdir(), "grookai-mee-nightly-bin");
-  mkdirSync(shimDir, { recursive: true });
-
-  if (process.platform === "win32") {
-    const shimPath = path.join(shimDir, "supabase.cmd");
-    writeFileSync(
-      shimPath,
-      [
+  const windows = process.platform === "win32";
+  const shimContents = windows
+    ? [
         "@echo off",
         `if exist "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" %*`,
         "if not errorlevel 9009 exit /b %errorlevel%",
         "where supabase >nul 2>nul && supabase %* && exit /b %errorlevel%",
         "npx --yes supabase %*",
         "",
-      ].join("\r\n"),
-    );
-    return shimDir;
-  }
-
-  const shimPath = path.join(shimDir, "supabase");
-  writeFileSync(
-    shimPath,
-    [
-      "#!/usr/bin/env bash",
-      "set -euo pipefail",
-      `LOCAL_SUPABASE="${path.join(LOCAL_BIN_DIR, "supabase")}"`,
-      'if [[ -x "${LOCAL_SUPABASE}" ]]; then',
-      '  exec "${LOCAL_SUPABASE}" "$@"',
-      "fi",
-      "for candidate in /usr/local/bin/supabase /usr/bin/supabase; do",
-      '  if [[ -x "${candidate}" ]]; then',
-      '    exec "${candidate}" "$@"',
-      "  fi",
-      "done",
-      'exec npx --yes supabase "$@"',
-      "",
-    ].join("\n"),
+      ].join("\r\n")
+    : [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        `LOCAL_SUPABASE="${path.join(LOCAL_BIN_DIR, "supabase")}"`,
+        'if [[ -x "${LOCAL_SUPABASE}" ]]; then',
+        '  exec "${LOCAL_SUPABASE}" "$@"',
+        "fi",
+        "for candidate in /usr/local/bin/supabase /usr/bin/supabase; do",
+        '  if [[ -x "${candidate}" ]]; then',
+        '    exec "${candidate}" "$@"',
+        "  fi",
+        "done",
+        'exec npx --yes supabase "$@"',
+        "",
+      ].join("\n");
+  const shimHash = createHash("sha256")
+    .update(shimContents)
+    .digest("hex")
+    .slice(0, 16);
+  const shimDir = path.join(
+    os.tmpdir(),
+    "grookai-mee-nightly-bin",
+    shimHash,
   );
-  chmodSync(shimPath, 0o755);
+  const shimPath = path.join(shimDir, windows ? "supabase.cmd" : "supabase");
+  mkdirSync(shimDir, { recursive: true });
+
+  if (!existsSync(shimPath) || readFileSync(shimPath, "utf8") !== shimContents) {
+    writeFileSync(shimPath, shimContents);
+    if (!windows) chmodSync(shimPath, 0o755);
+  }
   return shimDir;
 }
 

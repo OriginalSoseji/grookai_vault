@@ -56,6 +56,9 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /MEE_PREFLIGHT_READBACK_TIMEOUT_MS/);
   assert.match(script, /market_evidence_db_query_v1\.mjs/);
   assert.match(script, /ensureSupabaseShimDir/);
+  assert.match(script, /createHash\("sha256"\)/);
+  assert.match(script, /readFileSync\(shimPath, "utf8"\) !== shimContents/);
+  assert.match(script, /"grookai-mee-nightly-bin",\s*shimHash/);
   assert.match(script, /npx --yes supabase/);
   assert.match(script, /nightly_worker_lock_not_acquired/);
   assert.match(script, /node-pg held session advisory lock/);
