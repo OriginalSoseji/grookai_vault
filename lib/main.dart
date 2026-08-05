@@ -5168,7 +5168,7 @@ class HomePageState extends State<HomePage> {
               Positioned(
                 left: 16,
                 right: 16,
-                bottom: 18,
+                bottom: shellContentBottomPadding(context),
                 child: _buildCompareWorkspaceEntry(theme),
               ),
             ],

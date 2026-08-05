@@ -598,6 +598,10 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
   assert.match(FLUTTER_PRICE, /Price unavailable/);
   assert.match(FLUTTER_MAIN, /pricing\?\.hasVisibleValue == true[\s\S]*?CardSurfacePriceText[\s\S]*?: Text\(\s*'Value pending'/);
+  assert.match(
+    FLUTTER_MAIN,
+    /bottom:\s*shellContentBottomPadding\(context\),[\s\S]*?_buildCompareWorkspaceEntry\(theme\)/,
+  );
   assert.match(FLUTTER_VAULT, /Vault market value unavailable/);
   assert.match(
     FLUTTER_VAULT,
