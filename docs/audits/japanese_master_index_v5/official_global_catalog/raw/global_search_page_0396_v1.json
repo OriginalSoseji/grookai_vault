@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 396,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 15406,
+    "cardEnd": 15444,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31835",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031835_P_GOCHIMU.jpg",
+            "cardNameAltText": "ゴチム",
+            "cardNameViewText": "ゴチム"
+        },
+        {
+            "cardID": "31836",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031836_P_BARIYADO.jpg",
+            "cardNameAltText": "バリヤード",
+            "cardNameViewText": "バリヤード"
+        },
+        {
+            "cardID": "31837",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031837_P_BURU.jpg",
+            "cardNameAltText": "ブルー",
+            "cardNameViewText": "ブルー"
+        },
+        {
+            "cardID": "31838",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031838_P_MONMEN.jpg",
+            "cardNameAltText": "モンメン",
+            "cardNameViewText": "モンメン"
+        },
+        {
+            "cardID": "31839",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031839_P_ERUFUN.jpg",
+            "cardNameAltText": "エルフーン",
+            "cardNameViewText": "エルフーン"
+        },
+        {
+            "cardID": "31840",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031840_P_DEIANSHIEX.jpg",
+            "cardNameAltText": "ディアンシーEX",
+            "cardNameViewText": "ディアンシーEX"
+        },
+        {
+            "cardID": "31841",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031841_P_NYASU.jpg",
+            "cardNameAltText": "ニャース",
+            "cardNameViewText": "ニャース"
+        },
+        {
+            "cardID": "31842",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031842_P_GARURA.jpg",
+            "cardNameAltText": "ガルーラ",
+            "cardNameViewText": "ガルーラ"
+        },
+        {
+            "cardID": "31843",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031843_P_TABUNNEEX.jpg",
+            "cardNameAltText": "タブンネEX",
+            "cardNameViewText": "タブンネEX"
+        },
+        {
+            "cardID": "31844",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031844_P_MTABUNNEEX.jpg",
+            "cardNameAltText": "メガタブンネEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>タブンネEX"
+        },
+        {
+            "cardID": "31845",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031845_P_CHIRAMII.jpg",
+            "cardNameAltText": "チラーミィ",
+            "cardNameViewText": "チラーミィ"
+        },
+        {
+            "cardID": "31846",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031846_P_CHIRACHINO.jpg",
+            "cardNameAltText": "チラチーノ",
+            "cardNameViewText": "チラチーノ"
+        },
+        {
+            "cardID": "31847",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031847_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "31848",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031848_T_FEARIDOROPPU.jpg",
+            "cardNameAltText": "フェアリードロップ",
+            "cardNameViewText": "フェアリードロップ"
+        },
+        {
+            "cardID": "31849",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031849_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "31850",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031850_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "31851",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031851_T_TABUNNESOURURINKU.jpg",
+            "cardNameAltText": "タブンネソウルリンク",
+            "cardNameViewText": "タブンネソウルリンク"
+        },
+        {
+            "cardID": "31852",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031852_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "31853",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031853_T_TEIERUNO.jpg",
+            "cardNameAltText": "ティエルノ",
+            "cardNameViewText": "ティエルノ"
+        },
+        {
+            "cardID": "31854",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031854_T_PURATANUHAKASE.jpg",
+            "cardNameAltText": "プラターヌ博士",
+            "cardNameViewText": "プラターヌ博士"
+        },
+        {
+            "cardID": "31855",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031855_T_POKEMONDAISUKIKURABU.jpg",
+            "cardNameAltText": "ポケモンだいすきクラブ",
+            "cardNameViewText": "ポケモンだいすきクラブ"
+        },
+        {
+            "cardID": "31856",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031856_T_MINISUKATONOOSUSUME.jpg",
+            "cardNameAltText": "ミニスカートのおすすめ",
+            "cardNameViewText": "ミニスカートのおすすめ"
+        },
+        {
+            "cardID": "31857",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031857_T_FEARIGADEN.jpg",
+            "cardNameAltText": "フェアリーガーデン",
+            "cardNameViewText": "フェアリーガーデン"
+        },
+        {
+            "cardID": "31859",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031859_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "31858",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031858_E_DABURUMUSHOKUENERUGI.jpg",
+            "cardNameAltText": "ダブル無色エネルギー",
+            "cardNameViewText": "ダブル無色エネルギー"
+        },
+        {
+            "cardID": "31735",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031735_P_TSUBOTSUBO.jpg",
+            "cardNameAltText": "ツボツボ",
+            "cardNameViewText": "ツボツボ"
+        },
+        {
+            "cardID": "31736",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031736_P_MINOMUCCHI.jpg",
+            "cardNameAltText": "ミノムッチ",
+            "cardNameViewText": "ミノムッチ"
+        },
+        {
+            "cardID": "31737",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031737_P_MINOMADAMU.jpg",
+            "cardNameAltText": "ミノマダム",
+            "cardNameViewText": "ミノマダム"
+        },
+        {
+            "cardID": "31738",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031738_P_GAMEIRU.jpg",
+            "cardNameAltText": "ガーメイル",
+            "cardNameViewText": "ガーメイル"
+        },
+        {
+            "cardID": "31739",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031739_P_TSUTAJA.jpg",
+            "cardNameAltText": "ツタージャ",
+            "cardNameViewText": "ツタージャ"
+        },
+        {
+            "cardID": "31740",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031740_P_JANOBI.jpg",
+            "cardNameAltText": "ジャノビー",
+            "cardNameViewText": "ジャノビー"
+        },
+        {
+            "cardID": "31741",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031741_P_JARODA.jpg",
+            "cardNameAltText": "ジャローダ",
+            "cardNameViewText": "ジャローダ"
+        },
+        {
+            "cardID": "31742",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031742_P_FAIYA.jpg",
+            "cardNameAltText": "ファイヤー",
+            "cardNameViewText": "ファイヤー"
+        },
+        {
+            "cardID": "31743",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031743_P_FOKKO.jpg",
+            "cardNameAltText": "フォッコ",
+            "cardNameViewText": "フォッコ"
+        },
+        {
+            "cardID": "31744",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031744_P_TERUNA.jpg",
+            "cardNameAltText": "テールナー",
+            "cardNameViewText": "テールナー"
+        },
+        {
+            "cardID": "31745",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031745_P_MAFOKUSHI.jpg",
+            "cardNameAltText": "マフォクシー",
+            "cardNameViewText": "マフォクシー"
+        },
+        {
+            "cardID": "31746",
+            "cardThumbFile": "/assets/images/card_images/legend/XY10-B/031746_P_MAFOKUSHIBREAK.jpg",
+            "cardNameAltText": "マフォクシーBREAK",
+            "cardNameViewText": "マフォクシーBREAK"
+        },
+        {
+            "cardID": "31747",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031747_P_PAUWAU.jpg",
+            "cardNameAltText": "パウワウ",
+            "cardNameViewText": "パウワウ"
+        },
+        {
+            "cardID": "31748",
+            "cardThumbFile": "/assets/images/card_images/large/XY10-B/031748_P_JUGON.jpg",
+            "cardNameAltText": "ジュゴン",
+            "cardNameViewText": "ジュゴン"
+        }
+    ]
+}

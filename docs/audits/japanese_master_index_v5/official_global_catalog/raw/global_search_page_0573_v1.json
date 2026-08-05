@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 573,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22309,
+    "cardEnd": 22347,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "24239",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024239_T_BENCHISHIRUDO.jpg",
+            "cardNameAltText": "ベンチシールド",
+            "cardNameViewText": "ベンチシールド"
+        },
+        {
+            "cardID": "19252",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019252_T_ENERUGIRINKU.jpg",
+            "cardNameAltText": "エネルギーリンク",
+            "cardNameViewText": "エネルギーリンク"
+        },
+        {
+            "cardID": "21259",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021259_T_TATENOKASEKI.jpg",
+            "cardNameAltText": "たての化石",
+            "cardNameViewText": "たての化石"
+        },
+        {
+            "cardID": "4085",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004085_T_TSUMENOKASEKI.jpg",
+            "cardNameAltText": "ツメの化石",
+            "cardNameViewText": "ツメの化石"
+        },
+        {
+            "cardID": "38134",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038134_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "24241",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024241_T_OKIDOHAKASENOHOUMON.jpg",
+            "cardNameAltText": "オーキドはかせの訪問",
+            "cardNameViewText": "オーキドはかせの訪問"
+        },
+        {
+            "cardID": "19254",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019254_T_MAINOONEGAI.jpg",
+            "cardNameAltText": "マイのおねがい",
+            "cardNameViewText": "マイのおねがい"
+        },
+        {
+            "cardID": "21261",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021261_T_OMOIDENOMI.jpg",
+            "cardNameAltText": "思い出のみ",
+            "cardNameViewText": "思い出のみ"
+        },
+        {
+            "cardID": "4086",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004086_T_NANIKANOKASEKI.jpg",
+            "cardNameAltText": "なにかの化石",
+            "cardNameViewText": "なにかの化石"
+        },
+        {
+            "cardID": "38135",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038135_T_GUZUMAHARA.jpg",
+            "cardNameAltText": "グズマ&amp;ハラ",
+            "cardNameViewText": "グズマ&amp;ハラ"
+        },
+        {
+            "cardID": "24243",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024243_T_DEPATOGARU.jpg",
+            "cardNameAltText": "デパートガール",
+            "cardNameViewText": "デパートガール"
+        },
+        {
+            "cardID": "21263",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021263_T_GINGADANNOHATSUMEIGENAJIGEIN.jpg",
+            "cardNameAltText": "ギンガ団の発明G-101 エナジーゲイン",
+            "cardNameViewText": "ギンガ団の発明G-101 エナジーゲイン"
+        },
+        {
+            "cardID": "23241",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023241_T_BATORUSACHA.jpg",
+            "cardNameAltText": "バトルサーチャー",
+            "cardNameViewText": "バトルサーチャー"
+        },
+        {
+            "cardID": "4087",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004087_T_NEKKONOKASEKI.jpg",
+            "cardNameAltText": "ねっこの化石",
+            "cardNameViewText": "ねっこの化石"
+        },
+        {
+            "cardID": "38136",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038136_T_SHIRONAKATOREA.jpg",
+            "cardNameAltText": "シロナ&amp;カトレア",
+            "cardNameViewText": "シロナ&amp;カトレア"
+        },
+        {
+            "cardID": "30653",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030653_T_IYASHINOHAGOROMO.jpg",
+            "cardNameAltText": "いやしのはごろも",
+            "cardNameViewText": "いやしのはごろも"
+        },
+        {
+            "cardID": "24245",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024245_T_MIZUKINOKENSAKU.jpg",
+            "cardNameAltText": "ミズキの検索",
+            "cardNameViewText": "ミズキの検索"
+        },
+        {
+            "cardID": "21265",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021265_T_AKAGINOSAKURYAKU.jpg",
+            "cardNameAltText": "アカギの策略",
+            "cardNameViewText": "アカギの策略"
+        },
+        {
+            "cardID": "23242",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023242_T_YORUNOTENSOUSOUCHI.jpg",
+            "cardNameAltText": "夜の転送装置",
+            "cardNameViewText": "夜の転送装置"
+        },
+        {
+            "cardID": "4088",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004088_T_MASUTABORU.jpg",
+            "cardNameAltText": "マスターボール",
+            "cardNameViewText": "マスターボール"
+        },
+        {
+            "cardID": "38137",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038137_T_MAOSUIREN.jpg",
+            "cardNameAltText": "マオ&amp;スイレン",
+            "cardNameViewText": "マオ&amp;スイレン"
+        },
+        {
+            "cardID": "30654",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030654_T_TOROBA.jpg",
+            "cardNameAltText": "トロバ",
+            "cardNameViewText": "トロバ"
+        },
+        {
+            "cardID": "24247",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024247_T_ARUTEIMETTOZON.jpg",
+            "cardNameAltText": "アルティメットゾーン",
+            "cardNameViewText": "アルティメットゾーン"
+        },
+        {
+            "cardID": "21267",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021267_T_HANSAMUNOSOUSA.jpg",
+            "cardNameAltText": "ハンサムの捜査",
+            "cardNameViewText": "ハンサムの捜査"
+        },
+        {
+            "cardID": "23243",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023243_T_AKAGINOSENSEI.jpg",
+            "cardNameAltText": "アカギの先制",
+            "cardNameViewText": "アカギの先制"
+        },
+        {
+            "cardID": "4089",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004089_T_ENISHIDA.jpg",
+            "cardNameAltText": "エニシダ",
+            "cardNameViewText": "エニシダ"
+        },
+        {
+            "cardID": "34182",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034182_T_OOKIIMARASADA.jpg",
+            "cardNameAltText": "おおきいマラサダ",
+            "cardNameViewText": "おおきいマラサダ"
+        },
+        {
+            "cardID": "21269",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021269_T_GINGADANNOAJITO.jpg",
+            "cardNameAltText": "ギンガ団のアジト",
+            "cardNameViewText": "ギンガ団のアジト"
+        },
+        {
+            "cardID": "23245",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023245_T_KUROTSUGUNOKOUKEN.jpg",
+            "cardNameAltText": "クロツグの貢献",
+            "cardNameViewText": "クロツグの貢献"
+        },
+        {
+            "cardID": "4090",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004090_T_ODAMAKIHAKASE.jpg",
+            "cardNameAltText": "オダマキはかせ",
+            "cardNameViewText": "オダマキはかせ"
+        },
+        {
+            "cardID": "34183",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034183_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "21271",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021271_T_YABURETAJIKUU.jpg",
+            "cardNameAltText": "破れた時空",
+            "cardNameViewText": "破れた時空"
+        },
+        {
+            "cardID": "23247",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023247_T_SHIRONANOMICHIBIKI.jpg",
+            "cardNameAltText": "シロナの導き",
+            "cardNameViewText": "シロナの導き"
+        },
+        {
+            "cardID": "4091",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004091_T_DAIGONOADOBAISU.jpg",
+            "cardNameAltText": "ダイゴのアドバイス",
+            "cardNameViewText": "ダイゴのアドバイス"
+        },
+        {
+            "cardID": "34184",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034184_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "28885",
+            "cardThumbFile": "/assets/images/card_images/large/BW10-B/028885_T_ARARAGIPAPA.jpg",
+            "cardNameAltText": "アララギパパ",
+            "cardNameViewText": "アララギパパ"
+        },
+        {
+            "cardID": "23249",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023249_T_CHANPIONZURUMU.jpg",
+            "cardNameAltText": "チャンピオンズルーム",
+            "cardNameViewText": "チャンピオンズルーム"
+        },
+        {
+            "cardID": "4092",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004092_T_BATORUFURONTEIA.jpg",
+            "cardNameAltText": "バトルフロンティア",
+            "cardNameViewText": "バトルフロンティア"
+        },
+        {
+            "cardID": "34185",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034185_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        }
+    ]
+}

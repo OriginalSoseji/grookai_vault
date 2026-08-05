@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 557,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21685,
+    "cardEnd": 21723,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "15030",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015030_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "15031",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015031_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "15040",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015040_T_POKEMONZUKANHANDYIS.jpg",
+            "cardNameAltText": "ポケモン図鑑HANDY910is",
+            "cardNameViewText": "ポケモン図鑑HANDY910is"
+        },
+        {
+            "cardID": "15041",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015041_T_WAPUPOINTO.jpg",
+            "cardNameAltText": "ワープポイント",
+            "cardNameViewText": "ワープポイント"
+        },
+        {
+            "cardID": "17008",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017008_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "17009",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017009_T_ENERUGIPACCHI.jpg",
+            "cardNameAltText": "エネルギーパッチ",
+            "cardNameViewText": "エネルギーパッチ"
+        },
+        {
+            "cardID": "17010",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017010_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "17011",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017011_T_WAPUPOINTO.jpg",
+            "cardNameAltText": "ワープポイント",
+            "cardNameViewText": "ワープポイント"
+        },
+        {
+            "cardID": "17022",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017022_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "17023",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017023_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "17144",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017144_T_POKETORE.jpg",
+            "cardNameAltText": "ポケトレ",
+            "cardNameViewText": "ポケトレ"
+        },
+        {
+            "cardID": "17145",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017145_T_TSUMENOKASEKI.jpg",
+            "cardNameAltText": "ツメの化石",
+            "cardNameViewText": "ツメの化石"
+        },
+        {
+            "cardID": "17146",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017146_T_NEKKONOKASEKI.jpg",
+            "cardNameAltText": "ねっこの化石",
+            "cardNameViewText": "ねっこの化石"
+        },
+        {
+            "cardID": "17152",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017152_T_ENERUGIPACCHI.jpg",
+            "cardNameAltText": "エネルギーパッチ",
+            "cardNameViewText": "エネルギーパッチ"
+        },
+        {
+            "cardID": "17147",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017147_T_WAZAMASHINTS.jpg",
+            "cardNameAltText": "ワザマシン　TS-1",
+            "cardNameViewText": "ワザマシン　TS-1"
+        },
+        {
+            "cardID": "17148",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017148_T_WAZAMASHINTS.jpg",
+            "cardNameAltText": "ワザマシン　TS-2",
+            "cardNameViewText": "ワザマシン　TS-2"
+        },
+        {
+            "cardID": "10128",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010128_T_OMAMORIKOBAN.jpg",
+            "cardNameAltText": "おまもりこばん",
+            "cardNameViewText": "おまもりこばん"
+        },
+        {
+            "cardID": "10129",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010129_T_TABENOKOSHI.jpg",
+            "cardNameAltText": "たべのこし",
+            "cardNameViewText": "たべのこし"
+        },
+        {
+            "cardID": "17012",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017012_T_BABURUKOTO.jpg",
+            "cardNameAltText": "バブルコート",
+            "cardNameViewText": "バブルコート"
+        },
+        {
+            "cardID": "1121",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001121_T_SUPIDOSUTAJIAMU.jpg",
+            "cardNameAltText": "スピードスタジアム",
+            "cardNameViewText": "スピードスタジアム"
+        },
+        {
+            "cardID": "2119",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002119_T_MIZUUMINOKEKKAI.jpg",
+            "cardNameAltText": "湖の結界",
+            "cardNameViewText": "湖の結界"
+        },
+        {
+            "cardID": "10131",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010131_T_GEKKOUNOSUTAJIAMU.jpg",
+            "cardNameAltText": "月光のスタジアム",
+            "cardNameViewText": "月光のスタジアム"
+        },
+        {
+            "cardID": "10132",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010132_T_YOAKENOSUTAJIAMU.jpg",
+            "cardNameAltText": "夜明けのスタジアム",
+            "cardNameViewText": "夜明けのスタジアム"
+        },
+        {
+            "cardID": "17150",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017150_T_KISSAKISHINDEN.jpg",
+            "cardNameAltText": "キッサキしんでん",
+            "cardNameViewText": "キッサキしんでん"
+        },
+        {
+            "cardID": "17151",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017151_T_HADOMAUNTEN.jpg",
+            "cardNameAltText": "ハードマウンテン",
+            "cardNameViewText": "ハードマウンテン"
+        },
+        {
+            "cardID": "30205",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030205_T_ENERUGIKAISHUU.jpg",
+            "cardNameAltText": "エネルギー回収",
+            "cardNameViewText": "エネルギー回収"
+        },
+        {
+            "cardID": "45645",
+            "cardThumbFile": "/assets/images/card_images/large/XY-P/045645_T_ENERUGIKAISHIXYUU.jpg",
+            "cardNameAltText": "エネルギー回収",
+            "cardNameViewText": "エネルギー回収"
+        },
+        {
+            "cardID": "30206",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030206_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "45646",
+            "cardThumbFile": "/assets/images/card_images/large/XY-P/045646_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "48251",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/048251_T_ANAAKESUKOPPU.jpg",
+            "cardNameAltText": "あなあけスコップ",
+            "cardNameViewText": "あなあけスコップ"
+        },
+        {
+            "cardID": "30207",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030207_T_SUPAPOKEMONKAISHUU.jpg",
+            "cardNameAltText": "スーパーポケモン回収",
+            "cardNameViewText": "スーパーポケモン回収"
+        },
+        {
+            "cardID": "45647",
+            "cardThumbFile": "/assets/images/card_images/large/XY-P/045647_T_SUPAPOKEMONKAISHIXYUU.jpg",
+            "cardNameAltText": "スーパーポケモン回収",
+            "cardNameViewText": "スーパーポケモン回収"
+        },
+        {
+            "cardID": "25435",
+            "cardThumbFile": "/assets/images/card_images/large/Bb/025435_T_ENERUGIRITANA.jpg",
+            "cardNameAltText": "エネルギーリターナー",
+            "cardNameViewText": "エネルギーリターナー"
+        },
+        {
+            "cardID": "48252",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/048252_T_KAUNTAGEIN.jpg",
+            "cardNameAltText": "カウンターゲイン",
+            "cardNameViewText": "カウンターゲイン"
+        },
+        {
+            "cardID": "30208",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030208_T_TOMODACHITECHOU.jpg",
+            "cardNameAltText": "ともだちてちょう",
+            "cardNameViewText": "ともだちてちょう"
+        },
+        {
+            "cardID": "45648",
+            "cardThumbFile": "/assets/images/card_images/large/XY-P/045648_T_TOMODACHITECHIXYOU.jpg",
+            "cardNameAltText": "ともだちてちょう",
+            "cardNameViewText": "ともだちてちょう"
+        },
+        {
+            "cardID": "25437",
+            "cardThumbFile": "/assets/images/card_images/large/Bb/025437_T_DEYUARUBORU.jpg",
+            "cardNameAltText": "デュアルボール",
+            "cardNameViewText": "デュアルボール"
+        },
+        {
+            "cardID": "25418",
+            "cardThumbFile": "/assets/images/card_images/large/Bd/025418_T_DEYUARUBORU.jpg",
+            "cardNameAltText": "デュアルボール",
+            "cardNameViewText": "デュアルボール"
+        },
+        {
+            "cardID": "25454",
+            "cardThumbFile": "/assets/images/card_images/large/Bk/025454_T_DEYUARUBORU.jpg",
+            "cardNameAltText": "デュアルボール",
+            "cardNameViewText": "デュアルボール"
+        }
+    ]
+}

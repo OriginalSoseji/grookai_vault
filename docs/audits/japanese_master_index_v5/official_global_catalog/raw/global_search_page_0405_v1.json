@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 405,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 15757,
+    "cardEnd": 15795,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31313",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031313_P_YANAKKI.jpg",
+            "cardNameAltText": "ヤナッキー",
+            "cardNameViewText": "ヤナッキー"
+        },
+        {
+            "cardID": "31314",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031314_P_HARIMARON.jpg",
+            "cardNameAltText": "ハリマロン",
+            "cardNameViewText": "ハリマロン"
+        },
+        {
+            "cardID": "31315",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031315_P_KOFUKIMUSHI.jpg",
+            "cardNameAltText": "コフキムシ",
+            "cardNameViewText": "コフキムシ"
+        },
+        {
+            "cardID": "31316",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031316_P_KOFURAI.jpg",
+            "cardNameAltText": "コフーライ",
+            "cardNameViewText": "コフーライ"
+        },
+        {
+            "cardID": "31317",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031317_P_BIBIYON.jpg",
+            "cardNameAltText": "ビビヨン",
+            "cardNameViewText": "ビビヨン"
+        },
+        {
+            "cardID": "31318",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031318_P_HINOARASHI.jpg",
+            "cardNameAltText": "ヒノアラシ",
+            "cardNameViewText": "ヒノアラシ"
+        },
+        {
+            "cardID": "31319",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031319_P_MAGUMARASHI.jpg",
+            "cardNameAltText": "マグマラシ",
+            "cardNameViewText": "マグマラシ"
+        },
+        {
+            "cardID": "31320",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031320_P_BAKUFUN.jpg",
+            "cardNameAltText": "バクフーン",
+            "cardNameViewText": "バクフーン"
+        },
+        {
+            "cardID": "31321",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031321_P_TEPPOUO.jpg",
+            "cardNameAltText": "テッポウオ",
+            "cardNameViewText": "テッポウオ"
+        },
+        {
+            "cardID": "31322",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031322_P_OKUTAN.jpg",
+            "cardNameAltText": "オクタン",
+            "cardNameViewText": "オクタン"
+        },
+        {
+            "cardID": "31323",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031323_P_ONIGORIEX.jpg",
+            "cardNameAltText": "オニゴーリEX",
+            "cardNameViewText": "オニゴーリEX"
+        },
+        {
+            "cardID": "31324",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031324_P_MONIGORIEX.jpg",
+            "cardNameAltText": "メガオニゴーリEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>オニゴーリEX"
+        },
+        {
+            "cardID": "31325",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031325_P_HIYAPPU.jpg",
+            "cardNameAltText": "ヒヤップ",
+            "cardNameViewText": "ヒヤップ"
+        },
+        {
+            "cardID": "31326",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031326_P_HIYAKKI.jpg",
+            "cardNameAltText": "ヒヤッキー",
+            "cardNameViewText": "ヒヤッキー"
+        },
+        {
+            "cardID": "31327",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031327_P_BANIPUCCHI.jpg",
+            "cardNameAltText": "バニプッチ",
+            "cardNameViewText": "バニプッチ"
+        },
+        {
+            "cardID": "31328",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031328_P_BANIRICCHI.jpg",
+            "cardNameAltText": "バニリッチ",
+            "cardNameViewText": "バニリッチ"
+        },
+        {
+            "cardID": "31329",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031329_P_BAIBANIRA.jpg",
+            "cardNameAltText": "バイバニラ",
+            "cardNameViewText": "バイバニラ"
+        },
+        {
+            "cardID": "31330",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031330_P_KOIRU.jpg",
+            "cardNameAltText": "コイル",
+            "cardNameViewText": "コイル"
+        },
+        {
+            "cardID": "31331",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031331_P_GOSU.jpg",
+            "cardNameAltText": "ゴース",
+            "cardNameViewText": "ゴース"
+        },
+        {
+            "cardID": "31332",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031332_P_GOSUTO.jpg",
+            "cardNameAltText": "ゴースト",
+            "cardNameViewText": "ゴースト"
+        },
+        {
+            "cardID": "31333",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031333_P_GENGA.jpg",
+            "cardNameAltText": "ゲンガー",
+            "cardNameViewText": "ゲンガー"
+        },
+        {
+            "cardID": "31334",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031334_P_MYUUTSUEX.jpg",
+            "cardNameAltText": "ミュウツーEX",
+            "cardNameViewText": "ミュウツーEX"
+        },
+        {
+            "cardID": "31335",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031335_P_MMYUUTSUEX.jpg",
+            "cardNameAltText": "メガミュウツーEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>ミュウツーEX"
+        },
+        {
+            "cardID": "31336",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031336_P_KOROMORI.jpg",
+            "cardNameAltText": "コロモリ",
+            "cardNameViewText": "コロモリ"
+        },
+        {
+            "cardID": "31337",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031337_P_KOKOROMORI.jpg",
+            "cardNameAltText": "ココロモリ",
+            "cardNameViewText": "ココロモリ"
+        },
+        {
+            "cardID": "31338",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031338_P_RIGURE.jpg",
+            "cardNameAltText": "リグレー",
+            "cardNameViewText": "リグレー"
+        },
+        {
+            "cardID": "31339",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031339_P_OBEMU.jpg",
+            "cardNameAltText": "オーベム",
+            "cardNameViewText": "オーベム"
+        },
+        {
+            "cardID": "31340",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031340_P_SANDO.jpg",
+            "cardNameAltText": "サンド",
+            "cardNameViewText": "サンド"
+        },
+        {
+            "cardID": "31341",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031341_P_SANDOPAN.jpg",
+            "cardNameAltText": "サンドパン",
+            "cardNameViewText": "サンドパン"
+        },
+        {
+            "cardID": "31342",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031342_P_MEROETTA.jpg",
+            "cardNameAltText": "メロエッタ",
+            "cardNameViewText": "メロエッタ"
+        },
+        {
+            "cardID": "31343",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031343_P_NOKUTASU.jpg",
+            "cardNameAltText": "ノクタス",
+            "cardNameViewText": "ノクタス"
+        },
+        {
+            "cardID": "31344",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031344_P_ZOROA.jpg",
+            "cardNameAltText": "ゾロア",
+            "cardNameViewText": "ゾロア"
+        },
+        {
+            "cardID": "31345",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031345_P_ZOROAKU.jpg",
+            "cardNameAltText": "ゾロアーク",
+            "cardNameViewText": "ゾロアーク"
+        },
+        {
+            "cardID": "31346",
+            "cardThumbFile": "/assets/images/card_images/legend/XY8-Bb/031346_P_ZOROAKUBREAK.jpg",
+            "cardNameAltText": "ゾロアークBREAK",
+            "cardNameViewText": "ゾロアークBREAK"
+        },
+        {
+            "cardID": "31347",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031347_P_BURU.jpg",
+            "cardNameAltText": "ブルー",
+            "cardNameViewText": "ブルー"
+        },
+        {
+            "cardID": "31348",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031348_P_GURANBURU.jpg",
+            "cardNameAltText": "グランブル",
+            "cardNameViewText": "グランブル"
+        },
+        {
+            "cardID": "31349",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031349_P_FURABEBE.jpg",
+            "cardNameAltText": "フラベベ",
+            "cardNameViewText": "フラベベ"
+        },
+        {
+            "cardID": "31350",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031350_P_FURAETTE.jpg",
+            "cardNameAltText": "フラエッテ",
+            "cardNameViewText": "フラエッテ"
+        },
+        {
+            "cardID": "31351",
+            "cardThumbFile": "/assets/images/card_images/large/XY8-Bb/031351_P_FURAJIESU.jpg",
+            "cardNameAltText": "フラージェス",
+            "cardNameViewText": "フラージェス"
+        }
+    ]
+}

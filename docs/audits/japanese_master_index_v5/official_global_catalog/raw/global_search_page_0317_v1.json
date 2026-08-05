@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 317,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 12325,
+    "cardEnd": 12363,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "36169",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036169_P_GURAION.jpg",
+            "cardNameAltText": "グライオン",
+            "cardNameViewText": "グライオン"
+        },
+        {
+            "cardID": "36170",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036170_P_GEKKOUGAZOROAKUGX.jpg",
+            "cardNameAltText": "ゲッコウガ&amp;ゾロアークGX",
+            "cardNameViewText": "ゲッコウガ&amp;ゾロアークGX"
+        },
+        {
+            "cardID": "36171",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036171_P_KIBANIA.jpg",
+            "cardNameAltText": "キバニア",
+            "cardNameViewText": "キバニア"
+        },
+        {
+            "cardID": "36172",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036172_P_SAMEHADA.jpg",
+            "cardNameAltText": "サメハダー",
+            "cardNameViewText": "サメハダー"
+        },
+        {
+            "cardID": "36173",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036173_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "36174",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036174_P_MAIKA.jpg",
+            "cardNameAltText": "マーイーカ",
+            "cardNameViewText": "マーイーカ"
+        },
+        {
+            "cardID": "36175",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036175_P_KARAMANERO.jpg",
+            "cardNameAltText": "カラマネロ",
+            "cardNameViewText": "カラマネロ"
+        },
+        {
+            "cardID": "36176",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036176_P_SANAITONINFIAGX.jpg",
+            "cardNameAltText": "サーナイト&amp;ニンフィアGX",
+            "cardNameViewText": "サーナイト&amp;ニンフィアGX"
+        },
+        {
+            "cardID": "36177",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036177_P_PIPPI.jpg",
+            "cardNameAltText": "ピッピ",
+            "cardNameViewText": "ピッピ"
+        },
+        {
+            "cardID": "36178",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036178_P_PIKUSHI.jpg",
+            "cardNameAltText": "ピクシー",
+            "cardNameViewText": "ピクシー"
+        },
+        {
+            "cardID": "36179",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036179_P_TOGEPI.jpg",
+            "cardNameAltText": "トゲピー",
+            "cardNameViewText": "トゲピー"
+        },
+        {
+            "cardID": "36180",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036180_P_TOGECHIKKU.jpg",
+            "cardNameAltText": "トゲチック",
+            "cardNameViewText": "トゲチック"
+        },
+        {
+            "cardID": "36181",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036181_P_TOGEKISSU.jpg",
+            "cardNameAltText": "トゲキッス",
+            "cardNameViewText": "トゲキッス"
+        },
+        {
+            "cardID": "36182",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036182_P_SHUSHUPU.jpg",
+            "cardNameAltText": "シュシュプ",
+            "cardNameViewText": "シュシュプ"
+        },
+        {
+            "cardID": "36183",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036183_P_FUREFUWAN.jpg",
+            "cardNameAltText": "フレフワン",
+            "cardNameViewText": "フレフワン"
+        },
+        {
+            "cardID": "36184",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036184_P_KORATTA.jpg",
+            "cardNameAltText": "コラッタ",
+            "cardNameViewText": "コラッタ"
+        },
+        {
+            "cardID": "36185",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036185_P_RATTA.jpg",
+            "cardNameAltText": "ラッタ",
+            "cardNameViewText": "ラッタ"
+        },
+        {
+            "cardID": "36186",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036186_P_BERORINGA.jpg",
+            "cardNameAltText": "ベロリンガ",
+            "cardNameViewText": "ベロリンガ"
+        },
+        {
+            "cardID": "36187",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036187_P_BEROBERUTO.jpg",
+            "cardNameAltText": "ベロベルト",
+            "cardNameViewText": "ベロベルト"
+        },
+        {
+            "cardID": "36312",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036312_P_MORUFONGX.jpg",
+            "cardNameAltText": "モルフォンGX",
+            "cardNameViewText": "モルフォンGX"
+        },
+        {
+            "cardID": "36313",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036313_P_DEDENNEGX.jpg",
+            "cardNameAltText": "デデンネGX",
+            "cardNameViewText": "デデンネGX"
+        },
+        {
+            "cardID": "36314",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036314_P_GEKKOUGAZOROAKUGX.jpg",
+            "cardNameAltText": "ゲッコウガ&amp;ゾロアークGX",
+            "cardNameViewText": "ゲッコウガ&amp;ゾロアークGX"
+        },
+        {
+            "cardID": "36315",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036315_P_GEKKOUGAZOROAKUGX.jpg",
+            "cardNameAltText": "ゲッコウガ&amp;ゾロアークGX",
+            "cardNameViewText": "ゲッコウガ&amp;ゾロアークGX"
+        },
+        {
+            "cardID": "36316",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036316_P_SANAITONINFIAGX.jpg",
+            "cardNameAltText": "サーナイト&amp;ニンフィアGX",
+            "cardNameViewText": "サーナイト&amp;ニンフィアGX"
+        },
+        {
+            "cardID": "36317",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036317_P_SANAITONINFIAGX.jpg",
+            "cardNameAltText": "サーナイト&amp;ニンフィアGX",
+            "cardNameViewText": "サーナイト&amp;ニンフィアGX"
+        },
+        {
+            "cardID": "36188",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036188_T_DENJIREDA.jpg",
+            "cardNameAltText": "電磁レーダー",
+            "cardNameViewText": "電磁レーダー"
+        },
+        {
+            "cardID": "36189",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036189_T_BIKKURIBOKKUSU.jpg",
+            "cardNameAltText": "びっくりボックス",
+            "cardNameViewText": "びっくりボックス"
+        },
+        {
+            "cardID": "36190",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036190_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "36191",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036191_T_ONMITSUFUDO.jpg",
+            "cardNameAltText": "隠密フード",
+            "cardNameViewText": "隠密フード"
+        },
+        {
+            "cardID": "36192",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036192_T_FEARICHAMUKAMINARI.jpg",
+            "cardNameAltText": "フェアリーチャーム 雷",
+            "cardNameViewText": "フェアリーチャーム 雷"
+        },
+        {
+            "cardID": "36193",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036193_T_FEARICHAMUTOKUSEI.jpg",
+            "cardNameAltText": "フェアリーチャーム 特性",
+            "cardNameViewText": "フェアリーチャーム 特性"
+        },
+        {
+            "cardID": "36194",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036194_T_ANZU.jpg",
+            "cardNameAltText": "アンズ",
+            "cardNameViewText": "アンズ"
+        },
+        {
+            "cardID": "36195",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036195_T_KYOUNOWANA.jpg",
+            "cardNameAltText": "キョウの罠",
+            "cardNameViewText": "キョウの罠"
+        },
+        {
+            "cardID": "36196",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036196_T_MACHISUNOSAKUSEN.jpg",
+            "cardNameAltText": "マチスの作戦",
+            "cardNameViewText": "マチスの作戦"
+        },
+        {
+            "cardID": "36197",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036197_T_EREKIPAWA.jpg",
+            "cardNameAltText": "エレキパワー",
+            "cardNameViewText": "エレキパワー"
+        },
+        {
+            "cardID": "36198",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036198_T_KAIZOUHANMA.jpg",
+            "cardNameAltText": "改造ハンマー",
+            "cardNameViewText": "改造ハンマー"
+        },
+        {
+            "cardID": "36199",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036199_T_MANTANNOKUSURI.jpg",
+            "cardNameAltText": "まんたんのくすり",
+            "cardNameViewText": "まんたんのくすり"
+        },
+        {
+            "cardID": "36200",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036200_T_GUZUMA.jpg",
+            "cardNameAltText": "グズマ",
+            "cardNameViewText": "グズマ"
+        },
+        {
+            "cardID": "36318",
+            "cardThumbFile": "/assets/images/card_images/large/SM9a/036318_T_ANZU.jpg",
+            "cardNameAltText": "アンズ",
+            "cardNameViewText": "アンズ"
+        }
+    ]
+}

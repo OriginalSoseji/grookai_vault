@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 448,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 17434,
+    "cardEnd": 17472,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "6015",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006015_P_PERAPPU.jpg",
+            "cardNameAltText": "ペラップ",
+            "cardNameViewText": "ペラップ"
+        },
+        {
+            "cardID": "6016",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006016_P_NAETORU.jpg",
+            "cardNameAltText": "ナエトル",
+            "cardNameViewText": "ナエトル"
+        },
+        {
+            "cardID": "6017",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006017_P_HIKOZARU.jpg",
+            "cardNameAltText": "ヒコザル",
+            "cardNameViewText": "ヒコザル"
+        },
+        {
+            "cardID": "6018",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006018_P_POCCHAMA.jpg",
+            "cardNameAltText": "ポッチャマ",
+            "cardNameViewText": "ポッチャマ"
+        },
+        {
+            "cardID": "6019",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006019_P_PACHIRISU.jpg",
+            "cardNameAltText": "パチリス",
+            "cardNameViewText": "パチリス"
+        },
+        {
+            "cardID": "6020",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006020_P_MANENE.jpg",
+            "cardNameAltText": "マネネ",
+            "cardNameViewText": "マネネ"
+        },
+        {
+            "cardID": "6021",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006021_P_MUKUBADO.jpg",
+            "cardNameAltText": "ムクバード",
+            "cardNameViewText": "ムクバード"
+        },
+        {
+            "cardID": "6022",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006022_P_MIMIRORU.jpg",
+            "cardNameAltText": "ミミロル",
+            "cardNameViewText": "ミミロル"
+        },
+        {
+            "cardID": "6023",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006023_P_NYARUMA.jpg",
+            "cardNameAltText": "ニャルマー",
+            "cardNameViewText": "ニャルマー"
+        },
+        {
+            "cardID": "6024",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006024_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "6025",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006025_P_FUKAMARU.jpg",
+            "cardNameAltText": "フカマル",
+            "cardNameViewText": "フカマル"
+        },
+        {
+            "cardID": "6026",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006026_P_NAETORU.jpg",
+            "cardNameAltText": "ナエトル",
+            "cardNameViewText": "ナエトル"
+        },
+        {
+            "cardID": "6027",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006027_P_HIKOZARU.jpg",
+            "cardNameAltText": "ヒコザル",
+            "cardNameViewText": "ヒコザル"
+        },
+        {
+            "cardID": "6028",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006028_P_POCCHAMA.jpg",
+            "cardNameAltText": "ポッチャマ",
+            "cardNameViewText": "ポッチャマ"
+        },
+        {
+            "cardID": "6029",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006029_P_PARUKIA.jpg",
+            "cardNameAltText": "パルキア",
+            "cardNameViewText": "パルキア"
+        },
+        {
+            "cardID": "6030",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006030_P_FUWARAIDO.jpg",
+            "cardNameAltText": "フワライド",
+            "cardNameViewText": "フワライド"
+        },
+        {
+            "cardID": "6031",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006031_P_GUREGGURU.jpg",
+            "cardNameAltText": "グレッグル",
+            "cardNameViewText": "グレッグル"
+        },
+        {
+            "cardID": "6032",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006032_P_DEIARUGA.jpg",
+            "cardNameAltText": "ディアルガ",
+            "cardNameViewText": "ディアルガ"
+        },
+        {
+            "cardID": "6033",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006033_P_HAYASHIGAME.jpg",
+            "cardNameAltText": "ハヤシガメ",
+            "cardNameViewText": "ハヤシガメ"
+        },
+        {
+            "cardID": "6034",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006034_P_CHIERIMU.jpg",
+            "cardNameAltText": "チェリム",
+            "cardNameViewText": "チェリム"
+        },
+        {
+            "cardID": "6035",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006035_P_MASUKIPPA.jpg",
+            "cardNameAltText": "マスキッパ",
+            "cardNameViewText": "マスキッパ"
+        },
+        {
+            "cardID": "6036",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006036_P_MOUKAZARU.jpg",
+            "cardNameAltText": "モウカザル",
+            "cardNameViewText": "モウカザル"
+        },
+        {
+            "cardID": "6037",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006037_P_POTTAISHI.jpg",
+            "cardNameAltText": "ポッタイシ",
+            "cardNameViewText": "ポッタイシ"
+        },
+        {
+            "cardID": "6038",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006038_P_PARUKIA.jpg",
+            "cardNameAltText": "パルキア",
+            "cardNameViewText": "パルキア"
+        },
+        {
+            "cardID": "6039",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006039_P_RUKUSHIO.jpg",
+            "cardNameAltText": "ルクシオ",
+            "cardNameViewText": "ルクシオ"
+        },
+        {
+            "cardID": "6040",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006040_P_GUREGGURU.jpg",
+            "cardNameAltText": "グレッグル",
+            "cardNameViewText": "グレッグル"
+        },
+        {
+            "cardID": "6041",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006041_P_DEIARUGA.jpg",
+            "cardNameAltText": "ディアルガ",
+            "cardNameViewText": "ディアルガ"
+        },
+        {
+            "cardID": "6042",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006042_P_PINPUKU.jpg",
+            "cardNameAltText": "ピンプク",
+            "cardNameViewText": "ピンプク"
+        },
+        {
+            "cardID": "6043",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006043_P_EIPAMU.jpg",
+            "cardNameAltText": "エイパム",
+            "cardNameViewText": "エイパム"
+        },
+        {
+            "cardID": "6044",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006044_P_MUKUBADO.jpg",
+            "cardNameAltText": "ムクバード",
+            "cardNameViewText": "ムクバード"
+        },
+        {
+            "cardID": "6045",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006045_P_DAKURAI.gif",
+            "cardNameAltText": "ダークライ",
+            "cardNameViewText": "ダークライ"
+        },
+        {
+            "cardID": "6046",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006046_P_CHIERIMU.gif",
+            "cardNameAltText": "チェリム",
+            "cardNameViewText": "チェリム"
+        },
+        {
+            "cardID": "6047",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006047_P_PIKACHUU.gif",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "6048",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006048_P_RUKUSHIO.gif",
+            "cardNameAltText": "ルクシオ",
+            "cardNameViewText": "ルクシオ"
+        },
+        {
+            "cardID": "6049",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006049_P_DOKUROGGU.gif",
+            "cardNameAltText": "ドクロッグ",
+            "cardNameViewText": "ドクロッグ"
+        },
+        {
+            "cardID": "6050",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006050_P_MIMIROPPU.gif",
+            "cardNameAltText": "ミミロップ",
+            "cardNameViewText": "ミミロップ"
+        },
+        {
+            "cardID": "6051",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006051_P_HAYASHIGAME.gif",
+            "cardNameAltText": "ハヤシガメ",
+            "cardNameViewText": "ハヤシガメ"
+        },
+        {
+            "cardID": "6052",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006052_P_MOUKAZARU.gif",
+            "cardNameAltText": "モウカザル",
+            "cardNameViewText": "モウカザル"
+        },
+        {
+            "cardID": "6053",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/006053_P_POTTAISHI.gif",
+            "cardNameAltText": "ポッタイシ",
+            "cardNameViewText": "ポッタイシ"
+        }
+    ]
+}

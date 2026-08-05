@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 374,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 14548,
+    "cardEnd": 14586,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "33812",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033812_T_FUDEINSOURURINKU.jpg",
+            "cardNameAltText": "フーディンソウルリンク",
+            "cardNameViewText": "フーディンソウルリンク"
+        },
+        {
+            "cardID": "33685",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033685_T_MYUUTSUSOURURINKU.jpg",
+            "cardNameAltText": "ミュウツーソウルリンク",
+            "cardNameViewText": "ミュウツーソウルリンク"
+        },
+        {
+            "cardID": "33813",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033813_T_MYUUTSUSOURURINKU.jpg",
+            "cardNameAltText": "ミュウツーソウルリンク",
+            "cardNameViewText": "ミュウツーソウルリンク"
+        },
+        {
+            "cardID": "33686",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033686_T_RAIBORUTOSOURURINKU.jpg",
+            "cardNameAltText": "ライボルトソウルリンク",
+            "cardNameViewText": "ライボルトソウルリンク"
+        },
+        {
+            "cardID": "33814",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033814_T_RAIBORUTOSOURURINKU.jpg",
+            "cardNameAltText": "ライボルトソウルリンク",
+            "cardNameViewText": "ライボルトソウルリンク"
+        },
+        {
+            "cardID": "33687",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033687_T_RUKARIOSOURURINKU.jpg",
+            "cardNameAltText": "ルカリオソウルリンク",
+            "cardNameViewText": "ルカリオソウルリンク"
+        },
+        {
+            "cardID": "33815",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033815_T_RUKARIOSOURURINKU.jpg",
+            "cardNameAltText": "ルカリオソウルリンク",
+            "cardNameViewText": "ルカリオソウルリンク"
+        },
+        {
+            "cardID": "33688",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033688_T_REKKUUZASOURURINKU.jpg",
+            "cardNameAltText": "レックウザソウルリンク",
+            "cardNameViewText": "レックウザソウルリンク"
+        },
+        {
+            "cardID": "33816",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033816_T_REKKUUZASOURURINKU.jpg",
+            "cardNameAltText": "レックウザソウルリンク",
+            "cardNameViewText": "レックウザソウルリンク"
+        },
+        {
+            "cardID": "33689",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033689_T_AZUSA.jpg",
+            "cardNameAltText": "アズサ",
+            "cardNameViewText": "アズサ"
+        },
+        {
+            "cardID": "33817",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033817_T_AZUSA.jpg",
+            "cardNameAltText": "アズサ",
+            "cardNameViewText": "アズサ"
+        },
+        {
+            "cardID": "33690",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033690_T_AZ.jpg",
+            "cardNameAltText": "AZ",
+            "cardNameViewText": "AZ"
+        },
+        {
+            "cardID": "33818",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033818_T_AZ.jpg",
+            "cardNameAltText": "AZ",
+            "cardNameViewText": "AZ"
+        },
+        {
+            "cardID": "33691",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033691_T_.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "33819",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033819_T_.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "33692",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033692_T_OKARUTOMANIA.jpg",
+            "cardNameAltText": "オカルトマニア",
+            "cardNameViewText": "オカルトマニア"
+        },
+        {
+            "cardID": "33820",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033820_T_OKARUTOMANIA.jpg",
+            "cardNameAltText": "オカルトマニア",
+            "cardNameViewText": "オカルトマニア"
+        },
+        {
+            "cardID": "33693",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033693_T_KAJIYA.jpg",
+            "cardNameAltText": "鍛冶屋",
+            "cardNameViewText": "鍛冶屋"
+        },
+        {
+            "cardID": "33821",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033821_T_KAJIYA.jpg",
+            "cardNameAltText": "鍛冶屋",
+            "cardNameViewText": "鍛冶屋"
+        },
+        {
+            "cardID": "33694",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033694_T_KARIN.jpg",
+            "cardNameAltText": "カリン",
+            "cardNameViewText": "カリン"
+        },
+        {
+            "cardID": "33822",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033822_T_KARIN.jpg",
+            "cardNameAltText": "カリン",
+            "cardNameViewText": "カリン"
+        },
+        {
+            "cardID": "33695",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033695_T_KUSEROSHIKI.jpg",
+            "cardNameAltText": "クセロシキ",
+            "cardNameViewText": "クセロシキ"
+        },
+        {
+            "cardID": "33823",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033823_T_KUSEROSHIKI.jpg",
+            "cardNameAltText": "クセロシキ",
+            "cardNameViewText": "クセロシキ"
+        },
+        {
+            "cardID": "33696",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033696_T_KORUNI.jpg",
+            "cardNameAltText": "コルニ",
+            "cardNameViewText": "コルニ"
+        },
+        {
+            "cardID": "33824",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033824_T_KORUNI.jpg",
+            "cardNameAltText": "コルニ",
+            "cardNameViewText": "コルニ"
+        },
+        {
+            "cardID": "33697",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033697_T_KOWAIONEESAN.jpg",
+            "cardNameAltText": "こわいおねえさん",
+            "cardNameViewText": "こわいおねえさん"
+        },
+        {
+            "cardID": "33825",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033825_T_KOWAIONEESAN.jpg",
+            "cardNameAltText": "こわいおねえさん",
+            "cardNameViewText": "こわいおねえさん"
+        },
+        {
+            "cardID": "33698",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033698_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "33826",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033826_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "33699",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033699_T_SENPAITOKOUHAI.jpg",
+            "cardNameAltText": "センパイとコウハイ",
+            "cardNameViewText": "センパイとコウハイ"
+        },
+        {
+            "cardID": "33827",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033827_T_SENPAITOKOUHAI.jpg",
+            "cardNameAltText": "センパイとコウハイ",
+            "cardNameViewText": "センパイとコウハイ"
+        },
+        {
+            "cardID": "33700",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033700_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "33828",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033828_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "33701",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033701_T_PURATANUHAKASE.jpg",
+            "cardNameAltText": "プラターヌ博士",
+            "cardNameViewText": "プラターヌ博士"
+        },
+        {
+            "cardID": "33829",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033829_T_PURATANUHAKASE.jpg",
+            "cardNameAltText": "プラターヌ博士",
+            "cardNameViewText": "プラターヌ博士"
+        },
+        {
+            "cardID": "33702",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033702_T_FURADARI.jpg",
+            "cardNameAltText": "フラダリ",
+            "cardNameViewText": "フラダリ"
+        },
+        {
+            "cardID": "33830",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033830_T_FURADARI.jpg",
+            "cardNameAltText": "フラダリ",
+            "cardNameViewText": "フラダリ"
+        },
+        {
+            "cardID": "33703",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033703_T_FUREADANNOSHITAPPA.jpg",
+            "cardNameAltText": "フレア団のしたっぱ",
+            "cardNameViewText": "フレア団のしたっぱ"
+        },
+        {
+            "cardID": "33831",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033831_T_FUREADANNOSHITAPPA.jpg",
+            "cardNameAltText": "フレア団のしたっぱ",
+            "cardNameViewText": "フレア団のしたっぱ"
+        }
+    ]
+}

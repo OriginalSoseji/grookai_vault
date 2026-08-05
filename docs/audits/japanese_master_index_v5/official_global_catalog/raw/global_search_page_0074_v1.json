@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 74,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 2848,
+    "cardEnd": 2886,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "47137",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047137_P_OGAPONISHIZUENOMENEX.jpg",
+            "cardNameAltText": "オーガポン いしずえのめんex",
+            "cardNameViewText": "オーガポン いしずえのめんex"
+        },
+        {
+            "cardID": "47138",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047138_P_BURAKKIEX.jpg",
+            "cardNameAltText": "ブラッキーex",
+            "cardNameViewText": "ブラッキーex"
+        },
+        {
+            "cardID": "47139",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047139_P_TODOROKUTSUKIEX.jpg",
+            "cardNameAltText": "トドロクツキex",
+            "cardNameViewText": "トドロクツキex"
+        },
+        {
+            "cardID": "47140",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047140_P_MOMOWAROUEX.jpg",
+            "cardNameAltText": "モモワロウex",
+            "cardNameViewText": "モモワロウex"
+        },
+        {
+            "cardID": "47141",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047141_P_SAFUGOEX.jpg",
+            "cardNameAltText": "サーフゴーex",
+            "cardNameViewText": "サーフゴーex"
+        },
+        {
+            "cardID": "47142",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047142_P_DORAPARUTOEX.jpg",
+            "cardNameAltText": "ドラパルトex",
+            "cardNameViewText": "ドラパルトex"
+        },
+        {
+            "cardID": "47143",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047143_P_TAKERURAIKOEX.jpg",
+            "cardNameAltText": "タケルライコex",
+            "cardNameViewText": "タケルライコex"
+        },
+        {
+            "cardID": "47144",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047144_P_IBUIEX.jpg",
+            "cardNameAltText": "イーブイex",
+            "cardNameViewText": "イーブイex"
+        },
+        {
+            "cardID": "47145",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047145_P_IBUIEX.jpg",
+            "cardNameAltText": "イーブイex",
+            "cardNameViewText": "イーブイex"
+        },
+        {
+            "cardID": "47146",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047146_P_GACHIGUMAAKATSUKIEX.jpg",
+            "cardNameAltText": "ガチグマ アカツキex",
+            "cardNameViewText": "ガチグマ アカツキex"
+        },
+        {
+            "cardID": "47147",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047147_P_TERAPAGOSUEX.jpg",
+            "cardNameAltText": "テラパゴスex",
+            "cardNameViewText": "テラパゴスex"
+        },
+        {
+            "cardID": "47154",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047154_P_TETSUNOISAHAEX.jpg",
+            "cardNameAltText": "テツノイサハex",
+            "cardNameViewText": "テツノイサハex"
+        },
+        {
+            "cardID": "47155",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047155_P_OGAPONMIDORINOMENEX.jpg",
+            "cardNameAltText": "オーガポン みどりのめんex",
+            "cardNameViewText": "オーガポン みどりのめんex"
+        },
+        {
+            "cardID": "47156",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047156_P_UNERUMINAMOEX.jpg",
+            "cardNameAltText": "ウネルミナモex",
+            "cardNameViewText": "ウネルミナモex"
+        },
+        {
+            "cardID": "47157",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047157_P_PIKACHIXYUUEX.jpg",
+            "cardNameAltText": "ピカチュウex",
+            "cardNameViewText": "ピカチュウex"
+        },
+        {
+            "cardID": "47158",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/047158_P_TERAPAGOSUEX.jpg",
+            "cardNameAltText": "テラパゴスex",
+            "cardNameViewText": "テラパゴスex"
+        },
+        {
+            "cardID": "46798",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046798_T_ONINOKAMEN.jpg",
+            "cardNameAltText": "鬼の仮面",
+            "cardNameViewText": "鬼の仮面"
+        },
+        {
+            "cardID": "46799",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046799_T_KAIZOUHANMA.jpg",
+            "cardNameAltText": "改造ハンマー",
+            "cardNameViewText": "改造ハンマー"
+        },
+        {
+            "cardID": "46800",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046800_T_KAUNTAKIXYATCHIXYA.jpg",
+            "cardNameAltText": "カウンターキャッチャー",
+            "cardNameViewText": "カウンターキャッチャー"
+        },
+        {
+            "cardID": "46801",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046801_T_GARASUNORAPPA.jpg",
+            "cardNameAltText": "ガラスのラッパ",
+            "cardNameViewText": "ガラスのラッパ"
+        },
+        {
+            "cardID": "46802",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046802_T_SUPAENERUGIKAISHIXYUU.jpg",
+            "cardNameAltText": "スーパーエネルギー回収",
+            "cardNameViewText": "スーパーエネルギー回収"
+        },
+        {
+            "cardID": "46803",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046803_T_TSURIZAOMAX.jpg",
+            "cardNameAltText": "つりざおMAX",
+            "cardNameViewText": "つりざおMAX"
+        },
+        {
+            "cardID": "46804",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046804_T_DAICHINOUTSUWA.jpg",
+            "cardNameAltText": "大地の器",
+            "cardNameViewText": "大地の器"
+        },
+        {
+            "cardID": "46805",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046805_T_TEKUNOREDA.jpg",
+            "cardNameAltText": "テクノレーダー",
+            "cardNameViewText": "テクノレーダー"
+        },
+        {
+            "cardID": "46806",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046806_T_TERASUTARUOBU.jpg",
+            "cardNameAltText": "テラスタルオーブ",
+            "cardNameViewText": "テラスタルオーブ"
+        },
+        {
+            "cardID": "46807",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046807_T_TOREJIXYAGAJIETTO.jpg",
+            "cardNameAltText": "トレジャーガジェット",
+            "cardNameViewText": "トレジャーガジェット"
+        },
+        {
+            "cardID": "46808",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046808_T_NAKAYOSHIPOFUIN.jpg",
+            "cardNameAltText": "なかよしポフィン",
+            "cardNameViewText": "なかよしポフィン"
+        },
+        {
+            "cardID": "46809",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046809_T_PURAIMUKIXYATCHIXYA.jpg",
+            "cardNameAltText": "プライムキャッチャー",
+            "cardNameViewText": "プライムキャッチャー"
+        },
+        {
+            "cardID": "46810",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046810_T_POKEMONKAISHIXYUUSAIKURON.jpg",
+            "cardNameAltText": "ポケモン回収サイクロン",
+            "cardNameViewText": "ポケモン回収サイクロン"
+        },
+        {
+            "cardID": "46811",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046811_T_MUSHITORISETTO.jpg",
+            "cardNameAltText": "むしとりセット",
+            "cardNameViewText": "むしとりセット"
+        },
+        {
+            "cardID": "46812",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046812_T_YORUNOTANKA.jpg",
+            "cardNameAltText": "夜のタンカ",
+            "cardNameViewText": "夜のタンカ"
+        },
+        {
+            "cardID": "46813",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046813_T_KIRAMEKUKESSHIXYOU.jpg",
+            "cardNameAltText": "きらめく結晶",
+            "cardNameViewText": "きらめく結晶"
+        },
+        {
+            "cardID": "46814",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046814_T_KINKIXYUUBODO.jpg",
+            "cardNameAltText": "緊急ボード",
+            "cardNameViewText": "緊急ボード"
+        },
+        {
+            "cardID": "46815",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046815_T_KUSARIMOCHI.jpg",
+            "cardNameAltText": "くさりもち",
+            "cardNameViewText": "くさりもち"
+        },
+        {
+            "cardID": "46816",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046816_T_GOJIXYASUMANTO.jpg",
+            "cardNameAltText": "ゴージャスマント",
+            "cardNameViewText": "ゴージャスマント"
+        },
+        {
+            "cardID": "46817",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046817_T_HABANNOMI.jpg",
+            "cardNameAltText": "ハバンのみ",
+            "cardNameViewText": "ハバンのみ"
+        },
+        {
+            "cardID": "46818",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046818_T_BUSUTOENAJIKODAI.jpg",
+            "cardNameAltText": "ブーストエナジー 古代",
+            "cardNameViewText": "ブーストエナジー 古代"
+        },
+        {
+            "cardID": "46819",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046819_T_BUSUTOENAJIMIRAI.jpg",
+            "cardNameAltText": "ブーストエナジー 未来",
+            "cardNameViewText": "ブーストエナジー 未来"
+        },
+        {
+            "cardID": "46820",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046820_T_MAKISHIMAMUBERUTO.jpg",
+            "cardNameAltText": "マキシマムベルト",
+            "cardNameViewText": "マキシマムベルト"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "body_path": "C:/grookai_vault_binder_production_main/docs/audits/japanese_master_index_v5/official_global_catalog/raw/global_search_page_0342_v1.json",
+  "body_sha256": "9105e327c3b49aa7551ea7d9b169d1dfe5ef7d2f53723c55a165d8484e314843",
+  "byte_size": 9751,
+  "fetched_at": "2026-07-27T21:14:27.548Z",
+  "http_status": 200,
+  "request_method": "GET",
+  "request_url": "https://www.pokemon-card.com/card-search/resultAPI.php?keyword=&se_ta=&regulation_sidebar_form=all&pg=&illust=&sm_and_keyword=true&page=342",
+  "response_headers": {
+    "content-type": "application/json; charset=UTF-8",
+    "date": "Mon, 27 Jul 2026 21:14:28 GMT",
+    "server": "Apache"
+  },
+  "snapshot_version": "JPN-MASTER-INDEX-SOURCE-SNAPSHOT-V1",
+  "source_id": "global_search_page_0342",
+  "status_text": "OK",
+  "user_agent": "GrookaiVault-JPNMasterIndex/4.0 (+https://grookaivault.com)"
+}

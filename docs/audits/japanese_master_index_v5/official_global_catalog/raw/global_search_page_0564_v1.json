@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 564,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21958,
+    "cardEnd": 21996,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "27677",
+            "cardThumbFile": "/assets/images/card_images/large/BGSt/027677_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "27693",
+            "cardThumbFile": "/assets/images/card_images/large/BGSv/027693_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "27317",
+            "cardThumbFile": "/assets/images/card_images/large/BTV/027317_T_GENKINOKAKERA.jpg",
+            "cardNameAltText": "げんきのかけら",
+            "cardNameViewText": "げんきのかけら"
+        },
+        {
+            "cardID": "49602",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049602_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "43120",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043120_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "24030",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Sgf/024030_T_MAMANOKIDUKAI.jpg",
+            "cardNameAltText": "ママのきづかい",
+            "cardNameViewText": "ママのきづかい"
+        },
+        {
+            "cardID": "24061",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Slp/024061_T_MAMANOKIDUKAI.jpg",
+            "cardNameAltText": "ママのきづかい",
+            "cardNameViewText": "ママのきづかい"
+        },
+        {
+            "cardID": "22030",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Sg/022030_T_KIKUNONOYASASHISA.jpg",
+            "cardNameAltText": "キクノの優しさ",
+            "cardNameViewText": "キクノの優しさ"
+        },
+        {
+            "cardID": "22062",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Se/022062_T_RYOUNOSAISHUU.jpg",
+            "cardNameAltText": "リョウの採集",
+            "cardNameViewText": "リョウの採集"
+        },
+        {
+            "cardID": "27621",
+            "cardThumbFile": "/assets/images/card_images/large/BKR/027621_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "27639",
+            "cardThumbFile": "/assets/images/card_images/large/BKZ/027639_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "28386",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028386_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "28406",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028406_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "28670",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028670_T_MASUTABORU.jpg",
+            "cardNameAltText": "マスターボール",
+            "cardNameViewText": "マスターボール"
+        },
+        {
+            "cardID": "25532",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025532_T_MASAKI.jpg",
+            "cardNameAltText": "マサキ",
+            "cardNameViewText": "マサキ"
+        },
+        {
+            "cardID": "25569",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025569_T_POKEMONKOREKUTA.jpg",
+            "cardNameAltText": "ポケモンコレクター",
+            "cardNameViewText": "ポケモンコレクター"
+        },
+        {
+            "cardID": "27678",
+            "cardThumbFile": "/assets/images/card_images/large/BGSt/027678_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "27694",
+            "cardThumbFile": "/assets/images/card_images/large/BGSv/027694_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "27318",
+            "cardThumbFile": "/assets/images/card_images/large/BTV/027318_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "49603",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049603_T_POKEMONKIXYATCHIXYA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "37772",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/037772_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "43121",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043121_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "25534",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025534_T_ROKETTODANNOTEGUCHI.jpg",
+            "cardNameAltText": "ロケット団の手口",
+            "cardNameViewText": "ロケット団の手口"
+        },
+        {
+            "cardID": "25571",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025571_T_MASAKI.jpg",
+            "cardNameAltText": "マサキ",
+            "cardNameViewText": "マサキ"
+        },
+        {
+            "cardID": "27679",
+            "cardThumbFile": "/assets/images/card_images/large/BGSt/027679_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "27695",
+            "cardThumbFile": "/assets/images/card_images/large/BGSv/027695_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "27853",
+            "cardThumbFile": "/assets/images/card_images/large/DS/027853_T_SUGOITSURIZAO.jpg",
+            "cardNameAltText": "すごいつりざお",
+            "cardNameViewText": "すごいつりざお"
+        },
+        {
+            "cardID": "27319",
+            "cardThumbFile": "/assets/images/card_images/large/BTV/027319_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "49604",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049604_T_AIRISUNOTOUSHI.jpg",
+            "cardNameAltText": "アイリスの闘志",
+            "cardNameViewText": "アイリスの闘志"
+        },
+        {
+            "cardID": "37773",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/037773_T_NANDEMONAOSHI.jpg",
+            "cardNameAltText": "なんでもなおし",
+            "cardNameViewText": "なんでもなおし"
+        },
+        {
+            "cardID": "43122",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043122_T_GAKUSHIXYUUSOUCHI.jpg",
+            "cardNameAltText": "学習装置",
+            "cardNameViewText": "学習装置"
+        },
+        {
+            "cardID": "27680",
+            "cardThumbFile": "/assets/images/card_images/large/BGSt/027680_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "27696",
+            "cardThumbFile": "/assets/images/card_images/large/BGSv/027696_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "27854",
+            "cardThumbFile": "/assets/images/card_images/large/DS/027854_T_FASUTOCHIKETTO.jpg",
+            "cardNameAltText": "ファーストチケット",
+            "cardNameViewText": "ファーストチケット"
+        },
+        {
+            "cardID": "27320",
+            "cardThumbFile": "/assets/images/card_images/large/BTV/027320_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "49605",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049605_T_INFURUENSANOSHIXYOUKAI.jpg",
+            "cardNameAltText": "インフルエンサーの紹介",
+            "cardNameViewText": "インフルエンサーの紹介"
+        },
+        {
+            "cardID": "37774",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/037774_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "43123",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043123_T_GENKINOHACHIMAKI.jpg",
+            "cardNameAltText": "げんきのハチマキ",
+            "cardNameViewText": "げんきのハチマキ"
+        },
+        {
+            "cardID": "30338",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030338_T_CHIKARANOHACHIMAKI.jpg",
+            "cardNameAltText": "ちからのハチマキ",
+            "cardNameViewText": "ちからのハチマキ"
+        }
+    ]
+}

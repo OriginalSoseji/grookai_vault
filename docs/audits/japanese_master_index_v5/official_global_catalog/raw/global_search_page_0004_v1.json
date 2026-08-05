@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 4,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 118,
+    "cardEnd": 156,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "50398",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050398_P_YAYAKOMA.jpg",
+            "cardNameAltText": "ヤヤコマ",
+            "cardNameViewText": "ヤヤコマ"
+        },
+        {
+            "cardID": "50399",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050399_P_HINOYAKOMA.jpg",
+            "cardNameAltText": "ヒノヤコマ",
+            "cardNameViewText": "ヒノヤコマ"
+        },
+        {
+            "cardID": "50400",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050400_P_FUAIAROIEKKUSU.jpg",
+            "cardNameAltText": "ファイアローex",
+            "cardNameViewText": "ファイアローex"
+        },
+        {
+            "cardID": "50401",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050401_T_OISHIIOMUSUBI.jpg",
+            "cardNameAltText": "おいしいおむすび",
+            "cardNameViewText": "おいしいおむすび"
+        },
+        {
+            "cardID": "50402",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050402_T_BOUKENNORANTAN.jpg",
+            "cardNameAltText": "ぼうけんのランタン",
+            "cardNameViewText": "ぼうけんのランタン"
+        },
+        {
+            "cardID": "50403",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050403_T_TOKUCHIXYUUCHIXYOKKI.jpg",
+            "cardNameAltText": "とくちゅうチョッキ",
+            "cardNameViewText": "とくちゅうチョッキ"
+        },
+        {
+            "cardID": "50404",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050404_T_MREKKUUZAKIXYAPPU.jpg",
+            "cardNameAltText": "メガレックウザキャップ",
+            "cardNameViewText": "メガレックウザキャップ"
+        },
+        {
+            "cardID": "50405",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050405_T_EMUSHINOMORIAGE.jpg",
+            "cardNameAltText": "MCの盛り上げ",
+            "cardNameViewText": "MCの盛り上げ"
+        },
+        {
+            "cardID": "50406",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050406_T_GIRI.jpg",
+            "cardNameAltText": "ギリー",
+            "cardNameViewText": "ギリー"
+        },
+        {
+            "cardID": "50407",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050407_T_HIGANANOSHINRAI.jpg",
+            "cardNameAltText": "ヒガナの信頼",
+            "cardNameViewText": "ヒガナの信頼"
+        },
+        {
+            "cardID": "50408",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050408_T_FUUTORANNOSHIXYUGIXYOU.jpg",
+            "cardNameAltText": "フウとランの修行",
+            "cardNameViewText": "フウとランの修行"
+        },
+        {
+            "cardID": "50409",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050409_T_DENSETSUNOKAIKOU.jpg",
+            "cardNameAltText": "伝説の海溝",
+            "cardNameViewText": "伝説の海溝"
+        },
+        {
+            "cardID": "50410",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050410_T_DENSETSUNOSANCHIXYOU.jpg",
+            "cardNameAltText": "伝説の山頂",
+            "cardNameViewText": "伝説の山頂"
+        },
+        {
+            "cardID": "50411",
+            "cardThumbFile": "/assets/images/card_images/large/M6/050411_T_DENSETSUNOYOUGANDOU.jpg",
+            "cardNameAltText": "伝説の溶岩洞",
+            "cardNameViewText": "伝説の溶岩洞"
+        },
+        {
+            "cardID": "50220",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050220_P_TOROPIUSU.jpg",
+            "cardNameAltText": "トロピウス",
+            "cardNameViewText": "トロピウス"
+        },
+        {
+            "cardID": "50221",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050221_P_AGOJIMUSHI.jpg",
+            "cardNameAltText": "アゴジムシ",
+            "cardNameViewText": "アゴジムシ"
+        },
+        {
+            "cardID": "50222",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050222_P_KARIKIRI.jpg",
+            "cardNameAltText": "カリキリ",
+            "cardNameViewText": "カリキリ"
+        },
+        {
+            "cardID": "50223",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050223_P_RARANTESUEX.jpg",
+            "cardNameAltText": "ラランテスex",
+            "cardNameViewText": "ラランテスex"
+        },
+        {
+            "cardID": "50224",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050224_P_CHIXYADESU.jpg",
+            "cardNameAltText": "チャデス",
+            "cardNameViewText": "チャデス"
+        },
+        {
+            "cardID": "50225",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050225_P_YABASOCHIXYA.jpg",
+            "cardNameAltText": "ヤバソチャ",
+            "cardNameViewText": "ヤバソチャ"
+        },
+        {
+            "cardID": "50226",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050226_P_HIDORAN.jpg",
+            "cardNameAltText": "ヒードラン",
+            "cardNameViewText": "ヒードラン"
+        },
+        {
+            "cardID": "50227",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050227_P_YAKUDE.jpg",
+            "cardNameAltText": "ヤクデ",
+            "cardNameViewText": "ヤクデ"
+        },
+        {
+            "cardID": "50228",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050228_P_MARUYAKUDE.jpg",
+            "cardNameAltText": "マルヤクデ",
+            "cardNameViewText": "マルヤクデ"
+        },
+        {
+            "cardID": "50229",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050229_P_KARUBOU.jpg",
+            "cardNameAltText": "カルボウ",
+            "cardNameViewText": "カルボウ"
+        },
+        {
+            "cardID": "50230",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050230_P_GURENARUMA.jpg",
+            "cardNameAltText": "グレンアルマ",
+            "cardNameViewText": "グレンアルマ"
+        },
+        {
+            "cardID": "50231",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050231_P_TOSAKINTO.jpg",
+            "cardNameAltText": "トサキント",
+            "cardNameViewText": "トサキント"
+        },
+        {
+            "cardID": "50232",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050232_P_AZUMAOU.jpg",
+            "cardNameAltText": "アズマオウ",
+            "cardNameViewText": "アズマオウ"
+        },
+        {
+            "cardID": "50233",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050233_P_HOERUKO.jpg",
+            "cardNameAltText": "ホエルコ",
+            "cardNameViewText": "ホエルコ"
+        },
+        {
+            "cardID": "50234",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050234_P_HOERUOEX.jpg",
+            "cardNameAltText": "ホエルオーex",
+            "cardNameViewText": "ホエルオーex"
+        },
+        {
+            "cardID": "50235",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050235_P_JIRANSU.jpg",
+            "cardNameAltText": "ジーランス",
+            "cardNameViewText": "ジーランス"
+        },
+        {
+            "cardID": "50236",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050236_P_ASHIMARI.jpg",
+            "cardNameAltText": "アシマリ",
+            "cardNameViewText": "アシマリ"
+        },
+        {
+            "cardID": "50237",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050237_P_OSHIXYAMARI.jpg",
+            "cardNameAltText": "オシャマリ",
+            "cardNameViewText": "オシャマリ"
+        },
+        {
+            "cardID": "50238",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050238_P_ASHIRENU.jpg",
+            "cardNameAltText": "アシレーヌ",
+            "cardNameViewText": "アシレーヌ"
+        },
+        {
+            "cardID": "50239",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050239_P_NAMIIRUKA.jpg",
+            "cardNameAltText": "ナミイルカ",
+            "cardNameViewText": "ナミイルカ"
+        },
+        {
+            "cardID": "50240",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050240_P_IRUKAMAN.jpg",
+            "cardNameAltText": "イルカマン",
+            "cardNameViewText": "イルカマン"
+        },
+        {
+            "cardID": "50241",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050241_P_RAKURAI.jpg",
+            "cardNameAltText": "ラクライ",
+            "cardNameViewText": "ラクライ"
+        },
+        {
+            "cardID": "50242",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050242_P_RAIBORUTO.jpg",
+            "cardNameAltText": "ライボルト",
+            "cardNameViewText": "ライボルト"
+        },
+        {
+            "cardID": "50243",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050243_P_DENJIMUSHI.jpg",
+            "cardNameAltText": "デンヂムシ",
+            "cardNameViewText": "デンヂムシ"
+        },
+        {
+            "cardID": "50244",
+            "cardThumbFile": "/assets/images/card_images/large/M5/050244_P_KUWAGANON.jpg",
+            "cardNameAltText": "クワガノン",
+            "cardNameViewText": "クワガノン"
+        }
+    ]
+}

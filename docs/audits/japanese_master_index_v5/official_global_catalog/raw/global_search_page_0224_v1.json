@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 224,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 8698,
+    "cardEnd": 8736,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "40314",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040314_T_ROZU.jpg",
+            "cardNameAltText": "ローズ",
+            "cardNameViewText": "ローズ"
+        },
+        {
+            "cardID": "40315",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040315_T_AKUNOTOU.jpg",
+            "cardNameAltText": "あくの塔",
+            "cardNameViewText": "あくの塔"
+        },
+        {
+            "cardID": "40316",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040316_T_ITADAKIHENOYUKIDOU.jpg",
+            "cardNameAltText": "頂への雪道",
+            "cardNameViewText": "頂への雪道"
+        },
+        {
+            "cardID": "40317",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040317_T_INISHIENOBOCHI.jpg",
+            "cardNameAltText": "いにしえの墓地",
+            "cardNameViewText": "いにしえの墓地"
+        },
+        {
+            "cardID": "40318",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040318_T_TAFUSUTAJIAMU.jpg",
+            "cardNameAltText": "ターフスタジアム",
+            "cardNameViewText": "ターフスタジアム"
+        },
+        {
+            "cardID": "40319",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040319_T_MIZUNOTOU.jpg",
+            "cardNameAltText": "みずの塔",
+            "cardNameViewText": "みずの塔"
+        },
+        {
+            "cardID": "41083",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041083_T_ASERORANOYOKAN.jpg",
+            "cardNameAltText": "アセロラの予感",
+            "cardNameViewText": "アセロラの予感"
+        },
+        {
+            "cardID": "41084",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041084_T_ONION.jpg",
+            "cardNameAltText": "オニオン",
+            "cardNameViewText": "オニオン"
+        },
+        {
+            "cardID": "41085",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041085_T_KABU.jpg",
+            "cardNameAltText": "カブ",
+            "cardNameViewText": "カブ"
+        },
+        {
+            "cardID": "41086",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041086_T_GARARUNONAKAMATACHI.jpg",
+            "cardNameAltText": "ガラルの仲間たち",
+            "cardNameViewText": "ガラルの仲間たち"
+        },
+        {
+            "cardID": "41087",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041087_T_KIBANA.jpg",
+            "cardNameAltText": "キバナ",
+            "cardNameViewText": "キバナ"
+        },
+        {
+            "cardID": "41088",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041088_T_KOKKU.jpg",
+            "cardNameAltText": "コック",
+            "cardNameViewText": "コック"
+        },
+        {
+            "cardID": "41089",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041089_T_SAITOU.jpg",
+            "cardNameAltText": "サイトウ",
+            "cardNameViewText": "サイトウ"
+        },
+        {
+            "cardID": "41090",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041090_T_JIXYAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "41091",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041091_T_SODDOTOSHIRUDEI.jpg",
+            "cardNameAltText": "ソッドとシルディ",
+            "cardNameViewText": "ソッドとシルディ"
+        },
+        {
+            "cardID": "41092",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041092_T_NEZU.jpg",
+            "cardNameAltText": "ネズ",
+            "cardNameViewText": "ネズ"
+        },
+        {
+            "cardID": "41093",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041093_T_BANETTOHAKASE.jpg",
+            "cardNameAltText": "バーネット博士",
+            "cardNameViewText": "バーネット博士"
+        },
+        {
+            "cardID": "41094",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041094_T_HAKASENOKENKIXYUUARARAGI.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "41095",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041095_T_BOUKENKANOHAKKEN.jpg",
+            "cardNameAltText": "冒険家の発見",
+            "cardNameViewText": "冒険家の発見"
+        },
+        {
+            "cardID": "41096",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041096_T_BOSUNOSHIREIFURADARI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "41097",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041097_T_POPURA.jpg",
+            "cardNameAltText": "ポプラ",
+            "cardNameViewText": "ポプラ"
+        },
+        {
+            "cardID": "41098",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041098_T_MAKUWA.jpg",
+            "cardNameAltText": "マクワ",
+            "cardNameViewText": "マクワ"
+        },
+        {
+            "cardID": "41099",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041099_T_MASUTA.jpg",
+            "cardNameAltText": "マスター",
+            "cardNameViewText": "マスター"
+        },
+        {
+            "cardID": "41100",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041100_T_MASUTADOICHIGEKINOKATA.jpg",
+            "cardNameAltText": "マスタード いちげきのかた",
+            "cardNameViewText": "マスタード いちげきのかた"
+        },
+        {
+            "cardID": "41101",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041101_T_MASUTADORENGEKINOKATA.jpg",
+            "cardNameAltText": "マスタード れんげきのかた",
+            "cardNameViewText": "マスタード れんげきのかた"
+        },
+        {
+            "cardID": "41102",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041102_T_MERON.jpg",
+            "cardNameAltText": "メロン",
+            "cardNameViewText": "メロン"
+        },
+        {
+            "cardID": "41103",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041103_T_YARO.jpg",
+            "cardNameAltText": "ヤロー",
+            "cardNameViewText": "ヤロー"
+        },
+        {
+            "cardID": "41104",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041104_T_YUURI.jpg",
+            "cardNameAltText": "ユウリ",
+            "cardNameViewText": "ユウリ"
+        },
+        {
+            "cardID": "41105",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041105_T_RURINA.jpg",
+            "cardNameAltText": "ルリナ",
+            "cardNameViewText": "ルリナ"
+        },
+        {
+            "cardID": "41144",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041144_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "41145",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041145_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "41146",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041146_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "41147",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041147_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "41148",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041148_E_KIHONCHIXYOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "41149",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041149_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "41150",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041150_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "41151",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/041151_E_KIHONHAGANEENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "40320",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040320_E_AROMAKUSAENERUGI.jpg",
+            "cardNameAltText": "アロマ草エネルギー",
+            "cardNameViewText": "アロマ草エネルギー"
+        },
+        {
+            "cardID": "40321",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040321_E_HITOHONOOENERUGI.jpg",
+            "cardNameAltText": "ヒート炎エネルギー",
+            "cardNameViewText": "ヒート炎エネルギー"
+        }
+    ]
+}

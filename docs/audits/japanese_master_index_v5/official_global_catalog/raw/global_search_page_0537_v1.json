@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 537,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 20905,
+    "cardEnd": 20943,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "32346",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032346_P_CHIRUTARISU.jpg",
+            "cardNameAltText": "チルタリス",
+            "cardNameViewText": "チルタリス"
+        },
+        {
+            "cardID": "41790",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041790_P_KAIRIXYUV.jpg",
+            "cardNameAltText": "カイリューV",
+            "cardNameViewText": "カイリューV"
+        },
+        {
+            "cardID": "36134",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036134_P_MOKURO.jpg",
+            "cardNameAltText": "モクロー",
+            "cardNameViewText": "モクロー"
+        },
+        {
+            "cardID": "32347",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032347_P_SORAWOTOBUPIKACHUU.jpg",
+            "cardNameAltText": "そらをとぶピカチュウ",
+            "cardNameViewText": "そらをとぶピカチュウ"
+        },
+        {
+            "cardID": "41791",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041791_P_KAIRIXYUVSTAR.jpg",
+            "cardNameAltText": "カイリューVSTAR",
+            "cardNameViewText": "カイリューVSTAR"
+        },
+        {
+            "cardID": "36135",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036135_P_ARORAROKON.jpg",
+            "cardNameAltText": "アローラ ロコン",
+            "cardNameViewText": "アローラ ロコン"
+        },
+        {
+            "cardID": "32348",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032348_P_MARIOPIKACHUU.jpg",
+            "cardNameAltText": "マリオピカチュウ",
+            "cardNameViewText": "マリオピカチュウ"
+        },
+        {
+            "cardID": "41947",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041947_P_HIMANATTSU.jpg",
+            "cardNameAltText": "ヒマナッツ",
+            "cardNameViewText": "ヒマナッツ"
+        },
+        {
+            "cardID": "36136",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036136_P_MIMIKKYU.jpg",
+            "cardNameAltText": "ミミッキュ",
+            "cardNameViewText": "ミミッキュ"
+        },
+        {
+            "cardID": "32349",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032349_P_MARIOPIKACHUU.jpg",
+            "cardNameAltText": "マリオピカチュウ",
+            "cardNameViewText": "マリオピカチュウ"
+        },
+        {
+            "cardID": "41948",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041948_P_PAUWAU.jpg",
+            "cardNameAltText": "パウワウ",
+            "cardNameViewText": "パウワウ"
+        },
+        {
+            "cardID": "36137",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036137_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "32350",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032350_P_RUIJIPIKACHUU.jpg",
+            "cardNameAltText": "ルイージピカチュウ",
+            "cardNameViewText": "ルイージピカチュウ"
+        },
+        {
+            "cardID": "41949",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041949_P_KAIOGAV.jpg",
+            "cardNameAltText": "カイオーガV",
+            "cardNameViewText": "カイオーガV"
+        },
+        {
+            "cardID": "32351",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032351_P_RUIJIPIKACHUU.jpg",
+            "cardNameAltText": "ルイージピカチュウ",
+            "cardNameViewText": "ルイージピカチュウ"
+        },
+        {
+            "cardID": "41950",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041950_P_SHIBIBIRU.jpg",
+            "cardNameAltText": "シビビール",
+            "cardNameViewText": "シビビール"
+        },
+        {
+            "cardID": "36138",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036138_P_IBUIKABIGONGX.jpg",
+            "cardNameAltText": "イーブイ&amp;カビゴンGX",
+            "cardNameViewText": "イーブイ&amp;カビゴンGX"
+        },
+        {
+            "cardID": "41951",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041951_P_RABUTOROSU.jpg",
+            "cardNameAltText": "ラブトロス",
+            "cardNameViewText": "ラブトロス"
+        },
+        {
+            "cardID": "36139",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036139_P_PARASU.jpg",
+            "cardNameAltText": "パラス",
+            "cardNameViewText": "パラス"
+        },
+        {
+            "cardID": "32353",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032353_P_MSACHIKOEX.jpg",
+            "cardNameAltText": "メガサチコEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>サチコEX"
+        },
+        {
+            "cardID": "41952",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041952_P_METANGU.jpg",
+            "cardNameAltText": "メタング",
+            "cardNameViewText": "メタング"
+        },
+        {
+            "cardID": "36140",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036140_P_SANDASU.jpg",
+            "cardNameAltText": "サンダース",
+            "cardNameViewText": "サンダース"
+        },
+        {
+            "cardID": "36141",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036141_P_KIBANIA.jpg",
+            "cardNameAltText": "キバニア",
+            "cardNameViewText": "キバニア"
+        },
+        {
+            "cardID": "36142",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036142_P_PIPPI.jpg",
+            "cardNameAltText": "ピッピ",
+            "cardNameViewText": "ピッピ"
+        },
+        {
+            "cardID": "41961",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/041961_P_ABUSORU.jpg",
+            "cardNameAltText": "アブソル",
+            "cardNameViewText": "アブソル"
+        },
+        {
+            "cardID": "36143",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036143_P_HAKURYU.jpg",
+            "cardNameAltText": "ハクリュー",
+            "cardNameViewText": "ハクリュー"
+        },
+        {
+            "cardID": "36144",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036144_P_GARURAGX.jpg",
+            "cardNameAltText": "ガルーラGX",
+            "cardNameViewText": "ガルーラGX"
+        },
+        {
+            "cardID": "42922",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042922_P_RUKARIOV.jpg",
+            "cardNameAltText": "ルカリオV",
+            "cardNameViewText": "ルカリオV"
+        },
+        {
+            "cardID": "42923",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042923_P_RUKARIOVSTAR.jpg",
+            "cardNameAltText": "ルカリオVSTAR",
+            "cardNameViewText": "ルカリオVSTAR"
+        },
+        {
+            "cardID": "36217",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036217_P_SANDA.jpg",
+            "cardNameAltText": "サンダー",
+            "cardNameViewText": "サンダー"
+        },
+        {
+            "cardID": "36218",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036218_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "42925",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042925_P_HISUIBIRIRIDAMA.jpg",
+            "cardNameAltText": "ヒスイ ビリリダマ",
+            "cardNameViewText": "ヒスイ ビリリダマ"
+        },
+        {
+            "cardID": "36219",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036219_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "42926",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042926_P_HISUIBAKUFUNV.jpg",
+            "cardNameAltText": "ヒスイ バクフーンV",
+            "cardNameViewText": "ヒスイ バクフーンV"
+        },
+        {
+            "cardID": "36221",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036221_P_KUWAGANON.jpg",
+            "cardNameAltText": "クワガノン",
+            "cardNameViewText": "クワガノン"
+        },
+        {
+            "cardID": "42213",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042213_P_PONITA.jpg",
+            "cardNameAltText": "ポニータ",
+            "cardNameViewText": "ポニータ"
+        },
+        {
+            "cardID": "36222",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036222_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "42214",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/042214_P_NUOV.jpg",
+            "cardNameAltText": "ヌオーV",
+            "cardNameViewText": "ヌオーV"
+        },
+        {
+            "cardID": "36311",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/036311_P_TSUNDETSUNDE.jpg",
+            "cardNameAltText": "ツンデツンデ",
+            "cardNameViewText": "ツンデツンデ"
+        }
+    ]
+}

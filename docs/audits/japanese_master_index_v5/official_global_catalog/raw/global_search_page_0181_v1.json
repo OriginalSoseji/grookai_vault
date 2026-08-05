@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 181,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7021,
+    "cardEnd": 7059,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41874",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041874_P_WARUBIARU.jpg",
+            "cardNameAltText": "ワルビアル",
+            "cardNameViewText": "ワルビアル"
+        },
+        {
+            "cardID": "41875",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041875_P_HIDOIDE.jpg",
+            "cardNameAltText": "ヒドイデ",
+            "cardNameViewText": "ヒドイデ"
+        },
+        {
+            "cardID": "41876",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041876_P_DOHIDOIDE.jpg",
+            "cardNameAltText": "ドヒドイデ",
+            "cardNameViewText": "ドヒドイデ"
+        },
+        {
+            "cardID": "41877",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041877_P_DANBARU.jpg",
+            "cardNameAltText": "ダンバル",
+            "cardNameViewText": "ダンバル"
+        },
+        {
+            "cardID": "41878",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041878_P_METANGU.jpg",
+            "cardNameAltText": "メタング",
+            "cardNameViewText": "メタング"
+        },
+        {
+            "cardID": "41879",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041879_P_METAGUROSU.jpg",
+            "cardNameAltText": "メタグロス",
+            "cardNameViewText": "メタグロス"
+        },
+        {
+            "cardID": "41880",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041880_P_TESSHIDO.jpg",
+            "cardNameAltText": "テッシード",
+            "cardNameViewText": "テッシード"
+        },
+        {
+            "cardID": "41881",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041881_P_NATTOREI.jpg",
+            "cardNameAltText": "ナットレイ",
+            "cardNameViewText": "ナットレイ"
+        },
+        {
+            "cardID": "41882",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041882_P_GARARUMAGGIXYO.jpg",
+            "cardNameAltText": "ガラル マッギョ",
+            "cardNameViewText": "ガラル マッギョ"
+        },
+        {
+            "cardID": "41883",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041883_P_GARARUNIXYAIKINGUV.jpg",
+            "cardNameAltText": "ガラル ニャイキングV",
+            "cardNameViewText": "ガラル ニャイキングV"
+        },
+        {
+            "cardID": "41884",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041884_P_GIRATEINAV.jpg",
+            "cardNameAltText": "ギラティナV",
+            "cardNameViewText": "ギラティナV"
+        },
+        {
+            "cardID": "41885",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041885_P_GIRATEINAVSTAR.jpg",
+            "cardNameAltText": "ギラティナVSTAR",
+            "cardNameViewText": "ギラティナVSTAR"
+        },
+        {
+            "cardID": "41886",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041886_P_PIJIXYOTTOV.jpg",
+            "cardNameAltText": "ピジョットV",
+            "cardNameViewText": "ピジョットV"
+        },
+        {
+            "cardID": "41887",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041887_P_PORIGON.jpg",
+            "cardNameAltText": "ポリゴン",
+            "cardNameViewText": "ポリゴン"
+        },
+        {
+            "cardID": "41888",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041888_P_PORIGON2.jpg",
+            "cardNameAltText": "ポリゴン2",
+            "cardNameViewText": "ポリゴン2"
+        },
+        {
+            "cardID": "41889",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041889_P_PORIGONZ.jpg",
+            "cardNameAltText": "ポリゴンZ",
+            "cardNameViewText": "ポリゴンZ"
+        },
+        {
+            "cardID": "41890",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041890_P_PATCHIRU.jpg",
+            "cardNameAltText": "パッチール",
+            "cardNameViewText": "パッチール"
+        },
+        {
+            "cardID": "41891",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041891_P_MIMIRORU.jpg",
+            "cardNameAltText": "ミミロル",
+            "cardNameViewText": "ミミロル"
+        },
+        {
+            "cardID": "41892",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041892_P_MIMIROPPU.jpg",
+            "cardNameAltText": "ミミロップ",
+            "cardNameViewText": "ミミロップ"
+        },
+        {
+            "cardID": "41893",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041893_P_BAFFURON.jpg",
+            "cardNameAltText": "バッフロン",
+            "cardNameViewText": "バッフロン"
+        },
+        {
+            "cardID": "41894",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041894_P_YAYAKOMA.jpg",
+            "cardNameAltText": "ヤヤコマ",
+            "cardNameViewText": "ヤヤコマ"
+        },
+        {
+            "cardID": "42076",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042076_P_MAFUOKUSHIV.jpg",
+            "cardNameAltText": "マフォクシーV",
+            "cardNameViewText": "マフォクシーV"
+        },
+        {
+            "cardID": "42077",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042077_P_KIXYUREMUV.jpg",
+            "cardNameAltText": "キュレムV",
+            "cardNameViewText": "キュレムV"
+        },
+        {
+            "cardID": "42078",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042078_P_ROTOMUV.jpg",
+            "cardNameAltText": "ロトムV",
+            "cardNameViewText": "ロトムV"
+        },
+        {
+            "cardID": "42079",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042079_P_ROTOMUV.jpg",
+            "cardNameAltText": "ロトムV",
+            "cardNameViewText": "ロトムV"
+        },
+        {
+            "cardID": "42080",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042080_P_PUTERAV.jpg",
+            "cardNameAltText": "プテラV",
+            "cardNameViewText": "プテラV"
+        },
+        {
+            "cardID": "42081",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042081_P_PUTERAV.jpg",
+            "cardNameAltText": "プテラV",
+            "cardNameViewText": "プテラV"
+        },
+        {
+            "cardID": "42082",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042082_P_DORAPIONV.jpg",
+            "cardNameAltText": "ドラピオンV",
+            "cardNameViewText": "ドラピオンV"
+        },
+        {
+            "cardID": "42083",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042083_P_GARARUNIXYAIKINGUV.jpg",
+            "cardNameAltText": "ガラル ニャイキングV",
+            "cardNameViewText": "ガラル ニャイキングV"
+        },
+        {
+            "cardID": "42084",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042084_P_GARARUNIXYAIKINGUV.jpg",
+            "cardNameAltText": "ガラル ニャイキングV",
+            "cardNameViewText": "ガラル ニャイキングV"
+        },
+        {
+            "cardID": "42085",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042085_P_GIRATEINAV.jpg",
+            "cardNameAltText": "ギラティナV",
+            "cardNameViewText": "ギラティナV"
+        },
+        {
+            "cardID": "42086",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042086_P_GIRATEINAV.jpg",
+            "cardNameAltText": "ギラティナV",
+            "cardNameViewText": "ギラティナV"
+        },
+        {
+            "cardID": "42087",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042087_P_PIJIXYOTTOV.jpg",
+            "cardNameAltText": "ピジョットV",
+            "cardNameViewText": "ピジョットV"
+        },
+        {
+            "cardID": "44900",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044900_P_KIXYUREMUVMAX.jpg",
+            "cardNameAltText": "キュレムVMAX",
+            "cardNameViewText": "キュレムVMAX"
+        },
+        {
+            "cardID": "44901",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044901_P_PUTERAVSTAR.jpg",
+            "cardNameAltText": "プテラVSTAR",
+            "cardNameViewText": "プテラVSTAR"
+        },
+        {
+            "cardID": "44902",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044902_P_DORAPIONVSTAR.jpg",
+            "cardNameAltText": "ドラピオンVSTAR",
+            "cardNameViewText": "ドラピオンVSTAR"
+        },
+        {
+            "cardID": "44903",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044903_P_GIRATEINAVSTAR.jpg",
+            "cardNameAltText": "ギラティナVSTAR",
+            "cardNameViewText": "ギラティナVSTAR"
+        },
+        {
+            "cardID": "44908",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044908_P_GIRATEINAVSTAR.jpg",
+            "cardNameAltText": "ギラティナVSTAR",
+            "cardNameViewText": "ギラティナVSTAR"
+        },
+        {
+            "cardID": "41895",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041895_T_TSURUBOKKUSU.jpg",
+            "cardNameAltText": "ツールボックス",
+            "cardNameViewText": "ツールボックス"
+        }
+    ]
+}

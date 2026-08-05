@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 289,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 11233,
+    "cardEnd": 11271,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "37233",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037233_P_ZENIGAME.jpg",
+            "cardNameAltText": "ゼニガメ",
+            "cardNameViewText": "ゼニガメ"
+        },
+        {
+            "cardID": "37234",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037234_P_KAMERU.jpg",
+            "cardNameAltText": "カメール",
+            "cardNameViewText": "カメール"
+        },
+        {
+            "cardID": "37235",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037235_P_KAMEKKUSU.jpg",
+            "cardNameAltText": "カメックス",
+            "cardNameViewText": "カメックス"
+        },
+        {
+            "cardID": "37236",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037236_P_ARORAROKON.jpg",
+            "cardNameAltText": "アローラ ロコン",
+            "cardNameViewText": "アローラ ロコン"
+        },
+        {
+            "cardID": "37237",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037237_P_SHAWAZU.jpg",
+            "cardNameAltText": "シャワーズ",
+            "cardNameViewText": "シャワーズ"
+        },
+        {
+            "cardID": "37238",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037238_P_FURIZA.jpg",
+            "cardNameAltText": "フリーザー",
+            "cardNameViewText": "フリーザー"
+        },
+        {
+            "cardID": "37239",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037239_P_HOWAITOKYUREMU.jpg",
+            "cardNameAltText": "ホワイトキュレム",
+            "cardNameViewText": "ホワイトキュレム"
+        },
+        {
+            "cardID": "37240",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037240_P_KERUDEIOGX.jpg",
+            "cardNameAltText": "ケルディオGX",
+            "cardNameViewText": "ケルディオGX"
+        },
+        {
+            "cardID": "37241",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037241_P_BORUKENION.jpg",
+            "cardNameAltText": "ボルケニオン プリズムスター",
+            "cardNameViewText": "ボルケニオン<span class=\"pcg pcg-prismstar\"></span>"
+        },
+        {
+            "cardID": "37242",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037242_P_YOWASHI.jpg",
+            "cardNameAltText": "ヨワシ",
+            "cardNameViewText": "ヨワシ"
+        },
+        {
+            "cardID": "37243",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037243_P_YOWASHIGX.jpg",
+            "cardNameAltText": "ヨワシGX",
+            "cardNameViewText": "ヨワシGX"
+        },
+        {
+            "cardID": "37244",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037244_P_KAPUREHIRE.jpg",
+            "cardNameAltText": "カプ・レヒレ",
+            "cardNameViewText": "カプ・レヒレ"
+        },
+        {
+            "cardID": "37245",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037245_P_PIKACHUUZEKUROMUGX.jpg",
+            "cardNameAltText": "ピカチュウ&amp;ゼクロムGX",
+            "cardNameViewText": "ピカチュウ&amp;ゼクロムGX"
+        },
+        {
+            "cardID": "37246",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037246_P_SANDASU.jpg",
+            "cardNameAltText": "サンダース",
+            "cardNameViewText": "サンダース"
+        },
+        {
+            "cardID": "37247",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037247_P_SANDA.jpg",
+            "cardNameAltText": "サンダー",
+            "cardNameViewText": "サンダー"
+        },
+        {
+            "cardID": "37248",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037248_P_RAIKOU.jpg",
+            "cardNameAltText": "ライコウ",
+            "cardNameViewText": "ライコウ"
+        },
+        {
+            "cardID": "37249",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037249_P_SHIMAMA.jpg",
+            "cardNameAltText": "シママ",
+            "cardNameViewText": "シママ"
+        },
+        {
+            "cardID": "37250",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037250_P_ZEBURAIKA.jpg",
+            "cardNameAltText": "ゼブライカ",
+            "cardNameViewText": "ゼブライカ"
+        },
+        {
+            "cardID": "37251",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037251_P_MAGGYO.jpg",
+            "cardNameAltText": "マッギョ",
+            "cardNameViewText": "マッギョ"
+        },
+        {
+            "cardID": "37252",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037252_P_DEDENNEGX.jpg",
+            "cardNameAltText": "デデンネGX",
+            "cardNameViewText": "デデンネGX"
+        },
+        {
+            "cardID": "37253",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037253_P_KAPUKOKEKO.jpg",
+            "cardNameAltText": "カプ・コケコ プリズムスター",
+            "cardNameViewText": "カプ・コケコ<span class=\"pcg pcg-prismstar\"></span>"
+        },
+        {
+            "cardID": "37254",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037254_P_ZERAORA.jpg",
+            "cardNameAltText": "ゼラオラ",
+            "cardNameViewText": "ゼラオラ"
+        },
+        {
+            "cardID": "37255",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037255_P_ZERAORAGX.jpg",
+            "cardNameAltText": "ゼラオラGX",
+            "cardNameViewText": "ゼラオラGX"
+        },
+        {
+            "cardID": "37256",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037256_P_MYUUTSUMYUUGX.jpg",
+            "cardNameAltText": "ミュウツー&amp;ミュウGX",
+            "cardNameViewText": "ミュウツー&amp;ミュウGX"
+        },
+        {
+            "cardID": "37257",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037257_P_OROTTOYONOWARUGX.jpg",
+            "cardNameAltText": "オーロット&amp;ヨノワールGX",
+            "cardNameViewText": "オーロット&amp;ヨノワールGX"
+        },
+        {
+            "cardID": "37258",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037258_P_MYUUTSU.jpg",
+            "cardNameAltText": "ミュウツー",
+            "cardNameViewText": "ミュウツー"
+        },
+        {
+            "cardID": "37259",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037259_P_MYUU.jpg",
+            "cardNameAltText": "ミュウ",
+            "cardNameViewText": "ミュウ"
+        },
+        {
+            "cardID": "37260",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037260_P_NEITEI.jpg",
+            "cardNameAltText": "ネイティ",
+            "cardNameViewText": "ネイティ"
+        },
+        {
+            "cardID": "37261",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037261_P_GIRATEINA.jpg",
+            "cardNameAltText": "ギラティナ",
+            "cardNameViewText": "ギラティナ"
+        },
+        {
+            "cardID": "37262",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037262_P_GIRATEINA.jpg",
+            "cardNameAltText": "ギラティナ プリズムスター",
+            "cardNameViewText": "ギラティナ<span class=\"pcg pcg-prismstar\"></span>"
+        },
+        {
+            "cardID": "37263",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037263_P_NYASUPA.jpg",
+            "cardNameAltText": "ニャスパー",
+            "cardNameViewText": "ニャスパー"
+        },
+        {
+            "cardID": "37264",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037264_P_NYAONIKUSU.jpg",
+            "cardNameAltText": "ニャオニクス",
+            "cardNameViewText": "ニャオニクス"
+        },
+        {
+            "cardID": "37265",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037265_P_MAIKA.jpg",
+            "cardNameAltText": "マーイーカ",
+            "cardNameViewText": "マーイーカ"
+        },
+        {
+            "cardID": "37266",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037266_P_KARAMANERO.jpg",
+            "cardNameAltText": "カラマネロ",
+            "cardNameViewText": "カラマネロ"
+        },
+        {
+            "cardID": "37267",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037267_P_MIMIKKYU.jpg",
+            "cardNameAltText": "ミミッキュ",
+            "cardNameViewText": "ミミッキュ"
+        },
+        {
+            "cardID": "37268",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037268_P_MASHADO.jpg",
+            "cardNameAltText": "マーシャドー",
+            "cardNameViewText": "マーシャドー"
+        },
+        {
+            "cardID": "37269",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037269_P_BEBENOMU.jpg",
+            "cardNameAltText": "ベベノム",
+            "cardNameViewText": "ベベノム"
+        },
+        {
+            "cardID": "37270",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037270_P_AGOYON.jpg",
+            "cardNameAltText": "アーゴヨン",
+            "cardNameViewText": "アーゴヨン"
+        },
+        {
+            "cardID": "37271",
+            "cardThumbFile": "/assets/images/card_images/large/SM12a/037271_P_MASHADOKAIRIKIGX.jpg",
+            "cardNameAltText": "マーシャドー&amp;カイリキーGX",
+            "cardNameViewText": "マーシャドー&amp;カイリキーGX"
+        }
+    ]
+}

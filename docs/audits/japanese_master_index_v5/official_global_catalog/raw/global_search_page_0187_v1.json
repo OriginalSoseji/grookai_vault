@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 187,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7255,
+    "cardEnd": 7293,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41539",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041539_P_PIKUSHI.jpg",
+            "cardNameAltText": "ピクシー",
+            "cardNameViewText": "ピクシー"
+        },
+        {
+            "cardID": "41605",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041605_P_PIKUSHI.jpg",
+            "cardNameAltText": "ピクシー",
+            "cardNameViewText": "ピクシー"
+        },
+        {
+            "cardID": "41540",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041540_P_GOSU.jpg",
+            "cardNameAltText": "ゴース",
+            "cardNameViewText": "ゴース"
+        },
+        {
+            "cardID": "41606",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041606_P_GOSU.jpg",
+            "cardNameAltText": "ゴース",
+            "cardNameViewText": "ゴース"
+        },
+        {
+            "cardID": "41541",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041541_P_GOSUTO.jpg",
+            "cardNameAltText": "ゴースト",
+            "cardNameViewText": "ゴースト"
+        },
+        {
+            "cardID": "41607",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041607_P_GOSUTO.jpg",
+            "cardNameAltText": "ゴースト",
+            "cardNameViewText": "ゴースト"
+        },
+        {
+            "cardID": "41542",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041542_P_GENGA.jpg",
+            "cardNameAltText": "ゲンガー",
+            "cardNameViewText": "ゲンガー"
+        },
+        {
+            "cardID": "41543",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041543_P_BARIYADO.jpg",
+            "cardNameAltText": "バリヤード",
+            "cardNameViewText": "バリヤード"
+        },
+        {
+            "cardID": "41608",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041608_P_BARIYADO.jpg",
+            "cardNameAltText": "バリヤード",
+            "cardNameViewText": "バリヤード"
+        },
+        {
+            "cardID": "41544",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041544_P_MUUMA.jpg",
+            "cardNameAltText": "ムウマ",
+            "cardNameViewText": "ムウマ"
+        },
+        {
+            "cardID": "41609",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041609_P_MUUMA.jpg",
+            "cardNameAltText": "ムウマ",
+            "cardNameViewText": "ムウマ"
+        },
+        {
+            "cardID": "41545",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041545_P_MUUMAJI.jpg",
+            "cardNameAltText": "ムウマージ",
+            "cardNameViewText": "ムウマージ"
+        },
+        {
+            "cardID": "41610",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041610_P_MUUMAJI.jpg",
+            "cardNameAltText": "ムウマージ",
+            "cardNameViewText": "ムウマージ"
+        },
+        {
+            "cardID": "41546",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041546_P_KAGAYAKUSANAITO.jpg",
+            "cardNameAltText": "かがやくサーナイト",
+            "cardNameViewText": "かがやくサーナイト"
+        },
+        {
+            "cardID": "41547",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041547_P_CHIRIN.jpg",
+            "cardNameAltText": "チリーン",
+            "cardNameViewText": "チリーン"
+        },
+        {
+            "cardID": "41611",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041611_P_CHIRIN.jpg",
+            "cardNameAltText": "チリーン",
+            "cardNameViewText": "チリーン"
+        },
+        {
+            "cardID": "41548",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041548_P_HISUIZOROA.jpg",
+            "cardNameAltText": "ヒスイ ゾロア",
+            "cardNameViewText": "ヒスイ ゾロア"
+        },
+        {
+            "cardID": "41612",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041612_P_HISUIZOROA.jpg",
+            "cardNameAltText": "ヒスイ ゾロア",
+            "cardNameViewText": "ヒスイ ゾロア"
+        },
+        {
+            "cardID": "41549",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041549_P_HISUIZOROAKU.jpg",
+            "cardNameAltText": "ヒスイ ゾロアーク",
+            "cardNameViewText": "ヒスイ ゾロアーク"
+        },
+        {
+            "cardID": "41550",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041550_P_RABUTOROSUV.jpg",
+            "cardNameAltText": "ラブトロスV",
+            "cardNameViewText": "ラブトロスV"
+        },
+        {
+            "cardID": "41551",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041551_P_HISUIGADEI.jpg",
+            "cardNameAltText": "ヒスイ ガーディ",
+            "cardNameViewText": "ヒスイ ガーディ"
+        },
+        {
+            "cardID": "41613",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041613_P_HISUIGADEI.jpg",
+            "cardNameAltText": "ヒスイ ガーディ",
+            "cardNameViewText": "ヒスイ ガーディ"
+        },
+        {
+            "cardID": "41552",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041552_P_HISUIUINDEI.jpg",
+            "cardNameAltText": "ヒスイ ウインディ",
+            "cardNameViewText": "ヒスイ ウインディ"
+        },
+        {
+            "cardID": "41553",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041553_P_WANRIKI.jpg",
+            "cardNameAltText": "ワンリキー",
+            "cardNameViewText": "ワンリキー"
+        },
+        {
+            "cardID": "41614",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041614_P_WANRIKI.jpg",
+            "cardNameAltText": "ワンリキー",
+            "cardNameViewText": "ワンリキー"
+        },
+        {
+            "cardID": "41554",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041554_P_GORIKI.jpg",
+            "cardNameAltText": "ゴーリキー",
+            "cardNameViewText": "ゴーリキー"
+        },
+        {
+            "cardID": "41615",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041615_P_GORIKI.jpg",
+            "cardNameAltText": "ゴーリキー",
+            "cardNameViewText": "ゴーリキー"
+        },
+        {
+            "cardID": "41555",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041555_P_KAIRIKI.jpg",
+            "cardNameAltText": "カイリキー",
+            "cardNameViewText": "カイリキー"
+        },
+        {
+            "cardID": "41556",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041556_P_USOKKI.jpg",
+            "cardNameAltText": "ウソッキー",
+            "cardNameViewText": "ウソッキー"
+        },
+        {
+            "cardID": "41616",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041616_P_USOKKI.jpg",
+            "cardNameAltText": "ウソッキー",
+            "cardNameViewText": "ウソッキー"
+        },
+        {
+            "cardID": "41557",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041557_P_GURAIGA.jpg",
+            "cardNameAltText": "グライガー",
+            "cardNameViewText": "グライガー"
+        },
+        {
+            "cardID": "41617",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041617_P_GURAIGA.jpg",
+            "cardNameAltText": "グライガー",
+            "cardNameViewText": "グライガー"
+        },
+        {
+            "cardID": "41558",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041558_P_GURAION.jpg",
+            "cardNameAltText": "グライオン",
+            "cardNameViewText": "グライオン"
+        },
+        {
+            "cardID": "41618",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041618_P_GURAION.jpg",
+            "cardNameAltText": "グライオン",
+            "cardNameViewText": "グライオン"
+        },
+        {
+            "cardID": "41559",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041559_P_ERUREIDOV.jpg",
+            "cardNameAltText": "エルレイドV",
+            "cardNameViewText": "エルレイドV"
+        },
+        {
+            "cardID": "41560",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041560_P_ZUBATTO.jpg",
+            "cardNameAltText": "ズバット",
+            "cardNameViewText": "ズバット"
+        },
+        {
+            "cardID": "41619",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041619_P_ZUBATTO.jpg",
+            "cardNameAltText": "ズバット",
+            "cardNameViewText": "ズバット"
+        },
+        {
+            "cardID": "41561",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041561_P_GORUBATTO.jpg",
+            "cardNameAltText": "ゴルバット",
+            "cardNameViewText": "ゴルバット"
+        },
+        {
+            "cardID": "41620",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041620_P_GORUBATTO.jpg",
+            "cardNameAltText": "ゴルバット",
+            "cardNameViewText": "ゴルバット"
+        }
+    ]
+}

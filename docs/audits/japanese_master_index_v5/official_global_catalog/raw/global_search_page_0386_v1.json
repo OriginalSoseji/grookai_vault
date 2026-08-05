@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 386,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 15016,
+    "cardEnd": 15054,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "33190",
+            "cardThumbFile": "/assets/images/card_images/large/SMB/033190_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "33193",
+            "cardThumbFile": "/assets/images/card_images/large/SMB/033193_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "33197",
+            "cardThumbFile": "/assets/images/card_images/large/SMB/033197_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "33194",
+            "cardThumbFile": "/assets/images/card_images/large/SMB/033194_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "33192",
+            "cardThumbFile": "/assets/images/card_images/large/SMB/033192_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "33001",
+            "cardThumbFile": "/assets/images/card_images/large/SM0/033001_P_MOKURO.jpg",
+            "cardNameAltText": "モクロー",
+            "cardNameViewText": "モクロー"
+        },
+        {
+            "cardID": "33002",
+            "cardThumbFile": "/assets/images/card_images/large/SM0/033002_P_NYABI.jpg",
+            "cardNameAltText": "ニャビー",
+            "cardNameViewText": "ニャビー"
+        },
+        {
+            "cardID": "33003",
+            "cardThumbFile": "/assets/images/card_images/large/SM0/033003_P_ASHIMARI.jpg",
+            "cardNameAltText": "アシマリ",
+            "cardNameViewText": "アシマリ"
+        },
+        {
+            "cardID": "33004",
+            "cardThumbFile": "/assets/images/card_images/large/SM0/033004_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "32207",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032207_P_FUSHIGIBANAEX.jpg",
+            "cardNameAltText": "フシギバナEX",
+            "cardNameViewText": "フシギバナEX"
+        },
+        {
+            "cardID": "32208",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032208_P_MFUSHIGIBANAEX.jpg",
+            "cardNameAltText": "メガフシギバナEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>フシギバナEX"
+        },
+        {
+            "cardID": "32209",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032209_P_KYATAPI.jpg",
+            "cardNameAltText": "キャタピー",
+            "cardNameViewText": "キャタピー"
+        },
+        {
+            "cardID": "32210",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032210_P_TORANSERU.jpg",
+            "cardNameAltText": "トランセル",
+            "cardNameViewText": "トランセル"
+        },
+        {
+            "cardID": "32211",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032211_P_BIDORU.jpg",
+            "cardNameAltText": "ビードル",
+            "cardNameViewText": "ビードル"
+        },
+        {
+            "cardID": "32212",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032212_P_KOKUN.jpg",
+            "cardNameAltText": "コクーン",
+            "cardNameViewText": "コクーン"
+        },
+        {
+            "cardID": "32213",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032213_P_SUPIA.jpg",
+            "cardNameAltText": "スピアー",
+            "cardNameViewText": "スピアー"
+        },
+        {
+            "cardID": "32214",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032214_P_MONJARA.jpg",
+            "cardNameAltText": "モンジャラ",
+            "cardNameViewText": "モンジャラ"
+        },
+        {
+            "cardID": "32215",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032215_P_HITOKAGE.jpg",
+            "cardNameAltText": "ヒトカゲ",
+            "cardNameViewText": "ヒトカゲ"
+        },
+        {
+            "cardID": "32216",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032216_P_RIZADO.jpg",
+            "cardNameAltText": "リザード",
+            "cardNameViewText": "リザード"
+        },
+        {
+            "cardID": "32217",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032217_P_RIZADON.jpg",
+            "cardNameAltText": "リザードン",
+            "cardNameViewText": "リザードン"
+        },
+        {
+            "cardID": "32218",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032218_P_RIZADONEX.jpg",
+            "cardNameAltText": "リザードンEX",
+            "cardNameViewText": "リザードンEX"
+        },
+        {
+            "cardID": "32219",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032219_P_MRIZADONEX.jpg",
+            "cardNameAltText": "メガリザードンEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>リザードンEX"
+        },
+        {
+            "cardID": "32220",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032220_P_ROKON.jpg",
+            "cardNameAltText": "ロコン",
+            "cardNameViewText": "ロコン"
+        },
+        {
+            "cardID": "32221",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032221_P_KYUUKON.jpg",
+            "cardNameAltText": "キュウコン",
+            "cardNameViewText": "キュウコン"
+        },
+        {
+            "cardID": "32222",
+            "cardThumbFile": "/assets/images/card_images/legend/CP6/032222_P_KYUUKONBREAK.jpg",
+            "cardNameAltText": "キュウコンBREAK",
+            "cardNameViewText": "キュウコンBREAK"
+        },
+        {
+            "cardID": "32223",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032223_P_GADEI.jpg",
+            "cardNameAltText": "ガーディ",
+            "cardNameViewText": "ガーディ"
+        },
+        {
+            "cardID": "32224",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032224_P_UINDEI.jpg",
+            "cardNameAltText": "ウインディ",
+            "cardNameViewText": "ウインディ"
+        },
+        {
+            "cardID": "32225",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032225_P_PONITA.jpg",
+            "cardNameAltText": "ポニータ",
+            "cardNameViewText": "ポニータ"
+        },
+        {
+            "cardID": "32226",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032226_P_BUBA.jpg",
+            "cardNameAltText": "ブーバー",
+            "cardNameViewText": "ブーバー"
+        },
+        {
+            "cardID": "32227",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032227_P_KAMEKKUSUEX.jpg",
+            "cardNameAltText": "カメックスEX",
+            "cardNameViewText": "カメックスEX"
+        },
+        {
+            "cardID": "32228",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032228_P_MKAMEKKUSUEX.jpg",
+            "cardNameAltText": "メガカメックスEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>カメックスEX"
+        },
+        {
+            "cardID": "32229",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032229_P_NYOROMO.jpg",
+            "cardNameAltText": "ニョロモ",
+            "cardNameViewText": "ニョロモ"
+        },
+        {
+            "cardID": "32230",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032230_P_NYOROZO.jpg",
+            "cardNameAltText": "ニョロゾ",
+            "cardNameViewText": "ニョロゾ"
+        },
+        {
+            "cardID": "32231",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032231_P_NYOROBON.jpg",
+            "cardNameAltText": "ニョロボン",
+            "cardNameViewText": "ニョロボン"
+        },
+        {
+            "cardID": "32232",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032232_P_PAUWAU.jpg",
+            "cardNameAltText": "パウワウ",
+            "cardNameViewText": "パウワウ"
+        },
+        {
+            "cardID": "32233",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032233_P_JUGON.jpg",
+            "cardNameAltText": "ジュゴン",
+            "cardNameViewText": "ジュゴン"
+        },
+        {
+            "cardID": "32234",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032234_P_HITODEMAN.jpg",
+            "cardNameAltText": "ヒトデマン",
+            "cardNameViewText": "ヒトデマン"
+        },
+        {
+            "cardID": "32235",
+            "cardThumbFile": "/assets/images/card_images/large/CP6/032235_P_SUTAMI.jpg",
+            "cardNameAltText": "スターミー",
+            "cardNameViewText": "スターミー"
+        },
+        {
+            "cardID": "32236",
+            "cardThumbFile": "/assets/images/card_images/legend/CP6/032236_P_SUTAMIBREAK.jpg",
+            "cardNameAltText": "スターミーBREAK",
+            "cardNameViewText": "スターミーBREAK"
+        }
+    ]
+}

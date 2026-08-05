@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 111,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 4291,
+    "cardEnd": 4329,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "45344",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045344_P_KAGAYAKUGEKKOUGA.jpg",
+            "cardNameAltText": "かがやくゲッコウガ",
+            "cardNameViewText": "かがやくゲッコウガ"
+        },
+        {
+            "cardID": "45345",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045345_P_WANPACHI.jpg",
+            "cardNameAltText": "ワンパチ",
+            "cardNameViewText": "ワンパチ"
+        },
+        {
+            "cardID": "45346",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045346_P_PARUSUWAN.jpg",
+            "cardNameAltText": "パルスワン",
+            "cardNameViewText": "パルスワン"
+        },
+        {
+            "cardID": "45347",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045347_P_TETSUNOKAINA.jpg",
+            "cardNameAltText": "テツノカイナ",
+            "cardNameViewText": "テツノカイナ"
+        },
+        {
+            "cardID": "45348",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045348_P_RATEIASU.jpg",
+            "cardNameAltText": "ラティアス",
+            "cardNameViewText": "ラティアス"
+        },
+        {
+            "cardID": "45349",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045349_P_RIGURE.jpg",
+            "cardNameAltText": "リグレー",
+            "cardNameViewText": "リグレー"
+        },
+        {
+            "cardID": "45350",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045350_P_OBEMU.jpg",
+            "cardNameAltText": "オーベム",
+            "cardNameViewText": "オーベム"
+        },
+        {
+            "cardID": "45351",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045351_P_TETSUNOBUJIN.jpg",
+            "cardNameAltText": "テツノブジン",
+            "cardNameViewText": "テツノブジン"
+        },
+        {
+            "cardID": "45352",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045352_P_MIRAIDONEX.jpg",
+            "cardNameAltText": "ミライドンex",
+            "cardNameViewText": "ミライドンex"
+        },
+        {
+            "cardID": "45353",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045353_P_POPPO.jpg",
+            "cardNameAltText": "ポッポ",
+            "cardNameViewText": "ポッポ"
+        },
+        {
+            "cardID": "45354",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045354_P_PIJIXYON.jpg",
+            "cardNameAltText": "ピジョン",
+            "cardNameViewText": "ピジョン"
+        },
+        {
+            "cardID": "45355",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045355_P_PIJIXYOTTOEX.jpg",
+            "cardNameAltText": "ピジョットex",
+            "cardNameViewText": "ピジョットex"
+        },
+        {
+            "cardID": "45356",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045356_P_BIPPA.jpg",
+            "cardNameAltText": "ビッパ",
+            "cardNameViewText": "ビッパ"
+        },
+        {
+            "cardID": "45357",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045357_P_BIDARU.jpg",
+            "cardNameAltText": "ビーダル",
+            "cardNameViewText": "ビーダル"
+        },
+        {
+            "cardID": "45358",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045358_P_TETSUNOKOUBE.jpg",
+            "cardNameAltText": "テツノコウベ",
+            "cardNameViewText": "テツノコウベ"
+        },
+        {
+            "cardID": "45359",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045359_T_IREKAEKATO.jpg",
+            "cardNameAltText": "いれかえカート",
+            "cardNameViewText": "いれかえカート"
+        },
+        {
+            "cardID": "45360",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045360_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "45361",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045361_T_EREKIJIENERETA.jpg",
+            "cardNameAltText": "エレキジェネレーター",
+            "cardNameViewText": "エレキジェネレーター"
+        },
+        {
+            "cardID": "45362",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045362_T_KAUNTAKIXYATCHIXYA.jpg",
+            "cardNameAltText": "カウンターキャッチャー",
+            "cardNameViewText": "カウンターキャッチャー"
+        },
+        {
+            "cardID": "45363",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045363_T_GATTSUNOTSURUHASHI.jpg",
+            "cardNameAltText": "ガッツのつるはし",
+            "cardNameViewText": "ガッツのつるはし"
+        },
+        {
+            "cardID": "45364",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045364_T_SUGOITSURIZAO.jpg",
+            "cardNameAltText": "すごいつりざお",
+            "cardNameViewText": "すごいつりざお"
+        },
+        {
+            "cardID": "45365",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045365_T_DAKUPATCHI.jpg",
+            "cardNameAltText": "ダークパッチ",
+            "cardNameViewText": "ダークパッチ"
+        },
+        {
+            "cardID": "45366",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045366_T_TEKUNOREDA.jpg",
+            "cardNameAltText": "テクノレーダー",
+            "cardNameViewText": "テクノレーダー"
+        },
+        {
+            "cardID": "45367",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045367_T_TOREKKINGUSHIXYUZU.jpg",
+            "cardNameAltText": "トレッキングシューズ",
+            "cardNameViewText": "トレッキングシューズ"
+        },
+        {
+            "cardID": "45368",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045368_T_NESUTOBORU.jpg",
+            "cardNameAltText": "ネストボール",
+            "cardNameViewText": "ネストボール"
+        },
+        {
+            "cardID": "45369",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045369_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "45370",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045370_T_HISUINOHEBIBORU.jpg",
+            "cardNameAltText": "ヒスイのヘビーボール",
+            "cardNameViewText": "ヒスイのヘビーボール"
+        },
+        {
+            "cardID": "45371",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045371_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "45372",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045372_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "45373",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045373_T_MASUTABORU.jpg",
+            "cardNameAltText": "マスターボール",
+            "cardNameViewText": "マスターボール"
+        },
+        {
+            "cardID": "45374",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045374_T_ROSUTOSUIPA.jpg",
+            "cardNameAltText": "ロストスイーパー",
+            "cardNameViewText": "ロストスイーパー"
+        },
+        {
+            "cardID": "45375",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045375_T_GACHIGACHIBANDO.jpg",
+            "cardNameAltText": "ガチガチバンド",
+            "cardNameViewText": "ガチガチバンド"
+        },
+        {
+            "cardID": "45376",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045376_T_BUSUTOENAJIMIRAI.jpg",
+            "cardNameAltText": "ブーストエナジー 未来",
+            "cardNameViewText": "ブーストエナジー 未来"
+        },
+        {
+            "cardID": "45377",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045377_T_MORINOFUUINSEKI.jpg",
+            "cardNameAltText": "森の封印石",
+            "cardNameViewText": "森の封印石"
+        },
+        {
+            "cardID": "45378",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045378_T_YUUKINOOMAMORI.jpg",
+            "cardNameAltText": "勇気のおまもり",
+            "cardNameViewText": "勇気のおまもり"
+        },
+        {
+            "cardID": "45379",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045379_T_KAI.jpg",
+            "cardNameAltText": "カイ",
+            "cardNameViewText": "カイ"
+        },
+        {
+            "cardID": "45380",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045380_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "45381",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045381_T_NATANENOKAKKI.jpg",
+            "cardNameAltText": "ナタネの活気",
+            "cardNameViewText": "ナタネの活気"
+        },
+        {
+            "cardID": "45382",
+            "cardThumbFile": "/assets/images/card_images/large/SVHM/045382_T_NANJIXYAMO.jpg",
+            "cardNameAltText": "ナンジャモ",
+            "cardNameViewText": "ナンジャモ"
+        }
+    ]
+}

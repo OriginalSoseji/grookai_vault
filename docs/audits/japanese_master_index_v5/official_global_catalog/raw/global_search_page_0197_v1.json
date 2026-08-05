@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 197,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7645,
+    "cardEnd": 7683,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41497",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041497_P_SHIXYANDERA.jpg",
+            "cardNameAltText": "シャンデラ",
+            "cardNameViewText": "シャンデラ"
+        },
+        {
+            "cardID": "41498",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041498_P_AYASHISHI.jpg",
+            "cardNameAltText": "アヤシシ",
+            "cardNameViewText": "アヤシシ"
+        },
+        {
+            "cardID": "41499",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041499_P_BASAGIRI.jpg",
+            "cardNameAltText": "バサギリ",
+            "cardNameViewText": "バサギリ"
+        },
+        {
+            "cardID": "41500",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041500_P_GURAENA.jpg",
+            "cardNameAltText": "グラエナ",
+            "cardNameViewText": "グラエナ"
+        },
+        {
+            "cardID": "41501",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041501_P_HOHO.jpg",
+            "cardNameAltText": "ホーホー",
+            "cardNameViewText": "ホーホー"
+        },
+        {
+            "cardID": "41502",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041502_P_BIRIJIONV.jpg",
+            "cardNameAltText": "ビリジオンV",
+            "cardNameViewText": "ビリジオンV"
+        },
+        {
+            "cardID": "41503",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041503_P_SUTAMIV.jpg",
+            "cardNameAltText": "スターミーV",
+            "cardNameViewText": "スターミーV"
+        },
+        {
+            "cardID": "41504",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041504_P_HISUIBAKUFUNV.jpg",
+            "cardNameAltText": "ヒスイ バクフーンV",
+            "cardNameViewText": "ヒスイ バクフーンV"
+        },
+        {
+            "cardID": "41505",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041505_P_HISUIJIXYUNAIPAV.jpg",
+            "cardNameAltText": "ヒスイ ジュナイパーV",
+            "cardNameViewText": "ヒスイ ジュナイパーV"
+        },
+        {
+            "cardID": "41506",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041506_P_HISUIDAIKENKIV.jpg",
+            "cardNameAltText": "ヒスイ ダイケンキV",
+            "cardNameViewText": "ヒスイ ダイケンキV"
+        },
+        {
+            "cardID": "41507",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041507_P_GABURIASUV.jpg",
+            "cardNameAltText": "ガブリアスV",
+            "cardNameViewText": "ガブリアスV"
+        },
+        {
+            "cardID": "41511",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041511_P_SUTAMIV.jpg",
+            "cardNameAltText": "スターミーV",
+            "cardNameViewText": "スターミーV"
+        },
+        {
+            "cardID": "41512",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041512_P_GABURIASUV.jpg",
+            "cardNameAltText": "ガブリアスV",
+            "cardNameViewText": "ガブリアスV"
+        },
+        {
+            "cardID": "44863",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044863_P_HISUIBAKUFUNVSTAR.jpg",
+            "cardNameAltText": "ヒスイ バクフーンVSTAR",
+            "cardNameViewText": "ヒスイ バクフーンVSTAR"
+        },
+        {
+            "cardID": "44864",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044864_P_HISUIJIXYUNAIPAVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ジュナイパーVSTAR",
+            "cardNameViewText": "ヒスイ ジュナイパーVSTAR"
+        },
+        {
+            "cardID": "44865",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044865_P_HISUIDAIKENKIVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ダイケンキVSTAR",
+            "cardNameViewText": "ヒスイ ダイケンキVSTAR"
+        },
+        {
+            "cardID": "44869",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044869_P_HISUIDAIKENKIVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ダイケンキVSTAR",
+            "cardNameViewText": "ヒスイ ダイケンキVSTAR"
+        },
+        {
+            "cardID": "41247",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041247_T_ATODASHITABO.jpg",
+            "cardNameAltText": "あとだしターボ",
+            "cardNameViewText": "あとだしターボ"
+        },
+        {
+            "cardID": "41292",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041292_T_ATODASHITABO_m.jpg",
+            "cardNameAltText": "あとだしターボ",
+            "cardNameViewText": "あとだしターボ"
+        },
+        {
+            "cardID": "41248",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041248_T_AMAIMITSU.jpg",
+            "cardNameAltText": "あまいミツ",
+            "cardNameViewText": "あまいミツ"
+        },
+        {
+            "cardID": "41293",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041293_T_AMAIMITSU_m.jpg",
+            "cardNameAltText": "あまいミツ",
+            "cardNameViewText": "あまいミツ"
+        },
+        {
+            "cardID": "41249",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041249_T_KIXYANSERUKORON.jpg",
+            "cardNameAltText": "キャンセルコロン",
+            "cardNameViewText": "キャンセルコロン"
+        },
+        {
+            "cardID": "41294",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041294_T_KIXYANSERUKORON_m.jpg",
+            "cardNameAltText": "キャンセルコロン",
+            "cardNameViewText": "キャンセルコロン"
+        },
+        {
+            "cardID": "41250",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041250_T_SHIMABOSHI.jpg",
+            "cardNameAltText": "シマボシ",
+            "cardNameViewText": "シマボシ"
+        },
+        {
+            "cardID": "41295",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041295_T_SHIMABOSHI_m.jpg",
+            "cardNameAltText": "シマボシ",
+            "cardNameViewText": "シマボシ"
+        },
+        {
+            "cardID": "41251",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041251_T_TSUTSUJI.jpg",
+            "cardNameAltText": "ツツジ",
+            "cardNameViewText": "ツツジ"
+        },
+        {
+            "cardID": "41296",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041296_T_TSUTSUJI_m.jpg",
+            "cardNameAltText": "ツツジ",
+            "cardNameViewText": "ツツジ"
+        },
+        {
+            "cardID": "41252",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041252_T_DENBOKU.jpg",
+            "cardNameAltText": "デンボク",
+            "cardNameViewText": "デンボク"
+        },
+        {
+            "cardID": "41297",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041297_T_DENBOKU_m.jpg",
+            "cardNameAltText": "デンボク",
+            "cardNameViewText": "デンボク"
+        },
+        {
+            "cardID": "41253",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041253_T_KOTOBUKIMURA.jpg",
+            "cardNameAltText": "コトブキムラ",
+            "cardNameViewText": "コトブキムラ"
+        },
+        {
+            "cardID": "41298",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041298_T_KOTOBUKIMURA_m.jpg",
+            "cardNameAltText": "コトブキムラ",
+            "cardNameViewText": "コトブキムラ"
+        },
+        {
+            "cardID": "41508",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041508_T_SHIMABOSHI.jpg",
+            "cardNameAltText": "シマボシ",
+            "cardNameViewText": "シマボシ"
+        },
+        {
+            "cardID": "41509",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041509_T_TSUTSUJI.jpg",
+            "cardNameAltText": "ツツジ",
+            "cardNameViewText": "ツツジ"
+        },
+        {
+            "cardID": "41510",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/041510_T_DENBOKU.jpg",
+            "cardNameAltText": "デンボク",
+            "cardNameViewText": "デンボク"
+        },
+        {
+            "cardID": "44866",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044866_T_SHIMABOSHI.jpg",
+            "cardNameAltText": "シマボシ",
+            "cardNameViewText": "シマボシ"
+        },
+        {
+            "cardID": "44867",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044867_T_TSUTSUJI.jpg",
+            "cardNameAltText": "ツツジ",
+            "cardNameViewText": "ツツジ"
+        },
+        {
+            "cardID": "44868",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044868_T_DENBOKU.jpg",
+            "cardNameAltText": "デンボク",
+            "cardNameViewText": "デンボク"
+        },
+        {
+            "cardID": "44870",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044870_T_KODAWARIBERUTO.jpg",
+            "cardNameAltText": "こだわりベルト",
+            "cardNameViewText": "こだわりベルト"
+        },
+        {
+            "cardID": "44871",
+            "cardThumbFile": "/assets/images/card_images/large/S9a/044871_T_KOTOBUKIMURA.jpg",
+            "cardNameAltText": "コトブキムラ",
+            "cardNameViewText": "コトブキムラ"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 175,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 6787,
+    "cardEnd": 6825,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42182",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042182_T_NAZONOKASEKI.jpg",
+            "cardNameAltText": "なぞの化石",
+            "cardNameViewText": "なぞの化石"
+        },
+        {
+            "cardID": "42183",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042183_T_DAICHINOFUUINSEKI.jpg",
+            "cardNameAltText": "大地の封印石",
+            "cardNameViewText": "大地の封印石"
+        },
+        {
+            "cardID": "42184",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042184_T_MORINOFUUINSEKI.jpg",
+            "cardNameAltText": "森の封印石",
+            "cardNameViewText": "森の封印石"
+        },
+        {
+            "cardID": "42185",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042185_T_SAGIXYOUIN.jpg",
+            "cardNameAltText": "さぎょういん",
+            "cardNameViewText": "さぎょういん"
+        },
+        {
+            "cardID": "42186",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042186_T_JINDAI.jpg",
+            "cardNameAltText": "ジンダイ",
+            "cardNameViewText": "ジンダイ"
+        },
+        {
+            "cardID": "42187",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042187_T_SUZUNA.jpg",
+            "cardNameAltText": "スズナ",
+            "cardNameViewText": "スズナ"
+        },
+        {
+            "cardID": "42188",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042188_T_WATARU.jpg",
+            "cardNameAltText": "ワタル",
+            "cardNameViewText": "ワタル"
+        },
+        {
+            "cardID": "42189",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042189_T_MIKAINOSAIDAN.jpg",
+            "cardNameAltText": "未開の祭壇",
+            "cardNameViewText": "未開の祭壇"
+        },
+        {
+            "cardID": "42543",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042543_T_SAGIXYOUIN.jpg",
+            "cardNameAltText": "さぎょういん",
+            "cardNameViewText": "さぎょういん"
+        },
+        {
+            "cardID": "42544",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042544_T_JINDAI.jpg",
+            "cardNameAltText": "ジンダイ",
+            "cardNameViewText": "ジンダイ"
+        },
+        {
+            "cardID": "42545",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042545_T_SUZUNA.jpg",
+            "cardNameAltText": "スズナ",
+            "cardNameViewText": "スズナ"
+        },
+        {
+            "cardID": "42546",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042546_T_WATARU.jpg",
+            "cardNameAltText": "ワタル",
+            "cardNameViewText": "ワタル"
+        },
+        {
+            "cardID": "44934",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044934_T_SAGIXYOUIN.jpg",
+            "cardNameAltText": "さぎょういん",
+            "cardNameViewText": "さぎょういん"
+        },
+        {
+            "cardID": "44935",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044935_T_JINDAI.jpg",
+            "cardNameAltText": "ジンダイ",
+            "cardNameViewText": "ジンダイ"
+        },
+        {
+            "cardID": "44936",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044936_T_SUZUNA.jpg",
+            "cardNameAltText": "スズナ",
+            "cardNameViewText": "スズナ"
+        },
+        {
+            "cardID": "44937",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044937_T_WATARU.jpg",
+            "cardNameAltText": "ワタル",
+            "cardNameViewText": "ワタル"
+        },
+        {
+            "cardID": "44939",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044939_T_HAGAKUREPONCHIXYO.jpg",
+            "cardNameAltText": "葉隠れポンチョ",
+            "cardNameViewText": "葉隠れポンチョ"
+        },
+        {
+            "cardID": "44940",
+            "cardThumbFile": "/assets/images/card_images/large/S12/044940_T_OOGUCHINONUMA.jpg",
+            "cardNameAltText": "大口の沼",
+            "cardNameViewText": "大口の沼"
+        },
+        {
+            "cardID": "42190",
+            "cardThumbFile": "/assets/images/card_images/large/S12/042190_E_RIGEINENERUGI.jpg",
+            "cardNameAltText": "リゲインエネルギー",
+            "cardNameViewText": "リゲインエネルギー"
+        },
+        {
+            "cardID": "41962",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041962_P_SUTORAIKU.jpg",
+            "cardNameAltText": "ストライク",
+            "cardNameViewText": "ストライク"
+        },
+        {
+            "cardID": "42030",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042030_P_SUTORAIKU.jpg",
+            "cardNameAltText": "ストライク",
+            "cardNameViewText": "ストライク"
+        },
+        {
+            "cardID": "41963",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041963_P_YANYANMA.jpg",
+            "cardNameAltText": "ヤンヤンマ",
+            "cardNameViewText": "ヤンヤンマ"
+        },
+        {
+            "cardID": "42031",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042031_P_YANYANMA.jpg",
+            "cardNameAltText": "ヤンヤンマ",
+            "cardNameViewText": "ヤンヤンマ"
+        },
+        {
+            "cardID": "41964",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041964_P_MYANMA.jpg",
+            "cardNameAltText": "メガヤンマ",
+            "cardNameViewText": "メガヤンマ"
+        },
+        {
+            "cardID": "42032",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042032_P_MYANMA.jpg",
+            "cardNameAltText": "メガヤンマ",
+            "cardNameViewText": "メガヤンマ"
+        },
+        {
+            "cardID": "41965",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041965_P_MASUKIPPA.jpg",
+            "cardNameAltText": "マスキッパ",
+            "cardNameViewText": "マスキッパ"
+        },
+        {
+            "cardID": "42033",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042033_P_MASUKIPPA.jpg",
+            "cardNameAltText": "マスキッパ",
+            "cardNameViewText": "マスキッパ"
+        },
+        {
+            "cardID": "41966",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041966_P_JIXYARODAV.jpg",
+            "cardNameAltText": "ジャローダV",
+            "cardNameViewText": "ジャローダV"
+        },
+        {
+            "cardID": "41967",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041967_P_JIXYARODAVSTAR.jpg",
+            "cardNameAltText": "ジャローダVSTAR",
+            "cardNameViewText": "ジャローダVSTAR"
+        },
+        {
+            "cardID": "41968",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041968_P_CHIXYURINE.jpg",
+            "cardNameAltText": "チュリネ",
+            "cardNameViewText": "チュリネ"
+        },
+        {
+            "cardID": "42034",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042034_P_CHIXYURINE.jpg",
+            "cardNameAltText": "チュリネ",
+            "cardNameViewText": "チュリネ"
+        },
+        {
+            "cardID": "41969",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041969_P_HISUIDOREDEIA.jpg",
+            "cardNameAltText": "ヒスイ ドレディア",
+            "cardNameViewText": "ヒスイ ドレディア"
+        },
+        {
+            "cardID": "42035",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042035_P_HISUIDOREDEIA.jpg",
+            "cardNameAltText": "ヒスイ ドレディア",
+            "cardNameViewText": "ヒスイ ドレディア"
+        },
+        {
+            "cardID": "41970",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041970_P_KAGAYAKUAMAJIXYO.jpg",
+            "cardNameAltText": "かがやくアマージョ",
+            "cardNameViewText": "かがやくアマージョ"
+        },
+        {
+            "cardID": "41971",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041971_P_ZARUDO.jpg",
+            "cardNameAltText": "ザルード",
+            "cardNameViewText": "ザルード"
+        },
+        {
+            "cardID": "41972",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041972_P_BADOREKKUSU.jpg",
+            "cardNameAltText": "バドレックス",
+            "cardNameViewText": "バドレックス"
+        },
+        {
+            "cardID": "41973",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041973_P_GADEI.jpg",
+            "cardNameAltText": "ガーディ",
+            "cardNameViewText": "ガーディ"
+        },
+        {
+            "cardID": "42036",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/042036_P_GADEI.jpg",
+            "cardNameAltText": "ガーディ",
+            "cardNameViewText": "ガーディ"
+        },
+        {
+            "cardID": "41974",
+            "cardThumbFile": "/assets/images/card_images/large/S11a/041974_P_UINDEI.jpg",
+            "cardNameAltText": "ウインディ",
+            "cardNameViewText": "ウインディ"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+  "as_of_date": "2026-07-27",
+  "candidate_link_counts": {
+    "ambiguous_registry_printed_name_match": 6760,
+    "registry_not_unique": 3053,
+    "registry_printed_name_not_found": 816,
+    "unique_registry_printed_name_match": 12536
+  },
+  "detail_disposition_counts": {
+    "detail_already_preserved": 9866,
+    "official_detail_fetch_required": 13299
+  },
+  "detail_fetch_queue_by_priority": {
+    "priority_1": 7101,
+    "priority_2": 3347,
+    "priority_3": 4,
+    "priority_4": 2847
+  },
+  "detail_fetch_queue_count": 13299,
+  "execution_boundary": {
+    "database_reads": false,
+    "database_writes": false,
+    "detail_page_requests": false,
+    "image_downloads": false,
+    "pricing_writes": false,
+    "production_writes": false,
+    "storage_writes": false
+  },
+  "generated_at": "2026-07-28T01:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V5-OFFICIAL-GLOBAL-CATALOG-RECONCILE-V1",
+  "official_global_card_count": 23165,
+  "prior_coverage_counts": {
+    "official_detail_not_preserved": 13299,
+    "v4_official_assertion_present": 9562,
+    "v5_official_product_assertion_present": 304
+  },
+  "registry_match_counts": {
+    "ambiguous_native_code_match": 122,
+    "native_code_unmapped": 2931,
+    "unique_native_code_match": 20112
+  },
+  "status": "official_global_catalog_reconciled",
+  "v4_preserved_official_card_id_count": 9562,
+  "v5_product_official_card_id_count": 419
+}

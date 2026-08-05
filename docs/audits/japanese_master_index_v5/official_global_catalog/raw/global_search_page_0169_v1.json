@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 169,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 6553,
+    "cardEnd": 6591,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "42489",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042489_T_KIRINOSUISHIXYOU.jpg",
+            "cardNameAltText": "霧の水晶",
+            "cardNameViewText": "霧の水晶"
+        },
+        {
+            "cardID": "42396",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042396_T_DAKUPATCHI.jpg",
+            "cardNameAltText": "ダークパッチ",
+            "cardNameViewText": "ダークパッチ"
+        },
+        {
+            "cardID": "42490",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042490_T_DAKUPATCHI.jpg",
+            "cardNameAltText": "ダークパッチ",
+            "cardNameViewText": "ダークパッチ"
+        },
+        {
+            "cardID": "42397",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042397_T_DAMEJIPONPU.jpg",
+            "cardNameAltText": "ダメージポンプ",
+            "cardNameViewText": "ダメージポンプ"
+        },
+        {
+            "cardID": "42491",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042491_T_DAMEJIPONPU.jpg",
+            "cardNameAltText": "ダメージポンプ",
+            "cardNameViewText": "ダメージポンプ"
+        },
+        {
+            "cardID": "42398",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042398_T_TOREKKINGUSHIXYUZU.jpg",
+            "cardNameAltText": "トレッキングシューズ",
+            "cardNameViewText": "トレッキングシューズ"
+        },
+        {
+            "cardID": "42492",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042492_T_TOREKKINGUSHIXYUZU.jpg",
+            "cardNameAltText": "トレッキングシューズ",
+            "cardNameViewText": "トレッキングシューズ"
+        },
+        {
+            "cardID": "42399",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042399_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "42493",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042493_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "42400",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042400_T_PAWATABURETTO.jpg",
+            "cardNameAltText": "パワータブレット",
+            "cardNameViewText": "パワータブレット"
+        },
+        {
+            "cardID": "42494",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042494_T_PAWATABURETTO.jpg",
+            "cardNameAltText": "パワータブレット",
+            "cardNameViewText": "パワータブレット"
+        },
+        {
+            "cardID": "42401",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042401_T_HISUINOHEBIBORU.jpg",
+            "cardNameAltText": "ヒスイのヘビーボール",
+            "cardNameViewText": "ヒスイのヘビーボール"
+        },
+        {
+            "cardID": "42495",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042495_T_HISUINOHEBIBORU.jpg",
+            "cardNameAltText": "ヒスイのヘビーボール",
+            "cardNameViewText": "ヒスイのヘビーボール"
+        },
+        {
+            "cardID": "42402",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042402_T_MIRAJIXYUGETO.jpg",
+            "cardNameAltText": "ミラージュゲート",
+            "cardNameViewText": "ミラージュゲート"
+        },
+        {
+            "cardID": "42496",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042496_T_MIRAJIXYUGETO.jpg",
+            "cardNameAltText": "ミラージュゲート",
+            "cardNameViewText": "ミラージュゲート"
+        },
+        {
+            "cardID": "42403",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042403_T_RESUKIXYUKIXYARI.jpg",
+            "cardNameAltText": "レスキューキャリー",
+            "cardNameViewText": "レスキューキャリー"
+        },
+        {
+            "cardID": "42497",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042497_T_RESUKIXYUKIXYARI.jpg",
+            "cardNameAltText": "レスキューキャリー",
+            "cardNameViewText": "レスキューキャリー"
+        },
+        {
+            "cardID": "42404",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042404_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "42498",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042498_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "42405",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042405_T_ROSUTOSUIPA.jpg",
+            "cardNameAltText": "ロストスイーパー",
+            "cardNameViewText": "ロストスイーパー"
+        },
+        {
+            "cardID": "42499",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042499_T_ROSUTOSUIPA.jpg",
+            "cardNameAltText": "ロストスイーパー",
+            "cardNameViewText": "ロストスイーパー"
+        },
+        {
+            "cardID": "42406",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042406_T_KODAWARIBERUTO.jpg",
+            "cardNameAltText": "こだわりベルト",
+            "cardNameViewText": "こだわりベルト"
+        },
+        {
+            "cardID": "42500",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042500_T_KODAWARIBERUTO.jpg",
+            "cardNameAltText": "こだわりベルト",
+            "cardNameViewText": "こだわりベルト"
+        },
+        {
+            "cardID": "42407",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042407_T_SORANOFUUINSEKI.jpg",
+            "cardNameAltText": "空の封印石",
+            "cardNameViewText": "空の封印石"
+        },
+        {
+            "cardID": "42408",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042408_T_HAGAKUREPONCHIXYO.jpg",
+            "cardNameAltText": "葉隠れポンチョ",
+            "cardNameViewText": "葉隠れポンチョ"
+        },
+        {
+            "cardID": "42501",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042501_T_HAGAKUREPONCHIXYO.jpg",
+            "cardNameAltText": "葉隠れポンチョ",
+            "cardNameViewText": "葉隠れポンチョ"
+        },
+        {
+            "cardID": "42409",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042409_T_AKUROMANOJIKKEN.jpg",
+            "cardNameAltText": "アクロマの実験",
+            "cardNameViewText": "アクロマの実験"
+        },
+        {
+            "cardID": "42502",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042502_T_AKUROMANOJIKKEN.jpg",
+            "cardNameAltText": "アクロマの実験",
+            "cardNameViewText": "アクロマの実験"
+        },
+        {
+            "cardID": "42410",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042410_T_KAI.jpg",
+            "cardNameAltText": "カイ",
+            "cardNameViewText": "カイ"
+        },
+        {
+            "cardID": "42411",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042411_T_KAMITSURENOKIRAMEKI.jpg",
+            "cardNameAltText": "カミツレのきらめき",
+            "cardNameViewText": "カミツレのきらめき"
+        },
+        {
+            "cardID": "42503",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042503_T_KAMITSURENOKIRAMEKI.jpg",
+            "cardNameAltText": "カミツレのきらめき",
+            "cardNameViewText": "カミツレのきらめき"
+        },
+        {
+            "cardID": "42412",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042412_T_KIBANA.jpg",
+            "cardNameAltText": "キバナ",
+            "cardNameViewText": "キバナ"
+        },
+        {
+            "cardID": "42504",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042504_T_KIBANA.jpg",
+            "cardNameAltText": "キバナ",
+            "cardNameViewText": "キバナ"
+        },
+        {
+            "cardID": "42413",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042413_T_ZAKURO.jpg",
+            "cardNameAltText": "ザクロ",
+            "cardNameViewText": "ザクロ"
+        },
+        {
+            "cardID": "42505",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042505_T_ZAKURO.jpg",
+            "cardNameAltText": "ザクロ",
+            "cardNameViewText": "ザクロ"
+        },
+        {
+            "cardID": "42414",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042414_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "42506",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042506_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "42415",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042415_T_SHINOUNONAKAMATACHI.jpg",
+            "cardNameAltText": "シンオウの仲間たち",
+            "cardNameViewText": "シンオウの仲間たち"
+        },
+        {
+            "cardID": "42507",
+            "cardThumbFile": "/assets/images/card_images/large/S12a/042507_T_SHINOUNONAKAMATACHI.jpg",
+            "cardNameAltText": "シンオウの仲間たち",
+            "cardNameViewText": "シンオウの仲間たち"
+        }
+    ]
+}

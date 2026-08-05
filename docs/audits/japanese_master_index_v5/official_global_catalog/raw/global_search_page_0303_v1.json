@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 303,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 11779,
+    "cardEnd": 11817,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "36815",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036815_P_KAIRYU.jpg",
+            "cardNameAltText": "カイリュー",
+            "cardNameViewText": "カイリュー"
+        },
+        {
+            "cardID": "36816",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036816_P_KAIRYUGX.jpg",
+            "cardNameAltText": "カイリューGX",
+            "cardNameViewText": "カイリューGX"
+        },
+        {
+            "cardID": "36817",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036817_P_ONBATTO.jpg",
+            "cardNameAltText": "オンバット",
+            "cardNameViewText": "オンバット"
+        },
+        {
+            "cardID": "36818",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036818_P_ONBAN.jpg",
+            "cardNameAltText": "オンバーン",
+            "cardNameViewText": "オンバーン"
+        },
+        {
+            "cardID": "36819",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036819_P_KENTAROSU.jpg",
+            "cardNameAltText": "ケンタロス",
+            "cardNameViewText": "ケンタロス"
+        },
+        {
+            "cardID": "36820",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036820_P_NAMAKERO.jpg",
+            "cardNameAltText": "ナマケロ",
+            "cardNameViewText": "ナマケロ"
+        },
+        {
+            "cardID": "36821",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036821_P_NAMAKERO.jpg",
+            "cardNameAltText": "ナマケロ",
+            "cardNameViewText": "ナマケロ"
+        },
+        {
+            "cardID": "36822",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036822_P_YARUKIMONO.jpg",
+            "cardNameAltText": "ヤルキモノ",
+            "cardNameViewText": "ヤルキモノ"
+        },
+        {
+            "cardID": "36823",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036823_P_KEKKINGU.jpg",
+            "cardNameAltText": "ケッキング",
+            "cardNameViewText": "ケッキング"
+        },
+        {
+            "cardID": "36824",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036824_P_YANGUSU.jpg",
+            "cardNameAltText": "ヤングース",
+            "cardNameViewText": "ヤングース"
+        },
+        {
+            "cardID": "36825",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036825_P_DEKAGUSU.jpg",
+            "cardNameAltText": "デカグース",
+            "cardNameViewText": "デカグース"
+        },
+        {
+            "cardID": "36826",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036826_P_YAREYUTAN.jpg",
+            "cardNameAltText": "ヤレユータン",
+            "cardNameViewText": "ヤレユータン"
+        },
+        {
+            "cardID": "36827",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036827_P_NEKKOARA.jpg",
+            "cardNameAltText": "ネッコアラ",
+            "cardNameViewText": "ネッコアラ"
+        },
+        {
+            "cardID": "36969",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036969_P_YADONKODAKKUGX.jpg",
+            "cardNameAltText": "ヤドン&amp;コダックGX",
+            "cardNameViewText": "ヤドン&amp;コダックGX"
+        },
+        {
+            "cardID": "36976",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036976_P_YADONKODAKKUGX.jpg",
+            "cardNameAltText": "ヤドン&amp;コダックGX",
+            "cardNameViewText": "ヤドン&amp;コダックGX"
+        },
+        {
+            "cardID": "36977",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036977_P_MYUUTSUMYUUGX.jpg",
+            "cardNameAltText": "ミュウツー&amp;ミュウGX",
+            "cardNameViewText": "ミュウツー&amp;ミュウGX"
+        },
+        {
+            "cardID": "36978",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036978_P_MYUUTSUMYUUGX.jpg",
+            "cardNameAltText": "ミュウツー&amp;ミュウGX",
+            "cardNameViewText": "ミュウツー&amp;ミュウGX"
+        },
+        {
+            "cardID": "36979",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036979_P_RATEIOSUGX.jpg",
+            "cardNameAltText": "ラティオスGX",
+            "cardNameViewText": "ラティオスGX"
+        },
+        {
+            "cardID": "36980",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036980_P_PUTERAGX.jpg",
+            "cardNameAltText": "プテラGX",
+            "cardNameViewText": "プテラGX"
+        },
+        {
+            "cardID": "36981",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036981_P_MEGAYAMIRAMIBANGIRASUGX.jpg",
+            "cardNameAltText": "メガヤミラミ&amp;バンギラスGX",
+            "cardNameViewText": "メガヤミラミ&amp;バンギラスGX"
+        },
+        {
+            "cardID": "36982",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036982_P_MEGAYAMIRAMIBANGIRASUGX.jpg",
+            "cardNameAltText": "メガヤミラミ&amp;バンギラスGX",
+            "cardNameViewText": "メガヤミラミ&amp;バンギラスGX"
+        },
+        {
+            "cardID": "36983",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036983_P_KAIRYUGX.jpg",
+            "cardNameAltText": "カイリューGX",
+            "cardNameViewText": "カイリューGX"
+        },
+        {
+            "cardID": "36828",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036828_T_GURETOPOSHON.jpg",
+            "cardNameAltText": "グレートポーション",
+            "cardNameViewText": "グレートポーション"
+        },
+        {
+            "cardID": "36829",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036829_T_SUTAJIAMUNABI.jpg",
+            "cardNameAltText": "スタジアムナビ",
+            "cardNameViewText": "スタジアムナビ"
+        },
+        {
+            "cardID": "36830",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036830_T_NAZONOKASEKI.jpg",
+            "cardNameAltText": "なぞの化石",
+            "cardNameViewText": "なぞの化石"
+        },
+        {
+            "cardID": "36831",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036831_T_JAIANTOBOMU.jpg",
+            "cardNameAltText": "ジャイアントボム",
+            "cardNameViewText": "ジャイアントボム"
+        },
+        {
+            "cardID": "36832",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036832_T_KASUMINOONEGAI.jpg",
+            "cardNameAltText": "カスミのおねがい",
+            "cardNameViewText": "カスミのおねがい"
+        },
+        {
+            "cardID": "36833",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036833_T_KITOUSHI.jpg",
+            "cardNameAltText": "きとうし",
+            "cardNameViewText": "きとうし"
+        },
+        {
+            "cardID": "36834",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036834_T_GURINNOSENRYAKU.jpg",
+            "cardNameAltText": "グリーンの戦略",
+            "cardNameViewText": "グリーンの戦略"
+        },
+        {
+            "cardID": "36835",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036835_T_MADOROMINOMORI.jpg",
+            "cardNameAltText": "まどろみの森",
+            "cardNameViewText": "まどろみの森"
+        },
+        {
+            "cardID": "36836",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036836_T_POKEMONKENKYUUJO.jpg",
+            "cardNameAltText": "ポケモンけんきゅうじょ",
+            "cardNameViewText": "ポケモンけんきゅうじょ"
+        },
+        {
+            "cardID": "36838",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036838_T_TOMODACHITECHOU.jpg",
+            "cardNameAltText": "ともだちてちょう",
+            "cardNameViewText": "ともだちてちょう"
+        },
+        {
+            "cardID": "36839",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036839_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "36840",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036840_T_MISUTERITOREJA.jpg",
+            "cardNameAltText": "ミステリートレジャー",
+            "cardNameViewText": "ミステリートレジャー"
+        },
+        {
+            "cardID": "36841",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036841_T_KANKOUKYAKU.jpg",
+            "cardNameAltText": "かんこうきゃく",
+            "cardNameViewText": "かんこうきゃく"
+        },
+        {
+            "cardID": "36984",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036984_T_KASUMINOONEGAI.jpg",
+            "cardNameAltText": "カスミのおねがい",
+            "cardNameViewText": "カスミのおねがい"
+        },
+        {
+            "cardID": "36985",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036985_T_KITOUSHI.jpg",
+            "cardNameAltText": "きとうし",
+            "cardNameViewText": "きとうし"
+        },
+        {
+            "cardID": "36986",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036986_T_GURINNOSENRYAKU.jpg",
+            "cardNameAltText": "グリーンの戦略",
+            "cardNameViewText": "グリーンの戦略"
+        },
+        {
+            "cardID": "36837",
+            "cardThumbFile": "/assets/images/card_images/large/SM11/036837_E_UIKUGADOENERUGI.jpg",
+            "cardNameAltText": "ウィークガードエネルギー",
+            "cardNameViewText": "ウィークガードエネルギー"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 235,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 9127,
+    "cardEnd": 9165,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "39839",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039839_P_RENTORA.jpg",
+            "cardNameAltText": "レントラー",
+            "cardNameViewText": "レントラー"
+        },
+        {
+            "cardID": "39840",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039840_P_ZERAORA.jpg",
+            "cardNameAltText": "ゼラオラ",
+            "cardNameViewText": "ゼラオラ"
+        },
+        {
+            "cardID": "39841",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039841_P_MORUPEKO.jpg",
+            "cardNameAltText": "モルペコ",
+            "cardNameViewText": "モルペコ"
+        },
+        {
+            "cardID": "39856",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039856_P_MANKI.jpg",
+            "cardNameAltText": "マンキー",
+            "cardNameViewText": "マンキー"
+        },
+        {
+            "cardID": "39857",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039857_P_OKORIZARU.jpg",
+            "cardNameAltText": "オコリザル",
+            "cardNameViewText": "オコリザル"
+        },
+        {
+            "cardID": "39858",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039858_P_RUKARIOV.jpg",
+            "cardNameAltText": "ルカリオV",
+            "cardNameViewText": "ルカリオV"
+        },
+        {
+            "cardID": "39859",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039859_P_TATAKKO.jpg",
+            "cardNameAltText": "タタッコ",
+            "cardNameViewText": "タタッコ"
+        },
+        {
+            "cardID": "39860",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039860_P_OTOSUPASU.jpg",
+            "cardNameAltText": "オトスパス",
+            "cardNameViewText": "オトスパス"
+        },
+        {
+            "cardID": "39861",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039861_P_TAIRETSU.jpg",
+            "cardNameAltText": "タイレーツ",
+            "cardNameViewText": "タイレーツ"
+        },
+        {
+            "cardID": "39862",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039862_P_BANGIRASUV.jpg",
+            "cardNameAltText": "バンギラスV",
+            "cardNameViewText": "バンギラスV"
+        },
+        {
+            "cardID": "39863",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039863_P_KIBANIA.jpg",
+            "cardNameAltText": "キバニア",
+            "cardNameViewText": "キバニア"
+        },
+        {
+            "cardID": "39864",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039864_P_SAMEHADA.jpg",
+            "cardNameAltText": "サメハダー",
+            "cardNameViewText": "サメハダー"
+        },
+        {
+            "cardID": "39865",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039865_P_DAKURAI.jpg",
+            "cardNameAltText": "ダークライ",
+            "cardNameViewText": "ダークライ"
+        },
+        {
+            "cardID": "39866",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039866_P_ZOROA.jpg",
+            "cardNameAltText": "ゾロア",
+            "cardNameViewText": "ゾロア"
+        },
+        {
+            "cardID": "39867",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039867_P_ZOROAKU.jpg",
+            "cardNameAltText": "ゾロアーク",
+            "cardNameViewText": "ゾロアーク"
+        },
+        {
+            "cardID": "39816",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039816_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "39842",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039842_P_KABIGON.jpg",
+            "cardNameAltText": "カビゴン",
+            "cardNameViewText": "カビゴン"
+        },
+        {
+            "cardID": "39868",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039868_P_URU.jpg",
+            "cardNameAltText": "ウールー",
+            "cardNameViewText": "ウールー"
+        },
+        {
+            "cardID": "39817",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039817_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "39843",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039843_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "39869",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039869_T_KURASSHUHANMA.jpg",
+            "cardNameAltText": "クラッシュハンマー",
+            "cardNameViewText": "クラッシュハンマー"
+        },
+        {
+            "cardID": "39818",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039818_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "39844",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039844_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "39870",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039870_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "39819",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039819_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "39845",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039845_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "39871",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039871_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "39820",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039820_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "39846",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039846_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "39872",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039872_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "39821",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039821_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "39847",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039847_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "39873",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039873_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "39822",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039822_T_KOKKU.jpg",
+            "cardNameAltText": "コック",
+            "cardNameViewText": "コック"
+        },
+        {
+            "cardID": "39823",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039823_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "39848",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039848_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "39874",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039874_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "39824",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039824_T_JAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "39849",
+            "cardThumbFile": "/assets/images/card_images/large/SH/039849_T_JAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        }
+    ]
+}

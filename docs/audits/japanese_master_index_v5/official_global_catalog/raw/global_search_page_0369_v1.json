@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 369,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 14353,
+    "cardEnd": 14391,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "33572",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033572_P_GUREISHIAEX.jpg",
+            "cardNameAltText": "グレイシアEX",
+            "cardNameViewText": "グレイシアEX"
+        },
+        {
+            "cardID": "33573",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033573_P_MANAFIEX.jpg",
+            "cardNameAltText": "マナフィEX",
+            "cardNameViewText": "マナフィEX"
+        },
+        {
+            "cardID": "33574",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033574_P_GAMAGEROGEEX.jpg",
+            "cardNameAltText": "ガマゲロゲEX",
+            "cardNameViewText": "ガマゲロゲEX"
+        },
+        {
+            "cardID": "33575",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033575_P_HOWAITOKYUREMU.jpg",
+            "cardNameAltText": "ホワイトキュレム",
+            "cardNameViewText": "ホワイトキュレム"
+        },
+        {
+            "cardID": "33738",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033738_P_HOWAITOKYUREMU.jpg",
+            "cardNameAltText": "ホワイトキュレム",
+            "cardNameViewText": "ホワイトキュレム"
+        },
+        {
+            "cardID": "33576",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033576_P_KEROMATSU.jpg",
+            "cardNameAltText": "ケロマツ",
+            "cardNameViewText": "ケロマツ"
+        },
+        {
+            "cardID": "33739",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033739_P_KEROMATSU.jpg",
+            "cardNameAltText": "ケロマツ",
+            "cardNameViewText": "ケロマツ"
+        },
+        {
+            "cardID": "33577",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033577_P_GEKOGASHIRA.jpg",
+            "cardNameAltText": "ゲコガシラ",
+            "cardNameViewText": "ゲコガシラ"
+        },
+        {
+            "cardID": "33740",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033740_P_GEKOGASHIRA.jpg",
+            "cardNameAltText": "ゲコガシラ",
+            "cardNameViewText": "ゲコガシラ"
+        },
+        {
+            "cardID": "33578",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033578_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "33741",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033741_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "33579",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033579_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "33742",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033742_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "33580",
+            "cardThumbFile": "/assets/images/card_images/legend/XY/033580_P_GEKKOUGABREAK.jpg",
+            "cardNameAltText": "ゲッコウガBREAK",
+            "cardNameViewText": "ゲッコウガBREAK"
+        },
+        {
+            "cardID": "33581",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033581_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "33743",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033743_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "33582",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033582_P_RAICHUU.jpg",
+            "cardNameAltText": "ライチュウ",
+            "cardNameViewText": "ライチュウ"
+        },
+        {
+            "cardID": "33744",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033744_P_RAICHUU.jpg",
+            "cardNameAltText": "ライチュウ",
+            "cardNameViewText": "ライチュウ"
+        },
+        {
+            "cardID": "33583",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033583_P_SANDASU.jpg",
+            "cardNameAltText": "サンダース",
+            "cardNameViewText": "サンダース"
+        },
+        {
+            "cardID": "33745",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033745_P_SANDASU.jpg",
+            "cardNameAltText": "サンダース",
+            "cardNameViewText": "サンダース"
+        },
+        {
+            "cardID": "33584",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033584_P_SANDASUEX.jpg",
+            "cardNameAltText": "サンダースEX",
+            "cardNameViewText": "サンダースEX"
+        },
+        {
+            "cardID": "33585",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033585_P_RAIKOU.jpg",
+            "cardNameAltText": "ライコウ",
+            "cardNameViewText": "ライコウ"
+        },
+        {
+            "cardID": "33746",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033746_P_RAIKOU.jpg",
+            "cardNameAltText": "ライコウ",
+            "cardNameViewText": "ライコウ"
+        },
+        {
+            "cardID": "33586",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033586_P_RAIBORUTOEX.jpg",
+            "cardNameAltText": "ライボルトEX",
+            "cardNameViewText": "ライボルトEX"
+        },
+        {
+            "cardID": "33587",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033587_P_MRAIBORUTOEX.jpg",
+            "cardNameAltText": "メガライボルトEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>ライボルトEX"
+        },
+        {
+            "cardID": "33588",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033588_P_BACHURU.jpg",
+            "cardNameAltText": "バチュル",
+            "cardNameViewText": "バチュル"
+        },
+        {
+            "cardID": "33747",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033747_P_BACHURU.jpg",
+            "cardNameAltText": "バチュル",
+            "cardNameViewText": "バチュル"
+        },
+        {
+            "cardID": "33589",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033589_P_ZUBATTO.jpg",
+            "cardNameAltText": "ズバット",
+            "cardNameViewText": "ズバット"
+        },
+        {
+            "cardID": "33748",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033748_P_ZUBATTO.jpg",
+            "cardNameAltText": "ズバット",
+            "cardNameViewText": "ズバット"
+        },
+        {
+            "cardID": "33590",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033590_P_GORUBATTO.jpg",
+            "cardNameAltText": "ゴルバット",
+            "cardNameViewText": "ゴルバット"
+        },
+        {
+            "cardID": "33749",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033749_P_GORUBATTO.jpg",
+            "cardNameAltText": "ゴルバット",
+            "cardNameViewText": "ゴルバット"
+        },
+        {
+            "cardID": "33591",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033591_P_KUROBATTO.jpg",
+            "cardNameAltText": "クロバット",
+            "cardNameViewText": "クロバット"
+        },
+        {
+            "cardID": "33750",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033750_P_KUROBATTO.jpg",
+            "cardNameAltText": "クロバット",
+            "cardNameViewText": "クロバット"
+        },
+        {
+            "cardID": "33592",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033592_P_FUDEINEX.jpg",
+            "cardNameAltText": "フーディンEX",
+            "cardNameViewText": "フーディンEX"
+        },
+        {
+            "cardID": "33593",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033593_P_MFUDEINEX.jpg",
+            "cardNameAltText": "メガフーディンEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>フーディンEX"
+        },
+        {
+            "cardID": "33594",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033594_P_MYUUTSUEX.jpg",
+            "cardNameAltText": "ミュウツーEX",
+            "cardNameViewText": "ミュウツーEX"
+        },
+        {
+            "cardID": "33595",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033595_P_MMYUUTSUEX.jpg",
+            "cardNameAltText": "メガミュウツーEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>ミュウツーEX"
+        },
+        {
+            "cardID": "33596",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033596_P_MYUU.jpg",
+            "cardNameAltText": "ミュウ",
+            "cardNameViewText": "ミュウ"
+        },
+        {
+            "cardID": "33751",
+            "cardThumbFile": "/assets/images/card_images/large/XY/033751_P_MYUU.jpg",
+            "cardNameAltText": "ミュウ",
+            "cardNameViewText": "ミュウ"
+        }
+    ]
+}

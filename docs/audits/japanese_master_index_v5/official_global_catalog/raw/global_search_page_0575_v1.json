@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 575,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22387,
+    "cardEnd": 22425,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "38645",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038645_T_GENKINOHACHIMAKI.jpg",
+            "cardNameAltText": "げんきのハチマキ",
+            "cardNameViewText": "げんきのハチマキ"
+        },
+        {
+            "cardID": "44845",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044845_T_BATORUKONPURESSA.jpg",
+            "cardNameAltText": "バトルコンプレッサー（フレア団ギア）",
+            "cardNameViewText": "バトルコンプレッサー（フレア団ギア）"
+        },
+        {
+            "cardID": "31075",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031075_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "44846",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044846_T_BATORUSACHIXYA.jpg",
+            "cardNameAltText": "バトルサーチャー",
+            "cardNameViewText": "バトルサーチャー"
+        },
+        {
+            "cardID": "38837",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038837_T_BITO.jpg",
+            "cardNameAltText": "ビート",
+            "cardNameViewText": "ビート"
+        },
+        {
+            "cardID": "44847",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044847_T_KARUISHI.jpg",
+            "cardNameAltText": "かるいし",
+            "cardNameViewText": "かるいし"
+        },
+        {
+            "cardID": "38838",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038838_T_HOPPU.jpg",
+            "cardNameAltText": "ホップ",
+            "cardNameViewText": "ホップ"
+        },
+        {
+            "cardID": "44848",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044848_T_MITSURU.jpg",
+            "cardNameAltText": "ミツル",
+            "cardNameViewText": "ミツル"
+        },
+        {
+            "cardID": "31086",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031086_T_ORUNAITOPATEI.jpg",
+            "cardNameAltText": "オールナイトパーティ",
+            "cardNameViewText": "オールナイトパーティ"
+        },
+        {
+            "cardID": "38839",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038839_T_MARII.jpg",
+            "cardNameAltText": "マリィ",
+            "cardNameViewText": "マリィ"
+        },
+        {
+            "cardID": "44849",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044849_T_SAIRENTORABO.jpg",
+            "cardNameAltText": "サイレントラボ",
+            "cardNameViewText": "サイレントラボ"
+        },
+        {
+            "cardID": "44850",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044850_T_SUKAIFUIRUDO.jpg",
+            "cardNameAltText": "スカイフィールド",
+            "cardNameViewText": "スカイフィールド"
+        },
+        {
+            "cardID": "50474",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050474_T_SUPESHIXYARUREDDOKADO.jpg",
+            "cardNameAltText": "スペシャルレッドカード",
+            "cardNameViewText": "スペシャルレッドカード"
+        },
+        {
+            "cardID": "38632",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038632_T_NATSUMEHACHIKU.jpg",
+            "cardNameAltText": "ナツメ＆ハチク",
+            "cardNameViewText": "ナツメ＆ハチク"
+        },
+        {
+            "cardID": "50475",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050475_T_DEURO.jpg",
+            "cardNameAltText": "デウロ",
+            "cardNameViewText": "デウロ"
+        },
+        {
+            "cardID": "45410",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045410_T_ENERUGISHIRU.jpg",
+            "cardNameAltText": "エネルギーシール",
+            "cardNameViewText": "エネルギーシール"
+        },
+        {
+            "cardID": "50476",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050476_T_BOSUNOSHIREI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "45411",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045411_T_SUNATCHIAMU.jpg",
+            "cardNameAltText": "スナッチアーム",
+            "cardNameViewText": "スナッチアーム"
+        },
+        {
+            "cardID": "45412",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045412_T_YUUKINOOMAMORI.jpg",
+            "cardNameAltText": "勇気のおまもり",
+            "cardNameViewText": "勇気のおまもり"
+        },
+        {
+            "cardID": "45413",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045413_T_WAZAMASHINEVUORIXYUSHIXYON.jpg",
+            "cardNameAltText": "ワザマシン エヴォリューション",
+            "cardNameViewText": "ワザマシン エヴォリューション"
+        },
+        {
+            "cardID": "45793",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045793_T_MATSUBANOKAKUSHIN.jpg",
+            "cardNameAltText": "マツバの確信",
+            "cardNameViewText": "マツバの確信"
+        },
+        {
+            "cardID": "34355",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034355_T_RIRIE.jpg",
+            "cardNameAltText": "リーリエ",
+            "cardNameViewText": "リーリエ"
+        },
+        {
+            "cardID": "34356",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034356_T_ROTOMUZUKAN.jpg",
+            "cardNameAltText": "ロトム図鑑",
+            "cardNameViewText": "ロトム図鑑"
+        },
+        {
+            "cardID": "45842",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045842_T_ONINOKAMEN.jpg",
+            "cardNameAltText": "鬼の仮面",
+            "cardNameViewText": "鬼の仮面"
+        },
+        {
+            "cardID": "45403",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045403_T_NAKAYOSHIPOFUIN.jpg",
+            "cardNameAltText": "なかよしポフィン",
+            "cardNameViewText": "なかよしポフィン"
+        },
+        {
+            "cardID": "45643",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045643_T_NEMO.jpg",
+            "cardNameAltText": "ネモ",
+            "cardNameViewText": "ネモ"
+        },
+        {
+            "cardID": "45644",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045644_T_NEMO.jpg",
+            "cardNameAltText": "ネモ",
+            "cardNameViewText": "ネモ"
+        },
+        {
+            "cardID": "39201",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039201_T_SHIRONA.jpg",
+            "cardNameAltText": "シロナ",
+            "cardNameViewText": "シロナ"
+        },
+        {
+            "cardID": "39202",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039202_T_MITSUBA.jpg",
+            "cardNameAltText": "ミツバ",
+            "cardNameViewText": "ミツバ"
+        },
+        {
+            "cardID": "45798",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045798_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "45799",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045799_T_ROTORIBOU.jpg",
+            "cardNameAltText": "ロトりぼう",
+            "cardNameViewText": "ロトりぼう"
+        },
+        {
+            "cardID": "45800",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045800_T_NANJIXYAMO.jpg",
+            "cardNameAltText": "ナンジャモ",
+            "cardNameViewText": "ナンジャモ"
+        },
+        {
+            "cardID": "39209",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039209_T_MITSUBA.jpg",
+            "cardNameAltText": "ミツバ",
+            "cardNameViewText": "ミツバ"
+        },
+        {
+            "cardID": "34548",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034548_T_URUTORABORU.jpg",
+            "cardNameAltText": "ウルトラボール",
+            "cardNameViewText": "ウルトラボール"
+        },
+        {
+            "cardID": "31466",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031466_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "39210",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039210_T_DANDE.jpg",
+            "cardNameAltText": "ダンデ",
+            "cardNameViewText": "ダンデ"
+        },
+        {
+            "cardID": "39060",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039060_T_PURESHASUBORU.jpg",
+            "cardNameAltText": "プレシャスボール",
+            "cardNameViewText": "プレシャスボール"
+        },
+        {
+            "cardID": "46128",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046128_T_SUGOITSURIZAO.jpg",
+            "cardNameAltText": "すごいつりざお",
+            "cardNameViewText": "すごいつりざお"
+        },
+        {
+            "cardID": "46129",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046129_T_HAKASENOKENKIXYUU.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        }
+    ]
+}

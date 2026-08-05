@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 570,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22192,
+    "cardEnd": 22230,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "38010",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038010_T_POKEMONGOKKO.jpg",
+            "cardNameAltText": "ポケモンごっこ",
+            "cardNameViewText": "ポケモンごっこ"
+        },
+        {
+            "cardID": "43313",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043313_T_BOTAN.jpg",
+            "cardNameAltText": "ボタン",
+            "cardNameViewText": "ボタン"
+        },
+        {
+            "cardID": "28152",
+            "cardThumbFile": "/assets/images/card_images/large/BW6-Bf/028152_T_GORUDOPOSHON.jpg",
+            "cardNameAltText": "ゴールドポーション",
+            "cardNameViewText": "ゴールドポーション"
+        },
+        {
+            "cardID": "28211",
+            "cardThumbFile": "/assets/images/card_images/large/BW6-Bc/028211_T_PASOKONTSUUSHIN.jpg",
+            "cardNameAltText": "パソコン通信",
+            "cardNameViewText": "パソコン通信"
+        },
+        {
+            "cardID": "49625",
+            "cardThumbFile": "/assets/images/card_images/large/XY/049625_T_TORENAZUPOSUTO.jpg",
+            "cardNameAltText": "トレーナーズポスト",
+            "cardNameViewText": "トレーナーズポスト"
+        },
+        {
+            "cardID": "38011",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038011_T_HOPPU.jpg",
+            "cardNameAltText": "ホップ",
+            "cardNameViewText": "ホップ"
+        },
+        {
+            "cardID": "28153",
+            "cardThumbFile": "/assets/images/card_images/large/BW6-Bf/028153_T_KURISUTARUUORU.jpg",
+            "cardNameAltText": "クリスタルウォール",
+            "cardNameViewText": "クリスタルウォール"
+        },
+        {
+            "cardID": "28212",
+            "cardThumbFile": "/assets/images/card_images/large/BW6-Bc/028212_T_KURISUTARUEJJI.jpg",
+            "cardNameAltText": "クリスタルエッジ",
+            "cardNameViewText": "クリスタルエッジ"
+        },
+        {
+            "cardID": "49626",
+            "cardThumbFile": "/assets/images/card_images/large/XY/049626_T_BATORUKONPURESSA.jpg",
+            "cardNameAltText": "バトルコンプレッサー",
+            "cardNameViewText": "バトルコンプレッサー"
+        },
+        {
+            "cardID": "27420",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027420_T_SUGOITSURIZAO.jpg",
+            "cardNameAltText": "すごいつりざお",
+            "cardNameViewText": "すごいつりざお"
+        },
+        {
+            "cardID": "49627",
+            "cardThumbFile": "/assets/images/card_images/large/XY/049627_T_BATORUSACHIXYA.jpg",
+            "cardNameAltText": "バトルサーチャー",
+            "cardNameViewText": "バトルサーチャー"
+        },
+        {
+            "cardID": "27421",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027421_T_RAIBUKYASUTA.jpg",
+            "cardNameAltText": "ライブキャスター",
+            "cardNameViewText": "ライブキャスター"
+        },
+        {
+            "cardID": "49628",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049628_T_FUIRUDOBUROA.jpg",
+            "cardNameAltText": "フィールドブロアー",
+            "cardNameViewText": "フィールドブロアー"
+        },
+        {
+            "cardID": "27422",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027422_T_HANENOKASEKI.jpg",
+            "cardNameAltText": "はねの化石",
+            "cardNameViewText": "はねの化石"
+        },
+        {
+            "cardID": "28285",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028285_T_AKUROMAMASHIN.jpg",
+            "cardNameAltText": "アクロママシーン",
+            "cardNameViewText": "アクロママシーン"
+        },
+        {
+            "cardID": "49629",
+            "cardThumbFile": "/assets/images/card_images/large/XY/049629_T_KARUISHI.jpg",
+            "cardNameAltText": "かるいし",
+            "cardNameViewText": "かるいし"
+        },
+        {
+            "cardID": "27423",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027423_T_FUTANOKASEKI.jpg",
+            "cardNameAltText": "ふたの化石",
+            "cardNameViewText": "ふたの化石"
+        },
+        {
+            "cardID": "27823",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027823_T_KAIZOUHANMA.jpg",
+            "cardNameAltText": "改造ハンマー",
+            "cardNameViewText": "改造ハンマー"
+        },
+        {
+            "cardID": "25117",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025117_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "25250",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025250_T_NANDEMONAOSHI.jpg",
+            "cardNameAltText": "なんでもなおし",
+            "cardNameViewText": "なんでもなおし"
+        },
+        {
+            "cardID": "28286",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028286_T_DOKUSAIMINKOUSEN.jpg",
+            "cardNameAltText": "どくさいみん光線",
+            "cardNameViewText": "どくさいみん光線"
+        },
+        {
+            "cardID": "49630",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049630_T_PURUMERI.jpg",
+            "cardNameAltText": "プルメリ",
+            "cardNameViewText": "プルメリ"
+        },
+        {
+            "cardID": "27424",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027424_T_GOTSUGOTSUMETTO.jpg",
+            "cardNameAltText": "ゴツゴツメット",
+            "cardNameViewText": "ゴツゴツメット"
+        },
+        {
+            "cardID": "27824",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027824_T_DAKUPACCHI.jpg",
+            "cardNameAltText": "ダークパッチ",
+            "cardNameViewText": "ダークパッチ"
+        },
+        {
+            "cardID": "28287",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028287_T_AKUROMA.jpg",
+            "cardNameAltText": "アクロマ",
+            "cardNameViewText": "アクロマ"
+        },
+        {
+            "cardID": "25119",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025119_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "25252",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025252_T_POKEGIA.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "49631",
+            "cardThumbFile": "/assets/images/card_images/large/XY/049631_T_PARARERUSHITEI.jpg",
+            "cardNameAltText": "パラレルシティ",
+            "cardNameViewText": "パラレルシティ"
+        },
+        {
+            "cardID": "27425",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027425_T_SHINKANOKISEKI.jpg",
+            "cardNameAltText": "しんかのきせき",
+            "cardNameViewText": "しんかのきせき"
+        },
+        {
+            "cardID": "27825",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027825_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "28288",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028288_T_PURAZUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "プラズマ団のしたっぱ",
+            "cardNameViewText": "プラズマ団のしたっぱ"
+        },
+        {
+            "cardID": "25121",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025121_T_POKEMONRIBASU.jpg",
+            "cardNameAltText": "ポケモンリバース",
+            "cardNameViewText": "ポケモンリバース"
+        },
+        {
+            "cardID": "25254",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025254_T_POKEMONTSUUSHIN.jpg",
+            "cardNameAltText": "ポケモン通信",
+            "cardNameViewText": "ポケモン通信"
+        },
+        {
+            "cardID": "28736",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028736_T_NEKKONOKASEKIRIRIRA.jpg",
+            "cardNameAltText": "ねっこの化石 リリーラ",
+            "cardNameViewText": "ねっこの化石 リリーラ"
+        },
+        {
+            "cardID": "27426",
+            "cardThumbFile": "/assets/images/card_images/large/BW2-B/027426_T_N.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "27826",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027826_T_HIMITSUNOKOHAKUPUTERA.jpg",
+            "cardNameAltText": "ひみつのコハク プテラ",
+            "cardNameViewText": "ひみつのコハク プテラ"
+        },
+        {
+            "cardID": "25123",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025123_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "25256",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025256_T_MOMOMIRUKU.jpg",
+            "cardNameAltText": "モーモーミルク",
+            "cardNameViewText": "モーモーミルク"
+        },
+        {
+            "cardID": "28289",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028289_T_PURAZUMAFURIGETO.jpg",
+            "cardNameAltText": "プラズマフリゲート",
+            "cardNameViewText": "プラズマフリゲート"
+        }
+    ]
+}

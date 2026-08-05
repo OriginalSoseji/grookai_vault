@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 559,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21763,
+    "cardEnd": 21801,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "25479",
+            "cardThumbFile": "/assets/images/card_images/large/Br/025479_T_MCNOOSHABERI.jpg",
+            "cardNameAltText": "MCのおしゃべり",
+            "cardNameViewText": "MCのおしゃべり"
+        },
+        {
+            "cardID": "21018",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPg/021018_T_PURASUPAWA.jpg",
+            "cardNameAltText": "プラスパワー",
+            "cardNameViewText": "プラスパワー"
+        },
+        {
+            "cardID": "21039",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPd/021039_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "21060",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPp/021060_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "19018",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019018_T_NANDEMONAOSHIW.jpg",
+            "cardNameAltText": "なんでもなおしW",
+            "cardNameViewText": "なんでもなおしW"
+        },
+        {
+            "cardID": "19042",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019042_T_NANDEMONAOSHIW.jpg",
+            "cardNameAltText": "なんでもなおしW",
+            "cardNameViewText": "なんでもなおしW"
+        },
+        {
+            "cardID": "25397",
+            "cardThumbFile": "/assets/images/card_images/large/Em/025397_T_POKEMONSAKYURETA.jpg",
+            "cardNameAltText": "ポケモンサーキュレーター",
+            "cardNameViewText": "ポケモンサーキュレーター"
+        },
+        {
+            "cardID": "27228",
+            "cardThumbFile": "/assets/images/card_images/large/BKv/027228_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "27242",
+            "cardThumbFile": "/assets/images/card_images/large/BKt/027242_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "27256",
+            "cardThumbFile": "/assets/images/card_images/large/BKc/027256_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "21594",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpi/021594_T_ENERUGIPACCHI.jpg",
+            "cardNameAltText": "エネルギーパッチ",
+            "cardNameViewText": "エネルギーパッチ"
+        },
+        {
+            "cardID": "25370",
+            "cardThumbFile": "/assets/images/card_images/large/El/025370_T_DEYUARUBORU.jpg",
+            "cardNameAltText": "デュアルボール",
+            "cardNameViewText": "デュアルボール"
+        },
+        {
+            "cardID": "27967",
+            "cardThumbFile": "/assets/images/card_images/large/SZD/027967_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "27985",
+            "cardThumbFile": "/assets/images/card_images/large/GBR/027985_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "28015",
+            "cardThumbFile": "/assets/images/card_images/large/KLD/028015_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "23019",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sg/023019_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "23046",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sl/023046_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "28425",
+            "cardThumbFile": "/assets/images/card_images/large/PBG/028425_T_DOKUSAIMINKOUSEN.jpg",
+            "cardNameAltText": "どくさいみん光線",
+            "cardNameViewText": "どくさいみん光線"
+        },
+        {
+            "cardID": "28768",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028768_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "28785",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028785_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "28379",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028379_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "28399",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028399_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "28663",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028663_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "42901",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/042901_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "25481",
+            "cardThumbFile": "/assets/images/card_images/large/Br/025481_T_JAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "21019",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPg/021019_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "21040",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPd/021040_T_POKEMONZUKANHANDYIS.jpg",
+            "cardNameAltText": "ポケモン図鑑HANDY910is",
+            "cardNameViewText": "ポケモン図鑑HANDY910is"
+        },
+        {
+            "cardID": "21061",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-EPp/021061_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "25399",
+            "cardThumbFile": "/assets/images/card_images/large/Em/025399_T_UTSUGIHAKASENOSODATEKATA.jpg",
+            "cardNameAltText": "ウツギはかせの育てかた",
+            "cardNameViewText": "ウツギはかせの育てかた"
+        },
+        {
+            "cardID": "19019",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019019_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "19043",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019043_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "21541",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBna/021541_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "27229",
+            "cardThumbFile": "/assets/images/card_images/large/BKv/027229_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "27243",
+            "cardThumbFile": "/assets/images/card_images/large/BKt/027243_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "27257",
+            "cardThumbFile": "/assets/images/card_images/large/BKc/027257_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "25372",
+            "cardThumbFile": "/assets/images/card_images/large/El/025372_T_INTABYUANOSHITSUMON.jpg",
+            "cardNameAltText": "インタビュアーの質問",
+            "cardNameViewText": "インタビュアーの質問"
+        },
+        {
+            "cardID": "21564",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpo/021564_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "21595",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpi/021595_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "27968",
+            "cardThumbFile": "/assets/images/card_images/large/SZD/027968_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        }
+    ]
+}

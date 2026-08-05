@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 202,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7840,
+    "cardEnd": 7878,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41344",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041344_P_RIZADONV.jpg",
+            "cardNameAltText": "リザードンV",
+            "cardNameViewText": "リザードンV"
+        },
+        {
+            "cardID": "41345",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041345_P_RIZADONV.jpg",
+            "cardNameAltText": "リザードンV",
+            "cardNameViewText": "リザードンV"
+        },
+        {
+            "cardID": "41346",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041346_P_NEORANTOV.jpg",
+            "cardNameAltText": "ネオラントV",
+            "cardNameViewText": "ネオラントV"
+        },
+        {
+            "cardID": "41347",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041347_P_NEORANTOV.jpg",
+            "cardNameAltText": "ネオラントV",
+            "cardNameViewText": "ネオラントV"
+        },
+        {
+            "cardID": "41348",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041348_P_RAICHIXYUUV.jpg",
+            "cardNameAltText": "ライチュウV",
+            "cardNameViewText": "ライチュウV"
+        },
+        {
+            "cardID": "41349",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041349_P_ERUFUNV.jpg",
+            "cardNameAltText": "エルフーンV",
+            "cardNameViewText": "エルフーンV"
+        },
+        {
+            "cardID": "41350",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041350_P_DONKARASUV.jpg",
+            "cardNameAltText": "ドンカラスV",
+            "cardNameViewText": "ドンカラスV"
+        },
+        {
+            "cardID": "41351",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041351_P_DONKARASUV.jpg",
+            "cardNameAltText": "ドンカラスV",
+            "cardNameViewText": "ドンカラスV"
+        },
+        {
+            "cardID": "41352",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041352_P_FURAIGONV.jpg",
+            "cardNameAltText": "フライゴンV",
+            "cardNameViewText": "フライゴンV"
+        },
+        {
+            "cardID": "41353",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041353_P_ARUSEUSUV.jpg",
+            "cardNameAltText": "アルセウスV",
+            "cardNameViewText": "アルセウスV"
+        },
+        {
+            "cardID": "41354",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041354_P_ARUSEUSUV.jpg",
+            "cardNameAltText": "アルセウスV",
+            "cardNameViewText": "アルセウスV"
+        },
+        {
+            "cardID": "44852",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044852_P_SHIEIMIVSTAR.jpg",
+            "cardNameAltText": "シェイミVSTAR",
+            "cardNameViewText": "シェイミVSTAR"
+        },
+        {
+            "cardID": "44853",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044853_P_RIZADONVSTAR.jpg",
+            "cardNameAltText": "リザードンVSTAR",
+            "cardNameViewText": "リザードンVSTAR"
+        },
+        {
+            "cardID": "44854",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044854_P_ERUFUNVSTAR.jpg",
+            "cardNameAltText": "エルフーンVSTAR",
+            "cardNameViewText": "エルフーンVSTAR"
+        },
+        {
+            "cardID": "44855",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044855_P_ARUSEUSUVSTAR.jpg",
+            "cardNameAltText": "アルセウスVSTAR",
+            "cardNameViewText": "アルセウスVSTAR"
+        },
+        {
+            "cardID": "44860",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044860_P_ARUSEUSUVSTAR.jpg",
+            "cardNameAltText": "アルセウスVSTAR",
+            "cardNameViewText": "アルセウスVSTAR"
+        },
+        {
+            "cardID": "40990",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040990_T_OISHIIMIZUSETTO.jpg",
+            "cardNameAltText": "おいしいみずセット",
+            "cardNameViewText": "おいしいみずセット"
+        },
+        {
+            "cardID": "40991",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040991_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "40992",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040992_T_KODAWARIBERUTO.jpg",
+            "cardNameAltText": "こだわりベルト",
+            "cardNameViewText": "こだわりベルト"
+        },
+        {
+            "cardID": "40993",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040993_T_NABEMETTO.jpg",
+            "cardNameAltText": "なべメット",
+            "cardNameViewText": "なべメット"
+        },
+        {
+            "cardID": "40994",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040994_T_KIXYANPUFUAIYA.jpg",
+            "cardNameAltText": "キャンプファイヤー",
+            "cardNameViewText": "キャンプファイヤー"
+        },
+        {
+            "cardID": "40995",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040995_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "40996",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040996_T_CHIERENNOKIKUBARI.jpg",
+            "cardNameAltText": "チェレンの気くばり",
+            "cardNameViewText": "チェレンの気くばり"
+        },
+        {
+            "cardID": "40997",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040997_T_HAKASENOKENKIXYUUNANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "40998",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040998_T_HAMANANOBAKKUAPPU.jpg",
+            "cardNameAltText": "ハマナのバックアップ",
+            "cardNameViewText": "ハマナのバックアップ"
+        },
+        {
+            "cardID": "40999",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040999_T_BOSUNOSHIREIAKAGI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "41000",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041000_T_KUZURETASUTAJIAMU.jpg",
+            "cardNameAltText": "崩れたスタジアム",
+            "cardNameViewText": "崩れたスタジアム"
+        },
+        {
+            "cardID": "41001",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041001_T_MAGUMANOTAKITSUBO.jpg",
+            "cardNameAltText": "マグマの滝壺",
+            "cardNameViewText": "マグマの滝壺"
+        },
+        {
+            "cardID": "41355",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041355_T_KIXYANPUFUAIYA.jpg",
+            "cardNameAltText": "キャンプファイヤー",
+            "cardNameViewText": "キャンプファイヤー"
+        },
+        {
+            "cardID": "41356",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041356_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "41357",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041357_T_CHIERENNOKIKUBARI.jpg",
+            "cardNameAltText": "チェレンの気くばり",
+            "cardNameViewText": "チェレンの気くばり"
+        },
+        {
+            "cardID": "41358",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041358_T_HAMANANOBAKKUAPPU.jpg",
+            "cardNameAltText": "ハマナのバックアップ",
+            "cardNameViewText": "ハマナのバックアップ"
+        },
+        {
+            "cardID": "44856",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044856_T_KIXYANPUFUAIYA.jpg",
+            "cardNameAltText": "キャンプファイヤー",
+            "cardNameViewText": "キャンプファイヤー"
+        },
+        {
+            "cardID": "44857",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044857_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "44858",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044858_T_CHIERENNOKIKUBARI.jpg",
+            "cardNameAltText": "チェレンの気くばり",
+            "cardNameViewText": "チェレンの気くばり"
+        },
+        {
+            "cardID": "44859",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044859_T_HAMANANOBAKKUAPPU.jpg",
+            "cardNameAltText": "ハマナのバックアップ",
+            "cardNameViewText": "ハマナのバックアップ"
+        },
+        {
+            "cardID": "44861",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044861_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "44862",
+            "cardThumbFile": "/assets/images/card_images/large/S9/044862_T_MAGUMANOTAKITSUBO.jpg",
+            "cardNameAltText": "マグマの滝壺",
+            "cardNameViewText": "マグマの滝壺"
+        },
+        {
+            "cardID": "41002",
+            "cardThumbFile": "/assets/images/card_images/large/S9/041002_E_DABURUTABOENERUGI.jpg",
+            "cardNameAltText": "ダブルターボエネルギー",
+            "cardNameViewText": "ダブルターボエネルギー"
+        }
+    ]
+}

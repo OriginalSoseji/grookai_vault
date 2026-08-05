@@ -40,6 +40,8 @@
     "jpn-master-index:v5:plan-product-detail-search": "node scripts/audits/japanese_master_index_v5/official_product_detail_search_plan_v1.mjs",
     "jpn-master-index:v5:harvest-product-detail-search": "node scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs --source official_jp_cards --plan docs/audits/japanese_master_index_v5/official_product_detail_search/jpn_v5_official_product_detail_search_plan_v1.json --output-dir docs/audits/japanese_master_index_v5/official_product_detail_search --generated-at 2026-07-27T22:00:00.000Z",
     "jpn-master-index:v5:harvest-product-coordinate-search": "node scripts/audits/japanese_master_index_v5/official_product_coordinate_search_harvest_v1.mjs",
+    "jpn-master-index:v5:harvest-official-global-catalog": "node scripts/audits/japanese_master_index_v5/official_global_catalog_harvest_v1.mjs",
+    "jpn-master-index:v5:reconcile-official-global-catalog": "node scripts/audits/japanese_master_index_v5/official_global_catalog_reconcile_v1.mjs",
     "jpn-master-index:v5:test": "node --test tests/contracts/japanese_master_index_v5_*.test.mjs",
     "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",

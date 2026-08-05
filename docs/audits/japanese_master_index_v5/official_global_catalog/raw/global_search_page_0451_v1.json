@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 451,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 17551,
+    "cardEnd": 17589,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "7010",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007010_T_ZUGAINOKASEKI.gif",
+            "cardNameAltText": "ずがいの化石",
+            "cardNameViewText": "ずがいの化石"
+        },
+        {
+            "cardID": "7011",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007011_T_TATENOKASEKI.gif",
+            "cardNameAltText": "たての化石",
+            "cardNameViewText": "たての化石"
+        },
+        {
+            "cardID": "7014",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007014_T_TOROPIKARUUINDO.jpg",
+            "cardNameAltText": "トロピカルウインド",
+            "cardNameViewText": "トロピカルウインド"
+        },
+        {
+            "cardID": "7023",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007023_T_TACCHIKOUKAN.jpg",
+            "cardNameAltText": "タッチ交換！",
+            "cardNameViewText": "タッチ交換！"
+        },
+        {
+            "cardID": "20026",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/020026_T_GOJASUBORU.gif",
+            "cardNameAltText": "ゴージャスボール",
+            "cardNameViewText": "ゴージャスボール"
+        },
+        {
+            "cardID": "20514",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/020514_T_TOROPIKARUUINDO.jpg",
+            "cardNameAltText": "トロピカルウインド",
+            "cardNameViewText": "トロピカルウインド"
+        },
+        {
+            "cardID": "7000",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007000_T_BATORURODOSUTAJIAMU.gif",
+            "cardNameAltText": "バトルロードスタジアム",
+            "cardNameViewText": "バトルロードスタジアム"
+        },
+        {
+            "cardID": "7013",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007013_T_CHANPIONZURIGU.gif",
+            "cardNameAltText": "チャンピオンズリーグ",
+            "cardNameViewText": "チャンピオンズリーグ"
+        },
+        {
+            "cardID": "7015",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007015_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7016",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007016_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7017",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007017_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7018",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007018_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7019",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007019_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7020",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007020_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "7021",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007021_T_POKEMONPARUSHITEI.jpg",
+            "cardNameAltText": "ポケモンパルシティ",
+            "cardNameViewText": "ポケモンパルシティ"
+        },
+        {
+            "cardID": "9001",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009001_E_KUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "9002",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009002_E_HONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "9003",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009003_E_MIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "9004",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009004_E_KAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "9005",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009005_E_CHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "9006",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009006_E_TOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "9007",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009007_E_AKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "9008",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/009008_E_KOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "7002",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007002_E_AKUENERUGI.jpg",
+            "cardNameAltText": "特殊悪エネルギー",
+            "cardNameViewText": "特殊悪エネルギー"
+        },
+        {
+            "cardID": "7003",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007003_E_KOUENERUGI.jpg",
+            "cardNameAltText": "特殊鋼エネルギー",
+            "cardNameViewText": "特殊鋼エネルギー"
+        },
+        {
+            "cardID": "7004",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007004_E_AKUENERUGI.gif",
+            "cardNameAltText": "特殊悪エネルギー",
+            "cardNameViewText": "特殊悪エネルギー"
+        },
+        {
+            "cardID": "7005",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/007005_E_KOUENERUGI.gif",
+            "cardNameAltText": "特殊鋼エネルギー",
+            "cardNameViewText": "特殊鋼エネルギー"
+        },
+        {
+            "cardID": "2045",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002045_P_BUIZERU.jpg",
+            "cardNameAltText": "ブイゼル",
+            "cardNameViewText": "ブイゼル"
+        },
+        {
+            "cardID": "2051",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002051_P_KORINKU.jpg",
+            "cardNameAltText": "コリンク",
+            "cardNameViewText": "コリンク"
+        },
+        {
+            "cardID": "2110",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002110_P_BIPPA.jpg",
+            "cardNameAltText": "ビッパ",
+            "cardNameViewText": "ビッパ"
+        },
+        {
+            "cardID": "3073",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003073_P_YOMAWARU.jpg",
+            "cardNameAltText": "ヨマワル",
+            "cardNameViewText": "ヨマワル"
+        },
+        {
+            "cardID": "3085",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003085_P_YAMIKARASU.jpg",
+            "cardNameAltText": "ヤミカラス",
+            "cardNameViewText": "ヤミカラス"
+        },
+        {
+            "cardID": "3099",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003099_P_PIPPI.jpg",
+            "cardNameAltText": "ピッピ",
+            "cardNameViewText": "ピッピ"
+        },
+        {
+            "cardID": "5000",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005000_P_GYAKUSHUUNOMYUUTSU.gif",
+            "cardNameAltText": "逆襲のミュウツー",
+            "cardNameViewText": "逆襲のミュウツー"
+        },
+        {
+            "cardID": "5001",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005001_P_BAKUTANNORUGIA.gif",
+            "cardNameAltText": "爆誕のルギア",
+            "cardNameViewText": "爆誕のルギア"
+        },
+        {
+            "cardID": "5002",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005002_P_KESSHOUTOUNOENTEI.gif",
+            "cardNameAltText": "結晶塔のエンテイ",
+            "cardNameViewText": "結晶塔のエンテイ"
+        },
+        {
+            "cardID": "5003",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005003_P_TOKIWOKOETASEREBII.gif",
+            "cardNameAltText": "時を超えたセレビィ",
+            "cardNameViewText": "時を超えたセレビィ"
+        },
+        {
+            "cardID": "5004",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005004_P_MIZUNOMIYAKONORATEIASU.gif",
+            "cardNameAltText": "水の都のラティアス",
+            "cardNameViewText": "水の都のラティアス"
+        },
+        {
+            "cardID": "5005",
+            "cardThumbFile": "/assets/images/card_images/large/DPP/005005_P_MIZUNOMIYAKONORATEIOSU.gif",
+            "cardNameAltText": "水の都のラティオス",
+            "cardNameViewText": "水の都のラティオス"
+        }
+    ]
+}

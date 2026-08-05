@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 576,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22426,
+    "cardEnd": 22464,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "46130",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046130_T_HAKASENOKENKIXYUU.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "46131",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046131_T_BIRIOTONEA.jpg",
+            "cardNameAltText": "ビリオとネア",
+            "cardNameViewText": "ビリオとネア"
+        },
+        {
+            "cardID": "46132",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046132_T_ZEIYU.jpg",
+            "cardNameAltText": "ゼイユ",
+            "cardNameViewText": "ゼイユ"
+        },
+        {
+            "cardID": "31472",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031472_T_ENERUGIRISETTO.jpg",
+            "cardNameAltText": "エネルギーリセット",
+            "cardNameViewText": "エネルギーリセット"
+        },
+        {
+            "cardID": "31559",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031559_T_OKARUTOMANIA.jpg",
+            "cardNameAltText": "オカルトマニア",
+            "cardNameViewText": "オカルトマニア"
+        },
+        {
+            "cardID": "46309",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046309_T_OIWAIFUANFUARE.jpg",
+            "cardNameAltText": "おいわいファンファーレ",
+            "cardNameViewText": "おいわいファンファーレ"
+        },
+        {
+            "cardID": "31308",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/031308_T_DOKUSAIMINKOUSEN.jpg",
+            "cardNameAltText": "どくさいみん光線",
+            "cardNameViewText": "どくさいみん光線"
+        },
+        {
+            "cardID": "31309",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/031309_T_PURAZUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "プラズマ団のしたっぱ",
+            "cardNameViewText": "プラズマ団のしたっぱ"
+        },
+        {
+            "cardID": "34563",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034563_T_GUZUMA.jpg",
+            "cardNameAltText": "グズマ",
+            "cardNameViewText": "グズマ"
+        },
+        {
+            "cardID": "39668",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039668_T_UTSUUROBO.jpg",
+            "cardNameAltText": "ウッウロボ",
+            "cardNameViewText": "ウッウロボ"
+        },
+        {
+            "cardID": "39669",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039669_T_MOMI.jpg",
+            "cardNameAltText": "モミ",
+            "cardNameViewText": "モミ"
+        },
+        {
+            "cardID": "31590",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031590_T_PUTERASOURURINKU.jpg",
+            "cardNameAltText": "プテラソウルリンク",
+            "cardNameViewText": "プテラソウルリンク"
+        },
+        {
+            "cardID": "46451",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046451_T_BOSUNOSHIREI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "31591",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031591_T_KUCHITOSOURURINKU.jpg",
+            "cardNameAltText": "クチートソウルリンク",
+            "cardNameViewText": "クチートソウルリンク"
+        },
+        {
+            "cardID": "46452",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046452_T_WAZAMASHINMASHIN.jpg",
+            "cardNameAltText": "わざマシンマシン",
+            "cardNameViewText": "わざマシンマシン"
+        },
+        {
+            "cardID": "46454",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046454_T_AKAMATSU.jpg",
+            "cardNameAltText": "アカマツ",
+            "cardNameViewText": "アカマツ"
+        },
+        {
+            "cardID": "31598",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031598_T_KATSURYOKUZAI.jpg",
+            "cardNameAltText": "活力剤",
+            "cardNameViewText": "活力剤"
+        },
+        {
+            "cardID": "31599",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031599_T_GOJIKA.jpg",
+            "cardNameAltText": "ゴジカ",
+            "cardNameViewText": "ゴジカ"
+        },
+        {
+            "cardID": "31600",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031600_T_SHITORON.jpg",
+            "cardNameAltText": "シトロン",
+            "cardNameViewText": "シトロン"
+        },
+        {
+            "cardID": "31469",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031469_T_SHINKASODA.jpg",
+            "cardNameAltText": "シンカソーダ",
+            "cardNameViewText": "シンカソーダ"
+        },
+        {
+            "cardID": "46305",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046305_T_KAIZOUHANMA.jpg",
+            "cardNameAltText": "改造ハンマー",
+            "cardNameViewText": "改造ハンマー"
+        },
+        {
+            "cardID": "31645",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031645_T_EKOAMU.jpg",
+            "cardNameAltText": "エコアーム",
+            "cardNameViewText": "エコアーム"
+        },
+        {
+            "cardID": "34791",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034791_T_ETERUZAIDANSHOKUIN.jpg",
+            "cardNameAltText": "エーテル財団職員",
+            "cardNameViewText": "エーテル財団職員"
+        },
+        {
+            "cardID": "46993",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/046993_T_KAI.jpg",
+            "cardNameAltText": "カイ",
+            "cardNameViewText": "カイ"
+        },
+        {
+            "cardID": "31865",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031865_T_TOTSUGEKICHOKKI.jpg",
+            "cardNameAltText": "とつげきチョッキ",
+            "cardNameViewText": "とつげきチョッキ"
+        },
+        {
+            "cardID": "39961",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039961_T_KARABURIHOKEN.jpg",
+            "cardNameAltText": "からぶりほけん",
+            "cardNameViewText": "からぶりほけん"
+        },
+        {
+            "cardID": "39962",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039962_T_KURARA.jpg",
+            "cardNameAltText": "クララ",
+            "cardNameViewText": "クララ"
+        },
+        {
+            "cardID": "34852",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034852_T_ASERORA.jpg",
+            "cardNameAltText": "アセロラ",
+            "cardNameViewText": "アセロラ"
+        },
+        {
+            "cardID": "46997",
+            "cardThumbFile": "/assets/images/card_images/large/XY/046997_T_TORENAZUPOSUTO.jpg",
+            "cardNameAltText": "トレーナーズポスト",
+            "cardNameViewText": "トレーナーズポスト"
+        },
+        {
+            "cardID": "39900",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039900_T_HAKASENOKENKYUUUIROHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "46998",
+            "cardThumbFile": "/assets/images/card_images/large/BW/046998_T_PASOKONTSUUSHIN.jpg",
+            "cardNameAltText": "パソコン通信",
+            "cardNameViewText": "パソコン通信"
+        },
+        {
+            "cardID": "46999",
+            "cardThumbFile": "/assets/images/card_images/large/XY/046999_T_BATORUKONPURESSA.jpg",
+            "cardNameAltText": "バトルコンプレッサー",
+            "cardNameViewText": "バトルコンプレッサー"
+        },
+        {
+            "cardID": "47000",
+            "cardThumbFile": "/assets/images/card_images/large/XY/047000_T_BATORUSACHIXYA.jpg",
+            "cardNameAltText": "バトルサーチャー",
+            "cardNameViewText": "バトルサーチャー"
+        },
+        {
+            "cardID": "47001",
+            "cardThumbFile": "/assets/images/card_images/large/XY/047001_T_KARUISHI.jpg",
+            "cardNameAltText": "かるいし",
+            "cardNameViewText": "かるいし"
+        },
+        {
+            "cardID": "39949",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039949_T_KIBANA.jpg",
+            "cardNameAltText": "キバナ",
+            "cardNameViewText": "キバナ"
+        },
+        {
+            "cardID": "47002",
+            "cardThumbFile": "/assets/images/card_images/large/XY/047002_T_CHIKARANOHACHIMAKI.jpg",
+            "cardNameAltText": "ちからのハチマキ",
+            "cardNameViewText": "ちからのハチマキ"
+        },
+        {
+            "cardID": "39950",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/039950_T_SAITOU.jpg",
+            "cardNameAltText": "サイトウ",
+            "cardNameViewText": "サイトウ"
+        },
+        {
+            "cardID": "47003",
+            "cardThumbFile": "/assets/images/card_images/large/XY/047003_T_POKEMONRENJIXYA.jpg",
+            "cardNameAltText": "ポケモンレンジャー",
+            "cardNameViewText": "ポケモンレンジャー"
+        },
+        {
+            "cardID": "32006",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032006_T_FUDEINSOURURINKU.jpg",
+            "cardNameAltText": "フーディンソウルリンク",
+            "cardNameViewText": "フーディンソウルリンク"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 225,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 8737,
+    "cardEnd": 8775,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "40322",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040322_E_UOSSHIXYUMIZUENERUGI.jpg",
+            "cardNameAltText": "ウォッシュ水エネルギー",
+            "cardNameViewText": "ウォッシュ水エネルギー"
+        },
+        {
+            "cardID": "40323",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040323_E_SUPIDOKAMINARIENERUGI.jpg",
+            "cardNameAltText": "スピード雷エネルギー",
+            "cardNameViewText": "スピード雷エネルギー"
+        },
+        {
+            "cardID": "40324",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040324_E_HORACHIXYOUENERUGI.jpg",
+            "cardNameAltText": "ホラー超エネルギー",
+            "cardNameViewText": "ホラー超エネルギー"
+        },
+        {
+            "cardID": "40325",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040325_E_SUTONTOUENERUGI.jpg",
+            "cardNameAltText": "ストーン闘エネルギー",
+            "cardNameViewText": "ストーン闘エネルギー"
+        },
+        {
+            "cardID": "40326",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040326_E_HAIDOAKUENERUGI.jpg",
+            "cardNameAltText": "ハイド悪エネルギー",
+            "cardNameViewText": "ハイド悪エネルギー"
+        },
+        {
+            "cardID": "40327",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040327_E_KOTEINGUHAGANEENERUGI.jpg",
+            "cardNameAltText": "コーティング鋼エネルギー",
+            "cardNameViewText": "コーティング鋼エネルギー"
+        },
+        {
+            "cardID": "40328",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040328_E_PAWAFURUMUSHIXYOKUENERUGI.jpg",
+            "cardNameAltText": "パワフル無色エネルギー",
+            "cardNameViewText": "パワフル無色エネルギー"
+        },
+        {
+            "cardID": "40329",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040329_E_ICHIGEKIENERUGI.jpg",
+            "cardNameAltText": "いちげきエネルギー",
+            "cardNameViewText": "いちげきエネルギー"
+        },
+        {
+            "cardID": "40330",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040330_E_ORORAENERUGI.jpg",
+            "cardNameAltText": "オーロラエネルギー",
+            "cardNameViewText": "オーロラエネルギー"
+        },
+        {
+            "cardID": "40331",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040331_E_KIXYAPUCHIXYAENERUGI.jpg",
+            "cardNameAltText": "キャプチャーエネルギー",
+            "cardNameViewText": "キャプチャーエネルギー"
+        },
+        {
+            "cardID": "40332",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040332_E_TSUINENERUGI.jpg",
+            "cardNameAltText": "ツインエネルギー",
+            "cardNameViewText": "ツインエネルギー"
+        },
+        {
+            "cardID": "40333",
+            "cardThumbFile": "/assets/images/card_images/large/S8b/040333_E_RENGEKIENERUGI.jpg",
+            "cardNameAltText": "れんげきエネルギー",
+            "cardNameViewText": "れんげきエネルギー"
+        },
+        {
+            "cardID": "40114",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040114_P_RIORU.jpg",
+            "cardNameAltText": "リオル",
+            "cardNameViewText": "リオル"
+        },
+        {
+            "cardID": "40115",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040115_P_ITOMARU.jpg",
+            "cardNameAltText": "イトマル",
+            "cardNameViewText": "イトマル"
+        },
+        {
+            "cardID": "40116",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040116_P_ARIADOSU.jpg",
+            "cardNameAltText": "アリアドス",
+            "cardNameViewText": "アリアドス"
+        },
+        {
+            "cardID": "40117",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040117_P_ABUSORU.jpg",
+            "cardNameAltText": "アブソル",
+            "cardNameViewText": "アブソル"
+        },
+        {
+            "cardID": "40118",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040118_P_DAKURAI.jpg",
+            "cardNameAltText": "ダークライ",
+            "cardNameViewText": "ダークライ"
+        },
+        {
+            "cardID": "40119",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040119_P_FUPA.jpg",
+            "cardNameAltText": "フーパ",
+            "cardNameViewText": "フーパ"
+        },
+        {
+            "cardID": "40120",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040120_P_KUSUNE.jpg",
+            "cardNameAltText": "クスネ",
+            "cardNameViewText": "クスネ"
+        },
+        {
+            "cardID": "40121",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040121_P_FUOKUSURAI.jpg",
+            "cardNameAltText": "フォクスライ",
+            "cardNameViewText": "フォクスライ"
+        },
+        {
+            "cardID": "40122",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040122_P_MORUPEKO.jpg",
+            "cardNameAltText": "モルペコ",
+            "cardNameViewText": "モルペコ"
+        },
+        {
+            "cardID": "40123",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040123_P_MUGENDAINAV.jpg",
+            "cardNameAltText": "ムゲンダイナV",
+            "cardNameViewText": "ムゲンダイナV"
+        },
+        {
+            "cardID": "40124",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040124_P_MUGENDAINAVMAX.jpg",
+            "cardNameAltText": "ムゲンダイナVMAX",
+            "cardNameViewText": "ムゲンダイナVMAX"
+        },
+        {
+            "cardID": "40125",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040125_P_RUKARIO.jpg",
+            "cardNameAltText": "ルカリオ",
+            "cardNameViewText": "ルカリオ"
+        },
+        {
+            "cardID": "40126",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040126_P_MERUTAN.jpg",
+            "cardNameAltText": "メルタン",
+            "cardNameViewText": "メルタン"
+        },
+        {
+            "cardID": "40127",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040127_P_MERUMETARU.jpg",
+            "cardNameAltText": "メルメタル",
+            "cardNameViewText": "メルメタル"
+        },
+        {
+            "cardID": "40128",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040128_P_JIXYURARUDON.jpg",
+            "cardNameAltText": "ジュラルドン",
+            "cardNameViewText": "ジュラルドン"
+        },
+        {
+            "cardID": "40129",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040129_P_ZASHIANV.jpg",
+            "cardNameAltText": "ザシアンV",
+            "cardNameViewText": "ザシアンV"
+        },
+        {
+            "cardID": "40130",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040130_P_ZAMAZENTAV.jpg",
+            "cardNameAltText": "ザマゼンタV",
+            "cardNameViewText": "ザマゼンタV"
+        },
+        {
+            "cardID": "40142",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040142_P_ZASHIANV.jpg",
+            "cardNameAltText": "ザシアンV",
+            "cardNameViewText": "ザシアンV"
+        },
+        {
+            "cardID": "40143",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040143_P_ZAMAZENTAV.jpg",
+            "cardNameAltText": "ザマゼンタV",
+            "cardNameViewText": "ザマゼンタV"
+        },
+        {
+            "cardID": "40131",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040131_T_KUIKKUBORU.jpg",
+            "cardNameAltText": "クイックボール",
+            "cardNameViewText": "クイックボール"
+        },
+        {
+            "cardID": "40132",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040132_T_SHINKANOOKOU.jpg",
+            "cardNameAltText": "しんかのおこう",
+            "cardNameViewText": "しんかのおこう"
+        },
+        {
+            "cardID": "40133",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040133_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "40134",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040134_T_POKEGIA30.jpg",
+            "cardNameAltText": "ポケギア3.0",
+            "cardNameViewText": "ポケギア3.0"
+        },
+        {
+            "cardID": "40135",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040135_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "40136",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040136_T_METARUSOSA.jpg",
+            "cardNameAltText": "メタルソーサー",
+            "cardNameViewText": "メタルソーサー"
+        },
+        {
+            "cardID": "40137",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040137_T_HAKASENOKENKIXYUUMAGUNORIAHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "40138",
+            "cardThumbFile": "/assets/images/card_images/large/SJ/040138_T_BITO.jpg",
+            "cardNameAltText": "ビート",
+            "cardNameViewText": "ビート"
+        }
+    ]
+}

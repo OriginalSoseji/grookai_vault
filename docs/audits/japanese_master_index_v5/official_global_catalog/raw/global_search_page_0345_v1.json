@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 345,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 13417,
+    "cardEnd": 13455,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "34822",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034822_P_FURAIGON.jpg",
+            "cardNameAltText": "フライゴン",
+            "cardNameViewText": "フライゴン"
+        },
+        {
+            "cardID": "34823",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034823_P_CHIRUTARISU.jpg",
+            "cardNameAltText": "チルタリス",
+            "cardNameViewText": "チルタリス"
+        },
+        {
+            "cardID": "34824",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034824_P_KURIMUGAN.jpg",
+            "cardNameAltText": "クリムガン",
+            "cardNameViewText": "クリムガン"
+        },
+        {
+            "cardID": "34825",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034825_P_ZEKUROMU.jpg",
+            "cardNameAltText": "ゼクロム",
+            "cardNameViewText": "ゼクロム"
+        },
+        {
+            "cardID": "34826",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034826_P_KYUREMU.jpg",
+            "cardNameAltText": "キュレム",
+            "cardNameViewText": "キュレム"
+        },
+        {
+            "cardID": "34827",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034827_P_HOWAITOKYUREMUGX.jpg",
+            "cardNameAltText": "ホワイトキュレムGX",
+            "cardNameViewText": "ホワイトキュレムGX"
+        },
+        {
+            "cardID": "34828",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034828_P_JIGARUDE.jpg",
+            "cardNameAltText": "ジガルデ",
+            "cardNameViewText": "ジガルデ"
+        },
+        {
+            "cardID": "34829",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034829_P_BAKUGAMESU.jpg",
+            "cardNameAltText": "バクガメス",
+            "cardNameViewText": "バクガメス"
+        },
+        {
+            "cardID": "34830",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034830_P_JIJIRON.jpg",
+            "cardNameAltText": "ジジーロン",
+            "cardNameViewText": "ジジーロン"
+        },
+        {
+            "cardID": "34831",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034831_P_JARAKO.jpg",
+            "cardNameAltText": "ジャラコ",
+            "cardNameViewText": "ジャラコ"
+        },
+        {
+            "cardID": "34832",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034832_P_JARANGO.jpg",
+            "cardNameAltText": "ジャランゴ",
+            "cardNameViewText": "ジャランゴ"
+        },
+        {
+            "cardID": "34833",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034833_P_JARARANGA.jpg",
+            "cardNameAltText": "ジャラランガ",
+            "cardNameViewText": "ジャラランガ"
+        },
+        {
+            "cardID": "34834",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034834_P_CHIRUTTO.jpg",
+            "cardNameAltText": "チルット",
+            "cardNameViewText": "チルット"
+        },
+        {
+            "cardID": "35707",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035707_P_RESHIRAMUGX.jpg",
+            "cardNameAltText": "レシラムGX",
+            "cardNameViewText": "レシラムGX"
+        },
+        {
+            "cardID": "35708",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035708_P_KINGUDORAGX.jpg",
+            "cardNameAltText": "キングドラGX",
+            "cardNameViewText": "キングドラGX"
+        },
+        {
+            "cardID": "35709",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035709_P_KAIRYUGX.jpg",
+            "cardNameAltText": "カイリューGX",
+            "cardNameViewText": "カイリューGX"
+        },
+        {
+            "cardID": "35710",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035710_P_HOWAITOKYUREMUGX.jpg",
+            "cardNameAltText": "ホワイトキュレムGX",
+            "cardNameViewText": "ホワイトキュレムGX"
+        },
+        {
+            "cardID": "34835",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034835_T_AKUAPACCHI.jpg",
+            "cardNameAltText": "アクアパッチ",
+            "cardNameViewText": "アクアパッチ"
+        },
+        {
+            "cardID": "34836",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034836_T_IREKAEFUROTO.jpg",
+            "cardNameAltText": "いれかえフロート",
+            "cardNameViewText": "いれかえフロート"
+        },
+        {
+            "cardID": "34837",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034837_T_HIDAISHI.jpg",
+            "cardNameAltText": "火打石",
+            "cardNameViewText": "火打石"
+        },
+        {
+            "cardID": "34838",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034838_T_RYUUNOKOUTSUME.jpg",
+            "cardNameAltText": "竜の鉤爪",
+            "cardNameViewText": "竜の鉤爪"
+        },
+        {
+            "cardID": "34839",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034839_T_KAKI.jpg",
+            "cardNameAltText": "カキ",
+            "cardNameViewText": "カキ"
+        },
+        {
+            "cardID": "34840",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034840_T_KATSURANOIPPATSUSHOUBU.jpg",
+            "cardNameAltText": "カツラの一発勝負",
+            "cardNameViewText": "カツラの一発勝負"
+        },
+        {
+            "cardID": "34841",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034841_T_HIGANA.jpg",
+            "cardNameAltText": "ヒガナ",
+            "cardNameViewText": "ヒガナ"
+        },
+        {
+            "cardID": "34842",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034842_T_WATARU.jpg",
+            "cardNameAltText": "ワタル プリズムスター",
+            "cardNameViewText": "ワタル<span class=\"pcg pcg-prismstar\"></span>"
+        },
+        {
+            "cardID": "34843",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034843_T_VERAKAZANKOUEN.jpg",
+            "cardNameAltText": "ヴェラ火山公園",
+            "cardNameViewText": "ヴェラ火山公園"
+        },
+        {
+            "cardID": "34844",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034844_T_KUITSUKUSARETAGENYA.jpg",
+            "cardNameAltText": "喰いつくされた原野",
+            "cardNameViewText": "喰いつくされた原野"
+        },
+        {
+            "cardID": "34845",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/034845_T_SESERAGINOOKA.jpg",
+            "cardNameAltText": "せせらぎの丘",
+            "cardNameViewText": "せせらぎの丘"
+        },
+        {
+            "cardID": "35711",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035711_T_KATSURANOIPPATSUSHOUBU.jpg",
+            "cardNameAltText": "カツラの一発勝負",
+            "cardNameViewText": "カツラの一発勝負"
+        },
+        {
+            "cardID": "35712",
+            "cardThumbFile": "/assets/images/card_images/large/SM6a/035712_T_HIGANA.jpg",
+            "cardNameAltText": "ヒガナ",
+            "cardNameViewText": "ヒガナ"
+        },
+        {
+            "cardID": "34675",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034675_P_TAMATAMA.jpg",
+            "cardNameAltText": "タマタマ",
+            "cardNameViewText": "タマタマ"
+        },
+        {
+            "cardID": "34676",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034676_P_ARORANASSHI.jpg",
+            "cardNameAltText": "アローラ ナッシー",
+            "cardNameViewText": "アローラ ナッシー"
+        },
+        {
+            "cardID": "34677",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034677_P_KOFUKIMUSHI.jpg",
+            "cardNameAltText": "コフキムシ",
+            "cardNameViewText": "コフキムシ"
+        },
+        {
+            "cardID": "34678",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034678_P_KOFUKIMUSHI.jpg",
+            "cardNameAltText": "コフキムシ",
+            "cardNameViewText": "コフキムシ"
+        },
+        {
+            "cardID": "34679",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034679_P_KOFURAI.jpg",
+            "cardNameAltText": "コフーライ",
+            "cardNameViewText": "コフーライ"
+        },
+        {
+            "cardID": "34680",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034680_P_BIBIYON.jpg",
+            "cardNameAltText": "ビビヨン",
+            "cardNameViewText": "ビビヨン"
+        },
+        {
+            "cardID": "34681",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034681_P_MEEKURU.jpg",
+            "cardNameAltText": "メェークル",
+            "cardNameViewText": "メェークル"
+        },
+        {
+            "cardID": "34682",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034682_P_GOGOTO.jpg",
+            "cardNameAltText": "ゴーゴート",
+            "cardNameViewText": "ゴーゴート"
+        },
+        {
+            "cardID": "34683",
+            "cardThumbFile": "/assets/images/card_images/large/SM6/034683_P_FEROCHIE.jpg",
+            "cardNameAltText": "フェローチェ",
+            "cardNameViewText": "フェローチェ"
+        }
+    ]
+}

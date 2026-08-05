@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 359,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 13963,
+    "cardEnd": 14001,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "34135",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034135_P_ARORAGARAGARA.jpg",
+            "cardNameAltText": "アローラ ガラガラ",
+            "cardNameViewText": "アローラ ガラガラ"
+        },
+        {
+            "cardID": "34136",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034136_P_DONMERU.jpg",
+            "cardNameAltText": "ドンメル",
+            "cardNameViewText": "ドンメル"
+        },
+        {
+            "cardID": "34137",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034137_P_BAKUDA.jpg",
+            "cardNameAltText": "バクーダ",
+            "cardNameViewText": "バクーダ"
+        },
+        {
+            "cardID": "34138",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034138_P_HITODEMAN.jpg",
+            "cardNameAltText": "ヒトデマン",
+            "cardNameViewText": "ヒトデマン"
+        },
+        {
+            "cardID": "34139",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034139_P_SUTAMI.jpg",
+            "cardNameAltText": "スターミー",
+            "cardNameViewText": "スターミー"
+        },
+        {
+            "cardID": "34140",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034140_P_TEPPOUO.jpg",
+            "cardNameAltText": "テッポウオ",
+            "cardNameViewText": "テッポウオ"
+        },
+        {
+            "cardID": "34141",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034141_P_OKUTAN.jpg",
+            "cardNameAltText": "オクタン",
+            "cardNameViewText": "オクタン"
+        },
+        {
+            "cardID": "34142",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034142_P_HEIGANI.jpg",
+            "cardNameAltText": "ヘイガニ",
+            "cardNameViewText": "ヘイガニ"
+        },
+        {
+            "cardID": "34143",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034143_P_SHIZARIGA.jpg",
+            "cardNameAltText": "シザリガー",
+            "cardNameViewText": "シザリガー"
+        },
+        {
+            "cardID": "34144",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034144_P_KARANAKUSHI.jpg",
+            "cardNameAltText": "カラナクシ",
+            "cardNameViewText": "カラナクシ"
+        },
+        {
+            "cardID": "34145",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034145_P_ARORAISHITSUBUTE.jpg",
+            "cardNameAltText": "アローラ イシツブテ",
+            "cardNameViewText": "アローラ イシツブテ"
+        },
+        {
+            "cardID": "34146",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034146_P_ARORAGORON.jpg",
+            "cardNameAltText": "アローラ ゴローン",
+            "cardNameViewText": "アローラ ゴローン"
+        },
+        {
+            "cardID": "34147",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034147_P_ARORAGORONYAGX.jpg",
+            "cardNameAltText": "アローラ ゴローニャGX",
+            "cardNameViewText": "アローラ ゴローニャGX"
+        },
+        {
+            "cardID": "34148",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034148_P_EMONGA.jpg",
+            "cardNameAltText": "エモンガ",
+            "cardNameViewText": "エモンガ"
+        },
+        {
+            "cardID": "34149",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034149_P_GOSU.jpg",
+            "cardNameAltText": "ゴース",
+            "cardNameViewText": "ゴース"
+        },
+        {
+            "cardID": "34150",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034150_P_GOSUTO.jpg",
+            "cardNameAltText": "ゴースト",
+            "cardNameViewText": "ゴースト"
+        },
+        {
+            "cardID": "34151",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034151_P_GENGA.jpg",
+            "cardNameAltText": "ゲンガー",
+            "cardNameViewText": "ゲンガー"
+        },
+        {
+            "cardID": "34152",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034152_P_CHIRIN.jpg",
+            "cardNameAltText": "チリーン",
+            "cardNameViewText": "チリーン"
+        },
+        {
+            "cardID": "34153",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034153_P_BAKECCHA.jpg",
+            "cardNameAltText": "バケッチャ",
+            "cardNameViewText": "バケッチャ"
+        },
+        {
+            "cardID": "34154",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034154_P_PANPUJIN.jpg",
+            "cardNameAltText": "パンプジン",
+            "cardNameViewText": "パンプジン"
+        },
+        {
+            "cardID": "34155",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034155_P_YATOUMORI.jpg",
+            "cardNameAltText": "ヤトウモリ",
+            "cardNameViewText": "ヤトウモリ"
+        },
+        {
+            "cardID": "34156",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034156_P_ENNYUTO.jpg",
+            "cardNameAltText": "エンニュート",
+            "cardNameViewText": "エンニュート"
+        },
+        {
+            "cardID": "34157",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034157_P_KARAKARA.jpg",
+            "cardNameAltText": "カラカラ",
+            "cardNameViewText": "カラカラ"
+        },
+        {
+            "cardID": "34158",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034158_P_TORITODON.jpg",
+            "cardNameAltText": "トリトドン",
+            "cardNameViewText": "トリトドン"
+        },
+        {
+            "cardID": "34159",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034159_P_MASSHIBUNGX.jpg",
+            "cardNameAltText": "マッシブーンGX",
+            "cardNameViewText": "マッシブーンGX"
+        },
+        {
+            "cardID": "34160",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034160_P_KUCHITO.jpg",
+            "cardNameAltText": "クチート",
+            "cardNameViewText": "クチート"
+        },
+        {
+            "cardID": "34161",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034161_P_KOKODORA.jpg",
+            "cardNameAltText": "ココドラ",
+            "cardNameViewText": "ココドラ"
+        },
+        {
+            "cardID": "34162",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034162_P_KODORA.jpg",
+            "cardNameAltText": "コドラ",
+            "cardNameViewText": "コドラ"
+        },
+        {
+            "cardID": "34163",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034163_P_BOSUGODORA.jpg",
+            "cardNameAltText": "ボスゴドラ",
+            "cardNameViewText": "ボスゴドラ"
+        },
+        {
+            "cardID": "34164",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034164_P_REJISUCHIRU.jpg",
+            "cardNameAltText": "レジスチル",
+            "cardNameViewText": "レジスチル"
+        },
+        {
+            "cardID": "34165",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034165_P_SHUBARUGO.jpg",
+            "cardNameAltText": "シュバルゴ",
+            "cardNameViewText": "シュバルゴ"
+        },
+        {
+            "cardID": "34166",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034166_P_KAMITSURUGIGX.jpg",
+            "cardNameAltText": "カミツルギGX",
+            "cardNameViewText": "カミツルギGX"
+        },
+        {
+            "cardID": "34167",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034167_P_MUKKURU.jpg",
+            "cardNameAltText": "ムックル",
+            "cardNameViewText": "ムックル"
+        },
+        {
+            "cardID": "34168",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034168_P_MUKUBADO.jpg",
+            "cardNameAltText": "ムクバード",
+            "cardNameViewText": "ムクバード"
+        },
+        {
+            "cardID": "34169",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034169_P_MUKUHOKU.jpg",
+            "cardNameAltText": "ムクホーク",
+            "cardNameViewText": "ムクホーク"
+        },
+        {
+            "cardID": "34170",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034170_P_REJIGIGASU.jpg",
+            "cardNameAltText": "レジギガス",
+            "cardNameViewText": "レジギガス"
+        },
+        {
+            "cardID": "34171",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034171_P_CHIRAMII.jpg",
+            "cardNameAltText": "チラーミィ",
+            "cardNameViewText": "チラーミィ"
+        },
+        {
+            "cardID": "34172",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034172_P_CHIRACHINO.jpg",
+            "cardNameAltText": "チラチーノ",
+            "cardNameViewText": "チラチーノ"
+        },
+        {
+            "cardID": "34173",
+            "cardThumbFile": "/assets/images/card_images/large/SM4S/034173_P_TAIPUNURU.jpg",
+            "cardNameAltText": "タイプ：ヌル",
+            "cardNameViewText": "タイプ：ヌル"
+        }
+    ]
+}

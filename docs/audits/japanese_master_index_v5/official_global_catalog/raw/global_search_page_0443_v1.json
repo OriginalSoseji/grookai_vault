@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 443,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 17239,
+    "cardEnd": 17277,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "28094",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028094_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "28898",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028898_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "28899",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028899_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "28900",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028900_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "28901",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028901_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "28902",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028902_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "28903",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028903_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "28904",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028904_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "28905",
+            "cardThumbFile": "/assets/images/card_images/large/BWP/028905_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "26199",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026199_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26200",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026200_P_GENEINOZOROAKU.jpg",
+            "cardNameAltText": "幻影のゾロアーク",
+            "cardNameViewText": "幻影のゾロアーク"
+        },
+        {
+            "cardID": "26201",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026201_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26202",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026202_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26203",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026203_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26204",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026204_P_GENEINOZOROAKU.jpg",
+            "cardNameAltText": "幻影のゾロアーク",
+            "cardNameViewText": "幻影のゾロアーク"
+        },
+        {
+            "cardID": "26205",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026205_P_GENEINOZOROAKU.jpg",
+            "cardNameAltText": "幻影のゾロアーク",
+            "cardNameViewText": "幻影のゾロアーク"
+        },
+        {
+            "cardID": "26206",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026206_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26207",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026207_P_GENEINOZOROAKU.jpg",
+            "cardNameAltText": "幻影のゾロアーク",
+            "cardNameViewText": "幻影のゾロアーク"
+        },
+        {
+            "cardID": "26208",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026208_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26209",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026209_P_GENEINOZOROA.jpg",
+            "cardNameAltText": "幻影のゾロア",
+            "cardNameViewText": "幻影のゾロア"
+        },
+        {
+            "cardID": "26210",
+            "cardThumbFile": "/assets/images/card_images/large/LP/026210_P_GENEINOZOROAKU.jpg",
+            "cardNameAltText": "幻影のゾロアーク",
+            "cardNameViewText": "幻影のゾロアーク"
+        },
+        {
+            "cardID": "25265",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025265_P_MEGANIUMU.jpg",
+            "cardNameAltText": "メガニウム",
+            "cardNameViewText": "メガニウム"
+        },
+        {
+            "cardID": "25266",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025266_P_ODAIRU.jpg",
+            "cardNameAltText": "オーダイル",
+            "cardNameViewText": "オーダイル"
+        },
+        {
+            "cardID": "25267",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025267_P_BAKUFUN.jpg",
+            "cardNameAltText": "バクフーン",
+            "cardNameViewText": "バクフーン"
+        },
+        {
+            "cardID": "25268",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025268_P_GYARADOSU.gif",
+            "cardNameAltText": "ギャラドス",
+            "cardNameViewText": "ギャラドス"
+        },
+        {
+            "cardID": "25270",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025270_P_CHIKORITA.gif",
+            "cardNameAltText": "チコリータ",
+            "cardNameViewText": "チコリータ"
+        },
+        {
+            "cardID": "25272",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025272_P_HINOARASHI.gif",
+            "cardNameAltText": "ヒノアラシ",
+            "cardNameViewText": "ヒノアラシ"
+        },
+        {
+            "cardID": "25273",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025273_P_WANINOKO.gif",
+            "cardNameAltText": "ワニノコ",
+            "cardNameViewText": "ワニノコ"
+        },
+        {
+            "cardID": "25274",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025274_P_MERIPU.gif",
+            "cardNameAltText": "メリープ",
+            "cardNameViewText": "メリープ"
+        },
+        {
+            "cardID": "25275",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025275_P_GOMAZOU.gif",
+            "cardNameAltText": "ゴマゾウ",
+            "cardNameViewText": "ゴマゾウ"
+        },
+        {
+            "cardID": "25277",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025277_P_HIMEGUMA.gif",
+            "cardNameAltText": "ヒメグマ",
+            "cardNameViewText": "ヒメグマ"
+        },
+        {
+            "cardID": "25313",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025313_P_PIKACHUU.gif",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "25315",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025315_P_KURESERIA.gif",
+            "cardNameAltText": "クレセリア",
+            "cardNameViewText": "クレセリア"
+        },
+        {
+            "cardID": "25317",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025317_P_DAKURAI.gif",
+            "cardNameAltText": "ダークライ",
+            "cardNameViewText": "ダークライ"
+        },
+        {
+            "cardID": "25278",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025278_P_OTACHI.gif",
+            "cardNameAltText": "オタチ",
+            "cardNameViewText": "オタチ"
+        },
+        {
+            "cardID": "25292",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025292_P_HOHO.jpg",
+            "cardNameAltText": "ホーホー",
+            "cardNameViewText": "ホーホー"
+        },
+        {
+            "cardID": "25294",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025294_P_YORUNOZUKU.gif",
+            "cardNameAltText": "ヨルノズク",
+            "cardNameViewText": "ヨルノズク"
+        },
+        {
+            "cardID": "25319",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025319_P_YADON.jpg",
+            "cardNameAltText": "ヤドン",
+            "cardNameViewText": "ヤドン"
+        },
+        {
+            "cardID": "25321",
+            "cardThumbFile": "/assets/images/card_images/large/LP/025321_P_YADORAN.gif",
+            "cardNameAltText": "ヤドラン",
+            "cardNameViewText": "ヤドラン"
+        }
+    ]
+}

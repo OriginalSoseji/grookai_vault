@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 309,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 12013,
+    "cardEnd": 12051,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "36521",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036521_P_RAPURASU.jpg",
+            "cardNameAltText": "ラプラス",
+            "cardNameViewText": "ラプラス"
+        },
+        {
+            "cardID": "36522",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036522_P_NAMAKOBUSHI.jpg",
+            "cardNameAltText": "ナマコブシ",
+            "cardNameViewText": "ナマコブシ"
+        },
+        {
+            "cardID": "36495",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036495_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "36496",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036496_P_RAICHUUGX.jpg",
+            "cardNameAltText": "ライチュウGX",
+            "cardNameViewText": "ライチュウGX"
+        },
+        {
+            "cardID": "36497",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036497_P_BIRIRIDAMA.jpg",
+            "cardNameAltText": "ビリリダマ",
+            "cardNameViewText": "ビリリダマ"
+        },
+        {
+            "cardID": "36498",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036498_P_MARUMAIN.jpg",
+            "cardNameAltText": "マルマイン",
+            "cardNameViewText": "マルマイン"
+        },
+        {
+            "cardID": "36499",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036499_P_TOGEDEMARU.jpg",
+            "cardNameAltText": "トゲデマル",
+            "cardNameViewText": "トゲデマル"
+        },
+        {
+            "cardID": "36523",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036523_P_ABO.jpg",
+            "cardNameAltText": "アーボ",
+            "cardNameViewText": "アーボ"
+        },
+        {
+            "cardID": "36524",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036524_P_RUJURA.jpg",
+            "cardNameAltText": "ルージュラ",
+            "cardNameViewText": "ルージュラ"
+        },
+        {
+            "cardID": "36525",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036525_P_MYUUTSUGX.jpg",
+            "cardNameAltText": "ミュウツーGX",
+            "cardNameViewText": "ミュウツーGX"
+        },
+        {
+            "cardID": "36526",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036526_P_MYUU.jpg",
+            "cardNameAltText": "ミュウ",
+            "cardNameViewText": "ミュウ"
+        },
+        {
+            "cardID": "36527",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036527_P_HIDOIDE.jpg",
+            "cardNameAltText": "ヒドイデ",
+            "cardNameViewText": "ヒドイデ"
+        },
+        {
+            "cardID": "36528",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036528_P_DOHIDOIDE.jpg",
+            "cardNameAltText": "ドヒドイデ",
+            "cardNameViewText": "ドヒドイデ"
+        },
+        {
+            "cardID": "36500",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036500_P_PIPPI.jpg",
+            "cardNameAltText": "ピッピ",
+            "cardNameViewText": "ピッピ"
+        },
+        {
+            "cardID": "36501",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036501_P_PIKUSHI.jpg",
+            "cardNameAltText": "ピクシー",
+            "cardNameViewText": "ピクシー"
+        },
+        {
+            "cardID": "36502",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036502_P_PURIN.jpg",
+            "cardNameAltText": "プリン",
+            "cardNameViewText": "プリン"
+        },
+        {
+            "cardID": "36503",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036503_P_PUKURINGX.jpg",
+            "cardNameAltText": "プクリンGX",
+            "cardNameViewText": "プクリンGX"
+        },
+        {
+            "cardID": "36504",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036504_P_BARIYADO.jpg",
+            "cardNameAltText": "バリヤード",
+            "cardNameViewText": "バリヤード"
+        },
+        {
+            "cardID": "36529",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036529_P_KAMONEGI.jpg",
+            "cardNameAltText": "カモネギ",
+            "cardNameViewText": "カモネギ"
+        },
+        {
+            "cardID": "36505",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036505_P_RAKKI.jpg",
+            "cardNameAltText": "ラッキー",
+            "cardNameViewText": "ラッキー"
+        },
+        {
+            "cardID": "36484",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036484_P_GARURA.jpg",
+            "cardNameAltText": "ガルーラ",
+            "cardNameViewText": "ガルーラ"
+        },
+        {
+            "cardID": "36506",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036506_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "36530",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036530_P_KABIGON.jpg",
+            "cardNameAltText": "カビゴン",
+            "cardNameViewText": "カビゴン"
+        },
+        {
+            "cardID": "36507",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036507_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "36531",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036531_T_KURASSHUHANMA.jpg",
+            "cardNameAltText": "クラッシュハンマー",
+            "cardNameViewText": "クラッシュハンマー"
+        },
+        {
+            "cardID": "36485",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036485_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "36508",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036508_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "36532",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036532_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "36486",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036486_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "36487",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036487_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "36509",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036509_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "36533",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036533_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "36488",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036488_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "36510",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036510_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "36534",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036534_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "36489",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036489_T_IRIMA.jpg",
+            "cardNameAltText": "イリマ",
+            "cardNameViewText": "イリマ"
+        },
+        {
+            "cardID": "36511",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036511_T_IRIMA.jpg",
+            "cardNameAltText": "イリマ",
+            "cardNameViewText": "イリマ"
+        },
+        {
+            "cardID": "36535",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036535_T_KUKUIHAKASE.jpg",
+            "cardNameAltText": "ククイ博士",
+            "cardNameViewText": "ククイ博士"
+        },
+        {
+            "cardID": "36536",
+            "cardThumbFile": "/assets/images/card_images/large/SML/036536_T_JAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        }
+    ]
+}

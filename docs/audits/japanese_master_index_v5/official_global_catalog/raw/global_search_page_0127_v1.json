@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 127,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 4915,
+    "cardEnd": 4953,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "44454",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044454_P_EIPAMU.jpg",
+            "cardNameAltText": "エイパム",
+            "cardNameViewText": "エイパム"
+        },
+        {
+            "cardID": "44455",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044455_P_CHIRUTTO.jpg",
+            "cardNameAltText": "チルット",
+            "cardNameViewText": "チルット"
+        },
+        {
+            "cardID": "44456",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044456_P_PORIGONZ.jpg",
+            "cardNameAltText": "ポリゴンZ",
+            "cardNameViewText": "ポリゴンZ"
+        },
+        {
+            "cardID": "44457",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044457_P_TETSUNOKOUBE.jpg",
+            "cardNameAltText": "テツノコウベ",
+            "cardNameViewText": "テツノコウベ"
+        },
+        {
+            "cardID": "44458",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044458_P_TETSUNOKAINAEX.jpg",
+            "cardNameAltText": "テツノカイナex",
+            "cardNameViewText": "テツノカイナex"
+        },
+        {
+            "cardID": "44459",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044459_P_TETSUNOBUJINEX.jpg",
+            "cardNameAltText": "テツノブジンex",
+            "cardNameViewText": "テツノブジンex"
+        },
+        {
+            "cardID": "44460",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044460_P_SUTORINDAEX.jpg",
+            "cardNameAltText": "ストリンダーex",
+            "cardNameViewText": "ストリンダーex"
+        },
+        {
+            "cardID": "44461",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044461_P_GIRUGARUDOEX.jpg",
+            "cardNameAltText": "ギルガルドex",
+            "cardNameViewText": "ギルガルドex"
+        },
+        {
+            "cardID": "44462",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044462_P_CHIRUTARISUEX.jpg",
+            "cardNameAltText": "チルタリスex",
+            "cardNameViewText": "チルタリスex"
+        },
+        {
+            "cardID": "44463",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044463_P_IKKANEZUMIEX.jpg",
+            "cardNameAltText": "イッカネズミex",
+            "cardNameViewText": "イッカネズミex"
+        },
+        {
+            "cardID": "44467",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044467_P_TETSUNOKAINAEX.jpg",
+            "cardNameAltText": "テツノカイナex",
+            "cardNameViewText": "テツノカイナex"
+        },
+        {
+            "cardID": "44468",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044468_P_TETSUNOBUJINEX.jpg",
+            "cardNameAltText": "テツノブジンex",
+            "cardNameViewText": "テツノブジンex"
+        },
+        {
+            "cardID": "44469",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044469_P_CHIRUTARISUEX.jpg",
+            "cardNameAltText": "チルタリスex",
+            "cardNameViewText": "チルタリスex"
+        },
+        {
+            "cardID": "44972",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044972_P_TETSUNOBUJINEX.jpg",
+            "cardNameAltText": "テツノブジンex",
+            "cardNameViewText": "テツノブジンex"
+        },
+        {
+            "cardID": "44371",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044371_T_KAUNTAKIXYATCHIXYA.jpg",
+            "cardNameAltText": "カウンターキャッチャー",
+            "cardNameViewText": "カウンターキャッチャー"
+        },
+        {
+            "cardID": "44372",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044372_T_TEKUNOREDA.jpg",
+            "cardNameAltText": "テクノレーダー",
+            "cardNameViewText": "テクノレーダー"
+        },
+        {
+            "cardID": "44373",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044373_T_NOROINOHATAKI.jpg",
+            "cardNameAltText": "のろいのはたき",
+            "cardNameViewText": "のろいのはたき"
+        },
+        {
+            "cardID": "44374",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044374_T_BUSUTOENAJIMIRAI.jpg",
+            "cardNameAltText": "ブーストエナジー 未来",
+            "cardNameViewText": "ブーストエナジー 未来"
+        },
+        {
+            "cardID": "44375",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044375_T_WAZAMASHINEVUORIXYUSHIXYON.jpg",
+            "cardNameAltText": "ワザマシン エヴォリューション",
+            "cardNameViewText": "ワザマシン エヴォリューション"
+        },
+        {
+            "cardID": "44376",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044376_T_HIXYOUTA.jpg",
+            "cardNameAltText": "ヒョウタ",
+            "cardNameViewText": "ヒョウタ"
+        },
+        {
+            "cardID": "44377",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044377_T_FUTOUHAKASENOSHINARIO.jpg",
+            "cardNameAltText": "フトゥー博士のシナリオ",
+            "cardNameViewText": "フトゥー博士のシナリオ"
+        },
+        {
+            "cardID": "44378",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044378_T_RIPPU.jpg",
+            "cardNameAltText": "リップ",
+            "cardNameViewText": "リップ"
+        },
+        {
+            "cardID": "44464",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044464_T_HIXYOUTA.jpg",
+            "cardNameAltText": "ヒョウタ",
+            "cardNameViewText": "ヒョウタ"
+        },
+        {
+            "cardID": "44465",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044465_T_FUTOUHAKASENOSHINARIO.jpg",
+            "cardNameAltText": "フトゥー博士のシナリオ",
+            "cardNameViewText": "フトゥー博士のシナリオ"
+        },
+        {
+            "cardID": "44466",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044466_T_RIPPU.jpg",
+            "cardNameAltText": "リップ",
+            "cardNameViewText": "リップ"
+        },
+        {
+            "cardID": "44470",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044470_T_FUTOUHAKASENOSHINARIO.jpg",
+            "cardNameAltText": "フトゥー博士のシナリオ",
+            "cardNameViewText": "フトゥー博士のシナリオ"
+        },
+        {
+            "cardID": "44471",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044471_T_RIPPU.jpg",
+            "cardNameAltText": "リップ",
+            "cardNameViewText": "リップ"
+        },
+        {
+            "cardID": "44973",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044973_T_KAUNTAKIXYATCHIXYA.jpg",
+            "cardNameAltText": "カウンターキャッチャー",
+            "cardNameViewText": "カウンターキャッチャー"
+        },
+        {
+            "cardID": "44974",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044974_E_KIHONHAGANEENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "44073",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044073_P_YUKIMENOKOEX.jpg",
+            "cardNameAltText": "ユキメノコex",
+            "cardNameViewText": "ユキメノコex"
+        },
+        {
+            "cardID": "44074",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044074_P_RAPURASU.jpg",
+            "cardNameAltText": "ラプラス",
+            "cardNameViewText": "ラプラス"
+        },
+        {
+            "cardID": "44075",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044075_P_TEPPOUO.jpg",
+            "cardNameAltText": "テッポウオ",
+            "cardNameViewText": "テッポウオ"
+        },
+        {
+            "cardID": "44076",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044076_P_OKUTAN.jpg",
+            "cardNameAltText": "オクタン",
+            "cardNameViewText": "オクタン"
+        },
+        {
+            "cardID": "44077",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044077_P_YUKIWARASHI.jpg",
+            "cardNameAltText": "ユキワラシ",
+            "cardNameViewText": "ユキワラシ"
+        },
+        {
+            "cardID": "44078",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044078_P_GABURIASUEX.jpg",
+            "cardNameAltText": "ガブリアスex",
+            "cardNameViewText": "ガブリアスex"
+        },
+        {
+            "cardID": "44079",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044079_P_TAMANTA.jpg",
+            "cardNameAltText": "タマンタ",
+            "cardNameViewText": "タマンタ"
+        },
+        {
+            "cardID": "44080",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044080_P_PARUKIA.jpg",
+            "cardNameAltText": "パルキア",
+            "cardNameViewText": "パルキア"
+        },
+        {
+            "cardID": "44081",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044081_P_KOSOKUMUSHI.jpg",
+            "cardNameAltText": "コソクムシ",
+            "cardNameViewText": "コソクムシ"
+        },
+        {
+            "cardID": "44082",
+            "cardThumbFile": "/assets/images/card_images/large/SV3a/044082_P_GUSOKUMUSHIXYA.jpg",
+            "cardNameAltText": "グソクムシャ",
+            "cardNameViewText": "グソクムシャ"
+        }
+    ]
+}

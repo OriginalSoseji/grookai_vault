@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 549,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21373,
+    "cardEnd": 21411,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "2010",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002010_P_AMETAMA.jpg",
+            "cardNameAltText": "アメタマ",
+            "cardNameViewText": "アメタマ"
+        },
+        {
+            "cardID": "2011",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002011_P_AMEMOSU.jpg",
+            "cardNameAltText": "アメモース",
+            "cardNameViewText": "アメモース"
+        },
+        {
+            "cardID": "3012",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003012_P_KINOKOKO.jpg",
+            "cardNameAltText": "キノココ",
+            "cardNameViewText": "キノココ"
+        },
+        {
+            "cardID": "3013",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003013_P_KINOGASSA.jpg",
+            "cardNameAltText": "キノガッサ",
+            "cardNameViewText": "キノガッサ"
+        },
+        {
+            "cardID": "2103",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002103_P_NAMAKERO.jpg",
+            "cardNameAltText": "ナマケロ",
+            "cardNameViewText": "ナマケロ"
+        },
+        {
+            "cardID": "2104",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002104_P_YARUKIMONO.jpg",
+            "cardNameAltText": "ヤルキモノ",
+            "cardNameViewText": "ヤルキモノ"
+        },
+        {
+            "cardID": "2105",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002105_P_KEKKINGU.jpg",
+            "cardNameAltText": "ケッキング",
+            "cardNameViewText": "ケッキング"
+        },
+        {
+            "cardID": "17036",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017036_P_TSUCHININ.jpg",
+            "cardNameAltText": "ツチニン",
+            "cardNameViewText": "ツチニン"
+        },
+        {
+            "cardID": "17037",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017037_P_TEKKANIN.jpg",
+            "cardNameAltText": "テッカニン",
+            "cardNameViewText": "テッカニン"
+        },
+        {
+            "cardID": "17038",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017038_P_NUKENIN.jpg",
+            "cardNameAltText": "ヌケニン",
+            "cardNameViewText": "ヌケニン"
+        },
+        {
+            "cardID": "10114",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010114_P_GONYONYO.jpg",
+            "cardNameAltText": "ゴニョニョ",
+            "cardNameViewText": "ゴニョニョ"
+        },
+        {
+            "cardID": "10115",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010115_P_DOGOMU.jpg",
+            "cardNameAltText": "ドゴーム",
+            "cardNameViewText": "ドゴーム"
+        },
+        {
+            "cardID": "10116",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010116_P_BAKUONGU.jpg",
+            "cardNameAltText": "バクオング",
+            "cardNameViewText": "バクオング"
+        },
+        {
+            "cardID": "10082",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010082_P_MAKUNOSHITA.jpg",
+            "cardNameAltText": "マクノシタ",
+            "cardNameViewText": "マクノシタ"
+        },
+        {
+            "cardID": "10083",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010083_P_HARITEYAMA.jpg",
+            "cardNameAltText": "ハリテヤマ",
+            "cardNameViewText": "ハリテヤマ"
+        },
+        {
+            "cardID": "17109",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017109_P_NOZUPASU.jpg",
+            "cardNameAltText": "ノズパス",
+            "cardNameViewText": "ノズパス"
+        },
+        {
+            "cardID": "17110",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017110_P_DAINOZU.gif",
+            "cardNameAltText": "ダイノーズ",
+            "cardNameViewText": "ダイノーズ"
+        },
+        {
+            "cardID": "17136",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017136_P_ENEKO.jpg",
+            "cardNameAltText": "エネコ",
+            "cardNameViewText": "エネコ"
+        },
+        {
+            "cardID": "17137",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017137_P_ENEKORORO.jpg",
+            "cardNameAltText": "エネコロロ",
+            "cardNameViewText": "エネコロロ"
+        },
+        {
+            "cardID": "3086",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003086_P_YAMIRAMI.jpg",
+            "cardNameAltText": "ヤミラミ",
+            "cardNameViewText": "ヤミラミ"
+        },
+        {
+            "cardID": "10095",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010095_P_KUCHITO.jpg",
+            "cardNameAltText": "クチート",
+            "cardNameViewText": "クチート"
+        },
+        {
+            "cardID": "2086",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002086_P_KOKODORA.jpg",
+            "cardNameAltText": "ココドラ",
+            "cardNameViewText": "ココドラ"
+        },
+        {
+            "cardID": "2087",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002087_P_KODORA.jpg",
+            "cardNameAltText": "コドラ",
+            "cardNameViewText": "コドラ"
+        },
+        {
+            "cardID": "2088",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002088_P_BOSUGODORA.gif",
+            "cardNameAltText": "ボスゴドラ",
+            "cardNameViewText": "ボスゴドラ"
+        },
+        {
+            "cardID": "1072",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001072_P_ASANAN.jpg",
+            "cardNameAltText": "アサナン",
+            "cardNameViewText": "アサナン"
+        },
+        {
+            "cardID": "1073",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001073_P_CHAREMU.jpg",
+            "cardNameAltText": "チャーレム",
+            "cardNameViewText": "チャーレム"
+        },
+        {
+            "cardID": "2049",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002049_P_RAKURAI.jpg",
+            "cardNameAltText": "ラクライ",
+            "cardNameViewText": "ラクライ"
+        },
+        {
+            "cardID": "2050",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002050_P_RAIBORUTO.jpg",
+            "cardNameAltText": "ライボルト",
+            "cardNameViewText": "ライボルト"
+        },
+        {
+            "cardID": "3051",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003051_P_PURASURU.jpg",
+            "cardNameAltText": "プラスル",
+            "cardNameViewText": "プラスル"
+        },
+        {
+            "cardID": "3052",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003052_P_MAINAN.jpg",
+            "cardNameAltText": "マイナン",
+            "cardNameViewText": "マイナン"
+        },
+        {
+            "cardID": "10015",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010015_P_BARUBITO.jpg",
+            "cardNameAltText": "バルビート",
+            "cardNameViewText": "バルビート"
+        },
+        {
+            "cardID": "10016",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010016_P_IRUMIZE.jpg",
+            "cardNameAltText": "イルミーゼ",
+            "cardNameViewText": "イルミーゼ"
+        },
+        {
+            "cardID": "1007",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001007_P_SUBOMI.jpg",
+            "cardNameAltText": "スボミー",
+            "cardNameViewText": "スボミー"
+        },
+        {
+            "cardID": "1008",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001008_P_ROZERIA.jpg",
+            "cardNameAltText": "ロゼリア",
+            "cardNameViewText": "ロゼリア"
+        },
+        {
+            "cardID": "1009",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001009_P_ROZUREIDO.gif",
+            "cardNameAltText": "ロズレイド",
+            "cardNameViewText": "ロズレイド"
+        },
+        {
+            "cardID": "17081",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017081_P_GOKURIN.jpg",
+            "cardNameAltText": "ゴクリン",
+            "cardNameViewText": "ゴクリン"
+        },
+        {
+            "cardID": "17082",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017082_P_MARUNOMU.jpg",
+            "cardNameAltText": "マルノーム",
+            "cardNameViewText": "マルノーム"
+        },
+        {
+            "cardID": "3087",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003087_P_KIBANIA.jpg",
+            "cardNameAltText": "キバニア",
+            "cardNameViewText": "キバニア"
+        },
+        {
+            "cardID": "3088",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003088_P_SAMEHADA.jpg",
+            "cardNameAltText": "サメハダー",
+            "cardNameViewText": "サメハダー"
+        }
+    ]
+}

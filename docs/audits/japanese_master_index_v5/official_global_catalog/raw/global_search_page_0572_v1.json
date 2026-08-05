@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 572,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22270,
+    "cardEnd": 22308,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "22246",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022246_T_GINGADANNOHATSUMEIGWAZAMASHINGGINGA.jpg",
+            "cardNameAltText": "ギンガ団の発明G-107 ワザマシンG[ギンガ]",
+            "cardNameViewText": "ギンガ団の発明G-107 ワザマシンG[ギンガ]"
+        },
+        {
+            "cardID": "38255",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038255_T_UKATTSU.jpg",
+            "cardNameAltText": "ウカッツ",
+            "cardNameViewText": "ウカッツ"
+        },
+        {
+            "cardID": "26175",
+            "cardThumbFile": "/assets/images/card_images/large/L3-B/026175_T_FUTAGOCHAN.jpg",
+            "cardNameAltText": "ふたごちゃん",
+            "cardNameViewText": "ふたごちゃん"
+        },
+        {
+            "cardID": "25723",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025723_T_YAKETATOU.jpg",
+            "cardNameAltText": "焼けた塔",
+            "cardNameViewText": "焼けた塔"
+        },
+        {
+            "cardID": "22248",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022248_T_CHITEITANKENTAI.jpg",
+            "cardNameAltText": "地底探険隊",
+            "cardNameViewText": "地底探険隊"
+        },
+        {
+            "cardID": "24226",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024226_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "38256",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038256_T_YARO.jpg",
+            "cardNameAltText": "ヤロー",
+            "cardNameViewText": "ヤロー"
+        },
+        {
+            "cardID": "26176",
+            "cardThumbFile": "/assets/images/card_images/large/L3-B/026176_T_SEKIEIKOUGEN.jpg",
+            "cardNameAltText": "セキエイこうげん",
+            "cardNameViewText": "セキエイこうげん"
+        },
+        {
+            "cardID": "22250",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022250_T_DENJINOTETSUGAKU.jpg",
+            "cardNameAltText": "デンジの哲学",
+            "cardNameViewText": "デンジの哲学"
+        },
+        {
+            "cardID": "24227",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024227_T_HAJIMARINOTOBIRA.jpg",
+            "cardNameAltText": "はじまりの扉",
+            "cardNameViewText": "はじまりの扉"
+        },
+        {
+            "cardID": "22252",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022252_T_PURUTONOSENTAKU.gif",
+            "cardNameAltText": "プルートの選択",
+            "cardNameViewText": "プルートの選択"
+        },
+        {
+            "cardID": "24228",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024228_T_POKEMONRESUKYU.jpg",
+            "cardNameAltText": "ポケモンレスキュー",
+            "cardNameViewText": "ポケモンレスキュー"
+        },
+        {
+            "cardID": "34069",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034069_T_RIRIE.jpg",
+            "cardNameAltText": "リーリエ",
+            "cardNameViewText": "リーリエ"
+        },
+        {
+            "cardID": "22254",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022254_T_MIZUKINOKENSAKU.jpg",
+            "cardNameAltText": "ミズキの検索",
+            "cardNameViewText": "ミズキの検索"
+        },
+        {
+            "cardID": "24229",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024229_T_KAINOKASEKI.jpg",
+            "cardNameAltText": "かいの化石",
+            "cardNameViewText": "かいの化石"
+        },
+        {
+            "cardID": "19247",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019247_T_GOJASUBORU.jpg",
+            "cardNameAltText": "ゴージャスボール",
+            "cardNameViewText": "ゴージャスボール"
+        },
+        {
+            "cardID": "24231",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024231_T_KOURANOKASEKI.jpg",
+            "cardNameAltText": "こうらの化石",
+            "cardNameViewText": "こうらの化石"
+        },
+        {
+            "cardID": "22256",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022256_T_NAGISASHITEIJIMU.jpg",
+            "cardNameAltText": "ナギサシティジム",
+            "cardNameViewText": "ナギサシティジム"
+        },
+        {
+            "cardID": "19248",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019248_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "21254",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021254_T_GINGADANNOHATSUMEIGPAWASUPURE.jpg",
+            "cardNameAltText": "ギンガ団の発明G-103 パワースプレー",
+            "cardNameViewText": "ギンガ団の発明G-103 パワースプレー"
+        },
+        {
+            "cardID": "4081",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004081_T_ENERUGIJUNKANSOUCHI.jpg",
+            "cardNameAltText": "エネルギー循環装置",
+            "cardNameViewText": "エネルギー循環装置"
+        },
+        {
+            "cardID": "34071",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034071_T_HARA.jpg",
+            "cardNameAltText": "ハラ",
+            "cardNameViewText": "ハラ"
+        },
+        {
+            "cardID": "24233",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024233_T_HIMITSUNOKOHAKU.jpg",
+            "cardNameAltText": "ひみつのコハク",
+            "cardNameViewText": "ひみつのコハク"
+        },
+        {
+            "cardID": "22258",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022258_T_POKEMONKONTESUTOKAIJOU.jpg",
+            "cardNameAltText": "ポケモンコンテスト会場",
+            "cardNameViewText": "ポケモンコンテスト会場"
+        },
+        {
+            "cardID": "19249",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019249_T_POKEDOROA.jpg",
+            "cardNameAltText": "ポケドロアー",
+            "cardNameViewText": "ポケドロアー"
+        },
+        {
+            "cardID": "21255",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021255_T_GINGADANNOHATSUMEIGPOKETAN.jpg",
+            "cardNameAltText": "ギンガ団の発明G-105 ポケターン",
+            "cardNameViewText": "ギンガ団の発明G-105 ポケターン"
+        },
+        {
+            "cardID": "4082",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004082_T_ENERUGITSUKEKAE.jpg",
+            "cardNameAltText": "エネルギーつけかえ",
+            "cardNameViewText": "エネルギーつけかえ"
+        },
+        {
+            "cardID": "24235",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024235_T_SHIAWASETAMAGO.jpg",
+            "cardNameAltText": "しあわせタマゴ",
+            "cardNameViewText": "しあわせタマゴ"
+        },
+        {
+            "cardID": "19250",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019250_T_POKEHIRA.jpg",
+            "cardNameAltText": "ポケヒーラー",
+            "cardNameViewText": "ポケヒーラー"
+        },
+        {
+            "cardID": "21256",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021256_T_REBERUMAX.jpg",
+            "cardNameAltText": "レベルMAX",
+            "cardNameViewText": "レベルMAX"
+        },
+        {
+            "cardID": "4083",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004083_T_ENERUGIRIMUBU.jpg",
+            "cardNameAltText": "エネルギーリムーブ",
+            "cardNameViewText": "エネルギーリムーブ"
+        },
+        {
+            "cardID": "34073",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034073_T_ROIYARUMASUKU.jpg",
+            "cardNameAltText": "ロイヤルマスク",
+            "cardNameViewText": "ロイヤルマスク"
+        },
+        {
+            "cardID": "24237",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-B/024237_T_TATSUJINNOOBI.jpg",
+            "cardNameAltText": "たつじんのおび",
+            "cardNameViewText": "たつじんのおび"
+        },
+        {
+            "cardID": "19251",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-B/019251_T_POKEBUROA.jpg",
+            "cardNameAltText": "ポケブロアー",
+            "cardNameViewText": "ポケブロアー"
+        },
+        {
+            "cardID": "21257",
+            "cardThumbFile": "/assets/images/card_images/large/DPt1-B/021257_T_ZUGAINOKASEKI.jpg",
+            "cardNameAltText": "ずがいの化石",
+            "cardNameViewText": "ずがいの化石"
+        },
+        {
+            "cardID": "4084",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004084_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "50171",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050171_T_POKEPADDO.jpg",
+            "cardNameAltText": "ポケパッド",
+            "cardNameViewText": "ポケパッド"
+        },
+        {
+            "cardID": "38133",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038133_T_ERUDANNOSHITAPPA.jpg",
+            "cardNameAltText": "エール団のしたっぱ",
+            "cardNameViewText": "エール団のしたっぱ"
+        },
+        {
+            "cardID": "34074",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034074_T_ROIYARUMASUKU.jpg",
+            "cardNameAltText": "ロイヤルマスク",
+            "cardNameViewText": "ロイヤルマスク"
+        }
+    ]
+}

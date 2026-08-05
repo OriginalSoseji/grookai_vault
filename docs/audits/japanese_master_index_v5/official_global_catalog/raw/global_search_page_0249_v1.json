@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 249,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 9673,
+    "cardEnd": 9711,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "39247",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039247_P_KOROTOKKUV.jpg",
+            "cardNameAltText": "コロトックV",
+            "cardNameViewText": "コロトックV"
+        },
+        {
+            "cardID": "39248",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039248_P_BIKUTEINIV.jpg",
+            "cardNameAltText": "ビクティニV",
+            "cardNameViewText": "ビクティニV"
+        },
+        {
+            "cardID": "39249",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039249_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39250",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039250_P_ENPERUTOV.jpg",
+            "cardNameAltText": "エンペルトV",
+            "cardNameViewText": "エンペルトV"
+        },
+        {
+            "cardID": "39251",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039251_P_NEKUROZUMAV.jpg",
+            "cardNameAltText": "ネクロズマV",
+            "cardNameViewText": "ネクロズマV"
+        },
+        {
+            "cardID": "39252",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039252_P_RENGEKIURAOSUV.jpg",
+            "cardNameAltText": "れんげきウーラオスV",
+            "cardNameViewText": "れんげきウーラオスV"
+        },
+        {
+            "cardID": "39253",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039253_P_RENGEKIURAOSUV.jpg",
+            "cardNameAltText": "れんげきウーラオスV",
+            "cardNameViewText": "れんげきウーラオスV"
+        },
+        {
+            "cardID": "39254",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039254_P_AMAGAAV.jpg",
+            "cardNameAltText": "アーマーガアV",
+            "cardNameViewText": "アーマーガアV"
+        },
+        {
+            "cardID": "39191",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039191_T_UNERINOOUGI.jpg",
+            "cardNameAltText": "うねりの扇",
+            "cardNameViewText": "うねりの扇"
+        },
+        {
+            "cardID": "39192",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039192_T_ENERUGIRISAIKURU.jpg",
+            "cardNameAltText": "エネルギーリサイクル",
+            "cardNameViewText": "エネルギーリサイクル"
+        },
+        {
+            "cardID": "39193",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039193_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "39194",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039194_T_TSURUJAMA.jpg",
+            "cardNameAltText": "ツールジャマー",
+            "cardNameViewText": "ツールジャマー"
+        },
+        {
+            "cardID": "39195",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039195_T_RENGEKINOMAKIMONOUZUNOKAN.jpg",
+            "cardNameAltText": "れんげきの巻物 渦の巻",
+            "cardNameViewText": "れんげきの巻物 渦の巻"
+        },
+        {
+            "cardID": "39196",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039196_T_KORUNINOKIAI.jpg",
+            "cardNameAltText": "コルニの気合い",
+            "cardNameViewText": "コルニの気合い"
+        },
+        {
+            "cardID": "39197",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039197_T_MASUTADORENGEKINOKATA.jpg",
+            "cardNameAltText": "マスタード れんげきのかた",
+            "cardNameViewText": "マスタード れんげきのかた"
+        },
+        {
+            "cardID": "39198",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039198_T_MOMI.jpg",
+            "cardNameAltText": "モミ",
+            "cardNameViewText": "モミ"
+        },
+        {
+            "cardID": "39199",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039199_T_MIZUNOTOU.jpg",
+            "cardNameAltText": "みずの塔",
+            "cardNameViewText": "みずの塔"
+        },
+        {
+            "cardID": "39255",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039255_T_KORUNINOKIAI.jpg",
+            "cardNameAltText": "コルニの気合い",
+            "cardNameViewText": "コルニの気合い"
+        },
+        {
+            "cardID": "39256",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039256_T_MASUTADORENGEKINOKATA.jpg",
+            "cardNameAltText": "マスタード れんげきのかた",
+            "cardNameViewText": "マスタード れんげきのかた"
+        },
+        {
+            "cardID": "39511",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039511_T_MOMI.jpg",
+            "cardNameAltText": "モミ",
+            "cardNameViewText": "モミ"
+        },
+        {
+            "cardID": "39200",
+            "cardThumbFile": "/assets/images/card_images/large/S5R/039200_E_RENGEKIENERUGI.jpg",
+            "cardNameAltText": "れんげきエネルギー",
+            "cardNameViewText": "れんげきエネルギー"
+        },
+        {
+            "cardID": "39061",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039061_P_SABONEA.jpg",
+            "cardNameAltText": "サボネア",
+            "cardNameViewText": "サボネア"
+        },
+        {
+            "cardID": "39062",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039062_P_NOKUTASU.jpg",
+            "cardNameAltText": "ノクタス",
+            "cardNameViewText": "ノクタス"
+        },
+        {
+            "cardID": "39063",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039063_P_AIANTO.jpg",
+            "cardNameAltText": "アイアント",
+            "cardNameViewText": "アイアント"
+        },
+        {
+            "cardID": "39064",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039064_P_KOFUKIMUSHI.jpg",
+            "cardNameAltText": "コフキムシ",
+            "cardNameViewText": "コフキムシ"
+        },
+        {
+            "cardID": "39065",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039065_P_KOFURAI.jpg",
+            "cardNameAltText": "コフーライ",
+            "cardNameViewText": "コフーライ"
+        },
+        {
+            "cardID": "39066",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039066_P_BIBIYON.jpg",
+            "cardNameAltText": "ビビヨン",
+            "cardNameViewText": "ビビヨン"
+        },
+        {
+            "cardID": "39067",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039067_P_APPURYUV.jpg",
+            "cardNameAltText": "アップリューV",
+            "cardNameViewText": "アップリューV"
+        },
+        {
+            "cardID": "39068",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039068_P_APPURYUVMAX.jpg",
+            "cardNameAltText": "アップリューVMAX",
+            "cardNameViewText": "アップリューVMAX"
+        },
+        {
+            "cardID": "39069",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039069_P_ENTEI.jpg",
+            "cardNameAltText": "エンテイ",
+            "cardNameViewText": "エンテイ"
+        },
+        {
+            "cardID": "39070",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039070_P_POKABU.jpg",
+            "cardNameAltText": "ポカブ",
+            "cardNameViewText": "ポカブ"
+        },
+        {
+            "cardID": "39071",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039071_P_CHAOBU.jpg",
+            "cardNameAltText": "チャオブー",
+            "cardNameViewText": "チャオブー"
+        },
+        {
+            "cardID": "39072",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039072_P_ENBUO.jpg",
+            "cardNameAltText": "エンブオー",
+            "cardNameViewText": "エンブオー"
+        },
+        {
+            "cardID": "39073",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039073_P_YATOUMORI.jpg",
+            "cardNameAltText": "ヤトウモリ",
+            "cardNameViewText": "ヤトウモリ"
+        },
+        {
+            "cardID": "39074",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039074_P_ENNYUTO.jpg",
+            "cardNameAltText": "エンニュート",
+            "cardNameViewText": "エンニュート"
+        },
+        {
+            "cardID": "39075",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039075_P_EREBU.jpg",
+            "cardNameAltText": "エレブー",
+            "cardNameViewText": "エレブー"
+        },
+        {
+            "cardID": "39076",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039076_P_EREKIBURU.jpg",
+            "cardNameAltText": "エレキブル",
+            "cardNameViewText": "エレキブル"
+        },
+        {
+            "cardID": "39077",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039077_P_KAPUKOKEKOV.jpg",
+            "cardNameAltText": "カプ・コケコV",
+            "cardNameViewText": "カプ・コケコV"
+        },
+        {
+            "cardID": "39078",
+            "cardThumbFile": "/assets/images/card_images/large/S5I/039078_P_KAPUKOKEKOVMAX.jpg",
+            "cardNameAltText": "カプ・コケコVMAX",
+            "cardNameViewText": "カプ・コケコVMAX"
+        }
+    ]
+}

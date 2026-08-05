@@ -1,0 +1,243 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 594,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 23128,
+    "cardEnd": 23165,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31560",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031560_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "31561",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031561_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "31562",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031562_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "31565",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031565_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "31566",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031566_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "31633",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031633_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "31634",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031634_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "31635",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031635_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "32130",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032130_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "32131",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032131_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "32132",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032132_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "32327",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032327_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "32328",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032328_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "32329",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032329_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "32330",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032330_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "32331",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032331_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "32332",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032332_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "32333",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032333_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "32334",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032334_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "32335",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032335_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "32363",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032363_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "32364",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032364_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "32365",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032365_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "32366",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032366_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "32367",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032367_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "32368",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032368_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "32369",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032369_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "32370",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032370_E_KIHONYOUENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "31571",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031571_E_DABURUDORAGONENERUGI.jpg",
+            "cardNameAltText": "ダブルドラゴンエネルギー",
+            "cardNameViewText": "ダブルドラゴンエネルギー"
+        },
+        {
+            "cardID": "32324",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/032324_E_DABURUDORAGONENERUGI.jpg",
+            "cardNameAltText": "ダブルドラゴンエネルギー",
+            "cardNameViewText": "ダブルドラゴンエネルギー"
+        },
+        {
+            "cardID": "37197",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/037197_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "37198",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/037198_P_BORUKENION.jpg",
+            "cardNameAltText": "ボルケニオン",
+            "cardNameViewText": "ボルケニオン"
+        },
+        {
+            "cardID": "37199",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/037199_P_MYUUTSU.jpg",
+            "cardNameAltText": "ミュウツー",
+            "cardNameViewText": "ミュウツー"
+        },
+        {
+            "cardID": "37604",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/037604_T_HOPPU.jpg",
+            "cardNameAltText": "ホップ",
+            "cardNameViewText": "ホップ"
+        },
+        {
+            "cardID": "37196",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/037196_T_POKEMONTSUUSHIN.jpg",
+            "cardNameAltText": "ポケモン通信",
+            "cardNameViewText": "ポケモン通信"
+        },
+        {
+            "cardID": "37200",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/037200_T_TOMODACHITECHOU.jpg",
+            "cardNameAltText": "ともだちてちょう",
+            "cardNameViewText": "ともだちてちょう"
+        },
+        {
+            "cardID": "1",
+            "cardThumbFile": "/assets/images/card_images/large/ENE/000001_E_KUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "36256",
+            "cardThumbFile": "/assets/images/card_images/large/ENE/036256_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 125,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 4837,
+    "cardEnd": 4875,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "44308",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044308_T_MAKENKICHIXYOKKI.jpg",
+            "cardNameAltText": "まけんきチョッキ",
+            "cardNameViewText": "まけんきチョッキ"
+        },
+        {
+            "cardID": "44309",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044309_T_WAZAMASHINDEVUORIXYUSHIXYON.jpg",
+            "cardNameAltText": "ワザマシンデヴォリューション",
+            "cardNameViewText": "ワザマシンデヴォリューション"
+        },
+        {
+            "cardID": "44310",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044310_T_ORIMUHAKASENOKIHAKU.jpg",
+            "cardNameAltText": "オーリム博士の気迫",
+            "cardNameViewText": "オーリム博士の気迫"
+        },
+        {
+            "cardID": "44311",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044311_T_SENRI.jpg",
+            "cardNameAltText": "センリ",
+            "cardNameViewText": "センリ"
+        },
+        {
+            "cardID": "44312",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044312_T_MEROKO.jpg",
+            "cardNameAltText": "メロコ",
+            "cardNameViewText": "メロコ"
+        },
+        {
+            "cardID": "44438",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044438_T_ORIMUHAKASENOKIHAKU.jpg",
+            "cardNameAltText": "オーリム博士の気迫",
+            "cardNameViewText": "オーリム博士の気迫"
+        },
+        {
+            "cardID": "44439",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044439_T_SENRI.jpg",
+            "cardNameAltText": "センリ",
+            "cardNameViewText": "センリ"
+        },
+        {
+            "cardID": "44440",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044440_T_MEROKO.jpg",
+            "cardNameAltText": "メロコ",
+            "cardNameViewText": "メロコ"
+        },
+        {
+            "cardID": "44444",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044444_T_ORIMUHAKASENOKIHAKU.jpg",
+            "cardNameAltText": "オーリム博士の気迫",
+            "cardNameViewText": "オーリム博士の気迫"
+        },
+        {
+            "cardID": "44445",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044445_T_MEROKO.jpg",
+            "cardNameAltText": "メロコ",
+            "cardNameViewText": "メロコ"
+        },
+        {
+            "cardID": "44970",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044970_T_GOJIXYASUMANTO.jpg",
+            "cardNameAltText": "ゴージャスマント",
+            "cardNameViewText": "ゴージャスマント"
+        },
+        {
+            "cardID": "44971",
+            "cardThumbFile": "/assets/images/card_images/large/SV4K/044971_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "44313",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044313_P_AMETAMA.jpg",
+            "cardNameAltText": "アメタマ",
+            "cardNameViewText": "アメタマ"
+        },
+        {
+            "cardID": "44314",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044314_P_AMEMOSU.jpg",
+            "cardNameAltText": "アメモース",
+            "cardNameViewText": "アメモース"
+        },
+        {
+            "cardID": "44315",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044315_P_SATCHIMUSHI.jpg",
+            "cardNameAltText": "サッチムシ",
+            "cardNameViewText": "サッチムシ"
+        },
+        {
+            "cardID": "44316",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044316_P_REDOMUSHI.jpg",
+            "cardNameAltText": "レドームシ",
+            "cardNameViewText": "レドームシ"
+        },
+        {
+            "cardID": "44317",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044317_P_IORUBU.jpg",
+            "cardNameAltText": "イオルブ",
+            "cardNameViewText": "イオルブ"
+        },
+        {
+            "cardID": "44318",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044318_P_NONOKURAGE.jpg",
+            "cardNameAltText": "ノノクラゲ",
+            "cardNameViewText": "ノノクラゲ"
+        },
+        {
+            "cardID": "44319",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044319_P_NONOKURAGE.jpg",
+            "cardNameAltText": "ノノクラゲ",
+            "cardNameViewText": "ノノクラゲ"
+        },
+        {
+            "cardID": "44320",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044320_P_RIKUKURAGE.jpg",
+            "cardNameAltText": "リククラゲ",
+            "cardNameViewText": "リククラゲ"
+        },
+        {
+            "cardID": "44321",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044321_P_CHIONJIEN.jpg",
+            "cardNameAltText": "チオンジェン",
+            "cardNameViewText": "チオンジェン"
+        },
+        {
+            "cardID": "44322",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044322_P_BAOPPU.jpg",
+            "cardNameAltText": "バオップ",
+            "cardNameViewText": "バオップ"
+        },
+        {
+            "cardID": "44323",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044323_P_BAOKKI.jpg",
+            "cardNameAltText": "バオッキー",
+            "cardNameViewText": "バオッキー"
+        },
+        {
+            "cardID": "44324",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044324_P_TETSUNODOKUGA.jpg",
+            "cardNameAltText": "テツノドクガ",
+            "cardNameViewText": "テツノドクガ"
+        },
+        {
+            "cardID": "44325",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044325_P_HINBASU.jpg",
+            "cardNameAltText": "ヒンバス",
+            "cardNameViewText": "ヒンバス"
+        },
+        {
+            "cardID": "44326",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044326_P_MIROKAROSU.jpg",
+            "cardNameAltText": "ミロカロス",
+            "cardNameViewText": "ミロカロス"
+        },
+        {
+            "cardID": "44327",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044327_P_HIYAPPU.jpg",
+            "cardNameAltText": "ヒヤップ",
+            "cardNameViewText": "ヒヤップ"
+        },
+        {
+            "cardID": "44328",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044328_P_HIYAKKI.jpg",
+            "cardNameAltText": "ヒヤッキー",
+            "cardNameViewText": "ヒヤッキー"
+        },
+        {
+            "cardID": "44329",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044329_P_BANIPUTCHI.jpg",
+            "cardNameAltText": "バニプッチ",
+            "cardNameViewText": "バニプッチ"
+        },
+        {
+            "cardID": "44330",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044330_P_BANIRITCHI.jpg",
+            "cardNameAltText": "バニリッチ",
+            "cardNameViewText": "バニリッチ"
+        },
+        {
+            "cardID": "44331",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044331_P_BAIBANIRA.jpg",
+            "cardNameAltText": "バイバニラ",
+            "cardNameViewText": "バイバニラ"
+        },
+        {
+            "cardID": "44332",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044332_P_TETSUNOTSUTSUMI.jpg",
+            "cardNameAltText": "テツノツツミ",
+            "cardNameViewText": "テツノツツミ"
+        },
+        {
+            "cardID": "44333",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044333_P_PAOJIAN.jpg",
+            "cardNameAltText": "パオジアン",
+            "cardNameViewText": "パオジアン"
+        },
+        {
+            "cardID": "44334",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044334_P_EREKIDDO.jpg",
+            "cardNameAltText": "エレキッド",
+            "cardNameViewText": "エレキッド"
+        },
+        {
+            "cardID": "44335",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044335_P_SHIMAMA.jpg",
+            "cardNameAltText": "シママ",
+            "cardNameViewText": "シママ"
+        },
+        {
+            "cardID": "44336",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044336_P_ZEBURAIKA.jpg",
+            "cardNameAltText": "ゼブライカ",
+            "cardNameViewText": "ゼブライカ"
+        },
+        {
+            "cardID": "44337",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044337_P_ODORIDORI.jpg",
+            "cardNameAltText": "オドリドリ",
+            "cardNameViewText": "オドリドリ"
+        },
+        {
+            "cardID": "44338",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044338_P_EREZUN.jpg",
+            "cardNameAltText": "エレズン",
+            "cardNameViewText": "エレズン"
+        },
+        {
+            "cardID": "44339",
+            "cardThumbFile": "/assets/images/card_images/large/SV4M/044339_P_TETSUNOKAINAEX.jpg",
+            "cardNameAltText": "テツノカイナex",
+            "cardNameViewText": "テツノカイナex"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 453,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 17629,
+    "cardEnd": 17667,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "15024",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015024_P_ENPERUTO.gif",
+            "cardNameAltText": "エンペルト",
+            "cardNameViewText": "エンペルト"
+        },
+        {
+            "cardID": "15025",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015025_P_FUWANTE.jpg",
+            "cardNameAltText": "フワンテ",
+            "cardNameViewText": "フワンテ"
+        },
+        {
+            "cardID": "15026",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015026_P_DOMIRA.jpg",
+            "cardNameAltText": "ドーミラー",
+            "cardNameViewText": "ドーミラー"
+        },
+        {
+            "cardID": "15027",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015027_P_GUREGGURU.jpg",
+            "cardNameAltText": "グレッグル",
+            "cardNameViewText": "グレッグル"
+        },
+        {
+            "cardID": "15028",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015028_P_DOKUROGGU.jpg",
+            "cardNameAltText": "ドクロッグ",
+            "cardNameViewText": "ドクロッグ"
+        },
+        {
+            "cardID": "15029",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015029_P_NYARUMA.jpg",
+            "cardNameAltText": "ニャルマー",
+            "cardNameViewText": "ニャルマー"
+        },
+        {
+            "cardID": "15032",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015032_P_PIKACHUU.jpg",
+            "cardNameAltText": "ピカチュウ",
+            "cardNameViewText": "ピカチュウ"
+        },
+        {
+            "cardID": "15033",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015033_P_RAICHUU.gif",
+            "cardNameAltText": "ライチュウ",
+            "cardNameViewText": "ライチュウ"
+        },
+        {
+            "cardID": "15034",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015034_P_PURASURU.jpg",
+            "cardNameAltText": "プラスル",
+            "cardNameViewText": "プラスル"
+        },
+        {
+            "cardID": "15035",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015035_P_MAINAN.jpg",
+            "cardNameAltText": "マイナン",
+            "cardNameViewText": "マイナン"
+        },
+        {
+            "cardID": "15036",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015036_P_PACHIRISU.jpg",
+            "cardNameAltText": "パチリス",
+            "cardNameViewText": "パチリス"
+        },
+        {
+            "cardID": "15037",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015037_P_EIPAMU.jpg",
+            "cardNameAltText": "エイパム",
+            "cardNameViewText": "エイパム"
+        },
+        {
+            "cardID": "15038",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015038_P_MUKKURU.jpg",
+            "cardNameAltText": "ムックル",
+            "cardNameViewText": "ムックル"
+        },
+        {
+            "cardID": "15039",
+            "cardThumbFile": "/assets/images/card_images/large/DP/015039_P_MUKUBADO.jpg",
+            "cardNameAltText": "ムクバード",
+            "cardNameViewText": "ムクバード"
+        },
+        {
+            "cardID": "15043",
+            "cardThumbFile": "/assets/images/card_images/large/EP08/015043_P_RAICHUU.jpg",
+            "cardNameAltText": "ライチュウ",
+            "cardNameViewText": "ライチュウ"
+        },
+        {
+            "cardID": "17000",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017000_P_KORINKU.jpg",
+            "cardNameAltText": "コリンク",
+            "cardNameViewText": "コリンク"
+        },
+        {
+            "cardID": "17001",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017001_P_RUKUSHIO.jpg",
+            "cardNameAltText": "ルクシオ",
+            "cardNameViewText": "ルクシオ"
+        },
+        {
+            "cardID": "17002",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017002_P_MYUUTSU.jpg",
+            "cardNameAltText": "ミュウツー",
+            "cardNameViewText": "ミュウツー"
+        },
+        {
+            "cardID": "17004",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017004_P_MUUMA.jpg",
+            "cardNameAltText": "ムウマ",
+            "cardNameViewText": "ムウマ"
+        },
+        {
+            "cardID": "17005",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017005_P_FUWANTE.jpg",
+            "cardNameAltText": "フワンテ",
+            "cardNameViewText": "フワンテ"
+        },
+        {
+            "cardID": "17006",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017006_P_FUWARAIDO.jpg",
+            "cardNameAltText": "フワライド",
+            "cardNameViewText": "フワライド"
+        },
+        {
+            "cardID": "17007",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017007_P_REJIGIGASU.gif",
+            "cardNameAltText": "レジギガス",
+            "cardNameViewText": "レジギガス"
+        },
+        {
+            "cardID": "17014",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017014_P_GURAIGA.jpg",
+            "cardNameAltText": "グライガー",
+            "cardNameViewText": "グライガー"
+        },
+        {
+            "cardID": "17015",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017015_P_RIORU.jpg",
+            "cardNameAltText": "リオル",
+            "cardNameViewText": "リオル"
+        },
+        {
+            "cardID": "17016",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017016_P_RUKARIO.jpg",
+            "cardNameAltText": "ルカリオ",
+            "cardNameViewText": "ルカリオ"
+        },
+        {
+            "cardID": "17017",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017017_P_GURAION.jpg",
+            "cardNameAltText": "グライオン",
+            "cardNameViewText": "グライオン"
+        },
+        {
+            "cardID": "17019",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017019_P_DANBARU.jpg",
+            "cardNameAltText": "ダンバル",
+            "cardNameViewText": "ダンバル"
+        },
+        {
+            "cardID": "17020",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017020_P_METANGU.jpg",
+            "cardNameAltText": "メタング",
+            "cardNameViewText": "メタング"
+        },
+        {
+            "cardID": "17021",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017021_P_HIDORAN.gif",
+            "cardNameAltText": "ヒードラン",
+            "cardNameViewText": "ヒードラン"
+        },
+        {
+            "cardID": "17046",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017046_P_HERUGA.jpg",
+            "cardNameAltText": "ヘルガー",
+            "cardNameViewText": "ヘルガー"
+        },
+        {
+            "cardID": "17068",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017068_P_CHONCHI.jpg",
+            "cardNameAltText": "チョンチー",
+            "cardNameViewText": "チョンチー"
+        },
+        {
+            "cardID": "17069",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017069_P_RANTAN.jpg",
+            "cardNameAltText": "ランターン",
+            "cardNameViewText": "ランターン"
+        },
+        {
+            "cardID": "17072",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017072_P_RENTORA.gif",
+            "cardNameAltText": "レントラー",
+            "cardNameViewText": "レントラー"
+        },
+        {
+            "cardID": "17091",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017091_P_NAZONOKUSA.jpg",
+            "cardNameAltText": "ナゾノクサ",
+            "cardNameViewText": "ナゾノクサ"
+        },
+        {
+            "cardID": "17092",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017092_P_KUSAIHANA.jpg",
+            "cardNameAltText": "クサイハナ",
+            "cardNameViewText": "クサイハナ"
+        },
+        {
+            "cardID": "17093",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017093_P_TAMATAMA.jpg",
+            "cardNameAltText": "タマタマ",
+            "cardNameViewText": "タマタマ"
+        },
+        {
+            "cardID": "17094",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017094_P_NASSHI.jpg",
+            "cardNameAltText": "ナッシー",
+            "cardNameViewText": "ナッシー"
+        },
+        {
+            "cardID": "17095",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017095_P_YUKUSHI.jpg",
+            "cardNameAltText": "ユクシー",
+            "cardNameViewText": "ユクシー"
+        },
+        {
+            "cardID": "17096",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017096_P_EMURITTO.jpg",
+            "cardNameAltText": "エムリット",
+            "cardNameViewText": "エムリット"
+        }
+    ]
+}

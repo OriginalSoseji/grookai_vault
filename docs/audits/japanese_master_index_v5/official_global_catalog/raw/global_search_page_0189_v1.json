@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 189,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7333,
+    "cardEnd": 7371,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41773",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041773_P_RABUTOROSUV.jpg",
+            "cardNameAltText": "ラブトロスV",
+            "cardNameViewText": "ラブトロスV"
+        },
+        {
+            "cardID": "41774",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041774_P_ERUREIDOV.jpg",
+            "cardNameAltText": "エルレイドV",
+            "cardNameViewText": "エルレイドV"
+        },
+        {
+            "cardID": "41775",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041775_P_HISUINUMERUGONV.jpg",
+            "cardNameAltText": "ヒスイ ヌメルゴンV",
+            "cardNameViewText": "ヒスイ ヌメルゴンV"
+        },
+        {
+            "cardID": "41776",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041776_P_HISUIZOROAKUV.jpg",
+            "cardNameAltText": "ヒスイ ゾロアークV",
+            "cardNameViewText": "ヒスイ ゾロアークV"
+        },
+        {
+            "cardID": "41781",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041781_P_RABUTOROSUV.jpg",
+            "cardNameAltText": "ラブトロスV",
+            "cardNameViewText": "ラブトロスV"
+        },
+        {
+            "cardID": "41782",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041782_P_ERUREIDOV.jpg",
+            "cardNameAltText": "エルレイドV",
+            "cardNameViewText": "エルレイドV"
+        },
+        {
+            "cardID": "44890",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044890_P_JIBAKOIRUVSTAR.jpg",
+            "cardNameAltText": "ジバコイルVSTAR",
+            "cardNameViewText": "ジバコイルVSTAR"
+        },
+        {
+            "cardID": "44891",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044891_P_HISUINUMERUGONVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ヌメルゴンVSTAR",
+            "cardNameViewText": "ヒスイ ヌメルゴンVSTAR"
+        },
+        {
+            "cardID": "44892",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044892_P_HISUIZOROAKUVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ゾロアークVSTAR",
+            "cardNameViewText": "ヒスイ ゾロアークVSTAR"
+        },
+        {
+            "cardID": "44897",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044897_P_HISUIZOROAKUVSTAR.jpg",
+            "cardNameAltText": "ヒスイ ゾロアークVSTAR",
+            "cardNameViewText": "ヒスイ ゾロアークVSTAR"
+        },
+        {
+            "cardID": "41582",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041582_T_ARUSEUSUFUON.jpg",
+            "cardNameAltText": "アルセウスフォン",
+            "cardNameViewText": "アルセウスフォン"
+        },
+        {
+            "cardID": "41632",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041632_T_ARUSEUSUFUON.jpg",
+            "cardNameAltText": "アルセウスフォン",
+            "cardNameViewText": "アルセウスフォン"
+        },
+        {
+            "cardID": "41583",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041583_T_DAMEJIPONPU.jpg",
+            "cardNameAltText": "ダメージポンプ",
+            "cardNameViewText": "ダメージポンプ"
+        },
+        {
+            "cardID": "41633",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041633_T_DAMEJIPONPU.jpg",
+            "cardNameAltText": "ダメージポンプ",
+            "cardNameViewText": "ダメージポンプ"
+        },
+        {
+            "cardID": "41584",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041584_T_KARAKURIAMU.jpg",
+            "cardNameAltText": "からくりアーム",
+            "cardNameViewText": "からくりアーム"
+        },
+        {
+            "cardID": "41634",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041634_T_KARAKURIAMU.jpg",
+            "cardNameAltText": "からくりアーム",
+            "cardNameViewText": "からくりアーム"
+        },
+        {
+            "cardID": "41585",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041585_T_WAZAWAINOHAKO.jpg",
+            "cardNameAltText": "災いの箱",
+            "cardNameViewText": "災いの箱"
+        },
+        {
+            "cardID": "41635",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041635_T_WAZAWAINOHAKO.jpg",
+            "cardNameAltText": "災いの箱",
+            "cardNameViewText": "災いの箱"
+        },
+        {
+            "cardID": "41586",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041586_T_UORO.jpg",
+            "cardNameAltText": "ウォロ",
+            "cardNameViewText": "ウォロ"
+        },
+        {
+            "cardID": "41587",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041587_T_SUSUKI.jpg",
+            "cardNameAltText": "ススキ",
+            "cardNameViewText": "ススキ"
+        },
+        {
+            "cardID": "41636",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041636_T_SUSUKI.jpg",
+            "cardNameAltText": "ススキ",
+            "cardNameViewText": "ススキ"
+        },
+        {
+            "cardID": "41588",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041588_T_HINATSU.jpg",
+            "cardNameAltText": "ヒナツ",
+            "cardNameViewText": "ヒナツ"
+        },
+        {
+            "cardID": "41637",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041637_T_HINATSU.jpg",
+            "cardNameAltText": "ヒナツ",
+            "cardNameViewText": "ヒナツ"
+        },
+        {
+            "cardID": "41589",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041589_T_NOTOUSANSHIMAI.jpg",
+            "cardNameAltText": "野盗三姉妹",
+            "cardNameViewText": "野盗三姉妹"
+        },
+        {
+            "cardID": "41638",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041638_T_NOTOUSANSHIMAI.jpg",
+            "cardNameAltText": "野盗三姉妹",
+            "cardNameViewText": "野盗三姉妹"
+        },
+        {
+            "cardID": "41590",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041590_T_EICHIKO.jpg",
+            "cardNameAltText": "エイチ湖",
+            "cardNameViewText": "エイチ湖"
+        },
+        {
+            "cardID": "41639",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041639_T_EICHIKO.jpg",
+            "cardNameAltText": "エイチ湖",
+            "cardNameViewText": "エイチ湖"
+        },
+        {
+            "cardID": "41777",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041777_T_UORO.jpg",
+            "cardNameAltText": "ウォロ",
+            "cardNameViewText": "ウォロ"
+        },
+        {
+            "cardID": "41778",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041778_T_SUSUKI.jpg",
+            "cardNameAltText": "ススキ",
+            "cardNameViewText": "ススキ"
+        },
+        {
+            "cardID": "41779",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041779_T_HINATSU.jpg",
+            "cardNameAltText": "ヒナツ",
+            "cardNameViewText": "ヒナツ"
+        },
+        {
+            "cardID": "41780",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/041780_T_NOTOUSANSHIMAI.jpg",
+            "cardNameAltText": "野盗三姉妹",
+            "cardNameViewText": "野盗三姉妹"
+        },
+        {
+            "cardID": "44893",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044893_T_UORO.jpg",
+            "cardNameAltText": "ウォロ",
+            "cardNameViewText": "ウォロ"
+        },
+        {
+            "cardID": "44894",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044894_T_SUSUKI.jpg",
+            "cardNameAltText": "ススキ",
+            "cardNameViewText": "ススキ"
+        },
+        {
+            "cardID": "44895",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044895_T_HINATSU.jpg",
+            "cardNameAltText": "ヒナツ",
+            "cardNameViewText": "ヒナツ"
+        },
+        {
+            "cardID": "44896",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044896_T_NOTOUSANSHIMAI.jpg",
+            "cardNameAltText": "野盗三姉妹",
+            "cardNameViewText": "野盗三姉妹"
+        },
+        {
+            "cardID": "44898",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044898_T_DAKUPATCHI.jpg",
+            "cardNameAltText": "ダークパッチ",
+            "cardNameViewText": "ダークパッチ"
+        },
+        {
+            "cardID": "44899",
+            "cardThumbFile": "/assets/images/card_images/large/S10a/044899_T_WAZAWAINOHAKO.jpg",
+            "cardNameAltText": "災いの箱",
+            "cardNameViewText": "災いの箱"
+        },
+        {
+            "cardID": "41362",
+            "cardThumbFile": "/assets/images/card_images/large/S10D/041362_P_YANYANMA.jpg",
+            "cardNameAltText": "ヤンヤンマ",
+            "cardNameViewText": "ヤンヤンマ"
+        },
+        {
+            "cardID": "41363",
+            "cardThumbFile": "/assets/images/card_images/large/S10D/041363_P_MYANMA.jpg",
+            "cardNameAltText": "メガヤンマ",
+            "cardNameViewText": "メガヤンマ"
+        }
+    ]
+}

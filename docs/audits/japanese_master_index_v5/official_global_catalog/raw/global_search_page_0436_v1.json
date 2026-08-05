@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 436,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 16966,
+    "cardEnd": 17004,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "30008",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030008_P_FOKKO.jpg",
+            "cardNameAltText": "フォッコ",
+            "cardNameViewText": "フォッコ"
+        },
+        {
+            "cardID": "30009",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030009_P_TERUNA.jpg",
+            "cardNameAltText": "テールナー",
+            "cardNameViewText": "テールナー"
+        },
+        {
+            "cardID": "30010",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030010_P_MAFOKUSHI.jpg",
+            "cardNameAltText": "マフォクシー",
+            "cardNameViewText": "マフォクシー"
+        },
+        {
+            "cardID": "30011",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030011_P_HIYAPPU.jpg",
+            "cardNameAltText": "ヒヤップ",
+            "cardNameViewText": "ヒヤップ"
+        },
+        {
+            "cardID": "30012",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030012_P_KEROMATSU.jpg",
+            "cardNameAltText": "ケロマツ",
+            "cardNameViewText": "ケロマツ"
+        },
+        {
+            "cardID": "30013",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030013_P_GEKOGASHIRA.jpg",
+            "cardNameAltText": "ゲコガシラ",
+            "cardNameViewText": "ゲコガシラ"
+        },
+        {
+            "cardID": "30014",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030014_P_GEKKOUGA.jpg",
+            "cardNameAltText": "ゲッコウガ",
+            "cardNameViewText": "ゲッコウガ"
+        },
+        {
+            "cardID": "30015",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030015_P_UDEPPOU.jpg",
+            "cardNameAltText": "ウデッポウ",
+            "cardNameViewText": "ウデッポウ"
+        },
+        {
+            "cardID": "30016",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030016_P_POCHIENA.jpg",
+            "cardNameAltText": "ポチエナ",
+            "cardNameViewText": "ポチエナ"
+        },
+        {
+            "cardID": "30017",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030017_P_GURAENA.jpg",
+            "cardNameAltText": "グラエナ",
+            "cardNameViewText": "グラエナ"
+        },
+        {
+            "cardID": "30018",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030018_P_MAIKA.jpg",
+            "cardNameAltText": "マーイーカ",
+            "cardNameViewText": "マーイーカ"
+        },
+        {
+            "cardID": "30019",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030019_P_KOMATANA.jpg",
+            "cardNameAltText": "コマタナ",
+            "cardNameViewText": "コマタナ"
+        },
+        {
+            "cardID": "30020",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030020_P_KIRIKIZAN.jpg",
+            "cardNameAltText": "キリキザン",
+            "cardNameViewText": "キリキザン"
+        },
+        {
+            "cardID": "30021",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030021_P_HITOTSUKI.jpg",
+            "cardNameAltText": "ヒトツキ",
+            "cardNameViewText": "ヒトツキ"
+        },
+        {
+            "cardID": "30022",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030022_P_BURU.jpg",
+            "cardNameAltText": "ブルー",
+            "cardNameViewText": "ブルー"
+        },
+        {
+            "cardID": "30023",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030023_P_GURANBURU.jpg",
+            "cardNameAltText": "グランブル",
+            "cardNameViewText": "グランブル"
+        },
+        {
+            "cardID": "30024",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030024_P_PEROPPAFU.jpg",
+            "cardNameAltText": "ペロッパフ",
+            "cardNameViewText": "ペロッパフ"
+        },
+        {
+            "cardID": "30025",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030025_P_KAMONEGI.jpg",
+            "cardNameAltText": "カモネギ",
+            "cardNameViewText": "カモネギ"
+        },
+        {
+            "cardID": "30026",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030026_P_KABIGON.jpg",
+            "cardNameAltText": "カビゴン",
+            "cardNameViewText": "カビゴン"
+        },
+        {
+            "cardID": "30027",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030027_P_MIRUTANKU.jpg",
+            "cardNameAltText": "ミルタンク",
+            "cardNameViewText": "ミルタンク"
+        },
+        {
+            "cardID": "30028",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030028_P_ENEKO.jpg",
+            "cardNameAltText": "エネコ",
+            "cardNameViewText": "エネコ"
+        },
+        {
+            "cardID": "30029",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030029_P_BIPPA.jpg",
+            "cardNameAltText": "ビッパ",
+            "cardNameViewText": "ビッパ"
+        },
+        {
+            "cardID": "30030",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030030_P_HORUBI.jpg",
+            "cardNameAltText": "ホルビー",
+            "cardNameViewText": "ホルビー"
+        },
+        {
+            "cardID": "30031",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030031_P_YAYAKOMA.jpg",
+            "cardNameAltText": "ヤヤコマ",
+            "cardNameViewText": "ヤヤコマ"
+        },
+        {
+            "cardID": "30032",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030032_P_TORIMIAN.jpg",
+            "cardNameAltText": "トリミアン",
+            "cardNameViewText": "トリミアン"
+        },
+        {
+            "cardID": "30033",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030033_P_TORIMIAN.jpg",
+            "cardNameAltText": "トリミアン",
+            "cardNameViewText": "トリミアン"
+        },
+        {
+            "cardID": "30034",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030034_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "30035",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030035_T_KURASSHUHANMA.jpg",
+            "cardNameAltText": "クラッシュハンマー",
+            "cardNameViewText": "クラッシュハンマー"
+        },
+        {
+            "cardID": "30036",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030036_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "30168",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030168_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "30169",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030169_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "30037",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030037_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "30038",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030038_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "30170",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030170_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "30171",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030171_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "30039",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030039_T_TEIERUNO.jpg",
+            "cardNameAltText": "ティエルノ",
+            "cardNameViewText": "ティエルノ"
+        },
+        {
+            "cardID": "30172",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030172_T_TEIERUNO.jpg",
+            "cardNameAltText": "ティエルノ",
+            "cardNameViewText": "ティエルノ"
+        },
+        {
+            "cardID": "30173",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030173_T_TEIERUNO.jpg",
+            "cardNameAltText": "ティエルノ",
+            "cardNameViewText": "ティエルノ"
+        },
+        {
+            "cardID": "30040",
+            "cardThumbFile": "/assets/images/card_images/large/HXY/030040_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        }
+    ]
+}

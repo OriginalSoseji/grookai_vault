@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 414,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 16108,
+    "cardEnd": 16146,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31025",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031025_P_RARUTOSU.jpg",
+            "cardNameAltText": "ラルトス",
+            "cardNameViewText": "ラルトス"
+        },
+        {
+            "cardID": "31026",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031026_P_KIRURIA.jpg",
+            "cardNameAltText": "キルリア",
+            "cardNameViewText": "キルリア"
+        },
+        {
+            "cardID": "31027",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031027_P_SANAITO.jpg",
+            "cardNameAltText": "サーナイト",
+            "cardNameViewText": "サーナイト"
+        },
+        {
+            "cardID": "31028",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031028_P_MONMEN.jpg",
+            "cardNameAltText": "モンメン",
+            "cardNameViewText": "モンメン"
+        },
+        {
+            "cardID": "31029",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031029_P_ERUFUN.jpg",
+            "cardNameAltText": "エルフーン",
+            "cardNameViewText": "エルフーン"
+        },
+        {
+            "cardID": "31030",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031030_P_GIRATEINAEX.jpg",
+            "cardNameAltText": "ギラティナEX",
+            "cardNameViewText": "ギラティナEX"
+        },
+        {
+            "cardID": "31031",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031031_P_NUMERA.jpg",
+            "cardNameAltText": "ヌメラ",
+            "cardNameViewText": "ヌメラ"
+        },
+        {
+            "cardID": "31032",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031032_P_NUMEIRU.jpg",
+            "cardNameAltText": "ヌメイル",
+            "cardNameViewText": "ヌメイル"
+        },
+        {
+            "cardID": "31033",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031033_P_NUMERUGON.jpg",
+            "cardNameAltText": "ヌメルゴン",
+            "cardNameViewText": "ヌメルゴン"
+        },
+        {
+            "cardID": "31034",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031034_P_NYASU.jpg",
+            "cardNameAltText": "ニャース",
+            "cardNameViewText": "ニャース"
+        },
+        {
+            "cardID": "31035",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031035_P_PERUSHIAN.jpg",
+            "cardNameAltText": "ペルシアン",
+            "cardNameViewText": "ペルシアン"
+        },
+        {
+            "cardID": "31036",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031036_P_IBUI.jpg",
+            "cardNameAltText": "イーブイ",
+            "cardNameViewText": "イーブイ"
+        },
+        {
+            "cardID": "31037",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031037_P_PORIGON.jpg",
+            "cardNameAltText": "ポリゴン",
+            "cardNameViewText": "ポリゴン"
+        },
+        {
+            "cardID": "31038",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031038_P_PORIGON.jpg",
+            "cardNameAltText": "ポリゴン2",
+            "cardNameViewText": "ポリゴン2"
+        },
+        {
+            "cardID": "31039",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031039_P_PORIGONZ.jpg",
+            "cardNameAltText": "ポリゴンZ",
+            "cardNameViewText": "ポリゴンZ"
+        },
+        {
+            "cardID": "31040",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031040_P_PORIGONZ.jpg",
+            "cardNameAltText": "ポリゴンZ",
+            "cardNameViewText": "ポリゴンZ"
+        },
+        {
+            "cardID": "31041",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031041_P_RUGIAEX.jpg",
+            "cardNameAltText": "ルギアEX",
+            "cardNameViewText": "ルギアEX"
+        },
+        {
+            "cardID": "35812",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035812_P_JUKAINEX.jpg",
+            "cardNameAltText": "ジュカインEX",
+            "cardNameViewText": "ジュカインEX"
+        },
+        {
+            "cardID": "35813",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035813_P_MJUKAINEX.jpg",
+            "cardNameAltText": "メガジュカインEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>ジュカインEX"
+        },
+        {
+            "cardID": "35814",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035814_P_KYUREMUEX.jpg",
+            "cardNameAltText": "キュレムEX",
+            "cardNameViewText": "キュレムEX"
+        },
+        {
+            "cardID": "35815",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035815_P_DENRYUUEX.jpg",
+            "cardNameAltText": "デンリュウEX",
+            "cardNameViewText": "デンリュウEX"
+        },
+        {
+            "cardID": "35816",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035816_P_MDENRYUUEX.jpg",
+            "cardNameAltText": "メガデンリュウEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>デンリュウEX"
+        },
+        {
+            "cardID": "35817",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035817_P_FUPAEX.jpg",
+            "cardNameAltText": "フーパEX",
+            "cardNameViewText": "フーパEX"
+        },
+        {
+            "cardID": "35818",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035818_P_KAIRIKIEX.jpg",
+            "cardNameAltText": "カイリキーEX",
+            "cardNameViewText": "カイリキーEX"
+        },
+        {
+            "cardID": "35819",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035819_P_BANGIRASUEX.jpg",
+            "cardNameAltText": "バンギラスEX",
+            "cardNameViewText": "バンギラスEX"
+        },
+        {
+            "cardID": "35820",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035820_P_MBANGIRASUEX.jpg",
+            "cardNameAltText": "メガバンギラスEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>バンギラスEX"
+        },
+        {
+            "cardID": "35821",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035821_P_GIRATEINAEX.jpg",
+            "cardNameAltText": "ギラティナEX",
+            "cardNameViewText": "ギラティナEX"
+        },
+        {
+            "cardID": "35822",
+            "cardThumbFile": "/assets/images/card_images/large/XY7/035822_P_RUGIAEX.jpg",
+            "cardNameAltText": "ルギアEX",
+            "cardNameViewText": "ルギアEX"
+        },
+        {
+            "cardID": "31090",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031090_P_GENSHIKAIOGAEX.jpg",
+            "cardNameAltText": "ゲンシカイオーガEX",
+            "cardNameViewText": "ゲンシカイオーガEX"
+        },
+        {
+            "cardID": "31091",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031091_P_GENSHIGURADONEX.jpg",
+            "cardNameAltText": "ゲンシグラードンEX",
+            "cardNameViewText": "ゲンシグラードンEX"
+        },
+        {
+            "cardID": "31092",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031092_P_MREKKUUZAEX.jpg",
+            "cardNameAltText": "メガレックウザEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>レックウザEX"
+        },
+        {
+            "cardID": "31042",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031042_T_EKOAMU.jpg",
+            "cardNameAltText": "エコアーム",
+            "cardNameViewText": "エコアーム"
+        },
+        {
+            "cardID": "31043",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031043_T_PENKIRORA.jpg",
+            "cardNameAltText": "ペンキローラー",
+            "cardNameViewText": "ペンキローラー"
+        },
+        {
+            "cardID": "31044",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031044_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "31045",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031045_T_RAKKIMETTO.jpg",
+            "cardNameAltText": "ラッキーメット",
+            "cardNameViewText": "ラッキーメット"
+        },
+        {
+            "cardID": "31046",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031046_T_JUKAINSOURURINKU.jpg",
+            "cardNameAltText": "ジュカインソウルリンク",
+            "cardNameViewText": "ジュカインソウルリンク"
+        },
+        {
+            "cardID": "31047",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031047_T_DENRYUUSOURURINKU.jpg",
+            "cardNameAltText": "デンリュウソウルリンク",
+            "cardNameViewText": "デンリュウソウルリンク"
+        },
+        {
+            "cardID": "31048",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031048_T_BANGIRASUSOURURINKU.jpg",
+            "cardNameAltText": "バンギラスソウルリンク",
+            "cardNameViewText": "バンギラスソウルリンク"
+        },
+        {
+            "cardID": "31049",
+            "cardThumbFile": "/assets/images/card_images/large/XY7-B/031049_T_ERITOTORENA.jpg",
+            "cardNameAltText": "エリートトレーナー",
+            "cardNameViewText": "エリートトレーナー"
+        }
+    ]
+}

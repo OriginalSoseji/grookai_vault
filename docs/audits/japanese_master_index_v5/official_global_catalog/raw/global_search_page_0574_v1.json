@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 574,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22348,
+    "cardEnd": 22386,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "23251",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-B/023251_T_BATORUTAWA.jpg",
+            "cardNameAltText": "バトルタワー",
+            "cardNameViewText": "バトルタワー"
+        },
+        {
+            "cardID": "4093",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004093_T_KAGETSUNOSUTAJIAMU.jpg",
+            "cardNameAltText": "カゲツのスタジアム",
+            "cardNameViewText": "カゲツのスタジアム"
+        },
+        {
+            "cardID": "34186",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034186_T_DOKUBARI.jpg",
+            "cardNameAltText": "どくバリ",
+            "cardNameViewText": "どくバリ"
+        },
+        {
+            "cardID": "4094",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004094_T_GENJINOSUTAJIAMU.jpg",
+            "cardNameAltText": "ゲンジのスタジアム",
+            "cardNameViewText": "ゲンジのスタジアム"
+        },
+        {
+            "cardID": "34187",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034187_T_IRIMA.jpg",
+            "cardNameAltText": "イリマ",
+            "cardNameViewText": "イリマ"
+        },
+        {
+            "cardID": "44033",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044033_T_TSUKIAKARINOOKA.jpg",
+            "cardNameAltText": "月明かりの丘",
+            "cardNameViewText": "月明かりの丘"
+        },
+        {
+            "cardID": "4095",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004095_T_FUYOUNOSUTAJIAMU.jpg",
+            "cardNameAltText": "フヨウのスタジアム",
+            "cardNameViewText": "フヨウのスタジアム"
+        },
+        {
+            "cardID": "34188",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034188_T_KUKUIHAKASE.jpg",
+            "cardNameAltText": "ククイ博士",
+            "cardNameViewText": "ククイ博士"
+        },
+        {
+            "cardID": "44034",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044034_T_GURUSHIXYA.jpg",
+            "cardNameAltText": "グルーシャ",
+            "cardNameViewText": "グルーシャ"
+        },
+        {
+            "cardID": "4096",
+            "cardThumbFile": "/assets/images/card_images/large/WCP/004096_T_PURIMUNOSUTAJIAMU.jpg",
+            "cardNameAltText": "プリムのスタジアム",
+            "cardNameViewText": "プリムのスタジアム"
+        },
+        {
+            "cardID": "34189",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034189_T_HAU.jpg",
+            "cardNameAltText": "ハウ",
+            "cardNameViewText": "ハウ"
+        },
+        {
+            "cardID": "50177",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050177_T_GURI.jpg",
+            "cardNameAltText": "グリ",
+            "cardNameViewText": "グリ"
+        },
+        {
+            "cardID": "50178",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050178_T_HIKARI.jpg",
+            "cardNameAltText": "ヒカリ",
+            "cardNameViewText": "ヒカリ"
+        },
+        {
+            "cardID": "38496",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038496_T_JIMUTORENA.jpg",
+            "cardNameAltText": "ジムトレーナー",
+            "cardNameViewText": "ジムトレーナー"
+        },
+        {
+            "cardID": "34199",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034199_T_YAMAOTOKO.jpg",
+            "cardNameAltText": "やまおとこ",
+            "cardNameViewText": "やまおとこ"
+        },
+        {
+            "cardID": "44236",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044236_T_MAKENKIHACHIMAKI.jpg",
+            "cardNameAltText": "まけんきハチマキ",
+            "cardNameViewText": "まけんきハチマキ"
+        },
+        {
+            "cardID": "44244",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044244_T_OIWAIFUANFUARE.jpg",
+            "cardNameAltText": "おいわいファンファーレ",
+            "cardNameViewText": "おいわいファンファーレ"
+        },
+        {
+            "cardID": "44412",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044412_T_REHORU.jpg",
+            "cardNameAltText": "レホール",
+            "cardNameViewText": "レホール"
+        },
+        {
+            "cardID": "30964",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030964_T_ENERUGIRISAIKURU.jpg",
+            "cardNameAltText": "エネルギーリサイクル",
+            "cardNameViewText": "エネルギーリサイクル"
+        },
+        {
+            "cardID": "38616",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038616_T_SODDOTOSHIRUDEI.jpg",
+            "cardNameAltText": "ソッドとシルディ",
+            "cardNameViewText": "ソッドとシルディ"
+        },
+        {
+            "cardID": "44419",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044419_T_POPI.jpg",
+            "cardNameAltText": "ポピー",
+            "cardNameViewText": "ポピー"
+        },
+        {
+            "cardID": "30965",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030965_T_DATOJITENSHA.jpg",
+            "cardNameAltText": "ダートじてんしゃ",
+            "cardNameViewText": "ダートじてんしゃ"
+        },
+        {
+            "cardID": "38886",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038886_T_FUKUYOKAMYUJISHAN.jpg",
+            "cardNameAltText": "ふくよかミュージシャン",
+            "cardNameViewText": "ふくよかミュージシャン"
+        },
+        {
+            "cardID": "30969",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030969_T_AKUADANNOSHITAPPA.jpg",
+            "cardNameAltText": "アクア団のしたっぱ",
+            "cardNameViewText": "アクア団のしたっぱ"
+        },
+        {
+            "cardID": "38617",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038617_T_ROZU.jpg",
+            "cardNameAltText": "ローズ",
+            "cardNameViewText": "ローズ"
+        },
+        {
+            "cardID": "30970",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030970_T_MAGUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "マグマ団のしたっぱ",
+            "cardNameViewText": "マグマ団のしたっぱ"
+        },
+        {
+            "cardID": "30971",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030971_T_DAIGO.jpg",
+            "cardNameAltText": "ダイゴ",
+            "cardNameViewText": "ダイゴ"
+        },
+        {
+            "cardID": "45399",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045399_T_NESUTOBORU.jpg",
+            "cardNameAltText": "ネストボール",
+            "cardNameViewText": "ネストボール"
+        },
+        {
+            "cardID": "30972",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030972_T_CHIKARANOHACHIMAKI.jpg",
+            "cardNameAltText": "ちからのハチマキ",
+            "cardNameViewText": "ちからのハチマキ"
+        },
+        {
+            "cardID": "34214",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/034214_T_MUKIMUKIDANBERU.jpg",
+            "cardNameAltText": "ムキムキダンベル",
+            "cardNameViewText": "ムキムキダンベル"
+        },
+        {
+            "cardID": "45400",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045400_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "30973",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/030973_T_REKKUUZASOURURINKU.jpg",
+            "cardNameAltText": "レックウザソウルリンク",
+            "cardNameViewText": "レックウザソウルリンク"
+        },
+        {
+            "cardID": "38633",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038633_T_PUREIYAZUSEREMONI.jpg",
+            "cardNameAltText": "プレイヤーズセレモニー",
+            "cardNameViewText": "プレイヤーズセレモニー"
+        },
+        {
+            "cardID": "45401",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045401_T_TAIMU.jpg",
+            "cardNameAltText": "タイム",
+            "cardNameViewText": "タイム"
+        },
+        {
+            "cardID": "38634",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038634_T_HAKASENOKENKYUUMAGUNORIAHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "45402",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/045402_T_CHIRI.jpg",
+            "cardNameAltText": "チリ",
+            "cardNameViewText": "チリ"
+        },
+        {
+            "cardID": "44839",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044839_T_KIBANA.jpg",
+            "cardNameAltText": "キバナ",
+            "cardNameViewText": "キバナ"
+        },
+        {
+            "cardID": "44844",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/044844_T_TORENAZUPOSUTO.jpg",
+            "cardNameAltText": "トレーナーズポスト",
+            "cardNameViewText": "トレーナーズポスト"
+        },
+        {
+            "cardID": "31074",
+            "cardThumbFile": "/assets/images/card_images/large/XYP/031074_T_HEBIBUTSU.jpg",
+            "cardNameAltText": "ヘビーブーツ",
+            "cardNameViewText": "ヘビーブーツ"
+        }
+    ]
+}

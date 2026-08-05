@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 546,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21256,
+    "cardEnd": 21294,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "2084",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002084_P_DONKARASU.gif",
+            "cardNameAltText": "ドンカラス",
+            "cardNameViewText": "ドンカラス"
+        },
+        {
+            "cardID": "1049",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001049_P_MUUMA.jpg",
+            "cardNameAltText": "ムウマ",
+            "cardNameViewText": "ムウマ"
+        },
+        {
+            "cardID": "1050",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001050_P_MUUMAJI.gif",
+            "cardNameAltText": "ムウマージ",
+            "cardNameViewText": "ムウマージ"
+        },
+        {
+            "cardID": "1051",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001051_P_ANNONA.jpg",
+            "cardNameAltText": "アンノーン[A]",
+            "cardNameViewText": "アンノーン[A]"
+        },
+        {
+            "cardID": "1052",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001052_P_ANNONB.jpg",
+            "cardNameAltText": "アンノーン[B]",
+            "cardNameViewText": "アンノーン[B]"
+        },
+        {
+            "cardID": "1053",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001053_P_ANNONC.jpg",
+            "cardNameAltText": "アンノーン[C]",
+            "cardNameViewText": "アンノーン[C]"
+        },
+        {
+            "cardID": "1054",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001054_P_ANNOND.jpg",
+            "cardNameAltText": "アンノーン[D]",
+            "cardNameViewText": "アンノーン[D]"
+        },
+        {
+            "cardID": "2062",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002062_P_ANNONE.jpg",
+            "cardNameAltText": "アンノーン[E]",
+            "cardNameViewText": "アンノーン[E]"
+        },
+        {
+            "cardID": "10067",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010067_P_ANNONF.jpg",
+            "cardNameAltText": "アンノーン[F]",
+            "cardNameViewText": "アンノーン[F]"
+        },
+        {
+            "cardID": "10068",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010068_P_ANNONG.jpg",
+            "cardNameAltText": "アンノーン[G]",
+            "cardNameViewText": "アンノーン[G]"
+        },
+        {
+            "cardID": "10069",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010069_P_ANNONH.jpg",
+            "cardNameAltText": "アンノーン[H]",
+            "cardNameViewText": "アンノーン[H]"
+        },
+        {
+            "cardID": "2063",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002063_P_ANNONI.jpg",
+            "cardNameAltText": "アンノーン[I]",
+            "cardNameViewText": "アンノーン[I]"
+        },
+        {
+            "cardID": "17073",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017073_P_ANNONJ.jpg",
+            "cardNameAltText": "アンノーン［J］",
+            "cardNameViewText": "アンノーン［J］"
+        },
+        {
+            "cardID": "3063",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003063_P_ANNONK.jpg",
+            "cardNameAltText": "アンノーン[K]",
+            "cardNameViewText": "アンノーン[K]"
+        },
+        {
+            "cardID": "10070",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010070_P_ANNONL.jpg",
+            "cardNameAltText": "アンノーン[L]",
+            "cardNameViewText": "アンノーン[L]"
+        },
+        {
+            "cardID": "2064",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002064_P_ANNONM.jpg",
+            "cardNameAltText": "アンノーン[M]",
+            "cardNameViewText": "アンノーン[M]"
+        },
+        {
+            "cardID": "2130",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002130_P_ANNONM.jpg",
+            "cardNameAltText": "アンノーン[M]",
+            "cardNameViewText": "アンノーン[M]"
+        },
+        {
+            "cardID": "3064",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003064_P_ANNONN.jpg",
+            "cardNameAltText": "アンノーン[N]",
+            "cardNameViewText": "アンノーン[N]"
+        },
+        {
+            "cardID": "3065",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003065_P_ANNONO.jpg",
+            "cardNameAltText": "アンノーン[O]",
+            "cardNameViewText": "アンノーン[O]"
+        },
+        {
+            "cardID": "10071",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010071_P_ANNONP.jpg",
+            "cardNameAltText": "アンノーン[P]",
+            "cardNameViewText": "アンノーン[P]"
+        },
+        {
+            "cardID": "10072",
+            "cardThumbFile": "/assets/images/card_images/large/DP4/010072_P_ANNONQ.jpg",
+            "cardNameAltText": "アンノーン[Q]",
+            "cardNameViewText": "アンノーン[Q]"
+        },
+        {
+            "cardID": "17074",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017074_P_ANNONR.jpg",
+            "cardNameAltText": "アンノーン［R］",
+            "cardNameViewText": "アンノーン［R］"
+        },
+        {
+            "cardID": "3066",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003066_P_ANNONS.jpg",
+            "cardNameAltText": "アンノーン[S]",
+            "cardNameViewText": "アンノーン[S]"
+        },
+        {
+            "cardID": "2065",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002065_P_ANNONT.jpg",
+            "cardNameAltText": "アンノーン[T]",
+            "cardNameViewText": "アンノーン[T]"
+        },
+        {
+            "cardID": "2131",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002131_P_ANNONT.jpg",
+            "cardNameAltText": "アンノーン[T]",
+            "cardNameViewText": "アンノーン[T]"
+        },
+        {
+            "cardID": "17075",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017075_P_ANNONU.jpg",
+            "cardNameAltText": "アンノーン［U］",
+            "cardNameViewText": "アンノーン［U］"
+        },
+        {
+            "cardID": "17076",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017076_P_ANNONV.jpg",
+            "cardNameAltText": "アンノーン［V］",
+            "cardNameViewText": "アンノーン［V］"
+        },
+        {
+            "cardID": "17077",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017077_P_ANNONW.jpg",
+            "cardNameAltText": "アンノーン［W］",
+            "cardNameViewText": "アンノーン［W］"
+        },
+        {
+            "cardID": "3067",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003067_P_ANNONX.jpg",
+            "cardNameAltText": "アンノーン[X]",
+            "cardNameViewText": "アンノーン[X]"
+        },
+        {
+            "cardID": "17078",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017078_P_ANNONY.jpg",
+            "cardNameAltText": "アンノーン［Y］",
+            "cardNameViewText": "アンノーン［Y］"
+        },
+        {
+            "cardID": "3068",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003068_P_ANNONZ.jpg",
+            "cardNameAltText": "アンノーン[Z]",
+            "cardNameViewText": "アンノーン[Z]"
+        },
+        {
+            "cardID": "17079",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017079_P_ANNON.jpg",
+            "cardNameAltText": "アンノーン［!］",
+            "cardNameViewText": "アンノーン［!］"
+        },
+        {
+            "cardID": "17080",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017080_P_ANNON.jpg",
+            "cardNameAltText": "アンノーン［?］",
+            "cardNameViewText": "アンノーン［?］"
+        },
+        {
+            "cardID": "1055",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001055_P_SONANO.jpg",
+            "cardNameAltText": "ソーナノ",
+            "cardNameViewText": "ソーナノ"
+        },
+        {
+            "cardID": "1056",
+            "cardThumbFile": "/assets/images/card_images/large/DP1/001056_P_SONANSU.jpg",
+            "cardNameAltText": "ソーナンス",
+            "cardNameViewText": "ソーナンス"
+        },
+        {
+            "cardID": "3011",
+            "cardThumbFile": "/assets/images/card_images/large/DP3/003011_P_TSUBOTSUBO.jpg",
+            "cardNameAltText": "ツボツボ",
+            "cardNameViewText": "ツボツボ"
+        },
+        {
+            "cardID": "17035",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017035_P_KUNUGIDAMA.jpg",
+            "cardNameAltText": "クヌギダマ",
+            "cardNameViewText": "クヌギダマ"
+        },
+        {
+            "cardID": "17120",
+            "cardThumbFile": "/assets/images/card_images/large/DP5/017120_P_FORETOSU.jpg",
+            "cardNameAltText": "フォレトス",
+            "cardNameViewText": "フォレトス"
+        },
+        {
+            "cardID": "2098",
+            "cardThumbFile": "/assets/images/card_images/large/DP2/002098_P_NOKOCCHI.jpg",
+            "cardNameAltText": "ノコッチ",
+            "cardNameViewText": "ノコッチ"
+        }
+    ]
+}

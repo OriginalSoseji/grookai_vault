@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 182,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7060,
+    "cardEnd": 7098,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41896",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041896_T_MIRAJIXYUGETO.jpg",
+            "cardNameAltText": "ミラージュゲート",
+            "cardNameViewText": "ミラージュゲート"
+        },
+        {
+            "cardID": "41897",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041897_T_ROSUTOSUIPA.jpg",
+            "cardNameAltText": "ロストスイーパー",
+            "cardNameViewText": "ロストスイーパー"
+        },
+        {
+            "cardID": "41898",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041898_T_PANIKKUMASUKU.jpg",
+            "cardNameAltText": "パニックマスク",
+            "cardNameViewText": "パニックマスク"
+        },
+        {
+            "cardID": "41899",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041899_T_AKUROMANOJIKKEN.jpg",
+            "cardNameAltText": "アクロマの実験",
+            "cardNameViewText": "アクロマの実験"
+        },
+        {
+            "cardID": "41900",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041900_T_OJIXYOUSAMA.jpg",
+            "cardNameAltText": "おじょうさま",
+            "cardNameViewText": "おじょうさま"
+        },
+        {
+            "cardID": "41901",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041901_T_NEJIKI.jpg",
+            "cardNameAltText": "ネジキ",
+            "cardNameViewText": "ネジキ"
+        },
+        {
+            "cardID": "41902",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041902_T_MERISSA.jpg",
+            "cardNameAltText": "メリッサ",
+            "cardNameViewText": "メリッサ"
+        },
+        {
+            "cardID": "41903",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041903_T_ROSUTOSHITEI.jpg",
+            "cardNameAltText": "ロストシティ",
+            "cardNameViewText": "ロストシティ"
+        },
+        {
+            "cardID": "42088",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042088_T_AKUROMANOJIKKEN.jpg",
+            "cardNameAltText": "アクロマの実験",
+            "cardNameViewText": "アクロマの実験"
+        },
+        {
+            "cardID": "42089",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042089_T_OJIXYOUSAMA.jpg",
+            "cardNameAltText": "おじょうさま",
+            "cardNameViewText": "おじょうさま"
+        },
+        {
+            "cardID": "42090",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042090_T_NEJIKI.jpg",
+            "cardNameAltText": "ネジキ",
+            "cardNameViewText": "ネジキ"
+        },
+        {
+            "cardID": "42091",
+            "cardThumbFile": "/assets/images/card_images/large/S11/042091_T_MERISSA.jpg",
+            "cardNameAltText": "メリッサ",
+            "cardNameViewText": "メリッサ"
+        },
+        {
+            "cardID": "44904",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044904_T_AKUROMANOJIKKEN.jpg",
+            "cardNameAltText": "アクロマの実験",
+            "cardNameViewText": "アクロマの実験"
+        },
+        {
+            "cardID": "44905",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044905_T_OJIXYOUSAMA.jpg",
+            "cardNameAltText": "おじょうさま",
+            "cardNameViewText": "おじょうさま"
+        },
+        {
+            "cardID": "44906",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044906_T_NEJIKI.jpg",
+            "cardNameAltText": "ネジキ",
+            "cardNameViewText": "ネジキ"
+        },
+        {
+            "cardID": "44907",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044907_T_MERISSA.jpg",
+            "cardNameAltText": "メリッサ",
+            "cardNameViewText": "メリッサ"
+        },
+        {
+            "cardID": "44909",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044909_T_ROSUTOSUIPA.jpg",
+            "cardNameAltText": "ロストスイーパー",
+            "cardNameViewText": "ロストスイーパー"
+        },
+        {
+            "cardID": "44910",
+            "cardThumbFile": "/assets/images/card_images/large/S11/044910_T_KUZURETASUTAJIAMU.jpg",
+            "cardNameAltText": "崩れたスタジアム",
+            "cardNameViewText": "崩れたスタジアム"
+        },
+        {
+            "cardID": "41904",
+            "cardThumbFile": "/assets/images/card_images/large/S11/041904_E_GIFUTOENERUGI.jpg",
+            "cardNameAltText": "ギフトエネルギー",
+            "cardNameViewText": "ギフトエネルギー"
+        },
+        {
+            "cardID": "41905",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041905_P_NEORANTOV.jpg",
+            "cardNameAltText": "ネオラントV",
+            "cardNameViewText": "ネオラントV"
+        },
+        {
+            "cardID": "41906",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041906_P_MERIPU.jpg",
+            "cardNameAltText": "メリープ",
+            "cardNameViewText": "メリープ"
+        },
+        {
+            "cardID": "41907",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041907_P_MOKOKO.jpg",
+            "cardNameAltText": "モココ",
+            "cardNameViewText": "モココ"
+        },
+        {
+            "cardID": "41908",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041908_P_BORUTOROSU.jpg",
+            "cardNameAltText": "ボルトロス",
+            "cardNameViewText": "ボルトロス"
+        },
+        {
+            "cardID": "41909",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041909_P_ZERAORAV.jpg",
+            "cardNameAltText": "ゼラオラV",
+            "cardNameViewText": "ゼラオラV"
+        },
+        {
+            "cardID": "41910",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041910_P_ZERAORAVMAX.jpg",
+            "cardNameAltText": "ゼラオラVMAX",
+            "cardNameViewText": "ゼラオラVMAX"
+        },
+        {
+            "cardID": "41911",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041911_P_ZERAORAVSTAR.jpg",
+            "cardNameAltText": "ゼラオラVSTAR",
+            "cardNameViewText": "ゼラオラVSTAR"
+        },
+        {
+            "cardID": "41912",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041912_P_BACHINUNI.jpg",
+            "cardNameAltText": "バチンウニ",
+            "cardNameViewText": "バチンウニ"
+        },
+        {
+            "cardID": "41913",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041913_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "41914",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041914_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "41915",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041915_T_REBERUBORU.jpg",
+            "cardNameAltText": "レベルボール",
+            "cardNameViewText": "レベルボール"
+        },
+        {
+            "cardID": "41916",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041916_T_KODAWARIBERUTO.jpg",
+            "cardNameAltText": "こだわりベルト",
+            "cardNameViewText": "こだわりベルト"
+        },
+        {
+            "cardID": "41917",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041917_T_HAGAKUREPONCHIXYO.jpg",
+            "cardNameAltText": "葉隠れポンチョ",
+            "cardNameViewText": "葉隠れポンチョ"
+        },
+        {
+            "cardID": "41918",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041918_T_KURARA.jpg",
+            "cardNameAltText": "クララ",
+            "cardNameViewText": "クララ"
+        },
+        {
+            "cardID": "41919",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041919_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "41920",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041920_T_JIXYUN.jpg",
+            "cardNameAltText": "ジュン",
+            "cardNameViewText": "ジュン"
+        },
+        {
+            "cardID": "41921",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041921_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "41922",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041922_T_HAKASENOKENKIXYUUNANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "41923",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041923_T_BOUKENKANOHAKKEN.jpg",
+            "cardNameAltText": "冒険家の発見",
+            "cardNameViewText": "冒険家の発見"
+        },
+        {
+            "cardID": "41924",
+            "cardThumbFile": "/assets/images/card_images/large/SPZ/041924_T_BOSUNOSHIREIAKAGI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        }
+    ]
+}

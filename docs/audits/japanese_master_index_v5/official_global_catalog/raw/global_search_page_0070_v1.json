@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 70,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 2692,
+    "cardEnd": 2730,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "47217",
+            "cardThumbFile": "/assets/images/card_images/large/SVN/047217_E_JIETTOENERUGI.jpg",
+            "cardNameAltText": "ジェットエネルギー",
+            "cardNameViewText": "ジェットエネルギー"
+        },
+        {
+            "cardID": "47218",
+            "cardThumbFile": "/assets/images/card_images/large/SVN/047218_E_MISUTOENERUGI.jpg",
+            "cardNameAltText": "ミストエネルギー",
+            "cardNameViewText": "ミストエネルギー"
+        },
+        {
+            "cardID": "47219",
+            "cardThumbFile": "/assets/images/card_images/large/SVN/047219_E_RUMINASUENERUGI.jpg",
+            "cardNameAltText": "ルミナスエネルギー",
+            "cardNameViewText": "ルミナスエネルギー"
+        },
+        {
+            "cardID": "47220",
+            "cardThumbFile": "/assets/images/card_images/large/SVN/047220_E_REGASHIENERUGI.jpg",
+            "cardNameAltText": "レガシーエネルギー",
+            "cardNameViewText": "レガシーエネルギー"
+        },
+        {
+            "cardID": "46662",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046662_P_SUBOMI.jpg",
+            "cardNameAltText": "スボミー",
+            "cardNameViewText": "スボミー"
+        },
+        {
+            "cardID": "46663",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046663_P_RIFUIA.jpg",
+            "cardNameAltText": "リーフィア",
+            "cardNameViewText": "リーフィア"
+        },
+        {
+            "cardID": "46664",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046664_P_RIFUIAEX.jpg",
+            "cardNameAltText": "リーフィアex",
+            "cardNameViewText": "リーフィアex"
+        },
+        {
+            "cardID": "46665",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046665_P_MONMEN.jpg",
+            "cardNameAltText": "モンメン",
+            "cardNameViewText": "モンメン"
+        },
+        {
+            "cardID": "46666",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046666_P_ERUFUN.jpg",
+            "cardNameAltText": "エルフーン",
+            "cardNameViewText": "エルフーン"
+        },
+        {
+            "cardID": "46667",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046667_P_SARUNORI.jpg",
+            "cardNameAltText": "サルノリ",
+            "cardNameViewText": "サルノリ"
+        },
+        {
+            "cardID": "46668",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046668_P_BACHINKI.jpg",
+            "cardNameAltText": "バチンキー",
+            "cardNameViewText": "バチンキー"
+        },
+        {
+            "cardID": "46669",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046669_P_KAJITCHIXYU.jpg",
+            "cardNameAltText": "カジッチュ",
+            "cardNameViewText": "カジッチュ"
+        },
+        {
+            "cardID": "46670",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046670_P_KAMITCHIXYU.jpg",
+            "cardNameAltText": "カミッチュ",
+            "cardNameViewText": "カミッチュ"
+        },
+        {
+            "cardID": "46671",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046671_P_KAMITSUOROCHIEX.jpg",
+            "cardNameAltText": "カミツオロチex",
+            "cardNameViewText": "カミツオロチex"
+        },
+        {
+            "cardID": "46672",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046672_P_ANOKUSA.jpg",
+            "cardNameAltText": "アノクサ",
+            "cardNameViewText": "アノクサ"
+        },
+        {
+            "cardID": "46673",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046673_P_ANOHORAGUSA.jpg",
+            "cardNameAltText": "アノホラグサ",
+            "cardNameViewText": "アノホラグサ"
+        },
+        {
+            "cardID": "46674",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046674_P_SHIGAROKO.jpg",
+            "cardNameAltText": "シガロコ",
+            "cardNameViewText": "シガロコ"
+        },
+        {
+            "cardID": "46675",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046675_P_BERAKASU.jpg",
+            "cardNameAltText": "ベラカス",
+            "cardNameViewText": "ベラカス"
+        },
+        {
+            "cardID": "46676",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046676_P_CHIONJIEN.jpg",
+            "cardNameAltText": "チオンジェン",
+            "cardNameViewText": "チオンジェン"
+        },
+        {
+            "cardID": "46677",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046677_P_TETSUNOISAHAEX.jpg",
+            "cardNameAltText": "テツノイサハex",
+            "cardNameViewText": "テツノイサハex"
+        },
+        {
+            "cardID": "46678",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046678_P_CHIXYADESU.jpg",
+            "cardNameAltText": "チャデス",
+            "cardNameViewText": "チャデス"
+        },
+        {
+            "cardID": "46679",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046679_P_YABASOCHIXYA.jpg",
+            "cardNameAltText": "ヤバソチャ",
+            "cardNameViewText": "ヤバソチャ"
+        },
+        {
+            "cardID": "46680",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046680_P_YABASOCHIXYAEX.jpg",
+            "cardNameAltText": "ヤバソチャex",
+            "cardNameViewText": "ヤバソチャex"
+        },
+        {
+            "cardID": "46681",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046681_P_OGAPONMIDORINOMENEX.jpg",
+            "cardNameAltText": "オーガポン みどりのめんex",
+            "cardNameViewText": "オーガポン みどりのめんex"
+        },
+        {
+            "cardID": "46682",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046682_P_BUSUTA.jpg",
+            "cardNameAltText": "ブースター",
+            "cardNameViewText": "ブースター"
+        },
+        {
+            "cardID": "46683",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046683_P_BUSUTAEX.jpg",
+            "cardNameAltText": "ブースターex",
+            "cardNameViewText": "ブースターex"
+        },
+        {
+            "cardID": "46684",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046684_P_KARUBOU.jpg",
+            "cardNameAltText": "カルボウ",
+            "cardNameViewText": "カルボウ"
+        },
+        {
+            "cardID": "46685",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046685_P_TETSUNODOKUGA.jpg",
+            "cardNameAltText": "テツノドクガ",
+            "cardNameViewText": "テツノドクガ"
+        },
+        {
+            "cardID": "46686",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046686_P_IYUI.jpg",
+            "cardNameAltText": "イーユイ",
+            "cardNameViewText": "イーユイ"
+        },
+        {
+            "cardID": "46687",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046687_P_OGAPONKAMADONOMENEX.jpg",
+            "cardNameAltText": "オーガポン かまどのめんex",
+            "cardNameViewText": "オーガポン かまどのめんex"
+        },
+        {
+            "cardID": "46688",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046688_P_UGATSUHOMURAEX.jpg",
+            "cardNameAltText": "ウガツホムラex",
+            "cardNameViewText": "ウガツホムラex"
+        },
+        {
+            "cardID": "46689",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046689_P_TOSAKINTO.jpg",
+            "cardNameAltText": "トサキント",
+            "cardNameViewText": "トサキント"
+        },
+        {
+            "cardID": "46690",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046690_P_AZUMAOU.jpg",
+            "cardNameAltText": "アズマオウ",
+            "cardNameViewText": "アズマオウ"
+        },
+        {
+            "cardID": "46691",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046691_P_SHIXYAWAZU.jpg",
+            "cardNameAltText": "シャワーズ",
+            "cardNameViewText": "シャワーズ"
+        },
+        {
+            "cardID": "46692",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046692_P_SHIXYAWAZUEX.jpg",
+            "cardNameAltText": "シャワーズex",
+            "cardNameViewText": "シャワーズex"
+        },
+        {
+            "cardID": "46693",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046693_P_WANINOKO.jpg",
+            "cardNameAltText": "ワニノコ",
+            "cardNameViewText": "ワニノコ"
+        },
+        {
+            "cardID": "46694",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046694_P_ARIGEITSU.jpg",
+            "cardNameAltText": "アリゲイツ",
+            "cardNameViewText": "アリゲイツ"
+        },
+        {
+            "cardID": "46695",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046695_P_ODAIRU.jpg",
+            "cardNameAltText": "オーダイル",
+            "cardNameViewText": "オーダイル"
+        },
+        {
+            "cardID": "46696",
+            "cardThumbFile": "/assets/images/card_images/large/SV8a/046696_P_HINBASU.jpg",
+            "cardNameAltText": "ヒンバス",
+            "cardNameViewText": "ヒンバス"
+        }
+    ]
+}

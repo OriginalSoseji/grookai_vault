@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 394,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 15328,
+    "cardEnd": 15366,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31950",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031950_P_TOGEKISSU.jpg",
+            "cardNameAltText": "トゲキッス",
+            "cardNameViewText": "トゲキッス"
+        },
+        {
+            "cardID": "31951",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031951_P_FURAJIESUEX.jpg",
+            "cardNameAltText": "フラージェスEX",
+            "cardNameViewText": "フラージェスEX"
+        },
+        {
+            "cardID": "31952",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031952_P_SHUSHUPU.jpg",
+            "cardNameAltText": "シュシュプ",
+            "cardNameViewText": "シュシュプ"
+        },
+        {
+            "cardID": "31953",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031953_P_FUREFUWAN.jpg",
+            "cardNameAltText": "フレフワン",
+            "cardNameViewText": "フレフワン"
+        },
+        {
+            "cardID": "31954",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031954_P_ZERUNEASU.jpg",
+            "cardNameAltText": "ゼルネアス",
+            "cardNameViewText": "ゼルネアス"
+        },
+        {
+            "cardID": "31955",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031955_P_ZERUNEASUEX.jpg",
+            "cardNameAltText": "ゼルネアスEX",
+            "cardNameViewText": "ゼルネアスEX"
+        },
+        {
+            "cardID": "31956",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031956_P_GIRATEINAEX.jpg",
+            "cardNameAltText": "ギラティナEX",
+            "cardNameViewText": "ギラティナEX"
+        },
+        {
+            "cardID": "31957",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031957_P_ONBAN.jpg",
+            "cardNameAltText": "オンバーン",
+            "cardNameViewText": "オンバーン"
+        },
+        {
+            "cardID": "31958",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031958_P_GARURAEX.jpg",
+            "cardNameAltText": "ガルーラEX",
+            "cardNameViewText": "ガルーラEX"
+        },
+        {
+            "cardID": "31959",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031959_P_MGARURAEX.jpg",
+            "cardNameAltText": "メガガルーラEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>ガルーラEX"
+        },
+        {
+            "cardID": "31960",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031960_P_MIRUTANKU.jpg",
+            "cardNameAltText": "ミルタンク",
+            "cardNameViewText": "ミルタンク"
+        },
+        {
+            "cardID": "31961",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031961_P_REKKUUZAEX.jpg",
+            "cardNameAltText": "レックウザEX",
+            "cardNameViewText": "レックウザEX"
+        },
+        {
+            "cardID": "31962",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031962_P_MREKKUUZAEX.jpg",
+            "cardNameAltText": "メガレックウザEX",
+            "cardNameViewText": "<span class=\"pcg pcg-megamark\"></span>レックウザEX"
+        },
+        {
+            "cardID": "31963",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031963_P_SHIEIMIEX.jpg",
+            "cardNameAltText": "シェイミEX",
+            "cardNameViewText": "シェイミEX"
+        },
+        {
+            "cardID": "31964",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031964_P_ONBATTO.jpg",
+            "cardNameAltText": "オンバット",
+            "cardNameViewText": "オンバット"
+        },
+        {
+            "cardID": "31965",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031965_T_ANANUKENOHIMO.jpg",
+            "cardNameAltText": "あなぬけのヒモ",
+            "cardNameViewText": "あなぬけのヒモ"
+        },
+        {
+            "cardID": "31966",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031966_T_KAIZOUHANMA.jpg",
+            "cardNameAltText": "改造ハンマー",
+            "cardNameViewText": "改造ハンマー"
+        },
+        {
+            "cardID": "31967",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031967_T_TORENAZUPOSUTO.jpg",
+            "cardNameAltText": "トレーナーズポスト",
+            "cardNameViewText": "トレーナーズポスト"
+        },
+        {
+            "cardID": "31968",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031968_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "31969",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031969_T_BATORUKONPURESSAFUREADANGIA.jpg",
+            "cardNameAltText": "バトルコンプレッサー（フレア団ギア）",
+            "cardNameViewText": "バトルコンプレッサー（フレア団ギア）"
+        },
+        {
+            "cardID": "31970",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031970_T_BATORUSACHA.jpg",
+            "cardNameAltText": "バトルサーチャー",
+            "cardNameViewText": "バトルサーチャー"
+        },
+        {
+            "cardID": "31971",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031971_T_BIKKURIMEGAHON.jpg",
+            "cardNameAltText": "びっくりメガホン",
+            "cardNameViewText": "びっくりメガホン"
+        },
+        {
+            "cardID": "31972",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031972_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "31973",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031973_T_REDDOKADO.jpg",
+            "cardNameAltText": "レッドカード",
+            "cardNameViewText": "レッドカード"
+        },
+        {
+            "cardID": "31974",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031974_T_KARUISHI.jpg",
+            "cardNameAltText": "かるいし",
+            "cardNameViewText": "かるいし"
+        },
+        {
+            "cardID": "31975",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031975_T_GURADONSOURURINKU.jpg",
+            "cardNameAltText": "グラードンソウルリンク",
+            "cardNameViewText": "グラードンソウルリンク"
+        },
+        {
+            "cardID": "31976",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031976_T_GENGASOURURINKU.jpg",
+            "cardNameAltText": "ゲンガーソウルリンク",
+            "cardNameViewText": "ゲンガーソウルリンク"
+        },
+        {
+            "cardID": "31977",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031977_T_JUKAINSOURURINKU.jpg",
+            "cardNameAltText": "ジュカインソウルリンク",
+            "cardNameViewText": "ジュカインソウルリンク"
+        },
+        {
+            "cardID": "31978",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031978_T_SUPIASOURURINKU.jpg",
+            "cardNameAltText": "スピアーソウルリンク",
+            "cardNameViewText": "スピアーソウルリンク"
+        },
+        {
+            "cardID": "31979",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031979_T_MYUUTSUSOURURINKU.jpg",
+            "cardNameAltText": "ミュウツーソウルリンク",
+            "cardNameViewText": "ミュウツーソウルリンク"
+        },
+        {
+            "cardID": "31980",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031980_T_RAIBORUTOSOURURINKU.jpg",
+            "cardNameAltText": "ライボルトソウルリンク",
+            "cardNameViewText": "ライボルトソウルリンク"
+        },
+        {
+            "cardID": "31981",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031981_T_REKKUUZASOURURINKU.jpg",
+            "cardNameAltText": "レックウザソウルリンク",
+            "cardNameViewText": "レックウザソウルリンク"
+        },
+        {
+            "cardID": "31982",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031982_T_HEDDONOIZAFUREADANHAIPAGIA.jpg",
+            "cardNameAltText": "ヘッドノイザー（フレア団ハイパーギア）",
+            "cardNameViewText": "ヘッドノイザー（フレア団ハイパーギア）"
+        },
+        {
+            "cardID": "31983",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031983_T_AZUSA.jpg",
+            "cardNameAltText": "アズサ",
+            "cardNameViewText": "アズサ"
+        },
+        {
+            "cardID": "31984",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031984_T_KUSEROSHIKI.jpg",
+            "cardNameAltText": "クセロシキ",
+            "cardNameViewText": "クセロシキ"
+        },
+        {
+            "cardID": "31985",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031985_T_KORUNI.jpg",
+            "cardNameAltText": "コルニ",
+            "cardNameViewText": "コルニ"
+        },
+        {
+            "cardID": "31986",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031986_T_SAKAKINOKEIKAKU.jpg",
+            "cardNameAltText": "サカキの計画",
+            "cardNameViewText": "サカキの計画"
+        },
+        {
+            "cardID": "31987",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031987_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "31988",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031988_T_SENPAITOKOUHAI.jpg",
+            "cardNameAltText": "センパイとコウハイ",
+            "cardNameViewText": "センパイとコウハイ"
+        }
+    ]
+}

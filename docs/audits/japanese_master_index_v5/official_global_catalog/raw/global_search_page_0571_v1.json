@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 571,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 22231,
+    "cardEnd": 22269,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "28737",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028737_T_HANENOKASEKI.jpg",
+            "cardNameAltText": "はねの化石",
+            "cardNameViewText": "はねの化石"
+        },
+        {
+            "cardID": "27827",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027827_T_AKUNOTSUME.jpg",
+            "cardNameAltText": "悪のツメ",
+            "cardNameViewText": "悪のツメ"
+        },
+        {
+            "cardID": "25125",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025125_T_UTSUGIHAKASENOSODATEKATA.jpg",
+            "cardNameAltText": "ウツギはかせの育てかた",
+            "cardNameViewText": "ウツギはかせの育てかた"
+        },
+        {
+            "cardID": "25258",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025258_T_TSURIBITO.jpg",
+            "cardNameAltText": "釣り人",
+            "cardNameViewText": "釣り人"
+        },
+        {
+            "cardID": "28738",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028738_T_FUTANOKASEKI.jpg",
+            "cardNameAltText": "ふたの化石",
+            "cardNameViewText": "ふたの化石"
+        },
+        {
+            "cardID": "27828",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027828_T_BADDOCHIMUNOJIMUTOSABU.jpg",
+            "cardNameAltText": "バッドチームのジムとサブ",
+            "cardNameViewText": "バッドチームのジムとサブ"
+        },
+        {
+            "cardID": "25127",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025127_T_OKIDOHAKASENOSHINRIRON.jpg",
+            "cardNameAltText": "オーキドはかせの新理論",
+            "cardNameViewText": "オーキドはかせの新理論"
+        },
+        {
+            "cardID": "25260",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025260_T_POKEMONKOREKUTA.jpg",
+            "cardNameAltText": "ポケモンコレクター",
+            "cardNameViewText": "ポケモンコレクター"
+        },
+        {
+            "cardID": "28291",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028291_T_SUKURANBURUSUICCHI.jpg",
+            "cardNameAltText": "スクランブルスイッチ",
+            "cardNameViewText": "スクランブルスイッチ"
+        },
+        {
+            "cardID": "28739",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028739_T_SHIRUBABANGURU.jpg",
+            "cardNameAltText": "シルバーバングル",
+            "cardNameViewText": "シルバーバングル"
+        },
+        {
+            "cardID": "27829",
+            "cardThumbFile": "/assets/images/card_images/large/BW4-B/027829_T_NEJIYAMA.jpg",
+            "cardNameAltText": "ネジ山",
+            "cardNameViewText": "ネジ山"
+        },
+        {
+            "cardID": "25129",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bhg/025129_T_MASAKI.jpg",
+            "cardNameAltText": "マサキ",
+            "cardNameViewText": "マサキ"
+        },
+        {
+            "cardID": "25262",
+            "cardThumbFile": "/assets/images/card_images/large/L1-Bss/025262_T_MONOMANEMUSUME.jpg",
+            "cardNameAltText": "モノマネむすめ",
+            "cardNameViewText": "モノマネむすめ"
+        },
+        {
+            "cardID": "28292",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028292_T_DAUJINGUMASHIN.jpg",
+            "cardNameAltText": "ダウジングマシン",
+            "cardNameViewText": "ダウジングマシン"
+        },
+        {
+            "cardID": "28740",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028740_T_HAKUGINNOKAGAMI.jpg",
+            "cardNameAltText": "白銀の鏡",
+            "cardNameViewText": "白銀の鏡"
+        },
+        {
+            "cardID": "25705",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025705_T_ENERUGIKOUKANSOUCHI.jpg",
+            "cardNameAltText": "エネルギー交換装置",
+            "cardNameViewText": "エネルギー交換装置"
+        },
+        {
+            "cardID": "49717",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049717_T_PAWAPUROTEIN.jpg",
+            "cardNameAltText": "パワープロテイン",
+            "cardNameViewText": "パワープロテイン"
+        },
+        {
+            "cardID": "38247",
+            "cardThumbFile": "/assets/images/card_images/large/S-P/038247_T_POKEMONSENTANOONEESAN.jpg",
+            "cardNameAltText": "ポケモンセンターのお姉さん",
+            "cardNameViewText": "ポケモンセンターのお姉さん"
+        },
+        {
+            "cardID": "28293",
+            "cardThumbFile": "/assets/images/card_images/large/BW7-B/028293_T_BIKUTORIPISU.jpg",
+            "cardNameAltText": "ビクトリーピース",
+            "cardNameViewText": "ビクトリーピース"
+        },
+        {
+            "cardID": "28741",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028741_T_RIBASARUTORIGA.jpg",
+            "cardNameAltText": "リバーサルトリガー",
+            "cardNameViewText": "リバーサルトリガー"
+        },
+        {
+            "cardID": "25707",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025707_T_DEIFENDA.jpg",
+            "cardNameAltText": "ディフェンダー",
+            "cardNameViewText": "ディフェンダー"
+        },
+        {
+            "cardID": "28742",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028742_T_AIRISU.jpg",
+            "cardNameAltText": "アイリス",
+            "cardNameViewText": "アイリス"
+        },
+        {
+            "cardID": "25709",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025709_T_FUSHIGINAAME.jpg",
+            "cardNameAltText": "ふしぎなアメ",
+            "cardNameViewText": "ふしぎなアメ"
+        },
+        {
+            "cardID": "28743",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028743_T_KATOREA.jpg",
+            "cardNameAltText": "カトレア",
+            "cardNameViewText": "カトレア"
+        },
+        {
+            "cardID": "25711",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025711_T_PURASUPAWA.jpg",
+            "cardNameAltText": "プラスパワー",
+            "cardNameViewText": "プラスパワー"
+        },
+        {
+            "cardID": "28744",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028744_T_POKEMONKAISHUUSAIKURON.jpg",
+            "cardNameAltText": "ポケモン回収サイクロン",
+            "cardNameViewText": "ポケモン回収サイクロン"
+        },
+        {
+            "cardID": "25713",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025713_T_REJIENDOBOKKUSU.jpg",
+            "cardNameAltText": "レジェンドボックス",
+            "cardNameViewText": "レジェンドボックス"
+        },
+        {
+            "cardID": "28745",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028745_T_GSUKOPU.jpg",
+            "cardNameAltText": "Gスコープ",
+            "cardNameViewText": "Gスコープ"
+        },
+        {
+            "cardID": "25715",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025715_T_FURAWASHOPPUNOONEESAN.jpg",
+            "cardNameAltText": "フラワーショップのお姉さん",
+            "cardNameViewText": "フラワーショップのお姉さん"
+        },
+        {
+            "cardID": "50039",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050039_T_BUREIBUBANGURU.jpg",
+            "cardNameAltText": "ブレイブバングル",
+            "cardNameViewText": "ブレイブバングル"
+        },
+        {
+            "cardID": "28746",
+            "cardThumbFile": "/assets/images/card_images/large/BW9-B/028746_T_GBUSUTA.jpg",
+            "cardNameAltText": "Gブースター",
+            "cardNameViewText": "Gブースター"
+        },
+        {
+            "cardID": "25717",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025717_T_BOUZUNOSHUGYOU.jpg",
+            "cardNameAltText": "ぼうずの修行",
+            "cardNameViewText": "ぼうずの修行"
+        },
+        {
+            "cardID": "50040",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050040_T_JIETTO.jpg",
+            "cardNameAltText": "ジェット",
+            "cardNameViewText": "ジェット"
+        },
+        {
+            "cardID": "25719",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025719_T_ROKETTODANNOTEGUCHI.jpg",
+            "cardNameAltText": "ロケット団の手口",
+            "cardNameViewText": "ロケット団の手口"
+        },
+        {
+            "cardID": "26173",
+            "cardThumbFile": "/assets/images/card_images/large/L3-B/026173_T_JANKUAMU.jpg",
+            "cardNameAltText": "ジャンクアーム",
+            "cardNameViewText": "ジャンクアーム"
+        },
+        {
+            "cardID": "22245",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-B/022245_T_GINGADANNOHATSUMEIGSPREDA.jpg",
+            "cardNameAltText": "ギンガ団の発明G-109 SPレーダー",
+            "cardNameViewText": "ギンガ団の発明G-109 SPレーダー"
+        },
+        {
+            "cardID": "50041",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/050041_T_MITSURUNOOMOIYARI.jpg",
+            "cardNameAltText": "ミツルの思いやり",
+            "cardNameViewText": "ミツルの思いやり"
+        },
+        {
+            "cardID": "26174",
+            "cardThumbFile": "/assets/images/card_images/large/L3-B/026174_T_KARATEOU.jpg",
+            "cardNameAltText": "からておう",
+            "cardNameViewText": "からておう"
+        },
+        {
+            "cardID": "25721",
+            "cardThumbFile": "/assets/images/card_images/large/L2-B/025721_T_ARUFUNOISEKI.jpg",
+            "cardNameAltText": "アルフの遺跡",
+            "cardNameViewText": "アルフの遺跡"
+        }
+    ]
+}

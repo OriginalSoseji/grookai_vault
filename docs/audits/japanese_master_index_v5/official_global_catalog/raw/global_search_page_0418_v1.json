@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 418,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 16264,
+    "cardEnd": 16302,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "30819",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030819_P_AKUADANNOTODOGURA.jpg",
+            "cardNameAltText": "アクア団のトドグラー",
+            "cardNameViewText": "アクア団のトドグラー"
+        },
+        {
+            "cardID": "30820",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030820_P_AKUADANNOTODOZERUGA.jpg",
+            "cardNameAltText": "アクア団のトドゼルガ",
+            "cardNameViewText": "アクア団のトドゼルガ"
+        },
+        {
+            "cardID": "30821",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030821_P_AKUADANNOKAIOGAEX.jpg",
+            "cardNameAltText": "アクア団のカイオーガEX",
+            "cardNameViewText": "アクア団のカイオーガEX"
+        },
+        {
+            "cardID": "30822",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030822_P_AKUADANNOBETOBETA.jpg",
+            "cardNameAltText": "アクア団のベトベター",
+            "cardNameViewText": "アクア団のベトベター"
+        },
+        {
+            "cardID": "30823",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030823_P_AKUADANNOBETOBETON.jpg",
+            "cardNameAltText": "アクア団のベトベトン",
+            "cardNameViewText": "アクア団のベトベトン"
+        },
+        {
+            "cardID": "30824",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030824_P_AKUADANNOHABUNEKU.jpg",
+            "cardNameAltText": "アクア団のハブネーク",
+            "cardNameViewText": "アクア団のハブネーク"
+        },
+        {
+            "cardID": "30825",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030825_P_MAGUMADANNOYAJIRON.jpg",
+            "cardNameAltText": "マグマ団のヤジロン",
+            "cardNameViewText": "マグマ団のヤジロン"
+        },
+        {
+            "cardID": "30826",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030826_P_MAGUMADANNONENDORU.jpg",
+            "cardNameAltText": "マグマ団のネンドール",
+            "cardNameViewText": "マグマ団のネンドール"
+        },
+        {
+            "cardID": "30827",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030827_P_MAGUMADANNOKOKODORA.jpg",
+            "cardNameAltText": "マグマ団のココドラ",
+            "cardNameViewText": "マグマ団のココドラ"
+        },
+        {
+            "cardID": "30828",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030828_P_MAGUMADANNOKODORA.jpg",
+            "cardNameAltText": "マグマ団のコドラ",
+            "cardNameViewText": "マグマ団のコドラ"
+        },
+        {
+            "cardID": "30829",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030829_P_MAGUMADANNOBOSUGODORA.jpg",
+            "cardNameAltText": "マグマ団のボスゴドラ",
+            "cardNameViewText": "マグマ団のボスゴドラ"
+        },
+        {
+            "cardID": "30830",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030830_P_MAGUMADANNOGURADONEX.jpg",
+            "cardNameAltText": "マグマ団のグラードンEX",
+            "cardNameViewText": "マグマ団のグラードンEX"
+        },
+        {
+            "cardID": "30831",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030831_P_AKUADANNOPOCHIENA.jpg",
+            "cardNameAltText": "アクア団のポチエナ",
+            "cardNameViewText": "アクア団のポチエナ"
+        },
+        {
+            "cardID": "30832",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030832_P_MAGUMADANNOPOCHIENA.jpg",
+            "cardNameAltText": "マグマ団のポチエナ",
+            "cardNameViewText": "マグマ団のポチエナ"
+        },
+        {
+            "cardID": "30833",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030833_P_AKUADANNOGURAENA.jpg",
+            "cardNameAltText": "アクア団のグラエナ",
+            "cardNameViewText": "アクア団のグラエナ"
+        },
+        {
+            "cardID": "30834",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030834_P_MAGUMADANNOGURAENA.jpg",
+            "cardNameAltText": "マグマ団のグラエナ",
+            "cardNameViewText": "マグマ団のグラエナ"
+        },
+        {
+            "cardID": "30835",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030835_P_AKUADANNOKIBANIA.jpg",
+            "cardNameAltText": "アクア団のキバニア",
+            "cardNameViewText": "アクア団のキバニア"
+        },
+        {
+            "cardID": "30836",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030836_P_AKUADANNOSAMEHADA.jpg",
+            "cardNameAltText": "アクア団のサメハダー",
+            "cardNameViewText": "アクア団のサメハダー"
+        },
+        {
+            "cardID": "30837",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030837_P_MAGUMADANNOZANGUSU.jpg",
+            "cardNameAltText": "マグマ団のザングース",
+            "cardNameViewText": "マグマ団のザングース"
+        },
+        {
+            "cardID": "30838",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030838_T_AKUADANNOSUPABORU.jpg",
+            "cardNameAltText": "アクア団のスーパーボール",
+            "cardNameViewText": "アクア団のスーパーボール"
+        },
+        {
+            "cardID": "30839",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030839_T_MAGUMADANNOSUPABORU.jpg",
+            "cardNameAltText": "マグマ団のスーパーボール",
+            "cardNameViewText": "マグマ団のスーパーボール"
+        },
+        {
+            "cardID": "30840",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030840_T_AKUADEIFUYUZA.jpg",
+            "cardNameAltText": "アクアディフューザー",
+            "cardNameViewText": "アクアディフューザー"
+        },
+        {
+            "cardID": "30841",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030841_T_MAGUMAPOINTA.jpg",
+            "cardNameAltText": "マグマポインター",
+            "cardNameViewText": "マグマポインター"
+        },
+        {
+            "cardID": "30842",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030842_T_AKUADANNOKANBU.jpg",
+            "cardNameAltText": "アクア団の幹部",
+            "cardNameViewText": "アクア団の幹部"
+        },
+        {
+            "cardID": "30843",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030843_T_AKUADANNOSHITAPPA.jpg",
+            "cardNameAltText": "アクア団のしたっぱ",
+            "cardNameViewText": "アクア団のしたっぱ"
+        },
+        {
+            "cardID": "30844",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030844_T_MAGUMADANNOKANBU.jpg",
+            "cardNameAltText": "マグマ団の幹部",
+            "cardNameViewText": "マグマ団の幹部"
+        },
+        {
+            "cardID": "30845",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030845_T_MAGUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "マグマ団のしたっぱ",
+            "cardNameViewText": "マグマ団のしたっぱ"
+        },
+        {
+            "cardID": "30846",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030846_T_AKUADANNOHIMITSUKICHI.jpg",
+            "cardNameAltText": "アクア団の秘密基地",
+            "cardNameViewText": "アクア団の秘密基地"
+        },
+        {
+            "cardID": "30847",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030847_T_MAGUMADANNOHIMITSUKICHI.jpg",
+            "cardNameAltText": "マグマ団の秘密基地",
+            "cardNameViewText": "マグマ団の秘密基地"
+        },
+        {
+            "cardID": "30848",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030848_E_DABURUAKUAENERUGI.jpg",
+            "cardNameAltText": "ダブルアクアエネルギー",
+            "cardNameViewText": "ダブルアクアエネルギー"
+        },
+        {
+            "cardID": "30849",
+            "cardThumbFile": "/assets/images/card_images/large/CP1/030849_E_DABURUMAGUMAENERUGI.jpg",
+            "cardNameAltText": "ダブルマグマエネルギー",
+            "cardNameViewText": "ダブルマグマエネルギー"
+        },
+        {
+            "cardID": "30663",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030663_P_MONJARA.jpg",
+            "cardNameAltText": "モンジャラ",
+            "cardNameViewText": "モンジャラ"
+        },
+        {
+            "cardID": "30664",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030664_P_MOJANBO.jpg",
+            "cardNameAltText": "モジャンボ",
+            "cardNameViewText": "モジャンボ"
+        },
+        {
+            "cardID": "30665",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030665_P_KIMORI.jpg",
+            "cardNameAltText": "キモリ",
+            "cardNameViewText": "キモリ"
+        },
+        {
+            "cardID": "30666",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030666_P_JUPUTORU.jpg",
+            "cardNameAltText": "ジュプトル",
+            "cardNameViewText": "ジュプトル"
+        },
+        {
+            "cardID": "30667",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030667_P_JUKAIN.jpg",
+            "cardNameAltText": "ジュカイン",
+            "cardNameViewText": "ジュカイン"
+        },
+        {
+            "cardID": "30668",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030668_P_JUKAIN.jpg",
+            "cardNameAltText": "ジュカイン",
+            "cardNameViewText": "ジュカイン"
+        },
+        {
+            "cardID": "30669",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030669_P_KINOKOKO.jpg",
+            "cardNameAltText": "キノココ",
+            "cardNameViewText": "キノココ"
+        },
+        {
+            "cardID": "30670",
+            "cardThumbFile": "/assets/images/card_images/large/XY5-Bg/030670_P_KINOGASSA.jpg",
+            "cardNameAltText": "キノガッサ",
+            "cardNameViewText": "キノガッサ"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 563,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21919,
+    "cardEnd": 21957,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "43118",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043118_T_KURASSHIXYUHANMA.jpg",
+            "cardNameAltText": "クラッシュハンマー",
+            "cardNameViewText": "クラッシュハンマー"
+        },
+        {
+            "cardID": "21568",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpo/021568_T_MAMANOKIDUKAI.jpg",
+            "cardNameAltText": "ママのきづかい",
+            "cardNameViewText": "ママのきづかい"
+        },
+        {
+            "cardID": "21599",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpi/021599_T_MAMANOKIDUKAI.jpg",
+            "cardNameAltText": "ママのきづかい",
+            "cardNameViewText": "ママのきづかい"
+        },
+        {
+            "cardID": "28020",
+            "cardThumbFile": "/assets/images/card_images/large/KLD/028020_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "23025",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sg/023025_T_SHIRONANOMICHIBIKI.jpg",
+            "cardNameAltText": "シロナの導き",
+            "cardNameViewText": "シロナの導き"
+        },
+        {
+            "cardID": "23052",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sl/023052_T_AKAGINOSENSEI.jpg",
+            "cardNameAltText": "アカギの先制",
+            "cardNameViewText": "アカギの先制"
+        },
+        {
+            "cardID": "28773",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028773_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "28790",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028790_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "28430",
+            "cardThumbFile": "/assets/images/card_images/large/PBG/028430_T_PURAZUMAFURIGETO.jpg",
+            "cardNameAltText": "プラズマフリゲート",
+            "cardNameViewText": "プラズマフリゲート"
+        },
+        {
+            "cardID": "28309",
+            "cardThumbFile": "/assets/images/card_images/large/PPD/028309_T_PURAZUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "プラズマ団のしたっぱ",
+            "cardNameViewText": "プラズマ団のしたっぱ"
+        },
+        {
+            "cardID": "24027",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Sgf/024027_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "24058",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Slp/024058_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "27619",
+            "cardThumbFile": "/assets/images/card_images/large/BKR/027619_T_ARARAGIHAKASE.jpg",
+            "cardNameAltText": "アララギ博士",
+            "cardNameViewText": "アララギ博士"
+        },
+        {
+            "cardID": "27637",
+            "cardThumbFile": "/assets/images/card_images/large/BKZ/027637_T_ARARAGIHAKASE.jpg",
+            "cardNameAltText": "アララギ博士",
+            "cardNameViewText": "アララギ博士"
+        },
+        {
+            "cardID": "28384",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028384_T_ARARAGIHAKASE.jpg",
+            "cardNameAltText": "アララギ博士",
+            "cardNameViewText": "アララギ博士"
+        },
+        {
+            "cardID": "28404",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028404_T_ARARAGIHAKASE.jpg",
+            "cardNameAltText": "アララギ博士",
+            "cardNameViewText": "アララギ博士"
+        },
+        {
+            "cardID": "28668",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028668_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "22026",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Sg/022026_T_GINGADANNOHATSUMEIGENAJIGEIN.jpg",
+            "cardNameAltText": "ギンガ団の発明G-101 エナジーゲイン",
+            "cardNameViewText": "ギンガ団の発明G-101 エナジーゲイン"
+        },
+        {
+            "cardID": "22058",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Se/022058_T_GINGADANNOHATSUMEIGENAJIGEIN.jpg",
+            "cardNameAltText": "ギンガ団の発明G-101 エナジーゲイン",
+            "cardNameViewText": "ギンガ団の発明G-101 エナジーゲイン"
+        },
+        {
+            "cardID": "25528",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025528_T_OKIDOHAKASENOSHINRIRON.jpg",
+            "cardNameAltText": "オーキドはかせの新理論",
+            "cardNameViewText": "オーキドはかせの新理論"
+        },
+        {
+            "cardID": "25565",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025565_T_OKIDOHAKASENOSHINRIRON.jpg",
+            "cardNameAltText": "オーキドはかせの新理論",
+            "cardNameViewText": "オーキドはかせの新理論"
+        },
+        {
+            "cardID": "27676",
+            "cardThumbFile": "/assets/images/card_images/large/BGSt/027676_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "27692",
+            "cardThumbFile": "/assets/images/card_images/large/BGSv/027692_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "27316",
+            "cardThumbFile": "/assets/images/card_images/large/BTV/027316_T_KURASSHUHANMA.jpg",
+            "cardNameAltText": "クラッシュハンマー",
+            "cardNameViewText": "クラッシュハンマー"
+        },
+        {
+            "cardID": "49601",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg",
+            "cardNameAltText": "ポケパッド",
+            "cardNameViewText": "ポケパッド"
+        },
+        {
+            "cardID": "33290",
+            "cardThumbFile": "/assets/images/card_images/large/SMP/033290_T_ROTOMUZUKAN.jpg",
+            "cardNameAltText": "ロトム図鑑",
+            "cardNameViewText": "ロトム図鑑"
+        },
+        {
+            "cardID": "43119",
+            "cardThumbFile": "/assets/images/card_images/large/SV-P/043119_T_NESUTOBORU.jpg",
+            "cardNameAltText": "ネストボール",
+            "cardNameViewText": "ネストボール"
+        },
+        {
+            "cardID": "24028",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Sgf/024028_T_NANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "ナナカマドはかせ",
+            "cardNameViewText": "ナナカマドはかせ"
+        },
+        {
+            "cardID": "24059",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Slp/024059_T_NANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "ナナカマドはかせ",
+            "cardNameViewText": "ナナカマドはかせ"
+        },
+        {
+            "cardID": "28310",
+            "cardThumbFile": "/assets/images/card_images/large/PPD/028310_T_PURAZUMAFURIGETO.jpg",
+            "cardNameAltText": "プラズマフリゲート",
+            "cardNameViewText": "プラズマフリゲート"
+        },
+        {
+            "cardID": "22028",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Sg/022028_T_OBANOKIAI.jpg",
+            "cardNameAltText": "オーバの気合",
+            "cardNameViewText": "オーバの気合"
+        },
+        {
+            "cardID": "22060",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Se/022060_T_GOYOUNOSHIMEI.jpg",
+            "cardNameAltText": "ゴヨウの指名",
+            "cardNameViewText": "ゴヨウの指名"
+        },
+        {
+            "cardID": "27620",
+            "cardThumbFile": "/assets/images/card_images/large/BKR/027620_T_N.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "27638",
+            "cardThumbFile": "/assets/images/card_images/large/BKZ/027638_T_N.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "28385",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028385_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "28405",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028405_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "28669",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028669_T_FUURO.jpg",
+            "cardNameAltText": "フウロ",
+            "cardNameViewText": "フウロ"
+        },
+        {
+            "cardID": "25530",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025530_T_POKEMONKOREKUTA.jpg",
+            "cardNameAltText": "ポケモンコレクター",
+            "cardNameViewText": "ポケモンコレクター"
+        },
+        {
+            "cardID": "25567",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025567_T_BOUZUNOSHUGYOU.jpg",
+            "cardNameAltText": "ぼうずの修行",
+            "cardNameViewText": "ぼうずの修行"
+        }
+    ]
+}

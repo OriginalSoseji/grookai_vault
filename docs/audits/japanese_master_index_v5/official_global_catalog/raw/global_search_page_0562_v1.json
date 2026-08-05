@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 562,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 21880,
+    "cardEnd": 21918,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "27617",
+            "cardThumbFile": "/assets/images/card_images/large/BKR/027617_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "27635",
+            "cardThumbFile": "/assets/images/card_images/large/BKZ/027635_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "28382",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028382_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "28402",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028402_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "28666",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028666_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "25524",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025524_T_POKEMONRIBASU.jpg",
+            "cardNameAltText": "ポケモンリバース",
+            "cardNameViewText": "ポケモンリバース"
+        },
+        {
+            "cardID": "25561",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025561_T_MOMOMIRUKU.jpg",
+            "cardNameAltText": "モーモーミルク",
+            "cardNameViewText": "モーモーミルク"
+        },
+        {
+            "cardID": "49599",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049599_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "25405",
+            "cardThumbFile": "/assets/images/card_images/large/Em/025405_T_JAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "27232",
+            "cardThumbFile": "/assets/images/card_images/large/BKv/027232_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "27246",
+            "cardThumbFile": "/assets/images/card_images/large/BKt/027246_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "27260",
+            "cardThumbFile": "/assets/images/card_images/large/BKc/027260_T_BERU.jpg",
+            "cardNameAltText": "ベル",
+            "cardNameViewText": "ベル"
+        },
+        {
+            "cardID": "21544",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBna/021544_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "19023",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019023_T_SHOUKINOTANI.jpg",
+            "cardNameAltText": "瘴気の谷",
+            "cardNameViewText": "瘴気の谷"
+        },
+        {
+            "cardID": "19047",
+            "cardThumbFile": "/assets/images/card_images/large/DPs-S/019047_T_TAIDENKOUMYAKU.jpg",
+            "cardNameAltText": "帯電鉱脈",
+            "cardNameViewText": "帯電鉱脈"
+        },
+        {
+            "cardID": "25378",
+            "cardThumbFile": "/assets/images/card_images/large/El/025378_T_CHIAGARUNOSEIEN.jpg",
+            "cardNameAltText": "チアガールの声援",
+            "cardNameViewText": "チアガールの声援"
+        },
+        {
+            "cardID": "27971",
+            "cardThumbFile": "/assets/images/card_images/large/SZD/027971_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "27989",
+            "cardThumbFile": "/assets/images/card_images/large/GBR/027989_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "28019",
+            "cardThumbFile": "/assets/images/card_images/large/KLD/028019_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "21567",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpo/021567_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "21598",
+            "cardThumbFile": "/assets/images/card_images/large/DPt-GBpi/021598_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "28429",
+            "cardThumbFile": "/assets/images/card_images/large/PBG/028429_T_PURAZUMADANNOSHITAPPA.jpg",
+            "cardNameAltText": "プラズマ団のしたっぱ",
+            "cardNameViewText": "プラズマ団のしたっぱ"
+        },
+        {
+            "cardID": "28772",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028772_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "28789",
+            "cardThumbFile": "/assets/images/card_images/large/MG/028789_T_CHIEREN.jpg",
+            "cardNameAltText": "チェレン",
+            "cardNameViewText": "チェレン"
+        },
+        {
+            "cardID": "23050",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sl/023050_T_GINGADANNOHATSUMEIGWAZAMASHINGGINGA.jpg",
+            "cardNameAltText": "ギンガ団の発明G-107 ワザマシンG[ギンガ]",
+            "cardNameViewText": "ギンガ団の発明G-107 ワザマシンG[ギンガ]"
+        },
+        {
+            "cardID": "23023",
+            "cardThumbFile": "/assets/images/card_images/large/DPt3-Sg/023023_T_MAMORINOKAKERA.jpg",
+            "cardNameAltText": "まもりのかけら",
+            "cardNameViewText": "まもりのかけら"
+        },
+        {
+            "cardID": "28308",
+            "cardThumbFile": "/assets/images/card_images/large/PPD/028308_T_AKUROMA.jpg",
+            "cardNameAltText": "アクロマ",
+            "cardNameViewText": "アクロマ"
+        },
+        {
+            "cardID": "24026",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Sgf/024026_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "24057",
+            "cardThumbFile": "/assets/images/card_images/large/DPt4-Slp/024057_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "28667",
+            "cardThumbFile": "/assets/images/card_images/large/KK/028667_T_ARARAGIHAKASE.jpg",
+            "cardNameAltText": "アララギ博士",
+            "cardNameViewText": "アララギ博士"
+        },
+        {
+            "cardID": "22025",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Sg/022025_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "22057",
+            "cardThumbFile": "/assets/images/card_images/large/DPt2-Se/022057_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "27618",
+            "cardThumbFile": "/assets/images/card_images/large/BKR/027618_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "27636",
+            "cardThumbFile": "/assets/images/card_images/large/BKZ/027636_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "28383",
+            "cardThumbFile": "/assets/images/card_images/large/BKB/028383_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "28403",
+            "cardThumbFile": "/assets/images/card_images/large/BKW/028403_T_RANDAMURESHIBA.jpg",
+            "cardNameAltText": "ランダムレシーバー",
+            "cardNameViewText": "ランダムレシーバー"
+        },
+        {
+            "cardID": "25526",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sb/025526_T_UTSUGIHAKASENOSODATEKATA.jpg",
+            "cardNameAltText": "ウツギはかせの育てかた",
+            "cardNameViewText": "ウツギはかせの育てかた"
+        },
+        {
+            "cardID": "25563",
+            "cardThumbFile": "/assets/images/card_images/large/L2-Sh/025563_T_UTSUGIHAKASENOSODATEKATA.jpg",
+            "cardNameAltText": "ウツギはかせの育てかた",
+            "cardNameViewText": "ウツギはかせの育てかた"
+        },
+        {
+            "cardID": "49600",
+            "cardThumbFile": "/assets/images/card_images/large/M-P/049600_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        }
+    ]
+}

@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 395,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 15367,
+    "cardEnd": 15405,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "31989",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031989_T_PURATANUHAKASE.jpg",
+            "cardNameAltText": "プラターヌ博士",
+            "cardNameViewText": "プラターヌ博士"
+        },
+        {
+            "cardID": "31990",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031990_T_FURADARI.jpg",
+            "cardNameAltText": "フラダリ",
+            "cardNameViewText": "フラダリ"
+        },
+        {
+            "cardID": "31991",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031991_T_FUREADANNOSHITAPPA.jpg",
+            "cardNameAltText": "フレア団のしたっぱ",
+            "cardNameViewText": "フレア団のしたっぱ"
+        },
+        {
+            "cardID": "31992",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031992_T_KYODAISHOKUBUTSUNOMORI.jpg",
+            "cardNameAltText": "巨大植物の森",
+            "cardNameViewText": "巨大植物の森"
+        },
+        {
+            "cardID": "31993",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031993_T_JIGENNOTANI.jpg",
+            "cardNameAltText": "次元の谷",
+            "cardNameViewText": "次元の谷"
+        },
+        {
+            "cardID": "31994",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031994_T_SUKAIFIRUDO.jpg",
+            "cardNameAltText": "スカイフィールド",
+            "cardNameViewText": "スカイフィールド"
+        },
+        {
+            "cardID": "31995",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031995_T_FAITEINGUSUTAJIAMU.jpg",
+            "cardNameAltText": "ファイティングスタジアム",
+            "cardNameViewText": "ファイティングスタジアム"
+        },
+        {
+            "cardID": "31997",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031997_E_KIHONKUSAENERUGI.jpg",
+            "cardNameAltText": "基本草エネルギー",
+            "cardNameViewText": "基本草エネルギー"
+        },
+        {
+            "cardID": "31998",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031998_E_KIHONHONOOENERUGI.jpg",
+            "cardNameAltText": "基本炎エネルギー",
+            "cardNameViewText": "基本炎エネルギー"
+        },
+        {
+            "cardID": "31999",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031999_E_KIHONMIZUENERUGI.jpg",
+            "cardNameAltText": "基本水エネルギー",
+            "cardNameViewText": "基本水エネルギー"
+        },
+        {
+            "cardID": "32000",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032000_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "32001",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032001_E_KIHONCHOUENERUGI.jpg",
+            "cardNameAltText": "基本超エネルギー",
+            "cardNameViewText": "基本超エネルギー"
+        },
+        {
+            "cardID": "32002",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032002_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "32003",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032003_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "32004",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032004_E_KIHONKOUENERUGI.jpg",
+            "cardNameAltText": "基本鋼エネルギー",
+            "cardNameViewText": "基本鋼エネルギー"
+        },
+        {
+            "cardID": "32005",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/032005_E_KIHONFEARIENERUGI.jpg",
+            "cardNameAltText": "基本フェアリーエネルギー",
+            "cardNameViewText": "基本フェアリーエネルギー"
+        },
+        {
+            "cardID": "31996",
+            "cardThumbFile": "/assets/images/card_images/large/CP4/031996_E_DABURUMUSHOKUENERUGI.jpg",
+            "cardNameAltText": "ダブル無色エネルギー",
+            "cardNameViewText": "ダブル無色エネルギー"
+        },
+        {
+            "cardID": "31813",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031813_P_DEIGUDA.jpg",
+            "cardNameAltText": "ディグダ",
+            "cardNameViewText": "ディグダ"
+        },
+        {
+            "cardID": "31814",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031814_P_YOGIRASU.jpg",
+            "cardNameAltText": "ヨーギラス",
+            "cardNameViewText": "ヨーギラス"
+        },
+        {
+            "cardID": "31815",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031815_P_REJIROKKUEX.jpg",
+            "cardNameAltText": "レジロックEX",
+            "cardNameViewText": "レジロックEX"
+        },
+        {
+            "cardID": "31816",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031816_P_RIORU.jpg",
+            "cardNameAltText": "リオル",
+            "cardNameViewText": "リオル"
+        },
+        {
+            "cardID": "31817",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031817_P_RUKARIO.jpg",
+            "cardNameAltText": "ルカリオ",
+            "cardNameViewText": "ルカリオ"
+        },
+        {
+            "cardID": "31818",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031818_P_RUCHABURU.jpg",
+            "cardNameAltText": "ルチャブル",
+            "cardNameViewText": "ルチャブル"
+        },
+        {
+            "cardID": "31819",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031819_P_MERESHI.jpg",
+            "cardNameAltText": "メレシー",
+            "cardNameViewText": "メレシー"
+        },
+        {
+            "cardID": "31820",
+            "cardThumbFile": "/assets/images/card_images/legend/XYG/031820_P_MERESHIBREAK.jpg",
+            "cardNameAltText": "メレシーBREAK",
+            "cardNameViewText": "メレシーBREAK"
+        },
+        {
+            "cardID": "31821",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031821_P_JIGARUDEEX.jpg",
+            "cardNameAltText": "ジガルデEX",
+            "cardNameViewText": "ジガルデEX"
+        },
+        {
+            "cardID": "31822",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031822_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "31823",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031823_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "31824",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031824_T_POKEMONKYACCHA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "31825",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031825_T_PAWAMEMORI.jpg",
+            "cardNameAltText": "パワーメモリ",
+            "cardNameViewText": "パワーメモリ"
+        },
+        {
+            "cardID": "31826",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031826_T_N.jpg",
+            "cardNameAltText": "N",
+            "cardNameViewText": "N"
+        },
+        {
+            "cardID": "31827",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031827_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "31828",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031828_T_TEIERUNO.jpg",
+            "cardNameAltText": "ティエルノ",
+            "cardNameViewText": "ティエルノ"
+        },
+        {
+            "cardID": "31829",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031829_T_PURATANUHAKASE.jpg",
+            "cardNameAltText": "プラターヌ博士",
+            "cardNameViewText": "プラターヌ博士"
+        },
+        {
+            "cardID": "31830",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031830_T_SHAKUNETSUNODAICHI.jpg",
+            "cardNameAltText": "灼熱の大地",
+            "cardNameViewText": "灼熱の大地"
+        },
+        {
+            "cardID": "31832",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031832_E_KIHONTOUENERUGI.jpg",
+            "cardNameAltText": "基本闘エネルギー",
+            "cardNameViewText": "基本闘エネルギー"
+        },
+        {
+            "cardID": "31831",
+            "cardThumbFile": "/assets/images/card_images/large/XYG/031831_E_SUTORONGUENERUGI.jpg",
+            "cardNameAltText": "ストロングエネルギー",
+            "cardNameViewText": "ストロングエネルギー"
+        },
+        {
+            "cardID": "31833",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031833_P_SHIKIJIKA.jpg",
+            "cardNameAltText": "シキジカ",
+            "cardNameViewText": "シキジカ"
+        },
+        {
+            "cardID": "31834",
+            "cardThumbFile": "/assets/images/card_images/large/XYH/031834_P_FOKKO.jpg",
+            "cardNameAltText": "フォッコ",
+            "cardNameViewText": "フォッコ"
+        }
+    ]
+}

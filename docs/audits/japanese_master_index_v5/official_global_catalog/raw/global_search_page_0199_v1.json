@@ -1,0 +1,249 @@
+{
+    "result": 1,
+    "errMsg": "",
+    "thisPage": 199,
+    "maxPage": 594,
+    "hitCnt": 23165,
+    "cardStart": 7723,
+    "cardEnd": 7761,
+    "searchCondition": [
+        "レギュレーション：すべてのカード"
+    ],
+    "regulation": "all",
+    "cardList": [
+        {
+            "cardID": "41338",
+            "cardThumbFile": "/assets/images/card_images/large/SLD/041338_T_SHIRONANOHAKI.jpg",
+            "cardNameAltText": "シロナの覇気",
+            "cardNameViewText": "シロナの覇気"
+        },
+        {
+            "cardID": "41339",
+            "cardThumbFile": "/assets/images/card_images/large/SLD/041339_T_HAKASENOKENKIXYUUNANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "41340",
+            "cardThumbFile": "/assets/images/card_images/large/SLD/041340_T_BOSUNOSHIREIAKAGI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "41341",
+            "cardThumbFile": "/assets/images/card_images/large/SI/040888_E_KIHONAKUENERUGI.jpg",
+            "cardNameAltText": "基本悪エネルギー",
+            "cardNameViewText": "基本悪エネルギー"
+        },
+        {
+            "cardID": "41153",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041153_P_PIKACHIXYUUBUI.jpg",
+            "cardNameAltText": "ピカチュウV",
+            "cardNameViewText": "ピカチュウV"
+        },
+        {
+            "cardID": "41154",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041154_P_EMONGA.jpg",
+            "cardNameAltText": "エモンガ",
+            "cardNameViewText": "エモンガ"
+        },
+        {
+            "cardID": "41155",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041155_P_ZERAORA.jpg",
+            "cardNameAltText": "ゼラオラ",
+            "cardNameViewText": "ゼラオラ"
+        },
+        {
+            "cardID": "41156",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041156_P_WANPACHI.jpg",
+            "cardNameAltText": "ワンパチ",
+            "cardNameViewText": "ワンパチ"
+        },
+        {
+            "cardID": "41157",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041157_P_PARUSUWAN.jpg",
+            "cardNameAltText": "パルスワン",
+            "cardNameViewText": "パルスワン"
+        },
+        {
+            "cardID": "41158",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041158_P_GARURA.jpg",
+            "cardNameAltText": "ガルーラ",
+            "cardNameViewText": "ガルーラ"
+        },
+        {
+            "cardID": "41159",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041159_P_IBUIV.jpg",
+            "cardNameAltText": "イーブイV",
+            "cardNameViewText": "イーブイV"
+        },
+        {
+            "cardID": "41160",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041160_P_KABIGON.jpg",
+            "cardNameAltText": "カビゴン",
+            "cardNameViewText": "カビゴン"
+        },
+        {
+            "cardID": "41161",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041161_P_TORIMIAN.jpg",
+            "cardNameAltText": "トリミアン",
+            "cardNameViewText": "トリミアン"
+        },
+        {
+            "cardID": "41162",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041162_P_RUCHIXYABURU.jpg",
+            "cardNameAltText": "ルチャブル",
+            "cardNameViewText": "ルチャブル"
+        },
+        {
+            "cardID": "41163",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041163_P_URU.jpg",
+            "cardNameAltText": "ウールー",
+            "cardNameViewText": "ウールー"
+        },
+        {
+            "cardID": "41164",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041164_P_BAIURU.jpg",
+            "cardNameAltText": "バイウールー",
+            "cardNameViewText": "バイウールー"
+        },
+        {
+            "cardID": "41165",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041165_T_ENERUGITENSOU.jpg",
+            "cardNameAltText": "エネルギー転送",
+            "cardNameViewText": "エネルギー転送"
+        },
+        {
+            "cardID": "41166",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041166_T_KIZUGUSURI.jpg",
+            "cardNameAltText": "きずぐすり",
+            "cardNameViewText": "きずぐすり"
+        },
+        {
+            "cardID": "41167",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041167_T_SUPABORU.jpg",
+            "cardNameAltText": "スーパーボール",
+            "cardNameViewText": "スーパーボール"
+        },
+        {
+            "cardID": "41168",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041168_T_HAIPABORU.jpg",
+            "cardNameAltText": "ハイパーボール",
+            "cardNameViewText": "ハイパーボール"
+        },
+        {
+            "cardID": "41169",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041169_T_POKEMONIREKAE.jpg",
+            "cardNameAltText": "ポケモンいれかえ",
+            "cardNameViewText": "ポケモンいれかえ"
+        },
+        {
+            "cardID": "41170",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041170_T_POKEMONKIXYATCHIXYA.jpg",
+            "cardNameAltText": "ポケモンキャッチャー",
+            "cardNameViewText": "ポケモンキャッチャー"
+        },
+        {
+            "cardID": "41171",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041171_T_MONSUTABORU.jpg",
+            "cardNameAltText": "モンスターボール",
+            "cardNameViewText": "モンスターボール"
+        },
+        {
+            "cardID": "41172",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041172_T_SANA.jpg",
+            "cardNameAltText": "サナ",
+            "cardNameViewText": "サナ"
+        },
+        {
+            "cardID": "41173",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041173_T_JIXYAJJIMAN.jpg",
+            "cardNameAltText": "ジャッジマン",
+            "cardNameViewText": "ジャッジマン"
+        },
+        {
+            "cardID": "41174",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041174_T_JIXYUN.jpg",
+            "cardNameAltText": "ジュン",
+            "cardNameViewText": "ジュン"
+        },
+        {
+            "cardID": "41175",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041175_T_HAKASENOKENKIXYUUNANAKAMADOHAKASE.jpg",
+            "cardNameAltText": "博士の研究",
+            "cardNameViewText": "博士の研究"
+        },
+        {
+            "cardID": "41176",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041176_T_BOSUNOSHIREIAKAGI.jpg",
+            "cardNameAltText": "ボスの指令",
+            "cardNameViewText": "ボスの指令"
+        },
+        {
+            "cardID": "41177",
+            "cardThumbFile": "/assets/images/card_images/large/SN/041177_E_KIHONKAMINARIENERUGI.jpg",
+            "cardNameAltText": "基本雷エネルギー",
+            "cardNameViewText": "基本雷エネルギー"
+        },
+        {
+            "cardID": "40903",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040903_P_TAMATAMA.jpg",
+            "cardNameAltText": "タマタマ",
+            "cardNameViewText": "タマタマ"
+        },
+        {
+            "cardID": "40904",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040904_P_NASSHI.jpg",
+            "cardNameAltText": "ナッシー",
+            "cardNameViewText": "ナッシー"
+        },
+        {
+            "cardID": "40905",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040905_P_KINOKOKO.jpg",
+            "cardNameAltText": "キノココ",
+            "cardNameViewText": "キノココ"
+        },
+        {
+            "cardID": "40906",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040906_P_KINOGASSA.jpg",
+            "cardNameAltText": "キノガッサ",
+            "cardNameViewText": "キノガッサ"
+        },
+        {
+            "cardID": "40907",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040907_P_TOROPIUSU.jpg",
+            "cardNameAltText": "トロピウス",
+            "cardNameViewText": "トロピウス"
+        },
+        {
+            "cardID": "40908",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040908_P_NAETORU.jpg",
+            "cardNameAltText": "ナエトル",
+            "cardNameViewText": "ナエトル"
+        },
+        {
+            "cardID": "40909",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040909_P_HAYASHIGAME.jpg",
+            "cardNameAltText": "ハヤシガメ",
+            "cardNameViewText": "ハヤシガメ"
+        },
+        {
+            "cardID": "40910",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040910_P_DODAITOSU.jpg",
+            "cardNameAltText": "ドダイトス",
+            "cardNameViewText": "ドダイトス"
+        },
+        {
+            "cardID": "40911",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040911_P_MINOMUTCHI.jpg",
+            "cardNameAltText": "ミノムッチ",
+            "cardNameViewText": "ミノムッチ"
+        },
+        {
+            "cardID": "40912",
+            "cardThumbFile": "/assets/images/card_images/large/S9/040912_P_MINOMADAMU.jpg",
+            "cardNameAltText": "ミノマダム",
+            "cardNameViewText": "ミノマダム"
+        }
+    ]
+}
