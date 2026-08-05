@@ -1,0 +1,20 @@
+{
+  "version": "SPECIAL_VARIANT_REVIEW_LOCAL_ROUTE_SMOKE_V1",
+  "generated_at": "2026-08-05T02:08:56.000Z",
+  "base_url": "http://localhost:3100",
+  "review_page": {
+    "path": "/review/special-variants",
+    "unauthenticated_status": 307,
+    "location": "/login?next=%2Freview%2Fspecial-variants"
+  },
+  "private_image_route": {
+    "path_template": "/api/review/special-variants/image/[cardPrintingId]",
+    "unauthenticated_status": 401,
+    "cache_control": "private, no-store, max-age=0",
+    "robots": "noindex, nofollow, noarchive"
+  },
+  "db_writes_performed": false,
+  "approvals_performed": false,
+  "authenticated_visual_smoke_pending": true,
+  "pending_reason": "Requires an authorized signed-in PokeJavi or founder browser session."
+}

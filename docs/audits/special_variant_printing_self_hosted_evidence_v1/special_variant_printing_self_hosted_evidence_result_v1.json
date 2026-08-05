@@ -1,0 +1,3309 @@
+{
+  "package_id": "SPECIAL-VARIANT-PRINTING-SELF-HOSTED-EVIDENCE-V1",
+  "generated_at": "2026-08-05T01:55:47.193Z",
+  "mode": "storage_upload_result",
+  "plan_fingerprint": "21165efbfb05f8bef64eefd9f3139ebda407c8d269fded2a00315cc30619c7f9",
+  "packet_fingerprint": "68d34b75a4a2b6ade477b6ace9851c9487140239606ae394982238df6bb593dd",
+  "selected_rows": 143,
+  "uploaded_and_verified": 143,
+  "verified_existing": 0,
+  "failures": 0,
+  "storage_writes_performed": true,
+  "db_writes_performed": false,
+  "approvals_performed": false,
+  "publication_performed": false,
+  "pricing_mappings_performed": false,
+  "rows": [
+    {
+      "evidence_id": "svpi:3f79ac6d-9921-5d17-9102-c82c61b1afee:668956",
+      "card_printing_id": "3f79ac6d-9921-5d17-9102-c82c61b1afee",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3f79ac6d-9921-5d17-9102-c82c61b1afee/15a8a3ee4b8c51e8eead4ffbfa7f081bcaeb321f2dd82966390efb72eea5bc07.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "15a8a3ee4b8c51e8eead4ffbfa7f081bcaeb321f2dd82966390efb72eea5bc07",
+        "size_bytes": 316818,
+        "width": 1062,
+        "height": 1493,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "15a8a3ee4b8c51e8eead4ffbfa7f081bcaeb321f2dd82966390efb72eea5bc07",
+        "size_bytes": 316818,
+        "width": 1062,
+        "height": 1493,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:cdc3bb9e-556f-5269-bfa3-894b3d3340fc:668957",
+      "card_printing_id": "cdc3bb9e-556f-5269-bfa3-894b3d3340fc",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/cdc3bb9e-556f-5269-bfa3-894b3d3340fc/15cf4d4b628f2d84f13d796a8b651025c4bc4c72f41ed7fd31d7c4d741d62115.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "15cf4d4b628f2d84f13d796a8b651025c4bc4c72f41ed7fd31d7c4d741d62115",
+        "size_bytes": 312992,
+        "width": 1054,
+        "height": 1496,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "15cf4d4b628f2d84f13d796a8b651025c4bc4c72f41ed7fd31d7c4d741d62115",
+        "size_bytes": 312992,
+        "width": 1054,
+        "height": 1496,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0658b11e-f076-5f92-b37d-ed9c389bbbf3:228483",
+      "card_printing_id": "0658b11e-f076-5f92-b37d-ed9c389bbbf3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0658b11e-f076-5f92-b37d-ed9c389bbbf3/f9d91b4fb195c58000b70a17624eb5c3f7383cdae2baccfb3dc4b2a44d28f0e5.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f9d91b4fb195c58000b70a17624eb5c3f7383cdae2baccfb3dc4b2a44d28f0e5",
+        "size_bytes": 63447,
+        "width": 359,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f9d91b4fb195c58000b70a17624eb5c3f7383cdae2baccfb3dc4b2a44d28f0e5",
+        "size_bytes": 63447,
+        "width": 359,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e4971b16-6384-5eec-a2c6-33c5ba4dd247:228485",
+      "card_printing_id": "e4971b16-6384-5eec-a2c6-33c5ba4dd247",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e4971b16-6384-5eec-a2c6-33c5ba4dd247/9218ea6acd4cc9cf4d4924292dee69bdd95dd2a8b5f564efb9edde3d69e0ebae.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "9218ea6acd4cc9cf4d4924292dee69bdd95dd2a8b5f564efb9edde3d69e0ebae",
+        "size_bytes": 63601,
+        "width": 359,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "9218ea6acd4cc9cf4d4924292dee69bdd95dd2a8b5f564efb9edde3d69e0ebae",
+        "size_bytes": 63601,
+        "width": 359,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:44fd5776-29d8-5205-b8af-9ffb2b758755:277678",
+      "card_printing_id": "44fd5776-29d8-5205-b8af-9ffb2b758755",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/44fd5776-29d8-5205-b8af-9ffb2b758755/513a3bac46be3ea0609304fd821f4e8ee4890109feefb9b3e49737a687034ea9.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "513a3bac46be3ea0609304fd821f4e8ee4890109feefb9b3e49737a687034ea9",
+        "size_bytes": 30207,
+        "width": 278,
+        "height": 387,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "513a3bac46be3ea0609304fd821f4e8ee4890109feefb9b3e49737a687034ea9",
+        "size_bytes": 30207,
+        "width": 278,
+        "height": 387,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+      "card_printing_id": "b4646204-1bef-5624-8ced-3e474ece55a0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b4646204-1bef-5624-8ced-3e474ece55a0/7ea85d5343f34523650ef650904a93e32e4538e408bdfaa267941e053d072c26.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7ea85d5343f34523650ef650904a93e32e4538e408bdfaa267941e053d072c26",
+        "size_bytes": 31384,
+        "width": 246,
+        "height": 344,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7ea85d5343f34523650ef650904a93e32e4538e408bdfaa267941e053d072c26",
+        "size_bytes": 31384,
+        "width": 246,
+        "height": 344,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a1b5839d-5db8-5f55-b61c-b64c42c794d3:220758",
+      "card_printing_id": "a1b5839d-5db8-5f55-b61c-b64c42c794d3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a1b5839d-5db8-5f55-b61c-b64c42c794d3/de5b8861938d9d862ed76b5a328491190663f9d99dfbb7c797a5e235c720fbde.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "de5b8861938d9d862ed76b5a328491190663f9d99dfbb7c797a5e235c720fbde",
+        "size_bytes": 495448,
+        "width": 980,
+        "height": 1373,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "de5b8861938d9d862ed76b5a328491190663f9d99dfbb7c797a5e235c720fbde",
+        "size_bytes": 495448,
+        "width": 980,
+        "height": 1373,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:80b8f7fa-834c-5c8a-8f1d-7714f018caca:242915",
+      "card_printing_id": "80b8f7fa-834c-5c8a-8f1d-7714f018caca",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/80b8f7fa-834c-5c8a-8f1d-7714f018caca/29569945b896d08f438517c4c58c3dced423998b0278cb550b16b1c30c7662f7.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "29569945b896d08f438517c4c58c3dced423998b0278cb550b16b1c30c7662f7",
+        "size_bytes": 104547,
+        "width": 634,
+        "height": 884,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "29569945b896d08f438517c4c58c3dced423998b0278cb550b16b1c30c7662f7",
+        "size_bytes": 104547,
+        "width": 634,
+        "height": 884,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0208b645-4a42-5f9d-906b-5e809c3c32ec:239090",
+      "card_printing_id": "0208b645-4a42-5f9d-906b-5e809c3c32ec",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0208b645-4a42-5f9d-906b-5e809c3c32ec/708d7eaf7636c2891918a547657dd64cf76729f7261c8515d4c228b077ab7cf3.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "708d7eaf7636c2891918a547657dd64cf76729f7261c8515d4c228b077ab7cf3",
+        "size_bytes": 207267,
+        "width": 639,
+        "height": 895,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "708d7eaf7636c2891918a547657dd64cf76729f7261c8515d4c228b077ab7cf3",
+        "size_bytes": 207267,
+        "width": 639,
+        "height": 895,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3459b4c4-c5a0-50b1-a1e7-384753679678:213013",
+      "card_printing_id": "3459b4c4-c5a0-50b1-a1e7-384753679678",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3459b4c4-c5a0-50b1-a1e7-384753679678/5a39cd1c2b8b3394972a116290440aa5c7d47daf8946f34987c0f3e8961ba7a6.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5a39cd1c2b8b3394972a116290440aa5c7d47daf8946f34987c0f3e8961ba7a6",
+        "size_bytes": 54826,
+        "width": 322,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5a39cd1c2b8b3394972a116290440aa5c7d47daf8946f34987c0f3e8961ba7a6",
+        "size_bytes": 54826,
+        "width": 322,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:dcc3bde9-d83b-5149-b476-06add8276d74:232881",
+      "card_printing_id": "dcc3bde9-d83b-5149-b476-06add8276d74",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/dcc3bde9-d83b-5149-b476-06add8276d74/95615cc16a84edc60795d105b8a3bd80e187a894696d444ae7bd97264d3621ad.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "95615cc16a84edc60795d105b8a3bd80e187a894696d444ae7bd97264d3621ad",
+        "size_bytes": 453270,
+        "width": 1077,
+        "height": 1497,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "95615cc16a84edc60795d105b8a3bd80e187a894696d444ae7bd97264d3621ad",
+        "size_bytes": 453270,
+        "width": 1077,
+        "height": 1497,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d0d6fe16-6e1b-5a5b-a70e-9ea8c95c0de4:655977",
+      "card_printing_id": "d0d6fe16-6e1b-5a5b-a70e-9ea8c95c0de4",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d0d6fe16-6e1b-5a5b-a70e-9ea8c95c0de4/c596b5555e1c111a8fb1f22ddaa8cc4f86ac7b4df674daaeb3be6b2fd4e9d63b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "c596b5555e1c111a8fb1f22ddaa8cc4f86ac7b4df674daaeb3be6b2fd4e9d63b",
+        "size_bytes": 462797,
+        "width": 1129,
+        "height": 1548,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "c596b5555e1c111a8fb1f22ddaa8cc4f86ac7b4df674daaeb3be6b2fd4e9d63b",
+        "size_bytes": 462797,
+        "width": 1129,
+        "height": 1548,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:08bc71b1-6729-5072-bb03-27704ea3288f:659592",
+      "card_printing_id": "08bc71b1-6729-5072-bb03-27704ea3288f",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/08bc71b1-6729-5072-bb03-27704ea3288f/b888c257b97f9ddc52aa842c251f6427786ead15b5c9dd132a03807dbe42caba.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "b888c257b97f9ddc52aa842c251f6427786ead15b5c9dd132a03807dbe42caba",
+        "size_bytes": 103603,
+        "width": 706,
+        "height": 966,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "b888c257b97f9ddc52aa842c251f6427786ead15b5c9dd132a03807dbe42caba",
+        "size_bytes": 103603,
+        "width": 706,
+        "height": 966,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e7fc62f1-e5a6-5a6d-b831-310d50cbc00e:559566",
+      "card_printing_id": "e7fc62f1-e5a6-5a6d-b831-310d50cbc00e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e7fc62f1-e5a6-5a6d-b831-310d50cbc00e/c62b248a96137e35cb8757541f1b1adf81a81e239fab39a45c11d549e8be120d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "c62b248a96137e35cb8757541f1b1adf81a81e239fab39a45c11d549e8be120d",
+        "size_bytes": 84063,
+        "width": 500,
+        "height": 698,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "c62b248a96137e35cb8757541f1b1adf81a81e239fab39a45c11d549e8be120d",
+        "size_bytes": 84063,
+        "width": 500,
+        "height": 698,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7f55e62f-f4fa-58fa-b957-1ad8bbd5f560:164204",
+      "card_printing_id": "7f55e62f-f4fa-58fa-b957-1ad8bbd5f560",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/7f55e62f-f4fa-58fa-b957-1ad8bbd5f560/647070022299ef1b53c9378dc6fa2c198496fc6652b537dcc75eb47001f32913.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "647070022299ef1b53c9378dc6fa2c198496fc6652b537dcc75eb47001f32913",
+        "size_bytes": 111695,
+        "width": 420,
+        "height": 589,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "647070022299ef1b53c9378dc6fa2c198496fc6652b537dcc75eb47001f32913",
+        "size_bytes": 111695,
+        "width": 420,
+        "height": 589,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:f8988fa4-0773-52bf-be85-4144a67cd90a:164205",
+      "card_printing_id": "f8988fa4-0773-52bf-be85-4144a67cd90a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/f8988fa4-0773-52bf-be85-4144a67cd90a/94309d82df0fd7e96f95ac8b1dd81c9993581697e2f50e003f1829996dbd40e0.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "94309d82df0fd7e96f95ac8b1dd81c9993581697e2f50e003f1829996dbd40e0",
+        "size_bytes": 95679,
+        "width": 492,
+        "height": 689,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "94309d82df0fd7e96f95ac8b1dd81c9993581697e2f50e003f1829996dbd40e0",
+        "size_bytes": 95679,
+        "width": 492,
+        "height": 689,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:33024057-6ada-522f-a065-596d0d32515a:228499",
+      "card_printing_id": "33024057-6ada-522f-a065-596d0d32515a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/33024057-6ada-522f-a065-596d0d32515a/67008bccf7d393767c0bccdd0910cd5a0e883cc76d47926a35165f8f6540f1f4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "67008bccf7d393767c0bccdd0910cd5a0e883cc76d47926a35165f8f6540f1f4",
+        "size_bytes": 614591,
+        "width": 1028,
+        "height": 1438,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "67008bccf7d393767c0bccdd0910cd5a0e883cc76d47926a35165f8f6540f1f4",
+        "size_bytes": 614591,
+        "width": 1028,
+        "height": 1438,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5653ddc1-e07e-578f-9bae-dba532e2d8c8:228500",
+      "card_printing_id": "5653ddc1-e07e-578f-9bae-dba532e2d8c8",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5653ddc1-e07e-578f-9bae-dba532e2d8c8/f4e8cb57b3e3f4626ad4ba071f92d8b2b75c7df028b7b3e82220239f1fec394b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f4e8cb57b3e3f4626ad4ba071f92d8b2b75c7df028b7b3e82220239f1fec394b",
+        "size_bytes": 615416,
+        "width": 1028,
+        "height": 1438,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f4e8cb57b3e3f4626ad4ba071f92d8b2b75c7df028b7b3e82220239f1fec394b",
+        "size_bytes": 615416,
+        "width": 1028,
+        "height": 1438,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b759d638-6b27-52b6-8710-a923e3cf2ed3:230421",
+      "card_printing_id": "b759d638-6b27-52b6-8710-a923e3cf2ed3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b759d638-6b27-52b6-8710-a923e3cf2ed3/7cce0ecb3ba3d1f5404315c1d3a683d94a4fe861e556c1f8acebb11ef33940f5.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7cce0ecb3ba3d1f5404315c1d3a683d94a4fe861e556c1f8acebb11ef33940f5",
+        "size_bytes": 141061,
+        "width": 785,
+        "height": 1103,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7cce0ecb3ba3d1f5404315c1d3a683d94a4fe861e556c1f8acebb11ef33940f5",
+        "size_bytes": 141061,
+        "width": 785,
+        "height": 1103,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e58d43d3-23f6-5435-bb1a-b50d2bc5ecfe:528230",
+      "card_printing_id": "e58d43d3-23f6-5435-bb1a-b50d2bc5ecfe",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e58d43d3-23f6-5435-bb1a-b50d2bc5ecfe/6f7ce285aa5f795b030e45d5099098368a33bc728aecb4655d66b76df23d445e.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6f7ce285aa5f795b030e45d5099098368a33bc728aecb4655d66b76df23d445e",
+        "size_bytes": 177094,
+        "width": 606,
+        "height": 846,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6f7ce285aa5f795b030e45d5099098368a33bc728aecb4655d66b76df23d445e",
+        "size_bytes": 177094,
+        "width": 606,
+        "height": 846,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+      "card_printing_id": "3eb3112f-707f-5af3-b1b7-b4157e0cf74a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3eb3112f-707f-5af3-b1b7-b4157e0cf74a/25851012ebfce523f56c94aca9e9013df1fe08a1f1a73f041fc6584d8bc903cd.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "25851012ebfce523f56c94aca9e9013df1fe08a1f1a73f041fc6584d8bc903cd",
+        "size_bytes": 120445,
+        "width": 631,
+        "height": 874,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "25851012ebfce523f56c94aca9e9013df1fe08a1f1a73f041fc6584d8bc903cd",
+        "size_bytes": 120445,
+        "width": 631,
+        "height": 874,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:cf3fae51-1938-59bc-98b9-0207b8a1e340:664098",
+      "card_printing_id": "cf3fae51-1938-59bc-98b9-0207b8a1e340",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/cf3fae51-1938-59bc-98b9-0207b8a1e340/31a0a69ef4c420e9b67132c043bbf7f904ff3c6e48eacad5800459c984262639.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "31a0a69ef4c420e9b67132c043bbf7f904ff3c6e48eacad5800459c984262639",
+        "size_bytes": 295210,
+        "width": 1068,
+        "height": 1492,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "31a0a69ef4c420e9b67132c043bbf7f904ff3c6e48eacad5800459c984262639",
+        "size_bytes": 295210,
+        "width": 1068,
+        "height": 1492,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:70b41a90-67eb-52bf-9de1-708ba476721a:187215",
+      "card_printing_id": "70b41a90-67eb-52bf-9de1-708ba476721a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/70b41a90-67eb-52bf-9de1-708ba476721a/a6a20df6785f59e247d04cc8216fe1061023ffe9a63b784f1fe39546b4d707b4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a6a20df6785f59e247d04cc8216fe1061023ffe9a63b784f1fe39546b4d707b4",
+        "size_bytes": 49621,
+        "width": 300,
+        "height": 415,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a6a20df6785f59e247d04cc8216fe1061023ffe9a63b784f1fe39546b4d707b4",
+        "size_bytes": 49621,
+        "width": 300,
+        "height": 415,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:2d67de25-7255-51c3-8d74-58e2160be437:85934",
+      "card_printing_id": "2d67de25-7255-51c3-8d74-58e2160be437",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/2d67de25-7255-51c3-8d74-58e2160be437/581980b91654d7abffc56661cadca7b668409ac257e274a5a56132161d5ec86b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "581980b91654d7abffc56661cadca7b668409ac257e274a5a56132161d5ec86b",
+        "size_bytes": 22111,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "581980b91654d7abffc56661cadca7b668409ac257e274a5a56132161d5ec86b",
+        "size_bytes": 22111,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+      "card_printing_id": "6cfa7bda-521f-57b9-82d1-762ef2c7defc",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6cfa7bda-521f-57b9-82d1-762ef2c7defc/92ed87d789c8a744515ac77ac21cf41a826460cdd6b273fc8222684c045e5cfb.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "92ed87d789c8a744515ac77ac21cf41a826460cdd6b273fc8222684c045e5cfb",
+        "size_bytes": 18259,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "92ed87d789c8a744515ac77ac21cf41a826460cdd6b273fc8222684c045e5cfb",
+        "size_bytes": 18259,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+      "card_printing_id": "3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0/df0a5e3d78f16c0c42ef2a7960cf3f85404b5b3d97cce4f796cc7a6504eb16ee.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "df0a5e3d78f16c0c42ef2a7960cf3f85404b5b3d97cce4f796cc7a6504eb16ee",
+        "size_bytes": 20943,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "df0a5e3d78f16c0c42ef2a7960cf3f85404b5b3d97cce4f796cc7a6504eb16ee",
+        "size_bytes": 20943,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+      "card_printing_id": "d18a30ea-47d1-5dfd-98cf-b018a698f41f",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d18a30ea-47d1-5dfd-98cf-b018a698f41f/058325f0c870caa7ba6a620f552ae9202cd9f56f83668dd1dee7b097ab5a37d4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "058325f0c870caa7ba6a620f552ae9202cd9f56f83668dd1dee7b097ab5a37d4",
+        "size_bytes": 19944,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "058325f0c870caa7ba6a620f552ae9202cd9f56f83668dd1dee7b097ab5a37d4",
+        "size_bytes": 19944,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:dbb59fe8-28e3-509a-8105-4d36a63fb756:87231",
+      "card_printing_id": "dbb59fe8-28e3-509a-8105-4d36a63fb756",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/dbb59fe8-28e3-509a-8105-4d36a63fb756/63e1f6dd2b029d345ca1a7c0917aca18e9865b7a2c6542d292d3b73ddad5b268.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "63e1f6dd2b029d345ca1a7c0917aca18e9865b7a2c6542d292d3b73ddad5b268",
+        "size_bytes": 20595,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "63e1f6dd2b029d345ca1a7c0917aca18e9865b7a2c6542d292d3b73ddad5b268",
+        "size_bytes": 20595,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+      "card_printing_id": "39dc7fa9-36dc-57f4-bdee-af422fc77af3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/39dc7fa9-36dc-57f4-bdee-af422fc77af3/d65ec68d3c24d634576ad3af054afba2a41f81f62dd63d2a81815a9e53645f34.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "d65ec68d3c24d634576ad3af054afba2a41f81f62dd63d2a81815a9e53645f34",
+        "size_bytes": 20917,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "d65ec68d3c24d634576ad3af054afba2a41f81f62dd63d2a81815a9e53645f34",
+        "size_bytes": 20917,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+      "card_printing_id": "ec573555-d4a4-5e3c-890d-f9e1cb711eb0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ec573555-d4a4-5e3c-890d-f9e1cb711eb0/2f29f52f43aa50c10148f8ebf1d38aa0273c9a38301625874eb5102ee411eb56.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "2f29f52f43aa50c10148f8ebf1d38aa0273c9a38301625874eb5102ee411eb56",
+        "size_bytes": 19679,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "2f29f52f43aa50c10148f8ebf1d38aa0273c9a38301625874eb5102ee411eb56",
+        "size_bytes": 19679,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:41d008bd-b058-5713-965c-9ee14e9d1c2f:228153",
+      "card_printing_id": "41d008bd-b058-5713-965c-9ee14e9d1c2f",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/41d008bd-b058-5713-965c-9ee14e9d1c2f/1c86eb2aaeeb570633e5dd486e427e463f910e2fb31604b5e1e86a0b2372378d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "1c86eb2aaeeb570633e5dd486e427e463f910e2fb31604b5e1e86a0b2372378d",
+        "size_bytes": 41514,
+        "width": 297,
+        "height": 400,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "1c86eb2aaeeb570633e5dd486e427e463f910e2fb31604b5e1e86a0b2372378d",
+        "size_bytes": 41514,
+        "width": 297,
+        "height": 400,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+      "card_printing_id": "bd8dcb6b-e789-54e4-9839-8df2795f85b8",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/bd8dcb6b-e789-54e4-9839-8df2795f85b8/228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "size_bytes": 20623,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "size_bytes": 20623,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:bd0259c6-61fe-5326-9911-9cc995b11e3e:228158",
+      "card_printing_id": "bd0259c6-61fe-5326-9911-9cc995b11e3e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/bd0259c6-61fe-5326-9911-9cc995b11e3e/757ef9e38b400317286d5cdafbae4a7e6360827561c4b6c656c6d7f282e3f935.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "757ef9e38b400317286d5cdafbae4a7e6360827561c4b6c656c6d7f282e3f935",
+        "size_bytes": 153955,
+        "width": 546,
+        "height": 763,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "757ef9e38b400317286d5cdafbae4a7e6360827561c4b6c656c6d7f282e3f935",
+        "size_bytes": 153955,
+        "width": 546,
+        "height": 763,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d5a6f68a-3766-56b7-94b0-3c43a817b9ce:213009",
+      "card_printing_id": "d5a6f68a-3766-56b7-94b0-3c43a817b9ce",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d5a6f68a-3766-56b7-94b0-3c43a817b9ce/0673cfeed605de418c0a91e5a8564384e92cbe83b944acae3b0d781fc3ea8ffd.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "0673cfeed605de418c0a91e5a8564384e92cbe83b944acae3b0d781fc3ea8ffd",
+        "size_bytes": 313309,
+        "width": 793,
+        "height": 1110,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "0673cfeed605de418c0a91e5a8564384e92cbe83b944acae3b0d781fc3ea8ffd",
+        "size_bytes": 313309,
+        "width": 793,
+        "height": 1110,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:112a32c1-a2c1-5c96-a829-e64f2f2e49db:228597",
+      "card_printing_id": "112a32c1-a2c1-5c96-a829-e64f2f2e49db",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/112a32c1-a2c1-5c96-a829-e64f2f2e49db/3231b504994e43ff2d8f58d3c5f2158d7c06e3d521f31c1318f3adf71455e3c4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "3231b504994e43ff2d8f58d3c5f2158d7c06e3d521f31c1318f3adf71455e3c4",
+        "size_bytes": 122430,
+        "width": 496,
+        "height": 691,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "3231b504994e43ff2d8f58d3c5f2158d7c06e3d521f31c1318f3adf71455e3c4",
+        "size_bytes": 122430,
+        "width": 496,
+        "height": 691,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:bbc243fb-43d6-5b8f-930e-60a095a68de5:664136",
+      "card_printing_id": "bbc243fb-43d6-5b8f-930e-60a095a68de5",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/bbc243fb-43d6-5b8f-930e-60a095a68de5/ee25656f10f4f69c2341522ed4608f6c26604174345be276486d8a86498fecc1.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "ee25656f10f4f69c2341522ed4608f6c26604174345be276486d8a86498fecc1",
+        "size_bytes": 651236,
+        "width": 1476,
+        "height": 2067,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "ee25656f10f4f69c2341522ed4608f6c26604174345be276486d8a86498fecc1",
+        "size_bytes": 651236,
+        "width": 1476,
+        "height": 2067,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:690ba52a-4c8c-59b4-bde5-72bdd5d2534d:664056",
+      "card_printing_id": "690ba52a-4c8c-59b4-bde5-72bdd5d2534d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/690ba52a-4c8c-59b4-bde5-72bdd5d2534d/0a3fc2681ef757cd579838c82d1e80fa36f4ace561ca890b748c234a4a29d84d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "0a3fc2681ef757cd579838c82d1e80fa36f4ace561ca890b748c234a4a29d84d",
+        "size_bytes": 457749,
+        "width": 1128,
+        "height": 1553,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "0a3fc2681ef757cd579838c82d1e80fa36f4ace561ca890b748c234a4a29d84d",
+        "size_bytes": 457749,
+        "width": 1128,
+        "height": 1553,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:21089a9d-7762-5f64-97a8-a8a6e28a27a1:664144",
+      "card_printing_id": "21089a9d-7762-5f64-97a8-a8a6e28a27a1",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/21089a9d-7762-5f64-97a8-a8a6e28a27a1/5b670397e5669b2c4275ceb4bddecd21bfe4dc2cae3b8f3de2fd37606ba1f874.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5b670397e5669b2c4275ceb4bddecd21bfe4dc2cae3b8f3de2fd37606ba1f874",
+        "size_bytes": 134242,
+        "width": 761,
+        "height": 1060,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5b670397e5669b2c4275ceb4bddecd21bfe4dc2cae3b8f3de2fd37606ba1f874",
+        "size_bytes": 134242,
+        "width": 761,
+        "height": 1060,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:14d69c8a-4e93-563f-a8fe-0a6029420430:664145",
+      "card_printing_id": "14d69c8a-4e93-563f-a8fe-0a6029420430",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/14d69c8a-4e93-563f-a8fe-0a6029420430/0d42d22ce218fe3803aab2e0092c0be1aa460131c1ddac5a8dc915c9819a32c3.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "0d42d22ce218fe3803aab2e0092c0be1aa460131c1ddac5a8dc915c9819a32c3",
+        "size_bytes": 347790,
+        "width": 1130,
+        "height": 1600,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "0d42d22ce218fe3803aab2e0092c0be1aa460131c1ddac5a8dc915c9819a32c3",
+        "size_bytes": 347790,
+        "width": 1130,
+        "height": 1600,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c3fdb18e-2aef-5abb-9bd7-9c3be6456f1a:213015",
+      "card_printing_id": "c3fdb18e-2aef-5abb-9bd7-9c3be6456f1a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c3fdb18e-2aef-5abb-9bd7-9c3be6456f1a/badfd539ff7d24893878bfa18b2644a712b72b2752dcd8091f4e7b12e5f631b4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "badfd539ff7d24893878bfa18b2644a712b72b2752dcd8091f4e7b12e5f631b4",
+        "size_bytes": 50176,
+        "width": 355,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "badfd539ff7d24893878bfa18b2644a712b72b2752dcd8091f4e7b12e5f631b4",
+        "size_bytes": 50176,
+        "width": 355,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:8f2f4eec-a654-5d85-901b-cd776a0d2932:213016",
+      "card_printing_id": "8f2f4eec-a654-5d85-901b-cd776a0d2932",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/8f2f4eec-a654-5d85-901b-cd776a0d2932/1bb419a201585836175906ecb62fd200a5f88289d633f6a1d661069cf6e50330.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "1bb419a201585836175906ecb62fd200a5f88289d633f6a1d661069cf6e50330",
+        "size_bytes": 50210,
+        "width": 355,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "1bb419a201585836175906ecb62fd200a5f88289d633f6a1d661069cf6e50330",
+        "size_bytes": 50210,
+        "width": 355,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:911cb5be-3dd0-53c2-8be5-4237a640d6ba:127181",
+      "card_printing_id": "911cb5be-3dd0-53c2-8be5-4237a640d6ba",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/911cb5be-3dd0-53c2-8be5-4237a640d6ba/77a7d46b80ca54b419d4c25db2690272cb3c3de832855796156b59396c2707be.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "77a7d46b80ca54b419d4c25db2690272cb3c3de832855796156b59396c2707be",
+        "size_bytes": 218075,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "77a7d46b80ca54b419d4c25db2690272cb3c3de832855796156b59396c2707be",
+        "size_bytes": 218075,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b0e450e2-8619-5a45-af12-2e1c77e5efb6:127182",
+      "card_printing_id": "b0e450e2-8619-5a45-af12-2e1c77e5efb6",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b0e450e2-8619-5a45-af12-2e1c77e5efb6/fb046ecbe464518786b9e14fccb5a74db58c652bc4b6e8cee9e0a695a7d7c166.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "fb046ecbe464518786b9e14fccb5a74db58c652bc4b6e8cee9e0a695a7d7c166",
+        "size_bytes": 35891,
+        "width": 250,
+        "height": 348,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "fb046ecbe464518786b9e14fccb5a74db58c652bc4b6e8cee9e0a695a7d7c166",
+        "size_bytes": 35891,
+        "width": 250,
+        "height": 348,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:86a9e20c-f393-51af-9773-8a36603c58ab:127184",
+      "card_printing_id": "86a9e20c-f393-51af-9773-8a36603c58ab",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/86a9e20c-f393-51af-9773-8a36603c58ab/6d5a7fdebb042289ba2d51465cc1fdfe38cd84bd55d63a7a94fb3cd9e2e6cde6.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6d5a7fdebb042289ba2d51465cc1fdfe38cd84bd55d63a7a94fb3cd9e2e6cde6",
+        "size_bytes": 245771,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6d5a7fdebb042289ba2d51465cc1fdfe38cd84bd55d63a7a94fb3cd9e2e6cde6",
+        "size_bytes": 245771,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:53ffcb3a-910e-5bea-bdd3-6a8880857194:127183",
+      "card_printing_id": "53ffcb3a-910e-5bea-bdd3-6a8880857194",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/53ffcb3a-910e-5bea-bdd3-6a8880857194/995aead0c2ceba6f200eaf5b4d3e17c3a14453032e2da10463552555ec2cebf4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "995aead0c2ceba6f200eaf5b4d3e17c3a14453032e2da10463552555ec2cebf4",
+        "size_bytes": 273045,
+        "width": 930,
+        "height": 1301,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "995aead0c2ceba6f200eaf5b4d3e17c3a14453032e2da10463552555ec2cebf4",
+        "size_bytes": 273045,
+        "width": 930,
+        "height": 1301,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:cb14cbf2-8125-5fd5-a6aa-0404f1a3b07b:166288",
+      "card_printing_id": "cb14cbf2-8125-5fd5-a6aa-0404f1a3b07b",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/cb14cbf2-8125-5fd5-a6aa-0404f1a3b07b/caa160892ed36542c0fca469498d6c37e433d5937e5c2b34a966963480ec3f5c.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "caa160892ed36542c0fca469498d6c37e433d5937e5c2b34a966963480ec3f5c",
+        "size_bytes": 199335,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "caa160892ed36542c0fca469498d6c37e433d5937e5c2b34a966963480ec3f5c",
+        "size_bytes": 199335,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:2e3e487c-b637-5b5e-b602-59acc53d3173:166289",
+      "card_printing_id": "2e3e487c-b637-5b5e-b602-59acc53d3173",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/2e3e487c-b637-5b5e-b602-59acc53d3173/2ddf4086a3e502f6d218071a06a17474f7aea3a1369afe1e0a5a49265fd46752.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "2ddf4086a3e502f6d218071a06a17474f7aea3a1369afe1e0a5a49265fd46752",
+        "size_bytes": 88005,
+        "width": 458,
+        "height": 637,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "2ddf4086a3e502f6d218071a06a17474f7aea3a1369afe1e0a5a49265fd46752",
+        "size_bytes": 88005,
+        "width": 458,
+        "height": 637,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:360d40a0-f08e-5a0e-924c-0651f926e08c:166290",
+      "card_printing_id": "360d40a0-f08e-5a0e-924c-0651f926e08c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/360d40a0-f08e-5a0e-924c-0651f926e08c/6a759b4648359dacd7bfc619e00e818154aad489c36a337d72f91902960499ca.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6a759b4648359dacd7bfc619e00e818154aad489c36a337d72f91902960499ca",
+        "size_bytes": 213335,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6a759b4648359dacd7bfc619e00e818154aad489c36a337d72f91902960499ca",
+        "size_bytes": 213335,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:30bf91f9-d7bc-56a8-a82a-ce319be13eff:166291",
+      "card_printing_id": "30bf91f9-d7bc-56a8-a82a-ce319be13eff",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/30bf91f9-d7bc-56a8-a82a-ce319be13eff/8b55b41e171ca8812adc0b334d5c2347071f64f3b75e40028fdb7a53c0517daa.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "8b55b41e171ca8812adc0b334d5c2347071f64f3b75e40028fdb7a53c0517daa",
+        "size_bytes": 90992,
+        "width": 461,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "8b55b41e171ca8812adc0b334d5c2347071f64f3b75e40028fdb7a53c0517daa",
+        "size_bytes": 90992,
+        "width": 461,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7c108bb5-757d-5ffa-8dff-074e84c2e2b7:166292",
+      "card_printing_id": "7c108bb5-757d-5ffa-8dff-074e84c2e2b7",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/7c108bb5-757d-5ffa-8dff-074e84c2e2b7/e379cf1e89513396a5adbd19dd2781dd3ff241b0f0b0718608f8f3b4739c83f0.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "e379cf1e89513396a5adbd19dd2781dd3ff241b0f0b0718608f8f3b4739c83f0",
+        "size_bytes": 219403,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "e379cf1e89513396a5adbd19dd2781dd3ff241b0f0b0718608f8f3b4739c83f0",
+        "size_bytes": 219403,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:338bc23d-ce9a-502e-8c40-8c2531d8268b:166293",
+      "card_printing_id": "338bc23d-ce9a-502e-8c40-8c2531d8268b",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/338bc23d-ce9a-502e-8c40-8c2531d8268b/924d60cbcb34aea14d21d3b2950f97ed9cb4da24d68cccc4196044502e64f3f9.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "924d60cbcb34aea14d21d3b2950f97ed9cb4da24d68cccc4196044502e64f3f9",
+        "size_bytes": 90455,
+        "width": 456,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "924d60cbcb34aea14d21d3b2950f97ed9cb4da24d68cccc4196044502e64f3f9",
+        "size_bytes": 90455,
+        "width": 456,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:cdc123b7-efb5-5cc6-9b06-0affca6b9592:166294",
+      "card_printing_id": "cdc123b7-efb5-5cc6-9b06-0affca6b9592",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/cdc123b7-efb5-5cc6-9b06-0affca6b9592/00a05ad81b11db850edee297ab5c64510fe226fcf5a516d812a4dc6078e60e33.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "00a05ad81b11db850edee297ab5c64510fe226fcf5a516d812a4dc6078e60e33",
+        "size_bytes": 218284,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "00a05ad81b11db850edee297ab5c64510fe226fcf5a516d812a4dc6078e60e33",
+        "size_bytes": 218284,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:9e10eec1-bcc2-5352-ae13-dc915c71697c:166295",
+      "card_printing_id": "9e10eec1-bcc2-5352-ae13-dc915c71697c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/9e10eec1-bcc2-5352-ae13-dc915c71697c/7fa650c5259191255b9e2f52228dbf0c1c1c8797b52b45eb76119122f8f553ea.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7fa650c5259191255b9e2f52228dbf0c1c1c8797b52b45eb76119122f8f553ea",
+        "size_bytes": 88931,
+        "width": 462,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7fa650c5259191255b9e2f52228dbf0c1c1c8797b52b45eb76119122f8f553ea",
+        "size_bytes": 88931,
+        "width": 462,
+        "height": 640,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:2ff1d951-401b-5f29-a969-2cafec422d9f:127185",
+      "card_printing_id": "2ff1d951-401b-5f29-a969-2cafec422d9f",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/2ff1d951-401b-5f29-a969-2cafec422d9f/99fabfde7a06803a69ecd147567894135f0e97780d768bc51a77eb148bea2ca8.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "99fabfde7a06803a69ecd147567894135f0e97780d768bc51a77eb148bea2ca8",
+        "size_bytes": 234336,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "99fabfde7a06803a69ecd147567894135f0e97780d768bc51a77eb148bea2ca8",
+        "size_bytes": 234336,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:583db427-8a49-548a-95e4-83137c6cf83b:127186",
+      "card_printing_id": "583db427-8a49-548a-95e4-83137c6cf83b",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/583db427-8a49-548a-95e4-83137c6cf83b/700b2ba9b827f1b2ef96de2e333f93a46163da364b96f9ca872d9234ee765b8b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "700b2ba9b827f1b2ef96de2e333f93a46163da364b96f9ca872d9234ee765b8b",
+        "size_bytes": 157482,
+        "width": 500,
+        "height": 701,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "700b2ba9b827f1b2ef96de2e333f93a46163da364b96f9ca872d9234ee765b8b",
+        "size_bytes": 157482,
+        "width": 500,
+        "height": 701,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3d0f7250-49fc-5e86-9c0b-1dcfe1b6896a:172930",
+      "card_printing_id": "3d0f7250-49fc-5e86-9c0b-1dcfe1b6896a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3d0f7250-49fc-5e86-9c0b-1dcfe1b6896a/a2e624402c0ffad7e631909eea86594a87b1c262591e4af4e5190a9ab339a4b7.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a2e624402c0ffad7e631909eea86594a87b1c262591e4af4e5190a9ab339a4b7",
+        "size_bytes": 262045,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a2e624402c0ffad7e631909eea86594a87b1c262591e4af4e5190a9ab339a4b7",
+        "size_bytes": 262045,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:706388e0-d2cc-5174-b54f-df72790b2232:172931",
+      "card_printing_id": "706388e0-d2cc-5174-b54f-df72790b2232",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/706388e0-d2cc-5174-b54f-df72790b2232/65d171a6851b54af9a5c197b7da23fa2ba662c112e8a9ad5c19524483ef7a90f.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "65d171a6851b54af9a5c197b7da23fa2ba662c112e8a9ad5c19524483ef7a90f",
+        "size_bytes": 113705,
+        "width": 501,
+        "height": 697,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "65d171a6851b54af9a5c197b7da23fa2ba662c112e8a9ad5c19524483ef7a90f",
+        "size_bytes": 113705,
+        "width": 501,
+        "height": 697,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:9d020bec-8feb-51f6-a6cd-e8f1c0b92b6a:127188",
+      "card_printing_id": "9d020bec-8feb-51f6-a6cd-e8f1c0b92b6a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/9d020bec-8feb-51f6-a6cd-e8f1c0b92b6a/e61f00feabbe1f3b7666657204c698d248a155aaf7af03f01e7ff64aa3cb0398.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "e61f00feabbe1f3b7666657204c698d248a155aaf7af03f01e7ff64aa3cb0398",
+        "size_bytes": 225975,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "e61f00feabbe1f3b7666657204c698d248a155aaf7af03f01e7ff64aa3cb0398",
+        "size_bytes": 225975,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5ba61d6f-51d1-535d-a5f6-b6978a745452:127187",
+      "card_printing_id": "5ba61d6f-51d1-535d-a5f6-b6978a745452",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5ba61d6f-51d1-535d-a5f6-b6978a745452/5024b3962939a78cc5b93c20a1730596d88a6a5b6c20cb19a4ec7d6a9d232f7b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5024b3962939a78cc5b93c20a1730596d88a6a5b6c20cb19a4ec7d6a9d232f7b",
+        "size_bytes": 298894,
+        "width": 743,
+        "height": 1041,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5024b3962939a78cc5b93c20a1730596d88a6a5b6c20cb19a4ec7d6a9d232f7b",
+        "size_bytes": 298894,
+        "width": 743,
+        "height": 1041,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d0057457-ced1-5ecd-855f-dac7e1128bea:172933",
+      "card_printing_id": "d0057457-ced1-5ecd-855f-dac7e1128bea",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d0057457-ced1-5ecd-855f-dac7e1128bea/f33dc844b65e27f0202dfd8d1f5d41ebf25c0e4c60d5aec10a2ab873b7990d6c.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f33dc844b65e27f0202dfd8d1f5d41ebf25c0e4c60d5aec10a2ab873b7990d6c",
+        "size_bytes": 221039,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f33dc844b65e27f0202dfd8d1f5d41ebf25c0e4c60d5aec10a2ab873b7990d6c",
+        "size_bytes": 221039,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:86bab227-ee74-5475-b5fb-2ffbb33d3df6:172932",
+      "card_printing_id": "86bab227-ee74-5475-b5fb-2ffbb33d3df6",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/86bab227-ee74-5475-b5fb-2ffbb33d3df6/30e96442357eec05e5e4e43fb9f3d54b67db90eb250b7239630728056a634b04.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "30e96442357eec05e5e4e43fb9f3d54b67db90eb250b7239630728056a634b04",
+        "size_bytes": 62432,
+        "width": 323,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "30e96442357eec05e5e4e43fb9f3d54b67db90eb250b7239630728056a634b04",
+        "size_bytes": 62432,
+        "width": 323,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:11c1e56d-8ce1-540a-8333-859ef1b2d942:172935",
+      "card_printing_id": "11c1e56d-8ce1-540a-8333-859ef1b2d942",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/11c1e56d-8ce1-540a-8333-859ef1b2d942/ad6cb90b377f6e3bcf3a59b7573a6c97ceb5f388124d833e3ab7671a50318923.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "ad6cb90b377f6e3bcf3a59b7573a6c97ceb5f388124d833e3ab7671a50318923",
+        "size_bytes": 262431,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "ad6cb90b377f6e3bcf3a59b7573a6c97ceb5f388124d833e3ab7671a50318923",
+        "size_bytes": 262431,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b87cad14-4ad0-5cde-8883-23701569b0cb:172934",
+      "card_printing_id": "b87cad14-4ad0-5cde-8883-23701569b0cb",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b87cad14-4ad0-5cde-8883-23701569b0cb/f33e9f70d30861519a24111bfbeaac6fb5788d21f778450cee54d38a18d1a0da.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f33e9f70d30861519a24111bfbeaac6fb5788d21f778450cee54d38a18d1a0da",
+        "size_bytes": 134987,
+        "width": 600,
+        "height": 845,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f33e9f70d30861519a24111bfbeaac6fb5788d21f778450cee54d38a18d1a0da",
+        "size_bytes": 134987,
+        "width": 600,
+        "height": 845,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a5da9b62-8b59-5298-9de6-04143b6a55a9:172937",
+      "card_printing_id": "a5da9b62-8b59-5298-9de6-04143b6a55a9",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a5da9b62-8b59-5298-9de6-04143b6a55a9/f0ec37353106399ed4ba30997a3593015744eccb8b422b6991edd38053e3cc99.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f0ec37353106399ed4ba30997a3593015744eccb8b422b6991edd38053e3cc99",
+        "size_bytes": 227860,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f0ec37353106399ed4ba30997a3593015744eccb8b422b6991edd38053e3cc99",
+        "size_bytes": 227860,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e080af69-2b28-5948-acf0-77c5ec274edc:172936",
+      "card_printing_id": "e080af69-2b28-5948-acf0-77c5ec274edc",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e080af69-2b28-5948-acf0-77c5ec274edc/994a528fd44ecc0c8cc6432aee5ed7145cd5dac11c3fb7a993cf7bf75e542184.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "994a528fd44ecc0c8cc6432aee5ed7145cd5dac11c3fb7a993cf7bf75e542184",
+        "size_bytes": 62058,
+        "width": 320,
+        "height": 448,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "994a528fd44ecc0c8cc6432aee5ed7145cd5dac11c3fb7a993cf7bf75e542184",
+        "size_bytes": 62058,
+        "width": 320,
+        "height": 448,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c4d96e88-5d40-5313-bb91-416f1508107e:178755",
+      "card_printing_id": "c4d96e88-5d40-5313-bb91-416f1508107e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c4d96e88-5d40-5313-bb91-416f1508107e/de42d40ef1fca657584785c72de21161fa869f4b7558e2a02fff89b882072aa0.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "de42d40ef1fca657584785c72de21161fa869f4b7558e2a02fff89b882072aa0",
+        "size_bytes": 314434,
+        "width": 993,
+        "height": 1354,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "de42d40ef1fca657584785c72de21161fa869f4b7558e2a02fff89b882072aa0",
+        "size_bytes": 314434,
+        "width": 993,
+        "height": 1354,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:8ff2f2a6-94ed-5361-838c-638060ed83db:158255",
+      "card_printing_id": "8ff2f2a6-94ed-5361-838c-638060ed83db",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/8ff2f2a6-94ed-5361-838c-638060ed83db/744f966e93ea19b7b7d094dd00bf5457767b41c2a621dc8f860ee44c9aabab0c.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "744f966e93ea19b7b7d094dd00bf5457767b41c2a621dc8f860ee44c9aabab0c",
+        "size_bytes": 247034,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "744f966e93ea19b7b7d094dd00bf5457767b41c2a621dc8f860ee44c9aabab0c",
+        "size_bytes": 247034,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a3870acc-ab7c-58e7-8a2b-c932652f77ab:178793",
+      "card_printing_id": "a3870acc-ab7c-58e7-8a2b-c932652f77ab",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a3870acc-ab7c-58e7-8a2b-c932652f77ab/1f2e00130fc743c5f5ca7c4b5066165ded5749162762bfcf066da5df226c9a1b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "1f2e00130fc743c5f5ca7c4b5066165ded5749162762bfcf066da5df226c9a1b",
+        "size_bytes": 36343,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "1f2e00130fc743c5f5ca7c4b5066165ded5749162762bfcf066da5df226c9a1b",
+        "size_bytes": 36343,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b3606e5a-4c09-5eb6-a950-7ad5e07ef9ba:158256",
+      "card_printing_id": "b3606e5a-4c09-5eb6-a950-7ad5e07ef9ba",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b3606e5a-4c09-5eb6-a950-7ad5e07ef9ba/394c646b40809c6e080be93e4f19c543f7ef6c0bb2e8cb353657d4b293d70ffc.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "394c646b40809c6e080be93e4f19c543f7ef6c0bb2e8cb353657d4b293d70ffc",
+        "size_bytes": 217483,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "394c646b40809c6e080be93e4f19c543f7ef6c0bb2e8cb353657d4b293d70ffc",
+        "size_bytes": 217483,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:52820079-bed8-587f-9118-5d8a31d01d36:178794",
+      "card_printing_id": "52820079-bed8-587f-9118-5d8a31d01d36",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/52820079-bed8-587f-9118-5d8a31d01d36/2018dbb8e78b70b2dccfe0d83601d7a3ce9203172406e7feb420644109a0c26b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "2018dbb8e78b70b2dccfe0d83601d7a3ce9203172406e7feb420644109a0c26b",
+        "size_bytes": 34584,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "2018dbb8e78b70b2dccfe0d83601d7a3ce9203172406e7feb420644109a0c26b",
+        "size_bytes": 34584,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6d94becf-3905-5b47-8af8-164e0f92f94a:177903",
+      "card_printing_id": "6d94becf-3905-5b47-8af8-164e0f92f94a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6d94becf-3905-5b47-8af8-164e0f92f94a/59a36487c2b2fd57e4816b861027b1fd7ec23ff49931f6214cc1a9fba49d2f26.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "59a36487c2b2fd57e4816b861027b1fd7ec23ff49931f6214cc1a9fba49d2f26",
+        "size_bytes": 233675,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "59a36487c2b2fd57e4816b861027b1fd7ec23ff49931f6214cc1a9fba49d2f26",
+        "size_bytes": 233675,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5e4e747f-f132-50cf-ae06-1f0473d450fa:178795",
+      "card_printing_id": "5e4e747f-f132-50cf-ae06-1f0473d450fa",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5e4e747f-f132-50cf-ae06-1f0473d450fa/cc9d64d2f3ca5834767b775c740869635b7a22e3cc77ad2e195ae7496756b9f6.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "cc9d64d2f3ca5834767b775c740869635b7a22e3cc77ad2e195ae7496756b9f6",
+        "size_bytes": 38113,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "cc9d64d2f3ca5834767b775c740869635b7a22e3cc77ad2e195ae7496756b9f6",
+        "size_bytes": 38113,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:754cd816-98ef-5a51-bcc2-430eefac8bef:178796",
+      "card_printing_id": "754cd816-98ef-5a51-bcc2-430eefac8bef",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/754cd816-98ef-5a51-bcc2-430eefac8bef/c30db678b9735b84461165bf33ee3f6374d42c16ace5da7ad14a76012002c15d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "c30db678b9735b84461165bf33ee3f6374d42c16ace5da7ad14a76012002c15d",
+        "size_bytes": 223881,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "c30db678b9735b84461165bf33ee3f6374d42c16ace5da7ad14a76012002c15d",
+        "size_bytes": 223881,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:11ba08e6-cd0a-5499-83cc-d3062de38d11:178797",
+      "card_printing_id": "11ba08e6-cd0a-5499-83cc-d3062de38d11",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/11ba08e6-cd0a-5499-83cc-d3062de38d11/a328dd51887402d2683595b653473c0da0c1c9b7b897020c19e6e07a01b8d7c8.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a328dd51887402d2683595b653473c0da0c1c9b7b897020c19e6e07a01b8d7c8",
+        "size_bytes": 34789,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a328dd51887402d2683595b653473c0da0c1c9b7b897020c19e6e07a01b8d7c8",
+        "size_bytes": 34789,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ba33c7e9-47c2-5c85-b42f-939ee1a558f3:183967",
+      "card_printing_id": "ba33c7e9-47c2-5c85-b42f-939ee1a558f3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ba33c7e9-47c2-5c85-b42f-939ee1a558f3/0a63fc27511b349256b1784c42c27ed1e50f0fa276bb533e15948400214c9fdb.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "0a63fc27511b349256b1784c42c27ed1e50f0fa276bb533e15948400214c9fdb",
+        "size_bytes": 40307,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "0a63fc27511b349256b1784c42c27ed1e50f0fa276bb533e15948400214c9fdb",
+        "size_bytes": 40307,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:af17c91e-3f82-5882-af41-d130b3e4a593:183972",
+      "card_printing_id": "af17c91e-3f82-5882-af41-d130b3e4a593",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/af17c91e-3f82-5882-af41-d130b3e4a593/d0597ff5641cb4179d5b506e2a8bdc1c57c6ead5e635316665e8d296a2774506.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "d0597ff5641cb4179d5b506e2a8bdc1c57c6ead5e635316665e8d296a2774506",
+        "size_bytes": 201310,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "d0597ff5641cb4179d5b506e2a8bdc1c57c6ead5e635316665e8d296a2774506",
+        "size_bytes": 201310,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:32ea3d73-b79e-5fc7-b889-47ced2ff62c0:183973",
+      "card_printing_id": "32ea3d73-b79e-5fc7-b889-47ced2ff62c0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/32ea3d73-b79e-5fc7-b889-47ced2ff62c0/7bcb97c9ef6d331de3261d04528c618d71766cd94fe5d6f599b764a78669d791.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7bcb97c9ef6d331de3261d04528c618d71766cd94fe5d6f599b764a78669d791",
+        "size_bytes": 33528,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7bcb97c9ef6d331de3261d04528c618d71766cd94fe5d6f599b764a78669d791",
+        "size_bytes": 33528,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d8c380e6-6887-5887-b9bf-a21c4deab19d:183970",
+      "card_printing_id": "d8c380e6-6887-5887-b9bf-a21c4deab19d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d8c380e6-6887-5887-b9bf-a21c4deab19d/426ce3445e845116949d2efdeff8c2e77c7163f62b0f9330aeeb73f4b5cb108b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "426ce3445e845116949d2efdeff8c2e77c7163f62b0f9330aeeb73f4b5cb108b",
+        "size_bytes": 201076,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "426ce3445e845116949d2efdeff8c2e77c7163f62b0f9330aeeb73f4b5cb108b",
+        "size_bytes": 201076,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ee5f015a-8cdf-55a8-8985-a801950ff74d:183971",
+      "card_printing_id": "ee5f015a-8cdf-55a8-8985-a801950ff74d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ee5f015a-8cdf-55a8-8985-a801950ff74d/5e5e985a85bd44a624692f80c665a9a24fcb1c6805384fbbe91f22928696a6d9.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5e5e985a85bd44a624692f80c665a9a24fcb1c6805384fbbe91f22928696a6d9",
+        "size_bytes": 33974,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5e5e985a85bd44a624692f80c665a9a24fcb1c6805384fbbe91f22928696a6d9",
+        "size_bytes": 33974,
+        "width": 246,
+        "height": 343,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:419d0c12-b514-52e6-b451-77b5a41ced63:189010",
+      "card_printing_id": "419d0c12-b514-52e6-b451-77b5a41ced63",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/419d0c12-b514-52e6-b451-77b5a41ced63/b645acf7d0fda92dd495a041aaeeeb04cb428f91e33676987f5dda851a399f5b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "b645acf7d0fda92dd495a041aaeeeb04cb428f91e33676987f5dda851a399f5b",
+        "size_bytes": 242182,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "b645acf7d0fda92dd495a041aaeeeb04cb428f91e33676987f5dda851a399f5b",
+        "size_bytes": 242182,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3500c45a-b700-5772-9972-0bbb4e7c94a1:189455",
+      "card_printing_id": "3500c45a-b700-5772-9972-0bbb4e7c94a1",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3500c45a-b700-5772-9972-0bbb4e7c94a1/aefcb293f0939e0f50766b3c2610555cd8acf9ec565a4182c00df582ec88e589.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "aefcb293f0939e0f50766b3c2610555cd8acf9ec565a4182c00df582ec88e589",
+        "size_bytes": 37492,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "aefcb293f0939e0f50766b3c2610555cd8acf9ec565a4182c00df582ec88e589",
+        "size_bytes": 37492,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7ffb4db7-1d98-5d65-a44b-c73e5d873dba:131091",
+      "card_printing_id": "7ffb4db7-1d98-5d65-a44b-c73e5d873dba",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/7ffb4db7-1d98-5d65-a44b-c73e5d873dba/cdbd8e25ce365218b26080ecb2ab6dbbd73834030490bd0ae8a711d492453895.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "cdbd8e25ce365218b26080ecb2ab6dbbd73834030490bd0ae8a711d492453895",
+        "size_bytes": 256429,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "cdbd8e25ce365218b26080ecb2ab6dbbd73834030490bd0ae8a711d492453895",
+        "size_bytes": 256429,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e92f37f9-9cb6-5ac8-83b3-b3cf35d15ab6:131092",
+      "card_printing_id": "e92f37f9-9cb6-5ac8-83b3-b3cf35d15ab6",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e92f37f9-9cb6-5ac8-83b3-b3cf35d15ab6/cb1c78a22dd5375a3dcf454b5337e5ec6608dc305576255d25297e0a9e1ae61f.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "cb1c78a22dd5375a3dcf454b5337e5ec6608dc305576255d25297e0a9e1ae61f",
+        "size_bytes": 63722,
+        "width": 349,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "cb1c78a22dd5375a3dcf454b5337e5ec6608dc305576255d25297e0a9e1ae61f",
+        "size_bytes": 63722,
+        "width": 349,
+        "height": 500,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:f772ce29-10c2-5a6f-8af5-d4d72c5c0f5b:189012",
+      "card_printing_id": "f772ce29-10c2-5a6f-8af5-d4d72c5c0f5b",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/f772ce29-10c2-5a6f-8af5-d4d72c5c0f5b/a589925c90588c478d398469ac0563ac6f8f201fa5f115e2e3173d918899240f.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a589925c90588c478d398469ac0563ac6f8f201fa5f115e2e3173d918899240f",
+        "size_bytes": 240497,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a589925c90588c478d398469ac0563ac6f8f201fa5f115e2e3173d918899240f",
+        "size_bytes": 240497,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:78b3564c-63d6-5cf3-b1d1-dfc4cab52c1d:189456",
+      "card_printing_id": "78b3564c-63d6-5cf3-b1d1-dfc4cab52c1d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/78b3564c-63d6-5cf3-b1d1-dfc4cab52c1d/cadb7d116bc10d5b855a1873960df795b45dce9f78eb9148e3228548ed50ccea.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "cadb7d116bc10d5b855a1873960df795b45dce9f78eb9148e3228548ed50ccea",
+        "size_bytes": 35936,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "cadb7d116bc10d5b855a1873960df795b45dce9f78eb9148e3228548ed50ccea",
+        "size_bytes": 35936,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ae902c86-a27f-5329-adee-bd6199ae23d4:189021",
+      "card_printing_id": "ae902c86-a27f-5329-adee-bd6199ae23d4",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ae902c86-a27f-5329-adee-bd6199ae23d4/951228bff6973a2c9846b75c1777ba671c6a85e6944da80df3bb66928b893734.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "951228bff6973a2c9846b75c1777ba671c6a85e6944da80df3bb66928b893734",
+        "size_bytes": 252331,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "951228bff6973a2c9846b75c1777ba671c6a85e6944da80df3bb66928b893734",
+        "size_bytes": 252331,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a92459f4-d580-542a-b2ea-c75dca40806a:189457",
+      "card_printing_id": "a92459f4-d580-542a-b2ea-c75dca40806a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a92459f4-d580-542a-b2ea-c75dca40806a/44a6971b13b417017b3ab9305066229671ef66bd0f28a4f5c76c4b46eb5c396f.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "44a6971b13b417017b3ab9305066229671ef66bd0f28a4f5c76c4b46eb5c396f",
+        "size_bytes": 35815,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "44a6971b13b417017b3ab9305066229671ef66bd0f28a4f5c76c4b46eb5c396f",
+        "size_bytes": 35815,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:78c6b848-7b34-5953-a110-60e1b15f4bab:189022",
+      "card_printing_id": "78c6b848-7b34-5953-a110-60e1b15f4bab",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/78c6b848-7b34-5953-a110-60e1b15f4bab/73f2ea33ffe7e831750a55f816ea72eb729eec266a74e30907376162fad7ab6e.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "73f2ea33ffe7e831750a55f816ea72eb729eec266a74e30907376162fad7ab6e",
+        "size_bytes": 211625,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "73f2ea33ffe7e831750a55f816ea72eb729eec266a74e30907376162fad7ab6e",
+        "size_bytes": 211625,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6c2a907b-1fa3-578e-8d6c-c84a9689e63d:131089",
+      "card_printing_id": "6c2a907b-1fa3-578e-8d6c-c84a9689e63d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6c2a907b-1fa3-578e-8d6c-c84a9689e63d/7f621a194754cc867432b28a1ccaf4da3c97949f6468b1e32c3f891127278cca.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7f621a194754cc867432b28a1ccaf4da3c97949f6468b1e32c3f891127278cca",
+        "size_bytes": 208238,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7f621a194754cc867432b28a1ccaf4da3c97949f6468b1e32c3f891127278cca",
+        "size_bytes": 208238,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:1812dafd-36b2-5d7e-be4e-8dbe3109cb47:131090",
+      "card_printing_id": "1812dafd-36b2-5d7e-be4e-8dbe3109cb47",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/1812dafd-36b2-5d7e-be4e-8dbe3109cb47/a18a6db3929b5100abe0694fe120176f951b42c4e1cf9bd84177dd06b8f89e80.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a18a6db3929b5100abe0694fe120176f951b42c4e1cf9bd84177dd06b8f89e80",
+        "size_bytes": 252340,
+        "width": 668,
+        "height": 934,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a18a6db3929b5100abe0694fe120176f951b42c4e1cf9bd84177dd06b8f89e80",
+        "size_bytes": 252340,
+        "width": 668,
+        "height": 934,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:8c66c220-dcb8-5a7d-a951-30972bd7ebb7:131085",
+      "card_printing_id": "8c66c220-dcb8-5a7d-a951-30972bd7ebb7",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/8c66c220-dcb8-5a7d-a951-30972bd7ebb7/2970149cc9a0ac135fef414a0561fc1ae614ab331e80bb2d62a542d6af644cae.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "2970149cc9a0ac135fef414a0561fc1ae614ab331e80bb2d62a542d6af644cae",
+        "size_bytes": 218163,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "2970149cc9a0ac135fef414a0561fc1ae614ab331e80bb2d62a542d6af644cae",
+        "size_bytes": 218163,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:13a18db1-bf5d-5e1e-9c73-885ab62bc241:131086",
+      "card_printing_id": "13a18db1-bf5d-5e1e-9c73-885ab62bc241",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/13a18db1-bf5d-5e1e-9c73-885ab62bc241/625b6eb1869e54e9e9254da17639fe6db554e2f2af16f7db4230bd4b44fa826d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "625b6eb1869e54e9e9254da17639fe6db554e2f2af16f7db4230bd4b44fa826d",
+        "size_bytes": 438680,
+        "width": 1061,
+        "height": 1483,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "625b6eb1869e54e9e9254da17639fe6db554e2f2af16f7db4230bd4b44fa826d",
+        "size_bytes": 438680,
+        "width": 1061,
+        "height": 1483,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c45a8625-ac4a-5ceb-addf-a88811005e77:196715",
+      "card_printing_id": "c45a8625-ac4a-5ceb-addf-a88811005e77",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c45a8625-ac4a-5ceb-addf-a88811005e77/4ca406133c1535a22511973717caa9073406a825e7445bcee1aadfbcf0f3e36b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4ca406133c1535a22511973717caa9073406a825e7445bcee1aadfbcf0f3e36b",
+        "size_bytes": 223709,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4ca406133c1535a22511973717caa9073406a825e7445bcee1aadfbcf0f3e36b",
+        "size_bytes": 223709,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:e773b13b-4857-5c18-a79a-4816a1d65019:199609",
+      "card_printing_id": "e773b13b-4857-5c18-a79a-4816a1d65019",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/e773b13b-4857-5c18-a79a-4816a1d65019/d0d4f599c3fe83b7cf45ec3a62ba116b9b5f5de05f36405a0ca433dba24eab42.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "d0d4f599c3fe83b7cf45ec3a62ba116b9b5f5de05f36405a0ca433dba24eab42",
+        "size_bytes": 63575,
+        "width": 342,
+        "height": 478,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "d0d4f599c3fe83b7cf45ec3a62ba116b9b5f5de05f36405a0ca433dba24eab42",
+        "size_bytes": 63575,
+        "width": 342,
+        "height": 478,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:99a0a928-bca7-5230-8680-3e03f893c90e:196718",
+      "card_printing_id": "99a0a928-bca7-5230-8680-3e03f893c90e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/99a0a928-bca7-5230-8680-3e03f893c90e/3dd96a33497405c4f527bf993efffaa494cfb3c059701a8fd9b117e20082e511.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "3dd96a33497405c4f527bf993efffaa494cfb3c059701a8fd9b117e20082e511",
+        "size_bytes": 238276,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "3dd96a33497405c4f527bf993efffaa494cfb3c059701a8fd9b117e20082e511",
+        "size_bytes": 238276,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ef059924-b216-5377-8db3-565c8a1e4c0d:199611",
+      "card_printing_id": "ef059924-b216-5377-8db3-565c8a1e4c0d",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ef059924-b216-5377-8db3-565c8a1e4c0d/6d860b802c87d2951b11ad80ac3a2b860b99ddcf1607d2d2a9d0dae7e90c1d74.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6d860b802c87d2951b11ad80ac3a2b860b99ddcf1607d2d2a9d0dae7e90c1d74",
+        "size_bytes": 49473,
+        "width": 341,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6d860b802c87d2951b11ad80ac3a2b860b99ddcf1607d2d2a9d0dae7e90c1d74",
+        "size_bytes": 49473,
+        "width": 341,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0487652a-85dd-5a01-b73e-2a87a3700db3:196716",
+      "card_printing_id": "0487652a-85dd-5a01-b73e-2a87a3700db3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0487652a-85dd-5a01-b73e-2a87a3700db3/b3bbf07bda8c37e5e4d9b81adaafe40217cb8a8596addd0c2f6196479dcde484.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "b3bbf07bda8c37e5e4d9b81adaafe40217cb8a8596addd0c2f6196479dcde484",
+        "size_bytes": 213507,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "b3bbf07bda8c37e5e4d9b81adaafe40217cb8a8596addd0c2f6196479dcde484",
+        "size_bytes": 213507,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c2a7b481-e5b3-54c3-9693-e3ee9fba864c:199622",
+      "card_printing_id": "c2a7b481-e5b3-54c3-9693-e3ee9fba864c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c2a7b481-e5b3-54c3-9693-e3ee9fba864c/57ccaea310ff8984fb4427b20f12502246bab249e90fbda37243b3913376a339.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "57ccaea310ff8984fb4427b20f12502246bab249e90fbda37243b3913376a339",
+        "size_bytes": 305327,
+        "width": 743,
+        "height": 1038,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "57ccaea310ff8984fb4427b20f12502246bab249e90fbda37243b3913376a339",
+        "size_bytes": 305327,
+        "width": 743,
+        "height": 1038,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5c736f79-d5f1-5754-9537-6743c9c4ceff:196717",
+      "card_printing_id": "5c736f79-d5f1-5754-9537-6743c9c4ceff",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5c736f79-d5f1-5754-9537-6743c9c4ceff/abaac64dc6b7e3cf5a4b699dd6f72bc65024c1780a82afc96b0547ea4d8e6f0e.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "abaac64dc6b7e3cf5a4b699dd6f72bc65024c1780a82afc96b0547ea4d8e6f0e",
+        "size_bytes": 242284,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "abaac64dc6b7e3cf5a4b699dd6f72bc65024c1780a82afc96b0547ea4d8e6f0e",
+        "size_bytes": 242284,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d90ddc88-0dba-5614-87b7-ed77b5fece8e:199617",
+      "card_printing_id": "d90ddc88-0dba-5614-87b7-ed77b5fece8e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d90ddc88-0dba-5614-87b7-ed77b5fece8e/102a191d8061fb4bd2eee26beecff0678b103965a507d2b37625a935e0240eae.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "102a191d8061fb4bd2eee26beecff0678b103965a507d2b37625a935e0240eae",
+        "size_bytes": 319738,
+        "width": 747,
+        "height": 1043,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "102a191d8061fb4bd2eee26beecff0678b103965a507d2b37625a935e0240eae",
+        "size_bytes": 319738,
+        "width": 747,
+        "height": 1043,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:24f2ca4e-c179-5d77-80d2-84d8cd98c3a7:131087",
+      "card_printing_id": "24f2ca4e-c179-5d77-80d2-84d8cd98c3a7",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/24f2ca4e-c179-5d77-80d2-84d8cd98c3a7/8a091f4fa1e34ee71dc64be553c863198f8c1dc104ed18afc9771cf41b73a049.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "8a091f4fa1e34ee71dc64be553c863198f8c1dc104ed18afc9771cf41b73a049",
+        "size_bytes": 227130,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "8a091f4fa1e34ee71dc64be553c863198f8c1dc104ed18afc9771cf41b73a049",
+        "size_bytes": 227130,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6db2f4d3-5f3a-5277-a371-25543cb1ea04:131088",
+      "card_printing_id": "6db2f4d3-5f3a-5277-a371-25543cb1ea04",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6db2f4d3-5f3a-5277-a371-25543cb1ea04/f7999022a315e36fbbdb41d12139a878f5dee9e62fb28f14d55903582ddde848.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f7999022a315e36fbbdb41d12139a878f5dee9e62fb28f14d55903582ddde848",
+        "size_bytes": 539220,
+        "width": 1039,
+        "height": 1453,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f7999022a315e36fbbdb41d12139a878f5dee9e62fb28f14d55903582ddde848",
+        "size_bytes": 539220,
+        "width": 1039,
+        "height": 1453,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ac2ac67b-a926-54b1-90db-012465fe0f24:201940",
+      "card_printing_id": "ac2ac67b-a926-54b1-90db-012465fe0f24",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ac2ac67b-a926-54b1-90db-012465fe0f24/32768bff5a8f7b4fc293f70e1232b2ce815b68fb10d659877ad1147f54198566.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "32768bff5a8f7b4fc293f70e1232b2ce815b68fb10d659877ad1147f54198566",
+        "size_bytes": 218555,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "32768bff5a8f7b4fc293f70e1232b2ce815b68fb10d659877ad1147f54198566",
+        "size_bytes": 218555,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5f1c2d72-ce52-57ca-96f0-9319e6ae8ffe:201941",
+      "card_printing_id": "5f1c2d72-ce52-57ca-96f0-9319e6ae8ffe",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5f1c2d72-ce52-57ca-96f0-9319e6ae8ffe/ad2dfb5a07c9866f3d2b0f555c2398b7ecdec7f59fc281176f5e20eb4075805a.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "ad2dfb5a07c9866f3d2b0f555c2398b7ecdec7f59fc281176f5e20eb4075805a",
+        "size_bytes": 53799,
+        "width": 345,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "ad2dfb5a07c9866f3d2b0f555c2398b7ecdec7f59fc281176f5e20eb4075805a",
+        "size_bytes": 53799,
+        "width": 345,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:50b50fc1-f786-5d36-8687-943beddcbbba:201943",
+      "card_printing_id": "50b50fc1-f786-5d36-8687-943beddcbbba",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/50b50fc1-f786-5d36-8687-943beddcbbba/097334ac7586b74e0644cf5d3ddd8f57693678a776efdd96a9a96a1c24d43c01.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "097334ac7586b74e0644cf5d3ddd8f57693678a776efdd96a9a96a1c24d43c01",
+        "size_bytes": 223159,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "097334ac7586b74e0644cf5d3ddd8f57693678a776efdd96a9a96a1c24d43c01",
+        "size_bytes": 223159,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0544c876-f5ed-5f17-a10e-6d36952c90f0:201942",
+      "card_printing_id": "0544c876-f5ed-5f17-a10e-6d36952c90f0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0544c876-f5ed-5f17-a10e-6d36952c90f0/e1de33cb71d1fb24d72ed21171082a411b6eaa96d37ae814b91ebf75dd96ab51.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "e1de33cb71d1fb24d72ed21171082a411b6eaa96d37ae814b91ebf75dd96ab51",
+        "size_bytes": 53893,
+        "width": 345,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "e1de33cb71d1fb24d72ed21171082a411b6eaa96d37ae814b91ebf75dd96ab51",
+        "size_bytes": 53893,
+        "width": 345,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:19381fff-5818-56bb-a30d-2479a36238ba:201938",
+      "card_printing_id": "19381fff-5818-56bb-a30d-2479a36238ba",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/19381fff-5818-56bb-a30d-2479a36238ba/4993dfe9ccfb06cc5ceec0e9df9b880f7e9325d6e2ab8684e22f170f39d4c9d1.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4993dfe9ccfb06cc5ceec0e9df9b880f7e9325d6e2ab8684e22f170f39d4c9d1",
+        "size_bytes": 248537,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4993dfe9ccfb06cc5ceec0e9df9b880f7e9325d6e2ab8684e22f170f39d4c9d1",
+        "size_bytes": 248537,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a803b7d4-d224-5e4d-82e9-fea359a4e554:201939",
+      "card_printing_id": "a803b7d4-d224-5e4d-82e9-fea359a4e554",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a803b7d4-d224-5e4d-82e9-fea359a4e554/e05a4362e5165d94505ccb72a0430bf42764dcb458d422ce901ec2515a89cd04.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "e05a4362e5165d94505ccb72a0430bf42764dcb458d422ce901ec2515a89cd04",
+        "size_bytes": 55975,
+        "width": 342,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "e05a4362e5165d94505ccb72a0430bf42764dcb458d422ce901ec2515a89cd04",
+        "size_bytes": 55975,
+        "width": 342,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:829f35d7-7b0e-568d-93e3-6296bde99e8a:201944",
+      "card_printing_id": "829f35d7-7b0e-568d-93e3-6296bde99e8a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/829f35d7-7b0e-568d-93e3-6296bde99e8a/ef45a0159c5ebd65c9daf35fdad303e3e65abcafe8af1e89d42468bc595bf552.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "ef45a0159c5ebd65c9daf35fdad303e3e65abcafe8af1e89d42468bc595bf552",
+        "size_bytes": 210997,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "ef45a0159c5ebd65c9daf35fdad303e3e65abcafe8af1e89d42468bc595bf552",
+        "size_bytes": 210997,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a35dd171-10da-542a-b0a8-07926557b662:201945",
+      "card_printing_id": "a35dd171-10da-542a-b0a8-07926557b662",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a35dd171-10da-542a-b0a8-07926557b662/b0dccffb9acb5c6a1c75435fe998fed97084cfd3dd60fae72a9a946bf7f28178.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "b0dccffb9acb5c6a1c75435fe998fed97084cfd3dd60fae72a9a946bf7f28178",
+        "size_bytes": 53330,
+        "width": 344,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "b0dccffb9acb5c6a1c75435fe998fed97084cfd3dd60fae72a9a946bf7f28178",
+        "size_bytes": 53330,
+        "width": 344,
+        "height": 480,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:f43b99fe-1fe5-5898-b609-e4000155dd5a:139088",
+      "card_printing_id": "f43b99fe-1fe5-5898-b609-e4000155dd5a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/f43b99fe-1fe5-5898-b609-e4000155dd5a/8afd33b32cb2eb7ad919ffa461645ede720ad015bbd0a12e65882a3390473760.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "8afd33b32cb2eb7ad919ffa461645ede720ad015bbd0a12e65882a3390473760",
+        "size_bytes": 195194,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "8afd33b32cb2eb7ad919ffa461645ede720ad015bbd0a12e65882a3390473760",
+        "size_bytes": 195194,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ea28e769-b73b-5471-b598-b5435ae7f4ab:139089",
+      "card_printing_id": "ea28e769-b73b-5471-b598-b5435ae7f4ab",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ea28e769-b73b-5471-b598-b5435ae7f4ab/22505f3203bf6a7e3f77c306f1cf3bdf40da0da3980595a4d06f828ce666a925.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "22505f3203bf6a7e3f77c306f1cf3bdf40da0da3980595a4d06f828ce666a925",
+        "size_bytes": 30462,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "22505f3203bf6a7e3f77c306f1cf3bdf40da0da3980595a4d06f828ce666a925",
+        "size_bytes": 30462,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:2f8a9a4c-c54a-5866-96a9-d06bb6e1ed8c:139095",
+      "card_printing_id": "2f8a9a4c-c54a-5866-96a9-d06bb6e1ed8c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/2f8a9a4c-c54a-5866-96a9-d06bb6e1ed8c/0bd98890f5b51fc486d79cc061011a45a04bdb9d1b00e9d1e6d5f868a3f088a9.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "0bd98890f5b51fc486d79cc061011a45a04bdb9d1b00e9d1e6d5f868a3f088a9",
+        "size_bytes": 221915,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "0bd98890f5b51fc486d79cc061011a45a04bdb9d1b00e9d1e6d5f868a3f088a9",
+        "size_bytes": 221915,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d35a7125-4838-59c4-849d-16fc15a26bd7:139094",
+      "card_printing_id": "d35a7125-4838-59c4-849d-16fc15a26bd7",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d35a7125-4838-59c4-849d-16fc15a26bd7/24e4b95027003156672507f03641e1734cb4edbd6645b9ad049e8cce42dc93b0.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "24e4b95027003156672507f03641e1734cb4edbd6645b9ad049e8cce42dc93b0",
+        "size_bytes": 32975,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "24e4b95027003156672507f03641e1734cb4edbd6645b9ad049e8cce42dc93b0",
+        "size_bytes": 32975,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:891fddba-68fe-5488-a094-905ad2532fd6:139093",
+      "card_printing_id": "891fddba-68fe-5488-a094-905ad2532fd6",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/891fddba-68fe-5488-a094-905ad2532fd6/7c88491039b38caa7b177e49037b2c974993793811479f2baddb1859a105c621.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7c88491039b38caa7b177e49037b2c974993793811479f2baddb1859a105c621",
+        "size_bytes": 246786,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7c88491039b38caa7b177e49037b2c974993793811479f2baddb1859a105c621",
+        "size_bytes": 246786,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:a6c918c5-6eaa-50ac-bc42-29e8c962d1ae:139092",
+      "card_printing_id": "a6c918c5-6eaa-50ac-bc42-29e8c962d1ae",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/a6c918c5-6eaa-50ac-bc42-29e8c962d1ae/c0dc29b9d1fbe41d16a9c6ea7c657446e214446bb1201335e6430b0047082425.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "c0dc29b9d1fbe41d16a9c6ea7c657446e214446bb1201335e6430b0047082425",
+        "size_bytes": 36779,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "c0dc29b9d1fbe41d16a9c6ea7c657446e214446bb1201335e6430b0047082425",
+        "size_bytes": 36779,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c9ab93da-0c99-5b9a-aadd-c02ad2d74815:139090",
+      "card_printing_id": "c9ab93da-0c99-5b9a-aadd-c02ad2d74815",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c9ab93da-0c99-5b9a-aadd-c02ad2d74815/14be3a96f8598ba778a23b52347fd61211e8c0214f20599fcc6cc0930dce057a.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "14be3a96f8598ba778a23b52347fd61211e8c0214f20599fcc6cc0930dce057a",
+        "size_bytes": 209325,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "14be3a96f8598ba778a23b52347fd61211e8c0214f20599fcc6cc0930dce057a",
+        "size_bytes": 209325,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:482c19c8-feb2-5640-b8e0-94045d40ceb3:139091",
+      "card_printing_id": "482c19c8-feb2-5640-b8e0-94045d40ceb3",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/482c19c8-feb2-5640-b8e0-94045d40ceb3/4dd2c14aa4ae1e0e25f7e7ca54b18637ab31e1c0cfa63e33cb01fd33002f028a.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4dd2c14aa4ae1e0e25f7e7ca54b18637ab31e1c0cfa63e33cb01fd33002f028a",
+        "size_bytes": 30951,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4dd2c14aa4ae1e0e25f7e7ca54b18637ab31e1c0cfa63e33cb01fd33002f028a",
+        "size_bytes": 30951,
+        "width": 245,
+        "height": 342,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6aba6745-bff9-5a3a-ad52-f2218b2a0d7c:151701",
+      "card_printing_id": "6aba6745-bff9-5a3a-ad52-f2218b2a0d7c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6aba6745-bff9-5a3a-ad52-f2218b2a0d7c/fb7bb40e1e344198272be34bb28fd04d996608435b28e0bd819eb1db52f7f46d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "fb7bb40e1e344198272be34bb28fd04d996608435b28e0bd819eb1db52f7f46d",
+        "size_bytes": 210907,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "fb7bb40e1e344198272be34bb28fd04d996608435b28e0bd819eb1db52f7f46d",
+        "size_bytes": 210907,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:96600731-e424-5254-8aba-dd0d3cc7449e:151708",
+      "card_printing_id": "96600731-e424-5254-8aba-dd0d3cc7449e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/96600731-e424-5254-8aba-dd0d3cc7449e/d60ffd1d052598103233c525e67e0ab3aa3993ac2215ac58a73d5daf9a457af1.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "d60ffd1d052598103233c525e67e0ab3aa3993ac2215ac58a73d5daf9a457af1",
+        "size_bytes": 39840,
+        "width": 321,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "d60ffd1d052598103233c525e67e0ab3aa3993ac2215ac58a73d5daf9a457af1",
+        "size_bytes": 39840,
+        "width": 321,
+        "height": 450,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:46b66c49-e0e1-5771-916c-f0746dc2ec58:151702",
+      "card_printing_id": "46b66c49-e0e1-5771-916c-f0746dc2ec58",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/46b66c49-e0e1-5771-916c-f0746dc2ec58/63c30ec040c78b347bcfeba3bb1993a88a0510bdf42fb5a3ef2be327e4c9a74c.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "63c30ec040c78b347bcfeba3bb1993a88a0510bdf42fb5a3ef2be327e4c9a74c",
+        "size_bytes": 208545,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "63c30ec040c78b347bcfeba3bb1993a88a0510bdf42fb5a3ef2be327e4c9a74c",
+        "size_bytes": 208545,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+      "card_printing_id": "7f3d5aae-40f8-5663-a55a-3ea785a259b7",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/7f3d5aae-40f8-5663-a55a-3ea785a259b7/596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d",
+        "size_bytes": 489034,
+        "width": 1200,
+        "height": 1600,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d",
+        "size_bytes": 489034,
+        "width": 1200,
+        "height": 1600,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ba7cd4fe-bbf5-585c-8b2f-1f2a35056339:151703",
+      "card_printing_id": "ba7cd4fe-bbf5-585c-8b2f-1f2a35056339",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ba7cd4fe-bbf5-585c-8b2f-1f2a35056339/bf0e1f2fa5cfbba808a0c940125678fe8d046c10e85721a36483c9c46f2e919e.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "bf0e1f2fa5cfbba808a0c940125678fe8d046c10e85721a36483c9c46f2e919e",
+        "size_bytes": 225727,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "bf0e1f2fa5cfbba808a0c940125678fe8d046c10e85721a36483c9c46f2e919e",
+        "size_bytes": 225727,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5bca260d-bf9c-579d-9b3a-b92992c3dd97:151707",
+      "card_printing_id": "5bca260d-bf9c-579d-9b3a-b92992c3dd97",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5bca260d-bf9c-579d-9b3a-b92992c3dd97/de4f779c81d49e6a4427099912e992c87304625c1297b4f0220763a49269f7a4.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "de4f779c81d49e6a4427099912e992c87304625c1297b4f0220763a49269f7a4",
+        "size_bytes": 197510,
+        "width": 930,
+        "height": 1270,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "de4f779c81d49e6a4427099912e992c87304625c1297b4f0220763a49269f7a4",
+        "size_bytes": 197510,
+        "width": 930,
+        "height": 1270,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:f9295fe7-ba8a-5d4b-980d-5fbaf968fda1:151704",
+      "card_printing_id": "f9295fe7-ba8a-5d4b-980d-5fbaf968fda1",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/f9295fe7-ba8a-5d4b-980d-5fbaf968fda1/a9a6cad46bf5f2b9b3e1524177a7dd080a2cddbd41cebbe076596b841d478a7b.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "a9a6cad46bf5f2b9b3e1524177a7dd080a2cddbd41cebbe076596b841d478a7b",
+        "size_bytes": 247028,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "a9a6cad46bf5f2b9b3e1524177a7dd080a2cddbd41cebbe076596b841d478a7b",
+        "size_bytes": 247028,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:49f2fe18-5329-5354-9daa-db4843fd4bfa:151705",
+      "card_printing_id": "49f2fe18-5329-5354-9daa-db4843fd4bfa",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/49f2fe18-5329-5354-9daa-db4843fd4bfa/6724b3afa4e140ea0c115bf04ae86c1ae242d407e0f05ee246460c8dd2314477.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6724b3afa4e140ea0c115bf04ae86c1ae242d407e0f05ee246460c8dd2314477",
+        "size_bytes": 233437,
+        "width": 738,
+        "height": 1042,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6724b3afa4e140ea0c115bf04ae86c1ae242d407e0f05ee246460c8dd2314477",
+        "size_bytes": 233437,
+        "width": 738,
+        "height": 1042,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0309b778-3137-5ef8-820c-2fb172918336:158167",
+      "card_printing_id": "0309b778-3137-5ef8-820c-2fb172918336",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0309b778-3137-5ef8-820c-2fb172918336/dde72dbc7c9003e35f803a8cc4eba38f4e906287b5de8c3def61b122907e8c66.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "dde72dbc7c9003e35f803a8cc4eba38f4e906287b5de8c3def61b122907e8c66",
+        "size_bytes": 266833,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "dde72dbc7c9003e35f803a8cc4eba38f4e906287b5de8c3def61b122907e8c66",
+        "size_bytes": 266833,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:acb8d384-db91-567d-a488-f3bf86e82c4c:158168",
+      "card_printing_id": "acb8d384-db91-567d-a488-f3bf86e82c4c",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/acb8d384-db91-567d-a488-f3bf86e82c4c/5ca67955640280e351ae77e1227140caa2c971dc3bcd1504fe1a88bae53aa299.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5ca67955640280e351ae77e1227140caa2c971dc3bcd1504fe1a88bae53aa299",
+        "size_bytes": 120360,
+        "width": 496,
+        "height": 701,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5ca67955640280e351ae77e1227140caa2c971dc3bcd1504fe1a88bae53aa299",
+        "size_bytes": 120360,
+        "width": 496,
+        "height": 701,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:1bd301f0-95b1-506f-820c-646b34154641:158165",
+      "card_printing_id": "1bd301f0-95b1-506f-820c-646b34154641",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/1bd301f0-95b1-506f-820c-646b34154641/3818b9e6ffd4cddaf1b637ef7ca1606b3a20266f624653fcaa7806e99660c319.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "3818b9e6ffd4cddaf1b637ef7ca1606b3a20266f624653fcaa7806e99660c319",
+        "size_bytes": 251481,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "3818b9e6ffd4cddaf1b637ef7ca1606b3a20266f624653fcaa7806e99660c319",
+        "size_bytes": 251481,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ae926d40-df87-5009-955c-75a207e9b8a0:158171",
+      "card_printing_id": "ae926d40-df87-5009-955c-75a207e9b8a0",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ae926d40-df87-5009-955c-75a207e9b8a0/7fa775381076027eb8b78a6deec9ea1374fc9e94798bf24ec30cb2af6187a5c6.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "7fa775381076027eb8b78a6deec9ea1374fc9e94798bf24ec30cb2af6187a5c6",
+        "size_bytes": 270520,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "7fa775381076027eb8b78a6deec9ea1374fc9e94798bf24ec30cb2af6187a5c6",
+        "size_bytes": 270520,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:39fdbde6-c9e1-59a7-b6b5-a21f03e583dc:158172",
+      "card_printing_id": "39fdbde6-c9e1-59a7-b6b5-a21f03e583dc",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/39fdbde6-c9e1-59a7-b6b5-a21f03e583dc/31a0e81ff44b23deab4794736e7435361ac4aa135b9878a99050016d2a425126.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "31a0e81ff44b23deab4794736e7435361ac4aa135b9878a99050016d2a425126",
+        "size_bytes": 112902,
+        "width": 499,
+        "height": 696,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "31a0e81ff44b23deab4794736e7435361ac4aa135b9878a99050016d2a425126",
+        "size_bytes": 112902,
+        "width": 499,
+        "height": 696,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3b62b31e-aa8e-5cf1-a9f1-0ee480cd7846:158169",
+      "card_printing_id": "3b62b31e-aa8e-5cf1-a9f1-0ee480cd7846",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3b62b31e-aa8e-5cf1-a9f1-0ee480cd7846/c0443cfc5a586a837e0af5b2dd0db2b26df233656ed7d02bf53e0ac3c871f405.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "c0443cfc5a586a837e0af5b2dd0db2b26df233656ed7d02bf53e0ac3c871f405",
+        "size_bytes": 217654,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "c0443cfc5a586a837e0af5b2dd0db2b26df233656ed7d02bf53e0ac3c871f405",
+        "size_bytes": 217654,
+        "width": 734,
+        "height": 1024,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5f0ce3c8-1748-5c6e-b50b-6374ec22df11:158170",
+      "card_printing_id": "5f0ce3c8-1748-5c6e-b50b-6374ec22df11",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5f0ce3c8-1748-5c6e-b50b-6374ec22df11/6596aeea216749a24a9c3b60536ee96bf47657c5ec70c5c39bc3d80d2e09033c.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "6596aeea216749a24a9c3b60536ee96bf47657c5ec70c5c39bc3d80d2e09033c",
+        "size_bytes": 470051,
+        "width": 1103,
+        "height": 1537,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "6596aeea216749a24a9c3b60536ee96bf47657c5ec70c5c39bc3d80d2e09033c",
+        "size_bytes": 470051,
+        "width": 1103,
+        "height": 1537,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:b300d908-6e9a-5f66-95a3-886f6afda92a:164213",
+      "card_printing_id": "b300d908-6e9a-5f66-95a3-886f6afda92a",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b300d908-6e9a-5f66-95a3-886f6afda92a/5cdb0a24f23cbdaedb9cfbf6446d26631caddca84dab89faef9a947bbf86e32f.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5cdb0a24f23cbdaedb9cfbf6446d26631caddca84dab89faef9a947bbf86e32f",
+        "size_bytes": 260748,
+        "width": 772,
+        "height": 1047,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5cdb0a24f23cbdaedb9cfbf6446d26631caddca84dab89faef9a947bbf86e32f",
+        "size_bytes": 260748,
+        "width": 772,
+        "height": 1047,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:cd05806b-ac1a-5078-aa2d-58d98066f830:164214",
+      "card_printing_id": "cd05806b-ac1a-5078-aa2d-58d98066f830",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/cd05806b-ac1a-5078-aa2d-58d98066f830/43763772a6fc9ec3cbf8cf44b5dc26e7129b637035a736ce7bbdb7ec3345d0de.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "43763772a6fc9ec3cbf8cf44b5dc26e7129b637035a736ce7bbdb7ec3345d0de",
+        "size_bytes": 260178,
+        "width": 772,
+        "height": 1047,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "43763772a6fc9ec3cbf8cf44b5dc26e7129b637035a736ce7bbdb7ec3345d0de",
+        "size_bytes": 260178,
+        "width": 772,
+        "height": 1047,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:88c98a8a-4438-5fe4-bdc6-1496bfffda0e:213027",
+      "card_printing_id": "88c98a8a-4438-5fe4-bdc6-1496bfffda0e",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/88c98a8a-4438-5fe4-bdc6-1496bfffda0e/ab45414af7beb1167f9c57195f4c413199a9199a0f7d1cfa689820ac5ecdac29.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "ab45414af7beb1167f9c57195f4c413199a9199a0f7d1cfa689820ac5ecdac29",
+        "size_bytes": 175465,
+        "width": 656,
+        "height": 910,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "ab45414af7beb1167f9c57195f4c413199a9199a0f7d1cfa689820ac5ecdac29",
+        "size_bytes": 175465,
+        "width": 656,
+        "height": 910,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+      "card_printing_id": "78372fe9-59bc-535a-acde-2b7a98d1487b",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/78372fe9-59bc-535a-acde-2b7a98d1487b/5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389",
+        "size_bytes": 117731,
+        "width": 1000,
+        "height": 1000,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389",
+        "size_bytes": 117731,
+        "width": 1000,
+        "height": 1000,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0a6d6a4c-7243-5735-abb6-b7d1f922c3bb:645458",
+      "card_printing_id": "0a6d6a4c-7243-5735-abb6-b7d1f922c3bb",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0a6d6a4c-7243-5735-abb6-b7d1f922c3bb/4514ffd864e9df17aad471db5c55e5fb23b0ae9b607e3d3351c219692e8f0884.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4514ffd864e9df17aad471db5c55e5fb23b0ae9b607e3d3351c219692e8f0884",
+        "size_bytes": 269765,
+        "width": 985,
+        "height": 1384,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4514ffd864e9df17aad471db5c55e5fb23b0ae9b607e3d3351c219692e8f0884",
+        "size_bytes": 269765,
+        "width": 985,
+        "height": 1384,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57:645415",
+      "card_printing_id": "1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57/4ececede63151808cf951998b22dcb25c2cf62aeb23c4525aa700484cc7e3f24.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4ececede63151808cf951998b22dcb25c2cf62aeb23c4525aa700484cc7e3f24",
+        "size_bytes": 297205,
+        "width": 988,
+        "height": 1389,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4ececede63151808cf951998b22dcb25c2cf62aeb23c4525aa700484cc7e3f24",
+        "size_bytes": 297205,
+        "width": 988,
+        "height": 1389,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:5706fe21-4fbd-5ae7-8eb7-65298c7cddfa:664088",
+      "card_printing_id": "5706fe21-4fbd-5ae7-8eb7-65298c7cddfa",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/5706fe21-4fbd-5ae7-8eb7-65298c7cddfa/4009bb051d9cb0f24f4ddfc1db0e34d2f695f21a2f10fc20a74065e517704773.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "4009bb051d9cb0f24f4ddfc1db0e34d2f695f21a2f10fc20a74065e517704773",
+        "size_bytes": 201448,
+        "width": 905,
+        "height": 1276,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "4009bb051d9cb0f24f4ddfc1db0e34d2f695f21a2f10fc20a74065e517704773",
+        "size_bytes": 201448,
+        "width": 905,
+        "height": 1276,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0c7848b1-0366-595e-8c43-75dbb21cccdc:228481",
+      "card_printing_id": "0c7848b1-0366-595e-8c43-75dbb21cccdc",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0c7848b1-0366-595e-8c43-75dbb21cccdc/f94b3f67bd2d0ea1f7337e3a4e75d3135881e10e44ca4902a02c34a7449abcf7.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "f94b3f67bd2d0ea1f7337e3a4e75d3135881e10e44ca4902a02c34a7449abcf7",
+        "size_bytes": 55642,
+        "width": 353,
+        "height": 491,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "f94b3f67bd2d0ea1f7337e3a4e75d3135881e10e44ca4902a02c34a7449abcf7",
+        "size_bytes": 55642,
+        "width": 353,
+        "height": 491,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:0d858c7a-96bb-560d-ab91-923447250763:668958",
+      "card_printing_id": "0d858c7a-96bb-560d-ab91-923447250763",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/0d858c7a-96bb-560d-ab91-923447250763/3bcd28821efcc48a65cfe2c4313dfcf116ce3a7eeab9bc8f3f85eae7d054cf41.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "3bcd28821efcc48a65cfe2c4313dfcf116ce3a7eeab9bc8f3f85eae7d054cf41",
+        "size_bytes": 301723,
+        "width": 1056,
+        "height": 1489,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "3bcd28821efcc48a65cfe2c4313dfcf116ce3a7eeab9bc8f3f85eae7d054cf41",
+        "size_bytes": 301723,
+        "width": 1056,
+        "height": 1489,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:c614bb5c-17b7-57c4-9b21-fdeaf457c4a4:668959",
+      "card_printing_id": "c614bb5c-17b7-57c4-9b21-fdeaf457c4a4",
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/c614bb5c-17b7-57c4-9b21-fdeaf457c4a4/98cdabc02a1c66c9fd5a9edfb042283b03c570b5a77e4a6c94a9df26ced00fec.jpg",
+      "storage_status": "uploaded_and_verified",
+      "source_image": {
+        "sha256": "98cdabc02a1c66c9fd5a9edfb042283b03c570b5a77e4a6c94a9df26ced00fec",
+        "size_bytes": 356300,
+        "width": 1056,
+        "height": 1495,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_readback": {
+        "sha256": "98cdabc02a1c66c9fd5a9edfb042283b03c570b5a77e4a6c94a9df26ced00fec",
+        "size_bytes": 356300,
+        "width": 1056,
+        "height": 1495,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    }
+  ],
+  "review_manifest_path": "apps/web/src/data/review/specialVariantPrintingEvidenceV1.json",
+  "proof_hash": "08425616b2d97be61d9a205ded1576c10eee227b97574d77eb55c86c412c5d10"
+}

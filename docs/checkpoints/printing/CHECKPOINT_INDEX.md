@@ -15,6 +15,18 @@ These checkpoints should be read as institutional memory for the printing system
 
 ## Checkpoint Sequence
 
+### `SPECIAL_VARIANT_SELF_HOSTED_REVIEW_V1.md`
+
+This checkpoint records the exact-image and review workflow for the `143` hidden special-variant child printings.
+
+Current result:
+
+- `143/143` exact candidate images are self-hosted in private Grookai storage with byte-for-byte readback
+- `0` database rows, approvals, publication states, or pricing mappings changed during acquisition
+- the authenticated PokeJavi and founder portal is no-write and export-only
+- image approval, publication, and pricing are implemented as separate SHA-bound transactions capped at `25` rows
+- the next gate is PokeJavi's image-confirmed first-pass export
+
 ### `SPECIAL_VARIANT_PRINTING_HIDDEN_APPLY_CLOSEOUT_V1.md`
 
 This checkpoint records the completed hidden apply and pricing quarantine for the `143` authority-qualified special-variant printings.

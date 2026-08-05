@@ -1,0 +1,119 @@
+name: Special Variant Review Gates V1
+
+on:
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: Independent transition gate
+        required: true
+        type: choice
+        options:
+          - image
+          - publication
+          - pricing
+      mode:
+        description: Transactional rollback proof or durable apply
+        required: true
+        type: choice
+        options:
+          - dry-run
+          - apply
+      decision_file:
+        description: Repo-relative founder decision artifact path
+        required: true
+        type: string
+      batch_offset:
+        description: Eligible-row offset
+        required: true
+        default: "0"
+        type: string
+      batch_size:
+        description: Exact batch size, maximum 25
+        required: true
+        default: "25"
+        type: string
+      expected_commit_sha:
+        description: Required for apply
+        required: false
+        type: string
+      packet_fingerprint:
+        description: Required for apply
+        required: false
+        type: string
+      decision_sha256:
+        description: Required for apply
+        required: false
+        type: string
+      approval_token:
+        description: Required for apply; generated from all frozen inputs
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: special-variant-review-gates-v1
+  cancel-in-progress: false
+
+jobs:
+  review-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      REVIEW_GATE: ${{ inputs.gate }}
+      REVIEW_MODE: ${{ inputs.mode }}
+      REVIEW_DECISION_FILE: ${{ inputs.decision_file }}
+      REVIEW_BATCH_OFFSET: ${{ inputs.batch_offset }}
+      REVIEW_BATCH_SIZE: ${{ inputs.batch_size }}
+      SPECIAL_VARIANT_REVIEW_EXPECTED_SHA: ${{ inputs.expected_commit_sha }}
+      SPECIAL_VARIANT_REVIEW_EXPECTED_PACKET_FINGERPRINT: ${{ inputs.packet_fingerprint }}
+      SPECIAL_VARIANT_REVIEW_EXPECTED_DECISION_SHA: ${{ inputs.decision_sha256 }}
+      SPECIAL_VARIANT_REVIEW_APPROVAL_TOKEN: ${{ inputs.approval_token }}
+
+    steps:
+      - name: Check out frozen workflow ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify review gate contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/audits/special_variant_printing_review_gate_v1.mjs
+          node --test tests/contracts/special_variant_self_hosted_review_v1.test.mjs
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "$REVIEW_DECISION_FILE"
+          test "$REVIEW_BATCH_SIZE" -ge 1
+          test "$REVIEW_BATCH_SIZE" -le 25
+
+      - name: Execute independent bounded gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/special_variant_printing_review_gate_v1.mjs \
+            --gate "$REVIEW_GATE" \
+            --mode "$REVIEW_MODE" \
+            --decision-file "$REVIEW_DECISION_FILE" \
+            --batch-offset "$REVIEW_BATCH_OFFSET" \
+            --batch-size "$REVIEW_BATCH_SIZE"
+
+      - name: Upload gate evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: special-variant-${{ inputs.gate }}-${{ inputs.mode }}-${{ github.run_id }}
+          path: docs/audits/special_variant_printing_self_hosted_evidence_v1/review_gate_runs
+          if-no-files-found: error
+          retention-days: 90

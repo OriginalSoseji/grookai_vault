@@ -1,0 +1,119 @@
+name: Special Variant Self-Hosted Evidence V1
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Plan only or upload the exact frozen plan
+        required: true
+        type: choice
+        options:
+          - plan
+          - upload
+      expected_commit_sha:
+        description: Required for upload; must equal the dispatched commit
+        required: false
+        type: string
+      plan_fingerprint:
+        description: Required for upload; copy from the completed plan artifact
+        required: false
+        type: string
+      approval_phrase:
+        description: Required for upload
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: special-variant-self-hosted-evidence-v1
+  cancel-in-progress: false
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_URL: ${{ secrets.MOBILE_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_COMMIT_SHA: ${{ inputs.expected_commit_sha }}
+      EXPECTED_PLAN_FINGERPRINT: ${{ inputs.plan_fingerprint }}
+      UPLOAD_APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
+
+    steps:
+      - name: Check out frozen workflow ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify evidence contracts
+        run: |
+          set -euo pipefail
+          node --check scripts/audits/special_variant_printing_self_hosted_evidence_v1.mjs
+          node --test tests/contracts/special_variant_self_hosted_review_v1.test.mjs
+          test -z "$(git status --porcelain --untracked-files=no)"
+
+      - name: Build exact frozen plan
+        run: node scripts/audits/special_variant_printing_self_hosted_evidence_v1.mjs --mode plan
+
+      - name: Upload and verify private evidence
+        if: ${{ inputs.mode == 'upload' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$EXPECTED_COMMIT_SHA" = "$GITHUB_SHA"
+          test "$UPLOAD_APPROVAL_PHRASE" = "UPLOAD_SPECIAL_VARIANT_SELF_HOSTED_EVIDENCE_V1"
+          ACTUAL_PLAN_FINGERPRINT="$(node -e "const p=require('./docs/audits/special_variant_printing_self_hosted_evidence_v1/special_variant_printing_self_hosted_evidence_plan_v1.json');process.stdout.write(p.plan_fingerprint)")"
+          test "$EXPECTED_PLAN_FINGERPRINT" = "$ACTUAL_PLAN_FINGERPRINT"
+          node scripts/audits/special_variant_printing_self_hosted_evidence_v1.mjs \
+            --mode upload \
+            --plan-fingerprint "$EXPECTED_PLAN_FINGERPRINT" \
+            --approval-phrase "$UPLOAD_APPROVAL_PHRASE"
+
+      - name: Record immutable runner metadata
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          const directory = 'docs/audits/special_variant_printing_self_hosted_evidence_v1/runner';
+          const metadata = {
+            version: 'SPECIAL_VARIANT_SELF_HOSTED_EVIDENCE_GITHUB_METADATA_V1',
+            generated_at: new Date().toISOString(),
+            github_sha: process.env.GITHUB_SHA,
+            github_ref: process.env.GITHUB_REF,
+            github_run_id: process.env.GITHUB_RUN_ID,
+            github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
+            mode: process.env.DISPATCH_MODE,
+            expected_plan_fingerprint: process.env.EXPECTED_PLAN_FINGERPRINT || null,
+            database_writes_performed: false,
+            approvals_performed: false,
+            publication_performed: false,
+            pricing_mappings_performed: false
+          };
+          await fs.mkdir(directory, { recursive: true });
+          await fs.writeFile(path.join(directory, `github_runner_${process.env.GITHUB_RUN_ID}.json`), `${JSON.stringify(metadata, null, 2)}\n`);
+          NODE
+
+      - name: Upload evidence audit
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: special-variant-self-hosted-evidence-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            docs/audits/special_variant_printing_self_hosted_evidence_v1
+            apps/web/src/data/review/specialVariantPrintingEvidenceV1.json
+          if-no-files-found: error
+          retention-days: 90
