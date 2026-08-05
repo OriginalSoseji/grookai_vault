@@ -70,8 +70,8 @@ export function validateFounderArtifact(manifest, artifact) {
   if (!/^[0-9a-f]{64}$/.test(artifact.source_first_pass_sha256 ?? '')) {
     throw new Error('Founder artifact first-pass hash missing.');
   }
-  if (artifact.source_first_pass_reviewer !== 'PokeJavi') {
-    throw new Error('Founder artifact is not linked to PokeJavi review.');
+  if (!['PokeJavi', 'founder'].includes(artifact.source_first_pass_reviewer)) {
+    throw new Error('Founder artifact is not linked to an authorized first-pass reviewer.');
   }
 
   const manifestByEvidence = new Map(manifest.rows.map((row) => [row.evidence_id, row]));

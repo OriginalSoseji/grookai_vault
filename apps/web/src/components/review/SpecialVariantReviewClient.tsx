@@ -122,7 +122,9 @@ function validateFirstPassArtifact(
   const artifact = value as Partial<FirstPassDecisionArtifact>;
   if (artifact.version !== SPECIAL_VARIANT_FIRST_PASS_VERSION) throw new Error("Wrong first-pass artifact version.");
   if (artifact.packet_fingerprint !== manifest.packet_fingerprint) throw new Error("Packet fingerprint does not match.");
-  if (artifact.reviewer !== "PokeJavi") throw new Error("Founder review requires PokeJavi's first-pass artifact.");
+  if (artifact.reviewer !== "PokeJavi" && artifact.reviewer !== "founder") {
+    throw new Error("First-pass reviewer must be PokeJavi or the founder.");
+  }
   if (!Array.isArray(artifact.decisions)) throw new Error("Decisions are missing.");
   if (artifact.decision_count !== artifact.decisions.length) throw new Error("Decision count does not reconcile.");
   if (artifact.decisions.length + Number(artifact.remaining_count) !== manifest.rows.length) {
@@ -188,6 +190,8 @@ export default function SpecialVariantReviewClient({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [activeEvidence]);
 
+  const isFounderConfirmation = isFounder && firstPassArtifact !== null;
+
   const firstPassByEvidence = useMemo(
     () => new Map(firstPassArtifact?.decisions.map((row) => [row.evidence_id, row]) ?? []),
     [firstPassArtifact],
@@ -195,7 +199,7 @@ export default function SpecialVariantReviewClient({
 
   const reviewedCount = manifest.rows.filter((row) => {
     const draft = drafts[row.evidence_id];
-    return isFounder ? Boolean(draft?.founderDecision) : Boolean(draft?.firstPassDecision);
+    return isFounderConfirmation ? Boolean(draft?.founderDecision) : Boolean(draft?.firstPassDecision);
   }).length;
   const remainingCount = manifest.rows.length - reviewedCount;
 
@@ -203,7 +207,7 @@ export default function SpecialVariantReviewClient({
     const normalizedQuery = query.trim().toLowerCase();
     return manifest.rows.filter((row) => {
       const draft = drafts[row.evidence_id];
-      const selectedDecision = isFounder ? draft?.founderDecision : draft?.firstPassDecision;
+      const selectedDecision = isFounderConfirmation ? draft?.founderDecision : draft?.firstPassDecision;
       const matchesQuery =
         !normalizedQuery ||
         [row.name, row.number, row.set_code, row.variant_key, row.finish_key, row.printing_gv_id, String(row.source_product_id)]
@@ -218,7 +222,7 @@ export default function SpecialVariantReviewClient({
         (flagFilter === "flagged" ? row.review_flags.length > 0 : row.review_flags.includes(flagFilter));
       return matchesQuery && matchesDecision && matchesFlag;
     });
-  }, [decisionFilter, drafts, flagFilter, isFounder, manifest.rows, query]);
+  }, [decisionFilter, drafts, flagFilter, isFounderConfirmation, manifest.rows, query]);
 
   const allFlags = useMemo(
     () => Array.from(new Set(manifest.rows.flatMap((row) => row.review_flags))).sort(),
@@ -237,7 +241,7 @@ export default function SpecialVariantReviewClient({
     });
   }
 
-  function exportFirstPass() {
+  async function exportFirstPass() {
     const decisions: FirstPassDecisionRow[] = manifest.rows.flatMap((row) => {
       const draft = drafts[row.evidence_id];
       if (!draft?.firstPassDecision) return [];
@@ -261,7 +265,15 @@ export default function SpecialVariantReviewClient({
       decisions,
     };
     downloadJson(`special_variant_first_pass_${reviewerKey}_${decisions.length}_of_${manifest.rows.length}.json`, artifact);
-    setNotice(`Exported ${decisions.length} first-pass decisions. No server data changed.`);
+    if (isFounder && decisions.length === manifest.rows.length) {
+      const serialized = `${JSON.stringify(artifact, null, 2)}\n`;
+      setFirstPassArtifact(artifact);
+      setFirstPassSha256(await sha256Text(serialized));
+      setDecisionFilter("all");
+      setNotice(`Exported all ${decisions.length} direct first-pass decisions and unlocked founder confirmation. No server data changed.`);
+      return;
+    }
+    setNotice(`Exported ${decisions.length} first-pass decisions. Complete all ${manifest.rows.length} rows to unlock founder confirmation. No server data changed.`);
   }
 
   async function importFirstPass(file: File) {
@@ -270,7 +282,8 @@ export default function SpecialVariantReviewClient({
       const artifact = validateFirstPassArtifact(JSON.parse(text), manifest);
       setFirstPassArtifact(artifact);
       setFirstPassSha256(await sha256Text(text));
-      setNotice(`Imported ${artifact.decision_count} image-bound PokeJavi decisions.`);
+      setDecisionFilter("all");
+      setNotice(`Imported ${artifact.decision_count} image-bound decisions from ${artifact.reviewer}.`);
     } catch (error) {
       setFirstPassArtifact(null);
       setFirstPassSha256(null);
@@ -280,7 +293,7 @@ export default function SpecialVariantReviewClient({
 
   function exportFounder() {
     if (!firstPassArtifact || !firstPassSha256) {
-      setNotice("Import PokeJavi's image-bound first-pass artifact before exporting founder decisions.");
+      setNotice("Complete and export a direct first pass, or import an image-bound first-pass artifact, before exporting founder decisions.");
       return;
     }
     const decisions: FounderDecisionRow[] = manifest.rows.flatMap((row) => {
@@ -326,7 +339,7 @@ export default function SpecialVariantReviewClient({
   function goToNextUnreviewed() {
     const next = manifest.rows.find((row) => {
       const draft = drafts[row.evidence_id];
-      return isFounder ? !draft?.founderDecision : !draft?.firstPassDecision;
+      return isFounderConfirmation ? !draft?.founderDecision : !draft?.firstPassDecision;
     });
     if (!next) {
       setNotice("Every row in this packet has a decision.");
@@ -360,9 +373,13 @@ export default function SpecialVariantReviewClient({
         <section className="border-y border-slate-200 bg-white/60 py-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 className="text-base font-semibold text-slate-950">Founder confirmation</h2>
+              <h2 className="text-base font-semibold text-slate-950">
+                {isFounderConfirmation ? "Founder confirmation" : "Direct founder first pass"}
+              </h2>
               <p className="mt-1 text-sm text-slate-600">
-                Import PokeJavi&apos;s export before recording confirmations. Importing and reviewing still perform no server writes.
+                {isFounderConfirmation
+                  ? `Confirm the evidence-bound first pass from ${firstPassArtifact?.reviewer}. Reviewing still performs no server writes.`
+                  : "Classify every image directly. Exporting a complete first pass unlocks final confirmation without relying on another reviewer."}
               </p>
             </div>
             <input
@@ -384,7 +401,7 @@ export default function SpecialVariantReviewClient({
               Import first-pass JSON
             </button>
           </div>
-          {firstPassArtifact ? (
+          {isFounderConfirmation && firstPassArtifact ? (
             <p className="mt-3 text-xs text-emerald-700">
               Loaded {firstPassArtifact.decision_count} decisions from {firstPassArtifact.reviewer}. Artifact {shortHash(firstPassSha256 ?? "")}
             </p>
@@ -407,7 +424,7 @@ export default function SpecialVariantReviewClient({
           >
             <option value="all">All decisions</option>
             <option value="unreviewed">Unreviewed</option>
-            {(isFounder ? founderDecisions : firstPassDecisions).map((decision) => (
+            {(isFounderConfirmation ? founderDecisions : firstPassDecisions).map((decision) => (
               <option key={decision} value={decision}>{decisionLabels[decision]}</option>
             ))}
           </select>
@@ -440,7 +457,7 @@ export default function SpecialVariantReviewClient({
         {visibleRows.map((row) => {
           const draft = drafts[row.evidence_id] ?? emptyDraft();
           const firstPass = firstPassByEvidence.get(row.evidence_id);
-          const founderDisabled = isFounder && !firstPass;
+          const founderDisabled = isFounderConfirmation && !firstPass;
           return (
             <article
               id={`review-${row.card_printing_id}`}
@@ -481,11 +498,11 @@ export default function SpecialVariantReviewClient({
                   </div>
                 ) : null}
 
-                {isFounder ? (
+                {isFounderConfirmation ? (
                   <div className="border-l-2 border-slate-200 pl-3 text-xs text-slate-600">
                     {firstPass ? (
                       <>
-                        <p className="font-semibold text-slate-900">PokeJavi: {decisionLabels[firstPass.decision]}</p>
+                        <p className="font-semibold text-slate-900">{firstPassArtifact?.reviewer}: {decisionLabels[firstPass.decision]}</p>
                         {firstPass.notes ? <p className="mt-1 leading-5">{firstPass.notes}</p> : null}
                       </>
                     ) : (
@@ -497,22 +514,22 @@ export default function SpecialVariantReviewClient({
                 <label className="block text-xs font-semibold text-slate-700">
                   Decision
                   <select
-                    value={isFounder ? draft.founderDecision ?? "" : draft.firstPassDecision ?? ""}
+                    value={isFounderConfirmation ? draft.founderDecision ?? "" : draft.firstPassDecision ?? ""}
                     disabled={founderDisabled}
                     onChange={(event) => {
-                      if (isFounder) updateDraft(row.evidence_id, { founderDecision: event.target.value as FounderDecision });
+                      if (isFounderConfirmation) updateDraft(row.evidence_id, { founderDecision: event.target.value as FounderDecision });
                       else updateDraft(row.evidence_id, { firstPassDecision: event.target.value as FirstPassDecision });
                     }}
                     className="mt-1 min-h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm font-normal text-slate-950 disabled:bg-slate-100 disabled:text-slate-400"
                   >
                     <option value="">Select decision</option>
-                    {(isFounder ? founderDecisions : firstPassDecisions).map((decision) => (
+                    {(isFounderConfirmation ? founderDecisions : firstPassDecisions).map((decision) => (
                       <option key={decision} value={decision}>{decisionLabels[decision]}</option>
                     ))}
                   </select>
                 </label>
 
-                {isFounder ? (
+                {isFounderConfirmation ? (
                   <div className="space-y-2 text-sm text-slate-700">
                     <label className="flex items-start gap-2">
                       <input
@@ -577,10 +594,10 @@ export default function SpecialVariantReviewClient({
           </button>
           <button
             type="button"
-            onClick={isFounder ? exportFounder : exportFirstPass}
+            onClick={isFounderConfirmation ? exportFounder : () => void exportFirstPass()}
             className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
           >
-            Export {isFounder ? "founder" : "first-pass"} JSON
+            Export {isFounderConfirmation ? "founder" : isFounder ? "direct first-pass" : "first-pass"} JSON
           </button>
         </div>
       </section>

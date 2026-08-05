@@ -178,6 +178,16 @@ test('review gates preserve separate image, publication, and pricing authorizati
   assert.throws(() => selectAuthorizedRows(manifest, artifact, 'image', 0, 26), /between 1 and 25/);
 });
 
+test('founder can provide the evidence-bound first pass without delegating review', () => {
+  const { manifest, artifact } = reviewFixture();
+  const directFounderArtifact = { ...artifact, source_first_pass_reviewer: 'founder' };
+  assert.equal(validateFounderArtifact(manifest, directFounderArtifact), directFounderArtifact);
+  assert.throws(
+    () => validateFounderArtifact(manifest, { ...artifact, source_first_pass_reviewer: 'unknown' }),
+    /authorized first-pass reviewer/,
+  );
+});
+
 test('founder artifacts reject identity drift and unauthorized transition combinations', () => {
   const { manifest, artifact } = reviewFixture();
   assert.throws(
@@ -204,6 +214,8 @@ test('portal and executor preserve no-write review and canonical parent boundari
   assert.match(portal, /server_writes_performed: false/);
   assert.match(portal, /src=\{imageUrl\(row\)\}/);
   assert.doesNotMatch(portal, /PublicCardImage/);
+  assert.match(portal, /Direct founder first pass/);
+  assert.match(portal, /artifact\.reviewer !== "PokeJavi" && artifact\.reviewer !== "founder"/);
   assert.match(singularRouteAlias, /redirect\("\/review\/special-variants"\)/);
   assert.doesNotMatch(portal, /fetch\([^)]*,\s*\{[^}]*method:\s*["'](?:POST|PUT|PATCH|DELETE)/s);
   assert.match(imageRoute, /\.download\(row\.storage_path\)/);
