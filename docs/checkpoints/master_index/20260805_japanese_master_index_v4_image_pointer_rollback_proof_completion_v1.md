@@ -97,6 +97,11 @@ Artifacts:
 - Release secret guard passed.
 - GitHub Actions run `31040921659` and its artifact both report success.
 - The permanent proof artifact reconciles all package and mutation hashes.
+- The temporary same-repository pull-request trigger was removed after the
+  proof. The workflow is manual-only again, preventing branch updates from
+  repeating the transaction proof.
+- A duplicate post-proof run (`31041279294`) was cancelled during checkout;
+  its proof step was skipped before Storage or database access.
 
 ## Explicit Next Gate
 
