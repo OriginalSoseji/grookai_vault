@@ -1,12 +1,12 @@
 # Japanese Master Index V4 Schema-Chain Repair
 
-Verified: 2026-07-26
+Verified: 2026-08-05
 
 ## Result
 
 - Status: `complete_no_production_apply`
-- Repair migration:
-  `supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql`
+- Repair migration after current-main integration:
+  `supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql`
 - Production database mutations: **none**
 - Local fresh-chain replay: **passed**
 - Japanese payload preflight after repair: `preflight_complete_no_write`
@@ -28,8 +28,12 @@ migration files.
 
 ## Replay Proof
 
-`supabase db reset --local --no-seed` replayed the complete repository chain
-through the repair migration successfully.
+The original isolated branch passed `supabase db reset --local --no-seed`.
+Current-main integration later introduced
+`20260728002603_remote_schema.sql`, which captures the same out-of-band
+tables and therefore must run before this idempotent repair. The unapplied
+repair was retimestamped to `20260805100000`. A fresh current-main chain
+replay then passed through all migrations, including this repair.
 
 The replayed tables match the captured live contract:
 

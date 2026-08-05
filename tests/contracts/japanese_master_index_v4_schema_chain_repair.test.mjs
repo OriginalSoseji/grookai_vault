@@ -4,7 +4,7 @@ import test from 'node:test';
 
 const MIGRATION_PATH =
   'supabase/migrations/'
-  + '20260726100000_master_identity_graph_jpn_review_surfaces_'
+  + '20260805100000_master_identity_graph_jpn_review_surfaces_'
   + 'schema_repair_v1.sql';
 
 const TABLES = [
@@ -100,6 +100,7 @@ test('schema repair restores timestamp triggers and fail-closed drift check', as
     sql,
     /set_master_identity_graph_jpn_review_tables_updated_at_v1/,
   );
+  assert.match(sql, /set search_path = pg_catalog/);
   assert.match(
     sql,
     /trg_card_print_identity_source_evidence_updated_at_v1/,

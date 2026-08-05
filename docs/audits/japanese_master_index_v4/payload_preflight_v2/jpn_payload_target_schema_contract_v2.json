@@ -1183,7 +1183,7 @@
     ]
   },
   "content_fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
-  "generated_at": "2026-08-05T15:22:30.573Z",
+  "generated_at": "2026-08-05T15:44:27.964Z",
   "package_id": "JPN-PAYLOAD-TARGET-SCHEMA-CONTRACT-V2",
   "retrieval": {
     "access_mode": "live_database_proven_read_only_plus_final_artifacts",

@@ -1,6 +1,6 @@
 # Japanese Master Index V4 Payload Preflight
 
-Generated: 2026-07-27T05:35:55.426Z
+Generated: 2026-08-05T15:44:10.727Z
 
 ## Status
 
@@ -27,7 +27,7 @@ Generated: 2026-07-27T05:35:55.426Z
 
 ## Repository Schema Coverage
 
-- `card_print_identity_source_evidence`: supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
-- `card_print_family_review_queue`: supabase/migrations/20260726100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
+- `card_print_identity_source_evidence`: supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
+- `card_print_family_review_queue`: supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
 
 All required payload target tables now have creating migrations in the repository.

@@ -1,0 +1,1042 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "contracts_equivalent": true,
+    "execution_boundary": {
+      "database_writes": false,
+      "local_database_reads": true,
+      "migration_history_writes": false,
+      "production_database_reads": true,
+      "public_visibility_changes": false,
+      "storage_writes": false,
+      "transactions_read_only": true
+    },
+    "findings": [],
+    "generated_at": "2026-08-05T15:44:07.129Z",
+    "generator_version": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
+    "local": {
+      "contract": {
+        "columns": [
+          {
+            "column_default": "gen_random_uuid()",
+            "column_name": "id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 1,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_identity_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 2,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 3,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "acquisition_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 4,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "family_status",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 5,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "family_candidate_source",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 6,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "normalized_family_candidate",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 7,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'pending'::text",
+            "column_name": "review_status",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 8,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "false",
+            "column_name": "family_link_promotion_allowed",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 9,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": null,
+            "column_name": "review_key_hash",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 10,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_subject",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 11,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "true",
+            "column_name": "active",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 12,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": null,
+            "column_name": "reviewed_by",
+            "data_type": "text",
+            "is_nullable": "YES",
+            "ordinal_position": 13,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "reviewed_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "YES",
+            "ordinal_position": 14,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 15,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 16,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "gen_random_uuid()",
+            "column_name": "id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 1,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_identity_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 2,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 3,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "acquisition_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 4,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "source_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 5,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "evidence_key_hash",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 6,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_subject",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 7,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_payload",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 8,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "true",
+            "column_name": "active",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 9,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 10,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 11,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "timestamptz"
+          }
+        ],
+        "constraints": [
+          {
+            "constraint_name": "card_print_family_review_queue_card_print_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_card_print_identity_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_evidence_subject_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_subject) = 'object'::text)",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_pkey",
+            "constraint_type": "p",
+            "convalidated": true,
+            "definition": "PRIMARY KEY (id)",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_promotion_allowed_status_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (family_link_promotion_allowed = false OR (review_status = ANY (ARRAY['accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text])))",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_review_status_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (review_status = ANY (ARRAY['pending'::text, 'accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text, 'rejected'::text, 'superseded'::text]))",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_card_print_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_card_print_identity_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_payload_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_payload) = 'object'::text)",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_pkey",
+            "constraint_type": "p",
+            "convalidated": true,
+            "definition": "PRIMARY KEY (id)",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_subject_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_subject) = 'object'::text)",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "functions": [
+          {
+            "arguments": "",
+            "configuration": [
+              "search_path=pg_catalog"
+            ],
+            "function_name": "set_master_identity_graph_jpn_review_tables_updated_at_v1",
+            "language": "plpgsql",
+            "result_type": "trigger",
+            "security_definer": false,
+            "source": "\nbegin\n  new.updated_at = now();\n  return new;\nend;\n",
+            "volatility": "v"
+          }
+        ],
+        "grants": [
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "INSERT",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "SELECT",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "UPDATE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "INSERT",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "SELECT",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "UPDATE",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "indexes": [
+          {
+            "definition": "CREATE UNIQUE INDEX card_print_family_review_queue_pkey ON public.card_print_family_review_queue USING btree (id)",
+            "index_name": "card_print_family_review_queue_pkey",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_card_print_id_v1 ON public.card_print_family_review_queue USING btree (card_print_id)",
+            "index_name": "idx_card_print_family_review_queue_card_print_id_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_hash_v1 ON public.card_print_family_review_queue USING btree (review_key_hash)",
+            "index_name": "idx_card_print_family_review_queue_hash_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_status_v1 ON public.card_print_family_review_queue USING btree (review_status, active)",
+            "index_name": "idx_card_print_family_review_queue_status_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX uq_card_print_family_review_queue_active_key_v1 ON public.card_print_family_review_queue USING btree (card_print_identity_id, family_candidate_source, normalized_family_candidate) WHERE active",
+            "index_name": "uq_card_print_family_review_queue_active_key_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX card_print_identity_source_evidence_pkey ON public.card_print_identity_source_evidence USING btree (id)",
+            "index_name": "card_print_identity_source_evidence_pkey",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_card_print_id_v1 ON public.card_print_identity_source_evidence USING btree (card_print_id)",
+            "index_name": "idx_card_print_identity_source_evidence_card_print_id_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_hash_v1 ON public.card_print_identity_source_evidence USING btree (evidence_key_hash)",
+            "index_name": "idx_card_print_identity_source_evidence_hash_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_source_key_v1 ON public.card_print_identity_source_evidence USING btree (source_key, active)",
+            "index_name": "idx_card_print_identity_source_evidence_source_key_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX uq_card_print_identity_source_evidence_active_lane_v1 ON public.card_print_identity_source_evidence USING btree (card_print_identity_id, source_key, acquisition_key) WHERE active",
+            "index_name": "uq_card_print_identity_source_evidence_active_lane_v1",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "policies": [
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_family_review_queue_deny_anon_v1",
+            "qual": "false",
+            "roles": "{anon}",
+            "table_name": "card_print_family_review_queue",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_family_review_queue_deny_authenticated_v1",
+            "qual": "false",
+            "roles": "{authenticated}",
+            "table_name": "card_print_family_review_queue",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_identity_source_evidence_deny_anon_v1",
+            "qual": "false",
+            "roles": "{anon}",
+            "table_name": "card_print_identity_source_evidence",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_identity_source_evidence_deny_authenticated_v1",
+            "qual": "false",
+            "roles": "{authenticated}",
+            "table_name": "card_print_identity_source_evidence",
+            "with_check": "false"
+          }
+        ],
+        "tables": [
+          {
+            "comment": "MASTER_IDENTITY_GRAPH_JPN_V1: review-only family candidate queue attached to card_print_identity rows. Inserts must not promote family links.",
+            "owner": "postgres",
+            "relforcerowsecurity": false,
+            "relrowsecurity": true,
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "comment": "MASTER_IDENTITY_GRAPH_JPN_V1: append-only source evidence lanes attached to card_print_identity rows. Internal service-role surface only.",
+            "owner": "postgres",
+            "relforcerowsecurity": false,
+            "relrowsecurity": true,
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "triggers": [
+          {
+            "definition": "CREATE TRIGGER trg_card_print_family_review_queue_updated_at_v1 BEFORE UPDATE ON card_print_family_review_queue FOR EACH ROW EXECUTE FUNCTION set_master_identity_graph_jpn_review_tables_updated_at_v1()",
+            "table_name": "card_print_family_review_queue",
+            "trigger_name": "trg_card_print_family_review_queue_updated_at_v1"
+          },
+          {
+            "definition": "CREATE TRIGGER trg_card_print_identity_source_evidence_updated_at_v1 BEFORE UPDATE ON card_print_identity_source_evidence FOR EACH ROW EXECUTE FUNCTION set_master_identity_graph_jpn_review_tables_updated_at_v1()",
+            "table_name": "card_print_identity_source_evidence",
+            "trigger_name": "trg_card_print_identity_source_evidence_updated_at_v1"
+          }
+        ]
+      },
+      "contract_fingerprint_sha256": "6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c",
+      "migration_ledger": [
+        {
+          "name": "master_identity_graph_jpn_review_surfaces_schema_repair_v1",
+          "version": "20260805100000"
+        }
+      ],
+      "transaction_read_only": "on"
+    },
+    "migration": {
+      "bytes": 15577,
+      "path": "supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql",
+      "sha256": "2cd8c70026d74296a469afdb5017944bb37c3a640e064288e4d55d140c037fb6",
+      "version": "20260805100000"
+    },
+    "production": {
+      "contract": {
+        "columns": [
+          {
+            "column_default": "gen_random_uuid()",
+            "column_name": "id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 1,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_identity_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 2,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 3,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "acquisition_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 4,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "family_status",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 5,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "family_candidate_source",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 6,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "normalized_family_candidate",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 7,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'pending'::text",
+            "column_name": "review_status",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 8,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "false",
+            "column_name": "family_link_promotion_allowed",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 9,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": null,
+            "column_name": "review_key_hash",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 10,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_subject",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 11,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "true",
+            "column_name": "active",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 12,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": null,
+            "column_name": "reviewed_by",
+            "data_type": "text",
+            "is_nullable": "YES",
+            "ordinal_position": 13,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "reviewed_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "YES",
+            "ordinal_position": 14,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 15,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 16,
+            "table_name": "card_print_family_review_queue",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "gen_random_uuid()",
+            "column_name": "id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 1,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_identity_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 2,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "is_nullable": "NO",
+            "ordinal_position": 3,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "uuid"
+          },
+          {
+            "column_default": null,
+            "column_name": "acquisition_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 4,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "source_key",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 5,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": null,
+            "column_name": "evidence_key_hash",
+            "data_type": "text",
+            "is_nullable": "NO",
+            "ordinal_position": 6,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "text"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_subject",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 7,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "'{}'::jsonb",
+            "column_name": "evidence_payload",
+            "data_type": "jsonb",
+            "is_nullable": "NO",
+            "ordinal_position": 8,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "jsonb"
+          },
+          {
+            "column_default": "true",
+            "column_name": "active",
+            "data_type": "boolean",
+            "is_nullable": "NO",
+            "ordinal_position": 9,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "bool"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 10,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "timestamptz"
+          },
+          {
+            "column_default": "now()",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "is_nullable": "NO",
+            "ordinal_position": 11,
+            "table_name": "card_print_identity_source_evidence",
+            "udt_name": "timestamptz"
+          }
+        ],
+        "constraints": [
+          {
+            "constraint_name": "card_print_family_review_queue_card_print_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_card_print_identity_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_evidence_subject_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_subject) = 'object'::text)",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_pkey",
+            "constraint_type": "p",
+            "convalidated": true,
+            "definition": "PRIMARY KEY (id)",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_promotion_allowed_status_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (family_link_promotion_allowed = false OR (review_status = ANY (ARRAY['accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text])))",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_family_review_queue_review_status_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (review_status = ANY (ARRAY['pending'::text, 'accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text, 'rejected'::text, 'superseded'::text]))",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_card_print_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_card_print_identity_id_fkey",
+            "constraint_type": "f",
+            "convalidated": true,
+            "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_payload_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_payload) = 'object'::text)",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_pkey",
+            "constraint_type": "p",
+            "convalidated": true,
+            "definition": "PRIMARY KEY (id)",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "constraint_name": "card_print_identity_source_evidence_subject_object_chk",
+            "constraint_type": "c",
+            "convalidated": true,
+            "definition": "CHECK (jsonb_typeof(evidence_subject) = 'object'::text)",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "functions": [
+          {
+            "arguments": "",
+            "configuration": [
+              "search_path=pg_catalog"
+            ],
+            "function_name": "set_master_identity_graph_jpn_review_tables_updated_at_v1",
+            "language": "plpgsql",
+            "result_type": "trigger",
+            "security_definer": false,
+            "source": "\nbegin\n  new.updated_at = now();\n  return new;\nend;\n",
+            "volatility": "v"
+          }
+        ],
+        "grants": [
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "INSERT",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "SELECT",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "UPDATE",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "INSERT",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "SELECT",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "grantee": "service_role",
+            "is_grantable": "NO",
+            "privilege_type": "UPDATE",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "indexes": [
+          {
+            "definition": "CREATE UNIQUE INDEX card_print_family_review_queue_pkey ON public.card_print_family_review_queue USING btree (id)",
+            "index_name": "card_print_family_review_queue_pkey",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_card_print_id_v1 ON public.card_print_family_review_queue USING btree (card_print_id)",
+            "index_name": "idx_card_print_family_review_queue_card_print_id_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_hash_v1 ON public.card_print_family_review_queue USING btree (review_key_hash)",
+            "index_name": "idx_card_print_family_review_queue_hash_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_family_review_queue_status_v1 ON public.card_print_family_review_queue USING btree (review_status, active)",
+            "index_name": "idx_card_print_family_review_queue_status_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX uq_card_print_family_review_queue_active_key_v1 ON public.card_print_family_review_queue USING btree (card_print_identity_id, family_candidate_source, normalized_family_candidate) WHERE active",
+            "index_name": "uq_card_print_family_review_queue_active_key_v1",
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX card_print_identity_source_evidence_pkey ON public.card_print_identity_source_evidence USING btree (id)",
+            "index_name": "card_print_identity_source_evidence_pkey",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_card_print_id_v1 ON public.card_print_identity_source_evidence USING btree (card_print_id)",
+            "index_name": "idx_card_print_identity_source_evidence_card_print_id_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_hash_v1 ON public.card_print_identity_source_evidence USING btree (evidence_key_hash)",
+            "index_name": "idx_card_print_identity_source_evidence_hash_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE INDEX idx_card_print_identity_source_evidence_source_key_v1 ON public.card_print_identity_source_evidence USING btree (source_key, active)",
+            "index_name": "idx_card_print_identity_source_evidence_source_key_v1",
+            "table_name": "card_print_identity_source_evidence"
+          },
+          {
+            "definition": "CREATE UNIQUE INDEX uq_card_print_identity_source_evidence_active_lane_v1 ON public.card_print_identity_source_evidence USING btree (card_print_identity_id, source_key, acquisition_key) WHERE active",
+            "index_name": "uq_card_print_identity_source_evidence_active_lane_v1",
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "policies": [
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_family_review_queue_deny_anon_v1",
+            "qual": "false",
+            "roles": "{anon}",
+            "table_name": "card_print_family_review_queue",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_family_review_queue_deny_authenticated_v1",
+            "qual": "false",
+            "roles": "{authenticated}",
+            "table_name": "card_print_family_review_queue",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_identity_source_evidence_deny_anon_v1",
+            "qual": "false",
+            "roles": "{anon}",
+            "table_name": "card_print_identity_source_evidence",
+            "with_check": "false"
+          },
+          {
+            "cmd": "ALL",
+            "permissive": "PERMISSIVE",
+            "policy_name": "card_print_identity_source_evidence_deny_authenticated_v1",
+            "qual": "false",
+            "roles": "{authenticated}",
+            "table_name": "card_print_identity_source_evidence",
+            "with_check": "false"
+          }
+        ],
+        "tables": [
+          {
+            "comment": "MASTER_IDENTITY_GRAPH_JPN_V1: review-only family candidate queue attached to card_print_identity rows. Inserts must not promote family links.",
+            "owner": "postgres",
+            "relforcerowsecurity": false,
+            "relrowsecurity": true,
+            "table_name": "card_print_family_review_queue"
+          },
+          {
+            "comment": "MASTER_IDENTITY_GRAPH_JPN_V1: append-only source evidence lanes attached to card_print_identity rows. Internal service-role surface only.",
+            "owner": "postgres",
+            "relforcerowsecurity": false,
+            "relrowsecurity": true,
+            "table_name": "card_print_identity_source_evidence"
+          }
+        ],
+        "triggers": [
+          {
+            "definition": "CREATE TRIGGER trg_card_print_family_review_queue_updated_at_v1 BEFORE UPDATE ON card_print_family_review_queue FOR EACH ROW EXECUTE FUNCTION set_master_identity_graph_jpn_review_tables_updated_at_v1()",
+            "table_name": "card_print_family_review_queue",
+            "trigger_name": "trg_card_print_family_review_queue_updated_at_v1"
+          },
+          {
+            "definition": "CREATE TRIGGER trg_card_print_identity_source_evidence_updated_at_v1 BEFORE UPDATE ON card_print_identity_source_evidence FOR EACH ROW EXECUTE FUNCTION set_master_identity_graph_jpn_review_tables_updated_at_v1()",
+            "table_name": "card_print_identity_source_evidence",
+            "trigger_name": "trg_card_print_identity_source_evidence_updated_at_v1"
+          }
+        ]
+      },
+      "contract_fingerprint_sha256": "6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c",
+      "migration_ledger": [],
+      "transaction_read_only": "on"
+    },
+    "status": "schema_equivalent_production_migration_pending"
+  },
+  "content_fingerprint_sha256": "9278ca3ce77d99a7046afaa5cbe7ce55ccd30d846bd958c1f6ae822700ed9e7e",
+  "generated_at": "2026-08-05T15:44:07.129Z",
+  "package_id": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
+  "retrieval": {
+    "access_mode": "local_and_production_database_proven_read_only",
+    "database_reads": true,
+    "database_writes": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

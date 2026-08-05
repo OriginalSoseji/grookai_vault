@@ -7,6 +7,7 @@ begin;
 create or replace function public.set_master_identity_graph_jpn_review_tables_updated_at_v1()
 returns trigger
 language plpgsql
+set search_path = pg_catalog
 as $function$
 begin
   new.updated_at = now();

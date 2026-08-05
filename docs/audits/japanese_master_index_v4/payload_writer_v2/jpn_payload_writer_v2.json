@@ -127,7 +127,7 @@
       "truncates": false,
       "vault_mutation": false
     },
-    "generated_at": "2026-08-05T15:25:01.736Z",
+    "generated_at": "2026-08-05T15:44:45.155Z",
     "mode": "plan",
     "payload_fingerprint_sha256": "b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c",
     "required_approval_message": "I approve applying the Japanese V4 master identity payload only: 1041 set rows, 5336 parent card_print rows, 5336 card_print_identity rows, 5461 source evidence rows, and 5336 family review rows, using writer payload fingerprint b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c and source preflight fingerprint b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b. I do not approve public child printing writes, Storage writes, image repoints, family promotion, English mutation, non-JPN mutation, pricing writes, vault writes, cleanup, quarantine, deletion, truncation, or rows outside this Japanese V4 payload.",
@@ -135,8 +135,8 @@
     "status": "writer_plan_complete_no_database_access",
     "writer_version": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2"
   },
-  "content_fingerprint_sha256": "a6227577cbeda570c2c87925a2d452ed95662fb77bc90e23d74c3950ec0e7ac5",
-  "generated_at": "2026-08-05T15:25:01.736Z",
+  "content_fingerprint_sha256": "37105771ae6fdbd20d573c200705b2c3e335c3c6e9f63fa90410ce5e5518b050",
+  "generated_at": "2026-08-05T15:44:45.155Z",
   "package_id": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2",
   "retrieval": {
     "access_mode": "verified_local_artifacts_only",

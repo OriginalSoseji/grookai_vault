@@ -1183,7 +1183,7 @@
     ]
   },
   "content_fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
-  "generated_at": "2026-07-27T05:35:55.426Z",
+  "generated_at": "2026-08-05T15:44:10.727Z",
   "package_id": "JPN-PAYLOAD-TARGET-SCHEMA-CONTRACT-V1",
   "retrieval": {
     "access_mode": "live_database_proven_read_only_plus_local_artifacts",
@@ -1191,8 +1191,8 @@
     "database_writes": false,
     "guard": {
       "default_transaction_read_only": "on",
-      "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226",
-      "environment_label": "production-read-only",
+      "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
+      "environment_label": "production-read-only-2026-08-05",
       "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
       "transaction_read_only": "on"
     },
