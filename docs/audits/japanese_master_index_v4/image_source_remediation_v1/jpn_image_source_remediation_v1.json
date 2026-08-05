@@ -1,0 +1,87 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "execution_boundary": {
+      "child_printing_writes": false,
+      "database_reads": false,
+      "database_writes": false,
+      "family_promotion": false,
+      "image_pointer_writes": false,
+      "scanner_writes": false,
+      "storage_reads": false,
+      "storage_writes": false
+    },
+    "generated_at": "2026-08-05T17:56:46.145Z",
+    "local_cache": {
+      "committed": false,
+      "purpose": "source_validation_only",
+      "root": ".tmp/jpn_master_index_v4_image_source_remediation_v1"
+    },
+    "remediation_version": "JPN-MASTER-INDEX-V4-IMAGE-SOURCE-REMEDIATION-V1",
+    "row_dataset": {
+      "content_fingerprint_sha256": "6504c7ea959be66549cf0f9d8d0798d85a244b0e8125ffb9451e3414ebaa6bde",
+      "dataset_key": "jpn_image_source_remediation_rows_v1",
+      "row_count": 53,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/image_source_remediation_v1/rows/jpn_image_source_remediation_rows_v1/jpn_image_source_remediation_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "source": {
+      "official_assertions_fingerprint_sha256": "0ce5133d8ea8298e721a0e477dcbd4cd433914eaad00897c67556ca6bdfbcc8e",
+      "readiness_fingerprint_sha256": "0cd2ef5619f4e90247aa5222ee5ca0d5645ddd005f5060a6bdae8c8fec5aaaa8",
+      "serebii_assertions_fingerprint_sha256": "7110fdcc0657fc705b5c1591397c2a08717b5f0359748e72d8d89b22c9762371"
+    },
+    "status": "source_remediation_complete",
+    "summary": {
+      "blocked_rows": 4,
+      "candidate_fetch_exceptions": 0,
+      "candidate_image_rows": 79,
+      "candidate_quality_counts": {
+        "high": 71,
+        "invalid": 1,
+        "usable": 7
+      },
+      "database_reads": 0,
+      "database_writes": 0,
+      "disposition_counts": {
+        "blocked_invalid_higher_resolution_source": 1,
+        "blocked_no_higher_resolution_exact_source": 3,
+        "ready_high_resolution_source": 36,
+        "review_ambiguous_official_image": 6,
+        "review_usable_below_high_resolution_threshold": 7
+      },
+      "invalid_candidate_rows": 1,
+      "official_match_counts": {
+        "ambiguous": 8,
+        "none": 14,
+        "unique": 31
+      },
+      "ready_rows": 36,
+      "review_rows": 13,
+      "scope_rows": 53,
+      "selected_authority_counts": {
+        "official_exact_set_number_printed_name_unique": 31,
+        "preserved_serebii_exact_row_detail_page": 5
+      },
+      "serebii_detail_rows": 32,
+      "serebii_page_fetch_failures": 0,
+      "storage_reads": 0,
+      "storage_writes": 0,
+      "valid_high_resolution_candidates": 71
+    }
+  },
+  "content_fingerprint_sha256": "34d55e59a676a0011bac0e4a29a0eea81037b6f60005d1cd805afb569f6db9f5",
+  "generated_at": "2026-08-05T17:56:46.145Z",
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-SOURCE-REMEDIATION-V1",
+  "retrieval": {
+    "access_mode": "verified_local_evidence_plus_bounded_https_source_remediation",
+    "database_reads": false,
+    "database_writes": false,
+    "local_cache_writes": true,
+    "source_fetches": true,
+    "storage_access": false,
+    "storage_writes": false
+  }
+}

@@ -29,6 +29,8 @@
     "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
     "jpn-master-index:integration-inventory": "node scripts/audits/japanese_master_index_v4/product_integration_inventory_v1.mjs",
     "jpn-master-index:image-readiness": "node scripts/audits/japanese_master_index_v4/image_acquisition_readiness_v1.mjs",
+    "jpn-master-index:image-remediation": "node scripts/audits/japanese_master_index_v4/image_source_remediation_v1.mjs",
+    "jpn-master-index:image-storage-canary-plan": "node scripts/audits/japanese_master_index_v4/image_storage_canary_plan_v1.mjs",
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",
     "release:journey:verify": "node scripts/audits/release_clean_account_journey_readback_v1.mjs",
     "web:build:strict": "node scripts/ci/run_next_build_strict.mjs",
