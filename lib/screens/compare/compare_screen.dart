@@ -22,10 +22,15 @@ ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
 }
 
 String _comparePrintingContextLabel(ComparePublicCard card) {
-  final printingGvId = (card.pricing?.printingGvId ?? '').trim();
-  return printingGvId.isEmpty
-      ? 'Printing not selected'
-      : 'Printing: $printingGvId';
+  final finishLabel = (card.selectedFinishLabel ?? '').trim();
+  if (finishLabel.isNotEmpty) {
+    return 'Printing: $finishLabel';
+  }
+  final printingGvId = (card.selectedPrintingGvId ?? '').trim();
+  if (printingGvId.isNotEmpty) {
+    return 'Printing: $printingGvId';
+  }
+  return 'Printing not selected';
 }
 
 class CompareScreen extends StatefulWidget {
@@ -73,6 +78,8 @@ class _CompareScreenState extends State<CompareScreen> {
     final cards = await PublicCompareService.fetchCardsByGvIds(
       client: _client,
       gvIds: gvIds,
+      selectionContexts:
+          CompareCardSelectionController.instance.selectionContexts,
     );
     await _primeOwnership(cards.map((card) => card.id));
     return cards;
@@ -633,6 +640,8 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           rarity: card.rarity,
                           imageUrl: card.hostedImageUrl,
                           fallbackImageUrl: card.providerFallbackImageUrl,
+                          selectedPrintingGvId: card.selectedPrintingGvId,
+                          selectedFinishLabel: card.selectedFinishLabel,
                         ),
                       ),
                     );
@@ -686,6 +695,16 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                _comparePrintingContextLabel(card),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 4),
               Text(

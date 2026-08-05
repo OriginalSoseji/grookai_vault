@@ -722,6 +722,12 @@ test("Flutter Compare and Network preserve governed pricing render evidence", ()
     /final CardSurfacePricingData\? pricing;/,
   );
   assert.match(FLUTTER_COMPARE_SERVICE, /pricing:\s*priceRow,/);
+  assert.match(
+    FLUTTER_COMPARE_SERVICE,
+    /CardSurfacePricingService\.fetchByCardPrintingIds/,
+  );
+  assert.match(FLUTTER_COMPARE_SERVICE, /selectedCardPrintingId/);
+  assert.match(FLUTTER_COMPARE_SERVICE, /selectedFinishLabel/);
   assert.doesNotMatch(FLUTTER_COMPARE_SERVICE, /rawPrice(?:Source|Timestamp)?/);
   assert.match(
     FLUTTER_COMPARE_SCREEN,

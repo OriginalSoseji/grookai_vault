@@ -9,6 +9,11 @@ const int kMinCompareCards = 2;
 
 final RegExp _compareCardIdPattern = RegExp(r'^GV-[A-Z0-9]+(?:-[A-Z0-9.]+)+$');
 
+String? _compareOptionalText(String? value) {
+  final normalized = (value ?? '').trim();
+  return normalized.isEmpty ? null : normalized;
+}
+
 String normalizeCompareCardId(String value) {
   final normalized = value.trim().toUpperCase();
   return _compareCardIdPattern.hasMatch(normalized) ? normalized : '';
@@ -44,10 +49,18 @@ class CompareCardSelectionController {
   final ValueNotifier<List<String>> _selectedIds = ValueNotifier<List<String>>(
     const [],
   );
+  final Map<String, CompareCardSelectionContext> _selectionContexts =
+      <String, CompareCardSelectionContext>{};
 
   ValueListenable<List<String>> get listenable => _selectedIds;
 
   List<String> get selectedIds => List<String>.unmodifiable(_selectedIds.value);
+
+  Map<String, CompareCardSelectionContext> get selectionContexts =>
+      Map<String, CompareCardSelectionContext>.unmodifiable(_selectionContexts);
+
+  CompareCardSelectionContext? contextFor(String gvId) =>
+      _selectionContexts[normalizeCompareCardId(gvId)];
 
   bool contains(String? gvId) {
     if (gvId == null) {
@@ -59,10 +72,16 @@ class CompareCardSelectionController {
   }
 
   void clear() {
+    _selectionContexts.clear();
     _selectedIds.value = const [];
   }
 
-  void toggle(String gvId) {
+  void toggle(
+    String gvId, {
+    String? cardPrintingId,
+    String? printingGvId,
+    String? finishLabel,
+  }) {
     final normalized = normalizeCompareCardId(gvId);
     if (normalized.isEmpty) {
       return;
@@ -71,12 +90,37 @@ class CompareCardSelectionController {
     final current = List<String>.from(_selectedIds.value);
     if (current.contains(normalized)) {
       current.remove(normalized);
+      _selectionContexts.remove(normalized);
     } else if (current.length < kMaxCompareCards) {
       current.add(normalized);
+      _selectionContexts[normalized] = CompareCardSelectionContext(
+        gvId: normalized,
+        cardPrintingId: _compareOptionalText(cardPrintingId),
+        printingGvId: _compareOptionalText(printingGvId),
+        finishLabel: _compareOptionalText(finishLabel),
+      );
     }
 
     _selectedIds.value = normalizeCompareCardIds(current);
   }
+}
+
+class CompareCardSelectionContext {
+  const CompareCardSelectionContext({
+    required this.gvId,
+    this.cardPrintingId,
+    this.printingGvId,
+    this.finishLabel,
+  });
+
+  final String gvId;
+  final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishLabel;
+
+  bool get hasExactPrinting =>
+      (cardPrintingId ?? '').trim().isNotEmpty &&
+      (finishLabel ?? '').trim().isNotEmpty;
 }
 
 class ComparePublicCard {
@@ -95,6 +139,9 @@ class ComparePublicCard {
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
+    this.selectedCardPrintingId,
+    this.selectedPrintingGvId,
+    this.selectedFinishLabel,
   });
 
   final String id;
@@ -111,6 +158,9 @@ class ComparePublicCard {
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
+  final String? selectedCardPrintingId;
+  final String? selectedPrintingGvId;
+  final String? selectedFinishLabel;
 
   String? get hostedImageUrl => buildCanonicalCardImageUrl(gvId);
 
@@ -140,6 +190,7 @@ class PublicCompareService {
   static Future<List<ComparePublicCard>> fetchCardsByGvIds({
     required SupabaseClient client,
     required Iterable<String> gvIds,
+    Map<String, CompareCardSelectionContext> selectionContexts = const {},
   }) async {
     final normalizedIds = normalizeCompareCardIds(gvIds);
     if (normalizedIds.isEmpty) {
@@ -163,10 +214,23 @@ class PublicCompareService {
         .where((value) => value.isNotEmpty)
         .toList();
 
-    final priceByCardId = await CardSurfacePricingService.fetchByCardPrintIds(
-      client: client,
-      cardPrintIds: cardIds,
-    );
+    final selectedCardPrintingIds = selectionContexts.values
+        .map((context) => context.cardPrintingId ?? '')
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    final pricingResults = await Future.wait([
+      CardSurfacePricingService.fetchByCardPrintIds(
+        client: client,
+        cardPrintIds: cardIds,
+      ),
+      CardSurfacePricingService.fetchByCardPrintingIds(
+        client: client,
+        cardPrintingIds: selectedCardPrintingIds,
+      ),
+    ]);
+    final priceByCardId = pricingResults[0];
+    final priceByCardPrintingId = pricingResults[1];
 
     final rowByGvId = <String, Map<String, dynamic>>{};
     for (final row in normalizedRows) {
@@ -185,7 +249,12 @@ class PublicCompareService {
 
           final setRecord = _extractSetRecord(row['sets']);
           final cardId = _cleanText(row['id']);
-          final priceRow = priceByCardId[cardId];
+          final selection = selectionContexts[gvId];
+          final selectedCardPrintingId =
+              selection?.cardPrintingId?.trim() ?? '';
+          final priceRow = selectedCardPrintingId.isEmpty
+              ? priceByCardId[cardId]
+              : priceByCardPrintingId[selectedCardPrintingId];
 
           return ComparePublicCard(
             id: cardId.isEmpty ? gvId : cardId,
@@ -210,6 +279,9 @@ class PublicCompareService {
             setIdentityModel: _normalizeOptionalText(
               setRecord?['identity_model'],
             ),
+            selectedCardPrintingId: selection?.cardPrintingId,
+            selectedPrintingGvId: selection?.printingGvId,
+            selectedFinishLabel: selection?.finishLabel,
           );
         })
         .whereType<ComparePublicCard>()
