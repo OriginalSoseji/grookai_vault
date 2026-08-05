@@ -1,0 +1,2301 @@
+{
+  "schema_version": "grookai_release_convergence_inventory_v1",
+  "generated_at": "2026-08-05T23:33:40.579Z",
+  "source_commit": "6258f020ff0da6ef06d1874816af0ccec3ab5608",
+  "source_branch": "release/8-week-convergence-v1",
+  "working_tree_clean_at_generation": false,
+  "authority": {
+    "release_plan": "Grookai 8-Week Product Completion Plan, 2026-08-05",
+    "visual_contract": "MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1",
+    "route_matrix": "docs/audits/mobile_web_native_parity_v1/route_state_matrix.json",
+    "boundary": "functional bridges and visual consistency; no wholesale redesign"
+  },
+  "totals": {
+    "web_pages": 55,
+    "collector_web_pages": 44,
+    "internal_web_pages": 11,
+    "collector_routes_with_route_loading": 5,
+    "collector_routes_with_route_error": 2,
+    "flutter_screen_classes": 78,
+    "web_component_files": 123,
+    "feature_flag_files": 28,
+    "public_engineering_copy_findings": 0,
+    "card_aspect_ratio_drift_findings": 0,
+    "radial_gradient_findings": 40,
+    "oversized_radius_findings": 0
+  },
+  "release_surfaces": [
+    {
+      "surface": "Pulse",
+      "routes": [
+        "/network",
+        "/network?segment=pulse",
+        "/network?segment=discover",
+        "/network?segment=following",
+        "/network/discover",
+        "/following"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:pulse",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "unread"
+      ]
+    },
+    {
+      "surface": "Messages",
+      "routes": [
+        "/network/inbox"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "threads",
+        "empty",
+        "send_error",
+        "blocked",
+        "reported"
+      ]
+    },
+    {
+      "surface": "Nearby",
+      "routes": [
+        "/network/nearby"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "permission_prompt",
+        "permission_denied",
+        "populated",
+        "empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Wall",
+      "routes": [
+        "/wall"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:wall",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "owner_actions",
+        "share",
+        "error",
+        "offline"
+      ]
+    },
+    {
+      "surface": "Public collector",
+      "routes": [
+        "/u/[slug]",
+        "/u/[slug]/collection",
+        "/u/[slug]/section/[section_id]",
+        "/u/[slug]/pokemon/[pokemon]",
+        "/u/[slug]/followers",
+        "/u/[slug]/following"
+      ],
+      "shell_mode": "standalone",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ]
+    },
+    {
+      "surface": "Scan",
+      "routes": [
+        "/scan"
+      ],
+      "shell_mode": "fullscreen",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "camera_prompt",
+        "camera_denied",
+        "ready",
+        "detecting",
+        "match",
+        "ambiguous",
+        "no_match",
+        "error"
+      ]
+    },
+    {
+      "surface": "Import and photos",
+      "routes": [
+        "/vault/import"
+      ],
+      "shell_mode": "fullscreen",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "choose_method",
+        "csv",
+        "photos",
+        "uploading",
+        "validation_error",
+        "complete"
+      ]
+    },
+    {
+      "surface": "Vault",
+      "routes": [
+        "/vault"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:vault",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "filtered_empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "hosted_image",
+        "fallback_image",
+        "missing_image"
+      ]
+    },
+    {
+      "surface": "Owned copy",
+      "routes": [
+        "/vault/card/[cardId]",
+        "/vault/gvvi/[gvvi_id]",
+        "/gvvi/[gvvi_id]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "owned",
+        "public",
+        "not_found",
+        "actions",
+        "share",
+        "error"
+      ]
+    },
+    {
+      "surface": "Search",
+      "routes": [
+        "/explore"
+      ],
+      "shell_mode": "root",
+      "dock": "visible:search",
+      "auth": "mixed",
+      "required_states": [
+        "discovery",
+        "typing",
+        "loading",
+        "results",
+        "empty",
+        "error",
+        "long_query"
+      ]
+    },
+    {
+      "surface": "Card detail",
+      "routes": [
+        "/card/[gv_id]",
+        "/card/[gv_id]/market",
+        "/provisional/[candidate_id]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "canonical",
+        "provisional",
+        "owned",
+        "not_owned",
+        "zoom",
+        "share",
+        "error"
+      ]
+    },
+    {
+      "surface": "Dex",
+      "routes": [
+        "/dex",
+        "/dex/[speciesSlug]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "root",
+        "species",
+        "owned_filter",
+        "empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Sets",
+      "routes": [
+        "/sets",
+        "/set/[set_code]",
+        "/sets/[set_code]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "list",
+        "detail",
+        "filtered_empty",
+        "error"
+      ]
+    },
+    {
+      "surface": "Compare",
+      "routes": [
+        "/compare"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "empty",
+        "populated",
+        "partial",
+        "error"
+      ]
+    },
+    {
+      "surface": "Binders",
+      "routes": [
+        "/binders",
+        "/binders/new",
+        "/binders/explore",
+        "/binders/[publicId]",
+        "/binder-templates/[templateId]"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ]
+    },
+    {
+      "surface": "Binder share and invitation",
+      "routes": [
+        "/b/[viewToken]",
+        "/binder-invites/[inviteToken]",
+        "/binder-invites/review",
+        "/binder-invites/respond"
+      ],
+      "shell_mode": "standalone_secret",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "preview",
+        "accept",
+        "decline",
+        "report",
+        "block",
+        "expired",
+        "revoked",
+        "not_found",
+        "error"
+      ]
+    },
+    {
+      "surface": "Account",
+      "routes": [
+        "/account"
+      ],
+      "shell_mode": "pushed",
+      "dock": "hidden",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "profile",
+        "vendor_tools",
+        "saving",
+        "saved",
+        "error"
+      ]
+    },
+    {
+      "surface": "Authentication and support",
+      "routes": [
+        "/login",
+        "/early-access",
+        "/legal",
+        "/privacy",
+        "/support",
+        "/account/delete"
+      ],
+      "shell_mode": "standalone",
+      "dock": "hidden",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ]
+    }
+  ],
+  "web_routes": [
+    {
+      "route": "/account/delete",
+      "file": "apps/web/src/app/account/delete/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/account",
+      "file": "apps/web/src/app/account/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "profile",
+        "vendor_tools",
+        "saving",
+        "saved",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/b/[viewToken]",
+      "file": "apps/web/src/app/b/[viewToken]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone_secret",
+      "auth": "mixed",
+      "required_states": [
+        "preview",
+        "accept",
+        "decline",
+        "report",
+        "block",
+        "expired",
+        "revoked",
+        "not_found",
+        "error"
+      ],
+      "route_loading_boundary": true,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binder-invites/review",
+      "file": "apps/web/src/app/binder-invites/review/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone_secret",
+      "auth": "mixed",
+      "required_states": [
+        "preview",
+        "accept",
+        "decline",
+        "report",
+        "block",
+        "expired",
+        "revoked",
+        "not_found",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binder-templates/[templateId]",
+      "file": "apps/web/src/app/binder-templates/[templateId]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binders/[publicId]",
+      "file": "apps/web/src/app/binders/[publicId]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binders/explore",
+      "file": "apps/web/src/app/binders/explore/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binders/new",
+      "file": "apps/web/src/app/binders/new/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/binders",
+      "file": "apps/web/src/app/binders/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty_library",
+        "continue_building",
+        "shared_with_me",
+        "invitations",
+        "completed",
+        "archived",
+        "workspace",
+        "activity",
+        "members",
+        "settings",
+        "no_access",
+        "frozen",
+        "offline",
+        "error"
+      ],
+      "route_loading_boundary": true,
+      "route_error_boundary": true,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/card/[gv_id]/market",
+      "file": "apps/web/src/app/card/[gv_id]/market/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "canonical",
+        "provisional",
+        "owned",
+        "not_owned",
+        "zoom",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/card/[gv_id]",
+      "file": "apps/web/src/app/card/[gv_id]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "canonical",
+        "provisional",
+        "owned",
+        "not_owned",
+        "zoom",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/compare",
+      "file": "apps/web/src/app/compare/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "empty",
+        "populated",
+        "partial",
+        "error"
+      ],
+      "route_loading_boundary": true,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/dex/[speciesSlug]",
+      "file": "apps/web/src/app/dex/[speciesSlug]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "root",
+        "species",
+        "owned_filter",
+        "empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/dex",
+      "file": "apps/web/src/app/dex/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "root",
+        "species",
+        "owned_filter",
+        "empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/early-access",
+      "file": "apps/web/src/app/early-access/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/explore",
+      "file": "apps/web/src/app/explore/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "mixed",
+      "required_states": [
+        "discovery",
+        "typing",
+        "loading",
+        "results",
+        "empty",
+        "error",
+        "long_query"
+      ],
+      "route_loading_boundary": true,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/following",
+      "file": "apps/web/src/app/following/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "unread"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/early-access",
+      "file": "apps/web/src/app/founder/early-access/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/entitlements",
+      "file": "apps/web/src/app/founder/entitlements/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/metrics",
+      "file": "apps/web/src/app/founder/metrics/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder",
+      "file": "apps/web/src/app/founder/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/pricing",
+      "file": "apps/web/src/app/founder/pricing/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/staging",
+      "file": "apps/web/src/app/founder/staging/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/warehouse/[candidateId]",
+      "file": "apps/web/src/app/founder/warehouse/[candidateId]/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/founder/warehouse",
+      "file": "apps/web/src/app/founder/warehouse/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/gvvi/[gvvi_id]",
+      "file": "apps/web/src/app/gvvi/[gvvi_id]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "owned",
+        "public",
+        "not_found",
+        "actions",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/legal",
+      "file": "apps/web/src/app/legal/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/login",
+      "file": "apps/web/src/app/login/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/network/discover",
+      "file": "apps/web/src/app/network/discover/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "unread"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/network/inbox",
+      "file": "apps/web/src/app/network/inbox/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "threads",
+        "empty",
+        "send_error",
+        "blocked",
+        "reported"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/network/nearby",
+      "file": "apps/web/src/app/network/nearby/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "permission_prompt",
+        "permission_denied",
+        "populated",
+        "empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/network",
+      "file": "apps/web/src/app/network/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "unread"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/",
+      "file": "apps/web/src/app/page.tsx",
+      "audience": "collector",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": true,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/privacy",
+      "file": "apps/web/src/app/privacy/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/provisional/[candidate_id]",
+      "file": "apps/web/src/app/provisional/[candidate_id]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "canonical",
+        "provisional",
+        "owned",
+        "not_owned",
+        "zoom",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/review/visual-search",
+      "file": "apps/web/src/app/review/visual-search/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/scan",
+      "file": "apps/web/src/app/scan/page.tsx",
+      "audience": "collector",
+      "shell_mode": "fullscreen",
+      "auth": "required",
+      "required_states": [
+        "camera_prompt",
+        "camera_denied",
+        "ready",
+        "detecting",
+        "match",
+        "ambiguous",
+        "no_match",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/set/[set_code]",
+      "file": "apps/web/src/app/set/[set_code]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "list",
+        "detail",
+        "filtered_empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/sets/[set_code]",
+      "file": "apps/web/src/app/sets/[set_code]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "list",
+        "detail",
+        "filtered_empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/sets",
+      "file": "apps/web/src/app/sets/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "list",
+        "detail",
+        "filtered_empty",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/submit",
+      "file": "apps/web/src/app/submit/page.tsx",
+      "audience": "collector",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/support",
+      "file": "apps/web/src/app/support/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "default",
+        "loading",
+        "success",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]/collection",
+      "file": "apps/web/src/app/u/[slug]/collection/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]/followers",
+      "file": "apps/web/src/app/u/[slug]/followers/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]/following",
+      "file": "apps/web/src/app/u/[slug]/following/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]",
+      "file": "apps/web/src/app/u/[slug]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]/pokemon/[pokemon]",
+      "file": "apps/web/src/app/u/[slug]/pokemon/[pokemon]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/u/[slug]/section/[section_id]",
+      "file": "apps/web/src/app/u/[slug]/section/[section_id]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "standalone",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "not_found",
+        "blocked",
+        "report",
+        "share"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/vault/card/[cardId]",
+      "file": "apps/web/src/app/vault/card/[cardId]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "owned",
+        "public",
+        "not_found",
+        "actions",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/vault/gvvi/[gvvi_id]",
+      "file": "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
+      "audience": "collector",
+      "shell_mode": "pushed",
+      "auth": "mixed",
+      "required_states": [
+        "loading",
+        "owned",
+        "public",
+        "not_found",
+        "actions",
+        "share",
+        "error"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/vault/import",
+      "file": "apps/web/src/app/vault/import/page.tsx",
+      "audience": "collector",
+      "shell_mode": "fullscreen",
+      "auth": "required",
+      "required_states": [
+        "choose_method",
+        "csv",
+        "photos",
+        "uploading",
+        "validation_error",
+        "complete"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/vault",
+      "file": "apps/web/src/app/vault/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "filtered_empty",
+        "partial_error",
+        "full_error",
+        "offline",
+        "hosted_image",
+        "fallback_image",
+        "missing_image"
+      ],
+      "route_loading_boundary": true,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/visual-fixtures/parity/[scenario]",
+      "file": "apps/web/src/app/visual-fixtures/parity/[scenario]/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/visual-fixtures/release-convergence/[scenario]",
+      "file": "apps/web/src/app/visual-fixtures/release-convergence/[scenario]/page.tsx",
+      "audience": "internal",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/wall",
+      "file": "apps/web/src/app/wall/page.tsx",
+      "audience": "collector",
+      "shell_mode": "root",
+      "auth": "required",
+      "required_states": [
+        "loading",
+        "populated",
+        "empty",
+        "owner_actions",
+        "share",
+        "error",
+        "offline"
+      ],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    }
+  ],
+  "unmapped_collector_routes": [
+    {
+      "route": "/",
+      "file": "apps/web/src/app/page.tsx",
+      "audience": "collector",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": true,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    },
+    {
+      "route": "/submit",
+      "file": "apps/web/src/app/submit/page.tsx",
+      "audience": "collector",
+      "shell_mode": null,
+      "auth": null,
+      "required_states": [],
+      "route_loading_boundary": false,
+      "route_error_boundary": false,
+      "covered_by_root_error_boundary": true,
+      "covered_by_root_not_found": true
+    }
+  ],
+  "matrix_routes_without_exact_page": [
+    {
+      "route": "/binder-invites/[inviteToken]",
+      "surface": "Binder share and invitation"
+    },
+    {
+      "route": "/binder-invites/respond",
+      "surface": "Binder share and invitation"
+    }
+  ],
+  "flutter_screens": [
+    {
+      "class_name": "CardDetailScreen",
+      "file": "lib/card_detail_screen.dart"
+    },
+    {
+      "class_name": "_GrookaiBootWarmupScreen",
+      "file": "lib/main.dart"
+    },
+    {
+      "class_name": "HomePage",
+      "file": "lib/main.dart"
+    },
+    {
+      "class_name": "_RequiredProfileSetupScreen",
+      "file": "lib/main_shell.dart"
+    },
+    {
+      "class_name": "AppShell",
+      "file": "lib/main_shell.dart"
+    },
+    {
+      "class_name": "GettingStartedScreen",
+      "file": "lib/main_shell.dart"
+    },
+    {
+      "class_name": "LoginPage",
+      "file": "lib/main_shell.dart"
+    },
+    {
+      "class_name": "VaultPage",
+      "file": "lib/main_vault.dart"
+    },
+    {
+      "class_name": "BinderLibraryPage",
+      "file": "lib/models/binders/binder_models.dart"
+    },
+    {
+      "class_name": "BinderChecklistPage",
+      "file": "lib/models/binders/binder_models.dart"
+    },
+    {
+      "class_name": "AccountScreen",
+      "file": "lib/screens/account/account_screen.dart"
+    },
+    {
+      "class_name": "FollowingScreen",
+      "file": "lib/screens/account/following_screen.dart"
+    },
+    {
+      "class_name": "ImportCollectionScreen",
+      "file": "lib/screens/account/import_collection_screen.dart"
+    },
+    {
+      "class_name": "SubmitMissingCardScreen",
+      "file": "lib/screens/account/submit_missing_card_screen.dart"
+    },
+    {
+      "class_name": "BinderDestinationPickerScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderExactCopyPickerScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderBulkPreviewScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderInvitationRouteScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderInvitePeopleScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderShareSettingsScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderOwnerTransferScreen",
+      "file": "lib/screens/binders/binder_collaboration_screens.dart"
+    },
+    {
+      "class_name": "BinderCreateScreen",
+      "file": "lib/screens/binders/binder_create_screen.dart"
+    },
+    {
+      "class_name": "BinderCustomChecklistEditorScreen",
+      "file": "lib/screens/binders/binder_custom_checklist_screen.dart"
+    },
+    {
+      "class_name": "BinderDetailScreen",
+      "file": "lib/screens/binders/binder_detail_screen.dart"
+    },
+    {
+      "class_name": "BinderCanonicalRouteScreen",
+      "file": "lib/screens/binders/binder_discovery_screens.dart"
+    },
+    {
+      "class_name": "BinderExternalProjectionScreen",
+      "file": "lib/screens/binders/binder_discovery_screens.dart"
+    },
+    {
+      "class_name": "BinderExploreScreen",
+      "file": "lib/screens/binders/binder_discovery_screens.dart"
+    },
+    {
+      "class_name": "BinderTemplatesScreen",
+      "file": "lib/screens/binders/binder_discovery_screens.dart"
+    },
+    {
+      "class_name": "BinderLegacyConversionScreen",
+      "file": "lib/screens/binders/binder_discovery_screens.dart"
+    },
+    {
+      "class_name": "BinderLibraryScreen",
+      "file": "lib/screens/binders/binder_library_screen.dart"
+    },
+    {
+      "class_name": "BinderModerationQueueScreen",
+      "file": "lib/screens/binders/binder_moderation_screen.dart"
+    },
+    {
+      "class_name": "CompareScreen",
+      "file": "lib/screens/compare/compare_screen.dart"
+    },
+    {
+      "class_name": "DexWallShowcaseScreen",
+      "file": "lib/screens/dex/dex_wall_showcase_screen.dart"
+    },
+    {
+      "class_name": "GrookaiDexScreen",
+      "file": "lib/screens/dex/grookai_dex_screen.dart"
+    },
+    {
+      "class_name": "GrookaiDexSpeciesScreen",
+      "file": "lib/screens/dex/grookai_dex_species_screen.dart"
+    },
+    {
+      "class_name": "FounderCardSignalDetailScreen",
+      "file": "lib/screens/founder/founder_card_signal_detail_screen.dart"
+    },
+    {
+      "class_name": "FounderMetricsScreen",
+      "file": "lib/screens/founder/founder_metrics_screen.dart"
+    },
+    {
+      "class_name": "FounderSetSignalDetailScreen",
+      "file": "lib/screens/founder/founder_set_signal_detail_screen.dart"
+    },
+    {
+      "class_name": "CollectorMemoriesScreen",
+      "file": "lib/screens/grookai_objects/collector_memories_screen.dart"
+    },
+    {
+      "class_name": "ForSaleTermsScreen",
+      "file": "lib/screens/grookai_objects/for_sale_terms_screen.dart"
+    },
+    {
+      "class_name": "GrookaiObjectsHubScreen",
+      "file": "lib/screens/grookai_objects/grookai_objects_hub_screen.dart"
+    },
+    {
+      "class_name": "LotPricingScreen",
+      "file": "lib/screens/grookai_objects/lot_pricing_screen.dart"
+    },
+    {
+      "class_name": "MemoryCardCaptureScreen",
+      "file": "lib/screens/grookai_objects/memory_card_capture_screen.dart"
+    },
+    {
+      "class_name": "PublicGvviScreen",
+      "file": "lib/screens/gvvi/public_gvvi_screen.dart"
+    },
+    {
+      "class_name": "IdentityScanScreen",
+      "file": "lib/screens/identity_scan/identity_scan_screen.dart"
+    },
+    {
+      "class_name": "NetworkDiscoverScreen",
+      "file": "lib/screens/network/network_discover_screen.dart"
+    },
+    {
+      "class_name": "NetworkInboxScreen",
+      "file": "lib/screens/network/network_inbox_screen.dart"
+    },
+    {
+      "class_name": "NetworkNearbyMapScreen",
+      "file": "lib/screens/network/network_nearby_map_screen.dart"
+    },
+    {
+      "class_name": "NetworkNearbyScreen",
+      "file": "lib/screens/network/network_nearby_screen.dart"
+    },
+    {
+      "class_name": "NetworkScreen",
+      "file": "lib/screens/network/network_screen.dart"
+    },
+    {
+      "class_name": "_NetworkPrimaryActionShell",
+      "file": "lib/screens/network/network_screen.dart"
+    },
+    {
+      "class_name": "NetworkThreadScreen",
+      "file": "lib/screens/network/network_thread_screen.dart"
+    },
+    {
+      "class_name": "ProvisionalCardScreen",
+      "file": "lib/screens/provisional/provisional_card_screen.dart"
+    },
+    {
+      "class_name": "PublicCollectorRelationshipScreen",
+      "file": "lib/screens/public_collector/public_collector_relationship_screen.dart"
+    },
+    {
+      "class_name": "PublicCollectorScreen",
+      "file": "lib/screens/public_collector/public_collector_screen.dart"
+    },
+    {
+      "class_name": "ConditionCameraScreen",
+      "file": "lib/screens/scanner/condition_camera_screen.dart"
+    },
+    {
+      "class_name": "FixedSlotCaptureScreen",
+      "file": "lib/screens/scanner/fixed_slot_capture_screen.dart"
+    },
+    {
+      "class_name": "NativeScannerPhase0Screen",
+      "file": "lib/screens/scanner/native_scanner_phase0_screen.dart"
+    },
+    {
+      "class_name": "QuadAdjustScreen",
+      "file": "lib/screens/scanner/quad_adjust_screen.dart"
+    },
+    {
+      "class_name": "ScanCaptureScreen",
+      "file": "lib/screens/scanner/scan_capture_screen.dart"
+    },
+    {
+      "class_name": "ScanIdentifyScreen",
+      "file": "lib/screens/scanner/scan_identify_screen.dart"
+    },
+    {
+      "class_name": "ScannerBuildPlaceholderScreen",
+      "file": "lib/screens/scanner/scanner_build_placeholder_screen.dart"
+    },
+    {
+      "class_name": "ScanCaptureV5Screen",
+      "file": "lib/screens/scanner_v5/scan_capture_v5_screen.dart"
+    },
+    {
+      "class_name": "PublicSetDetailScreen",
+      "file": "lib/screens/sets/public_set_detail_screen.dart"
+    },
+    {
+      "class_name": "PublicSetsScreen",
+      "file": "lib/screens/sets/public_sets_screen.dart"
+    },
+    {
+      "class_name": "CollectionProjectsScreen",
+      "file": "lib/screens/vault/collection_projects_screen.dart"
+    },
+    {
+      "class_name": "SlabUpgradeScreen",
+      "file": "lib/screens/vault/slab_upgrade_screen.dart"
+    },
+    {
+      "class_name": "VaultGvviScreen",
+      "file": "lib/screens/vault/vault_gvvi_screen.dart"
+    },
+    {
+      "class_name": "VaultManageCardScreen",
+      "file": "lib/screens/vault/vault_manage_card_screen.dart"
+    },
+    {
+      "class_name": "BinderPage",
+      "file": "lib/services/binders/binder_repository.dart"
+    },
+    {
+      "class_name": "GrookaiDexSpeciesPage",
+      "file": "lib/services/grookai_dex/grookai_dex_service.dart"
+    },
+    {
+      "class_name": "CardJourneyCollectorsPage",
+      "file": "lib/services/network/card_journey_service.dart"
+    },
+    {
+      "class_name": "CardJourneyMomentsPage",
+      "file": "lib/services/network/card_journey_service.dart"
+    },
+    {
+      "class_name": "LocalCommunityFeedPage",
+      "file": "lib/services/network/local_community_feed_service.dart"
+    },
+    {
+      "class_name": "NetworkStreamPage",
+      "file": "lib/services/network/network_stream_service.dart"
+    },
+    {
+      "class_name": "PulsePage",
+      "file": "lib/services/network/pulse_service.dart"
+    },
+    {
+      "class_name": "_CardZoomPage",
+      "file": "lib/widgets/card_zoom_viewer.dart"
+    },
+    {
+      "class_name": "_PanelShell",
+      "file": "lib/widgets/onboarding/onboarding_ladder_sheet.dart"
+    }
+  ],
+  "feature_flags": [
+    {
+      "file": "apps/web/src/lib/ai/grookaiAiRuntimeGuard.ts",
+      "environment_names": [
+        "GROOKAI_AI_MODEL_CALLS_ENABLED"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/ai/grookaiAssistantAccess.ts",
+      "environment_names": [
+        "GROOKAI_ASSISTANT_ENABLED",
+        "GROOKAI_ASSISTANT_FREE_TRIAL_ENABLED"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/binders/featureFlags.ts",
+      "environment_names": [
+        "GROOKAI_BINDERS_COMMUNITY_V1_ENABLED",
+        "GROOKAI_BINDERS_CUSTOM_V1_ENABLED",
+        "GROOKAI_BINDERS_NOTIFICATIONS_V1_ENABLED",
+        "GROOKAI_BINDERS_PERSONAL_V1_ENABLED",
+        "GROOKAI_BINDERS_PUBLIC_V1_ENABLED",
+        "GROOKAI_BINDERS_PULSE_SHARING_V1_ENABLED",
+        "GROOKAI_BINDERS_SCHEMA_RPC_V1_ENABLED",
+        "GROOKAI_BINDERS_SET_V1_ENABLED",
+        "GROOKAI_BINDERS_SHARED_V1_ENABLED",
+        "GROOKAI_BINDERS_TEMPLATES_V1_ENABLED",
+        "GROOKAI_BINDERS_VIEW_LINKS_V1_ENABLED"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/canon/catalogImageSourcesV1.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/cards/childDisplayImageFallbacks.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/explore/getExploreRows.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/founder/getFounderMarketSignals.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/founder/getPricingOpsSummary.ts",
+      "environment_names": [
+        "EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT",
+        "EBAY_BROWSE_DAILY_BUDGET",
+        "PRICING_JOB_MIN_START_DELAY_MS"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/getPublicCardByGvId.ts",
+      "environment_names": [
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NODE_ENV",
+        "SUPABASE_PUBLISHABLE_KEY",
+        "SUPABASE_SECRET_KEY",
+        "SUPABASE_URL"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/getSiteOrigin.ts",
+      "environment_names": [
+        "NEXT_PUBLIC_SITE_URL",
+        "SITE_URL"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/grookaiDex/featureFlag.ts",
+      "environment_names": [
+        "GROOKAI_DEX_V1_DISABLED",
+        "NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/network/localCommunityFeatureFlag.ts",
+      "environment_names": [
+        "APP_ENV",
+        "LOCAL_COMMUNITY_FEED_V1_ENABLED",
+        "NEXT_PUBLIC_LOCAL_COMMUNITY_FEED_V1_ENABLED",
+        "VERCEL_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/profileMedia.ts",
+      "environment_names": [
+        "NEXT_PUBLIC_SUPABASE_URL"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/provisional/getPromotionTransitionState.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/provisional/getProvisionalPromotionContinuity.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/provisional/getPublicProvisionalCards.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/provisional/getRecentlyConfirmedCanonicalCards.ts",
+      "environment_names": [
+        "NODE_ENV"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/review/visualSearchReviewerAccess.ts",
+      "environment_names": [
+        "GROOKAI_VISUAL_SEARCH_REVIEWER_USER_IDS"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/slabs/psaVerificationAdapter.ts",
+      "environment_names": [
+        "PSA_API_BASE_URL",
+        "PSA_API_TOKEN"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/supabase/admin.ts",
+      "environment_names": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "SUPABASE_SECRET_KEY",
+        "SUPABASE_URL"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/supabase/config.ts",
+      "environment_names": [
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "SUPABASE_PUBLISHABLE_KEY",
+        "SUPABASE_URL"
+      ]
+    },
+    {
+      "file": "apps/web/src/lib/visualParity/fixtureMode.ts",
+      "environment_names": [
+        "GROOKAI_VISUAL_TEST_MODE",
+        "NODE_ENV",
+        "VERCEL"
+      ]
+    },
+    {
+      "file": "lib/secrets.dart",
+      "environment_names": [
+        "GROOKAI_WEB_BASE_URL",
+        "SUPABASE_PUBLISHABLE_KEY",
+        "SUPABASE_URL"
+      ]
+    },
+    {
+      "file": "lib/services/binders/binder_feature_flags.dart",
+      "environment_names": []
+    },
+    {
+      "file": "lib/services/scanner/fixed_slot_capture_identity_v1.dart",
+      "environment_names": [
+        "SCANNER_V3_EMBEDDING_ENDPOINT",
+        "SCANNER_V3_IDENTITY_BASE_ENDPOINT",
+        "SCANNER_V3_RESOLVE_ENDPOINT"
+      ]
+    },
+    {
+      "file": "lib/services/scanner_v3/embedding_service_v1.dart",
+      "environment_names": [
+        "SCANNER_V3_EMBEDDING_ENDPOINT"
+      ]
+    },
+    {
+      "file": "lib/services/scanner_v3/scanner_v3_identity_pipeline_v8.dart",
+      "environment_names": [
+        "SCANNER_V3_EMBEDDING_ENDPOINT",
+        "SCANNER_V3_IDENTITY_BASE_ENDPOINT",
+        "SCANNER_V3_RESOLVE_ENDPOINT"
+      ]
+    },
+    {
+      "file": "lib/services/scanner_v3/vector_candidate_service_v1.dart",
+      "environment_names": [
+        "SCANNER_V3_VECTOR_ENDPOINT"
+      ]
+    }
+  ],
+  "public_artifact_suppression_candidates": [],
+  "visual_drift": {
+    "card_aspect_ratio": [],
+    "radial_gradients": [
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 282,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 20% 0%, rgba(74, 144, 226, 0.12), transparent 19rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 296,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 86% 12%, rgba(16, 185, 129, 0.08), transparent 16rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 340,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 18% 0%, rgba(74, 144, 226, 0.16), transparent 23rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 341,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.1), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 384,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 2%, rgba(255, 255, 255, 0.96), transparent 17rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 407,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 0% 0%, rgba(74, 144, 226, 0.1), transparent 16rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 427,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 16% 0%, rgba(74, 144, 226, 0.08), transparent 16rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 482,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 11% 4%, rgba(74, 144, 226, 0.2), transparent 21rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 483,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.13), transparent 17rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 496,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.12), transparent 15rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 551,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.94), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 559,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.86), transparent 9rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 587,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.18), transparent 21rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 588,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 12%, rgba(74, 144, 226, 0.16), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 601,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.1), transparent 16rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 668,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.95), transparent 3rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 806,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 10% 0%, rgba(74, 144, 226, 0.18), transparent 22rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 807,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.12), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 820,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 82% 18%, rgba(74, 144, 226, 0.1), transparent 17rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 828,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.96), transparent 14rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1079,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.14), transparent 19rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1089,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 86% 12%, rgba(16, 185, 129, 0.08), transparent 16rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1103,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 23rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1104,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.1), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1119,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.28), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1141,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12), transparent 16rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1177,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 12% 0%, rgba(59, 130, 246, 0.24), transparent 22rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1178,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 86% 18%, rgba(16, 185, 129, 0.14), transparent 17rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1188,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.14), transparent 15rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1218,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1225,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.26), transparent 9rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1286,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 0%, rgba(51, 65, 85, 0.34), transparent 15rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1323,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.14), transparent 22rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1324,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.16), transparent 19rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1334,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.08), transparent 16rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1355,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.16), transparent 3.2rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1409,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.16), transparent 22rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1410,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.1), transparent 18rem),"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/globals.css",
+        "line": 1420,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 82% 18%, rgba(59, 130, 246, 0.08), transparent 17rem);"
+      },
+      {
+        "finding": "radial_gradient",
+        "file": "apps/web/src/app/scan/scan.module.css",
+        "line": 17,
+        "matched_text": "radial-gradient(",
+        "context": "radial-gradient(circle at 50% 38%, rgb(42 49 60 / 78%), transparent 36%),"
+      }
+    ],
+    "oversized_radii": []
+  },
+  "runtime_evidence": {
+    "release_screenshots": [
+      {
+        "file": "docs/audits/release_convergence_v1/screenshots/error-mobile.png",
+        "size_bytes": 17023,
+        "sha256": "638e12a85defc481a814684fa5aad8fcbe70529ec6c5312bf06368a4285400ca"
+      },
+      {
+        "file": "docs/audits/release_convergence_v1/screenshots/private-mobile.png",
+        "size_bytes": 16193,
+        "sha256": "b69c452c6447aa1f64afe1547deef67bfdbc1ee1c57fd75d84b4bf66fa961562"
+      },
+      {
+        "file": "docs/audits/release_convergence_v1/screenshots/search-vault-desktop.png",
+        "size_bytes": 64342,
+        "sha256": "823dfeb4d139ba0e186a9eada1080d8accf9591b3512cac9cd02a2c6d73961b9"
+      },
+      {
+        "file": "docs/audits/release_convergence_v1/screenshots/search-vault-mobile.png",
+        "size_bytes": 61367,
+        "sha256": "b78b034dd7f64f6e15bd0fd83510bccd8d140a4f0993c1e17b64a634193ad864"
+      }
+    ],
+    "canonical_samsung_screenshots": [
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/menu-open.png",
+        "size_bytes": 31838,
+        "sha256": "3c5f156ac7804f080485bc1ffa71e2ec6019b390d1aa8baac783f83e9d02f1f1"
+      },
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/pulse-empty.png",
+        "size_bytes": 22620,
+        "sha256": "369095efa3f6e411fe3db5ff5a0518c8a2d91b4a86bda56cafe2f7cf5c66caac"
+      },
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/scan-ready.png",
+        "size_bytes": 139348,
+        "sha256": "6413de516db1ca786ccb894b5ae31d1d2ba7c65c1fc445475cb8552b03c5b0bf"
+      },
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/search-discovery.png",
+        "size_bytes": 32135,
+        "sha256": "9aaa38ad52e1507b62eb3628223a62b9dcced1f96e681c03dd3dd718e5645e19"
+      },
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/vault-populated.png",
+        "size_bytes": 91151,
+        "sha256": "66d39ac34eeb909578203beb1dc00f96d3d6c9f4060d901cfb141211deeb37b9"
+      },
+      {
+        "file": "apps/web/tests/parity/__screenshots__/canonical-samsung/wall-populated.png",
+        "size_bytes": 124342,
+        "sha256": "faa9022ca5cbeeb1d263ac690fc77d740b3382556882cae0da37b2f518a34efe"
+      }
+    ]
+  },
+  "evidence_limits": [
+    "Static route boundaries do not prove runtime loading, empty, error, private, signed-out, dense, or offline behavior.",
+    "A route-level error file count does not include the shared root error boundary.",
+    "Feature-flag inventory records code references only and does not prove deployed values.",
+    "Visual drift findings are diagnostics, not automatic failures; each occurrence requires surface review.",
+    "Collector-uploaded note photos are not card-art frames and are excluded from canonical card-aspect diagnostics."
+  ],
+  "content_sha256": "3b6966322a628e15c7d4d7e62574c146e989847f310300e362daec3ea15ff457"
+}
