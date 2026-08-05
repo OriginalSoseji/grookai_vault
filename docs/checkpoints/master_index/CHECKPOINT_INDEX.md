@@ -4,6 +4,7 @@ Checkpoint registry for English and Japanese Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
+| 2026-08-05 | [Japanese Master Index V4 Image Pointer Apply Readiness V1](20260805_japanese_master_index_v4_image_pointer_apply_readiness_v1.md) | Records founder approval and freezes the one-shot 53-row durable image-pointer apply, including exact package/proof/script hashes, three-column scope, full-row CAS, all-row locking, and post-commit readback. |
 | 2026-08-05 | [Japanese Master Index V4 Image Pointer Rollback Proof Completion V1](20260805_japanese_master_index_v4_image_pointer_rollback_proof_completion_v1.md) | Records the exact 53-row transaction proof: all Storage objects reverified, all expected updates read back inside the transaction, rollback completed, all before rows restored, and zero durable database writes. |
 | 2026-08-05 | [Japanese Master Index V4 Image Pointer Rollback Proof Readiness V1](20260805_japanese_master_index_v4_image_pointer_rollback_proof_readiness_v1.md) | Freezes the exact 53-row, three-column image-pointer package after 53/53 Storage readback and zero-write database snapshot; authorizes only a transaction that must roll back. |
 | 2026-08-05 | [Japanese Master Index V4 Permanent Storage Upload Completion V1](20260805_japanese_master_index_v4_permanent_storage_upload_completion_v1.md) | Records the approved 53-object durable upload: all targets initially absent, 53 exact readbacks, 53 retained objects, and zero database or pointer access. |
