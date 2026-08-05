@@ -18,6 +18,16 @@ class VaultPrintingIdentityPresentation {
   bool get isExact => status == VaultPrintingIdentityStatus.exact;
 }
 
+String vaultCardArtworkLabel(
+  String cardName,
+  VaultPrintingIdentityPresentation printingIdentity,
+) {
+  final normalizedName = cardName.trim();
+  return normalizedName.isEmpty
+      ? printingIdentity.label
+      : '$normalizedName · ${printingIdentity.label}';
+}
+
 VaultPrintingIdentityPresentation resolveVaultPrintingIdentityPresentation(
   Map<String, dynamic> row,
 ) {

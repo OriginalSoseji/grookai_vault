@@ -76,6 +76,10 @@ const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
   "utf8",
 );
+const FLUTTER_MAIN = readFileSync(
+  path.join(ROOT, "lib", "main.dart"),
+  "utf8",
+);
 const FLUTTER_VAULT = readFileSync(
   path.join(ROOT, "lib", "main_vault.dart"),
   "utf8",
@@ -593,6 +597,7 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(FLUTTER_PRICE, /Collector asking price/);
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
   assert.match(FLUTTER_PRICE, /Price unavailable/);
+  assert.match(FLUTTER_MAIN, /pricing\?\.hasVisibleValue == true[\s\S]*?CardSurfacePriceText[\s\S]*?: Text\(\s*'Value pending'/);
   assert.match(FLUTTER_VAULT, /Vault market value unavailable/);
   assert.match(
     FLUTTER_VAULT,
@@ -717,6 +722,11 @@ test("Flutter Compare and Network preserve governed pricing render evidence", ()
   assert.match(
     FLUTTER_COMPARE_SCREEN,
     /CardSurfacePriceText\(\s*pricing:\s*card\.pricing,/s,
+  );
+  assert.match(FLUTTER_COMPARE_SCREEN, /Printing not selected/);
+  assert.match(
+    FLUTTER_COMPARE_SCREEN,
+    /_compareDisplayIdentity\(card\)\.displayName/,
   );
   assert.match(
     FLUTTER_NETWORK_SCREEN,

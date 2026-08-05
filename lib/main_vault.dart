@@ -97,7 +97,10 @@ class _VaultItemTile extends StatelessWidget {
 
     Widget thumb() {
       return CardSurfaceArtwork(
-        label: displayIdentity.baseName,
+        label: vaultCardArtworkLabel(
+          displayIdentity.baseName,
+          printingIdentity,
+        ),
         imageUrl: artwork.primaryImageUrl,
         fallbackImageUrl: artwork.fallbackImageUrl,
         width: compact ? 40 : 46,
@@ -349,7 +352,10 @@ class _VaultGridTile extends StatelessWidget {
                     child: _VaultGridArtwork(
                       imageUrl: artwork.primaryImageUrl,
                       fallbackImageUrl: artwork.fallbackImageUrl,
-                      name: displayIdentity.baseName,
+                      name: vaultCardArtworkLabel(
+                        displayIdentity.baseName,
+                        printingIdentity,
+                      ),
                       onViewDetails: onTap,
                     ),
                   ),
@@ -1656,6 +1662,9 @@ class VaultPageState extends State<VaultPage> {
               .trim();
           final artwork = _vaultArtwork(row);
           final pricing = _pricingByCardPrintId[cardPrintId];
+          final printingIdentity = resolveVaultPrintingIdentityPresentation(
+            row,
+          );
 
           return SizedBox(
             width: 140,
@@ -1679,7 +1688,10 @@ class VaultPageState extends State<VaultPage> {
                       Expanded(
                         child: Center(
                           child: CardSurfaceArtwork(
-                            label: displayIdentity.baseName,
+                            label: vaultCardArtworkLabel(
+                              displayIdentity.baseName,
+                              printingIdentity,
+                            ),
                             imageUrl: artwork.primaryImageUrl,
                             fallbackImageUrl: artwork.fallbackImageUrl,
                             width: 88,

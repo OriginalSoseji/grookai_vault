@@ -21,6 +21,13 @@ ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
   );
 }
 
+String _comparePrintingContextLabel(ComparePublicCard card) {
+  final printingGvId = (card.pricing?.printingGvId ?? '').trim();
+  return printingGvId.isEmpty
+      ? 'Printing not selected'
+      : 'Printing: $printingGvId';
+}
+
 class CompareScreen extends StatefulWidget {
   const CompareScreen({super.key});
 
@@ -444,7 +451,6 @@ class _CompareUnderfilledState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compare = CompareCardSelectionController.instance;
-    final selectedIds = compare.selectedIds;
     final missingCount = (kMinCompareCards - cards.length).clamp(0, 4);
     final title = cards.isEmpty ? 'Pick cards to compare' : 'Add one more card';
     final body = cards.isEmpty
@@ -472,20 +478,32 @@ class _CompareUnderfilledState extends StatelessWidget {
               height: 1.45,
             ),
           ),
-          if (selectedIds.isNotEmpty) ...[
+          if (cards.isNotEmpty) ...[
             const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: selectedIds
-                  .map(
-                    (gvId) => Chip(
-                      label: Text(gvId),
-                      onDeleted: () => compare.toggle(gvId),
-                    ),
-                  )
-                  .toList(),
-            ),
+            for (final card in cards)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  _compareDisplayIdentity(card).displayName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  <String>[
+                    if ((card.setName ?? '').trim().isNotEmpty) card.setName!,
+                    if (card.number.trim().isNotEmpty && card.number != '—')
+                      '#${card.number}',
+                    _comparePrintingContextLabel(card),
+                  ].join(' • '),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: IconButton(
+                  tooltip: 'Remove ${card.name} from compare',
+                  onPressed: () => compare.toggle(card.gvId),
+                  icon: const Icon(Icons.close_rounded),
+                ),
+              ),
           ],
         ],
       ),

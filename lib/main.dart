@@ -1217,7 +1217,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                             textAlign: TextAlign.left,
                           )
                         : Text(
-                            'TCGPlayer Market',
+                            'Value pending',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.labelSmall?.copyWith(
