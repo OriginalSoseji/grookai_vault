@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import PublicCardImage from "@/components/PublicCardImage";
 import {
   SPECIAL_VARIANT_FIRST_PASS_VERSION,
   SPECIAL_VARIANT_FOUNDER_VERSION,
@@ -51,6 +51,43 @@ function emptyDraft(): ReviewDraft {
 
 function imageUrl(row: SpecialVariantEvidenceRow) {
   return `/api/review/special-variants/image/${encodeURIComponent(row.card_printing_id)}`;
+}
+
+function ReviewEvidenceImage({
+  row,
+  alt,
+  imageClassName,
+  fallbackClassName,
+  sizes,
+}: {
+  row: SpecialVariantEvidenceRow;
+  alt: string;
+  imageClassName: string;
+  fallbackClassName: string;
+  sizes: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [row.card_printing_id, row.source_image.sha256]);
+
+  if (failed) {
+    return <div className={fallbackClassName}>Image unavailable</div>;
+  }
+
+  return (
+    <Image
+      src={imageUrl(row)}
+      alt={alt}
+      className={imageClassName}
+      width={row.source_image.width}
+      height={row.source_image.height}
+      sizes={sizes}
+      unoptimized
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 function downloadJson(fileName: string, value: unknown) {
@@ -416,13 +453,12 @@ export default function SpecialVariantReviewClient({
                 className="block w-full cursor-zoom-in bg-slate-100 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label={`Open evidence for ${row.name} ${row.variant_key}`}
               >
-                <PublicCardImage
-                  src={imageUrl(row)}
+                <ReviewEvidenceImage
+                  row={row}
                   alt={`${row.name} ${formatLabel(row.variant_key)} ${formatLabel(row.finish_key)}`}
                   imageClassName="aspect-[3/4] h-auto w-full object-contain"
                   fallbackClassName="flex aspect-[3/4] items-center justify-center px-4 text-center text-sm text-slate-500"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  unoptimized
                 />
               </button>
               <div className="space-y-4 p-4">
@@ -559,13 +595,12 @@ export default function SpecialVariantReviewClient({
         >
           <div className="mx-auto grid min-h-full max-w-6xl items-center gap-6 lg:grid-cols-[minmax(0,1fr)_24rem]" onClick={(event) => event.stopPropagation()}>
             <div className="flex min-h-[60vh] items-center justify-center">
-              <PublicCardImage
-                src={imageUrl(activeEvidence)}
+              <ReviewEvidenceImage
+                row={activeEvidence}
                 alt={`${activeEvidence.name} exact printing evidence`}
                 imageClassName="block h-auto max-h-[90vh] w-auto max-w-full rounded-lg bg-white object-contain shadow-2xl"
                 fallbackClassName="flex min-h-[60vh] w-full items-center justify-center rounded-lg bg-white px-6 text-center text-sm text-slate-500"
                 sizes="75vw"
-                unoptimized
               />
             </div>
             <aside className="rounded-lg bg-white p-5 text-slate-950 shadow-2xl">

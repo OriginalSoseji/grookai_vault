@@ -201,6 +201,8 @@ test('portal and executor preserve no-write review and canonical parent boundari
   const executor = readFileSync('scripts/audits/special_variant_printing_review_gate_v1.mjs', 'utf8');
   assert.match(portal, /window\.localStorage/);
   assert.match(portal, /server_writes_performed: false/);
+  assert.match(portal, /src=\{imageUrl\(row\)\}/);
+  assert.doesNotMatch(portal, /PublicCardImage/);
   assert.doesNotMatch(portal, /fetch\([^)]*,\s*\{[^}]*method:\s*["'](?:POST|PUT|PATCH|DELETE)/s);
   assert.match(imageRoute, /\.download\(row\.storage_path\)/);
   assert.match(imageRoute, /createHash\("sha256"\)\.update\(bytes\)\.digest\("hex"\)/);
