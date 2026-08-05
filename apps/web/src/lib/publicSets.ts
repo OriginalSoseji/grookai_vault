@@ -16,6 +16,8 @@ import {
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   chooseCanonicalSetRow,
+  choosePreferredEquivalentSetRow,
+  escapePostgrestLikePattern,
   getEmbeddedCardPrintCount,
   getManifestCardPrintCount,
   type EmbeddedCardPrintCount,
@@ -268,16 +270,35 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
     throw new Error(setError.message);
   }
 
-  const canonicalSetsByName = new Map<string, PublicSetSummary>();
+  const equivalentSetsByCode = new Map<
+    string,
+    { row: SetRow; cardCount: number }
+  >();
 
   for (const row of (setRows ?? []) as SetRow[]) {
-    const candidate = mapSetRowToSummary(
-      row,
-      getManifestCardPrintCount(publicSetCardCounts, row.code),
-    );
-    if (!candidate) {
+    const normalizedCode = normalizeSetCode(row.code);
+    if (!normalizedCode || !row.name) {
       continue;
     }
+
+    const cardCount = getManifestCardPrintCount(
+      publicSetCardCounts,
+      normalizedCode,
+    );
+    const existing = equivalentSetsByCode.get(normalizedCode);
+    equivalentSetsByCode.set(normalizedCode, {
+      row: existing
+        ? choosePreferredEquivalentSetRow(existing.row, row)
+        : row,
+      cardCount: Math.max(existing?.cardCount ?? 0, cardCount),
+    });
+  }
+
+  const canonicalSetsByName = new Map<string, PublicSetSummary>();
+
+  for (const { row, cardCount } of equivalentSetsByCode.values()) {
+    const candidate = mapSetRowToSummary(row, cardCount);
+    if (!candidate) continue;
 
     const canonicalNameKey = normalizeSetQuery(candidate.name);
 
@@ -325,21 +346,26 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   const { data, error } = await supabase
     .from("sets")
     .select(PUBLIC_SET_DETAIL_SELECT)
-    .ilike("code", normalizedCode)
+    .ilike("code", escapePostgrestLikePattern(normalizedCode))
     .not("card_prints.gv_id", "is", null)
-    .not("card_prints.set_code", "is", null)
-    .limit(1)
-    .maybeSingle();
+    .not("card_prints.set_code", "is", null);
 
   if (error) {
     throw new Error(error.message);
   }
 
-  const setInfo = data
-    ? mapSetRowToSummary(
-        data as SetRow,
-        getEmbeddedCardPrintCount((data as SetRow).card_prints),
-      )
+  const rows = (data ?? []) as SetRow[];
+  const preferredRow = rows.reduce<SetRow | null>(
+    (preferred, row) =>
+      preferred ? choosePreferredEquivalentSetRow(preferred, row) : row,
+    null,
+  );
+  const combinedCardCount = rows.reduce(
+    (sum, row) => sum + getEmbeddedCardPrintCount(row.card_prints),
+    0,
+  );
+  const setInfo = preferredRow
+    ? mapSetRowToSummary(preferredRow, combinedCardCount)
     : null;
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });
@@ -355,6 +381,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   }
 
   const supabase = createServerSupabase();
+  const setCodePattern = escapePostgrestLikePattern(normalizedCode);
 
   const selectClause = `
       id,
@@ -383,7 +410,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       supabase
         .from("card_prints")
         .select(selectClause)
-        .eq("set_code", normalizedCode)
+        .ilike("set_code", setCodePattern)
         .not("gv_id", "is", null)
         .order("number_plain", { ascending: true, nullsFirst: false })
         .order("number", { ascending: true })
@@ -429,7 +456,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
-    .eq("set_code", normalizedCode)
+    .ilike("set_code", setCodePattern)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
     .order("number", { ascending: true })
@@ -464,10 +491,11 @@ export const getPublicWorldChampionshipDecklist = cache(
     }
 
     const supabase = createServerSupabase();
+    const setCodePattern = escapePostgrestLikePattern(normalizedCode);
     const { data, error } = await supabase
       .from("card_prints")
       .select("id,gv_id,name,number,number_plain,rarity,external_ids")
-      .eq("set_code", normalizedCode)
+      .ilike("set_code", setCodePattern)
       .eq("variant_key", "world_championship_deck_replica")
       .not("gv_id", "is", null)
       .order("number_plain", { ascending: true, nullsFirst: false })

@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "bytes": 168738,
+      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.json",
+      "sha256": "fec9ad66f347979606ac7a9f8b15bdf665608b5325f60f6447fa48f0deff25d5"
+    },
+    {
+      "bytes": 6174,
+      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.md",
+      "sha256": "bfce3a5ce6a2c2a92052d3a83d98aaf67538b632217564eeda247afe200f1b18"
+    }
+  ],
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PRODUCT-SMOKE-V1"
+}
