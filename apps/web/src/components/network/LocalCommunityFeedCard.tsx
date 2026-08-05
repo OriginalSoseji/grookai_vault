@@ -55,8 +55,8 @@ export default function LocalCommunityFeedCard({
             fallbackSrc={row.imageFallbackUrls[0]}
             fallbackSources={row.imageFallbackUrls.slice(1)}
             alt={row.cardName}
-            imageClassName="aspect-[3/4] w-[136px] rounded-[1rem] border border-slate-200 bg-slate-50 object-contain p-2"
-            fallbackClassName="flex aspect-[3/4] w-[136px] flex-col items-center justify-center gap-2 rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
+            imageClassName="aspect-[5/7] w-[136px] rounded-[22px] bg-slate-50 object-contain"
+            fallbackClassName="flex aspect-[5/7] w-[136px] flex-col items-center justify-center gap-2 rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
             fallbackLabel={
               <>
                 <span className="text-sm font-semibold text-slate-700">{row.cardName}</span>

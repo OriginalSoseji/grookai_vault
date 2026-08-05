@@ -164,8 +164,8 @@ export default async function PublicVaultInstancePage(
                   fallbackSrc={heroImage.fallbackImageUrl ?? undefined}
                   fallbackSources={heroImage.fallbackImageUrls.slice(1)}
                   alt={detail.cardName}
-                  imageClassName="aspect-[3/4] w-full object-contain"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
+                  imageClassName="aspect-[5/7] w-full object-contain"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
                   fallbackLabel={detail.cardName}
                 />
               </div>
@@ -254,8 +254,8 @@ export default async function PublicVaultInstancePage(
                     <PublicCardImage
                       src={detail.frontImageUrl}
                       alt={`${detail.cardName} front`}
-                      imageClassName="aspect-[3/4] w-full object-contain"
-                      fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
+                      imageClassName="aspect-[5/7] w-full object-contain"
+                      fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
                       fallbackLabel={detail.cardName}
                     />
                   </div>
@@ -266,8 +266,8 @@ export default async function PublicVaultInstancePage(
                     <PublicCardImage
                       src={detail.backImageUrl}
                       alt={`${detail.cardName} back`}
-                      imageClassName="aspect-[3/4] w-full object-contain"
-                      fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
+                      imageClassName="aspect-[5/7] w-full object-contain"
+                      fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
                       fallbackLabel={detail.cardName}
                     />
                   </div>

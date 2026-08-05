@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import PublicCardImage from "@/components/PublicCardImage";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -137,7 +138,14 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
         )}
       </td>
       <td className="px-4 py-3 text-right">
-        <CompareCardButton gvId={card.gv_id} variant="compact" />
+        <div className="flex flex-col items-end gap-2">
+          <ExploreResultActions
+            cardHref={href}
+            cardName={displayIdentity.display_name}
+            compact
+          />
+          <CompareCardButton gvId={card.gv_id} variant="compact" />
+        </div>
       </td>
     </tr>
   );

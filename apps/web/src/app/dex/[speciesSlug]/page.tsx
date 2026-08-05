@@ -533,7 +533,7 @@ export default async function GrookaiDexSpeciesPage(
             />
           );
           const artworkClassName =
-            "block aspect-[3/4] self-start overflow-hidden rounded-md border border-[var(--gv-border-hairline)] bg-[var(--gv-surface-container)]";
+            "block aspect-[5/7] self-start overflow-hidden rounded-[22px] border border-[var(--gv-border-hairline)] bg-[var(--gv-surface-container)]";
 
           return (
             <article key={`${card.cardPrintId}:${card.role}`} className={articleClassName}>

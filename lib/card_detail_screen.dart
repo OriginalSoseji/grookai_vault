@@ -1737,7 +1737,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                 SizedBox(
                                   width: 58,
                                   child: AspectRatio(
-                                    aspectRatio: 3 / 4,
+                                    aspectRatio: 2.5 / 3.5,
                                     child: CardSurfaceArtwork(
                                       label: displayIdentity.displayName,
                                       imageUrl: artwork.primaryImageUrl,
@@ -1983,7 +1983,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxWidth),
             child: AspectRatio(
-              aspectRatio: 3 / 4,
+              aspectRatio: 2.5 / 3.5,
               child: CardSurfaceArtwork(
                 label: _displayTitle,
                 imageUrl: url,

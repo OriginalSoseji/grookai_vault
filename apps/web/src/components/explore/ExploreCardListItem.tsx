@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import PublicCardImage from "@/components/PublicCardImage";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -133,6 +134,11 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           </div>
         </Link>
         <div className="flex flex-col items-end gap-3">
+          <ExploreResultActions
+            cardHref={href}
+            cardName={displayIdentity.display_name}
+            compact
+          />
           <CompareCardButton gvId={card.gv_id} variant="compact" />
           <div className="md:hidden">
             {canViewPricing ? (

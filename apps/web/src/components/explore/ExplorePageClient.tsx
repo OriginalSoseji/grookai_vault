@@ -121,8 +121,8 @@ const SEARCH_RESULT_INTENT_COPY: Record<
     description: "Specific finishes, variants, stamps, and printing IDs.",
   },
   identity: {
-    label: "Card identity matches",
-    description: "Primary card matches ranked by the resolver.",
+    label: "Card matches",
+    description: "Cards that match the name and version details in your search.",
   },
   cameo: {
     label: "Cameo matches",
@@ -140,12 +140,6 @@ const COLLECTOR_SEARCH_PRESETS = [
     title: "Modern Pikachu reverse holos",
     description: "Pikachu reverse holos from 2014 through today.",
     query: "q=Pikachu&year_min=2014&year_max=2026&finish=reverse",
-  },
-  {
-    key: "missing-images",
-    title: "Missing image worklist",
-    description: "Cards that still need exact image attention.",
-    query: "image_state=missing",
   },
   {
     key: "stamped-specials",
@@ -167,8 +161,8 @@ const COLLECTOR_SEARCH_PRESETS = [
   },
   {
     key: "exact-images",
-    title: "Exact image catalog",
-    description: "Cards with exact image confidence.",
+    title: "Cards with verified images",
+    description: "Browse cards with an image of the exact version.",
     query: "image_state=exact",
   },
 ];
@@ -1543,7 +1537,7 @@ export default function ExplorePageClient({
               Search cards
             </h1>
             <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
-              Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
+              Search by card, finish, stamp, year, artist, ownership, and image availability.
             </p>
             <div className="flex flex-wrap gap-2 pt-1">
               <Link
@@ -1605,7 +1599,7 @@ export default function ExplorePageClient({
                     {resultCountLabel}
                     {variantFamilyCopy ? (
                       <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
-                        Source-backed family copy
+                        Verified variant context
                       </span>
                     ) : null}
                   </p>
@@ -2041,7 +2035,7 @@ export default function ExplorePageClient({
                           TCGPlayer Market
                         </th>
                         <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          Compare
+                          Actions
                         </th>
                       </tr>
                     </thead>

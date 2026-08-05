@@ -245,8 +245,8 @@ function MobileDetailRow({
               src={item.image_url}
               fallbackSrc={item.canonical_image_url}
               alt={displayIdentity.display_name}
-              imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
-              fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
+              imageClassName="aspect-[5/7] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
+              fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
               fallbackLabel={displayIdentity.display_name}
             />
           </Link>

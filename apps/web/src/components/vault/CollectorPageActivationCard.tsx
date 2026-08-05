@@ -43,7 +43,7 @@ export function CollectorPageActivationCard({ variant, href }: CollectorPageActi
   const copy = COPY_BY_VARIANT[variant];
 
   return (
-    <section className="rounded-[1.65rem] border border-slate-200/80 bg-[radial-gradient(circle_at_top_left,_rgba(148,163,184,0.14),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-5 py-5 shadow-[0_28px_60px_-44px_rgba(15,23,42,0.35)] md:rounded-[1.9rem] md:px-6 md:py-6">
+    <section className="rounded-[16px] border border-slate-200/80 bg-slate-50 px-5 py-5 shadow-[0_28px_60px_-44px_rgba(15,23,42,0.35)] md:px-6 md:py-6 dark:border-white/[0.08] dark:bg-white/[0.03]">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0 space-y-2">
           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">{copy.eyebrow}</p>

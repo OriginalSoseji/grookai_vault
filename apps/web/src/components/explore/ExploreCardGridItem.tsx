@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -125,6 +126,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
           />
         ) : null
       }
+      actions={(
+        <ExploreResultActions
+          cardHref={href}
+          cardName={displayIdentity.display_name}
+        />
+      )}
       imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[160px]"}
       className="gv-search-result-card"
     />

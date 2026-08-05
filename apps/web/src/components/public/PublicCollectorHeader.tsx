@@ -119,7 +119,7 @@ export function PublicCollectorHeader({
       ) : (
         <div
           aria-hidden="true"
-          className="h-20 bg-[radial-gradient(circle_at_top_left,_rgba(226,232,240,0.9),_transparent_42%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)] sm:h-24"
+          className="h-20 bg-slate-100 sm:h-24 dark:bg-white/[0.04]"
         />
       )}
       <div className="relative z-10 px-4 pb-4 sm:px-6 sm:pb-5 md:px-8 md:pb-6">

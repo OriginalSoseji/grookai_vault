@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   applicationName: "Grookai Vault",
   title: "Grookai Vault",
   description:
-    "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+    "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   openGraph: {
     title: "Grookai Vault",
     description:
-      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+      "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
     siteName: "Grookai Vault",
     type: "website",
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Grookai Vault",
     description:
-      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+      "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   },
 };
 

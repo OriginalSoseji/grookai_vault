@@ -2,7 +2,7 @@ export default function CardRouteLoading() {
   return (
     <div className="grid animate-fade gap-10 py-4 md:grid-cols-[40%_60%]">
       <div className="rounded-[16px] border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="aspect-[3/4] w-full animate-pulse rounded-[12px] bg-slate-100" />
+        <div className="aspect-[5/7] w-full animate-pulse rounded-[22px] bg-slate-100" />
       </div>
       <div className="space-y-6">
         <div className="space-y-3 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">

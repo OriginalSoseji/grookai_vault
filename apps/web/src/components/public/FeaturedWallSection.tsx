@@ -57,8 +57,8 @@ function FeaturedWallCard({
                 fallbackSrc={card.image_fallback_urls?.[0] ?? card.canonical_image_url}
                 fallbackSources={card.image_fallback_urls?.slice(1)}
                 alt={displayIdentity.display_name}
-                imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                imageClassName="aspect-[5/7] w-full bg-slate-50 object-contain transition duration-200 group-hover:scale-[1.01]"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
                 fallbackLabel={displayIdentity.display_name}
               />
               {imagePresentation.compactBadgeLabel ? (
@@ -117,8 +117,8 @@ function FeaturedWallCard({
               <PublicCardImage
                 src={card.back_image_url}
                 alt={`${displayIdentity.display_name} back`}
-                imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-4"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                imageClassName="aspect-[5/7] w-full bg-slate-50 object-contain"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
                 fallbackLabel={`${displayIdentity.display_name} back`}
               />
             </div>

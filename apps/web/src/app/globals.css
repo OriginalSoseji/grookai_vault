@@ -9,14 +9,14 @@
   --gv-space-2: 8px;
   --gv-space-3: 12px;
   --gv-space-4: 16px;
-  --gv-space-5: 24px;
+  --gv-space-5: 22px;
   --gv-space-6: 32px;
   --gv-space-7: 48px;
   --gv-space-8: 64px;
-  --gv-radius-sm: 12px;
-  --gv-radius-md: 18px;
-  --gv-radius-lg: 24px;
-  --gv-radius-xl: 32px;
+  --gv-radius-sm: 10px;
+  --gv-radius-md: 16px;
+  --gv-radius-lg: 22px;
+  --gv-radius-xl: 26px;
   --gv-primary: #4a90e2;
   --gv-primary-soft: rgba(74, 144, 226, 0.08);
   --gv-primary-container: #d8e6ff;
@@ -42,9 +42,7 @@
 
 body {
   @apply bg-slate-50 text-slate-900;
-  background:
-    radial-gradient(circle at 50% -12%, rgba(74, 144, 226, 0.1), transparent 34rem),
-    linear-gradient(180deg, #ffffff 0%, var(--gv-surface-page) 46%, #eef3f8 100%);
+  background: var(--gv-surface-page);
   color: var(--gv-text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -81,10 +79,7 @@ html.gv-dark {
 }
 
 html.gv-dark body {
-  background:
-    radial-gradient(circle at 50% -16%, rgba(59, 130, 246, 0.14), transparent 34rem),
-    radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.05), transparent 20rem),
-    linear-gradient(180deg, #000000 0%, #02040a 48%, #000000 100%);
+  background: #05070b;
   color: #e2e8f0;
 }
 
@@ -258,7 +253,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-soft-surface {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 24px;
+  border-radius: var(--gv-radius-md);
   background: var(--gv-surface-glass);
   box-shadow:
     var(--gv-shadow-sm),
@@ -268,10 +263,8 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-premium-surface {
   border: 1px solid var(--gv-border-soft);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.95), transparent 18rem),
-    var(--gv-surface-elevated);
+  border-radius: var(--gv-radius-md);
+  background: var(--gv-surface-elevated);
   box-shadow:
     var(--gv-shadow-md),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
@@ -313,7 +306,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   max-width: 100%;
   min-width: 0;
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 24px;
+  border-radius: var(--gv-radius-md);
   background: rgba(255, 255, 255, 0.72);
   box-shadow:
     0 28px 86px -70px rgba(15, 23, 42, 0.46),
@@ -365,10 +358,8 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-image-stage {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.92), transparent 18rem),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(242, 246, 252, 0.52) 100%);
+  border-radius: var(--gv-radius-lg);
+  background: var(--gv-surface-container-low);
   box-shadow:
     0 44px 110px -70px rgba(15, 23, 42, 0.84),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
@@ -376,7 +367,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-action-panel {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 28px;
+  border-radius: var(--gv-radius-md);
   background: rgba(255, 255, 255, 0.62);
   box-shadow:
     0 28px 78px -62px rgba(15, 23, 42, 0.52),
@@ -987,35 +978,24 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-visual-card {
   position: relative;
   min-width: 0;
-  border: 1px solid rgba(15, 23, 42, 0.07);
-  border-radius: 32px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.96), transparent 14rem),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.78) 100%);
-  box-shadow:
-    0 32px 86px -66px rgba(15, 23, 42, 0.58),
-    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  border: 0;
+  border-radius: var(--gv-radius-md);
+  background: transparent;
+  box-shadow: none;
   transition:
-    border-color var(--gv-transition-default),
-    box-shadow var(--gv-transition-default),
-    transform var(--gv-transition-default);
+    color var(--gv-transition-default),
+    opacity var(--gv-transition-default);
 }
 
 .gv-visual-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(74, 144, 226, 0.18);
-  box-shadow:
-    0 38px 110px -72px rgba(15, 23, 42, 0.62),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  transform: none;
 }
 
 .gv-visual-card-image {
   border: 0;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.9), transparent 14rem),
-    linear-gradient(180deg, rgba(246, 248, 252, 0.58) 0%, rgba(238, 243, 249, 0.34) 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.64);
+  border-radius: var(--gv-radius-lg);
+  background: var(--gv-surface-container-low);
+  box-shadow: none;
 }
 
 .gv-visual-card-utility {
@@ -1035,12 +1015,12 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-search-result-card.gv-visual-card {
-  border-radius: 22px;
+  border-radius: var(--gv-radius-md);
 }
 
 .gv-search-result-card .gv-visual-card-image {
-  border-radius: 17px;
-  background: linear-gradient(180deg, rgba(246, 248, 252, 0.32) 0%, rgba(238, 243, 249, 0.14) 100%);
+  border-radius: var(--gv-radius-lg);
+  background: var(--gv-surface-container-low);
 }
 
 .gv-search-result-card .gv-visual-card-utility {
@@ -1637,6 +1617,35 @@ html.gv-dark .gv-card-identity-wash {
 .gv-card-detail-image-shell {
   max-width: min(100%, 360px);
   margin-inline: auto;
+}
+
+.gv-product-state {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--gv-space-4);
+  padding-block: var(--gv-space-5);
+}
+
+.gv-product-state-compact {
+  padding-block: var(--gv-space-3);
+}
+
+.gv-product-state-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: var(--gv-radius-md);
+  color: var(--gv-text-secondary);
+  background: var(--gv-surface-container-low);
+}
+
+@media (max-width: 480px) {
+  .gv-product-state {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 639px) {

@@ -1534,7 +1534,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
               minWidth: stacked ? 0 : 176,
             ),
             child: AspectRatio(
-              aspectRatio: 3 / 4,
+              aspectRatio: 2.5 / 3.5,
               child: Stack(
                 children: [
                   Positioned.fill(
@@ -3737,7 +3737,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 3 / 4,
+                aspectRatio: 2.5 / 3.5,
                 child: CardSurfaceArtwork(
                   label: displayIdentity.displayName,
                   imageUrl: artwork.primaryImageUrl,

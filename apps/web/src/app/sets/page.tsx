@@ -56,7 +56,7 @@ export default async function SetsPage(props: SetsPageProps) {
                 <p className="gv-eyebrow">Public Sets</p>
                 <h1 className="gv-display-title">Browse Pokemon Sets</h1>
                 <p className="gv-body-copy max-w-2xl">
-                  Explore physical sets, special releases, promos, decks, and collector lanes using Grookai&apos;s reconciled catalog.
+                  Explore physical sets, special releases, promos, and decks. Open a set to see its cards and the exact versions available.
                 </p>
               </div>
             </div>

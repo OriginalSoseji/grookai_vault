@@ -93,14 +93,17 @@ test("runtime shell manifest is the exact five-item owner-approved order", () =>
 
 test("production and fallback mobile docks share the manifest and presentation", () => {
   const dock = read("apps/web/src/components/layout/MobileBottomNav.tsx");
+  const presentation = read(
+    "apps/web/src/components/mobileParity/MobileParityDock.tsx",
+  );
   const appChrome = read("apps/web/src/components/layout/AppChrome.tsx");
   const layout = read("apps/web/src/app/layout.tsx");
 
-  assert.match(dock, /MOBILE_PRIMARY_DOCK/);
-  assert.match(dock, /function MobileDockPresentation\(/);
-  assert.match(dock, /MOBILE_PRIMARY_DOCK\.map\(\(item\) =>/);
+  assert.match(dock, /MobileParityDock/);
+  assert.match(presentation, /MOBILE_PRIMARY_DOCK/);
+  assert.match(presentation, /MOBILE_PRIMARY_DOCK\.map\(\(item\) =>/);
   assert.equal(
-    dock.match(/<MobileDockPresentation/g)?.length,
+    dock.match(/<MobileParityDock/g)?.length,
     2,
     "production and fallback must render the same dock presentation",
   );
@@ -109,7 +112,7 @@ test("production and fallback mobile docks share the manifest and presentation",
   assert.doesNotMatch(dock, /\bdexEnabled\b|case "dex"|label: "Dex"|label: "Profile"/);
   assert.match(
     appChrome,
-    /<MobileBottomNav wallHref=\{authState\.wallHref\} \/>/,
+    /<MobileBottomNav[\s\S]*?wallHref=\{authState\.wallHref\}[\s\S]*?pulseUnreadCount=\{authState\.networkUnreadCount\}/,
   );
 
   assert.match(
@@ -118,12 +121,13 @@ test("production and fallback mobile docks share the manifest and presentation",
   );
   assert.match(
     dock,
-    /items=\{resolveMobileDockItems\(currentWallHref\)\}/,
+    /wallHref=\{currentWallHref\}/,
   );
   assert.match(
-    dock,
-    /active=\{item\.kind === "root" && activeKey === item\.key\}/,
+    presentation,
+    /const selected = item\.kind === "root" && item\.key === activeKey/,
   );
+  assert.match(dock, /useKeyboardVisible/);
 });
 
 test("production mobile chrome suppresses approved Scan and Binder route families", () => {

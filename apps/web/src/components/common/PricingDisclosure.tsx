@@ -12,7 +12,7 @@ export default function PricingDisclosure() {
       </p>
 
       <p>
-        Pricing is withheld when canonical mapping is ambiguous, the finish does not match, or source evidence is stale.
+        Pricing is withheld when the exact printing is uncertain, the finish does not match, or the latest source data is stale.
       </p>
     </section>
   );

@@ -71,8 +71,8 @@ export default async function ProvisionalCardPage(
                 src={model.image_url ?? undefined}
                 alt={model.display_name}
                 loading="eager"
-                imageClassName="aspect-[3/4] w-full rounded-[8px] bg-white object-contain"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[8px] bg-white px-6 text-center text-sm text-slate-500"
+                imageClassName="aspect-[5/7] w-full rounded-[22px] bg-white object-contain"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white px-6 text-center text-sm text-slate-500"
                 fallbackLabel="Image unavailable"
               />
             </div>

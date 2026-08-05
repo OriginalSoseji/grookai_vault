@@ -1809,7 +1809,7 @@ class _SearchResultActionSheet extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 256),
                 child: AspectRatio(
-                  aspectRatio: 3 / 4,
+                  aspectRatio: 2.5 / 3.5,
                   child: CardSurfaceArtwork(
                     label: displayIdentity.displayName,
                     imageUrl: card.catalogImageUrl,

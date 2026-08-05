@@ -9,6 +9,7 @@ function readSource(relativePath) {
 test("web shell uses Pulse as the visible network surface label", () => {
   const siteHeader = readSource("apps/web/src/components/layout/SiteHeader.tsx");
   const mobileBottomNav = readSource("apps/web/src/components/layout/MobileBottomNav.tsx");
+  const mobileDockPresentation = readSource("apps/web/src/components/mobileParity/MobileParityDock.tsx");
   const layoutFallback = readSource("apps/web/src/app/layout.tsx");
   const shellManifest = readSource("apps/web/src/lib/mobileParity/shellManifest.ts");
 
@@ -19,11 +20,12 @@ test("web shell uses Pulse as the visible network surface label", () => {
     shellManifest,
     /key: "pulse",\s+label: "Pulse",\s+href: "\/network",\s+kind: "root"/,
   );
-  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK/);
-  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK\.map/);
+  assert.match(mobileBottomNav, /MobileParityDock/);
+  assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK/);
+  assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK\.map/);
   assert.match(layoutFallback, /<MobileBottomNavFallback \/>/);
 
-  for (const source of [siteHeader, mobileBottomNav, layoutFallback, shellManifest]) {
+  for (const source of [siteHeader, mobileBottomNav, mobileDockPresentation, layoutFallback, shellManifest]) {
     assert.doesNotMatch(source, /label: "Feed"/);
     assert.doesNotMatch(source, />Feed</);
     assert.doesNotMatch(source, /\? "Feed"/);

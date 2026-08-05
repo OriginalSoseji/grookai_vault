@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <div className="space-y-5 rounded-[28px] border border-slate-200 bg-white p-7 text-sm leading-7 text-slate-700 shadow-sm">
+      <div className="space-y-5 rounded-[16px] border border-slate-200 bg-white p-7 text-sm leading-7 text-slate-700 shadow-sm">
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
           <ul className="list-disc space-y-2 pl-5">

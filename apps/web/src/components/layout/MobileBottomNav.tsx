@@ -1,20 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
 import {
-  MOBILE_PRIMARY_DOCK,
   shouldSuppressMobileChrome,
-  type MobilePrimaryDockItem,
   type MobilePrimaryDockKey,
 } from "@/lib/mobileParity/shellManifest";
 
 type MobileBottomNavProps = {
   wallHref: string | null;
-};
-
-type ResolvedMobileNavItem = Omit<MobilePrimaryDockItem, "href"> & {
-  href: string | null;
+  pulseUnreadCount?: number;
 };
 
 function isSearchPath(pathname: string) {
@@ -32,7 +28,9 @@ function isSearchPath(pathname: string) {
   );
 }
 
-function getActiveMobileNavKey(pathname: string): MobilePrimaryDockKey | null {
+function getActiveMobileNavKey(
+  pathname: string,
+): Exclude<MobilePrimaryDockKey, "scan"> | null {
   if (isSearchPath(pathname)) {
     return "search";
   }
@@ -52,156 +50,32 @@ function getActiveMobileNavKey(pathname: string): MobilePrimaryDockKey | null {
   return null;
 }
 
-function NavIcon({
-  name,
-  active,
-}: {
-  name: MobilePrimaryDockKey;
-  active: boolean;
-}) {
-  const className =
-    name === "scan"
-      ? "h-[18px] w-[18px] text-white dark:text-slate-950"
-      : `h-[18px] w-[18px] ${active ? "text-sky-600" : "text-slate-500"}`;
+function useKeyboardVisible() {
+  const [visible, setVisible] = useState(false);
 
-  switch (name) {
-    case "vault":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3.75 8.25h16.5l-1.1 9.08a2 2 0 0 1-1.98 1.67H6.83a2 2 0 0 1-1.98-1.67L3.75 8.25Z" />
-          <path d="M8.25 8.25V6.5A3.75 3.75 0 0 1 12 2.75 3.75 3.75 0 0 1 15.75 6.5v1.75" />
-        </svg>
-      );
-    case "search":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m14.25 9.75-4.5 4.5" />
-          <path d="m10.46 10.46 6.04-2-2 6.04-6.04 2 2-6.04Z" />
-          <circle cx="12" cy="12" r="8.25" />
-        </svg>
-      );
-    case "pulse":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 7.25h14" />
-          <path d="M5 12h14" />
-          <path d="M5 16.75h8" />
-          <circle cx="18" cy="17" r="2" />
-        </svg>
-      );
-    case "scan":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 3.75H5.75a2 2 0 0 0-2 2V7" />
-          <path d="M17 3.75h1.25a2 2 0 0 1 2 2V7" />
-          <path d="M7 20.25H5.75a2 2 0 0 1-2-2V17" />
-          <path d="M17 20.25h1.25a2 2 0 0 0 2-2V17" />
-          <path d="M7.75 9.5h8.5" />
-          <path d="M7.75 14.5h8.5" />
-          <path d="M9.5 7.75h5" />
-          <path d="M9.5 16.25h5" />
-        </svg>
-      );
-    case "wall":
-      return (
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="4" y="4.5" width="16" height="15" rx="3" />
-          <path d="M8 15.25c1.2-1.6 2.2-2.4 3-2.4.9 0 1.5.5 2.25 1.2.7.64 1.14.95 1.75.95.8 0 1.55-.55 2.5-1.75" />
-          <circle cx="9.25" cy="9.25" r="1.25" />
-        </svg>
-      );
-  }
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) {
+      return;
+    }
+
+    const update = () => {
+      setVisible(window.innerHeight - viewport.height > 150);
+    };
+
+    update();
+    viewport.addEventListener("resize", update);
+    return () => viewport.removeEventListener("resize", update);
+  }, []);
+
+  return visible;
 }
 
-function MobileBottomNavLink({
-  item,
-  active,
-}: {
-  item: ResolvedMobileNavItem;
-  active: boolean;
-}) {
-  const content = (
-    <>
-      <NavIcon name={item.key} active={active} />
-      <span
-        className={`text-[10px] font-medium ${
-          item.key === "scan"
-            ? "text-white dark:text-slate-950"
-            : active
-              ? "text-sky-600"
-              : "text-slate-500"
-        }`}
-      >
-        {item.label}
-      </span>
-    </>
-  );
-
-  const isScan = item.key === "scan";
-  const className = `flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 transition ${
-    isScan
-      ? `min-h-[56px] rounded-[18px] px-2 py-1.5 ${active ? "bg-sky-500 text-white shadow-[0_16px_34px_-24px_rgba(14,165,233,0.9)]" : "bg-slate-950 text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.7)] hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300"}`
-      : `min-h-[50px] rounded-[0.95rem] px-2 py-1.5 ${
-    active
-      ? "bg-sky-500/[0.09] ring-1 ring-sky-200/70 dark:bg-sky-400/[0.14] dark:ring-sky-300/20"
-      : item.href
-        ? "hover:bg-slate-100/80 dark:hover:bg-slate-800/80"
-        : "opacity-45"
-  }`}`;
-
-  if (!item.href) {
-    return (
-      <span aria-disabled="true" className={className}>
-        {content}
-      </span>
-    );
-  }
-
-  return (
-    <Link href={item.href} aria-current={active ? "page" : undefined} className={className}>
-      {content}
-    </Link>
-  );
-}
-
-function MobileDockPresentation({
-  items,
-  activeKey,
-}: {
-  items: readonly ResolvedMobileNavItem[];
-  activeKey: MobilePrimaryDockKey | null;
-}) {
-  return (
-    <nav
-      aria-label="Mobile navigation"
-      data-mobile-primary-dock
-      className="fixed inset-x-0 bottom-0 z-50 bg-transparent px-3 pb-[calc(0.45rem+env(safe-area-inset-bottom))] pt-2 md:hidden"
-    >
-      <div className="gv-control-surface mx-auto flex max-w-2xl items-center gap-1.5 rounded-[22px] p-1.5 backdrop-blur">
-        {items.map((item) => (
-          <MobileBottomNavLink
-            key={item.key}
-            item={item}
-            active={item.kind === "root" && activeKey === item.key}
-          />
-        ))}
-      </div>
-    </nav>
-  );
-}
-
-function resolveMobileDockItems(
-  wallHref: string | null,
-): ResolvedMobileNavItem[] {
-  return MOBILE_PRIMARY_DOCK.map((item) =>
-    item.key === "wall" ? { ...item, href: wallHref } : item,
-  );
-}
-
-export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
+export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottomNavProps) {
   const pathname = usePathname();
+  const keyboardVisible = useKeyboardVisible();
 
-  if (shouldSuppressMobileChrome(pathname)) {
+  if (shouldSuppressMobileChrome(pathname) || keyboardVisible) {
     return null;
   }
 
@@ -213,23 +87,25 @@ export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
       : wallHref;
 
   return (
-    <MobileDockPresentation
-      items={resolveMobileDockItems(currentWallHref)}
+    <MobileParityDock
+      wallHref={currentWallHref}
       activeKey={getActiveMobileNavKey(pathname)}
+      pulseUnreadCount={pulseUnreadCount}
     />
   );
 }
 
 export function MobileBottomNavFallback() {
   const pathname = usePathname();
+  const keyboardVisible = useKeyboardVisible();
 
-  if (shouldSuppressMobileChrome(pathname)) {
+  if (shouldSuppressMobileChrome(pathname) || keyboardVisible) {
     return null;
   }
 
   return (
-    <MobileDockPresentation
-      items={resolveMobileDockItems("/wall")}
+    <MobileParityDock
+      wallHref="/wall"
       activeKey={getActiveMobileNavKey(pathname)}
     />
   );

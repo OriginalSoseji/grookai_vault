@@ -987,7 +987,7 @@ async function CardPageContent({
                   displayedImageTruthSource,
                 )}
                 imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
                 sizes="(max-width: 1024px) 86vw, 430px"
                 priority
                 unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
@@ -1172,23 +1172,25 @@ async function CardPageContent({
               </div>
             </div>
 
-            <CardPageMarketVaultPanels
-              addToVaultAction={addToVaultAction}
-              createSlabAction={createSlabAction}
-              isAuthenticated={Boolean(user)}
-              loginHref={loginHref}
-              currentPath={currentCardPath}
-              gvId={resolvedCard.gv_id}
-              cardPrintId={resolvedCard.id}
-              cardName={resolvedDisplayIdentity.display_name}
-              printings={displayPrintingsWithOwnedCounts}
-              initialPrintingId={searchParams?.printing ?? null}
-              pricing={pricingUi}
-              pricingRecords={pricingRecords}
-              ownershipLabel={ownershipLabel}
-              rawCount={ownedObjectSummary.rawCount}
-              slabCount={ownedObjectSummary.slabCount}
-            />
+            <div id="vault-actions" className="scroll-mt-28">
+              <CardPageMarketVaultPanels
+                addToVaultAction={addToVaultAction}
+                createSlabAction={createSlabAction}
+                isAuthenticated={Boolean(user)}
+                loginHref={loginHref}
+                currentPath={currentCardPath}
+                gvId={resolvedCard.gv_id}
+                cardPrintId={resolvedCard.id}
+                cardName={resolvedDisplayIdentity.display_name}
+                printings={displayPrintingsWithOwnedCounts}
+                initialPrintingId={searchParams?.printing ?? null}
+                pricing={pricingUi}
+                pricingRecords={pricingRecords}
+                ownershipLabel={ownershipLabel}
+                rawCount={ownedObjectSummary.rawCount}
+                slabCount={ownedObjectSummary.slabCount}
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -110,7 +110,7 @@ export default function CardZoomModal({
                 fallbackSources={fallbackSources}
                 alt={alt}
                 imageClassName="block h-auto max-h-[90dvh] w-auto max-w-[90vw] rounded-[18px] bg-white object-contain shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
-                fallbackClassName="flex aspect-[3/4] max-h-[90dvh] w-[min(90vw,34rem)] items-center justify-center rounded-[18px] bg-white px-6 text-center text-sm text-slate-500 shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
+                fallbackClassName="flex aspect-[5/7] max-h-[90dvh] w-[min(90vw,34rem)] items-center justify-center rounded-[22px] bg-white px-6 text-center text-sm text-slate-500 shadow-[0_28px_90px_rgba(0,0,0,0.55)] ring-1 ring-white/20"
                 sizes="90vw"
                 unoptimized={unoptimized}
               />
