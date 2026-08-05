@@ -1,0 +1,9 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+[tcgcsv-full] mode=current apply=true
+[tcgcsv-full] status=skipped_no_change
+[tcgcsv-full] requests=1
+[tcgcsv-full] categories=0
+[tcgcsv-full] groups=0
+[tcgcsv-full] products=0
+[tcgcsv-full] price_rows=0
+[tcgcsv-full] summary=../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-warehouse_summary.json

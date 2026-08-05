@@ -1,0 +1,9 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+[tcgcsv-full] mode=current apply=true
+[tcgcsv-full] status=completed
+[tcgcsv-full] requests=9215
+[tcgcsv-full] categories=82
+[tcgcsv-full] groups=4565
+[tcgcsv-full] products=498878
+[tcgcsv-full] price_rows=542019
+[tcgcsv-full] summary=../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1-warehouse/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1-warehouse_summary.json

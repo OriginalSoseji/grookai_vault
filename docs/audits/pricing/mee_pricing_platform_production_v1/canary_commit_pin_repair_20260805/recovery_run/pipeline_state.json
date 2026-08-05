@@ -1,0 +1,74 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1",
+  "status": "completed",
+  "started_at": "2026-08-05T06:25:08.785Z",
+  "commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+  "phases": {
+    "warehouse_current_sync": {
+      "status": "completed",
+      "started_at": "2026-08-05T06:25:08.785Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "--mode=current",
+        "--apply",
+        "--resume-run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1-warehouse",
+        "--request-ceiling=10000",
+        "--out-dir=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/warehouse"
+      ],
+      "finished_at": "2026-08-05T07:41:12.850Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/warehouse_current_sync.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/warehouse_current_sync.stderr.log"
+    },
+    "active_ask_refresh": {
+      "status": "completed",
+      "started_at": "2026-08-05T07:41:12.851Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+        "--apply",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/active_ask_refresh",
+        "--timeout-minutes=20"
+      ],
+      "finished_at": "2026-08-05T07:43:23.321Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/active_ask_refresh.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/active_ask_refresh.stderr.log"
+    },
+    "publication": {
+      "status": "completed",
+      "started_at": "2026-08-05T07:43:23.322Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+        "--mode=canary",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/publication",
+        "--freshness-hours=36",
+        "--database-timeout-minutes=20",
+        "--max-canary-source-missing-count=5",
+        "--canary-definition=/home/grookai/grookai_vault_mee_productization_v1/backend/pricing/canaries/tcgplayer_market_canary_100_v2.json"
+      ],
+      "finished_at": "2026-08-05T07:52:01.915Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/publication.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/publication.stderr.log"
+    },
+    "health": {
+      "status": "completed",
+      "started_at": "2026-08-05T07:52:01.917Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_health_v1.mjs",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/health",
+        "--max-source-age-hours=36",
+        "--minimum-current-prices=1",
+        "--database-timeout-minutes=20"
+      ],
+      "finished_at": "2026-08-05T08:02:50.502Z",
+      "stdout_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/health.stdout.log",
+      "stderr_path": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/health.stderr.log"
+    }
+  },
+  "finished_at": "2026-08-05T08:02:50.503Z"
+}

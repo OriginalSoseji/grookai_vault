@@ -32,7 +32,7 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
   );
   assert.match(
     workflow,
-    /CANARY_ACTIVATION_RUN_ID: "01610cfc-df72-412f-bc21-a526044d35bc"/,
+    /CANARY_ACTIVATION_RUN_ID: "3c1be9e1-de61-4459-9110-890fd7cc9210"/,
   );
   assert.match(workflow, /CANARY_EXPECTED_COUNT: "100"/);
   assert.match(
@@ -43,8 +43,8 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
 });
 
 test("scheduled canary observer allows final-slot completion before requiring a terminal pass", () => {
-  assert.match(workflow, /CANARY_WINDOW_START: "2026-08-02T22:29:17\.856Z"/);
-  assert.match(workflow, /CANARY_REQUIRED_END: "2026-08-05T22:29:17\.856Z"/);
+  assert.match(workflow, /CANARY_WINDOW_START: "2026-08-05T07:51:54\.064Z"/);
+  assert.match(workflow, /CANARY_REQUIRED_END: "2026-08-08T07:51:54\.064Z"/);
   assert.match(workflow, /CANARY_COMPLETION_GRACE_SECONDS: "28800"/);
   assert.match(workflow, /--required-hours=72/);
   assert.match(workflow, /--schedule-tolerance-minutes=90/);
