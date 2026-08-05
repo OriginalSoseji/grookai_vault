@@ -14,6 +14,9 @@ import {
 const LIVE_PLAN =
   'docs/audits/japanese_master_index_v4/image_pointer_plan_v1/'
   + 'jpn_image_pointer_plan_v1.json';
+const LIVE_ROLLBACK_PROOF =
+  'docs/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1/'
+  + 'jpn_image_pointer_rollback_proof_v1.json';
 const FROZEN_PLAN = Object.freeze({
   artifact_content_fingerprint_sha256:
     'c7b76859e45afccbd57c579db118a3b1349782fc1c0ab9ad897acae66e47121c',
@@ -165,4 +168,32 @@ test('live pointer rows preserve fallback/source and change only three fields', 
     assert.equal(row.row_disposition, 'rollback_proof_update_required');
     assert.deepEqual(row.validation_errors, []);
   }
+});
+
+test('live rollback proof restores all rows and leaves zero durable writes', () => {
+  const proof = JSON.parse(fs.readFileSync(LIVE_ROLLBACK_PROOF, 'utf8'));
+  const { proof_hash_sha256: proofHash, ...proofPayload } = proof;
+  assert.equal(
+    proofHash,
+    'ce3dbf33ba7d1cdb247269a8081ac1f31e0572fdfbf5a1322271baa36bcbe185',
+  );
+  assert.equal(contentFingerprint(proofPayload), proofHash);
+  assert.equal(proof.status, 'rollback_proof_passed_zero_durable_changes');
+  assert.equal(proof.package_fingerprint_sha256, FROZEN_PLAN.package_fingerprint_sha256);
+  assert.equal(proof.pointer_plan_hash_sha256, FROZEN_PLAN.pointer_plan_hash_sha256);
+  assert.equal(proof.mutation_contract_hash_sha256, FROZEN_PLAN.mutation_contract_hash_sha256);
+  assert.equal(proof.storage_reverified, 53);
+  assert.equal(proof.locked_rows, 53);
+  assert.equal(proof.updated_rows_inside_transaction, 53);
+  assert.equal(proof.after_rows_verified_inside_transaction, 53);
+  assert.equal(proof.rollback_completed, true);
+  assert.equal(proof.durable_before_rows_restored, 53);
+  assert.equal(proof.durable_database_writes, 0);
+  assert.equal(proof.image_pointer_writes_durable, 0);
+  assert.equal(proof.storage_writes, 0);
+  assert.equal(proof.target_binding.supabase_project_ref, 'ycdxbpibncqcchqiihfz');
+  assert.equal(
+    proof.target_binding.database.tls_verification,
+    'credential_free_manual_chain_validation_then_pinned_ca_reconnect',
+  );
 });
