@@ -1,0 +1,49 @@
+{
+  "after_rows_verified_inside_transaction": 53,
+  "completed_at": "2026-08-05T19:47:17.679Z",
+  "database_writes_inside_rolled_back_transaction": 53,
+  "durable_before_rows_restored": 53,
+  "durable_database_writes": 0,
+  "image_pointer_writes_durable": 0,
+  "locked_rows": 53,
+  "mutation_contract_hash_sha256": "5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9",
+  "package_fingerprint_sha256": "e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912",
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-ROLLBACK-PROOF-V1",
+  "pointer_plan_hash_sha256": "0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be",
+  "proof_hash_sha256": "ce3dbf33ba7d1cdb247269a8081ac1f31e0572fdfbf5a1322271baa36bcbe185",
+  "rollback_completed": true,
+  "status": "rollback_proof_passed_zero_durable_changes",
+  "storage_reverified": 53,
+  "storage_writes": 0,
+  "target_binding": {
+    "data_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co",
+    "database": {
+      "approved_chain": [
+        {
+          "issuer_cn": "Supabase Intermediate 2021 CA",
+          "sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc",
+          "subject_cn": "db.ycdxbpibncqcchqiihfz.supabase.co"
+        },
+        {
+          "issuer_cn": "Supabase Root 2021 CA",
+          "sha256": "303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea",
+          "subject_cn": "Supabase Intermediate 2021 CA"
+        },
+        {
+          "issuer_cn": "Supabase Root 2021 CA",
+          "sha256": "807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa",
+          "subject_cn": "Supabase Root 2021 CA"
+        }
+      ],
+      "database_name": "postgres",
+      "host": "db.ycdxbpibncqcchqiihfz.supabase.co",
+      "port": 5432,
+      "tls_verification": "credential_free_manual_chain_validation_then_pinned_ca_reconnect",
+      "username": "postgres"
+    },
+    "storage_api_origin": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1",
+    "storage_bucket": "user-card-images",
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz"
+  },
+  "updated_rows_inside_transaction": 53
+}

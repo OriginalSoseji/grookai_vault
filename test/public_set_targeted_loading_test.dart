@@ -18,18 +18,20 @@ void main() {
         httpClient: MockClient((request) async {
           requests.add(request);
           return http.Response(
-            jsonEncode({
-              'code': 'cel25',
-              'name': 'Celebrations',
-              'hero_image_url': 'https://example.test/cel25.png',
-              'printed_set_abbrev': 'cel',
-              'printed_total': 25,
-              'release_date': '2021-10-08',
-              'created_at': '2021-10-08T00:00:00Z',
-              'card_prints': [
-                {'count': 25},
-              ],
-            }),
+            jsonEncode([
+              {
+                'code': 'cel25',
+                'name': 'Celebrations',
+                'hero_image_url': 'https://example.test/cel25.png',
+                'printed_set_abbrev': 'cel',
+                'printed_total': 25,
+                'release_date': '2021-10-08',
+                'created_at': '2021-10-08T00:00:00Z',
+                'card_prints': [
+                  {'count': 25},
+                ],
+              },
+            ]),
             200,
             request: request,
             headers: {'content-type': 'application/json'},
@@ -51,13 +53,58 @@ void main() {
 
       final request = requests.single;
       expect(request.url.path, '/rest/v1/sets');
-      expect(request.url.queryParameters['code'], 'eq.cel25');
-      expect(request.url.queryParameters['limit'], '1');
+      expect(request.url.queryParameters['code'], 'ilike.cel25');
+      expect(request.url.queryParameters.containsKey('limit'), isFalse);
       expect(
         request.url.queryParameters['select'],
         contains('card_prints(count)'),
       );
       expect(request.url.queryParameters['card_prints.gv_id'], 'not.is.null');
+    },
+  );
+
+  test(
+    'set detail merges case-equivalent lanes and prefers descriptive metadata',
+    () async {
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          return http.Response(
+            jsonEncode([
+              {
+                'code': 'jpn-s8b',
+                'name': 'Japanese S8b',
+                'release_date': '2021-12-03',
+                'card_prints': [
+                  {'count': 261},
+                ],
+              },
+              {
+                'code': 'jpn-S8b',
+                'name': 'VMAX Climax',
+                'release_date': '2021-12-03',
+                'card_prints': [
+                  {'count': 26},
+                ],
+              },
+            ]),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }),
+      );
+      addTearDown(client.dispose);
+
+      final summary = await PublicSetsService.fetchSetByCode(
+        client: client,
+        setCode: 'JPN-S8B',
+      );
+
+      expect(summary?.code, 'jpn-s8b');
+      expect(summary?.name, 'VMAX Climax');
+      expect(summary?.cardCount, 287);
     },
   );
 
@@ -125,6 +172,37 @@ void main() {
       'base1-first-edition',
     );
     expect(PublicSetsService.resolveSetRouteCode('CEL25'), 'cel25');
+  });
+
+  test('set display names remove source presentation markup', () async {
+    final client = SupabaseClient(
+      'https://example.supabase.co',
+      'public-anon-key',
+      httpClient: MockClient(
+        (request) async => http.Response(
+          jsonEncode([
+            {
+              'code': 'jpn-product-test',
+              'name': 'Trainer Box <big>ex</big>',
+              'card_prints': [
+                {'count': 25},
+              ],
+            },
+          ]),
+          200,
+          request: request,
+          headers: {'content-type': 'application/json'},
+        ),
+      ),
+    );
+    addTearDown(client.dispose);
+
+    final summary = await PublicSetsService.fetchSetByCode(
+      client: client,
+      setCode: 'jpn-product-test',
+    );
+
+    expect(summary?.name, 'Trainer Box ex');
   });
 
   test('empty set routes fail closed without a database request', () async {

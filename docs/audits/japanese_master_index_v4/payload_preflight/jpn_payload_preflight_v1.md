@@ -1,0 +1,33 @@
+# Japanese Master Index V4 Payload Preflight
+
+Generated: 2026-08-05T15:44:10.727Z
+
+## Status
+
+- Status: `preflight_complete_no_write`
+- Payload fingerprint: `14be9772c50707a8e200e3b8d63d4bf831fab0de63c63741b3253623bc26d3e3`
+- Blocking collisions: 0
+- Non-blocking natural-key accommodations: 0
+
+## Proposed Rows
+
+- Sets: 1041
+- Parent card_prints: 3888
+- card_print_identity: 3888
+- Source evidence: 3980
+- Family review: 3888
+- Deferred public child printings: 3888
+
+## Boundaries
+
+- The database was opened in a proven read-only transaction.
+- No database writes, Storage writes, SQL payload, or apply command were generated.
+- Public child rows are identifiers/contracts only and remain blocked behind separate visibility and self-hosted-image approval.
+- No English card, pricing, family-link, or identity rows were mutated.
+
+## Repository Schema Coverage
+
+- `card_print_identity_source_evidence`: supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
+- `card_print_family_review_queue`: supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql
+
+All required payload target tables now have creating migrations in the repository.

@@ -3,6 +3,7 @@ import "server-only";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
+import { escapePostgrestLikePattern } from "@/lib/publicSetCanonicalization";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
@@ -49,6 +50,7 @@ async function fetchSetCardPrintIds(setCode: string) {
   }
 
   const supabase = createPublicServerClient();
+  const setCodePattern = escapePostgrestLikePattern(normalizedCode);
   const ids: string[] = [];
   const pageSize = 1000;
   let offset = 0;
@@ -57,7 +59,7 @@ async function fetchSetCardPrintIds(setCode: string) {
     const { data, error } = await supabase
       .from("card_prints")
       .select("id")
-      .eq("set_code", normalizedCode)
+      .ilike("set_code", setCodePattern)
       .not("gv_id", "is", null)
       .range(offset, offset + pageSize - 1);
 

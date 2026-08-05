@@ -1,0 +1,78 @@
+{
+  "aggregate_sha256": "0d6998adc0e4220fad27afb9ce2d3913283e68e5d96455de668e1c01c5b26747",
+  "files": {
+    "jpn_v4_additional_resolved_card_package.jsonl": {
+      "bytes": 5994590,
+      "row_count": 1448,
+      "sha256": "7c6b7c64a84cdcdb3431c723ae3112ad40c8d974d599541d4bf50d88fd038068"
+    },
+    "jpn_v4_dependent_card_promotion_package.jsonl": {
+      "bytes": 13278225,
+      "row_count": 3850,
+      "sha256": "92dbb5969f03c802443de891ccbc7171180c4cf0e3a5d2a3f61ed935ca81a0f4"
+    },
+    "jpn_v4_direct_card_promotion_package.jsonl": {
+      "bytes": 149126,
+      "row_count": 38,
+      "sha256": "0b050998eec77e7c2e51cf1fe6b49758f255106cb4a2851da63915118a59ada2"
+    },
+    "jpn_v4_duplicate_alias_map.jsonl": {
+      "bytes": 31911,
+      "row_count": 37,
+      "sha256": "3133bc861d07f65f25685d3bd705c8529590ed2cfd28cf01546bad057786e126"
+    },
+    "jpn_v4_final_counts.json": {
+      "bytes": 6825,
+      "row_count": null,
+      "sha256": "ed81f0d75302017a46d79ca47dfa9790aee48189824ba5a1d4eb275210250b5f"
+    },
+    "jpn_v4_final_identity_disposition.jsonl": {
+      "bytes": 97938439,
+      "row_count": 71992,
+      "sha256": "c861c609efc66cd8812dc7c38bdd962ae70808c18fbce1131a3ca8017c53fc60"
+    },
+    "jpn_v4_final_printing_fact_disposition.jsonl": {
+      "bytes": 51675860,
+      "row_count": 71900,
+      "sha256": "900eaaa2b4d762c52c948e01401416a9b7a3d263372eb371e2a3cf7bbcc23924"
+    },
+    "jpn_v4_final_reconciliation_report.md": {
+      "bytes": 2698,
+      "row_count": null,
+      "sha256": "d9e868cfb7d97f3a8d8d932c963474cfef9288f5b9dfdee215a3af231fe05867"
+    },
+    "jpn_v4_final_source_assertion_disposition.jsonl": {
+      "bytes": 94575756,
+      "row_count": 331501,
+      "sha256": "b3b36bd3f85696c81ae5679351f143004a9759ca12ef2584d2f5e7c946eefa5a"
+    },
+    "jpn_v4_invalid_non_card_exclusions.jsonl": {
+      "bytes": 0,
+      "row_count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "jpn_v4_no_write_attestation.json": {
+      "bytes": 7026,
+      "row_count": null,
+      "sha256": "bd277a14d156446279f42921f019cfe4779cc0d4483807951aab0a115e61f798"
+    },
+    "jpn_v4_promotion_order.json": {
+      "bytes": 1609,
+      "row_count": null,
+      "sha256": "3ce0f523d639c3c54f374337106162dc50774a247f6b0ac236f9d9cd5c398267"
+    },
+    "jpn_v4_remaining_review_queues.json": {
+      "bytes": 42359497,
+      "row_count": null,
+      "sha256": "31fc06aee4e6587cb7c8275d6db09e235275ffdd23f13ef200d3376d4873af58"
+    },
+    "jpn_v4_set_promotion_package.jsonl": {
+      "bytes": 1170883,
+      "row_count": 1041,
+      "sha256": "8217fd351f980899d5f16977a18ea8f5acf461508a96c6ed58117c19f83118db"
+    }
+  },
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1",
+  "status": "deterministic_artifact_fingerprints"
+}

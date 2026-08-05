@@ -1,0 +1,50 @@
+{
+  "execution_authorized": false,
+  "generated_at": "2026-07-27T00:00:00.000Z",
+  "generator_version": "JPN-MASTER-INDEX-V4-COMPLETE-ADJUDICATION-V1",
+  "stages": [
+    {
+      "action": "verify frozen inputs, live no-write baseline, and conflicts",
+      "name": "preflight",
+      "package": "jpn_v4_final_fingerprints.json",
+      "row_count": 0,
+      "sequence": 0
+    },
+    {
+      "action": "insert or idempotently reuse canonical Japanese sets",
+      "name": "sets_first",
+      "package": "jpn_v4_set_promotion_package.jsonl",
+      "row_count": 1041,
+      "sequence": 1
+    },
+    {
+      "action": "promote cards mapped to existing canonical sets",
+      "name": "direct_cards",
+      "package": "jpn_v4_direct_card_promotion_package.jsonl",
+      "row_count": 38,
+      "sequence": 2
+    },
+    {
+      "action": "promote cards after their set prerequisites",
+      "name": "dependent_cards",
+      "package": "jpn_v4_dependent_card_promotion_package.jsonl",
+      "row_count": 3850,
+      "sequence": 3
+    },
+    {
+      "action": "promote conservatively resolved cards in dependency order",
+      "name": "additional_resolved_cards",
+      "package": "jpn_v4_additional_resolved_card_package.jsonl",
+      "row_count": 1448,
+      "sequence": 4
+    },
+    {
+      "action": "public GV IDs, child printings, image hosting, family promotion, search, sitemap, and scanner refresh require separate approval",
+      "name": "separately_authorized_downstream_surfaces",
+      "package": null,
+      "row_count": 0,
+      "sequence": 5
+    }
+  ],
+  "status": "promotion_order_only_no_execution"
+}

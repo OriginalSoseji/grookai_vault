@@ -1,0 +1,181 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "datasets": {
+      "card_print_rows": {
+        "content_fingerprint_sha256": "740429ee13cc989ad3c896d35ea91d67b15db66810d386c56fb86f1841723941",
+        "dataset_key": "jpn_preflight_v2_card_print_target_rows",
+        "row_count": 5336,
+        "shard_count": 2,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_card_print_target_rows/jpn_preflight_v2_card_print_target_rows_0001_of_0002.json.gz",
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_card_print_target_rows/jpn_preflight_v2_card_print_target_rows_0002_of_0002.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "child_printing_rows": {
+        "content_fingerprint_sha256": "42e2870a82a6cdfba84c1a7588c3d1610ebac0cebea845febe7af490ead1e60d",
+        "dataset_key": "jpn_preflight_v2_child_printing_target_rows",
+        "row_count": 5336,
+        "shard_count": 2,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_child_printing_target_rows/jpn_preflight_v2_child_printing_target_rows_0001_of_0002.json.gz",
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_child_printing_target_rows/jpn_preflight_v2_child_printing_target_rows_0002_of_0002.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "collision_rows": {
+        "content_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "dataset_key": "jpn_preflight_v2_collision_rows",
+        "row_count": 0,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_collision_rows/jpn_preflight_v2_collision_rows_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "evidence_rows": {
+        "content_fingerprint_sha256": "b6b2d0502558d9e0e38fcf354c7e8892cd4127c1e566b411fcb0f605812f6c06",
+        "dataset_key": "jpn_preflight_v2_evidence_target_rows",
+        "row_count": 5461,
+        "shard_count": 2,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_evidence_target_rows/jpn_preflight_v2_evidence_target_rows_0001_of_0002.json.gz",
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_evidence_target_rows/jpn_preflight_v2_evidence_target_rows_0002_of_0002.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "family_review_rows": {
+        "content_fingerprint_sha256": "4a8d7cd04d749ff423df9421ebd0e1d2569848df684fe1133c13e2cbbda67fa0",
+        "dataset_key": "jpn_preflight_v2_family_review_target_rows",
+        "row_count": 5336,
+        "shard_count": 2,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_family_review_target_rows/jpn_preflight_v2_family_review_target_rows_0001_of_0002.json.gz",
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_family_review_target_rows/jpn_preflight_v2_family_review_target_rows_0002_of_0002.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "identity_rows": {
+        "content_fingerprint_sha256": "12548dae7758e9b56f89085081be7d8949772af4970dd9798c7ac5f839bf7fa4",
+        "dataset_key": "jpn_preflight_v2_identity_target_rows",
+        "row_count": 5336,
+        "shard_count": 2,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_identity_target_rows/jpn_preflight_v2_identity_target_rows_0001_of_0002.json.gz",
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_identity_target_rows/jpn_preflight_v2_identity_target_rows_0002_of_0002.json.gz"
+        ],
+        "shard_size": 5000
+      },
+      "set_rows": {
+        "content_fingerprint_sha256": "266f22c3c95038b893c4408a59fba787006e86efe8448dbcd8456529003680f2",
+        "dataset_key": "jpn_preflight_v2_set_target_rows",
+        "row_count": 1041,
+        "shard_count": 1,
+        "shard_paths": [
+          "docs/audits/japanese_master_index_v4/payload_preflight_v2/rows/jpn_preflight_v2_set_target_rows/jpn_preflight_v2_set_target_rows_0001_of_0001.json.gz"
+        ],
+        "shard_size": 5000
+      }
+    },
+    "execution_boundary": {
+      "apply_payload_generated": false,
+      "database_reads": true,
+      "database_transaction_read_only": true,
+      "database_writes": false,
+      "english_mutation": false,
+      "family_promotion": false,
+      "pricing_mutation": false,
+      "promotion_approval_implied": false,
+      "public_child_rows_apply_eligible": false,
+      "source_fetches": false,
+      "storage_writes": false
+    },
+    "final_adjudication_counts": {
+      "additional": 1448,
+      "cards": 5336,
+      "dependent": 3850,
+      "direct": 38,
+      "sets": 1041
+    },
+    "generated_at": "2026-08-05T16:38:09.321Z",
+    "generator_version": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V2",
+    "guard": {
+      "default_transaction_read_only": "on",
+      "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
+      "environment_label": "production-read-only-2026-08-05",
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on"
+    },
+    "live_snapshot": {
+      "direct_target_set_count": 16,
+      "natural_base_occupancy_count": 0,
+      "schema_fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
+      "species_target_count": 671,
+      "species_target_resolved_count": 671
+    },
+    "payload_fingerprint_sha256": "b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b",
+    "repository_schema_coverage": [
+      {
+        "creating_migration_paths": [
+          "supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql"
+        ],
+        "table": "card_print_identity_source_evidence"
+      },
+      {
+        "creating_migration_paths": [
+          "supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql"
+        ],
+        "table": "card_print_family_review_queue"
+      }
+    ],
+    "schema_contract": {
+      "artifact_path": "docs/audits/japanese_master_index_v4/payload_preflight_v2/jpn_payload_target_schema_contract_v2.json",
+      "artifact_sha256": "03fbc3184d68aa2497c17eddaaf5e123c6da9c6d7b96baf21b87eceff2691ee3",
+      "column_count": 109,
+      "constraint_count": 31,
+      "fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
+      "index_count": 45,
+      "target_tables": [
+        "sets",
+        "card_prints",
+        "card_print_identity",
+        "card_print_identity_source_evidence",
+        "card_print_family_review_queue",
+        "card_printings"
+      ]
+    },
+    "source_final_fingerprint_sha256": "0d6998adc0e4220fad27afb9ce2d3913283e68e5d96455de668e1c01c5b26747",
+    "source_union_manifest_fingerprint": "02bc40e9d209aa0e960309eb175d1d4ac76f04d08d1b5bf67b2d97af6ae00f91",
+    "stable_identifier_namespace": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+    "status": "preflight_complete_no_write",
+    "summary": {
+      "blocking_collisions": 0,
+      "card_print_rows": 5336,
+      "child_printing_rows": 5336,
+      "evidence_rows": 5461,
+      "family_review_rows": 5336,
+      "identity_rows": 5336,
+      "nonblocking_collisions": 0,
+      "repository_schema_drift_tables": 0,
+      "set_rows": 1041
+    }
+  },
+  "content_fingerprint_sha256": "3ac904e6c2ec5798ef8516875ce59142be0f4d84d12fbe1ec3c12d08a33e0d03",
+  "generated_at": "2026-08-05T16:38:09.321Z",
+  "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V2",
+  "retrieval": {
+    "access_mode": "live_database_proven_read_only_plus_final_artifacts",
+    "database_reads": true,
+    "database_writes": false,
+    "guard": {
+      "default_transaction_read_only": "on",
+      "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
+      "environment_label": "production-read-only-2026-08-05",
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on"
+    },
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

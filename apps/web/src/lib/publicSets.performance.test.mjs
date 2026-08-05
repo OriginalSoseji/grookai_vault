@@ -5,6 +5,8 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import {
   chooseCanonicalSetRow,
+  choosePreferredEquivalentSetRow,
+  escapePostgrestLikePattern,
   getEmbeddedCardPrintCount,
   getManifestCardPrintCount,
 } from "./publicSetCanonicalization.ts";
@@ -81,16 +83,47 @@ test("canonical aliases are selected by reconciled catalog rows, not printed tot
   assert.equal(getEmbeddedCardPrintCount([{ count: -4 }]), 0);
 });
 
-test("set detail performs one targeted exact-count lookup", () => {
+test("set detail aggregates one targeted case-insensitive set lane", () => {
   assert.match(detailFunctionSource, /select\(PUBLIC_SET_DETAIL_SELECT\)/);
-  assert.match(detailFunctionSource, /\.ilike\("code", normalizedCode\)/);
+  assert.match(
+    detailFunctionSource,
+    /\.ilike\("code", escapePostgrestLikePattern\(normalizedCode\)\)/,
+  );
   assert.match(detailFunctionSource, /card_prints\.gv_id/);
   assert.match(detailFunctionSource, /card_prints\.set_code/);
-  assert.match(detailFunctionSource, /\.limit\(1\)[\s\S]*?\.maybeSingle\(\)/);
+  assert.match(detailFunctionSource, /combinedCardCount/);
+  assert.doesNotMatch(detailFunctionSource, /\.maybeSingle\(\)/);
   assert.doesNotMatch(
     detailFunctionSource,
     /getPublicSetByCode[\s\S]*?const sets = await getPublicSets\(\)/,
   );
+});
+
+test("case-equivalent Japanese set rows prefer descriptive metadata", () => {
+  const generated = {
+    code: "jpn-s8b",
+    name: "Japanese S8b",
+    release_date: "2021-12-03",
+  };
+  const descriptive = {
+    code: "jpn-S8b",
+    name: "VMAX Climax",
+    release_date: "2021-12-03",
+  };
+
+  assert.equal(
+    choosePreferredEquivalentSetRow(generated, descriptive),
+    descriptive,
+  );
+  assert.equal(
+    choosePreferredEquivalentSetRow(descriptive, generated),
+    descriptive,
+  );
+});
+
+test("PostgREST case-insensitive exact patterns escape wildcards", () => {
+  assert.equal(escapePostgrestLikePattern("jpn-s8b"), "jpn-s8b");
+  assert.equal(escapePostgrestLikePattern("set_100%"), "set\\_100\\%");
 });
 
 test("checked-in count manifest has a valid bounded snapshot", () => {

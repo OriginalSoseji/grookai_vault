@@ -1,0 +1,63 @@
+name: Japanese V4 Image Pointer Rollback Proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      fingerprint:
+        description: Frozen pointer package fingerprint
+        required: true
+        type: string
+      pointer_plan_hash:
+        description: Frozen pointer plan hash
+        required: true
+        type: string
+      mutation_contract_hash:
+        description: Frozen mutation contract hash
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: japanese-v4-image-pointer-rollback-proof
+  cancel-in-progress: false
+
+jobs:
+  rollback-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --ignore-scripts
+
+      - name: Run exact rollback-only proof
+        shell: bash
+        run: |
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_SECRET_KEY"
+          test -n "$SUPABASE_DB_URL"
+          node scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs \
+            --execute-rollback-proof \
+            --fingerprint='${{ inputs.fingerprint }}' \
+            --pointer-plan-hash='${{ inputs.pointer_plan_hash }}' \
+            --mutation-contract-hash='${{ inputs.mutation_contract_hash }}'
+
+      - name: Upload rollback proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: japanese-v4-image-pointer-rollback-proof
+          path: docs/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1/
+          if-no-files-found: error
+          retention-days: 30

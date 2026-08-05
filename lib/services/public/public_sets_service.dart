@@ -339,7 +339,8 @@ class PublicSetsService {
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
 
-    final canonicalByName = <String, PublicSetSummary>{};
+    final preferredRowsByCode = <String, Map<String, dynamic>>{};
+    final cardCountsByCode = <String, int>{};
     for (final row in setRows) {
       final code = _normalizeCode(row['code']);
       final name = _cleanText(row['name']);
@@ -347,15 +348,26 @@ class PublicSetsService {
         continue;
       }
 
+      cardCountsByCode[code] =
+          (cardCountsByCode[code] ?? 0) + _embeddedCount(row['card_prints']);
+      final existingRow = preferredRowsByCode[code];
+      preferredRowsByCode[code] = existingRow == null
+          ? row
+          : _choosePreferredEquivalentSetRow(existingRow, row);
+    }
+
+    final canonicalByName = <String, PublicSetSummary>{};
+    for (final entry in preferredRowsByCode.entries) {
+      final row = entry.value;
       final candidate = _mapSetRowToSummary(
         row,
-        cardCount: _embeddedCount(row['card_prints']),
+        cardCount: cardCountsByCode[entry.key] ?? 0,
       );
       if (candidate == null) {
         continue;
       }
 
-      final key = _normalizeName(name);
+      final key = _normalizeName(candidate.name);
       final existing = canonicalByName[key];
       canonicalByName[key] = existing == null
           ? candidate
@@ -405,22 +417,31 @@ class PublicSetsService {
       return null;
     }
 
-    final rawRow = await client
+    final rawRows = await client
         .from('sets')
         .select(
           'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
         )
-        .eq('code', normalizedCode)
+        .ilike('code', _escapePostgrestLikePattern(normalizedCode))
         .not('card_prints.gv_id', 'is', null)
-        .not('card_prints.set_code', 'is', null)
-        .limit(1)
-        .maybeSingle();
-    if (rawRow == null) {
+        .not('card_prints.set_code', 'is', null);
+    final rows = (rawRows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+    if (rows.isEmpty) {
       return null;
     }
 
-    final row = Map<String, dynamic>.from(rawRow);
-    final cardCount = _embeddedCount(row['card_prints']);
+    final row = rows
+        .skip(1)
+        .fold<Map<String, dynamic>>(
+          rows.first,
+          _choosePreferredEquivalentSetRow,
+        );
+    final cardCount = rows.fold<int>(
+      0,
+      (sum, candidate) => sum + _embeddedCount(candidate['card_prints']),
+    );
     if (cardCount <= 0) {
       return null;
     }
@@ -451,7 +472,7 @@ class PublicSetsService {
         .select(
           'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)',
         )
-        .eq('set_code', normalizedCode)
+        .ilike('set_code', _escapePostgrestLikePattern(normalizedCode))
         .not('gv_id', 'is', null)
         .order('number_plain', ascending: true, nullsFirst: false)
         .order('number', ascending: true)
@@ -626,7 +647,7 @@ class PublicSetsService {
     final rows = await client
         .from('card_prints')
         .select('id,gv_id,name,number,number_plain,rarity,external_ids')
-        .eq('set_code', normalizedCode)
+        .ilike('set_code', _escapePostgrestLikePattern(normalizedCode))
         .eq('variant_key', 'world_championship_deck_replica')
         .not('gv_id', 'is', null)
         .order('number_plain', ascending: true, nullsFirst: false)
@@ -1068,12 +1089,74 @@ class PublicSetsService {
     return candidate.code.length < existing.code.length ? candidate : existing;
   }
 
+  static Map<String, dynamic> _choosePreferredEquivalentSetRow(
+    Map<String, dynamic> existing,
+    Map<String, dynamic> candidate,
+  ) {
+    final existingScore = _setMetadataSpecificityScore(existing);
+    final candidateScore = _setMetadataSpecificityScore(candidate);
+    if (candidateScore != existingScore) {
+      return candidateScore > existingScore ? candidate : existing;
+    }
+
+    return _setMetadataTieBreakKey(
+              candidate,
+            ).compareTo(_setMetadataTieBreakKey(existing)) <
+            0
+        ? candidate
+        : existing;
+  }
+
+  static int _setMetadataSpecificityScore(Map<String, dynamic> row) {
+    var score = 0;
+    if (_cleanText(row['name']).isNotEmpty) score += 1;
+    if (!_isGeneratedJapaneseSetName(row)) score += 32;
+    if (_cleanText(row['hero_image_url']).isNotEmpty) score += 8;
+    if (_cleanText(row['printed_set_abbrev']).isNotEmpty) score += 4;
+    if (row['printed_total'] is num) score += 2;
+    if (_cleanText(row['release_date']).isNotEmpty) score += 1;
+    return score;
+  }
+
+  static bool _isGeneratedJapaneseSetName(Map<String, dynamic> row) {
+    final code = _normalizeCode(row['code']).replaceFirst(RegExp(r'^jpn-'), '');
+    final name = _cleanText(
+      row['name'],
+    ).toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+    if (code.isEmpty || name.isEmpty) {
+      return false;
+    }
+
+    return <String>{
+      'japanese $code',
+      'japanese $code set',
+      'japanese $code pokemon set',
+      'japanese $code pokemon card set',
+    }.contains(name);
+  }
+
+  static String _setMetadataTieBreakKey(Map<String, dynamic> row) {
+    return <String>[
+      _cleanText(row['name']).toLowerCase(),
+      _normalizeCode(row['code']),
+      _cleanText(row['printed_set_abbrev']).toLowerCase(),
+      _cleanText(row['release_date']).toLowerCase(),
+    ].join('|');
+  }
+
+  static String _escapePostgrestLikePattern(String value) {
+    return value
+        .replaceAll(r'\', r'\\')
+        .replaceAll('%', r'\%')
+        .replaceAll('_', r'\_');
+  }
+
   static PublicSetSummary? _mapSetRowToSummary(
     Map<String, dynamic> row, {
     required int cardCount,
   }) {
     final code = _normalizeCode(row['code']);
-    final name = _cleanText(row['name']);
+    final name = _normalizeSetDisplayName(row['name']);
     if (code.isEmpty || name.isEmpty) {
       return null;
     }
@@ -1114,6 +1197,14 @@ class PublicSetsService {
         .toLowerCase()
         .replaceAll('&', ' and ')
         .replaceAll(RegExp(r'[^a-z0-9\s.-]+'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+  }
+
+  static String _normalizeSetDisplayName(dynamic value) {
+    return _cleanText(value)
+        .replaceAll('<big>', '')
+        .replaceAll('</big>', '')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
   }

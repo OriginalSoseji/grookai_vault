@@ -1,0 +1,12 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-INDEPENDENT-READBACK-V1",
+  "database_writes": false,
+  "exact_hosted_paths": 53,
+  "expected_after_hash_matches": 53,
+  "observed_at": "2026-08-05T20:04:07.279Z",
+  "preserved_fallback_source_and_representative": 53,
+  "read_transport": "production_https_data_api_select_only",
+  "rows": 53,
+  "status": "complete_exact_readback",
+  "target_table": "public.card_prints"
+}

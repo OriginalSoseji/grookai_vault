@@ -1,0 +1,22 @@
+{
+  "absent_verified": 17,
+  "approval_fingerprint_sha256": "ef7d4745196a3f670870fa27f7d5b7a4d6609d61beae5889f4d90ea18d8394d7",
+  "assets_staged": 17,
+  "completed_at": "2026-08-05T18:19:02.041Z",
+  "database_reads": 0,
+  "database_writes": 0,
+  "durable_objects_after_run": 0,
+  "error": null,
+  "image_pointer_writes": 0,
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-STORAGE-CANARY-APPLY-V1",
+  "proof_hash_sha256": "5ef791677e10d1a0643c4add7b25a50fc67bbf9460e8fba68a1e398009f9911a",
+  "readback_verified": 17,
+  "removed": 17,
+  "status": "passed_and_rolled_back",
+  "storage_plan_hash_sha256": "0d387055da45e4e1f38cfb2007eb8cb4e175023eb221c6d55391d46d6d6779ae",
+  "target": {
+    "storage_bucket": "user-card-images",
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz"
+  },
+  "uploaded": 17
+}

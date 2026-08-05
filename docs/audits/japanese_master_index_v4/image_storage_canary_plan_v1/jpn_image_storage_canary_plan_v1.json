@@ -1,0 +1,239 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "approval_fingerprint_sha256": "ef7d4745196a3f670870fa27f7d5b7a4d6609d61beae5889f4d90ea18d8394d7",
+    "asset_dataset": {
+      "content_fingerprint_sha256": "d29053b4d246732876965d307f7f391c0c203d14fe5f86fcf52401aa303fe85a",
+      "dataset_key": "jpn_image_storage_canary_assets_v1",
+      "row_count": 17,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/image_storage_canary_plan_v1/rows/jpn_image_storage_canary_assets_v1/jpn_image_storage_canary_assets_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "code_bundle": {
+      "files": [
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_acquisition_readiness_v1.mjs",
+          "sha256": "a41a174a3d7c77429d20061e4dea88c684f35015a4fd5d2a76e4309e4915af63"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_storage_canary_plan_v1.mjs",
+          "sha256": "76e2f7fe447316bdf8b5860870042c2fa21ecbed580e86f7e9b8b9bee3085ad1"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_storage_canary_apply_v1.mjs",
+          "sha256": "4b9b1575669809ed5e1591edd95b46e17c32fbb1993bcf939550e14356b58bda"
+        }
+      ],
+      "hash": "a83f7296fcee737c2c7ef0d59b870c535e271f071add1c98b61e5c84524d586e"
+    },
+    "execution_boundary": {
+      "database_reads": false,
+      "database_writes": false,
+      "durable_storage_objects_created": 0,
+      "image_pointer_writes": false,
+      "source_fetches": false,
+      "storage_reads": false,
+      "storage_writes": false
+    },
+    "execution_policy": {
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "durable_storage_objects_expected": 0,
+      "exact_assets": 17,
+      "existing_target_object_is_hard_stop": true,
+      "image_pointer_writes_allowed": false,
+      "overwrite_allowed": false,
+      "post_remove_absence_verification_required": true,
+      "readback_hash_size_dimensions_required": true,
+      "remove_all_new_objects_after_readback": true,
+      "source_bytes_staged_before_first_storage_access": true,
+      "upsert": false
+    },
+    "generated_at": "2026-08-05T17:57:00.588Z",
+    "local_cache_readback": {
+      "cache_committed": false,
+      "rows": [
+        {
+          "expected_sha256": "60105e18bed34b58956713eca8774f9763e71647ef4382a2da05f05be1247dc2",
+          "expected_size_bytes": 347425,
+          "gv_id": "GV-PK-JPN-PRODUCT-39BBC128BCFD8955-80",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-39bbc128bcfd8955-80/60105e18bed34b58956713eca8774f9763e71647ef4382a2da05f05be1247dc2.jpg",
+          "observed_sha256": "60105e18bed34b58956713eca8774f9763e71647ef4382a2da05f05be1247dc2",
+          "observed_size_bytes": 347425,
+          "verified": true
+        },
+        {
+          "expected_sha256": "3d32e98c4cad0dc0d3d70b6ea2b38f0c7a29b46e6a5f2337b804982f614d2652",
+          "expected_size_bytes": 1200278,
+          "gv_id": "GV-PK-JPN-PRODUCT-53CAB45546F74B2C-46",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-53cab45546f74b2c-46/3d32e98c4cad0dc0d3d70b6ea2b38f0c7a29b46e6a5f2337b804982f614d2652.jpg",
+          "observed_sha256": "3d32e98c4cad0dc0d3d70b6ea2b38f0c7a29b46e6a5f2337b804982f614d2652",
+          "observed_size_bytes": 1200278,
+          "verified": true
+        },
+        {
+          "expected_sha256": "601edc0d48d7e6e27a453d8ae7a5e47700c041025f3f87994fb1547e8d70356b",
+          "expected_size_bytes": 549840,
+          "gv_id": "GV-PK-JPN-PRODUCT-FF9EB55F11224C59-84",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-ff9eb55f11224c59-84/601edc0d48d7e6e27a453d8ae7a5e47700c041025f3f87994fb1547e8d70356b.jpg",
+          "observed_sha256": "601edc0d48d7e6e27a453d8ae7a5e47700c041025f3f87994fb1547e8d70356b",
+          "observed_size_bytes": 549840,
+          "verified": true
+        },
+        {
+          "expected_sha256": "5169846d23acc2608897688210427b05e790556667cca92989a32162747e46f4",
+          "expected_size_bytes": 101313,
+          "gv_id": "GV-PK-JPN-PRODUCT-4A280363C186438B-156",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-4a280363c186438b-156/5169846d23acc2608897688210427b05e790556667cca92989a32162747e46f4.jpg",
+          "observed_sha256": "5169846d23acc2608897688210427b05e790556667cca92989a32162747e46f4",
+          "observed_size_bytes": 101313,
+          "verified": true
+        },
+        {
+          "expected_sha256": "c2ed0dc5245cdee292f88538b0bac377be32e724ea6d96cd054a05af603196c0",
+          "expected_size_bytes": 318714,
+          "gv_id": "GV-PK-JPN-PRODUCT-66E6A33F9CA32537-1",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-66e6a33f9ca32537-1/c2ed0dc5245cdee292f88538b0bac377be32e724ea6d96cd054a05af603196c0.jpg",
+          "observed_sha256": "c2ed0dc5245cdee292f88538b0bac377be32e724ea6d96cd054a05af603196c0",
+          "observed_size_bytes": 318714,
+          "verified": true
+        },
+        {
+          "expected_sha256": "047e3c45a03036ca096b31c54677307da7f75b3163c7c10bfdda537ce4428073",
+          "expected_size_bytes": 103787,
+          "gv_id": "GV-PK-JPN-PRODUCT-F2D019E21EB5C0B0-48",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-f2d019e21eb5c0b0-48/047e3c45a03036ca096b31c54677307da7f75b3163c7c10bfdda537ce4428073.jpg",
+          "observed_sha256": "047e3c45a03036ca096b31c54677307da7f75b3163c7c10bfdda537ce4428073",
+          "observed_size_bytes": 103787,
+          "verified": true
+        },
+        {
+          "expected_sha256": "cdc4c65025a0f6fbd8a64ab3c0b0a61b6cdf2bb00f0b0ceada815b513265d384",
+          "expected_size_bytes": 280355,
+          "gv_id": "GV-PK-JPN-PRODUCT-009933FEFDA0F9F0-1",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-009933fefda0f9f0-1/cdc4c65025a0f6fbd8a64ab3c0b0a61b6cdf2bb00f0b0ceada815b513265d384.jpg",
+          "observed_sha256": "cdc4c65025a0f6fbd8a64ab3c0b0a61b6cdf2bb00f0b0ceada815b513265d384",
+          "observed_size_bytes": 280355,
+          "verified": true
+        },
+        {
+          "expected_sha256": "bddcd1f3f09cb38542187818e60f4ae589955983141ba4d9a848b372fa20ab10",
+          "expected_size_bytes": 207802,
+          "gv_id": "GV-PK-JPN-PRODUCT-077C352E8CD59ACB-26",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-077c352e8cd59acb-26/bddcd1f3f09cb38542187818e60f4ae589955983141ba4d9a848b372fa20ab10.jpg",
+          "observed_sha256": "bddcd1f3f09cb38542187818e60f4ae589955983141ba4d9a848b372fa20ab10",
+          "observed_size_bytes": 207802,
+          "verified": true
+        },
+        {
+          "expected_sha256": "8a049989086710a2b3f06456111025d0d7247a0da0a35ab7243717a0388449b8",
+          "expected_size_bytes": 183877,
+          "gv_id": "GV-PK-JPN-PRODUCT-729BC1689D3DE870-53",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-729bc1689d3de870-53/8a049989086710a2b3f06456111025d0d7247a0da0a35ab7243717a0388449b8.jpg",
+          "observed_sha256": "8a049989086710a2b3f06456111025d0d7247a0da0a35ab7243717a0388449b8",
+          "observed_size_bytes": 183877,
+          "verified": true
+        },
+        {
+          "expected_sha256": "c925b0c2b58106bba264efdae6a28864ce4451b4c4a7e2b2903d5a5cbbb68af8",
+          "expected_size_bytes": 226578,
+          "gv_id": "GV-PK-JPN-PRODUCT-D1BA737AA9D393FD-203",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-d1ba737aa9d393fd-203/c925b0c2b58106bba264efdae6a28864ce4451b4c4a7e2b2903d5a5cbbb68af8.jpg",
+          "observed_sha256": "c925b0c2b58106bba264efdae6a28864ce4451b4c4a7e2b2903d5a5cbbb68af8",
+          "observed_size_bytes": 226578,
+          "verified": true
+        },
+        {
+          "expected_sha256": "f16e5048b413f9d5a32f9e8c92624a3e6385273a8819ec4f4854e0b107f17b19",
+          "expected_size_bytes": 324397,
+          "gv_id": "GV-PK-JPN-PRODUCT-B71C3ACD39D7973B-28",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-b71c3acd39d7973b-28/f16e5048b413f9d5a32f9e8c92624a3e6385273a8819ec4f4854e0b107f17b19.jpg",
+          "observed_sha256": "f16e5048b413f9d5a32f9e8c92624a3e6385273a8819ec4f4854e0b107f17b19",
+          "observed_size_bytes": 324397,
+          "verified": true
+        },
+        {
+          "expected_sha256": "30d5fdbd996b06a0c2349194924c4adb91076e3c911e08ecbbeaf10f4f440140",
+          "expected_size_bytes": 143463,
+          "gv_id": "GV-PK-JPN-PRODUCT-E0633BD3F4D76F5F-59",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-e0633bd3f4d76f5f-59/30d5fdbd996b06a0c2349194924c4adb91076e3c911e08ecbbeaf10f4f440140.jpg",
+          "observed_sha256": "30d5fdbd996b06a0c2349194924c4adb91076e3c911e08ecbbeaf10f4f440140",
+          "observed_size_bytes": 143463,
+          "verified": true
+        },
+        {
+          "expected_sha256": "3ec8bbff1d53ae7c74d7085b1e438ae7e7e291aa04218f9d16e6e0b5d472c8d5",
+          "expected_size_bytes": 143838,
+          "gv_id": "GV-PK-JPN-PRODUCT-9B761DE345C1122E-14",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-9b761de345c1122e-14/3ec8bbff1d53ae7c74d7085b1e438ae7e7e291aa04218f9d16e6e0b5d472c8d5.jpg",
+          "observed_sha256": "3ec8bbff1d53ae7c74d7085b1e438ae7e7e291aa04218f9d16e6e0b5d472c8d5",
+          "observed_size_bytes": 143838,
+          "verified": true
+        },
+        {
+          "expected_sha256": "1007ba10d55f0b1dc6f537c178e3f5ae95b03376e2c7e25d6cccca706cb9687f",
+          "expected_size_bytes": 620763,
+          "gv_id": "GV-PK-JPN-PRODUCT-269D735E4919B1B9-61",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-269d735e4919b1b9-61/1007ba10d55f0b1dc6f537c178e3f5ae95b03376e2c7e25d6cccca706cb9687f.jpg",
+          "observed_sha256": "1007ba10d55f0b1dc6f537c178e3f5ae95b03376e2c7e25d6cccca706cb9687f",
+          "observed_size_bytes": 620763,
+          "verified": true
+        },
+        {
+          "expected_sha256": "081689a497e36c13d0892fa79fa3ad318725d9df2f1d053e4807854e5648fab2",
+          "expected_size_bytes": 374298,
+          "gv_id": "GV-PK-JPN-PRODUCT-17AD55B7839E375A-262",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-17ad55b7839e375a-262/081689a497e36c13d0892fa79fa3ad318725d9df2f1d053e4807854e5648fab2.jpg",
+          "observed_sha256": "081689a497e36c13d0892fa79fa3ad318725d9df2f1d053e4807854e5648fab2",
+          "observed_size_bytes": 374298,
+          "verified": true
+        },
+        {
+          "expected_sha256": "043ff65635b4f4da8a417db00f385df69943e6b6e32c170863376b3cd69aa976",
+          "expected_size_bytes": 1022738,
+          "gv_id": "GV-PK-JPN-PRODUCT-82835D62452F200A-13",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-82835d62452f200a-13/043ff65635b4f4da8a417db00f385df69943e6b6e32c170863376b3cd69aa976.jpg",
+          "observed_sha256": "043ff65635b4f4da8a417db00f385df69943e6b6e32c170863376b3cd69aa976",
+          "observed_size_bytes": 1022738,
+          "verified": true
+        },
+        {
+          "expected_sha256": "da41ffb215cdcc11a43b8d72709976382948e3f987fb885c3ab881665fd3a5e2",
+          "expected_size_bytes": 196524,
+          "gv_id": "GV-PK-JPN-PRODUCT-C297B0FDC73C2BD6-102",
+          "local_cache_path": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1/gv-pk-jpn-product-c297b0fdc73c2bd6-102/da41ffb215cdcc11a43b8d72709976382948e3f987fb885c3ab881665fd3a5e2.jpg",
+          "observed_sha256": "da41ffb215cdcc11a43b8d72709976382948e3f987fb885c3ab881665fd3a5e2",
+          "observed_size_bytes": 196524,
+          "verified": true
+        }
+      ],
+      "verified_rows": 17
+    },
+    "plan_version": "JPN-MASTER-INDEX-V4-IMAGE-STORAGE-CANARY-PLAN-V1",
+    "ready_for_separate_storage_approval": true,
+    "scope": {
+      "assets": 17
+    },
+    "source_readiness_fingerprint_sha256": "0cd2ef5619f4e90247aa5222ee5ca0d5645ddd005f5060a6bdae8c8fec5aaaa8",
+    "status": "plan_complete_no_storage_access",
+    "storage_plan_hash_sha256": "0d387055da45e4e1f38cfb2007eb8cb4e175023eb221c6d55391d46d6d6779ae",
+    "target": {
+      "storage_bucket": "user-card-images",
+      "supabase_project_ref": "ycdxbpibncqcchqiihfz"
+    }
+  },
+  "content_fingerprint_sha256": "123693d3ef4d7757eacbb6f09c01a949c1096715521112b2050b86e849b57f72",
+  "generated_at": "2026-08-05T17:57:00.588Z",
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-STORAGE-CANARY-PLAN-V1",
+  "retrieval": {
+    "access_mode": "verified_local_artifact_and_cache_only",
+    "database_reads": false,
+    "database_writes": false,
+    "source_fetches": false,
+    "storage_access": false,
+    "storage_writes": false
+  }
+}
