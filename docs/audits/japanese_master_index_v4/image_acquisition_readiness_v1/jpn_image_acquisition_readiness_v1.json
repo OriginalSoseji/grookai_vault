@@ -1,0 +1,124 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "cache": {
+      "committed": false,
+      "local_only": true,
+      "root": ".tmp/jpn_master_index_v4_image_acquisition_canary_v1"
+    },
+    "canary_dataset": {
+      "content_fingerprint_sha256": "6af858827d4d63e6f9c8f8dbccdc002ffe36c3008b70b2168b1fa009246618af",
+      "dataset_key": "jpn_image_download_canary_rows_v1",
+      "row_count": 70,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/image_acquisition_readiness_v1/rows/jpn_image_download_canary_rows_v1/jpn_image_download_canary_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "canary_selection_fingerprint_sha256": "8a0d758f25b748fb5cfea4779cc05d1899146601c1897c831957efb2198e0a7d",
+    "canary_summary": {
+      "attempt_http_status_counts": {
+        "200": 70,
+        "404": 18
+      },
+      "database_writes": 0,
+      "duplicate_hash_groups": 0,
+      "duplicate_review_rows": 0,
+      "local_cache_bytes": 7255413,
+      "local_cache_rows": 70,
+      "low_resolution_review_rows": 53,
+      "quarantined_rows": 0,
+      "ready_rows": 17,
+      "selected_fallback_rows": 18,
+      "selected_format_counts": {
+        "jpg": 17,
+        "png": 53
+      },
+      "selected_primary_rows": 52,
+      "selected_quality_counts": {
+        "high": 17,
+        "low": 53
+      },
+      "selected_rows": 70,
+      "selected_source_host_counts": {
+        "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": 53,
+        "www.pokemon-card.com": 17
+      },
+      "storage_writes": 0
+    },
+    "execution_boundary": {
+      "child_printing_writes": false,
+      "database_reads": false,
+      "database_writes": false,
+      "family_promotion": false,
+      "image_pointer_writes": false,
+      "local_cache_writes": true,
+      "scanner_writes": false,
+      "source_fetches": true,
+      "storage_reads": false,
+      "storage_writes": false
+    },
+    "generated_at": "2026-08-05T17:22:49.348Z",
+    "manifest_dataset": {
+      "content_fingerprint_sha256": "4779c6e1324d5006611acc6748500e8cb4d6b046d834388ad29a299ed80169f6",
+      "dataset_key": "jpn_image_acquisition_manifest_rows_v1",
+      "row_count": 5336,
+      "shard_count": 2,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/image_acquisition_readiness_v1/rows/jpn_image_acquisition_manifest_rows_v1/jpn_image_acquisition_manifest_rows_v1_0001_of_0002.json.gz",
+        "docs/audits/japanese_master_index_v4/image_acquisition_readiness_v1/rows/jpn_image_acquisition_manifest_rows_v1/jpn_image_acquisition_manifest_rows_v1_0002_of_0002.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "manifest_summary": {
+      "canary_primary_host_counts": {
+        "assets.tcgdex.net": 18,
+        "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": 35,
+        "www.pokemon-card.com": 17
+      },
+      "canary_rows": 70,
+      "database_writes": 0,
+      "fallback_host_counts": {
+        "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": 18,
+        "www.serebii.net": 32
+      },
+      "fallback_rows": 50,
+      "primary_host_counts": {
+        "assets.tcgdex.net": 18,
+        "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": 35,
+        "www.pokemon-card.com": 5283
+      },
+      "primary_provider_counts": {
+        "limitless": 35,
+        "official_jp_cards": 5283,
+        "tcgdex": 18
+      },
+      "scope_rows": 5336,
+      "self_hosted_paths_created": 0,
+      "storage_writes": 0,
+      "unique_card_print_ids": 5336,
+      "unique_gv_ids": 5336,
+      "unique_primary_urls": 5336
+    },
+    "readiness_version": "JPN-MASTER-INDEX-V4-IMAGE-ACQUISITION-READINESS-V1",
+    "source": {
+      "integration_inventory_content_fingerprint_sha256": "54cdac7d005e1c0a043ad1684715be3dfee31ea8f585f38d5de94fb18c64e4a4",
+      "integration_row_dataset_fingerprint_sha256": "eeb38caaa7365e9fc75ae8c1f873fed5a4e2e64ca12048d56498d592fca97c61",
+      "writer_payload_fingerprint_sha256": "b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c"
+    },
+    "status": "manifest_and_local_download_canary_complete"
+  },
+  "content_fingerprint_sha256": "0cd2ef5619f4e90247aa5222ee5ca0d5645ddd005f5060a6bdae8c8fec5aaaa8",
+  "generated_at": "2026-08-05T17:22:49.348Z",
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-ACQUISITION-READINESS-V1",
+  "retrieval": {
+    "access_mode": "verified_local_scope_plus_bounded_https_download_canary",
+    "database_reads": false,
+    "database_writes": false,
+    "local_cache_writes": true,
+    "source_fetches": true,
+    "storage_access": false,
+    "storage_writes": false
+  }
+}

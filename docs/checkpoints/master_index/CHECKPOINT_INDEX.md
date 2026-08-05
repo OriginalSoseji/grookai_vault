@@ -4,6 +4,7 @@ Checkpoint registry for English and Japanese Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
+| 2026-08-05 | [Japanese Master Index V4 Image Acquisition Readiness V1](20260805_japanese_master_index_v4_image_acquisition_readiness_v1.md) | Freezes the exact 5,336-row external-image manifest and a 70-row local-only acquisition canary. All rows downloaded; 17 are high resolution, 53 require low-resolution review, and no database or Storage access occurred. |
 | 2026-08-05 | [Japanese Master Index V4 Product Integration Inventory V1](20260805_japanese_master_index_v4_product_integration_inventory_v1.md) | Reconciles all 5,336 applied parents across image hosting, child-printing eligibility, family review, search, and scanner readiness. Parent search is complete; self-hosting and downstream gates remain. |
 | 2026-08-05 | [Japanese Master Index V4 Database Apply Completion V1](20260805_japanese_master_index_v4_database_apply_completion_v1.md) | Records the exact approved durable apply of 5,336 Japanese parent identities, exact row readback, unchanged English-family fingerprint, and excluded publication boundaries. |
 | 2026-08-05 | [Japanese Master Index V4 Database Write Readiness V2](20260805_japanese_master_index_v4_database_write_readiness_v2.md) | Preserves the pre-apply readiness state: durably applied schema repair and passing full 5,336-card rollback proof. Superseded by the apply-completion checkpoint above. |
