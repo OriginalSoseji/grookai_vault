@@ -1,0 +1,649 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_REPAIR_AMENDMENT_MANIFEST_V1",
+  "generated_at": "2026-08-05T05:54:12.437Z",
+  "packet_fingerprint": "1f456f48b716111e83efc732af65d0c71e30d8a812dcfe0f7d8de9413cf1b977",
+  "original_packet_fingerprint": "68d34b75a4a2b6ade477b6ace9851c9487140239606ae394982238df6bb593dd",
+  "original_founder_artifact_sha256": "403365fef6c5d7b57381a2dbfa448313675661372c5737a599343327f6f797b1",
+  "storage_bucket": "user-card-images",
+  "self_hosted_only": true,
+  "server_writes_performed_by_review_portal": false,
+  "rows": [
+    {
+      "evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+      "queue_id": "review:b4646204-1bef-5624-8ced-3e474ece55a0",
+      "card_print_id": "afe8a676-3f53-4fb2-803b-c3332b15144c",
+      "card_printing_id": "b4646204-1bef-5624-8ced-3e474ece55a0",
+      "truth_review_id": "44a81080-9680-577a-b4bd-b6cb155b16c6",
+      "parent_gv_id": "GV-PK-CEC-016-PRERELEASE-STAMP",
+      "printing_gv_id": "GV-PK-CEC-016-PRERELEASE-STAMP-NORMAL",
+      "name": "Sawsbuck",
+      "number": "016",
+      "set_code": "sm12",
+      "variant_key": "prerelease_stamp",
+      "finish_key": "normal",
+      "source_provider": "ebay_exact_listing_photo",
+      "source_product_id": 202325,
+      "source_product_title": "Sawsbuck 016/236 Cosmic Eclipse Non-Holo Deck Exclusive",
+      "source_page_url": "https://www.ebay.com/itm/227455465972",
+      "source_product_payload_hash": "76c28bc1070682b807959a0fad98e7754db3b3045cbbb5fc84c8622f31183c05",
+      "source_image_url": "https://i.ebayimg.com/images/g/7LEAAeSwDTBqa73H/s-l1600.jpg",
+      "source_image": {
+        "sha256": "3422ec41d0f7f0672aaed10f0eb7fa0f6596ba2e6071745eb60e6469590e9cd2",
+        "size_bytes": 212067,
+        "width": 814,
+        "height": 1095,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/b4646204-1bef-5624-8ced-3e474ece55a0/3422ec41d0f7f0672aaed10f0eb7fa0f6596ba2e6071745eb60e6469590e9cd2.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "authority_nomenclature_correction"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "authority_nomenclature_correction",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+        "original_source_image_sha256": "7ea85d5343f34523650ef650904a93e32e4538e408bdfaa267941e053d072c26",
+        "acquisition_source_sha256": "3422ec41d0f7f0672aaed10f0eb7fa0f6596ba2e6071745eb60e6469590e9cd2",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "no_prerelease_stamp_expected",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Cosmic_Eclipse_Build_%26_Battle_Box_%28TCG%29"
+        ],
+        "amendment_note": "The exact printing is the Build & Battle-exclusive non-Holofoil Sawsbuck. The stable GV-ID says PRERELEASE-STAMP, but the authoritative product evidence establishes that this deck-exclusive printing has no visible prerelease stamp."
+      }
+    },
+    {
+      "evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+      "queue_id": "review:3eb3112f-707f-5af3-b1b7-b4157e0cf74a",
+      "card_print_id": "bf933f99-6f84-4fcd-94e7-78ffcc6c9c0b",
+      "card_printing_id": "3eb3112f-707f-5af3-b1b7-b4157e0cf74a",
+      "truth_review_id": "825b0843-0e97-5d02-a22b-9bd8df409bab",
+      "parent_gv_id": "GV-PK-PAR-066-PARADOX-RIFT-STAMP",
+      "printing_gv_id": "GV-PK-PAR-066-PARADOX-RIFT-STAMP-HOLO",
+      "name": "Zekrom",
+      "number": "066",
+      "set_code": "sv04",
+      "variant_key": "paradox_rift_stamp",
+      "finish_key": "holo",
+      "source_provider": "pricecharting_exact_product_page",
+      "source_product_id": 664140,
+      "source_product_title": "Zekrom Stamped 66 Prices | Pokemon Paradox Rift",
+      "source_page_url": "https://www.pricecharting.com/game/pokemon-paradox-rift/zekrom-stamped-66",
+      "source_product_payload_hash": "a78b9b66803eb8bfebcee15022b12cf0a4c38199efa624d341c5897495e83158",
+      "source_image_url": "https://storage.googleapis.com/images.pricecharting.com/nolxewocui64w7zp/1600.jpg",
+      "source_image": {
+        "sha256": "b3103801a3a33f17833f4b99c571337de95591973e8487460f1c0d6ec23ee80c",
+        "size_bytes": 132155,
+        "width": 747,
+        "height": 1045,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3eb3112f-707f-5af3-b1b7-b4157e0cf74a/b3103801a3a33f17833f4b99c571337de95591973e8487460f1c0d6ec23ee80c.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "secondary_source_fallback",
+        "founder_repair_amendment",
+        "replacement_exact_marker_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "replacement_exact_marker_image",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+        "original_source_image_sha256": "25851012ebfce523f56c94aca9e9013df1fe08a1f1a73f041fc6584d8bc903cd",
+        "acquisition_source_sha256": "b3103801a3a33f17833f4b99c571337de95591973e8487460f1c0d6ec23ee80c",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "paradox_rift_logo_visible",
+        "authority_urls": [
+          "https://www.pricecharting.com/game/pokemon-paradox-rift/zekrom-stamped-66"
+        ],
+        "amendment_note": "Replacement image visibly shows the Paradox Rift logo in the illustration and the Cosmos Holo printing."
+      }
+    },
+    {
+      "evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+      "queue_id": "review:6cfa7bda-521f-57b9-82d1-762ef2c7defc",
+      "card_print_id": "674a1987-df59-46fa-9e23-16abe976e3fe",
+      "card_printing_id": "6cfa7bda-521f-57b9-82d1-762ef2c7defc",
+      "truth_review_id": "db8fb103-8b8f-57ac-a22a-1b5b16b3eb37",
+      "parent_gv_id": "GV-PK-PR-NP-008-E-LEAGUE-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-008-E-LEAGUE-STAMP-REVERSE",
+      "name": "Torchic",
+      "number": "008",
+      "set_code": "np",
+      "variant_key": "e_league_stamp",
+      "finish_key": "reverse",
+      "source_provider": "pricecharting_exact_product_page",
+      "source_product_id": 89948,
+      "source_product_title": "Torchic 8 Prices | Pokemon Promo",
+      "source_page_url": "https://www.pricecharting.com/game/pokemon-promo/torchic-8",
+      "source_product_payload_hash": "31e43664c0c04a2308c1411ddce2e735f83264291c3b9789859d075fba776b79",
+      "source_image_url": "https://storage.googleapis.com/images.pricecharting.com/53715b230d6ef0005c684adf481d2d60f2d9e9511607f6cd1b4176a64cdcfa5f/1600.jpg",
+      "source_image": {
+        "sha256": "045eb9275ba66e34737406e496601ec3936d08a6ab3d9b0232f0726065dc1480",
+        "size_bytes": 78377,
+        "width": 553,
+        "height": 768,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/6cfa7bda-521f-57b9-82d1-762ef2c7defc/045eb9275ba66e34737406e496601ec3936d08a6ab3d9b0232f0726065dc1480.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "replacement_exact_marker_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "replacement_exact_marker_image",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+        "original_source_image_sha256": "92ed87d789c8a744515ac77ac21cf41a826460cdd6b273fc8222684c045e5cfb",
+        "acquisition_source_sha256": "045eb9275ba66e34737406e496601ec3936d08a6ab3d9b0232f0726065dc1480",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "e_league_logo_visible",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "Replacement image visibly shows the e-League logo and the reverse-Holo printing."
+      }
+    },
+    {
+      "evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+      "queue_id": "review:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0",
+      "card_print_id": "a8993ccc-7f4b-4332-9516-c88c7c538fa8",
+      "card_printing_id": "3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0",
+      "truth_review_id": "b25b798b-4070-56ab-9ba3-d78f105353c6",
+      "parent_gv_id": "GV-PK-PR-NP-009-E-LEAGUE-WINNER-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-009-E-LEAGUE-WINNER-STAMP-NORMAL",
+      "name": "Combusken",
+      "number": "009",
+      "set_code": "np",
+      "variant_key": "e_league_winner_stamp",
+      "finish_key": "normal",
+      "source_provider": "pricecharting_exact_product_page",
+      "source_product_id": 84399,
+      "source_product_title": "Combusken 9 Prices | Pokemon Promo",
+      "source_page_url": "https://www.pricecharting.com/game/pokemon-promo/combusken-9",
+      "source_product_payload_hash": "88849a04f85a2e5d6138a7dc4970bd77d6bab7599287d021075a7c5943ca155a",
+      "source_image_url": "https://storage.googleapis.com/images.pricecharting.com/n2vyvluw7kz7pqy3/1600.jpg",
+      "source_image": {
+        "sha256": "3dabada2e3b48fa7ebbaa91710164c52c0d0e83f2c8ef344eed6554e273b7b19",
+        "size_bytes": 28602,
+        "width": 346,
+        "height": 490,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0/3dabada2e3b48fa7ebbaa91710164c52c0d0e83f2c8ef344eed6554e273b7b19.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "replacement_exact_marker_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "replacement_exact_marker_image",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+        "original_source_image_sha256": "df0a5e3d78f16c0c42ef2a7960cf3f85404b5b3d97cce4f796cc7a6504eb16ee",
+        "acquisition_source_sha256": "3dabada2e3b48fa7ebbaa91710164c52c0d0e83f2c8ef344eed6554e273b7b19",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "winner_stamp_visible",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "Replacement image visibly shows the Winner stamp required by the stable printing identity."
+      }
+    },
+    {
+      "evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+      "queue_id": "review:d18a30ea-47d1-5dfd-98cf-b018a698f41f",
+      "card_print_id": "4432f5c3-7e11-4f02-89a0-456cd6926cae",
+      "card_printing_id": "d18a30ea-47d1-5dfd-98cf-b018a698f41f",
+      "truth_review_id": "1386eb64-d229-57b6-a585-1467992e8120",
+      "parent_gv_id": "GV-PK-PR-NP-010-E-LEAGUE-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-010-E-LEAGUE-STAMP-REVERSE",
+      "name": "Mudkip",
+      "number": "010",
+      "set_code": "np",
+      "variant_key": "e_league_stamp",
+      "finish_key": "reverse",
+      "source_provider": "pricecharting_exact_product_page",
+      "source_product_id": 87604,
+      "source_product_title": "Mudkip 10 Prices | Pokemon Promo",
+      "source_page_url": "https://www.pricecharting.com/game/pokemon-promo/mudkip-10",
+      "source_product_payload_hash": "392305c4b1d96c409bbb2a815a340e53778dbe9414f5696becf4bd4ef6ac42f4",
+      "source_image_url": "https://storage.googleapis.com/images.pricecharting.com/5e55b4976306842ed9c327002a43e216c71090505e3ce067b6e2a9529f09a84b/1600.jpg",
+      "source_image": {
+        "sha256": "cb0c76d3de425d7b60117a0d354b96092708d1ef72c8d48c9f4b8870c83a68ec",
+        "size_bytes": 87555,
+        "width": 600,
+        "height": 825,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/d18a30ea-47d1-5dfd-98cf-b018a698f41f/cb0c76d3de425d7b60117a0d354b96092708d1ef72c8d48c9f4b8870c83a68ec.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "replacement_exact_marker_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "replacement_exact_marker_image",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+        "original_source_image_sha256": "058325f0c870caa7ba6a620f552ae9202cd9f56f83668dd1dee7b097ab5a37d4",
+        "acquisition_source_sha256": "cb0c76d3de425d7b60117a0d354b96092708d1ef72c8d48c9f4b8870c83a68ec",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "e_league_logo_visible",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "Replacement image visibly shows the e-League logo and the reverse-Holo printing."
+      }
+    },
+    {
+      "evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+      "queue_id": "review:39dc7fa9-36dc-57f4-bdee-af422fc77af3",
+      "card_print_id": "6e99eab4-a0a5-4f70-973a-368e196ed2ef",
+      "card_printing_id": "39dc7fa9-36dc-57f4-bdee-af422fc77af3",
+      "truth_review_id": "f5ad79d4-9a2c-5478-a660-0e4cf2bdb5e2",
+      "parent_gv_id": "GV-PK-PR-NP-022-E-LEAGUE-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-022-E-LEAGUE-STAMP-NORMAL",
+      "name": "Beldum",
+      "number": "022",
+      "set_code": "np",
+      "variant_key": "e_league_stamp",
+      "finish_key": "normal",
+      "source_provider": "pricecharting_exact_product_page",
+      "source_product_id": 83784,
+      "source_product_title": "Beldum 22 Prices | Pokemon Promo",
+      "source_page_url": "https://www.pricecharting.com/game/pokemon-promo/beldum-22",
+      "source_product_payload_hash": "0041ea6e1a161718388c5b1eeb124564ef6053c2fe9e1ea832cc5ee5a843ea30",
+      "source_image_url": "https://storage.googleapis.com/images.pricecharting.com/corrhhtwjw22weeijbl5/1600.jpg",
+      "source_image": {
+        "sha256": "401015480f0a2f1961805dd009d8085c4e65e6a52034db832c652d5f579fe562",
+        "size_bytes": 100081,
+        "width": 587,
+        "height": 811,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/39dc7fa9-36dc-57f4-bdee-af422fc77af3/401015480f0a2f1961805dd009d8085c4e65e6a52034db832c652d5f579fe562.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "authority_nomenclature_correction"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "authority_nomenclature_correction",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+        "original_source_image_sha256": "d65ec68d3c24d634576ad3af054afba2a41f81f62dd63d2a81815a9e53645f34",
+        "acquisition_source_sha256": "401015480f0a2f1961805dd009d8085c4e65e6a52034db832c652d5f579fe562",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "non_holo_participant_printing_no_winner_stamp",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark."
+      }
+    },
+    {
+      "evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+      "queue_id": "review:ec573555-d4a4-5e3c-890d-f9e1cb711eb0",
+      "card_print_id": "a81e6413-5ce9-4ee5-8e1c-d0a7c450e1c1",
+      "card_printing_id": "ec573555-d4a4-5e3c-890d-f9e1cb711eb0",
+      "truth_review_id": "92fc6fe3-507e-560d-8ee8-079b8f30f31f",
+      "parent_gv_id": "GV-PK-PR-NP-024-E-LEAGUE-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-024-E-LEAGUE-STAMP-NORMAL",
+      "name": "Chimecho",
+      "number": "024",
+      "set_code": "np",
+      "variant_key": "e_league_stamp",
+      "finish_key": "normal",
+      "source_provider": "ebay_exact_listing_photo",
+      "source_product_id": 84293,
+      "source_product_title": "Chimecho 024 Nintendo Promo Non-Winner",
+      "source_page_url": "https://www.ebay.com/itm/396915188465",
+      "source_product_payload_hash": "de96ca6d661a1bf13f7433981714a0b74e6af6a0e143224eaabb28eff9ced725",
+      "source_image_url": "https://i.ebayimg.com/images/g/HssAAeSwmsloisUg/s-l1600.jpg",
+      "source_image": {
+        "sha256": "cff706d51644541105fd5c7d74f47b052d7293ebdac76c3321dc7ccf24298731",
+        "size_bytes": 281961,
+        "width": 744,
+        "height": 1038,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/ec573555-d4a4-5e3c-890d-f9e1cb711eb0/cff706d51644541105fd5c7d74f47b052d7293ebdac76c3321dc7ccf24298731.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "authority_nomenclature_correction"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "authority_nomenclature_correction",
+        "acquisition": "external_exact",
+        "original_evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+        "original_source_image_sha256": "2f29f52f43aa50c10148f8ebf1d38aa0273c9a38301625874eb5102ee411eb56",
+        "acquisition_source_sha256": "cff706d51644541105fd5c7d74f47b052d7293ebdac76c3321dc7ccf24298731",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "non_holo_participant_printing_no_winner_stamp",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark."
+      }
+    },
+    {
+      "evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+      "queue_id": "review:bd8dcb6b-e789-54e4-9839-8df2795f85b8",
+      "card_print_id": "2eb3ce02-d7b5-41b6-8536-129545ebdd9c",
+      "card_printing_id": "bd8dcb6b-e789-54e4-9839-8df2795f85b8",
+      "truth_review_id": "cbc3a09f-3a01-5c96-9c98-55356e9d8278",
+      "parent_gv_id": "GV-PK-PR-NP-025-E-LEAGUE-STAMP",
+      "printing_gv_id": "GV-PK-PR-NP-025-E-LEAGUE-STAMP-NORMAL",
+      "name": "Flygon",
+      "number": "025",
+      "set_code": "np",
+      "variant_key": "e_league_stamp",
+      "finish_key": "normal",
+      "source_provider": "tcgcsv_tcgplayer_catalog",
+      "source_product_id": 85523,
+      "source_product_title": "Flygon - 025 (e-League)",
+      "source_page_url": "https://www.tcgplayer.com/product/85523/pokemon-nintendo-promos-flygon-025-e-league",
+      "source_product_payload_hash": "3618743468c88182ce56a53a75ca0a1f42675fcbbeb2dee070d23fc81cce24fe",
+      "source_image_url": "https://product-images.tcgplayer.com/85523.jpg",
+      "source_image": {
+        "sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "size_bytes": 20623,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/bd8dcb6b-e789-54e4-9839-8df2795f85b8/228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "low_resolution_source",
+        "founder_repair_amendment",
+        "authority_nomenclature_correction"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "authority_nomenclature_correction",
+        "acquisition": "reuse_current",
+        "original_evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+        "original_source_image_sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "acquisition_source_sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "deterministic_normalization": false,
+        "normalization_corners": null,
+        "normalized_dimensions": null,
+        "visual_marker_expectation": "non_holo_participant_printing_no_winner_stamp",
+        "authority_urls": [
+          "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+        ],
+        "amendment_note": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark."
+      }
+    },
+    {
+      "evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+      "queue_id": "review:7f3d5aae-40f8-5663-a55a-3ea785a259b7",
+      "card_print_id": "14ede0f8-a74c-4388-b2e8-450f8a7a60e6",
+      "card_printing_id": "7f3d5aae-40f8-5663-a55a-3ea785a259b7",
+      "truth_review_id": "09d6439a-0bc3-5d6e-b482-c1fc38489209",
+      "parent_gv_id": "GV-PK-SM-SM73-STAFF-PRERELEASE-STAMP",
+      "printing_gv_id": "GV-PK-SM-SM73-STAFF-PRERELEASE-STAMP-HOLO",
+      "name": "Salazzle",
+      "number": "SM73",
+      "set_code": "smp",
+      "variant_key": "staff_prerelease_stamp",
+      "finish_key": "holo",
+      "source_provider": "ebay_exact_listing_photo_normalized",
+      "source_product_id": 151706,
+      "source_product_title": "Salazzle - SM73 (Prerelease) [Staff]",
+      "source_page_url": "https://www.ebay.com/itm/336588086108",
+      "source_product_payload_hash": "ff9e0ea755230aca2cee67c56c6b72d163df5a620487e243836e33fffc3aa50d",
+      "source_image_url": "https://i.ebayimg.com/images/g/X2QAAeSwyXRqCd-E/s-l1600.jpg",
+      "source_image": {
+        "sha256": "b32d6d404f5c9f06c1b3f0419a7d922ee08116c023715874de15d476638e60dd",
+        "size_bytes": 375360,
+        "width": 750,
+        "height": 1050,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/7f3d5aae-40f8-5663-a55a-3ea785a259b7/b32d6d404f5c9f06c1b3f0419a7d922ee08116c023715874de15d476638e60dd.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "secondary_source_fallback",
+        "marketplace_listing_photo",
+        "founder_repair_amendment",
+        "normalized_exact_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "normalized_exact_image",
+        "acquisition": "storage_normalized",
+        "original_evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+        "original_source_image_sha256": "596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d",
+        "acquisition_source_sha256": "596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d",
+        "deterministic_normalization": true,
+        "normalization_corners": [
+          [
+            53,
+            52
+          ],
+          [
+            1153,
+            29
+          ],
+          [
+            1088,
+            1452
+          ],
+          [
+            121,
+            1436
+          ]
+        ],
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "staff_and_crimson_invasion_marks_visible",
+        "authority_urls": [],
+        "amendment_note": "The already reviewed exact listing image is perspective-normalized without generative edits. Both STAFF and Crimson Invasion marks remain visible."
+      }
+    },
+    {
+      "evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+      "queue_id": "review:78372fe9-59bc-535a-acde-2b7a98d1487b",
+      "card_print_id": "616ec635-6ffe-49b9-b165-81b4ff7c80e0",
+      "card_printing_id": "78372fe9-59bc-535a-acde-2b7a98d1487b",
+      "truth_review_id": "6c44f00f-7739-5cca-971e-b96c72e955b4",
+      "parent_gv_id": "GV-PK-TWM-024-TWILIGHT-MASQUERADE-STAMP",
+      "printing_gv_id": "GV-PK-TWM-024-TWILIGHT-MASQUERADE-STAMP-HOLO",
+      "name": "Teal Mask Ogerpon",
+      "number": "024",
+      "set_code": "sv06",
+      "variant_key": "twilight_masquerade_stamp",
+      "finish_key": "holo",
+      "source_provider": "tcgcsv_tcgplayer_catalog_normalized",
+      "source_product_id": 646871,
+      "source_product_title": "Teal Mask Ogerpon (Twilight Masquerade Stamp)",
+      "source_page_url": "https://www.tcgplayer.com/product/646871/pokemon-miscellaneous-cards-and-products-teal-mask-ogerpon-twilight-masquerade-stamp",
+      "source_product_payload_hash": "cca79995140595db4d83e87bc38720c2f72847f378c5152c1e11e8b783f0da6a",
+      "source_image_url": "https://product-images.tcgplayer.com/646871.jpg",
+      "source_image": {
+        "sha256": "f67d3eec8f777ce8b19cdb83f9beebb6e5bf16db6d4156f4bbdf87e8620de5c3",
+        "size_bytes": 303795,
+        "width": 750,
+        "height": 1050,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      },
+      "storage_bucket": "user-card-images",
+      "storage_path": "warehouse-derived/special-variant-printing-evidence-v1/78372fe9-59bc-535a-acde-2b7a98d1487b/f67d3eec8f777ce8b19cdb83f9beebb6e5bf16db6d4156f4bbdf87e8620de5c3.jpg",
+      "claim_role": "confirmed_exact_variant_front",
+      "evidence_strength": "founder_confirmed_exact_image_amendment",
+      "review_flags": [
+        "padded_or_nonstandard_canvas",
+        "founder_repair_amendment",
+        "normalized_exact_image"
+      ],
+      "self_hosted_verified": true,
+      "automatic_approval_permitted": false,
+      "automatic_publication_permitted": false,
+      "automatic_pricing_mapping_permitted": false,
+      "repair": {
+        "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+        "repair_class": "normalized_exact_image",
+        "acquisition": "storage_normalized",
+        "original_evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+        "original_source_image_sha256": "5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389",
+        "acquisition_source_sha256": "5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389",
+        "deterministic_normalization": true,
+        "normalization_corners": [
+          [
+            192,
+            36
+          ],
+          [
+            851,
+            38
+          ],
+          [
+            846,
+            961
+          ],
+          [
+            198,
+            961
+          ]
+        ],
+        "normalized_dimensions": {
+          "width": 750,
+          "height": 1050
+        },
+        "visual_marker_expectation": "twilight_masquerade_logo_visible",
+        "authority_urls": [],
+        "amendment_note": "The already reviewed exact image is cropped from its padded square canvas without generative edits. The Twilight Masquerade logo remains visible."
+      }
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "replacement_or_normalized_images": 9,
+    "deterministically_normalized_images": 2,
+    "authority_nomenclature_corrections": 4,
+    "self_hosted_verified": 10,
+    "publication_authorized": 0,
+    "pricing_authorized": 0
+  }
+}

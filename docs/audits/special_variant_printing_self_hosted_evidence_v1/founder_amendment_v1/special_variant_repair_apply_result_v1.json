@@ -1,0 +1,141 @@
+{
+  "version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+  "mode": "apply",
+  "generated_at": "2026-08-05T05:54:12.437Z",
+  "commit_sha": "dca2a5c7823e128f542c9a8e14361687544b0674",
+  "packet_fingerprint": "1f456f48b716111e83efc732af65d0c71e30d8a812dcfe0f7d8de9413cf1b977",
+  "selected_rows": 10,
+  "replacement_or_normalized_images": 9,
+  "deterministically_normalized_images": 2,
+  "authority_nomenclature_corrections": 4,
+  "uploaded_and_verified": 9,
+  "verified_existing": 1,
+  "storage_readback_matches": 10,
+  "database_writes_performed": false,
+  "publication_authorized": 0,
+  "pricing_authorized": 0,
+  "canonical_identity_changed": false,
+  "upload_rows": [
+    {
+      "evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "3422ec41d0f7f0672aaed10f0eb7fa0f6596ba2e6071745eb60e6469590e9cd2",
+        "size_bytes": 212067,
+        "width": 814,
+        "height": 1095,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "b3103801a3a33f17833f4b99c571337de95591973e8487460f1c0d6ec23ee80c",
+        "size_bytes": 132155,
+        "width": 747,
+        "height": 1045,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "045eb9275ba66e34737406e496601ec3936d08a6ab3d9b0232f0726065dc1480",
+        "size_bytes": 78377,
+        "width": 553,
+        "height": 768,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "3dabada2e3b48fa7ebbaa91710164c52c0d0e83f2c8ef344eed6554e273b7b19",
+        "size_bytes": 28602,
+        "width": 346,
+        "height": 490,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "cb0c76d3de425d7b60117a0d354b96092708d1ef72c8d48c9f4b8870c83a68ec",
+        "size_bytes": 87555,
+        "width": 600,
+        "height": 825,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "401015480f0a2f1961805dd009d8085c4e65e6a52034db832c652d5f579fe562",
+        "size_bytes": 100081,
+        "width": 587,
+        "height": 811,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "cff706d51644541105fd5c7d74f47b052d7293ebdac76c3321dc7ccf24298731",
+        "size_bytes": 281961,
+        "width": 744,
+        "height": 1038,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+      "storage_status": "verified_existing",
+      "storage_readback": {
+        "sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "size_bytes": 20623,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "b32d6d404f5c9f06c1b3f0419a7d922ee08116c023715874de15d476638e60dd",
+        "size_bytes": 375360,
+        "width": 750,
+        "height": 1050,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+      "storage_status": "uploaded_and_verified",
+      "storage_readback": {
+        "sha256": "f67d3eec8f777ce8b19cdb83f9beebb6e5bf16db6d4156f4bbdf87e8620de5c3",
+        "size_bytes": 303795,
+        "width": 750,
+        "height": 1050,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    }
+  ],
+  "proof_hash": "8f27b2cdc24f9eabadb0d1cba864d57d1801e3854e0c0c061b5fa3c96ab198d4"
+}

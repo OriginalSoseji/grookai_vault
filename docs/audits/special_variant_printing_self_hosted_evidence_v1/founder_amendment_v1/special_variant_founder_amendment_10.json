@@ -1,0 +1,182 @@
+{
+  "version": "SPECIAL_VARIANT_FOUNDER_DECISIONS_V1",
+  "amendment_version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+  "packet_fingerprint": "1f456f48b716111e83efc732af65d0c71e30d8a812dcfe0f7d8de9413cf1b977",
+  "original_packet_fingerprint": "68d34b75a4a2b6ade477b6ace9851c9487140239606ae394982238df6bb593dd",
+  "original_founder_artifact_sha256": "403365fef6c5d7b57381a2dbfa448313675661372c5737a599343327f6f797b1",
+  "source_first_pass_sha256": "403365fef6c5d7b57381a2dbfa448313675661372c5737a599343327f6f797b1",
+  "source_first_pass_reviewer": "founder",
+  "reviewer": "founder",
+  "exported_at": "2026-08-05T05:54:12.437Z",
+  "decision_count": 10,
+  "remaining_count": 0,
+  "server_writes_performed": false,
+  "decisions": [
+    {
+      "evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+      "card_printing_id": "b4646204-1bef-5624-8ced-3e474ece55a0",
+      "source_image_sha256": "3422ec41d0f7f0672aaed10f0eb7fa0f6596ba2e6071745eb60e6469590e9cd2",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:25:23.057Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The exact printing is the Build & Battle-exclusive non-Holofoil Sawsbuck. The stable GV-ID says PRERELEASE-STAMP, but the authoritative product evidence establishes that this deck-exclusive printing has no visible prerelease stamp.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "7ea85d5343f34523650ef650904a93e32e4538e408bdfaa267941e053d072c26",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Cosmic_Eclipse_Build_%26_Battle_Box_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+      "card_printing_id": "3eb3112f-707f-5af3-b1b7-b4157e0cf74a",
+      "source_image_sha256": "b3103801a3a33f17833f4b99c571337de95591973e8487460f1c0d6ec23ee80c",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:24.692Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "Replacement image visibly shows the Paradox Rift logo in the illustration and the Cosmos Holo printing.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "25851012ebfce523f56c94aca9e9013df1fe08a1f1a73f041fc6584d8bc903cd",
+      "authority_urls": [
+        "https://www.pricecharting.com/game/pokemon-paradox-rift/zekrom-stamped-66"
+      ]
+    },
+    {
+      "evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+      "card_printing_id": "6cfa7bda-521f-57b9-82d1-762ef2c7defc",
+      "source_image_sha256": "045eb9275ba66e34737406e496601ec3936d08a6ab3d9b0232f0726065dc1480",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:40.583Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "Replacement image visibly shows the e-League logo and the reverse-Holo printing.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "92ed87d789c8a744515ac77ac21cf41a826460cdd6b273fc8222684c045e5cfb",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+      "card_printing_id": "3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0",
+      "source_image_sha256": "3dabada2e3b48fa7ebbaa91710164c52c0d0e83f2c8ef344eed6554e273b7b19",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:44.835Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "Replacement image visibly shows the Winner stamp required by the stable printing identity.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "df0a5e3d78f16c0c42ef2a7960cf3f85404b5b3d97cce4f796cc7a6504eb16ee",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+      "card_printing_id": "d18a30ea-47d1-5dfd-98cf-b018a698f41f",
+      "source_image_sha256": "cb0c76d3de425d7b60117a0d354b96092708d1ef72c8d48c9f4b8870c83a68ec",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:48.565Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "Replacement image visibly shows the e-League logo and the reverse-Holo printing.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "058325f0c870caa7ba6a620f552ae9202cd9f56f83668dd1dee7b097ab5a37d4",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+      "card_printing_id": "39dc7fa9-36dc-57f4-bdee-af422fc77af3",
+      "source_image_sha256": "401015480f0a2f1961805dd009d8085c4e65e6a52034db832c652d5f579fe562",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:55.599Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "d65ec68d3c24d634576ad3af054afba2a41f81f62dd63d2a81815a9e53645f34",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+      "card_printing_id": "ec573555-d4a4-5e3c-890d-f9e1cb711eb0",
+      "source_image_sha256": "cff706d51644541105fd5c7d74f47b052d7293ebdac76c3321dc7ccf24298731",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:26:59.216Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "2f29f52f43aa50c10148f8ebf1d38aa0273c9a38301625874eb5102ee411eb56",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+      "card_printing_id": "bd8dcb6b-e789-54e4-9839-8df2795f85b8",
+      "source_image_sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+      "first_pass_decision": "wrong_variant_marker",
+      "first_pass_decided_at": "2026-08-05T04:27:04.469Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The exact participant printing is Non-Holofoil without a Winner stamp. The stable E-LEAGUE-STAMP GV-ID is retained for compatibility and must not be interpreted as requiring the separate Winner mark.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+      "authority_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Rewards_%28TCG%29"
+      ]
+    },
+    {
+      "evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+      "card_printing_id": "7f3d5aae-40f8-5663-a55a-3ea785a259b7",
+      "source_image_sha256": "b32d6d404f5c9f06c1b3f0419a7d922ee08116c023715874de15d476638e60dd",
+      "first_pass_decision": "image_unusable",
+      "first_pass_decided_at": "2026-08-05T04:30:56.090Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The already reviewed exact listing image is perspective-normalized without generative edits. Both STAFF and Crimson Invasion marks remain visible.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "596044408b7eb322133a62becf8d67cb5d7b3695a071839fbc4db45d1982b50d",
+      "authority_urls": []
+    },
+    {
+      "evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+      "card_printing_id": "78372fe9-59bc-535a-acde-2b7a98d1487b",
+      "source_image_sha256": "f67d3eec8f777ce8b19cdb83f9beebb6e5bf16db6d4156f4bbdf87e8620de5c3",
+      "first_pass_decision": "image_unusable",
+      "first_pass_decided_at": "2026-08-05T04:31:46.494Z",
+      "founder_decision": "confirmed",
+      "publication_authorized": false,
+      "pricing_authorized": false,
+      "notes": "The already reviewed exact image is cropped from its padded square canvas without generative edits. The Twilight Masquerade logo remains visible.",
+      "decided_at": "2026-08-05T05:54:12.437Z",
+      "amendment_from_founder_decision": "rejected",
+      "original_source_image_sha256": "5077db03aa1c05f5f5984d23cd8f08a8dd1f7ab7384ed6e5c56413261b9ce389",
+      "authority_urls": []
+    }
+  ]
+}

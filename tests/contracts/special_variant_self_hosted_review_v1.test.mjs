@@ -263,6 +263,32 @@ test('replacement normalization is deterministic and cannot generate card conten
   assert.doesNotMatch(normalizer, /openai|generat|inpaint|outpaint/i);
 });
 
+test('the permanent repair amendment self-hosts all ten rows without transition authority', () => {
+  const manifest = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_amendment_v1/special_variant_repair_manifest_10.json',
+    'utf8',
+  ));
+  const founder = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_amendment_v1/special_variant_founder_amendment_10.json',
+    'utf8',
+  ));
+  const upload = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_amendment_v1/special_variant_repair_apply_result_v1.json',
+    'utf8',
+  ));
+  assert.equal(manifest.rows.length, EXPECTED_REPAIR_COUNT);
+  assert.equal(manifest.summary.self_hosted_verified, EXPECTED_REPAIR_COUNT);
+  assert.equal(new Set(manifest.rows.map((row) => row.card_printing_id)).size, EXPECTED_REPAIR_COUNT);
+  assert.equal(manifest.rows.filter((row) => row.source_image.sha256 !== row.repair.original_source_image_sha256).length, 9);
+  assert.equal(validateFounderArtifact(manifest, founder), founder);
+  assert.ok(founder.decisions.every((row) => row.founder_decision === 'confirmed'));
+  assert.ok(founder.decisions.every((row) => row.publication_authorized === false));
+  assert.ok(founder.decisions.every((row) => row.pricing_authorized === false));
+  assert.equal(upload.storage_readback_matches, EXPECTED_REPAIR_COUNT);
+  assert.equal(upload.database_writes_performed, false);
+  assert.equal(upload.canonical_identity_changed, false);
+});
+
 test('approval token binds every mutable gate input', () => {
   const token = expectedApprovalToken('image', 'commit', 'packet', 'decision', 0, 25);
   assert.equal(token, `${REVIEW_GATE_VERSION}:image:commit:packet:decision:0:25`);
