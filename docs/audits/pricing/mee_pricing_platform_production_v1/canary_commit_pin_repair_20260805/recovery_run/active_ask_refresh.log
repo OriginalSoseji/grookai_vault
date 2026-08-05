@@ -1,0 +1,28 @@
+[dotenv@17.2.3] injecting env (0) from .env.local -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+{
+  "worker_version": "TCGPLAYER_MARKET_ACTIVE_ASK_REFRESH_V1",
+  "status": "passed",
+  "mode": "apply",
+  "started_at": "2026-08-05T07:41:13.849Z",
+  "finished_at": "2026-08-05T07:43:23.243Z",
+  "database_session": {
+    "statement_timeout": "20min",
+    "enable_nestloop": "off"
+  },
+  "before": {
+    "row_count": 3227,
+    "invalid_row_count": 0,
+    "stale_row_count": 0,
+    "oldest_observed_at": "2026-08-03T04:11:22.537Z",
+    "newest_observed_at": "2026-08-03T14:57:55.334Z"
+  },
+  "after": {
+    "row_count": 3227,
+    "invalid_row_count": 0,
+    "stale_row_count": 0,
+    "oldest_observed_at": "2026-08-03T04:11:22.537Z",
+    "newest_observed_at": "2026-08-03T14:57:55.334Z"
+  },
+  "findings": [],
+  "artifact_root": "../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/pipeline/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1/active_ask_refresh/2026-08-05T07-41-13-010Z"
+}
