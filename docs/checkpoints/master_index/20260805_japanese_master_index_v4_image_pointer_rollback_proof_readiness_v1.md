@@ -58,15 +58,15 @@ Freeze one exact 53-row package with these controls:
 ## Frozen Proof Boundary
 
 - Plan artifact content fingerprint:
-  `ad4ac23d46da06cb4ccf16a94ad3d5e40fb3ff1884cdc732636279f523a03379`
+  `c7b76859e45afccbd57c579db118a3b1349782fc1c0ab9ad897acae66e47121c`
 - Package fingerprint:
-  `4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2`
+  `e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912`
 - Pointer plan hash:
-  `7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3`
+  `0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be`
 - Mutation contract hash:
   `5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9`
 - Code bundle hash:
-  `4402856c0c22560ac1ead2fe2dc8d0fb1ff8e60e2bfc6f5ed70619ad38b62d39`
+  `3fe17f3b06c413246037fc00caff323becd48328d0ed107b1bb002b40f1123c7`
 - Row dataset fingerprint:
   `5088488f1b9897a2f860b08ec789d7293da29c187474026f40dc324d5f15a0dc`
 - Database snapshot fingerprint:
@@ -77,11 +77,11 @@ Freeze one exact 53-row package with these controls:
 ## Artifact Hashes
 
 - Plan JSON SHA-256:
-  `acba2cf1eec74c668ebde193000cfca10eade099ca5256a7344fbaecc97d0df3`
+  `f879ec27630d3b070e0d37815925eaca11a555fd0639ddd1aef305e5bca31ec9`
 - Plan Markdown SHA-256:
-  `84ed88d7d2dc807e8da7ea8fb9793b7f5bb70ff9eee42f566a487176fa483c79`
+  `6ae5efd74fb23ef512fc6582352a3df6f2278eb11bc965c71d054d8a51827bc0`
 - Pointer-row shard SHA-256:
-  `63c3b51534675e2987727daa16762aac1f3e8f658508d7cc56a455244fe671d7`
+  `54b20c248c9ccd6af34ceb7c4787a6b3be031e9027fa71de2858b8b5ffea97d6`
 
 Artifacts:
 
@@ -124,6 +124,12 @@ Artifacts:
 - `git diff --check` passed.
 - Plan-only rollback-runner reconciliation returned the exact 53-row package,
   plan, and mutation hashes with no database or Storage access.
+- Initial GitHub proof run `31040487637` failed during credential-free TLS
+  bootstrap because Node did not trust the Supabase self-signed root. It
+  failed before authentication and before `BEGIN`, so no row mutation was
+  attempted. The repair manually verifies hostname, certificate dates,
+  signatures, and the pinned intermediate/root before an authenticated
+  `rejectUnauthorized: true` reconnect. The old package hashes are superseded.
 
 ## Explicit Next Gate
 
@@ -131,8 +137,8 @@ Commit and push this frozen implementation and plan, then execute only the
 rollback-proof workflow with these exact inputs:
 
 ```text
-fingerprint=4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2
-pointer_plan_hash=7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3
+fingerprint=e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912
+pointer_plan_hash=0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be
 mutation_contract_hash=5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9
 ```
 

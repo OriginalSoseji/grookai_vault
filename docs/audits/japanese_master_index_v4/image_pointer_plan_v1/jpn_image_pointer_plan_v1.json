@@ -25,14 +25,14 @@
         },
         {
           "relative_path": "scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs",
-          "sha256": "e50b6849ebe101070021c3e4aebcfb0883ba2ee18df626d60737fbde3ca99c75"
+          "sha256": "a3a4161fc6d5ec7acf326fc73f9d4fddf85f9fbb0c0dcd8998836e089cebf917"
         },
         {
           "relative_path": "scripts/audits/self_hosted_images_wh22_common.mjs",
           "sha256": "7b5229436d6ce2f409bbb110b44c1d80b8f70fed8e548fa3907c3dd2d46e41df"
         }
       ],
-      "hash": "4402856c0c22560ac1ead2fe2dc8d0fb1ff8e60e2bfc6f5ed70619ad38b62d39"
+      "hash": "3fe17f3b06c413246037fc00caff323becd48328d0ed107b1bb002b40f1123c7"
     },
     "current_database_snapshot": {
       "content_fingerprint_sha256": "081ddcd21602260453690d094a23f2c58ca6506eb376441ea9c5493cc24c9db3",
@@ -49,7 +49,7 @@
       "storage_writes": false
     },
     "findings": [],
-    "generated_at": "2026-08-05T19:24:17.808Z",
+    "generated_at": "2026-08-05T19:43:23.229Z",
     "mutation_contract": {
       "allowed_apply_columns": [
         "image_note",
@@ -69,14 +69,14 @@
       "target_table": "public.card_prints"
     },
     "mutation_contract_hash_sha256": "5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9",
-    "package_fingerprint_sha256": "4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2",
+    "package_fingerprint_sha256": "e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912",
     "plan_version": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PLAN-V1",
     "planned_columns": [
       "image_note",
       "image_path",
       "image_status"
     ],
-    "pointer_plan_hash_sha256": "7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3",
+    "pointer_plan_hash_sha256": "0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be",
     "preserved_columns": [
       "card_prints.image_url",
       "card_prints.image_source",
@@ -118,8 +118,8 @@
       "table": "public.card_prints"
     }
   },
-  "content_fingerprint_sha256": "ad4ac23d46da06cb4ccf16a94ad3d5e40fb3ff1884cdc732636279f523a03379",
-  "generated_at": "2026-08-05T19:24:17.808Z",
+  "content_fingerprint_sha256": "c7b76859e45afccbd57c579db118a3b1349782fc1c0ab9ad897acae66e47121c",
+  "generated_at": "2026-08-05T19:43:23.229Z",
   "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PLAN-V1",
   "retrieval": {
     "access_mode": "production_https_data_api_select_plus_exact_storage_readback",

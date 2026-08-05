@@ -16,15 +16,15 @@ const LIVE_PLAN =
   + 'jpn_image_pointer_plan_v1.json';
 const FROZEN_PLAN = Object.freeze({
   artifact_content_fingerprint_sha256:
-    'ad4ac23d46da06cb4ccf16a94ad3d5e40fb3ff1884cdc732636279f523a03379',
+    'c7b76859e45afccbd57c579db118a3b1349782fc1c0ab9ad897acae66e47121c',
   package_fingerprint_sha256:
-    '4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2',
+    'e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912',
   pointer_plan_hash_sha256:
-    '7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3',
+    '0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be',
   mutation_contract_hash_sha256:
     '5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9',
   code_bundle_hash_sha256:
-    '4402856c0c22560ac1ead2fe2dc8d0fb1ff8e60e2bfc6f5ed70619ad38b62d39',
+    '3fe17f3b06c413246037fc00caff323becd48328d0ed107b1bb002b40f1123c7',
   row_dataset_fingerprint_sha256:
     '5088488f1b9897a2f860b08ec789d7293da29c187474026f40dc324d5f15a0dc',
 });
@@ -76,6 +76,14 @@ test('rollback proof can only update inside a transaction that always rolls back
   assert.match(source, /await client\.query\('rollback'\)/);
   assert.doesNotMatch(source, /client\.query\('commit'\)/);
   assert.match(source, /durable_database_writes: 0/);
+  assert.match(source, /rejectUnauthorized: false/);
+  assert.match(source, /pre-auth connection sends no credentials/);
+  assert.match(source, /tls\.checkServerIdentity\(descriptor\.host, peer\)/);
+  assert.match(source, /SUPABASE_DB_TLS_PINS\.intermediate_sha256/);
+  assert.match(source, /SUPABASE_DB_TLS_PINS\.root_sha256/);
+  assert.match(source, /leafCertificate\.verify\(intermediateCertificate\.publicKey\)/);
+  assert.match(source, /intermediateCertificate\.verify\(rootCertificate\.publicKey\)/);
+  assert.match(source, /rejectUnauthorized: true/);
 });
 
 test('rollback workflow is manual, bounded, and secret-backed', () => {

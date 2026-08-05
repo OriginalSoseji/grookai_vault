@@ -62,8 +62,8 @@ jobs:
           POINTER_PLAN_HASH='${{ inputs.pointer_plan_hash }}'
           MUTATION_CONTRACT_HASH='${{ inputs.mutation_contract_hash }}'
           if [ -z "$FINGERPRINT" ]; then
-            FINGERPRINT='4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2'
-            POINTER_PLAN_HASH='7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3'
+            FINGERPRINT='e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912'
+            POINTER_PLAN_HASH='0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be'
             MUTATION_CONTRACT_HASH='5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9'
           fi
           node scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs \
