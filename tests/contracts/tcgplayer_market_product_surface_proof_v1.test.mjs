@@ -13,6 +13,7 @@ import {
 import {
   extractFlutterPricingProofNodesV1,
   parseFlutterPricingProofKeyV1,
+  resolveAdbExecutableV1,
 } from "../../scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs";
 import {
   buildTcgplayerMarketWebRenderEvidenceV2,
@@ -811,6 +812,34 @@ test("Flutter UIAutomator evidence preserves visible text beside the proof key",
       visible_text: "TCGPlayer Market $12.34",
     },
   ]);
+});
+
+test("Flutter capture resolves adb from the Android SDK without a global PATH entry", () => {
+  const sdkAdb = path.join(
+    "C:\\Users\\collector\\AppData\\Local",
+    "Android",
+    "Sdk",
+    "platform-tools",
+    "adb.exe",
+  );
+  assert.equal(
+    resolveAdbExecutableV1({
+      env: { LOCALAPPDATA: "C:\\Users\\collector\\AppData\\Local" },
+      platform: "win32",
+      exists: (candidate) => candidate === sdkAdb,
+    }),
+    sdkAdb,
+  );
+  assert.throws(
+    () =>
+      resolveAdbExecutableV1({
+        explicit: "C:\\missing\\adb.exe",
+        env: {},
+        platform: "win32",
+        exists: () => false,
+      }),
+    /does not exist/,
+  );
 });
 
 test("Playwright web capture requires every surface once and preserves visible evidence", () => {

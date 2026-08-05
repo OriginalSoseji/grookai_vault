@@ -82,13 +82,16 @@ class CardSurfacePricePill extends StatelessWidget {
         : baseFormattedValue;
     final carriesMarketProof =
         mode != CardSurfacePriceMode.manual && resolvedPricing != null;
+    final semanticsLabel = mode == CardSurfacePriceMode.manual
+        ? 'Collector asking price'
+        : carriesMarketProof
+        ? 'TCGPlayer Market'
+        : 'Price unavailable';
     return Semantics(
       identifier: !carriesMarketProof
           ? null
           : cardSurfacePricingProofKey(resolvedPricing),
-      label: mode == CardSurfacePriceMode.manual
-          ? 'Collector asking price'
-          : 'TCGPlayer Market',
+      label: semanticsLabel,
       value: formattedValue,
       child: Container(
         key: !carriesMarketProof
@@ -170,13 +173,16 @@ class CardSurfacePriceText extends StatelessWidget {
         : baseFormattedValue;
     final carriesMarketProof =
         mode != CardSurfacePriceMode.manual && resolvedPricing != null;
+    final semanticsLabel = mode == CardSurfacePriceMode.manual
+        ? 'Collector asking price'
+        : carriesMarketProof
+        ? 'TCGPlayer Market'
+        : 'Price unavailable';
     return Semantics(
       identifier: !carriesMarketProof
           ? null
           : cardSurfacePricingProofKey(resolvedPricing),
-      label: mode == CardSurfacePriceMode.manual
-          ? 'Collector asking price'
-          : 'TCGPlayer Market',
+      label: semanticsLabel,
       value: formattedValue,
       child: Text(
         formattedValue,

@@ -164,4 +164,99 @@ void main() {
       );
     }
   });
+
+  test('read-model adapter rejects unsupported pricing states', () {
+    final valid = <String, dynamic>{
+      'pricing_scope': 'card_printing',
+      'card_print_id': 'parent-1',
+      'card_printing_id': 'printing-1',
+      'printing_gv_id': 'GV-PK-TEST-001-PRINT',
+      'finish_key': 'normal',
+      'status': 'available',
+      'currency': 'USD',
+      'market_close': 12.34,
+      'source_name': 'tcgplayer',
+      'source_label': 'TCGPlayer Market',
+      'observed_at': '2026-07-28T08:15:00.000Z',
+      'published_at': '2026-07-28T08:20:00.000Z',
+      'freshness': 'fresh',
+      'is_from_price': false,
+      'provenance_id': 'provenance-1',
+    };
+    final mutations = <String, dynamic>{
+      'status': 'unavailable',
+      'currency': 'EUR',
+      'market_close': 0,
+      'source_name': 'other',
+      'source_label': 'Other Market',
+      'freshness': 'stale',
+      'observed_at': 'not-a-timestamp',
+      'published_at': 'not-a-timestamp',
+      'provenance_id': '',
+      'is_from_price': true,
+    };
+
+    for (final entry in mutations.entries) {
+      final invalid = Map<String, dynamic>.from(valid)
+        ..[entry.key] = entry.value;
+      expect(
+        cardSurfacePricingDataFromReadModelRow(invalid),
+        isNull,
+        reason: '${entry.key}=${entry.value} must fail closed',
+      );
+    }
+  });
+
+  test('duplicate governed rows are excluded as ambiguous', () {
+    final row = <String, dynamic>{
+      'pricing_scope': 'card_printing',
+      'card_print_id': 'parent-1',
+      'card_printing_id': 'printing-1',
+      'printing_gv_id': 'GV-PK-TEST-001-PRINT',
+      'finish_key': 'normal',
+      'status': 'available',
+      'currency': 'USD',
+      'market_close': 12.34,
+      'source_name': 'tcgplayer',
+      'source_label': 'TCGPlayer Market',
+      'observed_at': '2026-07-28T08:15:00.000Z',
+      'published_at': '2026-07-28T08:20:00.000Z',
+      'freshness': 'fresh',
+      'is_from_price': false,
+      'provenance_id': 'provenance-1',
+    };
+
+    expect(
+      indexCardSurfacePricingRows(
+        rows: [row],
+        pricingScope: 'card_printing',
+        requestedIds: const ['printing-1'],
+      ).keys,
+      ['printing-1'],
+    );
+    expect(
+      indexCardSurfacePricingRows(
+        rows: [row, Map<String, dynamic>.from(row)],
+        pricingScope: 'card_printing',
+        requestedIds: const ['printing-1'],
+      ),
+      isEmpty,
+    );
+  });
+
+  testWidgets('unavailable pricing renders no governed proof marker', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(body: CardSurfacePriceText(pricing: null)),
+      ),
+    );
+
+    expect(find.text('—'), findsOneWidget);
+    final semantics = tester.getSemantics(find.text('—'));
+    expect(semantics.identifier, isEmpty);
+    expect(semantics.label, contains('Price unavailable'));
+    expect(semantics.label, isNot(contains('TCGPlayer Market')));
+  });
 }

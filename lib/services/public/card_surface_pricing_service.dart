@@ -57,32 +57,29 @@ class CardSurfacePricingService {
       return const <String, CardSurfacePricingData>{};
     }
 
-    final pricingById = <String, CardSurfacePricingData>{};
+    final rows = <Map<String, dynamic>>[];
     for (var start = 0; start < normalizedIds.length; start += _chunkSize) {
       final end = (start + _chunkSize) > normalizedIds.length
           ? normalizedIds.length
           : start + _chunkSize;
       final chunk = normalizedIds.sublist(start, end);
-      final rows = await client.rpc(
+      final rowsResponse = await client.rpc(
         'get_market_pricing_read_model_v1',
         params: {'p_card_print_ids': chunk, 'p_card_printing_ids': null},
       );
 
-      for (final rawRow in rows as List<dynamic>) {
-        final row = Map<String, dynamic>.from(rawRow as Map);
-        if ((row['pricing_scope'] ?? '').toString() != 'parent') {
-          continue;
-        }
-        final pricing = cardSurfacePricingDataFromReadModelRow(row);
-        if (pricing == null) {
-          continue;
-        }
-
-        pricingById[pricing.cardPrintId] = pricing;
-      }
+      rows.addAll(
+        (rowsResponse as List<dynamic>).map(
+          (rawRow) => Map<String, dynamic>.from(rawRow as Map),
+        ),
+      );
     }
 
-    return pricingById;
+    return indexCardSurfacePricingRows(
+      rows: rows,
+      pricingScope: 'parent',
+      requestedIds: normalizedIds,
+    );
   }
 
   static Future<Map<String, CardSurfacePricingData>> fetchByCardPrintingIds({
@@ -99,35 +96,64 @@ class CardSurfacePricingService {
       return const <String, CardSurfacePricingData>{};
     }
 
-    final pricingById = <String, CardSurfacePricingData>{};
+    final rows = <Map<String, dynamic>>[];
     for (var start = 0; start < normalizedIds.length; start += _chunkSize) {
       final end = (start + _chunkSize) > normalizedIds.length
           ? normalizedIds.length
           : start + _chunkSize;
       final chunk = normalizedIds.sublist(start, end);
-      final rows = await client.rpc(
+      final rowsResponse = await client.rpc(
         'get_market_pricing_read_model_v1',
         params: {'p_card_print_ids': null, 'p_card_printing_ids': chunk},
       );
 
-      for (final rawRow in rows as List<dynamic>) {
-        final row = Map<String, dynamic>.from(rawRow as Map);
-        if ((row['pricing_scope'] ?? '').toString() != 'card_printing') {
-          continue;
-        }
-        final pricing = cardSurfacePricingDataFromReadModelRow(row);
-        final cardPrintingId = pricing?.cardPrintingId;
-        if (pricing == null ||
-            cardPrintingId == null ||
-            !normalizedIds.contains(cardPrintingId)) {
-          continue;
-        }
-        pricingById[cardPrintingId] = pricing;
-      }
+      rows.addAll(
+        (rowsResponse as List<dynamic>).map(
+          (rawRow) => Map<String, dynamic>.from(rawRow as Map),
+        ),
+      );
     }
 
-    return pricingById;
+    return indexCardSurfacePricingRows(
+      rows: rows,
+      pricingScope: 'card_printing',
+      requestedIds: normalizedIds,
+    );
   }
+}
+
+Map<String, CardSurfacePricingData> indexCardSurfacePricingRows({
+  required Iterable<Map<String, dynamic>> rows,
+  required String pricingScope,
+  required Iterable<String> requestedIds,
+}) {
+  final requested = requestedIds.toSet();
+  final indexed = <String, CardSurfacePricingData>{};
+  final ambiguous = <String>{};
+
+  for (final row in rows) {
+    if ((row['pricing_scope'] ?? '').toString() != pricingScope) {
+      continue;
+    }
+    final pricing = cardSurfacePricingDataFromReadModelRow(row);
+    final identity = pricingScope == 'card_printing'
+        ? pricing?.cardPrintingId
+        : pricing?.cardPrintId;
+    if (pricing == null || identity == null || !requested.contains(identity)) {
+      continue;
+    }
+    if (ambiguous.contains(identity)) {
+      continue;
+    }
+    if (indexed.containsKey(identity)) {
+      indexed.remove(identity);
+      ambiguous.add(identity);
+      continue;
+    }
+    indexed[identity] = pricing;
+  }
+
+  return indexed;
 }
 
 CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
