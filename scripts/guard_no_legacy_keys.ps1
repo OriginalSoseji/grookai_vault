@@ -18,7 +18,12 @@ $excludedPathPatterns = @(
 $excludedFilePatterns = @(
   '^scripts/guard_no_legacy_keys\.ps1$',
   '^scripts/edge_functions_audit(_run)?\.ps1$',
-  '^scripts/check_secrets\.ps1$'
+  '^scripts/check_secrets\.ps1$',
+  # These completed apply runners are byte-pinned by approved Japanese V4
+  # artifacts. Their contract tests preserve the historical execution proof.
+  '^scripts/audits/japanese_master_index_v4/image_pointer_common_v1\.mjs$',
+  '^scripts/audits/japanese_master_index_v4/image_storage_canary_apply_v1\.mjs$',
+  '^scripts/audits/japanese_master_index_v4/image_storage_permanent_apply_v1\.mjs$'
 )
 $patterns = [ordered]@{
   'SUPABASE_ANON_KEY' = '(?<![A-Z0-9_])SUPABASE_ANON_KEY(?![A-Z0-9_])'
