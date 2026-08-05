@@ -76,6 +76,10 @@ const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
   "utf8",
 );
+const FLUTTER_VAULT = readFileSync(
+  path.join(ROOT, "lib", "main_vault.dart"),
+  "utf8",
+);
 const WEB_SET_PAGE = readFileSync(
   path.join(
     ROOT,
@@ -588,6 +592,12 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(FLUTTER_PRICE, /identifier:\s*!carriesMarketProof/);
   assert.match(FLUTTER_PRICE, /Collector asking price/);
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
+  assert.match(FLUTTER_PRICE, /Price unavailable/);
+  assert.match(FLUTTER_VAULT, /Vault market value unavailable/);
+  assert.match(
+    FLUTTER_VAULT,
+    /estimatedValue == null[\s\S]*?\? 'Value pending'[\s\S]*?: _formatVaultValue/,
+  );
   assert.match(AUDIT, /visible_text:\s*clean\(renderEvidence\.visible_text\)/);
 });
 

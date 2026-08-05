@@ -2343,13 +2343,15 @@ class VaultPageState extends State<VaultPage> {
                         : vaultExactPricingTotalProofKey(
                             derivedData.vaultPricingSummary,
                           ),
-                    label: 'TCGPlayer Market Vault total',
+                    label: derivedData.estimatedValue == null
+                        ? 'Vault market value unavailable'
+                        : 'TCGPlayer Market Vault total',
                     value: derivedData.estimatedValue == null
-                        ? 'Unavailable'
+                        ? 'Value pending'
                         : _formatVaultValue(derivedData.estimatedValue!),
                     child: Text(
                       derivedData.estimatedValue == null
-                          ? 'TCGPlayer Market'
+                          ? 'Value pending'
                           : _formatVaultValue(derivedData.estimatedValue!),
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: theme.colorScheme.onSurface,
