@@ -1,0 +1,133 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "code_bundle": {
+      "files": [
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/artifact_rows_v1.mjs",
+          "sha256": "234865b364acf8663ec7d2d4e73f2758e31484dadc24fa2415fd62d8b34095a1"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs",
+          "sha256": "18a14247e7a654aad337c7aaea65c1185d4d0ae07c7a33feb1478a860a2a3d84"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_acquisition_readiness_v1.mjs",
+          "sha256": "a41a174a3d7c77429d20061e4dea88c684f35015a4fd5d2a76e4309e4915af63"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_pointer_common_v1.mjs",
+          "sha256": "31afd53cb03f053a43808cf8fbf9a8bd5ae0c2d832d91607427a3f703c71d527"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_pointer_plan_v1.mjs",
+          "sha256": "8f42d184731705bc3a74c2bdea88deb0dae45d3ac4d0eb7274664f71ec6382e5"
+        },
+        {
+          "relative_path": "scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs",
+          "sha256": "e50b6849ebe101070021c3e4aebcfb0883ba2ee18df626d60737fbde3ca99c75"
+        },
+        {
+          "relative_path": "scripts/audits/self_hosted_images_wh22_common.mjs",
+          "sha256": "7b5229436d6ce2f409bbb110b44c1d80b8f70fed8e548fa3907c3dd2d46e41df"
+        }
+      ],
+      "hash": "4402856c0c22560ac1ead2fe2dc8d0fb1ff8e60e2bfc6f5ed70619ad38b62d39"
+    },
+    "current_database_snapshot": {
+      "content_fingerprint_sha256": "081ddcd21602260453690d094a23f2c58ca6506eb376441ea9c5493cc24c9db3",
+      "read_transport": "postgrest_select_only",
+      "rows": 53,
+      "writes_performed": false
+    },
+    "execution_boundary": {
+      "database_reads": true,
+      "database_writes": false,
+      "durable_changes": 0,
+      "image_pointer_writes": false,
+      "storage_reads": true,
+      "storage_writes": false
+    },
+    "findings": [],
+    "generated_at": "2026-08-05T19:24:17.808Z",
+    "mutation_contract": {
+      "allowed_apply_columns": [
+        "image_note",
+        "image_path",
+        "image_status"
+      ],
+      "atomicity": "single_53_row_transaction",
+      "compare_and_swap": "complete_to_jsonb_card_prints_row",
+      "exact_row_scope": 53,
+      "failure_recovery": "database_transaction_rollback",
+      "image_source_policy": "preserve_identity",
+      "image_url_policy": "preserve_existing_exact_external_fallback",
+      "locking": "all_53_rows_for_update_before_first_mutation",
+      "postcondition": "complete_row_readback_hash_for_all_53_rows_before_commit",
+      "rollback_proof": "mandatory_before_real_apply_approval",
+      "storage_precondition": "all_53_objects_reverified_before_begin",
+      "target_table": "public.card_prints"
+    },
+    "mutation_contract_hash_sha256": "5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9",
+    "package_fingerprint_sha256": "4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2",
+    "plan_version": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PLAN-V1",
+    "planned_columns": [
+      "image_note",
+      "image_path",
+      "image_status"
+    ],
+    "pointer_plan_hash_sha256": "7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3",
+    "preserved_columns": [
+      "card_prints.image_url",
+      "card_prints.image_source",
+      "card_prints.representative_image_url",
+      "all non-image columns"
+    ],
+    "ready_for_rollback_proof": true,
+    "row_dataset": {
+      "content_fingerprint_sha256": "5088488f1b9897a2f860b08ec789d7293da29c187474026f40dc324d5f15a0dc",
+      "dataset_key": "jpn_image_pointer_plan_rows_v1",
+      "row_count": 53,
+      "shard_count": 1,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/image_pointer_plan_v1/rows/jpn_image_pointer_plan_rows_v1/jpn_image_pointer_plan_rows_v1_0001_of_0001.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "scope": {
+      "already_applied_no_ops": 0,
+      "blocked_rows": 0,
+      "rollback_proof_updates": 53,
+      "rows": 53
+    },
+    "source_commit": "842b3e0db4ec3256449f0490a218454303fa581f",
+    "source_storage": {
+      "permanent_apply_proof_hash_sha256": "56c1957683e3ef444b28fe74da0aae711d70d588e70d291ab59c188da225c353",
+      "permanent_plan_content_fingerprint_sha256": "9f124fc23f7f6dcfcfeb26f0f4a54ec4624eea426f785f124e87be81aa63c5d9"
+    },
+    "status": "complete_no_write_pointer_plan",
+    "storage_reverification": {
+      "attempted": 53,
+      "content_fingerprint_sha256": "a75e347c9e449b8f352c3d246b1d5b569d4696b78c4c529cc52a6fae2b9267c3",
+      "failed": 0,
+      "verified": 53
+    },
+    "target": {
+      "storage_bucket": "user-card-images",
+      "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+      "table": "public.card_prints"
+    }
+  },
+  "content_fingerprint_sha256": "ad4ac23d46da06cb4ccf16a94ad3d5e40fb3ff1884cdc732636279f523a03379",
+  "generated_at": "2026-08-05T19:24:17.808Z",
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PLAN-V1",
+  "retrieval": {
+    "access_mode": "production_https_data_api_select_plus_exact_storage_readback",
+    "database_read_transport": "postgrest_select_only",
+    "database_reads": true,
+    "database_transaction_read_only": false,
+    "database_writes": false,
+    "storage_reads": true,
+    "storage_writes": false
+  }
+}

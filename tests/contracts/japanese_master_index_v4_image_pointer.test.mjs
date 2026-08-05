@@ -1,0 +1,154 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import test from 'node:test';
+
+import { readVerifiedArtifact } from '../../scripts/audits/japanese_master_index_v4/artifact_rows_v1.mjs';
+import { contentFingerprint } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
+import {
+  ALLOWED_IMAGE_POINTER_COLUMNS,
+  EXPECTED_IMAGE_POINTER_ROWS,
+  IMAGE_POINTER_MUTATION_CONTRACT,
+  IMAGE_POINTER_PLAN_VERSION,
+} from '../../scripts/audits/japanese_master_index_v4/image_pointer_common_v1.mjs';
+
+const LIVE_PLAN =
+  'docs/audits/japanese_master_index_v4/image_pointer_plan_v1/'
+  + 'jpn_image_pointer_plan_v1.json';
+const FROZEN_PLAN = Object.freeze({
+  artifact_content_fingerprint_sha256:
+    'ad4ac23d46da06cb4ccf16a94ad3d5e40fb3ff1884cdc732636279f523a03379',
+  package_fingerprint_sha256:
+    '4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2',
+  pointer_plan_hash_sha256:
+    '7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3',
+  mutation_contract_hash_sha256:
+    '5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9',
+  code_bundle_hash_sha256:
+    '4402856c0c22560ac1ead2fe2dc8d0fb1ff8e60e2bfc6f5ed70619ad38b62d39',
+  row_dataset_fingerprint_sha256:
+    '5088488f1b9897a2f860b08ec789d7293da29c187474026f40dc324d5f15a0dc',
+});
+
+async function loadRows(descriptor) {
+  const rows = [];
+  for (const shardPath of descriptor.shard_paths) {
+    const { artifact } = await readVerifiedArtifact(shardPath);
+    rows.push(...artifact.content.rows);
+  }
+  return rows;
+}
+
+test('Japanese pointer contract is exactly 53 rows and three image fields', () => {
+  assert.equal(EXPECTED_IMAGE_POINTER_ROWS, 53);
+  assert.deepEqual(ALLOWED_IMAGE_POINTER_COLUMNS, [
+    'image_note',
+    'image_path',
+    'image_status',
+  ]);
+  assert.equal(IMAGE_POINTER_MUTATION_CONTRACT.compare_and_swap, 'complete_to_jsonb_card_prints_row');
+  assert.equal(IMAGE_POINTER_MUTATION_CONTRACT.rollback_proof, 'mandatory_before_real_apply_approval');
+});
+
+test('pointer planner uses read-only HTTPS calls and has no mutation path', () => {
+  const source = fs.readFileSync(
+    'scripts/audits/japanese_master_index_v4/image_pointer_plan_v1.mjs',
+    'utf8',
+  );
+  assert.match(source, /\.from\('card_prints'\)/);
+  assert.match(source, /\.select\('\*'\)/);
+  assert.match(source, /reverifyStorageAssets/);
+  assert.doesNotMatch(source, /\.update\(|\.insert\(|\.upsert\(|\.delete\(/);
+  assert.match(source, /database_writes: false/);
+  assert.match(source, /storage_writes: false/);
+});
+
+test('rollback proof can only update inside a transaction that always rolls back', () => {
+  const source = fs.readFileSync(
+    'scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs',
+    'utf8',
+  );
+  assert.match(source, /--execute-rollback-proof/);
+  assert.match(source, /Explicit rollback-proof fingerprint or hash mismatch/);
+  assert.match(source, /await client\.query\('begin'\)/);
+  assert.match(source, /for update/);
+  assert.match(source, /update public\.card_prints as cp/);
+  assert.match(source, /to_jsonb\(cp\) = \$\$\{beforeParam\}::jsonb/);
+  assert.match(source, /await client\.query\('rollback'\)/);
+  assert.doesNotMatch(source, /client\.query\('commit'\)/);
+  assert.match(source, /durable_database_writes: 0/);
+});
+
+test('rollback workflow is manual, bounded, and secret-backed', () => {
+  const source = fs.readFileSync(
+    '.github/workflows/japanese-v4-image-pointer-rollback-proof.yml',
+    'utf8',
+  );
+  assert.match(source, /workflow_dispatch:/);
+  assert.doesNotMatch(source, /^\s+push:/m);
+  assert.doesNotMatch(source, /^\s+schedule:/m);
+  assert.match(source, /secrets\.SUPABASE_DB_URL/);
+  assert.match(source, /--execute-rollback-proof/);
+  assert.match(source, /cancel-in-progress: false/);
+});
+
+test('live pointer plan freezes complete snapshots and zero writes', async () => {
+  const { artifact } = await readVerifiedArtifact(LIVE_PLAN, {
+    expectedPackageId: IMAGE_POINTER_PLAN_VERSION,
+  });
+  assert.equal(
+    artifact.content_fingerprint_sha256,
+    FROZEN_PLAN.artifact_content_fingerprint_sha256,
+  );
+  assert.equal(
+    artifact.content.package_fingerprint_sha256,
+    FROZEN_PLAN.package_fingerprint_sha256,
+  );
+  assert.equal(
+    artifact.content.pointer_plan_hash_sha256,
+    FROZEN_PLAN.pointer_plan_hash_sha256,
+  );
+  assert.equal(
+    artifact.content.mutation_contract_hash_sha256,
+    FROZEN_PLAN.mutation_contract_hash_sha256,
+  );
+  assert.equal(
+    artifact.content.code_bundle.hash,
+    FROZEN_PLAN.code_bundle_hash_sha256,
+  );
+  assert.equal(
+    artifact.content.row_dataset.content_fingerprint_sha256,
+    FROZEN_PLAN.row_dataset_fingerprint_sha256,
+  );
+  assert.equal(artifact.content.status, 'complete_no_write_pointer_plan');
+  assert.equal(artifact.content.scope.rows, 53);
+  assert.equal(artifact.content.scope.rollback_proof_updates, 53);
+  assert.equal(artifact.content.scope.already_applied_no_ops, 0);
+  assert.equal(artifact.content.scope.blocked_rows, 0);
+  assert.equal(artifact.content.storage_reverification.verified, 53);
+  assert.equal(artifact.content.ready_for_rollback_proof, true);
+  assert.equal(artifact.content.execution_boundary.database_writes, false);
+  assert.equal(artifact.content.execution_boundary.storage_writes, false);
+  assert.equal(artifact.content.execution_boundary.durable_changes, 0);
+});
+
+test('live pointer rows preserve fallback/source and change only three fields', async () => {
+  const { artifact } = await readVerifiedArtifact(LIVE_PLAN);
+  const rows = await loadRows(artifact.content.row_dataset);
+  assert.equal(rows.length, 53);
+  assert.equal(contentFingerprint(rows), artifact.content.row_dataset.content_fingerprint_sha256);
+  assert.equal(new Set(rows.map((row) => row.target_row_id)).size, 53);
+  for (const row of rows) {
+    assert.ok(row.current_row_snapshot);
+    assert.ok(row.expected_after_snapshot);
+    assert.equal(contentFingerprint(row.current_row_snapshot), row.current_row_snapshot_hash);
+    assert.equal(contentFingerprint(row.expected_after_snapshot), row.expected_after_snapshot_hash);
+    assert.deepEqual(Object.keys(row.proposed_values).sort(), ALLOWED_IMAGE_POINTER_COLUMNS);
+    assert.equal(row.proposed_values.image_path, row.target_storage_path);
+    assert.equal(row.proposed_values.image_status, 'exact');
+    assert.equal(row.expected_after_snapshot.image_url, row.current_row_snapshot.image_url);
+    assert.equal(row.expected_after_snapshot.image_source, row.current_row_snapshot.image_source);
+    assert.equal(row.expected_after_snapshot.representative_image_url, row.current_row_snapshot.representative_image_url);
+    assert.equal(row.row_disposition, 'rollback_proof_update_required');
+    assert.deepEqual(row.validation_errors, []);
+  }
+});
