@@ -216,6 +216,10 @@ test('portal and executor preserve no-write review and canonical parent boundari
   assert.doesNotMatch(portal, /PublicCardImage/);
   assert.match(portal, /Direct founder first pass/);
   assert.match(portal, /artifact\.reviewer !== "PokeJavi" && artifact\.reviewer !== "founder"/);
+  assert.match(portal, /decision === "exact_match"\) return "confirmed"/);
+  assert.match(portal, /decision === "needs_more_evidence"\) return "needs_more_evidence"/);
+  assert.match(portal, /publicationAuthorized: false/);
+  assert.match(portal, /pricingAuthorized: false/);
   assert.match(singularRouteAlias, /redirect\("\/review\/special-variants"\)/);
   assert.doesNotMatch(portal, /fetch\([^)]*,\s*\{[^}]*method:\s*["'](?:POST|PUT|PATCH|DELETE)/s);
   assert.match(imageRoute, /\.download\(row\.storage_path\)/);

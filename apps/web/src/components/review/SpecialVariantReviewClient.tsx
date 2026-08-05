@@ -49,6 +49,12 @@ function emptyDraft(): ReviewDraft {
   };
 }
 
+function founderDecisionFromDirectFirstPass(decision: FirstPassDecision): FounderDecision {
+  if (decision === "exact_match") return "confirmed";
+  if (decision === "needs_more_evidence") return "needs_more_evidence";
+  return "rejected";
+}
+
 function imageUrl(row: SpecialVariantEvidenceRow) {
   return `/api/review/special-variants/image/${encodeURIComponent(row.card_printing_id)}`;
 }
@@ -241,6 +247,27 @@ export default function SpecialVariantReviewClient({
     });
   }
 
+  function seedDirectFounderConfirmation(artifact: FirstPassDecisionArtifact) {
+    if (artifact.reviewer !== "founder") return;
+    const decidedAt = new Date().toISOString();
+    setDrafts((current) => {
+      const next = { ...current };
+      for (const decision of artifact.decisions) {
+        const existing = next[decision.evidence_id] ?? emptyDraft();
+        if (existing.founderDecision) continue;
+        next[decision.evidence_id] = {
+          ...existing,
+          founderDecision: founderDecisionFromDirectFirstPass(decision.decision),
+          publicationAuthorized: false,
+          pricingAuthorized: false,
+          notes: existing.notes || decision.notes,
+          decidedAt,
+        };
+      }
+      return next;
+    });
+  }
+
   async function exportFirstPass() {
     const decisions: FirstPassDecisionRow[] = manifest.rows.flatMap((row) => {
       const draft = drafts[row.evidence_id];
@@ -267,10 +294,11 @@ export default function SpecialVariantReviewClient({
     downloadJson(`special_variant_first_pass_${reviewerKey}_${decisions.length}_of_${manifest.rows.length}.json`, artifact);
     if (isFounder && decisions.length === manifest.rows.length) {
       const serialized = `${JSON.stringify(artifact, null, 2)}\n`;
+      seedDirectFounderConfirmation(artifact);
       setFirstPassArtifact(artifact);
       setFirstPassSha256(await sha256Text(serialized));
       setDecisionFilter("all");
-      setNotice(`Exported all ${decisions.length} direct first-pass decisions and unlocked founder confirmation. No server data changed.`);
+      setNotice(`Exported all ${decisions.length} direct first-pass decisions and pre-filled founder confirmation. Publication and pricing remain unauthorized.`);
       return;
     }
     setNotice(`Exported ${decisions.length} first-pass decisions. Complete all ${manifest.rows.length} rows to unlock founder confirmation. No server data changed.`);
@@ -280,10 +308,15 @@ export default function SpecialVariantReviewClient({
     try {
       const text = await file.text();
       const artifact = validateFirstPassArtifact(JSON.parse(text), manifest);
+      seedDirectFounderConfirmation(artifact);
       setFirstPassArtifact(artifact);
       setFirstPassSha256(await sha256Text(text));
       setDecisionFilter("all");
-      setNotice(`Imported ${artifact.decision_count} image-bound decisions from ${artifact.reviewer}.`);
+      setNotice(
+        artifact.reviewer === "founder"
+          ? `Imported ${artifact.decision_count} direct founder decisions and pre-filled final confirmation. No publication or pricing authority was added.`
+          : `Imported ${artifact.decision_count} image-bound decisions from ${artifact.reviewer}.`,
+      );
     } catch (error) {
       setFirstPassArtifact(null);
       setFirstPassSha256(null);
