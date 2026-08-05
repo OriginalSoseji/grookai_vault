@@ -82,7 +82,42 @@ duplicate-set cleanup, or mutation outside this gate.
 
 The repaired proof used the production database and Storage through the locally
 built production web code. The deployed production artifact remains preserved
-separately and must be rerun after deployment.
+separately below.
+
+## Production Deployment Verification
+
+- Merged main SHA:
+  `dba6d3521bdf5bd7292b912d9d6d1cd8a709b80a`
+- Production base URL: `https://grookaivault.com`
+- Final production rows: 53/53
+- Final production set pages: 27/27
+- Final production set pages with exact canonical totals: 27/27
+- Final production set pages with preferred metadata: 27/27
+- Final production exact image bytes: 53/53
+- Final production card-detail routes: 53/53
+- Final production set-grid hosted-first rows: 53/53
+- Final production set-grid fallbacks preserved: 53/53
+- Final production exact search matches: 53/53
+- Distinct production HTTP checks: 163
+- Final-run HTTP retries: 0
+- Database writes: 0
+- Storage writes: 0
+
+Two pre-proof diagnostics are preserved. The first captured one transient set
+grid `500`; the second captured a different transport-level `fetch failed`.
+Both occurred while the deployment was stabilizing. The smoke harness now
+performs at most two delayed retries for idempotent GET transport or `5xx`
+failures, records every retry, and still fails immediately for `4xx` responses
+or incorrect successful content. The final production proof required no retry.
+
+Production artifact hashes:
+
+- JSON SHA-256:
+  `4dc8ed1f2024f62e46c43dccae8e0dced16d793c59a94f23774e8fb1b6d0bf74`
+- Markdown SHA-256:
+  `f24dc5c14e78a47cd611a6bda4f3d55af2011eb4616278e470806ca608c3c9d8`
+- Content fingerprint:
+  `a660c8e067ee19856f24b34a4ff5df71e0be2b28aa991fdd3c62027664652774`
 
 ## Artifact Hashes
 
@@ -108,6 +143,9 @@ Artifacts:
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_total_reconciliation_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_codeql_parser_hardening_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_raw_rendered_html_matching_v1/`
+- `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/production_post_deploy_transient_failure_v1/`
+- `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/production_post_deploy_transport_failure_v2/`
+- `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/production_post_deploy_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/total_reconciliation_markup_failure_v1/`
 
 ## Current Truths
@@ -121,8 +159,7 @@ Artifacts:
   and `Terastal Fest ex`.
 - Source set-name presentation markup is removed only at the client display
   boundary; stored canonical evidence is unchanged.
-- Production still needs the client read repair deployed before its set-grid
-  result can be declared complete.
+- Production is deployed and the exact 53-row product boundary is complete.
 - No public Japanese V4 child printing exists or was authorized.
 
 ## Invariants
@@ -140,7 +177,7 @@ Artifacts:
 
 - Full Japanese Master Index V4 contract suite passed 202/202, including exact
   total and preferred-metadata assertions.
-- Full repository contract suite passed 1477/1477.
+- Full repository contract suite passed 1479/1479.
 - Relevant web public-set tests passed 14/14.
 - Targeted Flutter image and public-set tests passed 37/37, including
   case-equivalent count aggregation and set-name display sanitization.
@@ -154,16 +191,14 @@ Artifacts:
 
 ## Explicit Next Gate
 
-Merge and deploy the mixed-case set-loader repair, then rerun this exact
-53-row read-only smoke against `https://grookaivault.com`. Require 53/53 rows,
-27/27 set pages, exact image bytes, hosted-first set-grid output, preserved
-fallbacks, and zero writes.
+Japanese V4 image acquisition may now expand beyond these 53 parents only
+under a new bounded plan with independent image evidence, collision preflight,
+exact byte readback, and separately approved pointer mutations.
 
-Only after that deployed verification may Japanese V4 image acquisition expand
-beyond these 53 parents under a new bounded plan. Child-printing publication,
-family promotion, and broad catalog image writes remain separate approvals.
+Child-printing publication, family promotion, and broad catalog image writes
+remain separate approvals.
 
 ## Stop State
 
-The pointer product integration is proven on the repaired branch. Deployment
-verification remains the only open step for this 53-row product gate.
+The 53-row Japanese V4 parent-image product integration is deployed and proven
+end to end. No database or Storage mutation remains open in this gate.

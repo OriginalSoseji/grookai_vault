@@ -36,6 +36,8 @@ const DEFAULT_OUTPUT_ROOT =
   'docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1';
 const DEFAULT_WEB_BASE_URL = 'https://grookaivault.com';
 const SET_GRID_PAGE_SIZE = 48;
+const MAX_HTTP_ATTEMPTS = 3;
+const HTTP_RETRY_DELAY_MS = 250;
 
 function clean(value) {
   const normalized = String(value ?? '').trim();
@@ -421,43 +423,72 @@ function expectedProxyPath(gvId) {
   return `/api/canon/cards/${encodeURIComponent(gvId.toUpperCase())}/image`;
 }
 
-async function fetchResponse(url, kind = 'text') {
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      redirect: 'follow',
-      headers: { 'User-Agent': `${PRODUCT_SMOKE_VERSION}/1.0` },
-      signal: AbortSignal.timeout(30_000),
-    });
-    if (kind === 'bytes') {
-      const bytes = Buffer.from(await response.arrayBuffer());
-      return {
-        ok: response.ok,
-        status: response.status,
-        content_type: response.headers.get('content-type'),
-        cache_control: response.headers.get('cache-control'),
-        size_bytes: bytes.byteLength,
-        sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
-        error: null,
+export async function fetchResponse(
+  url,
+  kind = 'text',
+  {
+    fetchImpl = fetch,
+    sleep = (milliseconds) => new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    }),
+  } = {},
+) {
+  const transientFailures = [];
+  for (let attempt = 1; attempt <= MAX_HTTP_ATTEMPTS; attempt += 1) {
+    let result;
+    try {
+      const response = await fetchImpl(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: { 'User-Agent': `${PRODUCT_SMOKE_VERSION}/1.0` },
+        signal: AbortSignal.timeout(30_000),
+      });
+      if (kind === 'bytes') {
+        const bytes = Buffer.from(await response.arrayBuffer());
+        result = {
+          ok: response.ok,
+          status: response.status,
+          content_type: response.headers.get('content-type'),
+          cache_control: response.headers.get('cache-control'),
+          size_bytes: bytes.byteLength,
+          sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
+          error: null,
+        };
+      } else {
+        result = {
+          ok: response.ok,
+          status: response.status,
+          content_type: response.headers.get('content-type'),
+          body: await response.text(),
+          error: null,
+        };
+      }
+    } catch (error) {
+      result = {
+        ok: false,
+        status: null,
+        content_type: null,
+        body: null,
+        error: error instanceof Error ? error.message : String(error),
       };
     }
-    const body = await response.text();
-    return {
-      ok: response.ok,
-      status: response.status,
-      content_type: response.headers.get('content-type'),
-      body,
-      error: null,
-    };
-  } catch (error) {
-    return {
-      ok: false,
-      status: null,
-      content_type: null,
-      body: null,
-      error: error instanceof Error ? error.message : String(error),
-    };
+    const retryable = result.status === null || result.status >= 500;
+    if (!retryable || attempt === MAX_HTTP_ATTEMPTS) {
+      return {
+        ...result,
+        request_count: attempt,
+        retry_count: attempt - 1,
+        transient_failures: transientFailures,
+      };
+    }
+    transientFailures.push({
+      attempt,
+      status: result.status,
+      error: result.error,
+    });
+    await sleep(HTTP_RETRY_DELAY_MS * attempt);
   }
+  throw new Error('HTTP retry loop exited unexpectedly.');
 }
 
 export function renderedHtmlHasPath(body, expectedPath) {
@@ -478,6 +509,9 @@ async function fetchImageChecks(baseUrl, pointerRows) {
       gv_id: row.gv_id,
       route: proxyPath,
       status: response.status,
+      request_count: response.request_count,
+      retry_count: response.retry_count,
+      transient_failures: response.transient_failures,
       content_type: response.content_type,
       cache_control: response.cache_control,
       size_bytes: response.size_bytes ?? null,
@@ -506,6 +540,9 @@ async function fetchCardPageChecks(baseUrl, pointerRows) {
       gv_id: row.gv_id,
       route,
       status: response.status,
+      request_count: response.request_count,
+      retry_count: response.retry_count,
+      transient_failures: response.transient_failures,
       contains_name: body.includes(row.name),
       contains_hosted_proxy: containsHostedProxy,
       contains_image_unavailable: body.includes('Image unavailable'),
@@ -555,6 +592,9 @@ async function fetchSetGridChecks(baseUrl, liveRows) {
       offset: window.offset,
       route,
       status: response.status,
+      request_count: response.request_count,
+      retry_count: response.retry_count,
+      transient_failures: response.transient_failures,
       response_items: items.length,
       rows: window.rows.map((row) => {
         const item = itemsByGvId.get(row.gv_id) ?? null;
@@ -588,6 +628,9 @@ async function fetchSetGridChecks(baseUrl, liveRows) {
     ...row,
     route: window.route,
     status: window.status,
+    request_count: window.request_count,
+    retry_count: window.retry_count,
+    transient_failures: window.transient_failures,
     error: window.error,
   })));
 }
@@ -608,6 +651,9 @@ async function fetchSetPageChecks(baseUrl, setScopes) {
       equivalent_set_rows: scope.equivalent_set_rows,
       route,
       status: response.status,
+      request_count: response.request_count,
+      retry_count: response.retry_count,
+      transient_failures: response.transient_failures,
       contains_set_name: body.includes(scope.expected_set_name),
       contains_canonical_card_count: containsCanonicalCardCount,
       passed:
