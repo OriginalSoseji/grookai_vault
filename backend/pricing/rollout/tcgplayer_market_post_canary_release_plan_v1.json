@@ -1,23 +1,34 @@
 {
   "plan_version": "TCGPLAYER_MARKET_POST_CANARY_RELEASE_PLAN_V1",
   "status": "frozen_blocked_by_active_canary",
-  "prepared_at": "2026-07-29T21:39:43.000Z",
+  "prepared_at": "2026-08-05T08:37:34.127Z",
   "production_runtime": {
-    "expected_commit_sha": "ffb2513fd530930dbfaee714b84df2358f7eaafc",
-    "replacement_activation_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-REPAIR3",
-    "required_canary_end": "2026-08-01T20:26:44.820Z",
-    "expected_current_row_count": 100,
+    "expected_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+    "replacement_activation_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1",
+    "replacement_activation_run_id": "3c1be9e1-de61-4459-9110-890fd7cc9210",
+    "required_canary_end": "2026-08-08T07:51:54.064Z",
+    "canary_definition_row_count": 100,
+    "expected_current_row_count": 99,
+    "max_source_missing_count": 5,
     "anonymous_pricing_must_remain_denied": true
   },
   "current_read_only_truth": {
-    "checked_at": "2026-07-29T21:39:43.000Z",
-    "current_rows": 100,
-    "positive_usd_rows": 100,
-    "tcgplayer_market_rows": 100,
-    "fresh_rows": 100,
+    "checked_at": "2026-08-05T08:37:34.127Z",
+    "current_rows": 99,
+    "positive_usd_rows": 99,
+    "tcgplayer_market_rows": 99,
+    "fresh_rows": 99,
     "missing_provenance_rows": 0,
-    "run_count": 1,
-    "publication_set_count": 1,
+    "stale_price_rows": 0,
+    "broken_trace_rows": 0,
+    "scheduled_source_run_count": 1,
+    "scheduled_publication_run_count": 1,
+    "current_publication_run_id": "835ddaf5-cbc0-44cc-861f-7330aca3282d",
+    "current_publication_set_id": "56f8f7ff-73e1-4e96-afc9-7396de6ebde4",
+    "prior_publication_set_id": "168e8206-4926-41a1-9e78-d997273bdb08",
+    "authenticated_read_count": 99,
+    "anonymous_runtime_denied": true,
+    "rollback_available": true,
     "database_writes": 0
   },
   "pending_migration_package": {
@@ -44,7 +55,7 @@
     {
       "order": 1,
       "gate": "replacement_canary",
-      "require": "first enforcing observer at or after required_canary_end reports passed with every Checkpoint 39 condition true",
+      "require": "first enforcing observer at or after required_canary_end and completion grace reports passed with every Checkpoint 42 condition true",
       "on_failure": "stop_preserve_evidence_no_migration_no_deploy"
     },
     {
@@ -75,7 +86,7 @@
       "order": 6,
       "gate": "client_deploy",
       "require": "deploy web and Flutter artifacts from the same recorded integration candidate and verify deployment metadata",
-      "on_failure": "roll_back_client_to_prior_deployed_sha_keep_publication_at_100"
+      "on_failure": "roll_back_client_to_prior_deployed_sha_keep_current_canary_publication"
     },
     {
       "order": 7,
@@ -87,7 +98,7 @@
       "order": 8,
       "gate": "full_scope_shadow",
       "require": "fresh full-source V1.2 shadow, coverage, performance, provenance, exact-Vault, health, and rollback dry-run all pass",
-      "on_failure": "stop_keep_publication_at_100"
+      "on_failure": "stop_keep_current_canary_publication"
     },
     {
       "order": 9,

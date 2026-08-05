@@ -103,6 +103,22 @@ After the terminal pricing canary passes, the release must still:
 6. upload an exact-SHA iOS archive with its dSYM to TestFlight;
 7. begin a bounded signed-in rollout, without enabling anonymous pricing.
 
+## Operator Handoff Correction
+
+The repository's post-canary release plan previously retained metadata from
+the invalidated July replacement window. It has been refreshed to the active
+August 5 window without changing migration contents or release ordering:
+
+- runtime commit `6b729441bf8944048885ade5d9905e23166d9d46`;
+- activation `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1`;
+- terminal threshold `2026-08-08T07:51:54.064Z` plus completion grace;
+- 100 defined identities, 99 current exact rows, and a maximum of 5 explicit
+  source-missing identities;
+- authenticated read count 99, anonymous denial, and rollback availability.
+
+A contract test now pins this metadata so migration-day tooling cannot silently
+fall back to the invalidated window.
+
 ## Exact Next Gate
 
 At or after `2026-08-08T07:51:54.064Z`, plus final-slot completion grace, run
