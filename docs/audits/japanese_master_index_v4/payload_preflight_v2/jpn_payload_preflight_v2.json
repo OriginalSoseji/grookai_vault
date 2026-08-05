@@ -98,7 +98,7 @@
       "direct": 38,
       "sets": 1041
     },
-    "generated_at": "2026-08-05T15:44:27.964Z",
+    "generated_at": "2026-08-05T16:38:09.321Z",
     "generator_version": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V2",
     "guard": {
       "default_transaction_read_only": "on",
@@ -131,7 +131,7 @@
     ],
     "schema_contract": {
       "artifact_path": "docs/audits/japanese_master_index_v4/payload_preflight_v2/jpn_payload_target_schema_contract_v2.json",
-      "artifact_sha256": "0fd3735b2858b4096959414d6f0d6f2eba4db12501d4c6c7994936f4e064d333",
+      "artifact_sha256": "03fbc3184d68aa2497c17eddaaf5e123c6da9c6d7b96baf21b87eceff2691ee3",
       "column_count": 109,
       "constraint_count": 31,
       "fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
@@ -161,8 +161,8 @@
       "set_rows": 1041
     }
   },
-  "content_fingerprint_sha256": "c5f6b2f48b86d36585fda7f5af9b8a656df00f16d11175fc4718bff21996d6bf",
-  "generated_at": "2026-08-05T15:44:27.964Z",
+  "content_fingerprint_sha256": "3ac904e6c2ec5798ef8516875ce59142be0f4d84d12fbe1ec3c12d08a33e0d03",
+  "generated_at": "2026-08-05T16:38:09.321Z",
   "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V2",
   "retrieval": {
     "access_mode": "live_database_proven_read_only_plus_final_artifacts",

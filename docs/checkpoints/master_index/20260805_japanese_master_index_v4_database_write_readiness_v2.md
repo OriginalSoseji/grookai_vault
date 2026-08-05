@@ -18,6 +18,10 @@ The current-main migration-order repair, local replay, schema-equivalence
 audit, and targeted rollback writer are implemented by commit
 `6ac7ade2356779388852916335d072fe6b15e999`.
 
+The approved production schema-history apply and the full rollback-only
+payload proof were executed from frozen commit
+`38d91e108ba02dd7a51f4987d205250d22a1b3d7`.
+
 The unfinished Official Japanese catalog expansion remains preserved on the
 separate branch `catalog/jpn-master-index-v5-official-global-catalog` at
 `4c0489f161c69660e968eec195e783b9d0701f3b`. It is not a dependency of this
@@ -69,6 +73,10 @@ this gate.
 - Migration version: `20260805100000`
 - Migration SQL SHA-256:
   `2cd8c70026d74296a469afdb5017944bb37c3a640e064288e4d55d140c037fb6`
+- Migration ledger fingerprint:
+  `298f4caa30964208470cbd32e27d30bd46eef9a4fc7398a2adb028ebdecb4392`
+- Production migration status: durably applied and read back with all 35
+  statements recorded in the migration ledger.
 - The function definition preserves the final security contract with
   `search_path = pg_catalog`.
 - Set rows proposed: 1,041
@@ -80,6 +88,11 @@ this gate.
 - Blocking collisions: 0
 - Non-blocking collisions: 0
 - Repository schema drift tables: 0
+- Full rollback-only transaction readback matched every planned count.
+- Durable payload readback after rollback is zero for all five target tables.
+- The active English family fingerprint remained
+  `163a3ffaa8c9023d02475e2be587ccd254eb7ed24b67b947db7f8d29c75a6142`
+  before and after the full transaction.
 - The original V1 target rows are preserved byte-for-byte in V2.
 - The 1,448 additional cards are resolved non-Pokemon domains: 15 use
   existing sets and 1,433 require set-first insertion.
@@ -88,8 +101,7 @@ this gate.
 
 ## Verification
 
-- Targeted V1/V2 preflight and writer contracts: 18/18 passed.
-- Full `jpn-master-index:test`: 112/112 passed.
+- Full `jpn-master-index:test`: 128/128 passed.
 - V2 production preflight completed in a proven read-only transaction.
 - Production schema fingerprint:
   `4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a`
@@ -102,25 +114,34 @@ this gate.
 - Local and production schema/security contracts are exactly equivalent at
   fingerprint
   `6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c`.
-- The targeted schema-history rollback proof passed. All 35 statements and
-  the exact migration-ledger row were visible inside the transaction, then
-  rolled back. Production ledger rows remained zero.
-- Governed production row counts were unchanged by the rollback proof:
-  116,589 source-evidence rows and 28,161 family-review rows before, inside,
-  and after the transaction.
+- The approved schema-history writer durably applied the exact migration.
+  The transaction and durable readbacks each contain the one expected ledger
+  row, exact version and name, and all 35 statements.
+- Governed production row counts were unchanged by the schema apply: 116,589
+  source-evidence rows and 28,161 family-review rows before, inside, and after
+  the transaction.
+- The post-apply schema-history preflight reports
+  `schema_and_history_equivalent`, one local ledger row, one production
+  ledger row, and no findings.
+- The full payload rollback proof inserted and read back 1,041 sets, 5,336
+  parent card prints, 5,336 identities, 5,461 evidence rows, and 5,336 family
+  review rows inside the transaction. It then rolled back and read back zero
+  durable rows in every target table.
+- The post-rollback production preflight remained collision-free with the
+  exact pinned payload fingerprint.
 
 ## Artifact Hashes
 
 - `payload_preflight_v2/jpn_payload_preflight_v2.json`:
-  `7b8e265d2022a17c865ef92ca5d3fea290e9c401fbd6b23b0b57dccc763736b4`
+  `42b11e747edf51bfe017311007aaa63a8f68fc6e6932153ec332bc5b71a539d8`
 - `payload_preflight_v2/jpn_payload_target_schema_contract_v2.json`:
-  `0fd3735b2858b4096959414d6f0d6f2eba4db12501d4c6c7994936f4e064d333`
+  `03fbc3184d68aa2497c17eddaaf5e123c6da9c6d7b96baf21b87eceff2691ee3`
 - `payload_writer_v2/jpn_payload_writer_v2.json`:
-  `eabb998bba325220300d3d81c6e57e6f4ea7e3766e942ee932732e5dc35833cc`
+  `67b4a692721acedf63a90cf7625244291d7761465716a8054fc52f53b42381d0`
 - `schema_history_preflight_v1/jpn_schema_history_preflight_v1.json`:
-  `86bde594cb391df58e94dd658faf03fd1512d19958178a1801c39a2a71a465d6`
+  `37d019e10baa64047c1e4de0066333841826b8479eef47b394d4bcd543273dd8`
 - `schema_history_writer_v1/jpn_schema_history_writer_v1.json`:
-  `dbe2614af410540559f8e3acdc93360dcc3614c6ed3e678ad1378d53645fa407`
+  `15de50a3431f65d5a40415b6d78fed797a0a513ec5dd7e1f5786f837fbafe713`
 
 ## Invariants
 
@@ -137,25 +158,19 @@ this gate.
 
 ## Explicit Next Gate
 
-1. From the committed branch, apply only migration version
-   `20260805100000` through the exact approval-gated schema-history writer.
-   Do not use global `db push`.
-2. Verify the one-row migration ledger and complete schema/security readback.
-3. Run `payload_writer_v2.mjs --dry-run` against production. It must insert
-   all scoped rows inside one transaction, reconcile exact counts, prove the
-   English family fingerprint unchanged, roll back, and read back zero
-   durable rows.
-4. Regenerate the read-only preflight after the rollback proof. It must remain
-   collision-free and retain the pinned payload or the writer must be
-   re-frozen and reviewed.
-5. Stop for explicit approval of the exact V2 writer message before any
-   durable parent-row apply.
-6. After apply, read back every row count and fingerprint. Public child
-   printing, image-hosting, and visibility work remains a later project.
+1. Stop for explicit approval of the exact V2 payload-writer message before
+   any durable parent-row apply.
+2. If approved, execute only the frozen V2 insert-only payload from the
+   committed branch. Do not use a broad migration or database push command.
+3. Read back every inserted row count and payload fingerprint, re-run the
+   collision preflight, and prove the English family fingerprint unchanged.
+4. Stop before public child printing, image hosting, visibility, search,
+   scanner, pricing, vault, or species-link promotion work.
 
 ## Stop State
 
-V4 is database-write prepared but not database-applied. The migration repair
-and rollback proof are complete; production still requires the separately
-approved migration apply, rollback-only payload proof, and durable payload
-approval. No durable production data was changed by this checkpoint.
+The schema-history migration is durably applied and verified. The complete
+5,336-card payload has passed its production rollback proof but is not
+durably applied. Production still requires separate explicit approval for
+that exact payload. No Japanese V4 payload rows were durably changed by this
+checkpoint.

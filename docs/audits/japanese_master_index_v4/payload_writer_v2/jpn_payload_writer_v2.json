@@ -109,10 +109,46 @@
       "card_prints": 5336,
       "sets": 1041
     },
-    "database_proof": null,
+    "database_proof": {
+      "collision_counts_before": {
+        "card_print_family_review_queue": 0,
+        "card_print_identity": 0,
+        "card_print_identity_source_evidence": 0,
+        "card_prints": 0,
+        "sets": 0
+      },
+      "durable_readback": {
+        "card_print_family_review_queue": 0,
+        "card_print_identity": 0,
+        "card_print_identity_source_evidence": 0,
+        "card_prints": 0,
+        "sets": 0
+      },
+      "english_family_after": {
+        "active_english_species_link_count": 19346,
+        "active_english_species_link_fingerprint_sha256": "5f6eaaaefdef52ce1987358ec7bfe8537729d935734bac7b97c165c8e77b4f2b",
+        "active_species_count": 1025,
+        "active_species_fingerprint_sha256": "d2abcbb435bda99a9441d4d4997a4fa20c8f708cfdd1d9167245e8c003487ab0",
+        "combined_fingerprint_sha256": "163a3ffaa8c9023d02475e2be587ccd254eb7ed24b67b947db7f8d29c75a6142"
+      },
+      "english_family_before": {
+        "active_english_species_link_count": 19346,
+        "active_english_species_link_fingerprint_sha256": "5f6eaaaefdef52ce1987358ec7bfe8537729d935734bac7b97c165c8e77b4f2b",
+        "active_species_count": 1025,
+        "active_species_fingerprint_sha256": "d2abcbb435bda99a9441d4d4997a4fa20c8f708cfdd1d9167245e8c003487ab0",
+        "combined_fingerprint_sha256": "163a3ffaa8c9023d02475e2be587ccd254eb7ed24b67b947db7f8d29c75a6142"
+      },
+      "transaction_readback": {
+        "card_print_family_review_queue": 5336,
+        "card_print_identity": 5336,
+        "card_print_identity_source_evidence": 5461,
+        "card_prints": 5336,
+        "sets": 1041
+      }
+    },
     "deferred_public_child_count": 5336,
     "execution_boundary": {
-      "database_reads": false,
+      "database_reads": true,
       "database_writes": false,
       "deletes": false,
       "english_mutation": false,
@@ -122,25 +158,25 @@
       "pricing_mutation": false,
       "public_child_writes": false,
       "storage_writes": false,
-      "transaction_rolled_back": false,
-      "transactional_insert_attempted": false,
+      "transaction_rolled_back": true,
+      "transactional_insert_attempted": true,
       "truncates": false,
       "vault_mutation": false
     },
-    "generated_at": "2026-08-05T15:44:45.155Z",
-    "mode": "plan",
+    "generated_at": "2026-08-05T16:37:47.015Z",
+    "mode": "dry-run",
     "payload_fingerprint_sha256": "b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c",
     "required_approval_message": "I approve applying the Japanese V4 master identity payload only: 1041 set rows, 5336 parent card_print rows, 5336 card_print_identity rows, 5461 source evidence rows, and 5336 family review rows, using writer payload fingerprint b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c and source preflight fingerprint b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b. I do not approve public child printing writes, Storage writes, image repoints, family promotion, English mutation, non-JPN mutation, pricing writes, vault writes, cleanup, quarantine, deletion, truncation, or rows outside this Japanese V4 payload.",
     "source_preflight_fingerprint_sha256": "b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b",
-    "status": "writer_plan_complete_no_database_access",
+    "status": "rollback_dry_run_passed_no_durable_change",
     "writer_version": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2"
   },
-  "content_fingerprint_sha256": "37105771ae6fdbd20d573c200705b2c3e335c3c6e9f63fa90410ce5e5518b050",
-  "generated_at": "2026-08-05T15:44:45.155Z",
+  "content_fingerprint_sha256": "f611284d8af42c5fd89ba9f9ea21c6957714f6a5a6d4b8b46eb8a7e6b0b5c992",
+  "generated_at": "2026-08-05T16:37:47.015Z",
   "package_id": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2",
   "retrieval": {
-    "access_mode": "verified_local_artifacts_only",
-    "database_reads": false,
+    "access_mode": "verified_local_artifacts_plus_guarded_database_transaction",
+    "database_reads": true,
     "database_writes": false,
     "source_fetches": false,
     "storage_access": false

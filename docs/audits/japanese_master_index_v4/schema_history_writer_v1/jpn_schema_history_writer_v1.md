@@ -1,16 +1,16 @@
 # Japanese V4 Schema History Writer V1
 
-Generated: 2026-08-05T15:48:27.448Z
+Generated: 2026-08-05T16:36:03.607Z
 
 ## Result
 
-- Mode: `dry-run`
-- Status: `schema_history_rollback_proof_passed`
+- Mode: `apply`
+- Status: `schema_history_applied_and_read_back`
 - Migration version: `20260805100000`
 - Migration SHA-256: `2cd8c70026d74296a469afdb5017944bb37c3a640e064288e4d55d140c037fb6`
 - Ledger statement count: 35
 - Contract fingerprint: `6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c`
-- Durable database writes: false
+- Durable database writes: true
 
 ## Approval Boundary
 

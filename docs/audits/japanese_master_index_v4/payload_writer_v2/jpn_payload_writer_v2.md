@@ -1,11 +1,11 @@
 # Japanese Master Index V4 Payload Writer V2
 
-Generated: 2026-08-05T15:44:45.155Z
+Generated: 2026-08-05T16:37:47.015Z
 
 ## Status
 
-- Mode: `plan`
-- Status: `writer_plan_complete_no_database_access`
+- Mode: `dry-run`
+- Status: `rollback_dry_run_passed_no_durable_change`
 - Writer payload fingerprint: `b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c`
 - Source preflight fingerprint: `b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b`
 - Public child rows deferred: 5336

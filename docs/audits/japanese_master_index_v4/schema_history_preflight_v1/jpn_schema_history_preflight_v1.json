@@ -12,7 +12,7 @@
       "transactions_read_only": true
     },
     "findings": [],
-    "generated_at": "2026-08-05T15:44:07.129Z",
+    "generated_at": "2026-08-05T16:37:12.317Z",
     "generator_version": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
     "local": {
       "contract": {
@@ -1024,13 +1024,18 @@
         ]
       },
       "contract_fingerprint_sha256": "6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c",
-      "migration_ledger": [],
+      "migration_ledger": [
+        {
+          "name": "master_identity_graph_jpn_review_surfaces_schema_repair_v1",
+          "version": "20260805100000"
+        }
+      ],
       "transaction_read_only": "on"
     },
-    "status": "schema_equivalent_production_migration_pending"
+    "status": "schema_and_history_equivalent"
   },
-  "content_fingerprint_sha256": "9278ca3ce77d99a7046afaa5cbe7ce55ccd30d846bd958c1f6ae822700ed9e7e",
-  "generated_at": "2026-08-05T15:44:07.129Z",
+  "content_fingerprint_sha256": "c00072fe21263e97028f219735048b07a94d0e3868928786550780075185460d",
+  "generated_at": "2026-08-05T16:37:12.317Z",
   "package_id": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
   "retrieval": {
     "access_mode": "local_and_production_database_proven_read_only",
