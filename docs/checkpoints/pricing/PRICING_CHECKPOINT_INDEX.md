@@ -788,6 +788,11 @@ Recommended reading order for future maintainers:
       assignment repair, production readback, authority boundaries, and the
       remaining web and scheduler rollout gates
 
+40. `PRICING_CHECKPOINT_42_CANARY_COMMIT_PIN_REPAIR_AND_RESTART.md`
+    - finally read why the August 2 window failed, how the stale systemd
+      expected-commit pin was repaired without changing pricing authority,
+      and which evidence is required before the replacement window can pass
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -809,3 +814,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/provenance_lookup_v1_readiness/2026-07-28T11-36-54-825Z/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/canary_commit_pin_repair_20260805/REPORT.md`

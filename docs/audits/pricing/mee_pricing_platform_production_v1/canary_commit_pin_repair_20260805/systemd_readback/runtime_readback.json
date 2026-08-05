@@ -1,0 +1,16 @@
+{
+  "read_at": "2026-08-05T08:36:53Z",
+  "host": "ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01",
+  "timer_unit": "grookai-tcgplayer-market-pipeline.timer",
+  "service_unit": "grookai-tcgplayer-market-pipeline.service",
+  "timer_enabled": true,
+  "scheduled_time_utc": "08:15",
+  "expected_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+  "runtime_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+  "one_time_run_key_override_present": false,
+  "last_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05",
+  "last_result": "success",
+  "last_exec_status": 0,
+  "last_attempt_count": 1,
+  "last_retry_count": 0
+}
