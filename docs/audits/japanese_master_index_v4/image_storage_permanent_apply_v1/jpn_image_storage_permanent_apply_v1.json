@@ -1,0 +1,24 @@
+{
+  "approval_fingerprint_sha256": "23da727efaea32b71e3498f9af7ec12b83bed0e43519c55053d4fe2d27ee3b5e",
+  "assets_planned": 53,
+  "assets_staged": 53,
+  "completed_at": "2026-08-05T18:43:05.556Z",
+  "database_reads": 0,
+  "database_writes": 0,
+  "durable_objects_after_run": 53,
+  "error": null,
+  "failure_rollback_absent_verified": 0,
+  "failure_rollback_removed": 0,
+  "image_pointer_writes": 0,
+  "initially_absent": 53,
+  "package_id": "JPN-MASTER-INDEX-V4-IMAGE-STORAGE-PERMANENT-APPLY-V1",
+  "proof_hash_sha256": "56c1957683e3ef444b28fe74da0aae711d70d588e70d291ab59c188da225c353",
+  "readback_verified": 53,
+  "status": "uploaded_verified_and_retained",
+  "storage_plan_hash_sha256": "79d7744de1db13db6f58c441663e6d03c33f277e35d5d3c7c1a5a5364e59cd59",
+  "target": {
+    "storage_bucket": "user-card-images",
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz"
+  },
+  "uploaded": 53
+}

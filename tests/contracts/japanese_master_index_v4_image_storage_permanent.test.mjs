@@ -13,6 +13,9 @@ import {
 const LIVE_PLAN =
   'docs/audits/japanese_master_index_v4/image_storage_permanent_plan_v1/'
   + 'jpn_image_storage_permanent_plan_v1.json';
+const LIVE_APPLY_RESULT =
+  'docs/audits/japanese_master_index_v4/image_storage_permanent_apply_v1/'
+  + 'jpn_image_storage_permanent_apply_v1.json';
 
 async function loadRows(descriptor) {
   const rows = [];
@@ -130,4 +133,43 @@ test('live plan requires full rollback of newly created objects on failure', asy
   assert.equal(policy.database_reads_allowed, false);
   assert.equal(policy.database_writes_allowed, false);
   assert.equal(policy.image_pointer_writes_allowed, false);
+});
+
+test('approved permanent Storage apply retained 53 exactly verified objects', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  assert.equal(result.status, 'uploaded_verified_and_retained');
+  assert.equal(result.assets_planned, 53);
+  assert.equal(result.assets_staged, 53);
+  assert.equal(result.initially_absent, 53);
+  assert.equal(result.uploaded, 53);
+  assert.equal(result.readback_verified, 53);
+  assert.equal(result.failure_rollback_removed, 0);
+  assert.equal(result.failure_rollback_absent_verified, 0);
+  assert.equal(result.durable_objects_after_run, 53);
+  assert.equal(result.error, null);
+});
+
+test('approved permanent Storage apply preserved authorization and DB boundaries', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  assert.equal(
+    result.approval_fingerprint_sha256,
+    '23da727efaea32b71e3498f9af7ec12b83bed0e43519c55053d4fe2d27ee3b5e',
+  );
+  assert.equal(
+    result.storage_plan_hash_sha256,
+    '79d7744de1db13db6f58c441663e6d03c33f277e35d5d3c7c1a5a5364e59cd59',
+  );
+  assert.equal(result.database_reads, 0);
+  assert.equal(result.database_writes, 0);
+  assert.equal(result.image_pointer_writes, 0);
+});
+
+test('approved permanent Storage apply proof hash verifies', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  const { proof_hash_sha256: proofHash, ...proofPayload } = result;
+  assert.equal(contentFingerprint(proofPayload), proofHash);
+  assert.equal(
+    proofHash,
+    '56c1957683e3ef444b28fe74da0aae711d70d588e70d291ab59c188da225c353',
+  );
 });

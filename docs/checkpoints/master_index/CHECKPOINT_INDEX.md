@@ -4,6 +4,7 @@ Checkpoint registry for English and Japanese Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
+| 2026-08-05 | [Japanese Master Index V4 Permanent Storage Upload Completion V1](20260805_japanese_master_index_v4_permanent_storage_upload_completion_v1.md) | Records the approved 53-object durable upload: all targets initially absent, 53 exact readbacks, 53 retained objects, and zero database or pointer access. |
 | 2026-08-05 | [Japanese Master Index V4 Permanent Storage Upload Readiness V1](20260805_japanese_master_index_v4_permanent_storage_upload_readiness_v1.md) | Freezes a no-access 53-object permanent upload package with exact source/target evidence, hard collision preflight, readback verification, failure rollback, and no database pointer authority. |
 | 2026-08-05 | [Japanese Master Index V4 Transient Storage Canary Completion V1](20260805_japanese_master_index_v4_transient_storage_canary_completion_v1.md) | Records the approved 17-object Storage mutation proof: 17 exact readbacks, 17 removals, 17 absence checks, zero durable objects, and no database or pointer access. |
 | 2026-08-05 | [Japanese Master Index V4 Image Source Remediation And Storage Canary Plan V1](20260805_japanese_master_index_v4_image_source_remediation_and_storage_canary_plan_v1.md) | Resolves 36 of 53 low-resolution image rows to deterministic high-resolution sources, preserves 13 review and 4 blocked rows, and freezes a no-access 17-object transient Storage canary plan. |
