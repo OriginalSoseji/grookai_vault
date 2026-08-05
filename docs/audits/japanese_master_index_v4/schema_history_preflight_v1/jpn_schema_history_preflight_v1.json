@@ -12,7 +12,7 @@
       "transactions_read_only": true
     },
     "findings": [],
-    "generated_at": "2026-08-05T16:37:12.317Z",
+    "generated_at": "2026-08-05T16:48:09.806Z",
     "generator_version": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
     "local": {
       "contract": {
@@ -1034,8 +1034,8 @@
     },
     "status": "schema_and_history_equivalent"
   },
-  "content_fingerprint_sha256": "c00072fe21263e97028f219735048b07a94d0e3868928786550780075185460d",
-  "generated_at": "2026-08-05T16:37:12.317Z",
+  "content_fingerprint_sha256": "9b9dbd68876223a6ade4c127bff0dce635b39d47910602c5680da720503a10ad",
+  "generated_at": "2026-08-05T16:48:09.806Z",
   "package_id": "JPN-MASTER-INDEX-SCHEMA-HISTORY-PREFLIGHT-V1",
   "retrieval": {
     "access_mode": "local_and_production_database_proven_read_only",
