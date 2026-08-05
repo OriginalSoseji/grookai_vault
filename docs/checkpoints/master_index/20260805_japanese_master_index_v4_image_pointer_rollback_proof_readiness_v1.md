@@ -128,13 +128,20 @@ Artifacts:
 ## Explicit Next Gate
 
 Commit and push this frozen implementation and plan, then execute only the
-manual rollback-proof workflow with these exact inputs:
+rollback-proof workflow with these exact inputs:
 
 ```text
 fingerprint=4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2
 pointer_plan_hash=7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3
 mutation_contract_hash=5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9
 ```
+
+Because GitHub cannot manually dispatch a workflow until the workflow exists
+on the default branch, the first proof may run from a same-repository pull
+request whose head is exactly `catalog/jpn-v4-production-integration-v2`.
+That trigger carries the same three frozen values, rejects forks and unrelated
+branches, and does not merge the branch. Manual dispatch remains available
+after the workflow exists on the default branch.
 
 The workflow may write inside one transaction only. It must roll back, prove
 all 53 before-row hashes are durably restored, and report zero durable writes.

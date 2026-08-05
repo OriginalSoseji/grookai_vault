@@ -84,10 +84,16 @@ test('rollback workflow is manual, bounded, and secret-backed', () => {
     'utf8',
   );
   assert.match(source, /workflow_dispatch:/);
+  assert.match(source, /pull_request:/);
+  assert.match(source, /github\.event\.pull_request\.head\.repo\.full_name == github\.repository/);
+  assert.match(source, /github\.head_ref == 'catalog\/jpn-v4-production-integration-v2'/);
   assert.doesNotMatch(source, /^\s+push:/m);
   assert.doesNotMatch(source, /^\s+schedule:/m);
   assert.match(source, /secrets\.SUPABASE_DB_URL/);
   assert.match(source, /--execute-rollback-proof/);
+  assert.match(source, new RegExp(FROZEN_PLAN.package_fingerprint_sha256));
+  assert.match(source, new RegExp(FROZEN_PLAN.pointer_plan_hash_sha256));
+  assert.match(source, new RegExp(FROZEN_PLAN.mutation_contract_hash_sha256));
   assert.match(source, /cancel-in-progress: false/);
 });
 

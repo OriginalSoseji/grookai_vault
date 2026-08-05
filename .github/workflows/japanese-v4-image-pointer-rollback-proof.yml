@@ -1,6 +1,13 @@
 name: Japanese V4 Image Pointer Rollback Proof
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/japanese-v4-image-pointer-rollback-proof.yml
+      - scripts/audits/japanese_master_index_v4/image_pointer_*.mjs
+      - docs/audits/japanese_master_index_v4/image_pointer_plan_v1/**
   workflow_dispatch:
     inputs:
       fingerprint:
@@ -25,6 +32,10 @@ concurrency:
 
 jobs:
   rollback-proof:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'catalog/jpn-v4-production-integration-v2')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -47,11 +58,19 @@ jobs:
           test -n "$SUPABASE_URL"
           test -n "$SUPABASE_SECRET_KEY"
           test -n "$SUPABASE_DB_URL"
+          FINGERPRINT='${{ inputs.fingerprint }}'
+          POINTER_PLAN_HASH='${{ inputs.pointer_plan_hash }}'
+          MUTATION_CONTRACT_HASH='${{ inputs.mutation_contract_hash }}'
+          if [ -z "$FINGERPRINT" ]; then
+            FINGERPRINT='4c18a44650f5137236506f6ffbea2a7c6bf8b51655bd1ce82ebe7dbc1a5195c2'
+            POINTER_PLAN_HASH='7151a0d1fe18ce9119f2e185d6dd8695428175f9a483c1443022a3032e4728a3'
+            MUTATION_CONTRACT_HASH='5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9'
+          fi
           node scripts/audits/japanese_master_index_v4/image_pointer_rollback_proof_v1.mjs \
             --execute-rollback-proof \
-            --fingerprint='${{ inputs.fingerprint }}' \
-            --pointer-plan-hash='${{ inputs.pointer_plan_hash }}' \
-            --mutation-contract-hash='${{ inputs.mutation_contract_hash }}'
+            --fingerprint="$FINGERPRINT" \
+            --pointer-plan-hash="$POINTER_PLAN_HASH" \
+            --mutation-contract-hash="$MUTATION_CONTRACT_HASH"
 
       - name: Upload rollback proof
         if: always()
