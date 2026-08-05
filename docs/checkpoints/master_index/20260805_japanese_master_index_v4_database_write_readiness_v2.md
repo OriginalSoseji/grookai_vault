@@ -14,6 +14,10 @@ Work was isolated on branch
 and implemented by commit
 `8248ccd2e4ea66280c14a8b9d65218437a547ea1`.
 
+The current-main migration-order repair, local replay, schema-equivalence
+audit, and targeted rollback writer are implemented by commit
+`6ac7ade2356779388852916335d072fe6b15e999`.
+
 The unfinished Official Japanese catalog expansion remains preserved on the
 separate branch `catalog/jpn-master-index-v5-official-global-catalog` at
 `4c0489f161c69660e968eec195e783b9d0701f3b`. It is not a dependency of this
@@ -24,10 +28,11 @@ V4 write gate.
 The prior writer was internally safe but incomplete. Applying it would have
 inserted only the original direct and set-dependent lanes and omitted all
 additional final-adjudication cards. Production also contains the two
-Japanese review tables that were created out of band, while migration
-`20260726100000` was absent from migration history in the latest successful
-ledger read. Writing rows before reconciling that history would violate the
-clean migration-chain requirement.
+Japanese review tables that were created out of band. The original repair
+version `20260726100000` was absent from migration history and conflicted in
+sequence with the later current-main remote-schema snapshot. The unapplied
+repair is now version `20260805100000`. Writing rows before reconciling that
+history would violate the clean migration-chain requirement.
 
 ## Risk
 
@@ -61,8 +66,11 @@ this gate.
   `b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b`
 - V2 writer payload fingerprint:
   `b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c`
+- Migration version: `20260805100000`
 - Migration SQL SHA-256:
-  `AF6EC61966B6A4C428A3FC40CCE76B308BB8380E7F1303CCD0509F14FDA1F262`
+  `2cd8c70026d74296a469afdb5017944bb37c3a640e064288e4d55d140c037fb6`
+- The function definition preserves the final security contract with
+  `search_path = pg_catalog`.
 - Set rows proposed: 1,041
 - Parent `card_prints` proposed: 5,336
 - `card_print_identity` rows proposed: 5,336
@@ -81,28 +89,38 @@ this gate.
 ## Verification
 
 - Targeted V1/V2 preflight and writer contracts: 18/18 passed.
-- Full `jpn-master-index:test`: 109/109 passed.
+- Full `jpn-master-index:test`: 112/112 passed.
 - V2 production preflight completed in a proven read-only transaction.
 - Production schema fingerprint:
   `4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a`
 - `node --check` passed for V1/V2 preflight and writer modules.
 - `git diff --check` passed.
-- Local `supabase db reset` was not run because Docker Desktop was not
-  available.
+- Local `supabase db reset --local --no-seed` passed through the complete
+  current migration chain after retimestamping the repair.
 - The V2 writer plan used verified local artifacts only and made no database
   connection.
-- A later migration-ledger read and rollback writer proof were not run:
-  production Postgres timed out before authentication on three bounded
-  retries. No transaction opened and no database state changed.
+- Local and production schema/security contracts are exactly equivalent at
+  fingerprint
+  `6f319dc8805fc871c4da5339814372015f0bdec0f796d0ae6bfa18458557147c`.
+- The targeted schema-history rollback proof passed. All 35 statements and
+  the exact migration-ledger row were visible inside the transaction, then
+  rolled back. Production ledger rows remained zero.
+- Governed production row counts were unchanged by the rollback proof:
+  116,589 source-evidence rows and 28,161 family-review rows before, inside,
+  and after the transaction.
 
 ## Artifact Hashes
 
 - `payload_preflight_v2/jpn_payload_preflight_v2.json`:
-  `a820143169abc4da6499e5b38b85a79909393e3f8a3228fbe92451d7a776ad8d`
+  `7b8e265d2022a17c865ef92ca5d3fea290e9c401fbd6b23b0b57dccc763736b4`
 - `payload_preflight_v2/jpn_payload_target_schema_contract_v2.json`:
-  `09c6ff0ad7c7f2899c1c64d784b51b9d0b13152585cfe63c42566c317596f437`
+  `0fd3735b2858b4096959414d6f0d6f2eba4db12501d4c6c7994936f4e064d333`
 - `payload_writer_v2/jpn_payload_writer_v2.json`:
-  `e672cacee0ebfb1f5b8bc2d73fbb80531a446f90de5cfdb4c3d90337356b10b3`
+  `eabb998bba325220300d3d81c6e57e6f4ea7e3766e942ee932732e5dc35833cc`
+- `schema_history_preflight_v1/jpn_schema_history_preflight_v1.json`:
+  `86bde594cb391df58e94dd658faf03fd1512d19958178a1801c39a2a71a465d6`
+- `schema_history_writer_v1/jpn_schema_history_writer_v1.json`:
+  `dbe2614af410540559f8e3acdc93360dcc3614c6ed3e678ad1378d53645fa407`
 
 ## Invariants
 
@@ -119,30 +137,25 @@ this gate.
 
 ## Explicit Next Gate
 
-1. Restore production Postgres connectivity and repeat the read-only ledger
-   query for version `20260726100000`.
-2. Perform full readback for the migration-owned tables, function, triggers,
-   RLS state, policies, grants, indexes, constraints, and comments.
-3. If every object is byte/contract equivalent and only history is missing,
-   repair only migration version `20260726100000` as applied. If any object
-   differs, execute only the targeted idempotent migration and then record
-   only that version. Do not use global `db push`.
-4. Verify the migration ledger and complete schema/security readback.
-5. Run `payload_writer_v2.mjs --dry-run` against production. It must insert
+1. From the committed branch, apply only migration version
+   `20260805100000` through the exact approval-gated schema-history writer.
+   Do not use global `db push`.
+2. Verify the one-row migration ledger and complete schema/security readback.
+3. Run `payload_writer_v2.mjs --dry-run` against production. It must insert
    all scoped rows inside one transaction, reconcile exact counts, prove the
    English family fingerprint unchanged, roll back, and read back zero
    durable rows.
-6. Regenerate the read-only preflight after the rollback proof. It must remain
+4. Regenerate the read-only preflight after the rollback proof. It must remain
    collision-free and retain the pinned payload or the writer must be
    re-frozen and reviewed.
-7. Stop for explicit approval of the exact V2 writer message before any
+5. Stop for explicit approval of the exact V2 writer message before any
    durable parent-row apply.
-8. After apply, read back every row count and fingerprint. Public child
+6. After apply, read back every row count and fingerprint. Public child
    printing, image-hosting, and visibility work remains a later project.
 
 ## Stop State
 
-V4 is database-write prepared but not database-applied. The exact remaining
-blockers are migration-history reconciliation, a rollback-only production
-writer proof, and explicit durable-write approval. No production data was
-changed by this checkpoint.
+V4 is database-write prepared but not database-applied. The migration repair
+and rollback proof are complete; production still requires the separately
+approved migration apply, rollback-only payload proof, and durable payload
+approval. No durable production data was changed by this checkpoint.

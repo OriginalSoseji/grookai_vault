@@ -4,7 +4,7 @@ Checkpoint registry for English and Japanese Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
-| 2026-08-05 | [Japanese Master Index V4 Database Write Readiness V2](20260805_japanese_master_index_v4_database_write_readiness_v2.md) | Freezes the complete 5,336-card insert-only V2 payload, clean read-only production preflight, stable V1 IDs, migration-history blocker, and exact rollback/apply resume gate. No production writes. |
+| 2026-08-05 | [Japanese Master Index V4 Database Write Readiness V2](20260805_japanese_master_index_v4_database_write_readiness_v2.md) | Freezes the complete 5,336-card insert-only V2 payload, clean migration replay, local/production schema equivalence, stable V1 IDs, and passing schema-history rollback proof. No durable production writes. |
 | 2026-06-17 | [Variant Origin Public Copy Export Checkpoint V1](20260617_variant_origin_public_copy_export_checkpoint_v1.md) | Records read-only public-copy export for source-backed special variant explanations: 1,803 public-copy-safe parent rows, 39 families, 73 governance-blocked rows excluded, no migrations. |
 | 2026-06-17 | [Special Variant Master Index Completion Checkpoint V1](20260617_special_variant_master_index_completion_checkpoint_v1.md) | Records closure of the source-ready special-variant pass: 48 source-ready variants in DB, 0 source-ready missing rows, 3 blocked evidence rows, no migrations. |
 | 2026-05-26 | [PokemonTCG Live + Snapshot Union Checkpoint V1](20260526_pokemontcg_live_snapshot_union_checkpoint_v1.md) | Records the additive live+snapshot PokemonTCG evidence invariant and non-degraded Master Index rebuild. |
