@@ -298,7 +298,9 @@ async function guardTargets(client, gate, expectedCount) {
   }
   const readinessKey = `${gate}_gate_ready_count`;
   if (guard[readinessKey] !== expectedCount) throw new Error(`Gate guard failed:${readinessKey}:${guard[readinessKey]}:${expectedCount}`);
-  if (guard.conflicting_mapping_count !== 0) throw new Error(`Conflicting TCGplayer mappings:${guard.conflicting_mapping_count}`);
+  if (gate === 'pricing' && guard.conflicting_mapping_count !== 0) {
+    throw new Error(`Conflicting TCGplayer mappings:${guard.conflicting_mapping_count}`);
+  }
   return guard;
 }
 
@@ -468,12 +470,13 @@ export async function main(argv = process.argv.slice(2)) {
   const gate = parseFlag(argv, 'gate');
   const mode = parseFlag(argv, 'mode', 'dry-run');
   const decisionFile = parseFlag(argv, 'decision-file');
+  const manifestFile = parseFlag(argv, 'manifest-file', MANIFEST_PATH);
   if (!VALID_GATES.has(gate)) throw new Error('gate must be image, publication, or pricing.');
   if (!['dry-run', 'apply'].includes(mode)) throw new Error('mode must be dry-run or apply.');
   if (!decisionFile) throw new Error('--decision-file is required.');
 
   const [manifestText, decisionText] = await Promise.all([
-    fs.readFile(MANIFEST_PATH, 'utf8'),
+    fs.readFile(path.resolve(ROOT, manifestFile), 'utf8'),
     fs.readFile(path.resolve(ROOT, decisionFile), 'utf8'),
   ]);
   const manifest = JSON.parse(manifestText);
@@ -517,6 +520,7 @@ export async function main(argv = process.argv.slice(2)) {
     mode,
     commit_sha: commitSha,
     packet_fingerprint: manifest.packet_fingerprint,
+    manifest_path: path.relative(ROOT, path.resolve(ROOT, manifestFile)),
     founder_decision_artifact_path: decisionFile,
     founder_decision_artifact_sha256: decisionSha,
     batch: { offset, size },

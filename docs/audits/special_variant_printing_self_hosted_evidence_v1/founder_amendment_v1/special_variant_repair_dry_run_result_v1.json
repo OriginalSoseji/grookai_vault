@@ -1,0 +1,78 @@
+{
+  "version": "SPECIAL_VARIANT_REPAIR_AMENDMENT_V1",
+  "mode": "dry-run",
+  "generated_at": "2026-08-05T05:51:22.279Z",
+  "commit_sha": "c2bc7d4927c38168f691c9832e87373d45fae149",
+  "packet_fingerprint": "1f456f48b716111e83efc732af65d0c71e30d8a812dcfe0f7d8de9413cf1b977",
+  "selected_rows": 10,
+  "replacement_or_normalized_images": 9,
+  "deterministically_normalized_images": 2,
+  "authority_nomenclature_corrections": 4,
+  "uploaded_and_verified": 0,
+  "verified_existing": 1,
+  "storage_readback_matches": 1,
+  "database_writes_performed": false,
+  "publication_authorized": 0,
+  "pricing_authorized": 0,
+  "canonical_identity_changed": false,
+  "upload_rows": [
+    {
+      "evidence_id": "svpi:b4646204-1bef-5624-8ced-3e474ece55a0:202325",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:3eb3112f-707f-5af3-b1b7-b4157e0cf74a:664140",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:6cfa7bda-521f-57b9-82d1-762ef2c7defc:89948",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:3fefb4bd-6a61-5c8c-8f21-b7190d8b3ec0:84399",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:d18a30ea-47d1-5dfd-98cf-b018a698f41f:87604",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:39dc7fa9-36dc-57f4-bdee-af422fc77af3:83784",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:ec573555-d4a4-5e3c-890d-f9e1cb711eb0:84293",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:bd8dcb6b-e789-54e4-9839-8df2795f85b8:85523",
+      "storage_status": "verified_existing",
+      "storage_readback": {
+        "sha256": "228e30b118a331263bf6fc6e2646bba4b36fb849bfb142f8a4baedbd8d7d9fc3",
+        "size_bytes": 20623,
+        "width": 200,
+        "height": 275,
+        "format": "jpg",
+        "content_type": "image/jpeg"
+      }
+    },
+    {
+      "evidence_id": "svpi:7f3d5aae-40f8-5663-a55a-3ea785a259b7:151706",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    },
+    {
+      "evidence_id": "svpi:78372fe9-59bc-535a-acde-2b7a98d1487b:646871",
+      "storage_status": "not_uploaded_dry_run",
+      "storage_readback": null
+    }
+  ],
+  "proof_hash": "c85fe52be89186166154ad914bdff22bdf1bfd895a20cf3a52b86362a5233e37"
+}

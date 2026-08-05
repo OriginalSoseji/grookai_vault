@@ -23,6 +23,13 @@ import {
   validateFounderArtifact,
 } from '../../scripts/audits/special_variant_printing_review_gate_v1.mjs';
 import { founderDecision } from '../../scripts/audits/special_variant_direct_founder_finalize_v1.mjs';
+import {
+  EXPECTED_REPAIR_COUNT,
+  NORMALIZED_HEIGHT,
+  NORMALIZED_WIDTH,
+  REPAIR_DEFINITIONS,
+  validateRepairDefinitions,
+} from '../../scripts/audits/special_variant_repair_amendment_v1.mjs';
 import { reconcile as reconcileSelfHostedEvidence } from '../../scripts/audits/special_variant_self_hosted_closeout_v1.mjs';
 
 const planPath = 'docs/audits/special_variant_printing_self_hosted_evidence_v1/special_variant_printing_self_hosted_evidence_plan_v1.json';
@@ -225,6 +232,37 @@ test('founder artifacts reject identity drift and unauthorized transition combin
   assert.throws(() => validateFounderArtifact(manifest, invalid), /without publication authorization/);
 });
 
+test('the repair amendment is bound to exactly the ten rejected founder rows', () => {
+  const manifest = JSON.parse(readFileSync(
+    'apps/web/src/data/review/specialVariantPrintingEvidenceV1.json',
+    'utf8',
+  ));
+  const founder = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_review_v1/special_variant_founder_143_of_143.json',
+    'utf8',
+  ));
+  assert.equal(REPAIR_DEFINITIONS.length, EXPECTED_REPAIR_COUNT);
+  assert.deepEqual(validateRepairDefinitions(manifest, founder), []);
+  assert.equal(REPAIR_DEFINITIONS.filter((row) => row.acquisition === 'reuse_current').length, 1);
+  assert.equal(REPAIR_DEFINITIONS.filter((row) => row.acquisition === 'external_exact').length, 7);
+  assert.equal(REPAIR_DEFINITIONS.filter((row) => row.acquisition.endsWith('_normalized')).length, 2);
+  assert.ok(REPAIR_DEFINITIONS.every((row) => row.visual_marker_expectation));
+  assert.ok(REPAIR_DEFINITIONS
+    .filter((row) => row.repair_class === 'authority_nomenclature_correction')
+    .every((row) => row.authority_urls.length > 0));
+});
+
+test('replacement normalization is deterministic and cannot generate card content', () => {
+  const normalizer = readFileSync('scripts/audits/normalize_special_variant_card_image_v1.py', 'utf8');
+  assert.equal(NORMALIZED_WIDTH, 750);
+  assert.equal(NORMALIZED_HEIGHT, 1050);
+  assert.match(normalizer, /cv2\.getPerspectiveTransform/);
+  assert.match(normalizer, /cv2\.warpPerspective/);
+  assert.match(normalizer, /OUTPUT_WIDTH = 750/);
+  assert.match(normalizer, /OUTPUT_HEIGHT = 1050/);
+  assert.doesNotMatch(normalizer, /openai|generat|inpaint|outpaint/i);
+});
+
 test('approval token binds every mutable gate input', () => {
   const token = expectedApprovalToken('image', 'commit', 'packet', 'decision', 0, 25);
   assert.equal(token, `${REVIEW_GATE_VERSION}:image:commit:packet:decision:0:25`);
@@ -261,6 +299,8 @@ test('portal and executor preserve no-write review and canonical parent boundari
   assert.match(executor, /pg_advisory_xact_lock/);
   assert.match(executor, /supabase-prod-ca-2021\.crt/);
   assert.match(executor, /SUPABASE_ROOT_CA_SHA256/);
+  assert.match(executor, /manifest-file/);
+  assert.match(executor, /gate === 'pricing' && guard\.conflicting_mapping_count/);
   assert.match(executor, /client\.connection\?\.stream\?\.authorized !== true/);
   assert.doesNotMatch(executor, /rejectUnauthorized:\s*false/);
   assert.match(executor, /await client\.query\('rollback'\)/);

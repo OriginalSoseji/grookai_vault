@@ -76,6 +76,22 @@ Founder confirmation must import the first-pass artifact and may record:
 
 Publication and pricing authorization are independent row-level booleans. Neither is implied by image confirmation.
 
+### Evidence Amendments
+
+A founder rejection remains immutable. When later authoritative evidence proves that the image was correct but the stable printing label was misleading, or when a replacement exact image becomes available, the repair must be recorded as a separate amendment packet.
+
+An amendment must:
+
+- reference the original packet, evidence ID, image hash, and founder artifact hash;
+- preserve the original decision unchanged;
+- explain whether the repair is an authority/nomenclature correction or a replacement image;
+- cite the source used to distinguish an unstamped participant/deck-exclusive printing from a stamped printing;
+- self-host and hash-verify every replacement image before the image gate;
+- use deterministic crop or perspective normalization only, never generative image editing;
+- preserve `publication_authorized = false` and `pricing_authorized = false` unless those independent gates are explicitly approved later.
+
+Stable printing IDs are not rewritten inside an image amendment. A misleading compatibility ID must be documented for a separately governed identity/display-label repair rather than silently mutated during image review.
+
 ## Apply Boundary
 
 Image approval may write only:

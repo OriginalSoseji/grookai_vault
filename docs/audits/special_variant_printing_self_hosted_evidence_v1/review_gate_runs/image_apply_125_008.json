@@ -1,0 +1,159 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_REVIEW_GATE_V1",
+  "generated_at": "2026-08-05T05:29:28.735Z",
+  "gate": "image",
+  "mode": "apply",
+  "commit_sha": "c2bc7d4927c38168f691c9832e87373d45fae149",
+  "packet_fingerprint": "68d34b75a4a2b6ade477b6ace9851c9487140239606ae394982238df6bb593dd",
+  "founder_decision_artifact_path": "docs\\audits\\special_variant_printing_self_hosted_evidence_v1\\founder_review_v1\\special_variant_founder_143_of_143.json",
+  "founder_decision_artifact_sha256": "403365fef6c5d7b57381a2dbfa448313675661372c5737a599343327f6f797b1",
+  "batch": {
+    "offset": 125,
+    "size": 8
+  },
+  "selected_evidence_ids": [
+    "svpi:cd05806b-ac1a-5078-aa2d-58d98066f830:164214",
+    "svpi:88c98a8a-4438-5fe4-bdc6-1496bfffda0e:213027",
+    "svpi:0a6d6a4c-7243-5735-abb6-b7d1f922c3bb:645458",
+    "svpi:1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57:645415",
+    "svpi:5706fe21-4fbd-5ae7-8eb7-65298c7cddfa:664088",
+    "svpi:0c7848b1-0366-595e-8c43-75dbb21cccdc:228481",
+    "svpi:0d858c7a-96bb-560d-ab91-923447250763:668958",
+    "svpi:c614bb5c-17b7-57c4-9b21-fdeaf457c4a4:668959"
+  ],
+  "transaction": {
+    "guard": {
+      "target_count": 8,
+      "exact_child_count": 8,
+      "exact_review_count": 8,
+      "exact_evidence_count": 8,
+      "image_gate_ready_count": 8,
+      "publication_gate_ready_count": 0,
+      "pricing_gate_ready_count": 0,
+      "conflicting_mapping_count": 0
+    },
+    "writes": {
+      "child_image_updates": 8,
+      "truth_review_updates": 8,
+      "publication_updates": 0,
+      "pricing_mapping_inserts": 0
+    },
+    "readback_rows": [
+      {
+        "evidence_id": "svpi:0a6d6a4c-7243-5735-abb6-b7d1f922c3bb:645458",
+        "card_printing_id": "0a6d6a4c-7243-5735-abb6-b7d1f922c3bb",
+        "printing_gv_id": "GV-PK-TWM-040-TWILIGHT-MASQUERADE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/0a6d6a4c-7243-5735-abb6-b7d1f922c3bb/4514ffd864e9df17aad471db5c55e5fb23b0ae9b607e3d3351c219692e8f0884.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:0c7848b1-0366-595e-8c43-75dbb21cccdc:228481",
+        "card_printing_id": "0c7848b1-0366-595e-8c43-75dbb21cccdc",
+        "printing_gv_id": "GV-PK-UD-17-STAFF-PRERELEASE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/0c7848b1-0366-595e-8c43-75dbb21cccdc/f94b3f67bd2d0ea1f7337e3a4e75d3135881e10e44ca4902a02c34a7449abcf7.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:0d858c7a-96bb-560d-ab91-923447250763:668958",
+        "card_printing_id": "0d858c7a-96bb-560d-ab91-923447250763",
+        "printing_gv_id": "GV-PK-WHT-020-WHITE-FLARE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/0d858c7a-96bb-560d-ab91-923447250763/3bcd28821efcc48a65cfe2c4313dfcf116ce3a7eeab9bc8f3f85eae7d054cf41.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57:645415",
+        "card_printing_id": "1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57",
+        "printing_gv_id": "GV-PK-TWM-064-TWILIGHT-MASQUERADE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/1fda0c6c-bea2-5fe2-9deb-b46a0aff4e57/4ececede63151808cf951998b22dcb25c2cf62aeb23c4525aa700484cc7e3f24.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:5706fe21-4fbd-5ae7-8eb7-65298c7cddfa:664088",
+        "card_printing_id": "5706fe21-4fbd-5ae7-8eb7-65298c7cddfa",
+        "printing_gv_id": "GV-PK-TWM-134-TWILIGHT-MASQUERADE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/5706fe21-4fbd-5ae7-8eb7-65298c7cddfa/4009bb051d9cb0f24f4ddfc1db0e34d2f695f21a2f10fc20a74065e517704773.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:88c98a8a-4438-5fe4-bdc6-1496bfffda0e:213027",
+        "card_printing_id": "88c98a8a-4438-5fe4-bdc6-1496bfffda0e",
+        "printing_gv_id": "GV-PK-SW-106-ORIGINS-GAME-FAIR-2008-STAFF-STAMP-NORMAL",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/88c98a8a-4438-5fe4-bdc6-1496bfffda0e/ab45414af7beb1167f9c57195f4c413199a9199a0f7d1cfa689820ac5ecdac29.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:c614bb5c-17b7-57c4-9b21-fdeaf457c4a4:668959",
+        "card_printing_id": "c614bb5c-17b7-57c4-9b21-fdeaf457c4a4",
+        "printing_gv_id": "GV-PK-WHT-062-WHITE-FLARE-STAMP-HOLO",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/c614bb5c-17b7-57c4-9b21-fdeaf457c4a4/98cdabc02a1c66c9fd5a9edfb042283b03c570b5a77e4a6c94a9df26ced00fec.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      },
+      {
+        "evidence_id": "svpi:cd05806b-ac1a-5078-aa2d-58d98066f830:164214",
+        "card_printing_id": "cd05806b-ac1a-5078-aa2d-58d98066f830",
+        "printing_gv_id": "GV-PK-SV-70-STAFF-PRERELEASE-STAMP-NORMAL",
+        "image_source": "identity",
+        "image_path": "warehouse-derived/special-variant-printing-evidence-v1/cd05806b-ac1a-5078-aa2d-58d98066f830/43763772a6fc9ec3cbf8cf44b5dc26e7129b637035a736ce7bbdb7ec3345d0de.jpg",
+        "image_status": "exact",
+        "review_status": "verified",
+        "public_visibility": "hidden_pending_review",
+        "reviewed_by": "founder",
+        "tcgplayer_mapping_id": null,
+        "mapped_card_print_id": null
+      }
+    ],
+    "canonical_parent_fingerprint_before": "879f09a5836eaf4f8516a042b1f2349ab973d8e10ce0ee040bf6f26b9f94bb8c",
+    "canonical_parent_fingerprint_after": "879f09a5836eaf4f8516a042b1f2349ab973d8e10ce0ee040bf6f26b9f94bb8c",
+    "canonical_parent_rows_changed": 0,
+    "committed": true
+  },
+  "database_changes_committed": true,
+  "approvals_performed": true,
+  "public_visibility_changed": false,
+  "pricing_mappings_changed": false,
+  "embeddings_created": false,
+  "canonical_parent_rows_changed": 0,
+  "proof_hash": "301bbd1c7943a742ad2343d5ca1ec75540f9f55ad2d695a0becc7db4d5c73f24"
+}
