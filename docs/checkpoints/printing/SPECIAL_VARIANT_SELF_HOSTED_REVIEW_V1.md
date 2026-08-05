@@ -86,18 +86,22 @@ All gates:
 ## Current Truths
 
 - The exact review-image corpus is fully self-hosted and hash-verified.
-- The database still contains the original `143` hidden candidates and hidden review sidecars.
-- No image confirmation, publication, or pricing mapping has been applied by this project.
+- Founder review completed for all `143` rows. The original artifact confirmed `133`; a separate evidence amendment resolved the remaining `10` without mutating the original decisions.
+- The amendment replaced or normalized `9` images and retained one already-exact Flygon image because available higher-resolution candidates showed the wrong Winner variant.
+- The image gate applied all `143` rows in seven bounded transactions and independently read back all `143` child/review rows.
+- Every child now has `image_source = identity` and `image_status = exact` at its exact private storage path.
+- Every review is `verified` and remains `hidden_pending_review`.
+- Final storage reconciliation downloaded and hash-verified `143/143` active image objects.
+- Public rows, current priced rows, publication authorizations, and pricing authorizations remain `0`.
+- Canonical parent rows changed: `0`.
 - The `420` authority failures remain untouched.
-- PokeJavi has not yet exported decisions for this packet.
-- Founder confirmation therefore has not begun.
-- The live read-only health check still reports `143` exact children, `143` exact hidden review sidecars, `0` public leaks, `0` hidden-child qualification candidates, `0` eligible price decisions, and `0` current prices.
-- Two pre-existing TCGplayer product mappings point to a different canonical parent than this packet expects. The pricing executor treats either as a hard conflict and will never overwrite it implicitly.
-- Tasks 1 through 3 are complete. Task 4 is implemented and ready for the reviewer. Tasks 5 through 7 are implemented but intentionally cannot execute before the required human artifacts exist.
+- Two pre-existing TCGplayer product mappings conflict with the expected parent. They remain evidence, were not overwritten, and block any implicit pricing repair.
 
 ## Verification
 
-- focused self-hosted/review contracts: `11/11` passed
+- focused self-hosted/review contracts: `17/17` passed
+- full Node/contract suite: `1366/1366` passed at the repair freeze
+- full repository pre-commit shipcheck: passed twice during amendment freeze
 - web TypeScript: passed
 - web lint: passed with zero warnings
 - strict production web build: passed
@@ -105,6 +109,9 @@ All gates:
 - private image route unauthenticated smoke: `401` with private `no-store`
 - `git diff --check`: passed
 - storage upload/readback reconciliation: `143/143`, `0` failures
+- final live child/review/storage reconciliation: `143/143`, `0` failures
+- bounded database image applies: `7`, covering each selected row exactly once
+- final closeout proof: `5265dd26369e754ac2dd01c601c68304a4486af7f8d4a850367915cb91b07d2a`
 - reviewer instruction PDF: rendered and visually verified as a single page
 - permanent artifact hash inventory: review page, private image route, client, types, workflows, scripts, evidence, reconciliation, and PDF included
 
@@ -119,6 +126,9 @@ All gates:
 - `docs/audits/special_variant_printing_self_hosted_evidence_v1/POKEJAVI_SPECIAL_VARIANT_REVIEW_INSTRUCTIONS_V1.pdf`
 - `scripts/audits/special_variant_printing_self_hosted_evidence_v1.mjs`
 - `scripts/audits/special_variant_printing_review_gate_v1.mjs`
+- `scripts/audits/special_variant_repair_amendment_v1.mjs`
+- `scripts/audits/special_variant_exact_image_closeout_v1.mjs`
+- `docs/audits/special_variant_printing_self_hosted_evidence_v1/special_variant_exact_image_closeout_v1.json`
 - `.github/workflows/special-variant-self-hosted-evidence-v1.yml`
 - `.github/workflows/special-variant-review-gates-v1.yml`
 
@@ -128,4 +138,4 @@ An acquired image is evidence, not approval. A confirmed image is not publicatio
 
 ## Explicit Next Gate
 
-Deploy the authenticated reviewer route from the frozen branch. PokeJavi signs in, reviews the `143` self-hosted images, and exports the first-pass JSON. Preserve that artifact unchanged. Founder review then imports it, confirms or rejects rows, and exports the separate founder artifact. Only afterward may the `image` gate run first as a bounded dry run of at most `25` rows.
+The exact-image workstream is complete. Pivot to the separately governed production canary and run its read-only observer. Do not use this image confirmation as publication or pricing authority. Any future special-variant publication must create an explicit bounded authorization artifact, preserve all `143` image hashes, and canary a small visible subset before broader exposure.

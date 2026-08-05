@@ -15,17 +15,30 @@ These checkpoints should be read as institutional memory for the printing system
 
 ## Checkpoint Sequence
 
+### `SPECIAL_VARIANT_EXACT_IMAGE_REVIEW_CLOSEOUT_V1.md`
+
+This checkpoint closes exact-image review for all `143` authority-qualified hidden special-variant child printings.
+
+Current result:
+
+- `143/143` child rows have exact self-hosted image paths
+- `143/143` truth reviews are founder-verified and remain `hidden_pending_review`
+- `143/143` private image objects passed final byte/hash/dimension readback
+- `0` rows are public or currently priced
+- `0` canonical parent rows changed
+- the next gate is the separately governed production canary; special-variant publication remains unauthorized
+
 ### `SPECIAL_VARIANT_SELF_HOSTED_REVIEW_V1.md`
 
 This checkpoint records the exact-image and review workflow for the `143` hidden special-variant child printings.
 
 Current result:
 
-- `143/143` exact candidate images are self-hosted in private Grookai storage with byte-for-byte readback
-- `0` database rows, approvals, publication states, or pricing mappings changed during acquisition
-- the authenticated PokeJavi and founder portal is no-write and export-only
-- image approval, publication, and pricing are implemented as separate SHA-bound transactions capped at `25` rows
-- the next gate is PokeJavi's image-confirmed first-pass export
+- `143/143` exact images are self-hosted in private Grookai storage with byte-for-byte readback
+- founder review is complete through an immutable `133`-row artifact plus a separate `10`-row evidence amendment
+- all `143` image approvals were applied in bounded SHA-bound transactions
+- every row remains hidden; publication and pricing authorization counts remain `0`
+- exact-image work is closed by `SPECIAL_VARIANT_EXACT_IMAGE_REVIEW_CLOSEOUT_V1.md`
 
 ### `SPECIAL_VARIANT_PRINTING_HIDDEN_APPLY_CLOSEOUT_V1.md`
 

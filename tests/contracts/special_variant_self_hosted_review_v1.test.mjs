@@ -31,6 +31,10 @@ import {
   validateRepairDefinitions,
 } from '../../scripts/audits/special_variant_repair_amendment_v1.mjs';
 import { reconcile as reconcileSelfHostedEvidence } from '../../scripts/audits/special_variant_self_hosted_closeout_v1.mjs';
+import {
+  buildExpectedRows,
+  reconcileApplyArtifacts,
+} from '../../scripts/audits/special_variant_exact_image_closeout_v1.mjs';
 
 const planPath = 'docs/audits/special_variant_printing_self_hosted_evidence_v1/special_variant_printing_self_hosted_evidence_plan_v1.json';
 
@@ -287,6 +291,40 @@ test('the permanent repair amendment self-hosts all ten rows without transition 
   assert.equal(upload.storage_readback_matches, EXPECTED_REPAIR_COUNT);
   assert.equal(upload.database_writes_performed, false);
   assert.equal(upload.canonical_identity_changed, false);
+});
+
+test('exact-image closeout reconciles all 143 rows across the original and amendment packets', () => {
+  const baseManifest = JSON.parse(readFileSync(
+    'apps/web/src/data/review/specialVariantPrintingEvidenceV1.json',
+    'utf8',
+  ));
+  const originalFounder = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_review_v1/special_variant_founder_143_of_143.json',
+    'utf8',
+  ));
+  const amendmentManifest = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_amendment_v1/special_variant_repair_manifest_10.json',
+    'utf8',
+  ));
+  const amendmentFounder = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_amendment_v1/special_variant_founder_amendment_10.json',
+    'utf8',
+  ));
+  const applyNames = ['000_025', '025_025', '050_025', '075_025', '100_025', '125_008', '000_010'];
+  const dryRunNames = applyNames;
+  const apply = applyNames.map((name) => JSON.parse(readFileSync(
+    `docs/audits/special_variant_printing_self_hosted_evidence_v1/review_gate_runs/image_apply_${name}.json`,
+    'utf8',
+  )));
+  const dryRun = dryRunNames.map((name) => JSON.parse(readFileSync(
+    `docs/audits/special_variant_printing_self_hosted_evidence_v1/review_gate_runs/image_dry_run_${name}.json`,
+    'utf8',
+  )));
+  const expected = buildExpectedRows(baseManifest, originalFounder, amendmentManifest, amendmentFounder);
+  const reconciliation = reconcileApplyArtifacts(expected, apply, dryRun);
+  assert.equal(expected.length, 143);
+  assert.equal(reconciliation.selectedEvidence.length, 143);
+  assert.deepEqual(reconciliation.failures, []);
 });
 
 test('approval token binds every mutable gate input', () => {
