@@ -16,6 +16,9 @@ import {
 const LIVE_ARTIFACT =
   'docs/audits/japanese_master_index_v4/image_storage_canary_plan_v1/'
   + 'jpn_image_storage_canary_plan_v1.json';
+const LIVE_APPLY_RESULT =
+  'docs/audits/japanese_master_index_v4/image_storage_canary_apply_v1/'
+  + 'jpn_image_storage_canary_apply_v1.json';
 
 function readyRow(index) {
   const sha = String(index).padStart(64, 'a');
@@ -185,5 +188,44 @@ test('live Storage assets verify and preserve transient rollback policy', async 
   assert.equal(
     rows.every((row) => !row.database_pointer_update_allowed),
     true,
+  );
+});
+
+test('approved live Storage canary uploaded, verified, and removed all 17 objects', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  assert.equal(result.status, 'passed_and_rolled_back');
+  assert.equal(result.assets_staged, 17);
+  assert.equal(result.uploaded, 17);
+  assert.equal(result.readback_verified, 17);
+  assert.equal(result.removed, 17);
+  assert.equal(result.absent_verified, 17);
+  assert.equal(result.durable_objects_after_run, 0);
+  assert.equal(result.error, null);
+});
+
+test('approved live Storage canary preserved its exact authorization and boundaries', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  assert.equal(
+    result.approval_fingerprint_sha256,
+    'ef7d4745196a3f670870fa27f7d5b7a4d6609d61beae5889f4d90ea18d8394d7',
+  );
+  assert.equal(
+    result.storage_plan_hash_sha256,
+    '0d387055da45e4e1f38cfb2007eb8cb4e175023eb221c6d55391d46d6d6779ae',
+  );
+  assert.equal(result.target.supabase_project_ref, TARGET_SUPABASE_PROJECT_REF);
+  assert.equal(result.target.storage_bucket, TARGET_STORAGE_BUCKET);
+  assert.equal(result.database_reads, 0);
+  assert.equal(result.database_writes, 0);
+  assert.equal(result.image_pointer_writes, 0);
+});
+
+test('approved live Storage canary proof hash verifies', () => {
+  const result = JSON.parse(fs.readFileSync(LIVE_APPLY_RESULT, 'utf8'));
+  const { proof_hash_sha256: proofHash, ...proofPayload } = result;
+  assert.equal(contentFingerprint(proofPayload), proofHash);
+  assert.equal(
+    proofHash,
+    '5ef791677e10d1a0643c4add7b25a50fc67bbf9460e8fba68a1e398009f9911a',
   );
 });
