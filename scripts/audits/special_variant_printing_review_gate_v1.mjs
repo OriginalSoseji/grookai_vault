@@ -23,6 +23,8 @@ export const MANIFEST_PATH = path.join(ROOT, 'apps', 'web', 'src', 'data', 'revi
 const OUTPUT_DIR = path.join(ROOT, 'docs', 'audits', 'special_variant_printing_self_hosted_evidence_v1', 'review_gate_runs');
 const STORAGE_PREFIX = 'warehouse-derived/special-variant-printing-evidence-v1/';
 const CREATED_BY = 'special_variant_printing_review_gate_v1';
+const SUPABASE_CA_PATH = path.join(ROOT, 'scripts', 'certificates', 'supabase-prod-ca-2021.crt');
+const SUPABASE_ROOT_CA_SHA256 = '807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa';
 
 function sha256(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
@@ -131,23 +133,40 @@ function assertCleanTrackedTree() {
   if (status) throw new Error('Apply mode requires a clean tracked working tree.');
 }
 
-function databaseUrl() {
-  return process.env.SUPABASE_POOLER_URL
-    ?? process.env.SUPABASE_DB_URL
+async function connect() {
+  const connectionString = process.env.SUPABASE_DB_URL
     ?? process.env.DATABASE_URL
     ?? process.env.POSTGRES_URL;
-}
+  if (!connectionString) throw new Error('Missing direct Supabase database URL.');
+  const database = new URL(connectionString);
+  const project = new URL(process.env.SUPABASE_URL ?? '');
+  const projectRef = project.hostname.match(/^([a-z0-9]+)\.supabase\.co$/i)?.[1];
+  const expectedHost = projectRef ? `db.${projectRef}.supabase.co` : null;
+  if (!expectedHost || database.hostname.toLowerCase() !== expectedHost.toLowerCase()) {
+    throw new Error('Supabase database host does not match the project-scoped API origin.');
+  }
 
-async function connect() {
-  const url = databaseUrl();
-  if (!url) throw new Error('Missing Supabase database URL.');
+  const ca = await fs.readFile(SUPABASE_CA_PATH, 'utf8');
+  const certificate = new crypto.X509Certificate(ca);
+  if (sha256(certificate.raw) !== SUPABASE_ROOT_CA_SHA256
+    || !certificate.subject.includes('CN=Supabase Root 2021 CA')) {
+    throw new Error('Pinned Supabase database CA validation failed.');
+  }
   const client = new pg.Client({
-    connectionString: url,
-    ssl: { rejectUnauthorized: true },
+    connectionString,
+    ssl: {
+      ca,
+      rejectUnauthorized: true,
+      servername: database.hostname,
+    },
     connectionTimeoutMillis: 30_000,
     statement_timeout: 120_000,
   });
   await client.connect();
+  if (client.connection?.stream?.authorized !== true) {
+    await client.end().catch(() => {});
+    throw new Error('Supabase PostgreSQL TLS peer was not authorized.');
+  }
   return client;
 }
 
@@ -241,7 +260,7 @@ async function guardTargets(client, gate, expectedCount) {
           and coalesce(child.image_source, 'identity') = 'identity'
           and (child.image_path is null or child.image_path = target.storage_path)
           and child.image_url is null and child.image_alt_url is null
-          and coalesce(child.image_status, 'missing') in ('missing', 'exact')) as image_gate_ready_count,
+          and coalesce(child.image_status, 'missing') in ('missing', 'representative_shared_stamp', 'exact')) as image_gate_ready_count,
       (select count(*)::int
          from special_variant_review_targets_v1 target
          join public.card_printings child on child.id = target.card_printing_id

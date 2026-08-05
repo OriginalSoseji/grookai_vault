@@ -1,0 +1,24 @@
+{
+  "version": "SPECIAL_VARIANT_DIRECT_FOUNDER_FINALIZE_V1",
+  "packet_fingerprint": "68d34b75a4a2b6ade477b6ace9851c9487140239606ae394982238df6bb593dd",
+  "source_first_pass_sha256": "7c6799ce045210afbc44306eaf64c6ff23b8ed335427e273fd3d972b537501ae",
+  "source_rows": 143,
+  "founder_rows": 143,
+  "remaining_rows": 0,
+  "evidence_binding_errors": 0,
+  "duplicate_evidence_ids": 0,
+  "first_pass_decisions": {
+    "exact_match": 133,
+    "wrong_variant_marker": 8,
+    "image_unusable": 2
+  },
+  "founder_decisions": {
+    "confirmed": 133,
+    "rejected": 10
+  },
+  "publication_authorized": 0,
+  "pricing_authorized": 0,
+  "server_writes_performed": false,
+  "database_writes_performed": false,
+  "proof_hash": "8524403f3da6d6b6c7945d9a47632e9cdfc9bb807887ab77e7c44da3ed817e25"
+}

@@ -22,6 +22,7 @@ import {
   selectAuthorizedRows,
   validateFounderArtifact,
 } from '../../scripts/audits/special_variant_printing_review_gate_v1.mjs';
+import { founderDecision } from '../../scripts/audits/special_variant_direct_founder_finalize_v1.mjs';
 import { reconcile as reconcileSelfHostedEvidence } from '../../scripts/audits/special_variant_self_hosted_closeout_v1.mjs';
 
 const planPath = 'docs/audits/special_variant_printing_self_hosted_evidence_v1/special_variant_printing_self_hosted_evidence_plan_v1.json';
@@ -188,6 +189,31 @@ test('founder can provide the evidence-bound first pass without delegating revie
   );
 });
 
+test('direct founder first-pass decisions convert conservatively without publication authority', () => {
+  assert.equal(founderDecision('exact_match'), 'confirmed');
+  assert.equal(founderDecision('needs_more_evidence'), 'needs_more_evidence');
+  for (const decision of [
+    'wrong_card_identity',
+    'wrong_variant_marker',
+    'wrong_finish',
+    'image_unusable',
+  ]) {
+    assert.equal(founderDecision(decision), 'rejected');
+  }
+
+  const artifact = JSON.parse(readFileSync(
+    'docs/audits/special_variant_printing_self_hosted_evidence_v1/founder_review_v1/special_variant_founder_143_of_143.json',
+    'utf8',
+  ));
+  const counts = artifact.decisions.reduce((result, row) => {
+    result[row.founder_decision] = (result[row.founder_decision] ?? 0) + 1;
+    return result;
+  }, {});
+  assert.deepEqual(counts, { confirmed: 133, rejected: 10 });
+  assert.equal(artifact.decisions.some((row) => row.publication_authorized), false);
+  assert.equal(artifact.decisions.some((row) => row.pricing_authorized), false);
+});
+
 test('founder artifacts reject identity drift and unauthorized transition combinations', () => {
   const { manifest, artifact } = reviewFixture();
   assert.throws(
@@ -231,7 +257,12 @@ test('portal and executor preserve no-write review and canonical parent boundari
   );
   assert.match(executor, /MAX_BATCH_SIZE = 25/);
   assert.match(executor, /hidden_pending_review/);
+  assert.match(executor, /representative_shared_stamp/);
   assert.match(executor, /pg_advisory_xact_lock/);
+  assert.match(executor, /supabase-prod-ca-2021\.crt/);
+  assert.match(executor, /SUPABASE_ROOT_CA_SHA256/);
+  assert.match(executor, /client\.connection\?\.stream\?\.authorized !== true/);
+  assert.doesNotMatch(executor, /rejectUnauthorized:\s*false/);
   assert.match(executor, /await client\.query\('rollback'\)/);
   assert.doesNotMatch(executor, /update\s+public\.card_prints\b/i);
   assert.doesNotMatch(executor, /delete\s+from\s+public\./i);
