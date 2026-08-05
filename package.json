@@ -27,6 +27,7 @@
     "jpn-master-index:admit": "node scripts/audits/japanese_master_index_v4/final_admission_v1.mjs",
     "jpn-master-index:complete": "node scripts/audits/japanese_master_index_v4/complete_adjudication_v1.mjs",
     "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
+    "jpn-master-index:integration-inventory": "node scripts/audits/japanese_master_index_v4/product_integration_inventory_v1.mjs",
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",
     "release:journey:verify": "node scripts/audits/release_clean_account_journey_readback_v1.mjs",
     "web:build:strict": "node scripts/ci/run_next_build_strict.mjs",

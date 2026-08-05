@@ -1,0 +1,168 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "execution_boundary": {
+      "child_printing_writes": false,
+      "database_reads": true,
+      "database_transaction_read_only": true,
+      "database_writes": false,
+      "family_promotion": false,
+      "image_pointer_writes": false,
+      "pricing_writes": false,
+      "scanner_writes": false,
+      "search_writes": false,
+      "storage_reads": false,
+      "storage_writes": false,
+      "vault_writes": false
+    },
+    "generated_at": "2026-08-05T17:08:03.449Z",
+    "guard": {
+      "default_transaction_read_only": "on",
+      "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
+      "environment_label": "production-read-only-2026-08-05",
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on"
+    },
+    "inventory_version": "JPN-MASTER-INDEX-V4-PRODUCT-INTEGRATION-INVENTORY-V1",
+    "row_dataset": {
+      "content_fingerprint_sha256": "eeb38caaa7365e9fc75ae8c1f873fed5a4e2e64ca12048d56498d592fca97c61",
+      "dataset_key": "jpn_product_integration_inventory_rows_v1",
+      "row_count": 5336,
+      "shard_count": 2,
+      "shard_paths": [
+        "docs/audits/japanese_master_index_v4/product_integration_inventory_v1/rows/jpn_product_integration_inventory_rows_v1/jpn_product_integration_inventory_rows_v1_0001_of_0002.json.gz",
+        "docs/audits/japanese_master_index_v4/product_integration_inventory_v1/rows/jpn_product_integration_inventory_rows_v1/jpn_product_integration_inventory_rows_v1_0002_of_0002.json.gz"
+      ],
+      "shard_size": 5000
+    },
+    "rpc_smoke_rows": [
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-17AD55B7839E375A-236",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-17AD55B7839E375A-278",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-3090050C1BDFC5CE-8",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-48F4CC1504B3DC44-50",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-4A280363C186438B-172",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-590D814F321EF96D-60",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-74D8ABFD3ADB415B-63",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-7ACAB9DEBA959E50-3",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-9E34709FC9DBFDD1-16",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-C1B2D25816711751-35",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-D9B3B964BC0DCF4A-9",
+        "matched": true
+      },
+      {
+        "gv_id": "GV-PK-JPN-PRODUCT-DDA484E49B308E00-39",
+        "matched": true
+      }
+    ],
+    "source": {
+      "deferred_child_dataset_fingerprint_sha256": "42e2870a82a6cdfba84c1a7588c3d1610ebac0cebea845febe7af490ead1e60d",
+      "source_preflight_fingerprint_sha256": "b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b",
+      "writer_apply_proof_content_fingerprint_sha256": "8a871ebc28bf495ef574dbcaee943dd95e591697a65272ce73535d4b78422634",
+      "writer_payload_fingerprint_sha256": "b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c"
+    },
+    "status": "inventory_complete_read_only",
+    "summary": {
+      "child_printings": {
+        "blocked_now": 5336,
+        "blocker_counts": {
+          "printing_level_finish_evidence_not_established": 5336,
+          "self_hosted_image_pointer_not_proven": 5336,
+          "separate_public_visibility_approval_required": 5336
+        },
+        "live_child_rows": 0,
+        "planned_candidates": 5336,
+        "planned_finish_key_counts": {
+          "normal": 5336
+        },
+        "publication_eligible_now": 0,
+        "structurally_complete_candidates": 5336
+      },
+      "family_reviews": {
+        "family_status_counts": {
+          "resolved_domain": 1483,
+          "resolved_species": 3853
+        },
+        "promotion_allowed_rows": 0,
+        "review_status_counts": {
+          "pending": 5336
+        },
+        "reviewed_rows": 0
+      },
+      "findings": [],
+      "images": {
+        "external_pointer_parent_rows": 5336,
+        "image_source_counts": {
+          "identity": 5336
+        },
+        "image_status_counts": {
+          "ok": 5336
+        },
+        "missing_all_image_pointer_rows": 0,
+        "self_hosted_parent_rows": 0,
+        "status_counts": {
+          "external_image_pointer_only": 5336
+        }
+      },
+      "scanner": {
+        "currently_indexed_parent_rows": 0,
+        "external_image_seed_candidate_rows": 5336,
+        "legacy_fingerprint_rows": 0,
+        "scanner_fingerprint_rows": 0,
+        "self_hosted_image_seed_candidate_rows": 0
+      },
+      "scope": {
+        "applied_parent_rows": 5336,
+        "distinct_parent_gv_ids": 5336,
+        "distinct_parent_ids": 5336
+      },
+      "search": {
+        "exact_gv_id_rpc_smoke_match_count": 12,
+        "exact_gv_id_rpc_smoke_sample_count": 12,
+        "legacy_search_rows": 5336,
+        "print_identity_parent_documents": 5336,
+        "search_v2_rows": 5336
+      }
+    }
+  },
+  "content_fingerprint_sha256": "54cdac7d005e1c0a043ad1684715be3dfee31ea8f585f38d5de94fb18c64e4a4",
+  "generated_at": "2026-08-05T17:08:03.449Z",
+  "package_id": "JPN-MASTER-INDEX-V4-PRODUCT-INTEGRATION-INVENTORY-V1",
+  "retrieval": {
+    "access_mode": "verified_apply_artifacts_plus_guarded_live_read_only",
+    "database_reads": true,
+    "database_writes": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}
