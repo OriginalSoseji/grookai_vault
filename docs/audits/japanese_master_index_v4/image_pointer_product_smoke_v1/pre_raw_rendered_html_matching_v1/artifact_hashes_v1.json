@@ -2,12 +2,12 @@
   "artifacts": [
     {
       "bytes": 174529,
-      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.json",
+      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_raw_rendered_html_matching_v1/jpn_image_pointer_product_smoke_v1.json",
       "sha256": "425972edb36c0faa74d3dec61575656720c96d059824d436b619bab7153678cf"
     },
     {
       "bytes": 5310,
-      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.md",
+      "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_raw_rendered_html_matching_v1/jpn_image_pointer_product_smoke_v1.md",
       "sha256": "f65fb3efdbc5cae1440a85a9a704ee39b4d59b981fcd96d13a782e8701e3bd77"
     }
   ],

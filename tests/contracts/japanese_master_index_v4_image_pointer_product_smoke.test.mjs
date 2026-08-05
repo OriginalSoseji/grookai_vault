@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
@@ -10,6 +12,7 @@ import {
   buildProductSmokeRow,
   buildProductSmokeSummary,
   choosePreferredSetMetadataRow,
+  fetchResponse,
   renderedHtmlHasPath,
   renderedSetPageHasCount,
 } from '../../scripts/audits/japanese_master_index_v4/image_pointer_product_smoke_v1.mjs';
@@ -18,6 +21,33 @@ import { contentFingerprint } from '../../scripts/audits/japanese_master_index_v
 const LIVE_ARTIFACT =
   'docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/'
   + 'jpn_image_pointer_product_smoke_v1.json';
+const PRODUCT_SMOKE_ARTIFACT_ROOT =
+  'docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1';
+
+function findNamedFiles(root, fileName) {
+  const matches = [];
+  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+    const entryPath = path.join(root, entry.name);
+    if (entry.isDirectory()) {
+      matches.push(...findNamedFiles(entryPath, fileName));
+    } else if (entry.name === fileName) {
+      matches.push(entryPath);
+    }
+  }
+  return matches;
+}
+
+function response(status, body = 'response') {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    headers: {
+      get: (name) => name === 'content-type' ? 'text/plain' : null,
+    },
+    text: async () => body,
+    arrayBuffer: async () => Buffer.from(body),
+  };
+}
 
 function fixture() {
   const rowSnapshot = {
@@ -154,6 +184,48 @@ test('rendered image paths match literal or once-encoded output without HTML dec
   assert.equal(renderedHtmlHasPath('&amp;unrelated', path), false);
 });
 
+test('read-only HTTP checks retry transport and server failures with an audit trail', async () => {
+  const attempts = [
+    new Error('transport failed'),
+    response(503, 'temporarily unavailable'),
+    response(200, 'ready'),
+  ];
+  const delays = [];
+  const result = await fetchResponse('https://example.test/read-only', 'text', {
+    fetchImpl: async () => {
+      const next = attempts.shift();
+      if (next instanceof Error) throw next;
+      return next;
+    },
+    sleep: async (milliseconds) => delays.push(milliseconds),
+  });
+  assert.equal(result.ok, true);
+  assert.equal(result.body, 'ready');
+  assert.equal(result.request_count, 3);
+  assert.equal(result.retry_count, 2);
+  assert.deepEqual(result.transient_failures, [
+    { attempt: 1, status: null, error: 'transport failed' },
+    { attempt: 2, status: 503, error: null },
+  ]);
+  assert.deepEqual(delays, [250, 500]);
+});
+
+test('read-only HTTP checks do not retry client failures', async () => {
+  let calls = 0;
+  const result = await fetchResponse('https://example.test/not-found', 'text', {
+    fetchImpl: async () => {
+      calls += 1;
+      return response(404, 'not found');
+    },
+    sleep: async () => assert.fail('4xx response must not retry'),
+  });
+  assert.equal(calls, 1);
+  assert.equal(result.status, 404);
+  assert.equal(result.request_count, 1);
+  assert.equal(result.retry_count, 0);
+  assert.deepEqual(result.transient_failures, []);
+});
+
 test('product smoke source is read-only and avoids telemetry search routes', () => {
   const source = fs.readFileSync(
     'scripts/audits/japanese_master_index_v4/image_pointer_product_smoke_v1.mjs',
@@ -235,4 +307,30 @@ test('live artifact proves the repaired 53-row product boundary', () => {
     contentFingerprint(artifact.content),
     artifact.content_fingerprint_sha256,
   );
+});
+
+test('every product smoke hash manifest resolves and verifies its own artifacts', () => {
+  const manifests = findNamedFiles(
+    PRODUCT_SMOKE_ARTIFACT_ROOT,
+    'artifact_hashes_v1.json',
+  );
+  assert.ok(manifests.length >= 10);
+  for (const manifestPath of manifests) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    const manifestDirectory = path.dirname(manifestPath).replaceAll('\\', '/');
+    for (const entry of manifest.artifacts) {
+      assert.equal(
+        path.posix.dirname(entry.path),
+        manifestDirectory,
+        `${manifestPath} points outside its artifact directory`,
+      );
+      const bytes = fs.readFileSync(entry.path);
+      assert.equal(bytes.byteLength, entry.bytes, `${entry.path} byte count`);
+      assert.equal(
+        crypto.createHash('sha256').update(bytes).digest('hex'),
+        entry.sha256,
+        `${entry.path} SHA-256`,
+      );
+    }
+  }
 });
